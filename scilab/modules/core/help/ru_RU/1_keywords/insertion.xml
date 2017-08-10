@@ -11,7 +11,7 @@
         <refpurpose>частичное присвоение значения переменной</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             x(i,j)=a
             x(i)=a

@@ -15,14 +15,14 @@
 // <-- Short Description -->
 // The arrows are not drawn in 3D when one have arrowed segs or arrowed polylines
 // merged with a surface.
-// 
+//
 
 
 plot3d()
 xsegs([0;0],[0;0]);
 e=gce();
 e.data(:,3)=[0;4];
-e.arrow_size=4   
+e.arrow_size=4
 
 // check that the arrow head is drawn
 

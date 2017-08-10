@@ -5,7 +5,7 @@
         <refpurpose>Power transmission of a Butterworth filter</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[h]=buttmag(order,omegac,sample)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -46,7 +46,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //squared magnitude response of Butterworth filter
 h=buttmag(13,300,1:1000);
 mag=20*log(h)'/log(10);

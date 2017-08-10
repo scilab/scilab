@@ -4,11 +4,14 @@
 * Copyright (C) 2009 - DIGITEO - Allan CORNET
 * ...
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 /*--------------------------------------------------------------------------*/
@@ -28,46 +31,47 @@ extern "C"
 #include "os_string.h"
 }
 
-using namespace types;
-
 /*--------------------------------------------------------------------------*/
-Function::ReturnValue sci_mget(typed_list &in, int _iRetCount, typed_list &out)
+types::Function::ReturnValue sci_mget(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     char* pstType   = os_strdup("l");//default type value : long
     int iSize       = 0;
     int iFile       = -1; //default file : last opened file
-    double* pData   = NULL;
     int iErr        = 0;
 
     if (in.size() < 1 || in.size() > 3)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "mget", 1, 3);
-        return Function::Error;
+        FREE(pstType);
+        return types::Function::Error;
     }
 
     //check parameter 1
-    if (in[0]->isDouble() == false || in[0]->getAs<Double>()->getSize() != 1)
+    if (in[0]->isDouble() == false || in[0]->getAs<types::Double>()->getSize() != 1)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A positive integer value expected.\n"), "mget", 1);
-        return Function::Error;
+        FREE(pstType);
+        return types::Function::Error;
     }
 
-    Double* pDoubleTest = in[0]->getAs<Double>();
+    types::Double* pDoubleTest = in[0]->getAs<types::Double>();
     if ((pDoubleTest->get(0) != (int)pDoubleTest->get(0)) || (pDoubleTest->get(0) < 0))
     {
         Scierror(999, _("%s: Wrong value for input argument #%d: A positive integer value expected.\n"), "mget", 1);
-        return Function::Error;
+        FREE(pstType);
+        return types::Function::Error;
     }
 
-    iSize = static_cast<int>(in[0]->getAs<Double>()->get(0));
+    iSize = static_cast<int>(in[0]->getAs<types::Double>()->get(0));
 
     if (in.size() >= 2)
     {
         //export format
         if (in[1]->isString() == false || in[1]->getAs<types::String>()->getSize() != 1)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "mget", 2);
-            return Function::Error;
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "mget", 2);
+            FREE(pstType);
+            return types::Function::Error;
         }
 
         FREE(pstType);
@@ -76,17 +80,15 @@ Function::ReturnValue sci_mget(typed_list &in, int _iRetCount, typed_list &out)
 
     if (in.size() == 3)
     {
-        if (in[2]->isDouble() == false || in[2]->getAs<Double>()->getSize() != 1)
+        if (in[2]->isDouble() == false || in[2]->getAs<types::Double>()->getSize() != 1)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A integer expected.\n"), "mget", 3);
-            return Function::Error;
+            FREE(pstType);
+            return types::Function::Error;
         }
 
-        iFile = static_cast<int>(in[2]->getAs<Double>()->get(0));
+        iFile = static_cast<int>(in[2]->getAs<types::Double>()->get(0));
     }
-
-    Double* pD = new Double(1, iSize);
-    pData = pD->getReal();
 
     switch (iFile)
     {
@@ -107,11 +109,13 @@ Function::ReturnValue sci_mget(typed_list &in, int _iRetCount, typed_list &out)
     }
 
 
+    types::Double* pD = new types::Double(1, iSize);
+    double* pData = pD->get();
     C2F(mget)(&iFile, pData, &iSize, pstType, &iErr);
     FREE(pstType);
     if (iErr > 0)
     {
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (iErr < 0) //no error
@@ -120,7 +124,7 @@ Function::ReturnValue sci_mget(typed_list &in, int _iRetCount, typed_list &out)
         if (iNewSize < iSize)
         {
             //read data are smaller then excepted size
-            Double* pNewD = new Double(1, iNewSize);
+            types::Double* pNewD = new types::Double(1, iNewSize);
             double* pNewData = pNewD->getReal();
             for (int i = 0 ; i < iNewSize ; i++)
             {
@@ -132,6 +136,6 @@ Function::ReturnValue sci_mget(typed_list &in, int _iRetCount, typed_list &out)
         }
     }
     out.push_back(pD);
-    return Function::OK;
+    return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

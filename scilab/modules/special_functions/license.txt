@@ -4,8 +4,67 @@ Copyright (c) 1989-2008 - INRIA
 Copyright (c) Bruno Pincon
 
 License:
-This module must be used under the terms of the CeCILL.
-This module file is licensed as described in the file COPYING, which
-you should have received as part of this distribution.  The terms
-are also available at
-http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+Copyright (C) 2012 - 2016 - Scilab Enterprises
+
+This module is hereby licensed under the terms of the GNU GPL v2.0,
+pursuant to article 5.3.4 of the CeCILL v.2.1.
+This module was originally licensed under the terms of the CeCILL v2.1,
+and continues to be available under such terms.
+For more information, see the COPYING file which you should have received
+along with this program.
+
+
+Faddeeva:
+=========
+
+Files:
+src/cpp/faddeeva.cpp src/cpp/faddeeva.h
+
+Copyright:
+ Copyright (c) 2012 Massachusetts Institute of Technology
+
+License: 
+ Permission is hereby granted, free of charge, to any person obtaining
+ a copy of this software and associated documentation files (the
+ "Software"), to deal in the Software without restriction, including
+ without limitation the rights to use, copy, modify, merge, publish,
+ distribute, sublicense, and/or sell copies of the Software, and to
+ permit persons to whom the Software is furnished to do so, subject to
+ the following conditions:
+ 
+ The above copyright notice and this permission notice shall be
+ included in all copies or substantial portions of the Software.
+ 
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+PSI:
+====
+
+Files:
+src/fortran/psi.f
+
+Copyright:
+1988 W. J. Cody, Argonne National Laboratory
+
+License:
+Public domain
+
+DLGAMMA:
+========
+
+Files:
+src/fortran/dlgama.f
+
+Copyright:
+1988 W. J. Cody and L. Stoltz, Argonne National Laboratory
+
+License:
+Public domain
+
+

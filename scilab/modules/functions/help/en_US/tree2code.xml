@@ -2,21 +2,28 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA -
+ * Copyright (C) 2016 - Samuel GOUGEON
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="tree2code">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="tree2code">
     <refnamediv>
         <refname>tree2code</refname>
-        <refpurpose>generates ASCII definition of a Scilab function</refpurpose>
+        <refpurpose>generates the text definition of a Scilab function from its internal code</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>txt = tree2code(tree, prettyprint)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -26,7 +33,7 @@
                 <term>tree</term>
                 <listitem>
                     <para>
-                        a macro tree (coming from <function>macr2tree</function>).
+                        a macro internal tree (coming from <function>macr2tree</function>).
                     </para>
                 </listitem>
             </varlistentry>
@@ -34,28 +41,22 @@
                 <term>prettyprint</term>
                 <listitem>
                     <para>an optional boolean value:</para>
-                    <variablelist>
-                        <varlistentry>
-                            <term>%T</term>
-                            <listitem>
-                                <para>generated code is indented and beautified</para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>%F</term>
-                            <listitem>
-                                <para>
-                                    generated code is not beautified (default)
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                    </variablelist>
+                    <table>
+                      <tr>
+                        <td>%T : </td>
+                        <td>The generated code is indented and beautified</td>
+                      </tr>
+                      <tr>
+                        <td>%F : </td>
+                        <td>The generated code is not beautified (default)</td>
+                      </tr>
+                    </table>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>txt</term>
                 <listitem>
-                    <para>a column vector of strings, the text giving the Scilab instructions.</para>
+                    <para>column of texts: Scilab instructions defining the function</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -63,23 +64,44 @@
     <refsection>
         <title>Description</title>
         <para>
-            Given a loaded Scilab function "tree" (returned by <function>macr2tree</function>), <function>tree2code</function> allows to
-            re-generate the code.
+            Given a loaded Scilab function "tree" (returned by <function>macr2tree</function>),
+            <function>tree2code</function> allows to re-generate the code defining the function.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-tree=macr2tree(cosh);
-txt=tree2code(tree,%T);
-write(%io(2),txt,'(a)');
+tree = macr2tree(log2);   // note that the input is log2 (the function handle), not "log2"
+txt = tree2code(tree, %T);
+printf("%s\n", txt);
  ]]></programlisting>
+    <screen><![CDATA[--> printf("%s\n",c)
+function [f,e] = log2(x)
+  // x may be positive, negative, or complex
+  [lhs,rhs] = argn(0)
+  if rhs&lt;>1 then
+    msg = gettext("%s: Wrong number of input argument(s): %d expected.\n")
+    error(msprintf(msg, "log2", 1))
+  end;
+  if argn(1)==1 then
+    f = log(x)/log(2)
+  else
+    [f,e] = frexp(x)
+  end
+endfunction
+]]></screen>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="macr2tree">macr2tree</link>
+            </member>
+            <member>
+                <link linkend="macrovar">macrovar</link>
+            </member>
+            <member>
+                <link linkend="string">string</link>
             </member>
         </simplelist>
     </refsection>

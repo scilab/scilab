@@ -1,42 +1,45 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="legends" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="legends" xml:lang="pt">
     <refnamediv>
         <refname>legends</refname>
-        <refpurpose>Imprime uma legenda para o gráfico</refpurpose>
+        <refpurpose>Imprime uma legenda para o grÃ¡fico</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>legends(strings,style,&lt;opt_args&gt;)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>strings</term>
                 <listitem>
-                    <para>vetor de strings de dimensão n, strings(i) é a legenda da
-                        i-ésima curva 
+                    <para>vetor de strings de dimensÃ£o n, strings(i) Ã© a legenda da
+                        i-Ã©sima curva 
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>style</term>
                 <listitem>
-                    <para>vetor linha de inteiros de dimensão n (os estilos de esboço,
-                        terceiro parâmetro de plot2d) ou uma matriz 2 x n, style(1,k) contém
-                        o estilo de esboço para a k-ésima curva e style(2,k) contém o estilo
+                    <para>vetor linha de inteiros de dimensÃ£o n (os estilos de esboÃ§o,
+                        terceiro parÃ¢metro de plot2d) ou uma matriz 2 x n, style(1,k) contÃ©m
+                        o estilo de esboÃ§o para a k-Ã©sima curva e style(2,k) contÃ©m o estilo
                         de linha (se style(1,k)&gt;0) ou cor da marca (se style(1,k)&lt;0).
                     </para>
                 </listitem>
@@ -44,7 +47,7 @@
             <varlistentry>
                 <term>&lt;opt_args&gt;</term>
                 <listitem>
-                    <para>representa uma seqüência de declarações
+                    <para>representa uma seqÃ¼Ãªncia de declaraÃ§Ãµes
                         <literal>key1=value1,key2=value2</literal>,... onde
                         <literal>key1</literal>, <literal>key2,...</literal> podem ser um
                         dos seguintes:
@@ -54,16 +57,16 @@
                             <term>opt</term>
                             <listitem>
                                 <para>(opcional) especifica onde imprimir as legendas; este
-                                    parâmetro pode ser um flag inteiro (ou, de modo equivalente,
+                                    parÃ¢metro pode ser um flag inteiro (ou, de modo equivalente,
                                     um string) ou um vetor [x,y] que fornece as coordenadas da
                                     quina superior esquerda da caixa de legenda. No primeiro caso,
-                                    os valores possíveis são:
+                                    os valores possÃ­veis sÃ£o:
                                 </para>
                                 <variablelist>
                                     <varlistentry>
                                         <term>1 ou "ur"</term>
                                         <listitem>
-                                            <para>as legendas são impressas no canto superior
+                                            <para>as legendas sÃ£o impressas no canto superior
                                                 direito. 
                                             </para>
                                         </listitem>
@@ -71,7 +74,7 @@
                                     <varlistentry>
                                         <term>2 ou "ul"</term>
                                         <listitem>
-                                            <para>as legendas são impressas no canto superior
+                                            <para>as legendas sÃ£o impressas no canto superior
                                                 esquerdo. 
                                             </para>
                                         </listitem>
@@ -79,7 +82,7 @@
                                     <varlistentry>
                                         <term>3 ou "ll"</term>
                                         <listitem>
-                                            <para>as legendas são impressas no canto inferior
+                                            <para>as legendas sÃ£o impressas no canto inferior
                                                 esquerdo. 
                                             </para>
                                         </listitem>
@@ -87,7 +90,7 @@
                                     <varlistentry>
                                         <term>4 ou "lr"</term>
                                         <listitem>
-                                            <para>as legendas são impressas no canto inferior
+                                            <para>as legendas sÃ£o impressas no canto inferior
                                                 direito. 
                                             </para>
                                         </listitem>
@@ -95,15 +98,15 @@
                                     <varlistentry>
                                         <term>5 ou "?"</term>
                                         <listitem>
-                                            <para> localização interativa com o mouse
-                                                (padrão).
+                                            <para> localizaÃ§Ã£o interativa com o mouse
+                                                (padrÃ£o).
                                             </para>
                                         </listitem>
                                     </varlistentry>
                                     <varlistentry>
                                         <term>6 ou "below"</term>
                                         <listitem>
-                                            <para>as legendas são impressas abaixo do gráfico (que é
+                                            <para>as legendas sÃ£o impressas abaixo do grÃ¡fico (que Ã©
                                                 redimensionado de acordo).
                                             </para>
                                         </listitem>
@@ -114,15 +117,15 @@
                         <varlistentry>
                             <term>with_box</term>
                             <listitem>
-                                <para>um booleano (valor padrão %t) que ajusta se a caixa será
-                                    desenhada ou não.
+                                <para>um booleano (valor padrÃ£o %t) que ajusta se a caixa serÃ¡
+                                    desenhada ou nÃ£o.
                                 </para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
                             <term>font_size</term>
                             <listitem>
-                                <para>um inteiro (valor padrão 1) que ajusta o tamanho da
+                                <para>um inteiro (valor padrÃ£o 1) que ajusta o tamanho da
                                     fonte para os nomes na legenda.
                                 </para>
                             </listitem>
@@ -133,55 +136,61 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
-        <para>Põe uma legenda no esboço corrente utilizando strings especificados
-            como rótulos.
+        <title>DescriÃ§Ã£o</title>
+        <para>PÃµe uma legenda no esboÃ§o corrente utilizando strings especificados
+            como rÃ³tulos.
         </para>
-        <para>Na localização interativa (opt=5 ou opt="?") move-se a caixa de
-            legenda com o mouse e aperta-se o botão esquerdo para liberá-la.
+        <para>Na localizaÃ§Ã£o interativa (opt=5 ou opt="?") move-se a caixa de
+            legenda com o mouse e aperta-se o botÃ£o esquerdo para liberÃ¡-la.
         </para>
-        <para>Esta função permite uma localização mais flexível de legendas que o
+        <para>Esta funÃ§Ã£o permite uma localizaÃ§Ã£o mais flexÃ­vel de legendas que o
             argumento de plot2d leg.
         </para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Exemplo 1
 t=0:0.1:2*%pi;
-plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[-1,2 3]);  
+plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[-1,2 3]);
 legends(['cos(t)';'cos(2*t)';'cos(3*t)'],[-1,2 3],opt="lr")
 
 scf() ;
-xset("line style",2);plot2d(t,cos(t),style=5);
-xset("line style",4);plot2d(t,sin(t),style=3);
+gca().line_style = 2;
+plot2d(t,cos(t),style=5);
+gca().line_style = 4;
+plot2d(t,sin(t),style=3);
 legends(["sin(t)";"cos(t)"],[[5;2],[3;4]], with_box=%f, opt="?")
 
 // Exemplo 2
 scf() ;
 subplot(221)
 t=0:0.1:2*%pi;
-plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[-1,2 3]);  
+plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[-1,2 3]);
 legends(['cos(t)';'cos(2*t)';'cos(3*t)'],[-1,2 3], opt=3 )
 
 subplot(222)
-xset("line style",2);plot2d(t,cos(t),style=5);
-xset("line style",4);plot2d(t,sin(t),style=3);
+gca().line_style = 2;
+plot2d(t,cos(t),style=5);
+gca().line_style = 4;
+plot2d(t,sin(t),style=3);
 legends(["sin(t)";"cos(t)"],[[5;2],[3;4]], with_box=%f, opt=6 )
 
 subplot(223)
-xset("line style",2);plot2d(t,cos(t),style=5);
-xset("line style",4);plot2d(t,sin(t),style=3);
+gca().line_style = 2;
+plot2d(t,cos(t),style=5);
+gca().line_style = 4;
+plot2d(t,sin(t),style=3);
 legends(["sin(t)";"cos(t)"],[[5;2],[3;4]], with_box=%f, opt=1, font_size=2 )
 
 subplot(224)
 t=0:0.1:2*%pi;
-plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[-1,2 3]);  
+plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[-1,2 3]);
 legends(['cos(t)';'cos(2*t)';'cos(3*t)'],[-1,2 3], opt=2, font_size=1 )
  ]]></programlisting>
     </refsection>
     <refsection>
-        <title>Ver Também </title>
+        <title>Ver TambÃ©m </title>
         <simplelist type="inline">
             <member>
                 <link linkend="plot2d">plot2d</link>

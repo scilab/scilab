@@ -7,7 +7,7 @@
 //
 // <-- Non-regression test for bug 10278 -->
 //
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 //
 // <-- Bugzilla URL -->
 // http://bugzilla.scilab.org/show_bug.cgi?id=10278

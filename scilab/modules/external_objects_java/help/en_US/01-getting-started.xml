@@ -5,11 +5,14 @@
 * Copyright (C) 2013 - S/E - Sylvestre Ledru
 * Copyright (C) 2012 - CNES - Simon Billemont
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 *
 -->
@@ -70,15 +73,15 @@ jcompile("com.foo.HelloWorld",javacode);
             Now the HelloWorld class can be imported into our workspace. This is done using the already mentioned jimport:
             <screen>
                 -->jimport com.foo.HelloWorld
-                
+
                 -->HelloWorld
                 HelloWorld  =
-                
+
                 class com.foo.HelloWorld
-                
+
                 -->whos -name HelloWorld
                 Name                     Type           Size           Bytes
-                
+
                 HelloWorld               _EClass        ?              168
             </screen>
             <para>
@@ -90,15 +93,15 @@ jcompile("com.foo.HelloWorld",javacode);
             <screen>
                 -->object = HelloWorld.new();
                 HelloWorld constructed!
-                
+
                 -->object
                 object  =
-                
+
                 com.foo.HelloWorld@49aacd5f
-                
+
                 -->whos -name object
                 Name                     Type           Size           Bytes
-                
+
                 object                   _EObj          ?              160
             </screen>
             <para>
@@ -155,45 +158,45 @@ jcompile("com.foo.Inspector",javacode);
         To start, import the Inspector class and create an Inspector object:
         <screen>
             -->jimport('com.foo.Inspector');
-            
+
             -->myInspector = Inspector.new()
             myInspector  =
-            
+
             com.foo.Inspector@2a788315
         </screen>
-        
+
         Now information between the two systems can be passing along. When passing along any of the Scilab data types into Java, it is automatically wrapped (see <link linkend="jwrap">jwrap</link>) to its Java equivalent. First, an example using the most used data type in Scilab; reals (constant) is given. When passing along a real, this type gets automatically mapped to the Scilab type double. Let's try;
         <screen>
             -->result = myInspector.eval(12.5)
             result  =
-            
+
             6.25
-            
+
             -->result * 2
             ans  =
-            
+
             12.5
-            
+
             -->whos -name result
             Name                     Type           Size           Bytes
-            
+
             result                   constant       1 by 1         24
         </screen>
         The automatic convert is controlled by the jautoUnwrap function. Without this function, all the conversions have to be done explicitly.
         <screen>
             -->result = myInspector.eval(12.5)
             result  =
-            
+
             6.25
-            
+
             -->result * 2
             ans  =
-            
+
             null
-            
+
             -->whos -name result
             Name                     Type           Size           Bytes
-            
+
             result                   _EObj          ?              160
         </screen>
         The result that is returned seems to be correct at first glance ($12.5/2=6.25$). However upon closer inspection, notice that what is returned from our function call is not a number. What we received is another Java object (Double in this case). To be able to use the given data in again in Scilab, the already mentioned <link linkend="junwrap">junwrap</link> functionality can be used if the jautoUnwrap is not set to true.
@@ -201,103 +204,103 @@ jcompile("com.foo.Inspector",javacode);
         <screen>
             -->result = junwrap(result)
             result  =
-            
+
             6.25
-            
+
             -->whos -name result
             Name                     Type           Size           Bytes
-            
+
             result                   constant       1 by 1         24
-            
+
             -->result * 2
             ans  =
-            
+
             12.5
         </screen>
-        
+
         From this example is clear how doubles get automatically transformed into a Double, which is used by the Java VM and returned back. When calling <link linkend="junwrap">junwrap</link> on the returned variable, it is transformed back into a native Scilab type. But how do other types work? Let's inspect several of the other primitive types;
         <screen>
             -->jautoUnwrap(%f) // Make sure we disable the auto Unwrap
-            
+
             -->result = myInspector.inspect("Hello world!");
             Inspecting: 'Hello world!'
             Class: String
-            
+
             -->whos -name result
             Name                     Type           Size           Bytes
-            
+
             result                   _EObj          ?              160
-            
+
             -->result = junwrap(result)
             result  =
-            
+
             Hello world!
-            
+
             -->whos -name result
             Name                     Type           Size           Bytes
-            
+
             result                   string         1 by 1         72
-            
+
             // An Integer
             -->result = myInspector.inspect(int32(150));
             Inspecting: '150'
             Class: Integer
-            
+
             -->result = junwrap(result)
             result  =
-            
+
             150
-            
+
             -->whos -name result
             Name                     Type           Size           Bytes
-            
+
             result                   int32          1 by 1         40
-            
+
             // A boolean
             -->result = myInspector.inspect(%t);
             Inspecting: 'true'
             Class: Boolean
-            
+
             -->result = junwrap(result)
             result  =
-            
+
             T
-            
+
             -->whos -name result
             Name                     Type           Size           Bytes
-            
+
             result                   boolean        1 by 1         16
-            
+
         </screen>
-        
+
         As can be seen, all relevant data types are can be transformed transparently between Scilab and Java type. However this also extends without any additional effort to matrices;
         <screen>
             --> jautoUnwrap(%t) // Make sure we come back in the default mode where Scilab auto unwrap all calls
-            
+
             -->result = myInspector.inspect(1:5)
             Inspecting: '[D@b05236'
             Class: double[]
             result  =
-            
+
             1.    2.    3.    4.    5.
-            
+
             -->whos -name result
             Name                     Type           Size           Bytes
-            
+
             result                   constant       1 by 5         56
-            
+
             -->result = myInspector.inspect(testmatrix('magi',3))
             Inspecting: '[[D@11d13272'
             Class: double[][]
             result  =
-            
+
             8.    1.    6.
             3.    5.    7.
             4.    9.    2.
-            
+
             -->whos -name result
             Name                     Type           Size           Bytes
-            
+
             result                   constant       3 by 3         88
         </screen>
         When looking at the class of these wrapped matrices, it is clear that Java stores them as arrays of the appropriate size. When working with 2D matrices, the data in these equivalent Java arrays can be stored in are column-major (default) or row-major mode. In column-major mode, the first array contains a pointer to each of the columns. Whereas in row-major mode, the first array contains the pointers to each row of data. For more information see <link linkend="jautoTranspose">jautoTranspose</link>.

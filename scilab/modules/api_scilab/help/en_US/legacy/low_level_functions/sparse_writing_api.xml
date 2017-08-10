@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009  - DIGITEO - Antoine ELIAS
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="Sparse_management_writing_API" xml:lang="en">
+    <refnamediv>
+        <refname>Sparse writing (Scilab gateway)</refname>
+        <refpurpose>
+            How to write sparse matrix in a gateway.
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <refsection>
+            Create from existing data.
+        </refsection>
+        <title>Syntax</title>
+        <para>Input argument profile:</para>
+        <synopsis>SciErr createSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos, const double* _pdblReal)</synopsis>
+        <synopsis>SciErr createComplexSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos, const double* _pdblReal, const double* _pdblImg)</synopsis>
+        <para>Named variable profile:</para>
+        <synopsis>SciErr createNamedSparseMatrix(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos, const double* _pdblReal)</synopsis>
+        <synopsis>SciErr createNamedComplexSparseMatrix(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos, const double* _pdblReal, const double* _pdblImg)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>_pvCtx</term>
+                <listitem>
+                    <para>
+                        Scilab environment pointer, pass in "pvApiCtx" provided by api_scilab.h
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_iVar</term>
+                <listitem>
+                    <para>
+                        Position in the Scilab memory where you want to put the variable.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_pstName</term>
+                <listitem>
+                    <para>
+                        Name of the variable for "named" functions.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_iRows</term>
+                <listitem>
+                    <para>
+                        Number of rows of the new variable.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_iCols</term>
+                <listitem>
+                    <para>
+                        Number of columns of the new variable.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_iNbItem</term>
+                <listitem>
+                    <para>
+                        Number of non zero itmes in the sparse.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piNbItemRow</term>
+                <listitem>
+                    <para>
+                        Number of item in each rows (size: _iRows).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piColPos</term>
+                <listitem>
+                    <para>
+                        Column position for each item (size: _iNbItem).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_pdblReal</term>
+                <listitem>
+                    <para>
+                        Address of real data array (size: _iNbItem).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_pdblImg</term>
+                <listitem>
+                    <para>
+                        Address of imaginary data array (size: _iNbItem).
+                    </para>
+                    <para>
+                        This argument does not exist with createSparseMatrix and createNamedSparseMatrix.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>SciErr</term>
+                <listitem>
+                    <para>
+                        Error structure where is stored errors messages history and first error number.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsynopsisdiv>
+        <refsection>
+            Write directly in Scilab memory.
+        </refsection>
+        <title>Syntax</title>
+        <para>Input argument profile:</para>
+        <synopsis>SciErr allocSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal)</synopsis>
+        <synopsis>SciErr allocComplexSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>_pvCtx</term>
+                <listitem>
+                    <para>
+                        Scilab environment pointer, pass in "pvApiCtx" provided by api_scilab.h.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_iVar</term>
+                <listitem>
+                    <para>
+                        Position in the Scilab memory where you want to put the variable.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_iRows</term>
+                <listitem>
+                    <para>
+                        Number of rows of the new variable.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_iCols</term>
+                <listitem>
+                    <para>
+                        Number of columns of the new variable.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_iNbItem</term>
+                <listitem>
+                    <para>
+                        Number of non zero itmes in the sparse.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piNbItemRow</term>
+                <listitem>
+                    <para>
+                        Return address of number of item in each rows (size: _iRows).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piColPos</term>
+                <listitem>
+                    <para>
+                        Return address of column position for each item (size: _iNbItem).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_pdblReal</term>
+                <listitem>
+                    <para>
+                        Address of real data array (size: _iNbItem).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_pdblImg</term>
+                <listitem>
+                    <para>
+                        Address of imaginary data array (size: _iNbItem).
+                    </para>
+                    <para>
+                        This argument does not exist with allocSparseMatrix.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>SciErr</term>
+                <listitem>
+                    <para>
+                        Error structure where is stored errors messages history and first error number.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>This help describes how to add sparse matrix.</para>
+        <para>Two types of functions can be used to write in the memory of Scilab.</para>
+    </refsection>
+    <refsection>
+        <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/sparse_writing_api.c-->
+        <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/sparse_writing_api.tst-->
+        <!--Lib_name: sparse_writing-->
+        <!--Func_list: write_sparse-->
+        <title>Gateway Source</title>
+        <programlisting role="code_gateway"><![CDATA[
+#include "api_scilab.h"
+int write_sparse(char *fname,void* pvApiCtx)
+{
+	SciErr sciErr;
+	int piNbItemRow[]	= {1,2,1};
+	int piColPos[]		= {8,4,7,2};
+	double pdblSReal[]	= {1,2,3,4};
+	double pdblSImg[]	= {4,3,2,1};
+	int iNbItem			= 4;
+
+	sciErr = createComplexSparseMatrix(pvApiCtx, nbInputArgument(pvApiCtx) + 1, 3, 10, iNbItem, piNbItemRow, piColPos, pdblSReal, pdblSImg);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+
+	AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+	return 0;
+}
+ ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>Scilab test script</title>
+        <programlisting role="code_scilab"><![CDATA[
+sp_ref = sparse([1,8;2,4;2,7;3,2],[1+4*%i,2+3*%i,3+2*%i,4+%i], [3,10]);
+sp = write_sparse();
+if or(sp <> sp_ref) then error("failed"), end
+ ]]></programlisting>
+    </refsection>
+</refentry>

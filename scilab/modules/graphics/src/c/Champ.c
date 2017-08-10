@@ -4,11 +4,14 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2011 - DIGITEO - Manuel Juliachs
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -139,6 +142,11 @@ void champg(char *name, int colored, double *x, double *y, double *fx, double *f
 
     /* Get segs bounding box */
     getGraphicObjectProperty(iNewSegsUID, __GO_BOUNDING_BOX__, jni_double_vector, (void **)&boundingBox);
+    if (!boundingBox)
+    {
+        Scierror(999, _("%s: Could not retrieve bounding box.\n"), "champg");
+        return;
+    }
 
     xx[0] = boundingBox[0];
     xx[1] = boundingBox[1];
@@ -230,13 +238,13 @@ void champg(char *name, int colored, double *x, double *y, double *fx, double *f
 int C2F(champ)(double *x, double *y, double *fx, double *fy, int *n1, int *n2, char *strflag, double *brect, double *arfact, int lstr)
 {
     champg("champ", 0, x, y, fx, fy, n1, n2, strflag, brect, arfact, lstr);
-    return(0);
+    return (0);
 }
 
 int C2F(champ1)(double *x, double *y, double *fx, double *fy, int *n1, int *n2, char *strflag, double *brect, double *arfact, int lstr)
 {
     champg("champ1", 1, x, y, fx, fy, n1, n2, strflag, brect, arfact, lstr);
-    return(0);
+    return (0);
 }
 /*----------------------------------------------------------------------------------*/
 

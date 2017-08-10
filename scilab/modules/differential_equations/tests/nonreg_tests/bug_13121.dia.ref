@@ -58,12 +58,13 @@ function ydot=right(t,pl)
     //if x(2) <= 0 & t > 0 then
     //    disp(t,"tf");
     //end;
-      ydot(1) = x(3) * cos(x(4));
-      ydot(2) = x(3) * sin(x(4));
-      ydot(3) = 1/m(t)*(T(t)-0.5*c*r*s*x(3)*x(3)) - der_m(t)/m(t)*x(3) - g*sin(x(4));
-      ydot(4) = -g/x(3)*cos(x(4));
-//    end
+    ydot(1) = x(3) * cos(x(4));
+    ydot(2) = x(3) * sin(x(4));
+    ydot(3) = 1/m(t)*(T(t)-0.5*c*r*s*x(3)*x(3)) - der_m(t)/m(t)*x(3) - g*sin(x(4));
+    ydot(4) = -g/x(3)*cos(x(4));
+    //    end
 endfunction
 t=0:0.01:40;
-refMsg = msprintf(_("Invalid index."));
+refMsg = [msprintf(_("Invalid index.\n"));
+msprintf(_("%ls: An error occured in ''%s'' subroutine.\n"), "ode", "lsrgk")];
 assert_checkerror("res=ode(""rk"",[x0;y0;v0;teta0;],t0,t,right)", refMsg);

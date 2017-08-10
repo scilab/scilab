@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="invsyslin">
+    <refnamediv>
+        <refname>invsyslin</refname>
+        <refpurpose>逆システム</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[sl2]=invsyslin(sl1)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>sl1,sl2</term>
+                <listitem>
+                    <para>
+                        <literal>syslin</literal> リスト (状態空間表現の線形システム)
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            ユーティリティ関数.
+            (状態形式で指定した)線形システム <literal>sl1</literal> の
+            逆 <literal>sl2</literal>の状態形式を計算します.
+        </para>
+        <para>
+            <literal>D</literal>行列はフルランクと仮定されます.
+            <literal>S</literal>が<literal>syslin</literal>リストの場合,
+            <literal>inv(S)</literal>による古い処理が使用されます.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="rowregul">rowregul</link>
+            </member>
+            <member>
+                <link linkend="inv">inv</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

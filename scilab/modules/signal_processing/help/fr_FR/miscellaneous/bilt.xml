@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="bilt">
+    <refnamediv>
+        <refname>bilt</refname>
+        <refpurpose>bilinear or biquadratic transform SISO system given by a zero/poles representation</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[npl,nzr,ngn] = bilt(pl,zr,gn,num,den)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>pl</term>
+                <listitem>
+                    <para>a vector, the poles of the given system.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>zr</term>
+                <listitem>
+                    <para>a vector, the zeros of the given system.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>num</term>
+                <listitem>
+                    <para>a polynomial with degree equal to the degree of
+                        <literal>den</literal>, the numerator of the
+                        transform.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>den</term>
+                <listitem>
+                    <para>a polynomial with degree 1 or 2, the denominator of the transform.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>npl</term>
+                <listitem>
+                    <para>a vector, the poles of the transformed system.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>nzr</term>
+                <listitem>
+                    <para>a vector, the zeros of the transformed system.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ngn</term>
+                <listitem>
+                    <para>a scalar, the gain of the transformed system.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>function for calculating the gain poles and zeros which
+            result from a bilinear transform or from a biquadratic transform.
+            Used by the functions <link linkend="iir">iir</link> and <link linkend="trans">trans</link>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+Hlp=iir(3,'lp','ellip',[0.1 0],[.08 .03]);
+pl=roots(Hlp.den);
+zr=roots(Hlp.num);
+gn=coeff(Hlp.num,degree(Hlp.num))/coeff(Hlp.den,degree(Hlp.den));
+z=poly(0,'z');
+a=0.3;
+num=z-a;
+den=1-a*z;
+[npl,nzr,ngn] = bilt(pl,zr,gn,num,den)
+
+Hlpt=ngn*poly(nzr,'z','r')/poly(npl,'z','r')
+
+//comparison with horner
+horner(Hlp,num/den)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="iir">iir</link>
+            </member>
+            <member>
+                <link linkend="trans">trans</link>
+            </member>
+            <member>
+                <link linkend="horner">horner</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

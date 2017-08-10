@@ -8,31 +8,14 @@ This is generated code.
 This software is a computer program whose purpose is to hide the complexity
 of accessing Java objects/methods from C++ code.
 
-This software is governed by the CeCILL-B license under French law and
-abiding by the rules of distribution of free software.  You can  use,
-modify and/ or redistribute the software under the terms of the CeCILL-B
-license as circulated by CEA, CNRS and INRIA at the following URL
-"http://www.cecill.info".
+Copyright (C) 2012 - 2016 - Scilab Enterprises
 
-As a counterpart to the access to the source code and  rights to copy,
-modify and redistribute granted by the license, users are provided only
-with a limited warranty  and the software's author,  the holder of the
-economic rights,  and the successive licensors  have only  limited
-liability.
-
-In this respect, the user's attention is drawn to the risks associated
-with loading,  using,  modifying and/or developing or reproducing the
-software by the user in light of its specific status of free software,
-that may mean  that it is complicated to manipulate,  and  that  also
-therefore means  that it is reserved for developers  and  experienced
-professionals having in-depth computer knowledge. Users are therefore
-encouraged to load and test the software's suitability as regards their
-requirements in conditions enabling the security of their systems and/or
-data to be ensured and,  more generally, to use and operate it in the
-same conditions as regards security.
-
-The fact that you are presently reading this means that you have had
-knowledge of the CeCILL-B license and that you accept its terms.
+This file is hereby licensed under the terms of the GNU GPL v2.0,
+pursuant to article 5.3.4 of the CeCILL v.2.1.
+This file was originally licensed under the terms of the CeCILL v2.1,
+and continues to be available under such terms.
+For more information, see the COPYING file which you should have received
+along with this program.
 */
 
 
@@ -76,15 +59,12 @@ private:
 JavaVM * jvm;
 
 protected:
-jmethodID voidxcosjstringjava_lang_Stringjstringjava_lang_StringID; // cache method id
+jmethodID voidxcosjstringjava_lang_StringjlonglongID; // cache method id
+jmethodID voidxcosDiagramToScilabjstringjava_lang_StringjlonglongjbooleanbooleanID; // cache method id
 jmethodID voidwarnCellByUIDjobjectArray_java_lang_Stringjava_lang_Stringjstringjava_lang_StringID; // cache method id
 jclass stringArrayClass;
 jmethodID voidcloseXcosFromScilabID; // cache method id
-jmethodID jintxcosDiagramToScilabjstringjava_lang_StringID; // cache method id
-jmethodID voidxcosDiagramOpenjobjectArray_java_lang_Stringjava_lang_StringID; // cache method id
-jmethodID voidxcosDiagramClosejobjectArray_java_lang_Stringjava_lang_StringID; // cache method id
 jmethodID voidaddToolsMenujstringjava_lang_Stringjstringjava_lang_StringID; // cache method id
-jmethodID voidupdateBlockjstringjava_lang_StringID; // cache method id
 jmethodID voidxcosSimulationStartedID; // cache method id
 
 
@@ -145,21 +125,15 @@ void synchronize();
 void endSynchronize();
 
 // Methods
-static void xcos(JavaVM * jvm_, char const* file, char const* variable);
+static void xcos(JavaVM * jvm_, char const* file, long long diagramId);
+
+static void xcosDiagramToScilab(JavaVM * jvm_, char const* file, long long diagramId, bool exported);
 
 static void warnCellByUID(JavaVM * jvm_, char const* const* uids, int uidsSize, char const* message);
 
 static void closeXcosFromScilab(JavaVM * jvm_);
 
-static int xcosDiagramToScilab(JavaVM * jvm_, char const* xcosFile);
-
-static void xcosDiagramOpen(JavaVM * jvm_, char const* const* UID, int UIDSize);
-
-static void xcosDiagramClose(JavaVM * jvm_, char const* const* UID, int UIDSize);
-
 static void addToolsMenu(JavaVM * jvm_, char const* label, char const* command);
-
-static void updateBlock(JavaVM * jvm_, char const* h5File);
 
 static void xcosSimulationStarted(JavaVM * jvm_);
 

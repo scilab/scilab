@@ -1,13 +1,16 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) 1985 - INRIA - F. BONNANS
-c 
-c This file must be used under the terms of the CeCILL.
-c This source file is licensed as described in the file COPYING, which
-c you should have received as part of this distribution.  The terms
-c are also available at    
-c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 c
-      subroutine gcbd(indgc,simul,nomf,n,x,f,g,imp,io,zero,
+c Copyright (C) 2012 - 2016 - Scilab Enterprises
+c
+c This file is hereby licensed under the terms of the GNU GPL v2.0,
+c pursuant to article 5.3.4 of the CeCILL v.2.1.
+c This file was originally licensed under the terms of the CeCILL v2.1,
+c and continues to be available under such terms.
+c For more information, see the COPYING file which you should have received
+c along with this program.
+c
+      subroutine gcbd(indgc,simul,nomf,n,x,f,g,iprint,io,zero,
      &napmax,itmax,epsf,epsg,epsx,df0,binf,bsup,nfac,
      &vect,nvect,ivect,nivect,izs,rzs,dzs)
 c!but
@@ -56,7 +59,7 @@ c     n dim de x                                                 e
 c     x variables a optimiser (controle)                          es
 c     f valeur du critere                                         s
 c     g gradient de f                                             s
-c     imp si =0 pas d impression
+c     iprint si =0 pas d impression
 c             1  impressions en debut etfin dexecution
 c             2  3 lignes a chaque iteration
 c             >=3 nombreuses impressions    e
@@ -167,7 +170,7 @@ c
       ialg(9)=12
 c
 c---- initial printing
-      if(imp.gt.0) then
+      if(iprint.gt.0) then
          write (bufstr,900)
          call basout(io_out, io, bufstr(1:lnblnk(bufstr)))
          write (bufstr,901) n
@@ -180,7 +183,7 @@ c---- initial printing
          call basout(io_out, io, bufstr(1:lnblnk(bufstr)))
          write (bufstr,905) napmax
          call basout(io_out, io, bufstr(1:lnblnk(bufstr)))
-         write (bufstr,906) imp
+         write (bufstr,906) iprint
          call basout(io_out, io, bufstr(1:lnblnk(bufstr)))
       endif
 900   format (" gcdb: entry point")
@@ -189,17 +192,17 @@ c---- initial printing
 903   format (5x,"relative precision on g (epsg):",d9.2)
 904   format (5x,"maximal number of iterations (itmax):",i6)
 905   format (5x,"maximal number of simulations (napmax):",i6)
-906   format (5x,"printing level (imp):",i4)
+906   format (5x,"printing level (iprint):",i4)
 c
 c     verification des entrees
       ii=min(n,napmax,itmax)
       if(ii.gt.0)go to 10
       indgc=-11
-      if(imp.gt.0) then
+      if(iprint.gt.0) then
         write(bufstr,123) indgc
         call basout(io ,lp ,bufstr(1:lnblnk(bufstr)))
       endif
-      
+
 123   format(' gcbd : return with indgc=',i8)
       return
 10    aa=min(zero,epsg,df0)
@@ -207,7 +210,7 @@ c     verification des entrees
 11    aa=min(aa,epsx(i))
       if(aa.gt.0.0d+0) goto 12
       indgc=-12
-      if(imp.gt.0) then
+      if(iprint.gt.0) then
         write(bufstr,123) indgc
         call basout(io ,lp ,bufstr(1:lnblnk(bufstr)))
       endif
@@ -249,8 +252,9 @@ c
       endif
 c
       call zgcbd(simul,n,binf,bsup,x,f,g,zero,napmax,itmax,indgc,ivect
-     &(nindic),nfac,imp,io,epsx,epsf,epsg,vect(ndir),df0,vect(ndiag),
-     &vect(nx2),izs,rzs,dzs,vect(ny),vect(ns),vect(nz),vect(nys),
-     &vect(nzs),nt,ivect(nindex),vect(nd),vect(ng),alg,ialg,nomf)
+     &(nindic),nfac,iprint,io,epsx,epsf,epsg,vect(ndir),df0,
+     &vect(ndiag),vect(nx2),izs,rzs,dzs,vect(ny),vect(ns),vect(nz),
+     &vect(nys),vect(nzs),nt,ivect(nindex),vect(nd),vect(ng),alg,ialg,
+     &nomf)
       return
       end

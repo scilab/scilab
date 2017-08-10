@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - INRIA - Serge Steer
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="repmat" xml:lang="ja">
+    <refnamediv>
+        <refname>repmat</refname>
+        <refpurpose>配列を複製/タイル状に配置</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>
+          B = repmat(A, siz)
+          B = repmat(A, m)
+          B = repmat(A, m, n,...)
+      </synopsis>
+    </refsynopsisdiv>
+    <refsection role="parameters">
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>A</term>
+                <listitem>
+                    <para>入力二次元配列.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>m, n, ...</term>
+                <listitem>
+                    <para>
+                        整数で, <literal>B</literal>の各次元に関する
+                        <literal>A</literal> ブロックの数.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>siz</term>
+                <listitem>
+                    <para>
+                        整数ベクトルで, 各要素は<literal>B</literal>の対応する次元に
+                        関する<literal>A</literal>ブロックの数を指定する.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>B</term>
+                <listitem>
+                    <para>
+                        2次元配列<literal>A</literal>をタイル状に配置した
+                        配列.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection role="description">
+        <title>説明</title>
+        <para>
+            <literal>repmat(A,m,n)</literal> または同様な
+            <literal>repmat(A,[m,n])</literal> は,<literal>A</literal>の
+            <literal>m</literal> x <literal>n</literal> のタイル状の
+            コピーからなる大きな行列を返します.
+            結果の大きさは,<literal>[size(A,1)*M, size(A,2)*N]</literal>です.
+        </para>
+        <para>
+            <literal>repmat(A,m)</literal> は,
+            <literal>m</literal> x <literal>m</literal>のタイル状コピーを作成します.
+        </para>
+        <para>
+            <literal>repmat(A,[m n p ...])</literal> は,配列Aをタイル状に
+            コピーし,<literal>A</literal>のコピーからなる多次元配列を作成します.
+            結果の大きさは,
+            <literal>[size(A,1)*M, size(A,2)*N, size(A,3)*P, ...] </literal>となります.
+        </para>
+        <para>
+            現時点では,実数,整数,論理値,文字列,多項式,有理数および
+            疎行列の配列のみがサポートされています.
+            この関数の定義は,オーバーロード機能により拡張することができます.
+        </para>
+    </refsection>
+    <refsection role="examples">
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+    repmat(1:3,2,2)
+    repmat(int8([1 0 1;0 1 0]),2,3,2)
+    repmat("Scilab",3,2)
+    t="Scilab";t(ones(3,2))
+    repmat([1/%s;2/(%s+1)],1,3)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="matrix">matrix</link>
+            </member>
+            <member>
+                <link linkend="extraction">extraction</link>
+            </member>
+            <member>
+                <link linkend="size">size</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.3.1</revnumber>
+                <revremark>関数 repmat が導入されました.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

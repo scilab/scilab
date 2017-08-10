@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009-2011 - DIGITEO - Pierre Lando
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  */
 
 package org.scilab.forge.scirenderer.implementation.jogl;
@@ -18,6 +21,7 @@ import org.scilab.forge.scirenderer.clipping.ClippingManager;
 import org.scilab.forge.scirenderer.implementation.jogl.clipping.JoGLClippingManager;
 import org.scilab.forge.scirenderer.implementation.jogl.drawer.JoGLShapeDrawer;
 import org.scilab.forge.scirenderer.implementation.jogl.lightning.JoGLLightManager;
+import org.scilab.forge.scirenderer.implementation.jogl.JoGLPixelDrawingMode;
 import org.scilab.forge.scirenderer.lightning.LightManager;
 import org.scilab.forge.scirenderer.renderer.Renderer;
 import org.scilab.forge.scirenderer.shapes.appearance.Appearance;
@@ -46,6 +50,7 @@ public class JoGLDrawingTools implements DrawingTools {
     private final JoGLClippingManager clippingManager;
     private final JoGLCanvas canvas;
     private GL2 gl;
+    private int PixelDrawingMode;
 
     /**
      * Default constructor.
@@ -57,6 +62,8 @@ public class JoGLDrawingTools implements DrawingTools {
         this.clippingManager = new JoGLClippingManager(this);
 
         this.canvas = canvas;
+
+        this.PixelDrawingMode = GL2.GL_COPY;
 
         transformationManager.addListener(new TransformationManagerListener() {
             @Override
@@ -117,6 +124,66 @@ public class JoGLDrawingTools implements DrawingTools {
     @Override
     public ClippingManager getClippingManager() {
         return clippingManager;
+    }
+
+    public void setPixelDrawingMode(JoGLPixelDrawingMode mode) {
+        switch (mode) {
+            case CLEAR:
+                PixelDrawingMode = GL2.GL_CLEAR;
+                break;
+            case AND:
+                PixelDrawingMode = GL2.GL_AND;
+                break;
+            case AND_REVERSE:
+                PixelDrawingMode = GL2.GL_AND_REVERSE;
+                break;
+            case COPY:
+                PixelDrawingMode = GL2.GL_COPY;
+                break;
+            case AND_INVERTED:
+                PixelDrawingMode = GL2.GL_AND_INVERTED;
+                break;
+            case NOOP:
+                PixelDrawingMode = GL2.GL_NOOP;
+                break;
+            case XOR:
+                PixelDrawingMode = GL2.GL_XOR;
+                break;
+            case OR:
+                PixelDrawingMode = GL2.GL_OR;
+                break;
+            case NOR:
+                PixelDrawingMode = GL2.GL_NOR;
+                break;
+            case EQUIV:
+                PixelDrawingMode = GL2.GL_EQUIV;
+                break;
+            case INVERT:
+                PixelDrawingMode = GL2.GL_INVERT;
+                break;
+            case OR_REVERSE:
+                PixelDrawingMode = GL2.GL_OR_REVERSE;
+                break;
+            case COPY_INVERTED:
+                PixelDrawingMode = GL2.GL_COPY_INVERTED;
+                break;
+            case OR_INVERTED:
+                PixelDrawingMode = GL2.GL_OR_INVERTED;
+                break;
+            case NAND:
+                PixelDrawingMode = GL2.GL_NAND;
+                break;
+            case SET:
+                PixelDrawingMode = GL2.GL_SET;
+                break;
+            default:
+                PixelDrawingMode = GL2.GL_COPY;
+                break;
+        }
+    }
+
+    public int getGLPixelDrawingMode() {
+        return PixelDrawingMode;
     }
 
     @Override

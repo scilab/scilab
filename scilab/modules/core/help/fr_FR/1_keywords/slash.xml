@@ -34,6 +34,28 @@
         <para>
             La suite de symboles <literal>//</literal> met une ligne en commentaire, c'est à dire, les lignes commençant par <literal>//</literal> sont ignorées par l'interpréteur.
         </para>
+        <para>
+            De le même façon, <code>/*</code> débute un commentaire et <code>*/</code> termine un commentaire.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+a=[3.,-24.,30.];
+B=[
+   9.   -36.    30.
+  -36.   192.  -180.
+   30.  -180.   180.
+];
+x=a/B
+x*B-a // proche de zéro
+
+a=4 / 2; // Doit renvoyer 2
+a=2 ./ [2,4]; //     1.    0.5
+// Un commentaire aide à comprendre le code.
+/* Même longs, c'est à die sur plusieurs lignes,
+les commentaires sont utiles. */
+ ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="comments" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="comments" xml:lang="pt">
     <refnamediv>
         <refname>comments</refname>
-        <refpurpose>comentários</refpurpose>
+        <refpurpose>(// or /*...*/) comments</refpurpose>
     </refnamediv>
     <refsection>
         <title>Descrição</title>
@@ -10,7 +10,12 @@
             Uma seqüência de duas barras <literal> // </literal> fora de uma
             definição de string marca o início de um comentário. As barras, tanto
             quanto o restante dos caracteres até o fim das linhas não são
-            interpretados. 
+            interpretados.
+        </para>
+        <para>
+            Another way to comment a block of code is to use /* at the beginning
+            and */ at the end. It is more useful than // which must be positioned at the
+            beginning of each line to comment.
         </para>
         <para>Dentro de uma função, as primeiras linhas de comentário até a
             primeira instrução ou linha vazia podem ser usadas para fornecer o
@@ -19,10 +24,14 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 g=9.81// a gravidade
 
 text='a//b'
+
+/* As this comment is quite long to be on many lines,
+the symbols slash and star to start the comment
+and star and slash to end the comment are used */
 
 function y=myfunction(x)
 //  myfunction computa y=x^2+1

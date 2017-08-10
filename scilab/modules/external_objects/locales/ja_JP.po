@@ -6,21 +6,19 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-10-02 13:59+0000\n"
-"Last-Translator: Rui Hirokawa <Unknown>\n"
+"PO-Revision-Date: 2015-10-08 21:58+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
+"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 18315)\n"
 
-msgid "Exception thrown in file"
-msgstr "ファイルで例外発生"
-
-msgid "at line"
-msgstr "行"
+msgid "Invalid variable: cannot retrieve the data"
+msgstr "無効な変数: データを取得できません"
 
 #, c-format
 msgid "%s: An error occurred: %s"
@@ -39,9 +37,6 @@ msgstr "変数名が無効です: %s"
 
 msgid "Cannot allocate memory"
 msgstr "メモリを確保できません"
-
-msgid "Invalid variable: cannot retrieve the data"
-msgstr "無効な変数: データを取得できません"
 
 msgid "Invalid variable: cannot create data"
 msgstr "無効な変数: データを作成できません"
@@ -69,7 +64,7 @@ msgid "A single String expected"
 msgstr "文字列を指定してください"
 
 #, c-format
-msgid "Wrong type for argument #%d: A string expected."
+msgid "Wrong type for argument #%d: string expected."
 msgstr "引数 #%d の型が間違っています:  文字列を指定してください"
 
 #, c-format
@@ -119,7 +114,7 @@ msgid "Incompatible External Object"
 msgstr "外部オブジェクトの互換性がありません"
 
 #, c-format
-msgid "Wrong type for input argument #%d: A string expected."
+msgid "Wrong type for input argument #%d: string expected."
 msgstr "入力引数 #%d の型が間違っています: 文字列を指定してください."
 
 #, c-format
@@ -184,4 +179,5 @@ msgstr "変数が無効です: データ型を取得できませんでした"
 
 #, c-format
 msgid "%s: Wrong argument type at position %i: Double expected\n"
-msgstr "%s: 位置 %i にある引数の型が間違っています:] double を指定してください\n"
+msgstr ""
+"%s: 位置 %i にある引数の型が間違っています:] double を指定してください\n"

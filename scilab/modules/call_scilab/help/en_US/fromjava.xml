@@ -5,7 +5,7 @@
         <refpurpose>Checks if current Scilab is called from javasci</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>r = fromjava()</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -32,13 +32,10 @@ fromjava();
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="call_scilab">Call_Scilab</link>
-            </member>
-            <member>
-                <link linkend="api_scilab">api Scilab</link>
             </member>
             <member>
                 <link linkend="fromc">fromc</link>

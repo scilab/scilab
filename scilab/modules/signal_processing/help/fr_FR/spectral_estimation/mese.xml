@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="fr" xml:id="mese">
+    <refnamediv>
+        <refname>mese</refname>
+        <refpurpose>maximum entropy spectral estimation</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[sm,fr]=mese(x [,npts]);</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>Input sampled data sequence</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>npts</term>
+                <listitem>
+                    <para>
+                        Optional parameter giving number of points of <literal>fr</literal> and <literal>sm</literal> (default is 256)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sm</term>
+                <listitem>
+                    <para>
+                        Samples of spectral estimate on the frequency grid <literal>fr</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fr</term>
+                <listitem>
+                    <para>
+                        npts equally spaced frequency samples in <literal>[0,.5)</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Calculate the maximum entropy spectral estimate of <literal>x</literal>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Sample</title>
+        <scilab:image>
+            rand("seed",12345),
+            y = (0:10);
+            x1 = sin(2*%pi*y/20);
+            x2 = sin(3.5*%pi*y/20);
+            w = .4*(rand(y)-.5*ones(y));
+            x = x1+2*x2+w;
+            [sm,fr1] = mese(x,10)
+            function [xm,fr] = bt(x)
+            xsize = max(size(x))
+            [xf,fr] = frmag(x,256)
+            xm = xf.*conj(xf)/xsize
+            endfunction
+            [xm,fr] = bt(x);
+            scf();
+            subplot(3,1,1);
+            plot(x);
+            subplot(3,1,2);
+            plot(fr1,sm)
+            subplot(3,1,3);
+            plot(fr,xm)
+        </scilab:image>
+    </refsection>
+
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+rand("seed",12345),
+y = (0:10);
+x1 = sin(2*%pi*y/20);
+x2 = sin(3.5*%pi*y/20);
+w = .4*(rand(y)-.5*ones(y));
+x = x1+2*x2+w;
+[sm,fr1] = mese(x,10)
+// Define macro which computes the
+// Blackman-Tukey periodogram
+function [xm,fr] = bt(x)
+  xsize = max(size(x))
+  [xf,fr] = frmag(x,256)
+  xm = xf.*conj(xf)/xsize
+endfunction
+[xm,fr] = bt(x);
+scf();
+subplot(3,1,1);
+plot(x);
+subplot(3,1,2);
+plot(fr1,sm)
+subplot(3,1,3);
+plot(fr,xm)
+ ]]></programlisting>
+    </refsection>
+</refentry>

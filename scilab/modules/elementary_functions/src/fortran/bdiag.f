@@ -40,7 +40,7 @@ c
 c  *er       a singly subscripted real array containing the real
 c            parts of the eigenvalues.
 c
-c  *ei       a singly subscripted real array containg the imaginary
+c  *ei       a singly subscripted real array containing the imaginary
 c            parts of the eigenvalues.
 c
 c  *bs       a singly subscripted integer array that contains block

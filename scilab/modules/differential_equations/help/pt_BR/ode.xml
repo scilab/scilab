@@ -1,24 +1,39 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="ode" xml:lang="en">
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ *
+ * Copyright (C) 2016 - Samuel GOUGEON
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="ode" xml:lang="pt">
     <refnamediv>
         <refname>ode</refname>
-        <refpurpose>Solucionador de equações diferenciais ordinárias</refpurpose>
+        <refpurpose>Solucionador de equaÃ§Ãµes diferenciais ordinÃ¡rias</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
-        <synopsis>y=ode(y0,t0,t,f)
-            [y,w,iw]=ode([type],y0,t0,t [,rtol [,atol]],f [,jac] [,w,iw])
-            [y,rd,w,iw]=ode("root",y0,t0,t [,rtol [,atol]],f [,jac],ng,g [,w,iw])
-            y=ode("discrete",y0,k0,kvect,f)
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
+        <synopsis>y = ode(y0,t0,t,f)
+            [y,w,iw] = ode([type],y0,t0,t [,rtol [,atol]],f [,jac] [,w,iw])
+            [y,rd,w,iw] = ode("roots",y0,t0,t [,rtol [,atol]],f [,jac],ng,g [,w,iw])
+            y = ode("discrete",y0,k0,kvect,f)
         </synopsis>
     </refsynopsisdiv>
-    <refsection>
-        <title>Parâmetros</title>
+    <refsection role="parameters">
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>y0</term>
                 <listitem>
-                    <para>matriz ou vetor de reais (condições iniciais).</para>
+                    <para>matriz ou vetor de reais (condiÃ§Ãµes iniciais).</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -30,7 +45,7 @@
             <varlistentry>
                 <term>t</term>
                 <listitem>
-                    <para>vetor de reais (tempos nos quais a solução é
+                    <para>vetor de reais (tempos nos quais a soluÃ§Ã£o Ã©
                         computada).
                     </para>
                 </listitem>
@@ -38,7 +53,7 @@
             <varlistentry>
                 <term>f</term>
                 <listitem>
-                    <para>função externa (função, lista ou string).</para>
+                    <para>funÃ§Ã£o externa (funÃ§Ã£o, lista ou string).</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -63,13 +78,7 @@
             <varlistentry>
                 <term>jac</term>
                 <listitem>
-                    <para>função externa (função, lista ou string).</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>w, iw</term>
-                <listitem>
-                    <para>vetores de reais</para>
+                    <para>funÃ§Ã£o externa (funÃ§Ã£o, lista ou string).</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -81,7 +90,7 @@
             <varlistentry>
                 <term>g</term>
                 <listitem>
-                    <para>função externa (função, lista ou string).</para>
+                    <para>funÃ§Ã£o externa (funÃ§Ã£o, lista ou string).</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -96,15 +105,35 @@
                     <para>vetor de inteiros.</para>
                 </listitem>
             </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>a real vector or matrix. The solution.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>rd</term>
+                <listitem>
+                    <para>a real vector</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>w, iw</term>
+                <listitem>
+                    <para>vetores de reais.
+                    Ver <link linkend="ode_optional_output">ode() optional output</link>
+                    </para>
+                </listitem>
+            </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
-        <title>Descrição</title>
+    <refsection role="description">
+        <title>DescriÃ§Ã£o</title>
         <para>
-            <literal>ode</literal> é a função padrão para se resolver sistemas
-            de EDO explícitos definidos por: dy/dt=f(t,y) , y(t0)=y0. É uma interface
-            entre vários solucionadores, em particular a ODEPACK. O tipo de problema
-            resolvido e o método a ser utilizado dependem do primeiro argumento
+            <literal>ode</literal> Ã© a funÃ§Ã£o padrÃ£o para se resolver sistemas
+            de EDO explÃ­citos definidos por: dy/dt=f(t,y) , y(t0)=y0. Ã‰ uma interface
+            entre vÃ¡rios solucionadores, em particular a ODEPACK. O tipo de problema
+            resolvido e o mÃ©todo a ser utilizado dependem do primeiro argumento
             opcional <literal>type</literal> que pode ser um dos strings
             seguintes:
         </para>
@@ -113,11 +142,11 @@
                 <term>&lt;not given&gt;:</term>
                 <listitem>
                     <para>
-                        O solucionador <literal>lsoda</literal> do pacote ODEPACK é
-                        chamado por padrão. Ele escolhe automaticamente entre o método
-                        preditor-corretor não-rígido de Adams e a Fórmula de Diferenciação
-                        Retroativa (FDR) rígida. Ele utiliza o método não rígido
-                        inicialmente e monitora os dados para decidir qual método
+                        O solucionador <literal>lsoda</literal> do pacote ODEPACK Ã©
+                        chamado por padrÃ£o. Ele escolhe automaticamente entre o mÃ©todo
+                        preditor-corretor nÃ£o-rÃ­gido de Adams e a FÃ³rmula de DiferenciaÃ§Ã£o
+                        Retroativa (FDR) rÃ­gida. Ele utiliza o mÃ©todo nÃ£o rÃ­gido
+                        inicialmente e monitora os dados para decidir qual mÃ©todo
                         utilizar.
                     </para>
                 </listitem>
@@ -125,35 +154,35 @@
             <varlistentry>
                 <term>"adams":</term>
                 <listitem>
-                    <para>Este é para problemas não rígidos. O solucionador
-                        <literal>lsode</literal> do pacote ODEPACK é chamado e utiliza o
-                        método de Adams.
+                    <para>Este Ã© para problemas nÃ£o rÃ­gidos. O solucionador
+                        <literal>lsode</literal> do pacote ODEPACK Ã© chamado e utiliza o
+                        mÃ©todo de Adams.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>"stiff":</term>
                 <listitem>
-                    <para>Este é para problemas rígidos. O solucionador
-                        <literal>lsode</literal> do pacote ODEPACK é chamado e é utilizado o
-                        método FDR.
+                    <para>Este Ã© para problemas rÃ­gidos. O solucionador
+                        <literal>lsode</literal> do pacote ODEPACK Ã© chamado e Ã© utilizado o
+                        mÃ©todo FDR.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>"rk":</term>
                 <listitem>
-                    <para>Método adaptativo de Runge-Kutta de ordem 4 (RK4).</para>
+                    <para>MÃ©todo adaptativo de Runge-Kutta de ordem 4 (RK4).</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>"rkf":</term>
                 <listitem>
                     <para>O programa de Shampine e Watts baseado no par Runge-Kutta de
-                        Fehlberg de ordem 4 e 5 (RKF45) é utilizado. Este é utilizado para
-                        problemas não-rígidos e mediamente rígidos quando as computações de
-                        derivação não são custosas. Este método não é recomendado ser
-                        utilizado quando o usuário requer uma maior precisão.
+                        Fehlberg de ordem 4 e 5 (RKF45) Ã© utilizado. Este Ã© utilizado para
+                        problemas nÃ£o-rÃ­gidos e mediamente rÃ­gidos quando as computaÃ§Ãµes de
+                        derivaÃ§Ã£o nÃ£o sÃ£o custosas. Este mÃ©todo nÃ£o Ã© recomendado ser
+                        utilizado quando o usuÃ¡rio requer uma maior precisÃ£o.
                     </para>
                 </listitem>
             </varlistentry>
@@ -162,21 +191,21 @@
                 <listitem>
                     <para>
                         Mesmo solucionador que <literal>"rkf"</literal>, mas a
-                        interface do usuário é bem
-                        simples, i.e. apenas os parâmetros <literal>rtol</literal> e
-                        <literal>atol</literal> podem ser passados ao solucionador. Este é o
-                        método mais simples a se tentar.
+                        interface do usuÃ¡rio Ã© bem
+                        simples, i.e. apenas os parÃ¢metros <literal>rtol</literal> e
+                        <literal>atol</literal> podem ser passados ao solucionador. Este Ã© o
+                        mÃ©todo mais simples a se tentar.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>"root":</term>
+                <term>"roots":</term>
                 <listitem>
-                    <para>Solucionador de EDOs com capacidade de encontrar raízes. O
-                        solucionador <literal>lsodar</literal> do pacote ODEPACK é
-                        utilizado. É uma variante do solucionador <literal>lsoda</literal>
-                        onde se acha raízes de uma dada função vetorial. Ver ajuda em
-                        <link linkend="ode_root">ode_root</link> para mais detalhes.
+                    <para>Solucionador de EDOs com capacidade de encontrar raÃ­zes. O
+                        solucionador <literal>lsodar</literal> do pacote ODEPACK Ã©
+                        utilizado. Ã‰ uma variante do solucionador <literal>lsoda</literal>
+                        onde se acha raÃ­zes de uma dada funÃ§Ã£o vetorial. Ver ajuda em
+                        <link linkend="ode_roots">ode_roots</link> para mais detalhes.
                     </para>
                 </listitem>
             </varlistentry>
@@ -184,7 +213,7 @@
                 <term>"discrete":</term>
                 <listitem>
                     <para>
-                        Simulação de tempo discreto. Ver ajuda em <link linkend="ode_discrete">ode_discrete</link> para
+                        SimulaÃ§Ã£o de tempo discreto. Ver ajuda em <link linkend="ode_discrete">ode_discrete</link> para
                         mais detalhes.
                     </para>
                 </listitem>
@@ -192,131 +221,131 @@
         </variablelist>
         <para>
             Nesta ajuda podemos apenas descrever o uso de <literal>ode</literal>
-            para sistemas padrões explícitos EDOs .
+            para sistemas padrÃµes explÃ­citos EDOs .
         </para>
         <itemizedlist>
             <listitem>
                 <para>
-                    A chamada mais simples a <literal>ode</literal> é:
-                    <literal>y=ode(y0,t0,t,f)</literal> onde <literal>y0</literal> é o
-                    vetor de condições iniciais, <literal>t0</literal> é o tempo inicial,
-                    <literal>t</literal> é o vetor de tempos onde a solução
-                    <literal>y</literal> é computada e <literal>y</literal> é a matriz de
-                    vetores soluções <literal>y=[y(t(1)),y(t(2)),...]</literal>.
+                    A chamada mais simples a <literal>ode</literal> Ã©:
+                    <literal>y=ode(y0,t0,t,f)</literal> onde <literal>y0</literal> Ã© o
+                    vetor de condiÃ§Ãµes iniciais, <literal>t0</literal> Ã© o tempo inicial,
+                    <literal>t</literal> Ã© o vetor de tempos onde a soluÃ§Ã£o
+                    <literal>y</literal> Ã© computada e <literal>y</literal> Ã© a matriz de
+                    vetores soluÃ§Ãµes <literal>y=[y(t(1)),y(t(2)),...]</literal>.
                 </para>
                 <para>
                     O argumento de entrada <literal>f</literal> define o lado
-                    direito da equação diferencial de primeira ordem: dy/dt=f(t,y). É uma
-                    função externa, isto é, uma função com sintaxe especificada, ou o nome
-                    de uma subrotina Fortran ou uma subfunção C (string) com seqüência de
+                    direito da equaÃ§Ã£o diferencial de primeira ordem: dy/dt=f(t,y). Ã‰ uma
+                    funÃ§Ã£o externa, isto Ã©, uma funÃ§Ã£o com sintaxe especificada, ou o nome
+                    de uma subrotina Fortran ou uma subfunÃ§Ã£o C (string) com seqÃ¼Ãªncia de
                     chamamento especificada, ou uma lista:
                 </para>
                 <itemizedlist>
                     <listitem>
                         <para>
-                            Se <literal>f</literal> for uma função do Scilab, a sua
+                            Se <literal>f</literal> for uma funÃ§Ã£o do Scilab, a sua
                             sintaxe deve ser <literal>ydot = f(t,y)</literal>, onde
-                            <literal>t</literal> é um escalar real (tempo) e
-                            <literal>y</literal> é um vetor de reais (estado).
-                            <literal>ydot</literal> é um vetor de reais (dy/dt)
+                            <literal>t</literal> Ã© um escalar real (tempo) e
+                            <literal>y</literal> Ã© um vetor de reais (estado).
+                            <literal>ydot</literal> Ã© um vetor de reais (dy/dt)
                         </para>
                     </listitem>
                     <listitem>
                         <para>
-                            Se <literal>f</literal> é um string ele se refere ao nome de
-                            uma subrotina Fortran ou uma subfunção C, i.e. Se
-                            <literal>ode(y0,t0,t,"fex")</literal> for o comando, então a
-                            subrotina <literal>fex</literal> será chamada.
+                            Se <literal>f</literal> Ã© um string ele se refere ao nome de
+                            uma subrotina Fortran ou uma subfunÃ§Ã£o C, i.e. Se
+                            <literal>ode(y0,t0,t,"fex")</literal> for o comando, entÃ£o a
+                            subrotina <literal>fex</literal> serÃ¡ chamada.
                         </para>
-                        <para>A rotina Fortran deve ter a seguinte seqüência de
+                        <para>A rotina Fortran deve ter a seguinte seqÃ¼Ãªncia de
                             chamamento: <literal>fex(n,t,y,ydot)</literal>, com n um inteiro,
-                            t um escalar de dupla precisão, y e ydot vetores de dupla
-                            precisão.
+                            t um escalar de dupla precisÃ£o, y e ydot vetores de dupla
+                            precisÃ£o.
                         </para>
                         <para>
-                            A função C deve ter o seguinte protótipo: <literal>fex(int
+                            A funÃ§Ã£o C deve ter o seguinte protÃ³tipo: <literal>fex(int
                                 *n,double *t,double *y,double *ydot)
                             </literal>
                         </para>
                         <para>
-                            <literal>t</literal> é o tempo, <literal>y</literal> o
+                            <literal>t</literal> Ã© o tempo, <literal>y</literal> o
                             estado e <literal>ydot</literal> a derivada do estado
                             (dy/dt)
                         </para>
-                        <para>Esta função externa pode ser construída em um SO de modo
-                            indpendente através de <link linkend="ilib_for_link">ilib_for_link</link> e ligada
-                            dinamicamente através da função do Scilab <link linkend="link">link</link>.
+                        <para>Esta funÃ§Ã£o externa pode ser construÃ­da em um SO de modo
+                            indpendente atravÃ©s de <link linkend="ilib_for_link">ilib_for_link</link> e ligada
+                            dinamicamente atravÃ©s da funÃ§Ã£o do Scilab <link linkend="link">link</link>.
                         </para>
                     </listitem>
                     <listitem>
                         <para>
-                            O argumento <literal>f</literal> também pode ser uma lista
+                            O argumento <literal>f</literal> tambÃ©m pode ser uma lista
                             com a seguinte estrutura:
                             <literal>lst=list(realf,u1,u2,...un)</literal> onde
-                            <literal>realf</literal> é uma função do Scilab com a sintaxe:
+                            <literal>realf</literal> Ã© uma funÃ§Ã£o do Scilab com a sintaxe:
                             <literal>ydot = f(t,y,u1,u2,...,un)</literal>
                         </para>
-                        <para>Esta sintaxe permite utilizar parâmetros como argumentos de
+                        <para>Esta sintaxe permite utilizar parÃ¢metros como argumentos de
                             <literal>realf</literal>.
                         </para>
                     </listitem>
                 </itemizedlist>
                 <para>
-                    A função <literal>f</literal> pode retornar uma matriz
-                    <literal>p x q</literal> ao invés de um vetor. Com esta notação de
+                    A funÃ§Ã£o <literal>f</literal> pode retornar uma matriz
+                    <literal>p x q</literal> ao invÃ©s de um vetor. Com esta notaÃ§Ã£o de
                     matriz, nos resolvemos o sistema <literal>n=p+q</literal> de EDOs
-                    <literal>dY/dt=F(t,Y)</literal> onde <literal>Y</literal> é uma matriz
-                    <literal>p x q</literal> matrix. Então, as condições iniciais,
-                    <literal>Y0</literal>, também devem ser uma matriz <literal>p x
+                    <literal>dY/dt=F(t,Y)</literal> onde <literal>Y</literal> Ã© uma matriz
+                    <literal>p x q</literal> matrix. EntÃ£o, as condiÃ§Ãµes iniciais,
+                    <literal>Y0</literal>, tambÃ©m devem ser uma matriz <literal>p x
                         q
                     </literal>
-                    eo resultado de <literal>ode</literal> é a matriz
+                    eo resultado de <literal>ode</literal> Ã© a matriz
                     <literal>p x q(T+1)</literal>
                     <literal>[Y(t_0),Y(t_1),...,Y(t_T)]</literal>.
                 </para>
             </listitem>
             <listitem>
                 <para>Argumentos de entrada opcionais podem ser fornecidos para o erro
-                    da solução: <literal>rtol</literal> e <literal>atol</literal> são
+                    da soluÃ§Ã£o: <literal>rtol</literal> e <literal>atol</literal> sÃ£o
                     limiares para os erros relativos e absolutos estimados. O erro
-                    estimado em <literal>y(i)</literal> é:
+                    estimado em <literal>y(i)</literal> Ã©:
                     <literal>rtol(i)*abs(y(i))+atol(i)</literal>
                 </para>
-                <para>e uma intergração é feita enquanto este erro é pequeno para
+                <para>e uma intergraÃ§Ã£o Ã© feita enquanto este erro Ã© pequeno para
                     todos os componentes do estado. Se <literal>rtol</literal> e/ou
                     <literal>atol</literal> for uma constante <literal>rtol(i)</literal>
-                    e/ou <literal>atol(i)</literal> são ajustados para esta constante. Os
-                    valores padrões para <literal>rtol</literal> e <literal>atol</literal>
-                    são respectivamente <literal>rtol=1.d-5</literal> e
+                    e/ou <literal>atol(i)</literal> sÃ£o ajustados para esta constante. Os
+                    valores padrÃµes para <literal>rtol</literal> e <literal>atol</literal>
+                    sÃ£o respectivamente <literal>rtol=1.d-5</literal> e
                     <literal>atol=1.d-7</literal> para a maior parte dos solucionadores
                     <literal>rtol=1.d-3</literal> e <literal>atol=1.d-4</literal> para
                     <literal>"rfk"</literal> e <literal>"fix"</literal>.
                 </para>
             </listitem>
             <listitem>
-                <para>Para problemas rígidos, é melhor fornecer o Jacobiano da função
-                    do lado direito da equação como o argumento opcional
-                    <literal>jac</literal>. É uma função externa, istoé i.e. uma função
+                <para>Para problemas rÃ­gidos, Ã© melhor fornecer o Jacobiano da funÃ§Ã£o
+                    do lado direito da equaÃ§Ã£o como o argumento opcional
+                    <literal>jac</literal>. Ã‰ uma funÃ§Ã£o externa, istoÃ© i.e. uma funÃ§Ã£o
                     com sintaxe especificada, ou o nome de uma subrotina Fortran ou uma
-                    subfunção C (string) com seqüência de chamamento especificada, ou uma
+                    subfunÃ§Ã£o C (string) com seqÃ¼Ãªncia de chamamento especificada, ou uma
                     lista.
                 </para>
                 <para>
-                    Se <literal>jac</literal> for uma função, a sintaxe deve ser
+                    Se <literal>jac</literal> for uma funÃ§Ã£o, a sintaxe deve ser
                     <literal>J=jac(t,y)</literal>
                 </para>
                 <para>
-                    onde <literal>t</literal> é um escalar real (tempo),
-                    <literal>y</literal> é um vetor de reais (estado). A matriz resultante
+                    onde <literal>t</literal> Ã© um escalar real (tempo),
+                    <literal>y</literal> Ã© um vetor de reais (estado). A matriz resultante
                     <literal>J</literal> deve fornecer df/dx i.e. <literal>J(k,i) =
                         dfk/dxi
                     </literal>
-                    com <literal>fk</literal> = k-ésimo componente de
+                    com <literal>fk</literal> = k-Ã©simo componente de
                     f.
                 </para>
                 <para>
                     Se <literal>jac</literal> for um sting, ele se refere a uma
-                    subrotina Fortran, ou uma subfunção C, com as seguinte seqüência de
+                    subrotina Fortran, ou uma subfunÃ§Ã£o C, com as seguinte seqÃ¼Ãªncia de
                     chamamento:
                 </para>
                 <para>No caso Fortran:</para>
@@ -331,42 +360,42 @@ void fex(int *n,double *t,double *y,int *ml,int *mu,double *J,int *nrpd,)
  ]]></programlisting>
                 <para>
                     <literal>jac(n,t,y,ml,mu,J,nrpd)</literal>. Na maior parte dos
-                    casos, você não tem que se referir a <literal>ml</literal>,
+                    casos, vocÃª nÃ£o tem que se referir a <literal>ml</literal>,
                     <literal>mu</literal> e <literal>nrpd</literal>.
                 </para>
                 <para>
-                    Se <literal>jac</literal> for uma lista, as mesmas convenções
+                    Se <literal>jac</literal> for uma lista, as mesmas convenÃ§Ãµes
                     que para <literal>f</literal> se aplicam.
                 </para>
             </listitem>
             <listitem>
                 <para>
                     Os argumentos opcionais <literal>w</literal> e
-                    <literal>iw</literal> e vetores para armazenamento de informações
-                    podem ser retornados pela rotina de integração (ver <link linkend="ode_optional_output">ode_optional_output</link> para
-                    detalhes). Queando esses vetores são fornecidos no lado direito de
-                    <literal>ode</literal>, a integração reinicia com os mesmos parâmetros
+                    <literal>iw</literal> e vetores para armazenamento de informaÃ§Ãµes
+                    podem ser retornados pela rotina de integraÃ§Ã£o (ver <link linkend="ode_optional_output">ode_optional_output</link> para
+                    detalhes). Queando esses vetores sÃ£o fornecidos no lado direito de
+                    <literal>ode</literal>, a integraÃ§Ã£o reinicia com os mesmos parÃ¢metros
                     da parada anteiror.
                 </para>
             </listitem>
             <listitem>
-                <para>Mais opções podem ser fornecidas a solucionadores ODEPACK
-                    utilizando-se a variável <literal>%ODEOPTIONS</literal>. Ver <link linkend="odeoptions">odeoptions</link>.
+                <para>Mais opÃ§Ãµes podem ser fornecidas a solucionadores ODEPACK
+                    utilizando-se a variÃ¡vel <literal>%ODEOPTIONS</literal>. Ver <link linkend="odeoptions">odeoptions</link>.
                 </para>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
-// ----------  EDO simples de uma dimensão (função externa do Scilab)
+// ----------  EDO simples de uma dimensÃ£o (funÃ§Ã£o externa do Scilab)
 // dy/dt=y^2-y sin(t)+cos(t), y(0)=0
 function ydot=f(t,y),ydot=y^2-y*sin(t)+cos(t),endfunction
 y0=0;t0=0;t=0:0.1:%pi;
 y=ode(y0,t0,t,f)
 plot(t,y)
 
-// ---------- EDO simples de uma dimensão (função externa codificada em C)
+// ---------- EDO simples de uma dimensÃ£o (funÃ§Ã£o externa codificada em C)
 ccode=['#include <math.h>'
        'void myode(int *n,double *t,double *y,double *ydot)'
        '{'
@@ -378,31 +407,31 @@ exec(TMPDIR+'/loader.sce') //linking incremental
 y0=0;t0=0;t=0:0.1:%pi;
 y=ode(y0,t0,t,'myode');
 
-// ---------- Simulação de dx/dt = A x(t) + B u(t) com u(t)=sin(omega*t),
+// ---------- SimulaÃ§Ã£o de dx/dt = A x(t) + B u(t) com u(t)=sin(omega*t),
 // x0=[1;0]
-// solução x(t) desejada em t=0.1, 0.2, 0.5 ,1.
-// A e a função u são passados para a função do lado direito em uma lista.
-// B e omega são passados como variáveis globais
+// soluÃ§Ã£o x(t) desejada em t=0.1, 0.2, 0.5 ,1.
+// A e a funÃ§Ã£o u sÃ£o passados para a funÃ§Ã£o do lado direito em uma lista.
+// B e omega sÃ£o passados como variÃ¡veis globais
 function xdot=linear(t,x,A,u),xdot=A*x+B*u(t),endfunction
 function ut=u(t),ut=sin(omega*t),endfunction
 A=[1 1;0 2];B=[1;1];omega=5;
 ode([1;0],0,[0.1,0.2,0.5,1],list(linear,A,u))
 
-// ---------- Integração com notação matricial da equação diferencial de Ricatti
+// ---------- IntegraÃ§Ã£o com notaÃ§Ã£o matricial da equaÃ§Ã£o diferencial de Ricatti
 // Xdot=A'*X + X*A - X'*B*X + C , X(0)=Identity
-// Solução em t=[1,2]
+// SoluÃ§Ã£o em t=[1,2]
 function Xdot=ric(t,X),Xdot=A'*X+X*A-X'*B*X+C,endfunction
 A=[1,1;0,2]; B=[1,0;0,1]; C=[1,0;0,1];
 t0=0;t=0:0.1:%pi;
 X=ode(eye(A),0,t,ric)
 
-// ---------- Notação matricial, computação de exp(A)
+// ---------- NotaÃ§Ã£o matricial, computaÃ§Ã£o de exp(A)
 A=[1,1;0,2];
 function xdot=f(t,x),xdot=A*x;,endfunction
 ode(eye(A),0,1,f)
 ode("adams",eye(A),0,1,f)
 
-// ---------- Notação de matriz, computação de exp(A) com matriz rígida, Jacobian fornecida
+// ---------- NotaÃ§Ã£o de matriz, computaÃ§Ã£o de exp(A) com matriz rÃ­gida, Jacobian fornecida
 A=[10,0;0,-1];
 function xdot=f(t,x),xdot=A*x,endfunction
 function J=Jacobian(t,y),J=A,endfunction
@@ -410,13 +439,19 @@ ode("stiff",[0;1],0,1,f,Jacobian)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
-                <link linkend="ode_discrete">ode_discrete</link>
+                <link linkend="odeoptions">odeoptions</link>
             </member>
             <member>
-                <link linkend="ode_root">ode_root</link>
+                <link linkend="ode_optional_output">ode_optional_output</link>
+            </member>
+            <member>
+                <link linkend="ode_roots">ode_roots</link>
+            </member>
+            <member>
+                <link linkend="ode_discrete">ode_discrete</link>
             </member>
             <member>
                 <link linkend="dassl">dassl</link>
@@ -426,9 +461,6 @@ ode("stiff",[0;1],0,1,f,Jacobian)
             </member>
             <member>
                 <link linkend="odedc">odedc</link>
-            </member>
-            <member>
-                <link linkend="odeoptions">odeoptions</link>
             </member>
             <member>
                 <link linkend="csim">csim</link>
@@ -444,16 +476,16 @@ ode("stiff",[0;1],0,1,f,Jacobian)
             </member>
         </simplelist>
     </refsection>
-    <refsection>
+    <refsection role="bibliography">
         <title>Bibliografia</title>
         <para>Alan C. Hindmarsh, lsode and lsodi, two new initial value ordinary
             differential equation solvers, acm-signum newsletter, vol. 15, no. 4
             (1980), pp. 10-11.
         </para>
     </refsection>
-    <refsection>
-        <title>Funções Utilizadas</title>
-        <para>As rotinas associadas podem ser encontradas no diretório
+    <refsection role="references">
+        <title>FunÃ§Ãµes Utilizadas</title>
+        <para>As rotinas associadas podem ser encontradas no diretÃ³rio
             SCI/modules/differential_equations/src/fortran:
         </para>
         <para>lsode.f lsoda.f lsodar.f</para>

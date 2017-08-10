@@ -5,11 +5,14 @@
  * Copyright (C) 2010 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2011 - DIGITEO - Vincent Couvert
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -44,25 +47,17 @@ void* get_anti_aliasing_property(void* _pvCtx, int iObjUID)
     {
         case 0:
             return sciReturnString("off");
-            break;
         case 1:
             return sciReturnString("2x");
-            break;
         case 2:
             return sciReturnString("4x");
-            break;
         case 3:
             return sciReturnString("8x");
-            break;
         case 4:
             return sciReturnString("16x");
-            break;
         default:
             Scierror(999, _("Wrong value for '%s' property.\n"), "anti_aliasing");
             return NULL;
-            break;
     }
-
-    return sciReturnString("off");
 }
 /*------------------------------------------------------------------------*/

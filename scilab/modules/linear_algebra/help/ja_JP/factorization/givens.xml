@@ -3,160 +3,163 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="givens">
-    
+
     <refnamediv>
-        
+
         <refname>givens</refname>
-        
+
         <refpurpose>ギブンス変換</refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        
+
         <title>呼び出し手順</title>
-        
+
         <synopsis>U=givens(xy)
-            
+
             U=givens(x,y)
-            
+
             [U,c]=givens(xy)
-            
+
             [U,c]=givens(x,y)
-            
+
         </synopsis>
-        
+
     </refsynopsisdiv>
-    
+
     <refsection>
-        
+
         <title>引数</title>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>x,y</term>
-                
+
                 <listitem>
-                    
+
                     <para>実数または複素数</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>xy</term>
-                
+
                 <listitem>
-                    
+
                     <para>実数または複素数の要素数2の列ベクトル</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>U</term>
-                
+
                 <listitem>
-                    
+
                     <para>2x2 ユニタリ行列</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>c</term>
-                
+
                 <listitem>
-                    
+
                     <para>実数または複素数の要素数2の列ベクトル</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>説明</title><literal>xy = [x;y]</literal>として
-        
+
         <para>
-            
-            <literal>U= givens(x, y)</literal> または <literal>U = givens(xy)</literal> 
-            
+
+            <literal>U= givens(x, y)</literal> または <literal>U = givens(xy)</literal>
+
             は,次のような<literal>2</literal>x<literal>2</literal> の
-            
+
             ユニタリ行列 <literal>U</literal> を返します:
-            
+
         </para>
-        
+
         <para>
-            
+
             <literal>U*xy=[r;0]=c</literal>.
-            
+
         </para>
-        
+
         <para>
-            
+
             <note>
-                
+
                 <literal>givens(x,y)</literal> および <literal>givens([x;y])</literal> は等価であることに
-                
+
                 注意してください.
-                
+
             </note>
-            
+
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>例</title>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
 A=[3,4;5,6];
 U=givens(A(:,1));
 U*A
  ]]></programlisting>
-        
+
     </refsection>
-    
+
     <refsection role="see also">
-        
+
         <title>参照</title>
-        
+
         <simplelist type="inline">
-            
+
             <member>
-                
+
                 <link linkend="qr">qr</link>
-                
+
             </member>
-            
+
         </simplelist>
-        
+
     </refsection>
-    
+
 </refentry>
 

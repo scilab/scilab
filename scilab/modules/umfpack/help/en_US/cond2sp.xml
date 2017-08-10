@@ -5,7 +5,7 @@
         <refpurpose>computes an approximation of the 2-norm condition number of a s.p.d. sparse matrix  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[K2, lm, vm, lM, vM] = cond2sp(A, C_ptr [, rtol, itermax, verb])</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -78,23 +78,23 @@
     <refsection>
         <title>Description</title>
         <para>
-            This quick and dirty function computes <literal>(lM,vM)</literal> using the iterative 
-            power method and <literal>(lm,vm)</literal> with the inverse iterative power method, then 
+            This quick and dirty function computes <literal>(lM,vM)</literal> using the iterative
+            power method and <literal>(lm,vm)</literal> with the inverse iterative power method, then
             <literal>K2 = lM/lm</literal>. For each method the iterations are stopped until the following
             condition is met :
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 | (l_new - l_old)/l_new | < rtol
  ]]></programlisting>
         <para>
             but 4 iterations are nevertheless required and also the iterations are stopped
             if itermax is reached (and a warning message is issued). As the matrix is symmetric
             this is the rayleigh quotient which gives the estimated eigenvalue at each step
-            (<literal>lambda = v'*A*v</literal>). You may called this function with named parameter, for 
-            instance if you want to see the intermediary result without setting yourself the 
+            (<literal>lambda = v'*A*v</literal>). You may called this function with named parameter, for
+            instance if you want to see the intermediary result without setting yourself the
             rtol and itermax parameters you may called this function with the syntax :
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 [K2, lm, vm, lM, vM] = cond2sp(A , C_ptr, verb=%t )
  ]]></programlisting>
     </refsection>
@@ -107,20 +107,20 @@
     <refsection>
         <title>Remark</title>
         <para>
-            This function is intended to get an approximation of the 2-norm condition number (K2) and 
-            with the methods used, the precision on the obtained eigenvectors (vM and vm) are generally 
-            not very good. If you look for a smaller residual <literal>||Av - l*v||</literal>, you may apply some inverse 
+            This function is intended to get an approximation of the 2-norm condition number (K2) and
+            with the methods used, the precision on the obtained eigenvectors (vM and vm) are generally
+            not very good. If you look for a smaller residual <literal>||Av - l*v||</literal>, you may apply some inverse
             power iterations  from v0 with the matrix :
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 B = A - l0*speye(A)
  ]]></programlisting>
         <para>
             For instance, applied 5 such iterations for <literal>(lm,vm)</literal> is done with :
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 
-[A] = ReadHBSparse(SCI+"/modules/umfpack/examples/bcsstk24.rsa");
+[A] = ReadHBSparse(SCI+"/modules/umfpack/demos/bcsstk24.rsa");
 C_ptr = taucs_chfact(A);
 [K2, lm, vm, lM, vM] = cond2sp(A , C_ptr, 1.e-5, 50, %t );
 taucs_chdel(C_ptr)
@@ -134,23 +134,23 @@ lr = vr'*A*vr;
 norm_r0 = norm(A*v0 - l0*v0);
 norm_rr = norm(A*vr - lr*vr);
 // Bauer-Fike error bound...
-mprintf(" first estimated eigenvalue : l0 = %e \n\t", l0) 
+mprintf(" first estimated eigenvalue : l0 = %e \n\t", l0)
 mprintf(" |l-l0| <= ||Av0-l0v0|| = %e , |l-l0|/l0 <= %e \n\r", norm_r0, norm_r0/l0)
-mprintf(" raffined estimated eigenvalue : lr = %e \n\t", lr) 
+mprintf(" raffined estimated eigenvalue : lr = %e \n\t", lr)
 mprintf(" |l-lr| <= ||Avr-lrvr|| = %e , |l-lr|/lr <= %e \n\r", norm_rr, norm_rr/lr)
  ]]></programlisting>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-[A] = ReadHBSparse(SCI+"/modules/umfpack/examples/bcsstk24.rsa");
+        <programlisting role="example"><![CDATA[
+[A] = ReadHBSparse(SCI+"/modules/umfpack/demos/bcsstk24.rsa");
 C_ptr = taucs_chfact(A);
 [K2, lm, vm, lM, vM] = cond2sp(A , C_ptr, 1.e-5, 50, %t );
 taucs_chdel(C_ptr)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="condestsp">condestsp</link>

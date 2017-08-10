@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Serge STEER
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="repfreq">
+    <refnamediv>
+        <refname>repfreq</refname>
+        <refpurpose>周波数応答</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[ [frq,] repf]=repfreq(sys,fmin,fmax [,step])
+            [ [frq,] repf]=repfreq(sys [,frq])
+            [ frq,repf,splitf]=repfreq(sys,fmin,fmax [,step])
+            [ frq,repf,splitf]=repfreq(sys [,frq])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>sys</term>
+                <listitem>
+                    <para>
+                        <literal>syslin</literal> リスト: SIMO 線形システム
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fmin,fmax</term>
+                <listitem>
+                    <para>実数(周波数範囲の下限と上限)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>frq</term>
+                <listitem>
+                    <para>周波数の実数ベクトル (Hz)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>step</term>
+                <listitem>
+                    <para>対数離散刻み増分</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>splitf</term>
+                <listitem>
+                    <para>臨界周波数の添え字ベクトル.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>repf</term>
+                <listitem>
+                    <para>複素周波数応用のベクトルv</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>sys(s)</literal> が <literal>Sys</literal>の伝達関数の場合,
+            <literal>repf(k)</literal> は,
+            連続時間システムの場合に<literal>s= %i*frq(k)*2*%pi</literal>,
+            離散時間システム(サンプリング時間:<literal>dt</literal>)の場合に<literal>exp(2*%i*%pi*dt*frq(k))</literal>
+            で評価された <literal>sys(s)</literal> に等しくなります.
+        </para>
+        <para>
+            <literal>db(k)</literal> は<literal>repf(k)</literal>の振幅(単位: dB),すなわち,
+            <literal>db(k)=20*log10(abs(repf(k)))</literal>です.
+            また, <literal>phi(k)</literal> は<literal>repf(k)</literal>の位相(単位:度)です.
+        </para>
+        <para>
+            <literal>fmin,fmax,step</literal> が入力パラメータの場合,
+            <literal>frq=[10.^((log10(fmin)):step:(log10(fmax))) fmax];</literal>で指定された
+            周波数ベクトル<literal>frq</literal>に関して応答が計算されます.
+        </para>
+        <para>
+            <literal>step</literal> が指定されない場合, 出力パラメータ <literal>frq</literal> が <literal>frq=calfrq(sys,fmin,fmax)</literal>により計算されます.
+        </para>
+        <para>
+            ベクトル <literal>frq</literal> は,<literal>splitf</literal> ベクトルにより
+            複数の通常の周波数範囲に分割されます.
+            <literal>frq(splitf(k):splitf(k+1)-1)</literal> は臨界周波数を有しません.
+            <literal>sys</literal> は, <literal>[frq(splitf(k)),frq(splitf(k)+1)]</literal> の
+            範囲に極を一つ有し, その外側には極がありません.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+A=diag([-1,-2]);B=[1;1];C=[1,1];
+Sys=syslin('c',A,B,C);
+frq=0:0.02:5;w=frq*2*%pi; //frq=frequencies in Hz ;w=frequencies in rad/sec;
+[frq1,rep] =repfreq(Sys,frq);
+[db,phi]=dbphi(rep);
+Systf=ss2tf(Sys)    //Transfer function of Sys
+x=horner(Systf,w(2)*sqrt(-1))    // x is Systf(s) evaluated at s = i w(2)
+rep=20*log(abs(x))/log(10)   //magnitude of x in dB
+db(2)    // same as rep
+ang=atan(imag(x),real(x));   //in rad.
+ang=ang*180/%pi              //in degrees
+phi(2)
+repf=repfreq(Sys,frq);
+repf(2)-x
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="bode">bode</link>
+            </member>
+            <member>
+                <link linkend="freq">freq</link>
+            </member>
+            <member>
+                <link linkend="calfrq">calfrq</link>
+            </member>
+            <member>
+                <link linkend="horner">horner</link>
+            </member>
+            <member>
+                <link linkend="nyquist">nyquist</link>
+            </member>
+            <member>
+                <link linkend="dbphi">dbphi</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

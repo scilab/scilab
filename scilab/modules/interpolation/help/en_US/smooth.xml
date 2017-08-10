@@ -5,7 +5,7 @@
         <refpurpose>smoothing by spline functions</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[pt]=smooth(ptd [,step])</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -43,7 +43,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 x=[1 10 20 30 40];
 y=[1 30 -10 20 40];
 plot2d(x',y',[3],"011"," ",[-10,-40,50,50]);
@@ -59,7 +59,7 @@ plot2d(yi(1,:)',yi(2,:)',[1],"000");
         </scilab:image>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="splin">splin</link>

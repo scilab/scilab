@@ -54,9 +54,9 @@
                 <term>ci</term>
                 <listitem>
                     <para>
-                        下限の列ベクトル (次元<literal>n</literal>). 
+                        下限の列ベクトル (次元<literal>n</literal>).
                         下限に関する制約がない場合,
-                        <literal>ci = []</literal>としてください. 
+                        <literal>ci = []</literal>としてください.
                         <literal>x</literal>の何らかの要素に
                         下界が存在する場合,
                         <literal>ci</literal>の他の(拘束されていない)値を
@@ -136,7 +136,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //以下のような x ( R^6)を探す:
 //C1*x = b1 (3 個の等式拘束 すなわち me=3)
 C1= [1,-1,1,0,3,1;
@@ -181,13 +181,13 @@ me=3;
     <refsection>
         <title>所要のメモリ</title>
         <para>rが以下とすると,</para>
-        <programlisting role=""><![CDATA[  
+        <programlisting role=""><![CDATA[
 r=min(m,n)
  ]]></programlisting>
         <para>
             計算時にqpsolveで使用されるメモリは以下となります
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 2*n+r*(r+5)/2 + 2*m +1
  ]]></programlisting>
     </refsection>

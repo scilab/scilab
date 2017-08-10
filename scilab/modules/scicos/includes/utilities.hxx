@@ -1,12 +1,15 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2014-2014 - Scilab Enterprises - Clement DAVID
+ *  Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -37,10 +40,10 @@ enum update_status_t
  */
 enum kind_t
 {
-    ANNOTATION,     //!< model::Annotation object
     BLOCK,          //!< model::Block object
     DIAGRAM,        //!< model::Diagram object
     LINK,           //!< model::Link object
+    ANNOTATION,     //!< model::Annotation object
     PORT            //!< model::Port object
 };
 
@@ -64,7 +67,6 @@ enum object_properties_t
     SIM_SCHEDULE,       //!< model::Descriptor::schedulingProperties value (stored into model::Block::sim)
     SIM_BLOCKTYPE,      //!< model::Descriptor::blocktype value (stored into model::Block::sim)
     SIM_DEP_UT,         //!< model::Descriptor::dep_ut value (stored into model::Block::sim)
-    ANGLE,              //!< model::Block::flip and theta values
     EXPRS,              //!< model::Block::exprs value
     INPUTS,             //!< model::Block::in value
     OUTPUTS,            //!< model::Block::out value
@@ -88,10 +90,8 @@ enum object_properties_t
     SOURCE_PORT,        //!< model::Link::sourcePort value
     CONTROL_POINTS,     //!< model::Link::controlPoints value
     THICK,              //!< model::Link::thick value
-    COLOR,              //!< model::Link::color value
+    COLOR,              //!< model::Link & Block & Diagram::color value
     KIND,               //!< model::Link::kind value
-    FROM,               //!< model::Link::from value
-    TO,                 //!< model::Link::to value
     DATATYPE,           //!< model::Port::dataType value
     DATATYPE_ROWS,      //!< model::Port::dataType adapter helper
     DATATYPE_COLS,      //!< model::Port::dataType adapter helper
@@ -105,9 +105,64 @@ enum object_properties_t
     TITLE,              //!< model::Diagram::title file name value
     PATH,               //!< model::Diagram::title file path value
     PROPERTIES,         //!< model::Diagram::tol & tf values
+    DEBUG_LEVEL,        //!< model::Diagram::debug_level value
     DIAGRAM_CONTEXT,    //!< model::Diagram::context value
     VERSION_NUMBER,     //!< model::Diagram::version value
     MAX_OBJECT_PROPERTIES //!< last valid value of the object_properties_t enum
 };
+
+/**
+ * PORT_KIND valid values
+ */
+enum portKind
+{
+    PORT_UNDEF,
+    PORT_IN,
+    PORT_OUT,
+    PORT_EIN,
+    PORT_EOUT
+};
+
+/**
+ * Helper to convert a Property to a Port kind.
+ */
+inline int port_from_property(object_properties_t p)
+{
+    switch (p)
+    {
+        case INPUTS:
+            return PORT_IN;
+        case OUTPUTS:
+            return PORT_OUT;
+        case EVENT_INPUTS:
+            return PORT_EIN;
+        case EVENT_OUTPUTS:
+            return PORT_EOUT;
+        default:
+            return PORT_UNDEF;
+    }
+}
+
+
+/**
+ * Helper to convert a Port kind to a Property.
+ */
+inline object_properties_t property_from_port(int p)
+{
+    switch (p)
+    {
+        case PORT_IN:
+            return INPUTS;
+        case PORT_OUT:
+            return OUTPUTS;
+        case PORT_EIN:
+            return EVENT_INPUTS;
+        case PORT_EOUT:
+            return EVENT_OUTPUTS;
+        default:
+            return MAX_OBJECT_PROPERTIES;
+    }
+}
+
 
 #endif /* UTILITIES_HXX_ */

@@ -11,12 +11,6 @@
 ilib_verbose(0); //to remove ilib_* traces
 // Import diagram
 assert_checktrue(importXcosDiagram("SCI/modules/xcos/tests/unit_tests/Solvers/DAE/RLC.zcos"));
-// Redefining messagebox() to avoid popup
-prot = funcprot();
-funcprot(0);
-function messagebox(msg, msg_title)
-endfunction
-funcprot(prot);
 for i=2:3
     // Start by updating the clock block period (sampling)
     scs_m.props.context = "per = 5*10^-"+string(i);
@@ -43,15 +37,123 @@ end
  Main Modelica : TMPDIR/RLC_im.mo
  Flat Modelica : TMPDIR/RLC_imf.mo
  Simulation C code :TMPDIR/RLC_im.c
+!messagebox: Modelica blocks are reduced to a block with:             !
+!                                                                     !
+!messagebox: Number of differential states: 2                         !
+!                                                                     !
+!messagebox: Number of algebraic states: 1                            !
+!                                                                     !
+!messagebox: Number of discrete time states  : 0                      !
+!                                                                     !
+!messagebox: Number of zero-crossing surfaces: 0                      !
+!                                                                     !
+!messagebox: Number of modes  : 0                                     !
+!                                                                     !
+!messagebox: Number of inputs : 0                                     !
+!                                                                     !
+!messagebox: Number of outputs: 1                                     !
+!                                                                     !
+!messagebox: Input/output dependency:[T]                              !
+!                                                                     !
+!messagebox: Analytical Jacobian: enabled  (%Jacobian=%t)             !
+!                                                                     !
+!messagebox: Parameter embedding mode: enabled (%Modelica_ParEmb=%t)  !
+!                                                                     !
+!messagebox:                                                          !
+!                                                                     !
+!messagebox: Generated files path: TMPDIR/         !
+!                                                                     !
+!messagebox:                                                          !
 --------------------------------------------\
  Main Modelica : TMPDIR/RLC_im.mo
  Flat Modelica : TMPDIR/RLC_imf.mo
  Simulation C code :TMPDIR/RLC_im.c
+!messagebox: Modelica blocks are reduced to a block with:             !
+!                                                                     !
+!messagebox: Number of differential states: 2                         !
+!                                                                     !
+!messagebox: Number of algebraic states: 1                            !
+!                                                                     !
+!messagebox: Number of discrete time states  : 0                      !
+!                                                                     !
+!messagebox: Number of zero-crossing surfaces: 0                      !
+!                                                                     !
+!messagebox: Number of modes  : 0                                     !
+!                                                                     !
+!messagebox: Number of inputs : 0                                     !
+!                                                                     !
+!messagebox: Number of outputs: 1                                     !
+!                                                                     !
+!messagebox: Input/output dependency:[T]                              !
+!                                                                     !
+!messagebox: Analytical Jacobian: enabled  (%Jacobian=%t)             !
+!                                                                     !
+!messagebox: Parameter embedding mode: enabled (%Modelica_ParEmb=%t)  !
+!                                                                     !
+!messagebox:                                                          !
+!                                                                     !
+!messagebox: Generated files path: TMPDIR/         !
+!                                                                     !
+!messagebox:                                                          !
 --------------------------------------------\
  Main Modelica : TMPDIR/RLC_im.mo
  Flat Modelica : TMPDIR/RLC_imf.mo
  Simulation C code :TMPDIR/RLC_im.c
+!messagebox: Modelica blocks are reduced to a block with:             !
+!                                                                     !
+!messagebox: Number of differential states: 2                         !
+!                                                                     !
+!messagebox: Number of algebraic states: 1                            !
+!                                                                     !
+!messagebox: Number of discrete time states  : 0                      !
+!                                                                     !
+!messagebox: Number of zero-crossing surfaces: 0                      !
+!                                                                     !
+!messagebox: Number of modes  : 0                                     !
+!                                                                     !
+!messagebox: Number of inputs : 0                                     !
+!                                                                     !
+!messagebox: Number of outputs: 1                                     !
+!                                                                     !
+!messagebox: Input/output dependency:[T]                              !
+!                                                                     !
+!messagebox: Analytical Jacobian: enabled  (%Jacobian=%t)             !
+!                                                                     !
+!messagebox: Parameter embedding mode: enabled (%Modelica_ParEmb=%t)  !
+!                                                                     !
+!messagebox:                                                          !
+!                                                                     !
+!messagebox: Generated files path: TMPDIR/         !
+!                                                                     !
+!messagebox:                                                          !
 --------------------------------------------\
  Main Modelica : TMPDIR/RLC_im.mo
  Flat Modelica : TMPDIR/RLC_imf.mo
  Simulation C code :TMPDIR/RLC_im.c
+!messagebox: Modelica blocks are reduced to a block with:             !
+!                                                                     !
+!messagebox: Number of differential states: 2                         !
+!                                                                     !
+!messagebox: Number of algebraic states: 1                            !
+!                                                                     !
+!messagebox: Number of discrete time states  : 0                      !
+!                                                                     !
+!messagebox: Number of zero-crossing surfaces: 0                      !
+!                                                                     !
+!messagebox: Number of modes  : 0                                     !
+!                                                                     !
+!messagebox: Number of inputs : 0                                     !
+!                                                                     !
+!messagebox: Number of outputs: 1                                     !
+!                                                                     !
+!messagebox: Input/output dependency:[T]                              !
+!                                                                     !
+!messagebox: Analytical Jacobian: enabled  (%Jacobian=%t)             !
+!                                                                     !
+!messagebox: Parameter embedding mode: enabled (%Modelica_ParEmb=%t)  !
+!                                                                     !
+!messagebox:                                                          !
+!                                                                     !
+!messagebox: Generated files path: TMPDIR/         !
+!                                                                     !
+!messagebox:                                                          !

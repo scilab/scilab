@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="sciprint" xml:lang="en">
+    <refnamediv>
+        <refname>sciprint</refname>
+        <refpurpose>A C gateway function which displays standard messages to the
+            user (same profile as the C printf function)
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>void sciprint(format,value_1,..,value_n)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>format</term>
+                <listitem>
+                    <para>a char* string. Specifies a character string combining literal
+                        characters with conversion specifications.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>value_i</term>
+                <listitem>
+                    <para>Specifies the data to be converted according to the format
+                        parameter (%s, %d, ...).
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>This C gateway function provides the capabilities to display
+            messages to the Scilab user. Basically; it emulates the C language printf
+            function. You must include sciprint.h to benefit from this function. This
+            header is provided in the output_stream module (this directory should be
+            included by default).
+        </para>
+        <para>Note that if you want to trigger an error, the function Scierror is
+            more appropriate.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <para>In this example, the C gateway function prints several messages
+            illustrating the use of the sciprint function in the Scilab
+            console.
+        </para>
+        <programlisting role="example"><![CDATA[
+#include <stack-c.h>
+#include <sciprint.h>
+
+int sci_mysciprint(char * fname)
+{
+  sciprint("printing an integer: %d\n", 1);
+  sciprint("printing a double:   %f\n", 2.1);
+  sciprint("printing a string:   %s\n", "test");
+
+  return 0;
+}
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="printf_conversion">printf_conversion</link>
+            </member>
+            <member>
+                <link linkend="mprintf">mprintf</link>
+            </member>
+            <member>
+                <link linkend="Scierror">Scierror</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

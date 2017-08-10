@@ -6,5 +6,3 @@ EXPORTS
 ;core_f
 ;
 clunit_
-funs_
-isbyref_

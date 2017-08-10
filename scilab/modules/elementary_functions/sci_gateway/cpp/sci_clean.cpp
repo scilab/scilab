@@ -2,21 +2,27 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - DIGITEO - Cedric DELAMARRE
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 /*--------------------------------------------------------------------------*/
+
+#include <complex>
+
 #include "elem_func_gw.hxx"
 #include "function.hxx"
 #include "double.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 #include "clean.hxx"
 #include "sparse.hxx"
+#include "polynom.hxx"
 
 extern "C"
 {
@@ -93,9 +99,8 @@ types::Function::ReturnValue sci_clean(types::typed_list &in, int _iRetCount, ty
     }
     else
     {
-        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_clean";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
 
@@ -104,6 +109,16 @@ types::Function::ReturnValue sci_clean(types::typed_list &in, int _iRetCount, ty
         if (in[2]->isDouble() == false)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d : A real scalar expected.\n"), "clean", 3);
+            if (in[0]->isSparse())
+            {
+                delete pSparseOut;
+                delete[] pdReal;
+                delete[] pRows;
+                if (pdImg)
+                {
+                    delete[] pdImg;
+                }
+            }
             return types::Function::Error;
         }
 
@@ -112,6 +127,16 @@ types::Function::ReturnValue sci_clean(types::typed_list &in, int _iRetCount, ty
         if (pDbl->isScalar() == false || pDbl->isComplex())
         {
             Scierror(999, _("%s: Wrong type for input argument #%d : A real scalar expected.\n"), "clean", 3);
+            if (in[0]->isSparse())
+            {
+                delete pSparseOut;
+                delete[] pdReal;
+                delete[] pRows;
+                if (pdImg)
+                {
+                    delete[] pdImg;
+                }
+            }
             return types::Function::Error;
         }
 
@@ -123,6 +148,16 @@ types::Function::ReturnValue sci_clean(types::typed_list &in, int _iRetCount, ty
         if (in[1]->isDouble() == false)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d : A real scalar expected.\n"), "clean", 2);
+            if (in[0]->isSparse())
+            {
+                delete pSparseOut;
+                delete[] pdReal;
+                delete[] pRows;
+                if (pdImg)
+                {
+                    delete[] pdImg;
+                }
+            }
             return types::Function::Error;
         }
 
@@ -131,6 +166,16 @@ types::Function::ReturnValue sci_clean(types::typed_list &in, int _iRetCount, ty
         if (pDbl->isScalar() == false || pDbl->isComplex())
         {
             Scierror(999, _("%s: Wrong type for input argument #%d : A real scalar expected.\n"), "clean", 2);
+            if (in[0]->isSparse())
+            {
+                delete pSparseOut;
+                delete[] pdReal;
+                delete[] pRows;
+                if (pdImg)
+                {
+                    delete[] pdImg;
+                }
+            }
             return types::Function::Error;
         }
 
@@ -167,7 +212,7 @@ types::Function::ReturnValue sci_clean(types::typed_list &in, int _iRetCount, ty
         {
             for (int i = 0 ; i < iSize ; i++)
             {
-                std::complex<double> cplx = complex<double>(pdReal[i], pdImg[i]);
+                std::complex<double> cplx = std::complex<double>(pdReal[i], pdImg[i]);
                 pSparseOut->set(pRows[i] - 1, pCols[i] - 1, cplx, false);
             }
 

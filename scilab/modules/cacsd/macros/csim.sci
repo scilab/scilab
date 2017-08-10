@@ -1,13 +1,14 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA -
+// Copyright (C) ???? - 2016 - INRIA - Serge Steer
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
-
-
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 function [y,x]=csim(u,dt,sl,x0,tol)
     //Syntax:
     //  [y [,x]]=csim(u,dt,sl,[x0])
@@ -44,19 +45,30 @@ function [y,x]=csim(u,dt,sl,x0,tol)
     //
     if rhs<3 then error(39),end
     sltyp=typeof(sl)
-    if and(sltyp<>["state-space" "rational"]) then
-        error(msprintf(_("%s: Wrong type for input argument #%d: %s data structure expected.\n"),"csim",3,"syslin"))
+    if and(sltyp<>["state-space" "rational" "zpk"]) then
+        args=["u","dt","sl","x0","tol"];
+        ierr=execstr("[y,x]=%"+overloadname(sl)+"_csim("+strcat(args(1:rhs),",")+")","errcatch")
+        if ierr<>0 then
+            error(msprintf(_("%s: Wrong type for input argument #%d: Linear dynamical system expected.\n"),"csim",3))
+        end
+        return
     end
-    if sltyp=="rational" then sl=tf2ss(sl),end
+    if sltyp=="rational" then
+        sl=tf2ss(sl)
+    elseif sltyp=="zpk" then
+        sl=zpk2ss(sl),
+    end
     if sl.dt<>"c" then
         warning(msprintf(gettext("%s: Input argument #%d is assumed continuous time.\n"),"csim",1));
     end
     //
-    [a,b,c,d]=sl(2:5);
+    [a,b,c,d]=abcd(sl);
     if degree(d)>0 then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: A proper system expected\n"),"csim",1));
     end
-    [ma,mb]=size(b);
+    //[ma,mb]=size(b) replaced by  ma=size(a,1);mb=size(d,2);in case of no-state system
+    ma=size(a,1);
+    mb=size(d,2);
     //
     imp=0;step=0
     text="if t==0 then y=0, else y=1,end"
@@ -79,8 +91,6 @@ function [y,x]=csim(u,dt,sl,x0,tol)
             error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),"csim",1,"""step"",""impuls"""))
         end;
         deff("[y]=u(t)",text);
-    case 11 then //input given by a function of time
-        comp(u)
     case 13 then //input given by a function of time
     case 1 then //input given by a vector of data
         [mbu,ntu]=size(u);
@@ -89,13 +99,14 @@ function [y,x]=csim(u,dt,sl,x0,tol)
         end
     case 15 then  //input given by a list: function of time with parameters
         uu=u(1),
-        if type(uu)==11 then
-            comp(uu),
-            u(1)=uu,
-        end
-    else error(44,2)
+    else error(msprintf(gettext("%s: Wrong type for input argument #%d: Function expected"), "csim", 2));
     end;
     //
+    if isempty(dt) then
+        y = [];
+        x = [];
+        return
+    end
     if rhs==3 then x0=sl(6),end
     if imp==1|step==1 then x0=0*x0,end
     nt=size(dt,"*");x=0*ones(ma,nt);
@@ -118,12 +129,14 @@ function [y,x]=csim(u,dt,sl,x0,tol)
         ut=u;
         if min(size(ut))==1 then ut=matrix(ut,1,-1),end
         deff("[y]=u(t)",["ind=find(dt<=t);nn=ind($)"
-        "if (t==dt(nn)|nn==nt) then "
+        "if isempty(nn) then"
+        "y=[]"
+        "elseif (t==dt(nn)|nn==nt) then "
         "   y=ut(:,nn)"
         "else "
         "   y=ut(:,nn)+(t-dt(nn))/(dt(nn+1)-dt(nn))*(ut(:,nn+1)-ut(:,nn))"
         "end"]);
-        deff("[ydot]=%sim2(%tt,%y)","ydot=ak*%y+bk*u(%tt)");
+        deff("[ydot]=%sim2(%tt,%y)","ydot = [];if ~isempty(u(%tt)) then ydot = ak*%y+bk*u(%tt);end");
     elseif type(u)<>15 then
         deff("[ydot]=%sim2(%tt,%y)","ydot=ak*%y+bk*u(%tt)");
         ut=ones(mb,nt);for k=1:nt, ut(:,k)=u(dt(k)),end
@@ -160,6 +173,6 @@ function [y,x]=csim(u,dt,sl,x0,tol)
         end;
         k=k+n
     end;
-    y=c*x+d*ut
+    y = c*x + d*ut
     if lhs==2 then x=v1*v2*x,end
 endfunction

@@ -4,7 +4,7 @@
 #include "api_scilab.h"
 #include "Scierror.h"
 
-int sci_tbx_sum(char *fname)
+int sci_tbx_sum(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
 

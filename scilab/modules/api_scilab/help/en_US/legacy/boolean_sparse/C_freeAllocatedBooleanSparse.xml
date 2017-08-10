@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009  - DIGITEO - Antoine ELIAS
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="freeAllocatedBooleanSparse" xml:lang="en">
+    <refnamediv>
+        <refname>freeAllocatedBooleanSparse</refname>
+        <refpurpose>
+            Free memory allocated by getAllocatedBooleanSparseMatrix function.
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>void freeAllocatedBooleanSparse(int* _piNbItemRow, int* _piColPos)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>_piNbItemRow</term>
+                <listitem>
+                    <para>
+                        Pointer "_piNbItemRow" allocated by getAllocatedBooleanSparseMatrix.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piColPos</term>
+                <listitem>
+                    <para>
+                        Pointer "_piColPos" allocated by getAllocatedBooleanSparseMatrix.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+</refentry>

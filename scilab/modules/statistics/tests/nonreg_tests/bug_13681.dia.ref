@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // ============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2015 - Scilab Enterprises - Adeline CARNIS
@@ -10,7 +11,7 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=13681
 //
 // <-- Short Description -->
-// Calling cdfnor to get the "X" vector sometimes produced a vector with some NaN 
+// Calling cdfnor to get the "X" vector sometimes produced a vector with some NaN
 // values.
 Mean = 0;
 Std = 1;

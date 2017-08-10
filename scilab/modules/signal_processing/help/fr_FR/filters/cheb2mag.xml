@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="cheb2mag">
+    <refnamediv>
+        <refname>cheb2mag</refname>
+        <refpurpose>response of type 2 Chebyshev filter</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[h2]=cheb2mag(n,omegar,A,sample)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>integer ; filter order</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>omegar</term>
+                <listitem>
+                    <para>real scalar : cut-off frequency</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>A</term>
+                <listitem>
+                    <para>attenuation in stop band</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sample</term>
+                <listitem>
+                    <para>vector of frequencies where cheb2mag is evaluated</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>h2</term>
+                <listitem>
+                    <para>vector of Chebyshev II filter values at sample points</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Square magnitude response of a type 2 Chebyshev filter.
+        </para>
+        <para>
+            <literal>omegar</literal> = stopband edge, <literal>sample</literal> = vector of
+            frequencies where the square magnitude <literal>h2</literal> is desired.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+//Chebyshev; ripple in the stopband
+n=10;
+omegar=6;
+A=1/0.2;
+Samples=0.0001:0.05:10;
+h2=cheb2mag(n,omegar,A,Samples);
+plot(Samples,log(h2)/log(10))
+xtitle("", "frequencies", "magnitude in dB");
+
+//Plotting of frequency edges
+minval=(-max(-log(h2)))/log(10);
+plot2d([omegar;omegar],[minval;0],[2],"000");
+
+//Computation of the attenuation in dB at the stopband edge
+attenuation=-log(A*A)/log(10);
+plot2d(Samples',attenuation*ones(Samples)',[5],"000")
+ ]]></programlisting>
+        <scilab:image><![CDATA[
+n=10;omegar=6;A=1/0.2;Samples=0.0001:0.05:10;
+h2=cheb2mag(n,omegar,A,Samples);
+plot(Samples,log(h2)/log(10))
+xtitle("", "frequencies", "magnitude in dB");
+
+minval=(-max(-log(h2)))/log(10);
+plot2d([omegar;omegar],[minval;0],[2],"000");
+
+attenuation=-log(A*A)/log(10);
+plot2d(Samples',attenuation*ones(Samples)',[5],"000")
+]]>     </scilab:image>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="cheb1mag">cheb1mag</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

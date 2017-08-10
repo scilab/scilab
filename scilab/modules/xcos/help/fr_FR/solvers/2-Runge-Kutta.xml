@@ -3,11 +3,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) Scilab Enterprises - 2012 - Paul Bignier
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.
- * The terms are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg"  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en_US" xml:id="RK">
     <refnamediv>
@@ -38,7 +41,7 @@
             Cette méthode est explicite, donc non concernée par les itérations fonctionnelles ou de Newton, et est déconseillée pour les problèmes raides.
         </para>
         <para>
-            C'est une amélioration de la méthode d'Euler, qui approxime 
+            C'est une amélioration de la méthode d'Euler, qui approxime
             <emphasis>
                 y<subscript>n+1</subscript>
             </emphasis>
@@ -51,34 +54,38 @@
             Une différence notable de <emphasis>Runge-Kutta</emphasis> par rapport à <emphasis>Sundials</emphasis> est qu'il calcule jusqu'à la dérivée quatrième de <emphasis>y</emphasis>, alors que les autres n'utilisent que des combinaisons linéaires de <emphasis>y</emphasis> et <emphasis>y'</emphasis>.
         </para>
         <para>
-            Ici, la valeur suivante est déterminée par la valeur actuelle 
+            Ici, la valeur suivante
+            <emphasis>
+                y<subscript>n+1</subscript>
+            </emphasis>
+             est déterminée par la valeur actuelle
             <emphasis>
                 y<subscript>n</subscript>
             </emphasis>
             plus la moyenne pondérée de quatre incréments, où chaque incrément est le produit du pas, <emphasis>h</emphasis>, et une estimation de la pente spécifiée par la fonction <emphasis>f(t,y)</emphasis> :
             <itemizedlist>
                 <listitem>
-                    <emphasis>k1</emphasis> est l'incrément basé sur la pente au début de l'intervalle, utilisant 
+                    <emphasis>k1</emphasis> est l'incrément basé sur la pente au début de l'intervalle, utilisant
                     <emphasis>
                         y<subscript>n</subscript>
                     </emphasis>
                     (méthode d'Euler),
                 </listitem>
                 <listitem>
-                    <emphasis>k2</emphasis> est l'incrément basé sur la pente au milieu de l'intervalle, utilisant 
+                    <emphasis>k2</emphasis> est l'incrément basé sur la pente au milieu de l'intervalle, utilisant
                     <emphasis>
                         y<subscript>n</subscript> + h*k1/2
                     </emphasis>
                     ,
                 </listitem>
                 <listitem>
-                    <emphasis>k3</emphasis> est à nouveau l'incrément basé sur la pente au milieu de l'intervalle, utilisant 
+                    <emphasis>k3</emphasis> est à nouveau l'incrément basé sur la pente au milieu de l'intervalle, utilisant
                     <emphasis>
                         y<subscript>n</subscript> + h*k2/2
                     </emphasis>
                 </listitem>
                 <listitem>
-                    <emphasis>k4</emphasis> est l'incrément basé sur la pente à la fin de l'intervalle, utilisant 
+                    <emphasis>k4</emphasis> est l'incrément basé sur la pente à la fin de l'intervalle, utilisant
                     <emphasis>
                         y<subscript>n</subscript> + h*k3
                     </emphasis>
@@ -86,44 +93,44 @@
             </itemizedlist>
         </para>
         <para>
-            On peut voir qu'avec les <emphasis>ki</emphasis>, on progresse dans les dérivées de 
+            On peut voir qu'avec les <emphasis>ki</emphasis>, on progresse dans les dérivées de
             <emphasis>
                 y<subscript>n</subscript>
             </emphasis>
-            . Donc à <emphasis>k4</emphasis>, on approxime 
+            . Donc à <emphasis>k4</emphasis>, on approxime
             <emphasis>
                 y<superscript>(4)</superscript><subscript>n</subscript>
             </emphasis>
-            , faisant donc une erreur en 
+            , faisant donc une erreur en
             <emphasis>
                 O(h<superscript>5</superscript>)
             </emphasis>
             .
         </para>
         <para>
-            L'erreur totale est donc 
+            L'erreur totale est donc
             <emphasis>
                 nombre de pas * O(h<superscript>5</superscript>)
             </emphasis>
-            . Et puisque par définition <emphasis>nombre de pas = taille de l'intervalle / h</emphasis>, l'erreur totale est en 
+            . Et puisque par définition <emphasis>nombre de pas = taille de l'intervalle / h</emphasis>, l'erreur totale est en
             <emphasis>
                 O(h<superscript>4</superscript>)
             </emphasis>
             .
         </para>
         <para>
-            Cette analyse d'erreur a baptisé la méthode <emphasis>Runge-Kutta 4(5)</emphasis>, 
+            Cette analyse d'erreur a baptisé la méthode "<emphasis>Runge-Kutta 4(5)</emphasis>",
             <emphasis>
                 O(h<superscript>5</superscript>)
             </emphasis>
-            par pas, 
+            par pas,
             <emphasis>
                 O(h<superscript>4</superscript>)
             </emphasis>
             au total.
         </para>
         <para>
-            Bien que le solveur fonctionne bien pour <link linkend="Simulatemenu_Menu_entries">max step size</link> allant juqu'à 
+            Bien que le solveur fonctionne bien pour <link linkend="Simulatemenu_Menu_entries">max step size</link> allant juqu'à
             <emphasis>
                 10<superscript>-3</superscript>
             </emphasis>
@@ -225,7 +232,10 @@ Temps pour Runge-Kutta :
                 <link linkend="DoPri">Dormand-Prince 4(5)</link>
             </member>
             <member>
-                <link linkend="RKImp">Runge-Kutta Implicite 4(5)</link>
+                <link linkend="ImpRK">Runge-Kutta Implicite 4(5)</link>
+            </member>
+            <member>
+                <link linkend="CRANI">Crank-Nicolson 2(3)</link>
             </member>
             <member>
                 <link linkend="DDaskr">DDaskr</link>
@@ -240,7 +250,7 @@ Temps pour Runge-Kutta :
                 <link linkend="ode_discrete">ode_discrete</link>
             </member>
             <member>
-                <link linkend="ode_root">ode_root</link>
+                <link linkend="ode_roots">ode_roots</link>
             </member>
             <member>
                 <link linkend="odedc">odedc</link>

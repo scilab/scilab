@@ -1,12 +1,16 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2014-2014 - Scilab Enterprises - Clement DAVID
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2017 - ESI Group - Clement DAVID
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -61,6 +65,28 @@ struct dummy_property
     }
 };
 
+struct wpar
+{
+
+    static types::InternalType* get(const ParamsAdapter& /*adaptor*/, const Controller& /*controller*/)
+    {
+        types::Double* ret = new types::Double(1, 6);
+        ret->set(0, 600);
+        ret->set(1, 450);
+        ret->set(2, 0);
+        ret->set(3, 0);
+        ret->set(4, 600);
+        ret->set(5, 450);
+        return ret;
+    }
+
+    static bool set(ParamsAdapter& adaptor, types::InternalType* v, Controller& controller)
+    {
+        // The model does not store 'wpar'.
+        return dummy_property::set(adaptor, v, controller);
+    }
+};
+
 struct title
 {
 
@@ -69,9 +95,16 @@ struct title
         ScicosID adaptee = adaptor.getAdaptee()->id();
 
         std::string title;
-        controller.getObjectProperty(adaptee, DIAGRAM, TITLE, title);
         std::string path;
-        controller.getObjectProperty(adaptee, DIAGRAM, PATH, path);
+        if (adaptor.getAdaptee()->kind() == DIAGRAM)
+        {
+            controller.getObjectProperty(adaptee, DIAGRAM, TITLE, title);
+            controller.getObjectProperty(adaptee, DIAGRAM, PATH, path);
+        }
+        else
+        {
+            controller.getObjectProperty(adaptee, BLOCK, DESCRIPTION, title);
+        }
 
         types::String* o = new types::String(2, 1);
         o->set(0, title.data());
@@ -84,7 +117,7 @@ struct title
     {
         if (v->getType() != types::InternalType::ScilabString)
         {
-            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : String expected.\n"), "params", "title");
+            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s: String expected.\n"), "params", "title");
             return false;
         }
 
@@ -105,7 +138,7 @@ struct title
         }
         else
         {
-            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong dimension for field %s.%s : String expected.\n"), "params", "title");
+            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong dimension for field %s.%s: String expected.\n"), "params", "title");
             return false;
         }
 
@@ -113,8 +146,16 @@ struct title
         title = std::string(Title);
         FREE(Title);
 
-        controller.setObjectProperty(adaptee, DIAGRAM, TITLE, title);
-        controller.setObjectProperty(adaptee, DIAGRAM, PATH, path);
+
+        if (adaptor.getAdaptee()->kind() == DIAGRAM)
+        {
+            controller.setObjectProperty(adaptee, DIAGRAM, TITLE, title);
+            controller.setObjectProperty(adaptee, DIAGRAM, PATH, path);
+        }
+        else
+        {
+            controller.setObjectProperty(adaptee, BLOCK, DESCRIPTION, title);
+        }
         return true;
     }
 };
@@ -125,6 +166,14 @@ struct tol
     static types::InternalType* get(const ParamsAdapter& adaptor, const Controller& controller)
     {
         ScicosID adaptee = adaptor.getAdaptee()->id();
+        if (adaptor.getAdaptee()->kind() == BLOCK)
+        {
+            controller.getObjectProperty(adaptee, BLOCK, PARENT_DIAGRAM, adaptee);
+            if (adaptee == ScicosID())
+            {
+                return types::Double::Empty();
+            }
+        }
 
         double* data;
         types::Double* o = new types::Double(1, 7, &data);
@@ -142,17 +191,27 @@ struct tol
 
     static bool set(ParamsAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
+        if (adaptor.getAdaptee()->kind() == BLOCK)
+        {
+            // ignore the updated value for a block
+            return dummy_property::set(adaptor, v, controller);
+        }
 
         if (v->getType() != types::InternalType::ScilabDouble)
         {
-            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : Real matrix expected.\n"), "params", "tol");
+            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s: Real matrix expected.\n"), "params", "tol");
             return false;
         }
 
         types::Double* current = v->getAs<types::Double>();
+        if (current->isEmpty())
+        {
+            // Do nothing in this case to support old diagrams
+            return false;
+        }
         if (current->getSize() != 6 && current->getSize() != 7)
         {
-            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong dimension for field %s.%s : %d-by-%d expected.\n"), "params", "tol", 7, 1);
+            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong dimension for field %s.%s: %d-by-%d expected.\n"), "params", "tol", 7, 1);
             return false;
         }
 
@@ -180,6 +239,14 @@ struct tf
     static types::InternalType* get(const ParamsAdapter& adaptor, const Controller& controller)
     {
         ScicosID adaptee = adaptor.getAdaptee()->id();
+        if (adaptor.getAdaptee()->kind() == BLOCK)
+        {
+            controller.getObjectProperty(adaptee, BLOCK, PARENT_DIAGRAM, adaptee);
+            if (adaptee == ScicosID())
+            {
+                return types::Double::Empty();
+            }
+        }
 
         std::vector<double> tf;
         controller.getObjectProperty(adaptee, DIAGRAM, PROPERTIES, tf);
@@ -189,17 +256,22 @@ struct tf
 
     static bool set(ParamsAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
+        if (adaptor.getAdaptee()->kind() == BLOCK)
+        {
+            // ignore the updated value for a block
+            return dummy_property::set(adaptor, v, controller);
+        }
 
         if (v->getType() != types::InternalType::ScilabDouble)
         {
-            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : Real expected.\n"), "params", "tf");
+            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s: Real expected.\n"), "params", "tf");
             return false;
         }
 
         types::Double* current = v->getAs<types::Double>();
         if (current->getSize() != 1)
         {
-            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong dimension for field %s.%s : Real expected.\n"), "params", "tf");
+            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong dimension for field %s.%s: Real expected.\n"), "params", "tf");
             return false;
         }
 
@@ -223,7 +295,7 @@ struct context
         ScicosID adaptee = adaptor.getAdaptee()->id();
 
         std::vector<std::string> context;
-        controller.getObjectProperty(adaptee, DIAGRAM, DIAGRAM_CONTEXT, context);
+        controller.getObjectProperty(adaptee, adaptor.getAdaptee()->kind(), DIAGRAM_CONTEXT, context);
 
         if (context.size() == 0)
         {
@@ -248,7 +320,7 @@ struct context
             // Only allow vectors and empty matrices
             if (!current->isVector() && current->getSize() != 0)
             {
-                get_or_allocate_logger()->log(LOG_ERROR, _("Wrong dimension for field %s.%s : m-by-1 expected.\n"), "params", "context");
+                get_or_allocate_logger()->log(LOG_ERROR, _("Wrong dimension for field %s.%s: m-by-1 expected.\n"), "params", "context");
                 return false;
             }
 
@@ -262,7 +334,7 @@ struct context
                 FREE(c_str);
             }
 
-            controller.setObjectProperty(adaptee, DIAGRAM, DIAGRAM_CONTEXT, context);
+            controller.setObjectProperty(adaptee, adaptor.getAdaptee()->kind(), DIAGRAM_CONTEXT, context);
             return true;
         }
         else if (v->getType() == types::InternalType::ScilabDouble)
@@ -270,18 +342,18 @@ struct context
             types::Double* current = v->getAs<types::Double>();
             if (!current->isEmpty())
             {
-                get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : String matrix expected.\n"), "params", "context");
+                get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : string expected.\n"), "params", "context");
                 return false;
             }
 
             ScicosID adaptee = adaptor.getAdaptee()->id();
 
             std::vector<std::string> context;
-            controller.setObjectProperty(adaptee, DIAGRAM, DIAGRAM_CONTEXT, context);
+            controller.setObjectProperty(adaptee, adaptor.getAdaptee()->kind(), DIAGRAM_CONTEXT, context);
             return true;
         }
 
-        get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : String matrix expected.\n"), "params", "context");
+        get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : string expected.\n"), "params", "context");
         return false;
     }
 };
@@ -309,6 +381,7 @@ struct options
         types::Double* ThreeD2 = new types::Double(33);
         ThreeDField->append(ThreeD2);
         Scsopt->append(ThreeDField);
+        ThreeDField->killMe();
 
         types::Double* BackgroundField = new types::Double(1, 2);
         BackgroundField->set(0, 8);
@@ -334,6 +407,7 @@ struct options
         ID2->set(3, 1);
         IDField->append(ID2);
         Scsopt->append(IDField);
+        IDField->killMe();
 
         types::Double* CmapField = new types::Double(1, 3);
         CmapField->set(0, 0.8);
@@ -360,7 +434,7 @@ struct doc
 
     static bool set(ParamsAdapter& adaptor, types::InternalType* v, Controller& /*controller*/)
     {
-        adaptor.setDocContent(v->clone());
+        adaptor.setDocContent(v);
         return true;
     }
 };
@@ -373,7 +447,7 @@ static void initialize_fields()
     if (property<ParamsAdapter>::properties_have_not_been_set())
     {
         property<ParamsAdapter>::fields.reserve(10);
-        property<ParamsAdapter>::add_property(L"wpar", &dummy_property::get, &dummy_property::set);
+        property<ParamsAdapter>::add_property(L"wpar", &wpar::get, &wpar::set);
         property<ParamsAdapter>::add_property(L"title", &title::get, &title::set);
         property<ParamsAdapter>::add_property(L"tol", &tol::get, &tol::set);
         property<ParamsAdapter>::add_property(L"tf", &tf::get, &tf::set);
@@ -387,15 +461,15 @@ static void initialize_fields()
 }
 
 ParamsAdapter::ParamsAdapter() :
-    BaseAdapter<ParamsAdapter, org_scilab_modules_scicos::model::Diagram>(),
-    doc_content(new types::List())
+    BaseAdapter<ParamsAdapter, org_scilab_modules_scicos::model::BaseObject>(),
+    doc_content(default_value<types::List>())
 {
     initialize_fields();
 }
 
-ParamsAdapter::ParamsAdapter(const Controller& c, org_scilab_modules_scicos::model::Diagram* adaptee) :
-    BaseAdapter<ParamsAdapter, org_scilab_modules_scicos::model::Diagram>(c, adaptee),
-    doc_content(new types::List())
+ParamsAdapter::ParamsAdapter(const Controller& c, org_scilab_modules_scicos::model::BaseObject* adaptee) :
+    BaseAdapter<ParamsAdapter, org_scilab_modules_scicos::model::BaseObject>(c, adaptee),
+    doc_content(default_value<types::List>())
 {
     initialize_fields();
 }
@@ -406,28 +480,29 @@ ParamsAdapter::~ParamsAdapter()
     doc_content->killMe();
 }
 
-std::wstring ParamsAdapter::getTypeStr()
+std::wstring ParamsAdapter::getTypeStr() const
 {
     return getSharedTypeStr();
 }
-std::wstring ParamsAdapter::getShortTypeStr()
+std::wstring ParamsAdapter::getShortTypeStr() const
 {
     return getSharedTypeStr();
 }
 
 types::InternalType* ParamsAdapter::getDocContent() const
 {
-    doc_content->IncreaseRef();
     return doc_content;
 }
 
 void ParamsAdapter::setDocContent(types::InternalType* v)
 {
-    doc_content->DecreaseRef();
-    doc_content->killMe();
+    types::InternalType* temp = doc_content;
 
     v->IncreaseRef();
     doc_content = v;
+
+    temp->DecreaseRef();
+    temp->killMe();
 }
 
 } /* namespace view_scilab */

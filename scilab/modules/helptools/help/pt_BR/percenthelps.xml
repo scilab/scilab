@@ -1,61 +1,66 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="percenthelps" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="percenthelps" xml:lang="pt">
     <refnamediv>
         <refname>%helps</refname>
-        <refpurpose>variável definindo o endereço dos diretórios de
-            ajuda
+        <refpurpose>variÃ¡vel definindo o endereÃ§o dos diretÃ³rios de ajuda
         </refpurpose>
     </refnamediv>
-    <refsection>
-        <title>Descrição</title>
+    <refsection role="description">
+        <title>DescriÃ§Ã£o</title>
         <para>
-            A variável global <literal>%helps</literal> é uma matriz N x 2 de
-            strings. A k-ésima linha de <literal>%helps</literal>,
-            <literal>%helps(k,:)</literal> representa o k-ésimo capítulo do manual e é
+            A variÃ¡vel global <literal>%helps</literal> Ã© uma matriz N x 2 de
+            strings. A k-Ã©sima linha de <literal>%helps</literal>,
+            <literal>%helps(k,:)</literal> representa o k-Ã©simo capÃ­tulo do manual e Ã©
             feita de dois strings:
         </para>
         <para>
-            <literal>%helps(k,1)</literal> é o nome de endereço absoluto de um
-            diretório.
+            <literal>%helps(k,1)</literal> Ã© o nome de endereÃ§o absoluto de um
+            diretÃ³rio.
         </para>
         <para>
-            <literal>%helps(k,2)</literal> é um título para este diretório. Por
-            exemplo, para k=2, nós temos o capítulo de gráficos
+            <literal>%helps(k,2)</literal> Ã© um tÃ­tulo para este diretÃ³rio. Por
+            exemplo, para k=2, nÃ³s temos o capÃ­tulo de grÃ¡ficos
             <literal>%helps(2,:)</literal>.
         </para>
         <para>
-            A variável <literal>%helps</literal> é definida no arquivo de
-            inicialização do Scilab <literal>SCI+"/scilab.start"</literal>.
+            A variÃ¡vel <literal>%helps</literal> Ã© definida no arquivo de
+            inicializaÃ§Ã£o do Scilab <literal>SCI+"/scilab.start"</literal>.
         </para>
-        <para>Para adicionar um novo diretório de ajuda, o usuário deve adicionar
+        <para>Para adicionar um novo diretÃ³rio de ajuda, o usuÃ¡rio deve adicionar
             uma linha a <literal>%helps</literal>. (Uma linha para cada
-            diretório).
+            diretÃ³rio).
         </para>
         <para>
             Por exemplo, <literal>%helps=[%helps;
                 "Path-Of-My-Help-Dir","My-Title"];
             </literal>
             habilita o navegador de ajuda
-            do Scilab a procurar por itens do manual de ajuda no diretório com
-            endereço "Path-Of-My-Help-Dir".
+            do Scilab a procurar por itens do manual de ajuda no diretÃ³rio com
+            endereÃ§o "Path-Of-My-Help-Dir".
         </para>
-        <para>"My-Title" é, então, o título do novo capítulo de ajuda.</para>
-        <para>Um diretório válido deve conter:</para>
+        <para>"My-Title" Ã©, entÃ£o, o tÃ­tulo do novo capÃ­tulo de ajuda.</para>
+        <para>Um diretÃ³rio vÃ¡lido deve conter:</para>
         <para>
             1- Um conjunto de arquivos<literal>.html</literal> (ex.:
             <literal>item1.html, item2.html</literal> etc). Os arquivos
-            <literal>.html</literal> são geralmente construídos de arquivos
+            <literal>.html</literal> sÃ£o geralmente construÃ­dos de arquivos
             XML.
         </para>
         <para>
@@ -63,12 +68,12 @@
             formato especial. Cada linha de <literal>whatis</literal> deve ser como
             segue:
         </para>
-        <programlisting role="xml"><![CDATA[ 
-<BR><A HREF="item.html">item</A> - rápida descrição
+        <programlisting role="xml"><![CDATA[
+<BR><A HREF="item.html">item</A> - rapida descricao
  ]]></programlisting>
         <para>
-            <literal>item</literal> é o item da ajuda, i.e. o comando
-            <literal>help item</literal> exibe o conteúdo do arquivo
+            <literal>item</literal> Ã© o item da ajuda, i.e. o comando
+            <literal>help item</literal> exibe o conteÃºdo do arquivo
             <literal>item.html</literal>.
         </para>
         <para>
@@ -76,22 +81,33 @@
             todos os arquivos <literal>whatis.html</literal> nos quais a palavra-chave
             keyword aparece.
         </para>
-        <para>Em plataformas Linux, o Scilab provê um Makefile para transformar
-            páginas <literal>.xml</literal> pages em páginas <literal>.html</literal>
+        <para>Em plataformas Linux, o Scilab provÃª um Makefile para transformar
+            pÃ¡ginas <literal>.xml</literal> pages em pÃ¡ginas <literal>.html</literal>
             (ver SCIDIR/examples/man-examples).
         </para>
     </refsection>
+    <refsection role="examples">
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[
+global %helps  // This instruction creates a local %helps variable connected to the global one
+%helps
+if %helps==[]                    // No help chapter is registered for any external module
+    if atomsGetInstalled()==[]   // If no external module is installed
+        atomsInstall uman;       //  we install the "uman" one (available for all plateforms)
+    end
+    atomsLoad(atomsGetInstalled()(1));  // We load the first module, included its help pages
+    %helps                       // Now the external chapter should be registered
+end
+      ]]></programlisting>
+    </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="apropos">apropos</link>
             </member>
             <member>
                 <link linkend="help">help</link>
-            </member>
-            <member>
-                <link linkend="man">man</link>
             </member>
         </simplelist>
     </refsection>

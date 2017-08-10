@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="lindquist">
+    <refnamediv>
+        <refname>lindquist</refname>
+        <refpurpose>Lindquist's algorithm</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[P,R,T]=lindquist(n,H,F,G,R0)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>number of iterations.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>H, F, G</term>
+                <listitem>
+                    <para>
+                        estimated triple from the covariance sequence of <literal>y</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>R0</term>
+                <listitem>
+                    <para>E(yk*yk')</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>P</term>
+                <listitem>
+                    <para>solution of the Riccati equation after n iterations.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>R, T</term>
+                <listitem>
+                    <para>gain matrices of the filter.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            computes iteratively the minimal solution of the algebraic
+            Riccati equation and gives the matrices <literal>R</literal> and <literal>T</literal> of the
+            filter model, by the Lindquist's algorithm.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Example</title>
+        <programlisting role="example"><![CDATA[
+//Generate signal
+x=%pi/10:%pi/10:102.4*%pi;
+y=[1; 1] * sin(x) + [sin(2*x); sin(1.9*x)] + rand(2,1024,"normal");
+
+//Compute correlations
+c=[];
+for j=1:2
+   for k=1:2
+     c=[c;corr(y(k,:),y(j,:),64)];
+   end
+end
+c=matrix(c,2,128);
+
+//Find H,F,G with 6 states
+hk=hank(20,20,c);
+[H,F,G]=phc(hk,2,6);
+
+//Solve Riccati equation
+R0=c(1:2,1:2);
+[P,R,T]=lindquist(100,H,F,G,R0);
+]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="srfaur">srfaur</link>
+            </member>
+            <member>
+                <link linkend="faurre">faurre</link>
+            </member>
+            <member>
+                <link linkend="phc">phc</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

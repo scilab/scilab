@@ -1,11 +1,14 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) ????-2008 - INRIA
 c
-c This file must be used under the terms of the CeCILL.
-c This source file is licensed as described in the file COPYING, which
-c you should have received as part of this distribution.  The terms
-c are also available at
-c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+c Copyright (C) 2012 - 2016 - Scilab Enterprises
+c
+c This file is hereby licensed under the terms of the GNU GPL v2.0,
+c pursuant to article 5.3.4 of the CeCILL v.2.1.
+c This file was originally licensed under the terms of the CeCILL v2.1,
+c and continues to be available under such terms.
+c For more information, see the COPYING file which you should have received
+c along with this program.
       subroutine fxshfr(l2, nz)
 c computes up to  l2  fixed shift k-polynomials,
 c testing for convergence in the linear or quadratic
@@ -96,7 +99,7 @@ c tried and decrease the convergence criterion
         betas = betas*.25
         if (iflag.eq.0) go to 50
 c if linear iteration signals an almost double real
-c zero attempt quadratic interation
+c zero attempt quadratic iteration
         ui = -(s+s)
         vi = s*s
         go to 20

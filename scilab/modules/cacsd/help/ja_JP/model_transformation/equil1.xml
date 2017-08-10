@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="equil1">
+    <refnamediv>
+        <refname>equil1</refname>
+        <refpurpose>行列の平衡 (非負定) の組</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[T [,siz]]=equil1(P,Q [,tol])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>P, Q</term>
+                <listitem>
+                    <para>非負定の対称行列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>T</term>
+                <listitem>
+                    <para>正則行列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>siz</term>
+                <listitem>
+                    <para>3要素の整数ベクトル</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>tol</term>
+                <listitem>
+                    <para>閾値</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>equil1</literal> は次のような <literal>t</literal> を計算します:
+        </para>
+        <para>
+            <literal>P1=T*P*T'</literal>  および <literal>Q1=inv(T)'*Q*inv(T)</literal>
+            は以下のようになります:
+        </para>
+        <para>
+            <literal>P1 = diag(S1,S2,0,0)</literal>  および <literal>Q1 = diag(S1,0,S3,0)</literal>
+            ただし,
+            <literal>S1,S2,S3</literal> は各次元が<literal>siz=[n1,n2,n3]</literal>の正定対角行列です.
+        </para>
+        <para>
+            <literal>tol</literal> はSVDのランク定義の閾値です.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+S1=rand(2,2);S1=S1*S1';
+S2=rand(2,2);S2=S2*S2';
+S3=rand(2,2);S3=S3*S3';
+P=sysdiag(S1,S2,zeros(4,4));
+Q=sysdiag(S1,zeros(2,2),S3,zeros(2,2));
+X=rand(8,8);
+P=X*P*X';Q=inv(X)'*Q*inv(X);
+[T,siz]=equil1(P,Q);
+P1=clean(T*P*T')
+Q1=clean(inv(T)'*Q*inv(T))
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="balreal">balreal</link>
+            </member>
+            <member>
+                <link linkend="minreal">minreal</link>
+            </member>
+            <member>
+                <link linkend="equil">equil</link>
+            </member>
+            <member>
+                <link linkend="hankelsv">hankelsv</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

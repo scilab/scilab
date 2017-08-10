@@ -14,6 +14,12 @@ jogl2.jar=@JOGL2@
 
 jhall.jar=@JHALL@
 
+lucene-core.jar=@LUCENE@
+
+lucene-analyzers-common.jar=@LUCENE_ANALYZER@
+
+lucene-queryparser.jar=@LUCENE_PARSER@
+
 gluegen2.jar=@GLUEGEN2_RT@
 
 jgraphx.jar=@JGRAPHX@
@@ -27,6 +33,8 @@ jrosetta-engine.jar=@JROSETTA_ENGINE@
 checkstyle.jar=@CHECKSTYLE@
 
 junit4.jar=@JUNIT4@
+
+hamcrest-all.jar=@HAMCREST@
 
 cobertura.jar=@COBERTURA@
 
@@ -135,5 +143,3 @@ library.external_objects_java.name=org.scilab.modules.external_objects_java.jar
 build_javasci=@JAVASCI_ENABLE@
 
 build_xcos=@XCOS_ENABLE@
-
-

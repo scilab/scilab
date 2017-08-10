@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2014 - Scilab Enterprises - Calixte DENIZET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -15,21 +18,21 @@
 
 #include <iostream>
 #include <string>
-#include <set>
 #include <sstream>
+#include <stack>
+#include <vector>
 
 #include "visitor.hxx"
 #include "execvisitor.hxx"
 #include "allexp.hxx"
 #include "allvar.hxx"
 #include "Chrono.hxx"
-#include "tools.hxx"
 #include "MacroDef.hxx"
 
 namespace analysis
 {
 
-class GlobalsCollector : public ast::Visitor, public Chrono
+class GlobalsCollector : public ast::ConstVisitor, public Chrono
 {
 
     MacroDef & macrodef;
@@ -40,363 +43,62 @@ class GlobalsCollector : public ast::Visitor, public Chrono
 
 public:
 
-    virtual ~GlobalsCollector()
+    virtual ~GlobalsCollector() { }
+
+    virtual GlobalsCollector* clone()
     {
+        return new GlobalsCollector(macrodef);
     }
 
-    inline static void collect(MacroDef & macrodef)
-    {
-        GlobalsCollector gc(macrodef);
-        gc.collect();
-	//gc.print_info();
-    }
+    static void collect(MacroDef & macrodef);
+    const tools::SymbolOrdSet & getGlobals() const;
+    void print_info();
 
-    inline const std::set<symbol::Symbol> & getGlobals() const
-    {
-        return globals;
-    }
-
-    friend std::wostream & operator<<(std::wostream & out, const GlobalsCollector & gc)
-    {
-        out << L"name: " << gc.macrodef.getName() << std::endl
-            << L" -out: ";
-        tools::printSet(gc.macrodef.getOut(), out);
-        out << std::endl
-            << L" -in: ";
-        tools::printSet(gc.macrodef.getIn(), out);
-        out << std::endl
-            << L" -locals: ";
-        tools::printSet(gc.locals, out);
-        out << std::endl
-            << L" -globals: ";
-        tools::printSet(gc.globals, out);
-
-        return out;
-    }
-
-    inline void print_info()
-    {
-        std::wcout << L"Globals collection: " << *static_cast<Chrono *>(this) << std::endl
-		   << *this << std::endl;
-    }
+    friend std::wostream & operator<<(std::wostream & out, const GlobalsCollector & gc);
 
 private:
 
-    inline void collect()
-    {
-        start_chrono();
-
-        for (const auto arg : macrodef.getIn())
-        {
-            locals.emplace(arg);
-        }
-
-        macrodef.getBody().accept(*this);
-
-        for (const auto & out : macrodef.getOut())
-        {
-            if (locals.find(out) == locals.end())
-            {
-                globals.emplace(out);
-            }
-        }
-
-        stop_chrono();
-    }
-
-    void visit(ast::SimpleVar & e)
-    {
-	if (!e.getParent()->isFieldExp() || static_cast<ast::FieldExp *>(e.getParent())->getTail() != &e)
-	{
-	    const symbol::Symbol & sym = e.getSymbol();
-	    if (locals.find(sym) == locals.end())
-	    {
-		globals.emplace(sym);
-	    }
-	}
-    }
-
-    void visit(ast::DollarVar & e)
-    {
-        // nothing to do
-    }
-
-    void visit(ast::ColonVar & e)
-    {
-        // nothing to do
-    }
-
-    void visit(ast::ArrayListVar & e)
-    {
-        for (auto arg : e.getVars())
-        {
-            arg->accept(*this);
-        }
-    }
-
-    void visit(ast::DoubleExp & e)
-    {
-    }
-
-    void visit(ast::BoolExp & e)
-    {
-    }
-
-    void visit(ast::StringExp & e)
-    {
-    }
-
-    void visit(ast::CommentExp & e)
-    {
-        // ignored
-    }
-
-    void visit(ast::NilExp & e)
-    {
-        // nothing to do
-    }
-
-    void visit(ast::CallExp & e)
-    {
-        for (auto arg : e.getArgs())
-        {
-            arg->accept(*this);
-        }
-        e.getName().accept(*this);
-    }
-
-    void visit(ast::CellCallExp & e)
-    {
-        for (auto arg : e.getArgs())
-        {
-            arg->accept(*this);
-        }
-        e.getName().accept(*this);
-    }
-
-    void visit(ast::OpExp & e)
-    {
-        e.getLeft().accept(*this);
-        e.getRight().accept(*this);
-    }
-
-    void visit(ast::LogicalOpExp & e)
-    {
-        e.getLeft().accept(*this);
-        e.getRight().accept(*this);
-    }
-
-    void visit(ast::AssignExp & e)
-    {
-        if (e.getLeftExp().isSimpleVar())
-        {
-            const symbol::Symbol & Lsym = static_cast<ast::SimpleVar &>(e.getLeftExp()).getSymbol();
-            locals.emplace(Lsym);
-        }
-        else if (e.getLeftExp().isCallExp())
-        {
-            ast::CallExp & ce = static_cast<ast::CallExp &>(e.getLeftExp());
-            if (ce.getName().isSimpleVar())
-            {
-                const symbol::Symbol & Lsym = static_cast<ast::SimpleVar &>(ce.getName()).getSymbol();
-                locals.emplace(Lsym);
-            }
-            for (auto arg : ce.getArgs())
-            {
-                arg->accept(*this);
-            }
-        }
-        else if (e.getLeftExp().isAssignListExp())
-        {
-            ast::AssignListExp & ale = static_cast<ast::AssignListExp &>(e.getLeftExp());
-            for (const auto re : ale.getExps())
-            {
-                if (re->isSimpleVar())
-                {
-                    const symbol::Symbol & Lsym = static_cast<const ast::SimpleVar *>(re)->getSymbol();
-                    locals.emplace(Lsym);
-                }
-            }
-        }
-        else
-        {
-            e.getLeftExp().accept(*this);
-        }
-        e.getRightExp().accept(*this);
-    }
-
-    void visit(ast::IfExp & e)
-    {
-        e.getTest().accept(*this);
-        e.getThen().accept(*this);
-        if (e.hasElse())
-        {
-            e.getElse().accept(*this);
-        }
-    }
-
-    void visit(ast::WhileExp & e)
-    {
-        e.getTest().accept(*this);
-        e.getBody().accept(*this);
-    }
-
-    void visit(ast::ForExp & e)
-    {
-        e.getVardec().accept(*this);
-        e.getBody().accept(*this);
-    }
-
-    void visit(ast::BreakExp & e)
-    {
-        // nothing to do
-    }
-
-    void visit(ast::ContinueExp & e)
-    {
-        // nothing to do
-    }
-
-    void visit(ast::TryCatchExp & e)
-    {
-        e.getTry().accept(*this);
-        e.getCatch().accept(*this);
-    }
-
-    void visit(ast::SelectExp & e)
-    {
-        e.getSelect()->accept(*this);
-        for (auto _e : e.getCases())
-        {
-            _e->accept(*this);
-        }
-        if (ast::Exp * def = e.getDefaultCase())
-        {
-            def->accept(*this);
-        }
-    }
-
-    void visit(ast::CaseExp & e)
-    {
-        e.getTest()->accept(*this);
-        e.getBody()->accept(*this);
-    }
-
-    void visit(ast::ReturnExp & e)
-    {
-        // Bug with return;
-        //e.exp_get().accept(*this);
-    }
-
-    void visit(ast::FieldExp & e)
-    {
-        e.getHead()->accept(*this);
-        e.getTail()->accept(*this);
-    }
-
-    void visit(ast::NotExp & e)
-    {
-        e.getExp().accept(*this);
-    }
-
-    void visit(ast::TransposeExp & e)
-    {
-        e.getExp().accept(*this);
-    }
-
-    void visit(ast::MatrixExp & e)
-    {
-        for (auto mle : e.getLines())
-        {
-            mle->accept(*this);
-        }
-    }
-
-    void visit(ast::MatrixLineExp & e)
-    {
-        for (auto _e : e.getColumns())
-        {
-            _e->accept(*this);
-        }
-    }
-
-    void visit(ast::CellExp & e)
-    {
-        for (auto mle : e.getLines())
-        {
-            mle->accept(*this);
-        }
-    }
-
-    void visit(ast::SeqExp & e)
-    {
-        for (auto _e : e.getExps())
-        {
-            _e->accept(*this);
-        }
-    }
-
-    void visit(ast::ArrayListExp & e)
-    {
-        for (auto _e : e.getExps())
-        {
-            _e->accept(*this);
-        }
-    }
-
-    void visit(ast::AssignListExp & e)
-    {
-    }
-
-    void visit(ast::VarDec & e)
-    {
-        locals.emplace(e.getSymbol());
-        e.getInit().accept(*this);
-    }
-
-    void visit(ast::FunctionDec & e)
-    {
-        locals.emplace(e.getSymbol());
-        DeclaredMacroDef dmd(&e);
-        GlobalsCollector gc(dmd);
-
-        for (const auto global : gc.globals)
-        {
-            if (locals.find(global) == locals.end())
-            {
-                globals.emplace(global);
-            }
-        }
-    }
-
-    void visit(ast::ListExp & e)
-    {
-        e.getStart().accept(*this);
-        e.getStep().accept(*this);
-        e.getEnd().accept(*this);
-    }
-
-    void visit(ast::OptimizedExp & e)
-    {
-    }
-
-    void visit(ast::MemfillExp & e)
-    {
-    }
-
-    void visit(ast::DAXPYExp & e)
-	{
-	}
-    
-    void visit(ast::IntSelectExp & e)
-	{
-	    visit(static_cast<ast::SelectExp &>(e));
-	}
-    
-    void visit(ast::StringSelectExp & e)
-	{
-	    visit(static_cast<ast::SelectExp &>(e));
-	}
+    void collect();
+    void visit(const ast::SimpleVar & e);
+    void visit(const ast::DollarVar & e);
+    void visit(const ast::ColonVar & e);
+    void visit(const ast::ArrayListVar & e);
+    void visit(const ast::DoubleExp & e);
+    void visit(const ast::BoolExp & e);
+    void visit(const ast::StringExp & e);
+    void visit(const ast::CommentExp & e);
+    void visit(const ast::NilExp & e);
+    void visit(const ast::CallExp & e);
+    void visit(const ast::CellCallExp & e);
+    void visit(const ast::OpExp & e);
+    void visit(const ast::LogicalOpExp & e);
+    void visit(const ast::AssignExp & e);
+    void visit(const ast::IfExp & e);
+    void visit(const ast::WhileExp & e);
+    void visit(const ast::ForExp & e);
+    void visit(const ast::BreakExp & e);
+    void visit(const ast::ContinueExp & e);
+    void visit(const ast::TryCatchExp & e);
+    void visit(const ast::SelectExp & e);
+    void visit(const ast::CaseExp & e);
+    void visit(const ast::ReturnExp & e);
+    void visit(const ast::FieldExp & e);
+    void visit(const ast::NotExp & e);
+    void visit(const ast::TransposeExp & e);
+    void visit(const ast::MatrixExp & e);
+    void visit(const ast::MatrixLineExp & e);
+    void visit(const ast::CellExp & e);
+    void visit(const ast::SeqExp & e);
+    void visit(const ast::ArrayListExp & e);
+    void visit(const ast::AssignListExp & e);
+    void visit(const ast::VarDec & e);
+    void visit(const ast::FunctionDec & e);
+    void visit(const ast::ListExp & e);
+    void visit(const ast::OptimizedExp & e);
+    void visit(const ast::MemfillExp & e);
+    void visit(const ast::DAXPYExp & e);
+    void visit(const ast::IntSelectExp & e);
+    void visit(const ast::StringSelectExp & e);
 };
 
 } // namespace analysis

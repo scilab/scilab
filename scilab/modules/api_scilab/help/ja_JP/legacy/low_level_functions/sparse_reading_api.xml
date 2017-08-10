@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009  - DIGITEO - Antoine ELIAS
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="Sparse_management_reading_API" xml:lang="ja">
+    <refnamediv>
+        <refname>疎行列の読み込み (Scilab ゲートウェイ)</refname>
+        <refpurpose>
+            ゲートウェイで疎行列を読み込む方法.
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <para>入力引数プロファイル:</para>
+        <synopsis>SciErr getSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal)</synopsis>
+        <synopsis>SciErr getComplexSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg)</synopsis>
+        <para>名前指定変数プロファイル:</para>
+        <synopsis>SciErr readNamedSparseMatrix(void* _pvCtx, const char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal)</synopsis>
+        <synopsis>SciErr readNamedComplexSparseMatrix(void* _pvCtx, const char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>_pvCtx</term>
+                <listitem>
+                    <para>
+                        Scilab環境ポインタ, api_scilab.h により定義された "pvApiCtx"で指定.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piAddress</term>
+                <listitem>
+                    <para>
+                        Scilab変数のアドレス.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_pstName</term>
+                <listitem>
+                    <para>
+                        "名前指定"関数の場合の変数名.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piRows</term>
+                <listitem>
+                    <para>
+                        返される行数.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piCols</term>
+                <listitem>
+                    <para>
+                        返される列数.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piNbItem</term>
+                <listitem>
+                    <para>
+                        返される非ゼロ値の数.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piNbItemRow</term>
+                <listitem>
+                    <para>
+                        返される各行の要素数 (大きさ: _iRows).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piColPos</term>
+                <listitem>
+                    <para>
+                        返される各要素の列方向の位置 (大きさ: _iNbItem).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_pdblReal</term>
+                <listitem>
+                    <para>
+                        返される実部データ配列のアドレス (大きさ: _iCols * _iRows)
+                        "名前指定" 関数の場合, _pdblReal は
+                        関数コール前にメモリを確保する必要があります.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_pdblImg</term>
+                <listitem>
+                    <para>
+                        返される虚部データ配列のアドレス (大きさ: _iCols * _iRows)
+                        "名前指定" 関数の場合, _pdblImg は
+                        関数コール前にメモリを確保する必要があります.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>SciErr</term>
+                <listitem>
+                    <para>
+                        エラー構造体で,エラーメッセージ履歴と最初のエラー番号を格納します.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>このヘルプはScilab APIにより疎行列を処理する方法を示します.</para>
+    </refsection>
+    <refsection>
+        <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/sparse_reading_api.c-->
+        <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/sparse_reading_api.tst-->
+        <!--Lib_name: sparse_reading-->
+        <!--Func_list: read_sparse-->
+        <title>ゲートウェイのソース</title>
+        <programlisting role="code_gateway"><![CDATA[
+#include "api_scilab.h"
+int read_sparse(char *fname,void* pvApiCtx)
+{
+	SciErr sciErr;
+	int i,j,k;
+	int* piAddr			= NULL;
+	int iRows			= 0;
+	int iCols			= 0;
+	int iNbItem			= 0;
+	int* piNbItemRow	= NULL;
+	int* piColPos		= NULL;
+	double* pdblReal	= NULL;
+	double* pdblImg		= NULL;
+    CheckInputArgument(pvApiCtx, 1, 1);
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	if(isVarComplex(pvApiCtx, piAddr))
+	{
+		sciErr = getComplexSparseMatrix(pvApiCtx, piAddr, &iRows, &iCols, &iNbItem, &piNbItemRow, &piColPos, &pdblReal, &pdblImg);
+	}
+	else
+	{
+		sciErr = getSparseMatrix(pvApiCtx, piAddr, &iRows, &iCols, &iNbItem, &piNbItemRow, &piColPos, &pdblReal);
+	}
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	sciprint("Sparse %d item(s)\n", iNbItem);
+	k = 0;
+	for(i = 0 ; i < iRows ; i++)
+	{
+		for(j = 0 ; j < piNbItemRow[i] ; j++)
+		{
+			sciprint("(%d,%d) = %f", i+1, piColPos[k], pdblReal[k]);
+			if(isVarComplex(pvApiCtx, piAddr))
+			{
+				sciprint(" %+fi", pdblImg[k]);
+			}
+			sciprint("\n");
+			k++;
+		}
+	}
+	//assign allocated variables to Lhs position
+	AssignOutputVariable(pvApiCtx, 1) = 0;
+	return 0;
+}
+ ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>Scilab テストスクリプト</title>
+        <programlisting role="code_scilab"><![CDATA[
+sp=sparse([1,2;4,5;3,10],[1 + 2*%i,2 - 3*%i,-3 + 4*%i]);
+read_sparse(sp);
+ ]]></programlisting>
+    </refsection>
+</refentry>

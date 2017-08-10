@@ -19,7 +19,8 @@ CeCILL
 TAUCS:
 ======
 
-Files: src/c/{taucs_scilab.h, taucs_scilab.c}
+Files:
+src/c/{taucs_scilab.h,taucs_scilab.c}
 
 Copyright:
 2001, 2002, 2003 by Sivan Toledo, Tel-Aviv Univesity, stoledo@tau.ac.il. 

@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 /*--------------------------------------------------------------------------*/
@@ -16,7 +19,6 @@ extern "C"
 }
 
 #include "parser.hxx"
-#include "execvisitor.hxx"
 #include "tasks.hxx"
 #include "scilabWrite.hxx"
 #include "scilabexception.hxx"
@@ -24,7 +26,6 @@ extern "C"
 #include "runner.hxx"
 #include "threadmanagement.hxx"
 
-using namespace ast;
 /*--------------------------------------------------------------------------*/
 /*
  *  Command queue functions
@@ -42,20 +43,28 @@ struct CommandRec
     char*   m_command;              /* command info one string two integers */
     int     m_isInterruptible;      /* 1 if the command execution can be interrupted */
     int     m_isPrioritary;         /* 1 if the command is prioritary */
-    int     m_isConsole;            /* 1 if the command come from console */
-    CommandRec(char* command, int isInterruptible, int isPrioritary, int isConsole) : m_command(command), m_isInterruptible(isInterruptible), m_isPrioritary(isPrioritary), m_isConsole(isConsole) {}
+    command_origin_t     m_iCommandOrigin;       /* Indicate who have stored the command (ie: console, tcl) */
+    CommandRec(char* command, int isInterruptible, int isPrioritary, command_origin_t iCmdOrigin) :
+        m_command(command), m_isInterruptible(isInterruptible), m_isPrioritary(isPrioritary), m_iCommandOrigin(iCmdOrigin) {}
 };
 /*--------------------------------------------------------------------------*/
 static std::list<CommandRec> commandQueue;
 static std::list<CommandRec> commandQueuePrioritary;
 /*--------------------------------------------------------------------------*/
-int StoreCommand(char *command)
+int StoreCommandWithFlags(const char* command, int iPrioritary, int iInterruptible, command_origin_t iCmdOrigin)
 {
     ThreadManagement::LockStoreCommand();
-    commandQueue.emplace_back(os_strdup(command),
-                              /*is prioritary*/ 0,
-                              /* is interruptible*/ 1,
-                              /* from console */ 0);
+    if (iPrioritary)
+    {
+        commandQueuePrioritary.emplace_back(os_strdup(command), iPrioritary, iInterruptible, iCmdOrigin);
+
+        // Awake Runner to execute this prioritary command
+        ThreadManagement::SendAwakeRunnerSignal();
+    }
+    else
+    {
+        commandQueue.emplace_back(os_strdup(command), iPrioritary, iInterruptible, iCmdOrigin);
+    }
 
     ThreadManagement::UnlockStoreCommand();
     // Awake Scilab to execute a new command
@@ -64,31 +73,56 @@ int StoreCommand(char *command)
     return 0;
 }
 
-int StoreConsoleCommand(char *command)
+int StoreCommand(const char *command)
+{
+    ThreadManagement::LockStoreCommand();
+    commandQueue.emplace_back(os_strdup(command),
+                              /*is prioritary*/ 0,
+                              /* is interruptible*/ 1,
+                              /* cmd origin */ NONE);
+
+    ThreadManagement::UnlockStoreCommand();
+    // Awake Scilab to execute a new command
+    ThreadManagement::SendCommandStoredSignal();
+
+    return 0;
+}
+
+int StoreConsoleCommand(const char *command, int iWaitFor)
 {
     ThreadManagement::LockStoreCommand();
     commandQueuePrioritary.emplace_back(os_strdup(command),
                                         /*is prioritary*/ 1,
                                         /* is interruptible*/ 1,
-                                        /* from console */ 1);
+                                        /* cmd origin */ CONSOLE);
 
     // Awake Scilab to execute a new command
     ThreadManagement::SendCommandStoredSignal();
     // Awake Runner to execute this prioritary command
     ThreadManagement::SendAwakeRunnerSignal();
 
-    ThreadManagement::UnlockStoreCommand();
+    if (iWaitFor)
+    {
+        // make this wait before unlock the Store Command will prevent
+        // dead lock in case where an other thread get this command
+        // and execute it before this thread is waiting for.
+        ThreadManagement::WaitForConsoleExecDoneSignal();
+    }
+    else
+    {
+        ThreadManagement::UnlockStoreCommand();
+    }
 
     return 0;
 }
 
-int StorePrioritaryCommand(char *command)
+int StorePrioritaryCommand(const char *command)
 {
     ThreadManagement::LockStoreCommand();
     commandQueuePrioritary.emplace_back(os_strdup(command),
                                         /*is prioritary*/ 1,
                                         /* is interruptible*/ 0,
-                                        /* from console */ 0);
+                                        /* cmd origin */ NONE);
 
     // Awake Scilab to execute a new command
     ThreadManagement::SendCommandStoredSignal();
@@ -109,7 +143,7 @@ int isEmptyCommandQueue(void)
  * Gets the next command to execute
  * and remove it from the queue
  */
-int GetCommand (char** cmd, int* piInterruptible, int* piPrioritary, int* piConsole)
+int GetCommand(char** cmd, int* piPrioritary, int* piInterruptible, command_origin_t* piCmdOrigin)
 {
     int iCommandReturned = 0;
 
@@ -119,7 +153,7 @@ int GetCommand (char** cmd, int* piInterruptible, int* piPrioritary, int* piCons
         *cmd = os_strdup(commandQueuePrioritary.front().m_command);
         *piInterruptible = commandQueuePrioritary.front().m_isInterruptible;
         *piPrioritary = commandQueuePrioritary.front().m_isPrioritary;
-        *piConsole = commandQueuePrioritary.front().m_isConsole;
+        *piCmdOrigin = commandQueuePrioritary.front().m_iCommandOrigin;
 
         FREE (commandQueuePrioritary.front().m_command);
         commandQueuePrioritary.pop_front();
@@ -131,7 +165,7 @@ int GetCommand (char** cmd, int* piInterruptible, int* piPrioritary, int* piCons
         *cmd = os_strdup(commandQueue.front().m_command);
         *piInterruptible = commandQueue.front().m_isInterruptible;
         *piPrioritary = commandQueue.front().m_isPrioritary;
-        *piConsole = commandQueue.front().m_isConsole;
+        *piCmdOrigin = commandQueue.front().m_iCommandOrigin;
 
         FREE (commandQueue.front().m_command);
         commandQueue.pop_front();
@@ -142,18 +176,11 @@ int GetCommand (char** cmd, int* piInterruptible, int* piPrioritary, int* piCons
 
     return iCommandReturned;
 }
+
 /*--------------------------------------------------------------------------*/
 int ismenu(void)
 {
     //#pragma message("WARNING : ismenu is deprecated. It will be removed _BEFORE_ Scilab 6.0.")
-    // FIXME : Do not forget to remove me.
-    return 0;
-}
-/*--------------------------------------------------------------------------*/
-/* menu/button info for Scilab */
-int C2F(getmen)(char * btn_cmd, int * lb, int * entry)
-{
-    //#pragma message("WARNING : C2F(getmen) is deprecated. It will be removed _BEFORE_ Scilab 6.0.")
     // FIXME : Do not forget to remove me.
     return 0;
 }

@@ -4,11 +4,14 @@
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -23,6 +26,8 @@
 #include "sciCall.h"
 #include "freeArrayOfString.h"
 #include "localization.h"
+#include "CurrentFigure.h"
+#include "createGraphicObject.h"
 /*--------------------------------------------------------------------------*/
 int sci_xstringb(char *fname, void *pvApiCtx)
 {
@@ -48,6 +53,7 @@ int sci_xstringb(char *fname, void *pvApiCtx)
     long hdlstr = 0;
     double userSize[2] ;
     int textBoxMode = 1; // 0 : off | 1 : centered | 2 : filled
+    int iCurrentFigure = 0;
 
     if ( nbInputArgument(pvApiCtx) <= 0 )
     {
@@ -117,14 +123,15 @@ int sci_xstringb(char *fname, void *pvApiCtx)
     // Retrieve a matrix of string at position 3.
     if (getAllocatedMatrixOfString(pvApiCtx, piAddrStr, &m3, &n3, &Str))
     {
-        Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 3);
+        Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 3);
         return 1;
     }
 
-    if ( m3*n3 == 0 )
+    if ( m3 * n3 == 0 )
     {
         AssignOutputVariable(pvApiCtx, 1) = 0;
         ReturnArguments(pvApiCtx);
+        freeArrayOfString(Str, m3 * n3);
         return 0;
     }
 
@@ -132,6 +139,7 @@ int sci_xstringb(char *fname, void *pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        freeArrayOfString(Str, m3 * n3);
         return 1;
     }
 
@@ -141,6 +149,7 @@ int sci_xstringb(char *fname, void *pvApiCtx)
     {
         printError(&sciErr, 0);
         Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 4);
+        freeArrayOfString(Str, m3 * n3);
         return 1;
     }
 
@@ -148,6 +157,7 @@ int sci_xstringb(char *fname, void *pvApiCtx)
     if (m4 != 1 || n4 != 1)
     {
         Scierror(999, _("%s: Wrong size for input argument #%d: A real scalar expected.\n"), fname, 4);
+        freeArrayOfString(Str, m3 * n3);
         return 1;
     }
 
@@ -156,6 +166,7 @@ int sci_xstringb(char *fname, void *pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        freeArrayOfString(Str, m3 * n3);
         return 1;
     }
 
@@ -165,6 +176,7 @@ int sci_xstringb(char *fname, void *pvApiCtx)
     {
         printError(&sciErr, 0);
         Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 5);
+        freeArrayOfString(Str, m3 * n3);
         return 1;
     }
 
@@ -172,6 +184,7 @@ int sci_xstringb(char *fname, void *pvApiCtx)
     if (m5 != 1 || n5 != 1)
     {
         Scierror(999, _("%s: Wrong size for input argument #%d: A real scalar expected.\n"), fname, 5);
+        freeArrayOfString(Str, m3 * n3);
         return 1;
     }
 
@@ -183,19 +196,22 @@ int sci_xstringb(char *fname, void *pvApiCtx)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            freeArrayOfString(Str, m3 * n3);
             return 1;
         }
 
         // Retrieve a string at position 6.
         if (isScalar(pvApiCtx, piAddrl6) == 0)
         {
-            Scierror(999, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 6);
+            Scierror(999, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 6);
+            freeArrayOfString(Str, m3 * n3);
             return 1;
         }
 
         if (getAllocatedSingleString(pvApiCtx, piAddrl6, &l6))
         {
-            Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 6);
+            Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 6);
+            freeArrayOfString(Str, m3 * n3);
             return 1;
         }
 
@@ -207,6 +223,8 @@ int sci_xstringb(char *fname, void *pvApiCtx)
         else
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: '%s' expected.\n"), fname, 6, "fill");
+            freeAllocatedSingleString(l6);
+            freeArrayOfString(Str, m3 * n3);
             return 0;
         }
 
@@ -215,6 +233,14 @@ int sci_xstringb(char *fname, void *pvApiCtx)
 
     userSize[0] = w ;
     userSize[1] = hx ;
+
+    iCurrentFigure = getCurrentFigure();
+
+    if (iCurrentFigure == 0)
+    {
+        iCurrentFigure = createNewFigureWithAxes();
+    }
+
     Objstring (Str, m3, n3, x, y, &angle, rect, autoSize, userSize, &hdlstr, textBoxMode, NULL, NULL, FALSE, TRUE, FALSE, ALIGN_CENTER);
 
     freeArrayOfString(Str, m3 * n3);

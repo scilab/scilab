@@ -19,4 +19,4 @@
 //
 
 x = input("Press RETURN", "string");
-if x <> " " then pause, end
+if x <> "" then pause, end

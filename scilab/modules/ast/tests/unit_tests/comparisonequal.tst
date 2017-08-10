@@ -4,7 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // ============================================================================
-
+// <-- CLI SHELL MODE -->
 s = %s;
 
 empty = [];
@@ -1100,15 +1100,6 @@ assert_checkequal(test_st == [], %f);
 assert_checkequal(acosd == acosd, %t);
 assert_checkequal(acosd == [], %f);
 assert_checkequal(acosd == 2, %f);
-
-//handle
-handle1 = gcf();
-handle2 = gca();
-
-assert_checkequal(handle1 == handle1, %t);
-assert_checkequal(handle1 == handle2, %f);
-
-delete(handle1);
 
 //polynom
 res = horner(1/(1-%s),1/(1-%s));

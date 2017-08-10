@@ -4,7 +4,7 @@
 // This file must be used under the terms of the GNU Lesser General Public License license :
 // http://www.gnu.org/copyleft/lesser.html
 // Run with test_run('statistics', 'cov', ['no_check_error_output']);
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 // <-- ENGLISH IMPOSED -->
 // Check error
 assert_checkfalse(execstr("cov()"   ,"errcatch") == 0);

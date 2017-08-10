@@ -2,10 +2,10 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="taucs_chsolve">
     <refnamediv>
         <refname>taucs_chsolve</refname>
-        <refpurpose>solve a linear sparse (s.p.d.) system given the Cholesky factors  </refpurpose>
+        <refpurpose>solves a linear s.p.d. system A*X = B from Cholesky factors of the sparse A</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[x] = taucs_chsolve(C_ptr, b [, A])</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -32,7 +32,7 @@
             <varlistentry>
                 <term>A  </term>
                 <listitem>
-                    <para>(optional) the real s.p.d. matrix A (to use for iterative refinement step)</para>
+                    <para>(optional) Real symetric positive definite (s.p.d.) matrix (to use for iterative refinement step)</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -40,7 +40,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            This function must be used in conjonction with <link linkend="taucs_chfact">taucs_chfact</link> which
+            This function must be used in conjunction with <link linkend="taucs_chfact">taucs_chfact</link> which
             computes the Cholesky factorization of a sparse real s.p.d. matrix.
             When the matrix <literal>A</literal> is provided, one iterative refinement
             step is done (the refined solution is accepted if it improves the
@@ -54,12 +54,29 @@
     </refsection>
     <refsection>
         <title>Examples</title>
+// We get some square sparse matrix that we are sure it is symetric positive definite:
+A = ReadHBSparse(SCI+"/modules/umfpack/demos/bcsstk24.rsa");
+size(A)
+
+// We priorly compute its related Cholesky factors:
+Cfact = taucs_chfact(A);
+
+// We generate an arbitrary b for which we will look for an X such that A*x = b
+b = rand(size(A,1),1);
+
+// We call the solver
+x = taucs_chsolve(Cfact, b);
+
+// We accurately compute the numerical error r = A*x - b :
+r = res_with_prec(A, x, b);
+stdev(r, "*", 0)
+norm(r)
         <para>
-            see the example section of <link linkend="taucs_chfact">taucs_chfact</link>
+            Other examples are provided in the <link linkend="taucs_chfact">taucs_chfact</link> page.
         </para>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="taucs_chfact">taucs_chfact</link>

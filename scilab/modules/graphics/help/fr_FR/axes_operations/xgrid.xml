@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="xgrid">
+    <refnamediv>
+        <refname>xgrid</refname>
+        <refpurpose>ajoute une grille sur un dessin 2D ou 3D</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>xgrid([color] [, thickness [, style]])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>color</term>
+                <listitem>
+                    <para>entier ou vecteur.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>thickness</term>
+                <listitem>
+                    <para>réel ou vecteur.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>style</term>
+                <listitem>
+                    <para>entier ou vecteur.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>xgrid</literal> ajoute une grille sur un dessin 2D ou 3D.
+        </para>
+        <para>
+            <literal>color</literal> sont les numéros de couleur de la grille (si <literal>color</literal> est un scalaire, alors la même couleur est utilisée pour chaque axe).
+        </para>
+        <para>
+            <literal>thickness</literal> sont les épaisseurs de lignes de la grille (si <literal>thickness</literal> est un scalaire, alors la même épaisseur de ligne est utilisée pour chaque axe).
+        </para>
+        <para>
+            <literal>style</literal> sont les numéros de style de la grille (si <literal>styl</literal>e est un scalaire, alors le même style est utilisé pour chaque axe). Les styles disponibles sont les mêmes que ceux de la propriété <literal>line_style</literal> (voir <link linkend="axes_properties">axes_properties</link>).
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[
+x=[0:0.1:2*%pi]';
+plot2d(sin(x))
+xgrid(5, 1, 7)
+ ]]></programlisting>
+        <scilab:image>
+            x=[0:0.1:2*%pi]';
+            plot2d(sin(x))
+            xgrid(5, 1, 7)
+        </scilab:image>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="axes_properties">axes_properties</link>
+            </member>
+            <member>
+                <link linkend="plot2d">plot2d</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>
+                    Arguments <literal>thickness</literal> et <literal>style</literal> ajoutés.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

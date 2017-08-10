@@ -8,25 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-05-31 15:45+0000\n"
+"PO-Revision-Date: 2016-12-07 22:10+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
-"Language: ru\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Real or Complex matrix expected.\n"
-msgstr ""
-"%s: Неверный тип входного параметра №%d: ожидалась вещественная или "
-"комплексная матрица.\n"
-
-#, c-format
-msgid "%s: Non convergence in QR steps.\n"
-msgstr "%s: Нет сходимости в шагах QR.\n"
+"X-Generator: Launchpad (build 18315)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -50,7 +39,7 @@ msgstr ""
 "целочисленное значение.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
@@ -74,15 +63,228 @@ msgstr ""
 "%s: Неверный размер входного аргумента №%d: ожидается вещественный скаляр.\n"
 
 #, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr "%s: Неверное количество выходных аргументов: ожидалось %d.\n"
+
+#, c-format
+msgid "%s: Arguments %d and %d must have equal dimensions.\n"
+msgstr "%s: Аргументы %d и %d должны иметь одинаковые размерности.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Square matrix expected.\n"
+msgstr "%s: Неверный тип аргумента %d: ожидалась квадратная матрица.\n"
+
+#, c-format
+msgid "%s: Cannot allocate more memory.\n"
+msgstr "%s: Не удалось выделить больше памяти.\n"
+
+#, c-format
+msgid "%s: LAPACK error n%d.\n"
+msgstr "%s: Ошибка LAPACK №%d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+msgstr "%s: Неверное количество выходных аргументов: ожидалось от %d до %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
+msgstr ""
+"%s: Неверный тип аргумента %d: ожидалась вещественная или комплексная "
+"матрица.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: A scalar expected.\n"
+msgstr "%s: Неверный тип входного аргумента %d: ожидался скаляр.\n"
+
+#, c-format
+msgid "%s: Wrong value for argument %d: Must not contain NaN or Inf.\n"
+msgstr "%s: Неверное значение аргумента %d: не должно быть NaN или Inf.\n"
+
+#, c-format
+msgid "%s: Allocation failed.\n"
+msgstr "%s: Распределение не удалось.\n"
+
+#, c-format
+msgid "%s: Non convergence in QR steps.\n"
+msgstr "%s: Нет сходимости в шагах QR.\n"
+
+#, c-format
+msgid "%s: Matrix is not positive definite.\n"
+msgstr "%s: Матрица не является положительно определённой.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Square matrix expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидалась квадратная матрица.\n"
+
+#, c-format
+msgid "%s: Size varying argument a*eye(), (arg %d) not allowed here.\n"
+msgstr ""
+"%s: Здесь не разрешено изменение размера аргумента a*eye(), (arg %d).\n"
+
+msgid "Warning :\n"
+msgstr "Предупреждение:\n"
+
+#, c-format
+msgid "matrix is close to singular or badly scaled. rcond = %1.4E\n"
+msgstr "матрица близка к сингулярной или плохо масштабирована. rcond = %1.4E\n"
+
+#, c-format
+msgid "%s: Problem is singular.\n"
+msgstr "%s: Задача вырождена.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A Real expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидалось вещественное число.\n"
+
+#, c-format
+msgid "%s: %s and %s must have equal number of rows.\n"
+msgstr "%s: %s и %s должны иметь одинаковое количество строк.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Real scalar expected.\n"
 msgstr ""
 "%s: Неверный тип входного аргумента №%d: ожидался вещественный скаляр.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real or a string expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидалось вещественное число или "
+"строка.\n"
+
+#, c-format
+msgid "%s: Arg %d and arg %d must have equal dimensions.\n"
+msgstr "%s: Аргумент %d и аргумент %d должны иметь одинаковые размеры.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d or %d expected.\n"
+msgstr "%s: Неверное количество выходных аргументов: ожидалось %d или %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
 msgstr ""
 "%s: Неверный тип входного параметра №%d: ожидалась матрица вещественных "
 "чисел.\n"
+
+#, c-format
+msgid "%s: Subroutine not found: %s\n"
+msgstr "%s: Подпрограмма не найдена: %s\n"
+
+#, c-format
+msgid "%s: Schur exit with state %d\n"
+msgstr "%s: Schur вышел с состоянием %d\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument %d: Must not contain NaN or Inf.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента %d: недопустимы NaN или Inf.\n"
+
+#, c-format
+msgid ""
+"%s: On entry to ZGEEV parameter number  3 had an illegal value (lapack "
+"library problem).\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Convergence problem, %d off-diagonal elements of an intermediate "
+"tridiagonal form did not converge to zero.\n"
+msgstr ""
+"%s: Проблема сходимости, %d недиагональных элементов промежуточной "
+"трёхдиагональной формы не сходятся к нулю.\n"
+
+#, c-format
+msgid ""
+"%s: On entry to ZHEEV parameter number  3 had an illegal value (lapack "
+"library problem).\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: The QR algorithm failed to compute all the eigenvalues, and no "
+"eigenvectors have been computed. Elements and %d+1:N of W contain "
+"eigenvalues which have converged.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: The QR algorithm failed to compute all the eigenvalues, and no "
+"eigenvectors have been computed. Elements and %d+1:N of WR and WI contain "
+"eigenvalues which have converged.\n"
+msgstr ""
+
+msgid "Non convergence in the QZ algorithm.\n"
+msgstr ""
+
+#, c-format
+msgid "The top %d  x %d blocks may not be in generalized Schur form.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: The QZ iteration failed in DGGEV.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Other than QZ iteration failed in DHGEQZ.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Error return from DTGEVC.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): At least %d expected.\n"
+msgstr "%s:  Неверное количество выходных аргументов: ожидалось не менее %d.\n"
+
+#, c-format
+msgid "%s: Convergence problem...\n"
+msgstr "%s: Проблема сходимости...\n"
+
+#, c-format
+msgid "Argument %d in dgees had an illegal value.\n"
+msgstr "У аргумента %d в dgees недопустимое значение.\n"
+
+msgid "The QR algorithm failed to compute all the eigenvalues.\n"
+msgstr ""
+
+msgid ""
+"The eigenvalues could not be reordered because some eigenvalues were too "
+"close to separate (the problem is very ill-conditioned).\n"
+msgstr ""
+
+msgid ""
+"After reordering, roundoff changed values of some complex eigenvalues so "
+"that leading eigenvalues in the Schur form no longer satisfy SELECT=.TRUE. "
+"This could also be caused by underflow due to scaling.\n"
+msgstr ""
+
+#, c-format
+msgid "Argument %d in zgees had an illegal value.\n"
+msgstr "У аргумента %d в zgees недопустимое значение.\n"
+
+#, c-format
+msgid "Argument %d in dgges had an illegal value.\n"
+msgstr "У аргумента %d в dgges недопустимое значение.\n"
+
+msgid "The QZ iteration failed. (A,E) are not in Schur form.\n"
+msgstr ""
+
+msgid "Other than QZ iteration failed in DHGEQZ.\n"
+msgstr ""
+
+msgid "Reordering failed in DTGSEN.\n"
+msgstr ""
+
+#, c-format
+msgid "Argument %d in zgges had an illegal value.\n"
+msgstr "У аргумента %d в zgges недопустимое значение.\n"
+
+msgid "Other than QZ iteration failed in ZHGEQZ.\n"
+msgstr ""
+
+msgid "Reordering failed in ZTGSEN.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Polynomial expected."
@@ -104,10 +306,8 @@ msgstr ""
 "%s: Неверный тип входного аргумента №%d: ожидалась квадратная матрица.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
-msgstr ""
-"%s: Неверный тип входного параметра №%d: ожидался скаляр или строка.\n"
+msgid "%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидался скаляр или строка.\n"
 
 #, c-format
 msgid ""
@@ -115,10 +315,6 @@ msgid ""
 msgstr ""
 "%s: Неверное значение входного аргумента №%d: должно быть %d, %d, %s, '%s' "
 "или '%s'.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr "%s: Неверное количество входных аргументов: Ожидалось от %d до %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -137,18 +333,15 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
-msgstr ""
-"%s: Неверный размер входного параметра №%d: ожидался вектор-столбец.\n"
+msgstr "%s: Неверный размер входного параметра №%d: ожидался вектор-столбец.\n"
 
 #, c-format
-msgid "%s: Obsolete function. Please replace '%s' by '%s'."
-msgstr "%s: Устаревшая функция. Пожалуйста, замените '%s' на '%s'."
+msgid "%s: Wrong type for argument %d: Decimal or complex numbers expected.\n"
+msgstr ""
 
 #, c-format
-msgid ""
-"%s: Obsolete function. Former external functions cannot be used anymore."
+msgid "%s: Wrong size for input argument #%d: Column vector expected.\n"
 msgstr ""
-"%s: Устаревшая функция. Прежние внешние функции больше нельзя использовать."
 
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
@@ -194,10 +387,6 @@ msgid ""
 msgstr ""
 "%s: Функция не определена для типа '%s'. Проверьте аргумент или определите "
 "функцию %s."
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: Неверное количество входных параметров: ожидалось %d.\n"
 
 #, c-format
 msgid ""

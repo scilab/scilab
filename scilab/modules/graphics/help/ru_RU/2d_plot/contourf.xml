@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="contourf" xml:lang="ru">
@@ -18,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             contourf(x, y, z, nz, [style, strf, leg, rect, nax])
         </synopsis>
@@ -60,7 +63,7 @@
                                     уровней, равномерно распределённых от <literal>zmin</literal>
                                     до <literal>zmax</literal> как показано ниже:
                                 </para>
-                                <programlisting role="no-scilab-exec"><![CDATA[ 
+                                <programlisting role="no-scilab-exec"><![CDATA[
 z= zmin + (1:nz)*(zmax-zmin)/(nz+1)
  ]]></programlisting>
                                 <para>
@@ -71,8 +74,8 @@ z= zmin + (1:nz)*(zmax-zmin)/(nz+1)
                                         добавить следующим образом:
                                     </note>
                                 </para>
-                                <programlisting role="no-scilab-exec"><![CDATA[ 
-[im,jm] = find(z == zmin);     // or zmax 
+                                <programlisting role="no-scilab-exec"><![CDATA[
+[im,jm] = find(z == zmin);     // or zmax
 plot2d(x(im)',y(jm)',-9,"000")
  ]]></programlisting>
                             </listitem>
@@ -127,19 +130,19 @@ plot2d(x(im)',y(jm)',-9,"000")
     </refsection>
     <refsection>
         <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 contourf(1:10,1:10,rand(10,10),5,1:5,"011"," ",[0,0,11,11])
  ]]></programlisting>
         <scilab:image>
             contourf(1:10,1:10,rand(10,10),5,1:5,"011"," ",[0,0,11,11])
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 function z=peaks(x,y)
 x1=x(:).*.ones(1,size(y,'*'));
 y1=y(:)'.*.ones(size(x,'*'),1);
-z =  (3*(1-x1).^2).*exp(-(x1.^2) - (y1+1).^2) ... 
-   - 10*(x1/5 - x1.^3 - y1.^5).*exp(-x1.^2-y1.^2) ... 
-   - 1/3*exp(-(x1+1).^2 - y1.^2) 
+z =  (3*(1-x1).^2).*exp(-(x1.^2) - (y1+1).^2) ...
+   - 10*(x1/5 - x1.^3 - y1.^5).*exp(-x1.^2-y1.^2) ...
+   - 1/3*exp(-(x1+1).^2 - y1.^2)
 endfunction
 
 function z=peakit()
@@ -155,7 +158,7 @@ r = [(1:n)'/n; ones(m-n,1)];
 g = [zeros(n,1); (1:n)'/n; ones(m-2*n,1)];
 b = [zeros(2*n,1); (1:m-2*n)'/(m-2*n)];
 h = [r g b];
-xset('colormap',h);
+gcf().color_map = h;
 
 xset('fpf',' ');
 clf();
@@ -169,17 +172,17 @@ contourf([],[],z,[-6:-1,-logspace(-5,0,10),logspace(-5,0,10),1:8]);
             function z=peaks(x,y)
             x1=x(:).*.ones(1,size(y,'*'));
             y1=y(:)'.*.ones(size(x,'*'),1);
-            z =  (3*(1-x1).^2).*exp(-(x1.^2) - (y1+1).^2) ... 
-            - 10*(x1/5 - x1.^3 - y1.^5).*exp(-x1.^2-y1.^2) ... 
-            - 1/3*exp(-(x1+1).^2 - y1.^2) 
+            z =  (3*(1-x1).^2).*exp(-(x1.^2) - (y1+1).^2) ...
+            - 10*(x1/5 - x1.^3 - y1.^5).*exp(-x1.^2-y1.^2) ...
+            - 1/3*exp(-(x1+1).^2 - y1.^2)
             endfunction
-            
+
             function z=peakit()
             x=-4:0.1:4;y=x;z=peaks(x,y);
             endfunction
-            
+
             z=peakit();
-            
+
             levels=[-6:-1,-logspace(-5,0,10),logspace(-5,0,10),1:8];
             m=size(levels,'*');
             n = fix(3/8*m);
@@ -187,11 +190,11 @@ contourf([],[],z,[-6:-1,-logspace(-5,0,10),logspace(-5,0,10),1:8]);
             g = [zeros(n,1); (1:n)'/n; ones(m-2*n,1)];
             b = [zeros(2*n,1); (1:m-2*n)'/(m-2*n)];
             h = [r g b];
-            xset('colormap',h);
+            gcf().color_map = h;
             xset('fpf',' ');
             clf();
             contourf([],[],z,[-6:-1,-logspace(-5,0,10),logspace(-5,0,10),1:8],0*ones(1,m))
-            
+
         </scilab:image>
     </refsection>
     <refsection role="see also">

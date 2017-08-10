@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // ============================================================================
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 a = [];
 assert_checkequal(a(5), a);
@@ -33,3 +33,13 @@ assert_checkequal(a(:,:), a);
 assert_checkequal(a(1:2,1:2), a);
 assert_checkequal(a(%t), a);
 assert_checkequal(a(%f), a);
+
+a = ones(5,5);
+assert_checkequal(a(), a);
+
+a = cell(5,5);
+errmsg = msprintf(gettext("Cell : Cannot extract without arguments.\n"));
+assert_checkerror("a{}", errmsg);
+
+a = struct();
+assert_checkequal(a(), a);

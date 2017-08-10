@@ -148,18 +148,18 @@ if a<>4 then pause,end
 
 // in deff (without compilation)
 funcprot(0);
-deff("a=foo","a=1//test","n");a=foo();
+deff("a=foo","a=1//test");a=foo();
 if a<>1 then pause,end
-deff("a=foo","a=''1//test'';","n");a=foo();
+deff("a=foo","a=''1//test'';");a=foo();
 if a<>"1/"+"/test" then pause,end
-deff("a=foo","a=33;//''sqdf''qsdf''","n");a=foo();
+deff("a=foo","a=33;//''sqdf''qsdf''");a=foo();
 if a<>33 then pause,end
 
 t=["if %t //test"
 "  a=3; //test1"
 "else //test2 end"
 "  a=4//test3 end"
-"end//endtest"];deff("a=foo",t,"n");a=foo();
+"end//endtest"];deff("a=foo",t);a=foo();
 if a<>3 then pause,end
 
 // in deff (with compilation)

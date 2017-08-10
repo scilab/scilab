@@ -1,59 +1,58 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA -
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="tree2code" xml:lang="pt">
     <refnamediv>
         <refname>tree2code</refname>
-        <refpurpose>gera a definição ASCII de uma função Scilab</refpurpose>
+        <refpurpose>gera a definiÃ§Ã£o ASCII de uma funÃ§Ã£o Scilab</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>txt = tree2code(tree, prettyprint)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>tree</term>
                 <listitem>
                     <para>
-                        uma árvore macro (vinda de <function>macr2tree</function>)
+                        uma Ã¡rvore macro (vinda de <function>macr2tree</function>)
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>prettyprint</term>
                 <listitem>
-                    <para>valor opcional booleano</para>
-                    <variablelist>
-                        <varlistentry>
-                            <term>%T</term>
-                            <listitem>
-                                <para>o código gerado é identado e embelezado</para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>%F</term>
-                            <listitem>
-                                <para>o código gerado não é embelezado (padrão)</para>
-                            </listitem>
-                        </varlistentry>
-                    </variablelist>
+                    <para>valor opcional booleano :</para>
+                    <table>
+                      <tr>
+                        <td>%T : </td>
+                        <td>o cÃ³digo gerado Ã© identado e embelezado</td>
+                      </tr>
+                      <tr>
+                        <td>%F : </td>
+                        <td>o cÃ³digo gerado nÃ£o Ã© embelezado (padrÃ£o)</td>
+                      </tr>
+                    </table>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>txt</term>
                 <listitem>
-                    <para>um vetor coluna de strings, o texto fornecendo as instruções
+                    <para>coluna de strings, o texto fornecendo as instruÃ§Ãµes
                         Scilab
                     </para>
                 </listitem>
@@ -61,25 +60,46 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            Dada uma função Scilab carregada "tree" (retornada por <function>macr2tree</function>),
-            <function>tree2code</function> permite gerar novamente o código.
+            Dada uma funÃ§Ã£o Scilab carregada "tree" (retornada por <function>macr2tree</function>),
+            <function>tree2code</function> permite gerar novamente o cÃ³digo.
         </para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
-tree=macr2tree(cosh);
-txt=tree2code(tree,%T);
-write(%io(2),txt,'(a)');
- ]]></programlisting>
+tree = macr2tree(log2);   // note that the input is log2 (the function handle), not "log2"
+txt = tree2code(tree, %T);
+printf("%s\n", txt);
+    ]]></programlisting>
+    <screen><![CDATA[--> printf("%s\n",c)
+function [f,e] = log2(x)
+  // x may be positive, negative, or complex
+  [lhs,rhs] = argn(0)
+  if rhs&lt;>1 then
+    msg = gettext("%s: Wrong number of input argument(s): %d expected.\n")
+    error(msprintf(msg, "log2", 1))
+  end;
+  if argn(1)==1 then
+    f = log(x)/log(2)
+  else
+    [f,e] = frexp(x)
+  end
+endfunction
+]]></screen>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="macr2tree">macr2tree</link>
+            </member>
+            <member>
+                <link linkend="macrovar">macrovar</link>
+            </member>
+            <member>
+                <link linkend="string">string</link>
             </member>
         </simplelist>
     </refsection>

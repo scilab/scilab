@@ -92,7 +92,7 @@
             event arrives. Depending on the sign of the regular input, the event
             is generated on the first or second output.
             This is a Synchro block, , input and output event are synchronized.
-            
+
         </para>
     </refsection>
     <refsection id="Dialogbox_IFTHEL_f">
@@ -105,7 +105,7 @@
             </inlinemediaobject>
         </para>
         <para>
-            
+
         </para>
         <itemizedlist>
             <listitem>

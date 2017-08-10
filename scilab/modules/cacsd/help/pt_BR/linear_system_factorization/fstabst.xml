@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="pt" xml:id="fstabst">
+    <refnamediv>
+        <refname>fstabst</refname>
+        <refpurpose>Youla's parametrization of continuous time linear dynamical systems</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>J = fstabst(P,r)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>P</term>
+                <listitem>
+                    <para>a continuous time linear dynamical system.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>r</term>
+                <listitem>
+                    <para>
+                        1x2 row vector, dimension of <literal>P22</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>J</term>
+                <listitem>
+                    <para>
+                        a continuous time linear dynamical system (with same representation as <literal>P</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Parameterization of all stabilizing feedbacks.
+        </para>
+        <para>
+            <literal>P</literal> is partitioned as follows:
+        </para>
+        <programlisting role=""><![CDATA[
+P=[ P11 P12;
+    P21 P22]
+ ]]></programlisting>
+        <para>
+            (in state-space or transfer form: automatic conversion in state-space is
+            done for the computations)
+        </para>
+        <para>
+            <literal>r</literal> = size of  <literal>P22</literal> subsystem, (2,2) block of <literal>P</literal>
+        </para>
+        <programlisting role=""><![CDATA[
+J =[J11 J12;
+    J21 J22]
+ ]]></programlisting>
+        <para>
+            <literal>K</literal> is a stabilizing controller for <literal>P</literal> (i.e. <literal>P22</literal>) iff
+            <literal>K=lft(J,r,Q)</literal> with <literal>Q</literal> stable.
+        </para>
+        <para>
+            The central part of <literal>J</literal> , <literal>J11</literal> is the lqg regulator for <literal>P</literal>
+        </para>
+        <para>
+            This <literal>J</literal> is such that defining <literal>T</literal> as the 2-port <literal>lft</literal> of <literal>P</literal>
+            and <literal>J</literal> : <literal>[T,rt]=lft(P,r,J,r)</literal> one has that <literal>T12</literal> is inner
+            and <literal>T21</literal> is co-inner.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+ny=2;nu=3;nx=4;
+P22=ssrand(ny,nu,nx);
+bigQ=rand(nx+nu,nx+nu);bigQ=bigQ*bigQ';
+bigR=rand(nx+ny,nx+ny);bigR=bigR*bigR';
+[P,r]=lqg2stan(P22,bigQ,bigR);
+J=fstabst(P,r);
+Q=ssrand(nu,ny,1);Q('A')=-1;  //Stable Q
+K=lft(J,r,Q);
+A=h_cl(P,r,K); spec(A)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="obscont">obscont</link>
+            </member>
+            <member>
+                <link linkend="lft">lft</link>
+            </member>
+            <member>
+                <link linkend="lqg">lqg</link>
+            </member>
+            <member>
+                <link linkend="lqg2stan">lqg2stan</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>
+                    <literal>Sl</literal> is now checked for
+                    continuous time linear dynamical system.  This modification
+                    has been introduced by this <ulink url="http://gitweb.scilab.org/?p=scilab.git;a=commit;h=3d7083daae3339813ba747c8adcda1f9599bb80d">commit</ulink>
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

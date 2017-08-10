@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Antoine Elias
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -31,13 +34,13 @@ types::Function::ReturnValue sci_setfield(types::typed_list &in, int _iRetCount,
 {
     if (in.size() != 3)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "setfield", 2);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "setfield", 3);
         return types::Function::Error;
     }
 
     if (_iRetCount > 1)
     {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "setfield", 0);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "setfield", 1);
         return types::Function::Error;
     }
 
@@ -45,6 +48,10 @@ types::Function::ReturnValue sci_setfield(types::typed_list &in, int _iRetCount,
     types::InternalType* pIndex = in[0];
     types::InternalType* pData = in[1];
     types::List* pL = in[2]->getAs<types::List>();
+    if (pL->isDeletable() == false)
+    {
+        pL = pL->clone();
+    }
 
     if (pL->isList() == false && pL->isMList() == false && pL->isTList() == false)
     {
@@ -65,18 +72,28 @@ types::Function::ReturnValue sci_setfield(types::typed_list &in, int _iRetCount,
         types::TList* pT = pL->getAs<types::TList>();
 
         std::wstring stField = pS->get(0);
-        if (pT->set(stField, pData) == false)
+        types::TList* pRet = pT->set(stField, pData);
+        if (pRet == nullptr)
         {
             Scierror(999, _("%s: Invalid index.\n"), "setfield");
             return types::Function::Error;
         }
+
+        out.push_back(pRet);
     }
     else
     {
         //insertion by index
         types::typed_list Args;
         Args.push_back(pIndex);
-        pL->insert(&Args, pData);
+        types::InternalType* pRet = pL->insert(&Args, pData);
+        if (pRet == nullptr)
+        {
+            Scierror(999, _("%s: Invalid index.\n"), "setfield");
+            return types::Function::Error;
+        }
+
+        out.push_back(pRet);
     }
 
     return types::Function::OK;

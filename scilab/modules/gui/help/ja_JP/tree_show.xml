@@ -29,14 +29,14 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // 簡単な例
 a=list(1,2,3);
 tree_show(a);
 // mlistを指定した他の例
 str=['a','b','c','d','e','f','g','h'];
-n=hypermat([2,2,2],str);
-v=hypermat([2,2,2],1:8);
+n=matrix(str, [2,2,2]);
+v=matrix(1:8, [2,2,2]);
 Mm=mlist(['V','name','value'],n,v);
 tree_show(Mm);
 // tlistを指定した別の例

@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="optimbase_configure" xml:lang="en">
@@ -16,7 +19,7 @@
         <refpurpose>Configures the current object.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             opt = optimbase_configure(opt, key, value)
         </synopsis>
@@ -60,7 +63,7 @@
                 <term>-verbose </term>
                 <listitem>
                     <para>
-                        A 1-by-1 matrix of doubles, positive, integer value, set to 1 to enable 
+                        A 1-by-1 matrix of doubles, positive, integer value, set to 1 to enable
                         verbose logging (default <literal>-verbose</literal> = 0).
                     </para>
                 </listitem>
@@ -69,7 +72,7 @@
                 <term>-verbosetermination </term>
                 <listitem>
                     <para>
-                        A 1-by-1 matrix of doubles, positive, integer value, set to 1 to enable 
+                        A 1-by-1 matrix of doubles, positive, integer value, set to 1 to enable
                         verbose termination logging (default <literal>-verbosetermination</literal> = 0).
                     </para>
                 </listitem>
@@ -78,7 +81,7 @@
                 <term>-x0 </term>
                 <listitem>
                     <para>
-                        The initial guess. A n-by-1 matrix of doubles, where n is the number of 
+                        The initial guess. A n-by-1 matrix of doubles, where n is the number of
                         variables. There is no default value, i.e. the user must provide <literal>-x0</literal>.
                     </para>
                 </listitem>
@@ -87,9 +90,9 @@
                 <term>-maxfunevals </term>
                 <listitem>
                     <para>
-                        The maximum number of function evaluations is a 1-by-1 matrix of doubles, 
+                        The maximum number of function evaluations is a 1-by-1 matrix of doubles,
                         positive, integer value (default <literal>-maxfunevals</literal> = 100).
-                        If this criteria is triggered, the status of the optimization is set to 
+                        If this criteria is triggered, the status of the optimization is set to
                         <literal>-maxfunevals</literal>.
                     </para>
                 </listitem>
@@ -98,9 +101,9 @@
                 <term>-maxiter </term>
                 <listitem>
                     <para>
-                        The maximum number of iterations is a 1-by-1 matrix of doubles, positive, 
+                        The maximum number of iterations is a 1-by-1 matrix of doubles, positive,
                         integer value (default <literal>-maxiter</literal> = 100).
-                        If this criteria is triggered, the status of the optimization is set to 
+                        If this criteria is triggered, the status of the optimization is set to
                         <literal>-maxiter</literal>.
                     </para>
                 </listitem>
@@ -109,7 +112,7 @@
                 <term>-tolfunabsolute </term>
                 <listitem>
                     <para>
-                        The absolute tolerance for the function value is a 1-by-1 matrix of 
+                        The absolute tolerance for the function value is a 1-by-1 matrix of
                         doubles, positive (default <literal>-tolfunabsolute</literal> = 0).
                     </para>
                 </listitem>
@@ -117,7 +120,7 @@
             <varlistentry>
                 <term>-tolfunrelative </term>
                 <listitem>
-                    <para>The relative tolerance for the function value is a 1-by-1 matrix of 
+                    <para>The relative tolerance for the function value is a 1-by-1 matrix of
                         doubles, positive (default <literal>-tolfunrealtive</literal> = %eps).
                     </para>
                 </listitem>
@@ -126,7 +129,7 @@
                 <term>-tolfunmethod </term>
                 <listitem>
                     <para>
-                        A 1-by-1 matrix of booleans. Set to %t to enable termination with 
+                        A 1-by-1 matrix of booleans. Set to %t to enable termination with
                         tolerance on function value (default <literal>-tolfunmethod</literal> = %f).
                         If this criteria is triggered, the status of the optimization is set to "tolf".
                     </para>
@@ -136,7 +139,7 @@
                 <term>-tolxabsolute </term>
                 <listitem>
                     <para>
-                        The absolute tolerance on x is a 1-by-1 matrix of doubles, positive 
+                        The absolute tolerance on x is a 1-by-1 matrix of doubles, positive
                         (default <literal>-tolxabsolute</literal> = 0).
                     </para>
                 </listitem>
@@ -145,7 +148,7 @@
                 <term>-tolxrelative </term>
                 <listitem>
                     <para>
-                        The relative tolerance on x is a 1-by-1 matrix of doubles, positive 
+                        The relative tolerance on x is a 1-by-1 matrix of doubles, positive
                         (default <literal>-tolxrealtive</literal> = sqrt(%eps)).
                     </para>
                 </listitem>
@@ -154,7 +157,7 @@
                 <term>-tolxmethod </term>
                 <listitem>
                     <para>
-                        A 1-by-1 matrix of booleans. Set to %t to enable the tolerance on x in 
+                        A 1-by-1 matrix of booleans. Set to %t to enable the tolerance on x in
                         the termination criteria (default <literal>-tolxmethod</literal> = %t).
                         If this criteria is triggered, the status of the optimization is set to "tolx".
                     </para>
@@ -164,7 +167,7 @@
                 <term>-function </term>
                 <listitem>
                     <para>
-                        A function or a list, the objective function. This function computes the value 
+                        A function or a list, the objective function. This function computes the value
                         of the cost and the non linear constraints, if any.
                         There is no default value, i.e. the user must provide <literal>f</literal>.
                     </para>
@@ -182,7 +185,7 @@
                 <term>-numberofvariables </term>
                 <listitem>
                     <para>
-                        The number of variables to optimize is a 1-by-1 matrix of doubles, positive, 
+                        The number of variables to optimize is a 1-by-1 matrix of doubles, positive,
                         integer value (default <literal>-numberofvariables</literal> = 0).
                     </para>
                 </listitem>
@@ -191,7 +194,7 @@
                 <term>-storehistory </term>
                 <listitem>
                     <para>
-                        A 1-by-1 matrix of doubles, positive, integer value. Set to %t to enable the 
+                        A 1-by-1 matrix of doubles, positive, integer value. Set to %t to enable the
                         history storing (default <literal>-storehistory</literal> = %f).
                     </para>
                 </listitem>
@@ -200,9 +203,9 @@
                 <term>-boundsmin </term>
                 <listitem>
                     <para>
-                        The minimum bounds for the parameters. A n-by-1 matrix of doubles where n 
+                        The minimum bounds for the parameters. A n-by-1 matrix of doubles where n
                         is the number of variables (default <literal>-boundsmin</literal> = [],
-                        i.e. there are no minimim bounds).
+                        i.e. there are no minimum bounds).
                     </para>
                 </listitem>
             </varlistentry>
@@ -210,8 +213,8 @@
                 <term>-boundsmax </term>
                 <listitem>
                     <para>
-                        The maximum bounds for the parameters. A n-by-1 matrix of doubles where n 
-                        is the number of variables (default <literal>-boundsmax</literal> = [], 
+                        The maximum bounds for the parameters. A n-by-1 matrix of doubles where n
+                        is the number of variables (default <literal>-boundsmax</literal> = [],
                         i.e. there are no maximum bounds).
                     </para>
                 </listitem>
@@ -220,7 +223,7 @@
                 <term>-nbineqconst </term>
                 <listitem>
                     <para>
-                        The number of inequality constraints is a 1-by-1 matrix of doubles, positive, 
+                        The number of inequality constraints is a 1-by-1 matrix of doubles, positive,
                         integer value (default <literal>-nbineqconst</literal> = 0).
                     </para>
                 </listitem>
@@ -235,7 +238,7 @@
                 <term>-withderivatives </term>
                 <listitem>
                     <para>
-                        A 1-by-1 matrix of booleans. Set to %t if the algorithm uses derivatives 
+                        A 1-by-1 matrix of booleans. Set to %t if the algorithm uses derivatives
                         (default <literal>-withderivatives</literal> = 0).
                     </para>
                 </listitem>
@@ -245,7 +248,7 @@
     <refsection>
         <title>Example</title>
         <programlisting role="example">
-            <![CDATA[ 
+            <![CDATA[
     opt = optimbase_new();
 
     // Set number of variables
@@ -262,7 +265,7 @@
         </programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="optimbase_new">optimbase_new</link>

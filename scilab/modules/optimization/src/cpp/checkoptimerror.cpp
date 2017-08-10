@@ -2,11 +2,14 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2013 - Scilab Enterprises - Cedric DELAMARRE
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 /*--------------------------------------------------------------------------*/
@@ -19,16 +22,16 @@ extern "C" {
 #include "configvariable_interface.h"
 }
 // return 0 = ok, return 1 = error
-int checkOptimError(int iarret, int indopt, int imp, double dEpsg)
+int checkOptimError(int iarret, int indopt, int iprint, double dEpsg)
 {
-    if (iarret || (imp == 0 && indopt > 0))
+    if (iarret || (iprint == 0 && indopt > 0))
     {
         return 0;
     }
 
     switch (indopt)
     {
-            // error
+        // error
         case 0 :
         {
             Scierror(131, _("%s: Stop requested by simulator (ind=0).\n"), "optim");

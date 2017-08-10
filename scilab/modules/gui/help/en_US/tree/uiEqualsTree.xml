@@ -5,7 +5,7 @@
         <refpurpose>Comparing two trees </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>isEqual = uiEqualsTree(tree1, tree2)
         </synopsis>
     </refsynopsisdiv>
@@ -39,7 +39,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Creation of trees
 root = uiCreateNode('Root', 'path\rootImage.jpg', 'rootCallback')
 node1 = uiCreateNode('Node 1', 'default', 'node1Callback')
@@ -54,7 +54,7 @@ isEqual = uiEqualsTree(myTree1, myTree2)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="uiCreateNode">uiCreateNode</link>

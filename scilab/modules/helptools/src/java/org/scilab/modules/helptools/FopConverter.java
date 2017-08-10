@@ -43,10 +43,10 @@ public class FopConverter extends ContainerConverter {
         String fileName = outputDirectory + "/" + baseName + "." + format.name().toLowerCase();
 
         try {
-            FopFactory fopFactory = FopFactory.newInstance();
+            final File configuration = new File(System.getenv("SCI") + "/modules/helptools/etc/fopconf.xml");
+            FopFactory fopFactory = FopFactory.newInstance(configuration);
             fopFactory.addElementMapping(new JLaTeXMathElementMapping());
             fopFactory.getXMLHandlerRegistry().addXMLHandler(new JLaTeXMathXMLHandler());
-            fopFactory.setUserConfig(new File(System.getenv("SCI") + "/modules/helptools/etc/fopconf.xml"));
 
             // Step 3: Construct fop with desired output format
             OutputStream out = new BufferedOutputStream(new FileOutputStream(fileName));
@@ -61,7 +61,7 @@ public class FopConverter extends ContainerConverter {
 
                 default:
                     out.close();
-                    throw new IOException(String.format("%s is not a supported format.\n", format));
+                    throw new IOException(String.format("%s is not a supported format.%n", format));
             }
 
             // Step 4: Setup JAXP using identity transformer

@@ -109,11 +109,11 @@
             the second input is the variable time delay τ(t).
         </para>
         <para>
-            The ouput activation ports trigger every
+            The output activation ports trigger every
             <literal>"Max delay"/length("Register initial condition")</literal>.
         </para>
         <para>
-            The input activation port and the first ouput activation port are meant to be linked,
+            The input activation port and the first output activation port are meant to be linked,
             to get the variations of the input.
         </para>
         <para>

@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008-2008 - INRIA - Antoine ELIAS <antoine.elias@scilab.org>
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -296,7 +299,7 @@ int iRightDivisionOfRealMatrix(
 
     cNorm       = '1';
     pDwork      = (double*)malloc(sizeof(double) * iWorkMin);
-    dblEps      = F2C(dlamch)("eps", 1L);
+    dblEps      = nc_eps();
     RCONDthresh = 10 * dblEps;
     dblAnorm    = C2F(dlange)(&cNorm, &_iRows2, &_iCols2, _pdblReal2, &_iRows2, pDwork);
 
@@ -444,7 +447,7 @@ int iRightDivisionOfComplexMatrix(
     pJpvt       = (int*)malloc(sizeof(int) * _iRows2);
     pRwork      = (double*)malloc(sizeof(double) * 2 * _iRows2);
 
-    dblEps      = F2C(dlamch)("eps", 1L);
+    dblEps      = nc_eps();
     RCONDthresh = 10 * dblEps;
     cNorm       = '1';
     dblAnorm    = C2F(zlange)(&cNorm, &_iRows2, &_iCols2, (double*)poVar2, &_iRows2, (double*)poDwork);
@@ -599,7 +602,7 @@ int iLeftDivisionOfRealMatrix(
 
     cNorm       = '1';
     pDwork      = (double*)malloc(sizeof(double) * iWorkMin);
-    dblEps      = C2F(dlamch)("eps", 1L);
+    dblEps      = nc_eps();
     RCONDthresh = 10 * dblEps;
     dblAnorm    = C2F(dlange)(&cNorm, &_iRows1, &_iCols1, _pdblReal1, &_iRows1, pDwork);
 
@@ -676,7 +679,7 @@ int iLeftDivisionOfRealMatrix(
 }
 
 
-/*Complex matrixes left division*/
+/*Complex matrices left division*/
 int iLeftDivisionOfComplexMatrix(
     double *_pdblReal1,     double *_pdblImg1,      int _iRows1,    int _iCols1,
     double *_pdblReal2,     double *_pdblImg2,      int _iRows2,    int _iCols2,
@@ -722,7 +725,7 @@ int iLeftDivisionOfComplexMatrix(
 
     cNorm       = '1';
     pDwork      = (doublecomplex*)malloc(sizeof(doublecomplex) * iWorkMin);
-    dblEps      = F2C(dlamch)("eps", 1L);
+    dblEps      = nc_eps();
     RCONDthresh = 10 * dblEps;
     dblAnorm    = C2F(zlange)(&cNorm, &_iRows1, &_iCols1, (double*)poVar1, &_iRows1, (double*)pDwork);
 

@@ -1,26 +1,29 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="call" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="call" xml:lang="pt">
     <refnamediv>
         <refname>call</refname>
         <refpurpose>chamada a rotinas de usuário FORTRAN ou C</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
-        <synopsis>// forma longa: 'out' está presente  
-            [y1,...,yk] = call("ident",x1,px1,"tx1",...,xn,pxn,"txn","out",[ny1,my1],py1,"ty1",...,[nyl,myl],pyl,"tyl") 
-            // forma curta : nenhum parâmetro 'out' 
-            [y1,....,yk] = call("ident",x1,...,xn) 
+        <synopsis>// forma longa: 'out' está presente
+            [y1,...,yk] = call("ident",x1,px1,"tx1",...,xn,pxn,"txn","out",[ny1,my1],py1,"ty1",...,[nyl,myl],pyl,"tyl")
+            // forma curta : nenhum parâmetro 'out'
+            [y1,....,yk] = call("ident",x1,...,xn)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -108,7 +111,7 @@
                         são seus tipos (<literal>"r"</literal>,
                         <literal>"i"</literal>, <literal>"d"</literal> e
                         <literal>"c"</literal> para ponto flutuante real , inteiro, dupla
-                        precisão e strings) 
+                        precisão e strings)
                     </para>
                 </listitem>
             </varlistentry>
@@ -118,7 +121,7 @@
                     <para>é a palavra-chave usada para separar variáveis de entrada das
                         variáveis de saída. Quando esta palavra-chave está presente, ela
                         indica que a forma longa será usada e quando não está presente,
-                        indica que a forma curta será usada. 
+                        indica que a forma curta será usada.
                     </para>
                 </listitem>
             </varlistentry>
@@ -127,7 +130,7 @@
                 <listitem>
                     <para>são os tamanhos (número de linhas e colunas. Para argumentos
                         'c',<literal> m1*n1</literal> é o número de caracteres) das
-                        variáveis de saída e 
+                        variáveis de saída e
                     </para>
                 </listitem>
             </varlistentry>
@@ -162,7 +165,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //Exemplo 1 com um código C simples
 f1=['#include <math.h>;'
     'void fooc(c,a,b,m,n)'
@@ -176,14 +179,14 @@ f1=['#include <math.h>;'
 
 mputl(f1,'fooc.c')
 
-//criando a biblioteca compartilhada (um gateway (ligação), um Makefile e um loader (carregador) são 
-//gerados.)  
+//criando a biblioteca compartilhada (um gateway (ligação), um Makefile e um loader (carregador) são
+//gerados.)
 
-ilib_for_link('fooc','fooc.c',[],"c") 
+ilib_for_link('fooc','fooc.c',[],"c")
 
-// carregando a biblioteca compartilhada  
+// carregando a biblioteca compartilhada
 
-exec loader.sce 
+exec loader.sce
 
 //usando a nova primitiva
 a=[1,2,3;4,5,6];b= %pi;
@@ -208,14 +211,14 @@ f1=['      subroutine foof(c,a,b,n,m)'
     '      end'];
 mputl(f1,'foof.f')
 
-//criando a biblioteca compartilhada (um gateway, um Makefile e um loader são  
-//gerados.)  
+//criando a biblioteca compartilhada (um gateway, um Makefile e um loader são
+//gerados.)
 
-ilib_for_link('foof','foof.f',[],"f") 
+ilib_for_link('foof','foof.f',[],"f")
 
-// carrega a biblioteca compartilhada 
+// carrega a biblioteca compartilhada
 
-exec loader.sce 
+exec loader.sce
 
 //usando a nova primitiva
 a=[1,2,3;4,5,6];b= %pi;

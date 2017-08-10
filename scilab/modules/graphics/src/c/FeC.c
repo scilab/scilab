@@ -7,11 +7,14 @@
  *    first and last color of the colormap)
  * Copyright (C) 2011 - DIGITEO - Manuel Juliachs
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -39,6 +42,7 @@
 #include "graphicObjectProperties.h"
 #include "CurrentSubwin.h"
 #include "CurrentObject.h"
+#include "Sciwarning.h"
 
 /**
  * Before Scilab 5.1, default colout was [-1, -1].
@@ -75,7 +79,7 @@ static void coloutPatch(int colout[2]);
  *  first and last color of the colormap (Bruno.Pincon@iecn.u-nancy.fr)
 ---------------------------------------------------------------*/
 
-int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, int *Ntr, int *Nvertex, 
+int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, int *Ntr, int *Nvertex,
              char *strflag, char *legend, double *brect, int *aaint, double *zminmax,
              int *colminmax, int *colout, BOOL with_mesh, BOOL flagNax, int lstr1, int lstr2)
 {
@@ -213,7 +217,7 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, 
         }
         else
         {
-            sciprint(_("Warning: Nax does not work with logarithmic scaling.\n"));
+            Sciwarning(_("Warning: Nax does not work with logarithmic scaling.\n"));
         }
     }
 

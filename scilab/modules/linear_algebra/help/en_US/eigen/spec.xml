@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="spec" xml:lang="en">
@@ -16,10 +19,10 @@
         <refpurpose>eigenvalues of matrices and pencils</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>evals=spec(A)
             [R,diagevals]=spec(A)
-            
+
             evals=spec(A,B)
             [alpha,beta]=spec(A,B)
             [alpha,beta,Z]=spec(A,B)
@@ -220,7 +223,7 @@
                 <para>Real A matrix</para>
                 <itemizedlist>
                     <listitem>
-                        <para>Symetric</para>
+                        <para>Symmetric</para>
                         <para>The eigenvalues and the eigenvectors are real.</para>
                     </listitem>
                     <listitem>
@@ -233,7 +236,7 @@
                 <para>Complex A matrix</para>
                 <itemizedlist>
                     <listitem>
-                        <para>Symetric</para>
+                        <para>Symmetric</para>
                         <para>The eigenvalues are real but the eigenvectors are
                             complex.
                         </para>
@@ -248,7 +251,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // MATRIX EIGENVALUES
 A=diag([1,2,3]);
 X=rand(3,3);
@@ -256,7 +259,7 @@ A=inv(X)*A*X;
 spec(A)
 
 x=poly(0,'x');
-pol=det(x*eye()-A)
+pol=det(x*eye(3,3)-A)
 roots(pol)
 
 [S,X]=bdiag(A);
@@ -273,7 +276,7 @@ roots(det(A-%s*E))   //complex case
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="poly">poly</link>

@@ -4,124 +4,127 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Serge STEER
  * ...
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="mputl" xml:lang="ja">
-    
+
     <refnamediv>
-        
+
         <refname>mputl</refname>
-        
+
         <refpurpose>テキストファイルに文字列を書き込む</refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        
+
         <title>呼び出し手順</title>
-        
+
         <synopsis>r = mputl(txt, file_desc)</synopsis>
-        
+
     </refsynopsisdiv>
-    
+
     <refsection>
-        
+
         <title>引数</title>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>r</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         関数がファイルに正しく書き込んだかどうかをチェックするために
-                        
+
                         <literal>%t</literal>または<literal>%f</literal>を返します.
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>file_desc</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
-                        ファイル名を指定する文字列または 
-                        
+
+                        ファイル名を指定する文字列または
+
                     </para>
-                    
+
                     <para>
-                        
-                        整数スカラー: 
-                        
+
+                        整数スカラー:
+
                         <function>mopen</function>関すから返されたファイル記述子.
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>txt</term>
-                
+
                 <listitem>
-                    
+
                     <para>文字列のベクトル.</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>説明</title>
-        
+
         <para>
-            
+
             <function>mputl</function>関数により,文字列ベクトルを
-            
+
             一連の行としてテキストファイルに書き込むことができます.
-            
+
         </para>
-        
+
         <para>
-            
+
             <function>mputl</function> は,ANSI/アスキー および UTF-8
-            
+
             でエンコードされた文字列をサポートします.
-            
+
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>例</title>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
 fd = mopen(TMPDIR+'/text_mputl.txt','wt');
 mputl('Hello World',fd);
 mclose(fd);
@@ -130,66 +133,66 @@ fd = mopen(TMPDIR+'/text_mputl.txt','rt');
 disp(mgetl(fd));
 mclose(fd);
  ]]></programlisting>
-        
+
     </refsection>
-    
+
     <refsection role="see also">
-        
+
         <title>参照</title>
-        
+
         <simplelist type="inline">
-            
+
             <member>
-                
+
                 <link linkend="mget">mget</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="mgetl">mgetl</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="mclose">mclose</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="mfprintf">mfprintf</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="mput">mput</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="mputstr">mputstr</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="mopen">mopen</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="write">write</link>
-                
+
             </member>
-            
+
         </simplelist>
-        
+
     </refsection>
-    
+
 </refentry>
 

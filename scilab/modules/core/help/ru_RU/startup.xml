@@ -8,7 +8,7 @@
         <title>Описание</title>
         <para>
             Файлы начального запуска <link linkend="SCIHOME">SCIHOME</link>/.scilab или
-            <link linkend="SCIHOME">SCIHOME</link>/scilab.ini автоматически выполняются (если они есть) 
+            <link linkend="SCIHOME">SCIHOME</link>/scilab.ini автоматически выполняются (если они есть)
             при запуске Scilab в дополнение к файлу <link linkend="SCI">SCI</link>/etc/scilab.start.
         </para>
     </refsection>

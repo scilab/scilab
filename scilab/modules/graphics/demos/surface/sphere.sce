@@ -27,11 +27,11 @@ function sphere()
 
     my_handle.immediate_drawing = "off";
     plot3d2(x,y,z);
+    isoview()
     my_plot                     = my_axe.children;
     my_handle.color_map         = jetcolormap(128);
     my_plot.color_flag          = 1;
     my_axe.rotation_angles      = [51,96];
-    my_axe.isoview = "on";
     my_handle.immediate_drawing = "on";
 
 endfunction

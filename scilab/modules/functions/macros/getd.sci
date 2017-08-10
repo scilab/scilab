@@ -1,12 +1,15 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) ENPC
+// Copyright (C) 2016 - Samuel GOUGEON
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function getd(path,option)
 
@@ -23,13 +26,14 @@ function getd(path,option)
     path = pathconvert(path,%t,%t);
 
     // list the sci files
+    global lst
     lst          = listfiles(path+"*.sci",%f);
     lst_filtered = [];
 
     // remove wrong files extension
     // bug 2289
 
-    for i=1:size(lst,"*")
+    for i = 1:size(lst,"*")
         if( regexp(lst(i),"/.sci$/") <> [] ) then
             lst_filtered = [lst_filtered;lst(i)];
         end
@@ -43,20 +47,31 @@ function getd(path,option)
         return ;
     end
 
-    nold = size(who("get"),"*")
-    //prot = funcprot();funcprot(0)
-
-    for k=1:size(lst,"*");
+    // Bug http://bugzilla.scilab.org/13583 : some scripts loaded through the
+    //  loop may contain "clear" instructions deleting a) the list of files to
+    //  be processed, and b) the reference list of internal getd() variables not
+    //  to be returned.
+    //  Informations to be protected are set in global variables: lst, old
+    global old          // sets it as global, before first assignment
+    old = who("local")
+    old = old(isdef(old, "l"))
+    //prot = funcprot(); funcprot(0)
+    for k = 1:size(lst,"*");
+        global lst // recover it whenever it would have been cleared
         if fileparts(lst(k),"extension")==".sci" then
+            // disp(basename(lst(k))) // Beware: files are not sorted/loaded in alphabetical order
             if execstr("exec(lst(k));","errcatch")<>0 then
                 warning(msprintf(gettext("%s: Incorrect function in file %s.\n"),"getd",lst(k)))
             end
         end
     end
-
+    global old
     //funcprot(prot);
-    new = who("get");
-    new = new(1:(size(new,"*")-nold-2));  // -4 becomes -2: fix the fix for bug 2807
+    new = who("local");
+    new = new(isdef(new, "l"))
+    new = setdiff(new, old)
+    clearglobal old lst
+
     if new<>[] then
         execstr("["+strcat(new,",")+"]=resume("+strcat(new,",")+")")
     end

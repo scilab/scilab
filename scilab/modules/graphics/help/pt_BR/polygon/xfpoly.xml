@@ -1,69 +1,75 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xfpoly" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="xfpoly" xml:lang="pt">
     <refnamediv>
         <refname>xfpoly</refname>
-        <refpurpose>preenche um polígono</refpurpose>
+        <refpurpose>preenche um polÃ­gono</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>xfpoly(xv,yv,[close])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>xv,yv</term>
                 <listitem>
-                    <para>dois vetores de mesmo tamanho (os pontos do polígono). </para>
+                    <para>dois vetores de mesmo tamanho (os pontos do polÃ­gono). </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>close</term>
                 <listitem>
-                    <para>inteiro. Se close= 1, a linha poligonal é fechada; o valor
-                        padrão é 0.
+                    <para>inteiro. Se close= 1, a linha poligonal Ã© fechada; o valor
+                        padrÃ£o Ã© 0.
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            <literal>xfpoly</literal> preenche um polígono com a cor corrente.
-            Se <literal>close</literal> é igual a 1 um ponto é adicionado à poligonal
-            <literal>xv,yv</literal> para definir o polígono.
+            <literal>xfpoly</literal> preenche um polÃ­gono com a cor corrente.
+            Se <literal>close</literal> Ã© igual a 1 um ponto Ã© adicionado Ã  poligonal
+            <literal>xv,yv</literal> para definir o polÃ­gono.
         </para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 x=sin(2*%pi*(0:4)/5);
 y=cos(2*%pi*(0:4)/5);
 plot2d(0,0,-1,"010"," ",[-2,-2,2,2])
-xset("color",5)
+gca().foreground = 5;
 xfpoly(x,y)
 
-// apenas para novo estilo de gráficos
-e=gce(); // retorna a última entidade corrente (a última criada aqui é a poligonal)
+// apenas para novo estilo de grÃ¡ficos
+e=gce(); // retorna a Ãºltima entidade corrente (a Ãºltima criada aqui Ã© a poligonal)
 e.fill_mode='off';
-e.closed = 'off' // a poligonal está aberta agora
-  
+e.closed = 'off' // a poligonal estÃ¡ aberta agora
+
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="xfpolys">xfpolys</link>

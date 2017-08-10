@@ -24,6 +24,12 @@
             pas prédéfinie peut être utilisé pour définir de nouveaux opérateurs (voir
             <link linkend="overloading">overloading</link>) avec la même priorité que <literal>*</literal> ou <literal>/</literal>.
         </para>
+        <para>
+            <note>
+                Notez que <code>/*</code> et <code>*/</code>
+                servent à mettre un bloc de code en commentaire.
+            </note>
+        </para>
     </refsection>
     <refsection>
         <title>Exemples</title>
@@ -48,18 +54,18 @@ p * q
 s=poly(0,'s');
 W=[1/s,1/(s+1)];
 W' * W
-//    1           1          
-//    -         -----        
-//     2             2       
-//    s         s + s        
-//                           
-//      1           1        
-//    -----     ---------    
-//         2              2  
-//    s + s     1 + 2s + s   
+//    1           1
+//    -         -----
+//     2             2
+//    s         s + s
+//
+//      1           1
+//    -----     ---------
+//         2              2
+//    s + s     1 + 2s + s
  ]]></programlisting>
     </refsection>
-    
+
     <refsection role="see also">
         <title>Voir aussi</title>
         <simplelist type="inline">
@@ -74,6 +80,9 @@ W' * W
             </member>
             <member>
                 <link linkend="overloading">overloading</link>
+            </member>
+            <member>
+                <link linkend="comments">comments</link>
             </member>
         </simplelist>
     </refsection>

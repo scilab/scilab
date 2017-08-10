@@ -4,22 +4,26 @@
  * Copyright (C) 2011 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - Scilab Enterprises - Cedric Delamarre
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
+
 /*--------------------------------------------------------------------------*/
 #include "elem_func_gw.hxx"
 #include "function.hxx"
 #include "double.hxx"
 #include "string.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 #include "sum.hxx"
 #include "int.hxx"
+#include "polynom.hxx"
 
 extern "C"
 {
@@ -32,18 +36,20 @@ extern "C"
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    types::Double* pDblIn       = NULL;
-    types::Double* pDblOut      = NULL;
-    types::Polynom* pPolyIn     = NULL;
-    types::Polynom* pPolyOut    = NULL;
+    types::Double* pDblIn = NULL;
+    types::Double* pDblOut = NULL;
+    types::GenericType* pIntIn = NULL;
+    types::GenericType* pIntOut = NULL;
+    types::Polynom* pPolyIn = NULL;
+    types::Polynom* pPolyOut = NULL;
 
-    int iOrientation    = 0;
-    int iOuttype        = 1; // 1 = native | 2 = double (type of output value)
+    int iOrientation = 0;
+    int iOuttype = 1; // 1 = native | 2 = double (type of output value)
 
     if (in.size() < 1 || in.size() > 3)
     {
         Scierror(999, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "sum", 1, 3);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (_iRetCount > 1)
@@ -52,80 +58,18 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
         return types::Function::Error;
     }
 
-    bool isCopy = true;
-    /***** get data *****/
-    switch (in[0]->getType())
+
+    //call overload for non manage types
+    if (in[0]->isDouble() == false && in[0]->isInt() == false && in[0]->isPoly() == false && in[0]->isBool() == false)
     {
-        case InternalType::ScilabDouble:
-        {
-            pDblIn = in[0]->getAs<types::Double>();
-            isCopy = false;
-            break;
-        }
-        case InternalType::ScilabBool:
-        {
-            pDblIn = getAsDouble(in[0]->getAs<types::Bool>());
-            iOuttype = 2;
-            break;
-        }
-        case InternalType::ScilabPolynom:
-        {
-            pPolyIn = in[0]->getAs<types::Polynom>();
-            break;
-        }
-        case InternalType::ScilabInt8:
-        {
-            pDblIn = getAsDouble(in[0]->getAs<types::Int8>());
-            break;
-        }
-        case InternalType::ScilabInt16:
-        {
-            pDblIn = getAsDouble(in[0]->getAs<types::Int16>());
-            break;
-        }
-        case InternalType::ScilabInt32:
-        {
-            pDblIn = getAsDouble(in[0]->getAs<types::Int32>());
-            break;
-        }
-        case InternalType::ScilabInt64:
-        {
-            pDblIn = getAsDouble(in[0]->getAs<types::Int64>());
-            break;
-        }
-        case InternalType::ScilabUInt8:
-        {
-            pDblIn = getAsDouble(in[0]->getAs<types::UInt8>());
-            break;
-        }
-        case InternalType::ScilabUInt16:
-        {
-            pDblIn = getAsDouble(in[0]->getAs<types::UInt16>());
-            break;
-        }
-        case InternalType::ScilabUInt32:
-        {
-            pDblIn = getAsDouble(in[0]->getAs<types::UInt32>());
-            break;
-        }
-        case InternalType::ScilabUInt64:
-        {
-            pDblIn = getAsDouble(in[0]->getAs<types::UInt64>());
-            break;
-        }
-        default:
-        {
-            ast::ExecVisitor exec;
-            std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_sum";
-            types::Function::ReturnValue ret = Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_sum";
+        types::Function::ReturnValue ret = Overload::call(wstFuncName, in, _iRetCount, out);
+        return ret;
+    }
 
-            if (isCopy && pDblIn)
-            {
-                pDblIn->killMe();
-            }
-
-            return ret;
-        }
+    if (in[0]->isBool())
+    {
+        iOuttype = 2;
     }
 
     if (in.size() >= 2)
@@ -136,11 +80,6 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
 
             if (pDbl->isScalar() == false)
             {
-                if (isCopy && pDblIn)
-                {
-                    pDblIn->killMe();
-                }
-
                 Scierror(999, _("%s: Wrong value for input argument #%d: A positive scalar expected.\n"), "sum", 2);
                 return types::Function::Error;
             }
@@ -149,11 +88,6 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
 
             if (iOrientation <= 0)
             {
-                if (isCopy && pDblIn)
-                {
-                    pDblIn->killMe();
-                }
-
                 Scierror(999, _("%s: Wrong value for input argument #%d: A positive scalar expected.\n"), "sum", 2);
                 return types::Function::Error;
             }
@@ -164,11 +98,6 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
 
             if (pStr->isScalar() == false)
             {
-                if (isCopy && pDblIn)
-                {
-                    pDblIn->killMe();
-                }
-
                 Scierror(999, _("%s: Wrong size for input argument #%d: A scalar string expected.\n"), "sum", 2);
                 return types::Function::Error;
             }
@@ -192,16 +121,25 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
                 int iDims = 0;
                 int* piDimsArray = NULL;
 
-                if (pDblIn)
+                if (in[0]->isDouble())
                 {
+                    pDblIn = in[0]->getAs<types::Double>();
                     iDims = pDblIn->getDims();
                     piDimsArray = pDblIn->getDimsArray();
                 }
-                else
+                else if (in[0]->getType() == types::InternalType::ScilabPolynom)
                 {
+                    pPolyIn = in[0]->getAs<types::Polynom>();
                     iDims = pPolyIn->getDims();
                     piDimsArray = pPolyIn->getDimsArray();
                 }
+                else if (in[0]->isGenericType())
+                {
+                    pIntIn = in[0]->getAs<types::GenericType>();
+                    iDims = pIntIn->getDims();
+                    piDimsArray = pIntIn->getDimsArray();
+                }
+
 
                 // old function was "mtlsel"
                 for (int i = 0; i < iDims; i++)
@@ -233,22 +171,12 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
                     pstrExpected = "\"*\",\"r\",\"c\",\"m\"";
                 }
 
-                if (isCopy && pDblIn)
-                {
-                    pDblIn->killMe();
-                }
-
                 Scierror(999, _("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), "sum", 2, pstrExpected);
                 return types::Function::Error;
             }
         }
         else
         {
-            if (isCopy && pDblIn)
-            {
-                pDblIn->killMe();
-            }
-
             Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix or a string expected.\n"), "sum", 2);
             return types::Function::Error;
         }
@@ -258,12 +186,7 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
     {
         if (in[2]->isString() == false)
         {
-            if (isCopy && pDblIn)
-            {
-                pDblIn->killMe();
-            }
-
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "sum", 3);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "sum", 3);
             return types::Function::Error;
         }
 
@@ -271,11 +194,6 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
 
         if (pStr->isScalar() == false)
         {
-            if (isCopy && pDblIn)
-            {
-                pDblIn->killMe();
-            }
-
             Scierror(999, _("%s: Wrong size for input argument #%d: A scalar string expected.\n"), "sum", 3);
             return types::Function::Error;
         }
@@ -292,13 +210,93 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
         }
         else
         {
-            if (isCopy && pDblIn)
-            {
-                pDblIn->killMe();
-            }
-
             Scierror(999, _("%s: Wrong value for input argument #%d: %s or %s expected.\n"), "sum", 3, "\"native\"", "\"double\"");
             return types::Function::Error;
+        }
+    }
+
+    bool isCopy = true;
+    /***** get data *****/
+    switch (in[0]->getType())
+    {
+        case types::InternalType::ScilabDouble:
+        {
+            pDblIn = in[0]->getAs<types::Double>();
+            isCopy = false;
+            break;
+        }
+        case types::InternalType::ScilabBool:
+        {
+            pDblIn = getAsDouble(in[0]->getAs<types::Bool>());
+            break;
+        }
+        case types::InternalType::ScilabPolynom:
+        {
+            pPolyIn = in[0]->getAs<types::Polynom>();
+            isCopy = false;
+            break;
+        }
+        case types::InternalType::ScilabInt8:
+        case types::InternalType::ScilabInt16:
+        case types::InternalType::ScilabInt32:
+        case types::InternalType::ScilabInt64:
+        case types::InternalType::ScilabUInt8:
+        case types::InternalType::ScilabUInt16:
+        case types::InternalType::ScilabUInt32:
+        case types::InternalType::ScilabUInt64:
+        {
+            if (iOuttype == 1)
+            {
+                pIntIn = in[0]->getAs<types::GenericType>();
+                isCopy = false;
+            }
+            else
+            {
+                switch (in[0]->getType())
+                {
+                    case types::InternalType::ScilabInt8:
+                    {
+                        pDblIn = getAsDouble(in[0]->getAs<types::Int8>());
+                        break;
+                    }
+                    case types::InternalType::ScilabInt16:
+                    {
+                        pDblIn = getAsDouble(in[0]->getAs<types::Int16>());
+                        break;
+                    }
+                    case types::InternalType::ScilabInt32:
+                    {
+                        pDblIn = getAsDouble(in[0]->getAs<types::Int32>());
+                        break;
+                    }
+                    case types::InternalType::ScilabInt64:
+                    {
+                        pDblIn = getAsDouble(in[0]->getAs<types::Int64>());
+                        break;
+                    }
+                    case types::InternalType::ScilabUInt8:
+                    {
+                        pDblIn = getAsDouble(in[0]->getAs<types::UInt8>());
+                        break;
+                    }
+                    case types::InternalType::ScilabUInt16:
+                    {
+                        pDblIn = getAsDouble(in[0]->getAs<types::UInt16>());
+                        break;
+                    }
+                    case types::InternalType::ScilabUInt32:
+                    {
+                        pDblIn = getAsDouble(in[0]->getAs<types::UInt32>());
+                        break;
+                    }
+                    case types::InternalType::ScilabUInt64:
+                    {
+                        pDblIn = getAsDouble(in[0]->getAs<types::UInt64>());
+                        break;
+                    }
+                }
+            }
+            break;
         }
     }
 
@@ -309,18 +307,17 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
         {
             if (iOrientation == 0)
             {
-                out.push_back(new Double(0));
+                out.push_back(new types::Double(0));
             }
             else
             {
-                out.push_back(Double::Empty());
+                out.push_back(types::Double::Empty());
             }
 
             if (isCopy)
             {
                 pDblIn->killMe();
             }
-
 
             return types::Function::OK;
         }
@@ -342,12 +339,66 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
             }
         }
     }
+    else if (pIntIn)
+    {
+        iOuttype = 1;
+        if (iOrientation > pIntIn->getDims())
+        {
+            pIntOut = pIntIn;
+        }
+        else
+        {
+            switch (pIntIn->getType())
+            {
+                case types::InternalType::ScilabInt8:
+                {
+                    pIntOut = sum(pIntIn->getAs<types::Int8>(), iOrientation);
+                    break;
+                }
+                case types::InternalType::ScilabInt16:
+                {
+                    pIntOut = sum(pIntIn->getAs<types::Int16>(), iOrientation);
+                    break;
+                }
+                case types::InternalType::ScilabInt32:
+                {
+                    pIntOut = sum(pIntIn->getAs<types::Int32>(), iOrientation);
+                    break;
+                }
+                case types::InternalType::ScilabInt64:
+                {
+                    pIntOut = sum(pIntIn->getAs<types::Int64>(), iOrientation);
+                    break;
+                }
+                case types::InternalType::ScilabUInt8:
+                {
+                    pIntOut = sum(pIntIn->getAs<types::UInt8>(), iOrientation);
+                    break;
+                }
+                case types::InternalType::ScilabUInt16:
+                {
+                    pIntOut = sum(pIntIn->getAs<types::UInt16>(), iOrientation);
+                    break;
+                }
+                case types::InternalType::ScilabUInt32:
+                {
+                    pIntOut = sum(pIntIn->getAs<types::UInt32>(), iOrientation);
+                    break;
+                }
+                case types::InternalType::ScilabUInt64:
+                {
+                    pIntOut = sum(pIntIn->getAs<types::UInt64>(), iOrientation);
+                    break;
+                }
+            }
+        }
+    }
     else if (pPolyIn)
     {
         iOuttype = 1;
         if (iOrientation > pPolyIn->getDims())
         {
-            pPolyOut = pPolyIn->getAs<types::Polynom>();
+            pPolyOut = pPolyIn;
         }
         else
         {
@@ -360,7 +411,7 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
     {
         switch (in[0]->getType())
         {
-            case InternalType::ScilabBool:
+            case types::InternalType::ScilabBool:
             {
                 types::Bool* pB = new types::Bool(pDblOut->getDims(), pDblOut->getDimsArray());
                 int* p = pB->get();
@@ -373,51 +424,13 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
                 out.push_back(pB);
                 break;
             }
-            case InternalType::ScilabPolynom:
+            case types::InternalType::ScilabPolynom:
             {
                 out.push_back(pPolyOut);
                 break;
             }
-            case InternalType::ScilabInt8:
-            {
-                out.push_back(toInt<types::Int8>(pDblOut));
-                break;
-            }
-            case InternalType::ScilabInt16:
-            {
-                out.push_back(toInt<types::Int16>(pDblOut));
-                break;
-            }
-            case InternalType::ScilabInt32:
-            {
-                out.push_back(toInt<types::Int32>(pDblOut));
-                break;
-            }
-            case InternalType::ScilabInt64:
-            {
-                out.push_back(toInt<types::Int64>(pDblOut));
-                break;
-            }
-            case InternalType::ScilabUInt8:
-            {
-                out.push_back(toInt<types::UInt8>(pDblOut));
-                break;
-            }
-            case InternalType::ScilabUInt16:
-            {
-                out.push_back(toInt<types::UInt16>(pDblOut));
-                break;
-            }
-            case InternalType::ScilabUInt32:
-            {
-                out.push_back(toInt<types::UInt32>(pDblOut));
-                break;
-            }
-            case InternalType::ScilabUInt64:
-            {
-                out.push_back(toInt<types::UInt64>(pDblOut));
-                break;
-            }
+            default:
+                return types::Function::Error;
         }
 
         if (pDblOut)
@@ -427,9 +440,21 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
     }
     else
     {
-        out.push_back(pDblOut);
+        if (pPolyOut)
+        {
+            out.push_back(pPolyOut);
+        }
+        else if (pIntOut)
+        {
+            out.push_back(pIntOut);
+        }
+        else
+        {
+            out.push_back(pDblOut);
+        }
+
     }
 
-    return Function::OK;
+    return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

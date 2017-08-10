@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="black" xml:lang="ja">
+    <refnamediv>
+        <refname>black</refname>
+        <refpurpose>Black図 (ニコルス線図)</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>black( sl,[fmin,fmax] [,step] [,comments] )
+            black( sl,frq [,comments] )
+            black(frq,db,phi [,comments])
+            black(frq,repf [,comments])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>sl</term>
+                <listitem>
+                    <para>
+                        リスト ( 線形システム <literal>syslin</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fmin,fmax</term>
+                <listitem>
+                    <para>実数スカラー (周波数範囲)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>frq</term>
+                <listitem>
+                    <para>行ベクトルまたは行列 (周波数)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>db,phi</term>
+                <listitem>
+                    <para>行ベクトルまたは行列 (絶対値, 位相)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>repf</term>
+                <listitem>
+                    <para>行ベクトルまたは行列 (複素周波数応答)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>step</term>
+                <listitem>
+                    <para>実数</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>comments</term>
+                <listitem>
+                    <para>文字列</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            線形システム<literal>sl</literal>のブラック図 (ニコルス線図).
+            <literal>sl</literal> は連続時間または離散時間 SIMOシステム
+            とすることができます(<literal>syslin</literal>参照).
+            多出力系の場合, 各出力は異なる記号でプロットされます.
+        </para>
+        <para>The frequencies are given by the bounds
+            範囲<literal>fmin</literal>,<literal>fmax</literal> (単位: Hz)
+            または行ベクトル<literal>frq</literal>
+            (多出力系の場合は行列)
+            で指定された周波数.
+        </para>
+        <para>
+            <literal>step</literal> は ( 対数 ) 離散時間刻みです.
+            (デフォルト値の選択については <literal>calfrq</literal> 参照).
+        </para>
+        <para>
+            <literal>comments</literal>は文字列(キャプション)のベクトル
+            です.
+        </para>
+        <para>
+            <literal>db,phi</literal> は絶対値 (単位: dB)および
+            位相 (単位:度)の行列です.
+        </para>
+        <para>
+            <literal>repf</literal> は複素行列です.
+            各行は各応答に対応します.
+        </para>
+        <para>
+            <literal>y/(1+y)</literal>の
+            等ゲイン,等位相のグリッドをプロットするには,
+            <link linkend="nicholschart">nicholschart()</link>を使用してください.
+        </para>
+        <para>
+            <literal>fmin</literal> および<literal>fmax</literal> のデフォルト値は,
+            <literal>sl</literal> が連続時間系の場合に
+            <literal>1.d-3</literal>,<literal>1.d+3</literal>,
+            <literal>sl</literal> が離散時間系の場合に<literal>1.d-3</literal>,
+            <literal>0.5</literal>/sl.dt (ナイキスト周波数)
+            となります.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+    //Black diagram
+    s=poly(0,'s');
+    sl=syslin('c',5*(1+s)/(.1*s.^4+s.^3+15*s.^2+3*s+1))
+    clf();black(sl,0.01,10);
+    ]]></programlisting>
+        <para>
+            <scilab:image localized="true">
+                s=poly(0,'s');
+                sl=syslin('c',5*(1+s)/(.1*s.^4+s.^3+15*s.^2+3*s+1))
+                clf();black(sl,0.01,10);
+            </scilab:image>
+        </para>
+        <programlisting role="example"><![CDATA[
+    //Black diagram with Nichols chart as a grid
+    s=poly(0,'s');
+    Plant=syslin('c',16000/((s+1)*(s+10)*(s+100)));
+    //two degree of freedom PID
+    tau=0.2;xsi=1.2;
+    PID=syslin('c',(1/(2*xsi*tau*s))*(1+2*xsi*tau*s+tau.^2*s.^2));
+    clf();
+    black([Plant;Plant*PID ],0.01,100,["Plant";"Plant and PID corrector"]);
+    //move the caption in the lower right corner
+    ax=gca();Leg=ax.children(1);
+    Leg.legend_location="in_lower_right";
+    nicholschart(colors=color('light gray')*[1 1])
+    ]]></programlisting>
+        <para>
+            <scilab:image localized="true">
+                s=poly(0,'s');
+                Plant=syslin('c',16000/((s+1)*(s+10)*(s+100)));
+                tau=0.2;xsi=1.2;
+                PID=syslin('c',(1/(2*xsi*tau*s))*(1+2*xsi*tau*s+tau.^2*s.^2));
+                clf();
+                black([Plant;Plant*PID ],0.01,100,["Plant";"Plant and PID corrector"]);
+                ax=gca();Leg=ax.children(1);
+                Leg.legend_location="in_lower_right";
+                nicholschart(colors=color('light gray')*[1 1])
+            </scilab:image>
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="bode">bode</link>
+            </member>
+            <member>
+                <link linkend="nyquist">nyquist</link>
+            </member>
+            <member>
+                <link linkend="nicholschart">nicholschart</link>
+            </member>
+            <member>
+                <link linkend="freq">freq</link>
+            </member>
+            <member>
+                <link linkend="repfreq">repfreq</link>
+            </member>
+            <member>
+                <link linkend="calfrq">calfrq</link>
+            </member>
+            <member>
+                <link linkend="phasemag">phasemag</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

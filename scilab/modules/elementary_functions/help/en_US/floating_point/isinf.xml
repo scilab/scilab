@@ -2,22 +2,31 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2016 - Samuel GOUGEON
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="isinf" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="isinf" xml:lang="en">
     <refnamediv>
         <refname>isinf</refname>
-        <refpurpose>check for infinite entries</refpurpose>
+        <refpurpose>tests for infinite elements</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>r=isinf(x)</synopsis>
+        <title>Syntax</title>
+        <synopsis>
+            r = isinf(x)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -25,8 +34,15 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>real or complex vector or matrix r : boolean vector or
-                        matrix
+                    <para>matrix of real or complex numbers
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>r</term>
+                <listitem>
+                    <para>
+                        matrix of booleans of the same size as <varname>x</varname>
                     </para>
                 </listitem>
             </varlistentry>
@@ -35,23 +51,40 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>isinf(x)</literal> returns a boolean vector or matrix which
-            contains true entries corresponding with infinite <literal>x</literal>
-            entries and false entries corresponding with finite <literal>x</literal>
-            entries.
+            <literal>isinf(x)</literal> returns the matrix <varname>r</varname>
+            of booleans such that, for each element <varname>x(i)</varname>,
+            <varname>r(i)</varname> is set to <literal>%T</literal> if and only if
+            <varname>x(i)</varname> is infinite.
+        </para>
+        <para>
+            When <literal>x</literal> is complex-encoded, <literal>x(i)</literal>
+            is considered infinite if its real part or its imaginary part (or both)
+            are infinite.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-isinf([1 0.01 -%inf %inf])
+        <programlisting role="example"><![CDATA[
+[i, inf, nan] = (%i, %inf, %nan);
+isinf([-1  0.01 -inf  inf  nan])
+isinf([2+i, -10-inf, inf+i])
+isinf([nan-i, inf-nan*i, nan+i*inf])
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="isnan">isnan</link>
+            </member>
+            <member>
+                <link linkend="isreal">isreal</link>
+            </member>
+            <member>
+                <link linkend="isnum">isnum</link>
+            </member>
+            <member>
+                <link linkend="type">type</link>
             </member>
         </simplelist>
     </refsection>

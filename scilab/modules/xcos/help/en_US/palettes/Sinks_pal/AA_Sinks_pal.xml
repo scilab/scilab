@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
- * 
+ *
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
  * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  *  (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
- * 
+ *
  * See the file ./license.txt
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="Sinks_pal">
@@ -71,7 +71,17 @@
             </inlinemediaobject>
             <inlinemediaobject>
                 <imageobject>
+                    <imagedata linkend="SCALE_CMSCOPE" fileref="../../../../../../modules/xcos/images/palettes/SCALE_CMSCOPE.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+            <inlinemediaobject>
+                <imageobject>
                     <imagedata linkend="CSCOPE" fileref="../../../../../../modules/xcos/images/palettes/CSCOPE.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+             <inlinemediaobject>
+                <imageobject>
+                    <imagedata linkend="SCALE_CSCOPE" fileref="../../../../../../modules/xcos/images/palettes/SCALE_CSCOPE.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
                 </imageobject>
             </inlinemediaobject>
             <inlinemediaobject>
@@ -117,11 +127,6 @@
             <inlinemediaobject>
                 <imageobject>
                     <imagedata linkend="TRASH_f" fileref="../../../../../../modules/xcos/images/palettes/TRASH_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata linkend="WFILE_f" fileref="../../../../../../modules/xcos/images/palettes/WFILE_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
                 </imageobject>
             </inlinemediaobject>
             <inlinemediaobject>
@@ -203,7 +208,17 @@
             </listitem>
             <listitem>
                 <para>
+                    <link linkend="SCALE_CMSCOPE">SCALE_CMSCOPE - Multi display scope with Autoscale Graph Feature</link>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
                     <link linkend="CSCOPE">CSCOPE - Single Display Scope</link>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <link linkend="SCALE_CSCOPE">CSCOPE - Single Display Scope with Autoscale Graph Feature</link>
                 </para>
             </listitem>
             <listitem>
@@ -255,17 +270,12 @@
             </listitem>
             <listitem>
                 <para>
-                    <link linkend="TOWS_c">TOWS_c - Data to Scilab worspace</link>
+                    <link linkend="TOWS_c">TOWS_c - Data to Scilab workspace</link>
                 </para>
             </listitem>
             <listitem>
                 <para>
                     <link linkend="TRASH_f">TRASH_f — Trash block</link>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <link linkend="WFILE_f">WFILE_f — Write to file</link>
                 </para>
             </listitem>
             <listitem>

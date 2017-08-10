@@ -5,7 +5,7 @@
         <refpurpose>Get/Set the main component used for Scilab graphics.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             [canvasused] = usecanvas([usecanvasfordisplay]);
         </synopsis>
@@ -90,7 +90,7 @@
             </tr>
         </informaltable>
         <para>
-            You can also dynamically activate this component through Scilab using <literal>usecanvas</literal>: 
+            You can also dynamically activate this component through Scilab using <literal>usecanvas</literal>:
         </para>
         <itemizedlist>
             <listitem>
@@ -105,13 +105,13 @@
             </listitem>
         </itemizedlist>
         <para>
-            If you believe your configuration is able to use the "GLJPanel" and Scilab automatically forces the use of "GLCanvas", you can test your configuration by swithing to "GLJPanel" (<literal>usecanvas(%F)</literal>) and try to plot something (<literal>plot3d()</literal> for example). If Scilab graphics work, please inform us about it by sending an email to <literal>scilab.support@scilab.org</literal> and giving us your Operating System/Video Card/Video Card driver version: this will help us to improve future versions of Scilab.
+            If you believe your configuration is able to use the "GLJPanel" and Scilab automatically forces the use of "GLCanvas", you can test your configuration by switching to "GLJPanel" (<literal>usecanvas(%F)</literal>) and try to plot something (<literal>plot3d()</literal> for example). If Scilab graphics work, please inform us about it by sending an email to <literal>scilab.support@scilab.org</literal> and giving us your Operating System/Video Card/Video Card driver version: this will help us to improve future versions of Scilab.
         </para>
     </refsection>
     <refsection>
         <title>Workaround</title>
         <para>This code fixes most of the potential issues related to graphic cards issues. Please note that decreases the performances.
-            <programlisting role="example"><![CDATA[ 
+            <programlisting role="example"><![CDATA[
     system_setproperty("jogl.gljpanel.nohw","");
     ]]></programlisting>
         </para>
@@ -141,9 +141,9 @@
             </listitem>
         </itemizedlist>
         <para>
-            There is a workaround for Linux to tackle this issue, but a solution is to use a software accelerated driver. To do it, in <literal>/etc/X11/xorg.conf</literal>, look for the <emphasis role="italic">Section "Device"</emphasis> and change the option <emphasis role="italic">Driver</emphasis> to <emphasis role="italic">vesa</emphasis>: 
+            There is a workaround for Linux to tackle this issue, but a solution is to use a software accelerated driver. To do it, in <literal>/etc/X11/xorg.conf</literal>, look for the <emphasis role="italic">Section "Device"</emphasis> and change the option <emphasis role="italic">Driver</emphasis> to <emphasis role="italic">vesa</emphasis>:
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 Section "Device"
         Identifier      "Your Graphic card"
         Driver  "vesa"
@@ -193,7 +193,7 @@ EndSection
         </itemizedlist>
         <para>Some troubles can also occur when using Windows 2000 (video drivers are no more updated and no more supported).</para>
         <para>
-            In the cases where pBuffer create a problem, waiting for a working <literal>pbuffer</literal> is not a solution indeed: 
+            In the cases where pBuffer create a problem, waiting for a working <literal>pbuffer</literal> is not a solution indeed:
             <ulink url="https://jogl.dev.java.net/issues/show_bug.cgi?id=163">
                 <emphasis role="italic">The OpenGL community is moving away from pbuffers and toward the frame buffer object extension, which is a more portable and higher-performance solution for offscreen rendering than pbuffers.</emphasis>
             </ulink>
@@ -225,7 +225,7 @@ EndSection
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Example using GLJPanel (Mixing uicontrols and graphics is available)
 usecanvas(%F);
 plot2d();

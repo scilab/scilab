@@ -1,5 +1,3 @@
-clear foo;deff('foo()','a(2)=resume(1)','n');
-if execstr('foo()','errcatch')  <>79 then pause,end
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2005-2008 - INRIA - Serge Steer
@@ -14,17 +12,17 @@ if execstr('foo()','errcatch')  <>79 then pause,end
 //
 // <-- Short Description -->
 // Missing test and error for resume called with indexed output arguments
-clear foo;deff('foo()','a(2)=resume(1)','n');
+clear foo;deff('foo()','a(2)=resume(1)');
 if execstr('foo()','errcatch')<>79 then pause,end
 
-clear foo;deff('foo()','a=resume(1)','n');
+clear foo;deff('foo()','a=resume(1)');
 if execstr('foo()','errcatch')<>0 then pause,end
 
 
-clear foo;deff('foo()','[a(3),b]=resume(1,2)','n');
+clear foo;deff('foo()','[a(3),b]=resume(1,2)');
 if execstr('foo()','errcatch')  <>79 then pause,end
 
-clear foo;deff('foo()','[a,b]=resume(1,2)','n');
+clear foo;deff('foo()','[a,b]=resume(1,2)');
 if execstr('foo()','errcatch')<>0 then pause,end
 
 

@@ -1,12 +1,15 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2011-2012 - Scilab Enterprises - Clement DAVID
+ *  Copyright (C) 2016-2017 - FOSSEE IIT Bombay - Dipti Ghosalkar
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -177,11 +180,11 @@ static BOOL pushHistory(scicos_block * block, int input, int maxNumberOfPoints);
 /**
  * Set the polylines bounds
  *
- * \param block the block
- * \param input the input port index
+ * \param block the current block
+ * \param iAxeUID the axe uid
  * \param periodCounter number of past periods since startup
  */
-static BOOL setPolylinesBounds(scicos_block * block, int input, int periodCounter);
+static BOOL setPolylinesBounds(scicos_block * block, int iAxeUID, int periodCounter);
 
 /*****************************************************************************
  * Simulation function
@@ -529,74 +532,76 @@ static void appendData(scicos_block * block, int input, double t, double *data)
 
     sco_data *sco = (sco_data *) * (block->work);
 
-    /*
-     * Handle the case where the t is greater than the data_bounds
-     */
-    if (t > ((sco->scope.periodCounter + 1) * block->rpar[3]))
+    if (sco != NULL)
     {
-        sco->scope.periodCounter++;
 
-        // set the buffer coordinates to the last point
-        for (i = 0; i < block->insz[input]; i++)
+        /*
+         * Handle the case where the t is greater than the data_bounds
+         */
+        if (t > ((sco->scope.periodCounter + 1) * block->rpar[3]))
         {
-            sco->internal.bufferCoordinates[input][i][0] = sco->internal.bufferCoordinates[input][i][sco->internal.numberOfPoints - 1];
-            sco->internal.bufferCoordinates[input][i][block->ipar[2]] = sco->internal.bufferCoordinates[input][i][block->ipar[2] + sco->internal.numberOfPoints - 1];
-        }
-        sco->internal.numberOfPoints = 1;
+            sco->scope.periodCounter++;
 
-        // clear the history coordinates
-        sco->internal.maxNumberOfPoints = 0;
-        for (i = 0; i < block->insz[input]; i++)
-        {
-            if (sco->internal.historyCoordinates[input][i] != NULL)
+            // set the buffer coordinates to the last point
+            for (i = 0; i < block->insz[input]; i++)
             {
-                FREE(sco->internal.historyCoordinates[input][i]);
-                sco->internal.historyCoordinates[input][i] = NULL;
+                sco->internal.bufferCoordinates[input][i][0] = sco->internal.bufferCoordinates[input][i][sco->internal.numberOfPoints - 1];
+                sco->internal.bufferCoordinates[input][i][block->ipar[2]] = sco->internal.bufferCoordinates[input][i][block->ipar[2] + sco->internal.numberOfPoints - 1];
+            }
+            sco->internal.numberOfPoints = 1;
+
+            // clear the history coordinates
+            sco->internal.maxNumberOfPoints = 0;
+            for (i = 0; i < block->insz[input]; i++)
+            {
+                if (sco->internal.historyCoordinates[input][i] != NULL)
+                {
+                    FREE(sco->internal.historyCoordinates[input][i]);
+                    sco->internal.historyCoordinates[input][i] = NULL;
+                }
+            }
+
+            // configure scope setting
+            if (setPolylinesBounds(block, getAxe(getFigure(block), block, input), sco->scope.periodCounter) == FALSE)
+            {
+                set_block_error(-5);
+                freeScoData(block);
+                sco = NULL;
             }
         }
 
-        // configure scope setting
-        if (setPolylinesBounds(block, input, sco->scope.periodCounter) == FALSE)
+        /*
+         * Handle the case where the scope has more points than maxNumberOfPoints
+         */
+        if (sco->internal.numberOfPoints >= block->ipar[2])
         {
-            set_block_error(-5);
-            freeScoData(block);
-            sco = NULL;
+            int maxNumberOfPoints = sco->internal.maxNumberOfPoints;
+
+            // on a full scope, re-alloc history coordinates
+            maxNumberOfPoints = maxNumberOfPoints + block->ipar[2];
+            sco = reallocHistoryBuffer(block, maxNumberOfPoints);
+
+            // set the buffer coordinates to the last point
+            for (i = 0; i < block->insz[input]; i++)
+            {
+                sco->internal.bufferCoordinates[input][i][0] = sco->internal.bufferCoordinates[input][i][block->ipar[2] - 1];
+                sco->internal.bufferCoordinates[input][i][block->ipar[2]] = sco->internal.bufferCoordinates[input][i][2 * block->ipar[2] - 1];
+            }
+            sco->internal.numberOfPoints = 1;
+
+            // reconfigure related graphic objects
+            if (pushHistory(block, input, sco->internal.maxNumberOfPoints) == FALSE)
+            {
+                set_block_error(-5);
+                freeScoData(block);
+                sco = NULL;
+            }
         }
-    }
 
-    /*
-     * Handle the case where the scope has more points than maxNumberOfPoints
-     */
-    if (sco != NULL && sco->internal.numberOfPoints >= block->ipar[2])
-    {
-        int maxNumberOfPoints = sco->internal.maxNumberOfPoints;
+        /*
+         * Update data
+         */
 
-        // on a full scope, re-alloc history coordinates
-        maxNumberOfPoints = maxNumberOfPoints + block->ipar[2];
-        sco = reallocHistoryBuffer(block, maxNumberOfPoints);
-
-        // set the buffer coordinates to the last point
-        for (i = 0; i < block->insz[input]; i++)
-        {
-            sco->internal.bufferCoordinates[input][i][0] = sco->internal.bufferCoordinates[input][i][block->ipar[2] - 1];
-            sco->internal.bufferCoordinates[input][i][block->ipar[2]] = sco->internal.bufferCoordinates[input][i][2 * block->ipar[2] - 1];
-        }
-        sco->internal.numberOfPoints = 1;
-
-        // reconfigure related graphic objects
-        if (pushHistory(block, input, sco->internal.maxNumberOfPoints) == FALSE)
-        {
-            set_block_error(-5);
-            freeScoData(block);
-            sco = NULL;
-        }
-    }
-
-    /*
-     * Update data
-     */
-    if (sco != NULL)
-    {
         for (i = 0; i < block->insz[input]; i++)
         {
             const double value = data[i];
@@ -750,7 +755,7 @@ static int getFigure(scicos_block * block)
             setGraphicObjectProperty(iAxe, __GO_X_AXIS_VISIBLE__, &i__1, jni_bool, 1);
             setGraphicObjectProperty(iAxe, __GO_Y_AXIS_VISIBLE__, &i__1, jni_bool, 1);
 
-            setPolylinesBounds(block, i, 0);
+            setPolylinesBounds(block, iAxe, 0);
         }
     }
     else
@@ -987,11 +992,8 @@ static BOOL pushHistory(scicos_block * block, int input, int maxNumberOfPoints)
     return result;
 }
 
-static BOOL setPolylinesBounds(scicos_block * block, int input, int periodCounter)
+static BOOL setPolylinesBounds(scicos_block * block, int iAxeUID, int periodCounter)
 {
-    int iFigureUID;
-    int iAxeUID;
-
     double dataBounds[6];
     double period = block->rpar[3];
 
@@ -1002,7 +1004,5 @@ static BOOL setPolylinesBounds(scicos_block * block, int input, int periodCounte
     dataBounds[4] = -1.0;       // zMin
     dataBounds[5] = 1.0;        // zMax
 
-    iFigureUID = getFigure(block);
-    iAxeUID = getAxe(iFigureUID, block, input);
     return setGraphicObjectProperty(iAxeUID, __GO_DATA_BOUNDS__, dataBounds, jni_double_vector, 6);
 }

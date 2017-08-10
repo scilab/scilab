@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2008-2008 - INRIA - Bruno JOFRET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -35,37 +38,39 @@ class EXTERN_AST String : public ArrayOf<wchar_t*>
 {
 public :
     String(int _iRows, int _iCols);
-    String(int _iDims, int* _piDims);
+    String(int _iDims, const int* _piDims);
     String(int _iRows, int _iCols, wchar_t const* const* _pstData);
     String(const wchar_t *_pstData);
     String(const char *_pstData);
     virtual                 ~String();
 
+    static wchar_t* nullValue();
+
     void                    whoAmI();
 
-    virtual bool            set(int _iPos, const wchar_t* _pwstData);
-    virtual bool            set(int _iRows, int _iCols, const wchar_t* _pwstData);
-    virtual bool            set(const wchar_t* const* _pwstData);
+    virtual String*         set(int _iPos, const wchar_t* _pwstData);
+    virtual String*         set(int _iRows, int _iCols, const wchar_t* _pwstData);
+    virtual String*         set(const wchar_t* const* _pwstData);
 
-    virtual bool            set(int _iPos, const char* _pcData);
-    virtual bool            set(int _iRows, int _iCols, const char* _pcData);
-    virtual bool            set(const char* const* _pstrData);
+    virtual String*         set(int _iPos, const char* _pcData);
+    virtual String*         set(int _iRows, int _iCols, const char* _pcData);
+    virtual String*         set(const char* const* _pstrData);
 
     bool                    operator==(const InternalType& it);
     bool                    operator!=(const InternalType& it);
 
-    bool                    subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims);
+    bool                    subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims) override;
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring    getTypeStr()
+    virtual std::wstring    getTypeStr() const
     {
         return L"string";
     }
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring    getShortTypeStr()
+    virtual std::wstring    getShortTypeStr() const
     {
         return L"c";
     }
-    InternalType*           clone();
+    String*                 clone();
 
     inline ScilabType       getType()
     {
@@ -85,11 +90,8 @@ public :
         return false;
     }
 
-    virtual bool neg(InternalType *& out)
+    virtual bool neg(InternalType *& /*out*/)
     {
-        // silent unused parameters warnings
-        (void) out;
-
         return false;
     }
 
@@ -105,7 +107,10 @@ private :
     virtual wchar_t*        copyValue(wchar_t* _pwstData);
     virtual wchar_t*        copyValue(const wchar_t* _pwstData);
     virtual String*         createEmpty(int _iDims, int* _piDims, bool _bComplex = false);
-    virtual wchar_t*        getNullValue();
+    virtual wchar_t*        getNullValue()
+    {
+        return nullValue();
+    };
     virtual void            deleteAll();
     virtual void            deleteImg();
     virtual wchar_t**       allocData(int _iSize);

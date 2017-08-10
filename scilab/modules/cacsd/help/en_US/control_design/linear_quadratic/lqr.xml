@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="lqr">
+    <refnamediv>
+        <refname>lqr</refname>
+        <refpurpose>LQ compensator (full state)  </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[K,X]=lqr(P12)</synopsis>
+        <synopsis>[K,X]=lqr(P,Q,R [,S])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>P12</term>
+                <listitem>
+                    <para>
+                        A state space representation of a linear
+                        dynamical system (see <link
+            linkend="syslin">syslin</link>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>P</term>
+                <listitem>
+                    <para> A state space representation of a linear
+                        dynamical system (see <link
+          linkend="syslin">syslin</link>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Q</term>
+                <listitem>
+                    <para>
+                        Real symmetric matrix, with same dimensions as P.A
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>R</term>
+                <listitem>
+                    <para>
+                        full rank real symmetric matrix
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>S</term>
+                <listitem>
+                    <para>
+                        real matrix, the default value is <code>zeros(size(R,1),size(Q,2))</code>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>K</term>
+                <listitem>
+                    <para>a real matrix, the optimal gain</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>X</term>
+                <listitem>
+                    <para>a real symmetric matrix, the stabilizing
+                        solution of the Riccati equation
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <variablelist>
+            <varlistentry>
+                <term>
+                    Syntax  <literal>[K,X]=lqr(P)</literal>
+                </term>
+                <listitem>
+                    <para>
+                        Computes the linear optimal LQ full-state gain K  for the state space representation P
+                        <latex style="display">\left\{\begin{array}{l}\dot{x}=A x+B u\\z=C x+D u\end{array}\right. \text{ in continuous time or }
+                            \left\{\begin{array}{l}x^+=A x+B u\\z=C x+D u\end{array}\right.
+                            \text{ in discrete time.}
+                        </latex>
+
+                        And instantaneous cost function in l2-norm:
+                        <latex style="display"><![CDATA[\left[\begin{array}{ll}x'&u'\end{array}\right]  BigQ  \left[\begin{array}{l}x\\u\end{array}\right] \text{ where }BigQ=\left[\begin{array}{l}C'\\D'\end{array}\right] \left[\begin{array}{ll}C&D\end{array}\right]=\left[\begin{array}{ll}Q&S'\\S&R\end{array}\right]]]></latex>
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry><term>Syntax <literal>[K,X]=lqr(P,Q,R [,S])</literal></term><listitem>
+      <para>
+        Computes the linear optimal LQ full-state gain K for the linear dynamical system P:
+        <latex style="display">\dot{x}=A x+B u \text{ in continuous time or }x^+=A x+B u \text{ in discrete time.}</latex>
+        And  instantaneous cost function in l2-norm:
+        <latex style="display"><![CDATA[\left[\begin{array}{ll}x'&u'\end{array}\right]  BigQ  \left[\begin{array}{l}x\\u\end{array}\right]\text{ where }BigQ=\left[\begin{array}{ll}Q&S'\\S&R\end{array}\right]]]></latex>
+      </para>
+      <note>
+        <title>Remark</title>
+        <para>
+          In this case the P.C and P.D componants of the system  are ignored
+        </para>
+      </note>
+    </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Algorithm</title>
+    <itemizedlist>
+      <listitem><para>
+        For a continuous plant, if <latex>\text{X}</latex> is the stabilizing solution of the Riccati equation:
+        <latex style="display" align="center">(A-B R^{-1}S)'\text{X}+\text{X} (A-B R^{-1} S)-\text{X} B R^{-1} B' \text{X}+Q-S' R^{-1} S=0</latex>
+        the linear optimal LQ full-state gain K is given by <latex  style="display" align="center">\text{K}=-R^{-1} (B' \text{X}+S')</latex>
+      </para></listitem>
+      <listitem><para>
+        For a discrete plant, if <latex>\text{X}</latex> is the stabilizing solution of the Riccati equation:
+        <latex style="display"  align="center">A' \text{X} A-\text{X}-(A' \text{X} B+S') (B' \text{X} B+R)^{+} (B' \text{X} A+S)+Q=0</latex>
+        the linear optimal LQ full-state gain K is given by <latex  style="display" align="center" > \text{K}=-(B' \text{X} B+R)^{+} (B' \text{X} A+S)</latex>
+      </para>
+      <para>
+        An equivalent form for the equation is
+        <latex style="display"  align="center">(\overline{A}' \text{X}^{-1}+B R^{-1} B') \overline{A}+\overline{Q}-\text{X}=0</latex>
+        with <latex style="display" align="center">\overline{A}=A-B R^{-1} S'\text{ and }\overline{Q}=Q-S R^{-1} S'</latex>
+      </para></listitem>
+    </itemizedlist>
+    <para>
+      The gain <literal>K</literal> is such that <latex>A + B \text{K}</latex> is stable.
+    </para>
+    <para>
+      The resolution of the Riccati equation is obtained by  <link linkend="schur">schur</link> factorization of the 3-blocks matrix pencils associated with these Riccati equations:
+      <itemizedlist>
+        <listitem><para>For a continuous plant
+        <latex style="display"> <![CDATA[s\left[\begin{array}{lll}I&0&0\\0&I&0\\0&0&0\end{array}\right]-\left[\begin{array}{lll}A&0&B\\-Q&-A'&-S'\\S&-B'&R\end{array}\right]]]></latex>
+        </para></listitem>
+        <listitem><para>For a discrete time plant
+        <latex style="display"><![CDATA[z\left[\begin{array}{lll}I&0&0\\0&A'&0\\0&-B'&0\end{array}\right]-\left[\begin{array}{lll}A&0& B\\-Q&I&-S'\\S&0& R\end{array}\right]]]></latex>
+        </para></listitem>
+      </itemizedlist>
+    </para>
+  </refsection>
+  <refsection>
+    <title>Caution</title>
+    <para>
+      It is assumed that matrix <latex>R</latex> or <latex>D' D</latex> is non singular.
+    </para>
+  </refsection>
+  <refsection>
+    <title>Remark</title>
+    <para>
+      If the full state of the system is not available, An estimator can be built using the <link linkend="lqe">lqe</link> or the <link linkend="lqg">lqg</link> function.
+    </para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <para>
+      Assume the dynamical system formed by two masses connected by a spring and a damper:
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="../../../images/twoMasses.png"/>
+        </imageobject>
+      </mediaobject>
+      A force <latex> u=\bar{u}+e</latex> (where <latex>e</latex>
+      is a noise) is applied to the big one. Here it is assumed
+      that the deviations from equilibrium positions of the mass
+      <latex>dy_1</latex> and <latex>dy_2</latex> positions has
+      well as their derivatives are measured.
+    </para>
+    <para>
+      A state space representation of this system is:
+      <latex style="display" align="left"><![CDATA[
+      \dot{x}=\left[\begin{array}{llll}0&1&0&0\\
+      -k/M&-b/M&k/M&b/M\\ 0&0&0&1\\ k/m&b/m&-k/m&-b/m
+      \end{array}\right] x +\left[\begin{array}{l}0\\ 1/M\\ 0\\ 0
+      \end{array}\right] u]]></latex>
+                        <latex style="display" align="left">\text{Where }x=\left[\begin{array}{l}dy_1\\ \dot{dy_1}\\ dy_2\\
+                            \dot{dy_2}\end{array}\right]
+                        </latex>
+                    </para>
+                    <para>
+                        The LQ cost is defined by <latex style="display"
+      align="left"><![CDATA[\int_0^\infty\left[\begin{array}{ll}x'&u'\end{array}\right]\left[\begin{array}{ll}Q_{xx}&0\\0&R_{uu}\end{array}\right]\left[\begin{array}{l}x\\u\end{array}\right]
+      dt]]></latex>
+                    </para>
+                    <para>The following instructions may be used to compute a LQ compensator of this dynamical system.</para>
+                    <programlisting role="example"><![CDATA[
+    // Form the state space model (assume full state output)
+    M = 1; m = 0.2; k = 0.1; b = 0.004;
+    A = [  0     1    0    0
+    -k/M  -b/M  k/M  b/M
+    0     0    0    1
+    k/m  b/m  -k/m  -b/m];
+    B = [0; 1/M; 0; 0];
+    C = eye(4,4);
+    P = syslin("c",A, B, C);
+    //The compensator weights
+    Q_xx=diag([15 0 3 0]); //Weights on states
+    R_uu   = 0.5; //Weight on input
+    Kc=lqr(P,Q_xx,R_uu);
+
+    //form the Plant+compensator system
+
+    C=[1 0 0 0  //dy1
+    0 0 1 0];//dy2
+    S=C*(P/.(-Kc));
+    //check system stability
+    and(real(spec(S.A))<0)
+    // Check by simulation
+    dt=0.1;
+    t=0:dt:30;
+    u=0.1*rand(t);
+    y=csim(u,t,S,[1;0;0;0]);
+    clf;plot(t',y');xlabel(_("time (s)"))
+    L=legend(["$dy_1$","$dy_2$"]);L.font_size=4;
+    ]]></programlisting>
+
+                    <scilab:image><![CDATA[
+    // Form the state space model (assume full state output)
+    M = 1; m = 0.2; k = 0.1; b = 0.004;
+    A = [  0     1    0    0
+    -k/M  -b/M  k/M  b/M
+    0     0    0    1
+    k/m  b/m  -k/m  -b/m];
+    B = [0; 1/M; 0; 0];
+    C = eye(4,4);
+    P = syslin("c",A, B, C);
+    //The compensator weights
+    Q_xx=diag([15 0 3 0]); //Weights on states
+    R_uu   = 0.5; //Weight on input
+    Kc=lqr(P,Q_xx,R_uu);
+
+    //form the Plant+compensator system
+
+    C=[1 0 0 0  //dy1
+    0 0 1 0];//dy2
+    S=C*(P/.(-Kc));
+    //check system stability
+    and(real(spec(S.A))<0)
+    // Check by simulation
+    dt=0.1;
+    t=0:dt:30;
+    u=0.1*rand(t);
+    y=csim(u,t,S,[1;0;0;0]);
+    clf;plot(t',y');xlabel(_("time (s)"))
+    L=legend(["$dy_1$","$dy_2$"]);L.font_size=4;
+    ]]>
+                    </scilab:image>
+                </refsection>
+                <refsection>
+                    <title>Reference</title>
+                    <para>
+                        <ulink url="http://www.springer.com/us/book/9780817640095"> Engineering and Scientific Computing with Scilab</ulink>, Claude Gomez and al.,Springer Science+Business Media, LLC,1999, ISNB:978-1-4612-7204-5
+                    </para>
+                </refsection>
+                <refsection role="see also">
+                    <title>See also</title>
+                    <simplelist type="inline">
+                        <member>
+                            <link linkend="lqg">lqg</link>
+                        </member>
+                        <member>
+                            <link linkend="lqe">lqe</link>
+                        </member>
+                        <member>
+                            <link linkend="gcare">gcare</link>
+                        </member>
+                        <member>
+                            <link linkend="leqr">leqr</link>
+                        </member>
+                        <member>
+                            <link linkend="riccati">riccati</link>
+                        </member>
+                        <member>
+                            <link linkend="schur">schur</link>
+                        </member>
+                    </simplelist>
+                </refsection>
+            </refentry>

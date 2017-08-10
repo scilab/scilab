@@ -26,11 +26,7 @@ pathDest = TMPDIR + filesep() + test_bug_12548 + filesep();
 mkdir(TMPDIR, test_bug_12548);
 mputl(help_skeleton("bug_12548"), pathDest + "bug_12548.xml");
 assert_checktrue(execstr("xmltoformat(""javaHelp"",pathDest, ""bug help"")","errcatch")==0);
-
 Building the master document:
 	TMPDIR/bug_12548/
-
 Building the manual file [javaHelp] in TMPDIR/bug_12548/.
- 
- Generate image ./bug_12548_1.png from Scilab code from file bug_12548. 
-      xml                                                               
+Generate image ./bug_12548_1.png from Scilab code from file bug_12548.xml

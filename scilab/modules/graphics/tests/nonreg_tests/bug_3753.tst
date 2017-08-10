@@ -17,7 +17,8 @@
 //
 
 SC=3.2;
-square(-SC,-SC,SC,SC)
+gcf().axes_size  = [610 610];
+replot([-SC,-SC,SC,SC]);
 drawaxis(x=[SC,-SC,8],y=-SC,dir="d",tics="r",format_n="%1.1f");
 
 axis = gce();

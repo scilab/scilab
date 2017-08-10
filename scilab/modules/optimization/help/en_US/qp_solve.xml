@@ -4,11 +4,14 @@
  * Copyright (C) 2008 - INRIA
  * Copyright (C) 2010 - DIGITEO - Michael Baudin
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xml:id="qp_solve" xml:lang="en"
@@ -24,7 +27,7 @@
         <refpurpose>linear quadratic programming solver builtin</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[x [,iact [,iter [,f [,info]]]]] = qp_solve(Q, p, C, b, me)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -92,7 +95,7 @@
                     <para>
                         vector, indicator of active constraints.
                         The non zero entries give the index of the active constraints.
-                        The entries of the iact vector are ordered this way: equality constraints come first, 
+                        The entries of the iact vector are ordered this way: equality constraints come first,
                         then come the inequality constraints.
                     </para>
                 </listitem>
@@ -133,7 +136,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Find x in R^6 such that:
 // x'*C1 = b1 (3 equality constraints i.e me=3)
 C1= [ 1,-1, 2;
@@ -158,11 +161,11 @@ p=[-1;-2;-3;-4;-5;-6]; Q=eye(6,6);
 
 me=3;
 [x,iact,iter,f]=qp_solve(Q,p,[C1 C2],[b1;b2],me)
-// Only linear constraints (1 to 4) are active 
+// Only linear constraints (1 to 4) are active
  ]]></programlisting>
     </refsection>
     <refsection>
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="optim">optim</link>
@@ -181,13 +184,13 @@ me=3;
     <refsection>
         <title>Memory requirements</title>
         <para>Let r be</para>
-        <programlisting> 
+        <programlisting>
             r=min(m,n)
         </programlisting>
         <para>Then the memory required by qp_solve during the computations
             is
         </para>
-        <programlisting> 
+        <programlisting>
             2*n+r*(r+5)/2 + 2*m +1
         </programlisting>
     </refsection>
@@ -218,7 +221,7 @@ me=3;
     </refsection>
     <refsection>
         <title>Used Functions</title>
-        <para>qpgen2.f and &gt;qpgen1.f (also named QP.solve.f) developped by
+        <para>qpgen2.f and &gt;qpgen1.f (also named QP.solve.f) developed by
             Berwin A. Turlach according to the Goldfarb/Idnani algorithm
         </para>
     </refsection>

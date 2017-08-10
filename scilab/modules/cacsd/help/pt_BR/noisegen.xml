@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="pt" xml:id="noisegen">
+    <refnamediv>
+        <refname>noisegen</refname>
+        <refpurpose>noise generation</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>b = noisegen(pas, Tmax, sig)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>pas</term>
+                <listitem>
+                    <para>real scalar, the time increment</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Tmax</term>
+                <listitem>
+                    <para>real scalar, the final time of the interval of noise generation</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sig</term>
+                <listitem>
+                    <para>real scalar, the standard deviation of the noise</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>noisegen()</literal> generates a Scilab function <literal>b = Noise(t)</literal>
+            where <literal>Noise(t)</literal> is a piecewise constant function
+            (constant on  <literal>[k*pas, (k+1)*pas]</literal>). The value on each constant
+            interval are random values from i.i.d Gaussian variables of
+            standard deviation <literal>sig</literal>. The function is constant for <literal>t &lt;= 0</literal> and
+            <literal>t &gt;= Tmax</literal>.
+        </para>
+        <para>
+            <note>
+                Note: Random number generator functions such as <link linkend="rand">rand</link> and
+                <link linkend="grand">grand</link> are another alternative to generate noises
+                from a wide variety of probability distribution (see example 2 below).
+            </note>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <para>
+            Example #1: noisegen()
+        </para>
+        <programlisting role="example"><![CDATA[
+noisegen(0.5, 30, 1.0);
+x = -5:0.01:35;
+y = feval(x, Noise);
+plot(x, y);
+ ]]></programlisting>
+        <scilab:image>
+            noisegen(0.5, 30, 1.0);
+            x = -5:0.01:35;
+            y = feval(x, Noise);
+            plot(x, y);
+        </scilab:image>
+        <para>
+            Example #2: rand()
+        </para>
+        <programlisting role="example"><![CDATA[
+// Plot a zero mean gaussian white noise with the variance 1.
+// To use a different variance, multiply rand() by the square root of the variance.
+t = 0:.5:30;
+sig = 1; // Standard deviation of the white gaussian noise
+noise = sig*rand(t, "normal");
+plot2d2(t, noise);
+ ]]></programlisting>
+        <scilab:image>
+            t = 0:.5:30;
+            sig = 1;
+            noise = sig*rand(t, "normal");
+            plot2d2(t, noise)
+        </scilab:image>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="rand">rand</link>
+            </member>
+            <member>
+                <link linkend="grand">grand</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

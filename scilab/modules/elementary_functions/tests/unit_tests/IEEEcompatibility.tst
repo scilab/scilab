@@ -84,7 +84,7 @@ expecteddiv = [
 
 // See http://bugzilla.scilab.org/show_bug.cgi?id=2409
 // We must use imult(%inf) to get the mathematical number i * inf
-// since %i * %inf produces imult(%inf), as expected by the 
+// since %i * %inf produces imult(%inf), as expected by the
 // intermediate multiplication 0*%inf = %nan.
 expectedsqrt = [
 imult(%inf)
@@ -137,4 +137,3 @@ assert_checkequal ( computedsqrt   , expectedsqrt );
 assert_checkequal ( computedmodulo , expectedmodulo );
 
 ieee(0)
-

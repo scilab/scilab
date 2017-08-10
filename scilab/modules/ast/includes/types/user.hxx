@@ -3,11 +3,14 @@
 *  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
 *  Copyright (C) 2014 - Scilab Enterprises - Cedric Delamarre
 *
-*  This file must be used under the terms of the CeCILL.
-*  This source file is licensed as described in the file COPYING, which
-*  you should have received as part of this distribution.  The terms
-*  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
@@ -19,7 +22,7 @@
 
 namespace types
 {
-class UserType : public GenericType
+class EXTERN_AST UserType : public GenericType
 {
 public :
     UserType() {}
@@ -51,13 +54,18 @@ public :
     /*** User will be asked to implement the following methods      ***/
     /*** in order Scilab engine to manage correctly this user type  ***/
 
-    virtual std::wstring    getTypeStr() = 0;
-    virtual std::wstring    getShortTypeStr() = 0;
-    virtual InternalType*   clone() = 0;
+    virtual std::wstring    getTypeStr() const = 0;
+    virtual std::wstring    getShortTypeStr() const = 0;
+    virtual UserType*       clone() = 0;
 
 public :
     /*** User can overload these methods                            ***/
     /*** all methods not overloaded will call scilab overload       ***/
+
+    virtual bool operator==(const InternalType& /*it*/) override
+    {
+        return false;
+    }
 
     virtual Bool* equal(UserType*& /*ut*/)
     {
@@ -82,7 +90,7 @@ public :
     // insertion by value
     // _pArs is a list of scilab types:: of where we want to extract
     // _pSource is what we wan to insert
-    virtual InternalType* insert(typed_list* /*_pArgs*/, InternalType* /*_pSource*/)
+    virtual UserType* insert(typed_list* /*_pArgs*/, InternalType* /*_pSource*/)
     {
         return NULL;
     }
@@ -90,7 +98,7 @@ public :
     // this method is called to perform an extraction by field. ie : a = myUserType.myfield
     // name is the field name
     // out contain extraction of field
-    virtual bool          extract(const std::wstring & /*name*/, InternalType *& /*out*/)
+    virtual bool extract(const std::wstring& /*name*/, InternalType *& /*out*/)
     {
         return false;
     }
@@ -127,11 +135,11 @@ public :
     //  _iRetCount  : is the number of output arguments (ie : [a,b] = myUserType(...), _iRetCount = 2)
     //  out         : after "invoke" execution, will contain results
     //  execFunc    : is used in case of macro call : Overload::call(L"A_Macro", in, _iRetCount, out, execFunc);
-    //  e           : Generally used to return the Location when thowing an error. ie : throw ast::ScilabError(L"error message", 999, e.getLocation());
+    //  e           : Generally used to return the Location when thowing an error. ie : throw ast::InternalError(L"error message", 999, e.getLocation());
     // Outputs :
     // if false, Scilab will call the macro %UserType_e,where UserType is the string return by the method getShortTypeStr()
     // if true, Scilab will set each elements of out in Scilab variables
-    virtual bool invoke(types::typed_list & in, types::optional_list & /*opt*/, int /*_iRetCount*/, types::typed_list & out, ast::ConstVisitor & /*execFunc*/, const ast::Exp & /*e*/)
+    virtual bool invoke(types::typed_list & in, types::optional_list & /*opt*/, int /*_iRetCount*/, types::typed_list & out, const ast::Exp & /*e*/) override
     {
         InternalType* pIT = extract(&in);
         if (pIT)

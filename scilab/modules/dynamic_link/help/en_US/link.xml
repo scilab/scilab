@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="link" xml:lang="en">
@@ -16,7 +19,7 @@
         <refpurpose>dynamic linker</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>x = link(files [, sub-names,flag]);
             link(x , sub-names [, flag]);
             lstID = link("show")
@@ -99,7 +102,7 @@
         <para>
             A routine can be unlinked with <link linkend="ulink">ulink</link>.
             If the linked function has been modified between two links, it is required
-            to <link linkend="ulink">ulink</link> the previous instance before the new 
+            to <link linkend="ulink">ulink</link> the previous instance before the new
             link.
         </para>
         <para>
@@ -121,7 +124,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //Example of the use of ilib_for_link with  a simple C code
 cd TMPDIR
 f1=['#include <math.h>'
@@ -134,16 +137,16 @@ f1=['#include <math.h>'
 
 mputl(f1,'fooc.c');
 
-//creating the shared library: a Makefile and a loader are 
+//creating the shared library: a Makefile and a loader are
 //generated, the code is compiled and a shared library built.
-ilib_for_link('fooc','fooc.c',[],"c") 
+ilib_for_link('fooc','fooc.c',[],"c")
 
 // display the loader.sce file which calls link
-mprintf('%s\n',mgetl('loader.sce')) 
-// load the shared library 
+mprintf('%s\n',mgetl('loader.sce'))
+// load the shared library
 exec loader.sce;
 
-link('show') 
+link('show')
 // call the new linked entry point
 a=linspace(0,%pi,10);b=5;
 y1=call('fooc',a,2,'d',b,3,'d',size(a,1),4,'i',size(a,2),5,'i','out',size(a),1,'d')
@@ -153,7 +156,7 @@ exec cleaner.sce;
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="ulink">ulink</link>
@@ -175,9 +178,6 @@ exec cleaner.sce;
             </member>
             <member>
                 <link linkend="ilib_build">ilib_build</link>
-            </member>
-            <member>
-                <link linkend="api_scilab">api_scilab</link>
             </member>
         </simplelist>
     </refsection>

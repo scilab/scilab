@@ -6,6 +6,7 @@
 // =============================================================================
 
 // <-- ENGLISH IMPOSED -->
+// <-- CLI SHELL MODE -->
 // <-- TEST WITH ATOMS -->
 //
 // <-- Non-regression test for bug 9805 -->

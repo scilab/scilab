@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2013 - Scilab Enterprises - Charlotte HECQUET
@@ -39,7 +40,7 @@ ref4445(:,:,3,5) = zeros(4,4);
 ref4445(:,:,4,5) = zeros(4,4);
 assert_checkequal(eye(zeros(4,4,4,5)), ref4445);
 
-M = hypermat([2 3 2 2],1:24);
+M = matrix(1:24, [2 3 2 2]);
 ref2322(:,:,1,1) = [1,0,0;0,0,0];
 ref2322(:,:,2,1) = zeros(2,3);
 ref2322(:,:,1,2) = zeros(2,3);

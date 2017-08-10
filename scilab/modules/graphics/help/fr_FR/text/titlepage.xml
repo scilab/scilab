@@ -23,21 +23,21 @@
     <refsection>
         <title>Description</title>
         <para>
-            <function>titlepage</function> affiche la matrice de chaînes de caractères <varname>str</varname> au milieu de  
+            <function>titlepage</function> affiche la matrice de chaînes de caractères <varname>str</varname> au milieu de
             la fenêtre graphique courante, avec la police la plus grande possible, compte tenu de l'axe courant et de sa géométrie.
         </para>
     </refsection>
-    
+
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 titlepage("Ceci est le titre de la page");
  ]]></programlisting>
         <scilab:image localized="true">
             titlepage("Ceci est le titre de la page");
         </scilab:image>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
 f=scf();
 a1=f.children;
 a1.margins(3)=0.61;
@@ -60,7 +60,7 @@ titlepage("Top title");
             titlepage("Titre du bas");
         </scilab:image>
     </refsection>
-    
+
     <refsection role="see also">
         <title>Voir aussi</title>
         <simplelist type="inline">

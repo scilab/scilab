@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en_US" xml:id="conv2">
+    <refnamediv>
+        <refname>conv2</refname>
+        <refpurpose>discrete 2-D convolution. </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>
+            C = conv2(A,B [,shape])
+            C = conv2(hrow,hcol,B [,shape])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parameters</title>
+        <variablelist>
+            <varlistentry>
+                <term>hrow</term>
+                <listitem>
+                    <para>
+                        a real or complex vector.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>hcol</term>
+                <listitem>
+                    <para>
+                        a real or complex vector.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>A</term>
+                <listitem>
+                    <para>
+                        a real or complex 2-D array.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>B</term>
+                <listitem>
+                    <para>
+                        a real or complex 2-D array.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>shape</term>
+                <listitem>
+                    <para>
+                        an optional character string with possible values:
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <literal>"full"</literal>, <literal>conv2</literal>
+                            computes the full two-dimensional convolution. It is the
+                            default value.
+                        </listitem>
+                        <listitem>
+                            <literal>"same"</literal>, <literal>conv2</literal>
+                            computes the central part of the convolution of the same
+                            size as <literal>A</literal>.
+                        </listitem>
+                        <listitem>
+                            <literal>"valid"</literal>, <literal>conv2</literal>
+                            computes the convolution parts without the zero-padding of <literal>A</literal>.
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>C</term>
+                <listitem>
+                    <para>
+                        a real or complex 2-D array.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>conv2</literal> uses a straightforward formal
+            implementation of the two-dimensional convolution equation in
+            spatial form.
+        </para>
+        <para>
+            <literal>C=conv2(A,B [,shape])</literal> computes the
+            two-dimensional convolution of the arrays <literal>A</literal>
+            and <literal>B</literal>:
+        </para>
+        <itemizedlist><listitem>
+                With <literal>shape=="full"</literal> the
+                dimensions of the result<literal>C</literal> are given by
+                <literal>size(A)+size(B)+1</literal>. The indices of the
+                center element of <literal>B</literal> are defined as
+                <literal>floor((size(B)+1)/2)</literal>.
+            </listitem>
+            <listitem>
+                With <literal>shape=="same"</literal> the dimensions
+                of the result<literal>C</literal> are given by
+                <literal>size(A)</literal>. The indices of the center element of
+                <literal>B</literal> are defined as
+                <literal>floor((size(B)+1)/2)</literal>.
+            </listitem>
+            <listitem>
+                With <literal>shape=="valid"</literal> the dimensions
+                of the result <literal>C</literal> are given by
+                <literal>size(A)-size(B)+1)</literal> if
+                <literal>and(size(A)-size(B))&gt;=0</literal> else
+                <literal>C</literal> is empty . The indices of the center
+                element of <literal>B</literal> are defined as <literal>[1
+                    1]
+                </literal>
+                .
+            </listitem>
+        </itemizedlist>
+        <para>
+            The separable form <literal>C=conv2(hrow,hcol,B [,shape])</literal>is equivalent to <literal>C=conv2(hrow(:)*hcol(:).',B [,shape])</literal>
+        </para>
+        .
+        <para>
+            Note that <link linkend="convol2d">convol2d</link> can be more efficient for large arrays.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+    s = [1 2 1; 0 0 0; -1 -2 -1];//Sobel horizontal edge kernel
+    A = zeros(10,10);A(3:7,3:7) = 1;
+    conv2(s,A);
+
+    //separable form
+    u=[1;0;-1];v=[1 2 1];// u*v=s
+    conv2(u,v,A)
+    ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="convol2d">convol2d</link>
+            </member>
+            <member>
+                <link linkend="conv">conv</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>Function conv2 introduced.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

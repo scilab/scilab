@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="hinf">
+    <refnamediv>
+        <refname>hinf</refname>
+        <refpurpose>連続時間システムのH無限大設計</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[AK,BK,CK,DK,(RCOND)] = hinf(A,B,C,D,ncon,nmeas,gamma)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>A</term>
+                <listitem>
+                    <para>n行n列システム状態行列 A.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>B</term>
+                <listitem>
+                    <para>n行m列システム入力行列 B.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>C</term>
+                <listitem>
+                    <para>p行n列システム出力行列 C.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>D</term>
+                <listitem>
+                    <para>p行m列システム行列 D.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ncon</term>
+                <listitem>
+                    <para>制御入力の数. m &gt;= ncon &gt;= 0, p-nmeas &gt;= ncon.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>nmeas</term>
+                <listitem>
+                    <para>観測量の数. p &gt;= nmeas &gt;= 0, m-ncon &gt;= nmeas.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>gamma</term>
+                <listitem>
+                    <para>
+                        <literal>H_infinity</literal> 設計で使用されるパラメータ gamma.
+                        コントローラが存在できるように
+                        gamma は十分に大きい(gamma &gt;= 0)と仮定されます.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>AK</term>
+                <listitem>
+                    <para>n行n列コントローラ状態行列 AK.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>BK</term>
+                <listitem>
+                    <para>n行nmeas列コントローラ入力行列 BK.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>CK</term>
+                <listitem>
+                    <para>ncon行n列コントローラ出力行列 CK.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>DK</term>
+                <listitem>
+                    <para>ncon行nmeas列コントローラ行列  DK.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>RCOND</term>
+                <listitem>
+                    <para>
+                        行列の条件数の逆数の推定値を含むベクトル.
+                        この値は,
+                        コントローラを計算する際に解くリカッチ方程式の条件数の逆数を推定します
+                        ([1]のアルゴリズムの説明を参照ください).
+                    </para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>RCOND</term>
+                            <listitem>
+                                <para>(1) は制御伝達行列 TU の条件数の逆数の推定値を含みます,</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>RCOND</term>
+                            <listitem>
+                                <para>(2) は観測伝達行列 TY の条件数の逆数の推定値を含みます,</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>RCOND</term>
+                            <listitem>
+                                <para>(3) はXリカッチ方程式の条件数の逆数の推定値を含みます,</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>RCOND</term>
+                            <listitem>
+                                <para>(4) はYリカッチ方程式の条件数の逆数の推定値を含みます.</para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>[AK,BK,CK,DK,(RCOND)] = hinf(A,B,C,D,ncon,nmeas,gamma)</literal>
+            H無限大 (準)最適n状態コントローラの行列を計算します
+        </para>
+        <programlisting role=""><![CDATA[
+    | AK | BK |
+K = |----|----|,
+    | CK | DK |
+ ]]></programlisting>
+        <para>
+            (連続時間系の場合)
+        </para>
+        <programlisting role=""><![CDATA[
+    | A  | B1  B2  |   | A | B |
+P = |----|---------| = |---|---|,
+    | C1 | D11 D12 |   | C | D |
+    | C2 | D21 D22 |
+ ]]></programlisting>
+        <para>
+            gamma の値を指定すると,
+            B2 が制御入力の数 (ncon) と同じ列の数を有し,
+            C2 が観測量の数 (nmeas) と同じ行の数を有するという条件の元で
+            コントローラが出力されます.
+        </para>
+    </refsection>
+    <refsection>
+        <title>参考文献</title>
+        <para>
+            [1] P.Hr. Petkov, D.W. Gu and M.M. Konstantinov. Fortran 77 routines     for Hinf and H2 design of continuous-time linear control systems.     Report98-14, Department of Engineering, Leicester University,     August 1998.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+//Niconet report SLWN1999-12からの例
+//Hinf
+A=[-1  0  4  5 -3 -2
+   -2  4 -7 -2  0  3
+   -6  9 -5  0  2 -1
+   -8  4  7 -1 -3  0
+    2  5  8 -9  1 -4
+    3 -5  8  0  2 -6];
+B=[-3 -4 -2  1  0
+    2  0  1 -5  2
+   -5 -7  0  7 -2
+    4 -6  1  1 -2
+   -3  9 -8  0  5
+    1 -2  3 -6 -2];
+C=[ 1 -1  2 -4  0 -3
+   -3  0  5 -1  1  1
+   -7  5  0 -8  2 -2
+    9 -3  4  0  3  7
+    0  1 -2  1 -6 -2];
+D=[ 1 -2 -3  0  0
+    0  4  0  1  0
+    5 -3 -4  0  1
+    0  1  0  1 -3
+    0  0  1  7  1];
+Gamma=10.18425636157899;
+[AK,BK,CK,DK] = hinf(A,B,C,D,2,2,Gamma)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="dhinf">dhinf</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

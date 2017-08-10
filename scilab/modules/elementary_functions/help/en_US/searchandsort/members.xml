@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2013 - Samuel GOUGEON
+ * Copyright (C) 2009 - Université du Maine - Samuel GOUGEON
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="members" xml:lang="en">
+    <refnamediv>
+        <refname>members</refname>
+        <refpurpose>count (and locate) in an array each element or row or column of another array
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>
+            [nb [,loc]] = members(N, H)
+            [nb [,loc]] = members(N, H, "last")
+            [nb [,loc]] = members(N, H, "rows"|"cols")
+            [nb [,loc]] = members(N, H, "rows"|"cols", "last")
+            [nb [,loc]] = members(N, H, "rows"|"cols", "shuffle")
+            [nb [,loc]] = members(N, H, "rows"|"cols", "shuffle", "last")
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>N</term>
+                <listitem>
+                    <para>
+                        Needles: matrix or hypermatrix of booleans, integer-encoded numbers, real or complex decimal numbers, polynomials or texts. In "rows" or "cols" mode, no hypermatrix is accepted. A given value (or row or column) may appear several times in <literal>N</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>H</term>
+                <listitem>
+                    <para>
+                        Haystack: matrix or hypermatrix of same data type as <literal>N</literal>. In "rows" or "cols" mode, no hypermatrix is accepted, and <literal>N</literal> and <literal>H</literal> must have respectively the same number of columns or rows.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Options:</term>
+                <listitem>
+                    <para>From one to three options may be specified in any order:
+                        <variablelist>
+                            <varlistentry>
+                                <term>"last"</term>
+                                <listitem>
+                                    <para>
+                                        when the location in <literal>H</literal> of needles from <literal>N</literal> is querried through <literal>loc</literal>, by default the position of the first respective occurrences in <literal>H</literal> are returned. If <literal>"last"</literal> is specified, the position of the last occurrences in <literal>H</literal> are returned instead.
+                                    </para>
+                                </listitem>
+                            </varlistentry>
+                            <varlistentry>
+                                <term>"rows", "cols"</term>
+                                <listitem>
+                                    <para>
+                                        By default, each element <literal>N(i, j, ...)</literal> of <literal>N</literal> is considered as a needle to search in <literal>H</literal>. If <literal>"rows"</literal> is specified, each row of <literal>N</literal> is considered as a needle -- as a whole --, and is searched among rows of <literal>H</literal>. The same applies between columns of <literal>N</literal> and <literal>H</literal> if <literal>"cols"</literal> is used.
+                                    </para>
+                                </listitem>
+                            </varlistentry>
+                            <varlistentry>
+                                <term>"shuffle"</term>
+                                <listitem>
+                                    <para>
+                                        In <literal>"rows"</literal> or <literal>"cols"</literal> mode, by default the order of components of a row/column is considered: for instance, <literal>[ 7 3 5 ]</literal> in <literal>N</literal> does not match <literal>[3 5 7]</literal> in <literal>H</literal>. When <literal>"shuffle"</literal> is specified, any permutation of --say--<literal>[3 5 7]</literal> will be considered as matching a <literal>[3 5 7]</literal> row of <literal>N</literal>. This option is ignored for polynomials.
+                                    </para>
+                                </listitem>
+                            </varlistentry>
+                        </variablelist>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>nb</term>
+                <listitem>
+                    <para>
+                        In normal mode: <literal>nb(i, j, ...)</literal> returns (as reals) the number of occurrences in <literal>H</literal> of <literal>N(i, j, ...)</literal>. <literal>nb</literal> and <literal>N</literal> have the same format. If <literal>H</literal> is empty, a matrix of zeros is returned. If <literal>N</literal> is empty, the empty matrix <literal>[]</literal> is returned.
+                    </para>
+                    <para>
+                        In <literal>"rows"</literal> or <literal>"cols"</literal> mode: <literal>nb</literal> is a row of reals with as many components as <literal>N</literal> has rows/columns. <literal>nb(i)</literal> returns the number of occurrences in <literal>H(., :)</literal> of <literal>N(i, :)</literal> (or of <literal>N(:, i)</literal> in <literal>H(:, .)</literal> ).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>loc</term>
+                <listitem>
+                    <para>
+                        In normal mode: <literal>loc</literal> and <literal>N</literal> have the same format. <literal>loc(i, j, ...)</literal> returns the smallest linearized index in <literal>H</literal> where <literal>N(i, j, ...)</literal> occurs. If the <literal>"last"</literal> flag is used, the greatest linearized index is returned instead. If <literal>N(i, j, ...)</literal> in not found in <literal>H</literal>, <literal>loc(i, j, ...)</literal> is set to <literal>0</literal>.
+                    </para>
+                    <para>
+                        In <literal>"rows"</literal> or <literal>"cols"</literal> mode: <literal>loc</literal> is a row of reals with as many components as <literal>N</literal> has respectively rows or columns. <literal>loc(i)</literal> returns the index of the first line <literal>H(loc(i), :)</literal> matching <literal>N(i, :)</literal> (or the index of the first column <literal>H(:, loc(i))</literal> matching <literal>N(:, i)</literal>). If the <literal>"shuffle"</literal> flag is additionally specified, the order of components along the rows/columns is not considered.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>nb = members(N, H [,"rows"|"cols"])</literal> returns the number of occurrences of each component or row or column of <literal>N</literal> found in <literal>H</literal>. If no match is found for an element, 0 is returned for it.
+            The index in <literal>H</literal> of the first (default) or <literal>"last"</literal> occurrence of <literal>N(i,j,...)</literal> can be querried through a second optional output <literal>loc</literal>.
+            If matching <literal>"rows"</literal> or <literal>"cols"</literal> are searched for, matches can ignore the order of their elements, by using the option <literal>"shuffle"</literal>.
+        </para>
+        <para>
+            <literal>%inf</literal> and <literal>-%inf</literal> values are supported in <literal>N</literal> as well as in <literal>H</literal>.
+            In normal mode, <literal>%nan</literal> are supported in <literal>N</literal> but not in <literal>H</literal>. In <literal>"rows"</literal> or <literal>"cols"</literal> modes, <literal>%nan</literal> are supported everywhere.
+        </para>
+        <para>
+            In normal element-wise mode, members(..) uses <link linkend="dsearch">dsearch(..)</link> to proceed fast with booleans, integer-encoded numbers (any length 8-16-32 bits signed or not), and real numbers. For complex numbers, texts, and polynomials, a slower and more memory-consuming algorithm is used. For long calculations, a progression bar is displayed.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+N = [1 8 4 5 2 1];
+H = [9 7 4 2 1 4];
+
+[nb, loc] = members(N, H, "last")
+// Returns nb  = [1 0 2 0 1 1]: for instance, 4 appears twice in H.
+// And     loc = [5 0 6 0 4 5]: the last occurrence of 4 is in sixth position in H
+
+[nb, loc] = members(N, H)
+// Returns loc = [5 0 3 0 4 5]: the 1st occurrence of 4 is in third position in H
+
+// With hypermatrices. From previous N and H:
+N = matrix(N, [3 1 2]);
+H = matrix(H, [3 1 2]);
+[nb, loc] = members(N, H, "last")
+
+// With integers:
+N = int8(grand(3, 2, "uin", -5, 5));
+H = int8(grand(4, 4, "uin", -5, 5));
+[nb, loc] = members(N, H)
+
+// With polynomials (complex coefficients are accepted):
+z = %z;
+N = [z (1-z)^2 ; -4 %i*z ];
+H = [2  %i*z -z  3-z  z  z^3 z];
+[nb, loc] = members(N, H)
+
+// With text:
+N = [ "Hi" "Hu" "Allo"];
+H = [ "Hello" "Bonjour" "Allo"
+      "Holà"  "Allo"  "Hallo"
+      "Hi"    "Hé"    "Salud" ];
+[nb, loc] = members(N, H, "last")
+
+// By rows:
+ H = [
+  3  3  0
+  4  1  0
+  2  0  3
+  0  1  4
+  3  4  3
+  0  4  1
+  3  1  0
+  ];
+ N = [
+  1  2  3
+  0  1  4
+  3  0  3
+  4  1  0
+  2  0  2
+  ];
+ N, H
+ [nb, loc] = members(N, H, "rows")
+ [nb, loc] = members(N, H, "rows","last")
+ [nb, loc] = members(N, H, "rows","shuffle") // [4 1 0], [0 1 4] and [0 4 1] are considered the same
+
+// By columns: From N and H defined above:
+ N = N.', H = H.'
+ [nb, loc] = members(N, H, "cols", "shuffle")
+
+]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="dsearch">dsearch</link>
+            </member>
+            <member>
+                <link linkend="intersect">intersect</link>
+            </member>
+            <member>
+                <link linkend="grep">grep</link>
+            </member>
+            <member>
+                <link linkend="find">find</link>
+            </member>
+            <member>
+                <link linkend="vectorfind">vectorfind</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>members() function introduced.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

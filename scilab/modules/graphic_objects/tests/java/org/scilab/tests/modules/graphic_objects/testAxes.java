@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Manuel JULIACHS
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -300,7 +303,9 @@ public class testAxes {
         initAxes.setBoxTypeAsEnum(BoxType.intToEnum(boxType));
 
         initAxes.setHiddenAxisColor(randomGen.nextInt());
-        initAxes.setTightLimits(randomGen.nextBoolean());
+        initAxes.setXTightLimits(randomGen.nextBoolean());
+        initAxes.setYTightLimits(randomGen.nextBoolean());
+        initAxes.setZTightLimits(randomGen.nextBoolean());
         initAxes.setDataBounds(dataBounds);
         initAxes.setRealDataBounds(realDataBounds);
         initAxes.setZoomEnabled(randomGen.nextBoolean());
@@ -599,10 +604,22 @@ public class testAxes {
         assert retHiddenAxisColor.equals(initAxes.getHiddenAxisColor());
     }
     @Test
-    public void testReflectSetGetTightLimits() {
-        controller.setProperty(axesID, __GO_TIGHT_LIMITS__, initAxes.getTightLimits());
-        Boolean retTightLimits = (Boolean) controller.getProperty(axesID, __GO_TIGHT_LIMITS__);
-        assert retTightLimits.equals(initAxes.getTightLimits());
+    public void testReflectSetGetXTightLimits() {
+        controller.setProperty(axesID, __GO_X_TIGHT_LIMITS__, initAxes.getXTightLimits());
+        Boolean retTightLimits = (Boolean) controller.getProperty(axesID, __GO_X_TIGHT_LIMITS__);
+        assert retTightLimits.equals(initAxes.getXTightLimits());
+    }
+    @Test
+    public void testReflectSetGetYTightLimits() {
+        controller.setProperty(axesID, __GO_Y_TIGHT_LIMITS__, initAxes.getYTightLimits());
+        Boolean retTightLimits = (Boolean) controller.getProperty(axesID, __GO_Y_TIGHT_LIMITS__);
+        assert retTightLimits.equals(initAxes.getYTightLimits());
+    }
+    @Test
+    public void testReflectSetGetZTightLimits() {
+        controller.setProperty(axesID, __GO_Z_TIGHT_LIMITS__, initAxes.getZTightLimits());
+        Boolean retTightLimits = (Boolean) controller.getProperty(axesID, __GO_Z_TIGHT_LIMITS__);
+        assert retTightLimits.equals(initAxes.getZTightLimits());
     }
     @Test
     public void testReflectSetGetDataBounds() {
@@ -1022,10 +1039,22 @@ public class testAxes {
         assert retHiddenAxisColor.equals(initAxes.getHiddenAxisColor());
     }
     @Test
-    public void testFastSetGetTightLimits() {
-        controller.setProperty(axesID, __GO_TIGHT_LIMITS__, initAxes.getTightLimits());
-        Boolean retTightLimits = (Boolean) controller.getProperty(axesID, __GO_TIGHT_LIMITS__);
-        assert retTightLimits.equals(initAxes.getTightLimits());
+    public void testFastSetGetXTightLimits() {
+        controller.setProperty(axesID, __GO_X_TIGHT_LIMITS__, initAxes.getXTightLimits());
+        Boolean retTightLimits = (Boolean) controller.getProperty(axesID, __GO_X_TIGHT_LIMITS__);
+        assert retTightLimits.equals(initAxes.getXTightLimits());
+    }
+    @Test
+    public void testFastSetGetYTightLimits() {
+        controller.setProperty(axesID, __GO_Y_TIGHT_LIMITS__, initAxes.getYTightLimits());
+        Boolean retTightLimits = (Boolean) controller.getProperty(axesID, __GO_Y_TIGHT_LIMITS__);
+        assert retTightLimits.equals(initAxes.getYTightLimits());
+    }
+    @Test
+    public void testFastSetGetZTightLimits() {
+        controller.setProperty(axesID, __GO_Z_TIGHT_LIMITS__, initAxes.getZTightLimits());
+        Boolean retTightLimits = (Boolean) controller.getProperty(axesID, __GO_Z_TIGHT_LIMITS__);
+        assert retTightLimits.equals(initAxes.getZTightLimits());
     }
     @Test
     public void testFastSetGetDataBounds() {

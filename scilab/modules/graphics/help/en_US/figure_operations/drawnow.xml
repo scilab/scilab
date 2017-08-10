@@ -3,12 +3,15 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
  * Copyright (C) INRIA - Fabrice Leray
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="drawnow">
@@ -19,13 +22,13 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>drawnow()</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Description</title>
         <para>Considering the current figure, this function can be used to draw the
-            hidden graphics entities and all its chidren, that may have been postponed
+            hidden graphics entities and all its children, that may have been postponed
             by a previous call to <literal>drawlater</literal>. The
             <literal>immediate_drawing</literal> property of the <literal>current figure</literal>
             is set to <literal>"on" </literal>.
@@ -36,26 +39,26 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 f=get("current_figure") // handle of the current figure
-  
+
 drawlater()
 subplot(221);
 t=1:10;plot2d(t,t.^2)
 subplot(222);
-x=0:1:7;plot2d(x,cos(x),2) 
+x=0:1:7;plot2d(x,cos(x),2)
 subplot(234);
 plot2d(t,cos(t),3);
 subplot(235);
-plot2d(x,sin(2*x),5); 
+plot2d(x,sin(2*x),5);
 subplot(236);
-plot2d(t,tan(2*t));  
- 
+plot2d(t,tan(2*t));
+
 drawnow(); // draw the current figure
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="get">get</link>

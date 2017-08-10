@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+*  Copyright (C) 2011 - INRIA - Serge Steer <serge.steer@inria.fr>
+*
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+*
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ru" xml:id="phaseplot">
+    <refnamediv>
+        <refname>phaseplot</refname>
+        <refpurpose>frequency phase plot</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>
+            phaseplot(sl)
+            phaseplot(sl,fmin,fmax [,step] [,comments] )
+            phaseplot(frq,db,phi [,comments])
+            phaseplot(frq, repf [,comments])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>sl</term>
+                <listitem>
+                    <para>
+                        a single input multiple output (SIMO) linear dynamical system (see <link linkend="syslin">syslin</link>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fmin</term>
+                <listitem>
+                    <para>real scalar: the minimum frequency (in Hz) to be represented.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fmax</term>
+                <listitem>
+                    <para>real scalar: the maximum frequency (in Hz) to be represented.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>step</term>
+                <listitem>
+                    <para>real scalar: the frequency discretization step (logarithmic scale)). If it is not specified the algorithm uses adaptative frequency steps.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>comments</term>
+                <listitem>
+                    <para>a character string vector: the legend label to be associated with each curve. Optional value is the empty array.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>frq</term>
+                <listitem>
+                    <para>a row vector or an n x m array: The frequency discretization in Hz.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>db</term>
+                <listitem>
+                    <para>an n x m array: the magnitudes corresponding to
+                        <literal>frq</literal>. This argument is not used, it only
+                        appears to make <literal>phaseplot</literal> have the same
+                        syntax as <literal>gainplot</literal> and
+                        <literal>bode</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>phi</term>
+                <listitem>
+                    <para>an n x m array: the phases in degree corresponding to
+                        <literal>frq</literal>. The <literal>phaseplot</literal>
+                        function plots the curves <literal>phi(i,:)</literal> versus
+                        <literal>frq(i,:)</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>repf</term>
+                <listitem>
+                    <para>an n x m complex array. The
+                        <literal>phaseplot</literal> function plots the curves
+                        <literal>phase(repf(i,:))</literal> versus
+                        <literal>frq(i,:)</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>This function draws the phase of the frequency response of a
+            system. The system can be given under different
+            representations:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <literal>phaseplot(sl,...)</literal> case
+                </para>
+                <para>
+                    <literal>sl</literal> can be a continuous-time or discrete-time SIMO
+                    system (see <link linkend="syslin">syslin</link>). In case of multi-output the
+                    outputs are plotted with different symbols.
+                </para>
+                <para>In this case the frequencies can be  given by:</para>
+                <itemizedlist mark="point">
+                    <listitem>
+                        <para>the lower and upper bounds in Hz
+                            <literal>fmin</literal>, <literal>fmax</literal> and an
+                            optional frequency step <literal>step</literal>. The
+                            default values for <literal>fmin</literal> and
+                            <literal>fmax</literal>are <literal>1.e-3</literal>,
+                            <literal>1.e3</literal> if <literal>sl</literal> is
+                            continuous-time or <literal>1.e-3</literal>,
+                            <literal>0.5/sl.dt</literal> (nyquist frequency) if
+                            <literal>sl</literal> is discrete-time. If the
+                            <literal>step</literal> argument is omitted the function
+                            use an adaptative frequency step (see <link linkend="calfrq">calfrq</link>).
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            a row vector or a 2D array <literal>frq</literal> which
+                            gives the frequency values in Hz. 2D array can be used for
+                            multi-output systems if one wants to have different frequency
+                            discretization for each input/output couple.
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </listitem>
+            <listitem>
+                <para>
+                    <literal>phaseplot(frq,...)</literal> case
+                </para>
+                <para>
+                    This case allows to draw frequency phase plots for previously
+                    computed frequency responses. The frequency response can be
+                    given either by it's complex representation
+                    <literal>repf</literal> or by it's magnitude phase
+                    representation <literal>db</literal>,
+                    <literal>phi</literal>.
+                </para>
+                <para>
+                    <literal>frq</literal> and <literal>repf</literal> must
+                    be row vectors or n x m arrays (each row represent an
+                    input/output couple).
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            The <link linkend="datatips">datatips</link> tool may be used to display data along the phase curves.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+    s=poly(0,'s')
+    h1=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
+    h2=syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225))
+    clf();phaseplot([h1;h2],0.01,100,..
+                       ["$\frac{s^2+18 s+100}{s^2+6.06 s+102.1}$";
+                        "$\frac{s^2+3.02 s+228.01}{s^2+27 s+225}$"])
+    title('Phaseplot')
+
+    ]]></programlisting>
+        <para>
+            <scilab:image localized="true">
+                s=poly(0,'s')
+                h1=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
+                h2=syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225))
+                clf();phaseplot([h1;h2],0.01,100,..
+                ["$\frac{s^2+18 s+100}{s^2+6.06 s+102.1}$";
+                "$\frac{s^2+3.02 s+228.01}{s^2+27 s+225}$"])
+                title('Phaseplot')
+            </scilab:image>
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="bode">bode</link>
+            </member>
+            <member>
+                <link linkend="gainplot">gainplot</link>
+            </member>
+            <member>
+                <link linkend="repfreq">repfreq</link>
+            </member>
+            <member>
+                <link linkend="calfrq">calfrq</link>
+            </member>
+            <member>
+                <link linkend="datatips">datatips</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>Function phaseplot introduced.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

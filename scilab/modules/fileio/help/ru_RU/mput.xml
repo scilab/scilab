@@ -3,12 +3,15 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="mput">
@@ -19,7 +22,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>mput(x [, type, fd])</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -37,9 +40,9 @@
                 <term>fd</term>
                 <listitem>
                     <para>
-                        скаляр: дескриптор файла, возвращённый функцией 
-                        <function>mopen</function>.  Значение по умолчанию равно -1, 
-                        что означает последний файл, открытый функцией 
+                        скаляр: дескриптор файла, возвращённый функцией
+                        <function>mopen</function>.  Значение по умолчанию равно -1,
+                        что означает последний файл, открытый функцией
                         <function>mopen</function>.
                     </para>
                 </listitem>
@@ -57,9 +60,9 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Функция <function>mput</function> записывает данные в выход, 
-            определённый параметром потока <varname>fd</varname>. Данные 
-            записываются в место, на которое в данный момент указывает указатель 
+            Функция <function>mput</function> записывает данные в выход,
+            определённый параметром потока <varname>fd</varname>. Данные
+            записываются в место, на которое в данный момент указывает указатель
             положения в файле, и передвигает указатель дальше соответствующим
             образом.
         </para>
@@ -89,36 +92,36 @@
     </refsection>
     <refsection>
         <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 filen = 'test.bin';
 mopen(filen,'wb');
 mput(1996,'l');mput(1996,'i');mput(1996,'s');mput(98,'c');
- 
-// force little-endian 
+
+// force little-endian
 mput(1996,'ll');mput(1996,'il');mput(1996,'sl');mput(98,'cl');
- 
-// force big-endian 
+
+// force big-endian
 mput(1996,'lb');mput(1996,'ib');mput(1996,'sb');mput(98,'cb');
- 
+
 mclose();
 mopen(filen,'rb');
 if 1996<>mget(1,'l') then pause,end
 if 1996<>mget(1,'i') then pause,end
 if 1996<>mget(1,'s') then pause,end
 if   98<>mget(1,'c') then pause,end
- 
+
 // force little-endian
 if 1996<>mget(1,'ll') then pause,end
 if 1996<>mget(1,'il') then pause,end
 if 1996<>mget(1,'sl') then pause,end
 if   98<>mget(1,'cl') then pause,end
- 
-// force big-endian 
+
+// force big-endian
 if 1996<>mget(1,'lb') then pause,end
 if 1996<>mget(1,'ib') then pause,end
 if 1996<>mget(1,'sb') then pause,end
 if   98<>mget(1,'cb') then pause,end
- 
+
 mclose();
  ]]></programlisting>
     </refsection>

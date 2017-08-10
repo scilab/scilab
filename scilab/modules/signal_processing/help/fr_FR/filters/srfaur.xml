@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="srfaur">
+    <refnamediv>
+        <refname>srfaur</refname>
+        <refpurpose>square-root algorithm</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[p,s,t,l,rt,tt]=srfaur(h,f,g,r0,n,p,s,t,l)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>h, f, g</term>
+                <listitem>
+                    <para>convenient matrices of the state-space model.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>r0</term>
+                <listitem>
+                    <para>E(yk*yk').</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>number of iterations.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>p</term>
+                <listitem>
+                    <para>estimate of the solution after n iterations.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>s, t, l</term>
+                <listitem>
+                    <para>intermediate matrices for  successive iterations;</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>rt, tt</term>
+                <listitem>
+                    <para>
+                        gain matrices of the filter model after <literal>n</literal> iterations.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>p, s, t, l</term>
+                <listitem>
+                    <para>
+                        may be given as input if more than one recursion is desired (evaluation of intermediate values of <literal>p</literal>).
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            square-root algorithm for the algebraic Riccati equation.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+//GENERATE SIGNAL
+x=%pi/10:%pi/10:102.4*%pi;
+rand('seed',0);rand('normal');
+y=[1;1]*sin(x)+[sin(2*x);sin(1.9*x)]+rand(2,1024);
+
+//COMPUTE CORRELATIONS
+c=[];for j=1:2,for k=1:2,c=[c;corr(y(k,:),y(j,:),64)];end;end
+c=matrix(c,2,128);
+
+//FINDING H,F,G with 6 states
+hk=hank(20,20,c);
+[H,F,G]=phc(hk,2,6);
+
+//SOLVING RICCATI EQN
+r0=c(1:2,1:2);
+[P,s,t,l,Rt,Tt]=srfaur(H,F,G,r0,200);
+
+//Make covariance matrix exactly symmetric
+Rt=(Rt+Rt')/2
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="phc">phc</link>
+            </member>
+            <member>
+                <link linkend="faurre">faurre</link>
+            </member>
+            <member>
+                <link linkend="lindquist">lindquist</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

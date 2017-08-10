@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="findBD">
+    <refnamediv>
+        <refname>findBD</refname>
+        <refpurpose>状態量初期値および離散時間システムのシステム行列BとD</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[[x0] [,B [,D]] [,V] [,rcnd]] = findBD(jobx0,comuse [,job],A [,B],C [,D],Y [,U,tol,printw,ldwork])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>jobx0</term>
+                <listitem>
+                    <para>状態量初期値を計算するかどうかを指定する整数オプション:</para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>1 : 状態量初期値 x0を計算;</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>2 : 状態量初期値を計算しない (x0 はゼロとする).</para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>comuse</term>
+                <listitem>
+                    <para>システム行列BおよびDを計算または使用するかどうかを指定する整数オプション:</para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>1 : jobによる指定に基づき行列BおよびDを計算;</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>2 : jobによる指定に基づき行列BおよびDを使用;</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>3 : 行列BおよびDを計算も使用もしない.</para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>job</term>
+                <listitem>
+                    <para>
+                        システム行列のどちらを計算または使用するかを指定する整数オプション:
+                    </para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>1 : システム行列Bのみを計算/使用 (D はゼロであるとする);</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>2 : 行列BおよびDを計算/使用.</para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                    <para>
+                        jobx0 = 2 かつ comuse = 2, または comuse = 3 の場合,
+                        job を指定できません.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>A</term>
+                <listitem>
+                    <para>指定したシステムの状態行列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>B</term>
+                <listitem>
+                    <para>オプション, 指定したシステムの入力行列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>C</term>
+                <listitem>
+                    <para>指定したシステムの出力行列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>D</term>
+                <listitem>
+                    <para>オプション, 指定したシステムの直達項</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Y</term>
+                <listitem>
+                    <para>t行l列の出力データ行列です.
+                        Yのj列目には,連続した時間増加のj番目の出力要素である t 個の値が含まれます.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>U</term>
+                <listitem>
+                    <para>
+                        t行m列の入力データ系列行列 (jobx0 = 1 かつ comuse = 2, または comuse = 1 の時に入力).
+                        Uのj列目には,連続する時間増分のj番目の入力要素の値が含まれます.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>tol</term>
+                <listitem>
+                    <para>
+                        オプションで,行列のランクを推定する際に使用される許容誤差.
+                        tol &gt; 0 の場合, tol に指定した値が, 条件数の逆数の下界として
+                        使用されます.
+                        推定される条件数が 1/tol より小さいm行n列の行列は
+                        フルランクであると判定されます.
+                        デフォルト: m*n*epsilon_machine ただし,
+                        epsilon_machine は相対機械精度です.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>printw</term>
+                <listitem>
+                    <para>オプション, 警告メッセージの出力に関するスイッチ</para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>1:  警告メッセージを出力;</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>0:  警告メッセージを出力しない.</para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                    <para>
+                        デフォルト:    printw = 0.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ldwork</term>
+                <listitem>
+                    <para>(オプション) ワークスペースの大きさ. デフォルト:
+                        計算式 LDWORK = MAX(
+                        必要なワークスペースの大きさの最小値, 2*CSIZE/3,
+                        CSIZE - ( m + l )*t - 2*n*( n + m + l ) - l*m )
+                        ただし CSIZE はキャッシュの大きさ(単位:倍精度ワード)です.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x0</term>
+                <listitem>
+                    <para>状態ベクトル初期値</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Br</term>
+                <listitem>
+                    <para>システム入力行列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Dr</term>
+                <listitem>
+                    <para>システム直達行列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>V</term>
+                <listitem>
+                    <para>Aを実数Schur形式に縮小させるn行n列直交行列
+                        (jobx0 = 1 または comuse = 1 の時に出力).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>rcnd</term>
+                <listitem>
+                    <para>(オプション) ランク決定に関連する行列の条件数の逆数.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            findBD 関数は,
+            SLICOTルーチン IB01CD により,
+            状態量初期値および離散時間システムにおけるシステム行列 B と D を推定します.
+        </para>
+        <programlisting role=""><![CDATA[
+   [x0,Br,V,rcnd] = findBD(1,1,1,A,C,Y,U)
+[x0,Br,Dr,V,rcnd] = findBD(1,1,2,A,C,Y,U)
+      [Br,V,rcnd] = findBD(2,1,1,A,C,Y,U)
+    [B,Dr,V,rcnd] = findBD(2,1,2,A,C,Y,U)
+      [x0,V,rcnd] = findBD(1,2,1,A,B,C,Y,U)
+      [x0,V,rcnd] = findBD(1,2,2,A,B,C,D,Y,U)
+        [x0,rcnd] = findBD(2,2)      // (Set x0 = 0, rcnd = 1)
+      [x0,V,rcnd] = findBD(1,3,A,C,Y)
+ ]]></programlisting>
+        <para>
+            注意: 上の例の各行では, 最後に
+            パラメータ tol, printw, ldwork を含めることもできます.
+        </para>
+        <para>
+            FINDBD は状態量初期値および離散時間システムｎ
+            システム行列 Br と Dr を推定します.
+            この際,システム行列 A, C そして場合によっては B, D および
+            システムにおける入力および出力の軌道を指定します．
+        </para>
+        <para>
+            モデルの構造は以下のようになります :
+        </para>
+        <programlisting role=""><![CDATA[
+x(k+1) = Ax(k) + Bu(k),   k >= 1,
+y(k)   = Cx(k) + Du(k),
+ ]]></programlisting>
+        <para>
+            where
+            x(k)  は,(時刻 kにおける) n 次元状態ベクトルで,
+        </para>
+        <para>
+            u(k) はn次元入力ベクトル,
+        </para>
+        <para>
+            y(k)   は l 次元出力ベクトル,
+        </para>
+        <para>
+            そして  A, B, C, および D  は適当な次元の実数行列です.
+        </para>
+    </refsection>
+    <refsection>
+        <title>コメント</title>
+        <variablelist>
+            <varlistentry>
+                <term>1.</term>
+                <listitem>
+                    <para> n行m列のシステム入力行列は, jobx0 = 1 かつ comuse = 2 の時に
+                        入力パラメータ, comuse = 1 の時に出力パラメータとなります.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>2.</term>
+                <listitem>
+                    <para>The l行m列のシステム行列 Dは, jobx0 = 1, comuse = 2 かつ job = 2 の時に
+                        入力パラメータ, comuse = 1 かつ job = 2 の時に出力パラメータとなります.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>3.</term>
+                <listitem>
+                    <para>
+                        n次ベクトルである状態量初期値の推定値 x(0) は,
+                        jobx0 = 1 の時, および jobx0 = 2 かつ comuse &lt;= 2 の時
+                        に出力パラメータとなり, この場合, 0 に設定されます.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>4.</term>
+                <listitem>
+                    <para>
+                        ldwork が指定されたが, 必要なワークスペースの大きさの最小値よりも
+                        小さい場合, かわりに最小値が使用されます.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+//　指定した線形システムからデータを生成
+A = [ 0.5, 0.1,-0.1, 0.2;
+      0.1, 0,  -0.1,-0.1;
+     -0.4,-0.6,-0.7,-0.1;
+      0.8, 0,  -0.6,-0.6];
+B = [0.8;0.1;1;-1];
+C = [1 2 -1 0];
+SYS=syslin(0.1,A,B,C);
+nsmp=100;
+U=prbs_a(nsmp,nsmp/5);
+Y=(flts(U,SYS)+0.3*rand(1,nsmp,'normal'));
+// Rを計算
+S=15;L=1;
+[R,N,SVAL] = findR(S,Y',U');
+N=3;
+METH=3;TOL=-1;
+[A,C] = findAC(S,N,L,R,METH,TOL);
+[X0,B,D] = findBD(1,1,2,A,C,Y',U')
+SYS1=syslin(1,A,B,C,D,X0);
+Y1=flts(U,SYS1);
+clf();plot2d((1:nsmp)',[Y',Y1'])
+]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="inistate">inistate</link>
+            </member>
+            <member>
+                <link linkend="findx0BD">findx0BD</link>
+            </member>
+            <member>
+                <link linkend="findABCD">findABCD</link>
+            </member>
+            <member>
+                <link linkend="findAC">findAC</link>
+            </member>
+            <member>
+                <link linkend="findBD">findBD</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

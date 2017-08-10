@@ -3,12 +3,15 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="mfprintf" xml:lang="en">
@@ -17,7 +20,7 @@
         <refpurpose>converts, formats, and writes data to a file</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>mfprintf(fd, format, a1, ..., an);</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -28,7 +31,7 @@
                 <listitem>
                     <para>
                         a scalar, file descriptor given by <function>mopen</function>
-                        (it's a positive integer). 
+                        (it's a positive integer).
                     </para>
                     <para>
                         If <varname>fd</varname> equals 0 redirection in stderr.
@@ -47,16 +50,16 @@
                 <listitem>
                     <para>
                         a Scilab string describing the format to use to write the
-                        remaining operands. The 
+                        remaining operands. The
                         <varname>
                             format
                         </varname>
-                        operand follows, 
-                        as close as possible, the C 
+                        operand follows,
+                        as close as possible, the C
                         <function>
                             printf
                         </function>
-                        format 
+                        format
                         operand syntax.
                     </para>
                 </listitem>
@@ -81,19 +84,19 @@
     <refsection>
         <title>Description</title>
         <para>
-            The <function>mfprintf</function> function is a interface for C-coded 
+            The <function>mfprintf</function> function is a interface for C-coded
             version of <function>fprintf</function> function.
         </para>
         <para>
             The <function>mfprintf</function> function writes formatted operands
-            to the file specified by the file desciptor <varname>fd</varname>. The
-            argument operands are formatted under control of the 
+            to the file specified by the file descriptor <varname>fd</varname>. The
+            argument operands are formatted under control of the
             <varname>format</varname> operand.
         </para>
         <para>
             This function may be used to output column vectors of numbers
-            and string vectors without an explicit loop on the elements. In that 
-            case this function iterates on the rows. The shortest vector gives the 
+            and string vectors without an explicit loop on the elements. In that
+            case this function iterates on the rows. The shortest vector gives the
             number of time the format has to be iterated.
         </para>
         <para>
@@ -103,7 +106,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 
 fd = mopen(TMPDIR+'/text.txt','wt');
 mfprintf(fd,'hello %s %d.\n','world',1);
@@ -121,7 +124,7 @@ mfprintf(6,'stdout output.\n');
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="mclose">mclose</link>

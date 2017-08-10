@@ -1,12 +1,15 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2014-2014 - Scilab Enterprises - Clement DAVID
+ *  Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -49,12 +52,12 @@ static std::wstring levelTable[] =
 
 static std::string displayTable[] =
 {
-    "Xcos trace: ",
-    "Xcos debug: ",
-    "Xcos info: ",
+    "Xcos trace:   ",
+    "Xcos debug:   ",
+    "Xcos info:    ",
     "Xcos warning: ",
-    "Xcos error: ",
-    "Xcos fatal: ",
+    "Xcos error:   ",
+    "Xcos fatal:   ",
 };
 
 enum LogLevel LoggerView::indexOf(const wchar_t* name)
@@ -122,23 +125,6 @@ void LoggerView::log(enum LogLevel level, const std::string& msg)
     }
 }
 
-void LoggerView::log(enum LogLevel level, const char* msg)
-{
-    if (level >= this->m_level)
-    {
-        if (USE_SCILAB_WRITE)
-        {
-            scilabForcedWrite(LoggerView::toDisplay(level));
-            scilabForcedWrite(msg);
-        }
-        else
-        {
-            std::cerr << LoggerView::toDisplay(level);
-            std::cerr << msg;
-        }
-    }
-}
-
 void LoggerView::log(enum LogLevel level, const char* msg, ...)
 {
     if (level >= this->m_level)
@@ -163,25 +149,35 @@ void LoggerView::log(enum LogLevel level, const char* msg, ...)
     }
 }
 
-void LoggerView::log(enum LogLevel level, const wchar_t* msg)
+void LoggerView::log(enum LogLevel level, const wchar_t* msg, ...)
 {
     if (level >= this->m_level)
     {
+        const int N = 1024;
+        wchar_t* str = new wchar_t[N];
+
+        va_list opts;
+        va_start(opts, msg);
+        vswprintf(str, N, msg, opts);
+        va_end(opts);
+
         if (USE_SCILAB_WRITE)
         {
             scilabForcedWrite(LoggerView::toDisplay(level));
-            scilabForcedWriteW(msg);
+            scilabForcedWriteW(str);
         }
         else
         {
             std::cerr << LoggerView::toDisplay(level);
-            std::wcerr << msg;
+            std::wcerr << str;
         }
+
+        delete[] str;
     }
 }
 
 // generated with :
-// awk ' $2 == "//!<" {sub(",","", $1); print "case " $1 ":\n    os << \"" $1 "\";\n    break;" }' ~/work/branches/YaSp/scilab/modules/scicos/includes/utilities.hxx
+// awk ' $2 == "//!<" {sub(",","", $1); print "case " $1 ":\n    os << \"" $1 "\";\n    break;" }' ~/work/branches/master/scilab/modules/scicos/includes/utilities.hxx
 
 std::ostream& operator<<(std::ostream& os, update_status_t u)
 {
@@ -264,9 +260,6 @@ std::ostream& operator<<(std::ostream& os, object_properties_t p)
         case SIM_DEP_UT:
             os << "SIM_DEP_UT";
             break;
-        case ANGLE:
-            os << "ANGLE";
-            break;
         case EXPRS:
             os << "EXPRS";
             break;
@@ -345,12 +338,6 @@ std::ostream& operator<<(std::ostream& os, object_properties_t p)
         case KIND:
             os << "KIND";
             break;
-        case FROM:
-            os << "FROM";
-            break;
-        case TO:
-            os << "TO";
-            break;
         case DATATYPE:
             os << "DATATYPE";
             break;
@@ -390,6 +377,9 @@ std::ostream& operator<<(std::ostream& os, object_properties_t p)
         case PROPERTIES:
             os << "PROPERTIES";
             break;
+        case DEBUG_LEVEL:
+            os << "DEBUG_LEVEL";
+            break;
         case DIAGRAM_CONTEXT:
             os << "CONTEXT";
             break;
@@ -405,35 +395,50 @@ std::ostream& operator<<(std::ostream& os, object_properties_t p)
 void LoggerView::objectCreated(const ScicosID& uid, kind_t k)
 {
     std::stringstream ss;
-    ss << __FUNCTION__ << "( " << uid << " , " << k << " )" << std::endl;
-    log(LOG_DEBUG, ss);
+    ss << "objectCreated" << "( " << uid << " , " << k << " )" << '\n';
+    log(LOG_INFO, ss);
+}
+
+void LoggerView::objectReferenced(const ScicosID& uid, kind_t k, unsigned refCount)
+{
+    std::stringstream ss;
+    ss << "objectReferenced" << "( " << uid << " , " << k << " ) : " << refCount << '\n';
+    log(LOG_TRACE, ss);
+}
+
+void LoggerView::objectUnreferenced(const ScicosID& uid, kind_t k, unsigned refCount)
+{
+    std::stringstream ss;
+    ss << "objectUnreferenced" << "( " << uid << " , " << k << " ) : " << refCount << '\n';
+    log(LOG_TRACE, ss);
 }
 
 void LoggerView::objectDeleted(const ScicosID& uid, kind_t k)
 {
     std::stringstream ss;
-    ss << __FUNCTION__ << "( " << uid << " , " << k << " )" << std::endl;
-    log(LOG_DEBUG, ss);
+    ss << "objectDeleted" << "( " << uid << " , " << k << " )" << '\n';
+    log(LOG_INFO, ss);
 }
 
-void LoggerView::objectUpdated(const ScicosID& uid, kind_t k)
+void LoggerView::objectCloned(const ScicosID& uid, const ScicosID& cloned, kind_t k)
 {
     std::stringstream ss;
-    ss << __FUNCTION__ << "( " << uid << " , " << k << " )" << std::endl;
-    log(LOG_DEBUG, ss);
+    ss << "objectCloned" << "( " << uid << " , " << cloned << " , " << k << " )" << '\n';
+    log(LOG_INFO, ss);
 }
 
-void LoggerView::propertyUpdated(const ScicosID& /*uid*/, kind_t /*k*/, object_properties_t /*p*/)
-{
-    // do not log anything on success; the message has already been logged
-}
-
-void LoggerView::propertyUpdated(const ScicosID& uid, kind_t k, object_properties_t p,
-                                 update_status_t u)
+void LoggerView::propertyUpdated(const ScicosID& uid, kind_t k, object_properties_t p, update_status_t u)
 {
     std::stringstream ss;
-    ss << __FUNCTION__ << "( " << uid << " , " << k << " , " << p << " ) : " << u << std::endl;
-    log(LOG_TRACE, ss);
+    ss << "propertyUpdated" << "( " << uid << " , " << k << " , " << p << " ) : " << u << '\n';
+    if (u == NO_CHANGES)
+    {
+        log(LOG_TRACE, ss);
+    }
+    else
+    {
+        log(LOG_DEBUG, ss);
+    }
 }
 
 } /* namespace org_scilab_modules_scicos */

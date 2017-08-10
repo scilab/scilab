@@ -1,26 +1,32 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="contour2di" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="contour2di" xml:lang="pt">
     <refnamediv>
         <refname>contour2di</refname>
-        <refpurpose>Computa curvas de nível em um esboço 2d</refpurpose>
+        <refpurpose>Computa curvas de nÃ­vel em um esboÃ§o 2d</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
-        <synopsis>[xc,yc]=contour2di(x,y,z,nz)</synopsis>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
+        <synopsis>[xc, yc] = contour2di(x,y,z,nz)</synopsis>
     </refsynopsisdiv>
-    <refsection>
-        <title>Parâmetros</title>
+    <refsection role="parameters">
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>x,y</term>
@@ -32,33 +38,33 @@
             <varlistentry>
                 <term>z</term>
                 <listitem>
-                    <para>matriz de reais de tamanho (n1,n2), os valores da função.
+                    <para>matriz de reais de tamanho (n1,n2), os valores da funÃ§Ã£o.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>nz</term>
                 <listitem>
-                    <para>os valores de nível ou o número de níveis.</para>
+                    <para>os valores de nÃ­vel ou o nÃºmero de nÃ­veis.</para>
                     <variablelist>
                         <varlistentry>
                             <term/>
                             <listitem>
                                 <para>
                                     Se <literal>nz</literal> for um inteiro, seu valor
-                                    fornece o número de níveis igualmente espaçados de zmin a zmax
+                                    fornece o nÃºmero de nÃ­veis igualmente espaÃ§ados de zmin a zmax
                                     como segue:
                                 </para>
-                                <programlisting role=""><![CDATA[ 
+                                <programlisting role=""><![CDATA[
 z= zmin + (1:nz)*(zmax-zmin)/(nz+1)
  ]]></programlisting>
                                 <para>
-                                    Note que os níveis <literal>zmin</literal> e
-                                    <literal>zmax</literal> não são desenhados (genericamente eles
-                                    são reduzidos a pontos) mas podem ser adicionados através de
+                                    Note que os nÃ­veis <literal>zmin</literal> e
+                                    <literal>zmax</literal> nÃ£o sÃ£o desenhados (genericamente eles
+                                    sÃ£o reduzidos a pontos) mas podem ser adicionados atravÃ©s de
                                 </para>
-                                <programlisting role=""><![CDATA[ 
-[im,jm] = find(z == zmin);     // ou zmax 
+                                <programlisting role=""><![CDATA[
+[im,jm] = find(z == zmin);     // ou zmax
 plot2d(x(im)',y(jm)',-9,"000")
  ]]></programlisting>
                             </listitem>
@@ -68,8 +74,8 @@ plot2d(x(im)',y(jm)',-9,"000")
                             <listitem>
                                 <para>
                                     Se <literal>nz</literal> for um vetor,
-                                    <literal>nz(i)</literal> fornece o valor da i-ésima curva de
-                                    nível. 
+                                    <literal>nz(i)</literal> fornece o valor da i-Ã©sima curva de
+                                    nÃ­vel.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -79,65 +85,59 @@ plot2d(x(im)',y(jm)',-9,"000")
             <varlistentry>
                 <term>xc,yc</term>
                 <listitem>
-                    <para>vetores de tamanhos idênticos contendo as definições dos
+                    <para>vetores de tamanhos idÃªnticos contendo as definiÃ§Ãµes dos
                         contornos. Ver detalhes abaixo.
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
-        <title>Descrição</title>
+    <refsection role="description">
+        <title>DescriÃ§Ã£o</title>
         <para>
-            <literal>contour2di</literal> computa as curvas de nível de uma
-            superfície <literal>z=f(x,y)</literal> em um esboço 2d. Os valores de
-            <literal>f(x,y)</literal> asão dados pela matriz <literal>z</literal> nos
+            <literal>contour2di</literal> computa as curvas de nÃ­vel de uma
+            superfÃ­cie <literal>z=f(x,y)</literal> em um esboÃ§o 2d. Os valores de
+            <literal>f(x,y)</literal> asÃ£o dados pela matriz <literal>z</literal> nos
             pontos de grid definidos por <literal>x</literal> e
             <literal>y</literal>.
         </para>
         <para>
-            <literal>xc(1)</literal> contém o nível associado ao primeiro
-            caminho de contorno, <literal>yc(1)</literal> contém o número
+            <literal>xc(1)</literal> contÃ©m o nÃ­vel associado ao primeiro
+            caminho de contorno, <literal>yc(1)</literal> contÃ©m o nÃºmero
             <literal>N1</literal> de pontos definindo este caminho de contorno e
-            (<literal>xc(1+(1:N1))</literal>, <literal>yc(1+(1:N1))</literal> ) contém
-            as coordenadas dos pontos do caminho. O segundo caminho começa em
+            (<literal>xc(1+(1:N1))</literal>, <literal>yc(1+(1:N1))</literal> ) contÃ©m
+            as coordenadas dos pontos do caminho. O segundo caminho comeÃ§a em
             <literal>xc(2+N1)</literal> e <literal>yc(2+N1)</literal> e assim por
             diante.
         </para>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
-[xc,yc]=contour2di(1:10,1:10,rand(10,10),5);
-k=1;n=yc(k);c=1;
+        <programlisting role="example"><![CDATA[
+[xc,yc] = contour2di(1:10,1:10,rand(10,10),5);
+k=1; n=yc(k); c=1;
 while k+yc(k)<size(xc,'*')
-  n=yc(k);
+  n = yc(k);
   plot2d(xc(k+(1:n)),yc(k+(1:n)),c)
-  c=c+1;
-  k=k+n+1;
+  c = c+1;
+  k = k+n+1;
 end
  ]]></programlisting>
     </refsection>
-    <refsection>
-        <title>Ver Também </title>
+    <refsection role="see also">
+        <title>Ver TambÃ©m </title>
         <simplelist type="inline">
             <member>
                 <link linkend="contour">contour</link>
             </member>
             <member>
-                <link linkend="fcontour">fcontour</link>
-            </member>
-            <member>
-                <link linkend="fcontour2d">fcontour2d</link>
-            </member>
-            <member>
                 <link linkend="contour2d">contour2d</link>
             </member>
             <member>
-                <link linkend="plot2d">plot2d</link>
+                <link linkend="contour2dm">contour2dm</link>
             </member>
             <member>
-                <link linkend="xset">xset</link>
+                <link linkend="plot2d">plot2d</link>
             </member>
         </simplelist>
     </refsection>

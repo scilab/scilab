@@ -24,12 +24,6 @@
     <ClCompile Include="sci_functionlist.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sci_getCurrentThreadId.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sci_getThreads.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="sci_whereis.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -54,6 +48,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\functions_gw.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\gw_functions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

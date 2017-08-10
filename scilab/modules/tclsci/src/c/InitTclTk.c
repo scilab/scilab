@@ -3,11 +3,14 @@
 * Copyright (C) 2005-2008 - INRIA - Allan CORNET
 * Copyright (C) 2007-2008 - INRIA - Bruno JOFRET
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
@@ -43,11 +46,11 @@ static void *DaemonOpenTCLsci(void* in)
 /* Checks if tcl/tk has already been initialised and if not */
 /* initialise it. It must find the tcl script */
 {
-    char *SciPath							= NULL;
-    char *SciPathShort				= NULL;
-    char *TkScriptpathShort		= NULL;
-    BOOL tkStarted						= FALSE;
-    BOOL bOK									= FALSE;
+    char *SciPath           = NULL;
+    char *SciPathShort      = NULL;
+    char *TkScriptpathShort = NULL;
+    BOOL tkStarted          = FALSE;
+    BOOL bOK                = FALSE;
 
     char TkScriptpath[PATH_MAX];
     char MyCommand[2048]; /* @TODO: Check for buffer overflow */
@@ -65,10 +68,13 @@ static void *DaemonOpenTCLsci(void* in)
     if (SciPath == NULL)
     {
         sciprint(_("The SCI environment variable is not set.\nTCL initialisation failed !\n"));
+        return (0);
     }
 
 
     SciPathShort = getshortpathname(SciPath, &bOK);
+    FREE(SciPath);
+    SciPath = NULL;
 
 #ifdef TCL_MAJOR_VERSION
 #ifdef TCL_MINOR_VERSION
@@ -90,6 +96,11 @@ static void *DaemonOpenTCLsci(void* in)
     if (tmpfile2 == NULL)
     {
         sciprint(_("Unable to find Tcl initialisation scripts.\nCheck your SCI environment variable.\nTcl initialisation failed !"));
+        FREE(SciPathShort);
+        SciPathShort = NULL;
+        FREE(TkScriptpathShort);
+        TkScriptpathShort = NULL;
+        return (0);
     }
     else
     {
@@ -100,6 +111,11 @@ static void *DaemonOpenTCLsci(void* in)
     if (tmpdir == NULL)
     {
         sciprint(_("The SCI environment variable is not set.\nTcl initialisation failed !\n"));
+        FREE(SciPathShort);
+        SciPathShort = NULL;
+        FREE(TkScriptpathShort);
+        TkScriptpathShort = NULL;
+        return (0);
     }
     else
     {
@@ -112,6 +128,11 @@ static void *DaemonOpenTCLsci(void* in)
     if (tmpfile2 == NULL)
     {
         sciprint(_("Unable to find Tcl initialisation scripts.\nCheck your SCI environment variable.\nTcl initialisation failed !"));
+        FREE(SciPathShort);
+        SciPathShort = NULL;
+        FREE(TkScriptpathShort);
+        TkScriptpathShort = NULL;
+        return (0);
     }
     else
     {
@@ -133,6 +154,11 @@ static void *DaemonOpenTCLsci(void* in)
         if ( getTclInterp() == NULL )
         {
             Scierror(999, _("Tcl Error: Unable to create Tcl interpreter (Tcl_CreateInterp).\n"));
+            FREE(SciPathShort);
+            SciPathShort = NULL;
+            FREE(TkScriptpathShort);
+            TkScriptpathShort = NULL;
+            return (0);
         }
         releaseTclInterp();
 
@@ -140,6 +166,11 @@ static void *DaemonOpenTCLsci(void* in)
         {
             releaseTclInterp();
             Scierror(999, _("Tcl Error: Error during the Tcl initialization (Tcl_Init): %s\n"), Tcl_GetStringResult(getTclInterp()));
+            FREE(SciPathShort);
+            SciPathShort = NULL;
+            FREE(TkScriptpathShort);
+            TkScriptpathShort = NULL;
+            return (0);
         }
         releaseTclInterp();
         if (getenv("SCI_DISABLE_TK") == NULL)
@@ -166,12 +197,19 @@ static void *DaemonOpenTCLsci(void* in)
         {
             releaseTclInterp();
             Scierror(999, _("Tcl Error: Error during the Scilab/Tcl init process. Could not set SciPath: %s\n"), Tcl_GetStringResult(getTclInterp()));
+            FREE(SciPathShort);
+            SciPathShort = NULL;
+            FREE(TkScriptpathShort);
+            TkScriptpathShort = NULL;
+            return (0);
         }
 
         releaseTclInterp();
         Tcl_CreateCommand(getTclInterp(), "ScilabEval", TCL_EvalScilabCmd, (ClientData)1, NULL);
         releaseTclInterp();
     }
+    FREE(SciPathShort);
+    SciPathShort = NULL;
 
     if (TKmainWindow == NULL && tkStarted)
     {
@@ -183,35 +221,21 @@ static void *DaemonOpenTCLsci(void* in)
         {
             releaseTclInterp();
             Scierror(999, _("Tcl Error: Error during the Scilab/TK init process. Error while loading %s: %s\n"), TkScriptpathShort, Tcl_GetStringResult(getTclInterp()));
+            FREE(TkScriptpathShort);
+            TkScriptpathShort = NULL;
+            return (0);
         }
         releaseTclInterp();
     }
 
-
-    if (SciPath)
-    {
-        FREE(SciPath);
-        SciPath = NULL;
-    }
-
-    if (SciPathShort)
-    {
-        FREE(SciPathShort);
-        SciPathShort = NULL;
-    }
-
-    if (TkScriptpathShort)
-    {
-        FREE(TkScriptpathShort);
-        TkScriptpathShort = NULL;
-    }
+    FREE(TkScriptpathShort);
+    TkScriptpathShort = NULL;
 
     // This start a periodic and endless call to "update"
     // TCL command. This causes any TCL application to start
     // and run as if it's in the main program thread.
     startTclLoop();
     return (0);
-
 }
 /*--------------------------------------------------------------------------*/
 int OpenTCLsci(void)
@@ -240,7 +264,6 @@ BOOL CloseTCLsci(void)
         if (isTkStarted())
         {
             setTkStarted(FALSE);
-            __Terminate(TclThread);
             __WaitThreadDie(TclThread);
             deleteTclInterp();
             TKmainWindow = NULL;
@@ -262,7 +285,8 @@ static char *GetSciPath(void)
 
     if (SciPathTmp)
     {
-        PathUnix = strdup(SciPathTmp);
+        PathUnix = os_strdup(SciPathTmp);
+        lenPathUnix = (int)strlen(PathUnix);
         for (i = 0; i < lenPathUnix; i++)
         {
             if (PathUnix[i] == '\\')

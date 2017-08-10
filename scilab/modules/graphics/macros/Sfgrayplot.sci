@@ -35,7 +35,7 @@ function []=Sfgrayplot(x, y, f, strf, rect, nax, zminmax, colminmax, mesh, colou
     if ~(type(y)==1 & isreal(y)) then
         error(msprintf(gettext("%s: Input argument #%d must be real.\n"), "Sfgrayplot", 2))
     end
-    if type(f)~=11 & type(f)~=13 then
+    if type(f)~=13 then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: function expected.\n"), "Sfgrayplot", 3));
     end
 
@@ -43,7 +43,7 @@ function []=Sfgrayplot(x, y, f, strf, rect, nax, zminmax, colminmax, mesh, colou
 
     // parsing the optional args
     opt_arg_list = ["strf", "rect","nax","zminmax", "colminmax", "mesh", "colout"];
-    opt_arg_seq = [];
+    opt_arg_seq = "";
     for opt_arg = opt_arg_list
         if exists(opt_arg,"local") then
             opt_arg_seq = opt_arg_seq +","+ opt_arg + "=" + opt_arg;
@@ -59,7 +59,7 @@ function []=Sfgrayplot(x, y, f, strf, rect, nax, zminmax, colminmax, mesh, colou
     num1  num1+p num+p]  ,  zeros(nbtri,1)]
 
     // then plot
-    if opt_arg_seq == [] then
+    if opt_arg_seq == "" then
         fec(noe_x,noe_y,connect,z);
     else
         execstr("fec(noe_x,noe_y,connect,z"+opt_arg_seq+")");

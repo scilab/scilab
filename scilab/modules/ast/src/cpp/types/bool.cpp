@@ -2,11 +2,14 @@
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
 *
-*  This file must be used under the terms of the CeCILL.
-*  This source file is licensed as described in the file COPYING, which
-*  you should have received as part of this distribution.  The terms
-*  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
@@ -67,7 +70,7 @@ Bool::Bool(int _iRows, int _iCols, int **_piData)
 #endif
 }
 
-Bool::Bool(int _iDims, int* _piDims)
+Bool::Bool(int _iDims, const int* _piDims)
 {
     int* piData = NULL;
     create(_piDims, _iDims, &piData, NULL);
@@ -76,7 +79,7 @@ Bool::Bool(int _iDims, int* _piDims)
 #endif
 }
 
-InternalType* Bool::clone()
+Bool* Bool::clone()
 {
     Bool *pbClone =  new Bool(getDims(), getDimsArray());
     pbClone->set(get());
@@ -88,22 +91,38 @@ void Bool::whoAmI()
     std::cout << "types::Bool";
 }
 
-bool Bool::setFalse()
+Bool* Bool::setFalse()
 {
-    for (int i = 0 ; i < getSize() ; i++)
+    Bool* pb = checkRef(this, &Bool::setFalse);
+    if (pb != this)
     {
-        set(i, 0);
+        return pb;
     }
-    return true;
+
+    int size = getSize();
+    for (int i = 0 ; i < size ; i++)
+    {
+        m_pRealData[i] = 0;
+    }
+
+    return this;
 }
 
-bool Bool::setTrue()
+Bool* Bool::setTrue()
 {
-    for (int i = 0 ; i < getSize() ; i++)
+    Bool* pb = checkRef(this, &Bool::setTrue);
+    if (pb != this)
     {
-        set(i, 1);
+        return pb;
     }
-    return true;
+
+    int size = getSize();
+    for (int i = 0; i < size; i++)
+    {
+        m_pRealData[i] = 1;
+    }
+
+    return this;
 }
 
 bool Bool::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_iDims*/)
@@ -136,7 +155,7 @@ bool Bool::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_iDi
             _piDims[1] = 0;
             _piDims[0] = i;
             int iPos = getIndex(_piDims);
-            ostr << (get(iPos) ? L" T" : L" F");
+            ostr << (get(iPos) ? L"  T" : L"  F");
             ostr << std::endl;
         }
     }
@@ -266,7 +285,7 @@ bool Bool::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_iDi
         {
             ostr << std::endl << L"       column " << iLastCol + 1 << L" to " << getCols() << std::endl << std::endl;
         }
-        ostr << ostemp.str();
+        ostr << L" " << ostemp.str();
     }
 
     return true;

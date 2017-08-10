@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="ric_desc">
+    <refnamediv>
+        <refname>ric_desc</refname>
+        <refpurpose>リカッチ方程式</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>X=ric_desc(H [,E))
+            [X1,X2,zero]=ric_desc(H [,E])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>H,E</term>
+                <listitem>
+                    <para>実数正方行列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>X1,X2</term>
+                <listitem>
+                    <para>実数正方行列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>zero</term>
+                <listitem>
+                    <para>実数</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            ハミルトン行列を入力とするリカッチソルバ.
+        </para>
+        <para>
+            連続系の場合, 呼び出し手順は <literal>ric_descr(H)</literal> (1入力)となります:
+        </para>
+        <para>
+            リカッチ方程式は次のようになります:
+        </para>
+        <programlisting role=""><![CDATA[
+(Ec)   A'*X + X*A + X*R*X -Q = 0.
+ ]]></programlisting>
+        <para>
+            ハミルトン行列 <literal>H</literal> は次のように定義できます:
+        </para>
+        <programlisting role=""><![CDATA[
+H = [A  R;
+     Q -A']
+ ]]></programlisting>
+        <para>
+            呼び出し手順 <literal>[X1,X2,zero]=ric_descr(H)</literal>の場合,
+            解は<literal>X=X1/X2</literal>で得られます.
+        </para>
+        <para>
+            <literal>zero</literal> = (<literal>Ec</literal>)の右辺のL1ノルム
+        </para>
+        <para>
+            解<literal>X</literal> は, <literal>X=riccati(A,Q,R,'c'))</literal>
+            によっても得られます.
+        </para>
+        <para>
+            離散時間の場合, 呼び出し手順は <literal>ric_descr(H,E)</literal> (2入力)となります:
+        </para>
+        <para>
+            リカッチ解は以下のようになります:
+        </para>
+        <programlisting role=""><![CDATA[
+(Ed)  A'*X*A-(A'*X*B*(R+B'*X*B)^-1)*(B'*X*A)+C-X = 0.
+ ]]></programlisting>
+        <para>
+            <literal>G=B/R*B'</literal>と定義すると,
+            ハミルトン行列のペンシル<literal>(E,H)</literal>は
+            以下のようになります:
+        </para>
+        <programlisting role=""><![CDATA[
+E=[eye(n,n),G;               H=[A, 0*ones(n,n);
+   0*ones(n,n),A']             -C, eye(n,n)];
+ ]]></programlisting>
+        <para>
+            呼び出し手順  <literal>[X1,X2,err]=ric_descr(H,E)</literal>の場合,
+            <literal>X</literal>の解は<literal>X=X1/X2</literal>で得られます.
+        </para>
+        <para>
+            <literal>zero</literal>= (<literal>Ed</literal>)の右辺のL1ノルム
+        </para>
+        <para>
+            解 <literal>X</literal> <literal>X=riccati(A,G,C,'d')</literal>
+            'ただし,<literal>G=B/R*B'</literal>) によっても得られます.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="riccati">riccati</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

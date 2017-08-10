@@ -4,11 +4,14 @@
  * Copyright (C) 2011 - DIGITEO - Manuel Juliachs
  * Copyright (C) 2013-2014 - Scilab Enterprises - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  */
 
 package org.scilab.modules.renderer.JoGLView.axes.ruler;
@@ -43,6 +46,7 @@ import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
 import java.awt.Dimension;
 import java.nio.FloatBuffer;
 import java.text.DecimalFormat;
+import java.text.FieldPosition;
 import java.util.Arrays;
 import java.util.List;
 
@@ -574,7 +578,7 @@ public class AxesRulerDrawer {
         AxesRulerSpriteFactory.setScilabStyle(format);
         String[] r = new String[values.length];
         for (int i = 0; i < values.length; i++) {
-            r[i] = format.format(values[i]);
+            r[i] = format.format(values[i], new StringBuffer(), new FieldPosition(0)).toString();
         }
         return r;
     }

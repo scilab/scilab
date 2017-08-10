@@ -3,11 +3,14 @@
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -123,7 +126,7 @@ void intArrayCopy(int dest[], const int src[], int nbElement)
     memcpy( dest, src, nbElement * sizeof(int) ) ;
 }
 /*------------------------------------------------------------------------*/
-void stringArrayCopy(char * dest[], char * src[], int nbElement)
+BOOL stringArrayCopy(char * dest[], char * src[], int nbElement)
 {
     int i = 0;
     for ( i = 0 ; i < nbElement ; i++ )
@@ -136,11 +139,12 @@ void stringArrayCopy(char * dest[], char * src[], int nbElement)
         if ( dest[i] == NULL )
         {
             destroyStringArray( dest, nbElement ) ;
-            return ;
+            return FALSE;
         }
 
         strcpy( dest[i], src[i] ) ;
     }
+    return TRUE;
 }
 /*------------------------------------------------------------------------*/
 void setDoubleArraySingleValue(double dest[], double value, int nbElement)
@@ -217,9 +221,15 @@ char ** createStringArrayCopy(char * src[], int nbElement)
         return NULL ;
     }
 
-    stringArrayCopy( res, src, nbElement ) ;
+    if ( stringArrayCopy( res, src, nbElement ) )
+    {
+        return res ;
+    }
+    else
+    {
+        return NULL;
+    }
 
-    return res ;
 
 }
 /*--------------------------------------------------------------------------*/

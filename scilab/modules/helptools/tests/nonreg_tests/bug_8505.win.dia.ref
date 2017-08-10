@@ -26,12 +26,8 @@ pathDest = TMPDIR + filesep() + dir_with_space + filesep();
 mkdir(TMPDIR, dir_with_space);
 mputl(help_skeleton("bug_8505"), pathDest + "bug_8505.xml");
 r = xmltojar(pathDest, "bug help");
-
 Building the master document:
 	TMPDIR\directory with space\
-
 Building the manual file [javaHelp] in TMPDIR\directory with space\.
- 
- Generate image ./bug_8505_1.png from Scilab code from file bug_8505.xm 
-      l                                                                 
+Generate image ./bug_8505_1.png from Scilab code from file bug_8505.xml
 if ~isfile(r) then bugmes();quit;end

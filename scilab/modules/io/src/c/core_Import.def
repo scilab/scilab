@@ -5,20 +5,6 @@ EXPORTS
 ;
 ;core
 ;
-callFunctionFromGateway
-com_
-putlhsvar_
-freeArrayOfString
-checklhs_
-checkrhs_
-createvarfromptr_
-iop_
-createvar_
-getrhsvar_
-vartype_
-dynamic_setenvtcl
-overload_
-getWarningMode
 MyHeapAlloc
 MyHeapFree
 

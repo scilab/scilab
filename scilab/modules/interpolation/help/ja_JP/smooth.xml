@@ -35,7 +35,7 @@
         <title>説明</title>
         <para>
             この関数は,指定した点集合についてスプライン関数により補間を行います.
-            座標は,<literal>(ptd(1,i),ptd(2,i))</literal>です. 
+            座標は,<literal>(ptd(1,i),ptd(2,i))</literal>です.
             要素
             <literal>ptd(1,:)</literal> は昇順とする必要があります. 刻みのデフォルト値は
             <literal>abs(maxi(ptd(1,:))-mini(ptd(1,:)))/100</literal>です.
@@ -43,7 +43,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 x=[1 10 20 30 40];
 y=[1 30 -10 20 40];
 plot2d(x',y',[3],"011"," ",[-10,-40,50,50]);

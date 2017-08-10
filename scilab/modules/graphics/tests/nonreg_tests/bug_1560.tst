@@ -37,7 +37,7 @@ hs10.data,
 ha.rotation_angles = [0,270];
 hs10.data (1,3) =-0.30;  // z1 
 hs10.data (2,3) =-0.40;  // z2
-hs10.data,	
+hs10.data,
 
 ha.rotation_angles = [0,0];
 

@@ -5,7 +5,7 @@
         <refpurpose>polynomial definition</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>p = poly(a, vname, ["flag"])</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -99,7 +99,7 @@ h=(1+2*%s)/poly(1:4,'s','coeff')
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="coeff">coeff</link>

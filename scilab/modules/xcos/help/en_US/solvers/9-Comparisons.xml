@@ -3,11 +3,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) Scilab Enterprises - 2012 - Paul Bignier
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.
- * The terms are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg"  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en_US" xml:id="Comparisons">
     <refnamediv>
@@ -68,6 +71,7 @@
                 <member>Runge-Kutta 4(5)</member>
                 <member>Dormand-Prince 4(5)</member>
                 <member>Implicit Runge-Kutta 4(5)</member>
+                <member>Crank-Nicolson 2(3)</member>
             </simplelist>
         </para>
         <para>
@@ -90,6 +94,7 @@
                 <member>CVode</member>
                 <member>IDA</member>
                 <member>Implicit Runge-Kutta 4(5)</member>
+                <member>Crank-Nicolson 2(3)</member>
             </simplelist>
             <emphasis role="bold">Explicit</emphasis> solvers:
             <simplelist>
@@ -100,7 +105,7 @@
         <para>
             To put it simply, the <emphasis>Explicit</emphasis> go straight to a computation of the solution, whereas the <emphasis>Implicit</emphasis> concentrate on stability, involving more operations, following the tolerances.
         </para>
-        <title>So how to choose ?</title>
+        <title>So how to choose?</title>
         <para>
             Because it is not possible to know for sure whether a solver will be efficient for a given system or not, the best way is to run the most probable one on it and to compare their results.
         </para>
@@ -110,13 +115,13 @@
                 <emphasis role="bold">Precision:</emphasis> <emphasis>CVode</emphasis>,
             </para>
             <para>
-                <emphasis role="bold">Predictable time:</emphasis> Fixed-size step.
+                <emphasis role="bold">Predictable time:</emphasis> Fixed-size step,
             </para>
             <para>
                 <emphasis role="bold">Simulation time:</emphasis> <emphasis>LSodar</emphasis>,
             </para>
             <para>
-                <emphasis role="bold">Automated:</emphasis> <emphasis>LSodar</emphasis>,
+                <emphasis role="bold">Automated:</emphasis> <emphasis>LSodar</emphasis>.
             </para>
         </para>
     </refsection>
@@ -142,7 +147,7 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
 ]]></scilab:image>
         </para>
         <para>
-            In the following script, we compare the time difference between the solvers by running the example with the eight solvers in turn (<emphasis>IDA</emphasis> doesn't handle this kind of problem):
+            In the following script, we compare the time difference between the solvers by running the example with the nine solvers in turn (<emphasis>IDA</emphasis> doesn't handle this kind of problem):
             <link type="scilab" linkend ="scilab.scinotes/xcos/examples/solvers/benchSine.sce">
                 Open the script
             </link>
@@ -173,6 +178,9 @@ Time for Runge-Kutta:
 
 Time for implicit Runge-Kutta:
  10.881
+
+Time for Crank-Nicolson:
+ 7.856
             ]]></screen>
         </para>
         <para>
@@ -209,6 +217,9 @@ Time for implicit Runge-Kutta:
                     <td align="center">
                         <emphasis>Implicit Runge-Kutta</emphasis>
                     </td>
+                    <td align="center">
+                        <emphasis>Crank-Nicolson</emphasis>
+                    </td>
                 </tr>
                 <tr>
                     <td align="center">
@@ -221,6 +232,7 @@ Time for implicit Runge-Kutta:
                     <td align="center"> 1.3x </td>
                     <td align="center"> 0.75x </td>
                     <td align="center"> 1.08x </td>
+                    <td align="center"> .07x </td>
                 </tr>
                 <tr>
                     <td align="center">
@@ -233,6 +245,7 @@ Time for implicit Runge-Kutta:
                     <td align="center"> 0.4x </td>
                     <td align="center"> 0.25x </td>
                     <td align="center"> 0.35x </td>
+                    <td align="center"> 0.23x </td>
                 </tr>
                 <tr>
                     <td align="center">
@@ -245,6 +258,7 @@ Time for implicit Runge-Kutta:
                     <td align="center"> 0.4x </td>
                     <td align="center"> 0.25x </td>
                     <td align="center"> 0.4x </td>
+                    <td align="center"> 0.24x </td>
                 </tr>
                 <tr>
                     <td align="center">
@@ -257,6 +271,7 @@ Time for implicit Runge-Kutta:
                     <td align="center"> 0.75x </td>
                     <td align="center"> 0.45x </td>
                     <td align="center"> 0.6x </td>
+                    <td align="center"> 0.42x </td>
                 </tr>
                 <tr>
                     <td align="center">
@@ -269,6 +284,7 @@ Time for implicit Runge-Kutta:
                     <td align="center"> 0.8x </td>
                     <td align="center"> 0.5x </td>
                     <td align="center"> 0.7x </td>
+                    <td align="center"> 0.45x </td>
                 </tr>
                 <tr>
                     <td align="center">
@@ -281,6 +297,7 @@ Time for implicit Runge-Kutta:
                     <td align="center"> </td>
                     <td align="center"> 0.6x </td>
                     <td align="center"> 0.8x </td>
+                    <td align="center"> 0.56x </td>
                 </tr>
                 <tr>
                     <td align="center">
@@ -293,6 +310,20 @@ Time for implicit Runge-Kutta:
                     <td align="center"> </td>
                     <td align="center"> </td>
                     <td align="center"> 1.4x </td>
+                    <td align="center"> 0.95x </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <emphasis>Implicit Runge-Kutta</emphasis>
+                    </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> 0.67x </td>
                 </tr>
             </informaltable>
         </para>
@@ -314,7 +345,7 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
 ]]></scilab:image>
         </para>
         <para>
-            In the following script, we compare the time difference between the solvers by running the example with the eight solvers in turn (<emphasis>IDA</emphasis> doesn't handle this kind of problem):
+            In the following script, we compare the time difference between the solvers by running the example with the nine solvers in turn (<emphasis>IDA</emphasis> doesn't handle this kind of problem):
             <link type="scilab" linkend ="scilab.scinotes/xcos/examples/solvers/benchBasic.sce">
                 Open the script
             </link>
@@ -345,6 +376,9 @@ Time for Runge-Kutta:
 
 Time for implicit Runge-Kutta:
  5.612
+
+Time for Crank-Nicolson:
+ 3.345
             ]]></screen>
         </para>
         <para>
@@ -378,6 +412,9 @@ Time for implicit Runge-Kutta:
                     <td align="center">
                         <emphasis>Implicit Runge-Kutta</emphasis>
                     </td>
+                    <td align="center">
+                        <emphasis>Crank-Nicolson</emphasis>
+                    </td>
                 </tr>
                 <tr>
                     <td align="center">
@@ -390,6 +427,7 @@ Time for implicit Runge-Kutta:
                     <td align="center"> 0.2x </td>
                     <td align="center"> 0.17x </td>
                     <td align="center"> 0.5x </td>
+                    <td align="center"> 0.33x </td>
                 </tr>
                 <tr>
                     <td align="center">
@@ -402,6 +440,7 @@ Time for implicit Runge-Kutta:
                     <td align="center"> 0.1x </td>
                     <td align="center"> 0.05x </td>
                     <td align="center"> 0.2x </td>
+                    <td align="center"> 0.12x </td>
                 </tr>
                 <tr>
                     <td align="center">
@@ -414,6 +453,7 @@ Time for implicit Runge-Kutta:
                     <td align="center"> 0.1x </td>
                     <td align="center"> 0.07x </td>
                     <td align="center"> 0.2x </td>
+                    <td align="center"> 0.13x </td>
                 </tr>
                 <tr>
                     <td align="center">
@@ -426,6 +466,7 @@ Time for implicit Runge-Kutta:
                     <td align="center"> 0.15x </td>
                     <td align="center"> 0.1x </td>
                     <td align="center"> 0.4x </td>
+                    <td align="center"> 0.22x </td>
                 </tr>
                 <tr>
                     <td align="center">
@@ -438,6 +479,7 @@ Time for implicit Runge-Kutta:
                     <td align="center"> 0.2x </td>
                     <td align="center"> 0.1x </td>
                     <td align="center"> 0.5x </td>
+                    <td align="center"> 0.28x </td>
                 </tr>
                 <tr>
                     <td align="center">
@@ -450,6 +492,7 @@ Time for implicit Runge-Kutta:
                     <td align="center"> </td>
                     <td align="center"> 0.7x </td>
                     <td align="center"> 2.4x </td>
+                    <td align="center"> 1.42x </td>
                 </tr>
                 <tr>
                     <td align="center">
@@ -462,6 +505,20 @@ Time for implicit Runge-Kutta:
                     <td align="center"> </td>
                     <td align="center"> </td>
                     <td align="center"> 3.4x </td>
+                    <td align="center"> 2x </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <emphasis>Implicit Runge-Kutta</emphasis>
+                    </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> 0.6x </td>
                 </tr>
             </informaltable>
         </para>
@@ -483,7 +540,7 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
 ]]></scilab:image>
         </para>
         <para>
-            In the following script, we compare the time difference between the solvers by running the example with the eight solvers in turn (<emphasis>IDA</emphasis> doesn't handle this kind of problem):
+            In the following script, we compare the time difference between the solvers by running the example with the nine solvers in turn (<emphasis>IDA</emphasis> doesn't handle this kind of problem):
             <link type="scilab" linkend ="scilab.scinotes/xcos/examples/solvers/benchKalman.sce">
                 Open the script
             </link>
@@ -514,6 +571,9 @@ Time for Runge-Kutta:
 
 Time for implicit Runge-Kutta:
  4
+
+Time for Crank-Nicolson:
+ 2.657
             ]]></screen>
         </para>
         <para>
@@ -547,6 +607,9 @@ Time for implicit Runge-Kutta:
                     <td align="center">
                         <emphasis>Implicit Runge-Kutta</emphasis>
                     </td>
+                    <td align="center">
+                        <emphasis>Crank-Nicolson</emphasis>
+                    </td>
                 </tr>
                 <tr>
                     <td align="center">
@@ -559,6 +622,7 @@ Time for implicit Runge-Kutta:
                     <td align="center"> 0.1x </td>
                     <td align="center"> 0.1x </td>
                     <td align="center"> 0.4x </td>
+                    <td align="center"> 0.26x </td>
                 </tr>
                 <tr>
                     <td align="center">
@@ -571,6 +635,7 @@ Time for implicit Runge-Kutta:
                     <td align="center"> 0.06x </td>
                     <td align="center"> 0.05x </td>
                     <td align="center"> 0.2x </td>
+                    <td align="center"> 0.12x </td>
                 </tr>
                 <tr>
                     <td align="center">
@@ -583,6 +648,7 @@ Time for implicit Runge-Kutta:
                     <td align="center"> 0.08x </td>
                     <td align="center"> 0.06x </td>
                     <td align="center"> 0.25x </td>
+                    <td align="center"> 0.17x </td>
                 </tr>
                 <tr>
                     <td align="center">
@@ -595,6 +661,7 @@ Time for implicit Runge-Kutta:
                     <td align="center"> 0.1x </td>
                     <td align="center"> 0.07x </td>
                     <td align="center"> 0.3x </td>
+                    <td align="center"> 0.21x </td>
                 </tr>
                 <tr>
                     <td align="center">
@@ -607,6 +674,7 @@ Time for implicit Runge-Kutta:
                     <td align="center"> 0.15x </td>
                     <td align="center"> 0.1x </td>
                     <td align="center"> 0.5x </td>
+                    <td align="center"> 0.3x </td>
                 </tr>
                 <tr>
                     <td align="center">
@@ -619,6 +687,7 @@ Time for implicit Runge-Kutta:
                     <td align="center"> </td>
                     <td align="center"> 0.7x </td>
                     <td align="center"> 3.2x </td>
+                    <td align="center"> 2.1x </td>
                 </tr>
                 <tr>
                     <td align="center">
@@ -631,6 +700,20 @@ Time for implicit Runge-Kutta:
                     <td align="center"> </td>
                     <td align="center"> </td>
                     <td align="center"> 4.6x </td>
+                    <td align="center"> 3.1x </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <emphasis>Implicit Runge-Kutta</emphasis>
+                    </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> 0.66x </td>
                 </tr>
             </informaltable>
         </para>
@@ -783,7 +866,7 @@ Time for DDaskr - GMRes:
         </para>
     </refsection>
     <refsection>
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="LSodar">LSodar</link>
@@ -804,6 +887,9 @@ Time for DDaskr - GMRes:
                 <link linkend="ImpRK">Implicit Runge-Kutta 4(5)</link>
             </member>
             <member>
+                <link linkend="CRANI">Crank-Nicolson 2(3)</link>
+            </member>
+            <member>
                 <link linkend="DDaskr">DDaskr</link>
             </member>
             <member>
@@ -813,7 +899,7 @@ Time for DDaskr - GMRes:
                 <link linkend="ode_discrete">ode_discrete</link>
             </member>
             <member>
-                <link linkend="ode_root">ode_root</link>
+                <link linkend="ode_roots">ode_roots</link>
             </member>
             <member>
                 <link linkend="odedc">odedc</link>

@@ -3,39 +3,59 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * Copyright (C) 2010 - DIGITEO - Allan CORNET
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="percenthelps">
     <refnamediv>
         <refname>%helps</refname>
-        <refpurpose>Variable defining the path of help directories</refpurpose>
+        <refpurpose>
+            global variable: paths to help directories of loaded external modules
+        </refpurpose>
     </refnamediv>
-    <refsection>
+    <refsection role="description">
         <title>Description</title>
-        <para>BEWARE: This variable must NOT be modified by users.</para>
         <para>
-            The global variable <literal>%helps</literal> is an N x 2 matrix of strings. 
-            The kth row of <literal>%helps</literal>, <literal>%helps(k,:)</literal> represents
-            the kth chapter of the manual and is made of two strings:
+            The global variable <literal>%helps</literal> is an N x 2 matrix of strings.
+            Each row refers to the help chapter of a loaded external module:
+            <itemizedlist>
+               <listitem>
+                   <literal>%helps(k,1)</literal> is the absolute pathname to its help directory.
+               </listitem>
+               <listitem>
+                   <literal>%helps(k,2)</literal> is the title of its help chapter.
+               </listitem>
+            </itemizedlist>
         </para>
-        <para>
-            <literal>%helps(k,1)</literal> is the absolute pathname for a help directory.
-        </para>
-        <para>
-            <literal>%helps(k,2)</literal> is a title for this help directory.
-        </para>
-        <para>
-            To add a new help directory, the user should use <literal>add_help_chapter</literal>.
-        </para>
+        <warning>
+          This variable must NOT be modified by hand. <literal>add_help_chapter</literal>
+          must be used to add a new help chapter and update <literal>%helps</literal>.
+        </warning>
+    </refsection>
+    <refsection role="examples">
+       <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+global %helps  // This instruction creates a local %helps variable connected to the global one
+%helps
+if %helps==[]                    // No help chapter is registered for any external module
+    if atomsGetInstalled()==[]   // If no external module is installed
+        atomsInstall uman;       //  we install the "uman" one (available for all plateforms)
+    end
+    atomsLoad(atomsGetInstalled()(1));  // We load the first module, included its help pages
+    %helps                       // Now the external chapter should be registered
+end
+      ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="add_help_chapter">add_help_chapter</link>

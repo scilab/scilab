@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Farid Belahcene
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="barh">
@@ -16,7 +19,7 @@
         <refpurpose>horizontal display of bar histogram</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>barh(y)
             barh(x,y)
             barh([h],x,y [,width [,color [,style]]])
@@ -34,7 +37,7 @@
             <varlistentry>
                 <term>y</term>
                 <listitem>
-                    <para>a real scalar, vector of size N, or a matrice N*M.</para>
+                    <para>a real scalar, vector of size N, or a matrix N*M.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -108,13 +111,13 @@
         </para>
         <para>
             If there are several bar calls, the <literal>barhomogenize</literal> function
-            allows to homegenize the width and style of all bars (i.e polylines of
+            allows to homogenize the width and style of all bars (i.e polylines of
             type 6) included in the current working axes.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // First example: draw a bar (i.e a polyline with polyline_style type =6),default style='grouped', width=0.5, color='yellow', default x=1:length(y)
 scf(0);
 y=[1 -3 5];
@@ -124,7 +127,7 @@ barh(y,0.5,'yellow');
             y=[1 -3 5];
             barh(y,0.5,'yellow');
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Second example: draw 3 bars (i.e 3 polylines with polyline_style type =6),default style='grouped'
 scf(1);
 x=[1 2 5];
@@ -136,7 +139,7 @@ barh(x,y);
             y=[1  -5 6;3 -2 7;4  -3 8];
             barh(x,y);
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Third example : style='stacked'.
 scf(2);
 x=[1 2 5];
@@ -148,7 +151,7 @@ barh(x,y,'stacked');
             y=[1 4 7;2 5 8;3 6  9];
             barh(x,y,'stacked');
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Fourth example: width=0.2;color='green'; default style='grouped'
 scf(3);
 x=[1 2 5];
@@ -162,7 +165,7 @@ barh(x,y,0.2,'green');
         </scilab:image>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="bar">bar</link>

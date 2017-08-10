@@ -4,11 +4,14 @@
  * Copyright (C) 2011 - DIGITEO - Vincent COUVERT
  * Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -431,6 +434,13 @@ public class Uicontrol extends GraphicObject {
     protected static final String DEFAULT_FONTANGLE = "normal";
     private static final String STRING_SEPARATOR = "|";
 
+    /*default font properties*/
+    private static String defaultFontName = "";
+    private static String defaultFontWeight = "";
+    private static double defaultFontSize = 0;
+    private static String defaultFontAngle = "";
+    private static String defaultFontUnits = "";
+    
     private UicontrolStyle style;
     private Double[] backgroundColor = { -1.0, -1.0, -1.0};
     private Boolean enable = true;
@@ -482,7 +492,7 @@ public class Uicontrol extends GraphicObject {
     private TitlePositionType titlePosition = TitlePositionType.TOP;
 
     private EventHandler eventHandler;
-    
+
     /**
      * All uicontrol properties
      */
@@ -1727,19 +1737,42 @@ public class Uicontrol extends GraphicObject {
             return;
         }
 
-        setFontName(font.getName());
-        setFontSize(font.getSize());
-
-        if (font.isItalic()) {
-            setFontAngle("italic");
+        if(getDefaultFontName().equals("")) {
+            setFontName(font.getName());
         } else {
-            setFontAngle("normal");
+            setFontName(getDefaultFontName());
         }
-
-        if (font.isBold()) {
-            setFontWeight("bold");
+        
+        if(getDefaultFontSize() == 0) {
+            setFontSize(font.getSize());
         } else {
-            setFontWeight("normal");
+            setFontSize(getDefaultFontSize());
+        }
+        
+        
+        if(getDefaultFontAngle().equals("")) {
+            if (font.isItalic()) {
+                setFontAngle("italic");
+            } else {
+                setFontAngle("normal");
+            }
+        } else {
+            setFontAngle(getDefaultFontAngle());
+        }
+        
+        
+        if(getDefaultFontWeight().equals("")) {
+            if (font.isBold()) {
+                setFontWeight("bold");
+            } else {
+                setFontWeight("normal");
+            }
+        } else {
+            setFontWeight(getDefaultFontWeight());
+        }
+        
+        if(getDefaultFontUnits().equals("") == false) {
+            setFontUnits(getDefaultFontUnits());
         }
     }
 
@@ -1763,15 +1796,71 @@ public class Uicontrol extends GraphicObject {
     public String getEventHandler() {
         return eventHandler.getEventHandlerString();
     }
-    
+
     public UpdateStatus setEventHandlerEnable(Boolean eventHandlerEnabled) {
         return eventHandler.setEventHandlerEnabled(eventHandlerEnabled);
     }
-    
+
     public boolean getEventHandlerEnable() {
         return eventHandler.getEventHandlerEnabled();
     }
-    
+
     public void accept(Visitor visitor) {
     }
+
+    /*
+    private static String defaultFontName = "";
+    */
+    public static void setDefaultFontName(String name) {
+        defaultFontName = name;
+    }
+
+    public static String getDefaultFontName() {
+        return defaultFontName;
+    }
+
+    /*
+    private static String defaultFontWeight = "";
+    */
+    public static void setDefaultFontWeight(String weight) {
+        defaultFontWeight = weight;
+    }
+
+    public static String getDefaultFontWeight() {
+        return defaultFontWeight;
+    }
+
+    /*
+    private static double defaultFontSize = 0;
+    */
+    public static void setDefaultFontSize(double size) {
+        defaultFontSize = size;
+    }
+
+    public static double getDefaultFontSize() {
+        return defaultFontSize;
+    }
+
+    /*
+    private static String defaultFontAngle = "";
+    */
+    public static void setDefaultFontAngle(String angle) {
+        defaultFontAngle = angle;
+    }
+
+    public static String getDefaultFontAngle() {
+        return defaultFontAngle;
+    }
+
+    /*
+    private static String defaultFontUnits = "";
+    */
+    public static void setDefaultFontUnits(String units) {
+        defaultFontUnits = units;
+    }
+
+    public static String getDefaultFontUnits() {
+        return defaultFontUnits;
+    }
+
 }

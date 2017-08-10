@@ -44,11 +44,11 @@ function [x,y,typ]=DIFF_c(job,arg1,arg2)
             xd0=xd0(:);
             Nxd=size(xd0,"*");
             if (N~=Nxd) then
-                message("Incompatible sizes: states and their derivatives should have the same size ")
+                messagebox("Incompatible sizes: states and their derivatives should have the same size")
                 ask_again=%t
             end
             if (N<=0 & ~ask_again) then
-                x_message("number of states must be > 0 ")
+                messagebox("Number of states must be > 0")
                 ask_again=%t
             end
 

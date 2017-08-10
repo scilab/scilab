@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="sciargs">
+    <refnamediv>
+        <refname>sciargs</refname>
+        <refpurpose>scilab command line arguments</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>args = sciargs()</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            This function returns a row vector of character strings containing the
+            arguments of the Scilab command line. First <literal>args</literal> entry contains
+            the path of the launched executable file.
+        </para>
+        <para>
+            This function corresponds to the <literal>getarg</literal> function in C language.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+args=sciargs()
+ ]]></programlisting>
+    </refsection>
+
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="getenv">getenv</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

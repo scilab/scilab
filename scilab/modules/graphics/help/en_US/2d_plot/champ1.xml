@@ -7,7 +7,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>champ1(x, y, fx, fy, [arfact, rect, strf])</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -111,7 +111,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 champ1(-5:5,-5:5,rand(11,11),rand(11,11),rect=[-10,-10,10,10],arfact=2)
  ]]></programlisting>
         <scilab:image>
@@ -137,7 +137,7 @@ champ1(x,y,fx',fy'); //here we have transposed fx and fy
         </scilab:image>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="champ">champ</link>

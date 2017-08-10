@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2014 - Scilab Enterprises - Cedric Delamarre
@@ -10,7 +11,7 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=13507
 //
 // <-- Short Description -->
-// Imaginary part in result of a power complex was missing.
+// Imaginary part in result of a complex power was missing.
 R = [1,2;3,4];
 c = 1 + 2*%i;
 computed = R ^ c;

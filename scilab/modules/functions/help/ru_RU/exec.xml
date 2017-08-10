@@ -5,7 +5,7 @@
         <refpurpose>исполнение файла-сценария</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>exec(path [,mode])
             exec(fun [,mode])
             ierr = exec(path, 'errcatch' [,mode])

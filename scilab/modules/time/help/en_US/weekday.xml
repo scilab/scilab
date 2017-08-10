@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="weekday">
@@ -16,7 +19,7 @@
         <refpurpose>Return day of week</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[N,S] = weekday(D)
             [N,S] = weekday(D, form)
         </synopsis>
@@ -24,11 +27,11 @@
     <refsection>
         <title>Description</title>
         <para>[N,S] = weekday(D) returns the day of the week in numeric(N) and string(S) form for a given serial date number or date string D. Input argument D can represent more than one date in an array of serial date number.</para>
-        <para>[N,S] = weekday(D, form) returns the week in numeric(N) and string(S) form, where the content of S depends on the form argument. If form is 'long', then S countains the full name of the weekday (e.g, Thuesday). If form is 'short', then S contains an abbreviated name (e.g., Tue) from this table.</para>
+        <para>[N,S] = weekday(D, form) returns the week in numeric(N) and string(S) form, where the content of S depends on the form argument. If form is 'long', then S contains the full name of the weekday (e.g, Tuesday). If form is 'short', then S contains an abbreviated name (e.g., Tue) from this table.</para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 today = datenum();
 [N,S] = weekday(today)
 [N,S] = weekday(today,'short')
@@ -36,7 +39,7 @@ today = datenum();
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="datenum">datenum</link>

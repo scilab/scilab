@@ -2,88 +2,91 @@
 
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="strings">
-    
+
     <refnamediv>
-        
+
         <refname>strings</refname>
-        
+
         <refpurpose>Scilabオブジェクト, 文字列</refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsection>
-        
+
         <title>説明</title>
-        
+
         <para>
-            
+
             文字列は <code>'string'</code> (引用符で括る) または
-            
+
             <code>"string"</code> (二重引用符で括る)と定義されます;
-            
+
             文字列の行列は通常の定数行列と同様に定義されます.
-            
+
         </para>
-        
+
         <para>
-            
-            2つの文字列の結合は <literal>+</literal> により作成されます: 
-            
+
+            2つの文字列の結合は <literal>+</literal> により作成されます:
+
             <code>string1 + string2</code>.
-            
+
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>例</title>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
 ['this','is'; 'a 2x2','matrix']
 "matrix"=="mat"+"rix"
  ]]></programlisting>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>S参照</title>
-        
+
         <simplelist type="inline">
-            
+
             <member>
-                
+
                 <link linkend="part">part</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="length">length</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="strcat">strcat</link>
-                
+
             </member>
-            
+
         </simplelist>
-        
+
     </refsection>
-    
+
 </refentry>
 

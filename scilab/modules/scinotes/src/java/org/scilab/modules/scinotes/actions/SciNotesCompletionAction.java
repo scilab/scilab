@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -309,17 +312,17 @@ public final class SciNotesCompletionAction extends CompletionAction {
                     System.err.println(e);
                 }
 
-                String[] scilabHandlesDictionnary = Completion.searchHandleGraphicsPropertiesDictionary(searchedPattern);
+                String[] scilabHandlesDictionary = Completion.searchHandleGraphicsPropertiesDictionary(searchedPattern);
                 String type = Messages.gettext("Graphics handle field");
 
                 list = new ArrayList<CompletionItem>();
-                if (scilabHandlesDictionnary != null) {
-                    for (String item : scilabHandlesDictionnary) {
-                        dictionnary.add(new CompletionItemImpl(type, item + " (" + type + ")", item, Messages.gettext("No help")));
+                if (scilabHandlesDictionary != null) {
+                    for (String item : scilabHandlesDictionary) {
+                        dictionary.add(new CompletionItemImpl(type, item + " (" + type + ")", item, Messages.gettext("No help")));
                     }
                 }
 
-                return dictionnary;
+                return dictionary;
             }
             return list;
         }

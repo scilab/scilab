@@ -1,401 +1,202 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="fft">
-    
     <refnamediv>
-        
         <refname>fft</refname>
-        
         <refpurpose>高速フーリエ変換</refpurpose>
-        
     </refnamediv>
-    
     <refnamediv xml:id="ifft">
-        
         <refname>ifft</refname>
-        
         <refpurpose>高速フーリエ逆変換</refpurpose>
-        
     </refnamediv>
-    
     <refsynopsisdiv>
-        
         <title>呼び出し手順</title>
-        
         <synopsis>X=fft(A [,sign] [,option])
-            
             X=fft(A,sign,selection  [,option])
-            
             X=fft(A,sign,dims,incr [,option] )
-            
         </synopsis>
-        
     </refsynopsisdiv>
-    
     <refsection>
-        
         <title>パラメータ</title>
-        
         <variablelist>
-            
             <varlistentry>
-                
                 <term>A</term>
-                
                 <listitem>
-                    
                     <para>
-                        
-                        実数または複素数ベクトル, 
-                        
+                        実数または複素数ベクトル,
                         実数または複素数配列(ベクトル, 行列またはN-D配列).
-                        
                     </para>
-                    
                 </listitem>
-                
             </varlistentry>
-            
             <varlistentry>
-                
                 <term>X</term>
-                
                 <listitem>
-                    
                     <para>
-                        
                         <literal>A</literal>と同じ形状の実数または複素数配列
-                        
                     </para>
-                    
                 </listitem>
-                
             </varlistentry>
-            
             <varlistentry>
-                
                 <term>sign</term>
-                
                 <listitem>
-                    
                     an integer. with possible values <literal>1</literal> or
-                    
                     <literal>-1</literal>. Select direct or inverse
-                    
                     transform. The default value is <literal>-1</literal>
-                    
                     (direct transform).
-                    
                 </listitem>
-                
             </varlistentry>
-            
             <varlistentry>
-                
                 <term>option</term>
-                
                 <listitem>
-                    
                     文字列. 指定可能な値は
-                    
                     <literal>"symmetric"</literal> または
-                    
-                    <literal>"nonsymmetric"</literal>です. 
-                    
+                    <literal>"nonsymmetric"</literal>です.
                     <literal>A</literal>が対称かどうかを示します.
-                    
                     この引数が省略された場合,アルゴリズムは
-                    
                     <literal>A</literal>が対称かどうかを自動的に定義します.
-                    
                     詳細は説明のパートを参照ください.
-                    
                 </listitem>
-                
             </varlistentry>
-            
             <varlistentry>
-                
                 <term>selection</term>
-                
                 <listitem>
-                    
                     <literal>A</literal> 配列の次元の添字を有するベクトル.
-                    
-                    詳細は説明のパートを参照ください.		  
-                    
+                    詳細は説明のパートを参照ください.
                 </listitem>
-                
             </varlistentry>
-            
             <varlistentry>
-                
                 <term>dims</term>
-                
                 <listitem>
-                    
                     整数値を有する正の数のベクトルまたは正の整数値のベクトル.
-                    
-                    詳細は説明のパートを参照ください.		  
-                    
+                    詳細は説明のパートを参照ください.
                     <para>
-                        
                         各要素は<literal>A</literal>の要素の総数の約数とする
-                        
                         必要があります.
-                        
                     </para>
-                    
                     <para>
-                        
                         要素の積は<literal>A</literal>の全要素数より
-                        
                         少ない必要があります.
-                        
                     </para>
-                    
                 </listitem>
-                
             </varlistentry>
-            
             <varlistentry>
-                
                 <term>incr</term>
-                
                 <listitem>
-                    
                     整数値を有する正の数のベクトルまたは正の整数値のベクトル.
-                    
-                    詳細は説明のパートを参照ください.		  
-                    
+                    詳細は説明のパートを参照ください.
                     <para>
-                        
                         <literal>incr</literal> は,
-                        
                         <literal>dims</literal>と同じ要素数とする必要があります.
-                        
                     </para>
-                    
                     <para>
-                        
                         各要素は
-                        
                         <literal>A</literal>の全要素数の約数とする必要があります.
-                        
                     </para>
-                    
                     <para>
-                        
                         <literal>incr</literal>要素は厳密に昇順とする必要があります.
-                        
                     </para>
-                    
                 </listitem>
-                
             </varlistentry>
-            
         </variablelist>
-        
     </refsection>
-    
     <refsection>
-        
         <title>説明</title>
-        
         この関数は直接または逆の1次元またはN次元離散フーリエ変換を
-        
         行います.
-        
         <variablelist>
-            
             <varlistentry>
-                
                 <term>短縮構文 </term>
-                
                 <listitem>
-                    
                     <variablelist>
-                        
                         <varlistentry>
-                            
                             <term>直接</term>
-                            
                             <listitem>
-                                
                                 <literal>X=fft(A,-1 [,option])</literal> または
-                                
                                 <literal>X=fft(A [,option])</literal>
-                                
                                 は直接変換を出力します.
-                                
                                 <variablelist>
-                                    
                                     <varlistentry>
-                                        
                                         <term>単一変量</term>
-                                        
                                         <listitem>
-                                            
                                             <para>
-                                                
                                                 <literal>A</literal> が単一変量のベクトルの場合,
-                                                
                                                 次のように直接FFTが計算されます:
-                                                
                                             </para>
-                                            
                                             <para>
-                                                
                                                 <latex>
-                                                    
                                                     $x(k) = \sum_{m=1}^n {a(m)*e^{-\frac{2i*\pi}{n}(m-1) (k-1)}$
-                                                    
                                                 </latex>
-                                                
                                             </para>
-                                            
                                             <para>
-                                                
-                                                (引数<literal>-1</literal>は指数の符号を示しており, 
-                                                
+                                                (引数<literal>-1</literal>は指数の符号を示しており,
                                                 "逆"ではありません),
-                                                
                                             </para>
-                                            
                                         </listitem>
-                                        
                                     </varlistentry>
-                                    
-                                    
-                                    
                                     <varlistentry>
-                                        
                                         <term>多変量</term>
-                                        
                                         <listitem>
-                                            
                                             <para>
-                                                
                                                 <literal>A</literal>が行列または多次元配列の場合,
-                                                
                                                 多変量直接FFTが行われます.
-                                                
                                             </para>
-                                            
                                         </listitem>
-                                        
                                     </varlistentry>
-                                    
                                 </variablelist>
-                                
                             </listitem>
-                            
                         </varlistentry>
-                        
                         <varlistentry>
-                            
                             <term>逆</term>
-                            
                             <listitem>
-                                
                                 <para>
-                                    
                                     <literal>X=fft(A,1)</literal>または
-                                    
                                     <literal>X=ifft(A)</literal> は,
-                                    
                                     <literal>A==ifft(fft(A))</literal>のような
-                                    
                                     正規化された逆変換を実行します.
-                                    
                                 </para>
-                                
                                 <variablelist>
-                                    
                                     <varlistentry>
-                                        
                                         <term>単一変量</term>
-                                        
                                         <listitem>
-                                            
                                             <literal>A</literal> がベクトルの場合,
-                                            
-                                            単一変量逆FFTが実行されます. 
-                                            
+                                            単一変量逆FFTが実行されます.
                                             <para>
-                                                
                                                 <latex>
-                                                    
                                                     $x(k) = \sum_{m=1}^n
-                                                    
                                                     {a(m)*e^{+\frac{2i*\pi}{n} (m-1) (k-1)}$
-                                                    
                                                 </latex>
-                                                
                                             </para>
-                                            
                                         </listitem>
-                                        
                                     </varlistentry>
-                                    
                                     <varlistentry>
-                                        
                                         <term>多変量</term>
-                                        
                                         <listitem>
-                                            
                                             <para>
-                                                
                                                 <literal>A</literal>が行列または多次元配列の場合,
-                                                
                                                 多変量逆FFTが実行されます.
-                                                
                                             </para>
-                                            
                                         </listitem>
-                                        
                                     </varlistentry>
-                                    
                                 </variablelist>
-                                
                             </listitem>
-                            
                         </varlistentry>
-                        
                     </variablelist>
-                    
                 </listitem>
-                
             </varlistentry>
-            
             <varlistentry>
-                
                 <term>多次元FFTの長い構文</term>
-                
                 <listitem>
-                    
                     <itemizedlist>
-                        
                         <listitem>
-                            
                             <para>
-                                
                                 <literal>X=fft(A,sign,selection [,option])</literal>
-                                
                                 により,選択した次元方向の<literal>A</literal>の
-                                
                                 "スライス"の直接または逆fftを効率的に実行することができます.
-                                
                             </para>
-                            
                             <para>
-                                
                                 例えば,<literal>A</literal> が3次元配列の場合,
-                                
                                 <literal>X=fft(A,-1,2)</literal>は以下と等価です:
-                                
                             </para>
-                            
                             <programlisting role=""><![CDATA[
 for i1=1:size(A,1)
   for i3=1:size(A,3)
@@ -403,198 +204,103 @@ for i1=1:size(A,1)
   end
 end
               ]]></programlisting>
-                            
                             <para>
-                                
                                 <literal>X=fft(A,-1,[1 3])</literal>は以下と等価です:
-                                
                             </para>
-                            
                             <programlisting role=""><![CDATA[
 for i2=1:size(A,2)
   X(:,i2,:)=fft(A(:,i2,:),-1);
 end
               ]]></programlisting>
-                            
                         </listitem>
-                        
                         <listitem>
-                            
                             <para>
-                                
                                 前記の構文,
-                                
                                 <literal>X=fft(A,sign,dims,incr [,option])</literal> は,
-                                
                                 指定した次元方向に <literal>A</literal>のスライスの
-                                
                                 直接または逆fftを行うことも可能です.
-                                
                             </para>
-                            
                             <para>
-                                
                                 例えば, <literal>A</literal> が
-                                
                                 <literal>n1*n2*n3</literal> 個の要素を有する配列の場合,
-                                
                                 <literal>X=fft(A,-1,n1,1)</literal> は
-                                
                                 <literal>X=fft(matrix(A,[n1,n2,n3]),-1,1)</literal>
-                                
                                 と等価です.
-                                
                                 また、<literal>X=fft(A,-1,[n1 n3],[1 n1*n2])</literal>
-                                
                                 は
-                                
                                 <literal>X=fft(matrix(A,[n1,n2,n3]),-1,[1,3])</literal>
-                                
                                 と等価です.
-                                
                             </para>
-                            
                         </listitem>
-                        
                     </itemizedlist>
-                    
                 </listitem>
-                
             </varlistentry>
-            
             <varlistentry>
-                
-                <term>option引数の使用法</term> 
-                
+                <term>option引数の使用法</term>
                 この引数は<literal>A</literal>またはその"スライス"全体
-                
                 の対称性に関してfftアルゴリズムに情報を提供するために使用できます.
-                
                 次元<literal>n1</literal>, ..., <literal>np</literal>の
-                
                 N次元配列<literal>B</literal> は,
-                
                 <literal>B==conj(B([1 n1:-1:2],[1
-                    
                     n2:-1:2],...,[1 np:-1:2]))
-                    
                 </literal>
                 の場合に限り,fftが共役対称です.
-                
                 このような場合,
-                
                 結果<literal>X</literal>は実数で,効率的な専用のアルゴリズムを
-                
                 使用できます.
-                
                 <listitem>
-                    
                     <itemizedlist>
-                        
                         <listitem>
-                            
                             <term>"symmetric"</term> は,
-                            
                             <literal>A</literal>またはその全"スライス"を
-                            
                             共役対称として扱うfftを実行する値です.
-                            
                             このオプションは,
-                            
                             <literal>A</literal> またはその全"スライス" が
-                            
                             丸め誤差の影響で厳密に対称ではない場合に,
-                            
                             自動的な対称性の定義を回避したい場合に有用です.
-                            
                         </listitem>
-                        
                         <listitem>
-                            
                             <term>"nonsymmetric"</term> は対称性を考慮せずに
-                            
                             fftを実行する値です.
-                            
                             このオプションは自動的な対称性の定義を
-                            
                             回避したい場合に有用です.
-                            
                         </listitem>
-                        
                         <listitem>
-                            
-                            <term>unspecified</term> 
-                            
+                            <term>unspecified</term>
                             このオプションが省略された場合,fftアルゴリズムは
-                            
                             自動的に正しい対称性を確認します.
-                            
                         </listitem>
-                        
-                        
-                        
                     </itemizedlist>
-                    
                 </listitem>
-                
             </varlistentry>
-            
             <varlistentry>
-                
                 <term>fftの最適化</term>
-                
                 <listitem>
-                    
                     <para>
-                        
                         注意: fftw 関数は自動的に直近のパラメータをメモリに保存し,
-                        
                         2回目に再利用します.
-                        
                         これにより,(同じパラメータで)連続的なコールを行った場合に
-                        
                         著しく計算時間が改善します.
-                        
                     </para>
-                    
                     <para>
-                        
-                        <link linkend="get_fftw_wisdom">get_fftw_wisdom</link>, 
-                        
+                        <link linkend="get_fftw_wisdom">get_fftw_wisdom</link>,
                         <link linkend="set_fftw_wisdom">set_fftw_wisdom</link>関数により
-                        
                         更にfftを最適化することができます.
-                        
                     </para>
-                    
                 </listitem>
-                
             </varlistentry>
-            
         </variablelist>
-        
     </refsection>
-    
     <refsection>
-        
         <title>アルゴリズム</title>
-        
         <para>
-            
             この関数は,<ulink url="http://www.fftw.org/">fftw3</ulink> ライブラリを
-            
             使用しています.
-            
         </para>
-        
     </refsection>
-    
     <refsection>
-        
         <title>例</title>
-        
         <para>1次元fft</para>
-        
         <programlisting role="example"><![CDATA[
 //Frequency components of a signal
 //----------------------------------
@@ -613,20 +319,16 @@ n=size(f,'*')
 clf()
 plot(f,abs(y(1:n)))
      ]]></programlisting>
-        
         <para>2次元fft</para>
-        
         <programlisting role="example"><![CDATA[
-----------------------------------
+//----------------------------------
 A = zeros(256,256);
 A(5:24,13:17) = 1;
 X = fftshift(fft(A));
 set(gcf(),"color_map",jetcolormap(128));
 clf;grayplot(0:255,0:255,abs(X)')
      ]]></programlisting>
-        
         <para>mupliple fft</para>
-        
         <programlisting role="example"><![CDATA[
 //simple case, 3 1-D fft at a time
 N=2048;
@@ -656,7 +358,6 @@ for i1=1:Dims(1)
   end
 end
    ]]></programlisting>
-        
         <programlisting role="example"><![CDATA[
 //Using explicit formula for  1-D discrete Fourier transform
 //------------------------------------------------
@@ -681,60 +382,31 @@ norm(DFT(a,-1) - fft(a,-1))
 timer();DFT(a,-1);timer()
 timer();fft(a,-1);timer()
      ]]></programlisting>
-        
     </refsection>
-    
     <refsection role="see also">
-        
         <title>参照</title>
-        
         <simplelist type="inline">
-            
             <member>
-                
                 <link linkend="corr">corr</link>
-                
             </member>
-            
             <member>
-                
                 <link linkend="fftw_flags">fftw_flags</link>
-                
             </member>
-            
             <member>
-                
                 <link linkend="get_fftw_wisdom">get_fftw_wisdom</link>
-                
             </member>
-            
             <member>
-                
                 <link linkend="set_fftw_wisdom">set_fftw_wisdom</link>
-                
             </member>
-            
             <member>
-                
                 <link linkend="fftw_forget_wisdom">fftw_forget_wisdom</link>
-                
             </member>
-            
         </simplelist>
-        
     </refsection>
-    
     <refsection>
-        
         <title>参考文献</title>
-        
         <para>
-            
             Matteo Frigo and Steven G. Johnson, "FFTW Documentation" <ulink url="http://www.fftw.org/#documentation">http://www.fftw.org/#documentation</ulink>
-            
         </para>
-        
     </refsection>
-    
 </refentry>
-

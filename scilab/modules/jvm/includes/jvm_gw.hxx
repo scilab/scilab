@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2010 - DIGITEO - Antoine ELIAS
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -17,23 +20,10 @@
 
 extern "C"
 {
-#include "dynlib_jvm_gw.h"
+#include "dynlib_jvm.h"
 }
 
-class JvmModule
-{
-private :
-    JvmModule() {};
-    ~JvmModule() {};
-
-public :
-    JVM_GW_IMPEXP static int Load();
-    JVM_GW_IMPEXP static int Unload()
-    {
-        return 1;
-    }
-};
-CPP_GATEWAY_PROTOTYPE(sci_system_getproperty);
-CPP_GATEWAY_PROTOTYPE(sci_system_setproperty);
+CPP_GATEWAY_PROTOTYPE_EXPORT(sci_system_getproperty, JVM_IMPEXP);
+CPP_GATEWAY_PROTOTYPE_EXPORT(sci_system_setproperty, JVM_IMPEXP);
 
 #endif /* !__JVM_GW_HXX__ */

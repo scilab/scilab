@@ -42,7 +42,7 @@
         <title>説明</title>
         <para>
             カレントの Scilab ディレクトリを<literal>path</literal>
-            で指定したディレクトリに変更します. 
+            で指定したディレクトリに変更します.
             パス変換が実行されるため,例えば,
             <literal>SCI/modules/core/macros</literal>は unix および windows の両方で
             有効であることに注意してください.
@@ -51,10 +51,10 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 chdir(TMPDIR);
 pwd
-cd 
+cd
 cd SCI
  ]]></programlisting>
     </refsection>

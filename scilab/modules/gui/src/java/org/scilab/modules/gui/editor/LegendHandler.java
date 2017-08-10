@@ -3,11 +3,14 @@
  * Copyright (C) 2012 - Pedro Arthur dos S. Souza
  * Copyright (C) 2012 - Caio Lucas dos S. Souza
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -60,7 +63,7 @@ public class LegendHandler {
      */
 
     public static void setLegend(Integer legend, Integer axes, Integer polyline, String text) {
-        if (text == null || text == "" || polyline == null || axes == null || legend == null) {
+    	if (text == null || text.equals("") || polyline == null || axes == null || legend == null) {
             return;
         }
 
@@ -128,7 +131,7 @@ public class LegendHandler {
             Integer[] linksOld = (Integer[])GraphicController.getController().getProperty(legend, GraphicObjectProperties.__GO_LINKS__);
             int remove = -1;
             for (int i = 0; i < linksOld.length; i++) {
-                if (polyline != linksOld[i]) {
+                if (!(polyline.equals(linksOld[i]))) {
                     links.add(linksOld[i]);
                 } else {
                     remove = i;
@@ -174,7 +177,7 @@ public class LegendHandler {
                 String[] textOld = (String[])GraphicController.getController().getProperty(legend, GraphicObjectProperties.__GO_TEXT_STRINGS__);
                 Integer[] linksOld = (Integer[])GraphicController.getController().getProperty(legend, GraphicObjectProperties.__GO_LINKS__);
                 for (int i = 0; i < linksOld.length; i++) {
-                    if (linksOld[i] == polyline) {
+                    if (linksOld[i].equals(polyline)) {
                         return textOld[linksOld.length - i - 1];
                     }
                 }

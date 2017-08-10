@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="tf2ss">
+    <refnamediv>
+        <refname>tf2ss</refname>
+        <refpurpose>transfer to state-space</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>sl=tf2ss(h [,tol])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>h</term>
+                <listitem>
+                    <para>rational matrix</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>tol</term>
+                <listitem>
+                    <para>
+                        may be the constant rtol or the 2 vector <literal>[rtol atol]</literal>
+                    </para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>rtol</term>
+                            <listitem>
+                                <para>tolerance used when evaluating observability.</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>atol</term>
+                            <listitem>
+                                <para>absolute tolerance used when evaluating observability.</para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sl</term>
+                <listitem>
+                    <para>
+                        linear system (<literal>syslin</literal> list <literal>sl=[A,B,C,D(s)]</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            transfer to state-space conversion:
+        </para>
+        <para>
+            <literal>h=C*(s*eye()-A)^-1*B+D(s)</literal>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+s=poly(0,'s');
+H=[2/s,(s+1)/(s^2-5)];
+Sys=tf2ss(H)
+clean(ss2tf(Sys))
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="ss2tf">ss2tf</link>
+            </member>
+            <member>
+                <link linkend="tf2des">tf2des</link>
+            </member>
+            <member>
+                <link linkend="des2tf">des2tf</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

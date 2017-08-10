@@ -3,11 +3,14 @@
  * Copyright (C) 2008 - INRIA - Vincent COUVERT
  * Copyright (C) 2010 - DIGITEO - Yann COLLETTE
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -29,9 +32,9 @@ extern "C"
 
 int CreateStructVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * parent, int item_position)
 {
-    GatewayStruct* pStr = (GatewayStruct*)pvApiCtx;
-    typed_list in = *pStr->m_pIn;
-    InternalType** out = pStr->m_pOut;
+    types::GatewayStruct* pStr = (types::GatewayStruct*)pvApiCtx;
+    types::typed_list in = *pStr->m_pIn;
+    types::InternalType** out = pStr->m_pOut;
     int  iSize = 1;
 
     int rhs = iVar - *getNbInputArgument(pvApiCtx);
@@ -47,19 +50,23 @@ int CreateStructVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * 
 
     if (matVariable->data == NULL)
     {
-        Struct* pStruct = new Struct();
+        types::Struct* pStruct = new types::Struct();
         out[rhs - 1] = pStruct;
+        FREE(piDims);
         return TRUE;
     }
 
-    Struct* pStruct = new Struct(iRank, piDims);
+    types::Struct* pStruct = new types::Struct(iRank, piDims);
 
     matvar_t** allData = (matvar_t**)(matVariable->data);
 
+    wchar_t* temp;
     int iSizeStruct = Mat_VarGetNumberOfFields(matVariable);
     for (int i = 0; i < iSizeStruct; i++)
     {
-        std::wstring wstField(to_wide_string((char*)allData[i]->name));
+        temp = to_wide_string((char*)allData[i]->name);
+        std::wstring wstField(temp);
+        FREE(temp);
         pStruct->addField(wstField);
     }
 
@@ -67,7 +74,9 @@ int CreateStructVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * 
     {
         for (int j = 0; j < iSizeStruct; j++)
         {
-            std::wstring wstField(to_wide_string((char*)allData[j]->name));
+            temp = to_wide_string((char*)allData[j]->name);
+            std::wstring wstField(temp);
+            FREE(temp);
             pStruct->get(i)->set(wstField, CreateMatlabTreeVariable(allData[i * iSizeStruct + j]));
         }
     }

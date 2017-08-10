@@ -20,7 +20,7 @@
 //
 
 function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv,flag)
-    // cor    ; correspondance table with initial block ordering
+    // cor    ; correspondence table with initial block ordering
     //
     // bllst: list with nblk elts where nblk denotes number of blocks.
     //        Each element must be a list with 16 elements:
@@ -438,6 +438,10 @@ endfunction
 
 function uni=merge_mat(m1,m2)
     // for  m1 and m2 with two columns containing >=0 values
+    if isempty(m1) & isempty(m2) then
+        uni=[];
+        return;
+    end
     uni=[m1;m2]
     n=max(uni(:,2))+1;
     [j,ind]=unique(uni(:,1)*n+uni(:,2))
@@ -502,7 +506,11 @@ function ok=is_alg_event_loop(typ_l,clkconnect)
     while i<=n
         i=i+1
         oldvec=vec  // not optimal to use large v
-        vec(lclkconnect(:,2))=vec(lclkconnect(:,1))+1
+        if isempty(vec(lclkconnect(:,1))) then
+            vec(lclkconnect(:,2))=1
+        else
+            vec(lclkconnect(:,2))=vec(lclkconnect(:,1))+1
+        end
         if and(vec==oldvec) then
             ok=%t
             return
@@ -1064,14 +1072,23 @@ function [ordclk,iord,oord,zord,typ_z,ok]=scheduler(inpptr,outptr,clkptr,execlk_
     //critev: vecteur indiquant si evenement est important pour tcrit
     //Donc les blocks indiques sont des blocks susceptibles de produire
     //des discontinuites quand l'evenement se produit
-    maX=max([ext_cord1(:,2);ordclk(:,2)])+1;
-    cordX=ext_cord1(:,1)*maX+ext_cord1(:,2);
+    if isempty(ext_cord1) then
+        if isempty(ordclk) then
+            maX=1;
+        else
+            maX=max(ordclk(:,2))+1;
+        end
+        cordX = [];
+    else
+        maX=max([ext_cord1(:,2);ordclk(:,2)])+1;
+        cordX=ext_cord1(:,1)*maX+ext_cord1(:,2);
+    end
 
     // 1: important; 0:non
     //n=clkptr(nblk+1)-1 //nb d'evenement
     n=size(ordptr,"*")-1 //nb d'evenement
 
-    //a priori tous les evenemets sont non-importants
+    //a priori tous les evenements sont non-importants
     //critev=zeros(n,1)
     for i=1:n
         for hh=ordptr(i):ordptr(i+1)-1
@@ -1203,9 +1220,8 @@ function [lnksz,lnktyp,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,xptr,zptr,..
         end
         if funtyp(i,1)>999&funtyp(i,1)<10000 then
             if ~c_link(funs(i)) then
-                messagebox(msprintf(_("A C or Fortran block is used but not linked.\n"+..
-                "You can save your compiled diagram and load it.\n"+..
-                "This will automatically link the C or Fortran function.")),"modal","error")
+                msg = _("A C or Fortran block is used but not linked.\nYou can save your compiled diagram and load it.\nThis will automatically link the C or Fortran function.")
+                messagebox(msprintf(msg), "modal", "error")
             end
         end
         inpnum=ll.in;outnum=ll.out;cinpnum=ll.evtin;coutnum=ll.evtout;
@@ -1341,7 +1357,11 @@ function [lnksz,lnktyp,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,xptr,zptr,..
 
     clkconnect=clkconnect(find(clkconnect(:,1)<>0),:);
 
-    con=clkptr(clkconnect(:,1))+clkconnect(:,2)-1;
+    if isempty(clkconnect) then
+        con=-1;
+    else
+        con=clkptr(clkconnect(:,1))+clkconnect(:,2)-1;
+    end
     [junk,ind]=gsort(-con);con=-junk;
     clkconnect=clkconnect(ind,:);
     //
@@ -1907,8 +1927,8 @@ function [ok,bllst]=adjust_inout(bllst,connectmat)
             if ok then return, end //if ok is set true then exit adjust_inout
         end
         //if failed then display message
-        messagebox(msprintf(_("Not enough information to find port sizes.\n"+..
-        "I try to find the problem.")),"modal","info");
+        msg = _("Not enough information to find port sizes.\nI try to find the problem.")
+        messagebox(msprintf(msg),"modal","info");
 
         //%%%%% pass 2 %%%%%//
         //Alan 19/01/07 : Warning  : Behavior have changed, To Be more Tested
@@ -2026,10 +2046,10 @@ function [ok,bllst]=adjust_inout(bllst,connectmat)
 
         //if failed then display message
         if ~findflag then
-            messagebox(msprintf(_("I cannot find a link with undetermined size.\n"+..
-            "My guess is that you have a block with unconnected \n"+..
-            "undetermined output ports.")),"modal","error");
-            ok=%f;return;
+            msg = _("I cannot find a link with undetermined size.\nMy guess is that you have a block with unconnected \nundetermined output ports.")
+            messagebox(msprintf(msg), "modal", "error")
+            ok = %f
+            return
         end
     end
 endfunction
@@ -2166,8 +2186,12 @@ function [clkconnect,exe_cons]=pak_ersi(connectmat,clkconnect,..
     if show_trace then mprintf("c_pass4445:\t%f\n", timer()),end
 
     [clkr,clkc]=size(clkconnect);
-    mm=max(clkconnect(:,2))+1;
-    cll=clkconnect(:,1)*mm+clkconnect(:,2);
+    if isempty(clkconnect) then
+        cll=[];
+    else
+        mm=max(clkconnect(:,2))+1;
+        cll=clkconnect(:,1)*mm+clkconnect(:,2);
+    end
     [cll,ind]=gsort(-cll);
     clkconnect=clkconnect(ind,:);
     if cll<>[] then mcll=max(-cll)+1, else mcll=1;end
@@ -2267,9 +2291,8 @@ function [bllst,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,dep_u,dep_uptr,dep_t,.
         sizenin=size(ll.in,"*");
         if (size(ll.dep_ut,"*") <> 2) then
             if ( size(ll.dep_ut(1:$-1),"*") <> sizenin) then
-                messagebox(msprintf(_("the dep_ut size of the %s block is not correct.\n"+..
-                "It should be a colon vector of size %d."),..
-                ll.sim(1),sizenin+1),"modal","error");
+                msg = _("the dep_ut size of the %s block is not correct.\nIt should be a column vector of size %d.")
+                messagebox(msprintf(msg, ll.sim(1), sizenin+1), "modal", "error")
                 ok=%f;
             end
         end
@@ -2406,7 +2429,11 @@ function  [r,ok]=newc_tree3(vec,dep_u,dep_uptr,typ_l)
 endfunction
 
 function  [r,ok]=new_tree4(vec,outoin,outoinptr,typ_r)
-    nd=zeros(size(vec,"*"),(max(outoin(:,2))+1));
+    if isempty(outoin) then
+        nd=zeros(size(vec,"*"),1);
+    else
+        nd=zeros(size(vec,"*"),(max(outoin(:,2))+1));
+    end
     ddd=zeros(typ_r);ddd(typ_r)=1;
     [r1,r2]=sci_tree4(vec,outoin,outoinptr,nd,ddd)
     r=[r1',r2']
@@ -2414,7 +2441,11 @@ function  [r,ok]=new_tree4(vec,outoin,outoinptr,typ_r)
 endfunction
 
 function  [r,ok]=newc_tree4(vec,outoin,outoinptr,typ_r)
-    nd=zeros(size(vec,"*"),(max(outoin(:,2))+1));
+    if isempty(outoin) then
+        nd=zeros(size(vec,"*"),1);
+    else
+        nd=zeros(size(vec,"*"),(max(outoin(:,2))+1));
+    end
     ddd=zeros(typ_r);ddd(typ_r)=1;
     [r1,r2]=ctree4(vec,outoin,outoinptr,nd,ddd)
     r=[r1',r2']
@@ -2423,6 +2454,11 @@ endfunction
 
 function [critev]=critical_events(connectmat,clkconnect,dep_t,typ_r,..
     typ_l,typ_zx,outoin,outoinptr,clkptr)
+
+    if isempty(clkconnect) then
+        critev = [];
+        return
+    end
 
     typ_c=typ_l<>typ_l;
     typ_r=typ_r|dep_t
@@ -2565,8 +2601,8 @@ function [ok,bllst]=adjust_typ(bllst,connectmat)
             if ok then return, end //if ok is set true then exit adjust_typ
         end
         //if failed then display message
-        messagebox(msprintf(_("Not enough information to find port type.\n"+..
-        "I will try to find the problem.")),"modal","info");
+        tmp = _("Not enough information to find port type.\nI will try to find the problem.")
+        messagebox(msprintf(tmp),"modal","info");
         findflag=%f
         for jj=1:nlnk
             nouttyp=bllst(connectmat(jj,1)).outtyp(connectmat(jj,2))
@@ -2601,10 +2637,10 @@ function [ok,bllst]=adjust_typ(bllst,connectmat)
         end
         //if failed then display message
         if ~findflag then
-            messagebox(msprintf(_("I cannot find a link with undetermined size.\n"+..
-            "My guess is that you have a block with unconnected \n"+..
-            "undetermined types.")),"modal","error");
-            ok=%f;return;
+            msg = _("I cannot find a link with undetermined size.\nMy guess is that you have a block with unconnected \nundetermined types.")
+            messagebox(msprintf(msg), "modal","error")
+            ok = %f
+            return
         end
     end
 endfunction

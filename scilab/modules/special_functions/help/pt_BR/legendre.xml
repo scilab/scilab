@@ -2,15 +2,18 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="legendre" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="legendre" xml:lang="pt">
     <refnamediv>
         <refname>legendre</refname>
         <refpurpose>funções associadas de Legendre</refpurpose>
@@ -26,7 +29,7 @@
                 <term>n</term>
                 <listitem>
                     <para>inteiro não-negativo ou vetor de inteiros não-negativos
-                        igualmente espaçados com incremento igual a 1 
+                        igualmente espaçados com incremento igual a 1
                     </para>
                 </listitem>
             </varlistentry>
@@ -34,7 +37,7 @@
                 <term>m</term>
                 <listitem>
                     <para>inteiro não-negativo ou vetor de inteiros não-negativos
-                        igualmente espaçados com incremento igual a 1 
+                        igualmente espaçados com incremento igual a 1
                     </para>
                 </listitem>
             </varlistentry>
@@ -61,14 +64,14 @@
             Quando <literal>n</literal> e <literal>m</literal> são escalares,
             <literal>legendre(n,m,x)</literal> avalia a função de Legendre associada
             Pnm(x) em todos os elementos de <literal>x</literal>. A definição usada é
-            : 
+            :
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
                             m
-             m        m/2  d  
+             m        m/2  d
 Pnm(x) = (-1)  (1-x^2)    --- Pn(x)
-                            m  
-                          dx 
+                            m
+                          dx
  ]]></programlisting>
         <para>
             onde <literal>Pn</literal> é o polinômio de Legendre de grau
@@ -79,15 +82,15 @@ Pnm(x) = (-1)  (1-x^2)    --- Pn(x)
         <para>Quando normflag é igual a "norm" o resultado é uma versão
             normalizada (sem o fator <literal>(-1)^m</literal> ), precisamente :
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
                    _____________                m
                   /(2n+1)(n-m)!          m/2   d
 Pnm(x,"norm") =  /--------------  (1-x^2)     --- Pn(x)
                \/     2  (n+m)!                 m
-                                              dx 
+                                              dx
  ]]></programlisting>
         <para>que é útil para computar funções harmônicas esféricas (ver exemplo
-            3): 
+            3):
         </para>
         <para>Por eficiência, um dos primeiros dois argumentos pode ser um vetor,
             por exemplo <literal>legendre(n1:n2,0,x)</literal> avalia todos os
@@ -104,11 +107,11 @@ Pnm(x,"norm") =  /--------------  (1-x^2)     --- Pn(x)
         <para>
             Em qualquer caso, o formato é <literal>y</literal> :
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 max(length(n),length(m)) x length(x)
  ]]></programlisting>
         <para>e :</para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 y(i,j) = P(n(i),m;x(j))   se n é um vetor
 y(i,j) = P(n,m(i);x(j))   se m é um vetor
 y(1,j) = P(n,m;x(j))      se ambos n e m são escalares
@@ -117,12 +120,12 @@ y(1,j) = P(n,m;x(j))      se ambos n e m são escalares
             de tal modo que <literal>x</literal> é preferivelmente um vetor
             linha, mas qualquer matriz <literal>mx x nx</literal> é excetuada e
             considerada como uma matriz <literal>1 x (mx * nx)</literal> matrix,
-            reformada segundo a ordem das colunas. 
+            reformada segundo a ordem das colunas.
         </para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // exemplo 1 : plot dos primeiros 6 polinômios de Legendre em (-1,1)
 l = nearfloat("pred",1);
 x = linspace(-l,l,200)';
@@ -131,7 +134,7 @@ clf()
 plot2d(x,y', leg="p0@p1@p2@p3@p4@p5@p6")
 xtitle("Os 6 primeiros polinômios de Legendre")
 
-// exemplo 2 : plot das funções associadas de Legendre de grau 5 
+// exemplo 2 : plot das funções associadas de Legendre de grau 5
 l = nearfloat("pred",1);
 x = linspace(-l,l,200)';
 y = legendre(5, 0:5, x, "norm");
@@ -148,14 +151,14 @@ function [y] = Y(l,m,theta,phi)
      y = (-1)^m/(sqrt(2*%pi))*exp(%i*m*phi)*legendre(l, m, cos(theta), "norm")
   else
      y = 1/(sqrt(2*%pi))*exp(%i*m*phi)*legendre(l, -m, cos(theta), "norm")
-  end      
+  end
 endfunction
 
 // 3.2 : definindo outra função útil
 function [x,y,z] = sph2cart(theta,phi,r)
   // vetor linha teta      1 x nt
   // vetor coluna phi  np x 1
-  // r     escalar ou matriz np x nt (r(i,j) o comprimento em phi(i) theta(j)) 
+  // r     escalar ou matriz np x nt (r(i,j) o comprimento em phi(i) theta(j))
   x = r.*(cos(phi)*sin(theta));
   y = r.*(sin(phi)*sin(theta));
   z = r.*(ones(phi)*cos(theta));

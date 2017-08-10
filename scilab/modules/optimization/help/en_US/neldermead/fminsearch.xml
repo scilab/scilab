@@ -3,16 +3,16 @@
  * Copyright (C) 2008-2009 - INRIA - Michael Baudin
  * Copyright (C) 2009-2011 - DIGITEO - Michael Baudin
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="fminsearch" xml:lang="fr">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="fminsearch" xml:lang="en">
     <refnamediv>
         <refname>fminsearch</refname>
         <refpurpose>
-            Computes the unconstrained minimimum of given function with
+            Computes the unconstrained minimum of given function with
             the Nelder-Mead algorithm.
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>SYNOPSIS</title>
+        <title>Syntax</title>
         <synopsis>
             x = fminsearch ( costf , x0 )
             x = fminsearch ( costf , x0 , options )
@@ -210,7 +210,7 @@
                 f = myfun ( x, a1, a2, ...)
             </screen>
             where the input arguments <literal>a1, a2, ...</literal>
-            are automatically appended at the end of the calling sequence.
+            are automatically appended as parameters to the call.
         </para>
     </refsection>
     <refsection>
@@ -391,7 +391,7 @@
         <para>
             The output function is expected to have the following header:
         </para>
-        <programlisting role="scilab-no-exec"><![CDATA[ 
+        <programlisting role="scilab-no-exec"><![CDATA[
 stop = myoutputfun ( x , optimValues , state )
  ]]></programlisting>
         <para>
@@ -427,7 +427,7 @@ stop = myoutputfun ( x , optimValues , state )
         <para>
             The plot function is expected to have the following header:
         </para>
-        <programlisting role="scilab-no-exec"><![CDATA[ 
+        <programlisting role="scilab-no-exec"><![CDATA[
 myplotfun ( x , optimValues , state )
  ]]></programlisting>
         <para>
@@ -445,7 +445,7 @@ myplotfun ( x , optimValues , state )
             In this particular case, 85 iterations are performed and 159 function
             evaluations are
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 function y = banana (x)
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
@@ -467,7 +467,7 @@ endfunction
             In this particular case, the number of iterations is 70
             with 130 function evaluations.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 function y = banana (x)
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
@@ -502,7 +502,7 @@ opt = optimset ( "TolX" , 1.e-2 );
             in order to create one graphic, representing the function value depending on
             the number of iterations.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 function y = banana (x)
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
@@ -522,7 +522,7 @@ opt = optimset ( "PlotFcns" , optimplotfval );
             results. In fact, we can get all the figures at the same time, by
             setting the  "PlotFcns" to a list of functions, as in the following example.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 function y = banana (x)
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
@@ -550,7 +550,7 @@ opt = optimset ( "PlotFcns" , myfunctions );
             and the plot function (associated with the "PlotFcns" option).
             See the <link linkend="optimset">optimset</link> for more details on this feature.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 function y = banana (x)
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
@@ -575,7 +575,7 @@ opt = optimset ( "OutputFcn" , outfun);
             criteria.
             Therefore, the convergence criteria is not met and the maximum number of iterations is reached.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 function y = banana (x)
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
@@ -601,7 +601,7 @@ opt = optimset ( "MaxIter" , 10 );
             In the following example, we present how to display intermediate steps
             used by the algorithm. We simply set the "Display" option to the "iter" value.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 function y = banana (x)
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
@@ -630,7 +630,7 @@ opt = optimset ( "Display" , "iter" );
             In this section, we present an example where all the fields from the <literal>optimValues</literal>
             data structure are used to print a message at each iteration.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 function stop = outfun ( x , optimValues , state )
   fc = optimValues.funccount;
   fv = optimValues.fval;
@@ -669,7 +669,7 @@ opt = optimset ( "OutputFcn" , outfun );
             where the first element is the function and the
             remaining elements are the extra parameters.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 function y = bananaext (x,a,b)
   y = a*(x(2)-x(1)^2)^2 + (b-x(1))^2;
 endfunction
@@ -734,8 +734,8 @@ fopt = 0
                     Although the algorithm practically converges in many situations,
                     the Nelder-Mead algorithm is not a provably convergent algorithm.
                     There are several known counter-examples where the algorithm
-                    fails to converge on a stationnary point and, instead, converge
-                    to a non-stationnary point. This situation is often indicated by a
+                    fails to converge on a stationary point and, instead, converge
+                    to a non-stationary point. This situation is often indicated by a
                     repeated application of the contraction step. In that situation, we simply restart the
                     algorithm with the final point as the new initial guess.
                     If the algorithm converges to the same point, there is a good
@@ -795,7 +795,7 @@ fopt = 0
         </para>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="optim">optim</link>

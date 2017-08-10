@@ -3,14 +3,17 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="list" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="list" xml:lang="pt">
     <refnamediv>
         <refname>list</refname>
         <refpurpose>objeto do Scilab e definição de lists ("listas")</refpurpose>
@@ -26,7 +29,7 @@
             <literal>ai</literal>'s que são elementos Scilab arbitrários
             (<literal>matrix, list,...</literal>). O tipo de objetos
             <literal>list</literal> é 15. <literal>list()</literal> cria o
-            <literal>list</literal> vazio (0 elementos). 
+            <literal>list</literal> vazio (0 elementos).
         </para>
     </refsection>
     <refsection>
@@ -38,7 +41,7 @@
                     <para>
                         <literal>[x,y,z...]=L(v)</literal> onde <literal>v</literal>
                         é um vetor de índices; <literal>[x,y,z]=L(:)</literal> extrai todos
-                        os elementos. 
+                        os elementos.
                     </para>
                 </listitem>
             </varlistentry>
@@ -51,7 +54,7 @@
                             size(L)
                         </emphasis>
                         mas algumas entradas de lista estão então
-                        indefinidas e sua extração levanta um erro). 
+                        indefinidas e sua extração levanta um erro).
                     </para>
                 </listitem>
             </varlistentry>
@@ -69,7 +72,7 @@
                     <para>
                         <literal>L(0)=e</literal>. (note que após esta operação e
                         está no índice 1, os elementos iniciais foram movidos para a
-                        direita). 
+                        direita).
                     </para>
                 </listitem>
             </varlistentry>
@@ -131,7 +134,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 l = list(1,["a" "b"])
 l(0) = "foo"
 l($+1) = "olá"

@@ -2,11 +2,14 @@
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2015 - Scilab Enterprises - Paul Bignier
 *
-*  This file must be used under the terms of the CeCILL.
-*  This source file is licensed as described in the file COPYING, which
-*  you should have received as part of this distribution.  The terms
-*  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+* Copyright (C) 2012 - 2016 - Scilab Enterprises
+*
+* This file is hereby licensed under the terms of the GNU GPL v2.0,
+* pursuant to article 5.3.4 of the CeCILL v.2.1.
+* This file was originally licensed under the terms of the CeCILL v2.1,
+* and continues to be available under such terms.
+* For more information, see the COPYING file which you should have received
+* along with this program.
 *
 */
 
@@ -26,10 +29,12 @@
 #include "list.hxx"
 #include "tlist.hxx"
 #include "mlist.hxx"
-#include "struct.hxx"
+//#include "struct.hxx"
 
 extern "C"
 {
+#include "api_scilab.h"
+
 #include "charEncoding.h"
 #include "Scierror.h"
 #include "localization.h"
@@ -87,7 +92,16 @@ void encode(T* input, std::vector<double> &ret)
     // Allocation for type + number of dimensions + each dimension + each element
     ret.reserve(ret.size() + totalSize);
 
-    ret.push_back(((types::InternalType*) input)->getType());
+    int iType = 0;
+    getVarType(nullptr, (int*) input, &iType);
+    ret.push_back(iType);
+    if (iType != sci_boolean)
+    {
+        int iPrec = 0;
+        getMatrixOfIntegerPrecision(nullptr, (int*) input, &iPrec);
+        ret.push_back(iPrec);
+    }
+
     ret.push_back(iDims);
     for (int i = 0; i < iDims; ++i)
     {
@@ -115,7 +129,7 @@ static void encode(types::Double* input, std::vector<double> &ret)
     // Allocation for type + number of dimensions + each dimension + complex boolean + each element (doubled if complex)
     ret.reserve(ret.size() + totalSize);
 
-    ret.push_back(types::InternalType::ScilabDouble);
+    ret.push_back(sci_matrix);
     ret.push_back(iDims);
     for (int i = 0; i < iDims; ++i)
     {
@@ -166,7 +180,7 @@ static void encode(types::String* input, std::vector<double> &ret)
     // Allocation for type + number of dimensions + each dimension + each element length + each element
     ret.reserve(ret.size() + totalSize);
 
-    ret.push_back(types::InternalType::ScilabString);
+    ret.push_back(sci_strings);
     ret.push_back(iDims);
     for (int i = 0; i < iDims; ++i)
     {
@@ -177,18 +191,21 @@ static void encode(types::String* input, std::vector<double> &ret)
         ret.push_back(offsets[i]);
     }
 
-    size_t size = ret.size();
-    ret.resize(size + offsets[iElements - 1]);
-    double* data = ret.data() + size;
-
-    size_t len = pLengths[0];
-    memcpy(data, utf8[0], len * sizeof(char));
-    data += offsets[0];
-    for (int i = 1; i < iElements; ++i)
+    if (iElements > 0)
     {
-        size_t len = pLengths[i];
-        memcpy(data, utf8[i], len * sizeof(char));
-        data += offsets[i] - offsets[i - 1];
+        size_t size = ret.size();
+        ret.resize(size + offsets[iElements - 1]);
+        double* data = ret.data() + size;
+
+        size_t len = pLengths[0];
+        memcpy(data, utf8[0], len * sizeof(char));
+        data += offsets[0];
+        for (int i = 1; i < iElements; ++i)
+        {
+            size_t len = pLengths[i];
+            memcpy(data, utf8[i], len * sizeof(char));
+            data += offsets[i] - offsets[i - 1];
+        }
     }
 
     // Free all the strings, after being copied
@@ -205,106 +222,135 @@ static void encode(types::List* input, std::vector<double> &ret)
 {
     const int iElements = input->getSize();
 
-    ret.push_back(input->getType());
+    int iType = 0;
+    getVarType(nullptr, (int*) input, &iType);
+    ret.push_back(iType);
     ret.push_back(iElements);
     for (int i = 0; i < iElements; ++i)
     {
         // Recursively call var2vec on each element and extract the obtained results
-        var2vec(input->get(i), ret);
+        if (!var2vec(input->get(i), ret))
+        {
+            ret.back() = -1;
+            break;
+        }
     }
 
     // An empty list input will return [22; 0], a tlist [23; 0] and an mlist [24; 0]
 }
 
-static void encode(types::Struct* input, std::vector<double> &ret)
-{
-    const bool isEmpty = input->getSize() == 0;
+// Structs are not used yet
+//static void encode(types::Struct* input, std::vector<double> &ret)
+//{
+//    const bool isEmpty = input->getSize() == 0;
 
-    types::String* fields = nullptr;
-    int iElements = 0;
-    if (!isEmpty)
-    {
-        fields = input->getFieldNames();
-        iElements = fields->getSize();
-    }
+//    types::String* fields = nullptr;
+//    int iElements = 0;
+//    if (!isEmpty)
+//    {
+//        fields = input->getFieldNames();
+//        iElements = fields->getSize();
+//    }
 
-    ret.push_back(input->getType());
-    ret.push_back(iElements);
-    if (!isEmpty)
-    {
-        // Call var2vec on the struct's fields to extract a header
-        var2vec(fields, ret);
+//    ret.push_back(input->getType());
+//    ret.push_back(iElements);
+//    if (!isEmpty)
+//    {
+//        // Call var2vec on the struct's fields to extract a header
+//        var2vec(fields, ret);
 
-        // Now extract the fields' content, assuming this is not a multidimensional struct
-        types::SingleStruct* content = input->get(0);
-        for (int i = 0; i < iElements; ++i)
-        {
-            var2vec(content->get(fields->get(i)), ret);
-        }
+//        // Now extract the fields' content, assuming this is not a multidimensional struct
+//        types::SingleStruct* content = input->get(0);
+//        for (int i = 0; i < iElements; ++i)
+//        {
+//            var2vec(content->get(fields->get(i)), ret);
+//        }
 
 
-        fields->killMe();
-    }
+//        fields->killMe();
+//    }
 
-    // An empty struct input will return [26; 0]
-}
+//    // An empty struct input will return [26; 0]
+//}
 
 bool var2vec(types::InternalType* in, std::vector<double> &out)
 {
-    switch (in->getType())
+    int iType = 0;
+    getVarType(nullptr, (int*) in, &iType);
+    switch (iType)
     {
         // Reuse scicos model encoding for 'model.opar' and 'model.odstate' fields
-        case types::InternalType::ScilabDouble :
+        case sci_matrix  :
             encode(in->getAs<types::Double>(), out);
             break;
 
-        case types::InternalType::ScilabInt8   :
-            encode(in->getAs<types::Int8>(), out);
+        case sci_ints    :
+            switch (in->getType())
+            {
+                case types::InternalType::ScilabInt8 :
+                    encode(in->getAs<types::Int8>(), out);
+                    break;
+                case types::InternalType::ScilabUInt8  :
+                    encode(in->getAs<types::UInt8>(), out);
+                    break;
+                case types::InternalType::ScilabInt16  :
+                    encode(in->getAs<types::Int16>(), out);
+                    break;
+                case types::InternalType::ScilabUInt16 :
+                    encode(in->getAs<types::UInt16>(), out);
+                    break;
+                case types::InternalType::ScilabInt32  :
+                    encode(in->getAs<types::Int32>(), out);
+                    break;
+                case types::InternalType::ScilabUInt32 :
+                    encode(in->getAs<types::UInt32>(), out);
+                    break;
+                case types::InternalType::ScilabInt64  :
+                    encode(in->getAs<types::Int64>(), out);
+                    break;
+                case types::InternalType::ScilabUInt64 :
+                    encode(in->getAs<types::UInt64>(), out);
+                    break;
+                default :
+                    Scierror(999, _("%s: Wrong type for input argument #%d: unknown integer type.\n"), var2vecName.c_str(), 1);
+                    return false;
+            }
             break;
-        case types::InternalType::ScilabUInt8  :
-            encode(in->getAs<types::UInt8>(), out);
-            break;
-        case types::InternalType::ScilabInt16  :
-            encode(in->getAs<types::Int16>(), out);
-            break;
-        case types::InternalType::ScilabUInt16 :
-            encode(in->getAs<types::UInt16>(), out);
-            break;
-        case types::InternalType::ScilabInt32  :
-            encode(in->getAs<types::Int32>(), out);
-            break;
-        case types::InternalType::ScilabUInt32 :
-            encode(in->getAs<types::UInt32>(), out);
-            break;
-        case types::InternalType::ScilabInt64  :
-            encode(in->getAs<types::Int64>(), out);
-            break;
-        case types::InternalType::ScilabUInt64 :
-            encode(in->getAs<types::UInt64>(), out);
-            break;
-        case types::InternalType::ScilabBool   :
+        case sci_boolean :
             encode(in->getAs<types::Bool>(), out);
             break;
 
-        case types::InternalType::ScilabString :
+        case sci_strings :
             encode(in->getAs<types::String>(), out);
             break;
 
-        case types::InternalType::ScilabList   :
+        case sci_list    :
             encode(in->getAs<types::List>(), out);
             break;
-        case types::InternalType::ScilabTList  :
+        case sci_tlist   :
             encode(in->getAs<types::List>(), out);
             break;
-        case types::InternalType::ScilabMList  :
-            encode(in->getAs<types::List>(), out);
-            break;
-        case types::InternalType::ScilabStruct :
-            encode(in->getAs<types::Struct>(), out);
+        case sci_mlist   :
+            switch (in->getType())
+            {
+                case types::InternalType::ScilabMList :
+                    encode(in->getAs<types::List>(), out);
+                    if (out.back() == -1)
+                    {
+                        Scierror(999, _("%s: Wrong value for input argument #%d: Could not read its content.\n"), var2vecName.c_str(), 1);
+                        return false;
+                    }
+                    break;
+                default : // types::InternalType::ScilabStruct
+                    //encode(in->getAs<types::Struct>(), out);
+                    Scierror(999, _("%s: Wrong type for input argument #%d: %s, %s, %s, %s or %s type.\n"), var2vecName.c_str(), 1, "Double", "Integer", "Boolean", "String", "List");
+                    return false;
+            }
             break;
 
         default :
-            Scierror(999, _("%s: Wrong type for input argument #%d: %s, %s, %s, %s, %s or %s type.\n"), var2vecName.c_str(), 1, "Double", "Integer", "Boolean", "String", "List", "Struct");
+            //Scierror(999, _("%s: Wrong type for input argument #%d: %s, %s, %s, %s, %s or %s type.\n"), var2vecName.c_str(), 1, "Double", "Integer", "Boolean", "String", "List", "Struct");
+            Scierror(999, _("%s: Wrong type for input argument #%d: %s, %s, %s, %s or %s type.\n"), var2vecName.c_str(), 1, "Double", "Integer", "Boolean", "String", "List");
             return false;
     }
 

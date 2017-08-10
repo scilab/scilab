@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * Copyright (C) 2016 - Samuel GOUGEON
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="and" xml:lang="fr">
+    <refnamediv>
+        <refname>and</refname>
+        <refpurpose>ET logique entre éléments d'un tableau booléen ou numérique</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntaxe</title>
+        <synopsis>
+            b = and(A)
+            b = and(A, 'r')
+            b = and(A, 'c')
+            b = and(A, n)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection role="parameters">
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>A</term>
+                <listitem>
+                    <para>
+                        vecteur, matrice ou hypermatrice de booléens, d'entiers
+                        encodés (de type entier <link linkend="inttype">inttype</link>
+                        quelconque), de décimaux, ou de nombres complexes.
+                        <varname>A</varname> peut être encodée creuse
+                            (<link linkend="sparse">sparse</link>).
+                    </para>
+                    <para>
+                        Un nombre est identifié à <literal>%F</literal> (faux)
+                        s'il vaut 0 ou 0+0i. Sinon (%nan inclus), il est identifé
+                        à <literal>%T</literal> (vrai).
+                    </para>
+                    <note>Valeurs particulières de <varname>A</varname> :
+                        <itemizedlist>
+                            <listitem>
+                                <literal>and([])</literal> vaut <literal>%T</literal>.
+                            </listitem>
+                            <listitem>
+                                <literal>and(%nan)</literal> vaut <literal>%T</literal>.
+                            </listitem>
+                        </itemizedlist>
+                    </note>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>b</term>
+                <listitem>
+                    <para>
+                        Booléen simple si <literal>and(A)</literal> est utilisée
+                        sans option <varname>"r", "c", n</varname>.
+                        <varname>b</varname> vaut alors
+                        <itemizedlist>
+                            <listitem>
+                                %F, si au moins un des éléments de <varname>A</varname>
+                                est %F ou zéro.
+                            </listitem>
+                            <listitem>
+                                %T, sinon : tous les éléments de <varname>A</varname>
+                                sont %T ou non nuls ou %nan.
+                            </listitem>
+                        </itemizedlist>
+                    </para>
+                    <para>
+                        Sinon : vecteur ligne, colonne, matrice ou hypermatrice.
+                        Voir la description de <varname>n</varname> ci-dessous.
+                    </para>
+                    <para>
+                        Lorsque <varname>A</varname> est encodée creuse,
+                        <varname>b</varname> l'est également.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>
+                        N° &lt;= ndims(A) de la dimension selon laquelle
+                        <function>and()</function> est appliqué / projeté.
+                        Par défaut, <function>and()</function> est appliqué
+                        entre <emphasis>tous</emphasis> les éléments de
+                        <varname>A</varname>. Sinon :
+                        <itemizedlist>
+                            <listitem>
+                                n = 1 | "r" : <function>and()</function> est
+                                appliqué entre les rangées de <varname>A</varname>.
+                                Si <varname>A</varname> est une matrice,
+                                <varname>b</varname> est alors une
+                                <emphasis role="bold">r</emphasis>angée, avec
+                                <literal>b(j) = and(A(:,j))</literal>
+                            </listitem>
+                            <listitem>
+                                n = 2 | "c" :
+                                <function>and()</function> est appliqué entre les
+                                colonnes de <varname>A</varname>.
+                                Si <varname>A</varname> est une matrice,
+                                <varname>b</varname> est alors une
+                                <emphasis role="bold">c</emphasis>olonne, avec
+                                <literal>b(i) = and(A(i,:))</literal>.
+                            </listitem>
+                            <listitem>
+                                n > 2 : Si <varname>A</varname> est une hypermatrice
+                                <function>and()</function> est appliqué selon
+                                sa n<superscript>ème</superscript> dimension.
+                                <para>
+                                    Exemple: Si <literal>ndims(A)==3</literal>
+                                    et <literal>n=3</literal>,
+                                    <varname>b</varname> sera une matrice booléenne
+                                    de tailles <literal>size(A)([1 2])</literal>, avec
+                                    <literal>b(i,j) = and(A(i,j,:))</literal>.
+                                </para>
+                            </listitem>
+                        </itemizedlist>
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection role="description">
+        <title>Description</title>
+        <para>
+            <function>and()</function> applique un "ET" logique entre les éléments
+            de l'opérande unique <varname>A</varname>, et en calcule le résultat.
+        </para>
+        <para>
+            Pour appliquer un ET logique entre éléments respectifs de 2 tableaux
+            <literal>C</literal> et <literal>D</literal> de mêmes tailles,
+            utiliser l'opérateur dédié <varname>&amp;</varname>.
+        </para>
+        <para>
+            Pourquoi <literal>and([])</literal> vaut-il <literal>%T</literal> ?
+            Quels que soient les tableaux compatibles <literal>B</literal> et
+            <literal>C</literal>,
+            <literal>and([B C]) == ( and(B) &amp; and(C) )</literal>.
+            Or, pour <literal>B = []</literal>, <literal>and([B C])==and(C)</literal>.
+            Pour avoir toujours <literal>(and([]) &amp; and(C)) == and(C)</literal>,
+            <literal>and([])</literal> doit être <literal>%T</literal>.
+        </para>
+    </refsection>
+    <refsection role="examples">
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[
+and([])
+and(0)
+and(0+0*%i)
+and(%eps)
+and(%i)
+and(%nan)
+
+// Projection à travers une dimension / selon une direction :
+A = rand(2,5)<0.5
+and(A)
+and(A, "r")   // and(A, 1) est équivalent
+and(A, "c")   // and(A, 2) est équivalent
+
+// Utilisation entre entiers encodés :
+A = int16(grand(3,5,"uin",-10,10));
+A(abs(A)<3) = 0
+and(A)
+and(A,1)
+
+// Avec une hypermatrice de nombres décimaux :
+A = rand(3,4,2);
+A(A<0.2) = 0
+and(A,3)
+
+// Avec une matrice encodée creuse :
+A = sprand(70,100, 0.001)
+and(A, "r")
+and(A, "c")
+]]></programlisting>
+ <screen><![CDATA[--> and([])
+ ans  =
+  T
+
+--> and(0)
+ ans  =
+  F
+
+--> and(0+0*%i)
+ ans  =
+  F
+
+--> and(%eps)
+ ans  =
+  T
+
+--> and(%i)
+ ans  =
+  T
+
+--> and(%nan)
+ ans  =
+  T
+
+--> // Projection à travers une dimension / selon une direction :
+--> A = rand(2,5)<0.5
+ A  =
+  T T F F F
+  F T F F T
+
+--> and(A)
+ ans  =
+  F
+
+--> and(A, "r")   // and(A, 1) est équivalent
+ ans  =
+  F T F F F
+
+--> and(A, "c")   // and(A, 2) est équivalent
+ ans  =
+  F
+  F
+
+--> // Utilisation entre entiers encodés :
+--> A = int16(grand(3,5,"uin",-10,10));
+--> A(abs(A)<3) = 0
+ A  =
+   0  0  -8  -6    8
+ -10  6  -5   3  -10
+   0  3 -10   7   10
+
+--> and(A)
+ ans  =
+  F
+
+--> and(A,1)
+ ans  =
+  F F T T T
+
+--> // Avec une hypermatrice de nombres décimaux :
+--> A = rand(3,4,2);
+--> A(A<0.2) = 0
+ A  =
+(:,:,1)
+   0.4052   0.4819   0.2806   0.2119
+   0.9185   0.264    0.       0.
+   0.       0.4148   0.7783   0.6857
+(:,:,2)
+   0.       0.4062   0.       0.5896
+   0.6971   0.4095   0.       0.6854
+   0.8416   0.8784   0.5619   0.8906
+
+--> and(A,3)
+ ans  =
+  F T F T
+  T T F F
+  F T T T
+
+--> // Avec une matrice encodée creuse :
+--> A = sprand(70,100, 0.001)
+ A  =
+(  70,  100) sparse matrix
+
+(  4,  87)    0.6463
+(  5,  39)    0.4898
+(  7,  92)    0.7094
+(  29,  87)   0.794
+(  33,   1)   0.4087
+(  36,  79)   0.4876
+(  54,  65)   0.4456
+(  67,  45)   0.458
+
+--> and(A, "r")
+ ans  =
+(  1,  100)False sparse matrix
+
+--> and(A, "c")
+ ans  =
+(  70,  1)False sparse matrix
+]]></screen>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="and_op">&amp; (distributif)</link>
+            </member>
+            <member>
+                <link linkend="or">or</link>
+            </member>
+            <member>
+                <link linkend="not">~ not</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

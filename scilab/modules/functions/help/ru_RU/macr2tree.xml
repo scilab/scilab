@@ -2,25 +2,31 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="macr2tree">
     <refnamediv>
         <refname>macr2tree</refname>
-        <refpurpose>преобразование функции в дерево</refpurpose>
+        <refpurpose>Обеспечивает внутренний код скомпилированного функции Scilab</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
-        <synopsis>t=macr2tree(function_name)</synopsis>
+        <title>Синтаксис</title>
+        <synopsis>p = macr2tree(function)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
         <variablelist>
             <varlistentry>
-                <term>function_name</term>
+                <term>function</term>
                 <listitem>
-                    <para>макрос Scilab'а</para>
+                    <para>дескриптор сценария Scilab (НЕ его имя в виде строки)</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>t</term>
+                <term>p</term>
                 <listitem>
-                    <para>"дерево" Scilab'а</para>
+                    <para>
+                    Список типа <literal>program</literal> с полями
+                    <literal>p.name</literal>, <literal>p.nblines</literal>,
+                    <literal>p.inputs</literal>, <literal>p.outputs</literal> и
+                    <literal>p.statements</literal>. Последние три являются вложенными списками,
+                    описывающими внутренний код <literal>function</literal>.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -28,25 +34,62 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Этот примитив преобразует компилированную функцию Scilab с именем 
-            <literal>function_name</literal> в дерево (перекрываемые типизированные 
-            списки), которое кодирует внутреннее представление функции. 
-            Для использования совместно с <literal>tree2code</literal>.
+            Этот примитив преобразует компилированную функцию Scilab с именем
+            <literal>function_name</literal> в дерево (перекрываемые типизированные
+            списки), которое кодирует внутреннее представление функции.
+            Для использования совместно с <literal>tree2code()</literal>.
         </para>
     </refsection>
     <refsection>
         <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
-tree=macr2tree(cosh);
-txt=tree2code(tree,%T);
-write(%io(2),txt,'(a)');
+        <programlisting role="example"><![CDATA[
+prog = macr2tree(log2);   // Заметьте, что на входе указано log2, а не "log2"
+typeof(prog)
+fieldnames(prog)'
+prog.name
+deftxt = tree2code(prog, %T);
+printf("%s\n", deftxt);
  ]]></programlisting>
+    <screen><![CDATA[--> typeof(prog)
+ ans  =
+ program
+
+--> fieldnames(prog)'
+ ans  =
+!name  outputs  inputs  statements  nblines  !
+
+--> prog.name
+ ans  =
+ log2
+
+--> deftxt = tree2code(prog, %T);
+
+--> printf("%s\n", deftxt);
+function [f,e] = log2(x)
+  [lhs,rhs] = argn(0)
+  if rhs&lt;>1 then
+    msg = gettext("%s: Wrong number of input argument(s): %d expected.\n")
+    error(msprintf(msg, "log2", 1))
+  end
+  if argn(1)==1 then
+    f = log(x)/log(2)
+  else
+    [f,e] = frexp(x)
+  end
+endfunction
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
                 <link linkend="tree2code">tree2code</link>
+            </member>
+            <member>
+                <link linkend="macrovar">macrovar</link>
+            </member>
+            <member>
+                <link linkend="functions">functions</link>
             </member>
         </simplelist>
     </refsection>

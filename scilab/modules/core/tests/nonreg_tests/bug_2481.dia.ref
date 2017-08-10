@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2005-2008 - INRIA - Serge Steer
@@ -10,12 +11,14 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=2481
 //
 // <-- Short Description -->
-//   I get warned of a stack problem when I enter the input variables given
-//  in the 'steps to reproduce the bug'. It prevents me from using the rest
-//  of my code, as I then get the error message described below. Any clues?
-//  Apparently "sigma.loc = zeros(3,4)" is crucial, entering a random
-//  matrix does not have the same effect. It makes me believe it is a bug
+//   I get warned of a stack problem when I enter the input variables given 
+//  in the 'steps to reproduce the bug'. It prevents me from using the rest 
+//  of my code, as I then get the error message described below. Any clues? 
+//  Apparently "sigma.loc = zeros(3,4)" is crucial, entering a random 
+//  matrix does not have the same effect. It makes me believe it is a bug 
 //  in the try-catch primitive.
+m_ieee = ieee();
+ieee(0);
 function x=foo
   x=%t	
   try
@@ -34,3 +37,4 @@ function x=rf()
 endfunction
 if ~foo() then bugmes();quit;end
 if ~rf() then bugmes();quit;end
+ieee(m_ieee);

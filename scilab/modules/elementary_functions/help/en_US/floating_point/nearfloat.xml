@@ -5,7 +5,7 @@
         <refpurpose>get previous or next floating-point number</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>xnear = nearfloat(dir, x)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -43,7 +43,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 format("e",22)
 nearfloat("succ",1) - 1
 1 - nearfloat("pred",1)
@@ -51,7 +51,7 @@ format("v") //reset default format
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="number_properties">number_properties</link>

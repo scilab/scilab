@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="cell2mat" xml:lang="en">
+    <refnamediv>
+        <refname>cell2mat</refname>
+        <refpurpose>converts a cell array into a matrix</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>x=cell2mat(c)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>c</term>
+                <listitem>
+                    <para>
+                        cell array, the components of <literal>c</literal> must have the same type and can be
+                        scalars or matrices
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>matrix</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>cell2mat(c) returns a matrix which is the concatenation of all components of the
+            cell array <literal>c</literal>.
+        </para>
+        <para>
+            All components of <literal>c</literal> must have the same data type (strings or
+            doubles or integers or booleans). For each row <literal>i
+            </literal>
+            of <literal>c</literal>, <literal>cell2mat</literal>
+            of <literal>c</literal>, <literal>cell2mat</literal>
+            concatenates all the components of the <literal>i</literal>th row of
+            the cell array <literal>c</literal>.
+        </para>
+        <para>
+            <note>
+                Note that if the components of the cell array input <literal>c</literal>
+                are strings then <literal>cell2mat(c)</literal> returns a column
+                vector of strings concatenation.
+            </note>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+c=makecell([2,2],[1 2 3; 6 7 8],[4 5;9 10],[11 12;16 17],[14 13 15;18 19 20])
+cell2mat(c)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="cell">cell</link>
+            </member>
+            <member>
+                <link linkend="makecell">makecell</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

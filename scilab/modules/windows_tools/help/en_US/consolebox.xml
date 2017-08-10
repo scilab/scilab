@@ -2,55 +2,169 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2016 - Samuel GOUGEON
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="consolebox">
     <refnamediv>
         <refname>consolebox</refname>
-        <refpurpose>show or hide console box (Windows)</refpurpose>
+        <refpurpose>show or hide the OS window running Scilab (MS Windows)</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>state1=console(state2)
-            state1=console()
+        <title>Syntax</title>
+        <synopsis>
+            consolebox on
+            consolebox off
+            status = consolebox("toogle")
+            status = consolebox()
         </synopsis>
     </refsynopsisdiv>
-    <refsection>
+    <refsection role="parameters">
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>state1</term>
+                <term>status</term>
                 <listitem>
-                    <para>returns console's state 'on' or 'off'</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>state2</term>
-                <listitem>
-                    <para>'on' or 'off' set console's state</para>
-                    <para>'toggle' to switch between console's state</para>
+                    <para><varname>"on" | "off"</varname> :
+                    visibility of the OS window
+                    after the call to <function>consolebox</function>.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Description</title>
-        <para>show or hide console box (Windows).</para>
+        <itemizedlist>
+            <listitem><literal>consolebox on</literal> : makes the OS window visible
+            and adds its button in the task bar. The consolebox
+            black window lays on the background, and then may be masked
+            by other windows of the OS desktop.
+            </listitem>
+            <listitem><literal>consolebox off</literal> : masks the OS window and
+            its button from the task bar.
+            </listitem>
+            <listitem><literal>consolebox toogle</literal> : toogles the OS window's
+            visibility.
+            </listitem>
+            <listitem><literal>status = consolebox()</literal> : queries
+             the visibility of the OS window.
+            </listitem>
+        </itemizedlist>
+        <para>The "consolebox" black window is the "hidden" terminal of the
+        Operating system from
+        which the current Scilab session has been run. It is somewhat the
+        "dark side" of your session :) Each Scilab session
+        has its own "consolebox". Its lifetime is the Scilab session lifetime:
+        The consolebox of a session is killed
+        when the Scilab session is quit.
+        </para>
+        <para>Some low level Scilab functions (such as the documentation builder
+        or other ones) send most of their errors messages in this window. They
+        would be considered as some spam in the Scilab console. Nevertheless,
+        these messages are very helpful for
+        debugging. <literal>consolebox on</literal> make them visible.
+        </para>
+        <para>The "consolebox" black window can't be closed interactively:
+        its X-cross at the upper-right corner is disabled. Killing it kills Scilab session.
+        </para>
+        <para>
+            When some external OS instructions are send to the operating
+            system through
+            <link linkend="host">host(..)</link> or equivalently
+            <link linkend="unix">unix(..)</link>, or any other
+            <link linkend="unix_w">unix_w(..)</link>,
+            <link linkend="unix_g">unix_g(..)</link>,
+            <link linkend="unix_s">unix_s(..)</link>, or
+            <link linkend="unix_x">unix_x(..)</link> Scilab function,
+            these OS instructions are processed within the Scilab consolebox.
+            <para><literal>host(..)</literal> and
+                <literal>unix(..)</literal> show the results in the consolebox itself
+            </para>
+            <para><literal>unix_g, unix_w, unix_x, unix_s</literal> catch results
+                returned by the OS and cancel any display in the consolebox:
+            <itemizedlist>
+                <listitem>
+                    <literal>r = unix_g(..)</literal>
+                    <emphasis role="bold">g</emphasis>rabs and returns the
+                    results in any variable <literal>r</literal>.
+                </listitem>
+                <listitem>
+                    <literal>unix_w(..)</literal> displays results in Scilab's console,
+                    and returns nothing.
+                </listitem>
+                <listitem>
+                    <literal>unix_x(..)</literal> displays results in a messagebox.
+                </listitem>
+                <listitem>
+                    <literal>unix_s(..)</literal> runs
+                    <emphasis role="bold">s</emphasis>ilently: it returns and
+                    displays no results returned from the OS.
+                </listitem>
+            </itemizedlist>
+            </para>
+        </para>
+        <note><literal>host("cls")</literal> clears the consolebox screen</note>
+        <note>
+            When the console has the focus, pressing the <literal>F12</literal> key toggles
+            the consolebox on|off
+        </note>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-consolebox('off')
-state=consolebox()
+        <programlisting role="example"><![CDATA[
+consolebox on
+mprintf("See the consolebox button appearing in the task bar.\n"+..
+  "Click on it to bring the consolebox on the foreground.\n");
+sleep(10,"s")
+consolebox('toggle')
+sleep(5,"s")
+// Now: press the F12 key to toggle the consolebox
+consolebox on
 consolebox()
-consolebox('toggle')
-consolebox('toggle')
+
+// Instructions passed to host() or unix() or other unix_#() functions are
+// processed in the consolebox:
+host("echo Test of output") // displays "Test of output" in the consolebox
+host("cls")  // clears the consolebox screen
+host("set")  // lists all defined MS Windows environment variables
+
+// Other unix_#() commands catch results returned by the Operating System
+//  instead of displaying them in the consolebox:
+host("cls")
+unix_w("echo Test of output") // "Test of output" is now displayed in Scilab console
+r = unix_g("set");   // Environment variables are returned in r.
+r                    //   Nothing is displayed in the consolebox
+unix_x("set");       // Results are displayed in a messagebox. Nothing in consolebox
+
  ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="console">console</link>
+            </member>
+            <member>
+                <link linkend="host">host</link>
+            </member>
+            <member>
+                <link linkend="unix_w">unix_w</link>
+            </member>
+            <member>
+                <link linkend="unix_g">unix_g</link>
+            </member>
+            <member>
+                <link linkend="unix_x">unix_x</link>
+            </member>
+        </simplelist>
     </refsection>
 </refentry>

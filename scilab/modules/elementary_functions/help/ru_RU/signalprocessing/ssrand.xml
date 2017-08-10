@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="ssrand" xml:lang="ru">
@@ -16,7 +19,7 @@
         <refpurpose>генератор случайной системы</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             sl=ssrand(nout,nin,nstate)
             [sl,U]=ssrand(nout,nin,nstate,flag)
@@ -63,7 +66,7 @@
                 <term>U</term>
                 <listitem>
                     <para>
-                        квадратная невырожденная матрица размером <literal>(nstate x nstate)</literal> 
+                        квадратная невырожденная матрица размером <literal>(nstate x nstate)</literal>
                     </para>
                 </listitem>
             </varlistentry>
@@ -72,7 +75,7 @@
     <refsection>
         <title>Описание</title>
         <para>
-            <literal>sl=ssrand(nout,nin,nstate)</literal> возвращает случайную строго корректную (<literal>D=0</literal>) систему пространства состояний размером   
+            <literal>sl=ssrand(nout,nin,nstate)</literal> возвращает случайную строго корректную (<literal>D=0</literal>) систему пространства состояний размером
             <literal>[nout,nint]</literal>, представленную списком <literal>syslin</literal> и с
             <literal>nstate</literal> переменными состояния.
         </para>
@@ -81,11 +84,11 @@
             с заданными свойствами, определёнными флагом <literal>flag</literal>.
             <literal>flag</literal> может быть одним из следующих:
         </para>
-        <programlisting><![CDATA[ 
-flag=list('co',dim_cont_subs)  
+        <programlisting><![CDATA[
+flag=list('co',dim_cont_subs)
 flag=list('uo',dim_unobs_subs)
 flag=list('ncno',dim_cno,dim_ncno,dim_co,dim_nco)
-flag=list('st',dim_cont_subs,dim_stab_subs,dim_stab0)  
+flag=list('st',dim_cont_subs,dim_stab_subs,dim_stab0)
 flag=list('dt',dim_inst_unob,dim_instb0,dim_unobs)
 flag=list('on',nr,ng,ng0,nv,rk)
 flag=list('ui',nw,nwu,nwui,nwuis,rk)
@@ -94,8 +97,8 @@ flag=list('ui',nw,nwu,nwui,nwuis,rk)
             Полное описание  <literal>Sys</literal> дано в коде функции <literal>ssrand</literal>
             (в <literal>SCI/modules/cacsd/macros/</literal>). Например,  с
             <literal>flag=list('co',dim_cont_subs)</literal> возвращается неконтролируемая система, а
-            <literal>dim_cont_subs</literal> - размерность контролируемого подпространства 
-            <literal>Sys</literal>. Символьные 
+            <literal>dim_cont_subs</literal> - размерность контролируемого подпространства
+            <literal>Sys</literal>. Символьные
             строки<literal>'co','uo','ncno','st','dt','on','ui'</literal> обозначают:
         </para>
         <para>"controllable" - "контролируемая",</para>
@@ -108,18 +111,18 @@ flag=list('ui',nw,nwu,nwui,nwuis,rk)
     </refsection>
     <refsection>
         <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
-//flag=list('st',dim_cont_subs,dim_stab_subs,dim_stab0)  
-//dim_cont_subs&lt;=dim_stab_subs&lt;=dim_stab0  
+        <programlisting role="example"><![CDATA[
+//flag=list('st',dim_cont_subs,dim_stab_subs,dim_stab0)
+//dim_cont_subs&lt;=dim_stab_subs&lt;=dim_stab0
 //пара (A,B) U-образная для:
-//    [*,*,*,*;     [*;    
+//    [*,*,*,*;     [*;
 //    [0,s,*,*;     [0;
 //A=  [0,0,i,*;   B=[0;
 //    [0,0,0,u]     [0]
-//     
-// (A11,B1) контролируемая  
-// s = стабильная матрица 
-// i = нейтральная матрица 
+//
+// (A11,B1) контролируемая
+// s = стабильная матрица
+// i = нейтральная матрица
 // u = нестабильная матрица
 [Sl,U]=ssrand(2,3,8,list('st',2,5,5));
 w=ss2ss(Sl,inv(U)); //отменить случайное изменение базиса => формировать как выше

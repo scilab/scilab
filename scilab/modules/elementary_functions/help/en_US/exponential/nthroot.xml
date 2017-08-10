@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2012 - Scilab Enterprises - Adeline Carnis
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="nthroot" xml:lang="en">
+    <refnamediv>
+        <refname>nthroot</refname>
+        <refpurpose>Real nth root of real numbers</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>y=nthroot(x,n)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>real scalar or vector/matrix</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+        <variablelist>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>real scalar or vector/matrix</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>nthroot(x,n)</literal> is the real vector/matrix of the nth root of the
+            <literal>x</literal> elements. If <literal>x</literal> has negative elements, <literal>n</literal> must be odd.
+        </para>
+        <para>
+            If <literal>n</literal> is not a scalar, then the function proceeds elementwise.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+nthroot(2, 3)
+nthroot(-2, 3)
+nthroot(-2, -3)
+nthroot(2, -3)
+nthroot([27 27], 3)
+nthroot([27 256], [3 4])
+nthroot([27 256; 3125 46656], [3 4; 5 6])
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="hat">hat</link>
+            </member>
+            <member>
+                <link linkend="sqrt">sqrt</link>
+            </member>
+            <member>
+                <link linkend="sqrtm">sqrtm</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

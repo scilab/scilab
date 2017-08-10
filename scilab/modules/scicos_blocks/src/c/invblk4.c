@@ -19,7 +19,6 @@
 * See the file ./license.txt
 */
 /*--------------------------------------------------------------------------*/
-#include <stdio.h>
 #include "scicos_block.h"
 #include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/
@@ -54,8 +53,16 @@ SCICOS_BLOCKS_IMPEXP void invblk4(scicos_block *block, int flag)
             }
             else
             {
-                set_block_error(-2);
-                return;
+                if (block->rpar[0] == 0.0)
+                {
+                    set_block_error(-2);
+                    return;
+                }
+                else
+                {
+                    // ignore the divide by zero, divide by a value stored in rpar
+                    block->outptr[0][i] = 1.0 / block->rpar[0];
+                }
             }
         }
     }

@@ -3,11 +3,14 @@
  * Copyright (C) 2009 - DIGITEO - Sylvestre Ledru
  * Copyright (C) 2011 - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 package org.scilab.modules.gui.bridge.helpbrowser;
@@ -90,7 +93,7 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
     private static final String SHIFTEQ = "shiftEquals";
     private static final long serialVersionUID = -2593697956426596790L;
     private static final int[] fontSizes = new int[] {8, 10, 12, 14, 18, 24, 36};
-    private static final boolean isMac = System.getProperty("os.name").toLowerCase().indexOf("mac") != -1;
+    private static final boolean isMac = System.getProperty("os.name").toLowerCase().contains("mac");
 
     private static int currentFontSize = ConfigManager.getHelpFontSize();
 
@@ -100,7 +103,7 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
      */
     private JEditorPane accessibleHtml;
 
-    private JHelpContentViewer x;
+    private final JHelpContentViewer x;
     private List<HelpSet> helpSets;
 
     public SwingScilabHelpBrowserViewer(JHelpContentViewer x) {
@@ -121,7 +124,9 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
 
     /**
      * Update the browser links
+     * @param event on hyperlink event
      */
+    @Override
     public void hyperlinkUpdate(HyperlinkEvent event) {
         if (event.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
             if (event.getDescription().startsWith("http://") || event.getDescription().startsWith("https://") || event.getDescription().startsWith("ftp://")) {
@@ -188,7 +193,7 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
         URL url = null;
         try {
             for (HelpSet hs : helpSets) {
-                if (hs.getHelpSetURL().toString().replaceAll("\\\\", "/").indexOf("/" + tbxName + "/") !=  -1) {
+                if (hs.getHelpSetURL().toString().replaceAll("\\\\", "/").contains("/" + tbxName + "/")) {
                     javax.help.Map map = hs.getLocalMap();
                     if (map.isValidID(id, hs)) {
                         url = map.getURLFromID(javax.help.Map.ID.create(id, hs));
@@ -210,7 +215,7 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
      * E.g. scilab://scilab.help/bvode will be transform into
      * jar:file:SCI/modules/helptools/jar/scilab_fr_FR_help.jar!/scilab_fr_FR_help/bvode.html
      * (where SCI has the good value)
-     * @param address the address to convert
+     * @param event the yperlink event
      * @return the correct address in using jar:// protocol
      **/
     public URL resolvScilabLink(HyperlinkEvent event) {
@@ -233,43 +238,53 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
 
         String[] splitLoc = location.split("\\.");
         String mainLocation = null;
-        String subLocation = null;
+        String subLocation;
 
         if (splitLoc.length >= 1) {
             mainLocation = splitLoc[0];
         }
         if (splitLoc.length >= 2) {
             subLocation = splitLoc[1];
+        } else {
+            System.err.println("Unable decode the Scilab content type\n" + event.getDescription());
+            return null;
         }
 
-        if (subLocation.equals("help")) {
-            if (mainLocation.equals("scilab")) {
-                return getURLFromID(path);
-            } else {
-                return getURLFromID(mainLocation, path);
-            }
-        } else if (subLocation.equals("xcos") || subLocation.equals("scinotes")) {
-            if (!mainLocation.equals("scilab")) {
-                exec(subLocation, getToolboxPath() + "/" + path);
-            } else {
-                exec(subLocation, SCI + "/modules/" + path);
-            }
-        } else if (subLocation.equals("demos")) {
-            if (!mainLocation.equals("scilab")) {
-                exec(getToolboxPath() + "/demos/" + path + ".sce");
-            } else {
-                exec(SCI + "/modules/" + path + ".sce");
-            }
-        } else if (subLocation.equals("execexample")) {
-            execExample(event.getSourceElement().getParentElement().getParentElement().getParentElement().getElement(0).getElement(0));
-        } else if (subLocation.equals("editexample")) {
-            editExample(event.getSourceElement().getParentElement().getParentElement().getParentElement().getElement(0).getElement(0));
-        } else if (subLocation.equals("exec")) {
-            if (!mainLocation.equals("scilab")) {
-                exec(getToolboxPath() + "/" + path);
-            } else {
-                exec(SCI + "/modules/" + path);
-            }
+        switch (subLocation) {
+            case "help":
+                if ("scilab".equals(mainLocation)) {
+                    return getURLFromID(path);
+                } else {
+                    return getURLFromID(mainLocation, path);
+                }
+            case "xcos":
+            case "scinotes":
+                if ("scilab".equals(mainLocation)) {
+                    exec(subLocation, SCI + "/modules/" + path);
+                } else {
+                    exec(subLocation, getToolboxPath() + "/" + path);
+                }
+                break;
+            case "demos":
+                if ("scilab".equals(mainLocation)) {
+                    exec(SCI + "/modules/" + path + ".sce");
+                } else {
+                    exec(getToolboxPath() + "/demos/" + path + ".sce");
+                }
+                break;
+            case "execexample":
+                execExample(event.getSourceElement().getParentElement().getParentElement().getParentElement().getElement(0).getElement(0));
+                break;
+            case "editexample":
+                editExample(event.getSourceElement().getParentElement().getParentElement().getParentElement().getElement(0).getElement(0));
+                break;
+            case "exec":
+                if (mainLocation.equals("scilab")) {
+                    exec(SCI + "/modules/" + path);
+                } else {
+                    exec(getToolboxPath() + "/" + path);
+                }
+                break;
         }
 
         return null;
@@ -376,7 +391,7 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
 
     /**
      * Execute a file given by its path
-     * @param the file path
+     * @param path the file path
      */
     public void exec(String path) {
         String cmd = "exec('" + path + "', -1)";
@@ -388,7 +403,7 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
     /**
      * Execute with the command and a file given by its path
      * @param command the command to execute
-     * @param the file path
+     * @param path the file path
      */
     public void exec(String command, String path) {
         String cmd = command + "('" + path + "')";
@@ -402,6 +417,7 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
      * @see javax.help.plaf.basic.BasicContentViewerUI#installUI(javax.swing.JComponent)
      * @param c The component
      */
+    @Override
     public void installUI(JComponent c) {
         super.installUI(c);
         this.retrievePrivateFieldFromBasicContentViewerUI();
@@ -453,6 +469,7 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
             // and consequently the focus is given to an other component.
             // So we force the accessibleHtml to keep the focus.
             accessibleHtml.setFocusTraversalPolicy(new DefaultFocusTraversalPolicy() {
+                @Override
                 public Component getFirstComponent(Container aContainer) {
                     return x;
                 }
@@ -467,12 +484,14 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
             InputMap inputmap = accessibleHtml.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
             inputmap.put(ScilabKeyStroke.getKeyStroke("OSSCKEY shift EQUALS"), SHIFTEQ);
             accessibleHtml.getActionMap().put(SHIFTEQ, new AbstractAction() {
+                @Override
                 public void actionPerformed(ActionEvent e) {
                     SwingScilabHelpBrowserViewer.this.increaseFont();
                 }
             });
             inputmap.put(ScilabKeyStroke.getKeyStroke(keyModifier + "LEFT"), "Previous-page");
             accessibleHtml.getActionMap().put("Previous-page", new AbstractAction() {
+                @Override
                 public void actionPerformed(ActionEvent e) {
                     DefaultHelpHistoryModel history = SwingScilabHelpBrowser.getHelpHistory();
                     if (history.getIndex() > 0) {
@@ -482,6 +501,7 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
             });
             inputmap.put(ScilabKeyStroke.getKeyStroke(keyModifier + "RIGHT"), "Next-page");
             accessibleHtml.getActionMap().put("Next-page", new AbstractAction() {
+                @Override
                 public void actionPerformed(ActionEvent e) {
                     DefaultHelpHistoryModel history = SwingScilabHelpBrowser.getHelpHistory();
                     if (history.getHistory().size() != (history.getIndex() + 1)) {
@@ -513,17 +533,15 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
     private void createPopupMenu(JComponent c) {
         final JPopupMenu popup = new JPopupMenu();
 
-        JMenuItem menuItem = null;
+        JMenuItem menuItem;
 
         /* Execute into Scilab */
-        ActionListener actionListenerExecuteIntoScilab = new ActionListener() {
-            public void actionPerformed(ActionEvent actionEvent) {
-                String selection = accessibleHtml.getSelectedText();
-                if (selection == null) {
-                    ScilabHelpBrowser.getHelpBrowser().getInfoBar().setText(Messages.gettext("No text selected"));
-                } else {
-                    ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(selection, true /* display */, true /* store in history */);
-                }
+        ActionListener actionListenerExecuteIntoScilab = (ActionEvent actionEvent) -> {
+            String selection = accessibleHtml.getSelectedText();
+            if (selection == null) {
+                ScilabHelpBrowser.getHelpBrowser().getInfoBar().setText(Messages.gettext("No text selected"));
+            } else {
+                ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(selection, true /* display */, true /* store in history */);
             }
         };
         menuItem = new JMenuItem(Messages.gettext("Execute into Scilab"));
@@ -535,14 +553,12 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
 
 
         /* Edit in the Scilab Text Editor */
-        ActionListener actionListenerLoadIntoTextEditor = new ActionListener() {
-            public void actionPerformed(ActionEvent actionEvent) {
-                String selection = accessibleHtml.getSelectedText();
-                if (selection == null) {
-                    ScilabHelpBrowser.getHelpBrowser().getInfoBar().setText(Messages.gettext("No text selected"));
-                } else {
-                    edit(selection);
-                }
+        ActionListener actionListenerLoadIntoTextEditor = (ActionEvent actionEvent) -> {
+            String selection = accessibleHtml.getSelectedText();
+            if (selection == null) {
+                ScilabHelpBrowser.getHelpBrowser().getInfoBar().setText(Messages.gettext("No text selected"));
+            } else {
+                edit(selection);
             }
         };
 
@@ -558,13 +574,11 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
         popup.addSeparator();
 
         /* Back in the history*/
-        ActionListener actionListenerBackHistory = new ActionListener() {
-            public void actionPerformed(ActionEvent actionEvent) {
-                DefaultHelpHistoryModel history = SwingScilabHelpBrowser.getHelpHistory();
-                /* Not at the first position */
-                if (history.getIndex() > 0) {
-                    SwingScilabHelpBrowser.getHelpHistory().goBack();
-                }
+        ActionListener actionListenerBackHistory = (ActionEvent actionEvent) -> {
+            DefaultHelpHistoryModel history = SwingScilabHelpBrowser.getHelpHistory();
+            /* Not at the first position */
+            if (history.getIndex() > 0) {
+                SwingScilabHelpBrowser.getHelpHistory().goBack();
             }
         };
 
@@ -573,13 +587,11 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
         popup.add(menuItem);
 
         /* Forward in the history*/
-        ActionListener actionListenerForwardHistory = new ActionListener() {
-            public void actionPerformed(ActionEvent actionEvent) {
-                DefaultHelpHistoryModel history = SwingScilabHelpBrowser.getHelpHistory();
-                /* Not at the last position */
-                if (history.getHistory().size() != (history.getIndex() + 1)) {
-                    SwingScilabHelpBrowser.getHelpHistory().goForward();
-                }
+        ActionListener actionListenerForwardHistory = (ActionEvent actionEvent) -> {
+            DefaultHelpHistoryModel history = SwingScilabHelpBrowser.getHelpHistory();
+            /* Not at the last position */
+            if (history.getHistory().size() != (history.getIndex() + 1)) {
+                SwingScilabHelpBrowser.getHelpHistory().goForward();
             }
         };
 
@@ -595,10 +607,8 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
         popup.addSeparator();
 
         /* Select all */
-        ActionListener actionListenerSelectAll = new ActionListener() {
-            public void actionPerformed(ActionEvent actionEvent) {
-                accessibleHtml.selectAll();
-            }
+        ActionListener actionListenerSelectAll = (ActionEvent actionEvent) -> {
+            accessibleHtml.selectAll();
         };
         menuItem = new JMenuItem(Messages.gettext("Select All"));
         menuItem.addActionListener(actionListenerSelectAll);
@@ -607,28 +617,24 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
         /* Edit in the Scilab Text Editor */
         final JMenuItem helpMenuItem = new JMenuItem("Help on the selected text");
 
-        ActionListener actionListenerHelpOnKeyword = new ActionListener() {
-            public void actionPerformed(ActionEvent actionEvent) {
-                String selection = accessibleHtml.getSelectedText();
-                if (selection == null) {
-                    ScilabHelpBrowser.getHelpBrowser().getInfoBar().setText(Messages.gettext("No text selected"));
-                } else {
-                    ScilabHelpBrowser.getHelpBrowser().searchKeywork(selection);
-                }
+        ActionListener actionListenerHelpOnKeyword = (ActionEvent actionEvent) -> {
+            String selection = accessibleHtml.getSelectedText();
+            if (selection == null) {
+                ScilabHelpBrowser.getHelpBrowser().getInfoBar().setText(Messages.gettext("No text selected"));
+            } else {
+                ScilabHelpBrowser.getHelpBrowser().searchKeywork(selection);
             }
         };
-        PropertyChangeListener listenerTextItem = new PropertyChangeListener() {
-            public void propertyChange(PropertyChangeEvent arg0) {
-                String keyword = accessibleHtml.getSelectedText();
-                if (keyword == null) {
-                    helpMenuItem.setText(Messages.gettext("Help about a selected text"));
-                } else {
-                    int nbOfDisplayedOnlyXChar = 10;
-                    if (keyword.length() > nbOfDisplayedOnlyXChar) {
-                        keyword = keyword.substring(0, nbOfDisplayedOnlyXChar) + "...";
-                    }
-                    helpMenuItem.setText(Messages.gettext("Help about '") + keyword + "'");
+        PropertyChangeListener listenerTextItem = (PropertyChangeEvent arg0) -> {
+            String keyword = accessibleHtml.getSelectedText();
+            if (keyword == null) {
+                helpMenuItem.setText(Messages.gettext("Help about a selected text"));
+            } else {
+                int nbOfDisplayedOnlyXChar = 10;
+                if (keyword.length() > nbOfDisplayedOnlyXChar) {
+                    keyword = keyword.substring(0, nbOfDisplayedOnlyXChar) + "...";
                 }
+                helpMenuItem.setText(Messages.gettext("Help about '") + keyword + "'");
             }
         };
         helpMenuItem.addPropertyChangeListener(listenerTextItem);
@@ -641,7 +647,9 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
 
     /**
      * {@inheritedDoc}
+     * @param e the mouse event
      */
+    @Override
     public void mouseWheelMoved(MouseWheelEvent e) {
         if ((isMac && e.isMetaDown()) || e.isControlDown()) {
             int n = e.getWheelRotation();
@@ -671,10 +679,8 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
             }
         } catch (NullPointerException e) {
             // Can occur if the user is changing quickly the document
-            SwingUtilities.invokeLater(new Runnable() {
-                public void run() {
-                    modifyFont(s);
-                }
+            SwingUtilities.invokeLater(() -> {
+                modifyFont(s);
             });
         }
     }
@@ -683,10 +689,8 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
         if (SwingUtilities.isEventDispatchThread()) {
             modifyFont(s);
         } else {
-            SwingUtilities.invokeLater(new Runnable() {
-                public void run() {
-                    modifyFont(s);
-                }
+            SwingUtilities.invokeLater(() -> {
+                modifyFont(s);
             });
         }
     }

@@ -2,22 +2,28 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="ismatrix" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="ismatrix" xml:lang="en">
     <refnamediv>
         <refname>ismatrix</refname>
-        <refpurpose>check if a variable is a matrix</refpurpose>
+        <refpurpose>checks if an object is a non-empty 1D or 2D matrix or array</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>t=ismatrix(x)</synopsis>
+        <title>Syntax</title>
+        <synopsis>tf = ismatrix(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -25,11 +31,11 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>scalar,vector, matrix, hypermatrix, list, array of structures or cells</para>
+                    <para>scalar,vector, matrix, hypermatrix, list, array of structures or of cells</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>t</term>
+                <term>tf</term>
                 <listitem>
                     <para>a boolean</para>
                 </listitem>
@@ -42,19 +48,28 @@
             <literal>
                 ismatrix(<varname>x</varname>)
             </literal>
-            returns true if <varname>x</varname>
-            is a matrix. Scalars and vectors are considered as matrix, and it is the same for
-            hypermatrix only if one of its three dimensions equals to 1.
+            returns <literal>%T</literal> (true) if <varname>x</varname>
+            is a scalar (single component), or a vector or a matrix or array with one or 2 dimensions.
         </para>
-        <para>
-            <note>
-                Note that <literal>matrix([])</literal> returns false.
-            </note>
-        </para>
+        <note>
+          <itemizedlist>
+            <listitem>
+               An hypermatrix that would be a matrix after reordering its dimensions is
+               considered as a matrix.
+            </listitem>
+            <listitem>
+              To test that <varname>x</varname> is not an hypermatrix or an hyperarray -- whatever
+              are the sizes of its dimensions --, use simply <literal>ndims(x)&lt;3</literal>.
+            </listitem>
+            <listitem>
+              <literal>ismatrix([])</literal> returns false.
+            </listitem>
+          </itemizedlist>
+        </note>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 ismatrix(ones(10,5))
 ismatrix(1)
 ismatrix(["s" "t" "u"; "t" "s" "u"])
@@ -67,8 +82,8 @@ s(1,2).a = 3;
 s(1,3).b = %z;
 ismatrix(s) // Row array of structures
 clear s
-s(2,1).a = "w"; 
-s(3,1).b = %t;  
+s(2,1).a = "w";
+s(3,1).b = %t;
 iscolumn(s) // Column array of structures
 clear s
 s(1,2).a = -2;
@@ -83,7 +98,7 @@ s(1,1,2).a = 3;
 s(1,1,3).b = "test";
 ismatrix(s) // 3D array of structures (with 2 singleton dims)
 clear s
-s(2,2,2).a = %f; 
+s(2,2,2).a = %f;
 s(1,2,1).b = list(%e, %s);
 ismatrix(s) // 3D (cubic) array of structures
  ]]></programlisting>
@@ -105,6 +120,9 @@ ismatrix(s) // 3D (cubic) array of structures
             </member>
             <member>
                 <link linkend="isempty">isempty</link>
+            </member>
+            <member>
+                <link linkend="ndims">ndims</link>
             </member>
         </simplelist>
     </refsection>

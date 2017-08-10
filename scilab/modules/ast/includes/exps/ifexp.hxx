@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2006-2008 - DIGITEO - Bruno JOFRET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -44,11 +47,6 @@ public:
         _exps.push_back(&test);
         _exps.push_back(t.getAs<Exp>());
         _exps.push_back(e.getAs<Exp>());
-
-        t.setContinuable();
-        t.setBreakable();
-        e.setContinuable();
-        e.setBreakable();
     }
 
     IfExp(const Location& location,
@@ -63,9 +61,6 @@ public:
         _exps.push_back(t.getAs<Exp>());
         _exps.push_back(new ast::CommentExp(location, new std::wstring(L"No else !!")));
         _exps[2]->setParent(this);
-
-        t.setContinuable();
-        t.setBreakable();
     }
 
     virtual ~IfExp()

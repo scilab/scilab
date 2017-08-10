@@ -52,8 +52,16 @@ SCICOS_BLOCKS_IMPEXP void product(scicos_block *block, int flag)
                     {
                         if (block->inptr[k][j] == 0)
                         {
-                            set_block_error(-2);
-                            return;
+                            if (block->rpar[0] == 0.0)
+                            {
+                                set_block_error(-2);
+                                return;
+                            }
+                            else
+                            {
+                                // ignore the divide by zero, divide by a value stored in rpar
+                                block->outptr[0][j] = block->outptr[0][j] / block->rpar[0];
+                            }
                         }
                         else
                         {

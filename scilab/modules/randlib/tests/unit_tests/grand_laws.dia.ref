@@ -187,6 +187,7 @@ function checkMeanVariance0arg ( m , n , name , mu , va , rtol )
   // mu : a 1-by-1 matrix of doubles, the expected mean
   // va : a 1-by-1 matrix of doubles, the expected variance. If va==[], then the variance is not checked.
   // rtol : a 1-by-1 matrix of doubles, the relative tolerance
+  
   R=grand(m,n,name);
   assert_checkequal ( size(R) , [m,n] );
   assert_checkequal ( typeof(R) , "constant" );
@@ -206,6 +207,7 @@ function checkMeanVariance1arg ( m , n , name , A , mu , va , rtol )
   // mu : a 1-by-1 matrix of doubles, the expected mean
   // va : a 1-by-1 matrix of doubles, the expected variance. If va==[], then the variance is not checked.
   // rtol : a 1-by-1 matrix of doubles, the relative tolerance
+  
   R=grand(m,n,name,A);
   assert_checkequal ( size(R) , [m,n] );
   assert_checkequal ( typeof(R) , "constant" );
@@ -226,6 +228,7 @@ function checkMeanVariance2arg ( m , n , name , A , B , mu , va , rtol )
   // mu : a 1-by-1 matrix of doubles, the expected mean
   // va : a 1-by-1 matrix of doubles, the expected variance. If va==[], then the variance is not checked.
   // rtol : a 1-by-1 matrix of doubles, the relative tolerance
+  
   R=grand(m,n,name,A,B);
   assert_checkequal ( size(R) , [m,n] );
   assert_checkequal ( typeof(R) , "constant" );
@@ -247,6 +250,7 @@ function checkMeanVariance3arg ( m , n , name , A , B , C , mu , va , rtol )
   // mu : a 1-by-1 matrix of doubles, the expected mean
   // va : a 1-by-1 matrix of doubles, the expected variance. If va==[], then the variance is not checked.
   // rtol : a 1-by-1 matrix of doubles, the relative tolerance
+  
   R=grand(m,n,name,A,B,C);
   assert_checkequal ( size(R) , [m,n] );
   assert_checkequal ( typeof(R) , "constant" );
@@ -256,7 +260,7 @@ function checkMeanVariance3arg ( m , n , name , A , B , C , mu , va , rtol )
   end
 endfunction
 //
-// Calling sequences
+// Syntaxes
 //
 // Y=grand(m,n,'nor',Av,Sd)       : OK
 // Y=grand(m,n,'poi',mu)          : OK

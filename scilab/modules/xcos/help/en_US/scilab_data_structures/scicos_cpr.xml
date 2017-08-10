@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scicos
+ *
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ *
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="scicos_cpr">
+    <refnamediv>
+        <refname>scicos_cpr</refname>
+        <refpurpose>Compiled Scicos structure</refpurpose>
+    </refnamediv>
+    <refsection id="Module_scicos_cpr">
+        <title>Module</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="xcos">xcos</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="cpr_scicos_cpr">
+        <title>cpr</title>
+        <para>
+            The Scilab object <link linkend="scicos_cpr">cpr</link> contains the result of the compilation. It is an executable representation of the schema and is used either to simulation or to generate code.
+        </para>
+        <para>
+            Type : scilab tlist of type <code>"cpr"</code> with fields :
+            <link linkend="scicos_cpr_state">state</link>,
+            <link linkend="scicos_cpr_sim">sim</link>,
+            <link linkend="scicos_cpr_cor">cor</link> and
+            <link linkend="scicos_cpr_corinv">corinv</link>.
+        </para>
+        <refsect2 id="scicos_cpr_state">
+            <title>state</title>
+            <para>
+                Scilab typed list of type <code>"xcs"</code>. It contains all the states of the model, that is, everything than can evolve during the simulation.
+            </para>
+            <para>
+                Type : <link linkend="scicos_state">state</link>.
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_cpr_sim">
+            <title>sim</title>
+            <para>
+                Scilab typed list of type <code>"scs"</code>. It contains static values coming from the result of the compilation. That values does not evolve during the simulation.
+            </para>
+            <para>
+                Type : <link linkend="scicos_sim">sim</link>
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_cpr_cor">
+            <title>cor</title>
+            <para>
+                It is a list with same recursive structure as <link linkend="scicos_diagram">scs_m</link>. Each leaf contains the index of associated block in <link linkend="scicos_sim">sim</link> data structure. It can be used to retrieve compiled information of a specific <link linkend="scicos_block">block</link>.
+            </para>
+            <para>
+                Size : number of graphical objects in <link linkend="scicos_diagram">scs_m</link>.
+            </para>
+            <para>
+                Type : scilab list.
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_cpr_corinv">
+            <title>corinv</title>
+            <para>
+                <code>corinv(i)</code> is the path of <code>i</code> th block defined in <link linkend="scicos_sim">sim</link> data structure in the <link linkend="scicos_diagram">scs_m</link> data structure.
+            </para>
+            <para>
+                Size : number of simulable blocks.
+            </para>
+            <para>
+                Type : scilab list.
+            </para>
+        </refsect2>
+    </refsection>
+</refentry>

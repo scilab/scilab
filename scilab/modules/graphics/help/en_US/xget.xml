@@ -2,307 +2,116 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * Copyright (C) 2017 - Samuel GOUGEON
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="xget" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml"
+    xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+    xmlns:scilab="http://www.scilab.org"  xml:id="xget" xml:lang="en">
     <refnamediv>
         <refname>xget</refname>
         <refpurpose>
-            get current values of the graphics context. <emphasis role="bold">This function is obsolete.</emphasis>
+            gets current values of the graphics context. <emphasis role="bold">This function is obsolete.</emphasis>
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
-            [x1] = xget(str,[flag])
-            xget()
+            value = xget(query)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
-        <variablelist>
-            <varlistentry>
-                <term>str</term>
-                <listitem>
-                    <para>string.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>flag</term>
-                <listitem>
-                    <para>optional. Set to 1 gives a verbose mode.</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
         <title>Description</title>
+        <warning>
+            <emphasis role="bold">This function is obsolete</emphasis>. Use the
+            <link linkend="graphics_entities">graphics properties</link> of objects instead.
+        </warning>
         <para>
-            <warning>
-                This function is obsolete.
-            </warning>
-            Use the Scilab graphic objects representation instead (see the <link
-            linkend="set">set</link> and <link linkend="get">get</link>
-            functions as well as the <link linkend="graphics_entities">graphics
-                entities
-            </link>
-            help page).
-        </para>
-        <para>
-            This function is used to get values from the graphics context on the
-            topic specified by the string <varname>str</varname>. When called
-            with no argument, a choice menu is created showing the current
-            values and changes can be performed through toggle buttons.
+            This function is used to get values from the graphics context on the topic specified
+            by the string <varname>query</varname>.
         </para>
         <variablelist>
             <varlistentry>
-                <term>str = xget("auto clear")</term>
+                <term>value = xget("fpf")</term>
                 <listitem>
                     <para>
-                        Get the auto clear status (<literal>"on"</literal> or
-                        <literal>"off"</literal>).
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>color = xget("background")</term>
-                <listitem>
-                    <para>
-                        Get the background color of the current
-                        <literal>Axes</literal> object. The result is a colormap
-                        index corresponding to the color.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>rect = xget("clipping")</term>
-                <listitem>
-                    <para>
-                        Get the clipping zone as a rectangle <literal>rect =
-                            [x,y,w,h]
-                        </literal>
-                        (Upper-Left point, Width, Height).
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>c = xget("color")</term>
-                <listitem>
-                    <para>
-                        Get the default color for filling, line or text drawing
-                        functions. <literal>c</literal> is an integer projected
-                        in the interval <literal>[0,whiteid]</literal>. 0 stands
-                        for black filling and <literal>whiteid</literal> for
-                        white. The value of <literal>whiteid</literal> can be
-                        obtained with <code>xget("white")</code>.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>cmap = xget("colormap")</term>
-                <listitem>
-                    <para>
-                        Get the colormap used for the current graphics window as
-                        a <literal>m x 3</literal> RGB matrix.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>dash = xget("dashes")</term>
-                <listitem>
-                    <para>
-                        Get the dash style <literal>dash = [dash_number]</literal>
-                        where <literal>dash_number</literal> is the id of the
-                        dash.
-                        <warning>
-                            This keyword is obsolete, please use
-                            <literal>xget("color")</literal> or
-                            <literal>xget("line style")</literal> instead.
-                        </warning>
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>font = xget("font")</term>
-                <listitem>
-                    <para>
-                        Get <literal>font = [fontid, fontsize]</literal>, the
-                        default font and the default value of font size.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>fontsize = xget("font size")</term>
-                <listitem>
-                    <para>Get the default value of font size.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>color = xget("foreground")</term>
-                <listitem>
-                    <para>
-                        Get the foreground color of the current
-                        <literal>Axes</literal> object. The result is a colormap index corresponding to the color.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>str = xget("fpf")</term>
-                <listitem>
-                    <para>
-                        Get the floating point format for number display in
-                        contour functions. Note that <literal>str</literal> is <literal>""</literal> when default format is used.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>color = xget("hidden3d")</term>
-                <listitem>
-                    <para>
-                        Get the color number for hidden faces in <function>plot3d</function>.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>pat = xget("lastpattern")</term>
-                <listitem>
-                    <para>
-                        Get the id of the last available pattern or color, with
-                        the current colormap of the current window. In fact
-                        <literal>pat+1</literal> and <literal>pat+2</literal>
-                        are also available and stand respectively for black and
-                        white pattern.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>type = xget("line mode")</term>
-                <listitem>
-                    <para>
-                        Get the line drawing mode. <literal>type = 1</literal>
-                        is absolute mode and <literal>type = 0</literal> is
-                        relative mode.
-                        <warning>
-                            The mode <literal>type = 0</literal> has bugs.
-                        </warning>
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>xget("line style")</term>
-                <listitem>
-                    <para>
-                        Get the default line style (1 for solid line, &gt;1 for
-                        dashed lines).
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>mark = xget("mark")</term>
-                <listitem>
-                    <para>
-                        Get the default mark id and the default mark size.
-                        <literal>mark=[markid, marksize]</literal>.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>marksize = xget("mark size")</term>
-                <listitem>
-                    <para>Get the default mark size.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>pat = xget("pattern")</term>
-                <listitem>
-                    <para>
-                        Get the current pattern or the current color.
-                        <literal>pat</literal> is an integer in the range
-                        <literal>[1, last]</literal>. When one uses black and
-                        white, 0 is used for black filling and
-                        <literal>last</literal> for white. The value of
-                        <literal>last</literal> can be obtained with
-                        <code>xget("lastpattern")</code>.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>value = xget("thickness")</term>
-                <listitem>
-                    <para>
-                        Get the thickness of lines in pixel (0 and 1 have the same meaning: 1 pixel thick).
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>flag = xget("use color")</term>
-                <listitem>
-                    <para>
-                        Get the flag 0 (use black and white) or 1 (use colors).
-                        See <function>xset</function>.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>[x, y] = xget("viewport")</term>
-                <listitem>
-                    <para>
-                        Get the current position of the visible part of graphics
-                        in the panner.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>dim = xget("wdim")</term>
-                <listitem>
-                    <para>
-                        Get the width and the height of the current graphics
-                        window <literal>dim = [width, height]</literal>.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>win = xget("window")</term>
-                <listitem>
-                    <para>
-                        Get the current window number <literal>win</literal>.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>pos = xget("wpos")</term>
-                <listitem>
-                    <para>
-                        Get the position of the upper left point of the graphics
-                        window <literal>pos = [x, y]</literal>.
+                        Gets as a string the floating point format for number display in contour
+                        functions. Note that <literal>value</literal> is <literal>""</literal>
+                        when the default format is used.
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
+        <refsect2>
+            <title>Replacements</title>
+        <screen><![CDATA[
+// SCILAB 3 & 4           SCILAB N > 4
+// ------------           ------------
+xget("window")            gcf().figure_id
+xget("figure")            gcf().figure_id
+xget("wpos")              gcf().figure_position
+xget("wdim")              gcf().figure_size
+xget("wpdim")             gcf().figure_size
+xget("viewport")          gcf().viewport
+xget("wresize")           gcf().auto_resize
+xget("auto clear")        gcf().auto_clear
+
+xget("hidden3d")          gca().hiddencolor
+xget("clipgrf")           bool2s(gca().clip_state=="clipgrf")
+xget("clipoff")           bool2s(gca().clip_state=="off")
+xget("clipping")          gca().clip_box
+xget("background")        gca().background
+xget("foreground")        gca().foreground
+xget("pattern")           gca().foreground
+xget("lastpattern")       size(gcf().color_map,1)
+xget("color")             gca().foreground
+xget("white")             color("white")
+xget("font")              [gca().font_style gca().font_size]
+xget("font size")         gca().font_size
+xget("dashes")            gca().line_style
+xget("line mode")         gca().line_mode
+]]></screen>
+        </refsect2>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="xset">xset</link>
             </member>
             <member>
-                <link linkend="getcolor">getcolor</link>
+                <link linkend="get">get</link>
+            </member>
+            <member>
+                <link linkend="graphics_entities">graphics entities</link>
+            </member>
+            <member>
+                <link linkend="gcf">gcf</link>
+            </member>
+            <member>
+                <link linkend="gdf">gdf</link>
+            </member>
+            <member>
+                <link linkend="gca">gca</link>
+            </member>
+            <member>
+                <link linkend="gda">gda</link>
             </member>
             <member>
                 <link linkend="ged">ged</link>
             </member>
             <member>
-                <link linkend="set">set</link>
-            </member>
-            <member>
-                <link linkend="graphics_entities">graphics entities</link>
+                <link linkend="getcolor">getcolor</link>
             </member>
         </simplelist>
     </refsection>
@@ -310,9 +119,23 @@
         <title>History</title>
         <revhistory>
             <revision>
+                <revnumber>5.0.1</revnumber>
+                <revremark>
+                    The <literal>"alufunction"</literal> property is obsolete. It is no longer
+                    taken into account for graphical renderings. It is replaced with
+                    <literal>gcf().pixel_drawing_mode</literal>.
+                </revremark>
+            </revision>
+            <revision>
                 <revnumber>5.4.0</revnumber>
                 <revremark>
-                    The "alufunction" property is no more supported, this property was no more used for rendering since Scilab 5.0.1.
+                    The <literal>"alufunction"</literal> is no longer supported..
+                </revremark>
+            </revision>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revremark>
+                    Only the <literal>xget("fpf")</literal> syntax is now supported.
                 </revremark>
             </revision>
         </revhistory>

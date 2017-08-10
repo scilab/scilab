@@ -6,7 +6,7 @@
 // =============================================================================
 //
 // <-- Non-regression test for bug 11997 -->
-//
+// <-- CLI SHELL MODE -->
 // <-- Bugzilla URL -->
 // http://bugzilla.scilab.org/show_bug.cgi?id=11997
 //
@@ -15,6 +15,6 @@
 
 clear a;
 //3 instead of 2 because of call through execstr
-errmsg = msprintf(_("Wrong value for argument #%d: Valid variable name expected.\n"), 3);
+errmsg = msprintf(_("%s: Wrong value for input argument #%d: Defined variable expected.\n"), "save", 2);
 assert_checkerror("save(TMPDIR + ""/myData.sod"", ""a"")", errmsg);
 

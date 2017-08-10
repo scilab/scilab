@@ -3,12 +3,15 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2000 - INRIA - Carlos Klimann
  * Copyright (C) 2012 - Michael Baudin
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="show_pca">
@@ -17,13 +20,13 @@
         <refpurpose>Visualization of principal components analysis results</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>show_pca(lambda, facpr, N)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
-            
+
             <varlistentry>
                 <term>lambda</term>
                 <listitem>
@@ -70,72 +73,72 @@
             <itemizedlist>
                 <listitem>
                     <para>
-                        The graphics on the left represents the correlation circle. 
-                        This graphics is based on the two principal components 1 and 2, i.e. 
-                        the main components. 
-                        For each parameter, it represents the linear correlation coefficient between 
-                        the component and each parameter. 
-                        Points which are close to the unit circle can be interpreted 
-                        in terms of correlation, but points close to the center of the circle 
-                        should not be interpreted. 
-                        For the Axis 1, points on the right of the graphics are positively 
-                        correlated to this component, while points on the left are negatively 
-                        correlated. 
-                        For the Axis 2, points on the top of the graphics are positively 
-                        correlated to this component, while points on the bottom are negatively 
-                        correlated. 
-                        For example, if the point x1 is close to the circle, on the right, 
-                        close to the Axis 1, this means that the component 1 is positively correlated 
-                        to the parameter 1. 
-                        When the data is perfectly represented by only two components, 
-                        the points are on the circle. 
+                        The graphics on the left represents the correlation circle.
+                        This graphics is based on the two principal components 1 and 2, i.e.
+                        the main components.
+                        For each parameter, it represents the linear correlation coefficient between
+                        the component and each parameter.
+                        Points which are close to the unit circle can be interpreted
+                        in terms of correlation, but points close to the center of the circle
+                        should not be interpreted.
+                        For the Axis 1, points on the right of the graphics are positively
+                        correlated to this component, while points on the left are negatively
+                        correlated.
+                        For the Axis 2, points on the top of the graphics are positively
+                        correlated to this component, while points on the bottom are negatively
+                        correlated.
+                        For example, if the point x1 is close to the circle, on the right,
+                        close to the Axis 1, this means that the component 1 is positively correlated
+                        to the parameter 1.
+                        When the data is perfectly represented by only two components,
+                        the points are on the circle.
                         When more than two components are needed to represent the data, the
-                        points are inside the circle. 
+                        points are inside the circle.
                     </para>
                 </listitem>
                 <listitem>
                     <para>
-                        The graphics on the right represents the eigenvalues. 
-                        The bar graph represents the eigenvalues, sorted in decreasing 
-                        order. 
-                        More precisely, each bar has a length equal to the ratio of the eigenvalue 
-                        over the sum of the eigenvalues. 
-                        The line plot represents the cumulated sum, i.e. 
-                        the cumulative variances explained by the associated 
-                        principal components. 
-                        For example, if the cumulated sum for the eigenvalue 2 is greater than 0.9, 
-                        the points are flat in a subspace associated with the two first 
-                        eigenvectors: representing the data with only these two directions may be 
-                        a good representation. 
+                        The graphics on the right represents the eigenvalues.
+                        The bar graph represents the eigenvalues, sorted in decreasing
+                        order.
+                        More precisely, each bar has a length equal to the ratio of the eigenvalue
+                        over the sum of the eigenvalues.
+                        The line plot represents the cumulated sum, i.e.
+                        the cumulative variances explained by the associated
+                        principal components.
+                        For example, if the cumulated sum for the eigenvalue 2 is greater than 0.9,
+                        the points are flat in a subspace associated with the two first
+                        eigenvectors: representing the data with only these two directions may be
+                        a good representation.
                     </para>
                 </listitem>
             </itemizedlist>
         </para>
         <para>
-            Implementation notes. 
-            The right part of the graphics is based on the second column of the 
-            <literal>lambda</literal> output argument of the <literal>pca</literal> 
+            Implementation notes.
+            The right part of the graphics is based on the second column of the
+            <literal>lambda</literal> output argument of the <literal>pca</literal>
             function.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example">
-            <![CDATA[ 
+            <![CDATA[
 // Test a table of standard Normal random numbers
 // 100 observations in 10 dimensions.
 a=rand(100,10,"n");
 [lambda,facpr,comprinc] = pca(a);
 show_pca(lambda,facpr)
-// See how the points are inside the circle: 
-// more than 2 components are required to represent 
-// the data. 
+// See how the points are inside the circle:
+// more than 2 components are required to represent
+// the data.
  ]]>
         </programlisting>
-        
+
         <programlisting role="example">
-            <![CDATA[ 
-// Source : "Analyse en composantes principales", 
+            <![CDATA[
+// Source : "Analyse en composantes principales",
 // Jean-François Delmas et Saad Salam
 // Weight of several parts of 23 cows
 // X1: weight (alive)
@@ -167,7 +170,7 @@ x = [
 410     233     25.9     72.3     11.1     16.6
 402     234     27.1     72.1     10.4     17.5
 400     223     26.8     70.3     13.5     16.2
-400     213     25.8     70.4     12.1     17.5 
+400     213     25.8     70.4     12.1     17.5
 ];
 [lambda,facpr,comprinc] = pca(x);
 scf();
@@ -177,13 +180,13 @@ show_pca(lambda,facpr)
 x = x(:,1:2);
 [lambda,facpr,comprinc] = pca(x);
 scf();
-// See how the points are perfectly on the circle. 
+// See how the points are perfectly on the circle.
 show_pca(lambda,facpr)
  ]]>
         </programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="pca">pca</link>
@@ -193,7 +196,7 @@ show_pca(lambda,facpr)
             </member>
         </simplelist>
     </refsection>
-    
+
     <refsection>
         <title>Bibliography</title>
         <para>
@@ -206,6 +209,6 @@ show_pca(lambda,facpr)
             Jean-François Delmas et Saad Salam,
             http://cermics.enpc.fr/scilab_new/site/Tp/Statistique/acp/index.htm
         </para>
-        
+
     </refsection>
 </refentry>

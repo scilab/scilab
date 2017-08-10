@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - F. Delebecque
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="pt" xml:id="ui_observer">
+    <refnamediv>
+        <refname>ui_observer</refname>
+        <refpurpose>unknown input observer</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[UIobs,J,N]=ui_observer(Sys,reject,C1,D1)
+            [UIobs,J,N]=ui_observer(Sys,reject,C1,D1,flag,alfa,beta)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>Sys</term>
+                <listitem>
+                    <para>
+                        <literal>syslin</literal> list containing the matrices <literal>(A,B,C2,D2)</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>reject</term>
+                <listitem>
+                    <para>
+                        integer vector, indices of inputs of <literal>Sys</literal> which are unknown.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>C1</term>
+                <listitem>
+                    <para>real matrix</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>D1</term>
+                <listitem>
+                    <para>
+                        real matrix. <literal>C1</literal> and <literal>D1</literal> have the same number of rows.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flag</term>
+                <listitem>
+                    <para>
+                        string <literal>'ge'</literal> or <literal>'st'</literal> (default) or <literal>'pp'</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>alfa</term>
+                <listitem>
+                    <para>real or complex vector (loc. of closed loop poles)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>beta</term>
+                <listitem>
+                    <para>real or complex vector (loc. of closed loop poles)</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Unknown input observer.
+        </para>
+        <para>
+            <literal>Sys: (w,u) --&gt; y</literal> is a <literal>(A,B,C2,D2)</literal> syslin linear system with
+            two inputs w and u, w being the unknown input.
+            The  matrices B and D2 of Sys are (implicitly) partitioned as:
+            <literal>B=[B1,B2]</literal> and <literal>D2=[D21,D22]</literal>  with <literal>B1=B(:,reject)</literal>  and
+            <literal>D21=D2(:,reject)</literal> where reject = indices of unknown inputs.
+            The matrices <literal>C1</literal> and <literal>D1</literal> define <literal>z = C1 x + D1 (w,u)</literal>,
+            the to-be-estimated output.
+        </para>
+        <para>
+            The matrix <literal>D1</literal> is (implicitly) partitioned as <literal>D1=[D11,D12]</literal>
+            with <literal>D11=D(:,reject)</literal>
+        </para>
+        <para>
+            The data (Sys, reject,C1, D1)   define a 2-input 2-output system:
+        </para>
+        <programlisting role=""><![CDATA[
+xdot =  A x + B1  w + B2  u
+   z = C1 x + D11 w + D12 u
+   y = C2 x + D21 w + D22 u
+ ]]></programlisting>
+        <para>
+            An observer <literal>(u,y) --&gt; zhat</literal> is looked for the output z.
+        </para>
+        <para>
+            <literal>flag='ge'</literal> no stability constraints
+            <literal>flag='st'</literal> stable observer    (default)
+            <literal>flag='pp'</literal> observer with pole placement
+            alfa,beta = desired location of closed loop poles  (default -1, -2)
+            J=y-output to x-state injection.
+            N=y-output to z-estimated output injection.
+        </para>
+        <para>
+            UIobs = linear system (u,y) --&gt; zhat such that:
+            The transfer function: (w,u) --&gt; z  equals the composed transfer function:
+            [0,I;        UIobs
+            Sys]
+            (w,u) -----&gt; (u,y) -----&gt; zhat
+            i.e. transfer function of system {A,B,C1,D1} equals transfer function
+            <literal>UIobs*[0,I; Sys]</literal>
+        </para>
+        <para>
+            Stability (resp. pole placement) requires detectability
+            (resp. observability) of (A,C2).
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+A=diag([3,-3,7,4,-4,8]);
+B=[eye(3,3);zeros(3,3)];
+C=[0,0,1,2,3,4;0,0,0,0,0,1];
+D=[1,2,3;0,0,0];
+rand('seed',0);w=ss2ss(syslin('c',A,B,C,D),rand(6,6));
+[A,B,C,D]=abcd(w);
+B=[B,matrix(1:18,6,3)];D=[D,matrix(-(1:6),2,3)];
+reject=1:3;
+Sys=syslin('c',A,B,C,D);
+N1=[-2,-3];C1=-N1*C;D1=-N1*D;
+nw=length(reject);nu=size(Sys('B'),2)-nw;
+ny=size(Sys('C'),1);nz=size(C1,1);
+[UIobs,J,N]=ui_observer(Sys,reject,C1,D1);
+
+W=[zeros(nu,nw),eye(nu,nu);Sys];UIobsW=UIobs*W;
+//(w,u) --> z=UIobs*[0,I;Sys](w,u)
+clean(ss2tf(UIobsW));
+wu_to_z=syslin('c',A,B,C1,D1);clean(ss2tf(wu_to_z));
+clean(ss2tf(wu_to_z)-ss2tf(UIobsW),1.d-7)
+/////2nd example//////
+nx=2;ny=3;nwu=2;Sys=ssrand(ny,nwu,nx);
+C1=rand(1,nx);D1=[0,1];
+UIobs=ui_observer(Sys,1,C1,D1);
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="cainv">cainv</link>
+            </member>
+            <member>
+                <link linkend="ddp">ddp</link>
+            </member>
+            <member>
+                <link linkend="abinv">abinv</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -3,6 +3,4 @@ LIBRARY    core.dll
 
 EXPORTS
 ; core
-callFunctionFromGateway
 MyHeapAlloc
-MyHeapFree

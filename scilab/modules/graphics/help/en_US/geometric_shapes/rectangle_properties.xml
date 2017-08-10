@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="rectangle_properties">
@@ -86,7 +89,7 @@
                         directly given in points. When <literal>mark_size_unit</literal> is set to
                         <literal>"tabulated"</literal>, <literal>mark_size</literal> is computed relative
                         to the font size array: therefore, its value should be an integer in
-                        [0 5] whith stands for 8pt, 10pt, 12pt, 14pt, 18pt and 24pt. Note that
+                        [0 5] with stands for 8pt, 10pt, 12pt, 14pt, 18pt and 24pt. Note that
                         <link linkend="xrect">xrect</link> and pure scilab functions use
                         <literal>tabulated</literal> mode as default ; when using <link linkend="plot">plot</link>
                         function, the <literal>point</literal> mode is automatically enabled.
@@ -99,7 +102,7 @@
                     <para>
                         The <literal>mark_size</literal> property is used to select the type of
                         size of the marks when <literal>mark_mode</literal> property is
-                        <literal>"on"</literal>. Its value should be an integer in [0 5] whith
+                        <literal>"on"</literal>. Its value should be an integer in [0 5] which
                         stands for 8pt, 10pt, 12pt, 14pt, 18pt and 24pt.
                     </para>
                 </listitem>
@@ -110,7 +113,7 @@
                     <para>
                         This field contains the <literal>mark_foreground</literal> property
                         value which is the marks' edge color. Its value should be a color
-                        index (relative to the current color_map) or 0 for transparant edge.
+                        index (relative to the current color_map) or 0 for transparent edge.
                     </para>
                 </listitem>
             </varlistentry>
@@ -120,7 +123,7 @@
                     <para>
                         This field contains the <literal>mark_background</literal> property
                         value which is the marks' face color. Its value should be a color
-                        index (relative to the current color_map) or 0 for transparant face.
+                        index (relative to the current color_map) or 0 for transparent face.
                     </para>
                 </listitem>
             </varlistentry>
@@ -249,7 +252,7 @@
                 <term>user_data: </term>
                 <listitem>
                     <para>This field can be use to store any scilab variable in the
-                        rectangle data structure, and to retreive it.
+                        rectangle data structure, and to retrieve it.
                     </para>
                 </listitem>
             </varlistentry>
@@ -257,7 +260,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 a=get("current_axes");//get the handle of the newly created axes
 a.data_bounds=[-2,-2;2,2];
 
@@ -277,7 +280,7 @@ r.clip_state="off"
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="set">set</link>

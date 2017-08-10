@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="global">
+    <refnamediv>
+        <refname>global </refname>
+        <refpurpose>définition de variables globales  </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>global('nam1',...,'namn')
+            global nam1 ... namn
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>nam1,..., namn  </term>
+                <listitem>
+                    <para>noms valides de variables
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Habituellement, chaque fonction Scilab a ses propres variables locales et peut accéder "en lecture uniquement" à toutes les variables de l'environnement principal et des fonctions appelantes. Le mot-clé <literal>global</literal> permet de partager certaines variables en lecture/écriture entre des fonctions.
+            Toute affectation à ces variables est propagée à toutes les autres fonctions ayant déclaré cette variable globale (avec le mot-clé <literal>global</literal>).
+        </para>
+        <para>
+            Si la variable n'existe pas au moment où elle est déclarée globale avec le mot-clé <literal>global</literal>, elle est initialisée avec une matrice vide [].
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[
+// 1 : l'environnement appelant et une fonction partagent une variable
+global a
+a=1
+deff('y=f1(x)','global a,a=x^2,y=a^2')
+f1(2)
+a
+// 2 : trois fonctions partagent des variables
+deff('initdata()','global A C ;A=10,C=30')
+deff('letsgo()','global A C ;disp(A) ;C=70')
+deff('letsgo1()','global C ;disp(C)')
+initdata()
+letsgo()
+letsgo1()
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="who">who</link>
+            </member>
+            <member>
+                <link linkend="isglobal">isglobal</link>
+            </member>
+            <member>
+                <link linkend="clearglobal">clearglobal</link>
+            </member>
+            <member>
+                <link linkend="resume">resume</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

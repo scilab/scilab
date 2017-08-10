@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009  - DIGITEO - Antoine ELIAS
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="Common_getvartype_API" xml:lang="ja">
+    <refnamediv>
+        <refname>変数の型 (Scilabゲートウェイ)</refname>
+        <refpurpose>
+            ゲートウェイ内で引数または変数の型を取得する方法.
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <para>入力引数プロファイル:</para>
+        <synopsis>SciErr getVarType(void* _pvCtx, int* _piAddress, int* _piType)</synopsis>
+        <para>名前指定変数プロファイル:</para>
+        <synopsis>SciErr getNamedVarType(void* _pvCtx, const char* _pstName, int* _piType)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>_pvCtx</term>
+                <listitem>
+                    <para>
+                        Scilab環境ポインタ, api_scilab.hで定義される "pvApiCtx" を指定
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piAddress</term>
+                <listitem>
+                    <para>
+                        変数のアドレス
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_pstName</term>
+                <listitem>
+                    <para>
+                        Scilab変数名.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piType</term>
+                <listitem>
+                    <para>
+                        変数のScilab型 (sci_matrix, sci_strings, sci_ints, ...).
+                    </para>
+                    <para>
+                        異なる型のリストがenumとして
+                        <link linkend="sci_types">sci_types.h</link>に定義されている
+                        ことに注意してください.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>SciErr</term>
+                <listitem>
+                    <para>
+                        エラー構造体で,エラーメッセージ履歴と最初のエラー番号を保持します.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>このヘルプはゲートウェイ内で変数のScilab型を取得する方法を示します.</para>
+    </refsection>
+    <refsection>
+        <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/common_function_api.c-->
+        <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/common_function.tst-->
+        <!--Lib_name: common_function-->
+        <!--Func_list: common_function-->
+        <title>Gateway Source</title>
+        <programlisting role="code_gateway">
+            <![CDATA[
+#include "api_scilab.h"
+SciErr printf_info(int _iVar);
+int common_function(char *fname,void* pvApiCtx)
+{
+    SciErr sciErr;
+    int i;
+    int *piAddr1    = NULL;
+    int iBool       = 0;
+    for(i = 0 ; i < nbInputArgument(pvApiCtx) ; i++)
+    {
+        sciErr = printf_info(i + 1);
+        if(sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            break;
+        }
+        sciprint("\n\n");
+    }
+    // trueの場合に1,それ以外は 0
+    iBool = sciErr.iErr == 0 ? 1 : 0;
+    sciErr = createMatrixOfBoolean(pvApiCtx, nbInputArgument(pvApiCtx) + 1, 1, 1, &iBool);
+    if(sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 0;
+    }
+   // 確保された変数を左辺に代入
+    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+    return 0;
+}
+SciErr printf_info(int _iVar)
+{
+    SciErr sciErr;
+    int* piAddr     = NULL;
+    int iType       = 0;
+    int iRows       = 0;
+    int iCols       = 0;
+    int iItem       = 0;
+    int iComplex    = 0;
+    sciErr = getVarAddressFromPosition(pvApiCtx, _iVar, &piAddr);
+    if(sciErr.iErr)
+    {
+        return sciErr;
+    }
+    sciprint("Variable %d information:\n", _iVar);
+    sciErr = getVarType(pvApiCtx, piAddr, &iType);
+    if(sciErr.iErr)
+    {
+        return sciErr;
+    }
+    sciprint("\tType: ");
+    switch(iType)
+    {
+        case sci_matrix :
+            sciprint("double\n");
+            break;
+        case sci_poly :
+            sciprint("polynomial\n");
+            break;
+        case sci_boolean :
+            sciprint("boolean\n");
+            break;
+        case sci_sparse :
+            sciprint("sparse\n");
+            break;
+        case sci_boolean_sparse :
+            sciprint("boolean_sparse\n");
+            break;
+        case sci_ints :
+        {
+            char pstSigned[]    = "signed";
+            char pstUnsigned[]  = "unsigned";
+            char* pstSign       = pstSigned;
+            int iPrec           = 0;
+            sciErr = getMatrixOfIntegerPrecision(pvApiCtx, piAddr, &iPrec);
+            if(sciErr.iErr)
+            {
+                return sciErr;
+            }
+            if(iPrec > 10)
+            {
+                pstSign = pstUnsigned;
+            }
+            sciprint("%s integer %d bits\n", pstSign, (iPrec % 10) * 8);
+        }
+        break;
+        case sci_strings :
+            sciprint("strings\n");
+            break;
+        case sci_list :
+            sciprint("list\n");
+            break;
+        case sci_tlist :
+            sciprint("tlist\n");
+            break;
+        case sci_mlist :
+            sciprint("mlist\n");
+            break;
+        default :
+            sciprint("Not manage by this function\n");
+            return sciErr;
+    }
+    if(isVarComplex(pvApiCtx, piAddr))
+    {
+        sciprint("\tComplex: Yes\n");
+    }
+    sciprint("\tDimensions: ");
+    if(isVarMatrixType(pvApiCtx, piAddr))
+    {
+        sciErr = getVarDimension(pvApiCtx, piAddr, &iRows, &iCols);
+        if(sciErr.iErr)
+        {
+            return sciErr;
+        }
+        sciprint("%d x %d", iRows, iCols);
+    }
+    else
+    {
+        sciErr = getListItemNumber(pvApiCtx, piAddr, &iItem);
+        if(sciErr.iErr)
+        {
+            return sciErr;
+        }
+        sciprint("%d", iItem);
+    }
+    return sciErr;
+}
+ ]]>
+        </programlisting>
+    </refsection>
+    <refsection>
+        <title>Scilabテストスクリプト</title>
+        <programlisting role="code_scilab"><![CDATA[
+l1 = [1,2*%i,3;%i,2,3*%i];
+l2 = ["may","the";"puffin","be";"with","you"];
+l3 = int8([1,2,3]);
+l4 = uint16([1000,2000,3000]);
+l5 = list(l1,l2,l3);
+l = list(l1,l2,l3,l4,l5);
+common_function(l(1:$))
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="sci_types">sci_types</link>
+            </member>
+            <member>
+                <link linkend="isPolyType">isPolyType</link>
+            </member>
+            <member>
+                <link linkend="isBooleanType">isBooleanType</link>
+            </member>
+            <member>
+                <link linkend="isListType">isListType</link>
+            </member>
+            <member>
+                <link linkend="isDoubleType">isDoubleType</link>
+            </member>
+            <member>
+                <link linkend="isIntegerType">isIntegerType</link>
+            </member>
+            <member>
+                <link linkend="isSparseType">isSparseType</link>
+            </member>
+            <member>
+                <link linkend="isBooleanSparseType">isBooleanSparseType</link>
+            </member>
+            <member>
+                <link linkend="isStringType">isStringType</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

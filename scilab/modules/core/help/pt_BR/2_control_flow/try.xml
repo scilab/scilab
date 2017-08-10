@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="try" xml:lang="pt">
+    <refnamediv>
+        <refname>try</refname>
+        <refpurpose>início de um bloco try numa instrução de controle try-catch
+            (significa "tentar...")
+        </refpurpose>
+    </refnamediv>
+    <refnamediv xml:id="catch">
+        <refname>catch</refname>
+        <refpurpose>início de um bloco catch numa instrução de controle try-catch
+            (significa "prender...")
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title> Seqüência de Chamamento </title>
+        <synopsis>try
+            statements
+            catch
+            statements
+            end
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title> Descrição </title>
+        <para>A instrução de controle
+            <literal>try</literal>-<literal>catch</literal>pode ser usada para
+            gerenciar códigos que possivelmente poderiam gerar erros.
+        </para>
+        <para>Quando uma instrução de controle
+            <literal>try</literal>-<literal>catch</literal> é executada, normalmente
+            apenas as sentenças entre as palavras-chaves <literal>try</literal> e
+            <literal>catch</literal>são executadas. Contudo, se um erro ocorre durante
+            a execução de uma dessas sentenças, o erro é registrado, as sentenças
+            restantes até <literal>catch</literal>são puladas e as sentenças entre as
+            palavras-chaves <literal>catch</literal> e <literal>end</literal> são
+            executadas usando-se o modo de manipulação de erros padrão.
+        </para>
+        <para>
+            A mensagem de erro registrada pode ser recuperada pela função <link linkend="lasterror">lasterror</link> .
+        </para>
+        <para>
+            As sentenças <literal>catch</literal> , tanto quanto a palavra-chave
+            <literal>catch</literal> podem ser omitidas se nenhuma sentença
+            alternativa for fornecida.
+        </para>
+        <para>
+            Note que também é possível utilizar a função <link linkend="execstr">execstr</link> com o argumento<literal>
+                'errcatch'
+            </literal>
+            para manipulação de erros. Isto pode ser
+            particularmente útil para manipulação de erros sintáticos.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[
+
+file_path=TMPDIR+'/wrong
+try
+  u=mopen(file_path,'r')
+  x=mget(10,'c',u)
+catch
+  disp(['o arquivo '+file_path+ ' não pode ser lido',
+        'usando valores padrões para x'])
+  x=1:10
+end
+[error_message,error_number]=lasterror(%t)
+ ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title> Ver Também </title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="error">error</link>
+            </member>
+            <member>
+                <link linkend="execstr">execstr</link>
+            </member>
+            <member>
+                <link linkend="if">if</link>
+            </member>
+            <member>
+                <link linkend="lasterror">lasterror</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

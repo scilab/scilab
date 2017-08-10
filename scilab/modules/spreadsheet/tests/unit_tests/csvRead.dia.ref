@@ -2,7 +2,7 @@
 // Copyright (C) 2011 - INRIA - Michael Baudin
 // Copyright (C) 2010 - 2011 - INRIA - Allan CORNET
 // =============================================================================
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 path = SCI+"/modules/spreadsheet/tests/unit_tests/";
 // =============================================================================
 Mstr = [

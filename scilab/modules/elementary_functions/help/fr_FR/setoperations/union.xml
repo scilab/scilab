@@ -92,7 +92,7 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 A=round(5*rand(10,1));
 B=round(5*rand(7,1));
 

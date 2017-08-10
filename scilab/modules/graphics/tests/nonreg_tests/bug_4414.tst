@@ -7,10 +7,10 @@
 
 // <-- TEST WITH GRAPHIC -->
 
-// <-- Non-regression test for bug 4236 -->
+// <-- Non-regression test for bug 4414 -->
 //
 // <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/show_bug.cgi?id=4236
+// http://bugzilla.scilab.org/4414
 //
 // <-- Short Description -->
 // Complex grayplots are not saved correctly in scilab 5.1
@@ -24,7 +24,8 @@ f = gcf();
 save(TMPDIR + "/save.scg", "f");
 close
 load(TMPDIR + "/save.scg");
-e = gce();
+f = gcf();
+e = f.children.children;
 if or(e.data.x <> x) then pause; end
 if or(e.data.y <> y') then pause; end
 if or(e.data.z <> z) then pause; end

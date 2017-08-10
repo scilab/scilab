@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - F.D
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="ss2des">
+    <refnamediv>
+        <refname>ss2des</refname>
+        <refpurpose>(polynomial) state-space to descriptor form</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>S=ss2des(Sl)
+            S=ss2des(Sl,flag)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>Sl</term>
+                <listitem>
+                    <para>
+                        <literal>syslin</literal> list: proper or improper linear system.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flag</term>
+                <listitem>
+                    <para>
+                        character string <literal>"withD"</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>S</term>
+                <listitem>
+                    <para>list</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Given the linear system in state-space representation
+            <literal>Sl</literal> (<literal>syslin</literal> list), with a <literal>D</literal> matrix which is either
+            polynomial or constant, but not zero <literal>ss2des</literal>
+            returns a descriptor system as <literal>list('des',A,B,C,0,E)</literal>
+            such that:
+        </para>
+        <programlisting role=""><![CDATA[
+Sl=C*(s*E-A)^(-1)*B
+ ]]></programlisting>
+        <para>
+            If the flag <literal>"withD"</literal> is given, <literal> S=list('des',A,B,C,D,E) </literal>
+            with a <literal>D</literal> matrix of maximal rank.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+s=poly(0,'s');
+G=[1/(s+1),s;1+s^2,3*s^3];Sl=tf2ss(G);
+S=ss2des(Sl)
+S1=ss2des(Sl,"withD")
+Des=des2ss(S);Des(5)=clean(Des(5))
+Des1=des2ss(S1)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="pol2des">pol2des</link>
+            </member>
+            <member>
+                <link linkend="tf2des">tf2des</link>
+            </member>
+            <member>
+                <link linkend="des2ss">des2ss</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

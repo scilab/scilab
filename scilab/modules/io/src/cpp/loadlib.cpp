@@ -2,26 +2,30 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
-
+#include <fstream>
 #include "configvariable.hxx"
 #include "context.hxx"
 #include "loadlib.hxx"
 #include "macrofile.hxx"
-
 extern "C"
 {
 #include "FileExist.h"
 #include "sci_malloc.h"
 #include "os_string.h"
 #include "expandPathVariable.h"
+#include "fullpath.h"
 #include "PATH_MAX.h"
+#include "pathconvert.h"
 #include <libxml/xpath.h>
 #include <libxml/xmlreader.h>
 }
@@ -34,18 +38,31 @@ types::Library* loadlib(const std::wstring& _wstXML, int* err, bool _isFile, boo
 {
     types::Library* lib = NULL;
 
-    wchar_t* pwstPathLib = expandPathVariableW((wchar_t*)_wstXML.c_str());
+    wchar_t* pwstXML = pathconvertW(_wstXML.data(), FALSE, FALSE, AUTO_STYLE);
+    wchar_t* pwstPathLib = expandPathVariableW(pwstXML);
 
-    std::wstring wstOriginalPath(_wstXML);
-    std::wstring wstFile(pwstPathLib);
-    std::wstring wstPath(pwstPathLib);
+    bool expanded = true;
+    if (wcscmp(pwstPathLib, pwstXML) == 0)
+    {
+        expanded = false;
+    }
+
+    wchar_t* pwstTemp = (wchar_t*)MALLOC(sizeof(wchar_t) * (PATH_MAX * 2));
+    get_full_pathW(pwstTemp, pwstPathLib, PATH_MAX * 2);
     FREE(pwstPathLib);
+
+
+    std::wstring wstOriginalPath(pwstXML);
+    FREE(pwstXML);
+    std::wstring wstFile(pwstTemp);
+    std::wstring wstPath(pwstTemp);
+    FREE(pwstTemp);
 
     if (_isFile)
     {
         //remove / or \ at the end
         size_t pos = wstPath.find_last_of(L"/\\");
-        wstPath = wstPath.substr(0, pos);
+        wstPath = wstPath.substr(0, pos + 1);
         pos = wstOriginalPath.find_last_of(L"/\\");
         wstOriginalPath = wstOriginalPath.substr(0, pos + 1); //with ending /
     }
@@ -59,7 +76,6 @@ types::Library* loadlib(const std::wstring& _wstXML, int* err, bool _isFile, boo
         wstFile += L"lib";
     }
 
-
     std::wstring libname;
     MacroInfoList lst;
     *err = parseLibFile(wstFile, lst, libname);
@@ -68,7 +84,7 @@ types::Library* loadlib(const std::wstring& _wstXML, int* err, bool _isFile, boo
         return lib;
     }
 
-    lib = new types::Library(wstOriginalPath);
+    lib = new types::Library(expanded ? wstOriginalPath : wstPath);
 
     std::wstring stFilename(wstPath);
     if (stFilename.empty() == false && *stFilename.rbegin() != DIR_SEPARATORW[0])
@@ -77,7 +93,7 @@ types::Library* loadlib(const std::wstring& _wstXML, int* err, bool _isFile, boo
     }
 
 
-    for (const auto& macro : lst)
+    for (const auto & macro : lst)
     {
         lib->add(macro.second.name, new types::MacroFile(macro.second.name, stFilename + macro.second.file, libname));
     }
@@ -114,6 +130,21 @@ int parseLibFile(const std::wstring& _wstXML, MacroInfoList& info, std::wstring&
         return 1;
     }
 
+    std::string s(_wstXML.begin(), _wstXML.end());
+    std::ifstream file(s);
+    if (file)
+    {
+        const std::string XMLDecl("<?xml");
+        std::string readXMLDecl;
+        readXMLDecl.resize(XMLDecl.length(), ' ');//reserve space
+        file.read(&*readXMLDecl.begin(), XMLDecl.length());
+        if (XMLDecl != readXMLDecl)
+        {
+            FREE(pstFile);
+            return 4;
+        }
+    }
+
     char *encoding = GetXmlFileEncoding(pstFile);
 
     /* Don't care about line return / empty line */
@@ -123,7 +154,7 @@ int parseLibFile(const std::wstring& _wstXML, MacroInfoList& info, std::wstring&
     {
         FREE(pstFile);
         free(encoding);
-        return NULL;
+        return 3;
     }
 
     xmlDocPtr doc;
@@ -141,7 +172,7 @@ int parseLibFile(const std::wstring& _wstXML, MacroInfoList& info, std::wstring&
     if (doc == NULL)
     {
         FREE(pstFile);
-        return 1;
+        return 3;
     }
 
     FREE(pstFile);
@@ -186,18 +217,30 @@ int parseLibFile(const std::wstring& _wstXML, MacroInfoList& info, std::wstring&
                 {
                     /* we found the tag name */
                     const char *str = (const char*)attrib->children->content;
+                    if (pstName)
+                    {
+                        FREE(pstName);
+                    }
                     pstName = to_wide_string(str);
                 }
                 else if (xmlStrEqual(attrib->name, (const xmlChar*)"file"))
                 {
                     /* we found the tag activate */
                     const char *str = (const char*)attrib->children->content;
+                    if (pstFileName)
+                    {
+                        FREE(pstFileName);
+                    }
                     pstFileName = to_wide_string(str);
                 }
                 else if (xmlStrEqual(attrib->name, (const xmlChar*)"md5"))
                 {
                     /* we found the tag activate */
                     const char *str = (const char*)attrib->children->content;
+                    if (pstMd5)
+                    {
+                        FREE(pstMd5);
+                    }
                     pstMd5 = to_wide_string(str);
                 }
                 attrib = attrib->next;

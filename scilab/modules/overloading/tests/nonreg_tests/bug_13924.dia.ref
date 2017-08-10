@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2015 - Scilab Enterprises - Clement DAVID
@@ -15,16 +16,13 @@ a = %z/(1-%z);
 b = -%z / -(1-%z);
 assert_checkequal(a,b)
  ans  =
- 
-  T  
+  T
 assert_checkequal(size([a b]==[a a], "*"), 2)
  ans  =
- 
-  T  
+  T
 assert_checkequal(size([a b]~=[a a], "*"), 2)
  ans  =
- 
-  T  
+  T
 // Disable simplification mode
 simp_mode(%f)
 a = %z/(1-%z);
@@ -33,17 +31,13 @@ c = 0 / (1-%z);
 d = 0 / (2+%z);
 assert_checkequal(a,b)
  ans  =
- 
-  T  
+  T
 assert_checkequal(c,d)
  ans  =
- 
-  T  
+  T
 assert_checkequal(size([a b c d]==[a a c c], "*"), 4)
  ans  =
- 
-  T  
+  T
 assert_checkequal(size([a b c d]~=[a a c c], "*"), 4)
  ans  =
- 
-  T  
+  T

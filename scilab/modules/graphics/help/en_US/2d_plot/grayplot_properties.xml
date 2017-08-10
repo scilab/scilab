@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="grayplot_properties">
@@ -133,7 +136,7 @@
                 <term>user_data: </term>
                 <listitem>
                     <para>This field can be use to store any scilab variable in the grayplot
-                        data structure, and to retreive it.
+                        data structure, and to retrieve it.
                     </para>
                 </listitem>
             </varlistentry>
@@ -141,7 +144,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 m=5;n=5;
 M=round(32*rand(m,n));
 grayplot(1:m,1:n,M)
@@ -151,15 +154,15 @@ a.data_bounds=  [-1,-1;7,7]
 h=a.children
 
 h.data_mapping="direct";
-   
-// A 2D plotting of a matrix using colors 
+
+// A 2D plotting of a matrix using colors
 clf()
 a=get("current_axes");
 a.data_bounds=  [0,0;4,4];
-  
+
 b=5*ones(11,11); b(2:10,2:10)=4; b(5:7,5:7)=2;
 Matplot1(b,[1,1,3,3])  ;
-  
+
 h=a.children
 for i=1:7
   xclick(); // click the mouse to sets Matplot data
@@ -168,7 +171,7 @@ end
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="set">set</link>

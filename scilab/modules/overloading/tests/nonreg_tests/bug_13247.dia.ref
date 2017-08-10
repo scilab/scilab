@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2014 - Scilab Enterprises - Calixte DENIZET
@@ -12,7 +13,7 @@
 // http://bugzilla.scilab.org/13247
 //
 // <-- Short Description -->
-// hypermatrix in structure definition does not work properly
+// hypermatrix in structure definition did not work properly
 z = zeros(2,2,2);
 s.f = z;
 assert_checkequal(typeof(s), "st");

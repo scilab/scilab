@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2013 - Samuel GOUGEON
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="unwrap" xml:lang="en">
+    <refnamediv>
+        <refname>unwrap</refname>
+        <refpurpose>unwrap a Y(x) profile or a Z(x,y) surface. Unfold a Y(x) profile</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntaxes</title>
+        <synopsis>unwrap() // runs some examples
+            [U, breakPoints] = unwrap(Y)
+            [U, breakPoints] = unwrap(Y, z_jump)
+            [U, cuspPoints]  = unwrap(Y, "unfold")
+            U = unwrap(Z)
+            U = unwrap(Z, z_jump)
+            U = unwrap(Z, z_jump, dir)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>Y</term>
+                <listitem>
+                    <para>Vector of real numbers: the profile to unwrap or unfold. Implicit abscissae X are assumed to be equispaced.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Z</term>
+                <listitem>
+                    <para>Matrix of real numbers: the surface to unwrap. Implicit abscissae (X,Y) are assumed to be cartesian and equispaced (constant steps may be different along X versus along Y).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>z_jump</term>
+                <listitem>
+                    <para>
+                        Scalar real positive number used in unwrapping mode: the jump's height applied at breakpoints, performing the unwrapping. Only its absolute value is considered. The jump actually applied has the sign of the slope on both sides of each breakpoint. The default value is <literal>z_jump = 2*%pi</literal>. The special value <literal>z_jump = 0</literal> applies jumps equal to the average slope around each breakpoint, restoring a continuous slope over the whole profile or surface.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>dir</term>
+                <listitem>
+                    <para>"c" | "r" | "" (default): direction along which unwrapping is performed. "c" unwraps along columns, "r" unwraps along rows, "" unwraps in both directions.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"unfold"</term>
+                <listitem>
+                    <para>Provide this switch to unfold the given curve if it is folded, instead of unwrapping it.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>U</term>
+                <listitem>
+                    <para>
+                        Unwrapped profile or surface, or unfolded profile. <varname>U</varname> has the same sizes as <varname>Y</varname> or <varname>Z</varname>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>breakPoints, cuspPoints</term>
+                <listitem>
+                    <para>
+                        Vector of indices of points in <varname>Y</varname> where wrapping or folding has been detected and processed.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>UNWRAPPING</para>
+        <para>
+            <function>unwrap()</function> will be useful to process profiles or even surfaces wrapped for instance by a periodic and monotonic function such as
+            <literal>Y = modulo(X,w)</literal> or <literal>Y = atan(tan(X))</literal>. It aims to somewhat invert these functions, recovering the input <literal>X</literal> over it full range instead of the limited <literal>w</literal> or <literal>[-%pi/2, %pi/2]</literal> one.
+        </para>
+        <para>A breakpoint of a wrapped profile is detected as a point where slopes on both neighbouring sides of the point are almost equal but much smaller (in absolute value) from and opposite to the slope at the considered point: at the point, there is a jump breaking and opposed to the neighbouring slope.
+        </para>
+        <para>This detection strategy avoids considering any particular level as a wrapping one. It allows to process wrapped profiles to which a constant (or even a trend) has been added afterwards.
+        </para>
+        <para>
+            Unwrapping consists in reducing every detected jump and somewhat restoring a continuous slope (initially assumed to be so). At each point, it is performed by applying a Y-shift on a whole side of the profile, with respect to the other. The Y-shift may be the same for all breakpoints, as provided by the user. If the user specifies a null Y-shift, <function>unwrap()</function> applies a jump equal to the average neighbouring slope, depending on each breakpoint.
+        </para>
+        <warning>An unwrapped profile is always defined but for a constant.</warning>
+        <para>
+            Unless <varname>dir</varname> is used, <function>unwrap()</function> applied to a surface unwraps its first column. Each point of this one is then taken as reference level for unwrapping each line starting with it.
+        </para>
+        <para> </para>
+        <para>UNFOLDING</para>
+        <para>
+            If the <varname>"unfold"</varname> keyword is used and a profile -- not a surface -- is provided, the profile is assumed to be folded instead of being wrapped.
+        </para>
+        <para>At a folding point -- or "cusp point" --, the profile is continuous, but its slope is broken: the slope has almost the same absolute value on both sides of the point, but is somewhat opposed from one side to the other.
+        </para>
+        <para>
+            Folding may occur for instance when a non-monotonic periodic function and its inverse are applied to a profile X, like with <varname>Y= acos(cos(X))</varname>. Recovering X from Y is quite more difficult than if it was wrapped. Indeed, some ambiguous situations may exist, like when the profile is tangentially folded on one of its quasi-horizontal sections (if any).
+        </para>
+        <para>When a cusp point is detected, a) one side of the profile starting from it is opposed (upside down), and b) the continuity of the profile and of its slope are preserved and retrieved at the considered point (this may need adding a small jump by the local slope).</para>
+        <warning>The slope on the left edge of the input profile is used as starting reference. The unfolded profile may be upside down with respect to the original true one. In addition, as for unwrapping, it is defined but for a constant.
+        </warning>
+        <para>Known limitations: presently, folded surfaces can't be processed.</para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <para>Unwrapping or unfolding 1D profiles:</para>
+        <programlisting role="example"><![CDATA[
+// 1D EXAMPLES
+// -----------
+f = scf();
+f.figure_size = [800 1000];
+f.figure_position(2) = 0;
+f.figure_name = "unwrap() & ""unfold""" + _(": 1-D examples ");
+ax = gda();
+ax.y_label.font_size=2;
+drawlater()
+
+// Original 1D profile
+t = linspace(-4,4.2,800);
+alpha = t.^2 + t -1;
+subplot(5,2,1)
+titlepage("unwrap(): unwrap | unfold")
+subplot(5,2,2)
+plot(t,alpha)
+t2 = "$\text{Original profile: } \alpha=t^2+t-1$";
+ax = gca();
+ax.tight_limits = "on";
+yT = max(alpha) - strange(alpha)*0.1;
+xstring(0,yT,t2)
+e = gce();
+e.text_box_mode = "centered";
+e.font_size = 2;
+
+// Loop over cases
+for i=1:4
+    subplot(5,2,2*i+1)
+    if i==1 then
+        // Wrapping by atan(tan())
+        ralpha = atan(tan(alpha));            // Raw recovered alpha [pi]
+        ylabel("$atan(tan(\alpha))$")
+        [u, K] = unwrap(ralpha, %pi);         // arctan
+        t2 = "$\text{unwrap(Y, \%pi)}$";
+    elseif i==2
+        // Wrapping by modulo() + Y-shift
+        c = (rand(1,1)-0.5)*4;
+        ralpha = pmodulo(alpha, 5) + c;
+        ylabel("$modulo(\alpha,\ 5)"+msprintf("%+5.2f",c)+"$")
+        [u, K] = unwrap(ralpha, 0);
+        t2 = "$\text{unwrap(Y, 0)}$";
+    elseif i==3
+        // Folding by asin(sin()) + Y-shift
+        ralpha = 1+asin(sin(alpha));          // Raw recovered alpha [2.pi]
+        ylabel("$1+asin(sin(\alpha))$")
+        [u, K] = unwrap(ralpha, "unfold");
+        t2 = "$\text{unwrap(Y,""unfold"")}$";
+    else
+        // Folding by acos(cos()) + a trend
+        ralpha = 1+alpha/10+acos(cos(alpha)); // Raw recovered alpha [2.pi]
+        ylabel("$1+\frac{\alpha}{10}+acos(cos(\alpha))$")
+        [u, K] = unwrap(ralpha, "unfold");
+        t2 = "$\text{unwrap(Y,""unfold"")}$";
+    end
+    // Plotting the profile to be processed
+    plot(t, ralpha)
+    // Staring the breakpoints or the cusp points on the curve:
+    if K~=[] then
+        plot(t(K), ralpha(K),"*")
+    end
+    // Plotting the processed (unwrapped/unfolded) profile:
+    subplot(5,2,2*i+2)
+    plot(t,u)
+    ax = gca();
+    ax.tight_limits = "on";
+    // Adding a legend:
+    yT = max(u) - strange(u)*0.2;
+    xstring(0,yT,t2)
+    e = gce();
+    e.text_box_mode = "centered";
+    e.font_size = 2;
+end
+sda();
+drawnow()
+        ]]></programlisting>
+        <scilab:image>
+            %_unwrap()
+        </scilab:image>
+        <para>Unwrapping 2-D surfaces:</para>
+        <programlisting role="example"><![CDATA[
+// 2-D EXAMPLES
+// -----------
+ax = gda();
+ax.title.font_size = 2;
+f = scf();
+f.color_map = hotcolormap(100);
+f.figure_size = [475 1050];
+f.figure_position(2) = 0;
+f.figure_name = "unwrap()" + _(": 2-D examples");
+drawlater()
+
+nx = 300;
+ny = 400;
+rmax = 8.8;
+x = linspace(-rmax/2, rmax/2, nx)-1;
+y = linspace(-rmax/2, rmax/2, ny)+1;
+[X, Y] = meshgrid(x,y);
+for ex=0:1   // examples
+    // Original surface
+        // Generating the surface
+    if ex==0 then
+        z = X.^2 + Y.^2;
+    else
+        z = sqrt(0.3+sinc(sqrt(z)*3))*17-7;
+    end
+    // PLotting it in 3D
+    subplot(4,2,1+ex)
+    surf(x, y, z)
+    title("Original profile Z")
+    e = gce();
+    e.thickness = 0; // removes the mesh
+    e.parent.tight_limits = "on";
+
+    // Wrapped surface (flat)
+    m = 2.8;
+    zw = pmodulo(z, m); // wraps it
+    subplot(4,2,3+ex)
+    grayplot(x, y, zw')
+    title(msprintf("Zw = pmodulo(Z, %g)  (flat)",m))
+    ax0 = gca();
+    ax0.tight_limits = "on";
+
+    // Unwrapped surfaces (flat):
+    // in both directions:
+    u = unwrap(zw, 0);
+    subplot(4,2,5+ex)
+    grayplot(x, y, u')
+    title(msprintf("unwrap(Zw, %g)  (flat)", 0))
+    ax3 = gca();
+    ax3.tight_limits = "on";
+
+    if ex==0 then
+        direc = "r";
+    else
+        direc = "c";
+    end
+    // Along a single direction:
+    u = unwrap(zw, m, direc);
+    subplot(4,2,7+ex)
+    grayplot(x, y, u')
+    title(msprintf("unwrap(Zw, %g, ""%s"")  (flat)",m,direc))
+    ax1 = gca();
+    ax1.tight_limits = "on";
+end
+sda();
+drawnow()
+        ]]></programlisting>
+        <!--<scilab:image>
+            %_unwrap("2D")
+        </scilab:image>-->
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="atan">atan</link>
+            </member>
+            <member>
+                <link linkend="modulo">modulo</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection role="bibliography">
+        <title>Bibliography</title>
+        <para>
+            <ulink url="http://siptoolbox.sourceforge.net/doc/sip-0.7.0-reference/unwrapl.html">SIP toolbox: unwrap linear</ulink>
+        </para>
+        <para>
+            <ulink url="http://siptoolbox.sourceforge.net/doc/sip-0.7.0-reference/unwrapp.html">SIP toolbox: unwrap along path</ulink>
+        </para>
+    </refsection>
+    <refsection role="history tag">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revdescription>unwrap() function introduced</revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

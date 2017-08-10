@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="routh_t" xml:lang="ru">
+    <refnamediv>
+        <refname>routh_t</refname>
+        <refpurpose>Routh's table</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>
+            [r [,num] ]=routh_t(p)
+            [r [,num] ]=routh_t(h ,kp)
+            r=routh_t(h ,k [,normalized])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>p</term>
+                <listitem>
+                    <para>a real polynomial</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>h</term>
+                <listitem>
+                    <para>a real SISO transfer system</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>k</term>
+                <listitem>
+                    <para>a real polynomial or a scalar</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>kp</term>
+                <listitem>
+                    <para>a scalar: proportional controller constant</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>normalized</term>
+                <listitem>
+                    <para>a boolean (%t (default value) or %f)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>r</term>
+                <listitem>
+                    <para>a matrix or a list: Routh array elements</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>num</term>
+                <listitem>
+                    <para>a scalar: the number of sign changes</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>r=routh_t(p)</literal> computes Routh's table of the
+            polynomial <literal>p</literal>.
+        </para>
+        <para>
+            <literal>r=routh_t(h,k)</literal> computes Routh's table of
+            denominator of the system described by transfer matrix SISO
+            <literal>h</literal> with the feedback by the gain
+            <literal>k</literal>.
+        </para>
+        <para>
+            If <literal>k=poly(0,'k')</literal> we will have a polynomial or
+            a rational matrix with dummy variable <literal>k</literal>,
+            formal expression of the Routh table.
+        </para>
+        <para>
+            If <literal>normalized=%f</literal> we will have a polynomial matrix
+            with non normalized elements. In the other case, we will have a rational
+            and normalized matrix.
+        </para>
+        <para>
+            The second output argument <literal>num</literal> returns the number of sign changes
+            in the first column of Routh's table. Note that, this argument value will only have sense
+            when the table is normalized.
+        </para>
+        <para>
+            <note>
+                Hint: If <literal>h=1/p</literal>, then <literal>routh_t(h, kp)</literal> is equivalent to
+                <literal>routh_t(p+kp)</literal> .
+            </note>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+s=%s;
+P=5*s^3-10*s^2+7*s+20;
+routh_t(P)
+
+// Transfer function with formal feedback, normalized case
+routh_t((1+s)/P,poly(0,'k'))
+
+// Transfer function with formal feedback, non normalized case
+routh_t((1+s)/P,poly(0,'k'),%f)
+
+// One of the coefficients in the polynomial equals zero
+P1=2*s^3-24*s+32;
+routh_t(P1)
+
+// A row full of zeros
+P2=s^4-6*s^3+10*s^2-6*s+9;
+routh_t(P2)
+
+// The number of roots in the rhp could be retrieved as the second output argument
+P3=5*s^3-10*s^2+7*s;
+[r,num]=routh_t(1/P3,20)
+if num==0
+   disp("System is stable")
+else
+   mprintf("There is %g sign changes in entries of first column.\nTherefore, system is unstable.", num)
+end
+
+//
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="roots">roots</link>
+            </member>
+            <member>
+                <link linkend="spec">spec</link>
+            </member>
+            <member>
+                <link linkend="evans">evans</link>
+            </member>
+            <member>
+                <link linkend="kpure">kpure</link>
+            </member>
+            <member>
+                <link linkend="krac2">krac2</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>Bibliography</title>
+        <para>
+            <ulink url="http://controls.engin.umich.edu/wiki/index.php/RouthStability">http://controls.engin.umich.edu/wiki/index.php/RouthStability</ulink>
+        </para>
+        <para>
+            <ulink url="http://www.jdotec.net/s3i/TD_Info/Routh/Routh.pdf">http://www.jdotec.net/s3i/TD_Info/Routh/Routh.pdf</ulink>
+        </para>
+        <para>Comments on the Routh-Hurwitz criterion, Shamash, Y.,Automatic
+            Control, IEEE T.A.C Volume 25, Issue 1, Feb 1980 Page(s): 132 - 133
+        </para>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>New output argument added: num (SEP #104).</revremark>
+            </revision>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>New input argument added: normalized (SEP #89).</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

@@ -34,7 +34,7 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 A=[1,2;3,4];
 cothm(A)
  ]]></programlisting>

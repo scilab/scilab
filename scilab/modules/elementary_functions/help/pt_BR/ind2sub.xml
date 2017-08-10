@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Serge STEER
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="ind2sub" xml:lang="pt">
+    <refnamediv>
+        <refname>ind2sub</refname>
+        <refpurpose>conversão de índice linear para matriz de valores
+            subescritos
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>[i1,i2,..] =ind2sub(dims,I)
+            Mi = ind2sub(dims,I)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>dims</term>
+                <listitem>
+                    <para>vetor com as dimensões da matriz </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>I</term>
+                <listitem>
+                    <para>vetor com os dados índices lineares </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>i1,i2,..</term>
+                <listitem>
+                    <para>valores subescritos (de mesma forma que
+                        <literal>I</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Mi</term>
+                <listitem>
+                    <para>matriz cujas colunas contém os valores subescritos.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>
+            <literal>ind2sub</literal> é usado para determinar os valores
+            subescritos equivalentes que correspondem a um índice único num "array".
+            <literal>[i1,i2,..] = ind2sub(dims,I)</literal> retorna os "arrays"
+            <literal>i1</literal>, <literal>i2</literal>, ... contendo os subescritos
+            das linha, coluna, ... equivalentes correspondente à matriz de índices
+            <literal>I</literal> para uma matriz de tamanho <literal>dims</literal>.
+            <literal>Mi=ind2sub(dims,I)</literal> retorna uma matriz
+            <literal>Mi</literal> cujas colunas são os "arrays"
+            <literal>i1(:)</literal>, <literal>i2(:)</literal>, ...
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[
+ind2sub([2,3,2],1:12)
+[i,j,k]=ind2sub([2,3,2],1:12)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Ver Também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="sub2ind">sub2ind</link>
+            </member>
+            <member>
+                <link linkend="extraction">extraction</link>
+            </member>
+            <member>
+                <link linkend="insertion">insertion</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

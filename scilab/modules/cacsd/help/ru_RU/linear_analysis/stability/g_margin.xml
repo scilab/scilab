@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="g_margin" xml:lang="ru">
+    <refnamediv>
+        <refname>g_margin</refname>
+        <refpurpose>gain margin and associated crossover frequency</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>
+            gm=g_margin(h)
+            [gm,fr]=g_margin(h)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>h</term>
+                <listitem>
+                    <para>
+                        a SISO linear system (see :<link linkend="syslin">syslin</link>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>gm</term>
+                <listitem>
+                    <para> a number, the gain margin (in dB) if any of
+                        <literal>Inf</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fr</term>
+                <listitem>
+                    <para> a number, the associated frequency in hertz, or an
+                        empty matrix if the gain margin does not exist.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>Given a SISO linear system in continuous or discrete time,
+            <literal>g_margin</literal> returns <literal>gm</literal>, the
+            gain margin in dB of <literal>h</literal> and
+            <literal>fr</literal>, the achieved corresponding frequency in
+            Hz.
+        </para>
+        <para>The gain margin, if it exists, is the minimal value of the
+            system gain at points where the nyquist plot crosses the negative
+            real axis. In other words the gain margin is
+            <literal>20*log10(1/g)</literal> where <literal>g</literal> is the
+            open loop gain of <literal>h</literal> when the frequency response
+            phase of <literal>h</literal> equals -180°
+        </para>
+        <para>The algorithm uses polynomial root finder to solve the equations:</para>
+        <variablelist>
+            <varlistentry>
+                <term>h(s)=h(-s)</term>
+                <listitem>
+                    <para> for the continuous time case.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>h(z)=h(1/z)</term>
+                <listitem>
+                    <para> for the discrete time case.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+h=syslin('c',-1+%s,3+2*%s+%s^2) //continuous time case
+[g,fr]=g_margin(h)
+[g,fr]=g_margin(h-10)
+nyquist(h-10)
+ ]]></programlisting>
+        <scilab:image>
+            h=syslin('c',-1+%s,3+2*%s+%s^2)
+            [g,fr]=g_margin(h)
+            [g,fr]=g_margin(h-10)
+            nyquist(h-10)
+        </scilab:image>
+        <programlisting role="example"><![CDATA[
+h = syslin(0.1,0.04798*%z+0.0464,%z^2-1.81*%z+0.9048);//discrete time case
+[g ,fr]=g_margin(h);
+show_margins(h)
+ ]]></programlisting>
+        <scilab:image>
+            h = syslin(0.1,0.04798*%z+0.0464,%z^2-1.81*%z+0.9048);
+            [g ,fr]=g_margin(h);
+            warning("off")
+            show_margins(h)
+            warning("on")
+        </scilab:image>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="p_margin">p_margin</link>
+            </member>
+            <member>
+                <link linkend="show_margins">show_margins</link>
+            </member>
+            <member>
+                <link linkend="repfreq">repfreq</link>
+            </member>
+            <member>
+                <link linkend="black">black</link>
+            </member>
+            <member>
+                <link linkend="bode">bode</link>
+            </member>
+            <member>
+                <link linkend="nicholschart">nicholschart</link>
+            </member>
+            <member>
+                <link linkend="nyquist">nyquist</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

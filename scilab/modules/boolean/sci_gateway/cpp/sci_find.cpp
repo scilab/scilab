@@ -2,11 +2,14 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2012 - DIGITEO - Antoine ELIAS
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 /*--------------------------------------------------------------------------*/
@@ -18,7 +21,6 @@
 #include "bool.hxx"
 #include "sparse.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 
 extern "C"
 {
@@ -31,7 +33,8 @@ static void getCoordFromIndex(int _iIndex, int* _piIndexes, int* _piDims, int _i
 types::Function::ReturnValue sci_find(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int iMax = -1;
-    if (in.size() > 2)
+
+    if (in.size() == 0 || in.size() > 2)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "find", 1, 2);
         return types::Function::Error;
@@ -39,13 +42,19 @@ types::Function::ReturnValue sci_find(types::typed_list &in, int _iRetCount, typ
 
     if (in.size() == 2)
     {
-        if (in[1]->isDouble() == false || in[1]->getAs<types::Double>()->isScalar() == false || in[1]->getAs<types::Double>()->get(0) <= 0)
+        if (in[1]->isDouble() == false || in[1]->getAs<types::Double>()->isScalar() == false)
         {
             Scierror(999, _("%s:  Wrong type for input argument #%d: Scalar positive integer expected.\n"), "find", 2);
             return types::Function::Error;
         }
 
-        iMax = (int)in[1]->getAs<types::Double>()->get(0);
+        iMax = (int)in[1]->getAs<types::Double>()->get()[0];
+        if (iMax <= 0 && iMax != -1)
+        {
+            Scierror(999, _("%s:  Wrong type for input argument #%d: Scalar positive integer expected.\n"), "find", 2);
+            return types::Function::Error;
+        }
+
     }
 
     int* piIndex = 0;
@@ -54,9 +63,8 @@ types::Function::ReturnValue sci_find(types::typed_list &in, int _iRetCount, typ
     if (in[0]->isGenericType() == false)
     {
         //call overload for other types
-        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_find";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
     types::GenericType* pGT = in[0]->getAs<types::GenericType>();
@@ -65,9 +73,12 @@ types::Function::ReturnValue sci_find(types::typed_list &in, int _iRetCount, typ
     if (in[0]->isBool())
     {
         types::Bool* pB = in[0]->getAs<types::Bool>();
-        for (int i = 0 ; (iMax == -1 || iValues < iMax) && i < pB->getSize() ; i++)
+        int size = pB->getSize();
+        int* p = pB->get();
+        iMax = iMax == -1 ? size : std::min(iMax, size);
+        for (int i = 0 ; i < size && iValues < iMax ; i++)
         {
-            if (pB->get(i))
+            if (p[i])
             {
                 piIndex[iValues] = i;
                 iValues++;
@@ -77,9 +88,12 @@ types::Function::ReturnValue sci_find(types::typed_list &in, int _iRetCount, typ
     else if (in[0]->isDouble())
     {
         types::Double* pD = in[0]->getAs<types::Double>();
-        for (int i = 0 ; (iMax == -1 || iValues < iMax) && i < pD->getSize() ; i++)
+        int size = pD->getSize();
+        double* p = pD->get();
+        iMax = iMax == -1 ? size : std::min(iMax, size);
+        for (int i = 0; i < size && iValues < iMax; i++)
         {
-            if (pD->get(i))
+            if (p[i])
             {
                 piIndex[iValues] = i;
                 iValues++;
@@ -94,8 +108,9 @@ types::Function::ReturnValue sci_find(types::typed_list &in, int _iRetCount, typ
         int* pRows = new int[iNNZ * 2];
         pSP->outputRowCol(pRows);
         int *pCols = pRows + iNNZ;
+        iMax = iMax == -1 ? iNNZ : std::min(iMax, iNNZ);
 
-        for (int i = 0 ; (iMax == -1 || iValues < iMax) && i < iNNZ ; i++)
+        for (int i = 0; i < iNNZ && iValues < iMax; i++)
         {
             piIndex[iValues] = (pCols[i] - 1) * iRows + (pRows[i] - 1);
             iValues++;
@@ -113,7 +128,8 @@ types::Function::ReturnValue sci_find(types::typed_list &in, int _iRetCount, typ
         pSB->outputRowCol(pRows);
         int* pCols = pRows + iNNZ;
 
-        for (int i = 0 ; (iMax == -1 || iValues < iMax) && i < iNNZ ; i++)
+        iMax = iMax == -1 ? iNNZ : std::min(iMax, iNNZ);
+        for (int i = 0; i < iNNZ && iValues < iMax; i++)
         {
             piIndex[iValues] = (pCols[i] - 1) * iRows + (pRows[i] - 1);
             iValues++;
@@ -126,20 +142,34 @@ types::Function::ReturnValue sci_find(types::typed_list &in, int _iRetCount, typ
         delete[] piIndex;
 
         //call overload for other types
-        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_find";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
     if (iValues == 0)
     {
         for (int i = 0 ; i < _iRetCount ; i++)
         {
-            out.push_back(Double::Empty());
+            out.push_back(types::Double::Empty());
         }
     }
     else
     {
+        if (_iRetCount == 1)
+        {
+            types::Double* dbl = new types::Double(1, iValues);
+            double* p = dbl->get();
+
+            for (int i = 0; i < iValues; ++i)
+            {
+                p[i] = static_cast<double>(piIndex[i]) + 1;
+            }
+
+            delete[] piIndex;
+            out.push_back(dbl);
+            return types::Function::OK;
+        }
+
         int* piRefDims = pGT->getDimsArray();
         int iRefDims = pGT->getDims();
 
@@ -192,7 +222,7 @@ types::Function::ReturnValue sci_find(types::typed_list &in, int _iRetCount, typ
 
         for (int i = 0 ; i < _iRetCount ; i++)
         {
-            types::Double* pOut = new Double(1, iValues);
+            types::Double* pOut = new types::Double(1, iValues);
             for (int j = 0 ; j < iValues ; j++)
             {
                 pOut->set(j, piCoord[j][i] + 1);

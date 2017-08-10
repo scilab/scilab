@@ -36,8 +36,8 @@
         <title>Description</title>
         <para>Renvoie, suivant les arguments, une matrice de dimensions
             <literal>m</literal>x<literal>n</literal> avec des 1 sur la diagonale
-            principale ou une matrice identité de même taille que <literal>A</literal>. 
-            Dans le cas où <varname>A</varname> est une hypermatrice, 
+            principale ou une matrice identité de même taille que <literal>A</literal>.
+            Dans le cas où <varname>A</varname> est une hypermatrice,
             <varname>X</varname> sera de la forme:
             <literal>X(i,i,...,i) = 1</literal> avec <literal>i</literal> de 1 à <literal>min(size(A))</literal>.
         </para>
@@ -60,7 +60,7 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 eye(2,3)
 A=rand(2,3);eye(A)
 s=poly(0,'s');A=[s,1;s,s+1];eye(A)

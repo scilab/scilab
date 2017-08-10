@@ -2,11 +2,14 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 /*--------------------------------------------------------------------------*/
@@ -319,17 +322,11 @@ types::Function::ReturnValue sci_int3d(types::typed_list &in, int _iRetCount, ty
     {
         C2F(dcutet)(int3d_f, &nf, pdData, &cols, &minpts, &maxpts, &epsabs, &epsrel, &maxsub, &dworkSize, &irestar, pdResult, pdErr, &nevals, &ifail, dwork, iwork);
     }
-    catch (ast::ScilabMessage &sm)
+    catch (ast::InternalError &ie)
     {
-        os << sm.GetErrorMessage();
+        os << ie.GetErrorMessage();
         bCatch = true;
     }
-    catch (ast::ScilabError &e)
-    {
-        os << e.GetErrorMessage();
-        bCatch = true;
-    }
-
 
     FREE(pdData);
     FREE(dwork);
@@ -341,7 +338,7 @@ types::Function::ReturnValue sci_int3d(types::typed_list &in, int _iRetCount, ty
         wchar_t szError[bsiz];
         os_swprintf(szError, bsiz, _W("%s: An error occured in '%s' subroutine.\n").c_str(), "int3d", "dcutet");
         os << szError;
-        throw ast::ScilabMessage(os.str());
+        throw ast::InternalError(os.str());
     }
 
     if (ifail)

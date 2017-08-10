@@ -14,27 +14,8 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=1469
 //
 // <-- Short Description -->
-//    Comments modify line numbering in functions
+//    Appended comments are considered as a new physical line
 //
-//    What you don't believe?
-//
-//    Try this:
-//
-//    1st test, no comment in line 1:
-//
-//    -->function foo1()
-//    -->  function foo3
-//    -->  endfunction
-//    -->  disp("line a");
-//    -->  disp("line b");
-//    -->  disp("line c");
-//    -->endfunction
-//
-//    -->setbpt("foo1",[3,4])
-//
-//    -->foo1()
-//    Stop after row     3 in function foo1 :
-// ...
 
 //test of line numbering in  functions, handling initial comments
 
@@ -201,14 +182,14 @@ clear foo1;
 // ================ Test 17 ====================================================
 
 //pb execution des macros non compilee
-deff("y=foo(a,b,c)","y=a+b+c","n");
+deff("y=foo(a,b,c)","y=a+b+c");
 R17=foo("aaa","bbb","cc")=="aaabbbcc";
 if ~R17 then pause,end
 clear foo
 
 // ================ Test 18 ====================================================
 
-deff("y=foo(a,b,c)",["","y=a+b+c"],"n");
+deff("y=foo(a,b,c)",["","y=a+b+c"]);
 R18=foo("aaa","bbb","cc")=="aaabbbcc";
 if ~R18 then pause,end
 clear foo
@@ -272,7 +253,7 @@ endfunction
 
 t=macr2tree(foo);
 t=tree2code(t);
-if size(t,1)<>6 then pause,end
+if size(t,1)<>5 then pause,end
 
 clear foo
 function foo()

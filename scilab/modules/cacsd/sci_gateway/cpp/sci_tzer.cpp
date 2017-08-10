@@ -2,17 +2,21 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2014 - Scilab Enterprises - Cedric DELAMARRE
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 /*--------------------------------------------------------------------------*/
 #include "cacsd_gw.hxx"
 #include "function.hxx"
 #include "double.hxx"
+#include "numericconstants.hxx"
 
 extern "C"
 {
@@ -31,8 +35,8 @@ types::Function::ReturnValue sci_tzer(types::typed_list &in, int _iRetCount, typ
     int iRows[4] = {0, 0, 0, 0};
     int iCols[4] = {0, 0, 0, 0};
     double* pdblIn[4] = {NULL, NULL, NULL, NULL};
-    char cP = 'p';
-    double dblEps = C2F(dlamch)(&cP, 1L);
+
+    double dblEps = NumericConstants::eps_machine;
     int iOne = 1;
 
     if (in.size() != 4)
@@ -85,8 +89,8 @@ types::Function::ReturnValue sci_tzer(types::typed_list &in, int _iRetCount, typ
     // input
     int iSize1  = iCols[0] + iRows[2];
     int iSize2  = iCols[0] + iCols[1];
-    int iNwrk1  = (std::max)(iCols[1], iRows[2]);
-    int iNwrk2  = (std::max)(iNwrk1, iCols[0] + 1);
+    int iNwrk1  = std::max(iCols[1], iRows[2]);
+    int iNwrk2  = std::max(iNwrk1, iCols[0] + 1);
 
     // output
     int iNu     = 0;
@@ -142,14 +146,14 @@ types::Function::ReturnValue sci_tzer(types::typed_list &in, int _iRetCount, typ
     }
 
     /*** retrun output arguments ***/
-    types::Double* pDblOut1 = new types::Double(iNu, (std::min)(iNu, 1), true);
+    types::Double* pDblOut1 = new types::Double(iNu, std::min(iNu, 1), true);
     double* pdblReal = pDblOut1->get();
     double* pdblImg  = pDblOut1->getImg();
     C2F(dcopy)(&iNu, pdblR, &iOne, pdblReal, &iOne);
     C2F(dcopy)(&iNu, pdblI, &iOne, pdblImg, &iOne);
     out.push_back(pDblOut1);
 
-    types::Double* pDblOut2 = new types::Double(iNu, (std::min)(iNu, 1));
+    types::Double* pDblOut2 = new types::Double(iNu, std::min(iNu, 1));
     pdblReal = pDblOut2->get();
     C2F(dcopy)(&iNu, pdblWork2, &iOne, pdblReal, &iOne);
     out.push_back(pDblOut2);

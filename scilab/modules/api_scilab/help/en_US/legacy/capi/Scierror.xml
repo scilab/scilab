@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="Scierror" xml:lang="en">
+    <refnamediv>
+        <refname>Scierror</refname>
+        <refpurpose>C gateway function which displays an error message to the user
+            (same profile as the printf function) and returns an integer value
+            specifying an error level
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>void Scierror(error_level,format,value_1,..,value_n)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>error_level</term>
+                <listitem>
+                    <para>an integer value specifying an error level</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>format</term>
+                <listitem>
+                    <para>a char* string. Specifies a character string combining literal
+                        characters with conversion specifications.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>value_i</term>
+                <listitem>
+                    <para>Specifies the data to be converted according to the format
+                        parameter.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>returns</term>
+                <listitem>
+                    <para>If the operation is successful, this function returns the
+                        number of characters printed (not including the trailing '\0' used
+                        to end output to strings).
+                    </para>
+                    <para>If an error occurred, a negative value is returned.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>Scierror is a C gateway function which displays an error message to
+            the user (same profile as the printf function) and returns an integer value
+            specifying an error level. You must include Scierror.h to benefit from
+            this function. This header is provided in the output_stream module (this
+            directory should be included by default).
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <para>In this example, the C gateway function prints an error message and
+            returns the error level 133.
+        </para>
+        <programlisting role="example"><![CDATA[
+#include <stack-c.h>
+#include <Scierror.h>
+
+int sci_myscierror(char * fname)
+{
+  Scierror(133,"An error has occurred: %d\n", 1);
+
+  return 0;
+}
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="printf_conversion">printf_conversion</link>
+            </member>
+            <member>
+                <link linkend="mprintf">mprintf</link>
+            </member>
+            <member>
+                <link linkend="sciprint">sciprint</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

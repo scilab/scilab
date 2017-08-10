@@ -2,58 +2,403 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2016 - Scilab Enterprises - Pierre-Aimé AGNEL
+ * Copyright (C) 2017 - Samuel GOUGEON
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="or_op" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+    xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+    xmlns:scilab="http://www.scilab.org" xml:id="or_op" xml:lang="en">
+
     <refnamediv>
-        <refname>|</refname>
-        <refpurpose>logical OR operator</refpurpose>
+        <refname>|, ||</refname>
+        <refpurpose>Binary OR between integers. Logical OR over/between booleans and numbers</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>A|B</synopsis>
+        <title>Syntax</title>
+        <para>
+            Element-wise operator:
+        </para>
+        <synopsis>
+            intMat = intA | intB
+            tfMat = A | B
+        </synopsis>
+        <para>
+            Scalared short-circuited evaluation:
+        </para>
+        <synopsis>
+            tf = U || V
+            if (U || V) then ... end
+            if (U | V)  then ... end
+            while (U || V) then ... end
+            while (U | V) then ... end
+        </synopsis>
     </refsynopsisdiv>
+
+    <refsection role="parameters">
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>intA, intB</term>
+                <listitem>
+                    <para>
+                        Arrays of encoded integers of any <link linkend="inttype">inttype</link>.
+                    </para>
+                    <para>
+                        <varname>intA</varname> and <varname>intB</varname> must have the same sizes
+                        to be processed element-wise. If <varname>intA</varname> or
+                        <varname>intB</varname> is a scalar, it is priorly replicated to the size of
+                        the other operand before processing.
+                    </para>
+                    <para>
+                        If <varname>intA</varname> and <varname>intB</varname> have not the same
+                        integer inttype, the operand with the smaller encoding is converted to the
+                        wider according to the following ranks:
+                        int8 &lt; uint8 &lt; int16 &lt; uint16 &lt; int32 &lt; uint32 &lt; int64 &lt; uint64.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>intMat</term>
+                <listitem>
+                    <para>
+                        Array of encoded integers with the same sizes of <varname>intA</varname>
+                        and <varname>intB</varname>, and of the wider inttype of both (see hereabove).
+                        For any index <literal>i</literal>,
+                        <literal>intMat(i) = bitor(intA(i), intB(i))</literal>
+                        <warning>
+                            <literal>intA | []</literal> and <literal>[] | intA</literal> return the
+                            <emphasis role="italic">boolean</emphasis> array
+                            <literal>intA~=%nan</literal>.
+                        </warning>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>A, B</term>
+                <listitem>
+                    <para>
+                        Arrays of booleans or of numbers: encoded integers of any
+                        <link linkend="inttype">inttype</link>, real or complex numbers.
+                        <varname>A</varname> and <varname>B</varname> may have distinct types,
+                        and may be one or both sparse-encoded. The special case where
+                        <varname>A</varname> and <varname>B</varname> are both encoded integers is
+                        excluded (see here-above).
+                    </para>
+                    <para>
+                        <varname>A</varname> and <varname>B</varname> must have the same sizes to
+                        be processed element-wise. If <varname>A</varname> or <varname>B</varname>
+                        is a scalar, it is priorly replicated to the size of the other operand before
+                        processing.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>tfMat</term>
+                <listitem>
+                    <para>
+                        Boolean array with the same sizes of <varname>A</varname> and
+                        <varname>B</varname>. If <varname>A</varname> or <varname>B</varname> is
+                        sparse-encoded, so is <varname>tfMat</varname>.
+                    </para>
+                    <para>
+                        For any index <literal>i</literal>, <literal>tfMat(i)</literal> is
+                        <constant>%T</constant> if either <literal>A(i)</literal> or
+                        <literal>B(i)</literal> is <constant>%T</constant> or not zero. Otherwise,
+                        <literal>tfMat(i)</literal> is set to <constant>%F</constant>.
+                        <warning>
+                            <literal>A | []</literal> and <literal>[] | A</literal> return
+                            <literal>[]</literal>.
+                        </warning>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>U, V</term>
+                <listitem>
+                    <para>
+                        Arrays of full or sparse-encoded booleans or of numbers of any types and
+                        encoding: any <link linkend="inttype">inttype</link> of encoded integers,
+                        full or sparse-encoded real or complex numbers.
+                    </para>
+                    <para>
+                        <varname>U</varname> and <varname>V</varname> may have distinct data types,
+                        <emphasis role="italic">number of dimensions, and sizes</emphasis>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>tf</term>
+                <listitem>
+                    <para>
+                        single boolean: <literal>U || V</literal> is equal to
+                        <literal>or(U) | or(V)</literal>, without evaluating <literal>or(V)</literal>
+                        if <literal>or(U)</literal> is true (this is why the <literal>||</literal>
+                        operator is so-called short-circuited).
+                    </para>
+                    <para>
+                        See <link linkend="or">or</link>() for the definition of the evaluation to
+                        true depending on type and encoding.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+
     <refsection>
         <title>Description</title>
+        <variablelist>
+            <varlistentry>
+                <term>||</term>
+                <listitem>
+                    <para>
+                        For any boolean or numerical operands <varname>U</varname> and
+                        <varname>V</varname>,
+                        <literal>G = U || V</literal> is equivalent to
+                        <literal>if or(U), G = %T, else G = or(V), end</literal>.
+                        <itemizedlist>
+                            <listitem>
+                                <varname>U</varname> and <varname>V</varname> may have distinct sizes
+                                or numbers of dimensions.
+                            </listitem>
+                            <listitem>
+                                The result is always a single boolean.
+                            </listitem>
+                            <listitem>
+                                <literal>or(V)</literal>  is evaluated only if <literal>or(U)</literal>
+                                is false. This mainly avoids yielding errors when further operations
+                                with <varname>V</varname> are meaningless or prone to error when
+                                <varname>U</varname> is true. See examples.
+                            </listitem>
+                        </itemizedlist>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>|</term>
+                <listitem>
+                    <para>
+                        When the <literal>|</literal> operator is used inside a logical condition
+                        tested by a <function>while</function> or by an <function>if</function>
+                        control structure, it is equivalent to the <literal>||</literal> operator
+                        (see above).
+                    </para>
+                    <para>Otherwise, <literal>|</literal> has two different actions:
+                        <orderedlist>
+                            <listitem>
+                                When both operands are encoded integers,
+                                <literal>intA | intB</literal> is processed element-wise and yields
+                                an array of integers resulting from the bitwise
+                                <literal>AND</literal> between corresponding components.
+                            </listitem>
+                            <listitem>
+                                Otherwise, when operands are arrays of numbers or/and booleans,
+                                they are still processed element-wise. Provided that null numbers
+                                are equivalent to false booleans, the result is an array of booleans.
+                            </listitem>
+                        </orderedlist>
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
         <para>
-            <literal>A|B</literal> gives the element-wise logical
-            <literal>or</literal> of the booleans matrices <literal>A</literal> and
-            <literal>B</literal>. <literal>A</literal> and <literal>B</literal> must
-            be matrices with the same dimensions or one from them must be a single
-            boolean.
+            <emphasis role="bold">Comparing <literal>|</literal> and <literal>||</literal> with
+            <literal>bitor()</literal> and <literal>or()</literal></emphasis> :
         </para>
+        <para>
+            <itemizedlist>
+                <listitem>
+                    <literal>or(A)</literal> is equivalent to <literal>A || %F</literal>, whereas
+                    <literal>or(A, side)</literal> has no equivalence with <literal>||</literal>.
+                </listitem>
+                <listitem>
+                    <literal>intA | intB</literal> accepts negative integers, while
+                    <literal>bitor(intA, intB)</literal> does not. <literal>bitor(A,B)</literal>
+                    works bitwise with decimal-encoded integers.
+                </listitem>
+            </itemizedlist>
+        </para>
+        <note>
+            The <link linkend="overloading">overloading</link> code for <literal>|</literal> and
+            <literal>||</literal> operators is <emphasis role="bold">g</emphasis>.
+        </note>
+        <warning>
+            <itemizedlist>
+                <listitem>
+                    <literal>%nan</literal> is <literal>true</literal>.
+                </listitem>
+                <listitem>
+                    A polynomial or rational is not considered as a number and is not an acceptable
+                    operand for <literal>|</literal> or <literal>||</literal>.
+                </listitem>
+            </itemizedlist>
+        </warning>
     </refsection>
+
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-[%t %t %f] | [%f %t %t]
-[%t %t %f] | %f
+        <programlisting role="example"><![CDATA[
+A = [0 1; 1 0];   // equivalent to [%f %t ; %t %f]
+B = [1 1; 0 0];   // equivalent to [%t %t ; %f %f]
+spA = sparse(A);
+spB = sparse(B);
+spbA = sparse(A<>0);
+spbB = sparse(B<>0);
+iA = int8(A);
+iB = int8(B);
+cA = A + 0*%i;
+cB = B + 0*%i;
+
+// | as logical operation
+A | B
+A | spB    // Result is sparse encoded
+iA | spB   // Result is sparse encoded
+cA | iB
+A | %nan   // %nan is %t
+
+// | as bitwise operation
+iA | iB
+
+Ai8 = int8([ -1, 1; 127, -128]);
+// Integer representation of Ai8:
+// [ 1111 1111, 0000 0001 ;
+//   0111 1111, 1000 0000 ]
+
+Bi8 = int8([-2, 0; 126, -127]);
+// Integer representation of Bi8:
+// [ 1111 1110, 0000 0000 ;
+//   0111 1110, 1000 0001 ]
+
+Ai8 | Bi8
+
+// Integer promotion
+Ai16  = int16(Ai8);
+Bui32 = uint32(Bi8);
+
+r = Ai16 | Bui32, typeof(r)
+
+// Shorted | or ||:
+// ----------------
+function res = foo()
+    error("foo() shall not be called")
+endfunction
+
+// | (simple) is always shorted in any if's condition:
+if  %T | foo() then
+    // foo() is not called and this is not executed
+end
+
+A  || foo()   // A, iA and cA have at least one non-zero element.
+iA || foo()   // Therefore, foo() is not called
+cA || foo()
  ]]></programlisting>
+
+    <para>
+    Avoiding conditional errors in <literal>or</literal> out of <literal>if</literal> and
+    <literal>while</literal> conditions:
+    <programlisting role="example"><![CDATA[
+A = [ 1 3 -2 ; 4 -1  2]
+c = ~issquare(A) | det(A)~=0
+// det(A) is evaluated despite ~issquare(A) is true (so c is true anyway)
+// But A should be square to be able to compute its det(). ==> ERROR
+
+// Now, we use the short-circuited || :
+// det(A) is NO LONGER computed, since ~issquare(A) is true => anyway c is true
+c = ~issquare(A) || det(A)~=0     // => NO ERROR
+
+// In an "if" (or "while") tested condition, | is equivalent to ||
+if ~issquare(A) | det(A)~=0       // => NO ERROR
+   B = A * A.'
+end
+ ]]></programlisting>
+    <screen><![CDATA[
+--> A = [ 1 3 -2 ; 4 -1  2]
+ A  =
+   1.   3.  -2.
+   4.  -1.   2.
+
+--> c = ~issquare(A) | det(A)~=0
+det: Wrong type for input argument #1: Square matrix expected.
+
+--> c = ~issquare(A) || det(A)~=0    // => NO ERROR
+ c  =
+  T
+
+--> if ~issquare(A) | det(A)~=0      // => NO ERROR
+  >    B = A * A.'
+  > end
+ B  =
+   14.  -3.
+  -3.    21.
+]]></screen>
+    </para>
+    <para>
+    Constant polynomials or rationals can't be processed with | or ||:
+    <programlisting role="example"><![CDATA[
+p = 1 + 0*%z
+typeof(p)
+p | 1
+ ]]></programlisting>
+    <screen><![CDATA[
+--> p = 1 + 0*%z
+ p  =
+   1
+
+--> typeof(p)
+ ans  =
+ polynomial
+
+--> p | 1
+Undefined operation for the given operands.
+check or define function %p_g_s for overloading.
+]]></screen>
+    </para>
     </refsection>
+
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="or">or</link>
             </member>
             <member>
-                <link linkend="and">and</link>
+                <link linkend="bitor">bitor</link>
             </member>
             <member>
                 <link linkend="and_op">and operator (&amp;)</link>
             </member>
             <member>
-                <link linkend="not">not</link>
+                <link linkend="not">not ~</link>
             </member>
             <member>
-                <link linkend="find">find</link>
+                <link linkend="if">if</link>
+            </member>
+            <member>
+                <link linkend="while">while</link>
+            </member>
+            <member>
+                <link linkend="overloading">overloading</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>|| operator added
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

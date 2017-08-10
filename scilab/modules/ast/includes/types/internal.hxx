@@ -3,11 +3,14 @@
 *  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
 *  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
 *
-*  This file must be used under the terms of the CeCILL.
-*  This source file is licensed as described in the file COPYING, which
-*  you should have received as part of this distribution.  The terms
-*  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
@@ -16,9 +19,10 @@
 #define __INTERNAL_HXX__
 
 #include <vector>
-#include <map>
+#include <unordered_map>
 #include <iostream>
-#include <string.h>
+#include <algorithm>
+#include <string>
 
 extern "C"
 {
@@ -26,12 +30,10 @@ extern "C"
 #include "configvariable_interface.h"
 }
 
-#include "exp.hxx" // for invoke
-#include "visitor.hxx" // for invoke
-#include "callexp.hxx"
 #include "localization.hxx"
-#include "scilabexception.hxx"
-
+#ifndef NDEBUG
+#include "inspector.hxx"
+#endif
 
 #define bsiz 4096
 
@@ -43,21 +45,26 @@ extern "C"
 #define killMe() _killme(__FILE__, __LINE__)
 #endif
 
+#include "visitor.hxx"
+
+class Location;
+
 namespace types
 {
+
 /*
 ** List of types
 */
 class InternalType;
 typedef std::vector<InternalType *> typed_list;
-typedef std::vector<std::pair<std::wstring, InternalType *> > optional_list;
+typedef std::unordered_map<std::wstring, InternalType *> optional_list;
 
 class EXTERN_AST InternalType
 {
 public :
     enum ScilabType
     {
-        ScilabNull, //no type, no data, nothing !
+        ScilabNull = 0, //no type, no data, nothing !
         /* Internal Type */
         ScilabInternal,
         /* Generic Types */
@@ -194,6 +201,7 @@ protected :
     }
 
 public :
+
     virtual                         ~InternalType()
     {
 #ifdef _SCILAB_DEBUGREF_
@@ -205,33 +213,38 @@ public :
         }
 #endif
     }
-    virtual void                    whoAmI(void)
-    {
-        std::cout << "types::Internal";
-    }
 
-    virtual bool                    isAssignable(void)
-    {
-        return false;
-    }
+    virtual void                    whoAmI(void);
+    virtual bool                    isAssignable(void);
     virtual ScilabType              getType(void) = 0 ; //{ return ScilabInternal; }
     virtual ScilabId                getId(void) = 0 ; //{ return ScilabInternal; }
-
-    virtual bool                    hasToString()
-    {
-        return true;
-    }
+    virtual bool                    hasToString();
     virtual bool                    toString(std::wostringstream& ostr) = 0;
-
-    virtual std::wstring            toStringInLine()
-    {
-        return getTypeStr();
-    }
+    virtual std::wstring            toStringInLine();
     virtual InternalType*           clone(void) = 0;
-    virtual ast::Exp*               getExp(const Location& /*loc*/)
+    virtual ast::Exp*               getExp(const Location& /*loc*/);
+
+    template <typename T, typename F, typename ... A>
+    T* checkRef(T* _pIT, F f, A ... a)
     {
-        return nullptr;
+        if (getRef() > 1)
+        {
+            // A types:: content in more than one Scilab variable
+            // must be cloned before being modified.
+            T* pClone = _pIT->clone()->template getAs<T>();
+            T* pIT = (pClone->*f)(a...);
+            if (pIT == NULL)
+            {
+                pClone->killMe();
+            }
+
+            return pIT;
+        }
+
+        return _pIT;
     }
+
+
 
 #ifdef _SCILAB_DEBUGREF_
     inline void _killme(const char * f, int l)
@@ -309,74 +322,27 @@ public :
         return m_iRef > _iRef;
     }
 
-    inline int getRef()
+    inline int getRef() const
     {
         return m_iRef;
     }
 
-    virtual bool isTrue()
-    {
-        return false;
-    }
-
-    virtual bool neg(InternalType *& /*out*/)
-    {
-        return false;
-    }
-
-    virtual bool transpose(InternalType *& /*out*/)
-    {
-        return false;
-    }
-
-    virtual bool adjoint(InternalType *& out)
-    {
-        return transpose(out);
-    }
-
-    virtual bool isFieldExtractionOverloadable() const
-    {
-        return false;
-    }
-
-    virtual bool invoke(typed_list & /*in*/, optional_list & /*opt*/, int /*_iRetCount*/, typed_list & /*out*/, ast::ConstVisitor & /*execFunc*/, const ast::Exp & /*e*/)
-    {
-        return false;
-    }
-
-    virtual bool isInvokable() const
-    {
-        return false;
-    }
-
-    virtual bool hasInvokeOption() const
-    {
-        return false;
-    }
-
-    virtual int getInvokeNbIn()
-    {
-        return -1;
-    }
-
-    virtual int getInvokeNbOut()
-    {
-        return -1;
-    }
-
+    virtual bool isTrue();
+    virtual bool neg(InternalType *& /*out*/);
+    virtual bool transpose(InternalType *& /*out*/);
+    virtual bool adjoint(InternalType *& out);
+    virtual bool isFieldExtractionOverloadable() const;
+    virtual bool invoke(typed_list & /*in*/, optional_list & /*opt*/, int /*_iRetCount*/, typed_list & /*out*/, const ast::Exp & /*e*/);
+    virtual bool isInvokable() const;
+    virtual bool hasInvokeOption() const;
+    virtual int getInvokeNbIn();
+    virtual int getInvokeNbOut();
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring            getTypeStr() = 0;
+    virtual std::wstring            getTypeStr() const = 0;
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring            getShortTypeStr() = 0;
-
-    virtual bool                    operator==(const InternalType& it)
-    {
-        return (getType() == (const_cast<InternalType *>(&it))->getType());
-    }
-    virtual bool                    operator!=(const InternalType& it)
-    {
-        return !(*this == it);
-    }
+    virtual std::wstring            getShortTypeStr() const = 0;
+    virtual bool                    operator==(const InternalType& it);
+    virtual bool                    operator!=(const InternalType& it);
 
     /**
     ** GenericType
@@ -389,206 +355,65 @@ public :
         return static_cast<T*>(this);
     }
 
-    virtual bool                    isGenericType(void)
-    {
-        return false;
-    }
-    virtual bool                    isArrayOf(void)
-    {
-        return false;
-    }
-    virtual bool                    isString(void)
-    {
-        return false;
-    }
-    virtual bool                    isDouble(void)
-    {
-        return false;
-    }
-    virtual bool                    isSparse(void)
-    {
-        return false;
-    }
-    virtual bool                    isSparseBool(void)
-    {
-        return false;
-    }
-    virtual bool                    isFloat(void)
-    {
-        return false;
-    }
-    virtual bool                    isInt(void)
-    {
-        return false;
-    }
-    virtual bool                    isInt8(void)
-    {
-        return false;
-    }
-    virtual bool                    isUInt8(void)
-    {
-        return false;
-    }
-    virtual bool                    isInt16(void)
-    {
-        return false;
-    }
-    virtual bool                    isUInt16(void)
-    {
-        return false;
-    }
-    virtual bool                    isInt32(void)
-    {
-        return false;
-    }
-    virtual bool                    isUInt32(void)
-    {
-        return false;
-    }
-    virtual bool                    isInt64(void)
-    {
-        return false;
-    }
-    virtual bool                    isUInt64(void)
-    {
-        return false;
-    }
-    virtual bool                    isBool(void)
-    {
-        return false;
-    }
-    virtual bool                    isPoly(void)
-    {
-        return false;
-    }
-    virtual bool                    isSinglePoly(void)
-    {
-        return false;
-    }
-    virtual bool                    isCallable(void)
-    {
-        return false;
-    }
-    virtual bool                    isFunction(void)
-    {
-        return false;
-    }
-    virtual bool                    isMacro(void)
-    {
-        return false;
-    }
-    virtual bool                    isMacroFile(void)
-    {
-        return false;
-    }
-    virtual bool                    isContainer(void)
-    {
-        return false;
-    }
-    virtual bool                    isList(void)
-    {
-        return false;
-    }
-    virtual bool                    isStruct(void)
-    {
-        return false;
-    }
-    virtual bool                    isSingleStruct(void)
-    {
-        return false;
-    }
-    virtual bool                    isCell(void)
-    {
-        return false;
-    }
-    virtual bool                    isTList(void)
-    {
-        return false;
-    }
-    virtual bool                    isMList(void)
-    {
-        return false;
-    }
-    virtual bool                    isImplicitList(void)
-    {
-        return false;
-    }
-    virtual bool                    isColon(void)
-    {
-        return false;
-    }
-    virtual bool                    isDollar(void)
-    {
-        return false;
-    }
-    virtual bool                    isFile(void)
-    {
-        return false;
-    }
-    virtual bool                    isHandle(void)
-    {
-        return false;
-    }
-    virtual bool                    isSingleHandle(void)
-    {
-        return false;
-    }
-    virtual bool                    isThreadId(void)
-    {
-        return false;
-    }
-    virtual bool                    isListOperation(void)
-    {
-        return false;
-    }
-    virtual bool                    isListDelete(void)
-    {
-        return false;
-    }
-    virtual bool                    isListInsert(void)
-    {
-        return false;
-    }
-    virtual bool                    isListUndefined(void)
-    {
-        return false;
-    }
-    virtual bool                    isPointer(void)
-    {
-        return false;
-    }
-    virtual bool                    isLibrary(void)
-    {
-        return false;
-    }
-    virtual bool                    isUserType(void)
-    {
-        return false;
-    }
+    virtual bool isGenericType(void);
+    virtual bool isArrayOf(void);
+    virtual bool isString(void);
+    virtual bool isDouble(void);
+    virtual bool isSparse(void);
+    virtual bool isSparseBool(void);
+    virtual bool isFloat(void);
+    virtual bool isInt(void);
+    virtual bool isInt8(void);
+    virtual bool isUInt8(void);
+    virtual bool isInt16(void);
+    virtual bool isUInt16(void);
+    virtual bool isInt32(void);
+    virtual bool isUInt32(void);
+    virtual bool isInt64(void);
+    virtual bool isUInt64(void);
+    virtual bool isBool(void);
+    virtual bool isPoly(void);
+    virtual bool isSinglePoly(void);
+    virtual bool isCallable(void);
+    virtual bool isFunction(void);
+    virtual bool isMacro(void);
+    virtual bool isMacroFile(void);
+    virtual bool isContainer(void);
+    virtual bool isList(void);
+    virtual bool isStruct(void);
+    virtual bool isSingleStruct(void);
+    virtual bool isCell(void);
+    virtual bool isTList(void);
+    virtual bool isMList(void);
+    virtual bool isImplicitList(void);
+    virtual bool isColon(void);
+    virtual bool isDollar(void);
+    virtual bool isFile(void);
+    virtual bool isHandle(void);
+    virtual bool isSingleHandle(void);
+    virtual bool isThreadId(void);
+    virtual bool isListOperation(void);
+    virtual bool isListDelete(void);
+    virtual bool isListInsert(void);
+    virtual bool isListUndefined(void);
+    virtual bool isPointer(void);
+    virtual bool isLibrary(void);
+    virtual bool isUserType(void);
 
-    void clearPrintState()
-    {
-        m_bPrintFromStart = true;
-        m_iSavePrintState = 0;
-        m_iRows1PrintState = 0;
-        m_iCols1PrintState = 0;
-        m_iRows2PrintState = 0;
-        m_iCols2PrintState = 0;
-    }
-
+    void clearPrintState();
 
 protected :
-    int                             m_iRef;
+    int          m_iRef;
     //use to know if we can delete this variables or if it's link to a scilab variable.
-    bool                            m_bAllowDelete;
+    bool         m_bAllowDelete;
 
     /*variables to manage print taking care of lines*/
-    bool                    m_bPrintFromStart;
-    int                     m_iSavePrintState;
-    int                     m_iRows1PrintState;
-    int                     m_iCols1PrintState;
-    int                     m_iRows2PrintState;
-    int                     m_iCols2PrintState;
+    bool m_bPrintFromStart;
+    int  m_iSavePrintState;
+    int  m_iRows1PrintState;
+    int  m_iCols1PrintState;
+    int  m_iRows2PrintState;
+    int  m_iCols2PrintState;
 
     bool bKillMe;
 

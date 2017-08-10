@@ -5,7 +5,7 @@
         <refpurpose>получение текущей инструкции дерева вызова</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>[linenum, callername] = where()</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -36,7 +36,7 @@
         </para>
         <para>
             <code>callername(i)</code> - это, в общем, имя функции, но это может быть также
-            <literal>"exec"</literal> или <literal>"execstr"</literal>, если инструкция лежит в  
+            <literal>"exec"</literal> или <literal>"execstr"</literal>, если инструкция лежит в
             сценарии, исполняемом функцией <function>exec</function>, или строковом аргументе функции <function>execstr</function>.
         </para>
     </refsection>

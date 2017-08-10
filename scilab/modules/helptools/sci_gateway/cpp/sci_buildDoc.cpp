@@ -3,11 +3,14 @@
  *  Copyright (C) 2008 - INRIA - Sylvestre LEDRU
  *  Copyright (C) 2011 - Scilab Enterprises - Sylvestre LEDRU
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 /*--------------------------------------------------------------------------*/
@@ -51,7 +54,7 @@ extern "C"
     int sci_buildDoc(char *fname, void* pvApiCtx)
     {
         std::string exportFormat;
-        std::string SciPath = getSCI(); /* Scilab path */
+        std::string SciPath; /* Scilab path */
         std::string masterXML; /* Which file contains all the doc stuff */
         std::string masterXMLTMP;
         std::string outputDirectory;    /* Working directory */
@@ -59,6 +62,7 @@ extern "C"
         std::string language;
         std::string styleSheet; /* the CSS */
         char * fileToExec = NULL;
+        char * temp;
         SciErr sciErr;
         int *piAddr = NULL;
         int iRet = 0;
@@ -66,6 +70,9 @@ extern "C"
         CheckRhs(0, 4);
         CheckLhs(1, 1);
 
+        temp = getSCI();
+        SciPath = std::string(temp);
+        free(temp);
         styleSheet = SciPath + PATHTOCSS;
 
         if (Rhs < 1)
@@ -86,7 +93,7 @@ extern "C"
 
             if (!isStringType(pvApiCtx, piAddr))
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: Single string expected.\n"), fname, 1);
+                Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
                 return 0;
                 // Wrong type string
             }
@@ -105,7 +112,11 @@ extern "C"
 
         if (Rhs < 3)            /* Language not provided */
         {
-            language = wide_string_to_UTF8(getlanguage());
+            wchar_t* l = getlanguage();
+            temp = wide_string_to_UTF8(l);
+            language = std::string(temp);
+            FREE(temp);
+            free(l);
         }
         else
         {
@@ -121,14 +132,18 @@ extern "C"
 
             if (!isStringType(pvApiCtx, piAddr))
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: Single string expected.\n"), fname, 3);
+                Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 3);
                 return 0;
                 // Wrong type string
             }
 
             if (!isScalar(pvApiCtx, piAddr))
             {
-                language = wide_string_to_UTF8(getlanguage());
+                wchar_t* pwstLang = getlanguage();
+                temp = wide_string_to_UTF8(pwstLang);
+                language = std::string(temp);
+                FREE(temp);
+                free(pwstLang);
             }
             else
             {
@@ -164,7 +179,7 @@ extern "C"
             }
             if (!isStringType(pvApiCtx, piAddr))
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: Single string expected.\n"), fname, 2);
+                Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 2);
                 return 0;
                 // Wrong type string
             }
@@ -193,7 +208,7 @@ extern "C"
             }
             if (!isStringType(pvApiCtx, piAddr))
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: Single string expected.\n"), fname, 4);
+                Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 4);
                 return 0;
                 // Wrong type string
             }
@@ -231,10 +246,10 @@ extern "C"
         __slashToAntislash(&masterXML);
 #endif
 
+        org_scilab_modules_helptools::SciDocMain * doc = NULL;
         try
         {
-            org_scilab_modules_helptools::SciDocMain * doc = new org_scilab_modules_helptools::SciDocMain(getScilabJavaVM());
-
+            doc = new org_scilab_modules_helptools::SciDocMain(getScilabJavaVM());
             if (doc->setOutputDirectory((char *)outputDirectory.c_str()))
             {
                 doc->setWorkingLanguage((char *)language.c_str());
@@ -245,6 +260,7 @@ extern "C"
             else
             {
                 Scierror(999, _("%s: Could find or create the working directory %s.\n"), fname, outputDirectory.c_str());
+                delete doc;
                 return FALSE;
             }
             if (doc != NULL)
@@ -252,8 +268,12 @@ extern "C"
                 delete doc;
             }
         }
-        catch (GiwsException::JniException ex)
+        catch (const GiwsException::JniException& ex)
         {
+            if (doc != NULL)
+            {
+                delete doc;
+            }
             Scierror(999, _("%s: Error while building documentation: %s.\n"), fname, ex.getJavaDescription().c_str());
             Scierror(999, _("%s: Execution Java stack: %s.\n"), fname, ex.getJavaStackTrace().c_str());
             Scierror(999,

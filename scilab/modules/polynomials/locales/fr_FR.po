@@ -8,14 +8,192 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-09-16 09:48+0000\n"
-"Last-Translator: Julie PAUL <Unknown>\n"
+"PO-Revision-Date: 2016-07-17 10:57+0000\n"
+"Last-Translator: Mickael Albertus <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
-"Language: fr\n"
+"X-Generator: Launchpad (build 18315)\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+msgstr "%s : Nombre erroné d'argument(s) de sortie : %d à %d attendu(s).\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real scalar expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Un scalaire réel attendu.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A real scalar expected.\n"
+msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Un scalaire réel "
+"attendu.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A polynomial '%ls' expected.\n"
+msgstr ""
+"%s : Valeur erronée pour l'argument d'entrée n°%d : Un polynôme '%ls' "
+"attendu.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d à %d attendu(s).\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr "%s : Nombre erroné d'argument(s) de sortie : %d attendu(s).\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real vector expected.\n"
+msgstr ""
+"%s : Type erroné pour l'argument d'entrée n°%d : Un vecteur réel attendu.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A real vector expected.\n"
+msgstr ""
+"%s : Dimension erronée pour l'argument d'entrée n°%d : Un vecteur réel "
+"attendu.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Positive vector expected.\n"
+msgstr ""
+"%s : Valeur erronée pour l'argument d'entrée n°%d : Un vecteur positif "
+"attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d : string expected.\n"
+msgstr ""
+"%s : Type erroné pour l'argument d'entrée n°%d : une chaîne de caractères "
+"attendue.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d : %s or %s expected.\n"
+msgstr ""
+"%s : Valeur erronée pour l'argument d'entrée n°%d : %s ou %s attendu.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d : A scalar expected.\n"
+msgstr ""
+"%s : Dimension erronée pour l'argument d'entrée n°%d : Un scalaire attendu.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d : Valid variable name expected.\n"
+msgstr ""
+"%s : Valeur erronée pour l'argument d'entrée n°%d : Un nom de variable "
+"valide attendu.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d : A vector expected.\n"
+msgstr ""
+"%s : Dimension erronée pour l'argument d'entrée n°%d : Un vecteur attendu.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Un scalaire attendu.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d : If algo is %s, a real is expected.\n"
+msgstr ""
+"%s : Valeur erronée pour l'argument d'entrée n°%d : Si algo est %s, un réel "
+"est attendu.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d : If algo is %s, a degree less than "
+"%d expected.\n"
+msgstr ""
+"%s : Valeur erronée pour l'argument d'entrée n°%d : Si algo est %s, un degré "
+"inférieur à %d est attendu.\n"
+
+#, c-format
+msgid "%s: Convergence problem...\n"
+msgstr "%s : Problème de convergence...\n"
+
+#, c-format
+msgid "%s: Leading coefficient is zero.\n"
+msgstr "%s : Le coefficient dominant est zéro.\n"
+
+#, c-format
+msgid "%s: Too high degree (max 100).\n"
+msgstr "%s : Degré trop élevé (maximum 100).\n"
+
+#, c-format
+msgid "%s: unable to find spec function\n"
+msgstr "%s : impossible de trouver la fonction spec\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A real matrix expected.\n"
+msgstr ""
+"%s : Valeur erronée pour l'argument d'entrée n°%d : Une matrice réelle "
+"attendue.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A symmetric polynomial expected.\n"
+msgstr ""
+"%s : Valeur erronée pour l'argument d'entrée n°%d : Un polynôme symétrique "
+"attendu.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Non negative or null value expected "
+"at degree %d.\n"
+msgstr ""
+"%s : Valeur erronée pour l'argument d'entrée n°%d : Une valeur strictement "
+"positive ou nulle de degré %d attendue.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Convergence problem.\n"
+msgstr ""
+"%s : Valeur erronée pour l'argument d'entrée n°%d : Problème de "
+"convergence.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
+msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Une matrice carrée "
+"attendue.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: singular or asymmetric problem.\n"
+msgstr ""
+"%s : Valeur erronée pour l'argument d'entrée n°%d : Problème singulière ou "
+"asymétrique.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A polynomial expected.\n"
+msgstr ""
+"%s : Type erroné pour l'argument d'entrée n°%d : Un polynôme attendu.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Same size expected.\n"
+msgstr ""
+"%s : Dimension erronée pour l'argument d'entrée n°%d : Même dimension "
+"attendue.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A non null denominator expected.\n"
+msgstr ""
+"%s : Valeur erronée pour l'argument d'entrée n°%d : Un dénominateur non nul "
+"attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un booléen attendu.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean scalar expected.\n"
+msgstr ""
+"%s : Dimension erronée pour l'argument d'entrée n°%d : Un scalaire booléen "
+"attendu.\n"
 
 msgid "Polynomials"
 msgstr "Polynômes"
@@ -47,8 +225,7 @@ msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : Un polynôme attendu.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A rational fraction expected.\n"
+msgid "%s: Wrong size for input argument #%d: A rational fraction expected.\n"
 msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : Une fraction "
 "rationnelle attendue.\n"
@@ -82,10 +259,6 @@ msgstr ""
 "%s : Type erroné de l'argument d'entrée : Un tableau de polynômes attendu.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d attendu(s).\n"
-
-#, c-format
 msgid "%s: Unexpected type for input argument #%d.\n"
 msgstr "%s : Type inattendu de l'argument d'entrée n°%d\n"
 
@@ -106,8 +279,7 @@ msgstr ""
 "{%s}.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for argument #%d: Real Matrix of Polynomials expected.\n"
+msgid "%s: Wrong type for argument #%d: Real Matrix of Polynomials expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument n°%d : Une matrice réelle de polynômes "
 "attendue.\n"
@@ -123,8 +295,7 @@ msgstr "%s : Valeur erronée de l'argument n°%d : %s ou %s attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Polynomial expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Un polynôme attendu.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un polynôme attendu.\n"
 
 #, c-format
 msgid "%s: Input argument #%d must be real.\n"

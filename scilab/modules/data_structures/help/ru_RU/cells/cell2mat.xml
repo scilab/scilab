@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="cell2mat" xml:lang="ru">
+    <refnamediv>
+        <refname>cell2mat</refname>
+        <refpurpose>преобразование cell-массива в матрицу</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Синтаксис</title>
+        <synopsis>x=cell2mat(c)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>c</term>
+                <listitem>
+                    <para>
+                        cell-массив, компоненты <literal>c</literal> должны быть одинакового типа и могут
+                        быть скалярами или матрицами.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>матрица</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            cell2mat(c) возвращает матрицу, которая является результатом конкатенации всех компонентов
+            cell-массива <literal>c</literal>.
+        </para>
+        <para>
+            Все компоненты <literal>c</literal> должны быть данными одного типа (строками или числами двойной точности (double) или целочисленными значениями или логическими значениями). Для каждой строки
+            <literal>i</literal> в <literal>c</literal> <literal>cell2mat</literal>
+            конкатенирует компоненты <literal>i</literal>-той строки cell-массива <literal>c</literal>.
+        </para>
+        <para>
+            Заметьте, что, если компоненты входного cell-массива <literal>c</literal>
+            являются строками (string), то <literal>cell2mat(c)</literal> возвращает вектор-столбец конкатенированных строк.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+c=makecell([2,2],[1 2 3; 6 7 8],[4 5;9 10],[11 12;16 17],[14 13 15;18 19 20])
+cell2mat(c)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="cell">cell</link>
+            </member>
+            <member>
+                <link linkend="makecell">makecell</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

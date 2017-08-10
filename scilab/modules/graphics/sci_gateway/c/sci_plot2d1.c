@@ -3,17 +3,20 @@
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
 /*------------------------------------------------------------------------*/
 /* file: sci_plot2d1.c                                                    */
-/* desc : interface for plot2d1, plot2d2, plot2d3 and plot2d4 routines    */
+/* desc : interface for plot2d2, plot2d3 and plot2d4 routines    */
 /*------------------------------------------------------------------------*/
 #include <string.h>
 #include "gw_graphics.h"
@@ -25,11 +28,6 @@
 #include "Scierror.h"
 #include "sci_malloc.h"
 
-/*--------------------------------------------------------------------------*/
-int sci_plot2d1_1 (char *fname, void *pvApiCtx)
-{
-    return sci_plot2d1_G("plot2d1", 1, pvApiCtx); /* NG */
-}
 /*--------------------------------------------------------------------------*/
 int sci_plot2d1_2 (char *fname, void *pvApiCtx)
 {
@@ -76,12 +74,14 @@ int sci_plot2d1_G(char * fname, int ptype, void *pvApiCtx)
     };
 
     int    * style    = NULL ;
-    double* rect     = NULL ;
+    double* rect      = NULL ;
     int    * nax      = NULL ;
     BOOL     flagNax  = FALSE;
     char   * strf     = NULL ;
     char strfl[4];
+    BOOL freeStrf     = FALSE;
     char   * legend   = NULL ;
+    BOOL freeLegend   = FALSE;
     char   * logFlags = NULL ;
 
     if (nbInputArgument(pvApiCtx) <= 0)
@@ -103,7 +103,10 @@ int sci_plot2d1_G(char * fname, int ptype, void *pvApiCtx)
     if (checkInputArgumentType(pvApiCtx, 1, sci_strings))
     {
         /* logflags */
-        GetLogflags(pvApiCtx, fname, 1, opts, &logFlags);
+        if (get_logflags_arg(pvApiCtx, fname, 1, opts, &logFlags) == 0)
+        {
+            return 0;
+        }
         iskip = 1;
     }
 
@@ -311,14 +314,68 @@ int sci_plot2d1_G(char * fname, int ptype, void *pvApiCtx)
         }
     }
 
-    sciGetStyle(pvApiCtx, fname, 3 + iskip, n1, opts, &style);
-    GetStrf(pvApiCtx, fname, 4 + iskip, opts, &strf);
-    GetLegend(pvApiCtx, fname, 5 + iskip, opts, &legend);
-    GetRect(pvApiCtx, fname, 6 + iskip, opts, &rect);
-    GetNax(pvApiCtx, 7 + iskip, opts, &nax, &flagNax);
+    if (get_style_arg(pvApiCtx, fname, 3 + iskip, n1, opts, &style) == 0)
+    {
+        return 0;
+    }
+    if (get_strf_arg(pvApiCtx, fname, 4 + iskip, opts, &strf) == 0)
+    {
+        FREE(style);
+        return 0;
+    }
+    freeStrf = !(isDefStrf(strf));
+    if (get_legend_arg(pvApiCtx, fname, 5 + iskip, opts, &legend) == 0)
+    {
+        if (freeStrf)
+        {
+            freeAllocatedSingleString(strf);
+        }
+        FREE(style);
+        return 0;
+    }
+    freeLegend = !(isDefLegend(legend));
+    if (get_rect_arg(pvApiCtx, fname, 6 + iskip, opts, &rect) == 0)
+    {
+        if (freeLegend)
+        {
+            freeAllocatedSingleString(legend);
+        }
+        if (freeStrf)
+        {
+            freeAllocatedSingleString(strf);
+        }
+        FREE(style);
+        return 0;
+    }
+    if (get_nax_arg(pvApiCtx, 7 + iskip, opts, &nax, &flagNax)==0)
+    {
+        if (freeLegend)
+        {
+            freeAllocatedSingleString(legend);
+        }
+        if (freeStrf)
+        {
+            freeAllocatedSingleString(strf);
+        }
+        FREE(style);
+        return 0;
+    }
+
     if (iskip == 0)
     {
-        GetLogflags(pvApiCtx, fname, 8, opts, &logFlags);
+        if (get_logflags_arg(pvApiCtx, fname, 8, opts, &logFlags) == 0)
+        {
+            if (freeLegend)
+            {
+                freeAllocatedSingleString(legend);
+            }
+            if (freeStrf)
+            {
+                freeAllocatedSingleString(strf);
+            }
+            FREE(style);
+            return 0;
+        }
     }
 
     if (isDefStrf(strf))
@@ -334,12 +391,28 @@ int sci_plot2d1_G(char * fname, int ptype, void *pvApiCtx)
         {
             strfl[0] = '1';
         }
-        GetOptionalIntArg(pvApiCtx, fname, 9, "frameflag", &frame, 1, opts);
+        if (get_optional_int_arg(pvApiCtx, fname, 9, "frameflag", &frame, 1, opts) == 0)
+        {
+            if (freeLegend)
+            {
+                freeAllocatedSingleString(legend);
+            }
+            FREE(style);
+            return 0;
+        }
         if (frame != &frame_def)
         {
             strfl[1] = (char)(*frame + 48);
         }
-        GetOptionalIntArg(pvApiCtx, fname, 9, "axesflag", &axes, 1, opts);
+        if (get_optional_int_arg(pvApiCtx, fname, 9, "axesflag", &axes, 1, opts) == 0)
+        {
+            if (freeLegend)
+            {
+                freeAllocatedSingleString(legend);
+            }
+            FREE(style);
+            return 0;
+        }
         if (axes != &axes_def)
         {
             strfl[2] = (char)(*axes + 48);
@@ -355,6 +428,14 @@ int sci_plot2d1_G(char * fname, int ptype, void *pvApiCtx)
 
     // Allocated by sciGetStyle (get_style_arg function in GetCommandArg.c)
     FREE(style);
+    if (freeStrf)
+    {
+        freeAllocatedSingleString(strf);
+    }
+    if (freeLegend)
+    {
+        freeAllocatedSingleString(legend);
+    }
 
     AssignOutputVariable(pvApiCtx, 1) = 0;
     ReturnArguments(pvApiCtx);

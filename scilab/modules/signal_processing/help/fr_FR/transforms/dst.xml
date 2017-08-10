@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 1997   - INRIA
+* Copyright (C) 2012 - Serge Steer - INRIA
+*
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+*
+-->
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="dst">
+    <refnamediv>
+        <refname>dst</refname>
+        <refpurpose>Discrete sine transform.</refpurpose>
+    </refnamediv>
+    <refnamediv xml:id="idst">
+        <refname>idst</refname>
+        <refpurpose>Inverse discrete sine transform.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>X=dst(A [,sign] [,option])
+            X=dst(A,sign,selection [,option])
+            X=dst(A,sign,dims,incr [,option])
+            X=idst(A [,option])
+            X=idst(A,selection [,option])
+            X=idst(A,dims,incr [,option])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>A</term>
+                <listitem>
+                    <para>a real or complex vector or real or complex array
+                        (vector, matrix or N-D array.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>X</term>
+                <listitem>
+                    a real or complex array with same shape as <literal>A</literal>.
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sign</term>
+                <listitem>
+                    an integer. with possible values <literal>1</literal> or
+                    <literal>-1</literal>. Select direct or inverse
+                    transform. The default value is <literal>-1</literal>
+                    (direct transform).
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>selection</term>
+                <listitem>
+                    a vector containing index on <literal>A</literal> array
+                    dimensions.  See the Description part for details.
+                </listitem>
+            </varlistentry>
+
+            <varlistentry>
+                <term>dims</term>
+                <listitem>
+                    a vector of positive numbers with integer values, or a
+                    vector of positive integers.  See the Description part for details.
+                    <para>
+                        Each element must be a divisor
+                        of the total number of elements of <literal>A</literal>.
+                    </para>
+                    <para>
+                        The product of the elements must be less than the total
+                        number of elements of <literal>A</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>incr</term>
+                <listitem>
+                    a vector of positive numbers with integer values, or a
+                    vector of positive integers.  See the Description part for
+                    details.
+                    <para>
+                        <literal>incr</literal> must have the same number of
+                        elements than <literal>dims</literal>.
+                    </para>
+                    <para>
+                        Each element must be a divisor of the total number of
+                        elements of <literal>A</literal>.
+                    </para>
+                    <para>
+                        The <literal>incr</literal> elements must be in strictly
+                        increasing order.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>option</term>
+                <listitem>
+                    a character string. with possible values
+                    <literal>"dst1"</literal>, <literal>"dst2"</literal>,
+                    <literal>"dst4"</literal> or <literal>"dst"</literal> for
+                    direct transform and <literal>"dst1"</literal>,
+                    <literal>"dst3"</literal>, <literal>"dst4"</literal> or
+                    <literal>"idst"</literal> for inverse transform.  The
+                    default value is <literal>"dst"</literal> for direct
+                    transform and <literal>"idst"</literal> for inverse
+                    transform. See the Description part for details.
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <refsection>
+            <title>Transform description</title>
+            <para>
+                This function realizes direct or
+                inverse 1-D or N-D Discrete Sine Transforms with shift depending on the <literal>option</literal> parameter value:
+            </para>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        For <literal>"dst1"</literal> the function computes the unnormalized DST-I transform. The 1-D transform of a vector of length <latex>$n$</latex> is:
+                    </para>
+                    <para>
+                        <latex>
+                            $X(k) = 2 \sum_{i=1}^{n} {A(i) \cos\frac{\pi i k}{n+1}},
+                            k=1\ldots n$
+                        </latex>
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        For <literal>"dst2"</literal>  the function computes the unnormalized DST-II transform. the 1-D transform of a vector of length <latex>$n$</latex> is:
+                    </para>
+                    <para>
+                        <latex>
+                            $X(k) = 2 \sum_{i=1}^{n} {A(i) \cos\frac{\pi ( i
+                            -1/2) k}{n}}, k=1\ldots n$
+                        </latex>
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        For <literal>"dst3"</literal> the function computes the unnormalized DST-III transform. The 1-D transform  of a vector of length <latex>$n$</latex> is:
+                    </para>
+                    <para>
+                        <latex>
+                            $X(k) = (-1)^{k-1}A(n) + 2 \sum_{i=1}^{n-1} {A(i) \cos\frac{\pi  i (k-1/2)}{n}}, k=1\ldots n$
+                        </latex>
+                    </para>
+                </listitem>
+
+
+                <listitem>
+                    <para>
+                        For <literal>"dst4"</literal>  the function computes the unnormalized DST-IV transform. the 1-D transform of a vector of length <latex>$n$</latex> is:
+                    </para>
+                    <para>
+                        <latex>
+                            $X(k) = 2 \sum_{i=1}^{n} {A(i) \cos\frac{\pi (i
+                            -1/2)(k-1/2)}{n}}, k=1\ldots n$
+                        </latex>
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        For <literal>"dst"</literal> the function computes the normalized DST-I transform. The 1-D transform of a vector of length <latex>$n$</latex> is:
+                    </para>
+                    <para>
+                        <latex>
+                            $X(k) = \sum_{i=1}^n {A(i) \cos\frac{\pi i k} {n+1}},
+                            k=1\ldots n$
+                        </latex>
+                    </para>
+                </listitem>
+
+                <listitem>
+                    <para>
+                        For <literal>"idst"</literal> the function computes the normalized DST-I transform. The 1-D transform of a vector of length <latex>$n$</latex> is:
+                    </para>
+                    <para>
+                        <latex>
+                            $X(k) = \frac{2}{n+1} \sum_{i=1}^n {A(i) \cos\frac{\pi i k}
+                            {n+1}}, k=1\ldots n$
+                        </latex>
+                    </para>
+                </listitem>
+            </itemizedlist>
+            <para>
+                The multi-dimensional DST transforms , in general, are the
+                separable product of the given 1d transform along each dimension
+                of the array. For unnormalized transforms , computing the
+                forward followed by the backward/inverse multi-dimensional
+                transform will result in the original array scaled by the
+                product of the dimension sizes.
+            </para>
+
+        </refsection>
+        <refsection>
+            <title>Syntax description</title>
+            <variablelist>
+                <varlistentry>
+                    <term>Short syntax </term>
+                    <listitem>
+                        <variablelist>
+                            <varlistentry>
+                                <term>direct</term>
+                                <listitem>
+                                    <para>
+                                        <literal>X=dst(A,-1 [,option])</literal> or
+                                        <literal>X=dst(A [,option])</literal> gives a direct
+                                        transform according to the <literal>option</literal> value. The default is normalized DST-I direct transform.
+                                    </para>
+                                    <para>
+                                        If <literal>A</literal> is a vector (only one
+                                        dimension greater than 1) a 1-d transform is performed
+                                        and in the other cases a n-dimensional transform is
+                                        done.
+                                    </para>
+                                    <para>
+                                        (the <literal>-1</literal> argument refers
+                                        to the sign of the exponent..., NOT to
+                                        "inverse"),
+                                    </para>
+                                </listitem>
+                            </varlistentry>
+                            <varlistentry>
+                                <term>inverse</term>
+                                <listitem>
+                                    <para>
+                                        <literal>X=dst(A,1 [,option])</literal> or
+                                        <literal>X=idst(A [,option])</literal>performs the inverse
+                                        transform.
+                                    </para>
+                                    <para>
+                                        If <literal>A</literal> is a vector (only one
+                                        dimension greater than 1) a 1-d transform is performed
+                                        and in the other cases a n-dimensional transform is
+                                        done.
+                                    </para>
+                                </listitem>
+                            </varlistentry>
+                        </variablelist>
+                    </listitem>
+                </varlistentry>
+
+                <varlistentry>
+                    <term>Long syntax for DST along specified dimensions</term>
+                    <listitem>
+                        <itemizedlist>
+                            <listitem>
+                                <para>
+                                    <literal>X=dst(A,sign,selection [,option])</literal>
+                                    allows to perform efficiently all direct or inverse
+                                    dst of the "slices" of <literal>A</literal> along
+                                    selected dimensions.
+                                </para>
+                                <para>
+                                    For example, if <literal>A</literal> is a 3-D array
+                                    <literal>X=dst(A,-1,2)</literal> is equivalent to:
+                                </para>
+                                <programlisting role=""><![CDATA[
+            for i1=1:size(A,1),
+              for i3=1:size(A,3),
+                X(i1,:,i3)=dst(A(i1,:,i3),-1);
+              end
+            end
+            ]]></programlisting>
+                                <para>
+                                    and <literal>X=dst(A,-1,[1 3])</literal> is equivalent to:
+                                </para>
+                                <programlisting role=""><![CDATA[
+            for i2=1:size(A,2),
+              X(:,i2,:)=dst(A(:,i2,:),-1);
+            end
+            ]]></programlisting>
+                            </listitem>
+                            <listitem>
+                                <para>
+                                    <literal>X=dst(A,sign,dims,incr)</literal> is
+                                    an old  syntax that also allows to perform all direct or
+                                    inverse dst of the slices of <literal>A</literal> along
+                                    selected dimensions.
+                                </para>
+                                <para>
+                                    For example, if <literal>A</literal> is an array with
+                                    <literal>n1*n2*n3</literal> elements
+                                    <literal>X=dst(A,-1,n1,1)</literal> is equivalent to
+                                    <literal>X=dst(matrix(A,[n1,n2,n3]),-1,1)</literal>.
+                                    and <literal>X=dst(A,-1,[n1 n3],[1 n1*n2])</literal>
+                                    is equivalent to
+                                    <literal>X=dst(matrix(A,[n1,n2,n3]),-1,[1,3])</literal>.
+                                </para>
+                            </listitem>
+                        </itemizedlist>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Optimizing dst</title>
+            <para>
+                Remark: fftw function automatically stores his last
+                parameters in memory to re-use it in a second time. This
+                improves greatly the time computation when consecutives
+                calls (with same parameters) are performed.
+            </para>
+            <para>
+                It is possible to go further in dst optimization using
+                <link linkend="get_fftw_wisdom">get_fftw_wisdom</link>, <link
+          linkend="set_fftw_wisdom">set_fftw_wisdom</link> functions.
+            </para>
+        </refsection>
+    </refsection>
+    <refsection>
+        <title>Algorithms</title>
+        <para>
+            This function is based on the <ulink url="http://www.fftw.org/">fftw3</ulink> library.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="fft">fft</link>
+            </member>
+            <member>
+                <link linkend="dct">dct</link>
+            </member>
+            <member>
+                <link linkend="fftw_flags">fftw_flags</link>
+            </member>
+            <member>
+                <link linkend="get_fftw_wisdom">get_fftw_wisdom</link>
+            </member>
+            <member>
+                <link linkend="set_fftw_wisdom">set_fftw_wisdom</link>
+            </member>
+            <member>
+                <link linkend="fftw_forget_wisdom">fftw_forget_wisdom</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>Bibliography</title>
+        <para>
+            Matteo Frigo and Steven G. Johnson, "FFTW Documentation" <ulink
+    url="http://www.fftw.org/#documentation">http://www.fftw.org/#documentation</ulink>
+        </para>
+    </refsection>
+</refentry>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - F.D
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="pfss">
+    <refnamediv>
+        <refname>pfss</refname>
+        <refpurpose>部分分数分解</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>elts=pfss(Sl)
+            elts=pfss(Sl,rmax)
+            elts=pfss(Sl,'cord')
+            elts=pfss(Sl,rmax,'cord')
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>Sl</term>
+                <listitem>
+                    <para>
+                        <literal>syslin</literal> リスト (状態空間または伝達行列システム)
+                        rmax : ブロック対角化座標の条件付けを制御する実数 : 文字列 <literal>'c'</literal>
+                        または <literal>'d'</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            線形システム<literal>Sl</literal>(状態空間形式,伝達行列は
+            <literal>tf2ss</literal>により自動的に状態空間形式に変換されます)の部分分数分解:
+        </para>
+        <para>
+            <literal>elts</literal> は,
+            加算すると<literal>Sl</literal>となる
+            線形システムのリストです.
+            すなわち <literal>elts=list(S1,S2,S3,...,Sn)</literal> :
+        </para>
+        <para>
+            ただし,<literal>Sl = S1 + S2 +... +Sn</literal>.
+        </para>
+        <para>
+            各 <literal>Si</literal> は
+            <literal>S</literal>の<literal>A</literal>行列のブロック対角に基づく
+            <literal/>
+            Sのいくつかの極を含みます.
+        </para>
+        <para>
+            プロパーでないシステムの場合,<literal>Sl</literal>の多項式部分が
+            <literal>elts</literal>の最後のエントリに置かれます.
+        </para>
+        <para>
+            <literal>Sl</literal>が伝達形式で指定された場合, まず状態空間に変換され,
+            その後,各サブシステム<literal>Si</literal>が伝達形式に変換されます.
+        </para>
+        <para>
+            A 行列の状態空間形式は,
+            関数<literal>bdiag</literal>によりブロック対角形式に変換されます.
+            オプションのパラメータ
+            <literal>rmax</literal> は<literal>bdiag</literal>に送られます.
+            <literal>rmax</literal> はブロック対角化を成立させるために
+            大きな数に設定する必要があります.
+        </para>
+        <para>
+            オプションフラグ <literal>cord='c'</literal> が指定された場合,
+            <literal>elts</literal>の要素はA行列の固有値の実部
+            (<literal>cord='d'</literal>の場合は大きさ)でソートされます.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+W=ssrand(1,1,6);
+elts=pfss(W);
+W1=0;for k=1:size(elts), W1=W1+ss2tf(elts(k));end
+clean(ss2tf(W)-W1)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="pbig">pbig</link>
+            </member>
+            <member>
+                <link linkend="bdiag">bdiag</link>
+            </member>
+            <member>
+                <link linkend="coffg">coffg</link>
+            </member>
+            <member>
+                <link linkend="dtsi">dtsi</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

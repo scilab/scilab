@@ -5,11 +5,14 @@
  *                                                         (third input argument)
  * Copyright (C) 2000 - INRIA -
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="stdev">
@@ -29,7 +32,7 @@
             y = stdev(x, orien, m)
         </synopsis>
     </refsynopsisdiv>
-    <refsection>
+    <refsection role="parameters">
         <title>引数</title>
         <variablelist>
             <varlistentry>
@@ -48,10 +51,9 @@
                 <term>orien</term>
                 <listitem>
                     <para>
-                        文字列スカラーまたは正の整数であり,
-                        <literal>"*"</literal>, <literal>"r"</literal>
-                        (または<literal>1</literal>)または
-                        <literal>"c"</literal> (または <literal>2</literal>)を指定可能
+                        <literal>"*"</literal> (default), <literal>"r"</literal> or 1,
+                        <literal>"c"</literal> or 2, or integer&lt;=ndims(x): direction along
+                        which calculations are performed.
                     </para>
                 </listitem>
             </varlistentry>
@@ -63,7 +65,7 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>説明</title>
         <para>
             stdev は "標本" 標準偏差を計算します.
@@ -93,24 +95,39 @@
             拡張表現として,正の整数<literal>n</literal>を指定して<literal>y=stdev(x,n)</literal>と
             すると,<literal>n</literal>番目の次元に沿った
             標準偏差を返します.
-            <literal>n>ndims(x)</literal>の場合,
-            <literal>stdev(x,n)</literal> は <literal>zeros(x)</literal>を返します.
         </para>
         <note>
-            <varname>m</varname> がスカラーの場合, 
-            <literal>n</literal>番目の次元方向が
-            <code>mean(x)</code> の大きさに一致するように拡張されます.
+            <itemizedlist>
+                <listitem>
+                    <varname>m</varname> がスカラーの場合,
+                    <literal>n</literal>番目の次元方向が
+                    <code>mean(x)</code> の大きさに一致するように拡張されます.
+                </listitem>
+                <listitem>
+                    <literal>stdev()</literal> can be overloaded.
+                </listitem>
+            </itemizedlist>
         </note>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>例</title>
         <programlisting role="example"><![CDATA[
 A = [1 2 10; 7 7.1 7.01];
 stdev(A)
 stdev(A, 'r')
 stdev(A, 'c')
-stdev(A, 'c', mean(A,'c'))
-stdev(A, 'c', 1)
+stdev(A,  2 )
+
+// Deviation from a known (a-priori, built-in) mean:
+A = grand(10, 10, "nor", 7.5, 3);
+stdev(A) / 3             // unknown mean => assessed from A before computing stdev
+stdev(A, '*', 7.5) / 3   // using the theoretical built-in mean
+
+// With an hypermatrix:
+A = grand(3, 5, 30, "nor", 4.1, 1.5);
+stdev(A) / 1.5
+sd = stdev(A, 3, 4.1) / 1.5
+mean(sd)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -133,7 +150,7 @@ stdev(A, 'c', 1)
             </member>
         </simplelist>
     </refsection>
-    <refsection>
+    <refsection role="history">
         <title>履歴</title>
         <revhistory>
             <revision>
@@ -141,6 +158,18 @@ stdev(A, 'c', 1)
                 <revdescription>
                     <varname>m</varname>により定義された
                     先験平均を用いて平均二乗偏差を計算できるようになりました
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revdescription>
+                    stdev(x, orien>ndims(x)) no longer returns zeros(x) but yields an error.
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.0.1</revnumber>
+                <revdescription>
+                    stdev() is now overloadable.
                 </revdescription>
             </revision>
         </revhistory>

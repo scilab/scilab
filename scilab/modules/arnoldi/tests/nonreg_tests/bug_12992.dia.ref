@@ -25,5 +25,4 @@ assert_checkalmostequal(cld, d0(1), [], %eps);
 assert_checkalmostequal(d, v0(1), [], %eps);
 assert_checkalmostequal(abs(v), abs(d0(:,1)), [], %eps)
  ans  =
- 
-  T  
+  T

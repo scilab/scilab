@@ -7,10 +7,15 @@
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
         <synopsis>123.33
+
             a.*b
-            
-            [123,..
-            456]
+            a .*. b
+
+            %pi * (%e + ..
+            %i)
+
+            cd ..
+            dir ..
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -37,9 +42,8 @@
                     </para>
                     <para>
                         <note>
-                            Notez que lorsqu'un point suit un nombre entier il est
-                            considéré comme en faisant partie. Ainsi <literal>2.*x</literal> est évalué comme <literal>2.0*x</literal>
-                            et <literal>2 .*x</literal> est évalué comme <literal>(2).*x</literal>.
+                            Notez que lorsqu'un point est utilisé pour un opérateur, il n'est pas
+                            considéré comme faisant partie d'un nombre précédant ce point. Ainsi <literal>2.*x</literal> et <literal>2 .*x</literal> sont évalués comme <literal>(2).*x</literal> et pas comme <literal>2.0*x</literal>.
                         </note>
                     </para>
                 </listitem>
@@ -47,9 +51,9 @@
             <varlistentry>
                 <term>..</term>
                 <listitem>
-                    <para>A suivre. Deux points ou plus à la fin d'une ligne font en
+                    <para>Passage à la ligne. Deux points ou plus à la fin d'une ligne font en
                         sorte que la ligne suivante est considérée comme en étant la suite
-                        (le passage à la ligne n'est pas pris en compte).
+                        (le retour chariot n'est pas pris en compte).
                     </para>
                     <para>Les lignes de suite sont traitées par un préprocesseur dont
                         l'objet est de construire une ligne logique à partir d'une suite de
@@ -59,19 +63,19 @@
                     <para>
                         La fonction <literal>foo</literal> suivante :
                     </para>
-                    <programlisting role=""><![CDATA[ 
-function foo
-  a=1
-  disp(a),..
-  disp('ok')
+                    <programlisting role=""><![CDATA[
+function foo()
+    plot2d()
+    xtitle(["Titre général"; "Peut être sur plusieurs lignes, donc assez long"], ..
+            "Ceci est le titre de l''axe des X", "titre de l''axe Y")
 endfunction
  ]]></programlisting>
                     <para>est équivalente à :</para>
-                    <programlisting role=""><![CDATA[ 
-function foo 
-  a=1
+                    <programlisting role=""><![CDATA[
+function foo()
+    plot2d()
 
-  disp(a),disp('ok') 
+    xtitle(["Titre général"; "Peut être sur plusieurs lignes, donc assez long"], "Ceci est le titre de l''axe des X", "titre de l''axe Y")
 endfunction
  ]]></programlisting>
                     <para>La ligne logique formée par les lignes physiques 3 et 4 est
@@ -80,18 +84,120 @@ endfunction
                         de faire est nécessaire car les points de suite peuvent apparaître
                         n'importe où dans la ligne logique, même à l'intérieur d'une
                         expression.
+                        <note>La différence entre lignes logiques et lignes physiques
+                            a son importance lors de l'édition (scinotes, edit) et dans les messages d'erreurs (whereami),
+                            lorsque le numéro de ligne est fourni ou affiché.
+                        </note>
                     </para>
+                    <para>
+                        Il y a des exception à cette règle dans un environnement matriciel afin
+                        de faciliter la lecture des scripts scilab. L'exemple suivant met à jour quelques
+                        différences entre l'environnement matriciel et non matriciel pour la marque de passage
+                        à la ligne.
+                    </para>
+                    <programlisting role=""><![CDATA[
+// Dans un environnement matriciel .. est la marque de passage à la ligne
+// sauf dans quelques cas où la lisibilité du script est importante
+
+// ma_matrice == [1 2 3 -4 5 6]
+ma_matrice = [ 1 2 3 -4 5 6] // le signe moins ici est unaire
+
+// ma_matrice == [1 2 -1 5 6]
+ma_matrice = [ 1 2 3 -... // le signe moins séparé par .. est toujours considéré comme une opération binaire
+4 5 6]
+                     ]]></programlisting>
+
+                    <para>
+                        Une erreur est générée si la marque de passage à la ligne est insérée dans un mot-clé, un nom de variable ou un mot reservé du langage.
+                    </para>
+                    <programlisting role=""><![CDATA[
+// ceci est possible en scilab
+for a_word = 1:10
+    disp("test " + string(a_word))
+end
+
+
+// cela génère une erreur
+for a_...
+word = 1:10
+    disp("test " + string(a_word))
+end
+// Scilab ne peut analyser correctement a_...word
+                    ]]></programlisting>
+                    <para>
+                        Une erreur est générée si autre chose qu'une commentaire suit la marque de passage à la ligne
+                    </para>
+
+                    <programlisting role=""><![CDATA[
+this_wont_work = 3 + ... 4 // Scilab ne sait pas analyser cette ligne
+
+this_wont_work_either = 3 + ... /* un commentaire
+sur plusieurs lignes suivi de texte */ 4
+
+this_works = 3 + ... /* un commentaire
+sur plusieurs lignes puis retour à la ligne */
+4
+                     ]]></programlisting>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
+// Point decimal
 1.345
-x=[1 2 3];x.^2 .*x // il faut absolument mettre un espace entre le 2 et le point
-[123,..
- 456]
+x = [1 2 3];
+x.^2 .*x // il faut absolument mettre un espace entre le 2 et le point
+
+// Dans le symbole de certains operateurs
+x = [1 2 3];
+x .^ 2 .*x  // L'espace entre 2 et .* n'est pas nécessaire
+
+// Lorsqu'une matrice est écrite ligne par ligne, ".." peut être utilisé mais n'est pas obligatoire.
+N_ligne = [   ..
+    63.    89.    3.   ..
+    91.    56.    22.  ..
+    15.    64.    40.  ..
+    ]
+// Sans la marque de passage à la ligne la matrix est lue ligne par ligne
+N_carree = [
+    63.    89.    3.
+    91.    56.    22.
+    15.    64.    40.
+    ]
+
+// Dans les instructions très longues telles que les uicontrol() où l'indication de nombreuses
+//  propriétés est souvent requise, la marque .. de continuation est quasi incontournable. Elle
+//  permet d'écrire une propriété par ligne, ce qui rend le code lisible et compatible avec
+//  les règles de style de code de Scilab :
+fig = figure("figure_name", "FIGURE", ..
+             "dockable",    "off", ..
+             "axes_size",   [990,670], ..
+             "infobar_visible", "off", ..
+             "toolbar",     "none", ..
+             "menubar_visible", "on", ..
+             "menubar",     "none", ..
+             "default_axes","off", ..
+             "layout",      "border", ..
+             "background",  color(244,244,244), ..
+             "tag",         "figure_1", ..
+             "visible",     "on");
+
+// Appels de fonctions orientés console (sans les () ) avec un paramètre ".." :
+d = pwd(); cd SCI/contrib
+cd ..   // équivaut à cd("..") et n'attend rien en ligne suivante
+cd(d)   // (retour à votre dossier initial)
+
+// Cette expression ne fonctionne plus dans Scilab 6
+a = "Je commence à écrire une très longue chaîne de caractères...
+     - et je continue ici"
+// L'expression suivante est celle à utiliser
+a = "Je commence à écrire une très longue chaîne de caractères"+...
+    "    - et je continue ici"
+// Cette expression n'est plus autorisée dans Scilab 6: Les singletons doivent être écrits sur une ligne
+y = 12..
+45
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -109,6 +215,31 @@ x=[1 2 3];x.^2 .*x // il faut absolument mettre un espace entre le 2 et le point
             <member>
                 <link linkend="backslash">backslash</link>
             </member>
+            <member>
+                <link linkend="whereami">whereami</link>
+            </member>
+            <member>
+                <link linkend="edit">edit</link>
+            </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revremark>
+                    <para>
+                        Il est désormais impossible de couper un scalaire.
+                    </para>
+                    <para>
+                        Pour couper une chaîne de caractères, les opérateurs "+ .." doivent être utilisés.
+                    </para>
+                    <para>Dans les appels de fonctions en mode orienté console,
+                        <literal>myfun ..</literal> n'attend plus de suite en ligne suivante.
+                    </para>
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

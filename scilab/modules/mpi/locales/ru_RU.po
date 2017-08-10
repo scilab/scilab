@@ -6,15 +6,20 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-09-17 15:48+0000\n"
-"Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
+"PO-Revision-Date: 2016-11-12 11:14+0000\n"
+"Last-Translator: Nkolay Parukhin <parukhin@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 18315)\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%s: An MPI communicator expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -46,16 +51,16 @@ msgid "%s: Unable to create variable.\n"
 msgstr "%s: Невозможно создать переменную.\n"
 
 #, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s: Ошибка распределения памяти.\n"
-
-#, c-format
 msgid "%s: Could not finalize the MPI instance: %s\n"
 msgstr ""
 
 #, c-format
 msgid "%s: Could not get processor name: %s\n"
 msgstr "%s: Не удалось получить имя процессора: %s\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Ошибка распределения памяти.\n"
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d: Positive value expected.\n"
@@ -94,3 +99,15 @@ msgstr "%s: Невозможно преобразовать данные в па
 #, c-format
 msgid "%s: MPI_Wait failed while waiting %d: %s\n"
 msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: Неверное количество входных аргументов: ожидалось %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr "%s: Неверное количество выходных аргументов: ожидалось %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A Matrix expected.\n"
+msgstr "%s: Неверное количество выходных аргументов #%d: ожидалась матрица.\n"

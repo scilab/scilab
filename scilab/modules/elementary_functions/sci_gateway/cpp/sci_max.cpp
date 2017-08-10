@@ -2,20 +2,26 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - DIGITEO - Cedric DELAMARRE
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 /*--------------------------------------------------------------------------*/
+
+#include <algorithm>
+
 #include "elem_func_gw.hxx"
 #include "function.hxx"
 #include "double.hxx"
 #include "string.hxx"
+#include "list.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 #include "max.hxx"
 #include "min.hxx"
 #include "int.hxx"
@@ -97,8 +103,7 @@ types::Function::ReturnValue sci_MinMax(types::typed_list &in, int _iRetCount, t
         wchar_t* wcsMinMax = to_wide_string(fname);
         std::wstring wstFuncName = L"%" + inputs[0]->getShortTypeStr() + L"_" + wcsMinMax;
         FREE(wcsMinMax);
-        ast::ExecVisitor exec;
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
     types::GenericType* pGT = NULL;
@@ -189,12 +194,13 @@ types::Function::ReturnValue sci_MinMax(types::typed_list &in, int _iRetCount, t
         return types::Function::Error;
     }
 
+    std::vector<bool> cloned(iCountElem, true);
     for (int i = 0; i < iCountElem; i++)
     {
         types::Double* pDbl = NULL;
         switch (inputs[i]->getType())
         {
-            case InternalType::ScilabDouble:
+            case types::InternalType::ScilabDouble:
             {
                 pDbl = inputs[i]->getAs<types::Double>();
                 if (pDbl->isComplex())
@@ -204,58 +210,59 @@ types::Function::ReturnValue sci_MinMax(types::typed_list &in, int _iRetCount, t
                 }
 
                 iLargerInput = 1000;
+                cloned[i] = false;
                 break;
             }
-            case InternalType::ScilabInt8:
+            case types::InternalType::ScilabInt8:
             {
                 pDbl = getAsDouble(inputs[i]->getAs<types::Int8>());
-                iLargerInput = max(iLargerInput, 8);
+                iLargerInput = std::max(iLargerInput, 8);
                 iSigned = 1;
                 break;
             }
-            case InternalType::ScilabInt16:
+            case types::InternalType::ScilabInt16:
             {
                 pDbl = getAsDouble(inputs[i]->getAs<types::Int16>());
-                iLargerInput = max(iLargerInput, 16);
+                iLargerInput = std::max(iLargerInput, 16);
                 iSigned = 1;
                 break;
             }
-            case InternalType::ScilabInt32:
+            case types::InternalType::ScilabInt32:
             {
                 pDbl = getAsDouble(inputs[i]->getAs<types::Int32>());
-                iLargerInput = max(iLargerInput, 32);
+                iLargerInput = std::max(iLargerInput, 32);
                 iSigned = 1;
                 break;
             }
-            case InternalType::ScilabInt64:
+            case types::InternalType::ScilabInt64:
             {
                 pDbl = getAsDouble(inputs[i]->getAs<types::Int64>());
-                iLargerInput = max(iLargerInput, 64);
+                iLargerInput = std::max(iLargerInput, 64);
                 iSigned = 1;
                 break;
             }
-            case InternalType::ScilabUInt8:
+            case types::InternalType::ScilabUInt8:
             {
                 pDbl = getAsDouble(inputs[i]->getAs<types::UInt8>());
-                iLargerInput = max(iLargerInput, 8);
+                iLargerInput = std::max(iLargerInput, 8);
                 break;
             }
-            case InternalType::ScilabUInt16:
+            case types::InternalType::ScilabUInt16:
             {
                 pDbl = getAsDouble(inputs[i]->getAs<types::UInt16>());
-                iLargerInput = max(iLargerInput, 16);
+                iLargerInput = std::max(iLargerInput, 16);
                 break;
             }
-            case InternalType::ScilabUInt32:
+            case types::InternalType::ScilabUInt32:
             {
                 pDbl = getAsDouble(inputs[i]->getAs<types::UInt32>());
-                iLargerInput = max(iLargerInput, 32);
+                iLargerInput = std::max(iLargerInput, 32);
                 break;
             }
-            case InternalType::ScilabUInt64:
+            case types::InternalType::ScilabUInt64:
             {
                 pDbl = getAsDouble(inputs[i]->getAs<types::UInt64>());
-                iLargerInput = max(iLargerInput, 64);
+                iLargerInput = std::max(iLargerInput, 64);
                 break;
             }
             default:
@@ -394,6 +401,13 @@ types::Function::ReturnValue sci_MinMax(types::typed_list &in, int _iRetCount, t
             out.push_back(pDblOut);
     }
 
+    for (int i = 0; i < iCountElem; ++i)
+    {
+        if (cloned[i])
+        {
+            vectDouble[i]->killMe();
+        }
+    }
     if (iLargerInput != 1000)
     {
         //do not delete for double output

@@ -1,11 +1,14 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2011 - DIGITEO
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 test_path = SCI + "/modules/signal_processing/tests/unit_tests/";
 
@@ -26,11 +29,11 @@ load(test_path+"syredi.h5");
 [fact1, b21, b11, b01, c11, c01, zzeros1, zpoles1] = syredi(1, 4, [1, 2, 0, 0], 0.02, 0.001);
 assert_checkequal(fact1, fact1_ref);
 assert_checkequal(b21, b21_ref);
-assert_checkequal(b11, b11_ref);
+assert_checkalmostequal(b11, b11_ref);
 assert_checkequal(b01, b01_ref);
 assert_checkalmostequal(c11, c11_ref);
 assert_checkalmostequal(c01, c01_ref, [], %eps);
-assert_checkequal(zzeros1, zzeros1_ref);
+assert_checkalmostequal(zzeros1, zzeros1_ref);
 assert_checkalmostequal(zpoles1, zpoles1_ref);
 
 [fact2, b22, b12, b02, c12, c02, zzeros2, zpoles2] = syredi(3, 4, [1, 2, 3, 3.01], 0.1, 0.001);

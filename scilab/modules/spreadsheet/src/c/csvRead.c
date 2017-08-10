@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010-2011 - DIGITEO - Allan CORNET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 #include <string.h>
@@ -27,6 +30,7 @@
 #include "os_string.h"
 #include "csvDefault.h"
 #include "strsubst.h"
+#include "Sciwarning.h"
 // =============================================================================
 #if _MSC_VER
 #define READ_ONLY_TEXT_MODE "rt"
@@ -56,10 +60,9 @@ csvResult* csvRead(const char *filename, const char *separator, const char *deci
     int f_swap = 0;
     double res = 0.0;
     int errMOPEN = MOPEN_INVALID_STATUS;
-    int errMGETL = MGETL_ERROR;
     wchar_t **pwstLines = NULL;
     char **pstLines = NULL;
-    int nblines = 0;
+    int nbLines = 0;
     char **replacedInLines = NULL;
     char **pComments = NULL;
     int nbComments = 0;
@@ -115,31 +118,27 @@ csvResult* csvRead(const char *filename, const char *separator, const char *deci
 
     if (header != 0)
     {
-        mgetl(fd, header, &nblines, &errMGETL);
+        wchar_t **pwstHeaderLines = NULL;
+        mgetl(fd, header, &pwstHeaderLines);
+        FREE(pwstHeaderLines);
     }
 
-    pwstLines = mgetl(fd, -1, &nblines, &errMGETL);
-    pstLines = (char**)MALLOC(sizeof(char*) * nblines);
+    nbLines = mgetl(fd, -1, &pwstLines);
+    mclose(fd);
 
+    if (nbLines >= 0)
     {
         int i = 0;
-        for (i = 0 ; i < nblines ; i++)
+        pstLines = (char**)MALLOC(sizeof(char*) * nbLines);
+        for (i = 0 ; i < nbLines ; i++)
         {
             pstLines[i] = wide_string_to_UTF8(pwstLines[i]);
         }
-
+        freeArrayOfWideString(pwstLines, nbLines);
+        pwstLines = NULL;
     }
-
-    mclose(fd);
-
-    if (errMGETL != MGETL_NO_ERROR)
+    else
     {
-        if (pwstLines)
-        {
-            freeArrayOfWideString(pwstLines, nblines);
-            pwstLines = NULL;
-        }
-
         result = (csvResult*)(MALLOC(sizeof(csvResult)));
         if (result)
         {
@@ -157,7 +156,7 @@ csvResult* csvRead(const char *filename, const char *separator, const char *deci
     {
         int iErr = 0;
 
-        pComments = extractComments((const char**)pstLines, nblines, regexpcomments, &nbComments, &iErr);
+        pComments = extractComments((const char**)pstLines, nbLines, regexpcomments, &nbComments, &iErr);
 
         if ((iErr == CAN_NOT_COMPILE_PATTERN) || (iErr == DELIMITER_NOT_ALPHANUMERIC))
         {
@@ -175,6 +174,7 @@ csvResult* csvRead(const char *filename, const char *separator, const char *deci
                 result->pstrComments = NULL;
                 result->nbComments = 0;
             }
+            freeArrayOfString(pstLines, nbLines);
             return result;
         }
 
@@ -184,17 +184,12 @@ csvResult* csvRead(const char *filename, const char *separator, const char *deci
             int nbCleanedLines = 0;
             int i = 0;
 
-            pCleanedLines = removeComments((const char**)pstLines, nblines, (const char*)regexpcomments, &nbCleanedLines, &iErr);
+            pCleanedLines = removeComments((const char**)pstLines, nbLines, (const char*)regexpcomments, &nbCleanedLines, &iErr);
             if (pCleanedLines)
             {
-                if (pwstLines)
-                {
-                    freeArrayOfWideString(pwstLines, nblines);
-                    pwstLines = NULL;
-                }
                 FREE(pstLines);
                 pstLines = pCleanedLines;
-                nblines = nbCleanedLines;
+                nbLines = nbCleanedLines;
             }
 
         }
@@ -202,17 +197,17 @@ csvResult* csvRead(const char *filename, const char *separator, const char *deci
 
     if (toreplace && (sizetoreplace > 0))
     {
-        replacedInLines = replaceStrings((const char**)pstLines, nblines, toreplace, sizetoreplace);
+        replacedInLines = replaceStrings((const char**)pstLines, nbLines, toreplace, sizetoreplace);
         if (replacedInLines)
         {
-            freeArrayOfString(pstLines, nblines);
+            freeArrayOfString(pstLines, nbLines);
             pstLines = replacedInLines;
         }
     }
 
-    result = csvTextScan((const char**)pstLines, nblines, (const char*)separator, (const char*)decimal);
-    freeArrayOfString(pstLines, nblines);
-    freeArrayOfWideString(pwstLines, nblines);
+    result = csvTextScan((const char**)pstLines, nbLines, (const char*)separator, (const char*)decimal);
+    freeArrayOfString(pstLines, nbLines);
+    freeArrayOfWideString(pwstLines, nbLines);
 
     if (result)
     {
@@ -223,7 +218,6 @@ csvResult* csvRead(const char *filename, const char *separator, const char *deci
     {
         freeArrayOfString(pComments, nbComments);
     }
-
 
     return result;
 }
@@ -376,11 +370,7 @@ static int getNumbersOfColumnsInLines(const char **lines, int sizelines,
             {
                 if (previousNbColumns != NbColumns)
                 {
-                    if (getWarningMode())
-                    {
-                        sciprint(_("%s: Inconsistency found in the columns. At line %d, found %d columns while the previous had %d.\n"), _("Warning"), i + 1, NbColumns, previousNbColumns);
-                    }
-
+                    Sciwarning(_("%s: Inconsistency found in the columns. At line %d, found %d columns while the previous had %d.\n"), _("Warning"), i + 1, NbColumns, previousNbColumns);
                     return 0;
                 }
             }

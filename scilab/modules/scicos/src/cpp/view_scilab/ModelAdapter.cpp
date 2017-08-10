@@ -1,12 +1,16 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2014-2014 - Scilab Enterprises - Clement DAVID
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2017 - ESI Group - Clement DAVID
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -23,13 +27,15 @@
 #include "double.hxx"
 #include "string.hxx"
 #include "list.hxx"
-#include "tlist.hxx"
+#include "mlist.hxx"
 #include "user.hxx"
 
 #include "Controller.hxx"
-#include "Adapters.hxx"
 #include "ModelAdapter.hxx"
+#include "LinkAdapter.hxx"
 #include "DiagramAdapter.hxx"
+
+#include "view_scilab/Adapters.hxx"
 #include "ports_management.hxx"
 #include "utilities.hxx"
 #include "controller_helpers.hxx"
@@ -50,11 +56,57 @@ namespace view_scilab
 namespace
 {
 
-const std::wstring modelica (L"modelica");
-const std::wstring model (L"model");
-const std::wstring inputs (L"inputs");
-const std::wstring outputs (L"outputs");
-const std::wstring parameters (L"parameters");
+types::InternalType* get_with_vec2var(const ModelAdapter& adaptor, const Controller& controller, object_properties_t p)
+{
+    ScicosID adaptee = adaptor.getAdaptee()->id();
+
+    std::vector<double> prop_content;
+    controller.getObjectProperty(adaptee, BLOCK, p, prop_content);
+
+    // Corner-case, the empty content is an empty double
+    if (prop_content.empty())
+    {
+        return types::Double::Empty();
+    }
+
+    // The returned value is a list
+    types::InternalType* res;
+    if (!vec2var(prop_content, res))
+    {
+        return nullptr;
+    }
+
+    return res;
+}
+
+bool set_with_var2vec(ModelAdapter& adaptor, types::InternalType* v, Controller& controller, object_properties_t p)
+{
+    ScicosID adaptee = adaptor.getAdaptee()->id();
+
+    // corner-case the empty content is an empty-double
+    if (v->getType() == types::InternalType::ScilabDouble)
+    {
+        types::Double* current = v->getAs<types::Double>();
+        if (current->getSize() != 0)
+        {
+            return false;
+        }
+
+        // prop_content should be empty
+        std::vector<double> prop_content;
+        controller.setObjectProperty(adaptee, BLOCK, p, prop_content);
+        return true;
+    }
+
+    std::vector<double> prop_content;
+    if (!var2vec(v, prop_content))
+    {
+        return false;
+    }
+
+    controller.setObjectProperty(adaptee, BLOCK, p, prop_content);
+    return true;
+}
 
 struct sim
 {
@@ -399,7 +451,7 @@ void encodeDims(std::vector<int>& prop_content, types::GenericType* v)
     const int iDims = v->getDims();
     prop_content.push_back(iDims);
 
-    const int index = prop_content.size();
+    const int index = (int)prop_content.size();
     prop_content.resize(index + iDims);
 
     memcpy(&prop_content[index], v->getDimsArray(), iDims * sizeof(int));
@@ -446,8 +498,8 @@ bool encode(std::vector<int>& prop_content, T* v)
 {
     encodeDims(prop_content, v);
 
-    const int index = prop_content.size();
-    const int len = required_length(prop_content, v);
+    const int index = (int)prop_content.size();
+    const int len = (int)required_length(prop_content, v);
     prop_content.resize(index + len);
 
     // Using contiguity of the memory, we save the input into 'prop_content'
@@ -461,7 +513,7 @@ types::Double* decode(std::vector<int>::iterator& prop_it)
     std::vector<int> dims;
     decodeDims(prop_it, dims);
 
-    bool isComplex = *prop_it++;
+    bool isComplex = *prop_it++ != 0;
 
     types::Double* v = new types::Double(static_cast<int>(dims.size()), &dims[0], isComplex);
     memcpy(v->getReal(), &(*prop_it), v->getSize() * sizeof(double));
@@ -483,8 +535,8 @@ bool encode(std::vector<int>& prop_content, types::Double* v)
     // Flag for complex
     prop_content.push_back(v->isComplex());
 
-    const int index = prop_content.size();
-    const int len = required_length(prop_content, v);
+    const int index = (int)prop_content.size();
+    const int len = (int)required_length(prop_content, v);
     prop_content.resize(index + len);
 
     // Using contiguity of the memory, we save the input into 'prop_content'
@@ -530,7 +582,7 @@ bool encode(std::vector<int>& prop_content, types::String* v)
 {
     encodeDims(prop_content, v);
 
-    const int index = prop_content.size();
+    const int index = (int)prop_content.size();
 
     std::vector<char*> utf8;
     utf8.reserve(v->getSize());
@@ -538,7 +590,7 @@ bool encode(std::vector<int>& prop_content, types::String* v)
     std::vector<size_t> str_len;
     str_len.reserve(v->getSize());
 
-    int offset = 0;
+    size_t offset = 0;
     for (int i = 0; i < v->getSize(); i++)
     {
         char* str = wide_string_to_UTF8(v->get(i));
@@ -549,7 +601,7 @@ bool encode(std::vector<int>& prop_content, types::String* v)
         str_len.push_back(len);
 
         offset += (len * sizeof(char) + sizeof(int) - 1) / sizeof(int);
-        prop_content.push_back(offset);
+        prop_content.push_back((int)offset);
     }
 
     // reserve space for the string offsets and contents
@@ -683,54 +735,12 @@ struct odstate
 
     static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
     {
-        ScicosID adaptee = adaptor.getAdaptee()->id();
-
-        std::vector<double> prop_content;
-        controller.getObjectProperty(adaptee, BLOCK, ODSTATE, prop_content);
-
-        // Corner-case, the empty content is an empty double
-        if (prop_content.empty())
-        {
-            return types::Double::Empty();
-        }
-
-        // The returned value is a list
-        types::InternalType* res;
-        if (!vec2var(prop_content, res))
-        {
-            return 0;
-        }
-
-        return res;
+        return get_with_vec2var(adaptor, controller, ODSTATE);
     }
 
     static bool set(ModelAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        ScicosID adaptee = adaptor.getAdaptee()->id();
-
-        // corner-case the empty content is an empty-double
-        if (v->getType() == types::InternalType::ScilabDouble)
-        {
-            types::Double* current = v->getAs<types::Double>();
-            if (current->getSize() != 0)
-            {
-                return false;
-            }
-
-            // prop_content is empty
-            std::vector<double> prop_content;
-            controller.setObjectProperty(adaptee, BLOCK, ODSTATE, prop_content);
-            return true;
-        }
-
-        std::vector<double> prop_content;
-        if (!var2vec(v, prop_content))
-        {
-            return false;
-        }
-
-        controller.setObjectProperty(adaptee, BLOCK, ODSTATE, prop_content);
-        return true;
+        return set_with_var2vec(adaptor, v, controller, ODSTATE);
     }
 };
 
@@ -749,7 +759,7 @@ bool setInnerBlocksRefs(ModelAdapter& adaptor, const std::vector<ScicosID>& chil
 
     for (std::vector<ScicosID>::const_iterator it = children.begin(); it != children.end(); ++it)
     {
-        if (*it == 0ll)
+        if (*it == ScicosID())
         {
             continue; // Rule out mlists (Deleted or Annotations)
         }
@@ -808,7 +818,7 @@ bool setInnerBlocksRefs(ModelAdapter& adaptor, const std::vector<ScicosID>& chil
                     if (!superPorts.empty())
                     {
                         // Arbitrarily take the highest possible value in case the user enters a wrong number
-                        portIndex = superPorts.size();
+                        portIndex = (int)superPorts.size();
                     }
                     else
                     {
@@ -878,13 +888,8 @@ struct rpar
         }
         else // SuperBlock, return the contained diagram (allocating it on demand)
         {
-            DiagramAdapter* diagram = adaptor.getDiagram();
-
-            /*
-             * FIXME: Sync all diagram children as the blocks might be modified by xcos
-             */
-
-            return diagram;
+            DiagramAdapter* d = new DiagramAdapter(controller, controller.referenceObject(adaptor.getAdaptee()));
+            return d;
         }
     }
 
@@ -919,112 +924,26 @@ struct rpar
                 get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : Diagram expected.\n"), "model", "rpar");
                 return false;
             }
+            const DiagramAdapter* diagram = v->getAs<DiagramAdapter>();
+            DiagramAdapter* superblock = new DiagramAdapter(controller, controller.referenceObject(adaptor.getAdaptee()));
 
-            // Translate 'v' to an DiagramAdapter ; copy if needed
-            DiagramAdapter* diagram;
-            if (v->getRef() > 1)
-            {
-                diagram = v->clone()->getAs<DiagramAdapter>();
-            }
-            else
-            {
-                diagram = v->getAs<DiagramAdapter>();
-            }
-            adaptor.setDiagram(diagram);
+            // copy the values by name to preserve adaptors specific properties
+            superblock->copyProperties(*diagram, controller);
 
-            // set the diagram children as block children ; referencing them
-            std::vector<ScicosID> diagramChildren;
-            controller.getObjectProperty(diagram->getAdaptee()->id(), DIAGRAM, CHILDREN, diagramChildren);
-            if (diagramChildren.empty())
-            {
-                // bug_12998: If inserting an empty diagram in 'rpar', simulate an empty object
-                diagramChildren.push_back(0ll);
-            }
-            std::vector<ScicosID> oldDiagramChildren;
-            controller.getObjectProperty(adaptor.getAdaptee()->id(), BLOCK, CHILDREN, oldDiagramChildren);
-
-            controller.setObjectProperty(adaptor.getAdaptee()->id(), BLOCK, CHILDREN, diagramChildren);
-            {
-                std::sort(oldDiagramChildren.begin(), oldDiagramChildren.end());
-                for (const ScicosID id : diagramChildren)
-                {
-                    if (id != 0 && !std::binary_search(oldDiagramChildren.begin(), oldDiagramChildren.end(), id))
-                    {
-                        auto o = controller.getObject(id);
-                        controller.setObjectProperty(o->id(), o->kind(), PARENT_BLOCK, adaptor.getAdaptee()->id());
-
-                        controller.referenceObject(id);
-                    }
-                }
-
-                std::sort(diagramChildren.begin(), diagramChildren.end());
-                for (const ScicosID id : oldDiagramChildren)
-                {
-                    if (id != 0 && !std::binary_search(diagramChildren.begin(), diagramChildren.end(), id))
-                    {
-                        auto o = controller.getObject(id);
-                        controller.setObjectProperty(o->id(), o->kind(), PARENT_BLOCK, ScicosID());
-
-                        controller.deleteObject(id);
-                    }
-                }
-            }
-
-            // Link the Superblock ports to their inner "port blocks"
-            return setInnerBlocksRefs(adaptor, diagramChildren, controller);
+            superblock->killMe();
+            return true;
         }
         else if (v->getType() == types::InternalType::ScilabMList)
         {
-            ScicosID localAdaptee = controller.createObject(DIAGRAM);
-            DiagramAdapter* diagram = new DiagramAdapter(controller, controller.getObject<model::Diagram>(localAdaptee));
+            DiagramAdapter* diagram = new DiagramAdapter(controller, controller.referenceObject(adaptor.getAdaptee()));
             if (!diagram->setAsTList(v, controller))
             {
                 diagram->killMe();
                 return false;
             }
 
-            adaptor.setDiagram(diagram);
-
-            // set the diagram children as block children ; referencing them
-            std::vector<ScicosID> diagramChildren;
-            controller.getObjectProperty(diagram->getAdaptee()->id(), DIAGRAM, CHILDREN, diagramChildren);
-            if (diagramChildren.empty())
-            {
-                // bug_12998: If inserting an empty diagram in 'rpar', simulate an empty object
-                diagramChildren.push_back(0ll);
-            }
-            std::vector<ScicosID> oldDiagramChildren;
-            controller.getObjectProperty(adaptor.getAdaptee()->id(), BLOCK, CHILDREN, oldDiagramChildren);
-
-            controller.setObjectProperty(adaptor.getAdaptee()->id(), BLOCK, CHILDREN, diagramChildren);
-            {
-                std::sort(oldDiagramChildren.begin(), oldDiagramChildren.end());
-                for (const ScicosID id : diagramChildren)
-                {
-                    if (id != 0 && !std::binary_search(oldDiagramChildren.begin(), oldDiagramChildren.end(), id))
-                    {
-                        auto o = controller.getObject(id);
-                        controller.setObjectProperty(o->id(), o->kind(), PARENT_BLOCK, adaptor.getAdaptee()->id());
-
-                        controller.referenceObject(id);
-                    }
-                }
-
-                std::sort(diagramChildren.begin(), diagramChildren.end());
-                for (const ScicosID id : oldDiagramChildren)
-                {
-                    if (id != 0 && !std::binary_search(diagramChildren.begin(), diagramChildren.end(), id))
-                    {
-                        auto o = controller.getObject(id);
-                        controller.setObjectProperty(o->id(), o->kind(), PARENT_BLOCK, ScicosID());
-
-                        controller.deleteObject(id);
-                    }
-                }
-            }
-
-            // Link the Superblock ports to their inner "port blocks"
-            return setInnerBlocksRefs(adaptor, diagramChildren, controller);
+            diagram->killMe();
+            return true;
         }
         else
         {
@@ -1107,54 +1026,12 @@ struct opar
 
     static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
     {
-        ScicosID adaptee = adaptor.getAdaptee()->id();
-
-        std::vector<double> prop_content;
-        controller.getObjectProperty(adaptee, BLOCK, OPAR, prop_content);
-
-        // Corner-case, the empty content is an empty double
-        if (prop_content.empty())
-        {
-            return types::Double::Empty();
-        }
-
-        // The returned value is a list
-        types::InternalType* res;
-        if (!vec2var(prop_content, res))
-        {
-            return 0;
-        }
-
-        return res;
+        return get_with_vec2var(adaptor, controller, OPAR);
     }
 
     static bool set(ModelAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        ScicosID adaptee = adaptor.getAdaptee()->id();
-
-        // corner-case the empty content is an empty-double
-        if (v->getType() == types::InternalType::ScilabDouble)
-        {
-            types::Double* current = v->getAs<types::Double>();
-            if (current->getSize() != 0)
-            {
-                return false;
-            }
-
-            // prop_content should be empty
-            std::vector<double> prop_content;
-            controller.setObjectProperty(adaptee, BLOCK, OPAR, prop_content);
-            return true;
-        }
-
-        std::vector<double> prop_content;
-        if (!var2vec(v, prop_content))
-        {
-            return false;
-        }
-
-        controller.setObjectProperty(adaptee, BLOCK, OPAR, prop_content);
-        return true;
+        return set_with_var2vec(adaptor, v, controller, OPAR);
     }
 };
 
@@ -1257,19 +1134,67 @@ struct dep_ut
     }
 };
 
+// Valid C identifier definition
+// https://msdn.microsoft.com/en-us/library/e7f8y25b.aspx
+bool isValidCIdentifier(const std::string& label)
+{
+    auto is_nondigit = [](char c)
+    {
+        return ('A' <= c && c <= 'Z') || ('a' <= c && c <= 'z') || '_' == c;
+    };
+    auto is_digit = [](char c)
+    {
+        return ('0' <= c && c <= '9');
+    };
+
+    // is a valid but empty string
+    if (label.empty())
+    {
+        return true;
+    }
+    // the first character should be a non digit
+    if (!is_nondigit(label[0]))
+    {
+        return false;
+    }
+    // others  should be either a digit or a non digit
+    auto found = std::find_if_not(label.begin(), label.end(), [is_nondigit, is_digit](char c)
+    {
+        return is_nondigit(c) || is_digit(c);
+    } );
+    return found == label.end();
+}
+
 struct label
 {
-
     static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
     {
         ScicosID adaptee = adaptor.getAdaptee()->id();
 
-        std::string label;
+        ScicosID label;
+        std::string description;
+
         controller.getObjectProperty(adaptee, BLOCK, LABEL, label);
+        if (label != ScicosID())
+        {
+            controller.getObjectProperty(label, ANNOTATION, DESCRIPTION, description);
+        }
+        else
+        {
+            controller.getObjectProperty(adaptee, BLOCK, DESCRIPTION, description);
+        }
 
         types::String* o = new types::String(1, 1);
-        o->set(0, label.data());
 
+        // safety check ; the returned value should always be a valid C / modelica identifier
+        if (isValidCIdentifier(description))
+        {
+            o->set(0, description.data());
+        }
+        else
+        {
+            o->set(0, "");
+        }
         return o;
     }
 
@@ -1291,10 +1216,17 @@ struct label
         ScicosID adaptee = adaptor.getAdaptee()->id();
 
         char* c_str = wide_string_to_UTF8(current->get(0));
-        std::string label(c_str);
+        std::string description(c_str);
         FREE(c_str);
 
-        controller.setObjectProperty(adaptee, BLOCK, LABEL, label);
+        // TODO: validate a C/Scilab identifier only
+        //        if (!isValidCIdentifier(label))
+        //        {
+        //            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong value for field %s.%s : Valid C identifier expected.\n"), "model", "label");
+        //            return false;
+        //        }
+
+        controller.setObjectProperty(adaptee, BLOCK, DESCRIPTION, description);
         return true;
     }
 };
@@ -1414,463 +1346,12 @@ struct equations
 
     static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
     {
-        ScicosID adaptee = adaptor.getAdaptee()->id();
-
-        std::vector<std::string> equations;
-        controller.getObjectProperty(adaptee, BLOCK, EQUATIONS, equations);
-
-        if (equations.size() == 0)
-        {
-            return new types::List();
-        }
-
-        types::TList* o = new types::TList();
-
-        // Header, starting with "modelica"
-        types::String* header = new types::String(1, 5);
-        header->set(0, modelica.c_str());
-        header->set(1, model.c_str());
-        header->set(2, inputs.c_str());
-        header->set(3, outputs.c_str());
-        header->set(4, parameters.c_str());
-        o->set(0, header);
-
-        // 'model'
-        if (equations[0].c_str() == std::string())
-        {
-            o->set(1, types::Double::Empty());
-        }
-        else
-        {
-            types::String* modelField = new types::String(1, 1);
-            modelField->set(0, equations[0].c_str());
-            o->set(1, modelField);
-        }
-
-        // 'inputs'
-        std::istringstream inputsSizeStr (equations[1]);
-        int inputsSize;
-        inputsSizeStr >> inputsSize;
-        if (inputsSize == 0)
-        {
-            types::Double* inputsField = types::Double::Empty();
-            o->set(2, inputsField);
-        }
-        else
-        {
-            types::String* inputsField = new types::String(inputsSize, 1);
-            for (int i = 0; i < inputsSize; ++i)
-            {
-                inputsField->set(i, equations[i + 2].c_str());
-            }
-            o->set(2, inputsField);
-        }
-
-        // 'outputs'
-        std::istringstream outputsSizeStr (equations[2 + inputsSize]);
-        int outputsSize;
-        outputsSizeStr >> outputsSize;
-        if (outputsSize == 0)
-        {
-            types::Double* outputsField = types::Double::Empty();
-            o->set(3, outputsField);
-        }
-        else
-        {
-            types::String* outputsField = new types::String(outputsSize, 1);
-            for (int i = 0; i < outputsSize; ++i)
-            {
-                outputsField->set(i, equations[i + 3 + inputsSize].c_str());
-            }
-            o->set(3, outputsField);
-        }
-
-        // 'parameters'
-        types::List* parametersField = new types::List();
-
-        // 'parameters' names
-        std::istringstream parametersSizeStr (equations[3 + inputsSize + outputsSize]);
-        int parametersSize;
-        parametersSizeStr >> parametersSize;
-        if (parametersSize == 0)
-        {
-            types::Double* parametersNames = types::Double::Empty();
-            parametersField->set(0, parametersNames);
-        }
-        else
-        {
-            types::String* parametersNames = new types::String(parametersSize, 1);
-            for (int i = 0; i < parametersSize; ++i)
-            {
-                parametersNames->set(i, equations[i + 4 + inputsSize + outputsSize].c_str());
-            }
-            parametersField->set(0, parametersNames);
-        }
-
-        // 'parameters' values
-        types::List* parametersValues = new types::List();
-        for (int i = 0; i < parametersSize; ++i)
-        {
-            std::istringstream parametersValueStr (equations[i + 4 + inputsSize + outputsSize + parametersSize]);
-            double parametersVal;
-            parametersValueStr >> parametersVal;
-            types::Double* parametersValue = new types::Double(parametersVal);
-            parametersValues->set(i, parametersValue);
-        }
-        parametersField->set(1, parametersValues);
-
-        // 'parameters' states (optional, only check its presence if at least one parameter is present)
-        if (parametersSize != 0)
-        {
-            std::string parametersStatesBool (equations[4 + inputsSize + outputsSize + 2 * parametersSize]);
-            if (strcmp(parametersStatesBool.c_str(), "T") == 0) // Check the presence of the "states" field
-            {
-                types::Double* parametersStates = new types::Double(parametersSize, 1);
-                for (int i = 0; i < parametersSize; ++i)
-                {
-                    std::istringstream parametersStateStr (equations[i + 5 + inputsSize + outputsSize + 2 * parametersSize]);
-                    double parametersState;
-                    parametersStateStr >> parametersState;
-                    parametersStates->set(i, parametersState);
-                }
-                parametersField->set(2, parametersStates);
-            }
-        }
-
-        o->set(4, parametersField);
-
-        return o;
+        return get_with_vec2var(adaptor, controller, EQUATIONS);
     }
 
     static bool set(ModelAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        ScicosID adaptee = adaptor.getAdaptee()->id();
-
-        if (v->getType() == types::InternalType::ScilabList)
-        {
-            types::List* current = v->getAs<types::List>();
-            if (current->getSize() != 0)
-            {
-                get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : Equation expected.\n"), "model", "equations");
-                return false;
-            }
-            return true;
-        }
-
-        if (v->getType() != types::InternalType::ScilabTList)
-        {
-            return false;
-        }
-
-        types::TList* current = v->getAs<types::TList>();
-
-        // Check the header
-        types::String* header = current->getFieldNames();
-        if (header->getSize() != 5)
-        {
-            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : Equation expected.\n"), "model", "equations");
-            return false;
-        }
-        if (header->get(0) != modelica)
-        {
-            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : Equation expected.\n"), "model", "equations");
-            return false;
-        }
-        if (header->get(1) != model)
-        {
-            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : Equation expected.\n"), "model", "equations");
-            return false;
-        }
-        if (header->get(2) != inputs)
-        {
-            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : Equation expected.\n"), "model", "equations");
-            return false;
-        }
-        if (header->get(3) != outputs)
-        {
-            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : Equation expected.\n"), "model", "equations");
-            return false;
-        }
-        if (header->get(4) != parameters)
-        {
-            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : Equation expected.\n"), "model", "equations");
-            return false;
-        }
-
-        char* c_str; // Temporary buffer used for conversions
-
-        // 'model'
-        std::vector<std::string> equations;
-        if (current->get(1)->getType() == types::InternalType::ScilabString)
-        {
-            types::String* modelField = current->get(1)->getAs<types::String>();
-            if (modelField->getSize() != 1)
-            {
-                get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : Equation expected.\n"), "model", "equations");
-                return false;
-            }
-
-            c_str = wide_string_to_UTF8(modelField->get(0));
-            std::string modelFieldStored(c_str);
-            FREE(c_str);
-            equations.push_back(modelFieldStored);
-        }
-        else if (current->get(1)->getType() == types::InternalType::ScilabDouble)
-        {
-            types::Double* modelFieldDouble = current->get(1)->getAs<types::Double>();
-            if (modelFieldDouble->getSize() != 0)
-            {
-                get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : Equation expected.\n"), "model", "equations");
-                return false;
-            }
-
-            // An empty matrix stores an empty string, which will later be translated back to an empty matrix
-            equations.push_back(std::string());
-        }
-        else
-        {
-            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : Equation expected.\n"), "model", "equations");
-            return false;
-        }
-
-        // 'inputs'
-        size_t inputsSize;
-        if (current->get(2)->getType() == types::InternalType::ScilabDouble)
-        {
-            types::Double* inputsField = current->get(2)->getAs<types::Double>();
-            if (inputsField->getSize() != 0)
-            {
-                get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : Equation expected.\n"), "model", "equations");
-                return false;
-            }
-
-            inputsSize = 0;
-            std::ostringstream strInputs;
-            strInputs << inputsSize;
-            std::string inputsSizeStr = strInputs.str();
-            equations.push_back(inputsSizeStr); // When 'inputs'=[], just insert "0" in 'equations'
-        }
-        else
-        {
-            if (current->get(2)->getType() != types::InternalType::ScilabString)
-            {
-                get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : Equation expected.\n"), "model", "equations");
-                return false;
-            }
-
-            types::String* inputsField = current->get(2)->getAs<types::String>();
-            inputsSize = inputsField->getSize();
-            equations.resize(equations.size() + 1 + inputsSize);
-            std::ostringstream strInputs;
-            strInputs << inputsSize;
-            std::string inputsSizeStr = strInputs.str();
-            equations[1] = inputsSizeStr; // Saving the size of the 'inputs' field'
-            for (size_t i = 0; i < inputsSize; ++i)
-            {
-                c_str = wide_string_to_UTF8(inputsField->get(static_cast<int>(i)));
-                std::string inputsFieldStored(c_str);
-                FREE(c_str);
-                equations[i + 2] = inputsFieldStored;
-            }
-        }
-
-        // 'outputs'
-        size_t outputsSize;
-        if (current->get(3)->getType() == types::InternalType::ScilabDouble)
-        {
-            types::Double* outputsField = current->get(3)->getAs<types::Double>();
-            if (outputsField->getSize() != 0)
-            {
-                get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : Equation expected.\n"), "model", "equations");
-                return false;
-            }
-
-            outputsSize = 0;
-            std::ostringstream strOutputs;
-            strOutputs << outputsSize;
-            std::string outputsSizeStr = strOutputs.str();
-            equations.push_back(outputsSizeStr); // When 'outputs'=[], just insert "0" in 'equations'
-        }
-        else
-        {
-            if (current->get(3)->getType() != types::InternalType::ScilabString)
-            {
-                get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : Equation expected.\n"), "model", "equations");
-                return false;
-            }
-
-            types::String* outputsField = current->get(3)->getAs<types::String>();
-            outputsSize = outputsField->getSize();
-            equations.resize(equations.size() + 1 + outputsSize);
-            std::ostringstream strOutputs;
-            strOutputs << outputsSize;
-            std::string outputsSizeStr = strOutputs.str();
-            equations[2 + inputsSize] = outputsSizeStr; // Saving the size of the 'outputs' field'
-            for (size_t i = 0; i < outputsSize; ++i)
-            {
-                c_str = wide_string_to_UTF8(outputsField->get(static_cast<int>(i)));
-                std::string outputsFieldStored(c_str);
-                FREE(c_str);
-                equations[i + 3 + inputsSize] = outputsFieldStored;
-            }
-        }
-
-        // 'parameters'
-        int parametersIndex = 4;
-        if (current->get(parametersIndex)->getType() == types::InternalType::ScilabDouble)
-        {
-            // For backward compatibility sake, allow the presence of an empty matrix here
-            types::Double* emptyMatrix = current->get(parametersIndex)->getAs<types::Double>();
-            if (emptyMatrix->getSize() != 0)
-            {
-                get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : Equation expected.\n"), "model", "equations");
-                return false;
-            }
-
-            parametersIndex++;
-        }
-
-        if (current->get(parametersIndex)->getType() != types::InternalType::ScilabList)
-        {
-            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : Equation expected.\n"), "model", "equations");
-            return false;
-        }
-
-        types::List* list = current->get(parametersIndex)->getAs<types::List>();
-        if (list->getSize() != 2 && list->getSize() != 3)
-        {
-            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : Equation expected.\n"), "model", "equations");
-            return false;
-        }
-
-        // 'parameters' names
-        size_t parametersSize;
-        if (list->get(0)->getType() == types::InternalType::ScilabDouble)
-        {
-            types::Double* parametersNames = list->get(0)->getAs<types::Double>();
-            if (parametersNames->getSize() != 0)
-            {
-                get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : Equation expected.\n"), "model", "equations");
-                return false;
-            }
-
-            // When 'parameters(1)'=[], just insert "0" in 'equations', set in the model and return
-            parametersSize = 0;
-            std::ostringstream strParameters;
-            strParameters << parametersSize;
-            std::string parametersSizeStr = strParameters.str();
-            equations.push_back(parametersSizeStr);
-
-            controller.setObjectProperty(adaptee, BLOCK, EQUATIONS, equations);
-            return true;
-        }
-        else
-        {
-            if (list->get(0)->getType() != types::InternalType::ScilabString)
-            {
-                get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : Equation expected.\n"), "model", "equations");
-                return false;
-            }
-
-            types::String* parametersNames = list->get(0)->getAs<types::String>();
-            parametersSize = parametersNames->getSize();
-            equations.resize(equations.size() + 1 + parametersSize);
-            std::ostringstream strParameters;
-            strParameters << parametersSize;
-            std::string parametersSizeStr = strParameters.str();
-            equations[3 + inputsSize + outputsSize] = parametersSizeStr; // Saving the size of the 'parameters' field'
-            for (size_t i = 0; i < parametersSize; ++i)
-            {
-                c_str = wide_string_to_UTF8(parametersNames->get(static_cast<int>(i)));
-                std::string parametersName(c_str);
-                FREE(c_str);
-                equations[i + 4 + inputsSize + outputsSize] = parametersName;
-            }
-        }
-
-        // 'parameters' values
-        if (list->get(1)->getType() == types::InternalType::ScilabDouble)
-        {
-            types::Double* parameterVal = list->get(1)->getAs<types::Double>();
-            if (parameterVal->getSize() != static_cast<int>(parametersSize))
-            {
-                get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : Equation expected.\n"), "model", "equations");
-                return false;
-            }
-
-            for (size_t i = 0; i < parametersSize; ++i)
-            {
-                std::ostringstream strParameterVal;
-                strParameterVal << parameterVal->get(static_cast<int>(i));
-                std::string parameterValStr = strParameterVal.str();
-                equations.push_back(parameterValStr);
-            }
-        }
-        else
-        {
-            if (list->get(1)->getType() != types::InternalType::ScilabList)
-            {
-                get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : Equation expected.\n"), "model", "equations");
-                return false;
-            }
-
-            types::List* list2 = list->get(1)->getAs<types::List>();
-            if (list2->getSize() != static_cast<int>(parametersSize))
-            {
-                get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : Equation expected.\n"), "model", "equations");
-                return false;
-            }
-
-            equations.resize(equations.size() + parametersSize);
-            for (size_t i = 0; i < parametersSize; ++i)
-            {
-                if (list2->get(static_cast<int>(i))->getType() != types::InternalType::ScilabDouble)
-                {
-                    get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : Equation expected.\n"), "model", "equations");
-                    return false;
-                }
-
-                types::Double* parametersVal = list2->get(static_cast<int>(i))->getAs<types::Double>();
-                if (parametersVal->getSize() != 1)
-                {
-                    get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : Equation expected.\n"), "model", "equations");
-                    return false;
-                }
-
-                std::ostringstream strParametersVal;
-                strParametersVal << parametersVal->get(0);
-                std::string parametersValStr = strParametersVal.str();
-                equations[i + 4 + inputsSize + outputsSize + parametersSize] = parametersValStr;
-            }
-        }
-
-        // 'parameters' states (optional)
-        equations.push_back("F"); // String boolean to indicate the presence, or not, of a "states" field
-        if (list->getSize() == 3)
-        {
-            equations.back() = "T";
-            if (list->get(2)->getType() != types::InternalType::ScilabDouble)
-            {
-                return false;
-            }
-
-            types::Double* parameterStates = list->get(2)->getAs<types::Double>();
-            if (parameterStates->getSize() != static_cast<int>(parametersSize))
-            {
-                return false;
-            }
-
-            for (size_t i = 0; i < parametersSize; ++i)
-            {
-                std::ostringstream strParameterStates;
-                strParameterStates << parameterStates->get(static_cast<int>(i));
-                std::string parameterStatesStr = strParameterStates.str();
-                equations.push_back(parameterStatesStr);
-            }
-        }
-
-        controller.setObjectProperty(adaptee, BLOCK, EQUATIONS, equations);
-        return true;
+        return set_with_var2vec(adaptor, v, controller, EQUATIONS);
     }
 };
 
@@ -1951,14 +1432,13 @@ static void initialize_fields()
 }
 
 ModelAdapter::ModelAdapter() :
-    BaseAdapter<ModelAdapter, org_scilab_modules_scicos::model::Block>(),
-    m_diagramAdapter(nullptr)
+    BaseAdapter<ModelAdapter, org_scilab_modules_scicos::model::Block>()
 {
     initialize_fields();
 }
-ModelAdapter::ModelAdapter(const Controller& c, model::Block* adaptee, DiagramAdapter* diagramAdapter) :
-    BaseAdapter<ModelAdapter, org_scilab_modules_scicos::model::Block>(c, adaptee),
-    m_diagramAdapter(diagramAdapter)
+
+ModelAdapter::ModelAdapter(const Controller& c, model::Block* adaptee) :
+    BaseAdapter<ModelAdapter, org_scilab_modules_scicos::model::Block>(c, adaptee)
 {
     initialize_fields();
 }
@@ -1967,25 +1447,14 @@ ModelAdapter::~ModelAdapter()
 {
 }
 
-std::wstring ModelAdapter::getTypeStr()
+std::wstring ModelAdapter::getTypeStr() const
 {
     return getSharedTypeStr();
 }
 
-std::wstring ModelAdapter::getShortTypeStr()
+std::wstring ModelAdapter::getShortTypeStr() const
 {
     return getSharedTypeStr();
-}
-
-DiagramAdapter* ModelAdapter::getDiagram() const
-{
-    return m_diagramAdapter;
-}
-
-void ModelAdapter::setDiagram(DiagramAdapter* diagramAdapter)
-{
-    // does not increment reference as this adapter does not own the DiagramAdapter
-    m_diagramAdapter = diagramAdapter;
 }
 
 } /* namespace view_scilab */

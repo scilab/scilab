@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scicos
+ *
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ *
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="scicos_params">
+    <refnamediv>
+        <refname>scicos_params</refname>
+        <refpurpose>param構造体の定義</refpurpose>
+    </refnamediv>
+    <refsection id="Module_scicos_params">
+        <title>モジュール</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="xcos">xcos</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="params_scicos_params">
+        <title>params</title>
+        <para>
+            大きさ : 11.
+        </para>
+        <para>
+            型 : scilab リスト.
+        </para>
+        <para>
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">wpar</emphasis>
+                </para>
+                <para> このベクトルは現在使用されていません.</para>
+                <para> 将来,エディタのウィンドウの大きさを指定するために
+                    使用される可能性があります.
+                </para>
+                <para>
+                    大きさ : 6.
+                </para>
+                <para>
+                    型 : 列ベクトルまたは実数.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">title</emphasis>
+                </para>
+                <para> 文字列のベクトルで,
+                    最初の文字列はダイアグラムのタイトルで,
+                    保存するファイル名のデフォルト名です.
+                    2番目の文字列は,ファイル名のディレクトリのパスです.
+                </para>
+                <para>
+                    大きさ : 2.
+                </para>
+                <para>
+                    型 : 文字列の行ベクトル.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">tol</emphasis>
+                </para>
+                <para>
+                    ソルバーにより使用されつ種々の許容誤差を含むシミュレーションパラメータを保持するベクトル.
+                </para>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <emphasis role="bold">atol  </emphasis>
+                        </para>
+                        <para>
+                            数値ソルバーの積分器の絶対許容誤差.
+                        </para>
+                        <para>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis role="bold">rtol  </emphasis>
+                        </para>
+                        <para>
+                            数値ソルバーの積分器の相対許容誤差.
+                        </para>
+                        <para>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis role="bold">ttol  </emphasis>
+                        </para>
+                        <para>
+                            時間に関する許容誤差.
+                        </para>
+                        <para>
+                            積分間隔がttolより小さい場合,数値ソルバーはコールされません.
+                        </para>
+                        <para>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis role="bold">deltat</emphasis>
+                        </para>
+                        <para>
+                            積分時間間隔の最大値.
+                        </para>
+                        <para>
+                            積分周期がdeltatより大きい場合,
+                            各コールの積分周期がdeltat以下となるように
+                            数値ソルバーが複数回コールされます.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis role="bold">scale </emphasis>
+                        </para>
+                        <para>
+                            実時間スケーリング; 値0は実時間スケーリングをしないことを意味します.
+                        </para>
+                        <para>
+                            Scicosシミュレーション時間を実時間(単位:秒)に関連付けます.
+                        </para>
+                        <para>
+                            値1はScicosの各時間単位を1秒に対応付けることを意味します.
+                        </para>
+                        <para>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis role="bold">solver</emphasis>
+                        </para>
+                        <para>
+                            数値ソルバーを選択.
+                        </para>
+                        <para>
+                            値0はODEソルバー, 100はDAEソルバーを意味します.
+                        </para>
+                        <para>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis role="bold">hmax  </emphasis>
+                        </para>
+                        <para>
+                            数値ソルバーの最大ステップ数.
+                        </para>
+                        <para>
+                            0 は制限なしを意味します.
+                        </para>
+                        <para>
+                        </para>
+                        <para>
+                        </para>
+                    </listitem>
+                </itemizedlist>
+                <para>
+                    大きさ : 7.
+                </para>
+                <para>
+                    型 : 実数の列ベクトル.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">tf</emphasis>
+                </para>
+                <para> シミュレーション終了時間.</para>
+                <para> シミュレーションはこの時刻で停止します.</para>
+                <para> デフォルト値は 100000です.</para>
+                <para>
+                    大きさ : 1.
+                </para>
+                <para>
+                    型 : 実数.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">context</emphasis>
+                </para>
+                <para>
+                    記号パラメータとしてダイアグラムのブロック内で使用される
+                    Scilab変数を定義するScilab命令を含む文字列のベクトル.
+                </para>
+                <para>
+                    コメントを含む有効な全てのScilab命令を使用できます.
+                </para>
+                <para>
+                    大きさ : コンテキストの行数.
+                </para>
+                <para>
+                    型 : 文字列の列ベクトル.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">void1</emphasis>
+                </para>
+                <para> 使用されないフィールド.</para>
+                <para>
+                    大きさ : -.
+                </para>
+                <para>
+                    型 : -.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">options</emphasis>
+                </para>
+                <para>
+                    背景色やリンク色のようなエディタのグラフィックプロパティを定義する
+                    scsopt型のScilabオブジェクト.
+                </para>
+                <para>
+                    フィールドは以下のようになります:
+                </para>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <emphasis role="bold">3D        </emphasis>
+                        </para>
+                        <para>
+                            2つのエントリを有するリスト. 最初のエントリは論理値で,
+                            ブロックが3次元的な外観を有するかどうかを指定します.
+                        </para>
+                        <para>
+                            第2エントリはカレントの色マップにおける色を指定し,
+                            3次元効果を生成する際に使用されます.
+                        </para>
+                        <para>
+                            デフォルトは33で,
+                            Scicosにより32色を有する標準カラーマップに追加される灰色に対応します.
+                        </para>
+                        <para>
+                            デフォルト値は list(%t,33) です.
+                        </para>
+                        <para>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis role="bold">Background</emphasis>
+                        </para>
+                        <para>
+                            2つのエントリを有するベクトル: 背景色および
+                            表示色.
+                        </para>
+                        <para>
+                            デフォルト値は [8,1] です.
+                        </para>
+                        <para>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis role="bold">link      </emphasis>
+                        </para>
+                        <para>
+                            標準およびアクティベーションリンクの
+                            デフォルトのリンク色.
+                        </para>
+                        <para>
+                            これらの色はリンク接続でのみ使用されます.
+                        </para>
+                        <para>
+                            これらを変更しても既に接続済みのリンクには影響を与えません.
+                        </para>
+                        <para>
+                            デフォルト値は [1,5] で, これらは標準Scilabカラーマップが
+                            使用されている場合は黒と赤に対応します.
+                        </para>
+                        <para>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis role="bold">ID        </emphasis>
+                        </para>
+                        <para>
+                            フォント番号と大きさを有する2つのベクトルのリスト.
+                        </para>
+                        <para>
+                            デフォルト値は [5,1],[4,1]です.
+                        </para>
+                        <para>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis role="bold">Cmap      </emphasis>
+                        </para>
+                        <para>
+                            カラーマップに追加される色のRGB値を有する
+                            n行3列の行列です.
+                        </para>
+                        <para>
+                            デフォルト値は [0.8,0.8,0.8], すなわち灰色です.
+                        </para>
+                        <para>
+                        </para>
+                        <para>
+                        </para>
+                    </listitem>
+                </itemizedlist>
+                <para>
+                    大きさ : 6.
+                </para>
+                <para>
+                    型 : scsopt型のscilab tlist.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">void2</emphasis>
+                </para>
+                <para> 使用されていないフィールド.</para>
+                <para>
+                    大きさ : -.
+                </para>
+                <para>
+                    型 : -.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">void3</emphasis>
+                </para>
+                <para> 使用されていないフィールド.</para>
+                <para>
+                    大きさ : -.
+                </para>
+                <para>
+                    型 : -.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">doc</emphasis>
+                </para>
+                <para> ユーザ定義のダイアグラム文書構造体.</para>
+                <para>
+                    大きさ : 1.
+                </para>
+                <para>
+                    型 : 文字列.
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Filecontent_scicos_params">
+        <title>ファイルの内容</title>
+        <itemizedlist>
+            <listitem>
+                <para> SCI/modules/scicos/macros/scicos_scicos/scicos_params.sci</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+</refentry>

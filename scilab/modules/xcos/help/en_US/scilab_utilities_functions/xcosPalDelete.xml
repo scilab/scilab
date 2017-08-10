@@ -4,7 +4,7 @@
         <refpurpose>Remove an Xcos palette.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             xcosPalDelete(category);
         </synopsis>

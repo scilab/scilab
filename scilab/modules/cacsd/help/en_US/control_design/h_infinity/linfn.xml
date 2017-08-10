@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - P. Gahinet
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="linfn">
+    <refnamediv>
+        <refname>linfn</refname>
+        <refpurpose>infinity norm</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[x,freq]=linfn(G,PREC,RELTOL,options);</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>G</term>
+                <listitem>
+                    <para>
+                        is a <literal>syslin</literal> list
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>PREC</term>
+                <listitem>
+                    <para>desired relative accuracy on the norm</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>RELTOL</term>
+                <listitem>
+                    <para>relative threshold to decide when an eigenvalue can be  considered on the imaginary axis.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>options</term>
+                <listitem>
+                    <para>
+                        available options are <literal>'trace'</literal> or <literal>'cond'</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>is the computed norm.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>freq</term>
+                <listitem>
+                    <para>vector</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Computes the Linf (or Hinf) norm of <literal>G</literal>
+            This norm is well-defined as soon as the realization
+            <literal>G=(A,B,C,D)</literal> has no imaginary eigenvalue which is both
+            controllable and observable.
+        </para>
+        <para>
+            <literal>freq</literal> is a list of the frequencies for which <literal>||G||</literal> is
+            attained,i.e., such that <literal>||G (j om)|| = ||G||</literal>.
+        </para>
+        <para>
+            If -1 is in the list, the norm is attained at infinity.
+        </para>
+        <para>
+            If -2 is in the list, <literal>G</literal> is all-pass in some direction so that
+            <literal>||G (j omega)|| = ||G||</literal> for all frequencies omega.
+        </para>
+        <para>
+            The algorithm follows the paper by G. Robel
+            (AC-34 pp. 882-884, 1989).
+            The case <literal>D=0</literal> is not treated separately due to superior
+            accuracy of the general method when <literal>(A,B,C)</literal> is nearly
+            non minimal.
+        </para>
+        <para>
+            The <literal>'trace'</literal> option traces each bisection step, i.e., displays
+            the lower and upper bounds and the current test point.
+        </para>
+        <para>
+            The <literal>'cond'</literal> option estimates a confidence index on the computed
+            value and issues a warning if computations are
+            ill-conditioned
+        </para>
+        <para>
+            In the general case (<literal>A</literal> neither stable nor anti-stable),
+            no upper bound is  prespecified.
+        </para>
+        <para>
+            If by contrast <literal>A</literal> is stable or anti stable, lower
+            and upper bounds are computed using the associated
+            Lyapunov solutions.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="h_norm">h_norm</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

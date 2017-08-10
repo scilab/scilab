@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="warning">
+    <refnamediv>
+        <refname>warning</refname>
+        <refpurpose>Messages d'avertissement à l'attention des utilisateurs</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>warning('string')
+            warning('off')
+            warning('on')
+            warning('stop')
+            mode = warning('query')
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>warning('string')</literal> affiche le message
+            <literal>'string'</literal> comme avertissement à l'utilisateur.
+        </para>
+        <para>
+            <literal>warning(string_matrix)</literal> affiche chaque élément de <literal>string_matrix</literal>
+            comme avertissement à l'utilisateur.
+        </para>
+        <para>
+            <literal>'on'</literal> active les messages d'avertissement, l'exécution des scripts n'est pas interrompue après affichage d'un message d'avertissement.
+        </para>
+        <para>
+            <literal>'off'</literal> désactive les messages d'avertissement, les messages d'avertissements sont ignorés (ni affichés ni bloquant l'exécution des scripts).
+        </para>
+        <para>
+            <literal>'stop'</literal> active les messages d'avertissement et interrompt l'exécution d'un script dès qu'un message d'avertissement est rencontré.
+        </para>
+        <para>
+            <literal>'query'</literal> récupère l'état actuel des messages d'avertissement <literal>'on'</literal>, <literal>'off'</literal> ou <literal>'stop'</literal>.
+        </para>
+        <para>
+            <literal>warning("on")</literal>, <literal>warning("off")</literal> et <literal>warning("stop")</literal> affectent aussi l'affichage des messages d'avertissement pour les fonctions programmées en dur en plus des messages d'avertissement pour les scripts.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[
+w_flag = warning("query"); // enregistre l'état des messages d'avertissement
+
+warning('on')
+warning('ceci est un avertissement')
+warning('off')
+warning('ceci est un avertissement')
+warning('query')
+warning('on')
+// Exemple avec un message sujet à localisation
+warning(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"myFunction",2));
+
+// Activation de l'arrêt sur avertissement
+warning("stop")
+
+try
+    warning("ceci est un avertissement");
+catch
+    lasterror() // L'avertissement est considéré comme une erreur
+end
+
+warning(w_flag); // Repositionnement de l'état des messages d'avertissement
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="error">error</link>
+            </member>
+            <member>
+                <link linkend="gettext">gettext</link>
+            </member>
+            <member>
+                <link linkend="msprintf">msprintf</link>
+            </member>
+            <member>
+                <link linkend="messagebox">messagebox</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>
+

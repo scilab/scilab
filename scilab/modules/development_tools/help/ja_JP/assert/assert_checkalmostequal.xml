@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- * 
+ *
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - 2011 - DIGITEO - Michael Baudin
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="assert_checkalmostequal" xml:lang="ja">
@@ -32,8 +35,8 @@
             <varlistentry>
                 <term>computed:</term>
                 <listitem>
-                    <para> 
-                        doubleの行列, doubleの疎行列, または 
+                    <para>
+                        doubleの行列, doubleの疎行列, または
                         doubleのハイパー行列, 計算結果
                     </para>
                 </listitem>
@@ -41,8 +44,8 @@
             <varlistentry>
                 <term>expected :</term>
                 <listitem>
-                    <para> 
-                        doubleの行列, doubleの疎行列, または 
+                    <para>
+                        doubleの行列, doubleの疎行列, または
                         doubleのハイパー行列, 予測する結果
                     </para>
                 </listitem>
@@ -50,7 +53,7 @@
             <varlistentry>
                 <term>reltol :</term>
                 <listitem>
-                    <para> doubleの1行1列行列, 相対許容誤差 
+                    <para> doubleの1行1列行列, 相対許容誤差
                         (デフォルト: reltol=sqrt(%eps)).
                     </para>
                 </listitem>
@@ -59,7 +62,7 @@
                 <term>abstol :</term>
                 <listitem>
                     <para>
-                        doubleの1行1列行列, 絶対許容誤差 
+                        doubleの1行1列行列, 絶対許容誤差
                         (デフォルト: abstol=0).
                     </para>
                 </listitem>
@@ -67,7 +70,7 @@
             <varlistentry>
                 <term>comptype :</term>
                 <listitem>
-                    <para> 
+                    <para>
                         文字列の1行1列行列, "matrix" または "element"
                         (デフォルト: comptype="element").
                         比較の型.
@@ -78,7 +81,7 @@
                 <term>flag :</term>
                 <listitem>
                     <para>
-                        論理値の1行1列行列, 
+                        論理値の1行1列行列,
                         computed が expected に近い場合に %t,
                         そうでない場合に %f
                     </para>
@@ -87,7 +90,7 @@
             <varlistentry>
                 <term>errmsg :</term>
                 <listitem>
-                    <para> 
+                    <para>
                         文字列の1行1列行列, エラーメッセージ.
                         flag==%t の場合は errmsg="",
                         flag==%f の場合 errmsg にはエラーメッセージが
@@ -118,7 +121,7 @@
                 ( |e-c| &lt;= reltol * max(|e|,|c|) + abstol )
             </programlisting>
             comptype="matrix" の場合, ノルムが使用されます.
-            comptype="element" の場合, 
+            comptype="element" の場合,
             絶対値が使用され, 全ての条件が true の場合に2つの行列が
             ほぼ等しいとみなされます.
         </para>
@@ -187,7 +190,7 @@
             一般に,相対許容誤差を機械イプシロン %eps の倍数に設定する
             必要があります.
             相対許容誤差は可能な範囲で最も小さい大きさとする必要が
-            あります. 
+            あります.
             つまり, 可能な限り許容誤差を精度良く設定する必要があります.
             相対許容誤差を設定する手順では,
             以下の値を順番に使用することを推奨します :

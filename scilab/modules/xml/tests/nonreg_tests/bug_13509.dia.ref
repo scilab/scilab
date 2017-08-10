@@ -16,12 +16,10 @@
 // It was not possible to have an empty prefix with xmlNs
 //
 s = "<root><a/><b/></root>"
- s  =
- 
- <root><a/><b/></root>   
+ s  = 
+ <root><a/><b/></root>
 doc = xmlReadStr(s)
- doc  =
- 
+ doc  = 
 XML Document
 url: Undefined
 root: XML Element
@@ -32,12 +30,10 @@ out = xmlDump(doc);
 assert_checkequal(out(3), "  <a xmlns:=""http://name.space""/>");
 xmlDelete(doc)
 s = "<root><a/><b/></root>"
- s  =
- 
- <root><a/><b/></root>   
+ s  = 
+ <root><a/><b/></root>
 doc = xmlReadStr(s)
- doc  =
- 
+ doc  = 
 XML Document
 url: Undefined
 root: XML Element

@@ -62,7 +62,7 @@ refHelptxt = [
 ""
 ""
 "<refsynopsisdiv>"
-"   <title>Calling Sequence</title>"
+"   <title>Syntax</title>"
 "   <synopsis>"
 "   [z] = template_function(x,y) // calling examples, one pr. line"
 "   "

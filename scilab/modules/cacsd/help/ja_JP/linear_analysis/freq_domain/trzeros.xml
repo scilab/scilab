@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="trzeros">
+    <refnamediv>
+        <refname>trzeros</refname>
+        <refpurpose>伝送ゼロおよび通常ランク</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼出し手順</title>
+        <synopsis>[tr]=trzeros(Sl)
+            [nt,dt,rk]=trzeros(Sl)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection role="parameters">
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>Sl</term>
+                <listitem>
+                    <para>
+                        線形システム (<literal>syslin</literal> リスト)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>nt</term>
+                <listitem>
+                    <para>複素数ベクトル</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>dt</term>
+                <listitem>
+                    <para>実数ベクトル</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>rk</term>
+                <listitem>
+                    <para>整数 (Slの通常ランク)</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection role="description">
+        <title>説明</title>
+        <para>
+            出力引数の数を1としてコールされた場合,<literal>trzeros(Sl)</literal> は
+            線形システム<literal>Sl</literal>の伝送ゼロを返します.
+        </para>
+        <para>
+            <literal>Sl</literal> は多項式(しかし正方の)行列<literal>D</literal>
+            を有することがあります.
+        </para>
+        <para>
+            出力引数の数を2としてコールされた場合,<literal>trzeros</literal> は
+            <literal>tr=nt./dt</literal>の時の
+            線形システム<literal>Sl</literal>の伝送ゼロを返します;
+        </para>
+        <para>
+            (<literal>dt</literal> のいくつかの要素がゼロとなる可能性があることに注意してください)
+        </para>
+        <para>
+            出力引数の数を3としてコールされた場合, <literal>rk</literal> は
+            <literal>Sl</literal>の通常ランクとなります.
+        </para>
+        <para>
+            伝達関数行列は状態空間表現に変換されます.
+        </para>
+        <para>
+            <literal>Sl</literal> が (正方) 多項式行列の場合, <literal>trzeros</literal>
+            はその行列式の根を返します.
+        </para>
+        <para>
+            通常の状態空間システムの場合, <literal>trzeros</literal> は
+            Emami-Naeni および Van Doorenの状態空間アルゴリズムを使用します.
+        </para>
+        <para>
+            <literal>D</literal> が可逆の場合,
+            伝送ゼロは逆システム<literal>A - B*inv(D)*C</literal>の
+            "<literal>A</literal> 行列"の固有値となります;
+        </para>
+        <para>
+            <literal>C*B</literal> が可逆の場合,伝送ゼロは
+            <literal>N*A*M</literal>の固有値となります.
+            ただし,<literal>M*N</literal> は
+            <literal>eye(A)-B*inv(C*B)*C</literal>のフルランク分解です;
+        </para>
+        <para>
+            多項式行列<literal>D</literal>を有するシステムの場合,
+            ゼロはシステム行列の行列式の根として計算されます.
+        </para>
+        <para>
+            注意: 計算されるゼロが常に信頼できるとは限りません.
+            特にゼロが重根の場合は注意を要します.
+        </para>
+    </refsection>
+    <refsection role="examples">
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+W1 = ssrand(2,2,5);
+trzeros(W1)    //call trzeros
+roots(det(systmat(W1)))         //roots of det(system matrix)
+s = poly(0,'s');
+W = [1/(s+1);1/(s-2)];
+W2= (s-3)*W*W';
+[nt,dt,rk] = trzeros(W2);
+St = systmat(tf2ss(W2));
+[Q, Z, Qd, Zd, numbeps, numbeta] = kroneck(St);
+St1 = Q*St*Z;
+rowf = (Qd(1)+Qd(2)+1):(Qd(1)+Qd(2)+Qd(3));
+colf = (Zd(1)+Zd(2)+1):(Zd(1)+Zd(2)+Zd(3));
+roots(St1(rowf,colf)), nt./dt     //By Kronecker form
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="spec">spec</link>
+            </member>
+            <member>
+                <link linkend="kroneck">kroneck</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

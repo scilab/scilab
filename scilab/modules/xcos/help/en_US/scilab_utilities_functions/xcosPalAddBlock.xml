@@ -8,7 +8,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             pal = xcosPalAddBlock(pal, block)
             pal = xcosPalAddBlock(pal, block, pal_block_img)
@@ -57,7 +57,7 @@
             Scilab. Some temporary files are also generated without full
             path arguments.
         </para>
-        <para>The optional pal_block_img argument is generated on the 
+        <para>The optional pal_block_img argument is generated on the
             <link linkend="TMPDIR">TMPDIR</link>using Scilab graphics if
             not specified.Be careful that if you use our palette to be
             persistent you then need to specify it. Otherwise the generated
@@ -65,11 +65,11 @@
         </para>
         <para>The optional style argument allow the user to determine
             the kind of style to be used by this block. This argument can
-            be typed as a path 
-            <link linkend="string">string</link> to an image (svg, png, jpg, gif) or a 
+            be typed as a path
+            <link linkend="string">string</link> to an image (svg, png, jpg, gif) or a
             <link linkend="struct">struct</link>. If it is a string then a
             default style value is generated and formatted as a style else
-            a struct is wrapped to a key-value jgraphx settings. The 
+            a struct is wrapped to a key-value jgraphx settings. The
             <link linkend="jgraphx-style-list">following
                 style
             </link>
@@ -86,7 +86,7 @@
                     </term>
                     <listitem>
                         <para>Defines the key for the opacity style. The type
-                            of the value is float and the possible range is 
+                            of the value is float and the possible range is
                             <literal>0-100</literal>.
                         </para>
                     </listitem>
@@ -97,7 +97,7 @@
                     </term>
                     <listitem>
                         <para>Defines the key for the text opacity style. The
-                            type of the value is float and the possible range is 
+                            type of the value is float and the possible range is
                             <literal>0-100</literal>.
                         </para>
                     </listitem>
@@ -108,9 +108,9 @@
                     </term>
                     <listitem>
                         <para>Defines the key for the overflow style. Possible
-                            values are 
-                            <literal>"visible"</literal>, 
-                            <literal>"hidden"</literal>or 
+                            values are
+                            <literal>"visible"</literal>,
+                            <literal>"hidden"</literal>or
                             <literal>"fill"</literal>. The default value is
                             "visible". This value specifies how overlapping vertex
                             labels are handles. A value of "visible" will show the
@@ -129,7 +129,7 @@
                         <para>Defines if the connection points on either end of
                             the edge should be computed so that the edge is
                             vertical or horizontal if possible and if the point is
-                            not at a fixed location. Default is 
+                            not at a fixed location. Default is
                             <literal>false</literal>.
                         </para>
                     </listitem>
@@ -163,8 +163,8 @@
                     <listitem>
                         <para>Defines if the perimeter should be used to find
                             the exact entry point along the perimeter of the
-                            source. The type of the value is 
-                            <link linkend="boolean">boolean</link>. Default is 
+                            source. The type of the value is
+                            <link linkend="boolean">boolean</link>. Default is
                             <literal>true</literal>.
                         </para>
                     </listitem>
@@ -198,8 +198,8 @@
                     <listitem>
                         <para>Defines if the perimeter should be used to find
                             the exact entry point along the perimeter of the
-                            target. The type of the value is 
-                            <link linkend="boolean">boolean</link>. Default is 
+                            target. The type of the value is
+                            <link linkend="boolean">boolean</link>. Default is
                             <literal>true</literal>.
                         </para>
                     </listitem>
@@ -210,15 +210,15 @@
                     </term>
                     <listitem>
                         <para>Defines the key for the white-space style.
-                            Possible values are 
-                            <literal>"nowrap"</literal>and 
-                            <literal>"wrap"</literal>. The default value is 
+                            Possible values are
+                            <literal>"nowrap"</literal>and
+                            <literal>"wrap"</literal>. The default value is
                             <literal>"nowrap"</literal>. This value specifies how
                             white-space inside a HTML vertex label should be
-                            handled. A value of 
+                            handled. A value of
                             <literal>"nowrap"</literal>means the text will never
                             wrap to the next line until a linefeed is encountered.
-                            A value of 
+                            A value of
                             <literal>"wrap"</literal>means text will wrap when
                             necessary.
                         </para>
@@ -230,7 +230,7 @@
                     </term>
                     <listitem>
                         <para>Defines the key for the rotation style. The type
-                            of the value is double and the possible range is 
+                            of the value is double and the possible range is
                             <literal>0-360</literal>.
                         </para>
                     </listitem>
@@ -241,7 +241,7 @@
                     </term>
                     <listitem>
                         <para>Defines the key for the fillColor style. The
-                            value is a string expression described on the 
+                            value is a string expression described on the
                             <link linkend="jgraphx-style-color-list">color
                                 list
                             </link>
@@ -255,11 +255,11 @@
                     </term>
                     <listitem>
                         <para>Defines the key for the gradientColor style. The
-                            value is a string expression described on the 
+                            value is a string expression described on the
                             <link linkend="jgraphx-style-color-list">color
                                 list
                             </link>
-                            .This is ignored if no 
+                            .This is ignored if no
                             <literal>"fillColor"</literal>is defined.
                         </para>
                     </listitem>
@@ -270,19 +270,19 @@
                     </term>
                     <listitem>
                         <para>Defines the key for the gradient direction. The
-                            value is a string expression described on the 
+                            value is a string expression described on the
                             <link linkend="jgraphx-style-direction-list">direction
                                 list
                             </link>
-                            .Default is 
+                            .Default is
                             <literal>"south"</literal>. Generally, and by default,
-                            gradient painting is done from the value of 
-                            <literal>"fillColor"</literal>to the value of 
+                            gradient painting is done from the value of
+                            <literal>"fillColor"</literal>to the value of
                             <literal>"gradientColor"</literal>. Taking the example
-                            of 
-                            <literal>"north"</literal>, this means 
+                            of
+                            <literal>"north"</literal>, this means
                             <literal>"fillColor"</literal>color at the bottom of
-                            paint pattern and 
+                            paint pattern and
                             <literal>"gradientColor"</literal>at top, with a
                             gradient in-between.
                         </para>
@@ -294,7 +294,7 @@
                     </term>
                     <listitem>
                         <para>Defines the key for the strokeColor style. The
-                            value is a string expression on the 
+                            value is a string expression on the
                             <link linkend="jgraphx-style-color-list">color
                                 list
                             </link>
@@ -308,11 +308,11 @@
                     </term>
                     <listitem>
                         <para>Defines the key for the separatorColor style. The
-                            value is a string expression described on the 
+                            value is a string expression described on the
                             <link linkend="jgraphx-style-color-list">color
                                 list
                             </link>
-                            .This style is only used for 
+                            .This style is only used for
                             <literal>swimlane</literal>shapes.
                         </para>
                     </listitem>
@@ -335,21 +335,21 @@
                     </term>
                     <listitem>
                         <para>Defines the key for the align style. Possible
-                            values are described on the 
+                            values are described on the
                             <link linkend="jgraphx-style-align-list">alignment
                                 list
                             </link>
                             .This value defines how the lines of the
-                            label are horizontally aligned. 
+                            label are horizontally aligned.
                             <literal>"left"</literal>mean label text lines are
-                            aligned to left of the label bounds, 
+                            aligned to left of the label bounds,
                             <literal>"right"</literal>to the right of the label
-                            bounds and 
+                            bounds and
                             <literal>"center"</literal>means the center of the text
                             lines are aligned in the center of the label bounds.
                             Note this value does not affect the positioning of the
                             overall label bounds relative to the vertex, to move
-                            the label bounds horizontally, use 
+                            the label bounds horizontally, use
                             <literal>"labelPosition"</literal>.
                         </para>
                     </listitem>
@@ -360,24 +360,24 @@
                     </term>
                     <listitem>
                         <para>Defines the key for the verticalAlign style.
-                            Possible values are described on the 
+                            Possible values are described on the
                             <link linkend="jgraphx-style-align-list">alignment
                                 list
                             </link>
                             .This value defines how the lines of the
-                            label are vertically aligned. 
+                            label are vertically aligned.
                             <literal>"top"</literal>means the topmost label text
-                            line is aligned against the top of the label bounds, 
+                            line is aligned against the top of the label bounds,
                             <literal>"bottom"</literal>means the bottom-most label
                             text line is aligned against the bottom of the label
-                            bounds and 
+                            bounds and
                             <literal>"middle"</literal>means there is equal spacing
                             between the topmost text label line and the top of the
                             label bounds and the bottom-most text label line and
                             the bottom of the label bounds. Note this value does not
                             affect the positioning of the overall label bounds
                             relative to the vertex, to move the label bounds
-                            vertically, use 
+                            vertically, use
                             <literal>"verticalLabelPosition"</literal>.
                         </para>
                     </listitem>
@@ -388,22 +388,22 @@
                     </term>
                     <listitem>
                         <para>Defines the key for the horizontal label position
-                            of vertices. Possible values are described on the 
+                            of vertices. Possible values are described on the
                             <link linkend="jgraphx-style-align-list">alignment
                                 list
                             </link>
-                            .Default is 
+                            .Default is
                             <literal>"center"</literal>. The label align defines
-                            the position of the label relative to the cell. 
+                            the position of the label relative to the cell.
                             <literal>"left"</literal>means the entire label bounds
-                            is placed completely just to the left of the vertex, 
+                            is placed completely just to the left of the vertex,
                             <literal>"right"</literal>means adjust to the right and
-                            
+
                             <literal>"center"</literal>means the label bounds are
                             vertically aligned with the bounds of the vertex. Note
                             this value does not affect the positioning of label
                             within the label bounds, to move the label horizontally
-                            within the label bounds, use 
+                            within the label bounds, use
                             <literal>"align"</literal>.
                         </para>
                     </listitem>
@@ -414,22 +414,22 @@
                     </term>
                     <listitem>
                         <para>Defines the key for the vertical label position
-                            of vertices. Possible values are described on the 
+                            of vertices. Possible values are described on the
                             <link linkend="jgraphx-style-align-list">alignment
                                 list
                             </link>
-                            .Default is 
+                            .Default is
                             <literal>"middle"</literal>. The label align defines
-                            the position of the label relative to the cell. 
+                            the position of the label relative to the cell.
                             <literal>"top"</literal>means the entire label bounds
-                            is placed completely just on the top of the vertex, 
+                            is placed completely just on the top of the vertex,
                             <literal>"bottom"</literal>means adjust on the bottom
-                            and 
+                            and
                             <literal>"middle"</literal>means the label bounds are
                             horizontally aligned with the bounds of the vertex.
                             Note this value does not affect the positioning of label
                             within the label bounds, to move the label vertically
-                            within the label bounds, use 
+                            within the label bounds, use
                             <literal>"verticalAlign"</literal>.
                         </para>
                     </listitem>
@@ -440,13 +440,13 @@
                     </term>
                     <listitem>
                         <para>Defines the key for the align style. Possible
-                            values are described on the 
+                            values are described on the
                             <link linkend="jgraphx-style-align-list">alignment
                                 list
                             </link>
                             .The value defines how any image in the
                             vertex label is aligned horizontally within the label
-                            bounds of a 
+                            bounds of a
                             <literal>"label"</literal>shape.
                         </para>
                     </listitem>
@@ -457,13 +457,13 @@
                     </term>
                     <listitem>
                         <para>Defines the key for the verticalAlign style.
-                            Possible values are described on the 
+                            Possible values are described on the
                             <link linkend="jgraphx-style-align-list">alignment
                                 list
                             </link>
                             .The value defines how any image in the
                             vertex label is aligned vertically within the label
-                            bounds of a 
+                            bounds of a
                             <literal>"label"</literal>shape.
                         </para>
                     </listitem>
@@ -487,7 +487,7 @@
                     <listitem>
                         <para>Defines the key for the imageWidth style. The
                             type of this value is int, the value is the image width
-                            in pixels and must be greated than 
+                            in pixels and must be greater than
                             <literal>0</literal>.
                         </para>
                     </listitem>
@@ -499,7 +499,7 @@
                     <listitem>
                         <para>Defines the key for the imageHeight style The
                             type of this value is int, the value is the image
-                            height in pixels and must be greater than 
+                            height in pixels and must be greater than
                             <literal>0</literal>.
                         </para>
                     </listitem>
@@ -510,10 +510,10 @@
                     </term>
                     <listitem>
                         <para>Defines the key for the noLabel style. If this is
-                            
+
                             <literal>true</literal>then no label is visible for a
-                            given cell. The type of the value is 
-                            <link linkend="boolean">boolean</link>. Default is 
+                            given cell. The type of the value is
+                            <link linkend="boolean">boolean</link>. Default is
                             <literal>false</literal>.
                         </para>
                     </listitem>
@@ -524,10 +524,10 @@
                     </term>
                     <listitem>
                         <para>Defines the key for the noEdgeStyle style. If
-                            this is 
+                            this is
                             <literal>true</literal>then no edge style is applied
-                            for a given edge. The type of the value is 
-                            <link linkend="boolean">boolean</link>. Default is 
+                            for a given edge. The type of the value is
+                            <link linkend="boolean">boolean</link>. Default is
                             <literal>false</literal>.
                         </para>
                     </listitem>
@@ -538,7 +538,7 @@
                     </term>
                     <listitem>
                         <para>Defines the key for the label background color.
-                            The value is a string expression described on the 
+                            The value is a string expression described on the
                             <link linkend="jgraphx-style-color-list">color
                                 list
                             </link>
@@ -552,7 +552,7 @@
                     </term>
                     <listitem>
                         <para>Defines the key for the label border color. The
-                            value is a string expression described on the 
+                            value is a string expression described on the
                             <link linkend="jgraphx-style-color-list">color
                                 list
                             </link>
@@ -566,7 +566,7 @@
                     </term>
                     <listitem>
                         <para>Defines the key for the indicatorShape style.
-                            Possible values are described on the 
+                            Possible values are described on the
                             <link linkend="jgraphx-style-shape-list">shape
                                 list
                             </link>
@@ -602,11 +602,11 @@
                     <listitem>
                         <para>Defines the key for the indicatorGradientColor
                             style. The value is a string expression described on
-                            the 
+                            the
                             <link linkend="jgraphx-style-color-list">color
                                 list
                             </link>
-                            .This style is only supported in 
+                            .This style is only supported in
                             <literal>shape</literal>shapes.
                         </para>
                     </listitem>
@@ -647,7 +647,7 @@
                     </term>
                     <listitem>
                         <para>Defines the key for the shadow style. The type of
-                            the value is 
+                            the value is
                             <link linkend="boolean">boolean</link>. This style
                             applies to vertices and arrow style edges.
                         </para>
@@ -659,7 +659,7 @@
                     </term>
                     <listitem>
                         <para>Defines the key for the endArrow style. Possible
-                            values are described on the 
+                            values are described on the
                             <link linkend="jgraphx-style-arrow-list">arrow
                                 list
                             </link>
@@ -673,7 +673,7 @@
                     </term>
                     <listitem>
                         <para>Defines the key for the startArrow style.
-                            Possible values are described on the 
+                            Possible values are described on the
                             <link linkend="jgraphx-style-arrow-list">arrow
                                 list
                             </link>
@@ -711,7 +711,7 @@
                     </term>
                     <listitem>
                         <para>Defines the key for the dashed style. The type of
-                            this value is 
+                            this value is
                             <link linkend="boolean">boolean</link>and the value
                             determines whether or not an edge or border is drawn
                             with a dashed pattern along the line.
@@ -724,7 +724,7 @@
                     </term>
                     <listitem>
                         <para>Defines the key for the rounded style. The type
-                            of this value is 
+                            of this value is
                             <link linkend="boolean">boolean</link>. For edges this
                             determines whether or not joins between edges segments
                             are smoothed to a rounded finish. For vertices that
@@ -841,13 +841,13 @@
                     </term>
                     <listitem>
                         <para>Defines the key for the horizontal style. The
-                            type of this value is 
+                            type of this value is
                             <link linkend="boolean">boolean</link>. This value only
-                            applies to vertices. If the 
-                            <literal>"shape"</literal>is 
-                            <literal>"swimlane"</literal>a value of 
+                            applies to vertices. If the
+                            <literal>"shape"</literal>is
+                            <literal>"swimlane"</literal>a value of
                             <literal>false</literal>indicates that the swimlane
-                            should be drawn vertically, 
+                            should be drawn vertically,
                             <literal>true</literal>indicates to draw it
                             horizontally. If the shape style does not indicate that
                             this vertex is a swimlane, this value affects only
@@ -863,7 +863,7 @@
                     <listitem>
                         <para>Defines the key for the direction style. The
                             direction style is used to specify the direction of
-                            certain shapes. Possible values are described on the 
+                            certain shapes. Possible values are described on the
                             <link linkend="jgraphx-style-direction-list">direction
                                 list
                             </link>
@@ -878,9 +878,9 @@
                     </term>
                     <listitem>
                         <para>Defines the key for the elbow style. Possible
-                            values are 
-                            <literal>"horizontal"</literal>and 
-                            <literal>"vertical"</literal>. Default is 
+                            values are
+                            <literal>"horizontal"</literal>and
+                            <literal>"vertical"</literal>. Default is
                             <literal>"horizontal"</literal>. This defines how the
                             three segment orthogonal edge style leaves its terminal
                             vertices. The vertical style leaves the terminal
@@ -905,10 +905,10 @@
                     </term>
                     <listitem>
                         <para>Defines the key for the fontFamily style.
-                            Possible values are names such as 
-                            <literal>Arial</literal>; 
-                            <literal>Dialog</literal>; 
-                            <literal>Verdana</literal>; 
+                            Possible values are names such as
+                            <literal>Arial</literal>;
+                            <literal>Dialog</literal>;
+                            <literal>Verdana</literal>;
                             <literal>Times New Roman</literal>. The value is of
                             type String.
                         </para>
@@ -930,7 +930,7 @@
                     </term>
                     <listitem>
                         <para>Defines the key for the fontStyle style. Values
-                            may be any logical AND (sum) of values on the 
+                            may be any logical AND (sum) of values on the
                             <link linkend="jgraphx-style-font-table">font style
                                 table
                             </link>
@@ -944,7 +944,7 @@
                     </term>
                     <listitem>
                         <para>Defines the key for the shape style. Possible
-                            values are any of 
+                            values are any of
                             <link linkend="jgraphx-style-shape-list">shape
                                 list
                             </link>
@@ -1122,7 +1122,7 @@
             <itemizedlist xml:id="jgraphx-style-color-list">
                 <title>JGraphx valid color values</title>
                 <listitem>
-                    <para>Web notation colors - 
+                    <para>Web notation colors -
                         <literal>"#E1E1E1"</literal>for example
                     </para>
                 </listitem>
@@ -1208,22 +1208,22 @@
             <itemizedlist xml:id="jgraphx-style-font-table">
                 <title>JGraphx font modifier values</title>
                 <listitem>
-                    <para>bold - 
+                    <para>bold -
                         <literal>1</literal>
                     </para>
                 </listitem>
                 <listitem>
-                    <para>italic - 
+                    <para>italic -
                         <literal>2</literal>
                     </para>
                 </listitem>
                 <listitem>
-                    <para>underline - 
+                    <para>underline -
                         <literal>4</literal>
                     </para>
                 </listitem>
                 <listitem>
-                    <para>shadow - 
+                    <para>shadow -
                         <literal>8</literal>
                     </para>
                 </listitem>
@@ -1325,7 +1325,7 @@ xcosPalAdd(pal);]]></programlisting>
         </para>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="xcosPal">xcosPal</link>

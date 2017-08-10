@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2010-2010 - DIGITEO - Bernard Hugueney
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -79,14 +82,14 @@ struct EXTERN_AST Sparse : GenericType
     void finalize();
 
     /*data management member function defined for compatibility with the Double API*/
-    bool set(int _iRows, int _iCols, double _dblReal, bool _bFinalize = true);
-    bool set(int _iIndex, double _dblReal, bool _bFinalize = true)
+    Sparse* set(int _iRows, int _iCols, double _dblReal, bool _bFinalize = true);
+    Sparse* set(int _iIndex, double _dblReal, bool _bFinalize = true)
     {
         return set(_iIndex % m_iRows, _iIndex / m_iRows, _dblReal, _bFinalize);
     }
 
-    bool set(int _iRows, int _iCols, std::complex<double> v, bool _bFinalize = true);
-    bool set(int _iIndex, std::complex<double> v, bool _bFinalize = true)
+    Sparse* set(int _iRows, int _iCols, std::complex<double> v, bool _bFinalize = true);
+    Sparse* set(int _iIndex, std::complex<double> v, bool _bFinalize = true)
     {
         return set(_iIndex % m_iRows, _iIndex / m_iRows, v, _bFinalize);
     }
@@ -140,16 +143,8 @@ struct EXTERN_AST Sparse : GenericType
     */
     void whoAmI() SPARSE_CONST;
     bool isExtract() const;
-    Sparse* clone(void) const;
-    Sparse* clone(void)
-    {
-        return const_cast<Sparse const*>(this)->clone();
-    }
-    bool toString(std::wostringstream& ostr) const;
-    bool toString(std::wostringstream& ostr)
-    {
-        return const_cast<Sparse const*>(this)->toString(ostr);
-    }
+    Sparse* clone(void);
+    bool toString(std::wostringstream& ostr);
 
     /* post condition: dimensions are at least _iNewRows, _iNewCols
        preserving existing data.
@@ -159,7 +154,7 @@ struct EXTERN_AST Sparse : GenericType
        @param _iNewCols new minimum nb of cols
        @return true upon succes, false otherwise.
      */
-    bool resize(int _iNewRows, int _iNewCols);
+    Sparse* resize(int _iNewRows, int _iNewCols);
     /* post condition: new total size must be equal to the old size.
                        Two dimensions maximum.
 
@@ -169,8 +164,8 @@ struct EXTERN_AST Sparse : GenericType
        @param _iNewDims new size for each dimension
        @return true upon succes, false otherwise.
     */
-    bool reshape(int* _piNewDims, int _iNewDims);
-    bool reshape(int _iNewRows, int _iNewCols);
+    Sparse* reshape(int* _piNewDims, int _iNewDims);
+    Sparse* reshape(int _iNewRows, int _iNewCols);
     /*
       insert _iSeqCount elements from _poSource at coords given by _piSeqCoord (max in _piMaxDim).
       coords are considered 1D if _bAsVector, 2D otherwise.
@@ -180,18 +175,17 @@ struct EXTERN_AST Sparse : GenericType
       @param  _bAsVector if _piSeqCoord contains 1D coords.
      */
     Sparse* insert(typed_list* _pArgs, InternalType* _pSource);
-    Sparse* insert(typed_list* _pArgs, Sparse* _pSource);
 
-    Sparse* remove(typed_list* _pArgs);
+    GenericType* remove(typed_list* _pArgs);
 
-    static InternalType* insertNew(typed_list* _pArgs, InternalType* _pSource);
+    GenericType* insertNew(typed_list* _pArgs);
 
     /* append _poSource from coords _iRows, _iCols
        @param _iRows row to append from
        @param _iCols col to append from
        @param _poSource src data to append
      */
-    bool append(int r, int c, types::Sparse SPARSE_CONST* src);
+    Sparse* append(int r, int c, types::Sparse SPARSE_CONST* src);
 
     /*
       extract a submatrix
@@ -202,50 +196,13 @@ struct EXTERN_AST Sparse : GenericType
       @param  _bAsVector if _piSeqCoord contains 1D coords.
 
      */
-    InternalType* extract(typed_list* _pArgs);
-
-    virtual bool invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetCount*/, typed_list & out, ast::ConstVisitor & /*execFunc*/, const ast::Exp & e)
-    {
-        if (in.size() == 0)
-        {
-            out.push_back(this);
-        }
-        else
-        {
-            InternalType * _out = extract(&in);
-            if (!_out)
-            {
-                std::wostringstream os;
-                os << _W("Invalid index.\n");
-                throw ast::ScilabError(os.str(), 999, e.getLocation());
-            }
-            out.push_back(_out);
-        }
-
-        return true;
-    }
-
-    virtual bool isInvokable() const
-    {
-        return true;
-    }
-
-    virtual bool hasInvokeOption() const
-    {
-        return false;
-    }
-
-    virtual int getInvokeNbIn()
-    {
-        return -1;
-    }
-
-    virtual int getInvokeNbOut()
-    {
-        return 1;
-    }
-
+    GenericType* extract(typed_list* _pArgs);
     Sparse* extract(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector) SPARSE_CONST;
+    virtual bool invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetCount*/, typed_list & out, const ast::Exp & e);
+    virtual bool isInvokable() const;
+    virtual bool hasInvokeOption() const;
+    virtual int getInvokeNbIn();
+    virtual int getInvokeNbOut();
 
     /*
        change the sign (inplace).
@@ -268,9 +225,16 @@ struct EXTERN_AST Sparse : GenericType
 
 
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring         getTypeStr() SPARSE_CONST {return std::wstring(L"sparse");}
+    virtual std::wstring         getTypeStr() const
+    {
+        return std::wstring(L"sparse");
+    }
+
     /* return type as short string ( s, i, ce, l, ... ), as in overloading macros*/
-    virtual std::wstring         getShortTypeStr() SPARSE_CONST {return std::wstring(L"sp");}
+    virtual std::wstring         getShortTypeStr() const
+    {
+        return std::wstring(L"sp");
+    }
 
     /* create a new sparse matrix containing the result of an addition
        @param o other matrix to add
@@ -509,6 +473,8 @@ private :
      */
     template<typename Src, typename SrcTraversal, typename Sz, typename DestTraversal>
     static bool copyToSparse(Src SPARSE_CONST& src, SrcTraversal srcTrav, Sz n, Sparse& sp, DestTraversal destTrav);
+
+    Sparse* insert(typed_list* _pArgs, Sparse* _pSource);
 };
 
 template<typename T>
@@ -550,73 +516,28 @@ struct EXTERN_AST SparseBool : GenericType
     }
     void finalize();
 
-    bool toString(std::wostringstream& ostr) const;
-    bool toString(std::wostringstream& ostr)
-    {
-        return const_cast<SparseBool const*>(this)->toString(ostr);
-    }
+    bool toString(std::wostringstream& ostr);
 
     /* Config management and GenericType methods overrides */
-    SparseBool* clone(void) const;
-    SparseBool* clone(void)
-    {
-        return const_cast<SparseBool const*>(this)->clone();
-    }
-    bool resize(int _iNewRows, int _iNewCols);
+    SparseBool* clone(void);
 
-    bool reshape(int* _piNewDims, int _iNewDims);
-    bool reshape(int _iNewRows, int _iNewCols);
-
+    SparseBool* resize(int _iNewRows, int _iNewCols);
+    SparseBool* reshape(int* _piNewDims, int _iNewDims);
+    SparseBool* reshape(int _iNewRows, int _iNewCols);
     SparseBool* insert(typed_list* _pArgs, InternalType* _pSource);
-    SparseBool* insert(typed_list* _pArgs, SparseBool* _pSource);
-    SparseBool* remove(typed_list* _pArgs);
+    SparseBool* append(int _iRows, int _iCols, SparseBool SPARSE_CONST* _poSource);
 
-    bool append(int _iRows, int _iCols, SparseBool SPARSE_CONST* _poSource);
+    GenericType* remove(typed_list* _pArgs);
+    GenericType* insertNew(typed_list* _pArgs);
+    GenericType* extract(typed_list* _pArgs);
 
-    static InternalType* insertNew(typed_list* _pArgs, InternalType* _pSource);
     SparseBool* extract(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector) SPARSE_CONST;
-    InternalType* extract(typed_list* _pArgs);
 
-    virtual bool invoke(typed_list & in, optional_list &/*opt*/, int /*_iRetCount*/, typed_list & out, ast::ConstVisitor & /*execFunc*/, const ast::Exp & e)
-    {
-        if (in.size() == 0)
-        {
-            out.push_back(this);
-        }
-        else
-        {
-            InternalType * _out = extract(&in);
-            if (!_out)
-            {
-                std::wostringstream os;
-                os << _W("Invalid index.\n");
-                throw ast::ScilabError(os.str(), 999, e.getLocation());
-            }
-            out.push_back(_out);
-        }
-
-        return true;
-    }
-
-    virtual bool isInvokable() const
-    {
-        return true;
-    }
-
-    virtual bool hasInvokeOption() const
-    {
-        return false;
-    }
-
-    virtual int getInvokeNbIn()
-    {
-        return -1;
-    }
-
-    virtual int getInvokeNbOut()
-    {
-        return 1;
-    }
+    virtual bool invoke(typed_list & in, optional_list &/*opt*/, int /*_iRetCount*/, typed_list & out, const ast::Exp & e);
+    virtual bool isInvokable() const;
+    virtual bool hasInvokeOption() const;
+    virtual int getInvokeNbIn();
+    virtual int getInvokeNbOut();
 
     bool transpose(InternalType *& out);
 
@@ -647,9 +568,15 @@ struct EXTERN_AST SparseBool : GenericType
     bool operator!=(const InternalType& it) SPARSE_CONST;
 
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring getTypeStr() SPARSE_CONST {return std::wstring(L"boolean sparse");}
+    virtual std::wstring getTypeStr() const
+    {
+        return std::wstring(L"boolean sparse");
+    }
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring getShortTypeStr() SPARSE_CONST {return std::wstring(L"spb");}
+    virtual std::wstring getShortTypeStr() const
+    {
+        return std::wstring(L"spb");
+    }
 
     inline ScilabType getType(void) SPARSE_CONST
     {
@@ -668,7 +595,7 @@ struct EXTERN_AST SparseBool : GenericType
 
     bool isTrue()
     {
-        if (nbTrue() == m_iSize)
+        if (static_cast<int>(nbTrue()) == m_iSize)
         {
             return true;
         }
@@ -693,8 +620,8 @@ struct EXTERN_AST SparseBool : GenericType
         return get(_iIndex % m_iRows, _iIndex / m_iRows);
     }
 
-    bool set(int r, int c, bool b, bool _bFinalize = true) SPARSE_CONST;
-    bool set(int _iIndex, bool b, bool _bFinalize = true) SPARSE_CONST
+    SparseBool* set(int r, int c, bool b, bool _bFinalize = true) SPARSE_CONST;
+    SparseBool* set(int _iIndex, bool b, bool _bFinalize = true) SPARSE_CONST
     {
         return set(_iIndex % m_iRows, _iIndex / m_iRows, b, _bFinalize);
     }
@@ -714,6 +641,7 @@ struct EXTERN_AST SparseBool : GenericType
 
 private:
     void create2(int rows, int cols, Bool SPARSE_CONST& src, Double SPARSE_CONST& idx);
+    SparseBool* insert(typed_list* _pArgs, SparseBool* _pSource);
 };
 
 template<typename T>

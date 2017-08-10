@@ -4,11 +4,15 @@
  * Copyright (C) 2008 - INRIA
  * Copyright (C) 2011 - DIGITEO - Michael Baudin
  * Copyright (C) 2012 - Scilab Enterprises - Adeline CARNIS
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2016 - Samuel GOUGEON
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="ode" xml:lang="ru">
@@ -19,15 +23,15 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             y = ode(y0, t0, t, f)
             [y, w, iw] = ode([type,]y0, t0, t [,rtol [,atol]],f [,jac] [,w, iw])
-            [y, rd, w, iw] = ode("root", y0, t0, t [,rtol [,atol]], f [,jac], ng, g [, w, iw])
+            [y, rd, w, iw] = ode("roots", y0, t0, t [,rtol [,atol]], f [,jac], ng, g [, w, iw])
             y = ode("discrete", y0, k0, kvect, f)
         </synopsis>
     </refsynopsisdiv>
-    <refsection>
+    <refsection role="parameters">
         <title>Аргументы</title>
         <variablelist>
             <varlistentry>
@@ -68,7 +72,7 @@
                 <listitem>
                     <para>
                         строка, тип используемой программы решения. Имеются следующие типы
-                        программ решения:	<literal>"adams"</literal>,
+                        программ решения:   <literal>"adams"</literal>,
                         <literal>"stiff"</literal>, <literal>"rk"</literal>,
                         <literal>"rkf"</literal>, <literal>"fix"</literal>,
                         <literal>"discrete"</literal>, <literal>"roots"</literal>.
@@ -76,20 +80,15 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>rtol</term>
+                <term>atol, rtol</term>
                 <listitem>
                     <para>
-                        вещественная константа либо вещественный вектор того же размера,
-                        что и <varname>y</varname>, относительный допуск.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>atol</term>
-                <listitem>
-                    <para>
-                        вещественная константа либо вещественный вектор того же размера,
-                        что и <varname>y</varname>, абсолютный допуск.
+                        absolute and relative tolerances on the final solution
+                        <varname>y</varname> (decimal numbers). If each is a
+                        single value, it applies
+                        to each component of <varname>y</varname>. Otherwise,
+                        it must be a vector of same size as size(y), and
+                        is applied element-wise to <varname>y</varname>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -100,12 +99,6 @@
                         внешняя функция (функция, строка или список), якобиан функции
                         <varname>f</varname>.
                     </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>w, iw</term>
-                <listitem>
-                    <para>вещественные векторы (ВХОДНЫЕ/ВЫХОДНЫЕ).</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -144,9 +137,17 @@
                     <para>вещественный вектор (ВЫХОДНОЙ).</para>
                 </listitem>
             </varlistentry>
+            <varlistentry>
+                <term>w, iw</term>
+                <listitem>
+                    <para>вещественные векторы (ВХОДНЫЕ/ВЫХОДНЫЕ).
+                        See <link linkend="ode_optional_output">ode() optional output</link>
+                    </para>
+                </listitem>
+            </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Описание</title>
         <para>
             <function>ode</function> решает явные обыкновенные
@@ -411,14 +412,14 @@ void fex(int *n,double *t,double *y,int *ml,int *mu,double *J,int *nrpd,)
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>"root":</term>
+                <term>"roots":</term>
                 <listitem>
                     <para>
                         Программа решения ОДУ с возможностью нахождения корней.
                         Используется программа решения <literal>lsodar</literal> из пакета
                         ODEPACK. Она является вариантом программы
                         решения <literal>lsoda</literal>, где она ищет корни заданной
-                        векторной функции. См. справку по <link linkend="ode_root">ode_root</link>.
+                        векторной функции. См. справку по <link linkend="ode_roots">ode_roots</link>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -432,7 +433,7 @@ void fex(int *n,double *t,double *y,int *ml,int *mu,double *J,int *nrpd,)
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Примеры</title>
         <para>
             В следующем примере мы решим обыкновенное дифференциальное уравнение
@@ -441,7 +442,7 @@ void fex(int *n,double *t,double *y,int *ml,int *mu,double *J,int *nrpd,)
         </para>
         <programlisting role="example"><![CDATA[
 function ydot=f(t,y)
-	ydot=y^2-y*sin(t)+cos(t)
+    ydot=y^2-y*sin(t)+cos(t)
 endfunction
 y0=0;
 t0=0;
@@ -559,10 +560,16 @@ y = ode(y0,t0,t,'myode');
         <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
-                <link linkend="ode_discrete">ode_discrete</link>
+                <link linkend="odeoptions">odeoptions</link>
             </member>
             <member>
-                <link linkend="ode_root">ode_root</link>
+                <link linkend="ode_optional_output">ode_optional_output</link>
+            </member>
+            <member>
+                <link linkend="ode_roots">ode_roots</link>
+            </member>
+            <member>
+                <link linkend="ode_discrete">ode_discrete</link>
             </member>
             <member>
                 <link linkend="dassl">dassl</link>
@@ -572,9 +579,6 @@ y = ode(y0,t0,t,'myode');
             </member>
             <member>
                 <link linkend="odedc">odedc</link>
-            </member>
-            <member>
-                <link linkend="odeoptions">odeoptions</link>
             </member>
             <member>
                 <link linkend="csim">csim</link>
@@ -590,7 +594,7 @@ y = ode(y0,t0,t,'myode');
             </member>
         </simplelist>
     </refsection>
-    <refsection>
+    <refsection role="bibliography">
         <title>Литература</title>
         <para>
             Alan C. Hindmarsh, "lsode and lsodi, two new initial value ordinary
@@ -598,7 +602,7 @@ y = ode(y0,t0,t,'myode');
             (1980), pp. 10-11.
         </para>
     </refsection>
-    <refsection>
+    <refsection role="references">
         <title>Используемые функции</title>
         <para>
             Связанные процедуры могут быть найдены в директории

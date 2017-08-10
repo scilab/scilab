@@ -13,10 +13,8 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=3091
 //
 // <-- Short Description -->
-// There is a white background behind each charater of tics.
 
-// check that figure_size does not change
-// between the two calls
+// Check that figure_size does not change between the two calls
 fig = scf();
 figSize1 = fig.figure_size;
 

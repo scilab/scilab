@@ -2,29 +2,33 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="quaskro" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="quaskro" xml:lang="pt">
     <refnamediv>
         <refname>quaskro</refname>
         <refpurpose>forma quasi-Kronecker</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title> Seq¸Íncia de Chamamento </title>
-        <synopsis>[Q,Z,Qd,Zd,numbeps,numbeta]=quaskro(F)
-            [Q,Z,Qd,Zd,numbeps,numbeta]=quaskro(E,A)
-            [Q,Z,Qd,Zd,numbeps,numbeta]=quaskro(F,tol)
-            [Q,Z,Qd,Zd,numbeps,numbeta]=quaskro(E,A,tol)
+        <title> Seq√º√™ncia de Chamamento </title>
+        <synopsis>
+            [Q, Z, Qd, Zd, numbeps, numbeta] = quaskro(F)
+            [Q, Z, Qd, Zd, numbeps, numbeta] = quaskro(E,A)
+            [Q, Z, Qd, Zd, numbeps, numbeta] = quaskro(F,tol)
+            [Q, Z, Qd, Zd, numbeps, numbeta] = quaskro(E,A,tol)
         </synopsis>
     </refsynopsisdiv>
-    <refsection>
-        <title>Par‚metros</title>
+    <refsection role="parameters">
+        <title>Par√¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>F</term>
@@ -38,13 +42,13 @@
             <varlistentry>
                 <term>E,A</term>
                 <listitem>
-                    <para>duas matrizes reais de iguais dimensıes </para>
+                    <para>duas matrizes reais de iguais dimens√µes </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>tol</term>
                 <listitem>
-                    <para> n˙mero real (toler‚ncia, valor padr„o=1.d-10) </para>
+                    <para> n√∫mero real (toler√¢ncia, valor padr√£o=1.d-10) </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -67,24 +71,24 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
-        <title>DescriÁ„o</title>
+    <refsection role="description">
+        <title>Descri√ß√£o</title>
         <para>Forma quasi-Kronecker de um feixe de matrizes:
             <literal>quaskro</literal> computa duas matrizes ortogonais <literal>Q,
                 Z
             </literal>
-            que pıem o feixe <literal>F=s*E -A</literal> na forma
+            que p√µem o feixe <literal>F=s*E -A</literal> na forma
             triangular superior:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <screen><![CDATA[
            | sE(eps)-A(eps) |        X       |      X     |
            |----------------|----------------|------------|
            |        O       | sE(inf)-A(inf) |      X     |
 Q(sE-A)Z = |=================================|============|
            |                                 |            |
            |                O                | sE(r)-A(r) |
- ]]></programlisting>
-        <para>As dimensıes dos blocos s„o dadas por:</para>
+ ]]></screen>
+        <para>As dimens√µes dos blocos s√£o dadas por:</para>
         <para>
             <literal>eps=Qd(1) x Zd(1)</literal>, <literal>inf=Qd(2) x
                 Zd(2)
@@ -92,13 +96,13 @@ Q(sE-A)Z = |=================================|============|
             ,<literal>r = Qd(3) x Zd(3)</literal>
         </para>
         <para>
-            O bloco <literal>inf</literal> contÈm os modos infinitos do
+            O bloco <literal>inf</literal> cont√©m os modos infinitos do
             feixe.
         </para>
         <para>
-            O bloco <literal>f</literal> contÈm os modos finitos do feixe
+            O bloco <literal>f</literal> cont√©m os modos finitos do feixe
         </para>
-        <para>A estrutura dos blocos epsilon È dada por:</para>
+        <para>A estrutura dos blocos epsilon √© dada por:</para>
         <para>
             <literal>numbeps(1)</literal> = <literal>#</literal> de blocos eps
             de tamanho 0 x 1
@@ -111,23 +115,23 @@ Q(sE-A)Z = |=================================|============|
             <literal>numbeps(3)</literal> = <literal>#</literal> de blocos eps
             de tamanho 2 x 3 etc...
         </para>
-        <para>A forma completa (de quatro blocos) de Kronecker È dada pela funÁ„o
-            <literal>kroneck</literal> que chama a funÁ„o <literal>quaskro</literal>
+        <para>A forma completa (de quatro blocos) de Kronecker √© dada pela fun√ß√£o
+            <literal>kroneck</literal> que chama a fun√ß√£o <literal>quaskro</literal>
             sobre o feixe (pertransposto) <literal>sE(r)-A(r)</literal>.
         </para>
-        <para>O cÛdigo È retirado de T. Beelen.</para>
+        <para>O c√≥digo √© retirado de T. Beelen.</para>
     </refsection>
-    <refsection>
-        <title> Ver TambÈm</title>
+    <refsection role="see also">
+        <title> Ver Tamb√©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="kroneck">kroneck</link>
             </member>
             <member>
-                <link linkend="gschur">gschur</link>
+                <link linkend="schur">schur</link>
             </member>
             <member>
-                <link linkend="gspec">gspec</link>
+                <link linkend="spec">spec</link>
             </member>
         </simplelist>
     </refsection>

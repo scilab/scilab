@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - INRIA - Serge Steer
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="repmat" xml:lang="en">
+    <refnamediv>
+        <refname>repmat</refname>
+        <refpurpose>Replicate and tile an array</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>
+            B = repmat(A, siz)
+            B = repmat(A, m)
+            B = repmat(A, m, n,...)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection role="parameters">
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>A</term>
+                <listitem>
+                    <para>input 2D array.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>m, n, ...</term>
+                <listitem>
+                    <para>
+                        integers, number of <literal>A</literal> blocks for
+                        each dimension of <literal>B</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>siz</term>
+                <listitem>
+                    <para>vector of integer, each element gives the number of
+                        <literal>A</literal> blocks for corresponding dimension of
+                        <literal>B</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>B</term>
+                <listitem>
+                    <para>
+                        resulting array form by tiling the <literal>A</literal> 2D array.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection role="description">
+        <title>Description</title>
+        <para>
+            <literal>repmat(A,m,n)</literal> or similarly
+            <literal>repmat(A,[m,n])</literal> returns a large matrix
+            consisting of an <literal>m</literal>-by-<literal>n</literal>
+            tiling of copies of <literal>A</literal>. The size of the result
+            is <literal>[size(A,1)*M, size(A,2)*N]</literal>.
+        </para>
+        <para>
+            <literal>repmat(A,m)</literal> creates an
+            <literal>m</literal>-by-<literal>m</literal> tiling.
+        </para>
+        <para>
+            <literal>repmat(A,[m n p ...])</literal> tiles the array A to produce a
+            multidimensional array  composed of copies of  <literal>A</literal>. The size of the result is
+            <literal>[size(A,1)*M, size(A,2)*N, size(A,3)*P, ...] </literal>.
+        </para>
+        <para>For now,only arrays of real, integer, boolean, character
+            string, polynomial and rational as well as sparse matrices are
+            supported. This function definition can be extended using
+            overloading mechanism.
+        </para>
+    </refsection>
+    <refsection role="examples">
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+repmat(1:3,2,2)
+repmat(int8([1 0 1;0 1 0]),2,3,2)
+repmat("Scilab",3,2)
+t="Scilab";t(ones(3,2))
+repmat([1/%s;2/(%s+1)],1,3)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="matrix">matrix</link>
+            </member>
+            <member>
+                <link linkend="extraction">extraction</link>
+            </member>
+            <member>
+                <link linkend="size">size</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.3.1</revnumber>
+                <revremark>Function repmat introduced.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

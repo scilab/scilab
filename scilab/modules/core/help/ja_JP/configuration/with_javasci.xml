@@ -26,18 +26,18 @@
         <para>
             Scilab　が Java インターフェイスと共に構築されている場合に
             <constant>%t</constant>, それ以外の場合に <constant>%f</constant>
-            を返します. 
+            を返します.
         </para>
         <para>
-          <note>
-	    この関数は, GNU/LinuxまたはMac OS Xにおいては常に
-	    真を返すことに注意してください.
-	  </note>
+            <note>
+                この関数は, GNU/LinuxまたはMac OS Xにおいては常に
+                真を返すことに注意してください.
+            </note>
         </para>
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 if with_javasci() == %t then
    disp("javasci is available");
 else

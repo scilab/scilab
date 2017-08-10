@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="srkf">
+    <refnamediv>
+        <refname>srkf</refname>
+        <refpurpose>square root Kalman filter</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[x1,p1]=srkf(y,x0,p0,f,h,q,r)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>f, h</term>
+                <listitem>
+                    <para>current system matrices</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>q, r</term>
+                <listitem>
+                    <para>covariance matrices of dynamics and observation noise</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x0, p0</term>
+                <listitem>
+                    <para>state estimate and error variance at t=0 based on data up to t=-1</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>current observation Output</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x1, p1</term>
+                <listitem>
+                    <para>updated estimate and error covariance at t=1 based on data up to t=0</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            This function is the square root form of Kalman filter. It is more efficient than the simple Kalman filter in term of numerical stability,
+            especially if dynamic noise covariance <varname>q</varname> is small. In effect, that can provock an indefinite numerical representation
+            of the state covariance matrix <literal>p</literal>, whereas <literal>p</literal> is positive definite. So, the goal of <function>srkf</function>
+            is to propagate <literal>p</literal> using a Cholesky factorization algorithm. These factors can be updated at each step of the algorithm, which
+            allows to keep <literal>p</literal> in its basic form.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Example</title>
+        <programlisting role="example"><![CDATA[
+f=[0 0 1; 0 1 0; 2 3 4]; //State matrix
+g=[1;-1;1]; //Input matrix
+h=[1 1 0; 0 1 0; 0 0 0]; //Output matrix
+Q=[3 2 1; 2 2 1; 1 1 1]; //Covariance matrix of dynamic noise
+R=[2 1 1; 1 1 1; 1 1 2]; //Covariance matrix of observation noise
+// Initialisation
+p0=[6 3 2; 3 5 2; 2 2 4];
+x0=[1;1;1];
+y=[2 8 7]'; // Current observation output matrix
+[x1,p1]=srkf(y,x0,p0,f,h,Q,R)
+]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="kalm">kalm</link>
+            </member>
+            <member>
+                <link linkend="sskf">sskf</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2015 - Scilab Enterprises - Calixte DENIZET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -40,10 +43,10 @@ bool ArgnAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, as
     }
 
 
-    enum Kind 
+    enum Kind
     {
-        LHS, RHS, LHSRHS
-    } kind;
+        LHS, RHS, LHSRHS, DUNNO
+    } kind = DUNNO;
     const ast::exps_t args = e.getArgs();
     switch (args.size())
     {
@@ -109,6 +112,7 @@ bool ArgnAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, as
             res.getConstant() = visitor.getGVN().getValue(val);
             e.getDecorator().setCall(L"argn");
             visitor.setResult(res);
+            break;
         }
         case LHSRHS:
         {
@@ -124,7 +128,10 @@ bool ArgnAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, as
             mlhs.back().getConstant() = visitor.getGVN().getValue(frhs);
 
             e.getDecorator().setCall(L"argn");
+            break;
         }
+        default:
+            return false;
     }
 
     return true;

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Vincent COUVERT
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="iscellstr" xml:lang="pt">
+    <refnamediv>
+        <refname>iscellstr</refname>
+        <refpurpose>verifica se uma variável é um cell array de
+            strings
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>bool = iscellstr(x)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>variável Scilab</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>bool</term>
+                <listitem>
+                    <para>um booleano</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>
+            <literal>iscellstr(x)</literal> retorna verdadeiro se x é um cell
+            array de strings (ou um cell array vazio) e falso em caso
+            contrário.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos </title>
+        <programlisting role="example"><![CDATA[
+iscellstr(1)
+
+iscellstr(cell())
+
+iscellstr(cell(3))
+
+strcell = cell(3,1);
+strcell{1} = "Scilab";
+strcell{2} = "iscellstr";
+strcell{3} = "help";
+iscellstr(strcell)
+ ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>Ver Também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="cell">cell</link>
+            </member>
+            <member>
+                <link linkend="iscell">iscell</link>
+            </member>
+            <member>
+                <link linkend="isstruct">isstruct</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

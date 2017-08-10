@@ -1,123 +1,126 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="ndgrid" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="ndgrid" xml:lang="en">
     <refnamediv>
         <refname>ndgrid</refname>
-        <refpurpose>arrays for multidimensional function evaluation on
-            grid
+        <refpurpose>build matrices or N-D arrays by replicating some template vectors
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>[X, Y] = ndgrid(x,y)
+        <title>Syntax</title>
+        <synopsis>
+               [X, Y] = ndgrid(x,y)
             [X, Y, Z] = ndgrid(x,y,z)
-            [X, Y, Z, T] = ndgrid(x,y,z,t)
-            [X1, X2, ..., Xm] = ndgrid(x1,x2,...,xm)
+         [X, Y, Z, T] = ndgrid(x,y,z,t)
+    [X1, X2, ..., Xm] = ndgrid(x1,x2,...,xm)
         </synopsis>
     </refsynopsisdiv>
-    <refsection>
+    <refsection role="arguments">
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
                 <term>x, y, z, ...</term>
                 <listitem>
-                    <para>vectors</para>
+                    <para>vectors of any data types. They may have distinct data types.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>X, Y, Z, ...</term>
                 <listitem>
-                    <para>matrices in case of 2 input arguments, or else
-                        hypermatrices
+                    <para>
+                        matrices in case of 2 input arguments, or hypermatrices otherwise. They all have the same sizes: <code>size(x,"*")</code> rows, <code>size(y,"*")</code> columns, <code>size(z,"*")</code> layers, etc. They have the datatypes of respective input vectors: <literal>typeof(X)==typeof(x)</literal>, <literal>typeof(Y)==typeof(y)</literal>, etc.
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Description</title>
-        <para>This is an utility routine useful to create arrays for function
-            evaluation on 2, 3, ..., n dimensional grids. For instance in 2d, a grid
-            is defined by two vectors, <literal>x</literal> and <literal> y</literal>
-            of length nx and ny, and you want to evaluate a function (says
-            <emphasis>f</emphasis>) on all the grid points, that is on all the points
-            of coordinates <emphasis>(x(i),y(j))</emphasis> with
-            <emphasis>i=1,..,nx</emphasis> and <emphasis>j=1,..,ny</emphasis>. In this
-            case, this function can compute the two matrices <literal>X,Y</literal> of
-            size <emphasis>nx x ny</emphasis> such that :
-        </para>
-        <programlisting role="no-scilab-exec"><![CDATA[ 
-X(i,j) = x(i)   for all i in [1,nx]
-Y(i,j) = y(j)       and j in [1,ny]
- ]]></programlisting>
         <para>
-            and the evaluation may be done with <literal>Z=f(X,Y)</literal> (at
-            the condition that you have coded <literal>f</literal> for evaluation on
-            vector arguments, which is done (in general) by using the element-wise
-            operators <literal>.*</literal>, <literal>./</literal> and
-            <literal>.^</literal> in place of <literal>*</literal>,
-            <literal>/</literal> and <literal>^</literal>).
+            The first application of <function>ndgrid</function> is to build a grid of nodes meshing the 2D or 3D or N-D space according to 2, 3, or more sets <literal>x</literal>, <literal>y</literal>, etc.. of "template" coordinates sampled along each direction/dimension of the space that you want to mesh.
         </para>
         <para>
-            In the 3d case, considering 3 vectors <literal>x,y,z</literal> of
-            length nx, ny and nz, <literal>X,Y,Z</literal> are 3 hypermatrices of size
-            <emphasis>nx x ny x nz</emphasis> such that :
+            Hence, the matrix or hypermatrix <literal>X</literal> is made by replicating the vector <literal>x</literal> as all its columns ; the matrix or hypermatrix <literal>Y</literal> is made by replicating the vector <literal>y</literal> as all its rows ; <literal>Z</literal> is made of replicating the vector <literal>z</literal> along all its local thicknesses (3rd dimension); etc.
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[ 
-X(i,j,k) = x(i)  
-Y(i,j,k) = y(j)   for all (i,j,k) in [1,nx]x[1,ny]x[1,nz]
-Z(i,j,k) = z(k)
- ]]></programlisting>
+        <screen><![CDATA[--> [X, Y] = ndgrid([1 3 4], [0 2 4 6])
+ X  =
+   1.   1.   1.   1.
+   3.   3.   3.   3.
+   4.   4.   4.   4.
+
+ Y  =
+   0.   2.   4.   6.
+   0.   2.   4.   6.
+   0.   2.   4.   6.
+]]></screen>
         <para>
-            In the general case of m input arguments <literal>x1, x2, ..,
-                xm
-            </literal>
-            ,then the m output arguments <literal>X1, X2, ..,
-                Xm
-            </literal>
-            are hypermatrices of size <emphasis>nx1 x nx2 x ... x
-                nxm
-            </emphasis>
-            and :
+            Then, the coordinates of the node(i,j) in the 2D space will be simply <literal>[x(i), y(j)]</literal> now given by <literal>[X(i,j), Y(i,j)]</literal>. As well, the coordinates of a <literal>node(i,j,k)</literal> of a 3D grid will be <literal>[x(i), y(j), z(k)]</literal> now given by <literal>[X(i,j,k), Y(i,j,k), Z(i,j,k)]</literal>.
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[ 
-Xj(i1,i2,...,ij,...,im) = xj(ij)   
-for all (i1,i2,...,im) in [1,nx1]x[1,nx2]x...x[1,nxm]  
- ]]></programlisting>
+        <para>This replication scheme can be generalized to any number of dimensions, as well to any type of uniform data. Let's for instance consider 2 attributes:
+            <orderedlist>
+                <listitem>
+                    The first is a number, to be chosen from the vector say <literal>n= [ 3 7 ]</literal>
+                </listitem>
+                <listitem>
+                    The second is a letter, to be chosen from the vector say <literal>c= ["a" "e" "i" "o" "u" "y"]</literal>
+                </listitem>
+            </orderedlist>
+            Then we want to build the set of all {n,c} possible pairs. It will just be the 2D grid:
+        </para>
+        <screen><![CDATA[--> [N, C] = ndgrid([3 7],["a" "e" "i" "o" "u" "y"])
+ C  =
+!a  e  i  o  u  y  !
+!a  e  i  o  u  y  !
+
+ N  =
+   3.   3.   3.   3.   3.   3.
+   7.   7.   7.   7.   7.   7.
+]]></screen>
+        <para>
+            Then, the object(i,j) will have the properties <literal>{n(i) c(j)}</literal> that now can be addressed with <literal>{N(i,j) C(i,j)}</literal>. This kind of grid may be useful to initialize an array of structures.
+        </para>
+        <para>
+            Following examples show how to use <varname>X, Y, Z</varname> in most frequent applications.
+        </para>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[  
-// create a simple 2d grid
-nx = 40; ny = 40;
-x = linspace(-1,1,nx);
-y = linspace(-1,1,ny);
+        <para>
+            <emphasis role="bold">Example #1:</emphasis>
+        </para>
+        <programlisting role="example"><![CDATA[
+// Create a simple 2d grid
+x = linspace(-10,2,40);
+y = linspace(-5,5,40);
 [X,Y] = ndgrid(x,y);
 
-// compute a function on the grid and plot it
-//deff("z=f(x,y)","z=128*x.^2 .*(1-x).^2 .*y.^2 .*(1-y).^2");
-deff("z=f(x,y)","z=x.^2 + y.^3")
-Z = f(X,Y);
+// Compute ordinates Z(X,Y) on the {X, Y} grid and plot Z(X,Y)
+Z = X - 3*X.*sin(X).*cos(Y-4) ;
+
 clf()
-plot3d(x,y,Z, flag=[2 6 4]); show_window()
+plot3d(x,y,Z, flag=[color("green") 2 4], alpha=7, theta=60); show_window()
  ]]></programlisting>
-        <scilab:image>
-            nx = 40; ny = 40;
-            x = linspace(-1,1,nx);
-            y = linspace(-1,1,ny);
-            [X,Y] = ndgrid(x,y);
-            deff("z=f(x,y)","z=x.^2 + y.^3")
-            Z = f(X,Y);
-            plot3d(x,y,Z, flag=[2 6 4]);
-        </scilab:image>
-        <programlisting role="example"><![CDATA[  
-// create a simple 3d grid
+        <scilab:image><![CDATA[
+x = linspace(-10,2,40);
+y = linspace(-5,5,40);
+
+[X,Y] = ndgrid(x,y);
+Z = X - 3*X.*sin(X).*cos(Y-4) ;
+
+clf()
+plot3d(x,y,Z, flag=[color("green") 2 4], alpha=7, theta=60); show_window()
+]]></scilab:image>
+        <para>
+            <emphasis role="bold">Example #2:</emphasis>
+        </para>
+        <programlisting role="example"><![CDATA[
+// Create a simple 3d grid
 nx = 10; ny = 6; nz = 4;
 x = linspace(0,2,nx);
 y = linspace(0,1,ny);
 z = linspace(0,0.5,nz);
 [X,Y,Z] = ndgrid(x,y,z);
 
-// try to display this 3d grid ...
+// Try to display this 3d grid
 XF=[]; YF=[]; ZF=[];
 
 for k=1:nz
@@ -133,39 +136,83 @@ for j=1:ny
 end
 
 clf()
-plot3d(XF,YF,ZF, flag=[0 6 3], leg="X@Y@Z")
+plot3d(XF,YF,ZF, flag=[0 6 3], 66, 61,leg="X@Y@Z")
 xtitle("A 3d grid !"); show_window()
  ]]></programlisting>
-        <scilab:image>
-            nx = 10; ny = 6; nz = 4;
-            x = linspace(0,2,nx);
-            y = linspace(0,1,ny);
-            z = linspace(0,0.5,nz);
-            [X,Y,Z] = ndgrid(x,y,z);
-            
-            XF=[]; YF=[]; ZF=[];
-            
-            for k=1:nz
-            [xf,yf,zf] = nf3d(X(:,:,k),Y(:,:,k),Z(:,:,k));
-            XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf];
-            end
-            
-            for j=1:ny
-            [xf,yf,zf] = nf3d(matrix(X(:,j,:),[nx,nz]),...
-            matrix(Y(:,j,:),[nx,nz]),...
-            matrix(Z(:,j,:),[nx,nz]));
-            XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf];
-            end
-            plot3d(XF,YF,ZF, flag=[0 6 3], leg="X@Y@Z")
-            xtitle("A 3d grid !"); 
-        </scilab:image>
+        <scilab:image><![CDATA[
+nx = 10; ny = 6; nz = 4;
+x = linspace(0,2,nx);
+y = linspace(0,1,ny);
+z = linspace(0,0.5,nz);
+
+[X,Y,Z] = ndgrid(x,y,z);
+XF=[]; YF=[]; ZF=[];
+
+for k=1:nz
+    [xf,yf,zf] = nf3d(X(:,:,k),Y(:,:,k),Z(:,:,k));
+    XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf];
+end
+
+for j=1:ny
+    [xf,yf,zf] = nf3d(matrix(X(:,j,:),[nx,nz]),...
+                      matrix(Y(:,j,:),[nx,nz]),...
+                      matrix(Z(:,j,:),[nx,nz]));
+
+    XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf];
+end
+
+plot3d(XF,YF,ZF, flag=[0 6 3], 66, 61, leg="X@Y@Z")
+xtitle("A 3d grid !");
+         ]]></scilab:image>
+        <para>
+            <emphasis role="bold">Example #3: Creates a table of digrams:</emphasis>
+        </para>
+        <programlisting role="example"><![CDATA[
+[c1, c2] = ndgrid(["a" "b" "c"], ["a" "b" "c" "d" "e" "f" "g" "h"])
+c1+c2
+ ]]></programlisting>
+        <screen><![CDATA[--> [c1, c2] = ndgrid(["a" "b" "c"], ["a" "b" "c" "d" "e" "f" "g" "h"])
+ c2  =
+!a  b  c  d  e  f  g  h  !
+!a  b  c  d  e  f  g  h  !
+!a  b  c  d  e  f  g  h  !
+
+ c1  =
+!a  a  a  a  a  a  a  a  !
+!b  b  b  b  b  b  b  b  !
+!c  c  c  c  c  c  c  c  !
+
+--> c1+c2
+ ans  =
+!aa  ab  ac  ad  ae  af  ag  ah  !
+!ba  bb  bc  bd  be  bf  bg  bh  !
+!ca  cb  cc  cd  ce  cf  cg  ch  !
+]]></screen>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="meshgrid">meshgrid</link>
+            </member>
             <member>
                 <link linkend="kron">kron</link>
             </member>
+            <member>
+                <link linkend="feval">feval</link>
+            </member>
+            <member>
+                <link linkend="nf3d">nf3d</link>
+            </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>Extension to all homogeneous datatypes ([], booleans, encoded integers, polynomials, rationals, strings). Revision of the help page.</revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

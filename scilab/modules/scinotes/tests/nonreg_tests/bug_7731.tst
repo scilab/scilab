@@ -15,7 +15,7 @@
 //
 // <-- Short Description -->
 // In Find/Replace window, the buttons were not updated when an item was
-// choosen in the combobox Find.
+// chosen in the combobox Find.
 
 // In SciNotes, launch Find/Replace.
 // i) In the field "Find", put foo and search it !

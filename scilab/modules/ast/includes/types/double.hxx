@@ -2,11 +2,14 @@
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
 *
-*  This file must be used under the terms of the CeCILL.
-*  This source file is licensed as described in the file COPYING, which
-*  you should have received as part of this distribution.  The terms
-*  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
@@ -25,7 +28,6 @@
 #include "arrayof.hxx"
 #include "bool.hxx"
 #include "types_transposition.hxx"
-#include "doubleexp.hxx"
 
 namespace types
 {
@@ -39,13 +41,13 @@ public :
     Double(int _iRows, int _iCols, bool _bComplex = false, bool _bZComplex = false);
     Double(int _iRows, int _iCols, double **_pdblReal);
     Double(int _iRows, int _iCols, double **_pdblReal, double **_pdblImg);
-    Double(int _iDims, int* _piDims, bool _bComplex = false, bool _bZComplex = false);
+    Double(int _iDims, const int* _piDims, bool _bComplex = false, bool _bZComplex = false);
 
     static Double*              Empty();
     static Double*              Identity(int _iRows, int _iCols);
-    static Double*              Identity(int _iDims, int* _piDims);
-    static Double*              Identity(int _iDims, int* _piDims, double _dblReal);
-    static Double*              Identity(int _iDims, int* _piDims, double _dblReal, double _dblImg);
+    static Double*              Identity(int _iDims, const int* _piDims);
+    static Double*              Identity(int _iDims, const int* _piDims, double _dblReal);
+    static Double*              Identity(int _iDims, const int* _piDims, double _dblReal, double _dblImg);
 
 
     /*data management*/
@@ -61,10 +63,10 @@ public :
     void                        whoAmI();
     bool                        isEmpty();
 
-    InternalType*               clone();
+    Double*                     clone();
     bool                        fillFromCol(int _iCols, Double *_poSource);
     bool                        fillFromRow(int _iRows, Double *_poSource);
-    bool                        append(int _iRows, int _iCols, InternalType* _poSource);
+    Double*                     append(int _iRows, int _iCols, InternalType* _poSource);
 
     //bool                        append(int _iRows, int _iCols, Double *_poSource);
 
@@ -79,6 +81,23 @@ public :
     bool isComplex()
     {
         return (m_pImgData != NULL) || isViewAsZComplex();
+    }
+
+    inline bool isNumericallyComplex(double tolerance = 0)
+    {
+        if (isComplex())
+        {
+            int listSize = getSize();
+            double* bImg = getImg();
+            for (int i = 0; i < listSize; i++)
+            {
+                if (abs(bImg[i]) > tolerance)
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     bool isTrue();
@@ -119,12 +138,12 @@ public :
     void                        convertFromZComplex();
 
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring        getTypeStr()
+    virtual std::wstring        getTypeStr() const
     {
         return L"constant";
     }
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring        getShortTypeStr()
+    virtual std::wstring        getShortTypeStr() const
     {
         return L"s";
     }
@@ -252,53 +271,90 @@ public :
 
     virtual ast::Exp*           getExp(const Location& loc);
 
-    virtual bool set(int _iPos, double _data)
+    virtual Double* set(int _iPos, const double _data)
     {
         if (_iPos >= m_iSize)
         {
-            return false;
+            return NULL;
+        }
+
+        typedef Double* (Double::*set_t)(int, double);
+        Double* pIT = checkRef(this, (set_t)&Double::set, _iPos, _data);
+        if (pIT != this)
+        {
+            return pIT;
         }
 
         m_pRealData[_iPos] = _data;
-        return true;
+        return this;
     }
 
-    virtual bool set(int _iRows, int _iCols, double _data)
+    virtual Double* set(int _iRows, int _iCols, const double _data)
     {
         return set(_iCols * getRows() + _iRows, _data);
     }
 
-    virtual bool set(double* _pdata)
+    virtual Double* set(double* _pdata)
     {
         if (m_pRealData == NULL)
         {
-            return false;
+            return NULL;
+        }
+
+        typedef Double* (Double::*set_t)(double*);
+        Double* pIT = checkRef(this, (set_t)&Double::set, _pdata);
+        if (pIT != this)
+        {
+            return pIT;
         }
 
         for (int i = 0; i < m_iSize; i++)
         {
             m_pRealData[i] = _pdata[i];
         }
-        return true;
+
+        return this;
     }
 
-    virtual bool set(const double* _pdata)
+    virtual Double* set(const double* _pdata)
     {
         if (m_pRealData == NULL)
         {
-            return false;
+            return NULL;
+        }
+
+        typedef Double* (Double::*set_t)(const double*);
+        Double* pIT = checkRef(this, (set_t)&Double::set, _pdata);
+        if (pIT != this)
+        {
+            return pIT;
         }
 
         for (int i = 0; i < m_iSize; i++)
         {
             m_pRealData[i] = _pdata[i];
         }
+
+        return this;
+    }
+
+    virtual bool isNativeType() override
+    {
         return true;
     }
 
+    virtual void fillDefaultValues() override
+    {
+        int size = getSize();
+        memset(m_pRealData, 0x00, sizeof(double) * size);
+        if (isComplex())
+        {
+            memset(m_pImgData, 0x00, sizeof(double) * size);
+        }
+    }
 
 private:
-    virtual bool                subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims);
+    virtual bool                subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims) override;
 
     virtual double              getNullValue();
     virtual Double*             createEmpty(int _iDims, int* _piDims, bool _bComplex = false);

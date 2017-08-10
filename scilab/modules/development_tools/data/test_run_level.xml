@@ -3,22 +3,25 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 
 <tests>
     <level severity="1">
-        
+
         <module name="string">
             <test>evstr</test>
             <test>emptystr</test>
         </module>
-        
+
         <module name="core">
             <test>clear</test>
             <test>colon</test>
@@ -26,19 +29,17 @@
             <test>matops</test>
             <test>inf_nan</test>
         </module>
-        
+
         <module name="development_tools">
             <test>test_run_nojvm</test>
         </module>
-        
+
         <module name="linear_algebra">
             <test>spec</test>
             <test>norm</test>
         </module>
-        
+
         <module name="data_structures">
-            <test>fieldnames</test>
-            <test>hypermat</test>
             <test>isfield</test>
             <test>listextraction</test>
             <test>listinsertion</test>
@@ -46,7 +47,7 @@
             <test>lstops</test>
             <test>struct</test>
         </module>
-        
+
         <module name="development_tools|assert">
             <test>checkalmostequal</test>
             <test>checkequal</test>
@@ -60,7 +61,7 @@
             <test>cond2reqdigits</test>
             <test>generror</test>
         </module>
-        
+
         <module name="elementary_functions">
             <test>IEEEcompatibility</test>
             <test>prod</test>
@@ -78,16 +79,16 @@
             <test>abs</test>
             <test>isempty</test>
         </module>
-        
+
         <module name="polynomials">
             <test>polops</test>
         </module>
-        
+
         <module name="overloading">
             <test>sparse</test>
             <test>rational</test>
         </module>
-        
+
         <module name="hdf5">
             <test>loadhdf5data</test>
         </module>
@@ -104,23 +105,23 @@ Randomly fail ...
       <test>ssprint</test>
     </module>
 -->
-        
+
     </level>
-    
+
     <level severity="2">
         <module name="core">
             <test>lasterror</test>
             <test>who</test>
         </module>
-        
+
         <module name="string">
             <test>tokens</test>
         </module>
-        
+
         <module name="polynomials">
             <test>roots</test>
         </module>
-        
+
     </level>
-    
+
 </tests>

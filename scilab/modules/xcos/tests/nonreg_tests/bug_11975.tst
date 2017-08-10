@@ -37,13 +37,6 @@ assert_checktrue(importXcosDiagram("SCI/modules/xcos/demos/IF_block.zcos"));
 [cpr, ok] = xcos_compile(scs_m);
 assert_checktrue(ok);
 
-// Redefining messagebox() to avoid popup
-prot = funcprot();
-funcprot(0);
-function messagebox(msg, msg_title)
-endfunction
-funcprot(prot);
-
 // Hydraulics
 assert_checktrue(importXcosDiagram("SCI/modules/xcos/demos/ModelicaBlocks/Hydraulics.zcos"));
 [cpr, ok] = xcos_compile(scs_m);

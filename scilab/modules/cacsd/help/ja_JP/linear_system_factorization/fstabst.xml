@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="fstabst">
+    <refnamediv>
+        <refname>fstabst</refname>
+        <refpurpose>線形動的システムのユーラ(Youla)・パラメトリゼーション</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼出し手順</title>
+        <synopsis>J = fstabst(P,r)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>P</term>
+                <listitem>
+                    <para>
+                        連続時間線形動的システム
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>r</term>
+                <listitem>
+                    <para>
+                        1x2 行ベクトル, <literal>P22</literal>の次元
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>J</term>
+                <listitem>
+                    <para>
+                        連続時間線形動的システム
+                        (<literal>P</literal>と同じ表現)
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            安定化フィードバックのパラメトリゼーション.
+        </para>
+        <para>
+            <literal>P</literal> は以下のように分割されます:
+        </para>
+        <programlisting role=""><![CDATA[
+P=[ P11 P12;
+    P21 P22]
+ ]]></programlisting>
+        <para>
+            (状態空間形式または伝達関数形式: 計算時に状態空間形式の
+            自動変換が行われます)
+        </para>
+        <para>
+            <literal>r</literal> = <literal>P22</literal> サブシステムの大きさ,
+            <literal>P</literal>の(2,2)ブロック
+        </para>
+        <programlisting role=""><![CDATA[
+J =[J11 J12;
+    J21 J22]
+ ]]></programlisting>
+        <para>
+            <literal>K</literal> は，
+            安定な<literal>Q</literal>により
+            <literal>K=lft(J,r,Q)</literal>である時に限り,
+            <literal>P</literal>(すなわち<literal>P22</literal>)の
+            安定化コントローラです.
+        </para>
+        <para>
+            <literal>J</literal>の中心部である , <literal>J11</literal> は
+            <literal>P</literal>のlqgレギュレータです.
+        </para>
+        <para>
+            この <literal>J</literal> は,
+            <literal>P</literal> および <literal>J</literal> の
+            2ポート <literal>lft</literal> として以下のように <literal>T</literal>
+            を定義するものです: <literal>[T,rt]=lft(P,r,J,r)</literal>
+            この時,	<literal>T12</literal> はインナ(inner)，
+            <literal>T21</literal>はコ・インナ(co-inner)となります.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+ny=2;nu=3;nx=4;
+P22=ssrand(ny,nu,nx);
+bigQ=rand(nx+nu,nx+nu);bigQ=bigQ*bigQ';
+bigR=rand(nx+ny,nx+ny);bigR=bigR*bigR';
+[P,r]=lqg2stan(P22,bigQ,bigR);
+J=fstabst(P,r);
+Q=ssrand(nu,ny,1);Q('A')=-1;  //安定なQ
+K=lft(J,r,Q);
+A=h_cl(P,r,K); spec(A)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="obscont">obscont</link>
+            </member>
+            <member>
+                <link linkend="lft">lft</link>
+            </member>
+            <member>
+                <link linkend="lqg">lqg</link>
+            </member>
+            <member>
+                <link linkend="lqg2stan">lqg2stan</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>
+                    <literal>Sl</literal> は連続時間線形動的システムについて
+                    確認されます.
+                    この修正はこの
+                    <ulink url="http://gitweb.scilab.org/?p=scilab.git;a=commit;h=3d7083daae3339813ba747c8adcda1f9599bb80d">コミット</ulink>により導入されました.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

@@ -16,9 +16,6 @@
 diary_file = pathconvert(TMPDIR+'/bug_diary_4676.txt',%F);
 id = diary(diary_file);
 mprintf('\nString with whitespaces\n')
-
-
 String with whitespaces
-
 diary(id,'close');
 mgetl(diary_file);

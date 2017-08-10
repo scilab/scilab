@@ -24,7 +24,7 @@
                 <listitem>
                     <para>
                         (オプション) <literal>xd</literal>
-                        および <literal>yd</literal>の形式のベクトルで, 
+                        および <literal>yd</literal>の形式のベクトルで,
                         最小二乗フィッティングの重み.
                     </para>
                 </listitem>
@@ -32,7 +32,7 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>単調増加の (行または列) ベクトル, 
+                    <para>単調増加の (行または列) ベクトル,
                         3次スプラインの折点
                     </para>
                 </listitem>
@@ -80,7 +80,7 @@
         <para>
             スプライン<emphasis>s</emphasis>は
             組<literal>(x,y,d)</literal>により完全に定義されます
-            (<literal>y</literal> および <literal>d</literal> 
+            (<literal>y</literal> および <literal>d</literal>
             は,xiにおけるスプライン座標および1階微分のベクトル
             です : <emphasis>yi=s(xi)</emphasis> および
             <emphasis>di=s'(xi)</emphasis>) .
@@ -122,7 +122,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // これは人工的な例で,データxdおよびydは
 // 外乱付きのsin関数から構築されます
 a = 0; b = 2*%pi;

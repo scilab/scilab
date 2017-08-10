@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="frfit">
+    <refnamediv>
+        <refname>frfit</refname>
+        <refpurpose>frequency response fit</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>sys=frfit(w,fresp,order)
+            [num,den]=frfit(w,fresp,order)
+            sys=frfit(w,fresp,order,weight)
+            [num,den]=frfit(w,fresp,order,weight)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>w</term>
+                <listitem>
+                    <para>positive real vector of frequencies (Hz)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fresp</term>
+                <listitem>
+                    <para>
+                        complex vector of frequency responses (same size as <literal>w</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>order</term>
+                <listitem>
+                    <para>
+                        integer (required order, degree of <literal>den</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>weight</term>
+                <listitem>
+                    <para>
+                        positive real vector (default value <literal>ones(w)</literal>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>num,den</term>
+                <listitem>
+                    <para>stable polynomials</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>sys=frfit(w,fresp,order,weight)</literal> returns a bi-stable transfer function
+            <literal>G(s)=sys=num/den</literal>, of of given <literal>order</literal> such that
+            its frequency response <literal>G(w(i))</literal> matches <literal>fresp(i)</literal>, i.e.
+            <literal>freq(num,den,%i*w)</literal> should be close to <literal>fresp</literal>.
+            <literal>weight(i)</literal> is the weight given to <literal>w(i)</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+w=0.01:0.01:2;
+s=poly(0,'s');
+G=syslin('c',2*(s.^2+0.1*s+2), (s.^2+s+1)*(s.^2+0.3*s+1));
+fresp=repfreq(G,w);
+Gid=frfit(w,fresp,4);
+frespfit=repfreq(Gid,w);
+bode(w,[fresp;frespfit])
+ ]]></programlisting>
+        <scilab:image>
+            w=0.01:0.01:2;
+            s=poly(0,'s');
+            G=syslin('c',2*(s.^2+0.1*s+2), (s.^2+s+1)*(s.^2+0.3*s+1));
+            fresp=repfreq(G,w);
+            Gid=frfit(w,fresp,4);
+            frespfit=repfreq(Gid,w);
+            bode(w,[fresp;frespfit])
+        </scilab:image>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="frep2tf">frep2tf</link>
+            </member>
+            <member>
+                <link linkend="factors">factors</link>
+            </member>
+            <member>
+                <link linkend="cepstrum">cepstrum</link>
+            </member>
+            <member>
+                <link linkend="mrfit">mrfit</link>
+            </member>
+            <member>
+                <link linkend="freq">freq</link>
+            </member>
+            <member>
+                <link linkend="calfrq">calfrq</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

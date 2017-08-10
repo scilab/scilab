@@ -2,21 +2,26 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Cedric DELAMARRE
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 /*--------------------------------------------------------------------------*/
+
+#include <cmath>
+
 #include "polynomials_gw.hxx"
 #include "function.hxx"
 #include "double.hxx"
 #include "string.hxx"
 #include "polynom.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 
 extern "C"
 {
@@ -32,7 +37,6 @@ types::Function::ReturnValue sci_pppdiv(types::typed_list &in, int _iRetCount, t
 {
     double* pdblInR[2]  = {NULL, NULL};// real part of denominator and numerator
     double* pdblInI[2]  = {NULL, NULL};// rimaginary part
-    bool bDouble        = false;
     bool pbComplex[2]   = {false, false};
     int piSize[2]       = {0, 0}; // rank+1 of denominator and numerator
     int iErr            = 0;
@@ -57,12 +61,6 @@ types::Function::ReturnValue sci_pppdiv(types::typed_list &in, int _iRetCount, t
     {
         if (in[i]->isDouble())
         {
-            if (bDouble)
-            {
-                Scierror(999, _("%s: Wrong type for input argument #%d: A polynom expected.\n"), "pppdiv", i + 1);
-                return types::Function::Error;
-            }
-
             types::Double* pDblIn = in[i]->getAs<types::Double>();
             if (pDblIn->isScalar() == false)
             {
@@ -89,7 +87,7 @@ types::Function::ReturnValue sci_pppdiv(types::typed_list &in, int _iRetCount, t
 
             if (wstrName != L"" && wstrName != pPolyIn->getVariableName())
             {
-                Scierror(999, _("%s: Wrong value for input argument #%d: A polynom '%ls' expected.\n"), "pppdiv", i + 1, wstrName.c_str());
+                Scierror(999, _("%s: Wrong value for input argument #%d: A polynomial '%ls' expected.\n"), "pppdiv", i + 1, wstrName.c_str());
                 return types::Function::Error;
             }
 
@@ -104,9 +102,8 @@ types::Function::ReturnValue sci_pppdiv(types::typed_list &in, int _iRetCount, t
         }
         else
         {
-            ast::ExecVisitor exec;
             std::wstring wstFuncName = L"%" + in[i]->getShortTypeStr() + L"_pppdiv";
-            return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+            return Overload::call(wstFuncName, in, _iRetCount, out);
         }
     }
 
@@ -177,7 +174,7 @@ types::Function::ReturnValue sci_pppdiv(types::typed_list &in, int _iRetCount, t
         for (int i = iSizeCoeff - 1; i >= 0; i--)
         {
             iSizeCoeff--;
-            if (std::abs(pdblCoeffR[i]) + std::abs(pdblCoeffI[i]))
+            if (std::fabs(pdblCoeffR[i]) + std::fabs(pdblCoeffI[i]))
             {
                 break;
             }
@@ -186,7 +183,7 @@ types::Function::ReturnValue sci_pppdiv(types::typed_list &in, int _iRetCount, t
         for (int i = iSizeRest - 1; i >= 0; i--)
         {
             iSizeRest--;
-            if (std::abs(pdblRestR[i]) + std::abs(pdblRestI[i]))
+            if (std::fabs(pdblRestR[i]) + std::fabs(pdblRestI[i]))
             {
                 break;
             }
@@ -286,15 +283,15 @@ types::Function::ReturnValue sci_pppdiv(types::typed_list &in, int _iRetCount, t
         out.push_back(pPolyOut);
     }
 
-    delete pdblInR[0];
+    delete[] pdblInR[0];
     if (pbComplex[0] || pbComplex[1])
     {
-        delete pdblInI[0];
+        delete[] pdblInI[0];
     }
 
     if (pbComplex[1] == false)
     {
-        delete pdblInI[1];
+        delete[] pdblInI[1];
     }
 
     return types::Function::OK;

@@ -2,11 +2,14 @@
 // Copyright (C) ???? - INRIA - Scilab
 // Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function r=isinstring(str,pos)
     // Finds if the character pointed by pos is in a string (return %T) or not (return %F)
@@ -64,7 +67,7 @@ function r=isinstring(str,pos)
             end
         elseif sym==quote then
             // Check if transpose or beginning of a string
-            if abs(_str2code(psym))>=36&psym<>")"&psym<>"]"&psym<>"."&psym<>quote then // Not a transpose
+            if ~isalphanum(psym) & psym<>")" & psym<>"]" & psym<>"." & psym<>quote then // Not a transpose
                 strcnt=1
             elseif bcount<>0 then // Inside a matrix definition
                 if part(str,ksym-1)==" " then strcnt=1,end

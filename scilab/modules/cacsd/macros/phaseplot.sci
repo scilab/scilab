@@ -1,10 +1,13 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2011 - INRIA - Serge Steer
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2011 - 2016 - INRIA - Serge Steer
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function []=phaseplot(varargin)
     rhs=size(varargin)
@@ -17,7 +20,7 @@ function []=phaseplot(varargin)
     fname="phaseplot";//for error messages
 
     fmax=[];
-    if or(typeof(varargin(1))==["state-space" "rational"]) then
+    if or(typeof(varargin(1))==["state-space" "rational" "zpk"]) then
         //sys,fmin,fmax [,pas] or sys,frq
         refdim=1 //for error message
         if rhs==1 then
@@ -60,7 +63,11 @@ function []=phaseplot(varargin)
             error(msprintf(_("%s: Wrong number of input arguments: %d to %d expected.\n"),fname,2,4))
         end
     else
-        error(msprintf(_("%s: Wrong type for input argument #%d: Linear dynamical system or row vector of floats expected.\n"),fname,1))
+        ierr=execstr("%"+overloadname(varargin(1))+"_phaseplot(varargin(:))","errcatch")
+        if ierr<>0 then
+            error(msprintf(_("%s: Wrong type for input argument #%d: Linear dynamical system or row vector of floats expected.\n"),fname,1))
+        end
+        return
     end;
 
     frq=frq';

@@ -4,12 +4,15 @@
  * Copyright (C) INRIA
  * Copyright (C) 2009 - DIGITEO - Pierre Lando
  * Copyright (C) 2010 - DIGITEO - Yann Collette
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="plot2d" xml:lang="en">
@@ -18,13 +21,13 @@
         <refpurpose>2D plot</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             plot2d([logflag,][x,],y[,style[,strf[,leg[,rect[,nax]]]]])
             plot2d([logflag,][x,],y,&lt;opt_args&gt;)
         </synopsis>
     </refsynopsisdiv>
-    <refsection>
+    <refsection role="parameters">
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
@@ -76,7 +79,7 @@
                             <listitem>
                                 <para>controls the display of captions.</para>
                                 <para>
-                                    <literal>strf</literal> is a string of length 3 
+                                    <literal>strf</literal> is a string of length 3
                                     <literal>"xyz"</literal> (by default <literal>strf=
                                         "081"
                                     </literal>
@@ -95,7 +98,7 @@
                         <varlistentry>
                             <term>rect</term>
                             <listitem>
-                                <para>sets the mimimal bounds requested for the plot. The
+                                <para>sets the minimal bounds requested for the plot. The
                                     associated value should be a real vector with four entries:
                                     <literal>[xmin,ymin,xmax,ymax]</literal>.
                                 </para>
@@ -132,7 +135,7 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Description</title>
         <para>
             <literal>plot2d</literal> plots a set of 2D curves. If you are
@@ -147,16 +150,15 @@
         <para>
             If <literal>x</literal> is a vector and <literal>y</literal> a
             matrix plot2d(x,y,&lt;opt_args&gt;) plots each columns of
-            <literal>y</literal> versus vector <literal>x</literal>. In this case the
-            number of columns of <literal>y</literal> should be equal to the number of
+            <literal>y</literal> versus vector <literal>x</literal>. The
+            number of rows of <literal>y</literal> must be equal to the number of
             <literal>x</literal> entries.
         </para>
         <para>
             If <literal>x</literal> and <literal>y</literal> are matrices,
             plot2d(x,y,&lt;opt_args&gt;) plots each columns of <literal>y</literal>
-            versus corresponding column of <literal>x</literal>. In this case the
-            <literal>x</literal> and <literal>y</literal> sizes should be the
-            same.
+            versus corresponding column of <literal>x</literal>.
+            <literal>x</literal> and <literal>y</literal> must then have the same sizes.
         </para>
         <para>
             If <literal>y</literal> is a vector, plot2d(y,&lt;opt_args&gt;)
@@ -259,7 +261,7 @@
                                     <varlistentry>
                                         <term>y=0</term>
                                         <listitem>
-                                            <para>no computation, the plot use the previus (or
+                                            <para>no computation, the plot use the previous (or
                                                 default) scale
                                             </para>
                                         </listitem>
@@ -309,7 +311,7 @@
                                     <varlistentry>
                                         <term>y=7</term>
                                         <listitem>
-                                            <para>like y=1 but the previus plot(s) are redrawn to
+                                            <para>like y=1 but the previous plot(s) are redrawn to
                                                 use the new scale
                                             </para>
                                         </listitem>
@@ -317,7 +319,7 @@
                                     <varlistentry>
                                         <term>y=8</term>
                                         <listitem>
-                                            <para>like y=2 but the previus plot(s) are redrawn to
+                                            <para>like y=2 but the previous plot(s) are redrawn to
                                                 use the new scale
                                             </para>
                                         </listitem>
@@ -405,7 +407,7 @@
             <varlistentry>
                 <term>rect</term>
                 <listitem>
-                    <para>This option may be used to set the mimimal bounds requested
+                    <para>This option may be used to set the minimal bounds requested
                         for the plot. If this option is specified, the associated value
                         should be a real vector with four entries:
                     </para>
@@ -628,10 +630,9 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>More information</title>
-        <para>By default, successive plots are superposed. To clear the previous
-            plot, use 
+        <para>By default, successive plots are superposed. To clear the previous plot, use
             <literal>
                 <link linkend="clf">clf()</link>
             </literal>
@@ -662,10 +663,10 @@
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-// x initialisation 
+        <programlisting role="example"><![CDATA[
+// x initialisation
 x=[0:0.1:2*%pi]';
 //simple plot
 plot2d(sin(x));
@@ -674,7 +675,7 @@ plot2d(sin(x));
             x=[0:0.1:2*%pi]';
             plot2d(sin(x));
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 clf();
 x=[0:0.1:2*%pi]';
 plot2d(x,sin(x));
@@ -684,7 +685,7 @@ plot2d(x,sin(x));
             x=[0:0.1:2*%pi]';
             plot2d(x,sin(x));
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 clf();
 x=[0:0.1:2*%pi]';
 plot2d(x,[sin(x) sin(2*x) sin(3*x)])
@@ -693,7 +694,7 @@ plot2d(x,[sin(x) sin(2*x) sin(3*x)])
             x=[0:0.1:2*%pi]';
             plot2d(x,[sin(x) sin(2*x) sin(3*x)])
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // multiple plot giving the dimensions of the frame
 clf();
 x=[0:0.1:2*%pi]';
@@ -703,7 +704,7 @@ plot2d(x,[sin(x) sin(2*x) sin(3*x)],rect=[0,0,6,0.5]);
             x=[0:0.1:2*%pi]';
             plot2d(x,[sin(x) sin(2*x) sin(3*x)],rect=[0,0,6,0.5]);
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //multiple plot with captions and given tics + style
 clf();
 x=[0:0.1:2*%pi]';
@@ -715,7 +716,7 @@ plot2d(x,[sin(x) sin(2*x) sin(3*x)],..
             plot2d(x,[sin(x) sin(2*x) sin(3*x)],..
             [1,2,3],leg="L1@L2@L3",nax=[2,10,2,10],rect=[0,-2,2*%pi,2]);
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // isoview
 clf();
 x=[0:0.1:2*%pi]';
@@ -725,8 +726,8 @@ plot2d(x,sin(x),1,frameflag= 4);
             x=[0:0.1:2*%pi]';
             plot2d(x,sin(x),1,frameflag= 4);
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
-// scale 
+        <programlisting role="example"><![CDATA[
+// scale
 clf();
 x=[0:0.1:2*%pi]';
 plot2d(x,sin(x),1,frameflag= 6);
@@ -735,90 +736,85 @@ plot2d(x,sin(x),1,frameflag= 6);
             x=[0:0.1:2*%pi]';
             plot2d(x,sin(x),1,frameflag= 6);
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // auto scaling with previous plots + style
 clf();
 x=[0:0.1:2*%pi]';
 plot2d(x,sin(x),-1);
-plot2d(x,2*sin(x),12); 
+plot2d(x,2*sin(x),12);
 plot2d(2*x,cos(x),3);
  ]]></programlisting>
         <scilab:image>
             x=[0:0.1:2*%pi]';
             plot2d(x,sin(x),-1);
-            plot2d(x,2*sin(x),12); 
+            plot2d(x,2*sin(x),12);
             plot2d(2*x,cos(x),3);
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
-// axis on the right 
+        <programlisting role="example"><![CDATA[
+// axis on the right
 clf();
 x=[0:0.1:2*%pi]';
 plot2d(x,sin(x),leg="sin(x)");
-a=gca(); // Handle on axes entity 
-a.y_location ="right"; 
+a=gca(); // Handle on axes entity
+a.y_location ="right";
  ]]></programlisting>
         <scilab:image>
             x=[0:0.1:2*%pi]';
             plot2d(x,sin(x),leg="sin(x)");
-            a=gca(); // Handle on axes entity 
-            a.y_location ="right"; 
+            a=gca(); // Handle on axes entity
+            a.y_location ="right";
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 
-// axis centered at (0,0) 
+// axis centered at (0,0)
 clf();
 x=[0:0.1:2*%pi]';
 plot2d(x-4,sin(x),1,leg="sin(x)");
 a=gca(); // Handle on axes entity
-a.x_location = "origin"; 
-a.y_location = "origin"; 
+a.x_location = "origin";
+a.y_location = "origin";
 // Some operations on entities created by plot2d ...
+isoview()
 a=gca();
-a.isoview='on'; 
 a.children // list the children of the axes.
-// There are a compound made of two polylines and a legend 
-poly1= a.children(1).children(1); //store polyline handle into poly1 
+// There are a compound made of two polylines and a legend
+poly1= a.children(1).children(1); //store polyline handle into poly1
 poly1.foreground = 4; // another way to change the style...
-poly1.thickness = 3;  // ...and the tickness of a curve.
+poly1.thickness = 3;  // ...and the thickness of a curve.
 poly1.clip_state='off'; // clipping control
 leg = a.children(2); // store legend handle into leg
-leg.font_style = 9; 
+leg.font_style = 9;
 leg.line_mode = "on";
-a.isoview='off';
+isoview("off")
  ]]></programlisting>
         <scilab:image>
-            
-            // axis centered at (0,0) 
+            // axis centered at (0,0)
             clf();
             x=[0:0.1:2*%pi]';
             plot2d(x-4,sin(x),1,leg="sin(x)");
             a=gca(); // Handle on axes entity
-            a.x_location = "origin"; 
-            a.y_location = "origin"; 
+            a.x_location = "origin";
+            a.y_location = "origin";
             // Some operations on entities created by plot2d ...
+            isoview()
             a=gca();
-            a.isoview='on'; 
             a.children // list the children of the axes.
-            // There are a compound made of two polylines and a legend 
-            poly1= a.children(1).children(1); //store polyline handle into poly1 
+            // There are a compound made of two polylines and a legend
+            poly1= a.children(1).children(1); //store polyline handle into poly1
             poly1.foreground = 4; // another way to change the style...
-            poly1.thickness = 3;  // ...and the tickness of a curve.
+            poly1.thickness = 3;  // ...and the thickness of a curve.
             poly1.clip_state='off'; // clipping control
             leg = a.children(2); // store legend handle into leg
-            leg.font_style = 9; 
+            leg.font_style = 9;
             leg.line_mode = "on";
-            a.isoview='off';
+            isoview("off")
         </scilab:image>
-        
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="plot">plot</link>
-            </member>
-            <member>
-                <link linkend="plot2d1">plot2d1</link>
             </member>
             <member>
                 <link linkend="plot2d2">plot2d2</link>

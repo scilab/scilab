@@ -3,7 +3,7 @@
 function next = myfun ( a1 , a2 )
     // Do Something
     //
-    // Calling Sequence
+    // Syntax
     //   next = myfun ( a1 , a2 )
     //
     // Parameters

@@ -3,11 +3,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) Pedro SOUZA
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" scilab:needs-examples="no" xml:id="light_properties">
@@ -67,7 +70,7 @@
                 <term>direction: </term>
                 <listitem>
                     <para>This field defines the ray direction for directional light.
-                        The direction can be chaged using a 3 element vector <literal>"[x, y, z]"</literal>
+                        The direction can be changed using a 3 element vector <literal>"[x, y, z]"</literal>
                         representing a vector starting from the origin.
                     </para>
                     <para>
@@ -122,6 +125,19 @@
                     </para>
                 </listitem>
             </varlistentry>
+            <varlistentry>
+                <term>user_data: </term>
+                <listitem>
+                    <para>This field can be use to store any scilab variable and to retrieve it.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>tag: </term>
+                <listitem>
+                    <para>This field can be use to store a character string generally used to identify the light entity. It allows to give it a "name". Mainly used in conjunction with findobj() and get()/set() functions.</para>
+                </listitem>
+            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
@@ -156,7 +172,7 @@
         ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="lighting">lighting</link>

@@ -2,14 +2,17 @@
 // Copyright (C) 2013 - Scilab Enterprises - Paul Bignier
 // Copyright (C) 09/2013 - A. Khorshidi
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function [] = bode_asymp(sl, w_min, w_max)
-    // Calling sequence:
+    // Syntax:
     //     syntax: bode_asymp(sl, [w_min, w_max])
     // Arguments:
     //     sl: a linear system given by its transfer function representation or state-space form and defined by syslin.
@@ -24,46 +27,53 @@ function [] = bode_asymp(sl, w_min, w_max)
 
     rhs = argn(2);
 
-    if and(typeof(sl) <> ["state-space" "rational"]) then
-        msg = _("Wrong type for argument #%d: Rational or State-space matrix expected.\n");
-        error(msprintf(msg, 1))
-        return;
+    if and(typeof(sl) <> ["state-space" "rational" "zpk"]) then
+        args=["sl", "w_min", "w_max"]
+        ierr=execstr("%"+overloadname(sl)+"_bode_asymp("+strcat(args(1:rhs),",")+")","errcatch")
+        if ierr<>0 then
+            error(msprintf(_("%s: Wrong type for input argument #%d: Linear dynamical system or row vector of floats expected.\n"),"bode_asymp",1))
+        end
+        return
     end
 
     typeSL = typeof(sl);
+    domain=sl.dt
+    var = "s";
+    if type(domain) == 1 then
+        var = "z";
+    elseif domain == "c" then
+        var = "s";
+    elseif domain == "d" then
+        var = "z";
+    end
+    if domain == [] then
+        var = "s";
+    end
+    s = poly(0, var);
+
 
     for elem=1:size(sl, "r") // Individually draw each asymptote of "sl" elements (row vector).
         if typeSL == "rational" then
             h = sl(elem, 1);
-        else
+            root_num = roots(h.num);
+            root_den = roots(h.den);
+        elseif typeSL == "state-space" then
             h = clean(ss2tf(sl(elem, 1)), 1e-8);
-            // Also removing all the coefficients smaller than < 1e-8
+            root_num=roots(h.num);
+            root_den=roots(h.den);
+        elseif typeSL == "zpk" then
+            h=sl(elem,1)
+            root_num=h.Z{1}
+            root_den=h.P{1}
+            h=zpk2tf(h)
         end
-
-        root_num = roots(h.num);
-        root_den = roots(h.den);
 
         if (find(root_num==0))
             disp("Problem class of system is negative")
         end
         rac_nul = find(root_den==0);
         alpha = length(rac_nul);
-        var = "s";
-        domain = h.dt;
-        if type(domain) == 1 then
-            var = "z";
-        elseif domain == "c" then
-            var = "s";
-        elseif domain == "d" then
-            var = "z";
-        end
-        if domain == [] then
-            var = "s";
-            if type(h.D) == 2 then
-                var = varn(h.D);
-            end
-        end
-        s = poly(0, var);
+
         msg = _("%s: Wrong value for input argument #%d: Evaluation failed.\n")
         try K = horner(h*s^alpha, 0); catch error(msprintf(msg, "bode_asymp")); end
 

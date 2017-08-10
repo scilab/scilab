@@ -4,7 +4,7 @@
         <refpurpose>Move a palette from a category to another one.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             xcosPalMove(source, target);
         </synopsis>

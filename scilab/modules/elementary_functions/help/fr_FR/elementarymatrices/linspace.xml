@@ -1,32 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="linspace" xml:lang="fr">
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * Copyright (C) 2016 - Samuel GOUGEON
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="linspace" xml:lang="fr">
     <refnamediv>
         <refname>linspace</refname>
-        <refpurpose>vecteur de valeurs équidistantes</refpurpose>
+        <refpurpose>suite de nombres équidistants entre 2 bornes atteintes</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Séquence d'appel</title>
-        <synopsis>[v]=linspace(x1,x2 [,n])</synopsis>
+        <title>Syntaxe</title>
+        <synopsis>
+            row = linspace(x1, x2)
+            row = linspace(x1, x2, n)
+            Matrix = linspace(Col1, Col2)
+            Matrix = linspace(Col1, Col2, n)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Paramètres</title>
+        <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>x1,x2</term>
+                <term>x1, x2</term>
                 <listitem>
-                    <para>scalaire réel ou complexe ou vecteur colonne</para>
+                    <para>
+                        Nombres réels ou complexes scalaires : bornes entre
+                        lesquelles les valeurs doivent être générées.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Col1, Col2</term>
+                <listitem>
+                    <para>
+                        Vecteurs colonne de nombres réels ou complexes de même
+                        taille.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>n</term>
                 <listitem>
-                    <para>entier (nombre de valeurs, 100 par défaut)</para>
+                    <para>
+                        Nombre entier. Il précise le nombre de valeurs ou de colonnes à générer entre les deux extrémités (extrémités comprises).
+                        100 par défaut.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>v</term>
+                <term>row</term>
                 <listitem>
-                    <para>vecteur ligne réel ou complexe</para>
+                    <para>
+                        Vecteur ligne de <literal>n</literal> nombres.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Matrix</term>
+                <listitem>
+                    <para>
+                        Matrice à <literal>n</literal> colonnes de nombres.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -34,27 +82,91 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>linspace(x1, x2)</literal> renvoie un vecteur ligne de n
-            valeurs régulièrement espacées entre <literal>x1</literal> et
-            <literal>x2</literal>. Si <literal>x1</literal> ou <literal>x2</literal>
-            sont complexes alors <literal>linspace(x1,x2)</literal> renvoie un vecteur
-            ligne de n valeurs complexes dont les partie réels (resp. imaginaires)
-            sont regulierement espacées entre les partie réels (resp. imaginaires) de
-            x1 et x2.
+            <literal>linspace(x1, x2)</literal>
+            génère un vecteur ligne de <literal>n</literal> valeurs allant
+            exactement de <literal>x1</literal> à <literal>x2</literal> à
+            pas constant.
+        </para>
+        <note>
+            <para>
+                La syntaxe <literal>y1:y2</literal> ou <literal>y1:step:y2</literal>
+                comme <literal>1:0.1:%pi</literal> produit une suite similaire,
+                mais fixe la valeur de départ <literal>y1</literal> et
+                <emphasis role="bold">le pas/incrément</emphasis>.
+                <literal>y2</literal> sert de valeur d'arrêt à ne pas dépasser.
+                La dernière valeur générée peut elle être inférieure,
+                <literal>y2</literal> ne figurant alors pas parmi les valeurs
+                générées.
+            </para>
+            <para>
+                Au lieu de fixer le pas/incrément, <literal>linspace</literal>
+                fixe la seconde borne <literal>x2</literal> à exactement
+                <emphasis role="bold">atteindre</emphasis>, et calcule le pas
+                en conséquence.
+            </para>
+        </note>
+        <para>
+            Si <literal>x1</literal> ou <literal>x2</literal> sont des nombres
+            complexes, <literal>linspace(x1,x2)</literal> interpole alors
+            séparément la partie réelle de <literal>x1</literal> et <literal>x2</literal>,
+            et d'autre part leur partie imaginaire.
+        </para>
+        <para>
+            Si des vecteurs colonnes <literal>Col1</literal> et <literal>Col2</literal>
+            sont fournis, <literal>linspace</literal> est alors appliquée
+            ligne par ligne :
+            La <literal>Matrix</literal> résultante à le même nombre de lignes,
+            et <literal>n</literal> colonnes, avec
+            <literal>Matrix(i,:) = linspace(Col1(i), Col2(i), n)</literal>.
         </para>
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
-linspace(1,2,10)
-linspace(1+1*%i,2+2*%i,10)
+        <programlisting role="example"><![CDATA[
+linspace(1, %pi, 0)         // n = 0
+linspace(1, 2, 10)          // x2 > x1 : suite croissante
+linspace(2, 1, 10)          // x2 < x1 : suite décroissante
+linspace(1+%i, 2-2*%i, 5)      // avec des nombres complexes
+linspace([1:4]', [5:8]', 10)   // avec des colonnes de bornes
  ]]></programlisting>
+        <screen><![CDATA[--> linspace(1, %pi, 0)    // n = 0
+ ans  =
+    []
+
+--> linspace(1, 2, 10)    // x2 > x1 : suite croissante
+ ans  =
+   1.   1.111   1.222   1.333   1.444   1.556   1.667   1.778   1.889   2.
+
+
+--> linspace(2, 1, 10)    // x2 &lt; x1 : suite décroissante
+ ans  =
+   2.   1.889   1.778   1.667   1.556   1.444   1.333   1.222   1.111   1.
+
+
+--> linspace(1+%i, 2-2*%i, 5)      // avec des nombres complexes
+ ans  =
+   1. +i     1.25 +0.25i   1.5 -0.5i   1.75 -1.25i   2. -2.i
+
+
+--> linspace([1:4]', [5:8]', 10)   // avec des colonnes de bornes
+ ans  =
+   1.   1.444   1.889   2.333   2.778   3.222   3.667   4.111   4.556   5.
+   2.   2.444   2.889   3.333   3.778   4.222   4.667   5.111   5.556   6.
+   3.   3.444   3.889   4.333   4.778   5.222   5.667   6.111   6.556   7.
+   4.   4.444   4.889   5.333   5.778   6.222   6.667   7.111   7.556   8.
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>
         <simplelist type="inline">
             <member>
+                <link linkend="colon">colon</link>
+            </member>
+            <member>
                 <link linkend="logspace">logspace</link>
+            </member>
+            <member>
+                <link linkend="grand">grand</link>
             </member>
         </simplelist>
     </refsection>
@@ -65,8 +177,21 @@ linspace(1+1*%i,2+2*%i,10)
                 <revnumber>5.4.0</revnumber>
                 <revremark>
                     <itemizedlist>
-                        <listitem>La fonction linspace accepte les vecteurs colonnes pour les deux premiers arguments d'entrée. Merci à Guillaume AZEMA pour l'implémentation.</listitem>
-                        <listitem>Le troisième argument d'entrée (n) doit être une valeur entière.
+                        <listitem>Des vecteurs colonne de bornes peuvent être utilisées.
+                        </listitem>
+                        <listitem>Le nombre de colonnes générées doit
+                            être obligatoirement un entier.
+                        </listitem>
+                    </itemizedlist>
+                </revremark>
+            </revision>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revremark>
+                    <itemizedlist>
+                        <listitem>linspace(a, b, n&lt;=0) produit [] au lieu de b.
+                        </listitem>
+                        <listitem>Toute borne %inf ou %nan est détectée et rejetée.
                         </listitem>
                     </itemizedlist>
                 </revremark>

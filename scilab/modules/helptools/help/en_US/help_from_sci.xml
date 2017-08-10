@@ -10,14 +10,14 @@
         <refpurpose>Generate help files and demo files from the head comments section of a .sci source file.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             help_from_sci() // generate an empty function template
             helptxt = help_from_sci() // generate an empty function template
             help_from_sci(funname,helpdir) // generate helpdir/funname.xml from funname.sci.
             help_from_sci(dirname,helpdir) // process dirname/*.sci and create helpdir/*.xml help files.
             help_from_sci(dirname,helpdir,demodir) // as above but also creating demodir/*.dem.sce demo files.
-            [helptxt,demotxt]=help_from_sci(funname) // return funname.xml and funname.dem.sce code as two text matrixes.
+            [helptxt,demotxt]=help_from_sci(funname) // return funname.xml and funname.dem.sce code as two text matrices.
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -78,7 +78,7 @@
         </para>
         <para>
             The remaining comments are formatted according to the following (optional) headlines:
-            "Calling Sequence", "Parameters", "Description", "Examples", "See also", "Used functions",
+            "Syntax", "Parameters", "Description", "Examples", "See also", "Used functions",
             "Authors" and "Bibliography".
         </para>
         <para>
@@ -86,7 +86,7 @@
             <itemizedlist>
                 <listitem>
                     <para>
-                        <literal>Calling Sequence</literal> - one example pr. line.
+                        <literal>Syntax</literal> - one example pr. line.
                     </para>
                 </listitem>
                 <listitem>
@@ -133,7 +133,7 @@
 // Open an source code template in the scinotes editor and return its help and demo texts
 [helptxt, demotxt] = help_from_sci()
 
-// From a toolbox root directory a typical calling sequence would be:
+// From a toolbox root directory a typical syntax would be:
 // help_from_sci("macros","help\en_US","demos")
 // This command would process all .sci files in the macros directory
 // and use the head comments section to update all .xml help files in the

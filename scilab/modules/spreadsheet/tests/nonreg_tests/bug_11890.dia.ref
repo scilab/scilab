@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2012 - Scilab Enterprises - Sylvestre Ledru
@@ -16,10 +17,7 @@
 // Wrong parsing with empty char at the end of the line
 //
 content_ref = [ "1;2;3" ..
-"4;5;"]
- content_ref  =
- 
-!1;2;3  4;5;  !
+"4;5;"];
 filename=TMPDIR+"/foo.csv";
 mputl(content_ref,filename);
 content_2=read_csv(filename,";");

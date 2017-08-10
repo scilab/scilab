@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="Rhs" xml:lang="en">
+    <refnamediv>
+        <refname>Rhs (deprecated)</refname>
+        <refpurpose>
+            A C gateway function which provides the number of input
+            arguments present in the calling Scilab function
+            <emphasis role="bold">This function is obsolete.</emphasis>
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>nb_params Rhs</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>nb_params</term>
+                <listitem>
+                    <para>
+                        the number of input arguments present in the calling Scilab
+                        function
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            A C gateway function which provides the number of input arguments
+            present in the calling Scilab function. You must include stack-c.h to
+            benefit from this function.
+        </para>
+        <para>Note: Rhs means Right Hand Side.</para>
+        <para>
+            WARNING: This API is deprecated from Scilab 5.2.0 and is going to be removed with Scilab 6.0. Please use <link linkend="api_scilab">API Scilab</link> (the new Scilab API).
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <para>
+            In this example, the C interface function can take several input
+            arguments and prints in the Scilab console the integer corresponding to
+            the number of input arguments detected in the calling Scilab
+            function.
+        </para>
+        <programlisting role="example"><![CDATA[
+#include <stack-c.h>
+#include <sciprint.h>
+
+int sci_myrhs(char * fname)
+{
+  sciprint("The number of input parameters is %d\n", Rhs);
+
+  return 0;
+}
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="getNbInputArgument">getNbInputArgument</link>
+            </member>
+            <member>
+                <link linkend="getNbOutputArgument">getNbOutputArgument</link>
+            </member>
+            <member>
+                <link linkend="sciprint">sciprint</link>
+            </member>
+            <member>
+                <link linkend="Rhs">Lhs</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

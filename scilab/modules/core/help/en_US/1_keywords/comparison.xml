@@ -5,7 +5,7 @@
         <refpurpose>comparison, relational operators</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             a==b
             a~=b or a&lt;&gt;b
@@ -22,10 +22,10 @@
                 <term>a</term>
                 <listitem>
                     <para>
-                        any type of variable for <literal>a==b</literal>, <literal>a~=b</literal> 
+                        any type of variable for <literal>a==b</literal>, <literal>a~=b</literal>
                         <literal>a&lt;&gt;b</literal> equality comparisons and restricted to real floating point and integer
                         array for order related comparisons <literal>a&lt;b</literal>,
-                        <literal>a&lt;=b</literal>, <literal>a&gt;b</literal>, <literal>a&gt;=b</literal>. 
+                        <literal>a&lt;=b</literal>, <literal>a&gt;b</literal>, <literal>a&gt;=b</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -33,7 +33,7 @@
                 <term>b</term>
                 <listitem>
                     <para>
-                        any type of variable for <literal>a==b</literal>, <literal>a~=b</literal> 
+                        any type of variable for <literal>a==b</literal>, <literal>a~=b</literal>
                         <literal>a&lt;&gt;b</literal> equality  comparisons and restricted to
                         real floating point and integer arrays for order related comparisons
                         <literal>a&lt;b</literal>, <literal>a&lt;=b</literal>,
@@ -85,7 +85,7 @@
                         </listitem>
                         <listitem>
                             <para>
-                                If <literal>a</literal> and <literal>b</literal> evaluates as arrays 
+                                If <literal>a</literal> and <literal>b</literal> evaluates as arrays
                                 with same types, but <literal>a</literal> or <literal>b</literal> is a scalar,
                                 then the scalar is compared with each element of the
                                 other array. The result is an array of booleans of the size of
@@ -132,10 +132,10 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //element wise comparisons
 (1:5)==3
-(1:5)<=4 
+(1:5)<=4
 (1:5)<=[1 4 2 3 0]
 1<[]
 list(1,2,3)~=list(1,3,3)
@@ -161,7 +161,7 @@ p/poly(1,'s','c')==0
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="less">less</link>

@@ -38,9 +38,8 @@ ierr=execstr("mfile2sci("""+MFILE+""","""+TMPDIR+""")","errcatch")
   Conversion of M-tree: Done
   Macro to tree conversion: Done
   ****** End of mfile2sci() session ******
- ierr  =
- 
-    0.  
+ ierr  = 
+    0.
 if ierr<>0 then bugmes();quit;end
 // TEST2: commas OK without spaces
 MFILECONTENTS=["function [a,b,c,d]=bug2341";
@@ -65,9 +64,8 @@ ierr=execstr("mfile2sci("""+MFILE+""","""+TMPDIR+""")","errcatch")
   Conversion of M-tree: Done
   Macro to tree conversion: Done
   ****** End of mfile2sci() session ******
- ierr  =
- 
-    0.  
+ ierr  = 
+    0.
 if ierr<>0 then bugmes();quit;end
 // TEST3: commas OK with spaces before
 MFILECONTENTS=["function [a  ,b ,c   ,d]=bug2341";

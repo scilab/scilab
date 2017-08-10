@@ -3,11 +3,14 @@
 # Copyright (C) INRIA   - 2006 - Sylvestre Ledru
 # Copyright (C) DIGITEO - 2009 - Pierre MARECHAL
 #
-# This file must be used under the terms of the CeCILL.
-# This source file is licensed as described in the file COPYING, which
-# you should have received as part of this distribution.  The terms
-# are also available at
-# http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+# Copyright (C) 2012 - 2016 - Scilab Enterprises
+#
+# This file is hereby licensed under the terms of the GNU GPL v2.0,
+# pursuant to article 5.3.4 of the CeCILL v.2.1.
+# This file was originally licensed under the terms of the CeCILL v2.1,
+# and continues to be available under such terms.
+# For more information, see the COPYING file which you should have received
+# along with this program.
 #
 
 
@@ -93,8 +96,7 @@ GATEWAY_C_SOURCES = \
 
 GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sci_system_getproperty.cpp \
-    sci_gateway/cpp/sci_system_setproperty.cpp \
-    sci_gateway/cpp/jvm_gw.cpp
+    sci_gateway/cpp/sci_system_setproperty.cpp
 
 JVM_C_SOURCES = \
     src/c/InitializeJVM.c \
@@ -117,8 +119,7 @@ JVM_C_SOURCES = \
     src/c/getJvmOptions.c
 
 JVM_DISABLE_C_SOURCES = src/nojvm/nojvm.c
-JVM_DISABLE_CPP_SOURCES = src/nojvm/nojvm_gw.cpp
-libscijvm_disable_la_SOURCES = $(JVM_DISABLE_C_SOURCES) $(JVM_DISABLE_CPP_SOURCES)
+libscijvm_disable_la_SOURCES = $(JVM_DISABLE_C_SOURCES)
 
 libscijvm_disable_la_CPPFLAGS = \
     -I$(srcdir)/includes/ \

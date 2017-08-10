@@ -1,11 +1,14 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 // Internal function
 
@@ -142,11 +145,10 @@ function remList = atomsRemoveList(packages,section)
         for j=1:size(this_package_versions,"*")
             for k=1:size(sections,"*")
                 if atomsIsInstalled([package_names(i) this_package_versions(j)],sections(k)) ..
-                    & isempty(find(remList(:,3)+" - "+remList(:,4)+" - "+remList(:,5) == package_names(i)+" - "+this_package_versions(j)+" - "+sections(k))) then
+                    & (remList == [] || isempty(find(remList(:,3)+" - "+remList(:,4)+" - "+remList(:,5) == package_names(i)+" - "+this_package_versions(j)+" - "+sections(k)))) then
                     remList = [ remList ; "-" "U" package_names(i) this_package_versions(j) sections(k) ];
                 end
             end
-
         end
     end
 

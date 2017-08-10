@@ -7,7 +7,7 @@
     <refsection>
         <title>説明</title>
         <para>
-            <literal>while</literal> 構文. 
+            <literal>while</literal> 構文.
             <literal>"end"</literal>で終わる必要があります.
         </para>
         <para>
@@ -44,23 +44,23 @@
                 </para>
             </listitem>
         </itemizedlist>
-       <para>
-	  Scilabプログラミング言語のコード規約に基づき, 以下が推奨されます:
+        <para>
+            Scilabプログラミング言語のコード規約に基づき, 以下が推奨されます:
         </para>
         <itemizedlist>
             <listitem>
                 <para>
-		  各命令を新しい行で開始する.
+                    各命令を新しい行で開始する.
                 </para>
             </listitem>
             <listitem>
                 <para>
-		  1行に複数の命令を記述しない.
+                    1行に複数の命令を記述しない.
                 </para>
             </listitem>
             <listitem>
                 <para>
-		  複合命令は,複数行に分割する.
+                    複合命令は,複数行に分割する.
                 </para>
             </listitem>
         </itemizedlist>
@@ -75,21 +75,19 @@
       end
 ]]></programlisting>
         <para>
-	  以下は推奨されません.
+            以下は推奨されません.
         </para>
         <programlisting role=""><![CDATA[
       i = 0; while i<5 disp("i"); i = i + 1; end
 ]]></programlisting>
-        <para>
-          <warning>
-            警告: 条件付き命令(if while for または select/case)の本文を定義するために使用可能な
-            文字数は 16 k以下とする必要があります.
-          </warning>
-        </para>
+      <warning>
+        条件付き命令(if while for または select/case)の本文を定義するために使用可能な
+        文字数は 16 k以下とする必要があります.
+      </warning>
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 e=1; a=1; k=1;
 while norm(a-(a+e),1) > %eps,
     e=e/2;
@@ -102,19 +100,19 @@ e,k
         <title>参照</title>
         <simplelist type="inline">
             <member>
-                <link linkend="for">for</link>
+                <link linkend="or_op">|, ||</link>
             </member>
             <member>
-                <link linkend="select">select</link>
+                <link linkend="and_op">&amp;, &amp;&amp;</link>
             </member>
             <member>
                 <link linkend="break">break</link>
             </member>
             <member>
-                <link linkend="return">return</link>
+                <link linkend="for">for</link>
             </member>
             <member>
-                <link linkend="pause">pause</link>
+                <link linkend="select">select</link>
             </member>
         </simplelist>
     </refsection>

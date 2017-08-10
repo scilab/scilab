@@ -91,6 +91,20 @@ scs_m.objs(1)=scicos_block(..
                        mlist(["Block","graphics","model","gui","doc"],..
                        mlist(..
                        ["graphics","orig","sz","flip","theta","exprs","pin","pout","pein","peout","gr_i",..
+                       "id","in_implicit","out_implicit"],[90,0],[40,40],%t,0,..
+                       ["1 1";"1 3 5 7 9 11 13 15";"-1";"[]";"[]";"-1 -5";"1 5";"30 30";"20";"0";"";"1"],..
+                       [0;0],[],0,[],..
+                       list("xstringb(orig(1),orig(2),''MScope'',sz(1),sz(2),''fill'')",8),"",["E";"E"],..
+                       []),..
+                       mlist(..
+                       ["model","sim","in","in2","intyp","out","out2","outtyp","evtin","evtout","state",..
+                       "dstate","odstate","rpar","ipar","opar","blocktype","firing","dep_ut","label",..
+                       "nzcross","nmode","equations"],list("scale_cmscope",4),[1;1],[1;1],[1;1],[],[],1,1,[],..
+                       [],[],list(),[1;30;30;-1;1;-5;5],[-1;2;20;-1;-1;-1;-1;1;1;1;3],list(),"c",[],..
+                       [%t,%f],"",0,0,list()),"SCALE_CMSCOPE",list()),..
+                       mlist(["Block","graphics","model","gui","doc"],..
+                       mlist(..
+                       ["graphics","orig","sz","flip","theta","exprs","pin","pout","pein","peout","gr_i",..
                        "id","in_implicit","out_implicit"],[160,0],[40,40],%t,0,..
                        ["1";"4";"1";"-1";"[]";"[600;400]";"-15";"15";"-15";"15";"2"],[0;0],[],0,[],..
                        list(..
@@ -163,6 +177,31 @@ scs_m.objs(1)=scicos_block(..
                        "nzcross","nmode","equations"],list("cscope",4),-1,1,1,[],[],1,1,[],[],[],list(),..
                        [0;-15;15;30],[-1;1;20;1;3;5;7;9;11;13;15;-1;-1;600;400],list(),"c",[],[%t,%f],..
                        "",0,0,list()),"CSCOPE",list()),..
+                       mlist(["Block","graphics","model","gui","doc"],..
+                       mlist(..
+                       ["graphics","orig","sz","flip","theta","exprs","pin","pout","pein","peout","gr_i",..
+                       "id","in_implicit","out_implicit"],[390,0],[40,40],%t,0,..
+                       ["1 3 5 7 9 11 13 15";"-1";"[]";"[600;400]";"-15";"15";"30";"20";"0";"";"1"],0,[],0,..
+                       [],..
+                       list(..
+                       ["thick=xget(''thickness'');xset(''thickness'',2);";
+                       "xrect(orig(1)+sz(1)/10,orig(2)+(1-1/10)*sz(2),sz(1)*8/10,sz(2)*8/10);";
+                       "xx=[orig(1)+sz(1)/5,orig(1)+sz(1)/5;";
+                       "orig(1)+(1-1/4)*sz(1),orig(1)+sz(1)/5];";
+                       "yy=[orig(2)+sz(2)/5,orig(2)+sz(2)/5;";
+                       "orig(2)+sz(2)/5,orig(2)+(1-1/3)*sz(2)];";
+                       "xarrows(xx,yy);";
+                       "t=(0:0.3:2*%pi)'';";
+                       "xx=orig(1)+(1/5+3*t/(10*%pi))*sz(1);";
+                       "yy=orig(2)+(1/4.3+(sin(t)+1)*3/10)*sz(2);";
+                       "xpoly(xx,yy,''lines'');";
+                       "xset(''thickness'',thick)"],8),"","E",[]),..
+                       mlist(..
+                       ["model","sim","in","in2","intyp","out","out2","outtyp","evtin","evtout","state",..
+                       "dstate","odstate","rpar","ipar","opar","blocktype","firing","dep_ut","label",..
+                       "nzcross","nmode","equations"],list("scale_cscope",4),-1,1,1,[],[],1,1,[],[],[],list(),..
+                       [1;-15;15;30],[-1;1;20;1;3;5;7;9;11;13;15;-1;-1;600;400],list(),"c",[],[%t,%f],..
+                       "",0,0,list()),"SCALE_CSCOPE",list()),..
                        mlist(["Block","graphics","model","gui","doc"],..
                        mlist(..
                        ["graphics","orig","sz","flip","theta","exprs","pin","pout","pein","peout","gr_i",..

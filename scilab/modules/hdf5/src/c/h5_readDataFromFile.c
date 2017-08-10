@@ -2,11 +2,14 @@
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2012 - Scilab Enterprises - Antoine ELIAS
 *
-*  This file must be used under the terms of the CeCILL.
-*  This source file is licensed as described in the file COPYING, which
-*  you should have received as part of this distribution.  The terms
-*  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
@@ -275,7 +278,7 @@ int getDatasetInfo(int _iDatasetId, int* _iComplex, int* _iDims, int* _piDims)
     if (_piDims != 0 && *_iDims != 0)
     {
         int i = 0;
-        hsize_t* dims = (hsize_t*)MALLOC(sizeof(hsize_t) * *_iDims);
+        hsize_t* dims = (hsize_t*)MALLOC(sizeof(hsize_t) **_iDims);
         if (H5Sget_simple_extent_dims(space, dims, NULL) < 0)
         {
             FREE(dims);
@@ -537,6 +540,11 @@ int readDoubleComplexMatrix(int _iDatasetId, double *_pdblReal, double *_pdblImg
     getDatasetInfo(_iDatasetId, &iComplex, &iDims, NULL);
     piDims = (int*)MALLOC(sizeof(int) * iDims);
     iSize = getDatasetInfo(_iDatasetId, &iComplex, &iDims, piDims);
+    if (iSize < 0)
+    {
+        FREE(piDims);
+        return -1;
+    }
 
     FREE(piDims);
     //alloc temp array
@@ -1078,10 +1086,6 @@ int getScilabTypeFromDataSet(int _iDatasetId)
     else if (strcmp(pstScilabClass, g_SCILAB_CLASS_STRING) == 0)
     {
         iVarType = sci_strings;
-    }
-    else if (strcmp(pstScilabClass, g_SCILAB_CLASS_BOOLEAN) == 0)
-    {
-        iVarType = sci_boolean;
     }
     else if (strcmp(pstScilabClass, g_SCILAB_CLASS_BOOLEAN) == 0)
     {

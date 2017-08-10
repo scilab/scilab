@@ -2,11 +2,14 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2010 - DIGITEO- Antoine ELIAS
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
@@ -81,27 +84,35 @@ types::Function::ReturnValue sci_macr2tree(types::typed_list &in, int _iRetCount
     types::List* o = new types::List();
     for (auto p : *outputs)
     {
-        o->append(ast::TreeVisitor::createVar(p->getSymbol().getName()));
+        types::List* var = ast::TreeVisitor::createVar(p->getSymbol().getName());
+        o->append(var);
+        var->killMe();
     }
 
     l->append(o);
+    o->killMe();
 
     //inputs
     types::List* i = new types::List();
     for (auto p : *inputs)
     {
-        i->append(ast::TreeVisitor::createVar(p->getSymbol().getName()));
+        types::List* var = ast::TreeVisitor::createVar(p->getSymbol().getName());
+        i->append(var);
+        var->killMe();
     }
 
     l->append(i);
+    i->killMe();
+
     //statement
     ast::TreeVisitor v;
     body->accept(v);
     //add fake return
+    // is deleted with v
     types::List* statement = v.getList();
 
     types::TList* funcall = new types::TList();
-    types::String* sf = new String(1, 4);
+    types::String* sf = new types::String(1, 4);
     sf->set(0, L"funcall");
     sf->set(1, L"rhs");
     sf->set(2, L"name");
@@ -113,13 +124,15 @@ types::Function::ReturnValue sci_macr2tree(types::typed_list &in, int _iRetCount
     funcall->append(new types::Double(0));
 
     statement->append(funcall);
+    funcall->killMe();
 
     statement->append(v.getEOL());
 
-    l->append(v.getList());
+    l->append(statement);
+
     //nb lines
     l->append(new types::Double(macro->getLastLine() - macro->getFirstLine() + 1));
     out.push_back(l);
-    statement->killMe();
+
     return types::Function::OK;
 }

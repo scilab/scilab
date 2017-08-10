@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"   xml:lang="fr" xml:id="wigner">
+    <refnamediv>
+        <refname>wigner</refname>
+        <refpurpose>'time-frequency' wigner spectrum</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[tab]=wigner(x,h,deltat,zp)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>tab</term>
+                <listitem>
+                    <para>wigner spectrum (lines correspond to the time variable)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>analyzed signal</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>h</term>
+                <listitem>
+                    <para>data window</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>deltat</term>
+                <listitem>
+                    <para>analysis time increment (in samples)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>zp</term>
+                <listitem>
+                    <para>
+                        length of FFT's. <literal>%pi/zp</literal> gives the frequency increment.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            function which computes the 'time-frequency' wigner
+            spectrum of a signal.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Sample</title>
+        <scilab:image>
+            a=[488^2 488 1;408^2 408 1;568^2 568 1];
+            b=[1.28;0;0];
+            x=a\b;
+            t=408:568;
+            p=x'*[t.*t;t;ones(t)];
+            u=[0*ones(408:487) ones(488:568)];
+            s=p.*sin(2*%pi/16*t+u*%pi);
+            s=[0*ones(0:407) s 0*ones(569:951)];
+            h=ones(1,64);
+            w=wigner(s,h,12,128);
+            scf();
+            plot3d(1:69,1:64,abs(w(1:69,1:64)));
+        </scilab:image>
+    </refsection>
+
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+a=[488^2 488 1;408^2 408 1;568^2 568 1];
+b=[1.28;0;0];
+x=a\b;
+t=408:568;
+p=x'*[t.*t;t;ones(t)];
+// unit step function
+u=[0*ones(408:487) ones(488:568)];
+// finite duration sinusoid
+s=p.*sin(2*%pi/16*t+u*%pi);
+// signal to be analyzed
+s=[0*ones(0:407) s 0*ones(569:951)];
+// 64-point rectangular window
+h=ones(1,64);
+// wigner spectrum
+w=wigner(s,h,12,128);
+scf();
+plot3d(1:69,1:64,abs(w(1:69,1:64)));
+ ]]></programlisting>
+    </refsection>
+
+</refentry>

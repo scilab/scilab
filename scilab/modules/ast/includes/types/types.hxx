@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2008-2010 - DIGITEO - Bruno JOFRET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -112,47 +115,57 @@ public :
     }
 
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring        getTypeStr()
+    virtual std::wstring        getTypeStr() const
     {
         return L"generictype";
     }
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring        getShortTypeStr()
+    virtual std::wstring        getShortTypeStr() const
     {
         return L"";
     }
 
-    virtual InternalType*       clone(void)
+    virtual GenericType*        clone(void)
     {
         return NULL;
     }
 
-    virtual bool                resize(int* /*_piDims*/, int /*_iDims*/)
-    {
-        return false;
-    }
-
-    virtual bool                resize(int /*_iNewRows*/, int /*_iNewCols*/)
-    {
-        return false;
-    }
-
-    virtual bool                reshape(int* /*_piDims*/, int /*_iDims*/)
-    {
-        return false;
-    }
-
-    virtual bool                reshape(int /*_iNewRows*/, int /*_iNewCols*/)
-    {
-        return false;
-    }
-
-    virtual InternalType*       insert(typed_list* /*_pArgs*/, InternalType* /*_pSource*/)
+    virtual GenericType*        resize(int* /*_piDims*/, int /*_iDims*/)
     {
         return NULL;
     }
 
-    virtual bool                extract(const std::wstring & /*name*/, InternalType *& /*out*/)
+    virtual GenericType*        resize(int /*_iNewRows*/, int /*_iNewCols*/)
+    {
+        return NULL;
+    }
+
+    virtual GenericType*        reshape(int* /*_piDims*/, int /*_iDims*/)
+    {
+        return NULL;
+    }
+
+    virtual GenericType*        reshape(int /*_iNewRows*/, int /*_iNewCols*/)
+    {
+        return NULL;
+    }
+
+    virtual GenericType*        insert(typed_list* /*_pArgs*/, InternalType* /*_pSource*/)
+    {
+        return NULL;
+    }
+
+    virtual GenericType*        insertNew(typed_list* /*_pArgs*/)
+    {
+        return NULL;
+    }
+
+    virtual GenericType*        remove(typed_list* /*_pArgs*/)
+    {
+        return NULL;
+    }
+
+    virtual bool                extract(const std::wstring& /*name*/, InternalType *& /*out*/)
     {
         return false;
     }

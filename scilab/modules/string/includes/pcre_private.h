@@ -3,11 +3,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Cong WU
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -36,8 +39,8 @@ typedef enum
 } pcre_error_code;
 
 
-STRING_IMPEXP pcre_error_code pcre_private(char *INPUT_LINE, char *INPUT_PAT, int *Output_Start, int *Output_End, char*** _pstCapturedString, int* _piCapturedStringCount);
-STRING_IMPEXP pcre_error_code wide_pcre_private(wchar_t *INPUT_LINE, wchar_t *INPUT_PAT, int *Output_Start, int *Output_End, wchar_t*** _pstCapturedString, int* _piCapturedStringCount);
+STRING_IMPEXP pcre_error_code pcre_private(const char *INPUT_LINE, const char *INPUT_PAT, int *Output_Start, int *Output_End, char*** _pstCapturedString, int* _piCapturedStringCount);
+STRING_IMPEXP pcre_error_code wide_pcre_private(const wchar_t *INPUT_LINE, const wchar_t *INPUT_PAT, int *Output_Start, int *Output_End, wchar_t*** _pstCapturedString, int* _piCapturedStringCount);
 
 #endif /* __PCRE_PRIVATE_H__ */
 /*------------------------------------------------------------------------*/

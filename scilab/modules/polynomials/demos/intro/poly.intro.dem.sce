@@ -31,7 +31,7 @@ p3=poly(myroots,"x","roots")
 mymatrix=[6 -11 6;1 0 0;0 1 0]
 p4=poly(mymatrix,"x")
 // 2. Algebraic manipulations
-// We can can process simple algebraic computations
+// We can process simple algebraic computations
 // with the polynomials, considered as basic objects.
 p5 = p1+p2
 p6 = p1-p2

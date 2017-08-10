@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="pt" xml:id="linmeq">
+    <refnamediv>
+        <refname>linmeq</refname>
+        <refpurpose>Sylvester and Lyapunov equations solver</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[X(,sep)] = linmeq(task,A,(B,)C,flag,trans(,schur))</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>task</term>
+                <listitem>
+                    <para>integer option to determine the equation type:</para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>=1</term>
+                            <listitem>
+                                <para> solve the Sylvester equation (1a) or (1b);</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>=2</term>
+                            <listitem>
+                                <para> solve the Lyapunov equation (2a) or (2b);</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>=3</term>
+                            <listitem>
+                                <para>solve for the Cholesky factor op(X) the Lyapunov equation (3a) or (3b).</para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>A</term>
+                <listitem>
+                    <para>real matrix</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>B</term>
+                <listitem>
+                    <para>real matrix</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>C</term>
+                <listitem>
+                    <para>real matrix</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flag</term>
+                <listitem>
+                    <para>(optional) integer vector of length 3 or 2 containing options.</para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>task</term>
+                            <listitem>
+                                <para>= 1 : flag has length 3</para>
+                                <variablelist>
+                                    <varlistentry>
+                                        <term>flag(1)</term>
+                                        <listitem>
+                                            <para>= 0 : solve the continuous-time equation (1a); otherwise, solve the discrete-time equation (1b).</para>
+                                        </listitem>
+                                    </varlistentry>
+                                    <varlistentry>
+                                        <term>flag(2)  </term>
+                                        <listitem>
+                                            <para>= 1 : A is (quasi) upper triangular;</para>
+                                        </listitem>
+                                    </varlistentry>
+                                    <varlistentry>
+                                        <term>flag(2)  </term>
+                                        <listitem>
+                                            <para>= 2 : A is upper Hessenberg;</para>
+                                        </listitem>
+                                    </varlistentry>
+                                    <varlistentry>
+                                        <term>otherwise</term>
+                                        <listitem>
+                                            <para>A is in general form.</para>
+                                        </listitem>
+                                    </varlistentry>
+                                    <varlistentry>
+                                        <term>flag(3)  </term>
+                                        <listitem>
+                                            <para>= 1 : B is (quasi) upper triangular;</para>
+                                        </listitem>
+                                    </varlistentry>
+                                    <varlistentry>
+                                        <term>flag(3)  </term>
+                                        <listitem>
+                                            <para>= 2 : B is upper Hessenberg;</para>
+                                        </listitem>
+                                    </varlistentry>
+                                    <varlistentry>
+                                        <term>otherwise,  </term>
+                                        <listitem>
+                                            <para>B is in general form.</para>
+                                        </listitem>
+                                    </varlistentry>
+                                </variablelist>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>task</term>
+                            <listitem>
+                                <para>= 2 : flag has length 2</para>
+                                <variablelist>
+                                    <varlistentry>
+                                        <term>flag(1)</term>
+                                        <listitem>
+                                            <para>if 0 solve continuous-time equation
+                                                (2a), otherwise, solve discrete-time equation (2b).
+                                            </para>
+                                        </listitem>
+                                    </varlistentry>
+                                    <varlistentry>
+                                        <term>flag(2) </term>
+                                        <listitem>
+                                            <para>= 1 : A is (quasi) upper triangular     otherwise, A is in general form.</para>
+                                        </listitem>
+                                    </varlistentry>
+                                </variablelist>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>task</term>
+                            <listitem>
+                                <para>= 3 : flag has length 2</para>
+                                <variablelist>
+                                    <varlistentry>
+                                        <term>flag(1)  </term>
+                                        <listitem>
+                                            <para>= 0 : solve continuous-time equation (3a); otherwise, solve discrete-time equation (3b).</para>
+                                        </listitem>
+                                    </varlistentry>
+                                    <varlistentry>
+                                        <term>flag(2)  </term>
+                                        <listitem>
+                                            <para>= 1 : A is (quasi) upper triangular; otherwise, A is in general form.</para>
+                                        </listitem>
+                                    </varlistentry>
+                                </variablelist>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                    <para>
+                        Default:    flag(1) = 0, flag(2) = 0 (, flag(3) = 0).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>trans</term>
+                <listitem>
+                    <para>(optional) integer specifying a transposition option.</para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>0 : solve the equations (1) - (3) with op(M) = M.</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>1 : solve the equations (1) - (3) with op(M) = M'.</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>2 : solve the equations (1) with op(A) = A';  op(B) = B;</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>3 : solve the equations (1) with op(A) = A;   op(B) = B'.</para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                    <para>
+                        Default:    trans = 0.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>schur</term>
+                <listitem>
+                    <para>(optional) integer specifying whether the Hessenberg-Schur or Schur method should be used. Available for task = 1.</para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>= 1 : Hessenberg-Schur method (one matrix is reduced</term>
+                            <listitem>
+                                <para>to Schur form).</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>= 2 : Schur method (two matrices are reduced to Schur</term>
+                            <listitem>
+                                <para>form).</para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                    <para>
+                        Default:    schur = 1.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>X</term>
+                <listitem>
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sep</term>
+                <listitem>
+                    <para>(optional) estimator of Sep(op(A),-op(A)') for (2.a) or Sepd(A,A') for (2.b).</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            linmeq  function for solving Sylvester and Lyapunov equations
+            using SLICOT routines SB04MD, SB04ND, SB04PD, SB04QD,
+            SB04RD, SB03MD, and SB03OD.
+        </para>
+        <programlisting role=""><![CDATA[
+    [X] = linmeq(1,A,B,C,flag,trans,schur)
+[X,sep] = linmeq(2,A,C,flag,trans)
+    [X] = linmeq(2,A,C,flag,trans)
+    [X] = linmeq(3,A,C,flag,trans)
+ ]]></programlisting>
+        <para>
+            linmeq solves various Sylvester and Lyapunov matrix equations:
+        </para>
+        <programlisting role=""><![CDATA[
+op(A)*X + X*op(B) = C,                           (1a)
+
+op(A)*X*op(B) + X = C,                           (1b)
+
+op(A)'*X + X*op(A) = C,                          (2a)
+
+op(A)'*X*op(A) - X = C,                          (2b)
+
+op(A)'*(op(X)'*op(X)) + (op(X)'*op(X))*op(A) =
+                      -  op(C)'*op(C),           (3a)
+
+op(A)'*(op(X)'*op(X))*op(A) - op(X)'*op(X) =
+                            - op(C)'*op(C),      (3b)
+ ]]></programlisting>
+        <para>
+            where op(M) = M, or M'.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Comments</title>
+        <variablelist>
+            <varlistentry>
+                <term>1.</term>
+                <listitem>
+                    <para>For equation (1a) or (1b), when schur = 1, the Hessenberg-Schur
+                        method is used, reducing one matrix to Hessenberg form and the other
+                        one to a real Schur form. Otherwise, both matrices are reduced to real
+                        Schur forms. If one or both matrices are already reduced to
+                        Schur/Hessenberg forms, this could be specified by flag(2) and
+                        flag(3). For general matrices, the Hessenberg-Schur method could be
+                        significantly more efficient than the Schur method.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>2.</term>
+                <listitem>
+                    <para>For equation (2a) or (2b), matrix C is assumed symmetric.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>3.</term>
+                <listitem>
+                    <para>For equation (3a) or (3b), matrix A must be stable or convergent, respectively.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>4.</term>
+                <listitem>
+                    <para>For equation (3a) or (3b), the computed matrix X is the Cholesky factor of the solution, i.e., the real solution is op(X)'*op(X), where X is an upper triangular matrix.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Revisions</title>
+        <para>
+            V. Sima, Katholieke Univ. Leuven, Belgium, May 1999, May, Sep. 2000. V. Sima, University of Bucharest, Romania, May 2000.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+//(1a)
+n=40;m=30;
+A=rand(n,n);C=rand(n,m);B=rand(m,m);
+X = linmeq(1,A,B,C);
+norm(A*X+X*B-C,1)
+//(1b)
+flag=[1,0,0]
+X = linmeq(1,A,B,C,flag);
+norm(A*X*B+X-C,1)
+//(2a)
+A=rand(n,n);C=rand(A);C=C+C';
+X = linmeq(2,A,C);
+norm(A'*X + X*A -C,1)
+//(2b)
+X = linmeq(2,A,C,[1 0]);
+norm(A'*X*A -X-C,1)
+//(3a)
+A=rand(n,n);
+A=A-(max(real(spec(A)))+1)*eye(); //shift eigenvalues
+C=rand(A);
+X=linmeq(3,A,C);
+norm(A'*X'*X+X'*X*A +C'*C,1)
+//(3b)
+A = [-0.02, 0.02,-0.10, 0.02,-0.03, 0.12;
+      0.02, 0.14, 0.12,-0.10,-0.02,-0.14;
+     -0.10, 0.12, 0.05, 0.03,-0.04,-0.04;
+      0.02,-0.10, 0.03,-0.06, 0.08, 0.11;
+     -0.03,-0.02,-0.04, 0.08, 0.14,-0.07;
+      0.12,-0.14,-0.04, 0.11,-0.07, 0.04]
+
+C=rand(A);
+X=linmeq(3,A,C,[1 0]);
+norm(A'*X'*X*A - X'*X +C'*C,1)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="sylv">sylv</link>
+            </member>
+            <member>
+                <link linkend="lyap">lyap</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

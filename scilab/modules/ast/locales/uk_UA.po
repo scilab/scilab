@@ -1,0 +1,456 @@
+# Ukrainian translation for scilab
+# Copyright (c) 2015 Rosetta Contributors and Canonical Ltd 2015
+# This file is distributed under the same license as the scilab package.
+#
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2015.
+# Yuri Chornoivan <yurchor@ukr.net>, 2015.
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2015-08-17 11:20+0100\n"
+"PO-Revision-Date: 2017-01-09 20:03+0000\n"
+"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
+"Language-Team: Ukrainian <uk@li.org>\n"
+"Language: uk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 18315)\n"
+
+msgid "Warning :\n"
+msgstr "Попередження:\n"
+
+#, c-format
+msgid "matrix is close to singular or badly scaled. rcond = %1.4E\n"
+msgstr "матриця близька до виродженої або погано масштабована. rcond = %1.4E\n"
+
+msgid "computing least squares solution. (see lsq).\n"
+msgstr "обчислюємо розв’язок методом найменших квадратів. (див. lsq).\n"
+
+#, c-format
+msgid "debugger stop on breakpoint(%d) in function %ls line %d\n"
+msgstr ""
+"засіб діагностики зупинив виконання на точці зупинки (%d) у функції %ls, "
+"рядок %d\n"
+
+msgid "Execution aborted.\n"
+msgstr "Виконання перервано.\n"
+
+#, c-format
+msgid "debugger stop on error in file %ls line %d\n"
+msgstr ""
+"засіб діагностики зупинив виконання на повідомленні про помилку у файлі %ls, "
+"рядок %d\n"
+
+#, c-format
+msgid "debugger stop on error in function %ls line %d\n"
+msgstr ""
+"засіб діагностики зупинив виконання на помилці у функції %ls, рядок %d\n"
+
+msgid "Leave debugger.\n"
+msgstr "Полишити засіб діагностики.\n"
+
+#, c-format
+msgid "Undefined variable: %s\n"
+msgstr "Невизначена змінна: %s\n"
+
+msgid "inconsistent row/column dimensions\n"
+msgstr "несумісні розмірності за рядками або стовпчиками\n"
+
+msgid "/!\\ Unmanaged FieldExp.\n"
+msgstr "/!\\ Некероване FieldExp.\n"
+
+msgid "Attempt to reference field of non-structure array.\n"
+msgstr "Спроба посилання на поле неструктурованого масиву.\n"
+
+msgid "Not yet implemented in Scilab.\n"
+msgstr "Ще не реалізовано у Scilab.\n"
+
+msgid "Invalid index.\n"
+msgstr "Некоректний індекс.\n"
+
+msgid "Redefining permanent variable.\n"
+msgstr "Повторне визначення незмінної змінної.\n"
+
+msgid "for expression can only manage 1 or 2 dimensions variables\n"
+msgstr "для виразу можливе керування лише одно- або двовимірними змінними\n"
+
+msgid "for expression : Wrong type for loop iterator.\n"
+msgstr "для виразу: помилковий тип ітератора циклу.\n"
+
+#, c-format
+msgid "%s: function is disabled in debug mode.\n"
+msgstr "%s: функцію вимкнено у діагностичному режимі.\n"
+
+msgid "With input arguments, return / resume expects output arguments.\n"
+msgstr ""
+"Разом із вхідними параметрами return / resume має бути передано вихідні "
+"параметри.\n"
+
+#, c-format
+msgid "%ls: Can not transpose multiple elements.\n"
+msgstr "%ls: не можна транспонувати декілька елементів одразу.\n"
+
+#, c-format
+msgid ""
+"It is not possible to redefine the %s primitive this way (see clearfun).\n"
+msgstr ""
+"Повторне визначення примітива %s у цей спосіб неможливе (див. clearfun).\n"
+
+#, c-format
+msgid "%ls: Wrong type for argument %d: Real scalar expected.\n"
+msgstr ""
+"%ls: помилковий тип параметра %d: мало бути вказано дійсне числове "
+"значення.\n"
+
+#, c-format
+msgid "Recursion limit reached (%d).\n"
+msgstr "Перевищено обмеження на рекурсію (%d).\n"
+
+msgid "Unknown expression"
+msgstr "Невідомий вираз"
+
+msgid "Error in overload function: "
+msgstr "Помилка у перевантаженій функції: "
+
+msgid "Wrong insertion : use extraction with {} only on a Cell."
+msgstr ""
+"Помилкове вставлення: використання видобування з {} можливе лише для Cell."
+
+msgid "Unable to insert multiple item in a Struct."
+msgstr "Не можна вставляти кратний запис до структури."
+
+msgid "Unable to insert multiple item in a List."
+msgstr "Не можна вставляти кратний запис до List."
+
+msgid "Wrong insertion."
+msgstr "Помилкове вставлення."
+
+msgid "Wrong insertion in a Cell."
+msgstr "Помилкове вставлення до Cell."
+
+#, c-format
+msgid "Wrong insertion: insertion in output of '%s' is not allowed.\n"
+msgstr "Помилкове вставлення: вставлення виведеного «%s» заборонено.\n"
+
+msgid "Wrong insertion : Cannot insert without arguments."
+msgstr "Помилкове вставлення: вставлення без аргументів неможливе."
+
+msgid "Unexpected redefinition of Scilab function."
+msgstr "Неочікуване перевизначення функції Scilab."
+
+msgid "Submatrix incorrectly defined.\n"
+msgstr "Помилково визначена підматриця.\n"
+
+msgid "Wrong insertion: A Cell expected: use {...} instead of (...).\n"
+msgstr ""
+"Помилкове вставлення: мало бути Cell: скористайтеся {...} замість (...).\n"
+
+msgid "Inconsistent row/column dimensions.\n"
+msgstr "Несумісне співвідношення рядки/стовпчики.\n"
+
+msgid ""
+"operation +: Warning adding a matrix with the empty matrix old behaviour.\n"
+msgstr ""
+"дія +: попередження: додавання матриці і порожньої матриці у застарілій "
+"формі.\n"
+
+msgid ""
+"operation +: Warning adding a matrix with the empty matrix will give an "
+"empty matrix result.\n"
+msgstr ""
+"операція +: попередження: додавання матриці до порожньої матриці дає порожню "
+"матрицю.\n"
+
+msgid "variables don't have the same formal variable"
+msgstr "у змінних немає спільної формальної змінної"
+
+#, c-format
+msgid ""
+"Error: operator %ls: Matrix dimensions must agree (op1 is %ls, op2 is %ls).\n"
+msgstr ""
+"Помилка: оператор %ls: розмірності матриць має бути узгоджено (операнд 1 має "
+"розмірність %ls, а операнд 2 — %ls).\n"
+
+msgid "With NaN or Inf a division by scalar expected.\n"
+msgstr "З NaN або Inf має бути ділення на число.\n"
+
+msgid "Division by zero...\n"
+msgstr "Ділення на нуль…\n"
+
+msgid "Warning : Division by zero...\n"
+msgstr "Попередження: ділення на нуль…\n"
+
+#, c-format
+msgid "Operator / : Error %d not yet managed.\n"
+msgstr "Оператор /: помилка %d у цій версії ще не є керованою.\n"
+
+msgid "Warning : division by zero...\n"
+msgstr "Попередження: ділення на нуль…\n"
+
+msgid "Bad value in the left or right operand.\n"
+msgstr "Помилкове значення лівого або правого операнда.\n"
+
+msgid "Bad size for left or right operand.\n"
+msgstr "Помилкова розмірність лівого або правого операнда.\n"
+
+msgid "Bad value in the left operand.\n"
+msgstr "Помилкове значення лівого операнда.\n"
+
+msgid "With NaN or Inf a left division by scalar expected.\n"
+msgstr "З NaN або Inf має бути ліве ділення на число.\n"
+
+msgid "Left division by zero...\n"
+msgstr "Ліве ділення на нуль…\n"
+
+msgid "Warning : Left division by zero...\n"
+msgstr "Попередження: ліве ділення на нуль…\n"
+
+#, c-format
+msgid "Operator \\ : Error %d not yet managed.\n"
+msgstr "Оператор \\: помилка %d у цій версії ще не є керованою.\n"
+
+msgid "Invalid exponent: expected real exponents.\n"
+msgstr "Некоректний степінь: степінь має бути дійсним.\n"
+
+msgid "Invalid exponent.\n"
+msgstr "Некоректний показник.\n"
+
+msgid ""
+"operation -: Warning adding a matrix with the empty matrix old behaviour.\n"
+msgstr ""
+"дія -: попередження: додавання матриці і порожньої матриці у застарілій "
+"формі.\n"
+
+msgid ""
+"operation -: Warning adding a matrix with the empty matrix will give an "
+"empty matrix result.\n"
+msgstr ""
+"операція -: попередження: додавання матриці до порожньої матриці дає порожню "
+"матрицю.\n"
+
+#, c-format
+msgid "%ls: Cannot open file %ls.\n"
+msgstr "%ls: не вдалося відкрити файл %ls.\n"
+
+msgid "Error: "
+msgstr "Помилка: "
+
+msgid "Your variables are:"
+msgstr "Вашими змінними є:"
+
+#, c-format
+msgid " using %10d elements out of  %10d.\n"
+msgstr " на основі %10d елементів з %10d.\n"
+
+#, c-format
+msgid " and   %10d variables out of %10d.\n"
+msgstr " і %10d змінних з %10d.\n"
+
+msgid "Your global variables are:"
+msgstr "Вашими загальними змінними є:"
+
+#, c-format
+msgid ""
+"Warning : redefining function: %s. Use funcprot(0) to avoid this message"
+msgstr ""
+"Попередження: перевизначення функції %s. Скористайтеся funcprot(0), щоб "
+"програма не показувала більше цього повідомлення."
+
+msgid "in builtin "
+msgstr "у вбудованій "
+
+#, c-format
+msgid "at line % 5d of function "
+msgstr "у рядку %5d функції "
+
+#, c-format
+msgid "at line % 5d of executed string "
+msgstr "у рядку %5d виконуваного рядка "
+
+#, c-format
+msgid "at line % 5d of executed file "
+msgstr "у рядку %5d виконуваного файла "
+
+msgid "line"
+msgstr "рядок"
+
+msgid "Cannot find Windows temporary directory (1)."
+msgstr "Не вдалося визначити тимчасовий каталог Windows (1)."
+
+msgid "Error"
+msgstr "Помилка"
+
+#, c-format
+msgid "Impossible to create : %s"
+msgstr "Не вдалося створити: %s"
+
+#, c-format
+msgid "Error: Could not resolve symbolic link %s\n"
+msgstr "Помилка: не вдалося визначити прив’язку символічного посилання %s\n"
+
+#, c-format
+msgid "Error: Could not find %s\n"
+msgstr "Помилка: не вдалося знайти %s\n"
+
+#, c-format
+msgid "Error: Could not create %s: %s\n"
+msgstr "Помилка: не вдалося створити %s: %s\n"
+
+#, c-format
+msgid "Scilab '%s' function disabled in -nogui or -nwni mode.\n"
+msgstr "Функцію Scilab «%s» вимкнено у режимах -nogui і -nwni.\n"
+
+#, c-format
+msgid ""
+"%s: Library name must not be empty\n"
+"."
+msgstr ""
+"%s: назва бібліотеки має бути непорожньою\n"
+"."
+
+#, c-format
+msgid "An error has been detected while loading %s: %s\n"
+msgstr "Під час завантаження %s було виявлено помилку: %s\n"
+
+#, c-format
+msgid "Impossible to load %s library\n"
+msgstr "Не вдалося завантажити бібліотеку %s\n"
+
+#, c-format
+msgid "Impossible to load %s function in %s library: %s\n"
+msgstr "Не вдалося завантажити функцію %s у бібліотеці %s: %s\n"
+
+#, c-format
+msgid "Functions files location : %s.\n"
+msgstr "Розташування файлів функції: %s.\n"
+
+#, c-format
+msgid "Unknown field : %ls.\n"
+msgstr "Невідоме поле: %ls.\n"
+
+msgid "Unable to insert multiple item in a list.\n"
+msgstr "Не можна вставляти кратний запис до списку.\n"
+
+msgid "Index out of bounds.\n"
+msgstr "Індекс поза припустимими межами.\n"
+
+msgid "Wrong number of input arguments: This function has no input argument.\n"
+msgstr ""
+"Помилкова кількість вхідних параметрів: для функції не передбачено вхідних "
+"параметрів\n"
+
+msgid "Wrong number of input arguments.\n"
+msgstr "Помилкова кількість параметрів.\n"
+
+#, c-format
+msgid "List element number %d is Undefined.\n"
+msgstr "Елемент списку із номером %d є невизначеним.\n"
+
+#, c-format
+msgid "Undefined variable '%s' in function '%s'.\n"
+msgstr "Невизначена змінна «%s» у функції «%s».\n"
+
+#, c-format
+msgid "Unable to open : %s.\n"
+msgstr "Не вдалося відкрити: %s\n"
+
+#, c-format
+msgid ""
+"Warning : please rename your overloaded function\n"
+" \"%s\" to \"%s\"\n"
+msgstr ""
+"Попередження: будь ласка, перейменуйте вашу перевантажену функцію\n"
+" «%s» на «%s»\n"
+
+#, c-format
+msgid "check or define function %s for overloading.\n"
+msgstr "перевірте або визначте перевантаження функції %s.\n"
+
+msgid "Undefined operation for the given operands.\n"
+msgstr "Невизначена операція над вказаними операндами.\n"
+
+#, c-format
+msgid "  check arguments or define function %s for overloading.\n"
+msgstr "  перевірте параметри або визначте перевантаження функції %s.\n"
+
+msgid "Function not defined for given argument type(s),\n"
+msgstr "Функцію не визначено для вказаних типів параметрів,\n"
+
+msgid "Input arguments should have the same formal variable name.\n"
+msgstr "Вхідні параметри повинні мати ту саму формальну назву змінної.\n"
+
+#, c-format
+msgid "Can not allocate negative size (%d).\n"
+msgstr "Не можна отримувати від’ємний обсяг пам’яті (%d).\n"
+
+#, c-format
+msgid "Can not allocate %.2f MB memory.\n"
+msgstr "Не вдалося отримати %.2f МБ пам’яті.\n"
+
+msgid "Unable to insert multiple item in a struct.\n"
+msgstr "Не можна вставляти кратний запис до структури.\n"
+
+msgid "Assignment between unlike types is not allowed.\n"
+msgstr "Присвоювання значень між різними типами заборонено.\n"
+
+msgid "Can not allocate data.\n"
+msgstr "Не вдалося розмістити дані.\n"
+
+#, c-format
+msgid "Field \"%ls\" does not exists\n"
+msgstr "Поля «%ls» не існує\n"
+
+#, c-format
+msgid "variable size exceeded : less than %d expected.\n"
+msgstr "перевищено розмірність змінної: мало бути менше за %d.\n"
+
+#, c-format
+msgid "%s: Could not find '%s': Please check that macros have been built.\n"
+msgstr "%s: не вдалося знайти «%s». Переконайтеся, що макрос було зібрано.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer matrix expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: мало бути вказано матрицю з цілих "
+"значень.\n"
+
+msgid "Invalid exponent: expected real exponents."
+msgstr "Некоректний степінь: степінь має бути дійсним."
+
+msgid "Division by zero"
+msgstr "Ділення на нуль"
+
+#, c-format
+msgid "%s: Argument #%d: Square matrix expected.\n"
+msgstr "%s: параметр №%d: мала бути квадратна матриця.\n"
+
+msgid "Not implemented"
+msgstr "Не реалізовано"
+
+msgid "Invalid exponent"
+msgstr "Некоректний степінь"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
+"квадратну матрицю.\n"
+
+#, c-format
+msgid "%s: Unable to diagonalize.\n"
+msgstr "%s: не вдалося діагоналізувати.\n"
+
+msgid "Not implemented in scilab...\n"
+msgstr "Не реалізовано у scilab…\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати скалярний "
+"тип.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
+msgstr "%s: помилковий тип вхідного параметра №%d: мало бути ціле число.\n"

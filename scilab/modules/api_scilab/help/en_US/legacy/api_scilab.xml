@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010  - DIGITEO - Sylvestre LEDRU
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="api_scilab_legacy" scilab:needs-examples="no" xml:lang="en">
+    <refnamediv>
+        <refname>api_scilab</refname>
+        <refpurpose>api_scilab is the Scilab interface to read/write data from/to Scilab memory </refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>Since Scilab 5.2.0, Scilab provides a consistent, documented and easy way API.
+        </para>
+        <para>This API provides functions to read/write data from/to Scilab memory.</para>
+        <para>It provides many advantages:</para>
+        <itemizedlist>
+            <listitem>
+                <para>Management of all Scilab data types</para>
+            </listitem>
+            <listitem>
+                <para>Consistency over all data types</para>
+            </listitem>
+            <listitem>
+                <para>Error management</para>
+            </listitem>
+            <listitem>
+                <para>Fully documented</para>
+            </listitem>
+            <listitem>
+                <para>Fully tested by unitary tests</para>
+            </listitem>
+            <listitem>
+                <para>
+                    Straight and named access (See the <link linkend="call_scilab">call_scilab API</link>) to variables.
+                </para>
+            </listitem>
+            <listitem>
+                <para>And it will be maintained over future versions of Scilab</para>
+            </listitem>
+        </itemizedlist>
+        <para>Usually, this API is used to extend Scilab capabilities but can be used in other contexts</para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    Libraries or C/C++ functions: Many libraries have been developed on the free/Open source or proprietary markets. This library can be loaded and used in a high level language like Scilab. API Scilab provides the capabilities to interact with such libraries.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Scilab can be used as computing engine from a third party software. This feature is called <link linkend="call_scilab">call_scilab</link> when Scilab is used from C/C++ code or  <link linkend="javasci">javasci</link> when used from Java. Access to variable is done through their names (named variable).
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>Note that old APIs (stackX.h) will not be available after Scilab 6.0 (included).</para>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revdescription>
+                    Add some functions/macros in replacement of stack functions/macros
+                    <itemizedlist>
+                        <listitem>
+                            nbInputArgument
+                            <para>
+                                Replaces <literal>Rhs</literal>
+                            </para>
+                        </listitem>
+                        <listitem>
+                            nbOutputArgument
+                            <para>
+                                Replaces <literal>Lhs</literal>
+                            </para>
+                        </listitem>
+                        <listitem>
+                            AssignOutputVariable
+                            <para>
+                                Replaces <literal>LhsVar</literal>
+                            </para>
+                        </listitem>
+                        <listitem>
+                            ReturnArguments
+                            <para>
+                                Replaces <literal>PutLhsVar</literal>
+                            </para>
+                        </listitem>
+                        <listitem>
+                            CheckInputArgument
+                            <para>
+                                Replaces <literal>CheckRhs</literal>
+                            </para>
+                        </listitem>
+                        <listitem>
+                            CheckOutputArgument
+                            <para>
+                                Replaces <literal>CheckLhs</literal>
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                    <para>
+                        Add functions to identify list datatypes:
+                        <literal>isListType</literal>, <literal>isNamedListType</literal>, <literal>isTListType</literal>, <literal>isNamedTListType</literal>, <literal>isMListType</literal>,
+                        <literal>isNamedMListType</literal>
+                    </para>
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revdescription>
+                    Add functions to manage handles
+                    <itemizedlist>
+                        <listitem>getMatrixOfHandle</listitem>
+                        <listitem>allocMatrixOfHandle</listitem>
+                        <listitem>createMatrixOfHandle</listitem>
+                        <listitem>isHandleType</listitem>
+                        <listitem>getScalarHandle</listitem>
+                        <listitem>createScalarHandle</listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+    <refsection>
+        <title>See also - API_Scilab</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="boolean_reading_API">boolean reading API</link>,
+            </member>
+            <member>
+                <link linkend="boolean_writing_API">boolean writing API</link>,
+            </member>
+            <member>
+                <link linkend="bsparse_reading_API">boolean sparse reading API</link>,
+            </member>
+            <member>
+                <link linkend="bsparse_writing_API">boolean sparse writing API</link>,
+            </member>
+            <member>
+                <link linkend="Common_getvaraddr_API">Common getvaraddr API</link>,
+            </member>
+            <member>
+                <link linkend="Common_getvardimension_API">Common getvardimension API</link>,
+            </member>
+            <member>
+                <link linkend="Common_getvartype_API">Common getvartype API</link>,
+            </member>
+            <member>
+                <link linkend="Common_iscomplex_API">Common iscomplex API</link>,
+            </member>
+            <member>
+                <link linkend="Common_isvarmatrixtype_API">Common isvarmatrixtype API</link>,
+            </member>
+            <member>
+                <link linkend="Double_management_reading_API">Double management reading API</link>,
+            </member>
+            <member>
+                <link linkend="Double_management_writing_API">Double management writing API</link>,
+            </member>
+            <member>
+                <link linkend="Integer_management_reading_API">Integer management reading API</link>,
+            </member>
+            <member>
+                <link linkend="Integer_management_writing_API">Integer management writing API</link>,
+            </member>
+            <member>
+                <link linkend="int_getmatrixofintegerprecision_API">getmatrixofintegerprecision API</link>,
+            </member>
+            <member>
+                <link linkend="Pointer_reading_API">Pointer reading API</link>,
+            </member>
+            <member>
+                <link linkend="Pointer_writing_API">Pointer writing API</link>,
+            </member>
+            <member>
+                <link linkend="poly_getpolyvariablename_API">poly getpolyvariablename API</link>,
+            </member>
+            <member>
+                <link linkend="Polynomial_management_reading_API">Polynomial management reading API</link>,
+            </member>
+            <member>
+                <link linkend="Polynomial_management_writing_API">Polynomial management writing API</link>,
+            </member>
+            <member>
+                <link linkend="Sparse_management_reading_API">Sparse management reading API</link>,
+            </member>
+            <member>
+                <link linkend="Sparse_management_writing_API">Sparse management writing_API</link>,
+            </member>
+            <member>
+                <link linkend="String_management_reading_API">String management reading API</link>,
+            </member>
+            <member>
+                <link linkend="String_management_writing_API">String management writing API</link>
+            </member>
+            <member>
+                <link linkend="handle_reading_API">handle reading API</link>,
+            </member>
+            <member>
+                <link linkend="handle_writing_API">handle writing API</link>,
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>See also - API_Scilab list management</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="list_boolean_reading_API">list boolean reading API</link>
+            </member>
+            <member>
+                <link linkend="list_boolean_writing_API">list boolean writing API</link>
+            </member>
+            <member>
+                <link linkend="list_bsparse_reading_API">list boolean sparse reading API</link>
+            </member>
+            <member>
+                <link linkend="list_bsparse_writing_API">list boolean sparse writing API</link>
+            </member>
+            <member>
+                <link linkend="list_createlist_API">list_createlist API</link>
+            </member>
+            <member>
+                <link linkend="list_double_reading_API">list double reading API</link>
+            </member>
+            <member>
+                <link linkend="list_double_writing_API">list double writing API</link>
+            </member>
+            <member>
+                <link linkend="list_getlistitemaddress_API">list getlistitemaddress API</link>
+            </member>
+            <member>
+                <link linkend="list_getlistitemnumber_API">list getlistitemnumber API</link>
+            </member>
+            <member>
+                <link linkend="list_integer_reading_API">list integer reading API</link>
+            </member>
+            <member>
+                <link linkend="list_integer_writing_API">list integer writing API</link>
+            </member>
+            <member>
+                <link linkend="list_pointer_reading_API">list pointer reading API</link>
+            </member>
+            <member>
+                <link linkend="list_pointer_writing_API">list pointer writing API</link>
+            </member>
+            <member>
+                <link linkend="list_poly_reading_API">list poly reading API</link>
+            </member>
+            <member>
+                <link linkend="list_poly_writing_API">list poly writing API</link>
+            </member>
+            <member>
+                <link linkend="list_sparse_reading_API">list sparse reading API</link>
+            </member>
+            <member>
+                <link linkend="list_sparse_writing_API">list sparse writing API</link>
+            </member>
+            <member>
+                <link linkend="list_string_reading_API">list string reading API</link>
+            </member>
+            <member>
+                <link linkend="list_string_writing_API">list string writing API</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>See also - call_scilab</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="call_scilab">Call_Scilab</link>
+            </member>
+            <member>
+                <link linkend="compile_and_run_call_scilab">Compile and run with call_scilab</link>
+            </member>
+            <member>
+                <link linkend="DoubleManagement_callscilab">Matrix Management</link>
+            </member>
+            <member>
+                <link linkend="BooleanManagement_callscilab">Boolean Management</link>
+            </member>
+            <member>
+                <link linkend="ComplexManagement_callscilab">Complex Management</link>
+            </member>
+            <member>
+                <link linkend="StringManagement_callscilab">String Management</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

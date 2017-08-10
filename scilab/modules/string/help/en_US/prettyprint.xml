@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ *
+ * This help file was generated from prettyprint.sci using help_from_sci().
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="prettyprint" xml:lang="en">
+    <refnamediv>
+        <refname>prettyprint</refname>
+        <refpurpose>From any Scilab datatype and provide a representation to the TeX, LaTeX or MathML formats</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>
+            str = prettyprint(a) // Show the variable a with the default format (LaTeX)
+            str = prettyprint(a, exportFormat) // Show the variable a with the specified format
+            str = prettyprint(a, exportFormat, delim) // As above but change the delimiter
+            str = prettyprint(a, exportFormat, delim, processByElement) // As above but process each element independently
+            str = prettyprint(a,exportFormat, delim, processByElement, isWrapped) // As above Add the special keyword of Tex or LaTeX export
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>a</term>
+                <listitem>
+                    <para> is a Scilab variable</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>exportFormat</term>
+                <listitem>
+                    <para> is the format, if omitted 'latex' is used by default,
+                        it can be 'latex', 'tex' or 'mathml'.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>delimiter</term>
+                <listitem>
+                    <para> is a string indicating the delimiter to use for the
+                        resulting matrix, it's only used if isWrapped is true. The
+                        delimiter can be '(', '{', '[', '|', '||' or ')'
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>processByElement</term>
+                <listitem>
+                    <para> is a boolean to indicate if the resulting matrix must
+                        be converted into a single string.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>isWrapped</term>
+                <listitem>
+                    <para> is a boolean to indicate if the result must be wrapped
+                        inside delimiters ('$' for latex and tex or nothing for
+                        mathml) to be used with xstring or xtitle
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>str</term>
+                <listitem>
+                    <para> the representation of the variable a</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Taking a variable, the prettyprint function will provide a formated representation of it.
+            Formats can be TeX, LaTeX or MathML.
+            They can be used in third party applications but also within Scilab with the most of the
+            <link linkend="math_rendering_features_in_graphic">Scilab graphic features</link>.
+            The following types are handled by this function:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>Real / Complex matrices</para>
+            </listitem>
+            <listitem>
+                <para>Polynomial types</para>
+            </listitem>
+            <listitem>
+                <para>Boolean</para>
+            </listitem>
+            <listitem>
+                <para>Integer</para>
+            </listitem>
+            <listitem>
+                <para>String</para>
+            </listitem>
+            <listitem>
+                <para>Tlist</para>
+            </listitem>
+            <listitem>
+                <para>Rational</para>
+            </listitem>
+            <listitem>
+                <para>Cell</para>
+            </listitem>
+        </itemizedlist>
+        <para/>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+str = prettyprint(rand(3,3)) // Return the LaTeX representation of a 3,3 matrix
+xstring(0.2,0.2,str) // Show the representation in a graphic Windows
+
+prettyprint(rand(3,4),"mathml") // Return the MathML representation of a 3,4 matrix
+prettyprint(rand(3,4),"mathml","[") // Return the MathML representation of a 3,4 matrix with '[' as delimiter
+
+s=poly(0,'s'); G=[1,s;1+s^2,3*s^3];
+xstring(0.2,0.2,prettyprint(G*s-1)); // Show a polynomial through a LaTeX representation
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="math_rendering_features_in_graphic">math_rendering_features_in_graphic</link>
+            </member>
+            <member>
+                <link linkend="xtitle">xtitle</link>
+            </member>
+            <member>
+                <link linkend="axes_properties">axes_properties</link>
+            </member>
+            <member>
+                <link linkend="label_properties">label_properties</link>
+            </member>
+            <member>
+                <link linkend="legend_properties">legend_properties</link>
+            </member>
+            <member>
+                <link linkend="sci2exp">sci2exp</link>
+            </member>
+            <member>
+                <link linkend="text_properties">text_properties</link>
+            </member>
+            <member>
+                <link linkend="xstringb">xstringb</link>
+            </member>
+            <member>
+                <link linkend="xstringl">xstringl</link>
+            </member>
+            <member>
+                <link linkend="xstring">xstring</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

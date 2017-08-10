@@ -5,11 +5,14 @@
  * Copyright (C) 2008 - 2009 - INRIA - Michael Baudin
  * Copyright (C) 2010 - 2011 - DIGITEO - Michael Baudin
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="optim" xml:lang="en">
@@ -18,10 +21,10 @@
         <refpurpose>non-linear optimization routine</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             fopt = optim(costf, x0)
-            fopt = optim(costf [,&lt;contr&gt;],x0 [,algo] [,df0 [,mem]] [,work] [,&lt;stop&gt;] [,&lt;params&gt;] [,imp=iflag])
+            fopt = optim(costf [,&lt;contr&gt;],x0 [,algo] [,df0 [,mem]] [,work] [,&lt;stop&gt;] [,&lt;params&gt;] [,iprint=iflag])
             [fopt, xopt] = optim(...)
             [fopt, xopt, gopt] = optim(...)
             [fopt, xopt, gopt, work] = optim(...)
@@ -124,8 +127,7 @@
 "ar",nap,iter
 "ar",nap,iter,epsg
 "ar",nap,iter,epsg,epsf
-"ar",nap,iter,epsg,epsf,epsx]]>
-                        </screen>
+"ar",nap,iter,epsg,epsf,epsx]]></screen>
                     </para>
                     <para>where:</para>
                     <variablelist>
@@ -300,10 +302,10 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>"imp=iflag"</term>
+                <term>"iprint=iflag"</term>
                 <listitem>
                     <para>named argument used to set the trace mode (default
-                        <literal>imp=0</literal>, which prints no messages). If <varname>imp</varname>
+                        <literal>iprint=0</literal>, which prints no messages). If <varname>iprint</varname>
                         is greater or equal to 1, more information are printed, depending on the
                         algorithm chosen. More precisely:
                     </para>
@@ -443,7 +445,7 @@
                         </listitem>
                     </itemizedlist>
                     <para>
-                        If <varname>imp</varname> is lower than 0, then the cost function is evaluated every
+                        If <varname>iprint</varname> is lower than 0, then the cost function is evaluated every
                         <varname>-m</varname> iterations, with <literal>ind=1</literal>.
                     </para>
                 </listitem>
@@ -486,7 +488,7 @@
                 <term>iters</term>
                 <listitem>
                     <para>
-                        scalar, the number of iterations that is displayed when <literal>imp=2</literal>.
+                        scalar, the number of iterations that is displayed when <literal>iprint=2</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -495,7 +497,7 @@
                 <listitem>
                     <para>
                         scalar, the number of <literal>cost</literal> function evaluations
-                        that is displayed when <literal>imp=2</literal>.
+                        that is displayed when <literal>iprint=2</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -507,34 +509,34 @@
                         The success flag is <literal>9</literal> and possible values are:
                         <itemizedlist>
                             <listitem>
-                                <literal>err=1</literal>: Norm of projected gradient lower than... 
+                                <literal>err=1</literal>: Norm of projected gradient lower than...
                             </listitem>
                             <listitem>
-                                <literal>err=2</literal>: At last iteration f decreases by less than... 
+                                <literal>err=2</literal>: At last iteration f decreases by less than...
                             </listitem>
                             <listitem>
-                                <literal>err=3</literal>: Optimization stops because of too small variations for x. 
+                                <literal>err=3</literal>: Optimization stops because of too small variations for x.
                             </listitem>
                             <listitem>
-                                <literal>err=4</literal>: Optim stops: maximum number of calls to f is reached. 
+                                <literal>err=4</literal>: Optim stops: maximum number of calls to f is reached.
                             </listitem>
                             <listitem>
-                                <literal>err=5</literal>: Optim stops: maximum number of iterations is reached. 
+                                <literal>err=5</literal>: Optim stops: maximum number of iterations is reached.
                             </listitem>
                             <listitem>
-                                <literal>err=6</literal>: Optim stops: too small variations in gradient direction. 
+                                <literal>err=6</literal>: Optim stops: too small variations in gradient direction.
                             </listitem>
                             <listitem>
-                                <literal>err=7</literal>: Stop during calculation of descent direction. 
+                                <literal>err=7</literal>: Stop during calculation of descent direction.
                             </listitem>
                             <listitem>
-                                <literal>err=8</literal>: Stop during calculation of estimated hessian. 
+                                <literal>err=8</literal>: Stop during calculation of estimated hessian.
                             </listitem>
                             <listitem>
-                                <literal>err=9</literal>: End of optimization, successful completion. 
+                                <literal>err=9</literal>: End of optimization, successful completion.
                             </listitem>
                             <listitem>
-                                <literal>err=10</literal>: End of optimization (linear search fails). 
+                                <literal>err=10</literal>: End of optimization (linear search fails).
                             </listitem>
                         </itemizedlist>
                     </para>
@@ -555,7 +557,7 @@
         </para>
         <screen><![CDATA[
 min f(x)
-binf <= x <= bsup]]>
+binf &lt;= x &lt;= bsup]]>
         </screen>
         <para>
             where <literal>binf</literal> is the lower bound and
@@ -597,7 +599,7 @@ binf <= x <= bsup]]>
                         <literal>costf</literal> argument can be the list
                         <literal>(real_costf, arg1,...,argn)</literal>. In this case,
                         <literal>real_costf</literal>, the first element in the list, must
-                        be a Scilab function with calling sequence:
+                        be a Scilab function with syntax:
                         <screen><![CDATA[
 [f,g,ind]=real_costf(x,ind,arg1,...,argn)]]>
                         </screen>
@@ -605,7 +607,7 @@ binf <= x <= bsup]]>
                         <literal>g</literal>, <literal>ind</literal> arguments have the same
                         meaning as before. In this case, each time the objective function is
                         called back, the arguments <literal>arg1,...,argn</literal> are
-                        automatically appended at the end of the calling sequence of
+                        automatically appended at the end of the syntax of
                         <literal>real_costf</literal>.
                     </para>
                 </listitem>
@@ -645,7 +647,7 @@ real tr(*)]]></screen>
                         <varlistentry>
                             <term>C case</term>
                             <listitem>
-                                <para>The calling sequence of the C function computing the
+                                <para>The syntax of the C function computing the
                                     objective must be:
                                 </para>
                                 <screen>void costf(int *ind, int *n, double *x, double *f, double *g, int *ti, float *tr, double *td)</screen>
@@ -777,14 +779,14 @@ x0 = [1; -1; 1];
 [fopt, xopt, gopt] = optim(cost, "b", [-1; 0; 2], [0.5; 1; 4], x0, "gc", "ar", 3, 100, 1e-6, 1e-6, [1e-3; 1e-3; 1e-3])
 
 // Additional messages are printed in the console.
-[fopt, xopt] = optim(cost, x0, imp = 3)
+[fopt, xopt] = optim(cost, x0, iprint = 3)
 ]]>
         </programlisting>
     </refsection>
     <refsection>
         <title>Example: Print messages</title>
         <para>
-            The <literal>imp</literal> flag may take negative integer values,
+            The <literal>iprint</literal> flag may take negative integer values,
             say k. In that case, the cost function is called once every -k iterations.
             This allows to draw the function value or write a log file.
         </para>
@@ -806,12 +808,12 @@ function [f, g, ind] = cost(x, ind)
 endfunction
 
 x0 = [1; -1; 1];
-[fopt, xopt] = optim(cost, x0, imp = -1)
+[fopt, xopt] = optim(cost, x0, iprint = -1)
 ]]>
         </programlisting>
         <para>The previous script produces the following output.</para>
         <screen><![CDATA[
--->[fopt, xopt] = optim(cost, x0, imp = -1)
+-->[fopt, xopt] = optim(cost, x0, iprint = -1)
 f(x) = 6.5, |g(x)|=3.6055513
 f(x) = 2.8888889, |g(x)|=2.4037009
 f(x) = 9.861D-31, |g(x)|=1.404D-15
@@ -819,15 +821,13 @@ f(x) = 0, |g(x)|=0
 Norm of projected gradient lower than   0.0000000D+00.
 
  xopt  =
-
     1.
     2.
     3.
- fopt  =
 
+ fopt  =
     0.
-]]>
-        </screen>
+]]></screen>
         <para>In the following example, we solve the Rosenbrock test case. For
             each iteration of the algorithm, we plot the current value of x into a 2D
             graph containing the contours of Rosenbrock's function. This allows to see
@@ -867,7 +867,7 @@ plot(x0(1), x0(2), "b.")
 plot(xopt(1), xopt(2), "r*")
 
 // 5. Plot the optimization process, during optimization
-[fopt, xopt] = optim (rosenbrockPlot, x0, imp = -1)
+[fopt, xopt] = optim (rosenbrockPlot, x0, iprint = -1)
 ]]>
         </programlisting>
         <scilab:image>
@@ -876,20 +876,20 @@ plot(xopt(1), xopt(2), "r*")
             g(1) = - 400. * (x(2) - x(1)**2) * x(1) -2. * (1. - x(1))
             g(2) = 200. * (x(2) - x(1)**2)
             endfunction
-            
+
             function f=rosenbrockC(x1, x2)
             x = [x1 x2]
             ind = 4
             [f, g, ind] = rosenbrock (x, ind)
             endfunction
-            
+
             function [f, g, ind]=rosenbrockPlot(x, ind)
             [f, g, ind] = rosenbrock (x, ind)
             if (ind == 1) then
             plot (x(1), x(2), "g.")
             end
             endfunction
-            
+
             x0 = [-1.2 1.0];
             xopt = [1.0 1.0];
             xdata = linspace(-2,2,100);
@@ -897,9 +897,9 @@ plot(xopt(1), xopt(2), "r*")
             contour (xdata, ydata, rosenbrockC, [1 10 100 500 1000])
             plot(x0(1), x0(2), "b.")
             plot(xopt(1), xopt(2), "r*")
-            [fopt, xopt] = optim (rosenbrockPlot, x0, imp = -1)
+            [fopt, xopt] = optim (rosenbrockPlot, x0, iprint = -1)
         </scilab:image>
-        
+
     </refsection>
     <refsection>
         <title>Example: Optimizing with numerical derivatives</title>
@@ -933,8 +933,8 @@ x0 = [-1.2 1.0];
             iterations
         </title>
         <para>
-            The <literal>imp</literal> option can take negative values. If the
-            <literal>imp</literal> is equal to <literal>m</literal> where
+            The <literal>iprint</literal> option can take negative values. If the
+            <literal>iprint</literal> is equal to <literal>m</literal> where
             <literal>m</literal> is a negative integer, then the cost function is
             evaluated every -<literal>m</literal> iterations, with the
             <literal>ind</literal> input argument equal to 1. The following example
@@ -968,7 +968,7 @@ _MYDATA_ = tlist (["MYDATA", "niter", "nfevals"]);
 _MYDATA_.niter = 0;
 _MYDATA_.nfevals = 0;
 
-[f, xopt] = optim(cost, x0, imp=-1);
+[f, xopt] = optim(cost, x0, iprint=-1);
 mprintf ("Number of function evaluations: %d\n", _MYDATA_.nfevals);
 mprintf ("Number of iterations: %d\n", _MYDATA_.niter);
        ]]></programlisting>
@@ -1006,7 +1006,7 @@ b = 2.0;
 c = 3.0;
 d = 4.0;
 costf = list (costfunction, a, b, c, d);
-[fopt, xopt] = optim (costf, x0, imp = 2)
+[fopt, xopt] = optim (costf, x0, iprint = 2)
 ]]>
         </programlisting>
         <para>In complex cases, the cost function may have so many parameters,
@@ -1049,7 +1049,7 @@ parameters.b = b;
 parameters.c = c;
 parameters.d = d;
 costf = list (costfunction, parameters);
-[fopt, xopt] = optim (costf, x0, imp = 2)
+[fopt, xopt] = optim (costf, x0, iprint = 2)
             ]]>
         </programlisting>
         <para>In the following example, the parameters are defined before the
@@ -1067,7 +1067,7 @@ a = 1.0;
 b = 2.0;
 c = 3.0;
 d = 4.0;
-[fopt, xopt] = optim (costfunction, x0, imp = 2)
+[fopt, xopt] = optim (costfunction, x0, iprint = 2)
 ]]>
         </programlisting>
         <para>While the previous example perfectly works, there is a risk that the
@@ -1096,7 +1096,7 @@ a = 1.0;
 b = 2.0;
 c = 3.0;
 d = 4.0;
-[fopt, xopt] = optim (costfunction, x0, imp = 2)
+[fopt, xopt] = optim (costfunction, x0, iprint = 2)
 ]]>
         </programlisting>
         <para>While the previous example perfectly works, there is a risk that the
@@ -1149,11 +1149,10 @@ mprintf("Numerical derivative:[%s]\n", strcat (string(gnd), " "));
             difference between the two gradient is enormous, which shows that the
             wrong formula has been used in the gradient.
         </para>
-        <programlisting role="example"><![CDATA[
+        <screen><![CDATA[
 Exact derivative:[-638 -88]
 Numerical derivative:[-215.6 -88]
-]]>
-        </programlisting>
+]]></screen>
     </refsection>
     <refsection>
         <title>Example: C function</title>
@@ -1171,7 +1170,7 @@ Numerical derivative:[-215.6 -88]
         <programlisting role="example"><![CDATA[
 // External function written in C (C compiler required)
 // write down the C code (Rosenbrock problem)
-C=['#include &lt;math.h&gt;'
+C=['#include <math.h>'
 'double sq(double x)'
 '{ return x*x;}'
 'void rosenc(int *ind, int *n, double *x, double *f, double *g, '
@@ -1182,12 +1181,12 @@ C=['#include &lt;math.h&gt;'
 '  p=td[0];'
 '  if (*ind==2||*ind==4) {'
 '    *f=1.0;'
-'    for (i=1;i&lt;*n;i++)'
+'    for (i=1;i<*n;i++)'
 '      *f+=p*sq(x[i]-sq(x[i-1]))+sq(1.0-x[i]);'
 '  }'
 '  if (*ind==3||*ind==4) {'
 '    g[0]=-4.0*p*(x[1]-sq(x[0]))*x[0];'
-'    for (i=1;i&lt;*n-1;i++)'
+'    for (i=1;i<*n-1;i++)'
 '      g[i]=2.0*p*(x[i]-sq(x[i-1]))-4.0*p*(x[i+1]-sq(x[i]))*x[i]-2.0*(1.0-x[i]);'
 '    g[*n-1]=2.0*p*(x[*n-1]-sq(x[*n-2]))-2.0*(1.0-x[*n-1]);'
 '  }'
@@ -1232,7 +1231,7 @@ F = ['      subroutine rosenf(ind, n, x, f, g, ti, tr, td)'
 '        if(n.gt.2) then'
 '          do i=2,n-1'
 '            g(i)=2.0d0*p*(x(i)-x(i-1)**2)-4.0d0*p*(x(i+1)-x(i)**2)*x(i)'
-'     &amp;           -2.0d0*(1.0d0-x(i))'
+'     &           -2.0d0*(1.0d0-x(i))'
 '          enddo'
 '        endif'
 '        g(n)=2.0d0*p*(x(n)-x(n-1)**2)-2.0d0*(1.0d0-x(n))'
@@ -1284,7 +1283,7 @@ p = 100;
 fortransource = ['      subroutine rosenf(ind,n,x,f,g,izs,rzs,dzs)'
 'C     -------------------------------------------'
 'c     Example of cost function given by a subroutine'
-'c     if n&lt;=2 returns ind=0'
+'c     if n<=2 returns ind=0'
 'c     f.bonnans, oct 86'
 '      implicit double precision (a-h,o-z)'
 '      real rzs(1)'
@@ -1324,7 +1323,7 @@ fortransource = ['      subroutine rosenf(ind,n,x,f,g,izs,rzs,dzs)'
 '        ip1=i+1'
 '        g(i)=2.0d+0*dzs(1)*(x(i)-x(im1)**2)'
 '30      g(i)=g(i) -4.0d+0*dzs(1)*(x(ip1)-x(i)**2)*x(i) - '
-'     &amp;        2.0d+0*(1.0d+0-x(i))'
+'     &        2.0d+0*(1.0d+0-x(i))'
 '      g(n)=2.0d+0*dzs(1)*(x(n)-x(nm1)**2) - 2.0d+0*(1.0d+0-x(n))'
 '      return'
 '      end'];
@@ -1363,7 +1362,7 @@ x0 = 1.2 * ones(1, 5);
             instructions, which allows the compiler to import the "nird"
             symbol.
         </para>
-        <programlisting role="example"><![CDATA[
+        <screen><![CDATA[
 fortransource = ['subroutine rosenf(ind,n,x,f,g,izs,rzs,dzs)'
 'cDEC$ IF DEFINED (FORDLL)'
 'cDEC$ ATTRIBUTES DLLIMPORT:: /nird/'
@@ -1375,7 +1374,7 @@ fortransource = ['subroutine rosenf(ind,n,x,f,g,izs,rzs,dzs)'
 '      implicit double precision (a-h,o-z)'
 [etc...]
 ]]>
-        </programlisting>
+        </screen>
     </refsection>
     <refsection>
         <title>Example: Fortran function with tab saving
@@ -1441,7 +1440,7 @@ fortransource = ['      subroutine rosenf(ind,n,x,f,g,izs,rzs,dzs)'
 '        ip1=i+1'
 '        g(i)=2.0d+0*dzs(1)*(x(i)-x(im1)**2)'
 '30      g(i)=g(i) -4.0d+0*dzs(1)*(x(ip1)-x(i)**2)*x(i) - '
-'     &amp;        2.0d+0*(1.0d+0-x(i))'
+'     &        2.0d+0*(1.0d+0-x(i))'
 '      g(n)=2.0d+0*dzs(1)*(x(n)-x(nm1)**2) - 2.0d+0*(1.0d+0-x(n))'
 '      return'
 '      end'];
@@ -1482,7 +1481,7 @@ xopt = .1*bs;
         </programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="external">external</link>

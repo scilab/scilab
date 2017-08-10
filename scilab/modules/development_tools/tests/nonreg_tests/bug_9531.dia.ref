@@ -13,9 +13,9 @@
 // <-- Short Description -->
 // assert_checkequal fails with mlist
 M_ref=mlist(['V','name','value'],['a','b';'c' 'd'],[1 2; 3 4]);
-M_ref2=M_ref; 
+M_ref2=M_ref;
 assert_checkequal(M_ref, M_ref2);
 //
 M_ref=tlist(['V','name','value'],['a','b';'c' 'd'],[1 2; 3 4]);
-M_ref2=M_ref; 
+M_ref2=M_ref;
 assert_checkequal(M_ref, M_ref2);

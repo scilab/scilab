@@ -1,7 +1,0 @@
-LIBRARY    output_stream_f.dll
-
-
-EXPORTS
-fmt_
-formatnumber_
-prntid_

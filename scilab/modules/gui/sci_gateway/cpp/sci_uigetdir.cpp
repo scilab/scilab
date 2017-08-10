@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Vincent COUVERT
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -70,7 +73,7 @@ int sci_uigetdir(char *fname, void* pvApiCtx)
         }
         else
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
             return 1;
         }
     }
@@ -97,7 +100,7 @@ int sci_uigetdir(char *fname, void* pvApiCtx)
         }
         else
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 2);
             FREE(expandedpath);
             return 1;
         }
@@ -107,18 +110,18 @@ int sci_uigetdir(char *fname, void* pvApiCtx)
     {
         switch (nbInputArgument(pvApiCtx))
         {
-                /* Initial path is given */
+            /* Initial path is given */
             case 1:
                 CallJuigetfileForDirectoryWithInitialdirectory(expandedpath);
                 FREE(expandedpath);
                 break;
-                /* Initial path and title are given */
+            /* Initial path and title are given */
             case 2:
                 CallJuigetfileForDirectoryWithInitialdirectoryAndTitle(expandedpath, title);
                 FREE(expandedpath);
                 freeAllocatedSingleString(title);
                 break;
-                /* Default call with default path and title */
+            /* Default call with default path and title */
             default:
                 CallJuigetfileForDirectoryWithoutInput();
                 break;
@@ -142,6 +145,15 @@ int sci_uigetdir(char *fname, void* pvApiCtx)
         FREE(title);
         Scierror(999, _("%s: A Java exception arisen:\n%s"), fname, e.whatStr().c_str());
         return 1;
+    }
+
+    if (expandedpath)
+    {
+        FREE(expandedpath);
+    }
+    if (title)
+    {
+        FREE(title);
     }
 
     if (nbRow != 0)
@@ -184,7 +196,7 @@ int sci_uigetdir(char *fname, void* pvApiCtx)
     }
 
     AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
-    returnArguments(pvApiCtx);
+    ReturnArguments(pvApiCtx);
     return 0;
 }
 

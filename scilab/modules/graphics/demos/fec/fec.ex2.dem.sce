@@ -17,33 +17,33 @@ function demo_fec_example2()
 
     show_window();
 
-    xset("colormap",jetcolormap(128));
+    curFig.color_map = jetcolormap(128);
 
     drawlater();
     amdbaR(path+"MESH");
     meshvisu();
-    xtitle("a mesh");
+    xtitle("A mesh");
     a=gca();
     a.title.font_size=3;
     drawnow();
 
     //xclick();
-    messagebox("click to continue","modal");
+    messagebox("Click to continue","modal");
 
     clf(curFig,"reset");
     drawlater();
     emc2C(1,6,path+"MESH.VAL");
-    xtitle("display a fem solution");
+    xtitle("Display a fem solution");
     a=gca(); a.title.font_size=3;
     drawnow();
     //xclick();
-    messagebox("click to continue","modal");
+    messagebox("Click to continue","modal");
 
     clf();
     drawlater();
     emc2C(1,6,path+"MESH.VAL",[-2,-2,2,2]);
     emc2V(2,3,6,20,path+"MESH.VAL",[-2,-2,2,2]);
-    xtitle("display a zoom of the solution together with the velocity field");
+    xtitle("Display a zoom of the solution together with the velocity field");
     a=gca();
     a.title.font_size=3;
     drawnow();

@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -20,9 +23,9 @@
 /*--------------------------------------------------------------------------*/
 SIGNAL_PROCESSING_IMPEXP int gw_signal_processing(void);
 /*--------------------------------------------------------------------------*/
-EXTERN_SIGNAL_PROCESSING_GW C_GATEWAY_PROTOTYPE(sci_remez);
-EXTERN_SIGNAL_PROCESSING_GW C_GATEWAY_PROTOTYPE(sci_amell);
-EXTERN_SIGNAL_PROCESSING_GW C_GATEWAY_PROTOTYPE(sci_conv2);
+EXTERN_SIGNAL_PROCESSING_GW STACK_GATEWAY_PROTOTYPE(sci_remez);
+EXTERN_SIGNAL_PROCESSING_GW STACK_GATEWAY_PROTOTYPE(sci_amell);
+EXTERN_SIGNAL_PROCESSING_GW STACK_GATEWAY_PROTOTYPE(sci_conv2);
 #endif /*  __GW_SIGNAL__ */
 /*--------------------------------------------------------------------------*/
 

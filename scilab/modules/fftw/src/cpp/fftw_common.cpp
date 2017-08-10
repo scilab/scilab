@@ -2,18 +2,21 @@
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
 *
-*  This file must be used under the terms of the CeCILL.
-*  This source file is licensed as described in the file COPYING, which
-*  you should have received as part of this distribution.  The terms
-*  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
 #include "fftw_common.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 #include "int.hxx"
+#include "string.hxx"
 
 extern "C"
 {
@@ -62,8 +65,7 @@ types::Function::ReturnValue fftw_common(std::wstring& name, types::typed_list &
 
     if (in[0]->isDouble() == false)
     {
-        ast::ExecVisitor exec;
-        return Overload::generateNameAndCall(name, in, _iRetCount, out, &exec);
+        return Overload::generateNameAndCall(name, in, _iRetCount, out);
     }
 
     //check option, last parameter
@@ -254,7 +256,7 @@ types::Function::ReturnValue common_2args(std::string& name, types::typed_list &
         Scierror(999, _("%s: Cannot allocate more memory.\n"), name.data());
         FREE(gdim.dims);
         FREE(gdim.howmany_dims);
-        return types::Function::OK;
+        return types::Function::Error;
     }
 
     j = 0;
@@ -280,9 +282,10 @@ types::Function::ReturnValue common_2args(std::string& name, types::typed_list &
     {
         FREE(gdim.dims);
         FREE(gdim.howmany_dims);
-        return types::Function::OK;
+        return types::Function::Error;
     }
-
+    FREE(gdim.dims);
+    FREE(gdim.howmany_dims);
     out.push_back(D);
     return types::Function::OK;
 }
@@ -334,6 +337,7 @@ types::Function::ReturnValue common_3args(std::string& name, types::typed_list &
         Scierror(999, _("%s: Wrong type for input argument #%d.\n"), name.data(), 3);
         FREE(gdim.dims);
         FREE(gdim.howmany_dims);
+        return types::Function::Error;
     }
 
     getVarAsDims(in[2], rank, Sel);
@@ -521,6 +525,9 @@ types::Function::ReturnValue common_3args(std::string& name, types::typed_list &
         return types::Function::Error;
     }
 
+    FREE(gdim.dims);
+    FREE(gdim.howmany_dims);
+    FREE(Sel);
     out.push_back(D);
     return types::Function::OK;
 }
@@ -567,6 +574,7 @@ types::Function::ReturnValue common_4args(std::string& name, types::typed_list &
         Scierror(999, _("%s: Wrong type for input argument #%d.\n"), name.data(), 3);
         FREE(gdim.dims);
         FREE(gdim.howmany_dims);
+        return types::Function::Error;
     }
 
     getVarAsDims(in[2], ndims, Dim1);
@@ -607,6 +615,7 @@ types::Function::ReturnValue common_4args(std::string& name, types::typed_list &
         FREE(Dim1);
         FREE(gdim.dims);
         FREE(gdim.howmany_dims);
+        return types::Function::Error;
     }
 
     getVarAsDims(in[3], nincr, Incr);

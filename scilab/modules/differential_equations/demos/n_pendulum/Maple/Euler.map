@@ -100,11 +100,11 @@ end:
 
 time_diff:=proc(phi,q,qd,qdd)
 	local phi_copy,k,diff_phi:
-	# subtitution to specify that q,qd ,qdd depends on time 
+	# substitution to specify that q,qd ,qdd depends on time
 	phi_copy:=phi:
 	phi_copy:=subs(map( xx-> xx=xx(t),[op(q),op(qd)]),phi_copy):
 	diff_phi:=diff(phi_copy,t):
-	# subtitution to come back to our variables 
+	# substitution to come back to our variables
 	diff_phi:=subs(map(xx->diff(xx(t),t)=ttvar(xx),[op(q),op(qd)]),
 			diff_phi):
 	diff_phi:=subs(map(xx->xx(t)=xx,[op(q),op(qd),op(qdd)]),diff_phi):

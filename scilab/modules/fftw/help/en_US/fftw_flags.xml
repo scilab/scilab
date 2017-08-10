@@ -2,20 +2,23 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" 
-          xmlns:xlink="http://www.w3.org/1999/xlink" 
-          xmlns:svg="http://www.w3.org/2000/svg" 
-          xmlns:ns4="http://www.w3.org/1999/xhtml" 
-          xmlns:mml="http://www.w3.org/1998/Math/MathML" 
-          xmlns:db="http://docbook.org/ns/docbook" 
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook"
           xmlns:scilab="http://www.scilab.org" xml:id="fftw_flags" xml:lang="en">
     <refnamediv>
         <refname>fftw_flags</refname>
@@ -23,7 +26,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[a,[S]]=fftw_flags(flag)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -62,12 +65,12 @@
         </para>
         <para>
             <warning>
-                Warning: the default value "FFTW_ESTIMATE" gives generally 
+                Warning: the default value "FFTW_ESTIMATE" gives generally
                 quite efficient plans. Try to change it only if the fft efficiency is
                 really important and you have a lot of similar calls to do.
             </warning>
         </para>
-        
+
         <para>Accepted entries are :</para>
         <itemizedlist>
             <listitem>
@@ -82,7 +85,7 @@
                 <para>FFTW_MEASURE or 0. tells FFTW to find an optimized
                     plan by actually computing several FFTs and measuring their
                     execution time. Depending on your machine, this can take some
-                    time (often a few seconds). 
+                    time (often a few seconds).
                 </para>
             </listitem>
             <listitem>
@@ -90,21 +93,21 @@
                     considers a wider range of algorithms and often produces a
                     “more optimal” plan (especially for large transforms), but at
                     the expense of several times longer planning time (especially
-                    for large transforms). 
+                    for large transforms).
                 </para>
             </listitem>
-            
+
             <listitem>
                 <para>FFTW_EXHAUSTIVE or 8. It is like "FFTW_PATIENT", but
                     considers an even wider range of algorithms, including many
                     that we think are unlikely to be fast, to produce the most
                     optimal plan but with a substantially increased planning
-                    time. 
+                    time.
                 </para>
             </listitem>
         </itemizedlist>
-        
-        
+
+
         <para>Remark : when using FFTW_MEASURE/FFTW_PATIENT/FFTW_EXHAUSTIVE you must
             call fftw twice. (first call for initialization, second and others
             calls for computation)
@@ -112,7 +115,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 A=rand(1, 2^9 + 2^15);
 fftw_forget_wisdom();
 fftw_flags("FFTW_ESTIMATE");
@@ -126,7 +129,7 @@ timer(); y=fft(A); timer() //subsequent similar calls
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="fft">fft</link>

@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009  - DIGITEO - Antoine ELIAS
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="Polynomial_management_writing_API" xml:lang="ja">
+    <refnamediv>
+        <refname>多項式の書き込み (Scilabゲートウェイ)</refname>
+        <refpurpose>
+            ゲートウェイに多項式の行列を書き込む方法.
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <para>入力引数プロファイル:</para>
+        <synopsis>SciErr createMatrixOfPoly(void* _pvCtx, int _iVar, char* _pstVarName, int _iRows, int _iCols, const int* _piNbCoef, const double* const* _pdblReal)</synopsis>
+        <synopsis>SciErr createComplexMatrixOfPoly(void* _pvCtx, int _iVar, char* _pstVarName, int _iRows, int _iCols, const int* _piNbCoef, const double* const* _pdblReal, const double* const* _pdblImg)</synopsis>
+        <para>Named variable profile:</para>
+        <synopsis>SciErr createNamedMatrixOfPoly(void* _pvCtx, const char* _pstName, char* _pstVarName, int _iRows, int _iCols, const int* _piNbCoef, const double* const* _pdblReal)</synopsis>
+        <synopsis>SciErr createNamedComplexMatrixOfPoly(void* _pvCtx, const char* _pstName, char* _pstVarName, int _iRows, int _iCols, const int* _piNbCoef, const double* const* _pdblReal, const double* const* _pdblImg)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>_pvCtx</term>
+                <listitem>
+                    <para>
+                        Scilab環境ポインタ, api_scilab.h により定義された "pvApiCtx"で指定.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_iVar</term>
+                <listitem>
+                    <para>
+                        変数を保存するScilabメモリの位置
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_pstName</term>
+                <listitem>
+                    <para>
+                        "名前指定"関数の場合の変数名.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_pstVarName</term>
+                <listitem>
+                    <para>
+                        多項式の変数名 (Scilab5: 最大4文字)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_iRows</term>
+                <listitem>
+                    <para>
+                        新規変数の行数
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_iCols</term>
+                <listitem>
+                    <para>
+                        新規変数の列数
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piNbCoef</term>
+                <listitem>
+                    <para>
+                        各多項式の係数の数.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_pdblReal</term>
+                <listitem>
+                    <para>
+                        係数の実部を保持する double*の配列のアドレス
+                        (大きさ: _iCols * _iRows)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_pdblImg</term>
+                <listitem>
+                    <para>
+                        係数の虚部を保持する double*の配列のアドレス
+                        (大きさ: _iCols * _iRows)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>SciErr</term>
+                <listitem>
+                    <para>
+                        エラー構造体で,エラーメッセージ履歴と最初のエラー番号を格納します.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>このヘルプはScilab APIにより多項式の行列を処理する方法を示します.</para>
+    </refsection>
+    <refsection>
+        <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/poly_writing_api.c-->
+        <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/poly_writing_api.tst-->
+        <!--Lib_name: poly_writing-->
+        <!--Func_list: write_poly-->
+        <title>ゲートウェイのソース</title>
+        <programlisting role="code_gateway"><![CDATA[
+#include "api_scilab.h"
+int write_poly(char *fname,void* pvApiCtx)
+{
+    SciErr sciErr;
+    //出力変数情報 : 多項式の行列 2 x 4
+    //[ x + 2                   x^2 - 4x + 5    4x^3 - 14x^2 + 18 ;
+    //  2x^3 - 12x^2 + 64       1               8x^5 + 32x^3]
+    int iRows               = 2;
+    int iCols               = 3;
+    //varname "x"
+    char pstVarName[2]      = {"x"};
+    //係数の配列
+    int piNbCoef[6]         = {2,4,3,1,4,6};
+    //データ配列
+    double *pdblReal[6]     = {0};
+    double pdblPoly0[2]     = {2,1};
+    double pdblPoly1[4]     = {64,0,-12,2};
+    double pdblPoly2[3]     = {5,-4,1};
+    double pdblPoly3[1]     = {1};
+    double pdblPoly4[4]     = {18,0,-14,4};
+    double pdblPoly5[6]     = {0,0,0,32,0,8};
+    pdblReal[0]             = pdblPoly0;
+    pdblReal[1]             = pdblPoly1;
+    pdblReal[2]             = pdblPoly2;
+    pdblReal[3]             = pdblPoly3;
+    pdblReal[4]             = pdblPoly4;
+    pdblReal[5]             = pdblPoly5;
+    sciErr = createMatrixOfPoly(pvApiCtx, nbInputArgument(pvApiCtx) + 1, pstVarName, iRows, iCols, piNbCoef, pdblReal);
+    if(sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 0;
+    }
+    //確保された変数を左辺に代入
+    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+    return 0;
+}
+ ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>Scilab テストスクリプト</title>
+        <programlisting role="code_scilab"><![CDATA[
+p_ref = [2 5 18 1 -4 0 0 1 -14 0 0 4 0 0 0 0 0 0;64 1 0 0 0 0 -12 0 0 2 0 32 0 0 0 0 0 8];
+l = list();
+a = write_poly();
+p = coeff(a);
+if or(p <> p_ref) then error("failed"), end
+ ]]></programlisting>
+    </refsection>
+</refentry>

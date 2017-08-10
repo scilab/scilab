@@ -21,7 +21,7 @@
             <varlistentry>
                 <term>c  </term>
                 <listitem>
-                    <para>matrice à trois colonnes. Définition des composantes RVB des nouvelles couleurs 
+                    <para>matrice à trois colonnes. Définition des composantes RVB des nouvelles couleurs
                     </para>
                 </listitem>
             </varlistentry>
@@ -30,7 +30,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>addcolor</literal> ajoute de nouvelles couleurs données dans l'argument <literal>c</literal>. 
+            <literal>addcolor</literal> ajoute de nouvelles couleurs données dans l'argument <literal>c</literal>.
             <literal>c</literal> est une matrice à trois colonnes.
             <literal>[R V B]</literal> <literal>R</literal> est la composante rouge, <literal>V</literal> est la composante verte,
             <literal>B</literal> est la composante bleue. Chaque terme de <literal>c</literal> est un nombre positif inférieur
@@ -40,24 +40,24 @@
             Les indices des nouvelles couleurs sont renvoyés dans <literal>new</literal>.
         </para>
         <para>
-            Si une couleur dans <literal>c</literal> est déjà présente dans la table des couleurs courante, elle n'est pas ajoutée. 
+            Si une couleur dans <literal>c</literal> est déjà présente dans la table des couleurs courante, elle n'est pas ajoutée.
         </para>
     </refsection>
     <refsection>
         <title>Exemple</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 plot3d();
 h = gcf();
 h.color_map = jetcolormap(16);
 addcolor(name2rgb('grey')/255);
   ]]></programlisting>
-        <scilab:image> 
+        <scilab:image>
             plot3d();
             h = gcf();
             h.color_map = jetcolormap(16);
             addcolor(name2rgb('grey')/255);
         </scilab:image>
-        
+
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>

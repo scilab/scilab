@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2015 - Scilab Enterprises - Sylvain GENIN
@@ -53,7 +54,7 @@ assert_checkerror("write(path_double,rand(5,7));", refMsg);
 
 mdelete(path_double);
 
-refMsg = msprintf(_("%s: Wrong type for input argument #%d : A string expected.\n"), "write", 2);
+refMsg = msprintf(_("%s: Wrong type for input argument #%d : string expected.\n"), "write", 2);
 assert_checkerror("write(path_logic,[%t, %f; %f, %f]);", refMsg);
 
 mdelete(path_logic);

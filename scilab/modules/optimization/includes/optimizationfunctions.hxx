@@ -2,17 +2,21 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2013 - DIGITEO - Cedric DELAMARRE
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
 #ifndef __OPTIMIZATIONS_HXX__
 #define __OPTIMIZATIONS_HXX__
 
+#include <vector>
 #include <map>
 #include "dynlib_optimization.h"
 #include "string.hxx"
@@ -46,7 +50,7 @@ class OPTIMIZATION_IMPEXP OptimizationFunctions
 
 public :
 
-    OptimizationFunctions(std::wstring callerName);
+    OptimizationFunctions(const std::wstring& callerName);
     ~OptimizationFunctions();
 
     void setXRows(int);
@@ -108,7 +112,7 @@ class OPTIMIZATION_IMPEXP Optimization
 {
     // differential equation functions
 private :
-    static std::map<__threadId, OptimizationFunctions*> m_mapOptimizationFunctions;
+    static std::vector<OptimizationFunctions*> m_OptimizationFunctions;
 
 public :
     static void addOptimizationFunctions(OptimizationFunctions* _opFunction);

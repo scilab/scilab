@@ -1,14 +1,17 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) INRIA
-c 
-c This file must be used under the terms of the CeCILL.
-c This source file is licensed as described in the file COPYING, which
-c you should have received as part of this distribution.  The terms
-c are also available at    
-c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 c
-      subroutine fprf2(iflag,ntot,nv,io,zero,s2,eps,al,imp,u,eta,mm1,jc,
-     &                 ic,r,a,e,rr,xpr,y,w1,w2)
+c Copyright (C) 2012 - 2016 - Scilab Enterprises
+c
+c This file is hereby licensed under the terms of the GNU GPL v2.0,
+c pursuant to article 5.3.4 of the CeCILL v.2.1.
+c This file was originally licensed under the terms of the CeCILL v2.1,
+c and continues to be available under such terms.
+c For more information, see the COPYING file which you should have received
+c along with this program.
+c
+      subroutine fprf2(iflag,ntot,nv,io,zero,s2,eps,al,iprint,u,eta,mm1,
+     &                 jc,ic,r,a,e,rr,xpr,y,w1,w2)
 c
       implicit double precision (a-h,o-z)
       common /fprf2c/ u1,nc
@@ -46,13 +49,13 @@ C
 C
 C
 C
-C      imp > 5    one prints final information
+C      iprint > 5    one prints final information
 C
 C
-C      imp > 6    one prints information at each iteration
+C      iprint > 6    one prints information at each iteration
 C
 C
-C      imp > 7    one prints also
+C      iprint > 7    one prints also
 C
 C                - at each iteration the choleski matrix
 C                - and the initial information such as (pi,pj) ...
@@ -78,12 +81,12 @@ C
       gama = .99d0
       dzero = 10.d0 * zero
 C                     initial printouts
-      if (imp .gt. 7) call n1fc1o(io,21,nt1,mm1,i3,i4,i5,deps,d2,a,r)
+      if (iprint .gt. 7) call n1fc1o(io,21,nt1,mm1,i3,i4,i5,deps,d2,a,r)
 C
 C                     initial point
 C
  100  if (iflag .ne. 3) goto 110
-      if (imp .gt. 6) call n1fc1o(io,22,nv,i2,i3,i4,jc,d1,d2,d3,d4)
+      if (iprint .gt. 6) call n1fc1o(io,22,nv,i2,i3,i4,jc,d1,d2,d3,d4)
       j0 = nt1
       ps = u1 * (a(nt1)-deps)
       ment = (nt1-1) * mm1
@@ -91,7 +94,7 @@ C
         jk = ment + jc(k)
  103  ps = ps + xpr(k)*r(jk)
       if (ps .lt. s2) goto 107
-      if (imp .gt. 0) call n1fc1o(io,23,i1,i2,i3,i4,i5,d1,d2,d3,d4)
+      if (iprint .gt. 0) call n1fc1o(io,23,i1,i2,i3,i4,i5,d1,d2,d3,d4)
       iflag = 1
       return
  107  nv = nv + 1
@@ -117,7 +120,7 @@ C           initialize with one feasible gradient
         jc(2) = j
  150  continue
       if (jc(2) .gt. 0) goto 160
-      if (imp .gt. 0) call n1fc1o(io,24,i1,i2,i3,i4,i5,d1,d2,d3,d4)
+      if (iprint .gt. 0) call n1fc1o(io,24,i1,i2,i3,i4,i5,d1,d2,d3,d4)
       iflag = 2
       return
  160  j = jc(2)
@@ -135,14 +138,14 @@ C           initialize with one feasible gradient
       xpr(2) = 1.d0
       u1 = 0.d0
       u2 = -r(jj)
-      if (imp .gt. 6) call n1fc1o(io,25,j,i2,i3,i4,i5,d1,d2,d3,d4)
+      if (iprint .gt. 6) call n1fc1o(io,25,j,i2,i3,i4,i5,d1,d2,d3,d4)
 C
 C                 stopping criterion
 C
  200  iterpr = iterpr + 1
-      if (imp .gt. 6) call n1fc1o(io,26,nv,i2,i3,i4,i5,d1,d2,d3,xpr)
+      if (iprint .gt. 6) call n1fc1o(io,26,nv,i2,i3,i4,i5,d1,d2,d3,xpr)
       if (iterpr .le. itmax) goto 205
-      if (imp .gt. 0) call n1fc1o(io,27,i1,i2,i3,i4,i5,d1,d2,d3,d4)
+      if (iprint .gt. 0) call n1fc1o(io,27,i1,i2,i3,i4,i5,d1,d2,d3,d4)
       iflag = 4
       return
  205  s2 = (-deps)*u1 - u2
@@ -208,21 +211,21 @@ C                     now the remaining ones
  280  nc = nc + 1
       nv = nv + 1
       jc(nv) = j0
-      if (imp .gt. 6) call n1fc1o(io,28,j0,i2,i3,i4,i5,s2,sp,d3,d4)
+      if (iprint .gt. 6) call n1fc1o(io,28,j0,i2,i3,i4,i5,s2,sp,d3,d4)
       goto 300
 C         first set of optimality conditions satisfied
  290  if (u1 .ge. (-dble(float(nv)))*dzero) goto 900
       j0 = 1
       nv = nv + 1
       jc(nv) = 1
-      if (imp .gt. 6) call n1fc1o(io,29,i1,i2,i3,i4,i5,s2,u1,d3,d4)
+      if (iprint .gt. 6) call n1fc1o(io,29,i1,i2,i3,i4,i5,s2,u1,d3,d4)
 C
 C               augmenting r
 C
  300  nv1 = nv - 1
       do 305 k = 1,nv1
         if (jc(k) .ne. j0) goto 305
-        if (imp .gt. 0) call n1fc1o(io,30,j0,i2,i3,i4,i5,d1,d2,d3,d4)
+        if (iprint .gt. 0) call n1fc1o(io,30,j0,i2,i3,i4,i5,d1,d2,d3,d4)
         iflag = 3
         return
  305  continue
@@ -261,7 +264,7 @@ C          solving the corral-system
 C
  400  k = k00
       if (k .gt. nv) goto 430
-      if (imp .gt. 7) call n1fc1o(io,31,nv,mm1,i3,i4,i5,d1,d2,rr,r)
+      if (iprint .gt. 7) call n1fc1o(io,31,nv,mm1,i3,i4,i5,d1,d2,rr,r)
  410  j = jc(k)
       ps1 = a(j)
       ps2 = e(j)
@@ -329,7 +332,7 @@ C           interpolating between x and y
         ps = teta*xpr(k) + (1.d0-teta)*y(k)
         if (ps .le. dzero) ps = 0.d0
  570  xpr(k) = ps
-      if (imp .le. 6) goto 600
+      if (iprint .le. 6) goto 600
       ps1 = 0.d0
       ps2 = 0.d0
       do 580 k = 1,nv
@@ -351,7 +354,7 @@ C
       w12s = 0.d0
       l = jc(k0)
       if (l .ne. 1) nc = nc - 1
-      if (imp .gt. 6) call n1fc1o(io,32,k0,l,i3,i4,i5,y(k0),ps1,ps2,d4)
+      if (iprint.gt.6) call n1fc1o(io,32,k0,l,i3,i4,i5,y(k0),ps1,ps2,d4)
       if (k0 .gt. nv) goto 400
       k1 = k0 - 1
       do 620 k = k0,nv
@@ -394,7 +397,7 @@ C
         if (j .ne. 0) al(j) = xpr(k)
  940  continue
       u = u1
-      if (imp .le. 5) return
+      if (iprint .le. 5) return
       call n1fc1o(io,34,nc,nv,i3,i4,jc,s2,sp,u1,d4)
       return
       end

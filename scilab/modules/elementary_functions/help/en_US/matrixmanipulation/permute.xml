@@ -2,36 +2,63 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Farid BELAHCENE
+ * Copyright (C) 2016 - Samuel GOUGEON
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="permute" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="permute" xml:lang="en">
     <refnamediv>
         <refname>permute</refname>
-        <refpurpose>permute the dimensions of an array</refpurpose>
+        <refpurpose>permutes the dimensions of an array</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>y=permute(x,dims)</synopsis>
+        <title>Syntax</title>
+        <synopsis>y = permute(x, dims)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>dims</term>
+                <term>x</term>
                 <listitem>
-                    <para>a scalar or a vector of positive reals.</para>
+                    <para>
+                      an array with any number of dimensions (0, 1, 2, or any number n>2),
+                      of any data type: booleans, integers, decimal real or complex numbers,
+                      polynomials, rationals, array of structures, array of cells.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>x</term>
+                <term>dims</term>
                 <listitem>
-                    <para>a scalar, a vector, a matrix or a multi-array.</para>
+                    <para>
+                      a valid permutation of 1:n>=nmin where n is the number of dimensions of
+                      the desired array, at least as many as  <literal>nmin = ndims(x)</literal>.
+                    </para>
+                    <para>
+                      The dimension <literal>#i</literal> in <literal>y</literal> was the dimension
+                      <literal>#dims(i)</literal> in <literal>x</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>
+                      an array with the contents of <literal>x</literal>,
+                      with identical but permuted sizes.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -39,34 +66,87 @@
     <refsection>
         <title>Description</title>
         <para>
-            Permutes the dimensions of an array according to <varname>dims</varname>.
+            Permutes the dimensions of the array according to <varname>dims</varname>.
         </para>
-        <para>
-            Input argument <varname>dims</varname> must be a valid permutation where dimension <literal>#i</literal> becomes <literal>#dims(i)</literal>.
-        </para>
+        <important>
+             Any trailing dimension of the result <literal>y</literal> that becomes a singleton
+             (has a new size equal to 1, coming from a formerly non trailing singleton dimension)
+             is automatically ignored (squeezed).
+         </important>
+         <note>
+             <literal>permute()</literal> is mainly interesting when dealing with hypermatrices.
+             To only transpose a matrix (permute its rows into columns and vice-versa), the
+             <literal>.'</literal> or <literal>'</literal> operators should be prefered.
+         </note>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-//example 1:
-x=[1 2 3;4 5 6]
-y=permute(x,[2 1])
+// Example 1: A matrix becomes an hypermatrix with one side of size==1
+//            (here the number of rows)
+x = [1 2 3; 4 5 6]
+y = permute(x,[3 1 2])
+ ]]></programlisting>
+    <screen><![CDATA[--> x = [1 2 3; 4 5 6]
+ x  =
+   1.   2.   3.
+   4.   5.   6.
 
-//example 2:
-x=matrix(1:12,[2,3,2])
-y=permute(x,[3 1 2])
+--> y = permute(x,[3 1 2])
+ y  =
+(:,:,1)
+   1.   4.
+(:,:,2)
+   2.   5.
+(:,:,3)
+   3.   6.
+]]></screen>
+        <programlisting role="example"><![CDATA[
+// Example 2: With encoded integers
+x = int8(matrix(1:24, [3 4 2]))
+y = permute(x, [2 3 1])
+ ]]></programlisting>
+    <screen><![CDATA[--> x = int8(matrix(1:24, [3 4 2]))
+ x  =
+(:,:,1)
+  1  4  7  10
+  2  5  8  11
+  3  6  9  12
+(:,:,2)
+  13  16  19  22
+  14  17  20  23
+  15  18  21  24
 
-x = matrix(1:12, [3 2 2])
-y = permute(x, [3 4 1 2])
-// Dimensions are changed according to dims
-// #1=rows    becomes #3=pages
-// #2=columns becomes #4=books
-// #3=pages   becomes #1=rows
-// #4=books   becomes #2=columns
+--> y = permute(x, [2 3 1])
+ y  =
+(:,:,1)
+  1  13
+  4  16
+  7  19
+ 10  22
+(:,:,2)
+  2  14
+  5  17
+  8  20
+ 11  23
+(:,:,3)
+  3  15
+  6  18
+  9  21
+ 12  24
+]]></screen>
+        <programlisting role="example"><![CDATA[
+// Example 3:
+x = matrix(1:8, [2 1 4])
+y = permute(x, [3 1 2]);
+// The dimension 1 was the 3rd: size = 4 = new number of rows
+// The dimension 2 was the 1st: size = 2 = new number of columns
+// The dimension 3 was the 2sd: size = 1 = new number of pages
+y
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="pertrans">pertrans</link>
@@ -75,8 +155,22 @@ y = permute(x, [3 4 1 2])
                 <link linkend="quote">quote</link>
             </member>
             <member>
-                <link linkend="cat">cat</link>
+                <link linkend="ndims">ndims</link>
+            </member>
+            <member>
+                <link linkend="squeeze">squeeze</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    Extension to rationals
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

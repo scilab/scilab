@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Serge Steer
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="newaxes">
@@ -16,9 +19,11 @@
         <refpurpose>Creates a new Axes entity</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>a=newaxes()</synopsis>
-        <synopsis>a=newaxes(h)</synopsis>
+        <title>Syntax</title>
+        <synopsis>
+            a = newaxes()
+            a = newaxes(h)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -26,13 +31,18 @@
             <varlistentry>
                 <term>h</term>
                 <listitem>
-                    <para>a handle, the handle of the parent of the newly created Axes entity (optional).</para>
+                  <para>
+                    Optional handle of the graphic parent of the new axes,
+                    of type <literal>Figure</literal> or
+                    <literal>Uicontrol</literal> of style <literal>Frame</literal>.
+                    By default, the current figure is used.
+                  </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>a</term>
                 <listitem>
-                    <para>a handle, the handle on the newly created Axes entity</para>
+                    <para>Handle on the newly created Axes entity</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -41,36 +51,40 @@
         <title>Description</title>
         <para>
             <literal>newaxes()</literal> is used to create a new <literal>Axes</literal> entity (see
-            <link linkend="graphics_entities">graphics_entities</link>) in the current figure by default. The properties of
-            this entity are inherited from the <literal>default_axes</literal> entity (see
-            <link linkend="gda">gda</link>) 
+            <link linkend="graphics_entities">graphics_entities</link>) in the current figure or in
+            the given figure or uicontrol frame.
         </para>
         <para>
-            <literal>newaxes(h)</literal> creates the axes in the frame <link linkend="uicontrol">uicontrol</link> or figure whose handle is <literal>h</literal>.
+            The properties of this entity are inherited from the <literal>default_axes</literal>
+            entity (see <link linkend="gda">gda</link>)
+        </para>
+        <para>
+            <literal>newaxes(h)</literal> creates the axes in the frame
+            <link linkend="uicontrol">uicontrol</link> or figure whose handle is <literal>h</literal>.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 clf()
-a1=newaxes(); 
-a1.axes_bounds=[0,0,1.0,0.5];
-t=0:0.1:20;
+a1 = newaxes();
+a1.axes_bounds = [0,0,1.0,0.5];
+t = 0:0.1:20;
 plot(t,acosh(t),'r')
-a2=newaxes();
-a2.axes_bounds=[0,0.5,1.0,0.5];
-x=0:0.1:4;
+a2 = newaxes();
+a2.axes_bounds = [0,0.5,1.0,0.5];
+x = 0:0.1:4;
 plot(x,sinh(x))
 legend('sinh')
 
 sca(a1); //make first axes current
-plot(t,asinh(t),'g')
+plot(t, asinh(t), 'g')
 legend(['acosh','asinh'])
  ]]></programlisting>
-<para>
-    The following example uses <literal>newaxes(h)</literal>
-</para>
-<programlisting role="example"><![CDATA[ 
+        <para>
+            The following example uses <literal>newaxes(h)</literal>
+        </para>
+        <programlisting role="example"><![CDATA[
 // Create a new figure
 f = figure("layout", "gridbag", ...
     "toolbar", "none", ...
@@ -104,10 +118,13 @@ title(a_bt, "the exponential");
     ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="subplot">subplot</link>
+            </member>
+            <member>
+                <link linkend="xsetech">xsetech</link>
             </member>
             <member>
                 <link linkend="gda">gda</link>
@@ -116,5 +133,15 @@ title(a_bt, "the exponential");
                 <link linkend="sca">sca</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revdescription>newaxes(h) can target a uicontrol frame or a given figure.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

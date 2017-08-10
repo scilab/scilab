@@ -9,8 +9,6 @@
 
 // CUMSUM block test
 
-loadXcosLibs();
-
 assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/tests/unit_tests/cumsum.zcos"));
 scicos_simulate(scs_m, list());
 
@@ -25,14 +23,15 @@ assert_checkequal(v, cumsum(in, "r"));
 v = cumsum_c.values(:,:,1);
 assert_checkequal(v, cumsum(in, "c"));
 
-// FIXME: to workspace does not handle complex numbers
-//in = complex(ones(4,2), (1:4)' * (1:2));
-//v = cumsumz_m.values(:,:,1);
-//assert_checkequal(v, cumsum(in, "*"));
-//
-//v = cumsumz_r.values(:,:,1);
-//assert_checkequal(v, cumsum(in, "r"));
-//
-//v = cumsumz_c.values(:,:,1);
-//assert_checkequal(v, cumsum(in, "c"));
+//FIXME: to workspace does not handle complex numbers
+if 0 then
+    in = complex(ones(4,2), (1:4)' * (1:2));
+    v = cumsumz_m.values(:,:,1);
+    assert_checkequal(v, cumsum(in, "*"));
 
+    v = cumsumz_r.values(:,:,1);
+    assert_checkequal(v, cumsum(in, "r"));
+
+    v = cumsumz_c.values(:,:,1);
+    assert_checkequal(v, cumsum(in, "c"));
+end

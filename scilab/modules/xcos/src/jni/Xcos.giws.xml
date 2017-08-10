@@ -3,28 +3,21 @@
     <object name="Xcos">
         <method name="xcos" returnType="void" modifier="static">
             <parameter name="file" type="String"/>
-            <parameter name="variable" type="String"/>
+            <parameter name="diagramId" type="long"/>
+        </method>
+        <method name="xcosDiagramToScilab" returnType="void" modifier="static">
+            <parameter name="file" type="String"/>
+            <parameter name="diagramId" type="long"/>
+            <parameter name="exported" type="boolean"/>
         </method>
         <method name="warnCellByUID" returnType="void" modifier="static">
             <parameter name="uids" type="String[]"/>
             <parameter name="message" type="String"/>
         </method>
         <method name="closeXcosFromScilab" returnType="void" modifier="static"/>
-        <method name="xcosDiagramToScilab" returnType="int" modifier="static">
-            <parameter name="xcosFile" type="String"/>
-        </method>
-        <method name="xcosDiagramOpen" returnType="void" modifier="static">
-            <parameter name="UID" type="String[]"/>
-        </method>
-        <method name="xcosDiagramClose" returnType="void" modifier="static">
-            <parameter name="UID" type="String[]"/>
-        </method>
         <method name="addToolsMenu" returnType="void" modifier="static">
             <parameter name="label" type="String"/>
             <parameter name="command" type="String"/>
-        </method>
-        <method name="updateBlock" returnType="void" modifier="static">
-            <parameter name="h5File" type="String"/>
         </method>
         <method name="xcosSimulationStarted" returnType="void" modifier="static">
         </method>

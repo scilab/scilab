@@ -4,11 +4,14 @@
  * Copyright (C) INRIA
  * Copyright (C) DIGITEO - 2012 - Allan CORNET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="overloading" xml:lang="en">
@@ -142,7 +145,7 @@
                     <literal>i</literal>
                 </td>
                 <td>
-                    <literal>int8, int16, int32, uint8, uint16, uint32</literal>
+                    <literal>int8, int16, int32, int64, uint8, uint16, uint32, uint64</literal>
                 </td>
                 <td/>
             </tr>
@@ -234,7 +237,9 @@
                 <td>
                     <literal>hypermat</literal>
                 </td>
-                <td/>
+                <td>Obsolete. Will be removed from Scilab 6.
+                    The code of the hypermat contents must be targeted instead.
+                </td>
             </tr>
             <tr>
                 <td>pointer</td>
@@ -511,19 +516,19 @@
             The overloading function for extraction syntax <literal>b= a(i1,
                 ..., in)
             </literal>
-            has the following calling sequence: <literal>b =
+            has the following syntax: <literal>b =
                 %&lt;type_of_a&gt;_e_(i1, ..., in, a)
             </literal>
         </para>
         <para>
             and the syntax <literal>[x1, .., xm] = a(i1, ..., in)</literal> has
-            the following calling sequence: <literal>[x1, .., xm] =
+            the following syntax: <literal>[x1, .., xm] =
                 %&lt;type_of_a&gt;_e_(i1, ..., in, a)
             </literal>
             .
         </para>
         <para>The overloading function associated to the insertion syntax
-            <literal>a(i1, ..., in) = b</literal> has the following calling sequence:
+            <literal>a(i1, ..., in) = b</literal> has the following syntax:
             <literal>a = %&lt;type_of_b&gt;_i_&lt;type_of_a&gt;(i1, ..., in, b,
                 a)
             </literal>
@@ -560,40 +565,40 @@
     <refsection>
         <programlisting role="example">//DISPLAY
             var = tlist('tab', ['a', 'b'], ['x'; 'y'], rand(2, 2)) // the type of var is 'tab'
-            
+
             typeof(var)
-            
+
             function [] = %tab_p(l)
             disp([[' '; l(3)] [l(2); string(l(4))]])
             endfunction
-            
+
             var // after overloading
         </programlisting>
     </refsection>
     <refsection>
         <programlisting role="example">//OPERATOR
             's' + 1 // it is impossible to add a number to a string
-            
+
             function x = %c_a_s(a, b)
             x = a + string(b);
             endfunction
-            
+
             's' + 1 // after overloading
         </programlisting>
     </refsection>
     <refsection>
         <programlisting role="example">//FUNCTION
             sin('2 * x') // the sin function does not work with a string
-            
+
             function x = %c_sin(a)
             x = 'sin(' + a + ')'
             endfunction
-            
+
             sin('2 * x') // after overloading
         </programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="tlist">tlist</link>

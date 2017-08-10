@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="bilin">
+    <refnamediv>
+        <refname>bilin</refname>
+        <refpurpose>general bilinear transform</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[sl1]=bilin(sl,v)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>sl,sl1</term>
+                <listitem>
+                    <para>
+                        linear systems (<literal>syslin</literal> lists)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>v</term>
+                <listitem>
+                    <para>
+                        real vector with 4 entries (<literal>v=[a,b,c,d]</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Given a linear system in state space form, <literal>sl=syslin(dom,A,B,C,D)</literal>
+            (<literal>syslin</literal> list), <literal>sl1=bilin(sl,v)</literal>  returns in <literal>sl1</literal> a
+            linear system with matrices <literal>[A1,B1,C1,D1]</literal> such that
+            the transfer function <literal>H1(s)=C1*inv(s*eye()-A1)*B1+D1</literal> is
+            obtained from <literal>H(z)=C*inv(z*eye()-A)*B+D</literal> by replacing <literal>z</literal>
+            by <literal>z=(a*s+b)/(c*s+d)</literal>.
+            One has <literal>w=bilin(bilin(w,[a,b,c,d]),[d,-b,-c,a])</literal>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+s=poly(0,'s');z=poly(0,'z');
+w=ssrand(1,1,3);
+wtf=ss2tf(w);v=[2,3,-1,4];a=v(1);b=v(2);c=v(3);d=v(4);
+[horner(wtf,(a*z+b)/(c*z+d)),ss2tf(bilin(w,[a,b,c,d]))]
+clean(ss2tf(bilin(bilin(w,[a,b,c,d]),[d,-b,-c,a]))-wtf)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="horner">horner</link>
+            </member>
+            <member>
+                <link linkend="cls2dls">cls2dls</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

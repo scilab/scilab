@@ -3,12 +3,15 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="mfprintf" xml:lang="ru">
@@ -17,7 +20,7 @@
         <refpurpose>преобразует, форматирует и записывает данные в файл</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>mfprintf(fd, format, a1, ..., an);</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -27,19 +30,19 @@
                 <term>fd</term>
                 <listitem>
                     <para>
-                        скаляр, файловый дескриптор, предоставленный с помощью 
-                        <function>mopen</function> (это положительное число). 
+                        скаляр, файловый дескриптор, предоставленный с помощью
+                        <function>mopen</function> (это положительное число).
                     </para>
                     <para>
-                        Если <varname>fd</varname> равен 0, то перенаправление в 
+                        Если <varname>fd</varname> равен 0, то перенаправление в
                         стандартное устройство вывода сообщений об ошибках (stderr).
                     </para>
                     <para>
-                        Если <varname>fd</varname> равен 6, то перенаправление в 
+                        Если <varname>fd</varname> равен 6, то перенаправление в
                         стандартное устройство вывода (stdout).
                     </para>
                     <para>
-                        УСТАРЕЛО: значение <literal>-1</literal> относится к файлу по 
+                        УСТАРЕЛО: значение <literal>-1</literal> относится к файлу по
                         умолчанию (т. е. последнему открытому файлу).
                     </para>
                 </listitem>
@@ -48,9 +51,9 @@
                 <term>format</term>
                 <listitem>
                     <para>
-                        Scilab-строка, описывающая формат, который нужно использовать для 
-                        записи оставшихся операндов. Операнд <varname>format</varname> 
-                        следует как можно ближе к синтаксису операндов формата 
+                        Scilab-строка, описывающая формат, который нужно использовать для
+                        записи оставшихся операндов. Операнд <varname>format</varname>
+                        следует как можно ближе к синтаксису операндов формата
                         <function>printf</function> в языке C.
                     </para>
                 </listitem>
@@ -79,25 +82,25 @@
             Функция <function>mfprintf</function> является интерфейсом для версии функции <function>fprintf</function> на языке C.
         </para>
         <para>
-            Функция <function>mfprintf</function> записывает форматированные 
-            операнды в файл, указанный файловым дескриптором <varname>fd</varname>. 
-            Операнды аргумента форматируются по управлением операнда      
+            Функция <function>mfprintf</function> записывает форматированные
+            операнды в файл, указанный файловым дескриптором <varname>fd</varname>.
+            Операнды аргумента форматируются по управлением операнда
             <varname>format</varname>.
         </para>
         <para>
-            Эта функция может быть использована для вывода векторов-столбцов чисел и 
-            строковых векторов без явных циклов по элементам. В этом случае функция 
+            Эта функция может быть использована для вывода векторов-столбцов чисел и
+            строковых векторов без явных циклов по элементам. В этом случае функция
             проводит итерации по строкам. Наиболее короткий вектор даёт количество раз, сколько формат будет повторён.
         </para>
         <para>
-            Однородная последовательность параметров одинакового типа может быть 
+            Однородная последовательность параметров одинакового типа может быть
             заменена матрицей.
         </para>
     </refsection>
     <refsection>
         <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
- 
+        <programlisting role="example"><![CDATA[
+
 fd = mopen(TMPDIR+'/text.txt','wt');
 mfprintf(fd,'Привет, %s %d.\n','мир!',1);
 mfprintf(fd,'Привет, %s %d.\n','Scilab',2);

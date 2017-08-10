@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scicos
+ *
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ *
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="scicos_state">
+    <refnamediv>
+        <refname>scicos_state</refname>
+        <refpurpose>Define a state structure</refpurpose>
+    </refnamediv>
+    <refsection id="Module_scicos_state">
+        <title>Module</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="xcos">xcos</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="state_scicos_state">
+        <title>state</title>
+        <para>
+            States of the model, that is, everything than
+            can evolve during the simulation.
+        </para>
+        <para>
+            Type : scilab tlist of type <code>"xcs"</code> with fields :
+            <link linkend="scicos_cpr_state_x">x</link>,
+            <link linkend="scicos_cpr_state_z">z</link>,
+            <link linkend="scicos_cpr_state_oz">oz</link>,
+            <link linkend="scicos_cpr_state_iz">iz</link>,
+            <link linkend="scicos_cpr_state_tevts">tevts</link>,
+            <link linkend="scicos_cpr_state_evtspt">evtspt</link>,
+            <link linkend="scicos_cpr_state_pointi">pointi</link> and
+            <link linkend="scicos_cpr_state_outtb">outtb</link>.
+        </para>
+        <refsect2 id="scicos_cpr_state_x">
+            <title>x</title>
+            <para> The continuous-time state register, which is obtained by concatenating the continuous-time states of all the blocks.</para>
+            <para>
+                Size : total of all the size of continuous-time state registers.
+            </para>
+            <para>
+                Type : column vector of real numbers.
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_cpr_state_z">
+            <title>z</title>
+            <para> The discrete-time state register, which is obtained by concatenating the discrete-time states of all the blocks.</para>
+            <para>
+                Size : total of all the size of discrete-time state registers.
+            </para>
+            <para>
+                Type : column vector of real number.
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_cpr_state_oz">
+            <title>oz</title>
+            <para> The list of the object discrete-time state, which is obtained by concatenating the object discrete-time states of all the blocks.</para>
+            <para>
+                Size : total of all the size of object state.
+            </para>
+            <para>
+                Type : list of scilab object.
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_cpr_state_iz">
+            <title>iz</title>
+            <para> Vector of size equal to the number of blocks.</para>
+            <para> That vector is used to store pointers of the working state register (work). If a block needs to allocate memory at initialization (flag 4), the associated pointer is saved here.</para>
+            <para>
+                Size : number of blocks.
+            </para>
+            <para>
+                Type : column vector of real numbers.
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_cpr_state_tevts">
+            <title>tevts</title>
+            <para> Vector of size equal to the number of activation sources. It contains the scheduled times for programmed activations in evtspt.</para>
+            <para>
+                Size : number of activation sources.
+            </para>
+            <para>
+                Type : column vector of integers.
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_cpr_state_evtspt">
+            <title>evtspt</title>
+            <para> Vector of size equal to the number of activation sources. It is an event scheduler.</para>
+            <para>
+                Size : number of activation sources.
+            </para>
+            <para>
+                Type : column vector of integers.
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_cpr_state_pointi">
+            <title>pointi</title>
+            <para> The number of the next programmed event.</para>
+            <para>
+                Size : 1.
+            </para>
+            <para>
+                Type : integer.
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_cpr_state_outtb">
+            <title>outtb</title>
+            <para> Scilab list containing all output registers of blocks. Each element of that list contains typed matrix-based data.</para>
+            <para>
+                Size : number of regular output ports.
+            </para>
+            <para>
+                Type : list of scilab matrix.
+            </para>
+        </refsect2>
+    </refsection>
+</refentry>

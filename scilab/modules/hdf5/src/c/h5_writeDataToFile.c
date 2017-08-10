@@ -2,11 +2,14 @@
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2012 - Scilab Enterprises - Antoine ELIAS
 *
-*  This file must be used under the terms of the CeCILL.
-*  This source file is licensed as described in the file COPYING, which
-*  you should have received as part of this distribution.  The terms
-*  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
@@ -201,6 +204,8 @@ int updateScilabVersion(int _iFile)
     char* pstScilabVersion = getScilabVersionAttribute(_iFile);
     if (pstScilabVersion)
     {
+        FREE(pstScilabVersion);
+
         //delete before write
         status = H5Adelete(_iFile, g_SCILAB_CLASS_SCI_VERSION);
         if (status < 0)
@@ -2009,7 +2014,7 @@ static int deleteHDF5group(int _iFile, const char* _pstName)
             }
             ////unlink child
             //status = H5Ldelete(groupID, pstChildName, H5P_DEFAULT);
-            //FREE(pstChildName);
+            FREE(pstChildName);
 
             //if (status < 0)
             //{
@@ -2161,7 +2166,7 @@ int writeDoubleMatrix6(int parent, const char* name, int dims, int* pdims, doubl
     return dset;
 }
 
-writeDoubleComplexMatrix6(int parent, const char* name, int dims, int* pdims, double* real, double* img)
+hid_t writeDoubleComplexMatrix6(int parent, const char* name, int dims, int* pdims, double* real, double* img)
 {
     hid_t space = 0;
     hid_t dset = 0;
@@ -2359,11 +2364,13 @@ int writeBooleanMatrix6(int parent, const char* name, int dims, int* pdims, int*
     iSpace = H5Screate_simple(dims, piDims, NULL);
     if (iSpace < 0)
     {
+        FREE(piDims);
         return -1;
     }
 
     //Create the dataset and write the array data to it.
     iCompress = enableCompression(9, dims, piDims);
+    FREE(piDims);
 
     dprop = H5Pcreate(H5P_DATASET_CREATE);
     H5Pset_obj_track_times(dprop, 0);

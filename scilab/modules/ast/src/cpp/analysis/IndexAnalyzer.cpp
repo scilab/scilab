@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2015 - Scilab Enterprises - Calixte DENIZET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -37,18 +40,18 @@ bool AnalysisVisitor::analyzeIndices(TIType & type, ast::CallExp & ce)
     SymbolicDimension first, second;
     bool safe, ret;
 
+    argIndices.emplace(static_cast<ast::SimpleVar &>(ce.getName()), size, 1);
     if (size == 1)
     {
         // when there is one argument, a(?) is equivalent to A(?,1)
         // where A = matrix(a, r_a * c_a, 1)
 
         SymbolicDimension rows(type.rows);
-        second = SymbolicDimension(getGVN(), 1.);
+        second = SymbolicDimension(getGVN(), 1);
         if (type.cols != 1)
         {
             rows *= type.cols;
         }
-
         ret = getDimension(rows, *args.front(), safe, first);
     }
     else
@@ -57,6 +60,7 @@ bool AnalysisVisitor::analyzeIndices(TIType & type, ast::CallExp & ce)
         ret = getDimension(type.rows, *args.front(), _safe, first);
         if (ret)
         {
+            argIndices.top().getIndex() = 2;
             ret = getDimension(type.cols, *args.back(), safe, second);
             safe = safe && _safe;
         }
@@ -65,6 +69,7 @@ bool AnalysisVisitor::analyzeIndices(TIType & type, ast::CallExp & ce)
             safe = _safe;
         }
     }
+    argIndices.pop();
 
     if (ret)
     {
@@ -86,12 +91,14 @@ bool AnalysisVisitor::getDimension(SymbolicDimension & dim, ast::Exp & arg, bool
         {
             out = dim;
             safe = true;
+            arg.getDecorator().setDollarInfo(argIndices.top());
             return true;
         }
         case ast::Exp::DOLLARVAR : // a($)
         {
             out = SymbolicDimension(getGVN(), 1.);
             safe = true;
+            arg.getDecorator().setDollarInfo(argIndices.top());
             return true;
         }
         case ast::Exp::DOUBLEEXP : // a(12) or a([1 2])
@@ -246,8 +253,8 @@ bool AnalysisVisitor::getDimension(SymbolicDimension & dim, ast::Exp & arg, bool
                     types::Bool * const pBool = static_cast<types::Bool *>(pIT);
                     const int size = pBool->getSize();
                     const int * data = pBool->get();
-                    int max = -1;
-                    int count = 0;
+                    int64_t max = -1;
+                    int64_t count = 0;
                     for (int i = 0; i < size; ++i)
                     {
                         if (data[i])
@@ -266,11 +273,11 @@ bool AnalysisVisitor::getDimension(SymbolicDimension & dim, ast::Exp & arg, bool
             {
                 if (be.getValue())
                 {
-                    out = SymbolicDimension(getGVN(), 1.);
+                    out = SymbolicDimension(getGVN(), int64_t(1));
                 }
                 else
                 {
-                    out = SymbolicDimension(getGVN(), 0.);
+                    out = SymbolicDimension(getGVN(), int64_t(0));
                 }
                 safe = true;
                 return true;
@@ -305,9 +312,32 @@ bool AnalysisVisitor::getDimension(SymbolicDimension & dim, ast::Exp & arg, bool
             if (range.isValid())
             {
                 //std::wcerr << *range.getStart()->poly << ":" << *range.getEnd()->poly << ",," << *dim.getValue()->poly << std::endl;
-                safe = getCM().check(ConstraintManager::VALID_RANGE, range.getStart(), range.getEnd(), getGVN().getValue(1), dim.getValue());
+                safe = getCM().check(ConstraintManager::VALID_RANGE, range.getStart(), range.getEnd(), getGVN().getValue(int64_t(1)), dim.getValue());
                 out = _res.getType().rows * _res.getType().cols;
 
+                return true;
+            }
+
+            if (GVN::Value * const v = _res.getConstant().getGVNValue())
+            {
+                GVN::Value * w = v;
+                if (GVN::Value * const dollar = getGVN().getExistingValue(symbol::Symbol(L"$")))
+                {
+                    if (GVN::Value * const x = SymbolicList::evalDollar(getGVN(), v, dollar, dim.getValue()))
+                    {
+                        w = x;
+                    }
+                }
+                bool b = getCM().check(ConstraintManager::GREATER, dim.getValue(), w);
+                if (b)
+                {
+                    safe = getCM().check(ConstraintManager::STRICT_POSITIVE, w);
+                }
+                else
+                {
+                    safe = false;
+                }
+                out = SymbolicDimension(getGVN(), 1);
                 return true;
             }
 

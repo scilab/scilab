@@ -1,86 +1,79 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE module SYSTEM "../../functions/xml/gateway.dtd">
+<!--
+/*
+ *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ *  Copyright (C) 2011 - DIGITEO - Antoine ELIAS
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ */
+ Scilab
+ Interface description. In this file, we define the list of the function which
+ will be available into Scilab and the link to the "native" function.
 
-<!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
-<GATEWAY name="gui">
-    <!-- =================== -->
-    <!--
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2007 - INRIA - Allan CORNET
- * Copyright (C) 2007 - INRIA - Sylvestre LEDRU
- * Copyright (C) 2008 - INRIA - Vincent COUVERT
- *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
- *
- * Scilab
- * Interface description. In this file, we define the list of the function which
- * will be available into Scilab and the link to the "native" function.
- *
- * gatewayId is the position in the hashtable 'Interfaces' defined in the
- * file SCI/modules/core/src/c/callinterf.h
- *
- * primitiveId is the position in the hashtable '<module>Table Tab[]' defined
- * in the file modules/<module>/sci_gateway/c/gw_<module>.c
- *
- * primitiveName is the name of the Scilab function
- *
- * Don't touch if you do not know what you are doing
+ Don't touch if you do not know what you are doing
 -->
-    <!-- =================== -->
-    
-    <PRIMITIVE gatewayId="25" primitiveId="1" primitiveName="x_dialog" />
-    <PRIMITIVE gatewayId="25" primitiveId="2" primitiveName="x_choose" />
-    <PRIMITIVE gatewayId="25" primitiveId="3" primitiveName="x_mdialog" />
-    <PRIMITIVE gatewayId="25" primitiveId="4" primitiveName="xchoicesi" />
-    <PRIMITIVE gatewayId="25" primitiveId="5" primitiveName="delmenu" />
-    <PRIMITIVE gatewayId="25" primitiveId="6" primitiveName="setmenu" />
-    <PRIMITIVE gatewayId="25" primitiveId="7" primitiveName="unsetmenu" />
-    <PRIMITIVE gatewayId="25" primitiveId="8" primitiveName="raise_window" />
-    <PRIMITIVE gatewayId="25" primitiveId="9" primitiveName="getlookandfeel"/>
-    <PRIMITIVE gatewayId="25" primitiveId="10" primitiveName="getinstalledlookandfeels"/>
-    <PRIMITIVE gatewayId="25" primitiveId="11" primitiveName="setlookandfeel"/>
-    <PRIMITIVE gatewayId="25" primitiveId="12" primitiveName="ClipBoard"/>
-    <PRIMITIVE gatewayId="25" primitiveId="13" primitiveName="toolbar"/>
-    <PRIMITIVE gatewayId="25" primitiveId="14" primitiveName="uigetdir"/>
-    <PRIMITIVE gatewayId="25" primitiveId="15" primitiveName="uicontrol"/>
-    <PRIMITIVE gatewayId="25" primitiveId="16" primitiveName="uimenu"/>
-    <PRIMITIVE gatewayId="25" primitiveId="17" primitiveName="uipopup"/>
-    <PRIMITIVE gatewayId="25" primitiveId="18" primitiveName="x_choose_modeless" />
-    <PRIMITIVE gatewayId="25" primitiveId="19" primitiveName="uicontextmenu" />
-    <PRIMITIVE gatewayId="25" primitiveId="20" primitiveName="uiwait" />
-    <PRIMITIVE gatewayId="25" primitiveId="21" primitiveName="messagebox" />
-    <PRIMITIVE gatewayId="25" primitiveId="22" primitiveName="waitbar" />
-    <PRIMITIVE gatewayId="25" primitiveId="23" primitiveName="progressionbar" />
-    <PRIMITIVE gatewayId="25" primitiveId="24" primitiveName="helpbrowser" />
-    <PRIMITIVE gatewayId="25" primitiveId="25" primitiveName="uigetfont" />
-    <PRIMITIVE gatewayId="25" primitiveId="26" primitiveName="uigetcolor" />
-    <PRIMITIVE gatewayId="25" primitiveId="27" primitiveName="getcallbackobject" />
-    <PRIMITIVE gatewayId="25" primitiveId="28" primitiveName="printfigure" />
-    <PRIMITIVE gatewayId="25" primitiveId="29" primitiveName="exportUI" />
-    <PRIMITIVE gatewayId="25" primitiveId="30" primitiveName="printsetupbox" />
-    <PRIMITIVE gatewayId="25" primitiveId="31" primitiveName="toprint" />
-    <PRIMITIVE gatewayId="25" primitiveId="32" primitiveName="uigetfile" />
-    <PRIMITIVE gatewayId="25" primitiveId="33" primitiveName="usecanvas" />
-    <PRIMITIVE gatewayId="25" primitiveId="34" primitiveName="uiDisplayTree" />
-    <PRIMITIVE gatewayId="25" primitiveId="35" primitiveName="uiputfile" />
-    <PRIMITIVE gatewayId="25" primitiveId="36" primitiveName="about" />
-    <PRIMITIVE gatewayId="25" primitiveId="37" primitiveName="useeditor" />
-    <PRIMITIVE gatewayId="25" primitiveId="38" primitiveName="fire_closing_finished" />
-    <PRIMITIVE gatewayId="25" primitiveId="39" primitiveName="openged" />
-    <PRIMITIVE gatewayId="25" primitiveId="40" primitiveName="datatipCreate" />
-    <PRIMITIVE gatewayId="25" primitiveId="41" primitiveName="datatipRemove" />
-    <PRIMITIVE gatewayId="25" primitiveId="42" primitiveName="plotbrowser" />
-    <PRIMITIVE gatewayId="25" primitiveId="43" primitiveName="datatipManagerMode" />
-    <PRIMITIVE gatewayId="25" primitiveId="44" primitiveName="datatipToggle" />
-    <PRIMITIVE gatewayId="25" primitiveId="45" primitiveName="datatipMove" />
-    <PRIMITIVE gatewayId="25" primitiveId="46" primitiveName="datatipSetStyle" />
-    <PRIMITIVE gatewayId="25" primitiveId="47" primitiveName="datatipSetDisplay" />
-    <PRIMITIVE gatewayId="25" primitiveId="48" primitiveName="datatipSetInterp" />
-    <PRIMITIVE gatewayId="25" primitiveId="49" primitiveName="datatipSetOrientation" />
-    <PRIMITIVE gatewayId="25" primitiveId="50" primitiveName="figure"/>
-    <PRIMITIVE gatewayId="25" primitiveId="51" primitiveName="saveGui"/>
-    <PRIMITIVE gatewayId="25" primitiveId="52" primitiveName="loadGui"/>
-</GATEWAY>
+<module name="gui">
+    <gateway name="sci_helpbrowser"                 function="helpbrowser"              type="1" />
+    <gateway name="sci_displaytree"                 function="uiDisplayTree"            type="1" />
+
+    <gateway name="sci_x_dialog"                    function="x_dialog"                 type="0" />
+    <gateway name="sci_x_choose"                    function="x_choose"                 type="0" />
+    <gateway name="sci_x_mdialog"                   function="x_mdialog"                type="0" />
+    <gateway name="sci_xchoicesi"                   function="xchoicesi"                type="0" />
+    <gateway name="sci_delmenu"                     function="delmenu"                  type="0" />
+    <gateway name="sci_setmenu"                     function="setmenu"                  type="0" />
+    <gateway name="sci_unsetmenu"                   function="unsetmenu"                type="0" />
+    <gateway name="sci_raise_window"                function="raise_window"             type="0" />
+    <gateway name="sci_getlookandfeel"              function="getlookandfeel"           type="0" />
+    <gateway name="sci_getinstalledlookandfeels"    function="getinstalledlookandfeels" type="0" />
+    <gateway name="sci_setlookandfeel"              function="setlookandfeel"           type="0" />
+    <gateway name="sci_ClipBoard"                   function="ClipBoard"                type="0" />
+    <gateway name="sci_toolbar"                     function="toolbar"                  type="0" />
+    <gateway name="sci_uigetdir"                    function="uigetdir"                 type="0" />
+    <gateway name="sci_uicontrol"                   function="uicontrol"                type="0" />
+    <gateway name="sci_uimenu"                      function="uimenu"                   type="0" />
+    <gateway name="sci_mpopup"                      function="uipopup"                  type="0" />
+    <gateway name="sci_x_choose_modeless"           function="x_choose_modeless"        type="0" />
+    <gateway name="sci_uicontextmenu"               function="uicontextmenu"            type="0" />
+    <gateway name="sci_uiwait"                      function="uiwait"                   type="0" />
+    <gateway name="sci_messagebox"                  function="messagebox"               type="0" />
+    <gateway name="sci_waitbar"                     function="waitbar"                  type="0" />
+    <gateway name="sci_progressionbar"              function="progressionbar"           type="0" />
+    <gateway name="sci_uigetfont"                   function="uigetfont"                type="0" />
+    <gateway name="sci_uigetcolor"                  function="uigetcolor"               type="0" />
+    <gateway name="sci_getcallbackobject"           function="getcallbackobject"        type="0" />
+    <gateway name="sci_printfigure"                 function="printfigure"              type="0" />
+    <gateway name="sci_exportUI"                    function="exportUI"                 type="0" />
+    <gateway name="sci_printsetupbox"               function="printsetupbox"            type="0" />
+    <gateway name="sci_toprint"                     function="toprint"                  type="0" />
+    <gateway name="sci_uigetfile"                   function="uigetfile"                type="0" />
+    <gateway name="sci_usecanvas"                   function="usecanvas"                type="0" />
+    <gateway name="sci_uiputfile"                   function="uiputfile"                type="0" />
+    <gateway name="sci_about"                       function="about"                    type="0" />
+    <gateway name="sci_fire_closing_finished"       function="fire_closing_finished"    type="0" />
+    <gateway name="sci_useeditor"                   function="useeditor"                type="0" />
+    <gateway name="sci_openged"                     function="openged"                  type="0" />
+    <gateway name="sci_datatipcreate"               function="datatipCreate"            type="0" />
+    <gateway name="sci_datatipremove"               function="datatipRemove"            type="0" />
+    <gateway name="sci_plotbrowser"                 function="plotbrowser"              type="0" />
+    <gateway name="sci_datatip_manager_mode"        function="datatipManagerMode"       type="0" />
+    <gateway name="sci_datatip_toggle"              function="datatipToggle"            type="0" />
+    <gateway name="sci_datatipmove"                 function="datatipMove"              type="0" />
+    <gateway name="sci_datatip_set_style"           function="datatipSetStyle"          type="0" />
+    <gateway name="sci_datatip_set_display"         function="datatipSetDisplay"        type="0" />
+    <gateway name="sci_datatip_set_interp"          function="datatipSetInterp"         type="0" />
+    <gateway name="sci_datatip_set_orient"          function="datatipSetOrient"         type="0" />
+    <gateway name="sci_figure"                      function="figure"                   type="0" />
+    <gateway name="sci_saveGui"                     function="saveGui"                  type="0" />
+    <gateway name="sci_loadGui"                     function="loadGui"                  type="0" />
+
+</module>

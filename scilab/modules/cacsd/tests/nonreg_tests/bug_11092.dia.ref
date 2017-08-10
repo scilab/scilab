@@ -17,8 +17,7 @@
 //Incorrect argument check in h_inf
 G=syslin("c",1/%s^3);
 [P,r]=macglov(G);
-assert_checktrue(execstr("[K,ro]=h_inf(P,r,0,1,30)","errcatch")==0); 
-h_inf: P22 is stabilizable.
+assert_checktrue(execstr("[K,ro]=h_inf(P,r,0,1,30)","errcatch")==0);h_inf: P22 is stabilizable.
 h_inf: P22 is detectable.
  gama =       1.4142135624 Unfeasible (Hx hamiltonian)   test =     0.30000E+01
  gama =       2.0000000000 Unfeasible (Hx hamiltonian)   test =     0.15613E+01

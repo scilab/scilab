@@ -1,12 +1,16 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
+ * Copyright (C) 2015 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -38,6 +42,7 @@ import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
+import org.scilab.modules.xcos.JavaController;
 import org.scilab.modules.xcos.actions.DebugLevelAction;
 import org.scilab.modules.xcos.actions.DebugLevelAction.DebugLevel;
 import org.scilab.modules.xcos.graph.ScicosParameters;
@@ -88,7 +93,7 @@ public class DebugLevelDialog extends JDialog {
     private void initComponents() {
         JLabel textLabel = new JLabel(XcosMessages.DEBUG_LEVEL_LABEL);
         debugList = new JList(DebugLevel.values());
-        debugList.setSelectedIndex(parameters.getDebugLevel());
+        debugList.setSelectedIndex(parameters.getDebugLevel(new JavaController()));
         debugList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         JButton cancelButton = new JButton(XcosMessages.CANCEL);
@@ -137,7 +142,7 @@ public class DebugLevelDialog extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 int value = ((DebugLevel) debugList.getSelectedValue()).getValue();
                 try {
-                    parameters.setDebugLevel(value);
+                    parameters.setDebugLevel(new JavaController(), value);
                     ScilabInterpreterManagement.synchronousScilabExec("scicos_debug", value);
                     dispose();
                 } catch (InterpreterException e1) {

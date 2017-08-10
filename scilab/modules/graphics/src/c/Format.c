@@ -7,11 +7,14 @@
  * Copyright (C) 2009 - DIGITEO - Pierre Lando
  * Copyright (C) 2011 - DIGITEO - Manuel Juliachs
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -43,10 +46,12 @@
 #include "sciprint.h"
 #include "localization.h"
 #include "Scierror.h"
-#include <machine.h>
+#include "machine.h"
+#include "numericconstants_interface.h"
 
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
+#include "Sciwarning.h"
 
 #define MAX(A,B) ((A<B)?B:A)
 
@@ -54,8 +59,6 @@
 #define MAX_LOG_TICKS 15
 
 /* end here */
-
-extern double C2F(dlamch)  (char *CMACH, unsigned long int);
 
 static void FormatPrec (char *fmt, int *desres, double xmin, double xmax,
                         double xpas);
@@ -562,7 +565,7 @@ static void decompSup(double x, int *xk, int *xa, int b)
             static int first = 0;
             if (first == 0)
             {
-                epsilon = 10.0 * F2C(dlamch)("e", 1L);
+                epsilon = 10.0 * nc_eps();
                 first++;
             }
             /* if x is very near (k+1)10^a (epsilon machine)
@@ -612,7 +615,7 @@ static void decompInf(double x, int *xk, int *xa, int b)
             static int first = 0;
             if (first == 0)
             {
-                epsilon = 10.0 * F2C(dlamch)("e", 1L);
+                epsilon = 10.0 * nc_eps();
                 first++;
             }
             *xa = (int) floor(log10(x)) - b + 1;
@@ -667,7 +670,7 @@ static void GradFixedlog(double minVal, double maxVal, double* outTicks, int nbG
     int initSize  = 0;
     int i = 0;
 
-    /* intialize the array as usual */
+    /* initialize the array as usual */
     double tempTicks[20];
     GradLog(minVal, maxVal, tempTicks, &initSize, FALSE);
 
@@ -1081,6 +1084,12 @@ int ComputeXIntervals(int iObjUID, char xy_type, double ** vector, int * N, int 
         nval = ny;
     }
 
+    if (!val)
+    {
+        Scierror(999, _("%s: Cannot get coordinates.\n"), "ComputeXIntervals");
+        return -1;
+    }
+
     if (xy_type == 'v')
     {
         *N = n = nval;
@@ -1106,7 +1115,7 @@ int ComputeXIntervals(int iObjUID, char xy_type, double ** vector, int * N, int 
         {
             if (nval != 3)
             {
-                sciprint(_("Warning: %s must be changed, %s is '%s' and %s dimension is not %d.\n"), "tics_coord", "xy_type", "r", "tics_coord", 3);
+                Sciwarning(_("Warning: %s must be changed, %s is '%s' and %s dimension is not %d.\n"), "tics_coord", "xy_type", "r", "tics_coord", 3);
             }
 
             if (nval < 3)
@@ -1143,7 +1152,7 @@ int ComputeXIntervals(int iObjUID, char xy_type, double ** vector, int * N, int 
         {
             if (nval != 4)
             {
-                sciprint(_("Warning: %s must be changed, %s is '%s' and %s dimension is not %d.\n"), "tics_coord", "xy_type", "i", "tics_coord", 4);
+                Sciwarning(_("Warning: %s must be changed, %s is '%s' and %s dimension is not %d.\n"), "tics_coord", "xy_type", "i", "tics_coord", 4);
             }
 
             if (nval < 4)
@@ -1201,7 +1210,7 @@ StringMatrix * computeDefaultTicsLabels(int iObjUID)
      * If different from the empty string, the format is already specified,
      * if equal, it needs to be computed.
      */
-    if (strcmp(c_format, "") == 0)
+    if (c_format && strcmp(c_format, "") == 0)
     {
         ComputeC_format(iObjUID, tempFormat);
         c_format = tempFormat;
@@ -1231,8 +1240,7 @@ StringMatrix * computeDefaultTicsLabels(int iObjUID)
 
     /* create a vector of strings */
     ticsLabels = newMatrix(1, nbTics);
-
-    if (curLabelBuffer == NULL)
+    if (ticsLabels == NULL)
     {
         Scierror(999, _("%s: No more memory.\n"), "computeDefaultTicsLabels");
         return NULL;

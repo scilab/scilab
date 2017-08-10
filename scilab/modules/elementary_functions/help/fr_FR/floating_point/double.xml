@@ -1,55 +1,222 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * Copyright (C) 2016 - Samuel GOUGEON
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="double" xml:lang="fr">
     <refnamediv>
         <refname>double</refname>
-        <refpurpose>conversion de type entier vers flottant double
-            précision.
+        <refpurpose>convertit des entiers inttype ou des booléens en encodage décimal
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Séquence d'appel</title>
-        <synopsis>y=double(X)
-            y=int16(X)
-            y=int32(X)
-            y=uint8(X)
-            y=uint16(X)
-            y=uint32(X)
+        <title>Syntaxe</title>
+        <synopsis>y = double(X)
         </synopsis>
     </refsynopsisdiv>
-    <refsection>
+    <refsection role="parameters">
         <title>Paramètres</title>
         <variablelist>
             <varlistentry>
                 <term>X</term>
                 <listitem>
-                    <para>matrice de flottants ou d'entiers</para>
+                    <para>matrice d'entiers encodés ou de booléens</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>y</term>
                 <listitem>
-                    <para>matrice de flottants</para>
+                    <para>matrice de nombres en notation décimale</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Description</title>
-        <para>Convertit des données sous forme d'entiers à 1,2 ou 4 octets au type
-            flottant double précision. Si les composantes de <literal>X</literal> sont
-            déjà des flottants double précision il n'y a pas de conversion.
+        <para>Convertit des nombres entiers encodés sur 1, 2, 4 ou 8 octets
+            en nombres décimaux encodés sur 8 octets.
+            Si <literal>X</literal> est déjà encodée en notation décimale,
+              <function>double()</function> ne fait rien.
+          <note><function>double()</function> et <literal>iconvert(..,0)</literal>
+          sont équivalentes et ont la même vitesse.
+          </note>
+          <note><function>double()</function> peut aussi convertir des booléens.
+          Cependant, la fonction dédiée <literal>bool2s()</literal> est environ
+          2 fois plus rapide.
+          </note>
+          <important>La mantisse des nombres entiers <literal>uint64</literal> est
+          encodée sur 64 bits, alors que la mantisse des nombres en notation
+          décimale (<literal>double</literal> precision) est encodée sur 52 bits
+          seulement. La précision relative des entiers <literal>uint64</literal>
+          supérieurs à 2<superscript>52</superscript> peut donc être jusqu'à 2<superscript>12</superscript>
+          ~4000 fois meilleure
+          que celle de leur équivalent décimal "<literal>double</literal>".
+          En conséquence, l'utilisation de
+          <function>double()</function> sur des entiers <literal>int64</literal> ou
+          <literal>uint64</literal> supérieurs à 2<superscript>52</superscript> peut tronquer
+          leurs valeurs
+          par arrondi, et ainsi diminuer leur précision relative. Quelques
+          exemples donnés ci-dessous illustrent cet effet.
+          </important>
         </para>
     </refsection>
-    <refsection>
+
+    <refsection role="examples">
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
-x=int8([0 12 140])
+        <programlisting role="example"><![CDATA[
+x = int8([0 12 140])
 double(x)
+
+// double() arrondit et tronque les nombres int64() or uint64() supérieurs à 2^52
+// ------------------------------------------------------------------------------
+i = int64(2)^52        // 52 bits, comme pour la mantisse des décimaux
+i = [i+(0:3:9)'  i+(3:30:93)'  i+(30:300:930)']
+err = i - double(i)    // pas de différence, pour les |entiers|<= 2^52
+i = int64(2)^53        // valeur sur 53 bits => mantisse + précise que celle des décimaux
+i = [i+(0:3:9)'  i+(3:30:93)'  i+(30:300:930)']
+err = i - double(i)    // Des erreurs d'arrondi dues à double() apparaissent
+i = int64(2)^55
+i = [i+(0:3:9)'  i+(3:30:93)'  i+(30:300:930)']
+err = i - double(i)
+i = int64(2)^62        // L'amplitude des erreurs est ~ 2^(n-52)
+i = [i+(0:3:9)'  i+(3:30:93)'  i+(30:300:930)']
+err = i - double(i)
+]]></programlisting>
+    <screen>
+<![CDATA[--> i = int64(2)^52     // 52 bits, comme pour la mantisse des décimaux
+ i  =
+  4503599627370496
+
+--> i = [i+(0:3:9)'  i+(3:30:93)'  i+(30:300:930)']
+ i  =
+  4503599627370496  4503599627370499  4503599627370526
+  4503599627370499  4503599627370529  4503599627370826
+  4503599627370502  4503599627370559  4503599627371126
+  4503599627370505  4503599627370589  4503599627371426
+
+--> err = i - double(i)   // pas de différence, pour les |entiers|<= 2^52
+ err  =
+  0  0  0
+  0  0  0
+  0  0  0
+  0  0  0
+
+--> i = int64(2)^53      // valeur sur 53 bits => mantisse + précise que celle des décimaux
+ i  =
+  9007199254740992
+
+--> i = [i+(0:3:9)'  i+(3:30:93)'  i+(30:300:930)']
+ i  =
+  9007199254740992  9007199254740995  9007199254741022
+  9007199254740995  9007199254741025  9007199254741322
+  9007199254740998  9007199254741055  9007199254741622
+  9007199254741001  9007199254741085  9007199254741922
+
+--> err = i - double(i)     // Des erreurs d'arrondi dues à double() apparaissent
+ err  =
+  0 -1  0
+ -1  1  0
+  0 -1  0
+  1  1  0
+
+--> i = int64(2)^55
+ i  =
+  36028797018963968
+
+--> i = [i+(0:3:9)'  i+(3:30:93)'  i+(30:300:930)']
+ i  =
+  36028797018963968  36028797018963971  36028797018963998
+  36028797018963971  36028797018964001  36028797018964298
+  36028797018963974  36028797018964031  36028797018964598
+  36028797018963977  36028797018964061  36028797018964898
+
+--> err = i - double(i)
+ err  =
+  0  3 -2
+  3  1  2
+ -2 -1 -2
+  1 -3  2
+
+--> i = int64(2)^62        // L'amplitude des erreurs est ~ 2^(n-52)
+ i  =
+  4611686018427387904
+
+--> i = [i+(0:3:9)'  i+(3:30:93)'  i+(30:300:930)']
+ i  =
+  4611686018427387904  4611686018427387907  4611686018427387934
+  4611686018427387907  4611686018427387937  4611686018427388234
+  4611686018427387910  4611686018427387967  4611686018427388534
+  4611686018427387913  4611686018427387997  4611686018427388834
+
+--> err = i - double(i)
+ err  =
+  0  3  30
+  3  33  330
+  6  63 -394
+  9  93 -94
+]]></screen>
+        <para></para>
+        <programlisting role="example"><![CDATA[
+// Vitesses comparées de double(), bool2s() et iconvert(,0) sur des booléens
+// -------------------------------------------------------------------------
+b = (rand(1000,1000)<0.5);
+tic(),for i=1:100, bool2s(b); end, toc()
+tic(),for i=1:100, double(b); end, toc()
+tic(),for i=1:100, iconvert(b,0); end, toc()
  ]]></programlisting>
+    <screen>
+<![CDATA[--> b = (rand(1000,1000)<0.5);
+--> tic(),for i=1:100, bool2s(b); end, toc()
+ ans  =
+   1.1680533
+
+--> tic(),for i=1:100, double(b); end, toc()
+ ans  =
+   2.9003021
+
+--> tic(),for i=1:100, iconvert(b,0); end, toc()
+ ans  =
+   2.1867567
+]]></screen>
+        <para></para>
+      <programlisting role="example"><![CDATA[
+// Vitesses comparées de double() et iconvert(..,0) sur des entiers int32
+// ----------------------------------------------------------------------
+i = int32((rand(1000,1000)-0.5)*1000);
+tic(),for j=1:100, double(i); end, toc()
+tic(),for j=1:100, iconvert(i,0); end, toc()
+ ]]></programlisting>
+      <screen>
+<![CDATA[--> i = int32((rand(1000,1000)-0.5)*10000);
+--> tic(),for j=1:100, double(i); end, toc()
+ ans  =
+   2.2464656
+
+--> tic(),for j=1:100, iconvert(i,0); end, toc()
+ ans  =
+   2.2771408
+]]></screen>
     </refsection>
+
     <refsection role="see also">
         <title>Voir aussi</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="iconvert">iconvert</link>
+            </member>
+            <member>
+                <link linkend="bool2s">bool2s</link>
+            </member>
             <member>
                 <link linkend="int8">int8</link>
             </member>
@@ -59,6 +226,30 @@ double(x)
             <member>
                 <link linkend="type">type</link>
             </member>
+            <member>
+                <link linkend="bin2dec">bin2dec</link>
+            </member>
+            <member>
+                <link linkend="oct2dec">oct2dec</link>
+            </member>
+            <member>
+                <link linkend="hex2dec">hex2dec</link>
+            </member>
+            <member>
+                <link linkend="base2dec">base2dec</link>
+            </member>
         </simplelist>
+    </refsection>
+      <refsection role="history">
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    Les nouveaux types d'entiers int64 and uint64
+                    sont maintenant convertibles.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

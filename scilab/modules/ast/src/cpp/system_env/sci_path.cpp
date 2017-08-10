@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2010 - DIGITEO - Antoine ELIAS
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -28,9 +31,9 @@ extern "C"
 #include "getenvc.h"
 #include "setenvvar.h"
 #include "getshortpathname.h"
+#include "getlongpathname.h"
 }
 
-using namespace std;
 char *getSCI(void)
 {
     return wide_string_to_UTF8(ConfigVariable::getSCIPath().c_str());
@@ -53,14 +56,14 @@ void setSCIW(const wchar_t* _sci_path)
 void setSCI(const char* _sci_path)
 {
     //
-    char *ShortPath = NULL;
-    char *pstSlash = new char[strlen(_sci_path) + 1];
     BOOL bConvertOK = FALSE;
-    ShortPath = getshortpathname(_sci_path, &bConvertOK);
-    AntislashToSlash(ShortPath, pstSlash);
+    char* ShortPath = getshortpathname(_sci_path, &bConvertOK);
+    char* LongPath = getlongpathname(_sci_path, &bConvertOK);
 
 
     //SCI
+    char *pstSlash = new char[strlen(_sci_path) + 1];
+    AntislashToSlash(ShortPath, pstSlash);
     wchar_t* pwstSCI = to_wide_string(pstSlash);
     types::String *pSSCI = new types::String(pwstSCI);
     symbol::Context::getInstance()->put(symbol::Symbol(L"SCI"), pSSCI);
@@ -69,8 +72,8 @@ void setSCI(const char* _sci_path)
     wchar_t* pwstWSCI = NULL;
 #ifdef _MSC_VER
     char *pstBackSlash = NULL;
-    pstBackSlash = new char[strlen(_sci_path) + 1];
-    SlashToAntislash(_sci_path, pstBackSlash);
+    pstBackSlash = new char[strlen(LongPath) + 1];
+    SlashToAntislash(LongPath, pstBackSlash);
     pwstWSCI = to_wide_string(pstBackSlash);
     types::String *pSWSCI = new types::String(pwstWSCI);
     symbol::Context::getInstance()->put(symbol::Symbol(L"WSCI"), pSWSCI);
@@ -79,7 +82,7 @@ void setSCI(const char* _sci_path)
     pwstWSCI = to_wide_string(_sci_path);
 #endif
 
-    wstring wst(pwstWSCI);
+    std::wstring wst(pwstWSCI);
     ConfigVariable::setSCIPath(wst);
 
     FREE(pwstWSCI);
@@ -88,9 +91,15 @@ void setSCI(const char* _sci_path)
     {
         delete[] pstSlash;
     }
+
     if (ShortPath)
     {
         FREE(ShortPath);
+    }
+
+    if (LongPath)
+    {
+        FREE(LongPath);
     }
 }
 /*--------------------------------------------------------------------------*/
@@ -142,6 +151,7 @@ char* getenvSCI()
 
         if (ierr == 1)
         {
+            delete[] SciPath;
             return NULL;
         }
     }
@@ -171,7 +181,7 @@ char* computeSCI()
 
     char *DirTmp = NULL;
 
-    if (!GetModuleFileNameA((HINSTANCE)GetModuleHandleA("libScilab"), ScilabModuleName, MAX_PATH))
+    if (!GetModuleFileNameA((HINSTANCE)GetModuleHandleA("core"), ScilabModuleName, MAX_PATH))
     {
         return NULL;
     }
@@ -218,7 +228,7 @@ char* computeSCI()
 
         if (ierr == 1)
         {
-            cerr << "SCI environment variable not defined." << endl;
+            std::cerr << "SCI environment variable not defined." << std::endl;
             exit(1);
         }
     }

@@ -3,11 +3,14 @@
  *  Copyright (C) 2008-2008 - INRIA - Bruno JOFRET
  *  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -16,7 +19,6 @@
 #include <string.h>
 #include "parser.hxx"
 #include "parser_private.hxx"
-#include "scilabexception.hxx"
 
 #ifdef _MSC_VER
 #include "windows.h"
@@ -33,6 +35,7 @@ extern "C"
 #ifdef __APPLE__
 #include "PATH_MAX.h"
 #endif
+#include "os_wfopen.h"
 }
 
 extern FILE*    yyin;
@@ -58,7 +61,17 @@ void Parser::parseFile(const std::wstring& fileName, const std::wstring& progNam
     {
         ParserSingleInstance::disableParseTrace();
     }
-    ParserSingleInstance::parseFile(fileName, progName);
+
+    try
+    {
+        ParserSingleInstance::parseFile(fileName, progName);
+    }
+    catch (const ast::InternalError& ie)
+    {
+        ParserSingleInstance::setTree(nullptr);
+        ParserSingleInstance::setExitStatus(Parser::Failed);
+    }
+
     this->setExitStatus(ParserSingleInstance::getExitStatus());
     this->setControlStatus(ParserSingleInstance::getControlStatus());
     if (getExitStatus() == Parser::Succeded)
@@ -69,6 +82,13 @@ void Parser::parseFile(const std::wstring& fileName, const std::wstring& progNam
     {
         this->setErrorMessage(ParserSingleInstance::getErrorMessage());
     }
+
+    if (getExitStatus() != Parser::Succeded)
+    {
+        delete ParserSingleInstance::getTree();
+        ParserSingleInstance::setTree(nullptr);
+    }
+
     // FIXME : UNLOCK
 }
 
@@ -79,7 +99,7 @@ void ParserSingleInstance::parseFile(const std::wstring& fileName, const std::ws
     yylloc.first_line = yylloc.last_line = 1;
     yylloc.first_column = yylloc.last_column = 1;
 #ifdef _MSC_VER
-    _wfopen_s(&yyin, fileName.c_str(), L"r");
+    yyin = os_wfopen(fileName.c_str(), L"r");
 #else
     char* pstTemp = wide_string_to_UTF8(fileName.c_str());
     yyin = fopen(pstTemp, "r");
@@ -90,7 +110,7 @@ void ParserSingleInstance::parseFile(const std::wstring& fileName, const std::ws
     {
         wchar_t szError[bsiz];
         os_swprintf(szError, bsiz, _W("%ls: Cannot open file %ls.\n").c_str(), L"parser", fileName.c_str());
-        throw ast::ScilabError(szError, 999, *new Location());
+        throw ast::InternalError(szError);
     }
 
 
@@ -99,6 +119,7 @@ void ParserSingleInstance::parseFile(const std::wstring& fileName, const std::ws
     ParserSingleInstance::setFileName(fileName);
     ParserSingleInstance::setProgName(progName);
 
+    ParserSingleInstance::setTree(nullptr);
     ParserSingleInstance::setExitStatus(Parser::Succeded);
     ParserSingleInstance::resetControlStatus();
     ParserSingleInstance::resetErrorMessage();
@@ -138,6 +159,12 @@ void Parser::parse(const char *command)
         scan_throw(YYEOF);
     }
 
+    if (getExitStatus() != Parser::Succeded)
+    {
+        delete ParserSingleInstance::getTree();
+        ParserSingleInstance::setTree(nullptr);
+    }
+
     // FIXME : UNLOCK
 }
 
@@ -146,6 +173,19 @@ void Parser::parse(const wchar_t *command)
     char* pstCommand = wide_string_to_UTF8(command);
     parse(pstCommand);
     FREE(pstCommand);
+}
+
+bool Parser::stopOnFirstError(void)
+{
+    return ParserSingleInstance::stopOnFirstError();
+}
+void Parser::enableStopOnFirstError(void)
+{
+    ParserSingleInstance::enableStopOnFirstError();
+}
+void Parser::disableStopOnFirstError(void)
+{
+    ParserSingleInstance::disableStopOnFirstError();
 }
 
 /** \brief parse the given file command */
@@ -163,6 +203,7 @@ void ParserSingleInstance::parse(const char *command)
     if (fileLocker)
     {
         fclose(fileLocker);
+        fileLocker = nullptr;
     }
 
     errno_t err;
@@ -192,6 +233,7 @@ void ParserSingleInstance::parse(const char *command)
     if (fileLocker)
     {
         fclose(fileLocker);
+        fileLocker = nullptr;
     }
     yyin = fopen(szFile, "w");
     fwrite(command, 1, len, yyin);
@@ -208,6 +250,7 @@ void ParserSingleInstance::parse(const char *command)
 
     ParserSingleInstance::disableStrictMode();
     ParserSingleInstance::setFileName(L"prompt");
+    ParserSingleInstance::setTree(nullptr);
     ParserSingleInstance::setExitStatus(Parser::Succeded);
     ParserSingleInstance::resetControlStatus();
     ParserSingleInstance::resetErrorMessage();
@@ -250,8 +293,13 @@ std::wstring& ParserSingleInstance::getErrorMessage(void)
     return _error_message;
 }
 
-void ParserSingleInstance::appendErrorMessage(std::wstring message)
+void ParserSingleInstance::appendErrorMessage(const std::wstring& message)
 {
+    if (ParserSingleInstance::stopOnFirstError() && _error_message.empty() == false)
+    {
+        return;
+    }
+
     _error_message += message;
 }
 
@@ -267,13 +315,27 @@ void ParserSingleInstance::disableParseTrace(void)
     yydebug = 0;
 }
 
+void Parser::releaseTmpFile()
+{
+    ParserSingleInstance::releaseTmpFile();
+}
+
+void ParserSingleInstance::releaseTmpFile()
+{
+    if (fileLocker)
+    {
+        //fclose(fileLocker);
+        //fileLocker = nullptr;
+    }
+}
+
 std::wstring ParserSingleInstance::_file_name;
 std::wstring ParserSingleInstance::_prog_name;
 std::wstring ParserSingleInstance::_error_message;
 bool ParserSingleInstance::_strict_mode = false;
-bool ParserSingleInstance::_stop_on_first_error = false;
-ast::Exp* ParserSingleInstance::_the_program = NULL;
+bool ParserSingleInstance::_stop_on_first_error = true;
+ast::Exp* ParserSingleInstance::_the_program = nullptr;
 Parser::ParserStatus ParserSingleInstance::_exit_status = Parser::Succeded;
 std::list<Parser::ControlStatus> ParserSingleInstance::_control_status;
-FILE* ParserSingleInstance::fileLocker = NULL;
+FILE* ParserSingleInstance::fileLocker = nullptr;
 

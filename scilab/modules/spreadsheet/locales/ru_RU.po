@@ -8,21 +8,21 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-03-19 15:09+0000\n"
-"Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
+"PO-Revision-Date: 2016-11-12 11:17+0000\n"
+"Last-Translator: Nkolay Parukhin <parukhin@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
-"Language: ru\n"
+"X-Generator: Launchpad (build 18315)\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: Неверный тип входного аргумента №%d: Ожидалась строка.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
@@ -107,8 +107,7 @@ msgid "%s: Wrong size for input argument #%d.\n"
 msgstr "%s: Неверный размер входного аргумента №%d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s' or '%s' string expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' string expected.\n"
 msgstr ""
 "%s: Неверное значение входного аргумента №%d: ожидалось строковое значение "
 "'%s' или '%s'.\n"
@@ -123,8 +122,7 @@ msgstr "%s: разделитель и десятичная точка должн
 
 #, c-format
 msgid "%s: Range row or/and column left indice(s) out of bounds.\n"
-msgstr ""
-"%s: Диапазон строк или/и столбцов оставляет индекс(ы) за пределами.\n"
+msgstr "%s: Диапазон строк или/и столбцов оставляет индекс(ы) за пределами.\n"
 
 #, c-format
 msgid "%s: can not convert data.\n"
@@ -195,8 +193,28 @@ msgid "%s: error.\n"
 msgstr "%s: ошибка.\n"
 
 #, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: Неверное количество входных аргументов: ожидалось %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr "%s: Неверное количество выходных аргументов: ожидалось %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d : string expected.\n"
+msgstr "%s: Неверный тип входного аргумента №%d : ожидался тип string.\n"
+
+#, c-format
 msgid "The file %s does not exist.\n"
 msgstr "Файл %s не существует.\n"
+
+#, c-format
+msgid "%s: Cannot read file name.\n"
+msgstr "%s: Не удалось прочитать имя файла.\n"
+
+#, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr "%s: Файл %s не существует.\n"
 
 #, c-format
 msgid "%s: File %s is not an ole2 file.\n"
@@ -207,8 +225,16 @@ msgid "%s: Cannot open file %s.\n"
 msgstr "%s: Не удалось открыть файл %s.\n"
 
 #, c-format
-msgid "%s: There is no xls stream in the ole2 file %s.\n"
-msgstr "%s: В файле ole2 %s нет xls-потока.\n"
+msgid "There is no xls stream in the ole2 file %ls.\n"
+msgstr "В ole2-файле %ls нет потока xls.\n"
+
+#, c-format
+msgid "%s: invalid filename.\n"
+msgstr "%s: недопустимое имя файла.\n"
+
+#, c-format
+msgid "%s: invalid status.\n"
+msgstr "%s: недопустимое состояние.\n"
 
 #, c-format
 msgid "%s: Not an ole2 file.\n"
@@ -231,8 +257,8 @@ msgid "%s: Only BIFF8 file format is handled.\n"
 msgstr "%s: Поддерживается только формат файлов BIFF8.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
-msgstr "%s: Неверный тип входного параметра №%d: ожидался скаляр.\n"
+msgid "%s: Wrong type for input argument #%d : A scalar expected.\n"
+msgstr "%s: Неверный тип водного аргумента №%d : ожидался скаляр.\n"
 
 #, c-format
 msgid "%s: Failed to read expected data, may be invalid xls file.\n"
@@ -260,8 +286,7 @@ msgstr "LOGGER_set_logfile: ОШИБК - Не удалось открыть фа
 
 #, c-format
 msgid "LOGGER_set_logfile: ERROR - Cannot open logfile '%s' (%s)\n"
-msgstr ""
-"LOGGER_set_logfile: ОШИБКА - Не удалось открыть файл лога «%s» (%s)\n"
+msgstr "LOGGER_set_logfile: ОШИБКА - Не удалось открыть файл лога «%s» (%s)\n"
 
 #, c-format
 msgid "LOGGER-Default: %s%s"
@@ -281,8 +306,7 @@ msgstr "%s:%d:OLE_get_block:ОШИБКА: Блочный буфер равен N
 
 #, c-format
 msgid "%s:%d:OLE_get_block:ERROR: Cannot allocate %d bytes for OLE block"
-msgstr ""
-"%s:%d:OLE_get_block:ОШИБКА: Не удалось выделить %d байт для OLE-блока"
+msgstr "%s:%d:OLE_get_block:ОШИБКА: Не удалось выделить %d байт для OLE-блока"
 
 #, c-format
 msgid "%s:%d:OLE_get_block:ERROR: Seek failure (block=%d:%d)"
@@ -376,8 +400,7 @@ msgstr ""
 "%s\n"
 
 #, c-format
-msgid ""
-"%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n"
+msgid "%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n"
 msgstr ""
 "%s:%d:OLEUNWRAP_save_stream:ОШИБКА: Не удалось открыть %s для записи (%s)\n"
 
@@ -432,4 +455,4 @@ msgid "Spreadsheet"
 msgstr "Электронная таблица"
 
 msgid "Read a xls file"
-msgstr "Прочитать xls-файл"
+msgstr "Читать xls-файл"

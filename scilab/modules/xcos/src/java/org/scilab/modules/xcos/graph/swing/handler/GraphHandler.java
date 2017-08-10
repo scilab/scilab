@@ -1,12 +1,16 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010-2010 - DIGITEO - Clement DAVID <clement.david@scilab.org>
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -21,11 +25,12 @@ import java.util.logging.Logger;
 import javax.swing.SwingUtilities;
 
 import org.scilab.modules.graph.ScilabGraph;
+import org.scilab.modules.graph.actions.base.GraphActionManager;
 import org.scilab.modules.xcos.block.BasicBlock;
-import org.scilab.modules.xcos.block.BlockFactory;
-import org.scilab.modules.xcos.block.BlockFactory.BlockInterFunction;
 import org.scilab.modules.xcos.block.TextBlock;
-import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.block.actions.BlockParametersAction;
+import org.scilab.modules.xcos.graph.model.BlockInterFunction;
+import org.scilab.modules.xcos.graph.model.XcosCellFactory;
 import org.scilab.modules.xcos.graph.swing.GraphComponent;
 import org.scilab.modules.xcos.link.BasicLink;
 import org.scilab.modules.xcos.port.BasicPort;
@@ -33,10 +38,12 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.model.mxIGraphModel;
+import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.swing.handler.mxGraphHandler;
 import com.mxgraph.swing.util.mxGraphTransferable;
 import com.mxgraph.util.mxPoint;
 import com.mxgraph.view.mxGraph;
+import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 
 /**
  * Handle double click operation on the graph.
@@ -97,10 +104,10 @@ public class GraphHandler extends mxGraphHandler {
                 if (cell instanceof BasicLink) {
                     clickOnLink(e, (BasicLink) cell);
                 } else if (cell instanceof BasicBlock) {
-                    openBlock(e, (BasicBlock) cell);
+                    openBlock(graphComponent, e, (BasicBlock) cell);
                 } else if (cell instanceof BasicPort) {
                     // translated to the parent
-                    openBlock(e, (BasicBlock) ((BasicPort) cell).getParent());
+                    openBlock(graphComponent, e, (BasicBlock) ((BasicPort) cell).getParent());
                 } else if (cell == null) {
                     createTextBlock(e);
                 }
@@ -137,7 +144,14 @@ public class GraphHandler extends mxGraphHandler {
      */
     private void createTextBlock(MouseEvent e) {
         // allocate
-        final TextBlock textBlock = (TextBlock) BlockFactory.createBlock(BlockInterFunction.TEXT_f);
+        final TextBlock textBlock;
+        try {
+            textBlock = (TextBlock) XcosCellFactory.createBlock(BlockInterFunction.TEXT_f);
+        } catch (ScilabInterpreterManagement.InterpreterException ex) {
+            // this is unexpected report : Scilab might not be accessible at all
+            throw new RuntimeException(ex);
+        }
+
 
         // set the position of the block
         final mxPoint pt = graphComponent.getPointForEvent(e);
@@ -205,13 +219,15 @@ public class GraphHandler extends mxGraphHandler {
     /**
      * Open a block
      *
+     * @param comp the component
      * @param e
      *            the mouse event
      * @param cell
      *            the block
      */
-    private void openBlock(MouseEvent e, BasicBlock cell) {
-        cell.openBlockSettings(((XcosDiagram) graphComponent.getGraph()).getContext());
+    private void openBlock(mxGraphComponent comp, MouseEvent e, BasicBlock cell) {
+        BlockParametersAction action = GraphActionManager.getInstance((ScilabGraph) comp.getGraph(), BlockParametersAction.class);
+        action.actionPerformed();
 
         e.consume();
     }

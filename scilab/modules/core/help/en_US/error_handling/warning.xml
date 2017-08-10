@@ -5,33 +5,47 @@
         <refpurpose>warning messages</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>warning('string')
+            warning(string_matrix)
             warning('off')
             warning('on')
+            warning('stop')
             mode = warning('query')
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Description</title>
         <para>
-            <literal>warning('string')</literal> prints the character string 
+            <literal>warning('string')</literal> prints the character string
             <literal>'string'</literal> in a warning message.
         </para>
         <para>
-            <literal>'on'</literal> enables warning messages.
+            <literal>warning(string_matrix)</literal> prints each element of the matrix <literal>string_matrix</literal>
+            in a warning message.
         </para>
         <para>
-            <literal>'off'</literal> disables warning messages.
+            <literal>'on'</literal> enables warning messages, warning messages do not interrupt script execution.
         </para>
         <para>
-            <literal>'query'</literal> gets state <literal>'on'</literal> or <literal>'off'</literal>.
+            <literal>'off'</literal> disables warning messages, warning messages are ignored (neither displayed nor interrupting script execution).
+        </para>
+        <para>
+            <literal>'stop'</literal> enables warning messages and stops execution when a warning is encountered.
+        </para>
+        <para>
+            <literal>'query'</literal> gets state <literal>'on'</literal>, <literal>'off'</literal> or <literal>'stop'</literal>.
+        </para>
+        <para>
+            <literal>warning("on")</literal>, <literal>warning("off")</literal> and <literal>warning("stop")</literal> also affect hard-coded functions issuing warnings.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-warning('on') 
+        <programlisting role="example"><![CDATA[
+w_flag = warning("query"); // remembering the warning flag
+
+warning('on')
 warning('this is a warning')
 warning('off')
 warning('this is a warning')
@@ -39,10 +53,21 @@ warning('query')
 warning('on')
 // Example with a localized message
 warning(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"myFunction",2));
+
+// Setting warning stop
+warning("stop")
+
+try
+    warning("this is a warning");
+catch
+    lasterror() // Warning message is considered an error
+end
+
+warning(w_flag); // resetting the warning flag
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="error">error</link>

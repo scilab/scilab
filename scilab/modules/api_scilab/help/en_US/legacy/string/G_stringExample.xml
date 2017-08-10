@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009  - DIGITEO - Antoine ELIAS
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="stringExample" xml:lang="en">
+    <refnamediv>
+        <refname>string example</refname>
+        <refpurpose>
+            String use case.
+        </refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>This example shows how to get a string variable and return it to Scilab.</para>
+    </refsection>
+    <refsection>
+        <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/stringExample.c-->
+        <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/stringExample.tst-->
+        <!--Lib_name: stringExample-->
+        <!--Func_list: stringExample-->
+        <title>Gateway Source</title>
+        <programlisting role="code_gateway"><![CDATA[
+#include "api_scilab.h"
+int stringExample(char *fname,void* pvApiCtx)
+{
+	SciErr sciErr;
+	int* piAddr = NULL;
+	int iType   = 0;
+	int iRet    = 0;
+
+    CheckInputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
+
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+
+	if(isStringType(pvApiCtx, piAddr))
+	{
+		if(isScalar(pvApiCtx, piAddr))
+		{
+			char* pstData = NULL;
+
+			iRet = getAllocatedSingleString(pvApiCtx, piAddr, &pstData);
+			if(iRet)
+			{
+				freeAllocatedSingleString(pstData);
+				return iRet;
+			}
+
+			iRet = createSingleString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, pstData);
+			if(iRet)
+			{
+				freeAllocatedSingleString(pstData);
+				return iRet;
+			}
+
+			freeAllocatedSingleString(pstData);
+		}
+		else
+		{
+			int iRows       = 0;
+			int iCols       = 0;
+			char** pstData  = NULL;
+
+			iRet = getAllocatedMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, &pstData);
+			if(iRet)
+			{
+				freeAllocatedMatrixOfString(iRows, iCols, pstData);
+				return iRet;
+			}
+
+			sciErr = createMatrixOfString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, iRows, iCols, pstData);
+			if(sciErr.iErr)
+			{
+				freeAllocatedMatrixOfString(iRows, iCols, pstData);
+				printError(&sciErr, 0);
+				return sciErr.iErr;
+			}
+
+			freeAllocatedMatrixOfString(iRows, iCols, pstData);
+		}
+
+        AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+	}
+	else
+	{
+        AssignOutputVariable(pvApiCtx, 1) = 0;
+	}
+	return 0;
+}
+ ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>Scilab test script</title>
+        <programlisting role="code_scilab"><![CDATA[
+a = "Scilab";
+b = ["New","Scilab";"API","functions"];
+if stringExample(a) <> a then pause, end
+if stringExample(b) <> b then pause, end
+ ]]></programlisting>
+    </refsection>
+</refentry>

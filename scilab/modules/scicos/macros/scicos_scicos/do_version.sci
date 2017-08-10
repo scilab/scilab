@@ -111,7 +111,7 @@ function scs_m_new=do_version43(scs_m)
             omod=o.model;
 
             // Clear the doc fields if it contains a function pointer
-            if type(o.doc) == 15 & size(o.doc) > 1 & (type(o.doc(1)) == 11 | type(o.doc(1)) == 13) then
+            if type(o.doc) == 15 & size(o.doc) > 1 & type(o.doc(1)) == 13 then
                 scs_m_new.objs(j).doc = list();
             end
 
@@ -211,9 +211,11 @@ function scs_m_new=do_version43(scs_m)
 
                 //@@ Change gr_i of INTEGRAL_m if needed
             elseif o.gui=="INTEGRAL_m" | o.gui=="INTEGRAL" then
-                gr_i=["thick=xget(''thickness'')"
-                "pat=xget(''pattern'')"
-                "fnt=xget(''font'')"
+                gr_i=[
+                "ax = gca();"
+                "thick = ax.thickness;"
+                "pat = ax.foreground;"
+                "fnt = [ax.font_style, ax.font_size]"
                 "xpoly(orig(1)+[0.7;0.62;0.549;0.44;0.364;0.291]*sz(1),orig(2)+[0.947;0.947;0.884;0.321;0.255;0.255]*sz(2),"'lines"')"
                 "txt=''1/s'';"
                 "style=5;"
@@ -224,16 +226,21 @@ function scs_m_new=do_version43(scs_m)
                 "xstringb(orig(1)+sz(1)/2-w/2,orig(2)-h-4,txt,w,h,''fill'');"
                 "e=gce();"
                 "e.font_style=style;"
-                "xset(''thickness'',thick)"
-                "xset(''pattern'',pat)"
-                "xset(''font'',fnt(1),fnt(2))"]
-                old_gri=["thick=xget(''thickness'')"
-                "pat=xget(''pattern'')"
-                "fnt=xget(''font'')"
+                "ax.thickness = thick;"
+                "ax.foreground = pat;"
+                "ax.font_style = fnt(1);"
+                "ax.font_size = fnt(2);"
+                ]
+                old_gri=[
+                "ax = gca();"
+                "thick = ax.thickness;"
+                "pat = ax.foreground;"
+                "fnt = [ax.font_style, ax.font_size];"
                 "xpoly(orig(1)+[0.7;0.62;0.549;0.44;0.364;0.291]*sz(1),orig(2)+[0.947;0.947;0.884;0.321;0.255;0.255]*sz(2),"'lines"')"
-                "xset(''thickness'',thick)"
-                "xset(''pattern'',pat)"
-                "xset(''font'',fnt(1),fnt(2))"
+                "ax.thickness = thick;"
+                "ax.foreground = pat;"
+                "ax.font_style = fnt(1);"
+                "ax.font_size = fnt(2);"
                 ]
                 id=o.graphics.id
                 if id=="1/s" then id="",end
@@ -556,10 +563,13 @@ function scs_m_new=do_version43(scs_m)
 
                 //@@ Change gr_i of CLKGotoTagVisibility if needed
             elseif o.gui=="CLKGotoTagVisibility" then
-                gr_i=["xstringb(orig(1),orig(2),[''{''+arg1.graphics.exprs(1)+''}''],sz(1),sz(2),''fill'');";
-                "wd=xget(''wdim'').*[1.016,1.12];";
-                "thick=xget(''thickness'');xset(''thickness'',2);";
-                "p=wd(2)/wd(1);p=1;";
+                gr_i=[
+                "xstringb(orig(1),orig(2),[''{''+arg1.graphics.exprs(1)+''}''],sz(1),sz(2),''fill'');";
+                "wd = gcf().figure_size .* [1.016,1.12];";
+                "gh_axes = gca();"
+                "thick = gh_axes.thickness;";
+                "gh_axes.thickness = 2;";
+                "p = wd(2)/wd(1); p=1; ";
                 "xarcs([orig(1)+0.05*sz(1);";
                 "orig(2)+0.95*sz(2);";
                 "0.9*sz(1)*p;";
@@ -568,7 +578,6 @@ function scs_m_new=do_version43(scs_m)
                 "360*64],scs_color(5));";
                 "txt=[''Goto Tag'';''Visibility'' ];"
                 "style=5;"
-                "gh_axes = gca();"
                 "axes_font_style = gh_axes.font_style ;"
                 "axes_font_size  = gh_axes.font_size  ;"
                 "gh_axes.font_style = 5;"
@@ -580,18 +589,23 @@ function scs_m_new=do_version43(scs_m)
                 "xstringb(orig(1)+sz(1)/2-w/2,orig(2)-h-5,txt,w,h,''fill'');"
                 "gh_axes.font_style = axes_font_style ;"
                 "gh_axes.font_size  = axes_font_size  ;"
-                "xset(''thickness'',thick)"]
-                old_gri=["xstringb(orig(1),orig(2),[''{''+arg1.graphics.exprs(1)+''}''],sz(1),sz(2),''fill'');";
-                "wd=xget(''wdim'').*[1.016,1.12];";
-                "thick=xget(''thickness'');xset(''thickness'',2);";
-                "p=wd(2)/wd(1);p=1;";
+                "gca().thickness = thick;"]
+
+                old_gri=[
+                "xstringb(orig(1),orig(2),[''{''+arg1.graphics.exprs(1)+''}''],sz(1),sz(2),''fill'');";
+                "wd = gcf().figure_size .*[1.016,1.12];";
+                "ax = gca();";
+                "thick = ax.thickness;";
+                "ax.thickness = 2;";
+                "p = wd(2)/wd(1); p = 1;";
                 "xarcs([orig(1)+0.05*sz(1);";
                 "orig(2)+0.95*sz(2);";
                 "0.9*sz(1)*p;";
                 "0.9*sz(2);";
                 "0;";
                 "360*64],scs_color(5));";
-                "xset(''thickness'',thick)"]
+                "ax.thickness = thick;"
+                ]
                 id=o.graphics.id
                 if id==["Goto Tag";"Visibility"] then id="",end
                 scs_m_new.objs(j).graphics.id=id
@@ -608,9 +622,11 @@ function scs_m_new=do_version43(scs_m)
                 //@@ Change gr_i of GotoTagVisibilityMO if needed
             elseif o.gui=="GotoTagVisibilityMO" then
                 gr_i=["xstringb(orig(1),orig(2),[''{''+arg1.graphics.exprs(1)+''}''],sz(1),sz(2),''fill'');";
-                "wd=xget(''wdim'').*[1.016,1.12];";
-                "thick=xget(''thickness'');xset(''thickness'',2);";
-                "p=wd(2)/wd(1);p=1;";
+                "wd = gcf().figure_size .* [1.016,1.12];";
+                "gh_axes = gca();"
+                "thick = gh_axes.thickness;";
+                "gh_axes.thickness = 2;";
+                "p = wd(2) / wd(1); p=1;";
                 "xarcs([orig(1)+0.05*sz(1);";
                 "orig(2)+0.95*sz(2);";
                 "0.9*sz(1)*p;";
@@ -619,7 +635,6 @@ function scs_m_new=do_version43(scs_m)
                 "360*64],scs_color(3));";
                 "txt=[''Goto Tag'';''Visibility'' ];"
                 "style=5;"
-                "gh_axes = gca();"
                 "axes_font_style = gh_axes.font_style ;"
                 "axes_font_size  = gh_axes.font_size  ;"
                 "gh_axes.font_style = 5;"
@@ -631,18 +646,22 @@ function scs_m_new=do_version43(scs_m)
                 "xstringb(orig(1)+sz(1)/2-w/2,orig(2)-h-5,txt,w,h,''fill'');"
                 "gh_axes.font_style = axes_font_style ;"
                 "gh_axes.font_size  = axes_font_size  ;"
-                "xset(''thickness'',thick)"]
-                old_gri=["xstringb(orig(1),orig(2),[''{''+arg1.graphics.exprs(1)+''}''],sz(1),sz(2),''fill'');";
-                "wd=xget(''wdim'').*[1.016,1.12];";
-                "thick=xget(''thickness'');xset(''thickness'',2);";
-                "p=wd(2)/wd(1);p=1;";
+                "gh_axes.thickness = thick;"]
+
+                old_gri=[
+                "xstringb(orig(1),orig(2),[''{''+arg1.graphics.exprs(1)+''}''],sz(1),sz(2),''fill'');";
+                "wd = gcf().figure_size .* [1.016,1.12];";
+                "ax = gca();";
+                "thick = ax.thickness;";
+                "ax.thickness = 2;";
+                "p = wd(2)/wd(1); p = 1;";
                 "xarcs([orig(1)+0.05*sz(1);";
                 "orig(2)+0.95*sz(2);";
                 "0.9*sz(1)*p;";
                 "0.9*sz(2);";
                 "0;";
                 "360*64],scs_color(3));";
-                "xset(''thickness'',thick)"]
+                "ax.thickness = thick;"]
                 id=o.graphics.id
                 if id==["Goto Tag";"Visibility"] then id="",end
                 scs_m_new.objs(j).graphics.id=id
@@ -673,6 +692,7 @@ function scs_m_new=do_version43(scs_m)
                 "xstringb(orig(1)+sz(1)/2-w/2,orig(2)-h-5,txt,w,h,''fill'');"
                 "gh_axes.font_style = axes_font_style ;"
                 "gh_axes.font_size  = axes_font_size  ;"]
+
                 old_gri=["xstringb(orig(1),orig(2),[''{''+arg1.graphics.exprs(1)+''}''],sz(1),sz(2),''fill'');"]
                 id=o.graphics.id
                 if id==["Goto Tag";"Visibility"] then id="",end
@@ -727,7 +747,7 @@ function scs_m_new=do_version43(scs_m)
 
                 //@@ Change gr_i of Capacitor if needed
             elseif o.gui=="Capacitor" then
-                gr_i=["xset(''thickness'',2)"
+                gr_i=["gca().thickness = 2;"
                 "xx=orig(1)+[0 1/3 1/3 1/3 ]*sz(1);";
                 "yy=orig(2)+[1/2 1/2 1 0]*sz(2);";
                 "xpoly(xx,yy);"
@@ -750,7 +770,7 @@ function scs_m_new=do_version43(scs_m)
                 "xstringb(orig(1)+sz(1)/2-w/2,orig(2)-h-4,txt,w,h,''fill'');"
                 "e=gce();"
                 "e.font_style=style;"]
-                old_gri=["xset(''thickness'',2)"
+                old_gri=["gca().thickness = 2;"
                 "xx=orig(1)+[0 1/3 1/3 1/3 ]*sz(1);";
                 "yy=orig(2)+[1/2 1/2 1 0]*sz(2);";
                 "xpoly(xx,yy);"
@@ -1034,11 +1054,16 @@ function scs_m_new=do_version272(scs_m)
                 out_implicit=I(ones(grphic.pout(:)));
             end
 
-            scs_m_new.objs(i).graphics=scicos_new(["graphics","orig","sz","flip","exprs","pin",..
-            "pout","pein","peout","gr_i","id","in_implicit","out_implicit"],..
-            grphic.orig,grphic.sz,grphic.flip,grphic.exprs,grphic.pin,..
+            if grphic.flip == %f then
+                style = "flip=0;";
+            else
+                style = "";
+            end
+            scs_m_new.objs(i).graphics=scicos_new(["graphics","orig","sz","exprs","pin",..
+            "pout","pein","peout","gr_i","id","in_implicit","out_implicit","style"],..
+            grphic.orig,grphic.sz,grphic.exprs,grphic.pin,..
             grphic.pout,grphic.pein,grphic.peout,grphic.gr_i,grphic.id,..
-            in_implicit,out_implicit)
+            in_implicit,out_implicit,style)
 
             if or(scs_m_new.objs(i).model.sim==["super","csuper"]) then
                 rpar=do_version272(scs_m_new.objs(i).model.rpar)
@@ -1098,7 +1123,9 @@ function scs_m=do_version251(scs_m)
                 end
             elseif o(5)=="AFFICH_f" then
                 scs_m(k)(3)(7)=[0;-1;0;0;1;1]
-                scs_m(k)(2)(9)=["xset(''font'',ipar(1),ipar(2))";
+                scs_m(k)(2)(9)=[
+                "gca().font_style = ipar(1);"
+                "gca().font_size = ipar(2);"
                 "str='' ''+part(''0'',ones(1,ipar(5)-ipar(6)-2))+''.''+part(''0'',ones(1,ipar(6)))"
                 "rr=xstringl(orig(1),orig(2),str)"
                 "xstring(orig(1)+max(0,(sz(1)-rr(3))/2),orig(2)+max(0,(sz(2)-rr(4))/2),str)"]
@@ -1248,12 +1275,15 @@ function o=block_version(o)
         string(ymin);
         string(ymax);
         string(N)]
-        gr_i=["thick=xget(''thickness'');xset(''thickness'',2);";
+        gr_i=[
+        "ax = gca();";
+        "thick = ax.thickness;";
+        "ax.thickness = 2;";
         "t=(0:0.3:2*%pi)'';";
-        "xx=orig(1)+(1/5+(cos(2.2*t)+1)*3/10)*sz(1);";
-        "yy=orig(2)+(1/4.3+(sin(t)+1)*3/10)*sz(2);";
+        "xx = orig(1)+(1/5+(cos(2.2*t)+1)*3/10)*sz(1);";
+        "yy = orig(2)+(1/4.3+(sin(t)+1)*3/10)*sz(2);";
         "xpoly(xx,yy,''lines'');"
-        "xset(''thickness'',thick);"]
+        "ax.thickness = thick;;"]
     case "BOUND_f" then
         rpar=model(8);in=model(2);nin=sum(in)
         if nin<>1 then
@@ -1265,16 +1295,19 @@ function o=block_version(o)
         thresh=rpar(1:nin),v=rpar(nin+1:2*nin)
         label=[strcat(sci2exp(thresh));
         strcat(sci2exp(v))]
-        gr_i=["thick=xget(''thickness'');xset(''thickness'',2);";
+        gr_i=[
+        "ax = gca();";
+        "thick = ax.thickness;";
+        "ax.thickness = 2;";
         "xx=orig(1)+[1/5;1/2;1/2;1-1/5]*sz(1);";
         "yy=orig(2)+[1/2;1/2;1-1/5;1-1/5]*sz(2);";
         "xpoly(xx,yy,''lines'');";
-        "xset(''thickness'',1);";
+        "ax.thickness = 1;";
         "xpoly(orig(1)+[1/9;1/5]*sz(1),orig(2)+[1/2;1/2]*sz(2),''lines'');";
         "xpoly(orig(1)+[1/2;1-1/9]*sz(1),orig(2)+[1/2;1/2]*sz(2),''lines'');";
         "xpoly(orig(1)+[1/2;1/2]*sz(1),orig(2)+[1/9;1/2]*sz(2),''lines'');";
         "xpoly(orig(1)+[1/2;1/2]*sz(1),orig(2)+[1-1/5;1-1/9]*sz(2),''lines'');";
-        "xset(''thickness'',thick);"]
+        "ax.thickness = thick;"]
     case "CLINDUMMY_f" then
         label=[]
         gr_i=["xstringb(orig(1),orig(2),[''DUMMY'';''CLSS''],sz(1),sz(2),''fill'');"]
@@ -1306,8 +1339,10 @@ function o=block_version(o)
         o = list("Block",..
         list([0,0],[2,2],%t,[],[],[],[],0,..
         list(..
-        ["wd=xget(''wdim'').*[1.016,1.12];";
-        "thick=xget(''thickness'');xset(''thickness'',2);";
+        ["wd = gcf().figure_size .* [1.016,1.12];";
+        "ax = gca();";
+        "thick = ax.thickness;";
+        "ax.thickness = 2;";
         "p=wd(2)/wd(1);p=1;";
         "rx=sz(1)*p/2;ry=sz(2)/2;";
         "xarcs([orig(1)+0.05*sz(1);";
@@ -1316,13 +1351,13 @@ function o=block_version(o)
         "   0.9*sz(2);";
         "   0;";
         "   360*64],scs_color(5));";
-        "xset(''thickness'',1);";
+        "ax.thickness = 1;";
         "xx=[orig(1)+rx    orig(1)+rx;";
         "    orig(1)+rx    orig(1)+rx+0.6*rx*cos(%pi/6)];";
         "yy=[orig(2)+ry    orig(2)+ry ;";
         "  orig(2)+1.8*ry  orig(2)+ry+0.6*ry*sin(%pi/6)];";
         "xsegs(xx,yy,scs_color(10));";
-        "xset(''thickness'',thick);"],[])),..
+        "ax.thickness = thick;"],[])),..
         list("csuper",[],[],[],1,[]," ",..
         list(list([600,400,0,0],"foo",[],[]),..
         list("Block",list([399,162],[20,20],%t,"1",[],[],6,[],[]),..
@@ -1420,7 +1455,9 @@ function o=block_version(o)
     case "CURV_f" then
         label=[]
         gr_i=["model=arg1(3);rpar=model(8);ipar=model(9);n=ipar(1);";
-        "thick=xget(''thickness'');xset(''thickness'',2);";
+        "ax = gca();";
+        "thick = ax.thickness;";
+        "ax.thickness = 2;";
         "xx=rpar(1:n);yy=rpar(n+1:2*n);";
         "rect=rpar(2*n+1:2*n+4);";
         "mxx=rect(3)-rect(1);";
@@ -1428,7 +1465,7 @@ function o=block_version(o)
         "xx=orig(1)+sz(1)*(1/10+(4/5)*((xx-rect(1))/mxx));";
         "yy=orig(2)+sz(2)*(1/10+(4/5)*((yy-rect(2))/mxy));";
         "xpoly(xx,yy,''lines'');";
-        "xset(''thickness'',thick);"]
+        "ax.thickness = thick;"]
     case "DELAY_f" then
         orig=o(2)(1)
         sz=o(2)(2)
@@ -1531,7 +1568,10 @@ function o=block_version(o)
         sci2exp([]);
         sci2exp([]);
         string(per)]
-        gr_i=["thick=xget(''thickness'');xset(''thickness'',2);";
+        gr_i=[
+        "ax = gca();";
+        "thick = ax.thickness;";
+        "ax.thickness = 2;";
         "xrect(orig(1)+sz(1)/10,orig(2)+(1-1/10)*sz(2),sz(1)*8/10,sz(2)*8/10);";
         "xx=[orig(1)+sz(1)/5,orig(1)+sz(1)/5;";
         "orig(1)+(1-1/5)*sz(1),orig(1)+sz(1)/5];";
@@ -1542,7 +1582,7 @@ function o=block_version(o)
         "xx=orig(1)+(1/5+3*t/(10*%pi))*sz(1);";
         "yy=orig(2)+(1/4.3+(sin(t)+1)*3/10)*sz(2);";
         "xpoly(xx,yy,''lines'');";
-        "xset(''thickness'',thick);"]
+        "ax.thickness = thick;"]
     case "EVTDLY_f" then
         dt=model(8);
         if model(11) then ff=0; else ff=-1; end
@@ -1630,14 +1670,16 @@ function o=block_version(o)
     case "LOOKUP_f" then
         model(10)="c"
         gr_i=["rpar=model(8);n=size(rpar,''*'')/2;";
-        "thick=xget(''thickness'');xset(''thickness'',2);";
+        "ax = gca();";
+        "thick = ax.thickness;";
+        "ax.thickness = 2;";
         "xx=rpar(1:n);yy=rpar(n+1:2*n);";
         "mnx=min(xx);xx=xx-mnx*ones(xx);mxx=max(xx);";
         "xx=orig(1)+sz(1)*(1/10+(4/5)*xx/mxx);";
         "mnx=min(yy);yy=yy-mnx*ones(yy);mxx=max(yy);";
         "yy=orig(2)+sz(2)*(1/10+(4/5)*yy/mxx);";
         "xpoly(xx,yy,''lines'');";
-        "xset(''thickness'',thick);"]
+        "ax.thickness = thick;"]
         label=[]
     case "MAX_f" then
         in=model(2);nin=sum(in)
@@ -1705,11 +1747,14 @@ function o=block_version(o)
         pas=rpar(1)
         meth=ipar
         label=[string(pas);string(meth)]
-        gr_i=["thick=xget(''thickness'');xset(''thickness'',2);";
+        gr_i=[
+        "ax = gca();";
+        "thick = ax.thickness;";
+        "ax.thickness = 2;";
         "xx=orig(1)+[1;2;2;3;3;4;4]/5*sz(1);";
         "yy= orig(2)+[1;1;2;2;3;3;4]/5*sz(2);";
         "xpoly(xx,yy,''lines'');";
-        "xset(''thickness'',thick);"]
+        "ax.thickness = thick;"]
     case "RAND_f" then
         rpar=model(8);flag=model(9);
         out=model(3);nout=sum(out)
@@ -1775,11 +1820,14 @@ function o=block_version(o)
         minp=rpar(1),maxp=rpar(2),pente=rpar(3)
         label=[string(minp);string(maxp);string(pente)]
 
-        gr_i=["thick=xget(''thickness'');xset(''thickness'',2);";
-        "xx=orig(1)+[4/5;1/2+1/5;1/2-1/5;1/5]*sz(1);";
-        "yy=orig(2)+[1-1/5;1-1/5;1/5;1/5]*sz(2);";
+        gr_i=[
+        "ax = gca();";
+        "thick = ax.thickness;";
+        "ax.thickness = 2;";
+        "xx = orig(1) + [4/5;1/2+1/5;1/2-1/5;1/5]*sz(1);";
+        "yy = orig(2) + [1-1/5;1-1/5;1/5;1/5]*sz(2);";
         "xpoly(xx,yy,''lines'');";
-        "xset(''thickness'',thick)"]
+        "ax.thickness = thick;"]
     case "SAWTOOTH_f" then
         model(10)="c"
         gr_i=["txt=[''sawtooth'';''generator''];";
@@ -1810,18 +1858,21 @@ function o=block_version(o)
         string(per);
         string(N)];
 
-        gr_i=["thick=xget(''thickness'');xset(''thickness'',2);";
+        gr_i=[
+        "ax = gca();";
+        "thick = ax.thickness;";
+        "ax.thickness = 2;";
         "xrect(orig(1)+sz(1)/10,orig(2)+(1-1/10)*sz(2),sz(1)*8/10,sz(2)*8/10);";
-        "xx=[orig(1)+sz(1)/5,orig(1)+sz(1)/5;";
+        "xx = [orig(1)+sz(1)/5,orig(1)+sz(1)/5;";
         "orig(1)+(1-1/5)*sz(1),orig(1)+sz(1)/5];";
-        "yy=[orig(2)+sz(2)/5,orig(2)+sz(2)/5;";
+        "yy = [orig(2)+sz(2)/5,orig(2)+sz(2)/5;";
         "orig(2)+sz(2)/5,orig(2)+(1-1/5)*sz(2)];";
         "xarrows(xx,yy);";
-        "t=(0:0.3:2*%pi)'';";
-        "xx=orig(1)+(1/5+3*t/(10*%pi))*sz(1);";
-        "yy=orig(2)+(1/4.3+(sin(t)+1)*3/10)*sz(2);";
+        "t = (0:0.3:2*%pi)'';";
+        "xx = orig(1) + (1/5+3*t/(10*%pi))*sz(1);";
+        "yy = orig(2) + (1/4.3+(sin(t)+1)*3/10)*sz(2);";
         "xpoly(xx,yy,''lines'');";
-        "xset(''thickness'',thick)"]
+        "ax.thickness = thick;"]
     case "SCOPXY_f" then
         [rpar,ipar]=model(8:9)
         win=ipar(1);N=ipar(3);clrs=-ipar(4);siz=ipar(5)
@@ -1839,12 +1890,15 @@ function o=block_version(o)
         string(ymax);
         string(N)];
         model(9)=[win;1;N;clrs;siz;1;wpos(:);wdim(:)]
-        gr_i=["thick=xget(''thickness'');xset(''thickness'',2);";
-        "t=(0:0.2:2*%pi)'';";
-        "xx=orig(1)+(1/5+(cos(3*t)+1)*3/10)*sz(1);";
-        "yy=orig(2)+(1/4.3+(sin(t+1)+1)*3/10)*sz(2);";
+        gr_i=[
+        "ax = gca();";
+        "thick = ax.thickness;";
+        "ax.thickness = 2;";
+        "t = (0:0.2:2*%pi)'';";
+        "xx = orig(1)+(1/5+(cos(3*t)+1)*3/10)*sz(1);";
+        "yy = orig(2)+(1/4.3+(sin(t+1)+1)*3/10)*sz(2);";
         "xpoly(xx,yy,''lines'');";
-        "xset(''thickness'',thick)"]
+        "ax.thickness = thick;"]
     case "SELECT_f" then
         z0=model(7);nin=size(model(2),1);
         label=[string(nin);string(z0-1)]
@@ -1870,14 +1924,17 @@ function o=block_version(o)
         gr_i=[]
     case "SUPER_f" then
         label=[]
-        gr_i=["thick=xget(''thickness'');xset(''thickness'',2);";
+        gr_i=[
+        "ax = gca();";
+        "thick = ax.thickness;";
+        "ax.thickness = 2;";
         "xx=orig(1)+      [2 4 4]*(sz(1)/7);";
         "yy=orig(2)+sz(2)-[2 2 6]*(sz(2)/10);";
         "xrects([xx;yy;[sz(1)/7;sz(2)/5]*ones(1,3)]);";
         "xx=orig(1)+      [1 2 3 4 5 6 3.5 3.5 3.5 4 5 5.5 5.5 5.5]*sz(1)/7;";
         "yy=orig(2)+sz(2)-[3 3 3 3 3 3 3   7   7   7 7 7   7   3  ]*sz(2)/10;";
         "xsegs(xx,yy,0);";
-        "xset(''thickness'',thick)"]
+        "ax.thickness = thick;"]
     case "TANBLK_f" then
         in=model(2);nin=sum(in)
         if nin<>1 then
@@ -1929,18 +1986,21 @@ function o=block_version(o)
         gr_i=[]
     case "TIME_f" then
         label=[]
-        gr_i=["wd=xget(''wdim'').*[1.016,1.12];";
-        "thick=xget(''thickness'');xset(''thickness'',2);";
-        "p=wd(2)/wd(1);p=1;";
-        "rx=sz(1)*p/2;ry=sz(2)/2;";
-        "xarc(orig(1)+0.05*sz(1),orig(2)+0.95*sz(2),0.9*sz(1)*p,0.9*sz(2),0,360*64);";
-        "xset(''thickness'',1);";
+        gr_i=[
+        "wd = gcf().figure_size .* [1.016,1.12];";
+        "ax = gca();";
+        "thick = ax.thickness;";
+        "ax.thickness = 2;";
+        "p = wd(2)/wd(1); p=1;";
+        "rx = sz(1)*p/2; ry=sz(2)/2;";
+        "xarc(orig(1) + 0.05*sz(1),orig(2)+0.95*sz(2),0.9*sz(1)*p,0.9*sz(2),0,360*64);";
+        "ax.thickness = 1;";
         "xx=[orig(1)+rx    orig(1)+rx;";
         "orig(1)+rx    orig(1)+rx+0.6*rx*cos(%pi/6)];";
         "yy=[orig(2)+ry    orig(2)+ry ;";
         "     orig(2)+1.8*ry  orig(2)+ry+0.6*ry*sin(%pi/6)];";
         "xsegs(xx,yy,0);";
-        "xset(''thickness'',thick);"]
+        "ax.thickness = thick;"]
     case "TRASH_f" then
         in=model(2);nin=sum(in)
         if nin<>1 then
@@ -1952,22 +2012,10 @@ function o=block_version(o)
         label=" "
         gr_i=["xstringb(orig(1),orig(2),''Trash'',sz(1),sz(2),''fill'')"]
     case "WFILE_f" then
-        state=model(7)
-        [in,ipar]=model([2  9])
-        N=ipar(3);
-        lunit=state(2)
-        N=ipar(4)
-        lfil=ipar(1)
-        lfmt=ipar(2)
-        if lfil>0 then fname=ascii(ipar(5:4+lfil)),else fname=" ",end
-        if lfmt>0 then Fmt=ascii(ipar(5+lfil:4+lfil+lfmt)),else Fmt=" ",end
-        label=[sci2exp(in);
-        fname;
-        Fmt;
-        string(N)]
-
-        gr_i=["txt=[''write to'';''output file''];";
-        "xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'')"]
+        write(%io(2),["PB with WFILE_f";
+        "Obsolete block, please use WRITEC_f instead."])
+        label=[]
+        gr_i=[]
     case "ZCROSS_f" then
         in=model(2)
         label=strcat(sci2exp(in))
@@ -2141,10 +2189,15 @@ function scs_m_new=do_version27(scs_m)
                 end
             end
 
-            graphics=scicos_graphics27(orig=o(2)(1),sz=o(2)(2),flip=o(2)(3),..
+            if o(2)(3) == %f then
+                style = "flip=0;";
+            else
+                style = "";
+            end
+            graphics=scicos_graphics27(orig=o(2)(1),sz=o(2)(2),..
             exprs=o(2)(4),pin=o(2)(5),pout=o(2)(6),..
             pein=o(2)(7),peout=o(2)(8),gr_i=gr_i,..
-            id=mdl(15))
+            id=mdl(15),style=style)
 
 
             model=scicos_model27(sim=mdl(1),in=mdl(2),out=mdl(3),evtin=mdl(4),..
@@ -2207,7 +2260,9 @@ function  gr_i=convert_gri(name,gri)
 
     case "CURV_f" then
         gr_i=["model=arg1.model;rpar=model.rpar;ipar=model.ipar;n=ipar(1);";
-        "thick=xget(''thickness'');xset(''thickness'',2);";
+        "ax = gca();";
+        "thick = ax.thickness;";
+        "ax.thickness = 2;";
         "xx=rpar(1:n);yy=rpar(n+1:2*n);";
         "rect=rpar(2*n+1:2*n+4);";
         "mxx=rect(3)-rect(1);";
@@ -2215,7 +2270,7 @@ function  gr_i=convert_gri(name,gri)
         "xx=orig(1)+sz(1)*(1/10+(4/5)*((xx-rect(1))/mxx));";
         "yy=orig(2)+sz(2)*(1/10+(4/5)*((yy-rect(2))/mxy));";
         "xpoly(xx,yy,''lines'');";
-        "xset(''thickness'',thick);"]
+        "ax.thickness = thick;"]
 
     case "EVTDLY_f" then
         gr_i=["dt=model.rpar;";
@@ -2240,14 +2295,16 @@ function  gr_i=convert_gri(name,gri)
 
     case "LOOKUP_f" then
         gr_i=["rpar=model.rpar;n=size(rpar,''*'')/2;";
-        "thick=xget(''thickness'');xset(''thickness'',2);";
+        "ax = gca();";
+        "thick = ax.thickness;";
+        "ax.thickness = 2;";
         "xx=rpar(1:n);yy=rpar(n+1:2*n);";
         "mnx=min(xx);xx=xx-mnx*ones(xx);mxx=max(xx);";
         "xx=orig(1)+sz(1)*(1/10+(4/5)*xx/mxx);";
         "mnx=min(yy);yy=yy-mnx*ones(yy);mxx=max(yy);";
         "yy=orig(2)+sz(2)*(1/10+(4/5)*yy/mxx);";
         "xpoly(xx,yy,''lines'');";
-        "xset(''thickness'',thick);"]
+        "ax.thickness = thick;"]
 
     case "REGISTER_f" then
 
@@ -2313,7 +2370,6 @@ function graphics=scicos_graphics27(v1,v2,v3,v4,v5,v6,v7,v8,v9,v10)
     //initialisation de graphics scicos_new
     if exists("orig","local")==0 then orig=[0 0],end
     if exists("sz","local")==0 then sz=[20 20],end
-    if exists("flip","local")==0 then flip=%t,end
     if exists("exprs","local")==0 then exprs=[],end
     if exists("pin","local")==0 then pin=[],end
     if exists("pout","local")==0 then pout=[],end
@@ -2321,8 +2377,9 @@ function graphics=scicos_graphics27(v1,v2,v3,v4,v5,v6,v7,v8,v9,v10)
     if exists("peout","local")==0 then peout=[],end
     if exists("gr_i","local")==0 then gr_i=[],end
     if exists("id","local")==0 then id="",end
+    if exists("style","local")==0 then style="",end
 
-    graphics=scicos_new(["graphics","orig","sz","flip","exprs","pin",..
-    "pout","pein","peout","gr_i","id"],..
-    orig,sz,flip,exprs,pin,pout,pein,peout,gr_i,id)
+    graphics=scicos_new(["graphics","orig","sz","exprs","pin",..
+    "pout","pein","peout","gr_i","id","style"],..
+    orig,sz,flip,exprs,pin,pout,pein,peout,gr_i,id,style)
 endfunction

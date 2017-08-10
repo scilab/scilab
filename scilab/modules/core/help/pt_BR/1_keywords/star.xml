@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="star" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="star" xml:lang="pt">
     <refnamediv>
         <refname>star</refname>
         <refpurpose>(*) operador de multiplicação</refpurpose>
@@ -23,6 +23,12 @@
             Pode ser usado para definir um novo operador (ver <link linkend="overloading">overloading</link>) com a
             mesma precedência que * ou /.
         </para>
+        <para>
+            <note>
+                Remark that <code>/*</code> start to comment a block of code and
+                <code>*/</code> end to comment this block.
+            </note>
+        </para>
     </refsection>
     <refsection role="see also">
         <title>Ver Também</title>
@@ -35,6 +41,9 @@
             </member>
             <member>
                 <link linkend="syslin">syslin</link>
+            </member>
+            <member>
+                <link linkend="comments">comments</link>
             </member>
         </simplelist>
     </refsection>

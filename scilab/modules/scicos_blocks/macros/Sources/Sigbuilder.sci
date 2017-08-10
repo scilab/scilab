@@ -50,7 +50,7 @@ function [x,y,typ] = Sigbuilder(job,arg1,arg2)
             end
             xx=arg1(spath) // get the block
             execstr("xxn="+xx.gui+"(''set'',xx)")
-            if diffobjs(xxn,xx) then
+            if or(xxn<>xx) then
                 model=xx.model
                 model_n=xxn.model
                 if ~is_modelica_block(xx) then
@@ -130,8 +130,6 @@ function [x,y,typ] = Sigbuilder(job,arg1,arg2)
         graphics=scicos_graphics(..
         orig=[329.63473,606.18517],..
         sz=[40,40],..
-        flip=%t,..
-        theta=0,..
         exprs=["3";"[0,1,2]";"[10,20,-30]";"y";"n"],..
         pin=[],..
         pout=6,..
@@ -178,8 +176,6 @@ function [x,y,typ] = Sigbuilder(job,arg1,arg2)
         graphics=scicos_graphics(..
         orig=[349.49528;565.10704],..
         sz=[0.3333333,0.3333333],..
-        flip=%t,..
-        theta=0,..
         exprs=[],..
         pin=[],..
         pout=[],..
@@ -226,8 +222,6 @@ function [x,y,typ] = Sigbuilder(job,arg1,arg2)
         graphics=scicos_graphics(..
         orig=[398.20616,616.18517],..
         sz=[20,20],..
-        flip=%t,..
-        theta=0,..
         exprs="1",..
         pin=6,..
         pout=[],..
@@ -274,8 +268,6 @@ function [x,y,typ] = Sigbuilder(job,arg1,arg2)
         graphics=scicos_graphics(..
         orig=[339.49528,505.10704],..
         sz=[20,30],..
-        flip=%t,..
-        theta=0,..
         exprs="1",..
         pin=[],..
         pout=[],..

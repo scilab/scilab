@@ -41,7 +41,7 @@ function continueSimulation = analyze_pre_simulate(scs_m, needcompile)
             other = other + 1;
         end
     end
-// Diplay Diagram analisys.
+// Diplay Diagram analysis.
     disp("Diagram Analysis:")
     disp("Found "+string(blocks)+" Blocks.")
     disp("Found "+string(links)+" Links.")

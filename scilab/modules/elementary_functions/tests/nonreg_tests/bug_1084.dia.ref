@@ -11,12 +11,12 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=1084
 //
 // <-- Short Description -->
-//    Problem with resetting seed for rand 'normal'
-//    distribution.  As you can see from the attached code, I'm
-//    resetting the seed and generating a rand 'normal'
-//    distribution, however I only get the same results every
-//    other time.  This should produce the same results every
-//    time.  Note that the 'uniform' distribution does generate
+//    Problem with resetting seed for rand 'normal' 
+//    distribution.  As you can see from the attached code, I'm 
+//    resetting the seed and generating a rand 'normal' 
+//    distribution, however I only get the same results every 
+//    other time.  This should produce the same results every 
+//    time.  Note that the 'uniform' distribution does generate 
 //    the same results every time.
 rand('seed',0);
 A = rand(1,3,'normal');

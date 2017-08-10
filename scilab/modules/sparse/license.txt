@@ -5,17 +5,21 @@ Copyright (c) 1989-2007 - ENPC
 Copyright (c) Bruno Pincon
 
 License:
-This module must be used under the terms of the CeCILL.
-This module file is licensed as described in the file COPYING, which
-you should have received as part of this distribution.  The terms
-are also available at
-http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+Copyright (C) 2012 - 2016 - Scilab Enterprises
+
+This module is hereby licensed under the terms of the GNU GPL v2.0,
+pursuant to article 5.3.4 of the CeCILL v.2.1.
+This module was originally licensed under the terms of the CeCILL v2.1,
+and continues to be available under such terms.
+For more information, see the COPYING file which you should have received
+along with this program.
 
 sp:
 ===
 
-Files: src/c/{spFortran.c, spSolve.c, spFactor.c, spOutput.c, spUtils.c,
-spBuild.c, spAllocate.c}
+Files:
+src/c/spFortran.c src/c/spSolve.c src/c/spFactor.c src/c/spOutput.c src/c/spUtils.c
+src/c/spBuild.c src/c/spAllocate.c src/c/spConfig.h src/c/spDefs.h  src/c/spmatrix.h
 
 Copyright:
 1985,86,87,88 Kenneth S. Kundert and the University of California.
@@ -29,4 +33,21 @@ documentation and that the authors and the University of California
 are properly credited.  The authors and the University of California
 make no representations as to the suitability of this software for
 any purpose.  It is provided `as is', without express or implied warranty.
+
+Esmond G. Ng and Barry W. Peyton:
+=================================
+
+Files:
+src/fortran/blkfct.f
+src/fortran/inpnv.f
+src/fortran/ordmmd.f
+src/fortran/symfct.f
+
+Copyright:
+1994-1995
+Esmond G. Ng and Barry W. Peyton
+Oak Ridge National Laboratory
+
+License:
+Public domain
 

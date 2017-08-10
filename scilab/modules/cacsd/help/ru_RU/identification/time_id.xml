@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Serge STEER
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="time_id">
+    <refnamediv>
+        <refname>time_id</refname>
+        <refpurpose>SISO least square identification</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[H [,err]]=time_id(n,u,y)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>order of transfer</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>u</term>
+                <listitem>
+                    <para>one of the following</para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>u1</term>
+                            <listitem>
+                                <para>a vector of inputs to the system</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>"impuls"  </term>
+                            <listitem>
+                                <para>if y is an impulse response</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>"step"  </term>
+                            <listitem>
+                                <para>if y is a step response.</para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>vector of response.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>H</term>
+                <listitem>
+                    <para>rational function with degree n denominator and  degree n-1 numerator if y(1)==0 or rational function with degree n denominator and  numerator if y(1)&lt;&gt;0.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>err</term>
+                <listitem>
+                    <para>
+                        <literal>||y - impuls(H,npt)||^2</literal>, where <literal>impuls(H,npt)</literal> are the <literal>npt</literal> first coefficients of impulse response of <literal>H</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Identification of discrete time response. If <literal>y</literal> is strictly
+            proper (<literal>y(1)=0</literal>) then <literal>time_id</literal> computes the least square
+            solution of the linear equation:  <literal>Den*y-Num*u=0</literal> with the
+            constraint  <literal>coeff(Den,n):=1</literal>. if <literal>y(1)~=0</literal> then the algorithm
+            first computes the proper part solution and then add  y(1) to the solution
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+z=poly(0,'z');
+h=(1-2*z)/(z^2-0.5*z+5)
+rep=[0;ldiv(h('num'),h('den'),20)]; //impulse response
+H=time_id(2,'impuls',rep)
+//  Same example with flts and u
+u=zeros(1,20);u(1)=1;
+rep=flts(u,tf2ss(h));        //impulse response
+H=time_id(2,u,rep)
+//  step response
+u=ones(1,20);
+rep=flts(u,tf2ss(h));     //step response.
+H=time_id(2,'step',rep)
+H=time_id(3,u,rep)    //with u as input and too high order required
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="imrep2ss">imrep2ss</link>
+            </member>
+            <member>
+                <link linkend="arl2">arl2</link>
+            </member>
+            <member>
+                <link linkend="armax">armax</link>
+            </member>
+            <member>
+                <link linkend="frep2tf">frep2tf</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

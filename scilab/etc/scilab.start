@@ -2,11 +2,14 @@
 // Copyright (C) 2007-2008 - INRIA
 // Copyright (C) 2009-2011 - DIGITEO
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 // Main Scilab initialisation file
 
@@ -55,10 +58,10 @@ for i=1:size(modules,"*")
      exit(2);
    end
 end
-clear modules i load ierr startFile;
+clear modules i ierr startFile;
 
 // Create some configuration variables ================================
-home = getenv("HOME", SCI);
+//home = getenv("HOME", SCI);
 if getos() <> "Windows" then
   if getenv("PRINTERS", "ndef") == "ndef" then
     setenv("PRINTERS", "lp");
@@ -95,33 +98,39 @@ loadContrib();
 clear loadContrib;
 
 // calling user initialization =========================================
-if sciargs()<>"-nouserstartup" then
+if ~or(sciargs()=="-nouserstartup") then
 
   startupfiles = [ SCIHOME + filesep() + ".scilab"     ; .. // Home directory startup
                    SCIHOME + filesep() + "scilab.ini" ];    //  ""      ""    startup
-  for i = 1:size(startupfiles, "*")
-    if isfile(startupfiles(i)) then
-      exec(startupfiles(i),-1);
+  for f = startupfiles'
+    if isfile(f) then
+      exec(f, -1)
     end
   end
 
   // execute .scilab and scilab.start only
   // if last exec does not change current directory to SCIHOME
   // See bug #4150
-  workingDirectory = pwd();
+  usedwd = getPreferencesValue("//general/body/startup", "use");
+  if usedwd=="previous"
+      workingDirectory =  getPreferencesValue("//general/body/startup", "previous");
+  elseif usedwd=="default"
+      workingDirectory =  getPreferencesValue("//general/body/startup", "default");
+  else
+      workingDirectory = pwd();
+  end
   if SCIHOME <> workingDirectory then
-
-      workingfiles = [ workingDirectory + filesep() + ".scilab"     ; .. // Working directory startup
+      startupfiles = [ workingDirectory + filesep() + ".scilab"     ; .. // Working directory startup
                        workingDirectory + filesep() + "scilab.ini" ];    //  ""      ""    startup
 
-      for i = 1:size(startupfiles, "*")
-        if isfile(startupfiles(i)) then
-          exec(startupfiles(i),-1);
+      for f = startupfiles'
+        if isfile(f) then
+          exec(f, -1)
         end
       end
   end
 
-  clear i startupfiles workingfiles workingDirectory;
+  clear usedwd f startupfiles workingDirectory
 end
 
 // Menus/toolbar can now be enabled ====================================
@@ -146,12 +155,7 @@ if getscilabmode() == "STD" then
   setmenu(gettext("&?"));
   setmenu(gettext("&Toolboxes"));
   toolbar(-1, "on");
+  main_menubar_cb("setFavoriteDirs");
 end
 // ====================================================================
 clear ans
-
-printf("------------------------------------------------------------\n");
-printf("This is alpha version: avoid using in production\n");
-printf("but please report any problem at http://bugzilla.scilab.org.\n");
-printf("Thank you!\n");
-printf("------------------------------------------------------------\n");

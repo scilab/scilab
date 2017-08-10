@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009  - DIGITEO - Antoine ELIAS
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="handleExample" xml:lang="en">
+    <refnamediv>
+        <refname>handle example</refname>
+        <refpurpose>
+            Handle use case.
+        </refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>This example shows how to get a handle variable and return it to Scilab.</para>
+    </refsection>
+    <refsection>
+        <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/handleExample.c-->
+        <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/handleExample.tst-->
+        <!--Lib_name: handleExample-->
+        <!--Func_list: handleExample-->
+        <title>Gateway Source</title>
+        <programlisting role="code_gateway">
+            <![CDATA[
+#include "api_scilab.h"
+
+int handleExample(char *fname,void* pvApiCtx)
+{
+    SciErr sciErr;
+    int* piAddr = NULL;
+    int iType   = 0;
+    int iRet    = 0;
+
+    CheckInputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
+
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
+    if(sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 0;
+    }
+    if(isHandleType(pvApiCtx, piAddr))
+    {
+        if(isScalar(pvApiCtx, piAddr))
+        {
+            long long llHandle = 0;
+            iRet = getScalarHandle(pvApiCtx, piAddr, &llHandle);
+            if(iRet)
+            {
+                return 0;
+            }
+            iRet = createScalarHandle(pvApiCtx, nbInputArgument(pvApiCtx) + 1, llHandle);
+            if(iRet)
+            {
+                return 0;
+            }
+        }
+        else
+        {
+            int iRows	= 0;
+            int iCols	= 0;
+            long long *pllHandle = NULL;
+
+            sciErr = getMatrixOfHandle(pvApiCtx, piAddr, &iRows, &iCols, &pllHandle);
+            if(sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                return 0;
+            }
+
+            sciErr = createMatrixOfHandle(pvApiCtx, nbInputArgument(pvApiCtx) + 1, iRows, iCols, pllHandle);
+            if(sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                return 0;
+            }
+        }
+        AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+    }
+    else
+    {
+        AssignOutputVariable(pvApiCtx, 1) = 0;
+    }
+    return 0;
+}
+ ]]>
+        </programlisting>
+    </refsection>
+    <refsection>
+        <title>Scilab test script</title>
+        <programlisting role="code_scilab"><![CDATA[
+a = %t;
+b = %f;
+c = [a,b;b,a;a,b;b,a];
+d = c';
+
+handleExample(a) == a
+handleExample(b) == b
+handleExample(c) == c
+handleExample(d) == d
+ ]]></programlisting>
+    </refsection>
+    <title>History</title>
+    <revhistory>
+        <revision>
+            <revnumber>5.5.0</revnumber>
+            <revremark>This function added in Scilab 5.5.0</revremark>
+        </revision>
+    </revhistory>
+</refentry>

@@ -68,7 +68,7 @@ function [Code,actt,proto]=call_actuator(i)
     proto=cformatline(proto,70);
 endfunction
 
-//CallBlock : generate C calling sequence
+//CallBlock : generate C syntax
 //            of a scicos block
 //
 //inputs : bk   : bloc index
@@ -338,7 +338,7 @@ function txt=call_block42(bk,pt,flag)
 
 endfunction
 
-//CallBlock : generate C calling sequence
+//CallBlock : generate C syntax
 //            of a scicos block
 //
 //inputs : bk   : bloc index
@@ -1175,8 +1175,8 @@ function  [ok,XX,alreadyran,flgcdgen,szclkINTemp,freof] = do_compile_superblock4
     OUT=[];
     clkIN=[];
     clkOUT=[];
-    numa=[];
-    numc=[];
+    numa=0;
+    numc=0;
     writeGlobal = [];
     writeGlobalSize = [];
     readGlobal = [];
@@ -1467,7 +1467,7 @@ function  [ok,XX,alreadyran,flgcdgen,szclkINTemp,freof] = do_compile_superblock4
     Code_gene_run=[];
 
     //** OLD GRAPHICS
-    //** %windo=xget('window')
+    //** %windo = gcf().figure_id
 
     cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
 
@@ -1542,7 +1542,7 @@ function  [ok,XX,alreadyran,flgcdgen,szclkINTemp,freof] = do_compile_superblock4
     cpr.sim.funtyp=funtyp_save;
 
     //** OLD GRAPHICS
-    //** xset('window',%windo)
+    //** scf(%windo)
 
     ///////////////////
     //les pointeurs de cpr :
@@ -4201,7 +4201,7 @@ function make_standalone42(filename)
         "     /*"
         "      *  !purpose"
         "      *  compute state derivative of the continuous part"
-        "      *  !calling sequence"
+        "      *  !syntax"
         "      *  neq   : integer the size of the  continuous state"
         "      *  t     : current time"
         "      *  x     : double precision vector whose contains the continuous state"
@@ -4700,7 +4700,7 @@ function [txt]=get_comment(typ,param)
     case "ev" then
         txt = "/* Blocks activated on the event number "+string(param(1))+" */"
 
-        //** blk calling sequence
+        //** blk syntax
     case "call_blk" then
         txt = ["/* Call of ''"+param(1) + ...
         "'' (type "+string(param(2))+" - blk nb "+...
@@ -4710,7 +4710,7 @@ function [txt]=get_comment(typ,param)
         else
             txt=txt+") */";
         end
-        //** proto calling sequence
+        //** proto syntax
     case "proto_blk" then
         txt = ["/* prototype of ''"+param(1) + ...
         "'' (type "+string(param(2))];
@@ -4719,11 +4719,11 @@ function [txt]=get_comment(typ,param)
         else
             txt=txt+") */";
         end
-        //** ifthenelse calling sequence
+        //** ifthenelse syntax
     case "ifthenelse_blk" then
         txt = ["/* Call of ''if-then-else'' blk (blk nb "+...
         string(param(1))+") */"]
-        //** eventselect calling sequence
+        //** eventselect syntax
     case "evtselect_blk" then
         txt = ["/* Call of ''event-select'' blk (blk nb "+...
         string(param(1))+") */"]

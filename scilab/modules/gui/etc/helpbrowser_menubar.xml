@@ -8,7 +8,7 @@ and is replaced by the good key (control for Unix/Windows OS and meta for Mac) -
             <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.closeHelpBrowser' type="-3"/>
         </submenu>
     </menu>
-    
+
     <menu label="&amp;Tools">
         <submenu label="&amp;Incremental Search" accelerator="OSSCKEY F">
             <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.showSearchFieldInHelp' type="-3"/>
@@ -21,7 +21,7 @@ and is replaced by the good key (control for Unix/Windows OS and meta for Mac) -
             <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.decreaseFontInHelpViewer' type="-3"/>
         </submenu>
     </menu>
-    
+
     <menu label="&amp;?">
         <submenu label="&amp;About Scilab..." accelerator="shift F1">
             <callback instruction='about()' type="0"/>

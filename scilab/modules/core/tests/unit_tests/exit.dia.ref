@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - DIGITEO - Allan CORNET
@@ -20,5 +21,7 @@ for i = 1:10
   else
 	exitcode = unix(SCIPATH + "/bin/scilab -nwni -e ""exit(" + string(i) + ")""");
   end
+  
   if exitcode <> i then bugmes();quit;end
+  
 end

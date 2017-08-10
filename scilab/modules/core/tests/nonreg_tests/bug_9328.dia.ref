@@ -20,4 +20,3 @@ for k=1:1000
     mode(-1);
 end
 Bug #9328 is fixed.
- 

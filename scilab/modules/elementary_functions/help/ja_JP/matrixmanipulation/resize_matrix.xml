@@ -1,295 +1,208 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2008 - INRIA - Jean-Baptiste SILVY
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2008 - INRIA - Jean-Baptiste SILVY 
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
-
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="resize_matrix" xml:lang="ja">
-    
     <refnamediv>
-        
         <refname>resize_matrix</refname>
-        
         <refpurpose>
-            
             行列またはハイパー行列をトリムまたは拡張(およびキャスト)
-            
         </refpurpose>
-        
     </refnamediv>
-    
     <refsynopsisdiv>
-        
         <title>呼び出し手順</title>
-        
         <synopsis>
-            
+                     resize_matrix      // Demo
+
             resMat = resize_matrix(mat, nbRows, nbCols)
-            
             resMat = resize_matrix(mat, nbRows, nbCols, resType)
-            
             resMat = resize_matrix(mat, nbRows, nbCols, resType, padding)
-            
             resMat = resize_matrix(mat, nbRows, nbCols,    ""  , padding)
-            
+
             resMat = resize_matrix(mat, newSizes)
-            
             resMat = resize_matrix(mat, newSizes, resType)
-            
             resMat = resize_matrix(mat, newSizes, resType, padding)
-            
             resMat = resize_matrix(mat, newSizes,    ""  , padding)
-            
         </synopsis>
-        
     </refsynopsisdiv>
-    
-    <refsection>
-        
+    <refsection role="parameters">
         <title>引数</title>
-        
         <variablelist>
-            
             <varlistentry>
-                
                 <term>mat</term>
-                
                 <listitem>
-                    
                     <para>
-                        
                         入力行列またはハイパー行列. 論理値, エンコードされた整数, 10進数 (実数または複素数),
-                        
                         多項式, またはテキストがサポートされます.
-                        
                     </para>
-                    
                 </listitem>
-                
             </varlistentry>
-            
             <varlistentry>
-                
                 <term>nbRows</term>
-                
                 <listitem>
-                    
                     <para>
-                        
                         大きさ変更後の行列の行数. 超過した行はトリムされます.
-                        
                         足りない行は拡張されます.
-                        
+                        Setting <literal>nbRows &lt; 0</literal> keeps the current
+                        number of rows.
                     </para>
-                    
                 </listitem>
-                
             </varlistentry>
-            
             <varlistentry>
-                
                 <term>nbCols</term>
-                
                 <listitem>
-                    
                     <para>
-                        
                         大きさ変更後の行列の列数. 超過した列はトリムされます.
-                        
                         足りない列は拡張されます.
-                        
+                        Setting <literal>nbCols &lt; 0</literal> keeps the current
+                        number of columns.
                     </para>
-                    
                 </listitem>
-                
             </varlistentry>
-            
             <varlistentry>
-                
                 <term>newSizes</term>
-                
                 <listitem>
-                    
                     <para>
-                        
                         <varname>mat</varname>の各次元方向の新しい大きさを指定するベクトル.
-                        
+                        To keep a new size equal to the current one, just set it to -1.
                     </para>
-                    
                     <para>
-                        
-                        <literal>size(mat)</literal>より短い場合, 1でパディングされます. 
-                        
+                        <literal>size(mat)</literal>より短い場合, 1でパディングされます.
                         例: <literal>size(mat)==[ 4 3 3 2]</literal>となる <varname>mat</varname> が入力され,
-                        
                         <literal>newSizes=[6 2]</literal>が指定された場合,
-                        
                         <literal>newSizes = [6 2 1 1]</literal> が考慮されます.
-                        
                     </para>
-                    
                     <para>
-                        
-                        <varname>newSizes</varname> が <literal>size(mat)</literal>でなくなる場合, 
-                        
+                        <varname>newSizes</varname> が <literal>size(mat)</literal>でなくなる場合,
                         新規次元が <varname>mat</varname>に追加され,パディングされます.
-                        
                         例えば,<literal>size(mat)==[ 4 3 ]</literal>となるような <varname>mat</varname>が入力され,
-                        
                         <literal>newSizes=[6 2 2]</literal>が指定された場合,
-                        
                         結果は2ページのハイパー行列となります.
-                        
                         2番目の次元は完全にパディングされます.
-                        
                     </para>
-                    
                     <para>
-                        
                         <literal>newSizes = [nbRows, nbCols]</literal> は行列として使用できます.
-                        
                     </para>
-                    
                 </listitem>
-                
             </varlistentry>
-            
             <varlistentry>
-                
                 <term>padding</term>
-                
                 <listitem>
-                    
                     <para>
-                        
                         <varname>mat</varname>と同じ型のオプションのスカラー,
-                        
                         次元方向に大きさが増加した際に作成された要素に設定する内容を指定します.
-                        
                         デフォルトのパディングは <literal>0</literal>
-                        
                         (実数または複素数10進数,エンコードされた整数,多項式), または
-                        
                         <literal>""</literal> (テキスト),<literal>%F</literal> (論理値)で行われます.
-                        
                     </para>
-                    
                     <para>
-                        
-                        <varname>mat</varname> および <varname>padding</varname> の型が一致しない場合, 
-                        
+                        <varname>mat</varname> および <varname>padding</varname> の型が一致しない場合,
                         scilabは<varname>padding</varname>の型を変換しようとします.
-                        
                     </para>
-                    
                     <para>
-                        
                         多項式の場合, パティングの変数名は強制的に<varname>mat</varname>と同じとなります.
-                        
                     </para>
-                    
                 </listitem>
-                
             </varlistentry>
-            
             <varlistentry>
-                
                 <term>resType</term>
-                
                 <listitem>
-                    
                     <para>
-                        
                         オプションのテキストで大きさが変更された行列が変換されるデータ型を指定します.
-                        
-                        "boolean", "constant", "string", "int8", "uint8", "int16", "uint16", "int32", および "uint32" 
-                        
+                        "boolean", "constant", "string", "int8", "uint8", "int16", "uint16", "int32", および "uint32"
                         がサポートされます.
-                        
                     </para>
-                    
                     <para>多項式およびテキストのハイパー行列については型変換がサポートされません.</para>
-                    
                 </listitem>
-                
             </varlistentry>
-            
             <varlistentry>
-                
                 <term>resMat</term>
-                
                 <listitem>
-                    
                     <para>大きさが変更され(変換され)た行列またはハイパー行列</para>
-                    
                 </listitem>
-                
             </varlistentry>
-            
         </variablelist>
-        
     </refsection>
-    
-    <refsection>
-        
+    <refsection role="description">
         <title>説明</title>
-        
         <para>
-            
             大きさ<literal>[nbRows, nbCols]</literal> または <literal>newSizes</literal>の行列,
-            
             大きさ<literal>newSizes</literal>のハイパー行列を作成します.
-            
             新しい大きさのある次元が最初のものよりも小さい場合, 行列はトリムされます.
-            
             大きさが増加した場合, 行列/ハイパー行列はパディングされます.
-            
             次元の数を増やすことも可能です.
-            
             Scilabは自動的に大きさが1(シングルトン)に設定された最高の次元を縮小します.
-            
         </para>
-        
         <para>
-            
             結果の型は,上記の制限のもとに<literal>resType</literal>引数の指定により変更できます.
-            
         </para>
-        
     </refsection>
-    
-    <refsection>
-        
+    <refsection role="examples">
         <title>例</title>
-        
         <programlisting role="example"><![CDATA[
 // 組込の例, 多項式を含む
 resize_matrix
+
 // 数値行列:
 M = grand(4, 3, "uin", -9, 9)
+resize_matrix(M, -1, 5)  //  use -1 to keep a size unchanged
+resize_matrix(M, 2, -1)
 resize_matrix(M, 3, 4)
+ ]]></programlisting>
+    <screen><![CDATA[--> M = grand(4, 3, "uin", -9, 9)
+ M  =
+  -8.  -5.  -2.
+  -9.   0.  -1.
+   4.  -1.   6.
+   5.   1.   8.
+
+--> resize_matrix(M, -1, 5)  //  use -1 to keep a size unchanged
+ ans  =
+  -8.  -5.  -2.   0.   0.
+  -9.   0.  -1.   0.   0.
+   4.  -1.   6.   0.   0.
+   5.   1.   8.   0.   0.
+
+--> resize_matrix(M, 2, -1)
+ ans  =
+  -8.  -5.  -2.
+  -9.   0.  -1.
+
+--> resize_matrix(M, 3, 4)
+ ans  =
+  -8.  -5.  -2.   0.
+  -9.   0.  -1.   0.
+   4.  -1.   6.   0.
+]]></screen>
+        <programlisting role="example"><![CDATA[
 resize_matrix(M, [3 4 2])
 resize_matrix(M, [3 4 2], "", %i)
 resize_matrix(M, [3 4 2], "string", %i)
+
 // テキストの行列:
 myMatString = ["Scilab", "the"; "Open Source", "Scientific"; "Software", "Package"]
 resize_matrix( myMatString, 5, 3 )
 // new sizesに等価な構文:
 resize_matrix( myMatString, [5 3], "", "$" )    // カスタムパディング
+
 // トリム, パディングとハイパー行列へのキャスト:
 h = rand(2, 3, 2)*200
 resize_matrix(h, [3 2 3], "int8")
 resize_matrix(h, [3 2 3], "int8", -1)    // カスタムパディング
 r = resize_matrix(h, [3 2 ] , "" , -1)   // 型変換せずにカスタムパディング
 size(r)  // 最後の次元は縮小されました
+
 // 多項式:
 x = poly(0, "x");
 P = (1-x)^grand(4, 2, "uin", 0, 3)
@@ -299,82 +212,42 @@ resize_matrix(P, [3 3 2], "", %z)
 //  => パディングの未知数はPのものに強制的に変更されました
 //  => 多項式は変換できません
  ]]></programlisting>
-        
     </refsection>
-    
     <refsection role="see also">
-        
         <title>参照</title>
-        
         <simplelist type="inline">
-            
             <member>
-                
                 <link linkend="matrix">matrix</link>
-                
             </member>
-            
             <member>
-                
                 <link linkend="size">size</link>
-                
             </member>
-            
             <member>
-                
                 <link linkend="typeof">typeof</link>
-                
             </member>
-            
             <member>
-                
                 <link linkend="double">double</link>
-                
             </member>
-            
             <member>
-                
                 <link linkend="strtod">strtod</link>
-                
             </member>
-            
             <member>
-                
-                <link linkend="strtod">string</link>
-                
+                <link linkend="string">string</link>
             </member>
-            
         </simplelist>
-        
     </refsection>
-    
-    <refsection>
-        
+    <refsection role="history">
         <title>履歴</title>
-        
         <revhistory>
-            
             <revision>
-                
                 <revnumber>5.5.0</revnumber>
-                
                 <revremark>
-                    
                     多項式とハイパー行列を利用可能になりました.
-                    
                     カスタムパディングを指定可能となりました.
-                    
                     新しい大きさをベクトルとして指定できます.
-                    
                     resize_matrix に引数を付けない場合, 例(デモ)を表示します.
-                    
                 </revremark>
-                
             </revision>
-            
         </revhistory>
-        
     </refsection>
-    
 </refentry>
-

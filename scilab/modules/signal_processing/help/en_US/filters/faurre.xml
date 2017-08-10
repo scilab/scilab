@@ -5,7 +5,7 @@
         <refpurpose>filter computation by simple Faurre algorithm</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[P,R,T]=faurre(n,H,F,G,R0)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -49,12 +49,12 @@
         <title>Description</title>
         <para>
             This function computes iteratively the minimal solution of the algebraic
-            Riccati equation and gives the matrices <literal>R</literal> and <literal>T</literal> of the 
+            Riccati equation and gives the matrices <literal>R</literal> and <literal>T</literal> of the
             filter model.
             The algorithm tries to compute the solution P as the growing limit of a
             sequence of matrices Pn such that
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
                                      -1
 Pn+1=F*Pn*F'+(G-F*Pn*h')*(R0-H*Pn*H')  *(G'-H*Pn*F')
        -1
@@ -66,7 +66,7 @@ P0=G*R0 *G'
         </para>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="srfaur">srfaur</link>

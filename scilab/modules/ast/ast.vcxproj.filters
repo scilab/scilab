@@ -54,6 +54,33 @@
     <Filter Include="Source Files\operations">
       <UniqueIdentifier>{cc482308-cd44-4b1f-b6e7-c807532f307d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\analysis">
+      <UniqueIdentifier>{9f36d7c5-dd0c-4227-9a78-3742c1f7eaf8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\analysis\analyzers">
+      <UniqueIdentifier>{e1d6b4c4-fbdb-4d9d-ab30-0ddd78f7a672}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\analysis\call">
+      <UniqueIdentifier>{b27b3e37-67cf-4a21-86c7-cac1592b6fbc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\analysis\checkers">
+      <UniqueIdentifier>{e3fe8c8d-21a8-4bb4-a830-eaf627641b5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\analysis\data">
+      <UniqueIdentifier>{8a419ff1-7ec0-401f-b9ea-09858904eaa1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\analysis\gvn">
+      <UniqueIdentifier>{ba833986-0a5b-496f-939d-89b64933f43b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\analysis\logging">
+      <UniqueIdentifier>{2bd5988c-6391-4ef7-8465-46952e08f10a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\analysis\positivity">
+      <UniqueIdentifier>{86a4a24d-984d-40ed-99ed-00e31b8ff3be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\analysis">
+      <UniqueIdentifier>{cc737210-ca11-42b1-99f7-444901ee9add}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="core_Import.def">
@@ -87,6 +114,12 @@
       <Filter>Libraries Dependencies</Filter>
     </None>
     <None Include="string_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="coverage_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="functions_manager_import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
   </ItemGroup>
@@ -238,9 +271,6 @@
     <ClInclude Include="includes\exps\whileexp.hxx">
       <Filter>Header Files\exps</Filter>
     </ClInclude>
-    <ClInclude Include="includes\ast\debugvisitor.hxx">
-      <Filter>Header Files\ast</Filter>
-    </ClInclude>
     <ClInclude Include="includes\ast\deserializervisitor.hxx">
       <Filter>Header Files\ast</Filter>
     </ClInclude>
@@ -257,9 +287,6 @@
       <Filter>Header Files\ast</Filter>
     </ClInclude>
     <ClInclude Include="includes\ast\macrovarvisitor.hxx">
-      <Filter>Header Files\ast</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\ast\mutevisitor.hxx">
       <Filter>Header Files\ast</Filter>
     </ClInclude>
     <ClInclude Include="includes\ast\printvisitor.hxx">
@@ -604,18 +631,246 @@
     <ClInclude Include="includes\system_env\threadmanagement.hxx">
       <Filter>Header Files\system_env</Filter>
     </ClInclude>
+    <ClInclude Include="includes\system_env\numericconstants.hxx">
+      <Filter>Header Files\system_env</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\system_env\numericconstants_interface.h">
+      <Filter>Header Files\system_env</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\analyzers\Analyzer.hxx">
+      <Filter>Header Files\analysis\analyzers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\analyzers\ArgnAnalyzer.hxx">
+      <Filter>Header Files\analysis\analyzers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\analyzers\CallAnalyzer.hxx">
+      <Filter>Header Files\analysis\analyzers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\analyzers\CeilAnalyzer.hxx">
+      <Filter>Header Files\analysis\analyzers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\analyzers\DiagAnalyzer.hxx">
+      <Filter>Header Files\analysis\analyzers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\analyzers\FindAnalyzer.hxx">
+      <Filter>Header Files\analysis\analyzers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\analyzers\IconvertAnalyzer.hxx">
+      <Filter>Header Files\analysis\analyzers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\analyzers\InttypeAnalyzer.hxx">
+      <Filter>Header Files\analysis\analyzers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\analyzers\IsrealAnalyzer.hxx">
+      <Filter>Header Files\analysis\analyzers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\analyzers\IsscalarAnalyzer.hxx">
+      <Filter>Header Files\analysis\analyzers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\analyzers\LengthAnalyzer.hxx">
+      <Filter>Header Files\analysis\analyzers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\analyzers\MatrixAnalyzer.hxx">
+      <Filter>Header Files\analysis\analyzers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\analyzers\MemInitAnalyzer.hxx">
+      <Filter>Header Files\analysis\analyzers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\analyzers\OperAnalyzer.hxx">
+      <Filter>Header Files\analysis\analyzers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\analyzers\SizeAnalyzer.hxx">
+      <Filter>Header Files\analysis\analyzers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\analyzers\TypeAnalyzer.hxx">
+      <Filter>Header Files\analysis\analyzers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\analyzers\TypeofAnalyzer.hxx">
+      <Filter>Header Files\analysis\analyzers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\call\Call.hxx">
+      <Filter>Header Files\analysis\call</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\call\SizeCall.hxx">
+      <Filter>Header Files\analysis\call</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\checkers\Checkers.hxx">
+      <Filter>Header Files\analysis\checkers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\data\Block.hxx">
+      <Filter>Header Files\analysis\data</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\data\CompleteMacroSignature.hxx">
+      <Filter>Header Files\analysis\data</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\data\Data.hxx">
+      <Filter>Header Files\analysis\data</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\data\DataManager.hxx">
+      <Filter>Header Files\analysis\data</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\data\FunctionBlock.hxx">
+      <Filter>Header Files\analysis\data</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\data\GlobalsCollector.hxx">
+      <Filter>Header Files\analysis\data</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\data\Info.hxx">
+      <Filter>Header Files\analysis\data</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\data\LoopBlock.hxx">
+      <Filter>Header Files\analysis\data</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\data\MacroDef.hxx">
+      <Filter>Header Files\analysis\data</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\data\MacroSignature.hxx">
+      <Filter>Header Files\analysis\data</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\data\PolymorphicMacroCache.hxx">
+      <Filter>Header Files\analysis\data</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\data\TemporaryManager.hxx">
+      <Filter>Header Files\analysis\data</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\data\TITypeSignatureTuple.hxx">
+      <Filter>Header Files\analysis\data</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\data\TITypeTuple.hxx">
+      <Filter>Header Files\analysis\data</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\data\TypeLocal.hxx">
+      <Filter>Header Files\analysis\data</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\data\XBlock.hxx">
+      <Filter>Header Files\analysis\data</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\gvn\ConstraintManager.hxx">
+      <Filter>Header Files\analysis\gvn</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\gvn\GVN.hxx">
+      <Filter>Header Files\analysis\gvn</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\gvn\InferenceConstraint.hxx">
+      <Filter>Header Files\analysis\gvn</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\gvn\MultivariateMonomial.hxx">
+      <Filter>Header Files\analysis\gvn</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\gvn\MultivariatePolynomial.hxx">
+      <Filter>Header Files\analysis\gvn</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\gvn\OpValue.hxx">
+      <Filter>Header Files\analysis\gvn</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\gvn\SymbolicDimension.hxx">
+      <Filter>Header Files\analysis\gvn</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\gvn\SymbolicImplicitList.hxx">
+      <Filter>Header Files\analysis\gvn</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\gvn\SymbolicList.hxx">
+      <Filter>Header Files\analysis\gvn</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\gvn\SymbolicRange.hxx">
+      <Filter>Header Files\analysis\gvn</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\gvn\TestGVNVisitor.hxx">
+      <Filter>Header Files\analysis\gvn</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\gvn\VarExp.hxx">
+      <Filter>Header Files\analysis\gvn</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\logging\Logger.hxx">
+      <Filter>Header Files\analysis\logging</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\positivity\PositivityVisitor.hxx">
+      <Filter>Header Files\analysis\positivity</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\AnalysisVisitor.hxx">
+      <Filter>Header Files\analysis</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\Chrono.hxx">
+      <Filter>Header Files\analysis</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\ConstantValue.hxx">
+      <Filter>Header Files\analysis</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\ConstantVisitor.hxx">
+      <Filter>Header Files\analysis</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\Decorator.hxx">
+      <Filter>Header Files\analysis</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\FBlockEmittedListener.hxx">
+      <Filter>Header Files\analysis</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\ForList.hxx">
+      <Filter>Header Files\analysis</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\Result.hxx">
+      <Filter>Header Files\analysis</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\TIType.hxx">
+      <Filter>Header Files\analysis</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\tools.hxx">
+      <Filter>Header Files\analysis</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\OptionalDecoration.hxx">
+      <Filter>Header Files\analysis</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\data\Clone.hxx">
+      <Filter>Header Files\analysis\data</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\data\LoopAnalyzer.hxx">
+      <Filter>Header Files\analysis\data</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\tableintselectexp.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\ast\breakpoint.hxx">
+      <Filter>Header Files\ast</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\ast\consoledebugger.hxx">
+      <Filter>Header Files\ast</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\ast\debuggervisitor.hxx">
+      <Filter>Header Files\ast</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\ast\debugmanager.hxx">
+      <Filter>Header Files\ast</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\ast\abstractdebugger.hxx">
+      <Filter>Header Files\ast</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\ast\prettyprintvisitor.hxx">
+      <Filter>Header Files\ast</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\DollarInfo.hxx">
+      <Filter>Header Files\analysis</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\system_env\coverage_instance.hxx">
+      <Filter>Header Files\system_env</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\types\addfunction.h">
+      <Filter>Header Files\types</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\data\LoopDecoration.hxx">
+      <Filter>Header Files\analysis\data</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\data\VarPromotion.hxx">
+      <Filter>Header Files\analysis\data</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cpp\ast\run_SeqExp.hpp">
+      <Filter>Header Files\ast</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\cpp\ast\debugvisitor.cpp">
-      <Filter>Source Files\ast</Filter>
-    </ClCompile>
     <ClCompile Include="src\cpp\ast\expHistory.cpp">
       <Filter>Source Files\ast</Filter>
     </ClCompile>
     <ClCompile Include="src\cpp\ast\macrovarvisitor.cpp">
-      <Filter>Source Files\ast</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\ast\mutevisitor.cpp">
       <Filter>Source Files\ast</Filter>
     </ClCompile>
     <ClCompile Include="src\cpp\ast\printvisitor.cpp">
@@ -869,6 +1124,453 @@
     </ClCompile>
     <ClCompile Include="src\cpp\system_env\threadmanagement.cpp">
       <Filter>Source Files\system_env</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\system_env\numericconstants.cpp">
+      <Filter>Source Files\system_env</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\system_env\numericconstants_interface.cpp">
+      <Filter>Source Files\system_env</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\symbol\libraries.cpp">
+      <Filter>Source Files\symbol</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\symbol\variables.cpp">
+      <Filter>Source Files\symbol</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\AnalysisVisitor.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\ArgnAnalyzer.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\Block.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\CeilAnalyzer.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_____add____.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_____and____.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_____andand____.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_____dotpower____.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_____dotrdiv____.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_____dottimes____.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_____dottransp____.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_____eq____.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_____ge____.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_____gt____.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_____krontimes____.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_____ldivide____.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_____le____.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_____lt____.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_____neq____.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_____not____.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_____or____.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_____oror____.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_____power____.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_____rdivide____.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_____sub____.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_____times____.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_____transp____.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_____unaryminus____.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_abs.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_acos.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_and.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_argn.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_asin.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_atan.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_ceil.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_cos.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_cosh.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_cumprod.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_cumsum.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_erf.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_erfc.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_exp.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_fix.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_floor.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_gettext.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_iconvert.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_imag.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_imult.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_int.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_int8.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_int16.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_int32.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_int64.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_inttype.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_isinf.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_isnan.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_isreal.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_isscalar.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_log.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_ls.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_matrix.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_max.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_min.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_ones.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_or.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_prod.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_rand.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_round.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_sin.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_sinh.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_sinm.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_size.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_sqrt.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_sum.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_tan.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_tanh.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_toc.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_type.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_typeof.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_uint8.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_uint16.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_uint32.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_uint64.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_zeros.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\Checkers.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\CompleteMacroSignature.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\ConstantValue.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\ConstantVisitor.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\ConstraintManager.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\DiagAnalyzer.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\FindAnalyzer.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\FunctionBlock.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\IconvertAnalyzer.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\IndexAnalyzer.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\InferenceConstraints.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\InttypeAnalyzer.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\IsrealAnalyzer.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\IsscalarAnalyzer.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\LengthAnalyzer.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\LoopBlock.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\MacroDef.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\MatrixAnalyzer.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\MemInitAnalyzer.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\OperAnalyzer.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\OperGVNValues.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\OperSymbolicRange.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\PolymorphicMacroCache.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\SizeAnalyzer.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\SymbolicList.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\TIType.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\TypeAnalyzer.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\TypeofAnalyzer.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\VisitAssignExp.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\VisitIfExp.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\VisitListExp.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\VisitMatrixExp.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\VisitOpExp.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\VisitSelectExp.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\XBlock.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\Data.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\DataManager.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\GlobalsCollector.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\GVN.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\Info.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\MultivariateMonomial.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\MultivariatePolynomial.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\OpValue.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\TemporaryManager.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\VarExp.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_sign.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\types\internal.cpp">
+      <Filter>Source Files\types</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\VisitCallExp.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\VisitDollarVar.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\VisitForExp.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\VisitSeqExp.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\VisitSimpleVar.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\VisitTypeExps.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\VisitVarDec.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\ast\consoledebugger.cpp">
+      <Filter>Source Files\ast</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\ast\debuggervisitor.cpp">
+      <Filter>Source Files\ast</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\ast\debugmanager.cpp">
+      <Filter>Source Files\ast</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\ast\prettyprintvisitor.cpp">
+      <Filter>Source Files\ast</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\system_env\coverage_instance.cpp">
+      <Filter>Source Files\ast</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\DollarInfo.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\VisitWhileExp.cpp">
+      <Filter>Source Files\analysis</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

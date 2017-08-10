@@ -1,43 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
- *
- -->
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) INRIA -
+*
+* Copyright (C) 2012 - 2016 - Scilab Enterprises
+*
+* This file is hereby licensed under the terms of the GNU GPL v2.0,
+* pursuant to article 5.3.4 of the CeCILL v.2.1.
+* This file was originally licensed under the terms of the CeCILL v2.1,
+* and continues to be available under such terms.
+* For more information, see the COPYING file which you should have received
+* along with this program.
+*
+-->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="stripblanks">
     <refnamediv>
         <refname>stripblanks</refname>
         <refpurpose>
-            strips / trims leading and trailing
+            strips / trims leading or trailing or both
             blanks (and tabs) of strings
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>txt = stripblanks(txt[,tabs])</synopsis>
+        <title>Syntax</title>
+        <synopsis>
+            Txtout = stripblanks(Txt)
+            Txtout = stripblanks(Txt, notabs)
+            Txtout = stripblanks(Txt, notabs, trimloc)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>txt</term>
+                <term>Txt, Txtout</term>
                 <listitem>
                     <para>
-                        a character string or matrix of character strings.
+                        Texts or matrices of texts, with size(Txtout)==size(Txt).
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>tabs</term>
+                <term>notabs</term>
                 <listitem>
                     <para>
                         a boolean, if <constant>%t</constant> then tabs are also stripped (default value is <constant>%f</constant>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>trimloc</term>
+                <listitem>
+                    <para>
+                        an argument which, if trimloc = -1 remove only leading spaces, if trimloc = 1 remove only trailing spaces.
+                        default value is 0, which trims both the leading and trailing spaces.
                     </para>
                 </listitem>
             </varlistentry>
@@ -46,21 +62,38 @@
     <refsection>
         <title>Description</title>
         <para>
-            The <function>stripblanks</function> function strips / trims leading and trailing blanks (and tabs) of strings.
+            The <function>stripblanks</function> function strips / trims leading or trailing or both blanks (and tabs) of strings.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-a='  123   ';
-'!'+a+'!'
-'!'+stripblanks(a)+'!'
-a=['  123   ',' xyz']
-strcat(stripblanks(a))
+        <programlisting role="example"><![CDATA[
+            a='  123   ';
+            '!'+a+'!'
+            '!'+stripblanks(a)+'!'
+            a=['  123   ',' xyz']
+            stripblanks(a)
 
-a = msprintf("\t  \tHello world!\t\t")
-strcat(stripblanks(a,%f)+'?')
-strcat(stripblanks(a,%t)+'?')
- ]]></programlisting>
+            a = msprintf("\t  \tHello world!\t\t")
+            stripblanks(a,%f)
+            stripblanks(a,%t)
+
+            a = '    hello    ';
+            '|'+a+'|'
+            '|'+stripblanks(a,%t,-1)+'|'
+            '|'+stripblanks(a,%t,0)+'|'
+            '|'+stripblanks(a,%t,1)+'|'
+            ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revremark>
+                    New input trimloc added to remove trailing, leading or both spaces.
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

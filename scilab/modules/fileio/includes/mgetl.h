@@ -2,11 +2,14 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2010 - DIGITEO - Allan CORNET
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 /*--------------------------------------------------------------------------*/
@@ -14,37 +17,21 @@
 #define __MGETL_H__
 
 #include "dynlib_fileio.h"
-#include "charEncoding.h"
 
-typedef enum
-{
-    MGETL_NO_ERROR = 0,
-    MGETL_EOF = 1,
-    MGETL_MEMORY_ALLOCATION_ERROR = 2,
-    MGETL_ERROR = 3
-} mgetlError;
-
-/* file descriptor id for stdin */
-#define STDIN_ID 5
-/* file descriptor id for stdout */
-#define STDOUT_ID 6
+#include <stddef.h>
 
 /**
- * @fn  char ** mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr) #endif
+ * @fn int mgetl(FILE *fd, int iLineCount, wchar_t ***pwstLines)
  *
- * @brief   read lines of a file.
+ * @brief reads all the lines (or a part) of a text file.
  *
- * @author  Allan Cornet
- * @date    4/16/2010
+ * @param [in]  iFileID     the file ID.
+ * @param [in]  iLineCount  the number of lines to read.
+ * @param [out] pwstLines   a wide string array containing the lines
  *
- * @param   fd                  The file descriptor id.
- * @param   nbLinesIn           The nb lines in .
- * @param [in,out]  nbLinesOut  If non-null, the nb lines out.
- * @param [in,out]  ierr        If non-null, the ierr.
- *
- * @return  null if it fails, else strings readed.
+ * @return the number of lines read, -1 if an error occured
 **/
-FILEIO_IMPEXP wchar_t ** mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr);
+FILEIO_IMPEXP int mgetl(int iFileID, int iLineCount, wchar_t ***pwstLines);
 
 #endif /* __MGETL_H__ */
 /*--------------------------------------------------------------------------*/

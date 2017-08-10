@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="projsl">
+    <refnamediv>
+        <refname>projsl</refname>
+        <refpurpose>linear system projection</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[slp]=projsl(sl,Q,M)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>sl,slp</term>
+                <listitem>
+                    <para>
+                        <literal>syslin</literal> lists
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Q,M</term>
+                <listitem>
+                    <para>matrices (projection factorization)</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>slp</literal>= projected model of <literal>sl</literal> where <literal>Q*M</literal> is the full rank
+            factorization of the projection.
+        </para>
+        <para>
+            If <literal>(A,B,C,D)</literal> is the representation of <literal>sl</literal>, the projected model
+            is given by <literal>(M*A*Q,M*B,C*Q,D)</literal>.
+        </para>
+        <para>
+            Usually, the projection <literal>Q*M</literal> is obtained as the spectral projection
+            of an appropriate auxiliary matrix <literal>W</literal> e.g. <literal>W</literal> = product
+            of (weighted) gramians or product of Riccati equations.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+rand('seed',0);sl=ssrand(2,2,5);[A,B,C,D]=abcd(sl);poles=spec(A)
+[Q,M]=pbig(A,0,'c');  //keeping unstable poles
+slred=projsl(sl,Q,M);spec(slred('A'))
+sl('D')=rand(2,2);  //making proper system
+trzeros(sl)  //zeros of sl
+wi=inv(sl);  //wi=inverse in state-space
+[q,m]=psmall(wi('A'),2,'d');  //keeping small zeros (poles of wi) i.e. abs(z)<2
+slred2=projsl(sl,q,m);
+trzeros(slred2)  //zeros of slred2 = small zeros of sl
+//  Example keeping second order modes
+A=diag([-1,-2,-3]);
+sl=syslin('c',A,rand(3,2),rand(2,3));[nk2,W]=hankelsv(sl)
+[Q,M]=pbig(W,nk2(2)-%eps,'c');    //keeping 2 eigenvalues of W
+slr=projsl(sl,Q,M);  //reduced model
+hankelsv(slr)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="pbig">pbig</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

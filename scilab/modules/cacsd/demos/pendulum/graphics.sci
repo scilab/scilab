@@ -6,7 +6,9 @@
 //
 
 function P=initialize_display(xg,teta)
-    clf();a=gca();a.isoview="on";
+    clf();
+    a=gca();
+    isoview()
     drawlater();//f=gcf();
     a.data_bounds=[-0.4 -0.2;0.4 0.3];
     a.margins=zeros(1,4);
@@ -23,7 +25,7 @@ function [P]=dpnd()
     clf();
     drawlater()
     a=gca();
-    a.isoview="on";
+    isoview()
     f = gcf() ;
     f.axes_size = [640,480];
     a.data_bounds=[0 0;100 100];
@@ -120,7 +122,7 @@ function draw1()
     a1.x_label.text="time";
     a1.y_label.text="position";
     a1.box = "on";
-    p1=xpoly(1,y(1,1));p1=gce();
+    xpoly(1,y(1,1));p1=gce();
 
     a2=newaxes();sca(a2);
     a2.axes_bounds=[0.5,0,0.5,0.5];
@@ -133,8 +135,8 @@ function draw1()
     xpoly(1,y(2,1));;p2=gce();
 
     a3=newaxes();
+    isoview()
     a3.axes_bounds= [0,0.5,1,0.5];
-    a3.isoview="on";
     a3.data_bounds=[-0.4 -0.1;0.4 0.4];
     a3.box = "on";
     y1=0;lb=l;hc=0.05;lc=0.1;teta=100*y(2,1);r=0.013;xg=100*y(1,1);
@@ -174,7 +176,7 @@ function draw2()
     a1.x_label.text="time";
     a1.y_label.text="Control (u)";
     a1.box = "on";
-    p1=xpoly(t1(1),c(1));p1=gce();
+    xpoly(t1(1),c(1));p1=gce();
 
     a2=newaxes();sca(a2);
     a2.axes_bounds=[0.5,0,0.5,0.5];
@@ -188,8 +190,8 @@ function draw2()
     xpoly(t1(1),thetaE(1));p3=gce();p3.line_style=2;
 
     a3=newaxes();
+    isoview()
     a3.axes_bounds= [0,0.5,1,0.5];
-    a3.isoview="on";
     a3.data_bounds=[-0.4 -0.1;0.4 0.4];
     a3.box = "on";
     y1=0;lb=l;hc=0.05;lc=0.1;;r=0.013;

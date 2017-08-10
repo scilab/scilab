@@ -5,7 +5,7 @@
         <refpurpose>переключает режим защиты функций Scilab</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             funcprot(prot)
             previousprot = funcprot(prot)

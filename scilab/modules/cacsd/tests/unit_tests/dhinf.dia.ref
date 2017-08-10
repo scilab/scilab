@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2012 - SE - Sylvestre Ledru
@@ -27,13 +28,11 @@ D=[1 -1 -2  0  0
    0  1  0  1 -1
    0  0  1  2  1];
 ncon=2
- ncon  =
- 
-    2.  
+ ncon  = 
+   2.
 nmeas=2
- nmeas  =
- 
-    2.  
+ nmeas  = 
+   2.
 gam=111.30;
 [AK,BK,CK,DK] = dhinf(A,B,C,D,ncon,nmeas,gam);
 DK_ref=[9.0643622,7.5621326;

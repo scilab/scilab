@@ -5,16 +5,16 @@
         <refpurpose>установка связи с подпрограммами Fortran или C</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>[s_1,s_2,...,s_lhs]=user(e_1,e_2,...,e_rhs)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Описание</title>
         <para>
-            С этой командой можно использовать внешнюю программу как команду Scilab'а, где  
+            С этой командой можно использовать внешнюю программу как команду Scilab'а, где
             <literal>(s_1,s_2,...,s_lhs)</literal> -- выходные переменные, а
-            <literal>(e_1,e_2,...,e_rhs)</literal> -- входные переменные. Чтобы ввести эту 
-            команду в Scilab, нужно написать несколько строк в fortran-подпрограмме  
+            <literal>(e_1,e_2,...,e_rhs)</literal> -- входные переменные. Чтобы ввести эту
+            команду в Scilab, нужно написать несколько строк в fortran-подпрограмме
             <literal>user</literal> Scilab'а.
         </para>
     </refsection>
@@ -22,7 +22,7 @@
         <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
-                <link linkend="fort">fort</link>
+                <link linkend="call">call</link>
             </member>
             <member>
                 <link linkend="link">link</link>

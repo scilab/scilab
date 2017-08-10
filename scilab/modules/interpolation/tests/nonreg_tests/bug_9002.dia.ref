@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2012 - DIGITEO - Allan CORNET
@@ -25,9 +26,9 @@ z = x;
 [X,Y,Z] = ndgrid(x,y,z);
 V = f(X,Y,Z);
 tl = splin3d(x,y,z,V,[5 5 5]);
-xp = grand(1,1,"unf",0,2*%pi); 
-yp = grand(1,1,"unf",0,2*%pi); 
-zp = grand(1,1,"unf",0,2*%pi); 
+xp = grand(1,1,"unf",0,2*%pi);
+yp = grand(1,1,"unf",0,2*%pi);
+zp = grand(1,1,"unf",0,2*%pi);
 f_i = bsplin3val(xp, yp, zp, tl, [0 0 0]);
 yp = yp + %i;
 msgerr = msprintf(gettext("%s: Wrong type for argument #%d: Real matrix expected.\n"), "bsplin3val", 2);

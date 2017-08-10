@@ -2,11 +2,14 @@
 <!--
 This file is part Scilab
 Copyright (C) 2012 - INRIA - Serge Steer
-This file must be used under the terms of the CeCILL.
-This source file is licensed as described in the file COPYING, which
-you should have received as part of this distribution.  The terms
-are also available at
-http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+Copyright (C) 2012 - 2016 - Scilab Enterprises
+
+This file is hereby licensed under the terms of the GNU GPL v2.0,
+pursuant to article 5.3.4 of the CeCILL v.2.1.
+This file was originally licensed under the terms of the CeCILL v2.1,
+and continues to be available under such terms.
+For more information, see the COPYING file which you should have received
+along with this program.
 -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xcov" xml:lang="en">
     <refnamediv>
@@ -14,7 +17,7 @@ http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
         <refpurpose>Computes discrete auto or cross covariance</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[c [,lagindex]] = xcov(x [,maxlags [,scaling]])
             [c [,lagindex]] = xcov(x,y [,maxlags [,scaling]])
         </synopsis>
@@ -79,64 +82,64 @@ http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
         <itemizedlist>
             <listitem>
                 <literal>c=xcov(x)</literal>
-                
+
                 computes the un-normalized discrete covariance:
-                
+
                 <latex>{\begin{matrix}C_k = \sum_{i=0}^{n-k-1}
-                    {(x_{i+k}-\mu_x})({x_i-\mu_x})^{*} , k \geq 0 
+                    {(x_{i+k}-\mu_x})({x_i-\mu_x})^{*} , k \geq 0
                     \mu_x=\sum_{i=0}^{n-1}{x_i} C_k = C^{*}_{-k}, k \leq
                     -1\end{matrix}.}$
                 </latex>
-                
+
                 and return in
-                
+
                 <literal>c</literal>
-                
+
                 the sequence of covariance lags
-                
+
                 <latex>$C_k,k=-n:n$</latex>
-                
+
                 with
-                
+
                 <literal>n</literal>
-                
+
                 is the length of
-                
+
                 <literal>x</literal>
-                
-                
+
+
             </listitem>
             <listitem>
                 <literal>xcov(x,y)</literal>
-                
+
                 computes the un-normalized discrete cross covariance:
-                
+
                 <latex>${\begin{matrix}C_k = \sum_{i=1}^{n-k}
                     {(x_{i+k}-\mu_x})*({y_i}-\mu_y)^{*}, k \geq 0
                     \mu_x=\sum_{i=0}^{n-1}{x_i} \mu_y=\sum_{i=0}^{n-1}{y_i} C_k =
                     C^{*}_{-k}, k \leq -1\end{matrix}.}$
                 </latex>
-                
+
                 and return in
-                
+
                 <literal>c</literal>
-                
+
                 the sequence of cross covariance lags
-                
+
                 <latex>$C_k,k=-n:n$</latex>
-                
+
                 with
-                
+
                 <literal>n</literal>
-                
+
                 is the maximum of
-                
+
                 <literal>x</literal>
-                
+
                 and
-                
+
                 <literal>y</literal>
-                
+
                 length's.
             </listitem>
         </itemizedlist>
@@ -148,9 +151,9 @@ http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
             the first and last values of <literal>c</literal> are zero.
         </para>
         <para>
-            The <literal>scaling</literal> argument decribes how
+            The <literal>scaling</literal> argument describes how
             <latex>C(k)</latex> is normalized before being returned in
-            <literal>c</literal>: 
+            <literal>c</literal>:
             <itemizedlist>
                 <listitem>
                     <term>"biased"</term>:<literal>c=</literal><latex>$C$</latex><literal>/n</literal>.
@@ -166,27 +169,27 @@ http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
     </refsection>
     <refsection>
         <title>Remark</title>
-        
+
         The
-        
+
         <link linkend="corr">corr</link>
-        
+
         function computes the "biased" covariance of
-        
+
         <literal>x</literal>
-        
+
         and
-        
+
         <literal>y</literal>
-        
+
         and only return in
-        
+
         <literal>c</literal>
-        
+
         the sequence of covariance lags
-        
+
         <latex>$C_k,k \geq 0$</latex>
-        
+
         .
     </refsection>
     <refsection>
@@ -210,7 +213,7 @@ http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
             </scilab:image>
         </refsection>
         <refsection>
-            <title>See Also</title>
+            <title>See also</title>
             <simplelist type="inline">
                 <member>
                     <link linkend="xcorr">xcorr</link>

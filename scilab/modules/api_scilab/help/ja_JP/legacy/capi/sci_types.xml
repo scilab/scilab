@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="sci_types" xml:lang="ja">
+    <refnamediv>
+        <refname>sci_types</refname>
+        <refpurpose>
+            変数で利用可能な型を定義するC enum
+        </refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>説明</title>
+        <para>
+            変数で利用可能な型を定義する C enum.
+            この関数を使用する際には, stack-c.h を読み込む必要があります.
+        </para>
+        <para>利用可能な型のリストを以下に示します:</para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    1 - <emphasis>sci_matrix</emphasis>: doubleの行列
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    2 - <emphasis>sci_poly</emphasis>: 多項式行列
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    4 - <emphasis>sci_boolean</emphasis>: 論理値行列
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    5 - <emphasis>sci_sparse</emphasis>: 疎行列
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    6 - <emphasis>sci_boolean_sparse</emphasis>: 論理値疎行列
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    7 - <emphasis>sci_matlab_sparse</emphasis>: matlab疎行列
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    8 - <emphasis>sci_ints</emphasis>: 整数行列
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    9 - <emphasis>sci_handles</emphasis>: グラフィックハンドル
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    10 - <emphasis>sci_strings</emphasis>: 文字列行列
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    11 - <emphasis>sci_u_function</emphasis>: 未コンパイルのScilab関数
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    13 - <emphasis>sci_c_function</emphasis>: コンパイル済みのScilab関数
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    14 - <emphasis>sci_lib</emphasis>:　Scilab関数のライブラリ
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    15 - <emphasis>sci_list</emphasis>: a Scilab list
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    16 - <emphasis>sci_tlist</emphasis>: Scilab tlist
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    17 - <emphasis>sci_mlist</emphasis>: Scilab mlist
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    128 - <emphasis>sci_pointer (Scilab 5.2以前はsci_lufact_pointer)</emphasis>: ポインタ
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>整数またはenum型は
+            変数の型を確認する際に使用出来ます.
+            enum型の値には明示的な意味があるため,enum型の使用が推奨されます.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <para>この例では, Cゲートウェイ関数は1つの引数をとります.
+            switch case構造により, パラメータとして送信した変数の型を表示します.
+        </para>
+        <programlisting role="code_gateway"><![CDATA[
+#include "api_scilab.h"
+#include "sciprint.h"
+int sci_mysci_typesrhs(char * fname, void* pvApiCtx)
+{
+    int         iType = 0;
+    int*        piAddr = NULL;
+    SciErr      sciErr;
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
+    if(sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+    sciErr = getVarType(pvApiCtx, piAddr, &iType);
+    if(sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+    switch(iType)
+    {
+    case sci_matrix:
+        sciprint("A matrix of doubles\n");
+        break;
+    case sci_poly:
+        sciprint("A matrix of polynomials\n");
+        break;
+    case sci_boolean:
+        sciprint("A matrix of booleans\n");
+        break;
+    case sci_sparse:
+        sciprint("A sparse matrix of doubles\n");
+        break;
+    case sci_boolean_sparse:
+        sciprint("A sparse matrix of booleans\n");
+        break;
+    case sci_matlab_sparse:
+        sciprint("A sparse matlab matrix\n");
+        break;
+    case sci_ints:
+        sciprint("A matrix of integers\n");
+        break;
+    case sci_handles:
+        sciprint("A graphic handle\n");
+        break;
+    case sci_strings:
+        sciprint("A matrix of strings\n");
+        break;
+    case sci_u_function:
+        sciprint("An uncompiled Scilab function\n");
+        break;
+    case sci_c_function:
+        sciprint("A compiled Scilab function\n");
+        break;
+    case sci_lib:
+        sciprint("A library of Scilab functions\n");
+        break;
+    case sci_list:
+        sciprint("A Scilab list\n");
+        break;
+    case sci_tlist:
+        sciprint("A Scilab tlist\n");
+        break;
+    case sci_mlist:
+        sciprint("A Scilab mlist\n");
+        break;
+    case sci_pointer:
+        sciprint("A pointer\n");
+        break;
+    default:
+        sciprint("Unknown type !\n"); // Should never happen
+    }
+    return 0;
+}
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="sciprint">sciprint</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

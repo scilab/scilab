@@ -1,11 +1,14 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2011 - INRIA - Serge Steer <serge.steer@inria.fr>
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at;
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function comet3d(varargin)
     //Comet-like trajectory.
@@ -58,12 +61,12 @@ function comet3d(varargin)
         error(msprintf(_("%s: Wrong type for argument #%d: Real vector expected.\n"),"comet3d",1))
     end
 
-    if (type(z)<>1|~isreal(z))&and(type(z)<>[11 13]) then
+    if (type(z)<>1|~isreal(z))&type(z)<>13 then
         error(msprintf(_("%s: Wrong type for argument #%d: Real vector expected.\n"),"comet3d",3))
     end
 
 
-    if or(type(z)==[11 13]) then
+    if type(z)==13 then
         x=x(:);y=y(:)
         n=size(x,"*")
         m=1

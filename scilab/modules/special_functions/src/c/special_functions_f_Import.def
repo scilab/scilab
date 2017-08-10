@@ -5,10 +5,6 @@ EXPORTS
 ; --------------------------------------- 
 ; special_functions_f
 ; --------------------------------------- 
-intslgamma_
-intsgamma_
-intsdlgamma_
-intscalerf_
 zbesiv_
 dbesiv_ 
 zbesjv_

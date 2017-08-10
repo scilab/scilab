@@ -1,12 +1,15 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2014-2014 - Scilab Enterprises - Clement DAVID
+ *  Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -14,6 +17,7 @@
 #define BASEOBJECT_HXX_
 
 #include <vector>
+#include <initializer_list>
 
 #include "utilities.hxx"
 
@@ -25,15 +29,30 @@ namespace model
 class BaseObject
 {
 public:
-    BaseObject(kind_t k) :
-        m_id(0), m_kind(k)
+    explicit BaseObject(kind_t k) :
+        m_id(ScicosID()), m_kind(k), m_refCount()
     {
+        // m_id will be set by the caller
     }
     BaseObject(const BaseObject& b) :
-        m_id(0), m_kind(b.m_kind)
+        m_id(b.m_id), m_kind(b.m_kind), m_refCount()
+    {
+    }
+    BaseObject(BaseObject&& b) :
+        m_id(b.m_id), m_kind(b.m_kind), m_refCount()
+    {
+    }
+    BaseObject(ScicosID id, kind_t k) :
+        m_id(id), m_kind(k), m_refCount()
     {
     }
 
+    inline BaseObject& operator=(BaseObject&& o)
+    {
+        m_id = o.m_id;
+        m_kind = o.m_kind;
+        return *this;
+    }
     inline bool operator<(BaseObject o) const
     {
         return m_id < o.m_id;
@@ -57,6 +76,11 @@ public:
         return m_kind;
     }
 
+    inline unsigned& refCount()
+    {
+        return m_refCount;
+    }
+
 private:
     /**
      * An id is used as a reference to the current object
@@ -66,7 +90,12 @@ private:
     /**
      * Kind of the Object
      */
-    const kind_t m_kind;
+    kind_t m_kind;
+
+    /**
+     * Refcount of this object
+     */
+    unsigned m_refCount;
 };
 
 /** @defgroup utilities Shared utility classes
@@ -86,6 +115,7 @@ struct Geometry
     Geometry() : m_x(0), m_y(0), m_width(20), m_height(20) {};
     Geometry(const Geometry& g) : m_x(g.m_x), m_y(g.m_y), m_width(g.m_width), m_height(g.m_height) {};
     Geometry(const std::vector<double>& v) : m_x(v[0]), m_y(v[1]), m_width(v[2]), m_height(v[3]) {};
+    Geometry(std::initializer_list<double> l) : m_x(*l.begin()), m_y(*(l.begin() + 1)), m_width(*(l.begin() + 2)), m_height(*(l.begin() + 3)) {};
 
     void fill(std::vector<double>& v) const
     {

@@ -1,17 +1,23 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010-2011 - DIGITEO - Clement DAVID
+ * Copyright (C) 2011-2017 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
 package org.scilab.modules.xcos;
 
+import com.mxgraph.util.mxEvent;
+import com.mxgraph.util.mxEventObject;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.lang.ref.WeakReference;
@@ -82,10 +88,12 @@ import org.scilab.modules.xcos.actions.ShowHideShadowAction;
 import org.scilab.modules.xcos.actions.StartAction;
 import org.scilab.modules.xcos.actions.StopAction;
 import org.scilab.modules.xcos.actions.ViewDiagramBrowserAction;
+import org.scilab.modules.xcos.actions.ViewDiagramTreeShowAction;
 import org.scilab.modules.xcos.actions.ViewGridAction;
 import org.scilab.modules.xcos.actions.ViewViewportAction;
 import org.scilab.modules.xcos.actions.XcosDemonstrationsAction;
 import org.scilab.modules.xcos.actions.XcosDocumentationAction;
+import org.scilab.modules.xcos.block.actions.AutoPositionSplitBlockAction;
 import org.scilab.modules.xcos.block.actions.BlockDocumentationAction;
 import org.scilab.modules.xcos.block.actions.BlockParametersAction;
 import org.scilab.modules.xcos.block.actions.BorderColorAction;
@@ -107,6 +115,7 @@ import org.scilab.modules.xcos.configuration.model.DocumentType;
 import org.scilab.modules.xcos.configuration.utils.ConfigurationConstants;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.link.actions.StyleHorizontalAction;
+import org.scilab.modules.xcos.link.actions.StyleOptimalAction;
 import org.scilab.modules.xcos.link.actions.StyleStraightAction;
 import org.scilab.modules.xcos.link.actions.StyleVerticalAction;
 import org.scilab.modules.xcos.palette.actions.ViewPaletteBrowserAction;
@@ -137,6 +146,7 @@ public class XcosTab extends SwingScilabDockablePanel implements SimpleTab {
     private Menu simulate;
     private Menu format;
     private Menu alignMenu;
+    private Menu blockPosition;
     private Menu linkStyle;
     private Menu tools;
     private Menu help;
@@ -184,7 +194,6 @@ public class XcosTab extends SwingScilabDockablePanel implements SimpleTab {
             }
 
             Xcos.getInstance().destroy(diag);
-            diag.setOpened(false);
         }
 
         @Override
@@ -265,6 +274,10 @@ public class XcosTab extends SwingScilabDockablePanel implements SimpleTab {
         initComponents(graph);
 
         graph.getAsComponent().addKeyListener(new ArrowKeyListener());
+        graph.getModel().addListener(mxEvent.CHANGE, (Object sender, mxEventObject evt) -> {
+            graph.setModified(true);
+            graph.updateTabTitle();
+        });
     }
 
     /*
@@ -311,11 +324,10 @@ public class XcosTab extends SwingScilabDockablePanel implements SimpleTab {
             uuid = UUID.randomUUID().toString();
         }
 
+        // FIXME: fix a crash on DnD and Tab restore
+
         final XcosTab tab = new XcosTab(graph, uuid);
         ScilabTabFactory.getInstance().addToCache(tab);
-
-        Xcos.getInstance().addDiagram(graph.getSavedFile(), graph);
-        graph.setOpened(true);
 
         if (visible) {
             tab.createDefaultWindow().setVisible(true);
@@ -324,9 +336,9 @@ public class XcosTab extends SwingScilabDockablePanel implements SimpleTab {
             BarUpdater.updateBars(tab.getParentWindowId(), tab.getMenuBar(), tab.getToolBar(), tab.getInfoBar(), tab.getName(), tab.getWindowIcon());
         }
 
-        ClosingOperationsManager.addDependencyWithRoot((SwingScilabDockablePanel) tab);
-        ClosingOperationsManager.registerClosingOperation((SwingScilabDockablePanel) tab, new ClosingOperation(graph));
-        WindowsConfigurationManager.registerEndedRestoration((SwingScilabDockablePanel) tab, new EndedRestoration(graph));
+        ClosingOperationsManager.addDependencyWithRoot(tab);
+        ClosingOperationsManager.registerClosingOperation(tab, new ClosingOperation(graph));
+        WindowsConfigurationManager.registerEndedRestoration(tab, new EndedRestoration(graph));
     }
 
     /*
@@ -428,6 +440,7 @@ public class XcosTab extends SwingScilabDockablePanel implements SimpleTab {
         view.add(NormalViewAction.createMenu(diagram));
         view.addSeparator();
         view.add(ViewPaletteBrowserAction.createCheckBoxMenu(diagram));
+        view.add(ViewDiagramTreeShowAction.createMenu(diagram));
         view.add(ViewDiagramBrowserAction.createMenu(diagram));
         final CheckBoxMenuItem menuItem = ViewViewportAction.createCheckBoxMenu(diagram);
         viewport = (JCheckBoxMenuItem) menuItem.getAsSimpleCheckBoxMenuItem();
@@ -480,11 +493,18 @@ public class XcosTab extends SwingScilabDockablePanel implements SimpleTab {
         format.add(FilledColorAction.createMenu(diagram));
         format.addSeparator();
 
+        blockPosition = ScilabMenu.createMenu();
+        blockPosition.setText(XcosMessages.BLOCK_AUTO_POSITION);
+        blockPosition.add(AutoPositionSplitBlockAction.createMenu(diagram));
+        format.add(blockPosition);
+        format.addSeparator();
+
         linkStyle = ScilabMenu.createMenu();
         linkStyle.setText(XcosMessages.LINK_STYLE);
         linkStyle.add(StyleHorizontalAction.createMenu(diagram));
         linkStyle.add(StyleStraightAction.createMenu(diagram));
         linkStyle.add(StyleVerticalAction.createMenu(diagram));
+        linkStyle.add(StyleOptimalAction.createMenu(diagram));
         format.add(linkStyle);
         format.addSeparator();
 

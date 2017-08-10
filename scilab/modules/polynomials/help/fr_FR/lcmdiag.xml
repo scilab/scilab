@@ -48,7 +48,7 @@
         <title>Description</title>
         <para>
             <literal>[kN,D]=lcmdiag(H,'row')</literal> calcule une factorisation <literal>D*H=N</literal>,
-            i.e.  H=D^(-1)*N  où D est une matrice diagonale avec D(k,k)=ppcm de la 
+            i.e.  H=D^(-1)*N  où D est une matrice diagonale avec D(k,k)=ppcm de la
             k-ième ligne de H.den .
         </para>
         <para>
@@ -58,7 +58,7 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 s=poly(0,'s');
 H=[1/s,(s+2)/s/(s+1)^2;1/(s^2*(s+2)),2/(s+2)];
 [N,D]=lcmdiag(H);

@@ -7,21 +7,21 @@
     <refsection>
         <title>説明</title>
         <para>
-          <literal>select ... case ... end</literal>命令で使用されるキーワード
+            <literal>select ... case ... end</literal>命令で使用されるキーワード
         </para>
         <para>
-          キーワード<literal>case</literal> は,変数値の1つの値を指します
-	  (値の範囲から選択された変数値).
+            キーワード<literal>case</literal> は,変数値の1つの値を指します
+            (値の範囲から選択された変数値).
         </para>
         <para>
             以下のように使用されます:
-            <programlisting role="no-scilab-exec"><![CDATA[ 
+            <programlisting role="no-scilab-exec"><![CDATA[
 select expr0
     case expr1 then
         instructions 1
     case expr2 then
         instructions 2
-	  ...  
+	  ...
     case exprn then
         instructions n
     [else instructions]

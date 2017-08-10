@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="cell2mat" xml:lang="ja">
+
+    <refnamediv>
+
+        <refname>cell2mat</refname>
+
+        <refpurpose>セル配列を行列に変換</refpurpose>
+
+    </refnamediv>
+
+    <refsynopsisdiv>
+
+        <title>呼び出し手順</title>
+
+        <synopsis>x=cell2mat(c)</synopsis>
+
+    </refsynopsisdiv>
+
+    <refsection>
+
+        <title>引数</title>
+
+        <variablelist>
+
+            <varlistentry>
+
+                <term>c</term>
+
+                <listitem>
+
+                    <para>
+                        セル, <literal>c</literal>の要素は同じ型を有し,
+
+                        スカラーまたは行列とすることができます
+
+                    </para>
+
+                </listitem>
+
+            </varlistentry>
+
+            <varlistentry>
+
+                <term>x</term>
+
+                <listitem>
+
+                    <para>行列</para>
+
+                </listitem>
+
+            </varlistentry>
+
+        </variablelist>
+
+    </refsection>
+
+    <refsection>
+
+        <title>説明</title>
+
+        <para>
+
+            cell2mat(c) は,セル配列<literal>c</literal>の
+
+            全ての要素を結合した行列を返します.
+
+        </para>
+
+        <para>
+
+            <literal>c</literal>の全ての要素は同じデータ型(文字列またはdoubleまたは
+
+            整数または論理値)を有する必要があります.
+
+            <literal>c</literal>の各行<literal>i</literal> について,
+
+            <literal>cell2mat</literal>はセル配列<literal>c</literal>の
+
+            <literal>i</literal>行目の全ての要素を結合します.
+
+        </para>
+
+        <para>
+
+            <note>
+
+                セル入力<literal>c</literal>の要素が文字列の場合,
+
+                <literal>cell2mat(c)</literal> は文字列を結合した列ベクトル
+
+                を返すことに注意してください.
+
+            </note>
+
+        </para>
+
+        <para>
+
+        </para>
+
+    </refsection>
+
+    <refsection>
+
+        <title>例</title>
+
+        <programlisting role="example"><![CDATA[
+c=makecell([2,2],[1 2 3; 6 7 8],[4 5;9 10],[11 12;16 17],[14 13 15;18 19 20])
+cell2mat(c)
+ ]]></programlisting>
+
+    </refsection>
+
+    <refsection role="see also">
+
+        <title>参照</title>
+
+        <simplelist type="inline">
+
+            <member>
+
+                <link linkend="cell">cell</link>
+
+            </member>
+
+            <member>
+
+                <link linkend="makecell">makecell</link>
+
+            </member>
+
+        </simplelist>
+
+    </refsection>
+
+</refentry>
+

@@ -206,7 +206,7 @@ We place the DCDFLIB code that we have written in the public domain.
 
                     HOW TO USE THE ROUTINES
 
-The calling sequence for each routine is of the form:
+The syntax for each routine is of the form:
 
   SUBROUTINE CDF<name>( WHICH, P, Q, X, <parameters>, STATUS, BOUND ).
 

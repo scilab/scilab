@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -35,7 +38,13 @@ public:
 
     virtual void printData(std::ostream & os, const unsigned int pos, const unsigned int indentLevel) const
     {
+        // Save 'os' format, fill it and restore
+        char oldChar = os.fill();
+        std::ios oldState(nullptr);
+        oldState.copyfmt(os);
         os << "0x" << std::hex << std::setfill('0') << std::setw(2) << (int)static_cast<unsigned char * >(getData())[pos];
+        os.copyfmt(oldState);
+        os.fill(oldChar);
     }
 };
 
@@ -56,8 +65,14 @@ public:
 
     virtual void printData(std::ostream & os, const unsigned int pos, const unsigned int indentLevel) const
     {
+        // Save 'os' format, fill it and restore
         const unsigned short x = static_cast<unsigned short * >(getData())[pos];
+        char oldChar = os.fill();
+        std::ios oldState(nullptr);
+        oldState.copyfmt(os);
         os << std::hex << std::setfill('0') << std::setw(2) << (x & 0xFF) << ":" << ((x >> 8) & 0xFF);
+        os.copyfmt(oldState);
+        os.fill(oldChar);
     }
 };
 
@@ -78,8 +93,14 @@ public:
 
     virtual void printData(std::ostream & os, const unsigned int pos, const unsigned int indentLevel) const
     {
+        // Save 'os' format, fill it and restore
         const unsigned int x = static_cast<unsigned int * >(getData())[pos];
+        char oldChar = os.fill();
+        std::ios oldState(nullptr);
+        oldState.copyfmt(os);
         os << std::hex << std::setfill('0') << std::setw(2) << (x & 0xFF) << ":" << ((x >> 8) & 0xFF) << ":" << ((x >> 16) & 0xFF) << ":" << ((x >> 24) & 0xFF);
+        os.copyfmt(oldState);
+        os.fill(oldChar);
     }
 };
 
@@ -102,8 +123,14 @@ public:
 
     virtual void printData(std::ostream & os, const unsigned int pos, const unsigned int indentLevel) const
     {
+        // Save 'os' format, fill it and restore
         const unsigned long long x = static_cast<unsigned long long * >(getData())[pos];
+        char oldChar = os.fill();
+        std::ios oldState(nullptr);
+        oldState.copyfmt(os);
         os << std::hex << std::setfill('0') << std::setw(2) << (x & 0xFF) << ":" << ((x >> 8) & 0xFF) << ":" << ((x >> 16) & 0xFF) << ":" << ((x >> 24) & 0xFF) << ":" << ((x >> 32) & 0xFF) << ":" << ((x >> 40) & 0xFF) << ":" << ((x >> 48) & 0xFF) << ":" << ((x >> 56) & 0xFF);
+        os.copyfmt(oldState);
+        os.fill(oldChar);
     }
 };
 

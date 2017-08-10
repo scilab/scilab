@@ -4,7 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 // <-- Non-regression test for bug 545 -->
 //
 // <-- Bugzilla URL -->
@@ -25,13 +25,11 @@
 //     Warning :redefining function: ndims
 //             inside function: %i_i_hm
 //
-//    Commands:
-//    a=int8(hypermat([3 2 2]));b=hypermat([1 2 2]);
-//    a(1,:,:)=b
 //    Enrico SEGRE on Linux version RH9 distribution  with   as window manager
 //    Israel
 //    November 9, 2003 at 13:47:20
-a        = int8(hypermat([3 2 2]));
-b        = hypermat([1 2 2]);
+a        = int8(zeros(3, 2, 2));
+b        = zeros(1, 2, 2);
 a(1,:,:) = b;
+assert_checkequal(a(1, :, :), int8(b));
 // Just check if there is no "Warning :redefining function: ndims" displayed in .dia.ref

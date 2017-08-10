@@ -3,12 +3,15 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Allan CORNET
  * ...
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="mkdir" xml:lang="ru">
@@ -17,7 +20,7 @@
         <refpurpose>создаёт новую директорию</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             mkdir(dirname)
             mkdir(parentdir, dirname)
@@ -40,7 +43,7 @@
                 <term>parentdir</term>
                 <listitem>
                     <para>
-                        символьная строка: имя директории в которой будет создана новая 
+                        символьная строка: имя директории в которой будет создана новая
                         директория <varname>dirname</varname>.
                     </para>
                 </listitem>
@@ -66,28 +69,28 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Инструкция <code>mkdir(dirname)</code> создаёт директорию 
-            <varname>dirname</varname> в текущей директории, если 
-            <varname>dirname</varname> представляет относительный путь. 
-            Иначе, <varname>dirname</varname> представляет абсолютный путь и 
-            функция <function>mkdir</function> пытается создать директорию с 
+            Инструкция <code>mkdir(dirname)</code> создаёт директорию
+            <varname>dirname</varname> в текущей директории, если
+            <varname>dirname</varname> представляет относительный путь.
+            Иначе, <varname>dirname</varname> представляет абсолютный путь и
+            функция <function>mkdir</function> пытается создать директорию с
             абсолютным именем <varname>dirname</varname>.
         </para>
         <para>
-            Инструкция <code>mkdir(parentdir, dirname)</code> создаёт 
-            директорию <varname>dirname</varname> в директории 
-            <varname>parentdir</varname> (если <varname>parentdir</varname> 
-            не существует, то она будет создана), где 
+            Инструкция <code>mkdir(parentdir, dirname)</code> создаёт
+            директорию <varname>dirname</varname> в директории
+            <varname>parentdir</varname> (если <varname>parentdir</varname>
+            не существует, то она будет создана), где
             <varname>parentdir</varname> -- абсолютное или относительное имя.
         </para>
         <para>
-            Инструкция <code>[status,msg] = mkdir(parentdir, dirname)</code> 
-            создаёт директорию <varname>dirname</varname> в существующей 
-            директории <varname>parentdir</varname>, возвращая статус работы 
-            <varname>status</varname> и сообщение об ошибке 
-            <varname>msg</varname>. 
+            Инструкция <code>[status,msg] = mkdir(parentdir, dirname)</code>
+            создаёт директорию <varname>dirname</varname> в существующей
+            директории <varname>parentdir</varname>, возвращая статус работы
+            <varname>status</varname> и сообщение об ошибке
+            <varname>msg</varname>.
         </para>
-        <para>   
+        <para>
             <informaltable border="1">
                 <tr>
                     <td>
@@ -103,7 +106,7 @@
                     </td>
                     <td>
                         mkdir: Произошла ошибка: Файл с таким именем уже существует в dirname
-                        
+
                     </td>
                 </tr>
                 <tr>
@@ -112,16 +115,16 @@
                     </td>
                     <td>
                         mkdir: Произошла ошибка: Невозможно создать каталог dirname
-                        
+
                     </td>
                 </tr>
                 <tr>
                     <td>
                         1
                     </td>
-                    
+
                     <td>
-                        
+
                     </td>
                 </tr>
                 <tr>
@@ -130,7 +133,7 @@
                     </td>
                     <td>
                         mkdir: Произошла ошибка: Этот каталог уже существует в dirname
-                        
+
                     </td>
                 </tr>
             </informaltable>
@@ -142,15 +145,15 @@
     <refsection>
         <title>Примеры</title>
         <programlisting role="example">
-            <![CDATA[ 
+            <![CDATA[
 // Абсолютное имя пути
 mkdir(TMPDIR+"/mkdir_example_1")
 status_2 = mkdir(TMPDIR+"/mkdir_example_2")
 [status_3,msg_3] = mkdir(TMPDIR+"/mkdir_example_3")
- 
+
 // Абсолютное имя пути (parentdir + dirname)
 [status_4,msg_4] = mkdir(TMPDIR,"mkdir_example_4")
- 
+
 // Относительное имя пути
 cd TMPDIR;
 [status_5,msg_5] = mkdir("mkdir_example_5")

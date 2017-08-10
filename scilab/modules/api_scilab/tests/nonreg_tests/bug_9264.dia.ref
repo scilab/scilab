@@ -4,7 +4,6 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-//
 // <-- CLI SHELL MODE -->
 //
 // <-- Non-regression test for bug 9264 -->
@@ -23,6 +22,7 @@ if haveacompiler() then
   if ~isfile(TMPDIR + "/bug_9264/bug_9264.c") then bugmes();quit;end
   ilib_build("build_c",["bug9264","sci_bug9264"], "bug_9264.c", []);
   exec loader.sce;
+  
   M = string(rand(200,1000));
   tic();
   bug9264(M);

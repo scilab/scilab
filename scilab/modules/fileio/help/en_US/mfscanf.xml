@@ -3,12 +3,15 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="mfscanf" xml:lang="en">
@@ -33,14 +36,14 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             [n, v_1,..., v_m] = mfscanf([niter,]fd, format)
             L = mfscanf([niter,] fd,format)
-            
+
             [n, v_1,..., v_m] = mscanf([niter,] format)
             L = mscanf([niter,]format)
-            
+
             [n, v_1,..., v_m] = msscanf([niter,]str, format)
             L = msscanf([niter,] str, format)
         </synopsis>
@@ -53,8 +56,8 @@
                 <listitem>
                     <para>
                         a Scilab string describing the format to use to write the
-                        remaining operands. The <varname>format</varname> operand 
-                        follows, as close as possible, the C <function>printf</function> 
+                        remaining operands. The <varname>format</varname> operand
+                        follows, as close as possible, the C <function>printf</function>
                         format operand syntax as described in
                         <link linkend="scanf_conversion">scanf_conversion</link>.
                     </para>
@@ -65,7 +68,7 @@
                 <listitem>
                     <para>
                         a positive integer: a file descriptor returned by the function
-                        <function>mopen</function>. The value -1 refers to the last 
+                        <function>mopen</function>. The value -1 refers to the last
                         opened file.
                     </para>
                 </listitem>
@@ -80,7 +83,7 @@
                 <term>niter</term>
                 <listitem>
                     <para>
-                        an integer: the number of times the 
+                        an integer: the number of times the
                         <varname>format</varname>
                         to be used.
                     </para>
@@ -99,9 +102,9 @@
                 <listitem>
                     <para>
                         Each function reads characters, interprets them according to a
-                        <varname>format</varname>, and stores the results in its output 
-                        arguments. If more than <varname>n</varname> output arguments are 
-                        provided, the last ones <varname>v_n+1, ..., v_m</varname> are 
+                        <varname>format</varname>, and stores the results in its output
+                        arguments. If more than <varname>n</varname> output arguments are
+                        provided, the last ones <varname>v_n+1, ..., v_m</varname> are
                         set to empty matrices.
                     </para>
                 </listitem>
@@ -142,10 +145,10 @@
         </para>
         <para>Comments about precision:</para>
         <para>
-            <function>mfscanf</function> is based on C function 
-            <function>fscanf</function>. If you use <literal>'%f'</literal>, 
-            <literal>'%g'</literal>, <literal>'%e'</literal> as format your data 
-            will be cast to float and returned in a Scilab variable. 
+            <function>mfscanf</function> is based on C function
+            <function>fscanf</function>. If you use <literal>'%f'</literal>,
+            <literal>'%g'</literal>, <literal>'%e'</literal> as format your data
+            will be cast to float and returned in a Scilab variable.
         </para>
         <para>
             If this Scilab variable is a double then you can have some precision
@@ -154,7 +157,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //----------------------------------------------------------
 //--    Simple use                                        --
 //----------------------------------------------------------
@@ -189,10 +192,10 @@ u=mopen(TMPDIR+'/foo','r'); // open the file for reading
 [n,a,b]=mfscanf(u,'%e %e') //first line using multiple LHS syntax
 l=mfscanf(u,'%e %e')       //second one using single LHS syntax
 //use niter to read 5 more lines
-l=mfscanf(5,u,'%e %e')  
+l=mfscanf(5,u,'%e %e')
 
 //use niter=-1 to read up to the end of file
-l=mfscanf(-1,u,'%e %e')  
+l=mfscanf(-1,u,'%e %e')
 
 mclose(u); //close the file
 
@@ -204,11 +207,11 @@ mclose(u); //close the file
 D=msscanf(-1,["Alain 19";"Pierre 15";"Tom 12"],'%s %d')
 typeof(D)
 Names=D(:,1) //strings
-Age=D(:,2)   //numerical values    
+Age=D(:,2)   //numerical values
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="mclose">mclose</link>

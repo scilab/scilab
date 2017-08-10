@@ -9,8 +9,8 @@
 //Checks syntactical aspects  related to functions
 funcprot(0);
 //
-//               Various calling sequences
-//               -------------------------
+//               Various syntaxes
+//               ----------------
 function y=foo(x)
     y=x^2
 endfunction

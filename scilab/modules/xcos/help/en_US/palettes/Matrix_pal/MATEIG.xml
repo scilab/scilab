@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
- * 
+ *
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
  * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  *  (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
- * 
+ *
  * See the file ./license.txt
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="MATEIG">
@@ -163,11 +163,11 @@
     <refsection id="Example_MATEIG">
         <title>Example</title>
         <programlisting role="example">
-            A=[1 12 32;21 35 46;70 8 19]
-            When the "Decomposition type" is set to one the output is y=[-35.649;14.279;76.369]
+            A = [1 12 32 ; 21 35 46 ; 70 8 19]
+            When the "Decomposition type" is set to one the output is y = [-35.649 ; 14.279 ; 76.369]
             When the "Decomposition type" is set to two the outputs are:
-            y1=[-35.649 0.000 0.000;0.000 14.279 0.000;0.000 0.000 76.369]
-            y2=[0.557 0.080 0.349;0.330 -0.922 0.770;-0.762 0.379 0.533]
+            y1 = [-35.649 0.000 0.000 ; 0.000 14.279 0.000 ; 0.000 0.000 76.369]
+            y2 = [0.557 0.080 0.349 ; 0.330 -0.922 0.770 ; -0.762 0.379 0.533]
         </programlisting>
     </refsection>
     <refsection id="Defaultproperties_MATEIG">
@@ -266,6 +266,16 @@
                 <para>SCI/modules/scicos_blocks/src/c/matz_vpv.c</para>
             </listitem>
         </itemizedlist>
+    </refsection>
+    <refsection id="Example_MATEIG2">
+        <title>Eigenvalues example: spec([sin(t) 0; 0 t]) = [sin(t); t]</title>
+        <link type="scilab" linkend="scilab.xcos/xcos/examples/matrix_pal/MATEIG_Example.zcos">
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../../../examples/matrix_pal/MATEIG_Example.zcos" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </link>
     </refsection>
     <refsection id="Seealso_MATEIG">
         <title>See also</title>

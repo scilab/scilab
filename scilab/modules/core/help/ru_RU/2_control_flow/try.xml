@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="try" xml:lang="ru">
+    <refnamediv>
+        <refname>try</refname>
+        <refpurpose>начало блока try в управляющей структуре try-catch
+        </refpurpose>
+    </refnamediv>
+    <refnamediv xml:id="catch">
+        <refname>catch</refname>
+        <refpurpose>
+            начало блока catch в управляющей структуре try-catch
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Синтаксис</title>
+        <synopsis>
+            try
+            statements
+            catch
+            statements
+            end
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Управляющая структура <literal>try</literal>-<literal>catch</literal> может быть использована для управления кодом программы, который может формировать ошибки.
+        </para>
+        <para>
+            Когда исполняется управляющая структура <literal>try</literal>-<literal>catch</literal>, то
+            обычно исполняются только инструкции между ключевыми словами <literal>try</literal> и
+            <literal>catch</literal>. Однако, если возникает ошибка во время выполнения любой из этих
+            инструкций, то ошибка записывается, оставшиеся инструкции вплоть до ключевого слова
+            <literal>catch</literal> пропускаются, и исполняются инструкции между ключевыми словами
+            <literal>catch</literal> и <literal>end</literal>, используя  режим обработки ошибок по
+            умолчанию.
+        </para>
+        <para>
+            Записанная ошибка может быть извлечена с помощью функции
+            <link linkend="lasterror">lasterror</link>.
+        </para>
+        <para>
+            Инструкции блока <literal>catch</literal>, как и само ключевое слово <literal>catch</literal>,
+            могут быть опущены, если нет альтернативных инструкций.
+        </para>
+        <para>
+            Заметьте, что можно также использовать функцию <link linkend="execstr">execstr</link>
+            с аргументом <literal>'errcatch'</literal> для обработки ошибок. Это может быть особенно полезным для обработки синтаксических ошибок.
+        </para>
+        <para>
+            Заметьте также, что управляющая структура <literal>try-catch</literal> в некотором роде похожа на:
+        </para>
+        <programlisting><![CDATA[
+if execstr("<try instructions>","errcatch")<>0 then
+  <catch instructions>
+end
+ ]]></programlisting>
+        <para>
+            Она использует тот же внутренний механизм, что и.
+            Именно по этой причине или
+            <emphasis>execstr(...,"errcatch")</emphasis> не могут быть включены в управляющую структуру
+            <literal>try</literal>-<literal>catch</literal>. Этот контекст обнаруживается и формируется
+            особое сообщение об ошибке (эта ошибка отлавливается и хранится как и любая другая ошибка, если на неё поставлена ловушка в блоке <literal>try</literal>).
+        </para>
+        <para>
+            Тем не менее управляющие структуры <literal>try</literal>-<literal>catch</literal> могут быть вложены друг в друга (см. пример 2 ниже).
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+// Пример 1
+file_path=TMPDIR+'/wrong'
+try
+  u=mopen(file_path,'r')
+  x=mget(10,'c',u)
+catch
+  disp(['файл '+file_path+ ' нельзя прочитать используя значения по умолчанию для x'])
+  x=1:10
+end
+ [error_message,error_number]=lasterror(%t)
+ ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+
+// Пример 2 (вложенные структуры try/catch)
+function nestedtry(a,b)
+disp("СТАРТ")
+mprintf("\ta имеет значение: %s\t\tb имеет значение: %s\n",string(a),string(b))
+try
+  disp("try 1")
+  try
+    disp("try 2")
+    z=a+1;  // ошибка, если значение строковое
+  catch
+    disp("catch 2")
+    t=b+1;  // ошибка, если значение строковое
+  end
+  disp("после try 2")
+catch
+  disp("catch 1")
+end
+disp("после try 1 - КОНЕЦ")
+endfunction
+nestedtry(1,1)
+nestedtry("строка",1)
+nestedtry(1,"строка")
+nestedtry("строка","строка")
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="error">error</link>
+            </member>
+            <member>
+                <link linkend="execstr">execstr</link>
+            </member>
+            <member>
+                <link linkend="if">if</link>
+            </member>
+            <member>
+                <link linkend="lasterror">lasterror</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -2,11 +2,14 @@
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
 *
-*  This file must be used under the terms of the CeCILL.
-*  This source file is licensed as described in the file COPYING, which
-*  you should have received as part of this distribution.  The terms
-*  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
@@ -21,7 +24,7 @@ extern "C"
 std::vector<types::File*> FileManager::m_fileList;
 int FileManager::m_iCurrentFile = -1;
 
-int FileManager::getFileID(wstring _stFilename)
+int FileManager::getFileID(const std::wstring& _stFilename)
 {
     for (int i = 0 ; i < static_cast<int>(m_fileList.size()) ; i++)
     {
@@ -38,7 +41,7 @@ int FileManager::getFileMaxID()
     return static_cast<int>(m_fileList.size());
 }
 
-bool FileManager::isOpened(wstring _stFilename)
+bool FileManager::isOpened(const std::wstring& _stFilename)
 {
     for (int i = 0 ; i < static_cast<int>(m_fileList.size()) ; i++)
     {
@@ -245,21 +248,21 @@ void FileManager::initialize()
     pErr->setFileMode(L"wb");
     pErr->setFileDesc(stderr);
     pErr->setFileSwap(0);
-    pErr->setFileType(1);
+    pErr->setFileType(3);
     pErr->setFilename(L"stderr");
 
     types::File* pIn = new types::File();
     pIn->setFileMode(L"rb");
     pIn->setFileDesc(stdin);
     pIn->setFileSwap(0);
-    pIn->setFileType(1);
+    pIn->setFileType(3);
     pIn->setFilename(L"stdin");
 
     types::File* pOut = new types::File();
     pOut->setFileMode(L"wb");
     pOut->setFileDesc(stdout);
     pOut->setFileSwap(0);
-    pOut->setFileType(1);
+    pOut->setFileType(3);
     pOut->setFilename(L"stdout");
 
     //put pErr at position 0

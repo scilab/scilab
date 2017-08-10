@@ -2,11 +2,14 @@
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2012 - Scilab Enterprises - Antoine ELIAS
 *
-*  This file must be used under the terms of the CeCILL.
-*  This source file is licensed as described in the file COPYING, which
-*  you should have received as part of this distribution.  The terms
-*  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
@@ -19,23 +22,25 @@ namespace types
 {
 class Pointer : public UserType
 {
-public :
+public:
     Pointer()
     {
         m_pvData = NULL;
+        m_cplx = false;
     }
 
     Pointer(void* _pvData)
     {
         m_pvData = _pvData;
+        m_cplx = false;
     }
 
     Pointer(int _rows, int _cols, void* _pvData, bool _complex = false)
     {
-        m_iRows  = _rows;
-        m_iCols  = _cols;
+        m_iRows = _rows;
+        m_iCols = _cols;
         m_pvData = _pvData;
-        m_cplx   = _complex;
+        m_cplx = _complex;
     }
 
     virtual ~Pointer() {}
@@ -45,12 +50,12 @@ public :
         return false;
     }
 
-    std::wstring getTypeStr()
+    std::wstring getTypeStr() const
     {
         return L"pointer";
     }
 
-    std::wstring getShortTypeStr()
+    std::wstring getShortTypeStr() const
     {
         return L"ptr";
     }
@@ -70,7 +75,7 @@ public :
         return true;
     }
 
-    InternalType* clone()
+    Pointer* clone()
     {
         return new Pointer(m_iRows, m_iCols, m_pvData, m_cplx);
     }
@@ -90,11 +95,11 @@ public :
         return true;
     }
 
-protected :
+protected:
 
     void* m_pvData;
     bool m_cplx;
 };
 }
 
-#endif /* !__USER_HXX__ */
+#endif /* !__POINTER_HXX__ */

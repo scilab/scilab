@@ -16,7 +16,7 @@ ieee(2);
 pi=%pi;
 eps=%eps;
 Inf=%inf;
-NaN=%nan; 
+NaN=%nan;
 //
 x = (-180:180)';
 // Remove 90 (index #91) and -90 (index #271), 
@@ -386,11 +386,11 @@ e=[
 c = tand(x);
 assert_checkalmostequal ( c , e , 40 * %eps , [] , "element" );
 // Turn a lot around the circle
-x1 = x + 2^6*360; 
+x1 = x + 2^6*360;
 c = tand(x1);
 assert_checkalmostequal ( c , e , 40 * %eps , [] , "element" );
 // Turn a lot around the circle, the other side
-x2 = x - 2^6*360; 
+x2 = x - 2^6*360;
 c = tand(x2);
 assert_checkalmostequal ( c , e , 40 * %eps , [] , "element" );
 assert_checkequal ( tand(0) , 0 );

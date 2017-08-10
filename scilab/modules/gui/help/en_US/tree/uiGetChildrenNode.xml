@@ -5,9 +5,11 @@
         <refpurpose>Get Children of a node </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>children = uiGetChildrenNode(tree, node)</synopsis>
-        <synopsis>children = uiGetChildrenNode(tree, position)</synopsis>
+        <title>Syntax</title>
+        <synopsis>
+            children = uiGetChildrenNode(tree, node)
+            children = uiGetChildrenNode(tree, position)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Input parameters</title>
@@ -51,8 +53,8 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-// We should create nodes(subTrees) before creating trees	
+        <programlisting role="example"><![CDATA[
+// We should create nodes(subTrees) before creating trees
 leaf11 = uiCreateNode('leaf 1.1', 'iconLeaf1.1', 'callbackLeaf1.1')
 leaf12 = uiCreateNode('leaf 1.2', 'iconLeaf1.2', 'callbackLeaf1.2')
 leaf31 = uiCreateNode('leaf 3.1', 'iconLeaf3.1', 'callbackLeaf3.1')
@@ -73,7 +75,7 @@ children = uiGetChildrenNode(treeRoot, node1)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="uiCreateNode">uiCreateNode</link>

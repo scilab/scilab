@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
- * 
+ *
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
  * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
  * Copyright (C) INRIA - Serge Steer - (format standardized, context argument explained, example added)
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  *  (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
- * 
+ *
  * See the file ./license.txt
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="scicos_simulate">
@@ -28,7 +28,7 @@
         <refpurpose>Function for running xcos simulation in batch mode</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>Info=scicos_simulate(scs_m)</synopsis>
         <synopsis>Info=scicos_simulate(scs_m,Info)</synopsis>
         <synopsis>Info=scicos_simulate(scs_m,context)</synopsis>
@@ -97,7 +97,7 @@
             in the main context of the diagram. One can change the
             <literal>A</literal> value for a <literal>scicos_simulate</literal> simulation by setting
             <programlisting role="example"><![CDATA[
-    ContextValues.A=2 
+    ContextValues.A=2
     ]]></programlisting>
         </para>
         <para> It is also possible to use variables defined inside Scilab
@@ -139,13 +139,13 @@ importXcosDiagram("SCI/modules/xcos/demos/batch_simulation.zcos")
 
 typeof(scs_m) //The diagram data structure
 
-//This diagram uses 3 context variables : 
+//This diagram uses 3 context variables :
 //  Amplitude : the sin function amplitude
 //  Pulsation : the sin function pulsation
 //  Tf        : the final simulation time
 scs_m.props.context; //the embedded definition
 
-//first batch simulation with the parameters embedded in the diagram 
+//first batch simulation with the parameters embedded in the diagram
 scicos_simulate(scs_m);
 // Change the final time value
 Context.Tf=10;
@@ -155,12 +155,12 @@ Context.Tf=10;
 Context.Pulsation=9;
 scicos_simulate(scs_m,list(),Context,'nw');
 //get the variable created by the "from workspace block"
-counter 
+counter
 
     ]]></programlisting>
     </refsection>
     <refsection id="SeeAlso_scicos_simulate">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="scicos_diagram">scs_m structure</link>

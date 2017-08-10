@@ -4,11 +4,14 @@
 // Copyright (C) DIGITEO - 2009
 // Copyright (C) DIGITEO - 2010-2011 - Allan CORNET
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 //=============================================================================
 function libn = ilib_compile(lib_name, ..
@@ -45,8 +48,21 @@ function libn = ilib_compile(lib_name, ..
     end
 
     if typeof(lib_name)<>"string" then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"),"ilib_compile",1));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"ilib_compile",1));
         return ;
+    end
+
+    if isempty(ldflags)
+        ldflags = ""
+    end
+    if isempty(cflags)
+        cflags = ""
+    end
+    if isempty(fflags)
+        fflags = ""
+    end
+    if isempty(cc)
+        cc = ""
     end
 
     oldpath = pwd();
@@ -82,6 +98,10 @@ function libn = ilib_compile(lib_name, ..
             defaultModulesFHeader=[ "core" ];
             ScilabTreeFound=%t
 
+            if isdef("MPI_Init") then
+                defaultModulesCHeader = [defaultModulesCHeader, "mpi"]
+            end
+
             for x = defaultModulesCHeader;
                 cflags = cflags + " -I" + SCI + "/modules/" + x + "/includes/ ";
             end
@@ -99,6 +119,9 @@ function libn = ilib_compile(lib_name, ..
         if isdir(SCI+"/../../include/scilab/") & ~ScilabTreeFound then
             cflags="-I"+SCI+"/../../include/scilab/ -I"+SCI+"/../../include/ " + cflags
             fflags="-I"+SCI+"/../../include/scilab/ " + fflags
+            if isdef("MPI_Init") then
+                cflags = "-I"+SCI+"/../../include/scilab/mpi/ " + cflags
+            end
             ScilabTreeFound=%t
         end
 
@@ -106,6 +129,9 @@ function libn = ilib_compile(lib_name, ..
         if isdir("/usr/include/scilab/") & ~ScilabTreeFound then
             cflags="-I/usr/include/scilab/ "+cflags
             fflags="-I/usr/include/scilab/ "+fflags
+            if isdef("MPI_Init") then
+                cflags="-I/usr/include/scilab/mpi/ "+cflags
+            end
             ScilabTreeFound=%t
         end
 

@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - Serge Steer - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="prod" xml:lang="fr">
@@ -30,7 +33,7 @@
                 <term>x</term>
                 <listitem>
                     <para>un tableau de réels, de complexes, de booléens, de
-                        polynômes ou de fractions rationnelles. 
+                        polynômes ou de fractions rationnelles.
                     </para>
                 </listitem>
             </varlistentry>
@@ -38,7 +41,7 @@
                 <term>orientation</term>
                 <listitem>
                     <para>
-                        Cet argument peut être 
+                        Cet argument peut être
                     </para>
                     <itemizedlist>
                         <listitem>
@@ -58,7 +61,7 @@
                 <term>outtype</term>
                 <listitem>
                     <para>
-                        une chaîne de caractères pouvant prendre les valeurs <literal>"native"</literal> ou <literal>"double"</literal>. 
+                        une chaîne de caractères pouvant prendre les valeurs <literal>"native"</literal> ou <literal>"double"</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -75,7 +78,7 @@
         <para>
             Pour un tableau <literal>x</literal>,
             <literal>y=prod(x)</literal> renvoie dans <literal>y</literal> la
-            produit de tous les éléments de <literal>x</literal>. 
+            produit de tous les éléments de <literal>x</literal>.
         </para>
         <para>
             <literal>y=prod(x,orientation)</literal> retourne dans
@@ -118,7 +121,7 @@
             </listitem>
             <listitem>
                 <para>
-                    <literal>y=prod(x,"*")</literal> est équivalent à <literal>y=prod(x)</literal> 
+                    <literal>y=prod(x,"*")</literal> est équivalent à <literal>y=prod(x)</literal>
                 </para>
             </listitem>
             <listitem>
@@ -137,9 +140,9 @@
         </para>
         <itemizedlist>
             <listitem>
-                <para>Pour les matrices de doubles, de polynômes, de fractions rationnelles, 
+                <para>Pour les matrices de doubles, de polynômes, de fractions rationnelles,
                     l'évaluation est toujours effetuée sur des nombres à virgule flottante.
-                    Les options <literal>"double"</literal> ou <literal>"native"</literal> sont équivalentes 
+                    Les options <literal>"double"</literal> ou <literal>"native"</literal> sont équivalentes
                     (par défaut, <literal>outtype = "double"</literal>).
                 </para>
             </listitem>
@@ -150,7 +153,7 @@
                     (modulo 2^b, où b est le nombre de bits utilisés).
                 </para>
                 <para>
-                    si <literal>outtype="double"</literal>, le calcul est effectué sur 
+                    si <literal>outtype="double"</literal>, le calcul est effectué sur
                     des nombres à virgule flottante.
                 </para>
                 <para>
@@ -160,11 +163,11 @@
             <listitem>
                 <para>Pour les tableaux de booléens,</para>
                 <para>
-                    si <literal>outtype="native"</literal>, le calcul est effectué sur des booléens 
+                    si <literal>outtype="native"</literal>, le calcul est effectué sur des booléens
                     (* est remplacée par &amp;),
                 </para>
                 <para>
-                    si <literal>outtype="double"</literal>, le calcul est effectué sur des nombres 
+                    si <literal>outtype="double"</literal>, le calcul est effectué sur des nombres
                     à virgule flottante (%t est remplacé par 1 et %f par 0).
                 </para>
                 <para>
@@ -179,7 +182,7 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 A=[1,2;3,4];
 prod(A)
 prod(A,1)

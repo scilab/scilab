@@ -3,11 +3,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007-2008 - INRIA
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="hypermatrices">
@@ -22,17 +25,11 @@
         </para>
         <para>
             They can be defined by extension of 2D matrices as follows
-            <code>a=[1 2;3 4];a(:,:,2)=rand(2,2)</code> or directly using <function>hypermat</function> function.
+            <code>a=[1 2;3 4];a(:,:,2)=rand(2,2)</code> or directly using <function>matrix</function> function.
         </para>
         <para>
-            Entries can be real or complex numbers, polynomials,
-            rationals, strings, booleans.
-        </para>
-        <para>
-            Hypermatrices are <literal>mlists</literal>:
-            <code>mlist(['hm','dims','entries'],sz,v)</code> where <literal>sz</literal> is the row
-            vector of dimensions and <literal>v</literal> the column vector of entries (first
-            dimension are stored first).
+            Entries can be booleans, encoded integers of any inttype, real or complex numbers,
+            polynomials, rationals, strings, booleans.
         </para>
         <para>
             <note>
@@ -48,21 +45,18 @@
 a(1,1,1,1:2)=[1 2]
 a=[1 2;3 4];a(:,:,2)=rand(2,2)
 a(1,1,:)
- 
+
 size(a)
- 
+
 a(:,:,1) //dimensionality reduction
 type(a(:,:,1))
- 
+
 [a a]
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
-            <member>
-                <link linkend="hypermat">hypermat</link>
-            </member>
             <member>
                 <link linkend="zeros">zeros</link>
             </member>

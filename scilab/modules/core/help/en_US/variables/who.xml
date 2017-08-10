@@ -5,7 +5,7 @@
         <refpurpose>listing of variables</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>who
             who()
             names = who('local')
@@ -48,7 +48,7 @@ position=find(name=="d") // []
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="whos">whos</link>

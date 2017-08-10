@@ -5,7 +5,7 @@
         <refpurpose>n dimensional linear interpolation</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>vp = linear_interpn(xp1,xp2,..,xpn, x1, ..., xn, v [,out_mode])</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -113,8 +113,8 @@
                 <term>"C0"</term>
                 <listitem>
                     <para>the extrapolation is defined as follows:</para>
-                    <programlisting role=""><![CDATA[ 
-s(P) = s(proj(P)) where proj(P) is nearest point from P 
+                    <programlisting role=""><![CDATA[
+s(P) = s(proj(P)) where proj(P) is nearest point from P
                   located on the grid boundary.
  ]]></programlisting>
                 </listitem>
@@ -139,7 +139,7 @@ s(P) = s(proj(P)) where proj(P) is nearest point from P
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // example 1 : 1d linear interpolation
 x = linspace(0,2*%pi,11);
 y = sin(x);
@@ -160,7 +160,7 @@ xtitle("linear interpolation of sin(x) with 11 interpolation points")
             plot2d(x,y,style=-9, strf="000")
             xtitle("linear interpolation of sin(x) with 11 interpolation points")
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // example 2 : bilinear interpolation
 n = 8;
 x = linspace(0,2*%pi,n); y = x;
@@ -191,7 +191,7 @@ show_window()
             legends("interpolation points",-9,1)
             show_window()
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // example 3 : bilinear interpolation and experimentation
 //             with all the outmode features
 nx = 20; ny = 30;
@@ -229,14 +229,14 @@ plot3d(xp, yp, zp5, leg="x@y@z", flag = [2 4 4])
 xtitle("by_nan")
 show_window()
  ]]></programlisting>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // example 4 : trilinear interpolation (see splin3d help
 //             page which have the same example with
 //             tricubic spline interpolation)
 exec("SCI/modules/interpolation/demos/interp_demo.sci");
 func =  "v=(x-0.5).^2 + (y-0.5).^3 + (z-0.5).^2";
 deff("v=f(x,y,z)",func);
-n = 5; 
+n = 5;
 x = linspace(0,1,n); y=x; z=x;
 [X,Y,Z] = ndgrid(x,y,z);
 V = f(X,Y,Z);
@@ -251,17 +251,17 @@ for i = 1:length(val)
   [Xm,Xp,Ym,Yp,Zm,Zp] = slice_parallelepiped(dir(i), val(i), ebox, m, m, m);
   Vm = linear_interpn(Xm,Ym,Zm, x, y, z, V);
   [xf,yf,zf,vf] = nf3dq(Xm,Ym,Zm,Vm,1);
-  XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf]; VF = [VF vf]; 
+  XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf]; VF = [VF vf];
   Vp =  linear_interpn(Xp,Yp,Zp, x, y, z, V);
   [xf,yf,zf,vf] = nf3dq(Xp,Yp,Zp,Vp,1);
-  XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf]; VF = [VF vf]; 
+  XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf]; VF = [VF vf];
 end
 nb_col = 128;
 vmin = min(VF); vmax = max(VF);
 color = dsearch(VF,linspace(vmin,vmax,nb_col+1));
-xset("colormap",jetcolormap(nb_col));
 clf()
-xset("hidden3d",xget("background"))
+gcf().color_map = jetcolormap(nb_col);
+gca().hiddencolor = gca().background;
 colorbar(vmin,vmax)
 plot3d(XF, YF, list(ZF,color), flag=[-1 6 4])
 xtitle("tri-linear interpolation of "+func)
@@ -269,7 +269,7 @@ show_window()
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="interpln">interpln</link>

@@ -5,7 +5,7 @@
         <refpurpose>определение полинома</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>p = poly(a, vname, ["flag"])</synopsis>
     </refsynopsisdiv>
     <refsection>

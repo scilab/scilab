@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scicos
+ *
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ *
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="scicos_link">
+    <refnamediv>
+        <refname>scicos_link</refname>
+        <refpurpose>link構造体の定義</refpurpose>
+    </refnamediv>
+    <refsection id="Module_scicos_link">
+        <title>モジュール</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="xcos">xcos</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="link_scicos_link">
+        <title>link</title>
+        <para>
+            大きさ : 8.
+        </para>
+        <para>
+            型 : scilabリスト.
+        </para>
+        <para>
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">xx</emphasis>
+                </para>
+                <para> リンクパスのx座標のベクトル.</para>
+                <para> リンクはポリラインとして定義されます.</para>
+                <para>
+                    大きさ : リンクの点の数.
+                </para>
+                <para>
+                    型 : 実数の列ベクトル.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">yy</emphasis>
+                </para>
+                <para> リンクパスのy座標のベクトル.</para>
+                <para> A link is defined as a polyline line.</para>
+                <para> リンクはポリラインとして定義されます.</para>
+                <para>
+                    大きさ : リンクの点の数.
+                </para>
+                <para>
+                    型 : 実数の列ベクトル.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">id</emphasis>
+                </para>
+                <para> 文字列, リンクID.</para>
+                <para>
+                    大きさ : 1.
+                </para>
+                <para>
+                    型 : 文字列.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">thick</emphasis>
+                </para>
+                <para> 線幅を定義する大きさ2のベクトル.</para>
+                <para>
+                    大きさ : 2.
+                </para>
+                <para>
+                    型 : 整数の行ベクトル.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">ct</emphasis>
+                </para>
+                <para> このベクトルの最初のエントリで色を指定します.
+                    第2エントリは標準リンクの場合に1,アクティベーションリンクの場合に-1,暗黙のリンクの
+                    場合に2となります.
+                </para>
+                <para>
+                    大きさ : 2.
+                </para>
+                <para>
+                    型 : 整数の行ベクトル.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">from</emphasis>
+                </para>
+                <para>
+                    大きさ3のベクトルで,リンクの始点のブロック番号,ポート番号,ポート型 (出力:0, 入力: 1).
+                    第3エントリはリンクが暗黙である場合に 1, それ以外の場合に 0　となることに注意してください.
+                </para>
+                <para>
+                    大きさ : 3.
+                </para>
+                <para>
+                    型 : 整数の行ベクトル.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">to</emphasis>
+                </para>
+                <para>
+                    大きさ3のベクトルで,リンクの終点のブロック番号,ポート番号,ポート型 (出力:0, 入力: 1).
+                    第3エントリはリンクが暗黙である場合に 1, それ以外の場合に 0　となることに注意してください.
+                </para>
+                <para>
+                    大きさ : 3.
+                </para>
+                <para>
+                    型 : 整数の行ベクトル.
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Filecontent_scicos_link">
+        <title>ファイルの内容</title>
+        <itemizedlist>
+            <listitem>
+                <para> SCI/modules/scicos/macros/scicos_scicos/scicos_link.sci</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+</refentry>

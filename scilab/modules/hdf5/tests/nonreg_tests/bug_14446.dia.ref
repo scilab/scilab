@@ -1,0 +1,34 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2016 - Rishubh Jain
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+//
+// <-- Non-regression test for bug 14446 -->
+// <-- ENGLISH IMPOSED -->
+// <-- CLI SHELL MODE -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/14446
+//
+// <-- Short Description -->
+//
+//Wrong number of argument in error message when wrong type of argument is passed to save().
+function f()
+ save("TMPDIR/a.sod",1);
+endfunction
+function f1()
+ num1=1;
+ num2=1;
+ save("TMPDIR/b.sod","num1",num2);
+endfunction
+function f2()
+ num1=1;
+ num2=1;
+ num3=1;
+ save("TMPDIR/b.sod","num1","num2",num3);
+endfunction
+assert_checkerror("f()","save: Wrong type for input argument #2: A String expected.");
+assert_checkerror("f1()","save: Wrong type for input argument #3: A String expected.");
+assert_checkerror("f2()","save: Wrong type for input argument #4: A String expected.");

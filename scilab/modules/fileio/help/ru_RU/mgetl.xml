@@ -3,12 +3,15 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Serge STEER
  * ...
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="mgetl">
@@ -17,7 +20,7 @@
         <refpurpose>считывает строки из текстового файла</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>txt = mgetl(file_desc [,m])</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -35,7 +38,7 @@
                 <term>m</term>
                 <listitem>
                     <para>
-                        целочисленный скаляр: количество строк, которое нужно прочитать. 
+                        целочисленный скаляр: количество строк, которое нужно прочитать.
                         Значение по умолчанию равно -1.
                     </para>
                 </listitem>
@@ -51,28 +54,28 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Функция <function>mgetl</function> позволяет считывать строки из 
+            Функция <function>mgetl</function> позволяет считывать строки из
             текстового файла.
         </para>
         <para>
-            Если <varname>m</varname> не указано или равно <literal>-1</literal>, 
-            то будут считываться все строки до тех пор, пока не встретится конец 
+            Если <varname>m</varname> не указано или равно <literal>-1</literal>,
+            то будут считываться все строки до тех пор, пока не встретится конец
             файла.
         </para>
         <para>
-            Если <varname>m</varname> указано, то функция <function>mgetl</function> 
-            пытается прочитать точно <varname>m</varname> строк. Эта опция полезна 
-            для последовательного чтения части файла. В этом случае, если конец 
-            файла встретится прежде, чем будет прочитано <varname>m</varname> строк, 
-            то прочитанные строки будут возвращены оформленными (можно проверять 
+            Если <varname>m</varname> указано, то функция <function>mgetl</function>
+            пытается прочитать точно <varname>m</varname> строк. Эта опция полезна
+            для последовательного чтения части файла. В этом случае, если конец
+            файла встретится прежде, чем будет прочитано <varname>m</varname> строк,
+            то прочитанные строки будут возвращены оформленными (можно проверять
             встретился ли конец файла используя функцию <function>meof</function>).
         </para>
         <para>
-            Функция <function>mgetl</function> позволяет считывать файлы в 
+            Функция <function>mgetl</function> позволяет считывать файлы в
             операционных системах Unix, Windows или Mac.
         </para>
         <para>
-            Функция <function>mgetl</function> поддерживает лишь кодировки UTF-8 и 
+            Функция <function>mgetl</function> поддерживает лишь кодировки UTF-8 и
             ANSI.
         </para>
     </refsection>
@@ -80,9 +83,9 @@
         <title>Примеры</title>
         <programlisting role="example"><![CDATA[
 mgetl('SCI/etc/scilab.start',5)
- 
+
 mgetl SCI/modules/elementary_functions/macros/erf.sci
- 
+
 fd=mopen('SCI/etc/scilab.start','r')
 mgetl(fd,10)
 mclose(fd)

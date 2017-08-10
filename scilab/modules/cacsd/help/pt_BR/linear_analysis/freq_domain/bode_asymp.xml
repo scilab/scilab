@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2013 - Scilab Enterprises - Paul Bignier
+ * Copyright (C) 09/2013 - A. Khorshidi
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="bode_asymp" xml:lang="pt">
+    <refnamediv>
+        <refname>bode_asymp</refname>
+        <refpurpose>Bode plot asymptote</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>
+            bode_asymp(sl, [wmin, wmax])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>sl</term>
+                <listitem>
+                    <para>
+                        <literal>syslin</literal> list (SISO or SIMO linear system)
+                        in continuous time (type state-space or rational).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>wmin, wmax</term>
+                <listitem>
+                    <para>Real scalars: lower and upper frequency bounds (in rad/s).</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>Plots the asymptote of the system
+            <literal>sl</literal>.
+        </para>
+        <para>
+            The optional arguments <literal>wmin</literal> and <literal>wmax</literal> (in rad/s) can be used to plot asymptote in a specific range of frequency.
+        </para>
+        <para>
+            <note>
+                Note that the function <code>bode()</code> or <code>gainplot()</code> must be called before <code>bode_asymp()</code>.
+            </note>
+        </para>
+        <para>
+            <warning>
+                Warning: this function is not applicable when the first input argument is a real matrix.
+            </warning>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+s = poly(0, "s");
+h = syslin("c", (s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01));
+
+clf(); bode(h, 0.01, 100); bode_asymp(h);
+ ]]></programlisting>
+        <para>
+            <scilab:image localized="true">
+                s = poly(0, "s");
+                h = syslin("c", (s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01));
+                clf(); bode(h, 0.01, 100); bode_asymp(h);
+            </scilab:image>
+        </para>
+        <programlisting role="example"><![CDATA[
+s = poly(0, "s");
+h1 = syslin("c", (s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01));
+h2 = syslin("c", (10*(s+3))/(s*(s+2)*(s^2+s+2)));
+
+clf(); bode([h1; h2], 0.01, 100, ["h1"; "h2"]); bode_asymp([h1; h2]);
+ ]]></programlisting>
+        <para>
+            <scilab:image localized="true">
+                s = poly(0, "s");
+                h1 = syslin("c", (s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01));
+                h2 = syslin("c", (10*(s+3))/(s*(s+2)*(s^2+s+2)));
+                clf(); bode([h1; h2], 0.01, 100, ["h1"; "h2"]); bode_asymp([h1; h2]);
+            </scilab:image>
+        </para>
+        <programlisting role="example"><![CDATA[
+s = %s;
+G = (s+10)/(s*(s+100)); // A rational matrix
+sys = syslin("c", G); // A continuous-time linear system in transfer matrix representation.
+f_min = .0001; f_max = 1600; // Frequencies in Hz
+
+clf(); bode(sys, f_min, f_max, "rad"); // The optional argument "rad" converts Hz to rad/s
+bode_asymp(sys, 10, 1000); // Plots asymptotes in the given range of frequency (in rad/s).
+ ]]></programlisting>
+        <para>
+            <scilab:image localized="true">
+                s = %s;
+                G = (s+10)/(s*(s+100));
+                sys = syslin("c", G);
+                f_min = .0001; f_max = 1600;
+                clf(); bode(sys, f_min, f_max, "rad");
+                bode_asymp(sys, 10, 1000);
+            </scilab:image>
+        </para>
+        <programlisting role="example"><![CDATA[
+s = poly(0, "s");
+h = syslin("c", (s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01));
+h = tf2ss(h);
+
+clf();
+gainplot(h, 0.01, 100, "$\frac{s^2+18 s+100}{s^2+6.06 s+102.1}$"); // Frequencies in Hertz
+bode_asymp(h)
+ ]]></programlisting>
+        <para>
+            <scilab:image localized="true">
+                s = poly(0,"s");
+                h = syslin("c",(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01));
+                h = tf2ss(h);
+                clf();
+                gainplot(h, 0.01, 100, "$\frac{s^2+18 s+100}{s^2+6.06 s+102.1}$");
+                bode_asymp(h)
+            </scilab:image>
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="bode">bode</link>
+            </member>
+            <member>
+                <link linkend="black">black</link>
+            </member>
+            <member>
+                <link linkend="nyquist">nyquist</link>
+            </member>
+            <member>
+                <link linkend="gainplot">gainplot</link>
+            </member>
+            <member>
+                <link linkend="repfreq">repfreq</link>
+            </member>
+            <member>
+                <link linkend="g_margin">g_margin</link>
+            </member>
+            <member>
+                <link linkend="p_margin">p_margin</link>
+            </member>
+            <member>
+                <link linkend="calfrq">calfrq</link>
+            </member>
+            <member>
+                <link linkend="phasemag">phasemag</link>
+            </member>
+            <member>
+                <link linkend="datatips">datatips</link>
+            </member>
+            <member>
+                <link linkend="show_margins">show_margins</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>bode_asymp() function introduced.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

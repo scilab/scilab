@@ -9,31 +9,14 @@
  * PURPOSE: Scilab interfaces routines onto the UMFPACK sparse solver
  * (Tim Davis) and onto the TAUCS snmf choleski solver (Sivan Teledo)
  *
- * This software is governed by the CeCILL license under French law and
- * abiding by the rules of distribution of free software.  You can  use,
- * modify and/or redistribute the software under the terms of the CeCILL
- * license as circulated by CEA, CNRS and INRIA at the following URL
- * "http://www.cecill.info".
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
- * As a counterpart to the access to the source code and  rights to copy,
- * modify and redistribute granted by the license, users are provided only
- * with a limited warranty  and the software's author,  the holder of the
- * economic rights,  and the successive licensors  have only  limited
- * liability.
- *
- * In this respect, the user's attention is drawn to the risks associated
- * with loading,  using,  modifying and/or developing or reproducing the
- * software by the user in light of its specific status of free software,
- * that may mean  that it is complicated to manipulate,  and  that  also
- * therefore means  that it is reserved for developers  and  experienced
- * professionals having in-depth computer knowledge. Users are therefore
- * encouraged to load and test the software's suitability as regards their
- * requirements in conditions enabling the security of their systems and/or
- * data to be ensured and,  more generally, to use and operate it in the
- * same conditions as regards security.
- *
- * The fact that you are presently reading this means that you have had
- * knowledge of the CeCILL license and that you accept its terms.
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -102,6 +85,7 @@ int sci_umfpack(char* fname, void* pvApiCtx)
     double* pdblXI = NULL;
 
     int iComplex = 0;
+    int freepdblBI = 0;
 
     int mA              = 0; // rows
     int nA              = 0; // cols
@@ -139,11 +123,14 @@ int sci_umfpack(char* fname, void* pvApiCtx)
     if (sciErr.iErr || iType2 != sci_strings)
     {
         printError(&sciErr, 0);
-        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
+        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 2);
         return 1;
     }
 
-    getAllocatedSingleString(pvApiCtx, piAddr2, &pStr);
+    if (getAllocatedSingleString(pvApiCtx, piAddr2, &pStr))
+    {
+        return 1;
+    }
 
     /* select Case 1 or 2 depending (of the first char of) the string ... */
     if (pStr[0] == '\\') // compare pStr[0] with '\'
@@ -161,8 +148,10 @@ int sci_umfpack(char* fname, void* pvApiCtx)
     else
     {
         Scierror(999, _("%s: Wrong input argument #%d: '%s' or '%s' expected.\n"), fname, 2, "\\", "/");
+        FREE(pStr);
         return 1;
     }
+    FREE(pStr);
 
     /* get A */
     sciErr = getVarAddressFromPosition(pvApiCtx, num_A, &piAddrA);
@@ -265,13 +254,10 @@ int sci_umfpack(char* fname, void* pvApiCtx)
 
     if (sciErr.iErr)
     {
-        freeCcsSparse(A);
         printError(&sciErr, 0);
+        freeCcsSparse(A);
         return 1;
     }
-
-    /* allocate memory for umfpack_di_wsolve usage or umfpack_zi_wsolve usage*/
-    Wi = (int*)MALLOC(mA * sizeof(int));
 
     if (A.it == 1)
     {
@@ -282,13 +268,12 @@ int sci_umfpack(char* fname, void* pvApiCtx)
         mW = 5 * mA;
     }
 
-    W = (double*)MALLOC(mW * sizeof(double));
-
     if (A.it == 1  &&  pdblBI == NULL)
     {
         int iSize = mb * nb * sizeof(double);
         pdblBI = (double*)MALLOC(iSize);
         memset(pdblBI, 0x00, iSize);
+        freepdblBI = 1;
     }
 
     /* Now calling umfpack routines */
@@ -303,8 +288,12 @@ int sci_umfpack(char* fname, void* pvApiCtx)
 
     if ( stat  != UMFPACK_OK )
     {
-        freeCcsSparse(A);
         Scierror(999, _("%s: An error occurred: %s: %s\n"), fname, _("symbolic factorization"), UmfErrorMes(stat));
+        freeCcsSparse(A);
+        if (freepdblBI)
+        {
+            FREE(pdblBI);
+        }
         return 1;
     }
 
@@ -328,6 +317,7 @@ int sci_umfpack(char* fname, void* pvApiCtx)
 
     if ( stat  != UMFPACK_OK )
     {
+        Scierror(999, _("%s: An error occurred: %s: %s\n"), fname, _("numeric factorization"), UmfErrorMes(stat));
         if (A.it == 1)
         {
             umfpack_zi_free_numeric(&Numeric);
@@ -337,10 +327,16 @@ int sci_umfpack(char* fname, void* pvApiCtx)
             umfpack_di_free_numeric(&Numeric);
         }
         freeCcsSparse(A);
-        Scierror(999, _("%s: An error occurred: %s: %s\n"), fname, _("numeric factorization"), UmfErrorMes(stat));
+        if (freepdblBI)
+        {
+            FREE(pdblBI);
+        }
         return 1;
     }
-
+ 
+    /* allocate memory for umfpack_di_wsolve usage or umfpack_zi_wsolve usage*/
+    Wi = (int*)MALLOC(mA * sizeof(int));
+    W = (double*)MALLOC(mW * sizeof(double));
 
     if ( Case == 1 )   /*  x = A\b  <=> Ax = b */
     {
@@ -417,6 +413,28 @@ int sci_umfpack(char* fname, void* pvApiCtx)
         umfpack_di_free_numeric(&Numeric);
     }
 
+    if (piNbItemRow != NULL)
+    {
+        FREE(piNbItemRow);
+    }
+    if (piColPos != NULL)
+    {
+        FREE(piColPos);
+    }
+    if (pdblSpReal != NULL)
+    {
+        FREE(pdblSpReal);
+    }
+    if (pdblSpImg != NULL)
+    {
+        FREE(pdblSpImg);
+    }
+    FREE(W);
+    FREE(Wi);
+    if (freepdblBI)
+    {
+        FREE(pdblBI);
+    }
     freeCcsSparse(A);
 
     AssignOutputVariable(pvApiCtx, 1) = 4;

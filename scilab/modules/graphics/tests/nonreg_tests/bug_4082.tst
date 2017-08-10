@@ -22,7 +22,7 @@ subplot(212),plot2d(t,sin(3*t))
 f = gcf();
 save(TMPDIR+"/foo.scg","f"); //or xsave
 clf()
-load(TMPDIR+"/foo.scg") //or xload
+load(TMPDIR+"/foo.scg"); //or xload
 
 f = gcf();
 

@@ -2,16 +2,14 @@
 
 package org.scilab.modules.scinotes;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Iterator;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import java.io.IOException;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Element;
-
 import org.scilab.modules.commons.ScilabCommonsUtils;
 
 @javax.annotation.Generated("JFlex")
@@ -26,7 +24,6 @@ import org.scilab.modules.commons.ScilabCommonsUtils;
 %unicode
 %char
 %type int
-%switch
 %pack
 
 %{
@@ -42,43 +39,50 @@ import org.scilab.modules.commons.ScilabCommonsUtils;
     private boolean transposable;
     private Element elem;
     private boolean breakstring;
+    private boolean breakcomment;
+    private MatchingBlockScanner matchBlock;
 
     static {
-    	// For SciNotes colors in preferences 
-        commands.add("cos");
-	macros.add("cosh");
+	// For SciNotes colors in preferences
+	commands.add("cos");
+	macros.add("sind");
     }
 
     public ScilabLexer(ScilabDocument doc) {
-    	this(doc, true);
+	this(doc, new MatchingBlockScanner(doc), true);
     }
 
     public ScilabLexer(ScilabDocument doc, boolean update) {
+	this(doc, new MatchingBlockScanner(doc), update);
+    }
+
+    public ScilabLexer(ScilabDocument doc, MatchingBlockScanner matchBlock, boolean update) {
         this.doc = doc;
         this.elem = doc.getDefaultRootElement();
         this.infile = doc.getFunctionsInDoc();
+	this.matchBlock = matchBlock;
 	if (update) {
-	   update();
-    	}
-    }	   
+		update();
+	}
+    }
 
     public static void update() {
-    	if (ScilabCommonsUtils.isScilabThread()) {
-            String[] vars = ScilabKeywords.GetVariablesName();
-	    String[] funs = ScilabKeywords.GetFunctionsName();
-	    String[] macs = ScilabKeywords.GetMacrosName();
-	    variables.clear();
-            commands.clear();
-            macros.clear();
-	    if (vars != null) {
-	        variables.addAll(Arrays.asList(vars));
-	    }
-            if (funs != null) {
-	        commands.addAll(Arrays.asList(funs));
-	    }
-	    if (macs != null) {
-	        macros.addAll(Arrays.asList(macs));
-	    }
+       if (ScilabCommonsUtils.isScilabThread()) {
+           String[] vars = ScilabKeywords.GetVariablesName();
+           String[] funs = ScilabKeywords.GetFunctionsName();
+           String[] macs = ScilabKeywords.GetMacrosName();
+           variables.clear();
+           commands.clear();
+           macros.clear();
+           if (vars != null) {
+               variables.addAll(Arrays.asList(vars));
+           }
+           if (funs != null) {
+               commands.addAll(Arrays.asList(funs));
+           }
+           if (macs != null) {
+               macros.addAll(Arrays.asList(macs));
+           }
 	}
     }
 
@@ -89,8 +93,13 @@ import org.scilab.modules.commons.ScilabCommonsUtils;
         breakstring = false;
         yyreset(new ScilabDocumentReader(doc, p0, p1));
         int currentLine = elem.getElementIndex(start);
-        if (currentLine != 0 && ((ScilabDocument.ScilabLeafElement) elem.getElement(currentLine - 1)).isBrokenString()) {
-           yybegin(QSTRING);
+        if (currentLine != 0) {
+	   ScilabDocument.ScilabLeafElement e = (ScilabDocument.ScilabLeafElement) elem.getElement(currentLine - 1);
+	   if (e.isBrokenString()) {
+              yybegin(QSTRING);
+	   } else if (e.isBlockComment()) {
+	      yybegin(BLOCKCOMMENT);
+	   }
         }
     }
 
@@ -100,14 +109,36 @@ import org.scilab.modules.commons.ScilabCommonsUtils;
 
     public int scan() throws IOException {
         int ret = yylex();
-        if (start + yychar + yylength() == end - 1) {
+	int lastPos = start + yychar + yylength();
+        if (lastPos == end - 1) {
            ((ScilabDocument.ScilabLeafElement) elem.getElement(elem.getElementIndex(start))).setBrokenString(breakstring);
            breakstring = false;
+        } else if (lastPos == end) {
+	   ((ScilabDocument.ScilabLeafElement) elem.getElement(elem.getElementIndex(start))).setBlockComment(yystate() == BLOCKCOMMENT);
         }
-        return ret;
+	return ret;
+    }
+
+    public boolean isLineFinishedByBlockComment(int start, int end) {
+        this.start = start;
+	this.end = end;
+	try {		
+           yyreset(new ScilabDocumentReader(doc, start, end));
+	   int tok = 0;
+	   while (tok != ScilabLexerConstants.EOF) {
+	      tok = yylex();
+	   }
+        } catch (Exception e) { }
+	
+	return yystate() == BLOCKCOMMENT;
     }
 
     public int getKeyword(int pos, boolean strict) {
+        // Pre condition
+        if (elem == null) {
+            return ScilabLexerConstants.DEFAULT;
+        }
+
         Element line = elem.getElement(elem.getElementIndex(pos));
         int end = line.getEndOffset();
         int tok = -1;
@@ -184,6 +215,8 @@ open = "[" | "(" | "{"
 close = "]" | ")" | "}"
 
 comment = "//"
+startcomment = ("/" "*"+)
+endcomment = ("*"+) "/"
 
 quote = "'"
 
@@ -191,25 +224,24 @@ dquote = "\""
 
 cstes = "%t" | "%T" | "%f" | "%F" | "%e" | "%pi" | "%inf" | "%i" | "%z" | "%s" | "%nan" | "%eps" | "SCI" | "WSCI" | "SCIHOME" | "TMPDIR"
 
-operator = ".'" | ".*" | "./" | ".\\" | ".^" | ".**" | "+" | "-" | "/" | "\\" | "*" | "^" | "**" | "==" | "~=" | "<>" | "<" | ">" | "<=" | ">=" | ".*." | "./." | ".\\." | "/." | "=" | "&" | "|" | "@" | "@=" | "~"
+operator = ".'" | ".*" | "./" | ".\\" | ".^" | ".**" | "+" | "-" | "/" | "\\" | "*" | "^" | "**" | "==" | "~=" | "<>" | "<" | ">" | "<=" | ">=" | ".*." | "./." | ".\\." | "/." | "=" | "&" | "|" | "@" | "@=" | "~" | "&&" | "||"
 
 functionKwds = "function" | "endfunction"
 
-structureKwds = "then" | "do" | "catch" | "case"
+structureKwds = "then" | "do" | "catch" | "case" | "otherwise"
 
 elseif = "elseif" | "else"
 
-openCloseStructureKwds = "if" | "for" | "while" | "try" | "select" | "end"
+openCloseStructureKwds = "if" | "for" | "while" | "try" | "select" | "switch"
+
+end = "end"
 
 controlKwds = "abort" | "break" | "quit" | "return" | "resume" | "pause" | "continue" | "exit"
 
-authors = "Calixte Denizet" | "Calixte DENIZET" | "Sylvestre Ledru" | "Sylvestre LEDRU" | "Antoine Elias" | "Antoine ELIAS" | "Bruno Jofret" | "Bruno JOFRET" | "Claude Gomez" | "Claude GOMEZ" | "Clement David" | "Clement DAVID" | "Manuel Juliachs" | "Manuel JULIACHS" | "Sheldon Cooper" | "Leonard Hofstadter" | "Serge Steer" | "Serge STEER" | "Vincent Couvert" | "Vincent COUVERT" | "Adeline Carnis" | "Adeline CARNIS" | "Charlotte Hecquet" | "Charlotte HECQUET" | "Paul Bignier" | "Paul BIGNIER" | "Alexandre Herisse" | "Alexandre HERISSE" | "Simon Marchetto" | "Simon MARCHETTO" | "Vladislav Trubkin" | "Vladislav TRUBKIN" | "Cedric Delamarre" | "Cedric DELAMARRE" | "Inria" | "INRIA" | "DIGITEO" | "Digiteo" | "Scilab Enterprises" | "ENPC"
-
-error = "Scilab Entreprises" | "Scilab Entreprise" | "Scilab Enterprise"
-todo = ("TODO" | "todo" | "Todo")[ \t]*:[^\n]*
+authors = "Calixte Denizet" | "Calixte DENIZET" | "Sylvestre Ledru" | "Sylvestre LEDRU" | "Yann Collette" | "Yann COLLETTE" | "Allan Cornet" | "Allan CORNET" | "Allan Simon" | "Allan SIMON" | "Antoine Elias" | "Antoine ELIAS" | "Bernard Hugueney" | "Bernard HUGUENEY" | "Bruno Jofret" | "Bruno JOFRET" | "Claude Gomez" | "Claude GOMEZ" | "Clement David" | "Clement DAVID" | "Jerome Picard" | "Jerome PICARD" | "Manuel Juliachs" | "Manuel JULIACHS" | "Michael Baudin" | "Michael BAUDIN" | "Pierre Lando" | "Pierre LANDO" | "Pierre Marechal" | "Pierre MARECHAL" | "Serge Steer" | "Serge STEER" | "Vincent Couvert" | "Vincent COUVERT" | "Vincent Liard" | "Vincent LIARD" | "Zhour Madini-Zouine" | "Zhour MADINI-ZOUINE" | "Vincent Lejeune" | "Vincent LEJEUNE" | "Sylvestre Koumar" | "Sylvestre KOUMAR" | "Simon Gareste" | "Simon GARESTE" | "Cedric Delamarre" | "Cedric DELAMARRE" | "Inria" | "INRIA" | "DIGITEO" | "Digiteo" | "ENPC"
 
 break = ".."(".")*
-breakinstring = {break}[ \t]*({comment} | {eol})
+breakinstring = {break}[ \t]*{comment}?
 
 special = "$" | ":" | {break}
 
@@ -219,30 +251,21 @@ id = ([a-zA-Z%_#!?][a-zA-Z0-9_#!$?]*)|("$"[a-zA-Z0-9_#!$?]+)
 
 badid = ([0-9$][a-zA-Z0-9_#!$?]+)
 whitabs = (" "+"\t" | "\t"+" ")[ \t]*
-badop = [+-]([\*\/\\\^] | "."[\*\+\-\/\\\^]) | ":=" | "->" | ("="[ \t]*">") | ("="[ \t]*"<") | " !=" | "&&" | "||" | ([*+-/\\\^]"=")
+badop = [+-]([\*\/\\\^] | "."[\*\+\-\/\\\^]) | ":=" | "->" | " !=" | ("&&" "&"+) | ("||" "|"+) | ([*+-/\\\^]"=")
 
 dot = "."
 
-url = ("http://"|"https://"|"ftp://"|"dav://"|"davs://"|"sftp://"|"ftps://"|"smb:///"|"file://")[^ \t\f\n\r\'\"]+
-mailaddr = [ \t]*[a-zA-Z0-9_\.\-]+"@"([a-zA-Z0-9\-]+".")+[a-zA-Z]{2,5}[ \t]*
-mail = ("<" {mailaddr} ">") | ("mailto:" {mailaddr})
+url = "http://"[^ \t\f\n\r\'\"]+
+mail = "<"[ \t]*[a-zA-Z0-9_\.\-]+"@"([a-zA-Z0-9\-]+".")+[a-zA-Z]{2,5}[ \t]*">"
 
-latex = "$$"(([^$]*|"\\$")+)"$$"
+latex = "$"(([^$]*|"\\$")+)"$"
 latexinstring = (\"|\')"$"(([^$\'\"]*|"\\$"|([\'\"]{2}))+)"$"(\"|\')
 
 digit = [0-9]
 exp = [dDeE][+-]?{digit}*
 number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
 
-arabic_char = [\u0600-\u06FF\u0750-\u077F\uFB50-\uFDFF\uFE70-\uFEFF]
-hebrew_char = [\u0590-\u05FF\uFB1D-\uFB4F]
-nko_char = [\u07C0-\u07FF]
-thaana_char = [\u0780-\u07BF]
-rtl_char = {arabic_char}|{hebrew_char}|{nko_char}|{thaana_char}
-rtl_comment = {rtl_char}[^\n]*
-rtl_in_string = {rtl_char}(([^\'\"\r\n\.]*)|([\'\"]{2}))+
-
-%x QSTRING, COMMENT, FIELD, COMMANDS, COMMANDSWHITE, BREAKSTRING
+%x QSTRING, COMMENT, BLOCKCOMMENT, FIELD, COMMANDS, COMMANDSWHITE, BREAKSTRING
 
 %%
 
@@ -251,6 +274,12 @@ rtl_in_string = {rtl_char}(([^\'\"\r\n\.]*)|([\'\"]{2}))+
                                    transposable = false;
                                    yypushback(2);
                                    yybegin(COMMENT);
+                                 }
+
+  {startcomment}                 {
+                                   transposable = false;
+                                   yypushback(2);
+                                   yybegin(BLOCKCOMMENT);
                                  }
 
   {operator}                     {
@@ -265,6 +294,22 @@ rtl_in_string = {rtl_char}(([^\'\"\r\n\.]*)|([\'\"]{2}))+
 
   {openCloseStructureKwds}       {
                                    transposable = false;
+                                   return ScilabLexerConstants.OSKEYWORD;
+                                 }
+
+  {end}       			 {
+                                   transposable = false;
+				   if (matchBlock != null) {
+				      MatchingBlockScanner.MatchingPositions pos = matchBlock.getMatchingBlock(start + yychar + yylength(), false);
+				      if (pos != null) {
+				         try {
+				      	     String match = doc.getText(pos.secondB, pos.secondE - pos.secondB);
+				      	     if (match.equals("function")) {
+					        return ScilabLexerConstants.FKEYWORD;
+					     }
+				      	 } catch (BadLocationException e) { }
+				      }
+				   }
                                    return ScilabLexerConstants.OSKEYWORD;
                                  }
 
@@ -328,7 +373,7 @@ rtl_in_string = {rtl_char}(([^\'\"\r\n\.]*)|([\'\"]{2}))+
                                  }
 
   {latexinstring}                {
-                                   return ScilabLexerConstants.LATEXINSTRING;
+                                   return ScilabLexerConstants.LATEX;
                                  }
 
   {quote}                        {
@@ -365,12 +410,10 @@ rtl_in_string = {rtl_char}(([^\'\"\r\n\.]*)|([\'\"]{2}))+
                                  }
 
   " "                            {
-    				   transposable = false;
                                    return ScilabLexerConstants.WHITE;
                                  }
 
   "\t"                           {
-    				   transposable = false;
                                    return ScilabLexerConstants.TAB;
                                  }
 
@@ -423,12 +466,13 @@ rtl_in_string = {rtl_char}(([^\'\"\r\n\.]*)|([\'\"]{2}))+
   "\t"                           {
                                    return ScilabLexerConstants.TAB;
                                  }
-
-  .                              |
-  {eol}				 {
+  .
+                                 {
                                    yypushback(1);
                                    yybegin(YYINITIAL);
                                  }
+
+  {eol}                          { }
 }
 
 <FIELD> {
@@ -437,11 +481,12 @@ rtl_in_string = {rtl_char}(([^\'\"\r\n\.]*)|([\'\"]{2}))+
                                    return ScilabLexerConstants.FIELD;
                                  }
 
-  .                              |
-  {eol}				 {
+  .                              {
                                    yypushback(1);
                                    yybegin(YYINITIAL);
                                  }
+
+  {eol}                          { }
 }
 
 <QSTRING> {
@@ -460,7 +505,6 @@ rtl_in_string = {rtl_char}(([^\'\"\r\n\.]*)|([\'\"]{2}))+
                                    return ScilabLexerConstants.TAB_STRING;
                                  }
 
-  {rtl_in_string}                |
   {string}                       |
   "."                            {
                                    return ScilabLexerConstants.STRING;
@@ -478,16 +522,7 @@ rtl_in_string = {rtl_char}(([^\'\"\r\n\.]*)|([\'\"]{2}))+
                                  }
 }
 
-<COMMENT> {
-  {todo}			 {
-  				   return ScilabLexerConstants.TODO;
-				 }
-
-  {error}			 {
-  				   return ScilabLexerConstants.ERROR;
-				 }
-
-
+<BLOCKCOMMENT> {
   {authors}                      {
                                    return ScilabLexerConstants.AUTHORS;
                                  }
@@ -511,18 +546,46 @@ rtl_in_string = {rtl_char}(([^\'\"\r\n\.]*)|([\'\"]{2}))+
   "\t"                           {
                                    return ScilabLexerConstants.TAB_COMMENT;
                                  }
- 
-  {rtl_comment}                  {
-                                    return ScilabLexerConstants.COMMENT;
-                                 }
 
-  [^ \t\n]+                      {
+  {endcomment}			 {
+				   yybegin(YYINITIAL);
+				   return ScilabLexerConstants.COMMENT;
+  				 }
+
+  .                              |
+  {eol}                          {
                                    return ScilabLexerConstants.COMMENT;
                                  }
+}
 
-  {eol}				 {
-  				   yybegin(YYINITIAL);
-                                   return ScilabLexerConstants.DEFAULT;
+<COMMENT> {
+  {authors}                      {
+                                   return ScilabLexerConstants.AUTHORS;
+                                 }
+
+  {url}                          {
+                                   return ScilabLexerConstants.URL;
+                                 }
+
+  {mail}                         {
+                                   return ScilabLexerConstants.MAIL;
+                                 }
+
+  {latex}                        {
+                                   return ScilabLexerConstants.LATEX;
+                                 }
+
+  " "                            {
+                                   return ScilabLexerConstants.WHITE_COMMENT;
+                                 }
+
+  "\t"                           {
+                                   return ScilabLexerConstants.TAB_COMMENT;
+                                 }
+
+  .                              |
+  {eol}                          {
+                                   return ScilabLexerConstants.COMMENT;
                                  }
 }
 

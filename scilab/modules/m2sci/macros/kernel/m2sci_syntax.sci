@@ -2,11 +2,14 @@
 // Copyright (C) ???? - INRIA - Scilab
 // Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function [helppart,txt,batch]=m2sci_syntax(txt)
     // Make minor changes on M-file data syntax to have it readable by Scilab
@@ -139,17 +142,6 @@ function [helppart,txt,batch]=m2sci_syntax(txt)
                         end
                     end
                 end
-            end
-        end
-
-        // Insert a blank when a digit is followed by a dotted operator
-        // So that point is associated to operator and not to digit
-        // Because if it is associated to digit, dot is suppressed by comp()
-        kdot=strindex(tk,[".*","./",".\",".^",".''"])
-        if kdot<>[] then
-            kdgt=kdot(find(abs(_str2code(part(tk,kdot-1)))<9))
-            for kk=size(kdgt,"*"):-1:1
-                tk=part(tk,1:kdgt(kk)-1)+" "+part(tk,kdgt(kk):length(tk));
             end
         end
 

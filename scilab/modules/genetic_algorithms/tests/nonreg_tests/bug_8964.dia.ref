@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2012 - S/E - Sylvestre Ledru
@@ -35,17 +36,26 @@ ga_params = add_param(ga_params,"minbound",[-1 -1]');
 ga_params = add_param(ga_params,"maxbound",[1 1]');
 ga_params = add_param(ga_params,"dimension",2);
 [pop_opt, fobj_pop_opt, pop_init] = optim_ga(rastrigin, PopSize, NbGen, Proba_mut, Proba_cross, Log, ga_params);
-optim_ga: Initialization of the population
-optim_ga: iteration 1 / 10 - min / max value found = -1.672837 / -0.107933
-optim_ga: iteration 2 / 10 - min / max value found = -1.883604 / -0.526168
-optim_ga: iteration 3 / 10 - min / max value found = -1.906659 / -1.048334
-optim_ga: iteration 4 / 10 - min / max value found = -1.990831 / -1.282218
-optim_ga: iteration 5 / 10 - min / max value found = -1.990831 / -1.479429
-optim_ga: iteration 6 / 10 - min / max value found = -1.990831 / -1.554544
-optim_ga: iteration 7 / 10 - min / max value found = -1.990831 / -1.624791
-optim_ga: iteration 8 / 10 - min / max value found = -1.990831 / -1.774173
-optim_ga: iteration 9 / 10 - min / max value found = -1.994666 / -1.856775
-optim_ga: iteration 10 / 10 - min / max value found = -1.998189 / -1.923837
+optim_ga: iteration 1 / 10 
+    min / max value found = -1.891940 / -0.047304
+optim_ga: iteration 2 / 10 
+    min / max value found = -1.972955 / -0.707020
+optim_ga: iteration 3 / 10 
+    min / max value found = -1.972955 / -1.138702
+optim_ga: iteration 4 / 10 
+    min / max value found = -1.973722 / -1.472145
+optim_ga: iteration 5 / 10 
+    min / max value found = -1.973722 / -1.607772
+optim_ga: iteration 6 / 10 
+    min / max value found = -1.997831 / -1.797161
+optim_ga: iteration 7 / 10 
+    min / max value found = -1.997831 / -1.896268
+optim_ga: iteration 8 / 10 
+    min / max value found = -1.999928 / -1.972230
+optim_ga: iteration 9 / 10 
+    min / max value found = -1.999928 / -1.988994
+optim_ga: iteration 10 / 10 
+    min / max value found = -2.000000 / -1.995977
 // If it fails like in the past, the following tests will fail
 assert_checkequal(size(pop_opt),100);
 assert_checkequal(size(pop_init),100);

@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -50,8 +53,8 @@ types::Function::ReturnValue sci_with_module(types::typed_list &in, int _iRetCou
     wchar_t* pwstModuleName = pStr->get(0);
 
     types::Bool* pOut = new types::Bool(0);
-    list<wstring> sModuleList = ConfigVariable::getModuleList();
-    list<wstring>::iterator it;
+    std::list<std::wstring> sModuleList = ConfigVariable::getModuleList();
+    std::list<std::wstring>::iterator it;
     for (it = sModuleList.begin() ; it != sModuleList.end() ; it++)
     {
         if (*it == pwstModuleName)
@@ -63,37 +66,6 @@ types::Function::ReturnValue sci_with_module(types::typed_list &in, int _iRetCou
 
     out.push_back(pOut);
     return types::Function::OK;
-    //static int l1,n1,m1;
-    //int *Status=NULL;
-
-    //CheckRhs(1,1);
-    //CheckLhs(1,1);
-
-    //if (GetType(1) == sci_strings)
-    //{
-    //	char *VarName=NULL;
-
-    //	GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
-    //	VarName=cstk(l1);
-
-    //	Status=(int*)MALLOC(sizeof(int));
-    //	*Status=with_module(VarName);
-
-    //	m1=1;n1=1;
-    //	CreateVarFromPtr(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1, &n1, &Status);
-    //	LhsVar(1)=Rhs+1;
-
-    //	C2F(putlhsvar)();
-
-    //	if (Status) {FREE(Status);Status=NULL;}
-    //}
-    //else
-    //{
-    //	Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"), fname,1);
-    //	return 0;
-    //}
-
-    //return 0;
 }
 /*--------------------------------------------------------------------------*/
 

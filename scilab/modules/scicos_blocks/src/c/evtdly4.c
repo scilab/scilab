@@ -39,7 +39,7 @@ SCICOS_BLOCKS_IMPEXP void evtdly4(scicos_block *block, int flag)
 
     switch (flag)
     {
-            /* init */
+        /* init */
         case 4  :  /* the workspace is used to store discrete counter value */
         {
             if ((*work = (time_counter_t*) scicos_malloc(sizeof(time_counter_t))) == NULL)
@@ -60,10 +60,13 @@ SCICOS_BLOCKS_IMPEXP void evtdly4(scicos_block *block, int flag)
             i = *work;
             t = get_scicos_time();
             (*i)++; /*increase counter*/
-            dt = block->rpar[1] + (*i) * block->rpar[0] - t;
-            /* on event enabled, use the default delay if not scheduled */
-            if (block->rpar[1] >= 0 && dt < 0)
+            if (block->rpar[1] >= 0)
             {
+                dt = block->rpar[1] + (*i) * block->rpar[0] - t;
+            }
+            else
+            {
+                /* On negative initial event, only delay the input */
                 dt = block->rpar[0];
             }
             block->evout[0] = dt;

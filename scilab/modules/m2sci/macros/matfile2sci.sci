@@ -2,11 +2,14 @@
 // Copyright (C) ???? - INRIA - Serge STEER
 // Copyright (C) 2009 - DIGITEO - Vincent COUVERT
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function matfile2sci(mat_file_path, result_file_path, overwrite)
     // Translate a Matlab MAT file into a Scilab file
@@ -47,7 +50,7 @@ function matfile2sci(mat_file_path, result_file_path, overwrite)
 
     //Wipe file if overwrite is true and the output file previously existed
     if isfile(fdo_path) & overwrite
-        fdo = mopen(fdo_path, "wb");
+        deletefile(fdo_path);
     end
 
     //-- Read first variable
@@ -69,10 +72,6 @@ function matfile2sci(mat_file_path, result_file_path, overwrite)
             //-- Read next variable
             ierr = execstr("[Name, Matrix, Class] = matfile_varreadnext(fdi);", "errcatch");
         end
-    end
-
-    if exists("fdo")==1
-        mclose(fdo);
     end
 
     //--file closing

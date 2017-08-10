@@ -8,13 +8,15 @@
         <refpurpose>3D comet animated plot. </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>comet3d(z)</synopsis>
-        <synopsis>comet3d(x,y,z)</synopsis>
-        <synopsis>comet3d(x,y,fun)</synopsis>
-        <synopsis>comet3d(x,y,z,p)</synopsis>
-        <synopsis>comet3d(x,y,fun,p)</synopsis>
-        <synopsis>comet3d(...,"colors",c)</synopsis>
+        <title>Syntax</title>
+        <synopsis>
+            comet3d(z)
+            comet3d(x, y, z)
+            comet3d(x, y, fun)
+            comet3d(x, y, z, p)
+            comet3d(x, y, fun, p)
+            comet3d(...,"colors", c)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parameters</title>
@@ -61,7 +63,7 @@
                 <term>fun</term>
                 <listitem>
                     <para>
-                        a scilab function with calling sequence <literal>z=fun(x,y)</literal>.
+                        a scilab function with syntax <literal>z=fun(x,y)</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -82,7 +84,7 @@
             animated plot. The plot is made of three parts:
             <variablelist>
                 <varlistentry>
-                    <term>ahead</term> 
+                    <term>ahead</term>
                     mark that shows the current <literal>(x(i),y(i),z(i))</literal> position.
                     <listitem><para>
                         </para>
@@ -97,7 +99,7 @@
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>atail</term> 
+                    <term>atail</term>
                     that shows the  <literal>(x(1:i-k),y(1:i-k),z(1:i-k))</literal>  part of the curve.
                     <listitem><para>
                         </para>
@@ -115,7 +117,7 @@
                 if <literal>x,y,z</literal> are matrices with the same dimensions then animated curves
                 are drawn for each triple <literal>(x(:,l),y(:,l),z(:,l))</literal>.
             </para>
-            
+
             <para>
                 <literal>comet3d(x,y,fun,...)</literal> computes the
                 <literal>z</literal> vector as
@@ -126,7 +128,7 @@
                 relative length of the body. <literal>k</literal> is defined
                 as <literal>k = round(p*nz)</literal>.
             </para>
-            
+
         </para>
     </refsection>
     <refsection>
@@ -146,7 +148,7 @@ clf();comet3d(cos(t),sin(t),traj)
     ]]></programlisting>
     </refsection>
     <refsection>
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="comet">comet</link>

@@ -1,51 +1,96 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="macr2tree" xml:lang="en">
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+    xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+    xmlns:scilab="http://www.scilab.org" xml:id="macr2tree" xml:lang="pt">
     <refnamediv>
         <refname>macr2tree</refname>
-        <refpurpose>conversão de função para árvore</refpurpose>
+        <refpurpose>fornece o cÃ³digo interno de uma funÃ§Ã£o Scilab compilada</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
-        <synopsis>t=macr2tree(function-name)</synopsis>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
+        <synopsis>p = macr2tree(macro)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
-                <term>function-name</term>
+                <term>macro</term>
                 <listitem>
-                    <para>macro do Scilab</para>
+                    <para>handle of a Scilab macro (NOT its name as a string)</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>t</term>
+                <term>p</term>
                 <listitem>
-                    <para>uma "árvore" do Scilab</para>
+                    <para>List of type <literal>program</literal> with the fields
+                    <literal>p.name</literal>, <literal>p.nblines</literal>,
+                    <literal>p.inputs</literal>, <literal>p.outputs</literal>, and
+                    <literal>p.statements</literal>. The 3 last ones are nested lists
+                    describing the internal code of the <literal>macro</literal>.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
-        <para>Esta primitiva converte uma função Scilab compilada
-            <literal>function-name</literal> em uma árvore (tlistas imbricadas) que
-            codifica a representação interna da função. Deve ser usada com
-            <literal>tree2code</literal>.
+        <title>DescriÃ§Ã£o</title>
+        <para>Esta primitiva converte uma funÃ§Ã£o Scilab compilada
+            <literal>function-name</literal> em uma Ã¡rvore (tlistas imbricadas) que
+            codifica a representaÃ§Ã£o interna da funÃ§Ã£o. Deve ser usada com
+            <literal>tree2code()</literal>.
         </para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
-tree=macr2tree(cosh);
-txt=tree2code(tree,%T);
-write(%io(2),txt,'(a)');
+        <programlisting role="example"><![CDATA[
+prog = macr2tree(log2);   // Note that the input is log2, not "log2"
+typeof(prog)
+fieldnames(prog)'
+prog.name
+deftxt = tree2code(prog, %T);
+printf("%s\n", deftxt);
  ]]></programlisting>
+    <screen><![CDATA[--> typeof(prog)
+ ans  =
+ program
+
+--> fieldnames(prog)'
+ ans  =
+!name  outputs  inputs  statements  nblines  !
+
+--> prog.name
+ ans  =
+ log2
+
+--> deftxt = tree2code(prog, %T);
+
+--> printf("%s\n", deftxt);
+function [f,e] = log2(x)
+  [lhs,rhs] = argn(0)
+  if rhs&lt;>1 then
+    msg = gettext("%s: Wrong number of input argument(s): %d expected.\n")
+    error(msprintf(msg, "log2", 1))
+  end
+  if argn(1)==1 then
+    f = log(x)/log(2)
+  else
+    [f,e] = frexp(x)
+  end
+endfunction
+]]></screen>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="tree2code">tree2code</link>
+            </member>
+            <member>
+                <link linkend="macrovar">macrovar</link>
+            </member>
+            <member>
+                <link linkend="functions">functions</link>
             </member>
         </simplelist>
     </refsection>

@@ -3,11 +3,14 @@
  * Copyright (C) 2009-2012 - DIGITEO - Pierre Lando
  * Copyright (C) 2013 - Scilab Enterprises - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  */
 package org.scilab.modules.renderer.JoGLView.interaction;
 
@@ -53,7 +56,7 @@ public class DragZoomRotateInteraction extends FigureInteraction {
      * Last important mouse event.
      */
     private MouseEvent previousEvent;
-    private Axes currentAxes;
+    private Axes[] currentAxes;
 
 
     /**
@@ -65,6 +68,7 @@ public class DragZoomRotateInteraction extends FigureInteraction {
         mouseMotionListener = new FigureMouseMotionListener();
         mouseWheelListener = new FigureMouseWheelListener();
         mouseListener = new FigureMouseListener();
+        currentAxes = new Axes[0];
     }
 
     @Override
@@ -99,9 +103,9 @@ public class DragZoomRotateInteraction extends FigureInteraction {
         public void mousePressed(MouseEvent e) {
             if (pressedButtons == 0) {
                 previousEvent = e;
-                if (currentAxes == null) {
-                    currentAxes = getUnderlyingAxes(e.getPoint());
-                    if (currentAxes != null) {
+                if (currentAxes.length == 0) {
+                    currentAxes = getAllUnderlyingAxes(e.getPoint());
+                    if (currentAxes.length > 0) {
                         getDrawerVisitor().getComponent().addMouseMotionListener(mouseMotionListener);
                         switch (e.getButton()) {
                             case MouseEvent.BUTTON1 :
@@ -126,7 +130,7 @@ public class DragZoomRotateInteraction extends FigureInteraction {
 
             if (pressedButtons == 0) {
                 getDrawerVisitor().getComponent().removeMouseMotionListener(mouseMotionListener);
-                currentAxes = null;
+                currentAxes = new Axes[0];
             }
             e.getComponent().setCursor(Cursor.getDefaultCursor());
         }
@@ -137,11 +141,8 @@ public class DragZoomRotateInteraction extends FigureInteraction {
      */
     private class FigureMouseWheelListener implements MouseWheelListener {
 
-        @Override
-        public void mouseWheelMoved(MouseWheelEvent e) {
-            Axes axes = getUnderlyingAxes(e.getPoint());
+        private void applyZoom(Axes axes, double scale) {
             if (axes != null) {
-                double scale = Math.pow(ZOOM_FACTOR, e.getUnitsToScroll());
                 Double[] bounds = axes.getDisplayedBounds();
                 double[][] factors = axes.getScaleTranslateFactors();
 
@@ -181,7 +182,19 @@ public class DragZoomRotateInteraction extends FigureInteraction {
 
                 GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_ZOOM_BOX__, bounds);
                 GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_ZOOM_ENABLED__, zoomed);
-
+            }
+        }
+        @Override
+        public void mouseWheelMoved(MouseWheelEvent e) {
+            Axes[] allAxes;
+            if (e.isControlDown()) {
+                allAxes = getAllVisibleAxes(e.getPoint());
+            } else {
+                allAxes = getAllUnderlyingAxes(e.getPoint());
+            }
+            double scale = Math.pow(ZOOM_FACTOR, e.getUnitsToScroll());
+            for (Axes axes : allAxes) {
+                applyZoom(axes, scale);
             }
         }
     }
@@ -253,11 +266,13 @@ public class DragZoomRotateInteraction extends FigureInteraction {
             int dx = e.getX() - previousEvent.getX();
             int dy = e.getY() - previousEvent.getY();
 
-            if (currentAxes != null) {
-                Double[] angles = currentAxes.getRotationAngles();
-                angles[0] -= dy / 4.0;
-                angles[1] -= Math.signum(Math.sin(Math.toRadians(angles[0]))) * (dx / 4.0);
-                GraphicController.getController().setProperty(currentAxes.getIdentifier(), GraphicObjectProperties.__GO_ROTATION_ANGLES__, angles);
+            for (Axes axes : currentAxes) {
+                if (axes.getView() != 0) {
+                    Double[] angles = axes.getRotationAngles();
+                    angles[0] -= dy / 4.0;
+                    angles[1] -= Math.signum(Math.sin(Math.toRadians(angles[0]))) * (dx / 4.0);
+                    GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_ROTATION_ANGLES__, angles);
+                }
             }
         }
 
@@ -265,21 +280,21 @@ public class DragZoomRotateInteraction extends FigureInteraction {
             int dx = e.getX() - previousEvent.getX();
             int dy = e.getY() - previousEvent.getY();
 
-            if (currentAxes != null) {
-                if (currentAxes.getZoomEnabled()) {
-                    Double[] bounds = currentAxes.getDisplayedBounds();
+            for (Axes axes : currentAxes) {
+                if (axes.getZoomEnabled()) {
+                    Double[] bounds = axes.getDisplayedBounds();
 
-                    Integer[] winSize = (Integer[]) GraphicController.getController().getProperty(currentAxes.getParent(), GraphicObjectProperties.__GO_AXES_SIZE__);
+                    Integer[] winSize = (Integer[]) GraphicController.getController().getProperty(axes.getParent(), GraphicObjectProperties.__GO_AXES_SIZE__);
                     if (winSize == null) {
                         // We are in a Frame
-                        Double[] position = (Double[]) GraphicController.getController().getProperty(currentAxes.getParent(), GraphicObjectProperties.__GO_POSITION__);
+                        Double[] position = (Double[]) GraphicController.getController().getProperty(axes.getParent(), GraphicObjectProperties.__GO_POSITION__);
                         winSize = new Integer[2];
                         winSize[0] = position[2].intValue();
                         winSize[1] = position[3].intValue();
                     }
-                    Double[] axesBounds = (Double[]) GraphicController.getController().getProperty(currentAxes.getIdentifier(), GraphicObjectProperties.__GO_AXES_BOUNDS__);
-                    Double[] axesMargins = (Double[]) GraphicController.getController().getProperty(currentAxes.getIdentifier(), GraphicObjectProperties.__GO_MARGINS__);
-                    Integer view = (Integer) GraphicController.getController().getProperty(currentAxes.getIdentifier(), GraphicObjectProperties.__GO_VIEW__);
+                    Double[] axesBounds = (Double[]) GraphicController.getController().getProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_AXES_BOUNDS__);
+                    Double[] axesMargins = (Double[]) GraphicController.getController().getProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_MARGINS__);
+                    Integer view = (Integer) GraphicController.getController().getProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_VIEW__);
 
                     // Compute ratio from pixel move to user displayed data bounds
                     double xDelta = Math.abs(bounds[0] - bounds[1]) / (winSize[0] * axesBounds[2] * (1 - axesMargins[0] - axesMargins[1]));
@@ -294,8 +309,8 @@ public class DragZoomRotateInteraction extends FigureInteraction {
                         bounds[3] += yDelta * dy;
                     } else {
                         // 3D view
-                        double orientation = - Math.signum(Math.cos(Math.toRadians(currentAxes.getRotationAngles()[0])));
-                        double angle = - orientation * Math.toRadians(currentAxes.getRotationAngles()[1]);
+                        double orientation = - Math.signum(Math.cos(Math.toRadians(axes.getRotationAngles()[0])));
+                        double angle = - orientation * Math.toRadians(axes.getRotationAngles()[1]);
 
                         double rotatedDX = dx * Math.sin(angle) + dy * Math.cos(angle);
                         double rotatedDY = dx * Math.cos(angle) - dy * Math.sin(angle);
@@ -307,12 +322,12 @@ public class DragZoomRotateInteraction extends FigureInteraction {
                         bounds[3] += yDelta * rotatedDY;
                     }
 
-                    Boolean zoomed = tightZoomBoxToDataBounds(currentAxes, bounds);
-                    boolean[] logFlags = { currentAxes.getXAxisLogFlag(), currentAxes.getYAxisLogFlag(), currentAxes.getZAxisLogFlag()};
+                    Boolean zoomed = tightZoomBoxToDataBounds(axes, bounds);
+                    boolean[] logFlags = { axes.getXAxisLogFlag(), axes.getYAxisLogFlag(), axes.getZAxisLogFlag()};
                     ScaleUtils.applyInverseLogScaleToBounds(bounds, logFlags);
 
-                    GraphicController.getController().setProperty(currentAxes.getIdentifier(), GraphicObjectProperties.__GO_ZOOM_BOX__, bounds);
-                    GraphicController.getController().setProperty(currentAxes.getIdentifier(), GraphicObjectProperties.__GO_ZOOM_ENABLED__, zoomed);
+                    GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_ZOOM_BOX__, bounds);
+                    GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_ZOOM_ENABLED__, zoomed);
                 }
             }
         }
@@ -320,20 +335,20 @@ public class DragZoomRotateInteraction extends FigureInteraction {
         private void doZTranslation(MouseEvent e) {
             int dy = e.getY() - previousEvent.getY();
 
-            if (currentAxes != null) {
-                Double[] bounds = currentAxes.getDisplayedBounds();
+            for (Axes axes : currentAxes) {
+                Double[] bounds = axes.getDisplayedBounds();
 
                 double zDelta = (bounds[5] - bounds[4]) / 100;
 
                 bounds[4] += zDelta * dy;
                 bounds[5] += zDelta * dy;
 
-                Boolean zoomed = tightZoomBoxToDataBounds(currentAxes, bounds);
-                boolean[] logFlags = { currentAxes.getXAxisLogFlag(), currentAxes.getYAxisLogFlag(), currentAxes.getZAxisLogFlag()};
+                Boolean zoomed = tightZoomBoxToDataBounds(axes, bounds);
+                boolean[] logFlags = { axes.getXAxisLogFlag(), axes.getYAxisLogFlag(), axes.getZAxisLogFlag()};
                 ScaleUtils.applyInverseLogScaleToBounds(bounds, logFlags);
 
-                GraphicController.getController().setProperty(currentAxes.getIdentifier(), GraphicObjectProperties.__GO_ZOOM_BOX__, bounds);
-                GraphicController.getController().setProperty(currentAxes.getIdentifier(), GraphicObjectProperties.__GO_ZOOM_ENABLED__, zoomed);
+                GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_ZOOM_BOX__, bounds);
+                GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_ZOOM_ENABLED__, zoomed);
             }
         }
 

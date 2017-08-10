@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Serge STEER
@@ -14,7 +15,7 @@
 // <-- Short Description -->
 //Problem with extraction and hypermatrices, especially when using patterns with a dollar
 
-a=hypermat([3,15,10]);
+a=zeros(3,15,10);
 for i=1:15
   if or(size(a(:,i:3:$,:))<>size(a(:,i:3:15,:))) then pause,end
 end

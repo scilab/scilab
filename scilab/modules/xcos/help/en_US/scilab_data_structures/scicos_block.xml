@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scicos
+ *
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ *
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="scicos_block">
+    <refnamediv>
+        <refname>scicos_block</refname>
+        <refpurpose>Define a block structure</refpurpose>
+    </refnamediv>
+    <refsection id="Module_scicos_block">
+        <title>Module</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="xcos">xcos</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="block_scicos_block">
+        <title>block</title>
+        <para>
+            Basic  structure that define a xcos block.
+        </para>
+        <para>
+            Type : scilab tlist of type <code>"Block"</code> with fields :
+            <link linkend="scicos_block_graphics">graphics</link>,
+            <link linkend="scicos_block_model">model</link>,
+            <link linkend="scicos_block_gui">gui</link> and
+            <link linkend="scicos_block_doc">doc</link>.
+        </para>
+        <refsect2 id="scicos_block_graphics">
+            <title>graphics</title>
+            <para> Scilab object including graphical information concerning the features of the block.</para>
+            <para>
+                Type : <link linkend="scicos_graphics">graphics</link>.
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_block_model">
+            <title>model</title>
+            <para> Scilab list that contains the features of the block used for the compilation.</para>
+            <para>
+                Type : <link linkend="scicos_model">model</link>.
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_block_gui">
+            <title>gui</title>
+            <para> The name of the Scilab GUI function associated with the block.</para>
+            <para>
+                Size : 1.
+            </para>
+            <para>
+                Type : string.
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_block_doc">
+            <title>doc</title>
+            <para> Field used for documentation of the block
+                Size : 1.
+            </para>
+            <para>
+                Type : list or string.
+            </para>
+        </refsect2>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+loadXcosLibs();              // load standard library
+
+blk = BIGSOM_f("define");    // new specific block
+tree_show(blk);              // display it
+ ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+blk = scicos_block(),
+blk.model.rpar = 1
+ ]]></programlisting>
+    </refsection>
+</refentry>
+

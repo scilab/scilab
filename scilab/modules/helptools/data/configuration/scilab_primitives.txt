@@ -151,7 +151,6 @@
 %_EObj_z_i
 %_EObj_z_s
 %_eigs
-%_load
 %b_1__EObj
 %b_2__EObj
 %b_3__EObj
@@ -210,11 +209,7 @@
 %i_3__EObj
 %i_4__EObj
 %i_a__EObj
-%i_abs
-%i_cumprod
-%i_cumsum
 %i_d__EObj
-%i_diag
 %i_g__EObj
 %i_h__EObj
 %i_i_XMLList
@@ -223,23 +218,11 @@
 %i_k__EObj
 %i_l__EObj
 %i_m__EObj
-%i_matrix
-%i_max
-%i_maxi
-%i_min
-%i_mini
-%i_mput
 %i_n__EObj
 %i_o__EObj
-%i_p
-%i_p__EObj
-%i_prod
 %i_q__EObj
 %i_r__EObj
 %i_s__EObj
-%i_sum
-%i_tril
-%i_triu
 %i_x__EObj
 %i_y__EObj
 %i_z__EObj
@@ -247,9 +230,7 @@
 %l_i_XMLList
 %lss_i_XMLList
 %mc_i_XMLList
-%msp_full
 %msp_i_XMLList
-%msp_spget
 %p_i_XMLList
 %ptr_i_XMLList
 %r_i_XMLList
@@ -312,7 +293,6 @@ arl2_ius
 ascii
 asin
 atan
-backslash
 balanc
 banner
 base2dec
@@ -328,9 +308,7 @@ beta
 bezout
 bfinit
 blkfc1i
-blkslvi
 bool2s
-browsehistory
 browsevar
 bsplin3val
 buildDoc
@@ -364,8 +342,6 @@ closeEditor
 closeEditvar
 closeXcos
 coeff
-comp
-completion
 conj
 contour2di
 contr
@@ -410,7 +386,6 @@ dec2base
 deff
 definedfields
 degree
-delbpt
 delete
 deletefile
 delip
@@ -422,7 +397,6 @@ diag
 diary
 diffobjs
 disp
-dispbpt
 displayhistory
 disposefftwlibrary
 dlgamma
@@ -446,7 +420,6 @@ erf
 erfc
 erfcx
 erfi
-errcatch
 errclear
 error
 eval_cshep2d
@@ -457,7 +430,6 @@ exp
 expm
 exportUI
 eye
-fadj2sp
 fec
 feval
 fft
@@ -478,8 +450,6 @@ findfiles
 fire_closing_finished
 floor
 format
-fort
-fprintfMat
 freq
 frexp
 fromc
@@ -510,7 +480,6 @@ getfield
 gethistory
 gethistoryfile
 getinstalledlookandfeels
-getio
 getlanguage
 getlongpathname
 getlookandfeel
@@ -518,18 +487,15 @@ getmd5
 getmemory
 getmodules
 getos
-getpid
 getrelativefilename
 getscicosvars
 getscilabmode
 getshortpathname
 gettext
 getversion
-glist
 global
 glue
 grand
-graphicfunction
 grayplot
 grep
 gsort
@@ -565,7 +531,6 @@ h5rm
 h5umount
 h5write
 h5writeattr
-havewindow
 helpbrowser
 hess
 hinf
@@ -585,6 +550,7 @@ int16
 int2d
 int32
 int3d
+int64
 int8
 interp
 interp2d
@@ -595,15 +561,12 @@ inttype
 inv
 invoke_lu
 is_handle_valid
-is_hdf5_file
 isalphanum
 isascii
 isdef
 isdigit
 isdir
 isequal
-isequalbitwise
-iserror
 isfile
 isglobal
 isletter
@@ -617,8 +580,6 @@ jautoUnwrap
 javaclasspath
 javalibrarypath
 jcast
-jcompile
-jconvMatrixMethod
 jcreatejar
 jdeff
 jdisableTrace
@@ -653,7 +614,6 @@ lines
 link
 linmeq
 list
-listvar_in_hdf5
 load
 loadGui
 loadScicos
@@ -687,7 +647,6 @@ mclose
 meof
 merror
 messagebox
-mfprintf
 mfscanf
 mget
 mgeti
@@ -700,18 +659,13 @@ model2blk
 mopen
 move
 movefile
-mprintf
 mput
 mputl
 mputstr
 mscanf
 mseek
-msprintf
 msscanf
 mtell
-mtlb_mode
-mtlb_sparse
-mucomp
 nearfloat
 newaxes
 newest
@@ -724,12 +678,9 @@ ode
 odedc
 ones
 openged
-opentk
 optim
 or
 ordmmd
-parallel_concurrency
-parallel_run
 param3d
 param3d1
 part
@@ -737,7 +688,6 @@ pathconvert
 pathsep
 phase_simulation
 plot2d
-plot2d1
 plot2d2
 plot2d3
 plot2d4
@@ -750,10 +700,6 @@ ppol
 pppdiv
 predef
 preferences
-print
-printf
-printfigure
-printsetupbox
 prod
 progressionbar
 prompt
@@ -766,9 +712,7 @@ rankqr
 rat
 rcond
 read
-read4b
 read_csv
-readb
 readmps
 real
 realtime
@@ -795,7 +739,6 @@ saveafterncommands
 saveconsecutivecommands
 savehistory
 schur
-sci_haltscicos
 sci_tree2
 sci_tree3
 sci_tree4
@@ -811,7 +754,6 @@ set
 set_blockerror
 set_fftw_wisdom
 set_xproperty
-setbpt
 setdefaultlanguage
 setenv
 setfield
@@ -829,12 +771,10 @@ simp
 simp_mode
 sin
 size
-slash
 sleep
 sorder
 sparse
 spchol
-spcompack
 spec
 spget
 splin
@@ -842,7 +782,6 @@ splin2d
 splin3d
 splitURL
 spones
-sprintf
 sqrt
 strcat
 strchr
@@ -868,7 +807,6 @@ symfcti
 syredi
 system_getproperty
 system_setproperty
-ta2lpd
 tan
 taucs_chdel
 taucs_chfact
@@ -882,7 +820,6 @@ tlist
 tohome
 tokens
 toolbar
-toprint
 tr_zer
 tril
 triu
@@ -898,6 +835,7 @@ uigetfont
 uimenu
 uint16
 uint32
+uint64
 uint8
 uipopup
 uiputfile
@@ -916,7 +854,6 @@ unzoom
 updatebrowsevar
 usecanvas
 useeditor
-user
 var2vec
 varn
 vec2var
@@ -927,9 +864,7 @@ where
 whereis
 winsid
 with_module
-writb
 write
-write4b
 write_csv
 x_choose
 x_choose_modeless
@@ -954,7 +889,6 @@ xcosPalGet
 xcosPalLoad
 xcosPalMove
 xcosSimulationStarted
-xcosUpdateBlock
 xdel
 xend
 xfarc

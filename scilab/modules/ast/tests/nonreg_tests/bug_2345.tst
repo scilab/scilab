@@ -13,7 +13,7 @@
 // <-- Short Description -->
 // Parser bug: "=>" interpreted as "=" in comparisons (even with spacing)
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 if execstr("1=>0", "errcatch") == 0 then pause,end
 if execstr("1=>1", "errcatch") == 0 then pause,end

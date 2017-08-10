@@ -1,17 +1,24 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
 package org.scilab.modules.xcos.port.output;
 
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
+import org.scilab.modules.xcos.PortKind;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.Orientation;
 
@@ -23,20 +30,17 @@ import org.scilab.modules.xcos.port.Orientation;
  * connected to an {@link org.scilab.modules.xcos.port.input.InputPort} .
  */
 public abstract class OutputPort extends BasicPort {
-
-    private static final long serialVersionUID = -8098437925667788997L;
+    private static final long serialVersionUID = 0L;
 
     /**
      * Default constructor
-     *
-     * @param type
-     *            The string port name ("ExplicitOutputPort" or
-     *            "ImplicitOutputPort")
      */
-    public OutputPort(String type) {
-        super(type);
-        setOrientation(Orientation.EAST);
+    public OutputPort(JavaController controller, long uid, Kind kind, Object value, String style, String id, boolean isImplicit) {
+        super(controller, uid, kind, value, style, id, Orientation.EAST, isImplicit, PortKind.PORT_OUT);
+    }
 
-        setDefaultValues();
+    @Override
+    public PortKind getPortKind() {
+        return PortKind.PORT_OUT;
     }
 }

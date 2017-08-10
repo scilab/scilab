@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * Copyright (C) 2015 - 2016 - Samuel GOUGEON
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ru" xml:id="twinkle">
+    <refnamediv>
+        <refname>twinkle</refname>
+        <refpurpose>используется для мерцания графического объекта</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Синтаксис</title>
+        <synopsis>twinkle
+            twinkle(n)
+            twinkle(h)
+            twinkle(h,n)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection role="arguments">
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>h</term>
+                <listitem>
+                    <para>указатель на графический объект. By default, the current graphic entity
+                        handled with <literal>gce()</literal> is considered.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>целое число.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection role="description">
+        <title>Описание</title>
+        <para>
+            Функция <function>twinkle</function> заставляет графический объект,
+            указанный по его указателю <varname>h</varname> мерцать. Она может
+            использоваться для того, чтобы найти в графическом окне объект,
+            соответствующий графическому указателю. По умолчанию объект мерцает 5
+            раз, но это можно изменить с помощью необязательного аргумента
+            <varname>n</varname>.
+        </para>
+    </refsection>
+    <refsection role="examples">
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+clf
+plot()
+twinkle     // twinkles the last group of curves plotted in the plot() example
+twinkle(3)  // twinkles it only three times
+
+x = linspace(-2*%pi,2*%pi,100)';
+plot2d(x,[sin(x),cos(x)]);
+e = gce();
+p1 = e.children(1);
+p2 = e.children(2);
+twinkle(p1)     // мерцает график косинуса
+twinkle(p2,10)  // график синуса мерцает 10 раз
+twinkle(gca())  // мерцают оси
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="graphics_entities">графические объекты</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    <para>twinkle() and twinkle(n) added.</para>
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

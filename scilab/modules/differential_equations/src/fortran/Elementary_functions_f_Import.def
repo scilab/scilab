@@ -2,8 +2,4 @@ LIBRARY    Elementary_functions_f.dll
 
 
 EXPORTS
-dmmul_
-dset_
-entier_
-iset_
 d1mach_

@@ -1,72 +1,394 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2016 - Samuel GOUGEON
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="brackets">
     <refnamediv>
-        <refname>brackets</refname>
-        <refpurpose>([,]) left and right brackets</refpurpose>
+        <refname>brackets [,;]</refname>
+        <refpurpose>Concatenation. Recipients of an assignment. Results of a function</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>[a11,a12,...;a21,a22,...;...]
-            [s1,s2,...]=func(...)
+        <title>Syntax</title>
+        <synopsis>
+            Mh = [m11 m12 m13.. m1N] or [m11, m12, m13,.., m1N]
+            Mv = [m11 ; m21 ; m31..; mN1]
+            M  = [m11, m12,...; m21, m22,...;...]
+            [r1, r2,...] = func(...)
+            [r1, r2,.., rN] = (e1, e2, .., eN)
+            [r1, r2,.., rk] = (e1, e2, .., ek,.., eN)
+            [r1, r2,.., rN] = mylist(:)
+            [r1, r2,.., rN] = S.field([i1 i2.. iN])
         </synopsis>
     </refsynopsisdiv>
-    <refsection>
+    <refsection role="parameters">
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>a11,a12,...  </term>
+                <term>m11, m12,...  </term>
                 <listitem>
                     <para>
-                        any matrix (real, polynomial, rational, <literal>syslin</literal> list ...) with appropriate dimensions
+                    Set of objects to be
+                    concatenated (and merged: the former individual containers
+                    are removed).
+                    The following subsets of types of objects can be mixed
+                    in-between, but are mutually exclusive:
+                    <itemizedlist>
+                        <listitem>Matrices of booleans, reals, complex numbers,
+                            polynomials, rationals: The data type of the
+                            concatenated result is set by the rules defined below
+                            (see the <link linkend="brackets_Types_conversions">
+                            <emphasis role="italic">type conversions</emphasis>
+                            </link> rules).
+                        </listitem>
+                        <listitem>Matrices of encoded integers of any
+                            <link linkend="inttype">inttype</link>.
+                            <warning>
+                                Encoded integers of different inttypes can't
+                                be concatenated together.
+                            </warning>
+                        </listitem>
+                        <listitem>Arrays of structures with same fields.
+                            Fields may be in different orders from an array
+                            to other ones.
+                        </listitem>
+                        <listitem>
+                            Typed lists of type <link linkend="syslin">syslin</link>.
+                        </listitem>
+                    </itemizedlist>
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>s1,s2,...  </term>
+                <term>M, Mh, Mv</term>
                 <listitem>
-                    <para>any possible variable name</para>
+                    <para>
+                        Matrices with the type of all <varname>m##</varname>
+                        (if they all have the same data type)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>e1, e2,..  </term>
+                <listitem>
+                    <para>Input objects (literals like <literal>-1.23</literal>
+                    or <literal>"abcd"</literal>, variables, or expressions
+                    like <literal>a+%pi</literal>, etc).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>mylist</term>
+                <listitem>
+                    <para>a simple list</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>S.field</term>
+                <listitem>
+                    <para>
+                        Array of Structures with a field named <literal>field</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>i1, i2,..  </term>
+                <listitem>
+                    <para>
+                        Indices of components selected from <varname>S</varname>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>r1, r2,...  </term>
+                <listitem>
+                    <para>Output variables</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Description</title>
-        <para>
-            Left and right brackets are used to note vector and matrix concatenation.
-            These symbols are also used to denote a multiple left-hand-side for a function
-            call.
-        </para>
-        <para>
-            Inside concatenation brackets, blank or comma characters mean
-            "column concatenation", semicolon and carriage-return mean
-            "row concatenation".
-        </para>
-        <para>
-            Note : to avoid confusions it is safer to use commas instead of blank to
-            separate columns.
-        </para>
-        <para>
-            Within multiple lhs brackets variable names must be separated by comma.
-        </para>
+        <variablelist>
+            <varlistentry>
+                <term>[] on right-hand side: concatenators</term>
+                <listitem>
+                    <para>[..] bundle their contents of simple and compatible
+                        types into a homogeneous vector, matrix or hypermatrix.
+                    </para>
+                    <note>An horizontal or a vertical concatenation is a
+                        binary iterated operator. It is performed step-by-step
+                        from left-to-right, and from top-to-bottom. Thus,
+                        <literal>[1 3 5 7]</literal> is performed as
+                        <literal>[[[1 3] 5] 7]</literal>.
+                    </note>
+                    <para>Inside brackets,
+                        <itemizedlist>
+                            <listitem>spaces (blanks or tabs) or commas are
+                                used as columns separators.
+                                <note>Using commas instead of spaces is safer.
+                                    For instance, <literal>[2 1 +%i]</literal>
+                                    means <literal>[2, 1, %i]</literal>, while
+                                    <literal>[2 1 + %i]</literal> means
+                                    <literal>[2, 1+%i]</literal>
+                                </note>
+                            </listitem>
+                            <listitem>semi-colons or carriage-return are used
+                                as rows separators. Multiple rows do not need
+                                the continuation dots <literal>..</literal>
+                            </listitem>
+                        </itemizedlist>
+                    </para>
+                    <refsect3 id="brackets_Types_conversions">
+                        <title>Types conversions</title>
+                        <para>
+                            In some limits, brackets may be applied on a set of
+                            data having different but compatible types. In this
+                            case, some data are converted into the dominating type
+                            available in the set. The main conversion rules are the
+                            following:
+                            <orderedlist>
+                                <listitem>boolean &lt; decimal number &lt; complex
+                                </listitem>
+                                <listitem>decimal number &lt; polynomial &lt; rational
+                                    <warning>booleans and polynomials are not compatible.
+                                        <itemizedlist>
+                                            <listitem>
+                                                <literal>[%t 2. %z]</literal> is accepted:
+                                                <literal>[%t 2.]</literal> is first
+                                                converted into
+                                                <literal>[1. 2.]</literal>, and then
+                                                <literal>[[1. 2.] %z]</literal> is accepted.
+                                            </listitem>
+                                            <listitem>
+                                                <literal>[%z %t 2.]</literal> is
+                                                rejected and yields an error.
+                                                Indeed, <literal>[%z %t]</literal>
+                                                can't be converted first.
+                                            </listitem>
+                                        </itemizedlist>
+                                    </warning>
+                                </listitem>
+                                <listitem>
+                                    The result becomes complex-encoded as soon as
+                                    a complex-encoded component -- value, polynomial,
+                                    or rational -- is met in the list
+                                    (even with a null imaginary part)
+                                    <para>Similarly, the result becomes sparse-encoded
+                                    as soon as a sparse-encoded component is met
+                                    and processed.
+                                    </para>
+                                </listitem>
+                                <listitem>
+                                    It is possible to concatenate polynomials or/and
+                                    rationals having different variable names. Then,
+                                    the first polynomial or rational met in the list
+                                    sets the variable name to the concatenation result:
+                                    <literal>[%z, 1+%s, 1-%i*%s]
+                                        // => [z, 1+z, 1-iz]
+                                    </literal>.
+                                </listitem>
+                                <listitem>
+                                    Any encoded integer can be concatenated
+                                    only with integers of the same inttype.
+                                    Thus, the expressions
+                                    <literal>[%t int8(2)]</literal>,
+                                    <literal>[int8(2) uint8(7)]</literal>,
+                                    <literal>[int8(2) int16(7)]</literal>,
+                                    <literal>[int8(2) 1.]</literal> will all yield
+                                    an error.
+                                </listitem>
+                                <listitem>Text components can be concatenated
+                                    (in the set meaning, with brackets) only with other
+                                    text components or with the empty matrix.
+                                    <literal>[]</literal>.
+                                </listitem>
+                            </orderedlist>
+                        </para>
+                    </refsect3>
+                    <refsect3 id="brackets_overloading">
+                        <title>Overloading</title>
+                        <para>
+                            <itemizedlist>
+                                <listitem>[,]: horizontal concatenation:
+                                    This operator is binary and automatically
+                                    iterated from left to right. Its overloading
+                                    code is <literal>"c"</literal>.
+                                </listitem>
+                                <listitem>[;]: vertical concatenation:
+                                    This operator is binary and automatically
+                                    iterated from top to bottom. Its overloading
+                                    code is <literal>"f"</literal>.
+                                </listitem>
+                            </itemizedlist>
+                        </para>
+                    </refsect3>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>[] on left-hand side of a <literal>"="</literal> assignment</term>
+                <listitem>
+                    <para>
+                    In this case, brackets are no longer concatenators.
+                    They are used as left and right delimiters of a series of
+                    variables used as recipients.
+                    </para>
+                    <para>
+                        <itemizedlist>
+                            <listitem>Recipients must be variables.
+                                Literal expressions are not accepted.
+                            </listitem>
+                            <listitem>Variables shall be separated with comas.
+                            </listitem>
+                            <listitem>In a distributive assignment, there must
+                                be at most as many LHS recipients
+                                as output sources, not more. If there are less
+                                recipients on the left than sources on the right,
+                                non-collected data sources are ignored. Examples :
+                                <simplelist>
+                                    <member><literal>[a,b]=(%pi,"Hi", %z)</literal>
+                                        is OK, but <literal>%z</literal> is ignored.
+                                    </member>
+                                    <member><literal>[a,b,c]=(%pi,"Hi")</literal>
+                                        yields an error because <literal>c</literal>
+                                        expects some foods.
+                                    </member>
+                                </simplelist>
+                            </listitem>
+                            <listitem>The same variable may be used several times
+                                in the list. Then, multiple assignments are done from
+                                <emphasis role="italic">right to left (!)</emphasis>
+                                and overwrite the previous ones.
+                                Example :
+                                <literal>[a,b,a] = (%pi, %z, "Allo")</literal>
+                                is equivalent to <literal>a = %pi, b = %z</literal>.
+                            </listitem>
+                        </itemizedlist>
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-[6.9,9.64; sqrt(-1) 0]
-[1 +%i  2 -%i  3]
-[]
-['this is';'a string';'vector']
-s=poly(0,'s');[1/s,2/s]
+// Horizontal concatenations
+a = [ %pi 4 -1 ]
+b1 = grand(3,4,"uin",0,10)
+b2 = grand(3,2,"uin",0,10)
+b = [b1 b2]  // they must have the same number of rows
+
+// Vertical concatenations
+a = [-2 ; 10 ; 7]
+
+b1 = grand(2,4,"uin",0,10)
+b2 = grand(3,4,"uin",0,10)
+b = [b1 ; b2] // they must have the same number of columns
+
+// Mixed horizontal and vertical concatenations
+a = [ 3 7 ; 6, 5 ]
+b = [ 1:3 ; 7:3:13]
+c = [ a b ; a b]
+
+d = [ 3 5
+      1 4
+    ]
+e = [ d d d
+      d d d
+    ]
+// Concatenation of various types of data:
+['this is' ; 'a column' ; 'of texts']
+
+s = poly(0,'s');[1/s,2/s]
 [tf2ss(1/s),tf2ss(2/s)]
 
-[u,s]=schur(rand(3,3))
+[%t %f %f %T %F]
+
+// Heterogeneous concatenations with automatical types conversions
+[%T %pi %f 2]
+[%pi, 2+%i, %F]
+v = [%pi+0*%i, %F, %z, (1-%z)^2 ]; typeof(v), isreal(v)
+v = [10 1/%z], typeof(v)
+
+// Incompatible heterogeneous concatenations => ERRORS
+[%F %z]
+[%F int8(5)]
+[int8(%pi) uint8(%e)]
+[int8(%pi) int16(%e)]
  ]]></programlisting>
+
+        <para>
+            <emphasis role="bold">Distributive assignments:</emphasis>
+        </para>
+        <programlisting role="example"><![CDATA[
+// Output from a function. Most often, output results are serially optional:
+M = rand(3,3);
+[u, s] = schur(M) // we expect and use both results u and s
+u = schur(M)      // we expect and store only the first result u
+
+// Direct RHS list
+[a, b, c] = (%pi, %t, "test")
+[a, b] = (%e, %f, "Hello")
+[a, b, a] = (%pi, %t, "test");
+
+// Explicit RHS list
+L = list(%z, %i, %t, %pi, "Text");
+[a, b, c] = L(:)
+
+// RHS structure
+s(2,3).r = %pi; s(2,1).r = %i; s(2,2) = %e;
+s(2,:).r
+s.r([2 4 6])
+[a, b, c] = s.r([2 4 6])
+
+// Forbidden / Rejected LHS expressions (=> error)
+[m, n, m+n] = myfun(a,b)   // Symbolic expressions like "m+n" are forbidden
+[p, 4.5, q] = myfun(a,b)   // Literal LHS values or expressions like "4.5" are forbidden
+[r, s+3 ] = myfun(a,b)   // Expressions mixing literals and symbols like "s+3" can't be LHS recipients
+]]></programlisting>
+        <screen><![CDATA[--> [a, b, c] = (%pi, %t, "test")
+ c  =
+ test
+
+ b  =
+  T
+
+ a  =
+   3.1415927
+
+--> [a, b] = (%e, %f, "Hello")
+ b  =
+  F
+
+ a  =
+   2.7182818
+
+--> [a, b, a] = (%pi, %t, "test"); a
+ a  =
+   3.1415927
+]]></screen>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
+                <link linkend="empty">empty</link>
+            </member>
+            <member>
                 <link linkend="parentheses">parentheses</link>
+            </member>
+            <member>
+                <link linkend="lstcat">lstcat</link>
             </member>
             <member>
                 <link linkend="comma">comma</link>
@@ -74,6 +396,21 @@ s=poly(0,'s');[1/s,2/s]
             <member>
                 <link linkend="semicolon">semicolon</link>
             </member>
+            <member>
+                <link linkend="overloading">overloading</link>
+            </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    Brackets <literal>[..]</literal> and braces
+                    <literal>{..}</literal> are no longer equivalent
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

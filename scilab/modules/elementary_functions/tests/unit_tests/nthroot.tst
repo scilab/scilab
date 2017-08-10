@@ -9,7 +9,7 @@
 
 // <-- CLI SHELL MODE -->
 
-// unit tests for nthroot() function 
+// unit tests for nthroot() function
 // =============================================================================
 // Run with test_run('elementary_functions', 'nthroot', ['no_check_error_output'])
 

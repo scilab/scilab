@@ -50,7 +50,7 @@ p4 = poly([-1 1], 't', 'roots')
 derivat(p4)
  ]]></programlisting>
         <programlisting role="example"><![CDATA[
-s = %s; p5 = s^{-1} + 2 + 3*s
+s = %s; p5 = s^(-1) + 2 + 3*s
 derivat(p5)
  ]]></programlisting>
     </refsection>

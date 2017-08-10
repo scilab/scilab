@@ -8,18 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-07-15 04:41+0000\n"
-"Last-Translator: Wesh <Unknown>\n"
+"PO-Revision-Date: 2015-10-08 22:07+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
-"Language: \n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
-msgstr "%s：输入参数#%d的值错误：必须介于%d与%d之间。\n"
+"X-Generator: Launchpad (build 18315)\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments: Scalar values expected.\n"
@@ -46,7 +42,7 @@ msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr "%s：第%d个输入参数的值错误：应该为‘%s’。\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s：第%d个输入参数的大小错误：应该为字符串。\n"
 
 #, c-format
@@ -62,9 +58,29 @@ msgid "%s: Wrong type for input argument #%d: Integer or '%s' expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为整数或者'%s'。\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A real scalar expected.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
 msgstr "%s：输入参数#%d的值错误：应该为非负整数矩阵。\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: 's' expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Feature %s is obsolete and will be permanently removed in Scilab %s\n"
+msgstr ""
+
+msgid "Warning"
+msgstr ""
+
+#, c-format
+msgid "%s: Please use %s instead.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input arguments: Must be scalars.\n"
@@ -127,8 +143,7 @@ msgid ""
 msgstr "%s：输入参数#%d的大小错误：应该为一个 mx3 矩阵或 mx6矩阵。\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
+msgid "%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
 msgstr "%s：输入参数#%d的值错误：%s必须介于%d与%d之间。\n"
 
 msgid "Month"
@@ -171,8 +186,7 @@ msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
+msgid "%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 
 #, c-format
@@ -186,10 +200,6 @@ msgstr "%s：输入参数#%d的大小错误：必须介于%d与%d之间。\n"
 #, c-format
 msgid "%s: Wrong size for input arguments #%d and #%d: Same size expected.\n"
 msgstr ""
-
-#, c-format
-msgid "%s: You must call tic() before calling toc().\n"
-msgstr "%s：在调用toc()前必须先调用tic()。\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"

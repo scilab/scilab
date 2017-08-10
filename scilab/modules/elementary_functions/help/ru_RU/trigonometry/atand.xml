@@ -6,7 +6,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>phi = atand(x)
             phi = atand(y, x)
         </synopsis>
@@ -64,7 +64,7 @@
     </refsection>
     <refsection>
         <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // пример со второй формой
 x=[0,1/sqrt(3),1,sqrt(3),%inf,0]
 atand(x)

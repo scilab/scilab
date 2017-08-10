@@ -5,7 +5,7 @@
         <refpurpose>"example_4_function_1" description</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>a = example_4_function_1(b,c)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -50,16 +50,16 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-    
+
 // Comments
 b = 2;
 c = 3;
 a = example_4_function_1(b,c);
-    
+
   ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="example_4_function_2">example_4_function_2</link>

@@ -1,15 +1,20 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 //
 //
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
+// <-- ENGLISH IMPOSED -->
+
 
 function v = while_return()
     v = 0;
@@ -55,7 +60,14 @@ function v = for_if_return()
     v = 3;
 endfunction
 
+function y=foo()
+    y = [];
+    return y;
+end
+
 assert_checkequal(while_return(), 1);
 assert_checkequal(while_if_return(), 1);
 assert_checkequal(for_return(), 1);
 assert_checkequal(for_if_return(), 1);
+assert_checkerror("foo()", "With input arguments, return / resume expects output arguments.");
+

@@ -5,7 +5,7 @@
         <refpurpose>Description of the grid constraints set of properties.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             constraints = createConstraints("grid")
         </synopsis>
@@ -30,7 +30,7 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-         //Create a figure with a grid layout 
+         //Create a figure with a grid layout
          f = figure( ...
          "dockable"        , "off",...
          "infobar_visible" , "off",...
@@ -88,7 +88,7 @@
          ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="layout">layout</link>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="hankelsv">
+    <refnamediv>
+        <refname>hankelsv</refname>
+        <refpurpose>ハンケル特異値</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[nk2,W]=hankelsv(sl [,tol])
+            [nk2]=hankelsv(sl [,tol])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>sl</term>
+                <listitem>
+                    <para>
+                        線形システム(状態空間)を表す
+                        <literal>syslin</literal> リスト.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>tol</term>
+                <listitem>
+                    <para>
+                        虚軸モードを検出するための許容誤差パラメータ
+                        (デフォルト値: <literal>1000*%eps</literal>).
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>sl</literal>の
+            ハンケル特異値の二乗  <literal>nk2</literal>と,
+            <literal>W = P*Q</literal> = 可制御性グラミアンと
+            可観測性グラミアンの積を返します.
+        </para>
+        <para>
+            <literal>nk2</literal> は<literal>W</literal>の
+            固有値のベクトルです.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+A=diag([-1,-2,-3]);
+sl=syslin('c',A,rand(3,2),rand(2,3));[nk2,W]=hankelsv(sl)
+[Q,M]=pbig(W,nk2(2)-%eps,'c');
+slr=projsl(sl,Q,M);hankelsv(slr)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="balreal">balreal</link>
+            </member>
+            <member>
+                <link linkend="equil">equil</link>
+            </member>
+            <member>
+                <link linkend="equil1">equil1</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

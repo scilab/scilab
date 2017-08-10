@@ -2,11 +2,14 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 //
 //
 // <-- CLI SHELL MODE -->
@@ -63,226 +66,152 @@ end
 M = mlist("unknown");
 if typeof(M) <> "unknown" then bugmes();quit;end
 M
- M  =
- 
- 
- Calling %unknown_p...   
+M  = 
+ Calling %unknown_p...
 M(1)
- 
- Calling %unknown_e...   
+ Calling %unknown_e...
  ans  =
- 
-     []
+    []
 M(1,2)
- 
- Calling %unknown_e...   
+ Calling %unknown_e...
  ans  =
- 
-     []
+    []
 N = M
- N  =
- 
- 
- Calling %unknown_p...   
+ N  = 
+ Calling %unknown_p...
 N(2) = M
- 
- Calling %unknown_i_unknown...   
- N  =
- 
-     []
+ Calling %unknown_i_unknown...
+ N  = 
+    []
 M'
- 
- Calling %unknown_t...   
+ Calling %unknown_t...
  ans  =
- 
-     []
+    []
 M.'
- 
- Calling %unknown_0...   
+ Calling %unknown_0...
  ans  =
- 
-     []
+    []
 M + M
- 
- Calling %unknown_a_unknown...   
+ Calling %unknown_a_unknown...
  ans  =
- 
-     []
+    []
 M - M
- 
- Calling %unknown_s_unknown...   
+ Calling %unknown_s_unknown...
  ans  =
- 
-     []
+    []
 M * M
- 
- Calling %unknown_m_unknown...   
+ Calling %unknown_m_unknown...
  ans  =
- 
-     []
+    []
 M .* M
- 
- Calling %unknown_x_unknown...   
+ Calling %unknown_x_unknown...
  ans  =
- 
-     []
+    []
 M *. M
- 
- Calling %unknown_u_unknown...   
+ Calling %unknown_u_unknown...
  ans  =
- 
-     []
+    []
 M .*. M
- 
- Calling %unknown_k_unknown...   
+ Calling %unknown_k_unknown...
  ans  =
- 
-     []
+    []
 M / M
- 
- Calling %unknown_r_unknown...   
+ Calling %unknown_r_unknown...
  ans  =
- 
-     []
+    []
 M ./ M
- 
- Calling %unknown_d_unknown...   
+ Calling %unknown_d_unknown...
  ans  =
- 
-     []
+    []
 M /. M
- 
- Calling %unknown_v_unknown...   
+ Calling %unknown_v_unknown...
  ans  =
- 
-     []
+    []
 M ./. M
- 
- Calling %unknown_y_unknown...   
+ Calling %unknown_y_unknown...
  ans  =
- 
-     []
+    []
 M \ M
- 
- Calling %unknown_l_unknown...   
+ Calling %unknown_l_unknown...
  ans  =
- 
-     []
+    []
 M .\ M
- 
- Calling %unknown_q_unknown...   
+ Calling %unknown_q_unknown...
  ans  =
- 
-     []
+    []
 M \. M
- 
- Calling %unknown_w_unknown...   
+ Calling %unknown_w_unknown...
  ans  =
- 
-     []
+    []
 M .\. M
- 
- Calling %unknown_z_unknown...   
+ Calling %unknown_z_unknown...
  ans  =
- 
-     []
+    []
 M ^ M
- 
- Calling %unknown_p_unknown...   
+ Calling %unknown_p_unknown...
  ans  =
- 
-     []
+    []
 M ** M
- 
- Calling %unknown_p_unknown...   
+ Calling %unknown_p_unknown...
  ans  =
- 
-     []
+    []
 M .^ M
- 
- Calling %unknown_j_unknown...   
+ Calling %unknown_j_unknown...
  ans  =
- 
-     []
-// M .** M <-- This do not exists in scilab ... Wired ...
+    []
+// M .** M <-- This does not exists in Scilab ... Wired ...
 M:M
- 
- Calling %unknown_b_unknown...   
+ Calling %unknown_b_unknown...
  ans  =
- 
-     []
+    []
 M == M
- 
- Calling %unknown_o_unknown...   
+ Calling %unknown_o_unknown...
  ans  =
- 
-     []
+    []
 M <> M
- 
- Calling %unknown_n_unknown...   
+ Calling %unknown_n_unknown...
  ans  =
- 
-     []
+    []
 M ~= M
- 
- Calling %unknown_n_unknown...   
+ Calling %unknown_n_unknown...
  ans  =
- 
-     []
+    []
 M @= M
- 
- Calling %unknown_n_unknown...   
+ Calling %unknown_n_unknown...
  ans  =
- 
-     []
+    []
 M < M
- 
- Calling %unknown_1_unknown...   
+ Calling %unknown_1_unknown...
  ans  =
- 
-     []
+    []
 M > M
- 
- Calling %unknown_2_unknown...   
+ Calling %unknown_2_unknown...
  ans  =
- 
-     []
+    []
 M <= M
- 
- Calling %unknown_3_unknown...   
+ Calling %unknown_3_unknown...
  ans  =
- 
-     []
+    []
 M >= M
- 
- Calling %unknown_4_unknown...   
+ Calling %unknown_4_unknown...
  ans  =
- 
-     []
+    []
 M | M
- 
- Calling %unknown_g_unknown...   
+ Calling %unknown_g_unknown...
  ans  =
- 
-     []
+    []
 M & M
- 
- Calling %unknown_h_unknown...   
+ Calling %unknown_h_unknown...
  ans  =
- 
-     []
+    []
 ~M
- 
- Calling %unknown_5...   
+ Calling %unknown_5...
  ans  =
- 
-     []
+    []
 @M
- 
- Calling %unknown_5...   
+ Calling %unknown_5...
  ans  =
- 
-     []
+    []
 // Clear all added functions
 for name = overloadingNames
   execstr("clear "+name);

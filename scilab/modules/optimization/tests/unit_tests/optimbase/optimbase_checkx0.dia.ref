@@ -2,11 +2,14 @@
 // Copyright (C) 2008-2009 - INRIA - Michael Baudin
 // Copyright (C) 2011 - DIGITEO - Michael Baudin
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 // <-- CLI SHELL MODE -->
 //
 // gould.nonconvex --
@@ -14,13 +17,13 @@
 // Arguments
 //    x : the point where to compute the cost
 //    index : a flag which states what is to compute
-//    * if index=1, or no index, returns the value of the cost 
+//    * if index=1, or no index, returns the value of the cost
 //      function (default case)
-//    * if index=2, returns the value of the nonlinear inequality 
+//    * if index=2, returns the value of the nonlinear inequality
 //      constraints, as a row array
 //    * if index=3, returns an array which contains
-//      at index #0, the value of the cost function  
-//      at index #1 to the end is the list of the values of the nonlinear 
+//      at index #0, the value of the cost function
+//      at index #1 to the end is the list of the values of the nonlinear
 //      constraints
 //  Discussion:
 //    The problem is to minimize a cost function with 4 non linear constraints.
@@ -42,18 +45,18 @@
 //    Edited by F.A. Lootsma, pp 349-366, 1972
 //
 function [ f , c , index ] = gouldnonconvex ( x , index )
-  f = []
-  c = []
-  if ( index==2 | index==6 ) then
-    f = (x(1) - 10.0 )^3 + ( x(2) - 20.0 ) ^ 3
-  end
-  if ( index==5 | index==6 ) then
-    c1 = x(1) - 13.0
-    c2 = ( x(1) - 5.0 )^2  + (x(2) - 5.0 )^2 - 100.0
-    c3 = -( x(1) - 6.0 )^2 - (x(2) - 5.0 )^2 + 82.81
-    c4 = x(2)
-    c = [c1 c2 c3 c4]
-  end
+    f = []
+    c = []
+    if ( index==2 | index==6 ) then
+        f = (x(1) - 10.0 )^3 + ( x(2) - 20.0 ) ^ 3
+    end
+    if ( index==5 | index==6 ) then
+        c1 = x(1) - 13.0
+        c2 = ( x(1) - 5.0 )^2  + (x(2) - 5.0 )^2 - 100.0
+        c3 = -( x(1) - 6.0 )^2 - (x(2) - 5.0 )^2 + 82.81
+        c4 = x(2)
+        c = [c1 c2 c3 c4]
+    end
 endfunction
 //
 // Test optimbase_checkx0 method

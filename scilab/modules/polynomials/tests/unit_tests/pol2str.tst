@@ -6,7 +6,7 @@
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
-
+warning("off"); // WARNING_EMPTY_OPS
 assert_checkequal(pol2str(%z), "z");
 assert_checkequal(pol2str([%z %z]), ["z", "z"]);
 
@@ -22,7 +22,7 @@ msgerror = msprintf(gettext("%s: Wrong type for input argument #%d: Polynomial e
 assert_checkerror("pol2str(1)", msgerror);
 
 assert_checkequal(pol2str(%i*%z),"%i*z");
-ref = hypermat([1 1 2], ["1+0.8497452*z";"1+0.685731*z"]);
-assert_checktrue(and(pol2str(1+hypermat([1 1 2], [0.8497452;0.6857310])*%z) == ref));
+ref = matrix( ["1+0.8497452*z";"1+0.685731*z"], [1 1 2]);
+assert_checktrue(and(pol2str(1+matrix( [0.8497452;0.6857310], [1 1 2])*%z) == ref));
 
 

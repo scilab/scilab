@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012-2013 - S/E - Sylvestre LEDRU
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -60,7 +63,7 @@ static void init_string(inputString *s)
 /* ==================================================================== */
 static void free_string(inputString *s)
 {
-    if (s->len && s->ptr)
+    if (s->ptr)
     {
         FREE(s->ptr);
         s->ptr = NULL;
@@ -137,13 +140,14 @@ int getProxyValues(char **proxyHost, long *proxyPort, char **proxyUserPwd)
         }
         else
         {
-            *proxyUserPwd = (char *)MALLOC((ulen + 1 + plen + 1) * sizeof(char *));
+            *proxyUserPwd = (char *)MALLOC((ulen + 1 + plen + 1) * sizeof(char));
             sprintf(*proxyUserPwd, "%s:%s", values[3]/*user*/, values[4]/*password*/);
             (*proxyUserPwd)[ulen + 1 + plen] = '\0';
             FREE(values[3]);
         }
 
         FREE(values[4]);
+        FREE(values[0]);
         FREE(values);
     }
     else
@@ -171,8 +175,6 @@ char *downloadFile(char *url, char *dest, char *username, char *password, char *
         Scierror(999, "Failed opening the curl handle.\n");
         return NULL;
     }
-
-    init_string(&buffer);
 
     res = curl_easy_setopt(curl, CURLOPT_ERRORBUFFER, errorBuffer);
     if (res != CURLE_OK)
@@ -249,6 +251,7 @@ char *downloadFile(char *url, char *dest, char *username, char *password, char *
 
     if (destfile == NULL)
     {
+        FREE(destdir);
         return NULL;
     }
 
@@ -277,8 +280,15 @@ char *downloadFile(char *url, char *dest, char *username, char *password, char *
             uplen = uplen + (int)strlen(password);
         }
 
-        userpass = (char *)MALLOC((uplen + 2) * sizeof(char));
+        res = curl_easy_setopt(curl, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
+        if (res != CURLE_OK)
+        {
+            Scierror(999, "Failed to set httpauth type to ANY [%s]\n", errorBuffer);
+            FREE(filename);
+            return NULL;
+        }
 
+        userpass = (char *)MALLOC((uplen + 2) * sizeof(char));
         strcpy(userpass, username);
         strcat(userpass, ":");
         if (password != NULL)
@@ -286,22 +296,15 @@ char *downloadFile(char *url, char *dest, char *username, char *password, char *
             strcat(userpass, password);
         }
 
-        res = curl_easy_setopt(curl, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
-        if (res != CURLE_OK)
-        {
-            FREE(filename);
-            FREE(userpass);
-            Scierror(999, "Failed to set httpauth type to ANY [%s]\n", errorBuffer);
-            return NULL;
-        }
-
         res = curl_easy_setopt(curl, CURLOPT_USERPWD, userpass);
         if (res != CURLE_OK)
         {
-            FREE(filename);
             Scierror(999, _("Failed to set user:pwd [%s]\n"), errorBuffer);
+            FREE(filename);
             return NULL;
         }
+
+        FREE(userpass);
     } /* end authentication section */
 
     {
@@ -318,20 +321,20 @@ char *downloadFile(char *url, char *dest, char *username, char *password, char *
             res = curl_easy_setopt(curl, CURLOPT_PROXY, proxyHost);
             if (res != CURLE_OK)
             {
+                Scierror(999, _("Failed to set proxy host [%s]\n"), errorBuffer);
                 FREE(proxyHost);
                 FREE(proxyUserPwd);
                 FREE(filename);
-                Scierror(999, _("Failed to set proxy host [%s]\n"), errorBuffer);
                 return NULL;
             }
 
             res = curl_easy_setopt(curl, CURLOPT_PROXYPORT, proxyPort);
             if (res != CURLE_OK)
             {
+                Scierror(999, _("Failed to set proxy port [%s]\n"), errorBuffer);
                 FREE(proxyHost);
                 FREE(proxyUserPwd);
                 FREE(filename);
-                Scierror(999, _("Failed to set proxy port [%s]\n"), errorBuffer);
                 return NULL;
             }
             if (proxyUserPwd != NULL)
@@ -339,10 +342,10 @@ char *downloadFile(char *url, char *dest, char *username, char *password, char *
                 res = curl_easy_setopt(curl, CURLOPT_PROXYUSERPWD, proxyUserPwd);
                 if (res != CURLE_OK)
                 {
+                    Scierror(999, _("Failed to set proxy user:password [%s]\n"), errorBuffer);
                     FREE(proxyHost);
                     FREE(proxyUserPwd);
                     FREE(filename);
-                    Scierror(999, _("Failed to set proxy user:password [%s]\n"), errorBuffer);
                     return NULL;
                 }
             }
@@ -355,18 +358,20 @@ char *downloadFile(char *url, char *dest, char *username, char *password, char *
     res = curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writefunc);
     if (res != CURLE_OK)
     {
-        FREE(filename);
         Scierror(999, _("Failed to set write function [%s]\n"), errorBuffer);
+        FREE(filename);
         return NULL;
     }
+
+    init_string(&buffer);
 
     //Get data to be written to the variable
     res = curl_easy_setopt(curl, CURLOPT_WRITEDATA, &buffer);
     if (res != CURLE_OK)
     {
+        Scierror(999, _("Failed to set write data [%s]\n"), errorBuffer);
         FREE(filename);
         free_string(&buffer);
-        Scierror(999, _("Failed to set write data [%s]\n"), errorBuffer);
         return NULL;
     }
 
@@ -374,18 +379,18 @@ char *downloadFile(char *url, char *dest, char *username, char *password, char *
     res = curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1);
     if (res != CURLE_OK)
     {
+        Scierror(999, _("Failed to set 'Follow Location' [%s]\n"), errorBuffer);
         FREE(filename);
         free_string(&buffer);
-        Scierror(999, _("Failed to set 'Follow Location' [%s]\n"), errorBuffer);
         return NULL;
     }
 
     res = curl_easy_perform(curl);
     if (res != 0)
     {
+        Scierror(999, _("Transfer did not complete successfully: %s\n"), errorBuffer);
         FREE(filename);
         free_string(&buffer);
-        Scierror(999, _("Transfer did not complete successfully: %s\n"), errorBuffer);
         return NULL;
     }
 
@@ -393,6 +398,7 @@ char *downloadFile(char *url, char *dest, char *username, char *password, char *
     if (file == NULL)
     {
         Scierror(999, _("Failed opening '%s' for writing.\n"), filename);
+        free_string(&buffer);
         FREE(filename);
         return NULL;
     }

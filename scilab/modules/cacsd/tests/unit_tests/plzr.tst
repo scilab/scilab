@@ -47,7 +47,7 @@ function checkplzr(h,zrs,pls)
     assert_checkequal(ax.children(1).type,"Legend");
 
     // Check stability
-    if dt == "d" then
+    if dt <> "c" then
         assert_checkequal(ax.children(2).type,"Arc");
     else
         assert_checkequal(ax.children(2).type,"Segs");

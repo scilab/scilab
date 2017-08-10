@@ -1,48 +1,70 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2013 - Scilab Enterprises - Antoine ELIAS
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function tbx_build_localization(tbx_name, tbx_path)
+    // tbx_build_localization(name, path)   // deprecated (6.0)
+    // tbx_build_localization(name)         // deprecated (6.0)
+    // tbx_build_localization(path)         // 6.0
+    // tbx_build_localization()             // 6.0  path = pwd()
 
-    rhs = argn(2);
+    fname = "tbx_build_localization"
+    rhs = argn(2)
 
-    if and(rhs <> [1 2]) then
-        error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"tbx_build_localization",1,2));
+    // CHECKING INPUT PARAMETERS
+    // -------------------------
+    if and(rhs <> [0 1 2]) then
+        msg = _("%s: Wrong number of input arguments: %d to %d expected.\n")
+        error(msprintf(msg, fname, 0, 1))
     end
 
-    if type(tbx_name) <> 10 then
-        error(tbx_name(gettext("%s: Wrong type for input argument #%d: A string array expected.\n"),"tbx_build_localization",1));
-    end
+    if rhs==2
+        msg = "%s: %s(name, path) is obsolete. Please use %s(path) instead.\n"
+        warning(msprintf(msg, fname, fname, fname))  // no translation
 
-    if rhs < 2 then
-        tbx_path = pwd();
+    elseif rhs==0
+        tbx_path = pwd()
     else
+        tbx_path = tbx_name
         if type(tbx_path) <> 10 then
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"),"tbx_build_localization",2));
+            msg = _("%s: Argument #%d: Text(s) expected.\n")
+            error(msprintf(msg, fname, rhs))
         end
-
-        if size(tbx_path,"*") <> 1 then
-            error(msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"),"tbx_build_localization",2));
+        tbx_path = tbx_path(1)
+        // May be
+        //  * either the former tbx_build_localization(tbx_name) (until 5.5.2)
+        //  * or the new        tbx_build_localization(tbx_path) (from 6.0.0)
+        if grep(tbx_path,["/" "\"])==[] && ~isdir(tbx_path) then // only name was provided
+            tbx_path = pwd()
         end
-
         if ~isdir(tbx_path) then
-            error(msprintf(gettext("%s: The directory ''%s'' doesn''t exist or is not read accessible.\n"),"tbx_build_localization", tbx_path));
+            msg = _("%s: The directory ''%s'' doesn''t exist or is not read accessible.\n")
+            error(msprintf(msg, fname, tbx_path))
         end
     end
 
-    //forge command
-    localePath = tbx_path + "locales/";
-
+    // Is there a locales dir?
+    //------------------------
+    localePath = pathconvert(tbx_path + "/locales/")
     if isdir(localePath) == %f then
-        error(msprintf(gettext("%s: The directory ''%s'' doesn''t exist or is not read accessible.\n"),"tbx_build_localization",localePath));
+        // No locales is present, nothing to do
+        return
     end
 
-    //find list of .po files
+    // Retrieving the toolbox name
+    // ---------------------------
+    tbx_name = tbx_get_name_from_path(tbx_path)
+
+    // find list of .po files
+    // ----------------------
     poFiles = gsort(findfiles(localePath, "*.po"), "lr", "i");
 
     if getos() == "Windows" then

@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009  - DIGITEO - Antoine ELIAS
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="list_boolean_writing_API" xml:lang="ja">
+    <refnamediv>
+        <refname>論理値を書き込む (Scilabゲートウェイ)</refname>
+        <refpurpose>
+            リスト上に論理値行列を追加する方法.
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <refsection>
+            既存のデータから作成.
+        </refsection>
+        <title>呼び出し手順</title>
+        <para>入力引数プロファイル:</para>
+        <synopsis>SciErr createMatrixOfBooleanInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, const int* _piBool)</synopsis>
+        <para>名前指定変数プロファイル:</para>
+        <synopsis>SciErr createMatrixOfBooleanInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, const int* _piBool)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>_pvCtx</term>
+                <listitem>
+                    <para>
+                        Scilab環境ポインタ, api_scilab.hで提供される"pvApiCtx"を指定.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_iVar</term>
+                <listitem>
+                    <para>
+                        変数を保存するScilabメモリの位置.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_pstName</term>
+                <listitem>
+                    <para>
+                        "名前指定" 関数の場合の変数名.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piParent</term>
+                <listitem>
+                    <para>
+                        新規アイテムの親のアドレス.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_iItemPos</term>
+                <listitem>
+                    <para>
+                        リスト中の新規アイテムの位置.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_iRows</term>
+                <listitem>
+                    <para>
+                        新規変数の行数.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_iCols</term>
+                <listitem>
+                    <para>
+                        新規変数の列数.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piBool</term>
+                <listitem>
+                    <para>
+                        データ配列のアドレス (大きさ: _iRows * _iCols).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>SciErr</term>
+                <listitem>
+                    <para>
+                        エラーメッセージの履歴と最初のエラー番号を保存するエラー構造体.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsynopsisdiv>
+        <refsection>
+            Scilabメモリに直接書き込む.
+        </refsection>
+        <title>呼び出し手順</title>
+        <para>入力引数プロファイル:</para>
+        <synopsis>SciErr allocMatrixOfBooleanInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int** _piBool)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>_pvCtx</term>
+                <listitem>
+                    <para>
+                        Scilab環境ポインタ, api_scilab.hで提供される"pvApiCtx"を指定.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_iVar</term>
+                <listitem>
+                    <para>
+                        変数を保存するScilabメモリの位置.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piParent</term>
+                <listitem>
+                    <para>
+                        新規アイテムの親のアドレス.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_iItemPos</term>
+                <listitem>
+                    <para>
+                        リスト中の新規アイテムの位置.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_iRows</term>
+                <listitem>
+                    <para>
+                        新規変数の行数.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_iCols</term>
+                <listitem>
+                    <para>
+                        新規変数の列数.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piBool</term>
+                <listitem>
+                    <para>
+                        データ配列のアドレスを返す (大きさ: _iRows * _iCols).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>SciErr</term>
+                <listitem>
+                    <para>
+                        エラーメッセージの履歴と最初のエラー番号を保存するエラー構造体.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>このヘルプはリスト中に論理値行列を追加する手順を示します.</para>
+    </refsection>
+    <refsection>
+        <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/list_createlist_api.c-->
+        <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/list_createlist_api.tst-->
+        <!--Lib_name: list_createlist-->
+        <!--Func_list: list_createlist-->
+        <title>ゲートウェイのソース</title>
+        <programlisting role="code_gateway"><![CDATA[
+#include "api_scilab.h"
+int list_createlist(char *fname,void* pvApiCtx)
+{
+	SciErr sciErr;
+	int *piAddr             = NULL;
+	int* piChild            = NULL;
+	double pdblData1[]      = {1,3,5,2,4,6};
+	double pdblData2[]      = {6,4,2,5,3,1};
+	char *pstData[]         = {"may","be","the","with","puffin","you"};
+	short psData[]          = {1,4,2,5,3,6};
+	double pdblPoly1[]      = {1};
+	double pdblPoly2[]      = {-2,-1};
+	double pdblPoly3[]      = {1,2,3};
+	double pdblPoly4[]      = {-4,-3,-2,-1};
+	double pdblPoly5[]      = {1,2,3,4,5};
+	double pdblPoly6[]      = {-6,-5,-4,-3,-2,-1};
+	double *pdblPoly[]      = {pdblPoly1, pdblPoly3, pdblPoly5, pdblPoly2, pdblPoly4, pdblPoly6};
+	int piCoef[]            = {1,3,5,2,4,6};
+	int piNbItemRow[]       = {1,2,1};
+	int piColPos[]          = {8,4,7,2};
+	double pdblSReal[]      = {1,2,3,4};
+	double pdblSImg[]       = {4,3,2,1};
+	int piBool[]            = {1,0,1,0,1,0,1,0,1};
+	double* pdblDataPtr     = NULL;
+	sciErr = createList(pvApiCtx, nbInputArgument(pvApiCtx) + 1, 8, &piAddr);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	sciErr = createComplexMatrixOfDoubleInList(pvApiCtx, nbInputArgument(pvApiCtx) + 1, piAddr, 1, 3, 2, pdblData1, pdblData2);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	sciErr = createMatrixOfStringInList(pvApiCtx, nbInputArgument(pvApiCtx) + 1, piAddr, 2, 2, 3, pstData);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	sciErr = createMatrixOfInteger16InList(pvApiCtx, nbInputArgument(pvApiCtx) + 1, piAddr, 3, 2, 3, psData);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	sciErr = createMatrixOfPolyInList(pvApiCtx, nbInputArgument(pvApiCtx) + 1, piAddr, 4, "x", 3, 2, piCoef, pdblPoly);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	sciErr = createComplexSparseMatrixInList(pvApiCtx, nbInputArgument(pvApiCtx) + 1, piAddr, 5, 3, 10, 4, piNbItemRow, piColPos, pdblSReal, pdblSImg);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	sciErr = createMatrixOfBooleanInList(pvApiCtx, nbInputArgument(pvApiCtx) + 1, piAddr, 6, 3, 3, piBool);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	sciErr = createBooleanSparseMatrixInList(pvApiCtx, nbInputArgument(pvApiCtx) + 1, piAddr, 7, 3, 10, 4, piNbItemRow, piColPos);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	//add list in list
+	sciErr = createListInList(pvApiCtx, nbInputArgument(pvApiCtx) + 1, piAddr, 8, 3, &piChild);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	sciErr = createMatrixOfDoubleInList(pvApiCtx, nbInputArgument(pvApiCtx) + 1, piChild, 1, 3, 2, pdblData1);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	sciErr = createSparseMatrixInList(pvApiCtx, nbInputArgument(pvApiCtx) + 1, piChild, 2, 3, 10, 4, piNbItemRow, piColPos, pdblSReal);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	pdblDataPtr     = (double*)malloc(sizeof(double) * 4);
+	pdblDataPtr[0]  = 1;
+	pdblDataPtr[1]  = 2;
+	pdblDataPtr[2]  = 3;
+	pdblDataPtr[3]  = 4;
+	sciErr = createPointerInList(pvApiCtx, nbInputArgument(pvApiCtx) + 1, piChild, 3, pdblDataPtr);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+	return 0;
+}
+ ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>Scilab テストスクリプト</title>
+        <programlisting role="code_scilab"><![CDATA[
+size_ref    = 8;
+type_ref    = ["constant","string","int16","polynomial", "sparse", "boolean", "boolean sparse", "list"];
+dim_ref     = list([3,2],[2,3],[2,3],[3,2],[3,10],[3,3],[3,10],3);
+l = list_createlist();
+if size(l) <> size_ref then error("failed"), end
+for i = 1 : size_ref
+    if typeof(l(i)) <> type_ref(i) then error("failed"), end
+    if size(l(i)) <> dim_ref(i) then error("failed"), end
+end
+ ]]></programlisting>
+    </refsection>
+</refentry>

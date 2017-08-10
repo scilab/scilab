@@ -5,7 +5,7 @@
         <refpurpose>square-root algorithm</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[p,s,t,l,rt,tt]=srfaur(h,f,g,r0,n,p,s,t,l)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -67,7 +67,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //GENERATE SIGNAL
 x=%pi/10:%pi/10:102.4*%pi;
 rand('seed',0);rand('normal');
@@ -90,7 +90,7 @@ Rt=(Rt+Rt')/2
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="phc">phc</link>

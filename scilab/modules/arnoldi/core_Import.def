@@ -3,13 +3,6 @@ LIBRARY    core.dll
 
 EXPORTS
 ;
-callFunctionFromGateway
-com_
-putlhsvar_
-errorinfo_
-getrhsvar_
-checklhs_
-checkrhs_
 isanan_
 MyHeapAlloc
 MyHeapFree

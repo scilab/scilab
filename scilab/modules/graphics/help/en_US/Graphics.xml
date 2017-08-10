@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" scilab:needs-examples="no" xml:id="Graphics">
@@ -136,20 +139,6 @@
                 </term>
                 <listitem>
                     <para>Level curves of a surface on a 2D plot</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>
-                    <link linkend="fcontour2d">fcontour2d</link>
-                </term>
-                <listitem>
-                    <para>Level curves of a surface defined by a function on a 2D plot</para>
-                    <para>
-                        <emphasis role="bold">Example:</emphasis>
-                    </para>
-                    <para>
-                        <scilab:image>fcontour2d();</scilab:image>
-                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -364,20 +353,6 @@
                     </para>
                     <para>
                         <scilab:image>contour();</scilab:image>
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>
-                    <link linkend="fcontour">fcontour</link>
-                </term>
-                <listitem>
-                    <para>Level curves on a 3D surface defined by a function</para>
-                    <para>
-                        <emphasis role="bold">Example:</emphasis>
-                    </para>
-                    <para>
-                        <scilab:image>fcontour();</scilab:image>
                     </para>
                 </listitem>
             </varlistentry>
@@ -703,14 +678,6 @@
             </varlistentry>
             <varlistentry>
                 <term>
-                    <link linkend="square">square</link>
-                </term>
-                <listitem>
-                    <para>Set scales for isometric plot (change the size of the window)</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>
                     <link linkend="scaling">scaling</link>
                 </term>
                 <listitem>
@@ -809,27 +776,22 @@
         <variablelist>
             <varlistentry>
                 <term>
-                    <link linkend="xset">xset</link>
+                    <link linkend="set">set</link>
                 </term>
                 <listitem>
                     <para>
                         Set values of the graphics context
-                        <warning>
-                            This function is obsolete.
-                        </warning>
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>
-                    <link linkend="xget">xget</link>
+                    <link linkend="get">get</link>
                 </term>
                 <listitem>
                     <para>
-                        Get current values of the graphics context
-                        <warning>
-                            This function is obsolete.
-                        </warning>
+                        Retrieve the value of a property from the handle of a graphic or of an
+                        interactive object.
                     </para>
                 </listitem>
             </varlistentry>
@@ -964,19 +926,6 @@
             </varlistentry>
             <varlistentry>
                 <term>
-                    <link linkend="xclear">xclear</link>
-                </term>
-                <listitem>
-                    <para>
-                        Clear a graphics window
-                        <warning>
-                            Function <function>xclear</function> is obsolete.
-                        </warning>
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>
                     <link linkend="driver">driver</link>
                 </term>
                 <listitem>
@@ -1005,14 +954,6 @@
                 </term>
                 <listitem>
                     <para>Redraw the current graphics window with new boundaries</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>
-                    <link linkend="xpause">xpause</link>
-                </term>
-                <listitem>
-                    <para>Suspend Scilab</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -1156,25 +1097,6 @@
             </varlistentry>
             <varlistentry>
                 <term>
-                    <link linkend="m_circle">m_circle</link>
-                </term>
-                <listitem>
-                    <para>
-                        Plot the complex plane iso-gain contours of y/(1+y)
-                        <warning>
-                            This function is obsolete.
-                        </warning>
-                    </para>
-                    <para>
-                        <emphasis role="bold">Example:</emphasis>
-                    </para>
-                    <para>
-                        <scilab:image>m_circle();</scilab:image>
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>
                     <link linkend="hallchart">hallchart</link>
                 </term>
                 <listitem>
@@ -1284,3 +1206,4 @@
         </variablelist>
     </refsection>
 </refentry>
+

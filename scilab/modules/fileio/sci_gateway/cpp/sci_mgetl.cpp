@@ -3,11 +3,14 @@
  * Copyright (C) 2006 - INRIA - Allan CORNET
  * Copyright (C) 2010 - DIGITEO - Allan CORNET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 /*--------------------------------------------------------------------------*/
@@ -26,24 +29,23 @@ extern "C"
 #include "mopen.h"
 #include "mclose.h"
 #include "expandPathVariable.h"
+#include "freeArrayOfString.h"
 }
 
-using namespace types;
-
 /*--------------------------------------------------------------------------*/
-Function::ReturnValue sci_mgetl(typed_list &in, int _iRetCount, typed_list &out)
+types::Function::ReturnValue sci_mgetl(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    int iFileID                 = 0;
-    int iErr                    = 0;
-    bool bCloseFile             = false;
-    int iLinesExcepted          = -1;
-    int iLinesRead              = -1;
+    int iFileID = 0;
+    int iErr = 0;
+    bool bCloseFile = false;
+    int iLinesExcepted = -1;
+    int iLinesRead = -1;
     wchar_t** wcReadedStrings   = NULL;
 
     if (in.size() < 1 || in.size() > 2)
     {
         Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "mgetl" , 1, 2);
-        return Function::OK;
+        return types::Function::OK;
     }
 
     if (in.size() == 2)
@@ -52,27 +54,27 @@ Function::ReturnValue sci_mgetl(typed_list &in, int _iRetCount, typed_list &out)
         if (in[1]->isDouble() == false)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: An integer value expected.\n"), "mgetl", 2);
-            return Function::Error;
+            return types::Function::Error;
         }
 
-        if (in[1]->getAs<Double>()->isScalar() == false)
+        if (in[1]->getAs<types::Double>()->isScalar() == false)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: An integer value expected.\n"), "mgetl", 2);
-            return Function::Error;
+            return types::Function::Error;
         }
 
-        if (in[1]->getAs<Double>()->get(0) != (int)in[1]->getAs<Double>()->get(0))
+        if (in[1]->getAs<types::Double>()->get(0) != (int)in[1]->getAs<types::Double>()->get(0))
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: An integer value expected.\n"), "mgetl", 2);
-            return Function::Error;
+            return types::Function::Error;
         }
 
-        iLinesExcepted = static_cast<int>(in[1]->getAs<Double>()->get(0));
+        iLinesExcepted = static_cast<int>(in[1]->getAs<types::Double>()->get(0));
     }
 
-    if (in[0]->isDouble() && in[0]->getAs<Double>()->getSize() == 1)
+    if (in[0]->isDouble() && in[0]->getAs<types::Double>()->getSize() == 1)
     {
-        iFileID = static_cast<int>(in[0]->getAs<Double>()->get(0));
+        iFileID = static_cast<int>(in[0]->getAs<types::Double>()->get(0));
     }
     else if (in[0]->isString() && in[0]->getAs<types::String>()->getSize() == 1)
     {
@@ -103,7 +105,8 @@ Function::ReturnValue sci_mgetl(typed_list &in, int _iRetCount, typed_list &out)
             }
 
             FREE(pst);
-            return Function::Error;
+            FREE(expandedFileName);
+            return types::Function::Error;
         }
         FREE(expandedFileName);
         bCloseFile = true;
@@ -112,7 +115,7 @@ Function::ReturnValue sci_mgetl(typed_list &in, int _iRetCount, typed_list &out)
     {
         //Error
         Scierror(999, _("%s: Wrong type for input argument #%d: a String or Integer expected.\n"), "mgetl", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     switch (iFileID)
@@ -131,36 +134,34 @@ Function::ReturnValue sci_mgetl(typed_list &in, int _iRetCount, typed_list &out)
                 return types::Function::Error;
             }
 
-            wcReadedStrings = mgetl(iFileID, iLinesExcepted, &iLinesRead, &iErr);
-
-            switch (iErr)
+            if ((iLinesExcepted > 0) && (iFileID == 5))
             {
-                case MGETL_MEMORY_ALLOCATION_ERROR :
-                    break;
+                iLinesExcepted = 1;
+            }
 
+            iLinesRead = mgetl(iFileID, iLinesExcepted, &wcReadedStrings);
+
+            if (iLinesRead < 0)
+            {
+                break;
             }
         }
     }
 
     if (wcReadedStrings && iLinesRead > 0)
     {
-        String *pS = new String(iLinesRead, 1);
+        types::String *pS = new types::String(iLinesRead, 1);
         pS->set(wcReadedStrings);
         out.push_back(pS);
+        freeArrayOfWideString(wcReadedStrings, iLinesRead);
     }
     else
     {
         out.push_back(types::Double::Empty());
-    }
-
-    if (wcReadedStrings)
-    {
-        for (int i = 0; i < iLinesRead; i++)
+        if (wcReadedStrings)
         {
-            FREE(wcReadedStrings[i]);
+            FREE(wcReadedStrings);
         }
-
-        FREE(wcReadedStrings);
     }
 
     if (bCloseFile)
@@ -168,6 +169,6 @@ Function::ReturnValue sci_mgetl(typed_list &in, int _iRetCount, typed_list &out)
         mclose(iFileID);
     }
 
-    return Function::OK;
+    return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

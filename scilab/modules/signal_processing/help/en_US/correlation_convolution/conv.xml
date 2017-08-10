@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en_US" xml:id="conv">
+    <refnamediv>
+        <refname>conv</refname>
+        <refpurpose>discrete 1-D convolution. </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>C = conv(A,B [,shape])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parameters</title>
+        <variablelist>
+            <varlistentry>
+                <term>A</term>
+                <listitem>
+                    <para>
+                        a real or complex vector.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>B</term>
+                <listitem>
+                    <para>
+                        a real or complex vector.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>shape</term>
+                <listitem>
+                    <para>
+                        an optional character string with possible values:
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <literal>"full"</literal>, <literal>conv</literal>
+                            computes the full convolution. It is the
+                            default value.
+                        </listitem>
+                        <listitem>
+                            <literal>"same"</literal>, <literal>conv</literal>
+                            computes the central part of the convolution of the same
+                            size as <literal>A</literal>.
+                        </listitem>
+                        <listitem>
+                            <literal>"valid"</literal>, <literal>conv</literal>
+                            computes the convolution parts without the zero-padding
+                            of <literal>A</literal>.
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>C</term>
+                <listitem>
+                    <para>
+                        a real or complex vector.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>conv</literal> uses a straightforward formal
+            implementation of the one-dimensional convolution equation in
+            spatial form.
+        </para>
+        <para>
+            <literal>C=conv(A,B [,shape])</literal> computes the
+            one-dimensional convolution of the vectors <literal>A</literal>
+            and <literal>B</literal>:
+        </para>
+        <itemizedlist>
+            <listitem>
+                With <literal>shape=="full"</literal> the
+                dimensions of the result<literal>C</literal> are given by
+                <literal>size(A,'*')+size(B,'*')+1</literal>. The indices of the
+                center element of <literal>B</literal> are defined as
+                <literal>floor((size(B,'*')+1)/2)</literal>.
+            </listitem>
+            <listitem>
+                With <literal>shape=="same"</literal> the
+                dimensions of the result<literal>C</literal> are given by
+                <literal>size(A)</literal>. The indices of the
+                center element of <literal>B</literal> are defined as
+                <literal>floor((size(B,'*')+1)/2)</literal>.
+            </listitem>
+            <listitem>
+                With <literal>shape=="valid"</literal> the dimensions
+                of the result <literal>C</literal> are given by
+                <literal>size(A,'*')-size(B,'*')+1)</literal> if
+                <literal>and(size(A,'*')-size(B,'*'))&gt;=0</literal> else
+                <literal>C</literal> is empty . The indices of the center
+                element of <literal>B</literal> are defined as
+                <literal>1</literal>.
+            </listitem>
+        </itemizedlist>
+        <para>
+            Note that <link linkend="convol">convol</link> can be more efficient for large arrays.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+        A=1:10;
+        B=[1 -1];
+        conv(A,B)
+    ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="convol">convol</link>
+            </member>
+            <member>
+                <link linkend="conv2">conv2</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>Used Functions</title>
+        <para>
+            The conv function is based on the  <link linkend="conv2">conv2</link> builtin.
+        </para>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>Function conv introduced.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

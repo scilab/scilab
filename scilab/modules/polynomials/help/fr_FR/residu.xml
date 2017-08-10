@@ -24,7 +24,7 @@
         <title>Description</title>
         <para>
             <literal>V=residu(P,Q1,Q2)</literal> renvoie la matrice <literal>V</literal> telle que <literal>V(i,j)</literal>
-            est la somme des résidus de la fraction rationnelle 
+            est la somme des résidus de la fraction rationnelle
             <literal>P(i,j)/(Q1(i,j)*Q2(i,j))</literal> calculés aux zéros de <literal>Q1(i,j)</literal>.
         </para>
         <para>
@@ -33,7 +33,7 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 s=poly(0,'s');
 H=[s/(s+1)^2,1/(s+2)];N=numer(H);D=denom(H);
 w=residu(N.*horner(N,-s),D,horner(D,-s));  //N(s) N(-s) / D(s) D(-s)

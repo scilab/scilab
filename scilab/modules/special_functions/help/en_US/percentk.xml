@@ -5,7 +5,7 @@
         <refpurpose>Jacobi's complete elliptic integral</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[K]=%k(m)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -42,14 +42,14 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 m=0.4;
 delip(1,sqrt(m))
 %k(m)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="delip">delip</link>

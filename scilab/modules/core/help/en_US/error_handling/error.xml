@@ -5,7 +5,7 @@
         <refpurpose>error message</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>error(message)
             error(message, n)
             error(n)
@@ -47,16 +47,16 @@
         <para>
             <literal>error(message)</literal> prints the character string contained in
             <literal>message</literal>. The number associated with the error message is
-            10000 
+            10000
         </para>
         <para>
             <literal>error(message,n)</literal> prints the character string contained in
             <literal>message</literal>. The number associated with the error message is
-            given by <literal>n</literal>. This number should be greater than 10000. 
+            given by <literal>n</literal>. This number should be greater than 10000.
         </para>
         <para>
             <literal>error(n)</literal> prints the predefined error message associated with
-            the error number <literal>n</literal>. 
+            the error number <literal>n</literal>.
         </para>
         <para>Some predefined error messages  require a parameter (see
             <link linkend="error_table">error_table</link>). In this case the <literal>pos</literal>
@@ -77,7 +77,7 @@ error(10001, ['A'; 'multi';'line';'error';'message'])
 lasterror()]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="warning">warning</link>

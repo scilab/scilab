@@ -5,7 +5,7 @@
         <refpurpose>Open a message box.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             [btn] = messagebox(msg)
             [btn] = messagebox(msg, msgboxtitle)
@@ -85,7 +85,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Simple example
 messagebox("Single line message")
 

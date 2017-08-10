@@ -27,7 +27,7 @@
         <refpurpose>Finds an equilibrium state of a general dynamical system described by a xcos diagram</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[X,U,Y,XP]=steadycos(scs_m,X,U,Y,Indx,Indu,Indy [,Indxp [,param ] ])</synopsis>
     </refsynopsisdiv>
     <refsection id="Module_steadycos">
@@ -152,7 +152,7 @@ end
         </itemizedlist>
     </refsection>
     <refsection id="SeeAlso_steadycos">
-        <title>See Also</title>
+        <title>See also</title>
         <itemizedlist>
             <listitem>
                 <para>

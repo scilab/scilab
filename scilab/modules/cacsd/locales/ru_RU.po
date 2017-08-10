@@ -8,14 +8,22 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-03-01 14:57+0000\n"
-"Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
+"PO-Revision-Date: 2016-12-06 17:00+0000\n"
+"Last-Translator: Nkolay Parukhin <parukhin@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
-"Language: ru\n"
+"X-Generator: Launchpad (build 18315)\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: Не могу прочитать входной аргумент №%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
+msgstr "%s: Неверный тип входного аргумента №%d: ожидалось целое число.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
@@ -28,6 +36,10 @@ msgstr ""
 "%s: Неверный тип входного аргумента №%d: ожидается вещественный скаляр.\n"
 
 #, c-format
+msgid "%s: Wrong type for argument %d: A real expected.\n"
+msgstr "%s: Неверный тип аргумента %d: ожидался тип real.\n"
+
+#, c-format
 msgid "%s: Wrong values for input arguments #%d and #%d.\n"
 msgstr "%s: Неверные значения входных параметров №%d и №%d.\n"
 
@@ -36,6 +48,14 @@ msgid "%s: Wrong value for input argument #%d: Must be in [%d %d].\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d: должно быть в интервале [%d "
 "%d].\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Ошибка распределения памяти.\n"
+
+#, c-format
+msgid "%s: internal error, info=%d.\n"
+msgstr "%s: внутренняя ошибка, info=%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: A real expected.\n"
@@ -62,10 +82,6 @@ msgid "%s: C and D must have equal number of rows.\n"
 msgstr "%s: C и D должны иметь одинаковое количество строк.\n"
 
 #, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s: Ошибка распределения памяти.\n"
-
-#, c-format
 msgid "%s: NCON must be a scalar.\n"
 msgstr "%s: NCON должен быть скаляром.\n"
 
@@ -82,13 +98,37 @@ msgid "%s: SB10DD exit with info = %d.\n"
 msgstr "%s: SB10DD вышел с info = %d.\n"
 
 #, c-format
-msgid "%s: SB10FD exit with info = %d.\n"
-msgstr "%s: SB10FD вышел с info = %d.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: A matrix of size %dx%d expected.\n"
+msgstr "%s: Неверный размер входного аргумента №%d: ожидалась матрица %dx%d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: A matrix with %d columns expected.\n"
 msgstr ""
-"%s: Неверный тип входного параметра №%d: ожидалось вещественное число.\n"
+"%s: Неверный размер входного аргумента №%d: ожидалась матрица с %d "
+"столбцами.\n"
+
+#, c-format
+msgid "%s: The system has no outputs\n"
+msgstr "%s: Система не имеет выходов\n"
+
+#, c-format
+msgid "%s: The number of samples should be at least %d"
+msgstr "%s: Число  отсчётов должно быть не меньше %d"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d: ожидалось «%s» или «%s».\n"
+
+#, c-format
+msgid "%s: INFO = %d on exit from IB01CD\n"
+msgstr "%s: INFO = %d на выходе из IB01CD\n"
+
+#, c-format
+msgid "%s: SB10FD exit with info = %d.\n"
+msgstr "%s: SB10FD вышел с info = %d.\n"
 
 #, c-format
 msgid "%s: %s must be a scalar.\n"
@@ -121,11 +161,6 @@ msgstr ""
 "матрица.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A square matrix expected.\n"
-msgstr ""
-"%s: Неверный размер входного аргумента №%d: ожидалась квадратная матрица.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong column size for input argument #%d: Same column size of input "
 "argument #%d expected.\n"
@@ -135,8 +170,8 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong row size for input argument #%d: Same row size of input argument "
-"#%d expected.\n"
+"%s: Wrong row size for input argument #%d: Same row size of input argument #"
+"%d expected.\n"
 msgstr ""
 "%s: Неверный размер строки у входного аргумента №%d: ожидался тот же размер "
 "строки, что и у входного аргумента №%d.\n"
@@ -216,12 +251,28 @@ msgid "%s: The matrices A, C and D must have the same order.\n"
 msgstr "%s: Матрицы A, C и D должны быть одного порядка.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: A string expected.\n"
+msgid "%s: Wrong type for argument #%d: string expected.\n"
 msgstr "%s: Неверный тип аргумента №%d: ожидалась строка.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
-msgstr "%s: Неверное значение входного аргумента №%d: ожидалось %s или %s.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Type must be continuous or "
+"discrete.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d: тип должен быть continuous или "
+"discrete.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Method must be schur or sign.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d: метод должен быть schur или "
+"sign.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Method must be schur or invf.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d: метод должен быть schur или "
+"invf.\n"
 
 #, c-format
 msgid "%s: RICCSL exit with info = %d.\n"
@@ -240,10 +291,6 @@ msgid "%s: RICDMF exit with info = %d.\n"
 msgstr "%s: RICDMF вышел с info = %d.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr "%s: Неверный размер входного параметра №%d: ожидался скаляр.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Same column dimension as input "
 "argument #%d expected.\n"
@@ -260,6 +307,70 @@ msgid "%s: DORGQR exit with info = %d.\n"
 msgstr "%s: DORGQR вышел с info = %d.\n"
 
 #, c-format
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d: ожидалось «%s», «%s» или "
+"«%s».\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d: ожидалось '%s', '%s', '%s' или "
+"'%s'.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d: ожидалось целое положительное "
+"число.\n"
+
+#, c-format
+msgid "%s: The order should be at most %d.\n"
+msgstr "%s: Порядок должен быть не более %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Must have at least %d rows expected.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента №%d: должно быть не менее %d строк.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Must have at least %d columns "
+"expected.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента №%d: должно быть не менее %d "
+"столбцов.\n"
+
+#, c-format
+msgid "%s: The number of samples should be at least %d\n"
+msgstr "%s: Количество отсчётов должно быть не менее %d\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Must have %d rows expected.\n"
+msgstr "%s: Неверный размер входного аргумента №%d: должно быть %d строк.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Must have %d columns expected.\n"
+msgstr "%s: Неверный размер входного аргумента №%d: должно быть %d столбцов.\n"
+
+#, c-format
+msgid "%s: INFO = %d ON EXIT FROM IB01BD\n"
+msgstr "%s: INFO = %d на выходе из IB01BD\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: Ожидалась матрица вещественных "
+"чисел.\n"
+
+#, c-format
+msgid "%s: INFO = %d on exit from IB01AD\n"
+msgstr "%s: INFO = %d на выходе из IB01AD\n"
+
+#, c-format
 msgid "%s: ZB03OD exit with info = %d.\n"
 msgstr "%s: ZB03OD вышел с info = %d.\n"
 
@@ -267,36 +378,235 @@ msgstr "%s: ZB03OD вышел с info = %d.\n"
 msgid "%s: ZUNGQR exit with info = %d.\n"
 msgstr "%s: ZUNGQR вышел с info = %d.\n"
 
-msgid "CACSD"
-msgstr "Системы управления"
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr "%s: Неверное количество входных аргументов: Ожидалось от %d до %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d or %d expected.\n"
+msgstr "%s: Неверное количество выходных аргументов: ожидалось %d или %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A single polynom expected.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента №%d: ожидался  одиночный полином.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real polynom expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидался вещественный полином.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A Matrix or polynom expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидалась матрица или полином.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A polynom expected.\n"
+msgstr "%s: Неверный тип входного аргумента №%d: ожидался полином.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A real polynom expected.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d: ожидался  вещественный "
+"полином.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: More or equal to %d expected.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d: ожидалось больше либо равно "
+"%d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: More than degree of input argument #"
+"%d expected.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d: ожидалось больше, чем степень "
+"входного аргумента №%d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar string expected.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента №%d: ожидалась скалярная строка.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: 'all' expected.\n"
+msgstr "%s: Неверное значение входного аргумента №%d: ожидалось 'all'.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Positive value expected.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d: ожидалось положительное "
+"значение.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar or string expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидался скаляр или  строка.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
+
+#, c-format
+msgid "%s: Loop on two orders detected.\n"
+msgstr "%s: Обнаружен цикл по двум порядкам.\n"
+
+#, c-format
+msgid "%s: Impossible to reach required order.\n"
+msgstr "%s: Невозможно достичь требуемого порядка.\n"
+
+#, c-format
+msgid "%s: Failure when looking for the intersection with domains bounds.\n"
+msgstr "%s: Неудача в поиске пересечения с границами интервалов.\n"
+
+#, c-format
+msgid "%s: Too many solutions found.\n"
+msgstr "%s: Найдено слишком много решений.\n"
+
+#, c-format
+msgid ""
+"%s: Impossible to reach required order.\n"
+"   previous order computed solution returned.\n"
+msgstr ""
+"%s: Невозможно достичь требуемого порядка.\n"
+"   возвращено предыдущее решение вычисленного порядка.\n"
+
+#, c-format
+msgid ""
+"%s: Failure when looking for the intersection with domains boundaries.\n"
+"   previous order computed solution returned.\n"
+msgstr ""
+"%s: Неудача при поиске пересечения с границами интервалов.\n"
+"   возвращено предыдущее решение вычисленного порядка.\n"
+
+#, c-format
+msgid "%s: too many solutions found\n"
+msgstr "%s: найдено слишком много решений\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+msgstr "%s: Неверное количество выходных аргументов: ожидалось от %d до %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A matrix expected.\n"
+msgstr "%s: Неверный тип входного аргумента №%d: ожидалась матрица.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr "%s: Неверное количество выходных аргументов: ожидалось %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A matrix or polynom expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидалась матрица или полином.\n"
+
+#, c-format
+msgid "%s: Wrong size for argument: Incompatible dimensions.\n"
+msgstr "%s: Неверный размер аргумента: несовместимые размерности.\n"
+
+#, c-format
+msgid "%s: Division by zero...\n"
+msgstr "%s: Деление на нуль...\n"
+
+msgid "Warning :\n"
+msgstr "Предупреждение:\n"
+
+#, c-format
+msgid "matrix is close to singular or badly scaled. rcond = %g\n"
+msgstr "матрица близка к сингулярной или плохо обуслоовлена. rcond = %g\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A row vector expected.\n"
+msgstr "%s: Неверный размер входного аргумента №%d: ожидался вектор-строка.\n"
+
+#, c-format
+msgid "%s: Incompatible input argument.\n"
+msgstr "%s: Несовместимый входной аргумент.\n"
+
+#, c-format
+msgid "%s: The algorithm has failed.\n"
+msgstr "%s: Алгоритм потерпел неудачу.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A same size as input argument %d "
+"expected.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента №%d: ожидался тот же размер, что и у  "
+"входного аргумента %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A real scalar expected.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента №%d: ожидается вещественный скаляр.\n"
+
+#, c-format
+msgid "%s: Wrong size for argument #%d.\n"
+msgstr "%s: Неверный размер аргумента №%d.\n"
+
+#, c-format
+msgid "%s: Uncontrollable system.\n"
+msgstr "%s: Неуправляемая система.\n"
+
+#, c-format
+msgid "%s: An error occured in '%s'.\n"
+msgstr "%s: В '%s' произошла ошибка.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+msgstr "%s: Неверное количество аргументов: Ожидалось %d или %d.\n"
+
+#, c-format
+msgid "matrix is close to singular or badly scaled. rcond = %s\n"
+msgstr "матрица близка к сингулярной или плохо обусловлена. rcond = %s\n"
+
+msgid "Problem is singular.\n"
+msgstr "Задача является вырожденной.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A not empty matrix expected.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента №%d: ожидалась непустая матрица.\n"
+
+#, c-format
+msgid "%s: attempt to divide by zero.\n"
+msgstr "%s: попытка деления на нуль.\n"
+
+#, c-format
+msgid "%s: ierr %d from qitz (eispack).\n"
+msgstr "%s: ierr %d из qitz (eispack).\n"
+
+msgid "Control Systems - CACSD"
+msgstr "Системы управления - CACSD"
 
 msgid "LQG"
-msgstr "ЛКГ"
+msgstr "LQG"
 
 msgid "Mixed-sensitivity"
-msgstr "смешанная чувствительность"
+msgstr "Смешанная чувствительность"
 
 msgid "PID"
-msgstr "ПИД"
+msgstr "Идентификатор процесса"
 
 msgid "Inverted pendulum"
 msgstr "Перевёрнутый маятник"
 
 msgid "Flat systems"
-msgstr "плоские системы"
+msgstr "Плоские системы"
 
 msgid "Tracking"
-msgstr "Слежение"
+msgstr "Отслеживание"
 
 msgid "Robust control"
 msgstr "Устойчивое управление"
 
 msgid "Press Return to continue ... \n"
-msgstr "Нажмите клавишу Enter для продолжения... \n"
+msgstr "Для продолжения нажмите ввод ... \n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument: Linear dynamical system expected.\n"
+msgid "%s: Wrong type for input argument: Linear dynamical system expected.\n"
 msgstr ""
 "%s: Неверный тип входного параметра: ожидалась линейная динамическая "
 "система.\n"
@@ -329,8 +639,8 @@ msgstr "%s: Входной параметр %d предполагается с �
 #, c-format
 msgid "%s: Needs %s => Use default value %s=%d.\n"
 msgstr ""
-"%s: Необходим параметр %s, поэтому используется значение по умолчанию "
-"%s=%d.\n"
+"%s: Необходим параметр %s, поэтому используется значение по умолчанию %s="
+"%d.\n"
 
 msgid "Autocorrelation Function"
 msgstr "Автокорреляционная функция"
@@ -451,18 +761,6 @@ msgid "%s: Wrong type for input argument #%d: A list expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: Ожидался список.\n"
 
 #, c-format
-msgid "%s: Undefined type '%s'.\n"
-msgstr "%s: Тип «%s» не определён.\n"
-
-#, c-format
-msgid "%s: Some output(s) are undefined.\n"
-msgstr "%s: Не все выходы определены.\n"
-
-#, c-format
-msgid "%s: Some input(s) are undefined.\n"
-msgstr "%s: Не все входы определены.\n"
-
-#, c-format
 msgid "%s: Hybrid system not implemented.\n"
 msgstr "%s: Гибридные системы не реализованы.\n"
 
@@ -483,12 +781,24 @@ msgid "%s: Invalid sizes found during the process.\n"
 msgstr "%s: В процессе найдены неправильные размеры.\n"
 
 #, c-format
+msgid "%s: Undefined type '%s'.\n"
+msgstr "%s: Тип «%s» не определён.\n"
+
+#, c-format
 msgid "%s: No output found.\n"
 msgstr "%s: Выход не найден.\n"
 
 #, c-format
 msgid "%s: No input found.\n"
 msgstr "%s: Вход не найден.\n"
+
+#, c-format
+msgid "%s: Some output(s) are undefined.\n"
+msgstr "%s: Не все выходы определены.\n"
+
+#, c-format
+msgid "%s: Some input(s) are undefined.\n"
+msgstr "%s: Не все входы определены.\n"
 
 msgid "Frequency (Hz)"
 msgstr "Частота (Гц)"
@@ -498,13 +808,6 @@ msgstr "Фаза (градус)"
 
 msgid "Frequency (rad/s)"
 msgstr "Частота (рад/с)"
-
-#, c-format
-msgid ""
-"Wrong type for argument #%d: Rational or State-space matrix expected.\n"
-msgstr ""
-"Неверный тип аргумента №%d: ожидалась матрица пространства-состояний или "
-"рациональных значений.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Evaluation failed.\n"
@@ -523,16 +826,8 @@ msgid "%s: Wrong type for input argument #%d: String array expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидался массив строк.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Linear state space or a transfer "
-"function expected.\n"
-msgstr ""
-"%s: Неверный тип входного параметра №%d: ожидалось линейное пространство "
-"состояний или передаточная функция.\n"
 
 #, c-format
 msgid "%s: Frequencies beyond Nyquist frequency are ignored.\n"
@@ -604,6 +899,14 @@ msgstr ""
 "%s: Неверное количество входных параметров: ожидалось как минимум %d.\n"
 
 #, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Linear state space or a transfer "
+"function expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидалось линейное пространство "
+"состояний или передаточная функция.\n"
+
+#, c-format
 msgid "%s: Wrong type for argument #%d: In continuous time expected.\n"
 msgstr "%s: Неверный тип агрумента %d: Ожидалось непрерывное время.\n"
 
@@ -624,8 +927,7 @@ msgid "%s: Wrong size for argument #%d: %d expected.\n"
 msgstr "%s: Неверный размер аргумента %d: ожидался размер %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Stabilizable system expected.\n"
+msgid "%s: Wrong value for input argument #%d: Stabilizable system expected.\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d: ожидалась стабилизируемая "
 "система.\n"
@@ -648,6 +950,10 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A SIMO expected.\n"
 msgstr "%s: Неверный тип входного аргумента %d: ожидалось SIMO.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Function expected"
+msgstr "%s: Неверный тип входного аргумента №%d: ожидалась функция."
 
 #, c-format
 msgid "%s: Simulation failed before final time is reached.\n"
@@ -673,27 +979,17 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar or string expected.\n"
-msgstr ""
-"%s: Неверный тип входного параметра №%d: ожидался скаляр или строка.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидался скаляр или строка.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: Array of floats or Polynomial "
-"expected.\n"
+"%s: Wrong type for input argument #%d: Array of floats, Polynomial or linear "
+"dynamical system expected.\n"
 msgstr ""
-"%s: Неверный тип входного аргумента №%d: ожидается массив чисел с плавающей "
-"точкой либо многочлен.\n"
 
 #, c-format
 msgid "%s: Input argument #%d ignored.\n"
 msgstr "%s: Входной аргумент №%d игнорирован.\n"
-
-#, c-format
-msgid ""
-"%s: Incompatible input arguments #%d and #%d: Same row dimensions expected.\n"
-msgstr ""
-"%s: Несовместимые входные параметры №%d и  №%d: ожидалось одинаковое "
-"количество строк.\n"
 
 #, c-format
 msgid "%s: Bad conditioning.\n"
@@ -714,6 +1010,12 @@ msgstr "%s: Входной параметр №%d должен быть веще
 #, c-format
 msgid "%s: Input argument #%d must be strictly positive.\n"
 msgstr "%s: Входной параметр №%d должен быть строго положительным числом.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Proper system expected.\n"
+msgstr ""
+"%s: Неверное значения входного параметра №%d: ожидалась правильная система "
+"(D=0).\n"
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d: proper elements expected.\n"
@@ -777,8 +1079,16 @@ msgstr "%s: Кривая усечена до первых %d точек диск
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr "%s: Неверное количество выходных параметров: ожидалось от %d до %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Cell expected.\n"
 msgstr ""
-"%s: Неверное количество выходных параметров: ожидалось от %d до %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: cell entries must have the same type\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of output arguments: At least %d expected.\n"
@@ -803,12 +1113,28 @@ msgstr "Гц"
 msgid "dB"
 msgstr "дБ"
 
+#
+# File: modules/cacsd/macros/formatEvansTip.sci, line: 18
+#, c-format
+msgid ""
+"Pole: %.4g %+.4g i\n"
+"Loop gain: %.4g"
+msgstr ""
+
 msgid "rad/sec"
 msgstr "рад/с"
 
 #, c-format
 msgid "%s: Iteration %s, error=%s.\n"
 msgstr "%s: Итерация %s, ошибка=%s.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Single input, single output system "
+"expected.\n"
+msgstr ""
+"%s: Неверный размер входного параметра №%d: ожидалась система с одним входом "
+"и одним выходом.\n"
 
 #, c-format
 msgid ""
@@ -819,20 +1145,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Linear system expected.\n"
-msgstr ""
-"%s: Неверный тип входного аргумента №%d: ожидалась линейная система.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: Неверное количество входных аргументов: Ожидалось %d.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Single input, single output system "
-"expected.\n"
-msgstr ""
-"%s: Неверный размер входного параметра №%d: ожидалась система с одним входом "
-"и одним выходом.\n"
+msgstr "%s: Неверный тип входного аргумента №%d: ожидалась линейная система.\n"
 
 #, c-format
 msgid "%s: Dimensions of %s are inadequate.\n"
@@ -859,34 +1172,21 @@ msgid "%s: %s is indefinite.\n"
 msgstr "%s: %s не определено.\n"
 
 #, c-format
-msgid ""
-"%s: Controllable & observable mode(s) of %s near the imaginary axis.\n"
+msgid "%s: Controllable & observable mode(s) of %s near the imaginary axis.\n"
 msgstr ""
 "%s: Управляемое и наблюдаемое состояние (состояния)  %s около мнимой оси.\n"
 
 #, c-format
 msgid "%s: All modes of %s are nearly nonminimal so that %s is almost %d.\n"
-msgstr ""
-"%s: Все состояния %s почти неминимальны, так что %s практически %d.\n"
+msgstr "%s: Все состояния %s почти неминимальны, так что %s практически %d.\n"
 
 #, c-format
 msgid "%s: Francis equations not satisfied.\n"
 msgstr "%s: Условия Фрэнсиса не удовлетворены.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr ""
-"%s: Неверное количество входных аргументов: ожидалось как минимум %d.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument: Scalar expected.\n"
 msgstr "%s: Неверный тип входного аргумента: ожидался скаляр.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Proper system expected.\n"
-msgstr ""
-"%s: Неверное значения входного параметра №%d: ожидалась правильная система "
-"(D=0).\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
@@ -941,9 +1241,12 @@ msgid "%s: Riccati solution inaccurate: equation error = %g.\n"
 msgstr "%s: Решение Риккати неточно: ошибка уравнения = %g.\n"
 
 #, c-format
-msgid "%s: An eigenvalue of %s (observer) is close to Imaginary axis.\n"
+msgid ""
+"%s: An eigenvalue of %s (observer) is close to Imaginary axis.\n"
+"The distance to the imaginary axis is less than %g "
 msgstr ""
 "%s: Собственное значение %s (наблюдатель) слишком близко к мнимой оси.\n"
+"Расстояние до мнимой оси менее %g "
 
 msgid "Unfeasible (Hx hamiltonian)"
 msgstr "Невозможный (Hx гамильтониан)"
@@ -953,6 +1256,11 @@ msgstr "Невозможный (Hy гамильтониан)"
 
 msgid "Unfeasible (spectral radius)"
 msgstr "Невозможный (спектральный радиус)"
+
+#, c-format
+msgid "%s: An eigenvalue of %s (observer) is close to Imaginary axis.\n"
+msgstr ""
+"%s: Собственное значение %s (наблюдатель) слишком близко к мнимой оси.\n"
 
 #, c-format
 msgid "%s: %s not full rank.\n"
@@ -1027,26 +1335,49 @@ msgstr "%s: Плохие граничные условия.\n"
 msgid "%s: %s non symmetric.\n"
 msgstr "%s: %s несимметрична.\n"
 
+#, fuzzy, c-format
+msgid "%s: Wrong number of input argument: At least %d expected.\n"
+msgstr ""
+"%s: Неверное количество входных параметров: ожидалось как минимум %d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for argument %d: Real vector expected.\n"
+msgstr "%s: Неверный тип аргумента %d: ожидался вещественный вектор.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: A %d elements array expected.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента №%d: ожидалось не более 3 элементов.\n"
+
+#, fuzzy, c-format
+msgid "%s: incompatible input arguments %d and %d\n"
+msgstr "%s: Несовместимый входной аргумент.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Must be %s.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d: должен быть симметричным.\n"
+
+#, fuzzy, c-format
+msgid "%s: incompatible time domains\n"
+msgstr "%s: Несовместимый входной аргумент.\n"
+
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Linear state space  expected.\n"
+msgid "%s: Wrong type for input argument #%d: Linear state space  expected.\n"
 msgstr ""
 "%s: Неверный тип входного аргумента №%d: Ожидалось линейное пространство "
 "состояний.\n"
 
 #, c-format
 msgid "%s: WARNING: the A matrix has eigenvalues near the imaginary axis.\n"
-msgstr ""
-"%s: ВНИМАНИЕ: матрица A имеет собственные значения около мнимой оси.\n"
+msgstr "%s: ВНИМАНИЕ: матрица A имеет собственные значения около мнимой оси.\n"
 
 #, c-format
 msgid "%s: Controllable & observable mode(s) of A near the imaginary axis"
-msgstr ""
-"%s: Управляемые и наблюдаемые состояния (состояние) A около мнимой оси"
+msgstr "%s: Управляемые и наблюдаемые состояния (состояние) A около мнимой оси"
 
 #, c-format
-msgid ""
-"%s: All modes of A are nearly nonminimal so that || G || is almost 0.\n"
+msgid "%s: All modes of A are nearly nonminimal so that || G || is almost 0.\n"
 msgstr ""
 "%s: Все состояния A почти неминимальны, так что || G || практически 0.\n"
 
@@ -1058,15 +1389,37 @@ msgid "G is all-pass"
 msgstr "G пропускает все частоты"
 
 #, c-format
-msgid "%s: %s is not zero! (set to zero)"
-msgstr "%s: %s не нуль! (Установлено в нуль)"
-
-#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Time domain must be 'c' or 'd'.\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d: временная область должна быть "
 "'c' (непрерывное время) или 'd' (дискретное время).\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента №%d: ожидалась матрица %d на %d.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be symmetric.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d: должен быть симметричным.\n"
+
+#, c-format
+msgid "%s: %s is not zero! (set to zero)"
+msgstr "%s: %s не нуль! (Установлено в нуль)"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d or %d expected."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be a symmetric non negative "
+"matrix.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d: должна быть симметричная не "
+"отрицательная матрица.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: c or d expected.\n"
@@ -1077,8 +1430,20 @@ msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s: Неверное количество выходных параметров: ожидалось %d.\n"
 
 #, c-format
-msgid "%s: Incompatible input arguments #%d and #%d: "
-msgstr "%s: Несовместимые входные параметры №%d и №%d: "
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Number of rows of #%d are "
+"incompatible with #%d argument.\n"
+msgstr ""
+"%s: Несовместимые входные аргументы №%d и №%d: количество  строк у аргумента "
+"№%d не совместима с количеством строк у аргумента №%d.\n"
+
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Number of columns of #%d are "
+"incompatible with #%d argument.\n"
+msgstr ""
+"%s: Несовместимые входные аргументы №%d и №%d: Количество столбцов у "
+"аргумента №%d несовместимо с количеством столбцов у аргумента №%d.\n"
 
 msgid "Amplitude and phase contours of y/(1+y)"
 msgstr "Амплитудная и фазовая кривые y/(1+y)"
@@ -1137,11 +1502,6 @@ msgid "Phase (Deg)"
 msgstr "Фаза (Градусы)"
 
 #, c-format
-msgid "%s: Wrong value of input argument #%d: Proper system expected.\n"
-msgstr ""
-"%s: Неверное значение входного аргумента №%d: ожидалась надлежащая система.\n"
-
-#, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr "%s: Неверное количество входных параметров: ожидалось %d.\n"
 
@@ -1155,6 +1515,14 @@ msgid "Transmission zeros and poles"
 msgstr "Передача нулей и полюсов"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: real matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Arguments %d and %d must have equal dimensions.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Stationary Riccati solver failed.\n"
 msgstr ""
 "%s: Программа решения стационарного уравнения Риккати не достигла успеха.\n"
@@ -1165,6 +1533,10 @@ msgstr ""
 "%s: Неверная размерность (%d) устойчивого подпространства: ожидалась %d.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A positive real expected.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: rational fraction array expected.\n"
 msgstr ""
@@ -1173,16 +1545,11 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Polynomial array expected.\n"
-msgstr ""
-"%s: Неверный тип входного параметра №%d: ожидался массив полиномов.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидался массив полиномов.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
 msgstr "%s: Неверный размер входного параметра №%d: ожидался полином.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
-msgstr "%s: Неверный тип входного аргумента №%d: ожидался скаляр.\n"
 
 #, c-format
 msgid ""
@@ -1190,6 +1557,18 @@ msgid ""
 msgstr ""
 "%s: Неверный тип входного параметра №%d: ожидался массив действительных "
 "чисел с плавающей точкой\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: at most %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A scalar (>= 0) expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong type for input argument %d: Real or complex array expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Cannot find the state dimension.\n"
@@ -1201,6 +1580,11 @@ msgid ""
 msgstr ""
 "%s: Неверный тип входного параметра №%d: ожидалась линейная система в "
 "пространстве состояний.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: a single input system expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d: you must choose rk<nout.\n"
@@ -1274,6 +1658,22 @@ msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
 msgstr ""
 "%s: Неверный размер входного параметра №%d: ожидалась квадратная матрица.\n"
 
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: number of elements of #%d must "
+"match the column dimension of #%d\n"
+msgstr ""
+"%s: Несовместимые входные аргументы №%d и №%d: количество элементов у "
+"аргумента №%d должно совпадать с количеством столбцов у аргумента №%d\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: state space or a descriptor "
+"representation expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d:ожидалось пространство состояний или "
+"представление указателя.\n"
+
 msgid "Denominator :"
 msgstr "Знаменатель :"
 
@@ -1297,6 +1697,22 @@ msgstr ""
 #, c-format
 msgid "%s: Incorrect answer.\n"
 msgstr "%s: Некорректный ответ.\n"
+
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: state dimension of #%d must be "
+"equal to the column dimension of #%d.\n"
+msgstr ""
+"%s: Несовместимые входные аргументы №%d и №%d: размерность состояний "
+"аргумента №%d должна быть равна количеству столбцов у аргумента №%d.\n"
+
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: input dimension of #%d must be "
+"equal to the column dimension of #%d.\n"
+msgstr ""
+"%s: Несовместимые входные аргументы №%d и №%d: входная размерность аргумента "
+"№%d должна быть равна количеству столбцов у аргумента №%d.\n"
 
 #, c-format
 msgid "%s: Residual norm = %g\n"
@@ -1323,3 +1739,69 @@ msgstr "Действительная ось"
 
 msgid "Imaginary Axis"
 msgstr "Мнимая ось"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real or complex array expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: complex zeros  must appear in "
+"complex conjugate pairs.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: complex poles  must appear in "
+"complex conjugate pairs.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"Wrong type for argument %d: A system in state space or transfer matrix form "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument  #%d: Cell expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument  #%d: Cell elements must be numerical "
+"arrays.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A vector or a cell of vectors "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: zero-pole-gain representation "
+"expected.\n"
+msgstr ""

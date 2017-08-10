@@ -36,7 +36,7 @@ function [x,y,typ]=EVTDLY_c(job,arg1,arg2)
             "Block may initially generate an output event before ";
             "       any input event. ""Date of initial output event""";
             "       gives the date of this event. Set a negative value";
-            "       to disable any output event."],..
+            "       to only mind the input events."],..
             ["Delay";"Date of initial output event"],..
             list("vec",1,"vec",1),exprs)
             if ~ok then

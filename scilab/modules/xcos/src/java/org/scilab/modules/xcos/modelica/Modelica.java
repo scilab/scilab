@@ -3,11 +3,14 @@
  * Copyright (C) 2010-2010 - DIGITEO - Clement DAVID <clement.david@scilab.org>
  * Copyright (C) 2011-2011 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -16,7 +19,7 @@ package org.scilab.modules.xcos.modelica;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.StringWriter;
@@ -165,10 +168,10 @@ public final class Modelica {
             }
             buffer.append(newline);
 
-            new FileOutputStream(file).write(strw.toString().getBytes());
-        } catch (FactoryConfigurationError e) {
-            Logger.getLogger(Modelica.class.getName()).severe(e.toString());
-        } catch (IOException e) {
+            try (FileWriter fw = new FileWriter(file)) {
+                fw.append(buffer);
+            }
+        } catch (FactoryConfigurationError | IOException e) {
             Logger.getLogger(Modelica.class.getName()).severe(e.toString());
         }
     }
@@ -198,7 +201,7 @@ public final class Modelica {
     /**
      * Unmerge the model
      *
-     * @param model
+     * @param tree
      *            the model
      * @return the unmerged model
      */

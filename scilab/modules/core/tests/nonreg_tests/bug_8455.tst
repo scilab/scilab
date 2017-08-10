@@ -7,7 +7,7 @@
 //
 // <-- Non-regression test for bug 8455 -->
 //
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 // <-- INTERACTIVE TEST -->
 //
 // <-- Bugzilla URL -->

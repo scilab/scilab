@@ -4,17 +4,20 @@
  * Copyright (C) 2007 - INRIA - Allan CORNET
  * Copyright (C) 2012 - INRIA - Serge STEER
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
+#include <math.h>
 #include "fftw_utilities.h"
 #include "sci_malloc.h"
 #include "callfftw.h"
-#include <math.h>
 int check_1D_symmetry(double *Ar, double *Ai, int nA, int iA);
 int check_2D_symmetry(double *Ar, double *Ai, int mA, int iA, int nA, int jA);
 int check_ND_symmetry(double *Ar, double *Ai, int ndims, int *dims, int *incr);
@@ -167,6 +170,7 @@ fftw_plan GetFFTWPlan(enum Plan_Type type, guru_dim_struct *gdim,
         {
             if ((Sci_Plan->kind = (fftw_r2r_kind *) MALLOC(sizeof(fftw_r2r_kind) * (gdim->rank))) == NULL)
             {
+                FREE(Sci_Plan->gdim.dims);
                 *errflag = 1;
                 return (NULL);
             }
@@ -307,7 +311,10 @@ int CheckKindArray(fftw_r2r_kind *kind1, fftw_r2r_kind *kind2, int rank)
     {
         return (1);
     }
-
+    if ((kind1 == NULL) || (kind2 == NULL))
+    {
+        return (0);
+    }
     for (i = 0; i < rank; i++)
     {
         if (kind1[i]  != kind2[i])
@@ -332,7 +339,7 @@ void ExecuteFFTWPlan(enum Plan_Type type, const fftw_plan p, double *ri, double 
     switch (type)
     {
         case C2C_PLAN:
-                call_fftw_execute_split_dft(p, ri, ii, ro, io);
+            call_fftw_execute_split_dft(p, ri, ii, ro, io);
             break;
         case C2R_PLAN:
             call_fftw_execute_split_dft_c2r(p, ri, ii, ro);
@@ -750,6 +757,8 @@ int check_array_symmetry(double *Ar, double *Ai, guru_dim_struct gdim)
                         {
                             if ((r = check_1D_symmetry(Ar + j, NULL, gdim.dims[0].n, gdim.dims[0].is)) != 1 )
                             {
+                                FREE(dims1);
+                                FREE(incr1);
                                 return r;
                             }
                             j += gdim.howmany_dims[0].is;
@@ -773,6 +782,8 @@ int check_array_symmetry(double *Ar, double *Ai, guru_dim_struct gdim)
                         {
                             if ((r = check_1D_symmetry(Ar + j, Ai + j, gdim.dims[0].n, gdim.dims[0].is)) != 1 )
                             {
+                                FREE(dims1);
+                                FREE(incr1);
                                 return r;
                             }
                             j += gdim.howmany_dims[0].is;
@@ -788,6 +799,7 @@ int check_array_symmetry(double *Ar, double *Ai, guru_dim_struct gdim)
                     }
                 }
                 FREE(dims1);
+                FREE(incr1);
                 return 1;
             case 2:  /* multiple 2D fft */
                 if (Ai == NULL)
@@ -800,6 +812,8 @@ int check_array_symmetry(double *Ar, double *Ai, guru_dim_struct gdim)
                             if ((r = check_2D_symmetry(Ar + j, NULL, gdim.dims[0].n, gdim.dims[0].is,
                                                        gdim.dims[1].n, gdim.dims[1].is)) != 1 )
                             {
+                                FREE(dims1);
+                                FREE(incr1);
                                 return r;
                             }
                             j += gdim.howmany_dims[0].is;
@@ -825,6 +839,8 @@ int check_array_symmetry(double *Ar, double *Ai, guru_dim_struct gdim)
                             if ((r = check_2D_symmetry(Ar + j, Ai + j, gdim.dims[0].n, gdim.dims[0].is,
                                                        gdim.dims[1].n, gdim.dims[1].is)) != 1 )
                             {
+                                FREE(dims1);
+                                FREE(incr1);
                                 return r;
                             }
                             j += gdim.howmany_dims[0].is;
@@ -845,11 +861,15 @@ int check_array_symmetry(double *Ar, double *Ai, guru_dim_struct gdim)
             default: /*general N-D case*/
                 if ((dims = (int *)MALLOC(sizeof(int) * gdim.rank)) == NULL)
                 {
+                    FREE(dims1);
+                    FREE(incr1);
                     return -1;
                 }
                 if ((incr = (int *)MALLOC(sizeof(int) * gdim.rank)) == NULL)
                 {
                     FREE(dims);
+                    FREE(dims1);
+                    FREE(incr1);
                     return -1;
                 }
                 for (i = 0; i < ndims; i++)
@@ -873,8 +893,9 @@ int check_array_symmetry(double *Ar, double *Ai, guru_dim_struct gdim)
                         if (r <= 0)
                         {
                             FREE(dims);
-                            FREE(incr);
                             FREE(dims1);
+                            FREE(incr);
+                            FREE(incr1);
                             return r;
                         }
                         j += gdim.howmany_dims[0].is;
@@ -889,8 +910,9 @@ int check_array_symmetry(double *Ar, double *Ai, guru_dim_struct gdim)
                     }
                 }
                 FREE(dims);
-                FREE(incr);
                 FREE(dims1);
+                FREE(incr);
+                FREE(incr1);
                 return 1;
         }
     }
@@ -1231,6 +1253,7 @@ int complete_array(double *Ar, double *Ai, guru_dim_struct gdim)
                     }
                 }
                 FREE(dims1);
+                FREE(incr1);
                 return 0;
             case 2: /* multiple 2D fft */
                 if (Ai == NULL)
@@ -1269,16 +1292,20 @@ int complete_array(double *Ar, double *Ai, guru_dim_struct gdim)
                     }
                 }
                 FREE(dims1);
+                FREE(incr1);
                 return 0;
             default:  /* multiple ND fft */
                 if ((dims = (int *)MALLOC(sizeof(int) * gdim.rank)) == NULL)
                 {
+                    FREE(dims1);
+                    FREE(incr1);
                     return -1;
                 }
                 if ((incr = (int *)MALLOC(sizeof(int) * gdim.rank)) == NULL)
                 {
                     FREE(dims);
                     FREE(dims1);
+                    FREE(incr1);
                     return -1;
                 }
                 for (i = 0; i < ndims; i++)
@@ -1300,8 +1327,9 @@ int complete_array(double *Ar, double *Ai, guru_dim_struct gdim)
                     if (r < 0)
                     {
                         FREE(dims);
-                        FREE(incr);
                         FREE(dims1);
+                        FREE(incr);
+                        FREE(incr1);
                         return r;
                     }
                     j += gdim.howmany_dims[0].is;
@@ -1314,10 +1342,9 @@ int complete_array(double *Ar, double *Ai, guru_dim_struct gdim)
                         }
                     }
                 }
-
                 FREE(dims);
-                FREE(incr);
                 FREE(dims1);
+                FREE(incr);
                 FREE(incr1);
         }
     }
@@ -1331,9 +1358,23 @@ int complete_array(double *Ar, double *Ai, guru_dim_struct gdim)
 
 int withMKL(void)
 {
-    return (call_fftw_export_wisdom_to_string() == NULL);
-}
-/*--------------------------------------------------------------------------*/
+    static int iWithMKL = -1;
+    if (iWithMKL == -1)
+    {
+        char* str = NULL;
+        iWithMKL = 1;
+        str = call_fftw_export_wisdom_to_string();
+        if (str)
+        {
+            iWithMKL = 0;
+            // According to the FFTW documentation we should free str
+            // string but doing makes Scilab crash!?
+            //free(str);
+        }
+    }
+
+    return iWithMKL;
+}/*--------------------------------------------------------------------------*/
 
 
 

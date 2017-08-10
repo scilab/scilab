@@ -134,6 +134,9 @@
     <ClCompile Include="..\cscope.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\scale_cscope.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\cscopxy.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -1034,7 +1037,7 @@
     <None Include="..\Slicot_Import.def">
       <Filter>Source Files</Filter>
     </None>
-    <None Include="..\core_import.def">
+    <None Include="..\core_Import.def">
       <Filter>Libraries Dependencies\Import</Filter>
     </None>
   </ItemGroup>

@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009  - DIGITEO - Sylvestre LEDRU
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="BooleanManagement_callscilab" xml:lang="en">
@@ -34,13 +37,13 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-/* 
+        <programlisting role="example"><![CDATA[
+/*
  * Write a matrix of boolean into Scilab
- * B=[F F T F; 
+ * B=[F F T F;
  *    F F F T ]
  * Note that it is done column by column
- */ 
+ */
 int B[]={0,0,0,0,1,0,0,1};   /* Declare the matrix */
 int rowB=2, colB=4; /* Size of the matrix */
 char variableNameB[] = "B";
@@ -55,13 +58,13 @@ if(sciErr.iErr)
 
 /*
  * Prior to Scilab 5.2:
- * C2F(cwritebmat)(variableNameB, &rowB, &colB, B, strlen(variableNameB)); 
+ * C2F(cwritebmat)(variableNameB, &rowB, &colB, B, strlen(variableNameB));
  */
 
 printf("Display from Scilab of B:\n");
 SendScilabJob("disp(B);"); /* Display B */
  ]]></programlisting>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 /* Read the previously declared matrix of boolean B */
 int rowB_ = 0, colB_ = 0, lp_ = 0;
 int i = 0, j = 0;
@@ -110,10 +113,10 @@ for(j = 0 ; j < rowB_ ; j++)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="api_scilab">api Scilab</link>
+                <link linkend="api_scilab_legacy">api Scilab</link>
             </member>
             <member>
                 <link linkend="call_scilab">call_scilab</link>

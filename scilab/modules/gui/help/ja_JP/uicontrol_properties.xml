@@ -38,7 +38,7 @@
                 <listitem>
                     <para>Borderオブジェクト.</para>
                     <para>
-                        <literal>frame</literal>スタイルのuicontrolsでのみ使用され, 
+                        <literal>frame</literal>スタイルのuicontrolsでのみ使用され,
                         このオブジェクトは <link linkend="createBorder">createBorder</link>
                         により作成されます.
                     </para>
@@ -57,7 +57,7 @@
                         Scilabインタプリタで評価される命令.
                     </para>
                     <para>
-                        このプロパティは <literal>layer</literal>, 
+                        このプロパティは <literal>layer</literal>,
                         <literal>frame</literal> および <literal>text</literal> スタイルの
                         uicontrolsでは使用されません.
                     </para>
@@ -66,27 +66,25 @@
             <varlistentry>
                 <term>Callback_Type</term>
                 <listitem>
-                    <para>整数</para>
-                    <para>uicontrolに送信されるコールバックの型.</para>
+                    <para>Scalar</para>
+                    <para>The type of callback transmitted to the uicontrol (see example below).</para>
                     <itemizedlist>
                         <listitem>
                             <para>
-                                <literal>-1</literal> none (コールバックはアクティブではありません)
+                                <literal>-1</literal> none (callback desactivated)
                             </para>
                         </listitem>
                         <listitem>
                             <para>
-                                <literal>0</literal> Scilab命令
+                                <literal>0</literal> (by default) or <literal>2</literal> a non prioritary, interruptible Scilab instruction
+                            </para>
+                            <para>
+                                <literal>10</literal> or <literal>12</literal> a prioritary, non-interruptible Scilab instruction
                             </para>
                         </listitem>
                         <listitem>
                             <para>
-                                <literal>1</literal> CまたはFortran関数
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <literal>2</literal> Scilab関数
+                                <literal>1</literal> a C or a Fortran function
                             </para>
                         </listitem>
                     </itemizedlist>
@@ -111,7 +109,7 @@
                 <listitem>
                     <para>{on} | off</para>
                     <para>
-                        uicontrolを有効または無効にします. 
+                        uicontrolを有効または無効にします.
                         このプロパティを<literal>"on"</literal> (デフォルト)に
                         設定した場合, uicontrolは有効となりますが,
                         このプロパティに<literal>"off"</literal>を指定すると
@@ -191,7 +189,7 @@
                 <listitem>
                     <para>文字列</para>
                     <para>
-                        <literal>radiobutton</literal> および <literal>checkbox</literal> 
+                        <literal>radiobutton</literal> および <literal>checkbox</literal>
                         スタイルuicontrolsの場合,
                         本プロパティにより同じグループ全体のuicontrolを
                         管理できるようになります.
@@ -213,7 +211,7 @@
                     <para>文字列.</para>
                     <para>
                         このプロパティは,
-                        (<link linkend="pwd">Scilabワーキングディレクトリ</link>に対する) 
+                        (<link linkend="pwd">Scilabワーキングディレクトリ</link>に対する)
                         相対パス,または,
                         <literal>pushbutton</literal> または <literal>text</literal>
                         uicontrolで使用される
@@ -284,7 +282,7 @@
                         　                        <listitem>
                             <para>
                                 <literal>checkbox</literal> および
-                                <literal>radiobutton</literal> uicontrols: 
+                                <literal>radiobutton</literal> uicontrols:
                                 Max はコントロールがチェックされた際に
                                 とる"Value"プロパティの値です.
                             </para>
@@ -292,7 +290,7 @@
                         <listitem>
                             <para>
                                 <literal>slider</literal> および
-                                <literal>spinner</literal> uicontrols: 
+                                <literal>spinner</literal> uicontrols:
                                 要素の最大値.
                             </para>
                         </listitem>
@@ -324,7 +322,7 @@
                         <listitem>
                             <para>
                                 <literal>checkbox</literal> および <literal>radiobutton</literal>
-                                uicontrols: 
+                                uicontrols:
                                 Minはコントロールのチェックが外された際に
                                 "Value"プロパティがとる値です.
                             </para>
@@ -332,19 +330,19 @@
                         <listitem>
                             <para>
                                 <literal>slider</literal> および
-                                <literal>spinner</literal> uicontrols: 
+                                <literal>spinner</literal> uicontrols:
                                 要素の最小値.
                             </para>
                         </listitem>
                         <listitem>
                             <para>
-                                <literal>listbox</literal> uicontrols: 
+                                <literal>listbox</literal> uicontrols:
                                 (Max-Min)&gt;1 の場合,リストで複数の選択を行うことができます.
                             </para>
                         </listitem>
                         <listitem>
                             <para>
-                                <literal>edit</literal> uicontrols: 
+                                <literal>edit</literal> uicontrols:
                                 (Max-Min)&gt;1 の場合, edit は複数行を選択することができます.
                             </para>
                         </listitem>
@@ -356,7 +354,7 @@
                 <listitem>
                     <para>ハンドル</para>
                     <para>
-                        uicontrolの親のハンドル. 
+                        uicontrolの親のハンドル.
                         このプロパティを変更すると,
                         コントロールをある図から別の図に移動することができます.
                     </para>
@@ -399,18 +397,18 @@
                     <itemizedlist>
                         <listitem>
                             <para>
-                                <literal>pushbutton</literal> uicontrols: 
+                                <literal>pushbutton</literal> uicontrols:
                                 "Relief" プロパティのデフォルト値は "raised"です.
                             </para>
                         </listitem>
                         <listitem>
                             <para>
-                                <literal>edit</literal> uicontrols: 
+                                <literal>edit</literal> uicontrols:
                                 "Relief" プロパティのデフォルト値は "sunken"です.
                             </para>
                         </listitem>
                         <listitem>
-                            <para>他の uicontrols: 
+                            <para>他の uicontrols:
                                 "Relief"プロパティのデフォルト値は "flat"です.
                             </para>
                         </listitem>
@@ -437,7 +435,7 @@
                 <term>SliderStep</term>
                 <listitem>
                     <para>[1,2] 実数ベクトル</para>
-                    <para>[small big], 
+                    <para>[small big],
                         smallステップはスライダをクリックした際,
                         または(スライダにフォーカスがある時に)
                         キーボード矢印をタッピングした際の移動量を表します;
@@ -446,7 +444,7 @@
                         スケールの1/10がデフォルト値となります.
                     </para>
                     <para>
-                        <literal>spinner</literal> uicontrolの場合, 
+                        <literal>spinner</literal> uicontrolの場合,
                         このプロパティの最初の値が固定ステップとして使用されます.
                     </para>
                 </listitem>
@@ -467,9 +465,9 @@
                     </para>
                     <itemizedlist>
                         <listitem>
-                            <para>  
+                            <para>
                                 <literal>pushbutton</literal> または <literal>text</literal> uicontrols
-                                の場合, 
+                                の場合,
                                 テキストを2つの$ (ドル記号)で括ると,そのテキストは
                                 LaTeX式とみなされます.
                                 また,&lt; および &gt; で括ると,MathML式とみなされます.
@@ -477,19 +475,19 @@
                         </listitem>
                         <listitem>
                             <para>
-                                <literal>layer</literal> および <literal>tab</literal> uicontrolsの場合, 
+                                <literal>layer</literal> および <literal>tab</literal> uicontrolsの場合,
                                 この値は選択された子のタグを指定します.
                             </para>
                         </listitem>
                         <listitem>
                             <para>
-                                <literal>image</literal> uicontrolsの場合, 
+                                <literal>image</literal> uicontrolsの場合,
                                 この値は画像ファイルのパスを指定します.
                             </para>
                         </listitem>
                         <listitem>
                             <para>
-                                <literal>table</literal> uicontrolsの場合, 
+                                <literal>table</literal> uicontrolsの場合,
                                 この値は以下のように表データを指定します: <literal>[IGNORED COL1-HEADER...COLN-HEADER;ROW1-HEADER, ROW1COL1-DATA, ROW1COLN-DATA;...;ROWM-HEADER, ROWMCOL1-DATA, ROWMCOLN-DATA]</literal>.
                             </para>
                         </listitem>
@@ -500,9 +498,9 @@
                                 の場合,
                                 <literal>String</literal> プロパティを
                                 以下の形式に一致する行列に設定できます:
-                                <literal>["#color1", "Item1", "#background1", "#foreground1"; "#color2", "Item2", ..., ...]</literal> 
-                                <literal>["icon1", "Item1", "#background1", "#foreground1"; "icon2", "Item2", ..., ...]</literal> 
-                                ただし, <literal>"#color1"</literal>, 
+                                <literal>["#color1", "Item1", "#background1", "#foreground1"; "#color2", "Item2", ..., ...]</literal>
+                                <literal>["icon1", "Item1", "#background1", "#foreground1"; "icon2", "Item2", ..., ...]</literal>
+                                ただし, <literal>"#color1"</literal>,
                                 <literal>"#background1"</literal> および
                                 <literal>"#foreground1"</literal> はHTML形式
                                 <literal>#XXXXXX</literal>です.
@@ -590,7 +588,7 @@
                         <listitem>
                             <para>
                                 <literal>listbox</literal> および
-                                <literal>popupmenu</literal> uicontrols: 
+                                <literal>popupmenu</literal> uicontrols:
                                 値はリスト内で選択されたエントリの添字に対応する
                                 添字のベクトルとなります.
                                 1はリストの最初の要素です.
@@ -599,19 +597,19 @@
                         <listitem>
                             <para>
                                 <literal>slider</literal> および
-                                <literal>spinner</literal> uicontrols: 
+                                <literal>spinner</literal> uicontrols:
                                 要素により指定された値.
                             </para>
                         </listitem>
                         <listitem>
                             <para>
-                                <literal>layer</literal> および <literal>tab</literal> uicontrols: 
+                                <literal>layer</literal> および <literal>tab</literal> uicontrols:
                                 表示された要素の添字.
                             </para>
                         </listitem>
                         <listitem>
                             <para>
-                                <literal>image</literal> uicontrols: 
+                                <literal>image</literal> uicontrols:
                                 値は,画像プロパティ
                                 <literal>[X-Scale Y-Scale X-Shear Y-Shear RotationAngle]</literal>
                                 を設定する際に使用されます.
@@ -645,6 +643,107 @@
             </varlistentry>
         </variablelist>
     </refsection>
+    <refsection>
+        <title>Example for callback_type property</title>
+        <programlisting role="example"><![CDATA[
+function counter_start()
+    // Callback called after a click on start pushbutton
+    global Stop
+    Stop=%f;
+    while %t
+        i = evstr(get("count", "string"));
+        set("count", "string", string(i+1));
+        if Stop then
+            break
+        end
+    end
+endfunction
+
+function counter_stop()
+    // Callback called after a click on stop pushbutton
+    global Stop
+    Stop=%t
+endfunction
+
+function counter_reinit()
+    // Callback called after a click on reset pushbutton
+    Stop=%t
+    set("count", "string", "0");
+endfunction
+
+
+counter_main_fig = figure( ...
+"dockable", "off", ...
+"infobar_visible", "off", ...
+"toolbar_visible", "off", ...
+"toolbar", "none", ...
+"menubar_visible", "off", ...
+"menubar", "none", ...
+"layout", "none", ...
+"visible", "off", ...
+"resize", "off", ...
+"figure_position", [0 0], ...
+"axes_size", [400, 150], ...
+"figure_name", "Counter", ...
+"layout", "gridbag", ...
+"tag", "counter_main_figure");
+
+
+// Counter frame
+counter_frame = uicontrol(counter_main_fig, ...
+"layout", "gridbag", ...
+"style", "frame", ...
+"constraints", createConstraints("gridbag", [1, 1, 1, 1], [1, 0.5], "both"));
+
+uicontrol(counter_frame, ...
+"style", "text", ...
+"string", "Counter : ", ...
+"constraints", createConstraints("gridbag", [1, 1, 1, 1], [0.5, 1], "horizontal", "center"), ...
+"margins", [5 5 5 5], ...
+"horizontalAlignment", "center");
+
+uicontrol(counter_frame, ...
+"style", "text", ...
+"string", "0", ...
+"constraints", createConstraints("gridbag", [2, 1, 1, 1], [1, 1], "horizontal", "center"), ...
+"tag", "count", ...
+"margins", [5 5 5 5]);
+
+// Buttons frame
+buttons_frame = uicontrol(counter_main_fig, ...
+"layout", "gridbag", ...
+"style", "frame", ...
+"constraints", createConstraints("gridbag", [1, 2, 1, 1], [1, 1], "both"));
+
+// The associated callback needs to be interruptible (when clicking on stop or reset for example)
+uicontrol("parent", buttons_frame, ...
+"Style"     , "pushbutton", ...
+"String"    , "Start", ...
+"callback"  , "counter_start()", ...
+"margins", [5 5 5 5], ...
+"constraints", createConstraints("gridbag", [1, 1, 1, 1], [1, 1], "horizontal", "center"));
+
+// The associated callback needs to have priority in order to interrupt the current callback (in other words to stop the counter)
+uicontrol("parent", buttons_frame, ...
+"Style"     , "pushbutton", ...
+"String"    , "Stop", ...
+"callback"  , "counter_stop()", ...
+"callback_type", 10, ...
+"constraints", createConstraints("gridbag", [2, 1, 1, 1], [1, 1], "horizontal", "center"), ...
+"margins", [5 5 5 5]);
+
+// The same for the callback which reset the counter: it must have the priority over the callback which has started the counter
+uicontrol("parent", buttons_frame, ...
+"Style"     , "pushbutton", ...
+"String"    , "Reset", ...
+"callback"  , "counter_reinit()", ...
+"callback_type", 10, ...
+"constraints", createConstraints("gridbag", [3, 1, 1, 1], [1, 1], "horizontal", "center"), ...
+"margins", [5 5 5 5]);
+
+counter_main_fig.visible = "on";
+ ]]></programlisting>
+    </refsection>
     <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
@@ -662,6 +761,14 @@
     <refsection>
         <title>履歴</title>
         <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revremark>
+                    <para>
+                        By default, callback_type property is now interruptible but non prioritary.
+                    </para>
+                </revremark>
+            </revision>
             <revision>
                 <revnumber>5.5.0</revnumber>
                 <revremark>

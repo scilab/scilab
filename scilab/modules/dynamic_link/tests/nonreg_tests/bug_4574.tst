@@ -18,10 +18,8 @@
 ilib_verbose(0);
 chdir(TMPDIR);
 
-i=['#define __USE_DEPRECATED_STACK_FUNCTIONS__'
-   '#include ""stack-c.h""'
-   '#include ""stackTypeVariable.h""'
-   'int intfun1(char *fname)' 
+i=['#include ""api_scilab.h""'
+   'int intfun1(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt opt, int nout, scilabVar* out)'
    '{'
    '  return 0;'
    '}'];
@@ -30,10 +28,8 @@ mputl(i,'intfun1.c');
 ilib_build('foo',['scifun1','intfun1'],'intfun1.c',[]);
 exec loader.sce;
 
-i=['#define __USE_DEPRECATED_STACK_FUNCTIONS__'
-   '#include ""stack-c.h""'
-   '#include ""stackTypeVariable.h""'
-   'int intfun1(char *fname)' 
+i=['#include ""api_scilab.h""'
+   'int intfun1(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt opt, int nout, scilabVar* out)'
    '{'
    '  return 1;'
    '}'];

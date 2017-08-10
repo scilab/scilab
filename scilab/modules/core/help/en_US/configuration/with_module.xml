@@ -7,7 +7,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>r = with_module(module_name)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -37,7 +37,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 withXML = with_module("xml");
 if withXML == %t then
    disp("XML module enabled");
@@ -46,9 +46,9 @@ else
 end
  ]]></programlisting>
     </refsection>
-    
+
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="getmodules">getmodules</link>

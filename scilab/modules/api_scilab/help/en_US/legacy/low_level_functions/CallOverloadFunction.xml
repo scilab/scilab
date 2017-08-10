@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="CallOverloadFunction">
+    <refnamediv>
+        <refname>CallOverloadFunction</refname>
+        <refpurpose>
+            a C gateway function uses to call overload function or macro
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>CallOverloadFunction(_iVar)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>iVar</term>
+                <listitem>
+                    <para>
+                        Specifies which input argument will be used to create
+                        the name of overload function/macro
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            a C gateway function uses to call overload function or macro
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <para>This example returns the size:</para>
+        <itemizedlist>
+            <listitem>
+                <para>returns the size of input argument</para>
+            </listitem>
+            <listitem>
+                <para>if input argument is a string returns the length</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection>
+        <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/calloverloadfunction_api.c-->
+        <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/calloverloadfunction_api.tst-->
+        <!--Lib_name: calloverloadfunction-->
+        <!--Func_list: callOverload-->
+        <title>Gateway Source</title>
+        <programlisting role="code_gateway"><![CDATA[
+int callOverload(char *fname,void* pvApiCtx)
+{
+    CheckRhs(1, 1);
+    CheckLhs(0, 1);
+
+    CallOverloadFunction(1);
+    return 0;
+}
+ ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>Scilab test script</title>
+        <programlisting role="code_scilab"><![CDATA[
+function x = %c_getSize(a)
+    x = length(a);
+endfunction
+
+function x = %s_getSize(a)
+    x = size(a);
+endfunction
+
+
+a = [1,2,3,4];
+a_ref = [2,2];
+assert_checkequal(getSize(a) == a_ref);
+
+b = ["May","the","puffin";"be","with","you"];
+b_ref = [3,3,6;2,4,3];
+assert_checkequal(getSize(b) == b_ref);
+
+ ]]></programlisting>
+    </refsection>
+</refentry>

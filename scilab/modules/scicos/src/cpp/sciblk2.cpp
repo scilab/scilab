@@ -32,7 +32,6 @@
 #include "list.hxx"
 #include "double.hxx"
 #include "function.hxx"
-#include "execvisitor.hxx"
 
 extern "C"
 {
@@ -83,11 +82,19 @@ void sciblk2(int* flag, int* nevprt, double* t, double xd[], double x[], int* nx
         if (!vec2var(std::vector<double>(z, z + *nz), Z))
         {
             setErrAndFree(-1, out);
+            delete in[0];
+            delete in[1];
+            delete in[2];
+            delete in[3];
             return;
         }
         if (!Z->isDouble())
         {
             setErrAndFree(-1, out);
+            delete in[0];
+            delete in[1];
+            delete in[2];
+            delete in[3];
             return;
         }
         //types::Double* Z = new types::Double(*nz, 1);
@@ -118,13 +125,12 @@ void sciblk2(int* flag, int* nevprt, double* t, double xd[], double x[], int* nx
     /***********************
     * Call Scilab function *
     ***********************/
-    ast::ExecVisitor exec;
     types::Callable* pCall = static_cast<types::Callable*>(scsptr);
 
     try
     {
         types::optional_list opt;
-        if (pCall->call(in, opt, 5, out, &exec) != types::Function::OK)
+        if (pCall->call(in, opt, 5, out) != types::Function::OK)
         {
             setErrAndFree(-1, out);
             return;
@@ -136,7 +142,7 @@ void sciblk2(int* flag, int* nevprt, double* t, double xd[], double x[], int* nx
             return;
         }
     }
-    catch (ast::ScilabMessage& /*sm*/)
+    catch (const ast::InternalError& /*ie*/)
     {
         setErrAndFree(-1, out);
         return;

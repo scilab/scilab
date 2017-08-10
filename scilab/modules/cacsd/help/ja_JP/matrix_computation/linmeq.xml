@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="linmeq">
+    <refnamediv>
+        <refname>linmeq</refname>
+        <refpurpose>シルベスタおよびリアプノフ方程式ソルバー</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[X(,sep)] = linmeq(task,A,(B,)C,flag,trans(,schur))</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>task</term>
+                <listitem>
+                    <para>方程式の型を定義する整数オプション:</para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>=1</term>
+                            <listitem>
+                                <para> シルベスタ方程式(1a) または (1b)を解きます ;</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>=2</term>
+                            <listitem>
+                                <para> リアプノフ方程式(2a) または (2b)を解きます;</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>=3</term>
+                            <listitem>
+                                <para>コレスキー分解 op(X) リアプノフ方程式 (3a) または (3b)を解きます.</para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>A</term>
+                <listitem>
+                    <para>実数行列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>B</term>
+                <listitem>
+                    <para>実数行列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>C</term>
+                <listitem>
+                    <para>実数行列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flag</term>
+                <listitem>
+                    <para>(オプション) オプションを含む長さ3または2の整数ベクトル.</para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>task</term>
+                            <listitem>
+                                <para>= 1 : flag の長さは3です</para>
+                                <variablelist>
+                                    <varlistentry>
+                                        <term>flag(1)</term>
+                                        <listitem>
+                                            <para>= 0 : 連続時間方程式 (1a)を解きます; そうでない場合,
+                                                離散時間方程式 (1b)を解きます.
+                                            </para>
+                                        </listitem>
+                                    </varlistentry>
+                                    <varlistentry>
+                                        <term>flag(2)  </term>
+                                        <listitem>
+                                            <para>= 1 : A は (準) 上三角行列です;</para>
+                                        </listitem>
+                                    </varlistentry>
+                                    <varlistentry>
+                                        <term>flag(2)  </term>
+                                        <listitem>
+                                            <para>= 2 : A は上ヘッセンベルグ行列です;</para>
+                                        </listitem>
+                                    </varlistentry>
+                                    <varlistentry>
+                                        <term>それ以外</term>
+                                        <listitem>
+                                            <para>A は一般形式です.</para>
+                                        </listitem>
+                                    </varlistentry>
+                                    <varlistentry>
+                                        <term>flag(3)  </term>
+                                        <listitem>
+                                            <para>= 1 : B は準上三角行列です;</para>
+                                        </listitem>
+                                    </varlistentry>
+                                    <varlistentry>
+                                        <term>flag(3)  </term>
+                                        <listitem>
+                                            <para>= 2 : B は上ヘッセンベルグ行列です;</para>
+                                        </listitem>
+                                    </varlistentry>
+                                    <varlistentry>
+                                        <term>それ以外,  </term>
+                                        <listitem>
+                                            <para>B は一般形式です.</para>
+                                        </listitem>
+                                    </varlistentry>
+                                </variablelist>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>task</term>
+                            <listitem>
+                                <para>= 2 : flag の長さは2です</para>
+                                <variablelist>
+                                    <varlistentry>
+                                        <term>flag(1)</term>
+                                        <listitem>
+                                            <para>
+                                                0の場合, 連続時間方程式 (2a)を解きます; そうでない場合,
+                                                離散時間方程式 (2b)を解きます.
+                                            </para>
+                                        </listitem>
+                                    </varlistentry>
+                                    <varlistentry>
+                                        <term>flag(2) </term>
+                                        <listitem>
+                                            <para>= 1 : A は (準) 上三角行列,　それ以外の場合,
+                                                A は一般形式です.
+                                            </para>
+                                        </listitem>
+                                    </varlistentry>
+                                </variablelist>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>task</term>
+                            <listitem>
+                                <para>= 3 : flag hの長さは2です</para>
+                                <variablelist>
+                                    <varlistentry>
+                                        <term>flag(1)  </term>
+                                        <listitem>
+                                            <para>= 0 :
+                                                連続時間方程式 (3a)を解きます; そうでない場合,
+                                                離散時間方程式 (3b)を解きます.
+                                            </para>
+                                        </listitem>
+                                    </varlistentry>
+                                    <varlistentry>
+                                        <term>flag(2)  </term>
+                                        <listitem>
+                                            <para>= 1 :
+                                                A は (準) 上三角行列,　それ以外の場合,
+                                                A は一般形式です.
+                                            </para>
+                                        </listitem>
+                                    </varlistentry>
+                                </variablelist>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                    <para>
+                        デフォルト:    flag(1) = 0, flag(2) = 0 (, flag(3) = 0).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>trans</term>
+                <listitem>
+                    <para>(オプション) 転置オプションを指定する整数.</para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>0 : op(M) = Mとして方程式 (1) - (3) を解きます.</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>1 : op(M) = M' として方程式 (1) - (3) を解きます.</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>2 : op(A) = A';  op(B) = B; として方程式 (1) を解きます.</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>3 : op(A) = A;  op(B) = B'; として方程式 (1) を解きます.</para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                    <para>
+                        デフォルト:    trans = 0.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>schur</term>
+                <listitem>
+                    <para>(オプション)
+                        Hessenberg-Schur法またはSchur法のどちらを
+                        使用するかを指定する整数.
+                        task = 1 で使用可能.
+                    </para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>= 1 : Hessenberg-Schur 法 </term>
+                            <listitem>
+                                <para>(1個の行列がSchur形式に縮減されます).</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>= 2 : Schur 法</term>
+                            <listitem>
+                                <para>(2個の行列がSchur形式に縮減されます).</para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                    <para>
+                        デフォルト:    schur = 1.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>X</term>
+                <listitem>
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sep</term>
+                <listitem>
+                    <para>(オプション)
+                        (2.a)の場合 Sep(op(A),-op(A)'),
+                        (2.b)の場合 Sepd(A,A') の推定器.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            linmeq  関数は,
+            SLICOT ルーチンSB04MD, SB04ND, SB04PD, SB04QD,
+            SB04RD, SB03MD, および SB03ODを用いて
+            シルベスターおよびリアプノフ方程式を解きます.
+        </para>
+        <programlisting role=""><![CDATA[
+    [X] = linmeq(1,A,B,C,flag,trans,schur)
+[X,sep] = linmeq(2,A,C,flag,trans)
+    [X] = linmeq(2,A,C,flag,trans)
+    [X] = linmeq(3,A,C,flag,trans)
+ ]]></programlisting>
+        <para>
+            linmeq は種々のシルベスタおよびリアプノフ行列方程式を解きます:
+        </para>
+        <programlisting role=""><![CDATA[
+op(A)*X + X*op(B) = C,                           (1a)
+op(A)*X*op(B) + X = C,                           (1b)
+op(A)'*X + X*op(A) = C,                          (2a)
+op(A)'*X*op(A) - X = C,                          (2b)
+op(A)'*(op(X)'*op(X)) + (op(X)'*op(X))*op(A) =
+                      -  op(C)'*op(C),           (3a)
+op(A)'*(op(X)'*op(X))*op(A) - op(X)'*op(X) =
+                            - op(C)'*op(C),      (3b)
+ ]]></programlisting>
+        <para>
+            ただし op(M) = M, または M'です.
+        </para>
+    </refsection>
+    <refsection>
+        <title>コメント</title>
+        <variablelist>
+            <varlistentry>
+                <term>1.</term>
+                <listitem>
+                    <para> (1a) または (1b)の場合でschur = 1の時,
+                        Hessenberg-Schur法が使用され,1個の行列は
+                        ヘッセンベルク形式,
+                        その他の1個の行列は実数Schur形式に縮減されます.
+                        その他の場合,
+                        行列は両方共実数Schur形式に縮減されます.
+                        1個または両方の行列がすでにSchur/Hessenberg形式に縮減されている場合,
+                        flag(2) およびflag(3)でこのことを指定することができます.
+                        一般的な行列の場合,Hessenberg-Schur法は
+                        Schur法よりもはるかに効率的です.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>2.</term>
+                <listitem>
+                    <para>方程式 (2a) または (2b)において, 行列 C は対称と仮定されます.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>3.</term>
+                <listitem>
+                    <para>方程式 (3a) または (3b)において, 行列 A はそれぞれ安定または
+                        収束性を有する必要があります.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>4.</term>
+                <listitem>
+                    <para>方程式 (3a) または (3b)の場合, 計算される行列 X は
+                        解のコレスキー分解です, すなわち, 実際の解は op(X)'*op(X),
+                        ただし X は上三角行列です.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <para>
+            V. Sima, Katholieke Univ. Leuven, Belgium, May 1999, May, Sep. 2000. V. Sima, University of Bucharest, Romania, May 2000.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+//(1a)
+n=40;m=30;
+A=rand(n,n);C=rand(n,m);B=rand(m,m);
+X = linmeq(1,A,B,C);
+norm(A*X+X*B-C,1)
+//(1b)
+flag=[1,0,0]
+X = linmeq(1,A,B,C,flag);
+norm(A*X*B+X-C,1)
+//(2a)
+A=rand(n,n);C=rand(A);C=C+C';
+X = linmeq(2,A,C);
+norm(A'*X + X*A -C,1)
+//(2b)
+X = linmeq(2,A,C,[1 0]);
+norm(A'*X*A -X-C,1)
+//(3a)
+A=rand(n,n);
+A=A-(max(real(spec(A)))+1)*eye(); //shift eigenvalues
+C=rand(A);
+X=linmeq(3,A,C);
+norm(A'*X'*X+X'*X*A +C'*C,1)
+//(3b)
+A = [-0.02, 0.02,-0.10, 0.02,-0.03, 0.12;
+      0.02, 0.14, 0.12,-0.10,-0.02,-0.14;
+     -0.10, 0.12, 0.05, 0.03,-0.04,-0.04;
+      0.02,-0.10, 0.03,-0.06, 0.08, 0.11;
+     -0.03,-0.02,-0.04, 0.08, 0.14,-0.07;
+      0.12,-0.14,-0.04, 0.11,-0.07, 0.04]
+C=rand(A);
+X=linmeq(3,A,C,[1 0]);
+norm(A'*X'*X*A - X'*X +C'*C,1)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="sylv">sylv</link>
+            </member>
+            <member>
+                <link linkend="lyap">lyap</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

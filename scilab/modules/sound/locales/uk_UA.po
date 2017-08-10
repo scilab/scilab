@@ -9,36 +9,21 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-03-29 18:25+0000\n"
+"PO-Revision-Date: 2016-02-12 11:11+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
+"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
-"Language: uk\n"
+"X-Generator: Launchpad (build 18315)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: не вдалося прочитати вхідний параметр №%d.\n"
 
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
-"«string».\n"
-
-#, c-format
-msgid "%s: An error occurred: %s\n"
-msgstr "%s: сталася помилка: %s\n"
-
 msgid "Cannot play file."
 msgstr "Не вдалося відтворити файл."
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr ""
-"%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -53,16 +38,16 @@ msgid "Scilab sound module not installed.\n"
 msgstr "Модуль роботи зі звуком (sound) Scilab не встановлено.\n"
 
 msgid "Sound file handling"
-msgstr "Обробка файла звукових даних"
+msgstr "Обробка звукового файла"
 
 msgid "FFT on a wav file"
 msgstr "ШПФ для файла wav"
 
 msgid "Fourier analysis of 0.5 seconds of sound parameters."
-msgstr "Розклад Фур’є 0,5 секунди звукових параметрів."
+msgstr "Аналіз Фур’є 0,5 секунд звукових параметрів."
 
 msgid "A complete picture of the sound."
-msgstr "Повний образ звуку."
+msgstr "Повна картина звукових даних."
 
 msgid "see 'mapsound' function"
 msgstr "див. функцію «mapsound»"
@@ -124,8 +109,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments.\n"
@@ -212,11 +196,10 @@ msgid "%s: An error occurred: %s is not supported.\n"
 msgstr "%s: сталася помилка: %s не підтримується.\n"
 
 #, c-format
-msgid ""
-"%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
+msgid "%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
 msgstr ""
-"%s: сталася помилка: некоректний формат файла. Помилка читання фрагмента "
-"<%s>.\n"
+"%s: сталася помилка: некоректний формат файла. Помилка читання фрагмента <"
+"%s>.\n"
 
 msgid "Invalid .wav file: found data before format information."
 msgstr ""

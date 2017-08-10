@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="equal" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="equal" xml:lang="pt">
     <refnamediv>
         <refname>equal</refname>
         <refpurpose>(=) atribuição ou comparação, sinal de igualdade</refpurpose>
@@ -18,7 +18,7 @@
                             <para>
                                 <literal>a=expr</literal> onde <literal>a</literal> é um
                                 nome de variável e <literal>expr</literal> uma expressão do
-                                Scilab cuja avaliação conduz a um único resultado. 
+                                Scilab cuja avaliação conduz a um único resultado.
                             </para>
                         </listitem>
                         <listitem>
@@ -76,7 +76,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 a = sin(3.2)
 M = [2.1,3.3,8.5;7.6,6.7,6.9;0,6.3,8.8];
 [u,s] = schur(M)

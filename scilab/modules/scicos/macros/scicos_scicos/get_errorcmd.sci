@@ -25,7 +25,7 @@ function cmd=get_errorcmd(path,scs_m_in,title_err,mess_err)
     //** to select/hilite and display error messages for block
     //** defined by his main scs_m path.
     //** If the block is included in a super block, the editor
-    //** will open the correspondig windows by the use of the
+    //** will open the corresponding windows by the use of the
     //** scicos global variable %diagram_path_objective and
     //** %scicos_navig.
     //**

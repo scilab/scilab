@@ -2,8 +2,6 @@ LIBRARY    core.dll
 
 
 EXPORTS
-iop_
-com_
 freeArrayOfString
 MyHeapAlloc
 MyHeapFree

@@ -1,100 +1,94 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="macr2tree">
-    
     <refnamediv>
-        
         <refname>macr2tree</refname>
-        
         <refpurpose>ツリー変換用の関数</refpurpose>
-        
     </refnamediv>
-    
     <refsynopsisdiv>
-        
         <title>呼び出し手順</title>
-        
-        <synopsis>t=macr2tree(function-name)</synopsis>
-        
+        <synopsis>p = macr2tree(function)</synopsis>
     </refsynopsisdiv>
-    
     <refsection>
-        
         <title>引数</title>
-        
         <variablelist>
-            
             <varlistentry>
-                
-                <term>function-name</term>
-                
+                <term>function</term>
                 <listitem>
-                    
-                    <para>cilabマクロ</para>
-                    
+                    <para>handle of a Scilab macro (not its name as a string)</para>
                 </listitem>
-                
             </varlistentry>
-            
             <varlistentry>
-                
-                <term>t</term>
-                
+                <term>p</term>
                 <listitem>
-                    
-                    <para>Scilab "ツリー"</para>
-                    
+                    <para>List of type <literal>program</literal> with the fields
+                    <literal>p.name</literal>, <literal>p.nblines</literal>,
+                    <literal>p.inputs</literal>, <literal>p.outputs</literal>, and
+                    <literal>p.statements</literal>. The 3 last ones are nested lists
+                    describing the internal code of the <literal>function</literal>.
+                    </para>
                 </listitem>
-                
             </varlistentry>
-            
         </variablelist>
-        
     </refsection>
-    
     <refsection>
-        
         <title>説明</title>
-        
         <para>
-            
             このプリミティブは, コンパイル済みの Scilab　関数<literal>function-name</literal>
-            
             を関数を内部表現にコード化したツリー (鱗状のtlists)に変換します.
-            
-            <literal>tree2code</literal>と共に使用します.
-            
+            <literal>tree2code()</literal>と共に使用します.
         </para>
-        
     </refsection>
-    
     <refsection>
-        
         <title>例</title>
-        
-        <programlisting role="example"><![CDATA[ 
-tree=macr2tree(cosh);
-txt=tree2code(tree,%T);
-write(%io(2),txt,'(a)');
+        <programlisting role="example"><![CDATA[
+prog = macr2tree(log2);   // Note that the input is log2, not "log2"
+typeof(prog)
+fieldnames(prog)'
+prog.name
+deftxt = tree2code(prog, %T);
+printf("%s\n", deftxt);
  ]]></programlisting>
-        
-    </refsection>
-    
-    <refsection role="see also">
-        
-        <title>参照</title>
-        
-        <simplelist type="inline">
-            
-            <member>
-                
-                <link linkend="tree2code">tree2code</link>
-                
-            </member>
-            
-        </simplelist>
-        
-    </refsection>
-    
-</refentry>
+    <screen><![CDATA[--> typeof(prog)
+ ans  =
+ program
 
+--> fieldnames(prog)'
+ ans  =
+!name  outputs  inputs  statements  nblines  !
+
+--> prog.name
+ ans  =
+ log2
+
+--> deftxt = tree2code(prog, %T);
+
+--> printf("%s\n", deftxt);
+function [f,e] = log2(x)
+  [lhs,rhs] = argn(0)
+  if rhs&lt;>1 then
+    msg = gettext("%s: Wrong number of input argument(s): %d expected.\n")
+    error(msprintf(msg, "log2", 1))
+  end
+  if argn(1)==1 then
+    f = log(x)/log(2)
+  else
+    [f,e] = frexp(x)
+  end
+endfunction
+]]></screen>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="tree2code">tree2code</link>
+            </member>
+            <member>
+                <link linkend="macrovar">macrovar</link>
+            </member>
+            <member>
+                <link linkend="functions">functions</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

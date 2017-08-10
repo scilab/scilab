@@ -24,8 +24,7 @@ txt = mgetl(tpmfile);
 ref = "Nan" + ascii(9) + " " + sprintf("%0.2f", data(2,2)) + ascii(9) + " ";
 assert_checkequal(txt(3,1), ref)
  ans  =
- 
-  T  
+  T
 [a, b] = fscanfMat(tpmfile);
 assert_checkequal(b, comments);
 assert_checkalmostequal(a, data, 10e-3);

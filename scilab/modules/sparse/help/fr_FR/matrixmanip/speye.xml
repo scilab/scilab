@@ -57,7 +57,7 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 eye(3,3)-full(speye(3,3))
  ]]></programlisting>
     </refsection>

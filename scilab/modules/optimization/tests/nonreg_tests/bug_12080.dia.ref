@@ -66,4 +66,3 @@ y=modelDiff(p,m,x,data);
 p0=[1 1 1 1];
 [popt,diffopt]=lsqrsolve(p0,list(modelDiff,x),m,[1d-8,1d-8,1d-5,2,0,100]); // A warning must be displayed
 Warning: lsqrsolve: Number of calls to fct has reached or exceeded maxfev.
-

@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2007-2008 - INRIA
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="cell" xml:lang="pt">
+    <refnamediv>
+        <refname>cell</refname>
+        <refpurpose>cria um cell (célula) de matrizes vazias</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>
+            c=cell()
+            c=cell(m1)
+            c=cell(m1, m2)
+            c=cell(m1, m2, ..., mn)
+            c=cell(x)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>vetor contendo as dimensões do cell a ser criado</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>m1, m2,..</term>
+                <listitem>
+                    <para>dimensões do cell a ser criado</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>retorna um cell de matrizes vazias</para>
+        <variablelist>
+            <varlistentry>
+                <term>cell()</term>
+                <listitem>
+                    <para>
+                        retorna um cell <literal>(0,0)</literal> de matrizes
+                        vazias.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>cell(m1)</term>
+                <listitem>
+                    <para>
+                        retorna um cell <literal>(m1,m1)</literal> de matrizes
+                        vazias.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>cell(m1,m2)</term>
+                <listitem>
+                    <para>
+                        retorna um cell <literal>(m1,m2) </literal>de matrizes
+                        vazias.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>cell(m1,m2,..,mn)</term>
+                <listitem>
+                    <para>
+                        retorna um cell <literal>(m1,m2,..,mn)</literal> de matrizes
+                        vazias.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>cell(x)</term>
+                <listitem>
+                    <para>retorna um cell de matrizes vazias com: a primeira dimensão
+                        sendo <literal>x(1)</literal>, a segunda sendo <literal>x(2),
+                            ...
+                        </literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Observações</title>
+        <para>
+            <literal>cell(x) </literal>não possui o mesmo tamanho que
+            <literal>x</literal>.
+        </para>
+        <para>
+            <literal>cell()</literal> é equivalente a
+            <literal>cell(0)</literal>.
+        </para>
+        <para>Se A for um cell, você pode acessar os conteúdos de um elemento de A
+            utilizando <literal>A{m1, m2, ..., mn}</literal>. A expressão
+            <literal>A(1,1) = zeros(2,2)</literal> não é válida, a sintaxe correta é
+            <literal>A{1,1} = zeros(2,2)</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[
+a = cell(3)
+b = cell(3,1)
+c = cell([2,3,4])
+
+// Assigning cell entries
+b = cell(3,1);
+
+// Assigning the first element of b using {}
+b{1} = 1:3
+
+// Assigning the second element of b using {}
+b{2} = 'Scilab'
+
+// Assigning the third element of b using the 'entries' field
+b{3} = poly(1:3,'s')
+
+// Assigning sub-cells
+X = cell(3,2);
+X{:,1} = b
+
+// Extracting a sub-cell: result is a cell
+b{1}
+b{1:2}
+
+// Extracting a sub-cell value: result is an array
+b{1}
+
+// Dimensions of b as a double value
+size(b)
+ ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>Ver Também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="eye">eye</link>
+            </member>
+            <member>
+                <link linkend="ones">ones</link>
+            </member>
+            <member>
+                <link linkend="zeros">zeros</link>
+            </member>
+            <member>
+                <link linkend="iscell">iscell</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revremark>
+                    <para>
+                        Fields "entries" and "dims" do not exist anymore. To assign or extract an element, use {}.
+                    </para>
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

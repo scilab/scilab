@@ -2,15 +2,18 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="plot3d1" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="plot3d1" xml:lang="pt">
     <refnamediv>
         <refname>plot3d1</refname>
         <refpurpose>Esboço 3d em níveis de cinza ou de cores de uma
@@ -21,7 +24,7 @@
         <title>Seqüência de Chamamento</title>
         <synopsis>plot3d1(x,y,z,[theta,alpha,leg,flag,ebox])
             plot3d1(xf,yf,zf,[theta,alpha,leg,flag,ebox])
-            
+
             plot3d1(x,y,z,&lt;opts_args&gt;)
             plot3d1(xf,yf,zf,&lt;opts_args&gt;)
         </synopsis>
@@ -33,7 +36,7 @@
                 <term>x,y</term>
                 <listitem>
                     <para>vetores linhas de tamanhos n1 e n2 (coordenadas dos eixos x e
-                        y). Estas coordenadas devem ser monótonas. 
+                        y). Estas coordenadas devem ser monótonas.
                     </para>
                 </listitem>
             </varlistentry>
@@ -68,7 +71,7 @@
                         </literal>
                         ,... onde <literal>key1</literal>,
                         <literal>key2,...</literal> pode ser um dos seguintes: theta, alpha
-                        , leg, flag, ebox (ver definições abaixo). 
+                        , leg, flag, ebox (ver definições abaixo).
                     </para>
                 </listitem>
             </varlistentry>
@@ -76,7 +79,7 @@
                 <term>theta, alpha</term>
                 <listitem>
                     <para>valores reais de dados em graus, as coordenadas esféricas do
-                        ponto de observação. 
+                        ponto de observação.
                     </para>
                 </listitem>
             </varlistentry>
@@ -84,7 +87,7 @@
                 <term>leg</term>
                 <listitem>
                     <para>string definindo os rótulos para cada eixo com @ como um
-                        separador de campos, por exemplo "X@Y@Z". 
+                        separador de campos, por exemplo "X@Y@Z".
                     </para>
                 </listitem>
             </varlistentry>
@@ -105,7 +108,7 @@
                                         <listitem>
                                             <para>a superfície é pintada com a cor
                                                 <literal>"mode"</literal> ; a borda da faceta é
-                                                desenhada com o estilo e linha e cor correntes. 
+                                                desenhada com o estilo e linha e cor correntes.
                                             </para>
                                         </listitem>
                                     </varlistentry>
@@ -164,7 +167,7 @@
                                         <listitem>
                                             <para>re-escala automaticamente caixas 3d com relação de
                                                 aspecto extrema, as fronteiras são computadas
-                                                utilizando-se dados fornecidos. 
+                                                utilizando-se dados fornecidos.
                                             </para>
                                         </listitem>
                                     </varlistentry>
@@ -295,9 +298,9 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        
+
         <programlisting role="example"><![CDATA[
-// esboço simples utilizando z=f(x,y) 
+// esboço simples utilizando z=f(x,y)
 t=[0:0.3:2*%pi]';
 z=sin(t)*cos(t');
 plot3d1(t,t,z)
@@ -308,7 +311,7 @@ plot3d1(t,t,z)
             plot3d1(t,t,z)
         </scilab:image>
         <programlisting role="example"><![CDATA[
-// mesmo esboço utilizando facetas computadas por genfac3d 
+// mesmo esboço utilizando facetas computadas por genfac3d
 t=[0:0.3:2*%pi]';
 z=sin(t)*cos(t');
 [xx,yy,zz]=genfac3d(t,t,z);
@@ -321,7 +324,7 @@ plot3d1(xx,yy,zz)
             plot3d1(xx,yy,zz)
         </scilab:image>
         <programlisting role="example"><![CDATA[
-// esboços múltiplos 
+// esboços múltiplos
 t=[0:0.3:2*%pi]';
 z=sin(t)*cos(t');
 [xx,yy,zz]=genfac3d(t,t,z);
@@ -334,13 +337,13 @@ plot3d1([xx xx],[yy yy],[zz 4+zz])
             plot3d1([xx xx],[yy yy],[zz 4+zz])
         </scilab:image>
         <programlisting role="example"><![CDATA[
-// esboço simples com ponto de vista e legendas 
+// esboço simples com ponto de vista e legendas
 plot3d1(1:10,1:20,10*rand(10,20),35,45,"X@Y@Z",[2,2,3])
  ]]></programlisting>
         <scilab:image>
             plot3d1(1:10,1:20,10*rand(10,20),35,45,"X@Y@Z",[2,2,3])
         </scilab:image>
-        
+
         <programlisting role="example"><![CDATA[
 // mesmo esboço sem grid
 plot3d1(1:10,1:20,10*rand(10,20),35,45,"X@Y@Z",[-2,2,3])

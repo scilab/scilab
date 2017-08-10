@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+Copyright (C) 2012 - INRIA - Serge Steer
+
+Copyright (C) 2012 - 2016 - Scilab Enterprises
+
+This file is hereby licensed under the terms of the GNU GPL v2.0,
+pursuant to article 5.3.4 of the CeCILL v.2.1.
+This file was originally licensed under the terms of the CeCILL v2.1,
+and continues to be available under such terms.
+For more information, see the COPYING file which you should have received
+along with this program.
+ * Add some comments about XML file
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="arma2ss" xml:lang="pt">
+    <refnamediv>
+        <refname>arma2ss</refname>
+        <refpurpose>transform an armax data structure into state space
+            representation.
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[S,Sn] = arma2ss(Ar)
+            S = arma2ss(Ar)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parameters</title>
+        <variablelist>
+            <varlistentry>
+                <term>Ar</term>
+                <listitem>
+                    <para>
+                        an armax data structure (see <link linkend="armac">armac</link>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>S</term>
+                <listitem>
+                    <para>
+                        a discrete time state space data structure (see <link linkend="syslin">syslin</link>. The regular input to output
+                        transfer.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Sn</term>
+                <listitem>
+                    <para>
+                        a discrete time state space data structure (see <link linkend="syslin">syslin</link>. The noise input to output
+                        transfer.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>[S,Sn] = arma2ss(Ar) </literal>transform an armax data
+            structure into a state space representation. The full armax transfer
+            <literal>F</literal>can be obtained by <literal>F=[S,Sn]</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example">A = [eye(2,2),[-1.5 0.1;-0.2 1.5],[0.7 -0.3;0.1 0.7]];
+            B = [[0;0] [1;-1] [0.5;1.2]];
+            Ar = armac(A, B, zeros(2, 2), 2, 1, 0)
+            [S, Sn] = arma2ss(Ar)
+        </programlisting>
+    </refsection>
+    <refsection>
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="armac">armac</link>
+            </member>
+            <member>
+                <link linkend="arma">arma</link>
+            </member>
+            <member>
+                <link linkend="syslin">syslin</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>Authors</title>
+        <simplelist type="vert">
+            <member>Serge Steer, INRIA</member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>arma2ss added.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

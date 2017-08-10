@@ -2,11 +2,14 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2012 - DIGITEO - Antoine ELIAS
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
@@ -88,7 +91,7 @@ int sci_hdf5_listvar_v2(char *fname, int* pvApiCtx)
             FREE(pstFile);
         }
 
-        Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), fname, 1);
         return 1;
     }
 
@@ -345,6 +348,10 @@ static bool read_string(int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo
     char** pstData = NULL;
 
     iSize = getDatasetInfo(_iDatasetId, &iComplex, &_pInfo->iDims, _pInfo->piDims);
+    if (iSize < 0)
+    {
+        return false;
+    }
 
     pstData = (char **)MALLOC(iSize * sizeof(char *));
     iRet = readStringMatrix(_iDatasetId, pstData);
@@ -458,6 +465,10 @@ static bool read_poly(int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo* 
     int iSize = 0;
 
     iSize = getDatasetInfo(_iDatasetId, &iComplex, &_pInfo->iDims, _pInfo->piDims);
+    if (iSize < 0)
+    {
+        return false;
+    }
     _pInfo->iSize = 8 * 4 + (iSize + 1) * 4;
 
     if (iComplex)

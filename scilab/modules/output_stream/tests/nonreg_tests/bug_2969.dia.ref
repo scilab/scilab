@@ -4,6 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+// <-- CLI SHELL MODE -->
 // <-- Non-regression test for bug 2969 -->
 //
 // <-- Bugzilla URL -->
@@ -11,8 +12,7 @@
 //
 x = uint32(170 * 256 * 256 * 256);
 disp(x);
- 
-  2852126720  
+  2852126720
 printf('(hex) x = %8x\n',x);
 (hex) x = aa000000
 printf('(int) x = %12u\n',x);

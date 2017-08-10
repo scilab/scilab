@@ -17,12 +17,12 @@
 //    -->isequal(a,b)
 //     ans  =
 //
-//      T
+//      T  
 //
 //    -->isequal(b,a)
-//     !--error 21
+//     !--error 21 
 //    invalid index
-//    at line      10 of function %l_isequal called by :
+//    at line      10 of function %l_isequal called by :  
 //    isequal(b,a)
 //
 //    I propose this modification of the macro %l_isequal in the file

@@ -40,33 +40,33 @@ function [blocks] = bplatform2(blocks,flag)
     //** INIT
     if flag==4 then
         H=scf(win)
-        clf(H)
+        clf
+        isoview(H, "on")
         Axe=H.children
         Axe.data_bounds=rpar(4:7)
-        Axe.isoview="on"
 
         x0=(xmin+xmax)/2;
         y0=(ymin+ymax)/2;
         XY1=[x0-3, x0+3,x0+3,x0-3,x0-3]
         XY2=[y0, y0,y0-2*tplat,y0-2*tplat,y0]
-        xset("color",5)
+        Axe.foreground = 5;
         xfpoly(XY1,XY2,0)
 
-        xset("color",2)
+        Axe.foreground = 2;
         xfarc(x0-rcirc/2,y0+6,rcirc,rcirc,0,360*64)
 
         XY1=[xmin, xmax];
         XY2=[ymin, ymin];
         xpoly(XY1,XY2,"lines",0) //Ground
 
-        xset("color",3)
+        Axe.foreground = 3;
         ym=y0-2*tplat;
         d0=ym/9;
         XY1=[x0,x0-0.2,x0+0.2 ,x0-0.2 ,x0+0.2, x0-0.2 ,x0+0.2 ,x0-0.2 , x0+0.2,x0     ];
         XY2=[ym,ym-d0 ,ym-2*d0,ym-3*d0,ym-4*d0,ym-5*d0,ym-6*d0,ym-7*d0,ym-8*d0,ym-9*d0];
         xpoly(XY1,XY2,"lines",0)
 
-        xset("color",0)
+        Axe.foreground = 0;
 
         //** UPDATE
     elseif flag==2 then

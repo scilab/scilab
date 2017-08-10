@@ -3,14 +3,19 @@
 * Copyright (C) 2009 - DIGITEO - Bernard HUGUENEY
 * Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 /*--------------------------------------------------------------------------*/
+
+#include <cmath>
 
 #include "linear_algebra_gw.hxx"
 #include "function.hxx"
@@ -106,7 +111,7 @@ types::Function::ReturnValue sci_bdiag(types::typed_list &in, int _iRetCount, ty
             double t = 0.0;
             for (int i = 0; i < pDblMatrix->getCols(); i++)
             {
-                t += std::abs(pDblMatrix->get(i + j * pDblMatrix->getCols()));
+                t += std::fabs(pDblMatrix->get(i + j * pDblMatrix->getCols()));
             }
             rMax = std::max(t, rMax);
         }
@@ -118,13 +123,16 @@ types::Function::ReturnValue sci_bdiag(types::typed_list &in, int _iRetCount, ty
     int const job   = 0;
 
     /* allocating the two memory buffers in one place as the original code did */
-    double* le = (double*) MALLOC( 2 * iDim * sizeof(double) );
+    double* le = (double*) MALLOC(2 * iDim * sizeof(double));
     int*    lib = (int*) MALLOC(iDim * sizeof(int));
-    double* lw = (double*)MALLOC(iDim * sizeof(double));
+    double* lw = (double*) MALLOC(iDim * sizeof(double));
 
-    if ((le && lib && lw) == false)
+    if (!le || !lw || !lib)
     {
         Scierror(999, _("%s: Allocation failed.\n"), "bdiag");
+        FREE(lw);
+        FREE(le);
+        FREE(lib);
         return types::Function::Error;
     }
 

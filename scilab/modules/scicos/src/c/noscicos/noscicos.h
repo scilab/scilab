@@ -7,7 +7,6 @@
 
 
 int gw_scicos(void);
-int haltscicos(char *name, int *win, int *entry, long int name_len);
 
 #endif
 /*--------------------------------------------------------------------------*/

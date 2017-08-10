@@ -116,7 +116,7 @@
             </inlinemediaobject>
         </para>
         <para>
-            
+
         </para>
         <itemizedlist>
             <listitem>
@@ -226,7 +226,7 @@
                 </inlinemediaobject>
             </link>
         </para>
-        
+
         <scilab:image><![CDATA[
 importXcosDiagram(SCI + "/modules/xcos/examples/lookuptables_pal/en_US/INTRPLBLK_f_en_US.zcos");
 xcos_simulate(scs_m, 4);

@@ -1,10 +1,13 @@
 // Copyright (C) DIGITEO - 2010-2011 - Allan CORNET
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 //=============================================================================
 function Makename = dlwGenerateMakefile(name, ..
     tables, ..
@@ -77,7 +80,7 @@ function Makename = dlwGenerateMakefile(name, ..
 endfunction
 //=============================================================================
 function ilib_gen_Make_win32(name, ..
-    table, ..
+    tables, ..
     files, ..
     libs, ..
     libname, ..
@@ -182,9 +185,22 @@ function ilib_gen_Make_win32(name, ..
     end
 
     //update DEBUG_SCILAB_DYNAMIC_LINK to map with Scilab compilation mode
-    val = getenv("DEBUG_SCILAB_DYNAMIC_LINK","");
-    if val <> "YES" & val <> "NO" & isDebug()then
+    debugVal = getenv("DEBUG_SCILAB_DYNAMIC_LINK","");
+    val = debugVal;
+    if val <> "NO" & val <> "YES" then
+        if isDebug() then
+            val = "YES";
+        else
+            val = "NO";
+        end
+    end
+
+    if val == "YES" then
         setenv("DEBUG_SCILAB_DYNAMIC_LINK","YES");
+        CFLAGS = CFLAGS + " -D_DEBUG";
+    else
+        setenv("DEBUG_SCILAB_DYNAMIC_LINK","NO");
+        CFLAGS = CFLAGS + " -DNDEBUG";
     end
 
     // remove duplicated files
@@ -193,10 +209,10 @@ function ilib_gen_Make_win32(name, ..
     FILES_SRC = strcat(FILES_SRC_MATRIX," ");
 
     OBJ_DEST_PATH = "";
-    if (getenv("DEBUG_SCILAB_DYNAMIC_LINK","NO") == "NO") then
-        OBJ_DEST_PATH = "Release/";
-    else
+    if (getenv("DEBUG_SCILAB_DYNAMIC_LINK","") == "YES") then
         OBJ_DEST_PATH = "Debug/";
+    else
+        OBJ_DEST_PATH = "Release/";
     end
 
     OBJS_MATRIX = [];
@@ -273,7 +289,7 @@ function ilib_gen_Make_win32(name, ..
     end
 
     //restore DEBUG_SCILAB_DYNAMIC_LINK
-    setenv("DEBUG_SCILAB_DYNAMIC_LINK", val);
+    setenv("DEBUG_SCILAB_DYNAMIC_LINK", debugVal);
 
 endfunction
 //=============================================================================

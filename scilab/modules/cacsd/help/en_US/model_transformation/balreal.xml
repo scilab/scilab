@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="balreal">
+    <refnamediv>
+        <refname>balreal</refname>
+        <refpurpose>balanced realization</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[slb [,U] ] = balreal(sl)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>sl,slb</term>
+                <listitem>
+                    <para>
+                        linear systems (<literal>syslin</literal> lists)
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Balanced realization of linear system <literal>sl=[A,B,C,D]</literal>. <literal>sl</literal>
+            can be a continuous-time or discrete-time state-space system.
+            sl is assumed stable.
+        </para>
+        <programlisting role=""><![CDATA[
+slb=[inv(U)*A*U ,inv(U)*B , C*U , D]
+ ]]></programlisting>
+        <para>
+            is the balanced realization.
+        </para>
+        <para>
+            <literal>slb</literal> is returned as a <literal>syslin</literal> list.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+A=diag([-1,-2,-3,-4,-5]);B=rand(5,2);C=rand(1,5);
+sl=syslin('c',A,B,C);
+[slb,U]=balreal(sl);
+Wc=clean(ctr_gram(slb))
+W0=clean(obs_gram(slb))
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="ctr_gram">ctr_gram</link>
+            </member>
+            <member>
+                <link linkend="obs_gram">obs_gram</link>
+            </member>
+            <member>
+                <link linkend="hankelsv">hankelsv</link>
+            </member>
+            <member>
+                <link linkend="equil">equil</link>
+            </member>
+            <member>
+                <link linkend="equil1">equil1</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

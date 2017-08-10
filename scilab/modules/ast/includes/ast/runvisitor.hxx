@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2010-2010 - DIGITEO - Antoine ELIAS
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -32,8 +35,6 @@ extern "C" {
 #include "sci_malloc.h"
 }
 
-using namespace types;
-
 namespace ast
 {
 class EXTERN_AST RunVisitor : public ConstVisitor
@@ -41,7 +42,7 @@ class EXTERN_AST RunVisitor : public ConstVisitor
 public:
     RunVisitor()
     {
-        _excepted_result = -1;
+        _expected_result = -1;
         _resultVect.push_back(nullptr);
         _result = nullptr;
         m_bSingleResult = true;
@@ -57,7 +58,7 @@ public:
     {
         if (!isSingleResult() && _resultVect.size() > 1)
         {
-            for (vector<types::InternalType*>::iterator rv = _resultVect.begin() + 1, end = _resultVect.end(); rv != end; ++rv)
+            for (std::vector<types::InternalType*>::iterator rv = _resultVect.begin() + 1, end = _resultVect.end(); rv != end; ++rv)
             {
                 if (*rv != nullptr)
                 {
@@ -81,7 +82,7 @@ public:
         }
         else
         {
-            for (vector<types::InternalType*>::iterator rv = _resultVect.begin(), end = _resultVect.end(); rv != end; rv++)
+            for (std::vector<types::InternalType*>::iterator rv = _resultVect.begin(); rv != _resultVect.end(); rv++)
             {
                 if (*rv != nullptr)
                 {
@@ -97,12 +98,12 @@ public:
 public:
     int getExpectedSize(void)
     {
-        return _excepted_result;
+        return _expected_result;
     }
 
     void setExpectedSize(int _iSize)
     {
-        _excepted_result = _iSize;
+        _expected_result = _iSize;
     }
 
     int getResultSize(void)
@@ -150,13 +151,13 @@ public:
         return _resultVect[_iPos];
     }
 
-    vector<types::InternalType*>* getResultList()
+    std::vector<types::InternalType*>* getResultList()
     {
         // TODO: this function is not used but it could lead to a memleak
         // (in the first case the vector is allocated and so must be freed)
         if (getResultSize() == 1)
         {
-            vector<types::InternalType*>* pList = new vector<types::InternalType*>;
+            std::vector<types::InternalType*>* pList = new std::vector<types::InternalType*>;
             pList->push_back(_result);
             return pList;
         }
@@ -262,10 +263,18 @@ public:
         }
     }
 
-    void cleanOpt(const types::optional_list & opt)
+    void cleanOpt(const types::optional_list & opt, const types::typed_list & out)
     {
         if (!opt.empty())
         {
+            for (types::typed_list::const_iterator o = out.begin(); o != out.end(); ++o)
+            {
+                if (*o)
+                {
+                    (*o)->IncreaseRef();
+                }
+            }
+
             for (types::optional_list::const_iterator o = opt.begin(); o != opt.end(); ++o)
             {
                 if (o->second)
@@ -275,6 +284,14 @@ public:
                     o->second->killMe();
                 }
             }
+
+            for (types::typed_list::const_iterator o = out.begin(); o != out.end(); ++o)
+            {
+                if (*o)
+                {
+                    (*o)->DecreaseRef();
+                }
+            }
         }
     }
 
@@ -282,10 +299,10 @@ public:
     | Attributes.  |
     `-------------*/
 protected:
-    vector<types::InternalType*>    _resultVect;
+    std::vector<types::InternalType*>    _resultVect;
     types::InternalType*    _result;
     bool m_bSingleResult;
-    int _excepted_result;
+    int _expected_result;
     symbol::Variable* m_pAns;
 };
 
@@ -313,7 +330,11 @@ public :
             }
             else
             {
-                pArgs->push_back(getResult());
+                if (getResult())
+                {
+                    pArgs->push_back(getResult());
+                }
+                //else optional argument skipped
             }
         }
         //to be sure, delete operation does not delete result
@@ -331,17 +352,17 @@ public :
 
     void visitprivate(const CellExp &e);
     void visitprivate(const FieldExp &e);
-    void visitprivate(const IfExp  &e);
-    void visitprivate(const WhileExp  &e);
+    void visitprivate(const IfExp &e);
+    void visitprivate(const WhileExp &e);
     void visitprivate(const ForExp  &e);
     void visitprivate(const ReturnExp &e);
     void visitprivate(const SelectExp &e);
     void visitprivate(const SeqExp  &e);
     void visitprivate(const NotExp &e);
     void visitprivate(const TransposeExp &e);
-    void visitprivate(const FunctionDec  &e);
+    void visitprivate(const FunctionDec &e);
     void visitprivate(const ListExp &e);
-    void visitprivate(const AssignExp  &e);
+    void visitprivate(const AssignExp &e);
     void visitprivate(const OpExp &e);
     void visitprivate(const LogicalOpExp &e);
     void visitprivate(const MatrixExp &e);
@@ -352,187 +373,22 @@ public :
     void visitprivate(const DAXPYExp &e);
     void visitprivate(const IntSelectExp &e);
     void visitprivate(const StringSelectExp &e);
+    void visitprivate(const TryCatchExp &e);
 
-    void visitprivate(const StringExp &e)
-    {
-        if (e.getConstant() == nullptr)
-        {
-            types::String *psz = new types::String(e.getValue().c_str());
-            (const_cast<StringExp *>(&e))->setConstant(psz);
-
-        }
-        setResult(e.getConstant());
-    }
-
-
-    void visitprivate(const DoubleExp  &e)
-    {
-        if (e.getConstant() == nullptr)
-        {
-            Double *pdbl = new Double(e.getValue());
-            (const_cast<DoubleExp *>(&e))->setConstant(pdbl);
-
-        }
-        setResult(e.getConstant());
-    }
-
-
-    void visitprivate(const BoolExp  &e)
-    {
-        if (e.getConstant() == nullptr)
-        {
-            Bool *pB = new Bool(e.getValue());
-            (const_cast<BoolExp *>(&e))->setConstant(pB);
-
-        }
-        setResult(e.getConstant());
-    }
-
-
-    void visitprivate(const NilExp &/*e*/)
-    {
-        setResult(new types::Void());
-    }
-
-
-    void visitprivate(const SimpleVar &e)
-    {
-        symbol::Context* ctx = symbol::Context::getInstance();
-        symbol::Variable* var = ((SimpleVar&)e).getStack();
-        InternalType *pI = ctx->get(var);
-        setResult(pI);
-        if (pI != nullptr)
-        {
-            if (e.isVerbose() && pI->isCallable() == false && ConfigVariable::isPromptShow())
-            {
-                std::wostringstream ostr;
-                ostr << e.getSymbol().getName() << L"  = ";
-#ifndef NDEBUG
-                ostr << L"(" << pI->getRef() << L")";
-#endif
-                ostr << std::endl;
-                ostr << std::endl;
-                scilabWriteW(ostr.str().c_str());
-                std::wostringstream ostrName;
-                ostrName  << e.getSymbol().getName();
-                VariableToString(pI, ostrName.str().c_str());
-            }
-
-            //check if var is recalled in current scope like
-            //function f()
-            //  a; //<=> a=a;
-            //  a(2) = 18;
-            //endfunction
-            if (e.getParent()->isSeqExp())
-            {
-                if (ctx->getScopeLevel() > 1 && var->empty() == false && var->top()->m_iLevel != ctx->getScopeLevel())
-                {
-                    //put var in current scope
-                    ctx->put(var, pI);
-                }
-            }
-        }
-        else
-        {
-            char pstError[bsiz];
-            wchar_t* pwstError;
-
-            char* strErr =  wide_string_to_UTF8(e.getSymbol().getName().c_str());
-
-            os_sprintf(pstError, _("Undefined variable: %s\n"), strErr);
-            pwstError = to_wide_string(pstError);
-            FREE(strErr);
-            std::wstring wstError(pwstError);
-            FREE(pwstError);
-            throw ScilabError(wstError, 999, e.getLocation());
-            //Err, SimpleVar doesn't exist in Scilab scopes.
-        }
-    }
-
-
-    void visitprivate(const ColonVar &/*e*/)
-    {
-        Colon *pC = new Colon();
-        setResult(pC);
-    }
-
-
-    void visitprivate(const DollarVar &/*e*/)
-    {
-        setResult(Polynom::Dollar());
-    }
-
-    void visitprivate(const TryCatchExp  &e)
-    {
-        //save current prompt mode
-        int oldVal = ConfigVariable::getSilentError();
-        //set mode silent for errors
-        ConfigVariable::setSilentError(1);
-        try
-        {
-            e.getTry().accept(*this);
-            //restore previous prompt mode
-            ConfigVariable::setSilentError(oldVal);
-        }
-        catch (ScilabMessage sm)
-        {
-            //restore previous prompt mode
-            ConfigVariable::setSilentError(oldVal);
-            //to lock lasterror
-            ConfigVariable::setLastErrorCall();
-            // reset call stack filled when error occured
-            ConfigVariable::resetWhereError();
-            e.getCatch().accept(*this);
-        }
-    }
-
-    void visitprivate(const BreakExp &e)
-    {
-        const_cast<BreakExp*>(&e)->setBreak();
-    }
-
-    void visitprivate(const ContinueExp &e)
-    {
-        const_cast<ContinueExp*>(&e)->setContinue();
-    }
-
-    void visitprivate(const ArrayListExp  &e)
-    {
-        exps_t::const_iterator it;
-        int iNbExpSize = this->getExpectedSize();
-        this->setExpectedSize(1);
-
-        typed_list lstIT;
-        for (it = e.getExps().begin() ; it != e.getExps().end() ; it++)
-        {
-            (*it)->accept(*this);
-            for (int j = 0; j < getResultSize(); j++)
-            {
-                lstIT.push_back(getResult(j));
-            }
-        }
-
-        setResult(lstIT);
-
-        this->setExpectedSize(iNbExpSize);
-    }
-
-    void visitprivate(const VarDec  &e)
-    {
-        try
-        {
-            /*getting what to assign*/
-            e.getInit().accept(*this);
-            getResult()->IncreaseRef();
-        }
-        catch (ScilabError error)
-        {
-            throw error;
-        }
-    }
+    void visitprivate(const StringExp & e);
+    void visitprivate(const DoubleExp & e);
+    void visitprivate(const BoolExp & e);
+    void visitprivate(const NilExp & e);
+    void visitprivate(const SimpleVar & e);
+    void visitprivate(const ColonVar & e);
+    void visitprivate(const DollarVar & e);
+    void visitprivate(const BreakExp & e);
+    void visitprivate(const ContinueExp & e);
+    void visitprivate(const ArrayListExp & e);
+    void visitprivate(const VarDec & e);
 
     types::InternalType* callOverloadOpExp(OpExp::Oper _oper, types::InternalType* _paramL, types::InternalType* _paramR);
-    types::InternalType* callOverloadMatrixExp(std::wstring strType, types::InternalType* _paramL, types::InternalType* _paramR);
+    types::InternalType* callOverloadMatrixExp(const std::wstring& strType, types::InternalType* _paramL, types::InternalType* _paramR);
 };
 }
 

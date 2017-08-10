@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="uicontextmenu" xml:lang="en">
+    <refnamediv>
+        <refname>uicontextmenu</refname>
+        <refpurpose>Creates a context menu</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>
+            h = uicontextmenu()
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            This function creates an empty context menu where menus can be added using <link linkend="uimenu">uimenu</link>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Example</title>
+        <programlisting role="example"><![CDATA[
+// Create a context menu
+hMenu = uicontextmenu();
+// Create sub menus
+hItem1 = uimenu("Label", "Item1", "Parent", hMenu, "Callback", "disp(""Item1 clicked!"")");
+hItem2 = uimenu("Label", "Item2", "Parent", hMenu, "Callback", "disp(""Item2 clicked!"")");
+hItem3 = uimenu("Label", "Item3", "Parent", hMenu, "Callback", "disp(""Item3 clicked!"")");
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="uicontrol">uicontrol</link>
+            </member>
+            <member>
+                <link linkend="uimenu">uimenu</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

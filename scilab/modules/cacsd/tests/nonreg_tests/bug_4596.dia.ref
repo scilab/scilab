@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - INRIA - Serge Steer
@@ -15,11 +16,9 @@ s=%s;
 K=485000.;
 h=syslin('c', K / ( s * (s+100)^2 ) );
 [gm,fr]=g_margin(h)
- fr  =
- 
-    15.915494  
- gm  =
- 
-    12.305765  
+ fr  = 
+   15.915494
+ gm  = 
+   12.305765
 if gm==[] then bugmes();quit;end
 if abs(2*%pi*fr-100)>100*%eps then bugmes();quit;end

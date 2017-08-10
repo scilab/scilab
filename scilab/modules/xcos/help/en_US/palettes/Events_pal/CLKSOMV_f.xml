@@ -92,7 +92,7 @@
             output reproduces the events on all the input ports. Strictly
             speaking, CLKSOMV is not a Xcos block because it is discarded at the
             compilation phase. The inputs and output of CLKSOMV are synchronized.
-            
+
         </para>
     </refsection>
     <refsection id="Defaultproperties_CLKSOMV_f">

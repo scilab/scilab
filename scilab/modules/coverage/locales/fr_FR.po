@@ -1,0 +1,54 @@
+# French translation for scilab
+# Copyright (c) 2017 Rosetta Contributors and Canonical Ltd 2017
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2017-01-14 13:13+0000\n"
+"Last-Translator: Paul Bignier <Unknown>\n"
+"Language-Team: French <fr@li.org>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 18315)\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendu(s).\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : une matrice de chaînes de "
+"caractères attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar string expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : un texte scalaire attendu.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A two-columns string matrix "
+"expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : un texte à deux colonnes "
+"attendu.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d ou %d attendu(s).\n"
+
+#, c-format
+msgid "%s: No active coverage: can't write.\n"
+msgstr "%s : Couverture inactive, écriture impossible.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: html output only.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée #%d : sortie html uniquement.\n"

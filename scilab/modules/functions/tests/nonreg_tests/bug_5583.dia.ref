@@ -13,24 +13,19 @@
 // <-- Short Description -->
 // 'exec' did not manage correctly UTF-8 and ANSI files encoded.
 exec SCI/modules/functions/tests/nonreg_tests/bug_5583_ANSI.sce;
- 
- éàçùè@$   
- 
- ok with ANSI   
+ éàçùè@$
+ ok with ANSI
 exec SCI/modules/functions/tests/nonreg_tests/bug_5583_UTF.sce;
- 
- éàçùè@$   
- 
- ok with UTF   
- 
-!世界您好                       !
-!                                   !
-!азеазея                     !
-!                                   !
-!ハロー・ワールド           !
-!                                   !
+ éàçùè@$
+ ok with UTF
+!世界您好         !
+!             !
+!азеазея      !
+!             !
+!ハロー・ワールド     !
+!             !
 !เฮลโลเวิลด์  !
-!                                   !
-!حريات وحقوق              !
-!                                   !
-!תוכנית                       !
+!             !
+!حريات وحقوق  !
+!             !
+!תוכנית       !

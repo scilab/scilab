@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
- * 
+ *
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
  * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  *  (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
- * 
+ *
  * See the file ./license.txt
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="generic_block3">
@@ -100,8 +100,8 @@
             not the block contains a direct feed-through term. The function
             realising computational functions of generic blocks of a Scicos
             diagram must be saved along with the diagram and loaded or dynamically
-            linked before simulation. 
-            
+            linked before simulation.
+
         </para>
     </refsection>
     <refsection id="Dialogbox_generic_block3">
@@ -114,7 +114,7 @@
             </inlinemediaobject>
         </para>
         <para>
-            
+
         </para>
         <itemizedlist>
             <listitem>
@@ -147,9 +147,9 @@
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">Iutput port sizes</emphasis>
+                    <emphasis role="bold">Output port sizes</emphasis>
                 </para>
-                <para> Number of regular input ports.</para>
+                <para> Number of regular output ports.</para>
                 <para> Properties : Type 'mat' of size [-1,2] </para>
             </listitem>
             <listitem>
@@ -247,7 +247,7 @@
                 <para>
                     <emphasis role="bold">Time dependence </emphasis>
                 </para>
-                <para> Time dependance : character "y" or "n", specifies if block output depends explicitly on time.</para>
+                <para> Time dependence : character "y" or "n", specifies if block output depends explicitly on time.</para>
                 <para> Properties : Type 'vec' of size 1</para>
             </listitem>
         </itemizedlist>

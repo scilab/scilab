@@ -1,12 +1,16 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2014-2014 - Scilab Enterprises - Clement DAVID
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2017 - ESI Group - Clement DAVID
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -32,10 +36,9 @@ struct Parameter
     std::vector<double> opar;
 
     // opar default value is an empty list encoded by var2vec()
-    Parameter() : rpar(), ipar(), opar(2)
+    Parameter() : rpar(), ipar()
     {
-        opar[0] = 22;
-        opar[1] = 0;
+        opar = {15, 0};
     }
 };
 
@@ -46,10 +49,9 @@ struct State
     std::vector<double> odstate;
 
     // odstate default value is an empty list encoded by var2vec()
-    State() : state(), dstate(), odstate(2)
+    State() : state(), dstate()
     {
-        odstate[0] = 22;
-        odstate[1] = 0;
+        odstate = {15, 0};
     }
 };
 
@@ -90,46 +92,26 @@ struct Descriptor
     Descriptor() : functionName(), functionApi(0), dep_ut(0), blocktype(BLOCKTYPE_C) {}
 };
 
-/*
- * Flip and theta
- */
-struct Angle
-{
-    bool flip;
-    double theta;
-
-    Angle() : flip(true), theta(0) {};
-    Angle(const Angle& a) : flip(a.flip), theta(a.theta) {};
-    Angle(const std::vector<double>& a) : flip((a[0] == 0) ? false : true), theta(a[1]) {};
-
-    void fill(std::vector<double>& a) const
-    {
-        a.resize(2);
-        a[0] = (flip == false) ? 0 : 1;
-        a[1] = theta;
-    }
-    bool operator==(const Angle& a) const
-    {
-        return flip == a.flip && theta == a.theta;
-    }
-};
-
 class Block: public BaseObject
 {
 public:
-    Block() : BaseObject(BLOCK), m_parentDiagram(0), m_interfaceFunction(), m_geometry(), m_angle(),
-        m_exprs(std::vector<double> (5, 0)), m_label(), m_style(), m_nzcross(std::vector<int> (1, 0)), m_nmode(std::vector<int> (1, 0)), m_equations(), m_uid(), m_sim(), m_in(), m_out(), m_ein(), m_eout(),
-        m_parameter(), m_state(), m_parentBlock(0), m_children(), m_portReference(0)
+    Block() : BaseObject(BLOCK), m_parentDiagram(ScicosID()), m_interfaceFunction(), m_geometry(),
+        m_exprs(), m_description(), m_label(), m_style(), m_nzcross(), m_nmode(), m_equations(), m_uid(),
+        m_sim(), m_in(), m_out(), m_ein(), m_eout(), m_parameter(), m_state(), m_parentBlock(ScicosID()),
+        m_children(), m_childrenColor(), m_context(), m_portReference(ScicosID())
     {
-        // By default, 'm_exprs' takes the value of vec2var([]), which is {12, 2, 0, 0, 0}
-        m_exprs[0] = 12;
-        m_exprs[1] = 2;
-    };
+        // m_exprs default value is an empty matrix encoded by var2vec()
+        m_exprs = {1, 2, 0, 0, 0};
+        // m_equations default value is an empty list encoded by var2vec()
+        m_equations = {15, 0};
+        m_nmode = {0};
+        m_nzcross = {0};
+        m_childrenColor = { -1, 1};
+    }
     Block(const Block& o) : BaseObject(BLOCK), m_parentDiagram(o.m_parentDiagram), m_interfaceFunction(o.m_interfaceFunction), m_geometry(o.m_geometry),
-        m_angle(o.m_angle), m_exprs(o.m_exprs), m_label(o.m_label), m_style(o.m_style), m_nzcross(o.m_nzcross), m_nmode(o.m_nmode), m_equations(o.m_equations), m_uid(o.m_uid),
+        m_exprs(o.m_exprs), m_description(o.m_description), m_label(o.m_label), m_style(o.m_style), m_nzcross(o.m_nzcross), m_nmode(o.m_nmode), m_equations(o.m_equations), m_uid(o.m_uid),
         m_sim(o.m_sim), m_in(o.m_in), m_out(o.m_out), m_ein(o.m_ein), m_eout(o.m_eout), m_parameter(o.m_parameter), m_state(o.m_state), m_parentBlock(o.m_parentBlock),
-        m_children(o.m_children), m_portReference(o.m_portReference) {};
-    ~Block() = default;
+        m_children(o.m_children), m_childrenColor(o.m_childrenColor), m_context(o.m_context), m_portReference(o.m_portReference) {}
 
 private:
     friend class ::org_scilab_modules_scicos::Model;
@@ -147,6 +129,22 @@ private:
         }
 
         this->m_children = children;
+        return SUCCESS;
+    }
+
+    void getChildrenColor(std::vector<int>& data) const
+    {
+        data = this->m_childrenColor;
+    }
+
+    update_status_t setChildrenColor(const std::vector<int>& data)
+    {
+        if (data == this->m_childrenColor)
+        {
+            return NO_CHANGES;
+        }
+
+        this->m_childrenColor = data;
         return SUCCESS;
     }
 
@@ -172,28 +170,6 @@ private:
         return SUCCESS;
     }
 
-    void getAngle(std::vector<double>& data) const
-    {
-        m_angle.fill(data);
-    }
-
-    update_status_t setAngle(const std::vector<double>& data)
-    {
-        if (data.size() != 2)
-        {
-            return FAIL;
-        }
-
-        Angle a = Angle(data);
-        if (a == m_angle)
-        {
-            return NO_CHANGES;
-        }
-
-        m_angle = a;
-        return SUCCESS;
-    }
-
     void getExprs(std::vector<double>& data) const
     {
         data = m_exprs;
@@ -210,12 +186,28 @@ private:
         return SUCCESS;
     }
 
-    void getLabel(std::string& data) const
+    void getDescription(std::string& data) const
+    {
+        data = m_description;
+    }
+
+    update_status_t setDescription(const std::string& data)
+    {
+        if (data == m_description)
+        {
+            return NO_CHANGES;
+        }
+
+        m_description = data;
+        return SUCCESS;
+    }
+
+    void getLabel(ScicosID& data) const
     {
         data = m_label;
     }
 
-    update_status_t setLabel(const std::string& data)
+    update_status_t setLabel(const ScicosID data)
     {
         if (data == m_label)
         {
@@ -422,12 +414,12 @@ private:
         return SUCCESS;
     }
 
-    void getEquations(std::vector<std::string>& data) const
+    void getEquations(std::vector<double>& data) const
     {
         data = m_equations;
     }
 
-    update_status_t setEquations(const std::vector<std::string>& data)
+    update_status_t setEquations(const std::vector<double>& data)
     {
         if (data == m_equations)
         {
@@ -673,17 +665,33 @@ private:
         return SUCCESS;
     }
 
+    void getContext(std::vector<std::string>& data) const
+    {
+        data = m_context;
+    }
+
+    update_status_t setContext(const std::vector<std::string>& data)
+    {
+        if (data == m_context)
+        {
+            return NO_CHANGES;
+        }
+
+        m_context = data;
+        return SUCCESS;
+    }
+
 private:
     ScicosID m_parentDiagram;
     std::string m_interfaceFunction;
     Geometry m_geometry;
-    Angle m_angle;
     std::vector<double> m_exprs;
-    std::string m_label;
+    std::string m_description;
+    ScicosID m_label;
     std::string m_style;
     std::vector<int> m_nzcross;
     std::vector<int> m_nmode;
-    std::vector<std::string> m_equations;
+    std::vector<double> m_equations;
     std::string m_uid;
 
     Descriptor m_sim;
@@ -701,6 +709,8 @@ private:
      */
     ScicosID m_parentBlock;
     std::vector<ScicosID> m_children;
+    std::vector<int> m_childrenColor;
+    std::vector<std::string> m_context;
 
     /**
      * I/O Blocks: the corresponding parent port

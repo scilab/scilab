@@ -9,7 +9,7 @@
 //
 // <-- WINDOWS ONLY -->
 //
-// <-- Non-regression test for bug 10544 -->
+// <-- Non-regression test for bug 11544 -->
 //
 // <-- Bugzilla URL -->
 // http://bugzilla.scilab.org/show_bug.cgi?id=11544
@@ -24,7 +24,7 @@ cd(TMPDIR + "/bug_11544");
 
 src = [
 "#include ""api_scilab.h"""
-"int sci_bug_11544(char* fname, int len)"
+"int sci_bug_11544(char* fname, void* pvApiCtx)"
 "{"
 "    AssignOutputVariable(pvApiCtx, 0) = 1;"
 "    return 0;"

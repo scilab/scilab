@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2008-2008 - INRIA - Bruno JOFRET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -35,16 +38,16 @@ public :
     bool                    toString(std::wostringstream& ostr);
 
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring    getTypeStr()
+    virtual std::wstring    getTypeStr() const
     {
         return L"ThreadId";
     }
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring    getShortTypeStr()
+    virtual std::wstring    getShortTypeStr() const
     {
         return L"tid";
     }
-    InternalType*           clone();
+    ThreadId*               clone();
 
     __threadId              getThreadId();
     void                    setThreadId(__threadId _id);
@@ -75,8 +78,8 @@ public :
     void                    setInterruptible(bool _isInterruptible);
     bool                    isInterruptible();
 
-    void                    setConsoleCommandFlag(bool _isConsoleCommand);
-    bool                    isConsoleCommand();
+    void                    setCommandOrigin(int _iCmdOrigin);
+    int                     getCommandOrigin();
 
 private :
     std::wstring            StatusToString(Status _status);
@@ -99,7 +102,7 @@ private :
     Status                  m_threadStatus;
     bool                    m_doInterrupt;
     bool                    m_isInterruptible;
-    bool                    m_isConsoleCommand;
+    int                     m_iCmdOrigin;
 };
 }
 #endif /* !__THREADID_HH__ */

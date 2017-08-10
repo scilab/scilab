@@ -4,7 +4,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 assert_checkequal(bitset(uint8(9), 5), uint8(25));
 assert_checkequal(bitset(uint8(25), 5, 0), uint8(9));

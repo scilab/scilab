@@ -4,11 +4,14 @@
  * Copyright (C) INRIA
  * Copyright (C) 2009-2011 - DIGITEO - Michael Baudin
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="test_run" xml:lang="ja">
@@ -84,6 +87,8 @@
                             <listitem>
                                 <para>.dia.refファイルを作成し,
                                     .dia と .dia.refが等しいかどうかをチェックしません.
+                                  This option is applied only to chosen tests not having the
+                                  <literal>&lt;-- NO CHECK REF --></literal> flag.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -130,6 +135,12 @@
                             <term>mode_nwni</term>
                             <listitem>
                                 <para>実行時に "-nwni"オプションを追加します</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>mode_nwni_profiling</term>
+                            <listitem>
+                                <para>Add the "-nwni -profiling" option to the launch for detect valgrind error (Linux only)</para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
@@ -243,7 +254,7 @@
             <listitem>
                 <para>
                     &lt;-- TEST WITH GRAPHIC --&gt;
-                    このテストはオプション "mode_nwni" が使用された場合は実行されません.
+                    This test will be executed with scilab -nw. (default mode)
                 </para>
             </listitem>
             <listitem>
@@ -278,8 +289,9 @@
             <listitem>
                 <para>
                     &lt;-- CLI SHELL MODE --&gt;
-                    (was: &lt;-- JVM NOT MANDATORY --&gt;)
-                    このテストはデフォルトでscilab-cli (nwniモード)でのみ実行されます.
+                    (was &lt;-- JVM NOT MANDATORY --&gt; and is obsolete)
+                    This test will be executed with scilab -nwni.
+                    All tests without this, will not be executed in "mode_mwni".
                 </para>
             </listitem>
             <listitem>
@@ -387,9 +399,11 @@
         <programlisting role="example"><![CDATA[
 // 全てのテストを実行
 // =============================================
-test_run();
-test_run([]);
-test_run([],[]);
+// test_run();
+// test_run([]);
+// test_run([],[]);
+// test_run("[]","[]");
+// test_run [] [];
 // 1つまたは複数のモジュールをテスト
 // =============================================
 // 1つのモジュールをテスト
@@ -427,6 +441,8 @@ test_run([],[],'unit_test');
 test_run('boolean','bug_2799','no_check_error_output');
 // 複数のオプションを同時に指定
 test_run([],[],['no_check_ref','mode_nw']);
+// Console mode
+test_run time [] no_check_ref //tests time module with no_check_ref option
  ]]></programlisting>
         <programlisting role="example"><![CDATA[
 //  (パスで指定した)外部モジュールのユニットテストを実行
@@ -455,6 +471,11 @@ test_run('time','datenum',[],TMPDIR+"/time_datenum_test_run.xml");
             テストが実行された後に,ユーザがログファイルを取得できるように
             するためです.
         </para>
+        <para>
+            An execution timeout delay (watchdog timer) is setup to 5 minutes
+            for each regular test. To ignore this timeout use the long-time
+            execution (<literal>LONG TIME EXECUTION</literal>) flag.
+        </para>
     </refsection>
     <refsection>
         <title>履歴</title>
@@ -482,6 +503,15 @@ test_run('time','datenum',[],TMPDIR+"/time_datenum_test_run.xml");
                     </para>
                     <para>
                         XMLファイルにエクスポートする4番目の引数が追加されました
+                    </para>
+                </revdescription>
+                <revnumber>5.5.0</revnumber>
+                <revdescription>32/64bits separation available</revdescription>
+                <revnumber>6.0.0</revnumber>
+                <revdescription>
+                    <para>profiling mode added to profile execution with valgrind (Linux only)</para>
+                    <para>
+                        timeout delay (watchdog timer) set to 5 minutes for single tests without <literal>LONG TIME EXECUTION</literal>
                     </para>
                 </revdescription>
             </revision>

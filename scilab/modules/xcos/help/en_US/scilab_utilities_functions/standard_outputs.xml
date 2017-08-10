@@ -5,7 +5,7 @@
         <refpurpose>Get the position of the output ports of a block in Xcos editor.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[x,y,typ] = standard_outputs(block)
         </synopsis>
     </refsynopsisdiv>
@@ -68,7 +68,7 @@ o2 = Capacitor("define");
     ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="standard_inputs">standard_inputs</link>

@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Cedric DELAMARRE
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 /*--------------------------------------------------------------------------*/
@@ -15,7 +18,6 @@
 #include "double.hxx"
 #include "polynom.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 
 extern "C"
 {
@@ -50,9 +52,8 @@ types::Function::ReturnValue sci_sfact(types::typed_list &in, int _iRetCount, ty
 
     if (in[0]->isPoly() == false)
     {
-        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_sfact";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
     pPolyIn = in[0]->getAs<types::Polynom>();
@@ -74,7 +75,7 @@ types::Function::ReturnValue sci_sfact(types::typed_list &in, int _iRetCount, ty
 
         if (2 * iDegD2 != iDegree)
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: A symetric polynom expected.\n"), "sfact", 1);
+            Scierror(999, _("%s: Wrong value for input argument #%d: A symmetric polynomial expected.\n"), "sfact", 1);
             return types::Function::Error;
         }
 
@@ -82,7 +83,7 @@ types::Function::ReturnValue sci_sfact(types::typed_list &in, int _iRetCount, ty
         {
             if (pdblCoef[i] != pdblCoef[iDegree - i])
             {
-                Scierror(999, _("%s: Wrong value for input argument #%d: A symetric polynom expected.\n"), "sfact", 1);
+                Scierror(999, _("%s: Wrong value for input argument #%d: A symmetric polynomial expected.\n"), "sfact", 1);
                 return types::Function::Error;
             }
         }
@@ -96,7 +97,7 @@ types::Function::ReturnValue sci_sfact(types::typed_list &in, int _iRetCount, ty
         // perform operation
         double* pdblWork = new double[7 * n];
         C2F(sfact1)(pdblCoefOut, &iDegD2, pdblWork, &iMaxIt, &iErr);
-        delete pdblWork;
+        delete[] pdblWork;
         if (iErr == 2)
         {
             delete pSP;
@@ -152,15 +153,17 @@ types::Function::ReturnValue sci_sfact(types::typed_list &in, int _iRetCount, ty
         int nm1 = n - 1;
         iMaxIt += n;
         C2F(sfact2)(pdblOut, &iRows, &nm1, pdblWork, &iMaxIt, &iErr);
-        delete pdblWork;
+        delete[] pdblWork;
 
         if (iErr < 0)
         {
+            delete[] pdblOut;
             Scierror(999, _("%s: Wrong value for input argument #%d: Convergence problem.\n"), "sfact", 1);
             return types::Function::Error;
         }
         else if (iErr > 0)
         {
+            delete[] pdblOut;
             Scierror(999, _("%s: Wrong value for input argument #%d: singular or asymmetric problem.\n"), "sfact", 1);
             return types::Function::Error;
         }
@@ -174,6 +177,8 @@ types::Function::ReturnValue sci_sfact(types::typed_list &in, int _iRetCount, ty
             pPolyOut->set(i, pSP);
             delete pSP;
         }
+
+        delete[] pdblOut;
     }
 
     out.push_back(pPolyOut);

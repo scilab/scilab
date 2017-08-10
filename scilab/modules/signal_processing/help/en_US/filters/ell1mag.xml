@@ -5,7 +5,7 @@
         <refpurpose>magnitude of elliptic filter</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[v]=ell1mag(eps,m1,z)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -45,16 +45,16 @@
         <title>Description</title>
         <para>
             Function used for squared magnitude of an elliptic filter.
-            Usually <literal>m1=eps*eps/(a*a-1)</literal>. Returns 
+            Usually <literal>m1=eps*eps/(a*a-1)</literal>. Returns
             <literal>v=real(ones(z)./(ones(z)+eps*eps*s.*s))</literal> for <literal>s=%sn(z,m1)</literal>.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 deff('[alpha,BeTa]=alpha_beta(n,m,m1)',...
-'if 2*int(n/2)==n then, BeTa=K1; else, BeTa=0;end;...
-alpha=%k(1-m1)/%k(1-m);')
+'if 2*int(n/2)==n then, BeTa=K1; else, BeTa=0;end;'+...
+'alpha=%k(1-m1)/%k(1-m);')
 epsilon=0.1;A=10;  //ripple parameters
 m1=(epsilon*epsilon)/(A*A-1);n=5;omegac=6;
 m=find_freq(epsilon,A,n);omegar = omegac/sqrt(m)
@@ -68,8 +68,8 @@ plot(samples,ell1mag(epsilon,m1,z))
  ]]></programlisting>
         <scilab:image><![CDATA[
 deff('[alpha,BeTa]=alpha_beta(n,m,m1)',...
-'if 2*int(n/2)==n then, BeTa=K1; else, BeTa=0;end;...
-alpha=%k(1-m1)/%k(1-m);')
+'if 2*int(n/2)==n then, BeTa=K1; else, BeTa=0;end;'+...
+'alpha=%k(1-m1)/%k(1-m);')
 epsilon=0.1;A=10;  //ripple parameters
 m1=(epsilon*epsilon)/(A*A-1);n=5;omegac=6;
 m=find_freq(epsilon,A,n);omegar = omegac/sqrt(m)
@@ -83,7 +83,7 @@ plot(samples,ell1mag(epsilon,m1,z))
 ]]>     </scilab:image>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="buttmag">buttmag</link>

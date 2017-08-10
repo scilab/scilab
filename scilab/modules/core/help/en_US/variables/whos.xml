@@ -5,7 +5,7 @@
         <refpurpose>listing of variables in long form</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             whos()
             whos -type typ
@@ -34,7 +34,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            <code>whos()</code> displays all current variable names 
+            <code>whos()</code> displays all current variable names
             sorted by name (case insensitive), types and memory used.
         </para>
         <para>
@@ -51,15 +51,15 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-lines(0) 
+        <programlisting role="example"><![CDATA[
+lines(0)
 whos()
 whos -type boolean
 whos -name %
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="who">who</link>

@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -57,6 +60,7 @@ static getHashTableCouple propertyGetTable[] =
     {"axes_size", get_axes_size_property},
     {"figure_size", get_figure_size_property},
     {"figure_name", get_figure_name_property},
+    {"name", get_figure_name_property},
     {"figure_id", get_figure_id_property},
     {"rotation_style", get_rotation_style_property},
     {"immediate_drawing", get_immediate_drawing_property},
@@ -216,12 +220,15 @@ static getHashTableCouple propertyGetTable[] =
     {"tooltipstring", GetUicontrolTooltipString},
     {"closerequestfcn", get_figure_closerequestfcn_property},
     {"orientation", get_tip_orientation_property},
-    {"z_component", get_tip_3component_property},
+    {"z_component", get_tip_z_component_property},
+    {"display_components", get_tip_display_components_property},
+    {"datatip_display_mode", get_datatip_display_mode_property},
     {"auto_orientation", get_tip_auto_orientation_property},
     {"interp_mode", get_tip_interp_mode_property},
     {"box_mode", get_tip_box_mode_property},
     {"label_mode", get_tip_label_mode_property},
     {"display_function", get_tip_disp_function_property},
+    {"detached_position", get_tip_detached_property},
     {"ambient_color", get_ambient_color_property},
     {"diffuse_color", get_diffuse_color_property},
     {"specular_color", get_specular_color_property},

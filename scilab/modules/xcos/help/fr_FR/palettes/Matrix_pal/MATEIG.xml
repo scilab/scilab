@@ -3,11 +3,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="MATEIG" xml:lang="fr_FR">
@@ -149,11 +152,11 @@
     <refsection id="Example_MATEIG">
         <title>Exemple</title>
         <programlisting role="example">
-            A=[1 12 32;21 35 46;70 8 19]
-            Quand "Decomposition type" est mis à 1 la sortie est y=[-35.649;14.279;76.369]
+            A = [1 12 32 ; 21 35 46 ; 70 8 19]
+            Quand "Decomposition type" est mis à 1 la sortie est y = [-35.649 ; 14.279 ; 76.369]
             Quand "Decomposition type" est mis à 2 les sorties sont:
-            y1=[-35.649 0.000 0.000;0.000 14.279 0.000;0.000 0.000 76.369]
-            y2=[0.557 0.080 0.349;0.330 -0.922 0.770;-0.762 0.379 0.533]
+            y1 = [-35.649 0.000 0.000 ; 0.000 14.279 0.000 ; 0.000 0.000 76.369]
+            y2 = [0.557 0.080 0.349 ; 0.330 -0.922 0.770 ; -0.762 0.379 0.533]
         </programlisting>
     </refsection>
     <refsection id="Defaultproperties_MATEIG">
@@ -252,6 +255,16 @@
                 <para>SCI/modules/scicos_blocks/src/c/matz_vpv.c</para>
             </listitem>
         </itemizedlist>
+    </refsection>
+    <refsection id="Example_MATEIG2">
+        <title>Exemple de calcul de valeurs propres : spec([sin(t) 0; 0 t]) = [sin(t); t]</title>
+        <link type="scilab" linkend="scilab.xcos/xcos/examples/matrix_pal/MATEIG_Example.zcos">
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../../../examples/matrix_pal/MATEIG_Example.zcos" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </link>
     </refsection>
     <refsection id="Seealso_MATEIG">
         <title>Voir aussi</title>

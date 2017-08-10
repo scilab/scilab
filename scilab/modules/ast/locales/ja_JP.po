@@ -1,0 +1,431 @@
+# Japanese translation for scilab
+# Copyright (c) 2015 Rosetta Contributors and Canonical Ltd 2015
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2015.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2015-08-17 11:20+0100\n"
+"PO-Revision-Date: 2016-04-28 14:19+0000\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
+"Language-Team: Japanese <ja@li.org>\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 18315)\n"
+
+msgid "Warning :\n"
+msgstr "警告:\n"
+
+#, c-format
+msgid "matrix is close to singular or badly scaled. rcond = %1.4E\n"
+msgstr "行列が特異に近いかスケーリング異常です. rcond=%1.4E\n"
+
+msgid "computing least squares solution. (see lsq).\n"
+msgstr "最小二乗解を計算中. (lsq 参照).\n"
+
+#, c-format
+msgid "debugger stop on breakpoint(%d) in function %ls line %d\n"
+msgstr ""
+"デバッガがブレークポイント (%d)  で停止しました ( 関数 %ls ,  %d 行目)\n"
+
+msgid "Execution aborted.\n"
+msgstr "実行をアボートしました.\n"
+
+#, c-format
+msgid "debugger stop on error in file %ls line %d\n"
+msgstr "デバッガがエラーで停止しました (ファイル %ls, %d 行目)\n"
+
+#, c-format
+msgid "debugger stop on error in function %ls line %d\n"
+msgstr "デバッガがエラーで停止しました (関数 %ls, %d 行目)\n"
+
+msgid "Leave debugger.\n"
+msgstr "デバッガを離れます.\n"
+
+#, c-format
+msgid "Undefined variable: %s\n"
+msgstr "未定義の変数: %s\n"
+
+msgid "inconsistent row/column dimensions\n"
+msgstr "行/列の次元が不整合\n"
+
+msgid "/!\\ Unmanaged FieldExp.\n"
+msgstr "/!\\ アンマネージド FieldExp.\n"
+
+msgid "Attempt to reference field of non-structure array.\n"
+msgstr "構造体以外の配列のフィールドを参照しています.\n"
+
+msgid "Not yet implemented in Scilab.\n"
+msgstr "Scilab では未実装です.\n"
+
+msgid "Invalid index.\n"
+msgstr "添字が不正です.\n"
+
+msgid "Redefining permanent variable.\n"
+msgstr "永続的変数を再定義しています.\n"
+
+msgid "for expression can only manage 1 or 2 dimensions variables\n"
+msgstr "for式は、1または2次元の変数のみを扱えます\n"
+
+msgid "for expression : Wrong type for loop iterator.\n"
+msgstr "for 式: 反復イタレータの型が間違っています.\n"
+
+#, c-format
+msgid "%s: function is disabled in debug mode.\n"
+msgstr "%s: 関数がデバッグモードで無効になりました.\n"
+
+msgid "With input arguments, return / resume expects output arguments.\n"
+msgstr "入力引数を指定した場合, return / resume には出力引数を指定します.\n"
+
+#, c-format
+msgid "%ls: Can not transpose multiple elements.\n"
+msgstr "%ls: 複数の要素を転置することはできません.\n"
+
+#, c-format
+msgid ""
+"It is not possible to redefine the %s primitive this way (see clearfun).\n"
+msgstr ""
+"%s プリミティブをこの方法で再定義することはできません (clearfun 参照).\n"
+
+#, c-format
+msgid "%ls: Wrong type for argument %d: Real scalar expected.\n"
+msgstr "%ls: 引数 %d の型が間違っています: 実数スカラーを指定してください.\n"
+
+#, c-format
+msgid "Recursion limit reached (%d).\n"
+msgstr "再帰制限に達しました (%d).\n"
+
+msgid "Unknown expression"
+msgstr "式が不明です"
+
+msgid "Error in overload function: "
+msgstr "オーバーロードされた関数でエラー発生: "
+
+msgid "Wrong insertion : use extraction with {} only on a Cell."
+msgstr "挿入が不正です: {} による展開はセルのみに使用してください."
+
+msgid "Unable to insert multiple item in a Struct."
+msgstr "複数要素を構造体に挿入できません."
+
+msgid "Unable to insert multiple item in a List."
+msgstr "複数要素をリストに挿入できません."
+
+msgid "Wrong insertion."
+msgstr "挿入が間違っています."
+
+msgid "Wrong insertion in a Cell."
+msgstr "セルへの挿入が間違っています."
+
+#, c-format
+msgid "Wrong insertion: insertion in output of '%s' is not allowed.\n"
+msgstr "挿入が間違っています:  '%s' の出力への挿入は許可されていません.\n"
+
+msgid "Wrong insertion : Cannot insert without arguments."
+msgstr "挿入が間違っています: 引数を指定せずに挿入することはできません."
+
+msgid "Unexpected redefinition of Scilab function."
+msgstr "予期されないScilab関数の再定義が行われました."
+
+msgid "Submatrix incorrectly defined.\n"
+msgstr "誤ったサブ行列の定義が行われました.\n"
+
+msgid "Wrong insertion: A Cell expected: use {...} instead of (...).\n"
+msgstr ""
+"挿入が間違っています:  セルでは (...) の代わりに {...} を指定してください.\n"
+
+msgid "Inconsistent row/column dimensions.\n"
+msgstr "行/列の次元が不整合です.\n"
+
+msgid ""
+"operation +: Warning adding a matrix with the empty matrix old behaviour.\n"
+msgstr "+演算 : 警告 空行列との行列加算は古い動作となります.\n"
+
+msgid ""
+"operation +: Warning adding a matrix with the empty matrix will give an "
+"empty matrix result.\n"
+msgstr "+ 演算子 : 警告: 行列に空行列を加算すると, 空行列となります.\n"
+
+msgid "variables don't have the same formal variable"
+msgstr "変数は同じ形式の変数を有しません."
+
+#, c-format
+msgid ""
+"Error: operator %ls: Matrix dimensions must agree (op1 is %ls, op2 is %ls).\n"
+msgstr ""
+"エラー:  %ls 演算子: 行列の次元を整合させる必要があります (op1 は %ls, op2 "
+"は %ls).\n"
+
+msgid "With NaN or Inf a division by scalar expected.\n"
+msgstr ""
+"NaN または Inf を指定した場合, スカラーによる割り算を指定してください.\n"
+
+msgid "Division by zero...\n"
+msgstr "ゼロによる割り算...\n"
+
+msgid "Warning : Division by zero...\n"
+msgstr "警告: ゼロ割り...\n"
+
+#, c-format
+msgid "Operator / : Error %d not yet managed.\n"
+msgstr "/ 演算子 : エラー %d はまだ管理されていません.\n"
+
+msgid "Warning : division by zero...\n"
+msgstr "警告: ゼロ割...\n"
+
+msgid "Bad value in the left or right operand.\n"
+msgstr "左または右オペランドの値が不正です.\n"
+
+msgid "Bad size for left or right operand.\n"
+msgstr "左または右オペランドの大きさが不正です.\n"
+
+msgid "Bad value in the left operand.\n"
+msgstr "左オペランドの値が不正です.\n"
+
+msgid "With NaN or Inf a left division by scalar expected.\n"
+msgstr ""
+"NaNまたはInfを指定した場合, スカラーによる左割り算を指定してください.\n"
+
+msgid "Left division by zero...\n"
+msgstr "ゼロによる左割り算...\n"
+
+msgid "Warning : Left division by zero...\n"
+msgstr "警告: ゼロによる左割り算...\n"
+
+#, c-format
+msgid "Operator \\ : Error %d not yet managed.\n"
+msgstr "\\ 演算子: エラー %d は未管理です.\n"
+
+msgid "Invalid exponent: expected real exponents.\n"
+msgstr ""
+
+msgid "Invalid exponent.\n"
+msgstr "指数が間違っています.\n"
+
+msgid ""
+"operation -: Warning adding a matrix with the empty matrix old behaviour.\n"
+msgstr "-演算 : 警告 空行列との行列加算は古い動作となります.\n"
+
+msgid ""
+"operation -: Warning adding a matrix with the empty matrix will give an "
+"empty matrix result.\n"
+msgstr "- 演算子: 警告: 行列と空行列を加算すると空行列となります.\n"
+
+#, c-format
+msgid "%ls: Cannot open file %ls.\n"
+msgstr "%ls: ファイル %ls をオープンできません.\n"
+
+msgid "Error: "
+msgstr "エラー: "
+
+msgid "Your variables are:"
+msgstr "変数 :"
+
+#, c-format
+msgid " using %10d elements out of  %10d.\n"
+msgstr " %10d 個の要素を使用 (総数: %10d).\n"
+
+#, c-format
+msgid " and   %10d variables out of %10d.\n"
+msgstr " %10d 個の要素を使用 (総数: %10d).\n"
+
+msgid "Your global variables are:"
+msgstr "グローバル変数:"
+
+#, c-format
+msgid ""
+"Warning : redefining function: %s. Use funcprot(0) to avoid this message"
+msgstr ""
+"警告: 関数の再定義: %s. このメッセージを回避するには, funcport(0) を使用して"
+"ください"
+
+msgid "in builtin "
+msgstr "組込み "
+
+#, c-format
+msgid "at line % 5d of function "
+msgstr "関数の % 5d 行目 "
+
+#, c-format
+msgid "at line % 5d of executed string "
+msgstr "実行された文字列の % 5d 行目 "
+
+#, c-format
+msgid "at line % 5d of executed file "
+msgstr "実行されたファイルの % 5d 行目 "
+
+msgid "line"
+msgstr "行"
+
+msgid "Cannot find Windows temporary directory (1)."
+msgstr "Windows テンポラリディレクトリ (1) が見つかりません."
+
+msgid "Error"
+msgstr "エラー"
+
+#, c-format
+msgid "Impossible to create : %s"
+msgstr "作成できません: %s"
+
+#, c-format
+msgid "Error: Could not resolve symbolic link %s\n"
+msgstr ""
+
+#, c-format
+msgid "Error: Could not find %s\n"
+msgstr ""
+
+#, c-format
+msgid "Error: Could not create %s: %s\n"
+msgstr "エラー: %s を作成できません: %s\n"
+
+#, c-format
+msgid "Scilab '%s' function disabled in -nogui or -nwni mode.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Library name must not be empty\n"
+"."
+msgstr "%s: ライブラリ名を空にすることはできません"
+
+#, c-format
+msgid "An error has been detected while loading %s: %s\n"
+msgstr "%sを読み込む際にエラーが検出されました: %s\n"
+
+#, c-format
+msgid "Impossible to load %s library\n"
+msgstr "%s ライブラリを読み込むことはできません\n"
+
+#, c-format
+msgid "Impossible to load %s function in %s library: %s\n"
+msgstr "%s 関数を読み込めません(ライブラリ %s) : %s\n"
+
+#, c-format
+msgid "Functions files location : %s.\n"
+msgstr "関数ファイルの位置: %s.\n"
+
+#, c-format
+msgid "Unknown field : %ls.\n"
+msgstr "未知のフィールド: %ls.\n"
+
+msgid "Unable to insert multiple item in a list.\n"
+msgstr "リストに複数の要素を挿入することはできません.\n"
+
+msgid "Index out of bounds.\n"
+msgstr "添字が範囲を超えています.\n"
+
+msgid "Wrong number of input arguments: This function has no input argument.\n"
+msgstr "入力引数の数が間違っています: この関数は入力引数を有しません.\n"
+
+msgid "Wrong number of input arguments.\n"
+msgstr ""
+
+#, c-format
+msgid "List element number %d is Undefined.\n"
+msgstr "リストの要素数 %d が未定義です.\n"
+
+#, c-format
+msgid "Undefined variable '%s' in function '%s'.\n"
+msgstr "未定義の変数 '%s' が関数 '%s' にあります.\n"
+
+#, c-format
+msgid "Unable to open : %s.\n"
+msgstr "オープンできません: %s.\n"
+
+#, c-format
+msgid ""
+"Warning : please rename your overloaded function\n"
+" \"%s\" to \"%s\"\n"
+msgstr ""
+"警告: オーバーロードされた関数の名前を\"%s\" から \"%s\"に変更してください\n"
+
+#, c-format
+msgid "check or define function %s for overloading.\n"
+msgstr "オーバーロード用の関数 %s を確認または定義してください.\n"
+
+msgid "Undefined operation for the given operands.\n"
+msgstr "指定したオペランド用の演算子が未定義です.\n"
+
+#, c-format
+msgid "  check arguments or define function %s for overloading.\n"
+msgstr "  引数を確認するか, オーバーロード用の関数 %s を 定義してください.\n"
+
+msgid "Function not defined for given argument type(s),\n"
+msgstr "指定した引数型の関数は定義されていません.\n"
+
+msgid "Input arguments should have the same formal variable name.\n"
+msgstr "入力引数は同じ形式の変数名を有する必要があります.\n"
+
+#, c-format
+msgid "Can not allocate negative size (%d).\n"
+msgstr "負の大きさ (%d) を確保することはできません.\n"
+
+#, c-format
+msgid "Can not allocate %.2f MB memory.\n"
+msgstr "%.2f MBのメモリを確保することはできません.\n"
+
+msgid "Unable to insert multiple item in a struct.\n"
+msgstr "構造体に複数要素を挿入することはできません.\n"
+
+msgid "Assignment between unlike types is not allowed.\n"
+msgstr "類似性がない型の間の代入はできません.\n"
+
+msgid "Can not allocate data.\n"
+msgstr "データ保持用のメモリを確保できません.\n"
+
+#, c-format
+msgid "Field \"%ls\" does not exists\n"
+msgstr "フィールド \"%ls\" は存在しません.\n"
+
+#, c-format
+msgid "variable size exceeded : less than %d expected.\n"
+msgstr "変数の大きさを超えました: %d 未満にしてください.\n"
+
+#, c-format
+msgid "%s: Could not find '%s': Please check that macros have been built.\n"
+msgstr ""
+"%s:  '%s' が見つかりませんでした: 構築されたマクロをチェックしてください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer matrix expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 整数行列を指定してください.\n"
+
+msgid "Invalid exponent: expected real exponents."
+msgstr ""
+
+msgid "Division by zero"
+msgstr ""
+
+#, c-format
+msgid "%s: Argument #%d: Square matrix expected.\n"
+msgstr ""
+
+msgid "Not implemented"
+msgstr ""
+
+msgid "Invalid exponent"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: 正方行列を指定してください.\n"
+
+#, c-format
+msgid "%s: Unable to diagonalize.\n"
+msgstr "%s: 対角化できません。\n"
+
+msgid "Not implemented in scilab...\n"
+msgstr "scilabでは実装されていません...\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: スカラーを指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 整数を指定してください.\n"

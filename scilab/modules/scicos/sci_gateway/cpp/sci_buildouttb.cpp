@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2014 - Scilab Enterprises - Paul Bignier
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -21,6 +24,7 @@
 #include "double.hxx"
 #include "function.hxx"
 #include "int.hxx"
+#include "list.hxx"
 
 extern "C"
 {
@@ -112,6 +116,7 @@ types::Function::ReturnValue sci_buildouttb(types::typed_list &in, int _iRetCoun
             memcpy(buffer, p1Int8->get(), mn1 * sizeof(char));
             p1Copy = new int[mn1];
             memcpy(p1Copy, buffer, mn1 * sizeof(int));
+            delete[] buffer;
             break;
         }
         case types::InternalType::ScilabInt16:
@@ -125,6 +130,7 @@ types::Function::ReturnValue sci_buildouttb(types::typed_list &in, int _iRetCoun
             memcpy(buffer, p1Int16->get(), mn1 * sizeof(char));
             p1Copy = new int[mn1];
             memcpy(p1Copy, buffer, mn1 * sizeof(int));
+            delete[] buffer;
             break;
         }
         case types::InternalType::ScilabInt32:
@@ -138,6 +144,7 @@ types::Function::ReturnValue sci_buildouttb(types::typed_list &in, int _iRetCoun
             memcpy(buffer, p1Int32->get(), mn1 * sizeof(char));
             p1Copy = new int[mn1];
             memcpy(p1Copy, buffer, mn1 * sizeof(int));
+            delete[] buffer;
             break;
         }
         case types::InternalType::ScilabUInt8:
@@ -151,6 +158,7 @@ types::Function::ReturnValue sci_buildouttb(types::typed_list &in, int _iRetCoun
             memcpy(buffer, p1UInt8->get(), mn1 * sizeof(char));
             p1Copy = new int[mn1];
             memcpy(p1Copy, buffer, mn1 * sizeof(int));
+            delete[] buffer;
             break;
         }
         case types::InternalType::ScilabUInt16:
@@ -164,6 +172,7 @@ types::Function::ReturnValue sci_buildouttb(types::typed_list &in, int _iRetCoun
             memcpy(buffer, p1UInt16->get(), mn1 * sizeof(char));
             p1Copy = new int[mn1];
             memcpy(p1Copy, buffer, mn1 * sizeof(int));
+            delete[] buffer;
             break;
         }
         case types::InternalType::ScilabUInt32:
@@ -177,6 +186,7 @@ types::Function::ReturnValue sci_buildouttb(types::typed_list &in, int _iRetCoun
             memcpy(buffer, p1UInt32->get(), mn1 * sizeof(char));
             p1Copy = new int[mn1];
             memcpy(p1Copy, buffer, mn1 * sizeof(int));
+            delete[] buffer;
             break;
         }
         default:
@@ -312,6 +322,8 @@ types::Function::ReturnValue sci_buildouttb(types::typed_list &in, int _iRetCoun
         if ((n2 == 0) || (m2 == 0))
         {
             out.push_back(pOut);
+            delete[] p1Copy;
+            delete[] p2Copy;
             return types::Function::OK;
         }
         else
@@ -319,6 +331,7 @@ types::Function::ReturnValue sci_buildouttb(types::typed_list &in, int _iRetCoun
             Scierror(888, _("%s : inconsistent dimensions between arguments.\n"), funname.data());
             delete[] p1Copy;
             delete[] p2Copy;
+            delete pOut;
             return types::Function::Error;
         }
     }
@@ -327,6 +340,7 @@ types::Function::ReturnValue sci_buildouttb(types::typed_list &in, int _iRetCoun
         Scierror(888, _("%s : bad dimension for argument #%d.\n"), funname.data(), 1);
         delete[] p1Copy;
         delete[] p2Copy;
+        delete pOut;
         return types::Function::Error;
     }
 
@@ -347,6 +361,7 @@ types::Function::ReturnValue sci_buildouttb(types::typed_list &in, int _iRetCoun
             Scierror(888, _("%s : inconsistent dimensions between arguments.\n"), funname.data());
             delete[] p1Copy;
             delete[] p2Copy;
+            delete pOut;
             return types::Function::Error;
         }
     }
@@ -355,6 +370,7 @@ types::Function::ReturnValue sci_buildouttb(types::typed_list &in, int _iRetCoun
         Scierror(888, _("%s : bad dimension for argument #%d.\n"), funname.data(), 2);
         delete[] p1Copy;
         delete[] p2Copy;
+        delete pOut;
         return types::Function::Error;
     }
 
@@ -364,6 +380,7 @@ types::Function::ReturnValue sci_buildouttb(types::typed_list &in, int _iRetCoun
         Scierror(888, _("%s : arguments must have the same length.\n"), funname.data());
         delete[] p1Copy;
         delete[] p2Copy;
+        delete pOut;
         return types::Function::Error;
     }
 

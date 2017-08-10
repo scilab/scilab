@@ -4,11 +4,14 @@
 // Copyright (C) 2012 - Scilab Enterprises - Adeline CARNIS
 // Copyright (C) 2013 - Samuel GOUGEON : Bug 13002 : extension to hypermatrices & integers
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function i = modulo(n, m)
 
@@ -39,6 +42,10 @@ function i = modulo(n, m)
 
     // --------------------------  Processing ----------------------------
 
+    if isempty(m)
+        i = n;
+        return
+    end
     if or(mt==[1 8]) & mt==nt then
         ms = size(m)
         ns = size(n)

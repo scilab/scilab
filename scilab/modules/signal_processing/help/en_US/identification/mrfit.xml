@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="mrfit">
+    <refnamediv>
+        <refname>mrfit</refname>
+        <refpurpose>frequency response fit</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>sys=mrfit(w,mag,order)
+            [num,den]=mrfit(w,mag,order)
+            sys=mrfit(w,mag,order,weight)
+            [num,den]=mrfit(w,mag,order,weight)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>w</term>
+                <listitem>
+                    <para>positive real vector of frequencies (Hz)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>mag</term>
+                <listitem>
+                    <para>
+                        real vector of frequency responses magnitude (same size as <literal>w</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>order</term>
+                <listitem>
+                    <para>
+                        integer (required order, degree of <literal>den</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>weight</term>
+                <listitem>
+                    <para>
+                        positive real vector (default value <literal>ones(w)</literal>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>num,den</term>
+                <listitem>
+                    <para>stable polynomials</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>sys=mrfit(w,mag,order,weight)</literal> returns a bi-stable transfer function
+            <literal>G(s)=sys=num/den</literal>, of of given <literal>order</literal> such that
+            its frequency response magnitude <literal>abs(G(w(i)))</literal>
+            matches <literal>mag(i)</literal> i.e. <literal>abs(freq(num,den,%i*w))</literal> should be
+            close to <literal>mag</literal>.
+            <literal>weight(i)</literal> is the weight given to <literal>w(i)</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+w=0.01:0.01:2;
+s=poly(0,'s');
+G=syslin('c',2*(s^2+0.1*s+2),(s^2+s+1)*(s^2+0.3*s+1)); // syslin('c',Num,Den);
+fresp=repfreq(G,w);
+mag=abs(fresp);
+Gid=mrfit(w,mag,4);
+frespfit=repfreq(Gid,w);
+plot2d([w',w'],[mag(:),abs(frespfit(:))])
+ ]]></programlisting>
+        <scilab:image>
+            w=0.01:0.01:2;
+            s=poly(0,'s');
+            G=syslin('c',2*(s^2+0.1*s+2),(s^2+s+1)*(s^2+0.3*s+1));
+            fresp=repfreq(G,w);
+            mag=abs(fresp);
+            Gid=mrfit(w,mag,4);
+            frespfit=repfreq(Gid,w);
+            plot2d([w',w'],[mag(:),abs(frespfit(:))])
+        </scilab:image>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="cepstrum">cepstrum</link>
+            </member>
+            <member>
+                <link linkend="frfit">frfit</link>
+            </member>
+            <member>
+                <link linkend="freq">freq</link>
+            </member>
+            <member>
+                <link linkend="calfrq">calfrq</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

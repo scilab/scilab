@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="lattp">
+    <refnamediv>
+        <refname>lattp</refname>
+        <refpurpose>Identification of MA part of a vector ARMA process</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[la,lb]=lattp(n,p,cov)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>maximum order of the filter</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>p</term>
+                <listitem>
+                    <para>
+                        fixed dimension of the MA part. If <literal>p= -1</literal>, the algorithm reduces to the classical Levinson recursions.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>cov</term>
+                <listitem>
+                    <para>
+                        matrix containing the <literal>Rk</literal>'s (<literal>d*d</literal> matrices for a d-dimensional process).It must be given the following way
+                    </para>
+                    <para>
+                        <latex>
+                            \begin{eqnarray}
+                            \begin{pmatrix}
+                            R_0\\R_1\\R_2\\ \vdots \\R_{nlags}
+                            \end{pmatrix}
+                            \end{eqnarray}
+                        </latex>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>la</term>
+                <listitem>
+                    <para>list-type variable, giving the successively calculated polynomials (degree 1 to degree p),with coefficients Ak</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            This function identifies the MA part of a vector ARMA(n,p) process.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Example</title>
+        <programlisting role="Example"><![CDATA[
+//Generate the process
+t1=0:0.1:100;
+y1=sin(2*%pi*t1)+sin(2*%pi*2*t1);
+y1=y1+rand(y1,"normal");
+
+//Covariance of y1
+nlag=128;
+c1=corr(y1,nlag);
+c1=c1';
+
+//Compute the filter with maximum order=15 and p=5
+n=5; p=2;
+[la1,sig1]=lattp(n,p,c1);
+]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="levin">levin</link>
+            </member>
+            <member>
+                <link linkend="lattn">lattn</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

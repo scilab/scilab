@@ -2,11 +2,14 @@
 // Copyright (C) INRIA
 // Copyright (C) Bruno Pincon
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function []=Sgrayplot(x,y,z, strf, rect, nax, zminmax, colminmax, mesh, colout)
     //
@@ -57,7 +60,7 @@ function []=Sgrayplot(x,y,z, strf, rect, nax, zminmax, colminmax, mesh, colout)
 
     // parsing the optional args
     opt_arg_list = ["strf", "rect","nax","zminmax", "colminmax", "mesh", "colout"]
-    opt_arg_seq = []
+    opt_arg_seq = ""
     for opt_arg = opt_arg_list
         if exists(opt_arg,"local") then
             opt_arg_seq = opt_arg_seq +","+ opt_arg + "=" + opt_arg
@@ -72,7 +75,7 @@ function []=Sgrayplot(x,y,z, strf, rect, nax, zminmax, colminmax, mesh, colout)
     num1  num1+p num+p]  ,  zeros(nbtri,1)]
 
     // then plot
-    if opt_arg_seq == [] then
+    if opt_arg_seq == "" then
         fec(noe_x,noe_y,connect,z)
     else
         execstr("fec(noe_x,noe_y,connect,z"+opt_arg_seq+")")

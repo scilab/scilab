@@ -2,11 +2,14 @@
 // Copyright (C) INRIA/ENPC
 // Copyright (C) DIGITEO - 2009-2010 - Allan CORNET
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 //=============================================================================
 function ilib_gen_loader(varargin)
     // varargin (max) name, tables, libs, libname, flag, loadername
@@ -47,12 +50,12 @@ function ilib_gen_loader(varargin)
     end
 
     if type(name) <> 10 then
-        error(999, msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"), "ilib_gen_loader", 1));
+        error(999, msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"), "ilib_gen_loader", 1));
     end
 
     if tables <> [] then
         if type(tables) <> 10 then
-            error(999, msprintf(_("%s: Wrong type for input argument #%d: String matrix expected.\n"), "ilib_gen_loader", 2));
+            error(999, msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"), "ilib_gen_loader", 2));
         end
     else
         backupTables = tables;
@@ -75,31 +78,31 @@ function ilib_gen_loader(varargin)
     end
 
     if libs <> [] & type(libs) <> 10 then
-        error(999, msprintf(_("%s: Wrong type for input argument #%d: String matrix expected.\n"), "ilib_gen_loader", 3));
+        error(999, msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"), "ilib_gen_loader", 3));
     end
 
     if type(libname) <> 10 then
-        error(999, msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"), "ilib_gen_loader", 4));
+        error(999, msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"), "ilib_gen_loader", 4));
     end
 
     if size(libname,"*") <> 1 then
-        error(999, msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"), "ilib_gen_loader", 4));
+        error(999, msprintf(_("%s: Wrong size for input argument #%d: string expected.\n"), "ilib_gen_loader", 4));
     end
 
     if type(flag) <> 10 then
-        error(999, msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"), "ilib_gen_loader", 5));
+        error(999, msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"), "ilib_gen_loader", 5));
     end
 
     if size(flag,"*") <> 1 then
-        error(999, msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"), "ilib_gen_loader", 5));
+        error(999, msprintf(_("%s: Wrong size for input argument #%d: string expected.\n"), "ilib_gen_loader", 5));
     end
 
     if type(loadername) <> 10 then
-        error(999, msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"), "ilib_gen_loader", 6));
+        error(999, msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"), "ilib_gen_loader", 6));
     end
 
     if size(loadername,"*") <> 1 then
-        error(999, msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"), "ilib_gen_loader", 6));
+        error(999, msprintf(_("%s: Wrong size for input argument #%d: string expected.\n"), "ilib_gen_loader", 6));
     end
 
     if libname == "" then

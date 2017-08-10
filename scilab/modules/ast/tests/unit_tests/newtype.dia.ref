@@ -20,14 +20,14 @@ a = newtype();
 assert_checkequal(string(a), "This is my type.");
 // check scilab display
 a
-a  = 
+ a  = 
 This is my type.
 disp(a)
 This is my type.
 l=list(2, a, "test")
-l  = 
+ l  = 
        l(1)
-    2.
+   2.
        l(2)
 This is my type.
        l(3)
@@ -38,14 +38,14 @@ function %nt_p(h)
     disp("%nt_p: This is my type.");
 end
 b
-b  = 
+ b  = 
  %nt_p: This is my type.
 disp(b)
  %nt_p: This is my type.
 l=list(2, b, "test")
-l  = 
+ l  = 
        l(1)
-    2.
+   2.
        l(2)
  %nt_p: This is my type.
        l(3)

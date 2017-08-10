@@ -3,11 +3,14 @@
  * Copyright (C) 2006 - INRIA - Allan CORNET
  * Copyright (C) 2008 - INRIA - Vincent COUVERT
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -20,7 +23,7 @@ GUI_IMPEXP int gw_gui(void);
 GUI_IMPEXP int sci_x_dialog(char* fname, void* pvApiCtx);
 GUI_IMPEXP int sci_x_choose(char* fname, void* pvApiCtx);
 GUI_IMPEXP int sci_x_mdialog(char* fname, void* pvApiCtx);
-GUI_IMPEXP int sci_x_choice(char* fname, void* pvApiCtx);
+GUI_IMPEXP int sci_xchoicesi(char* fname, void* pvApiCtx);
 GUI_IMPEXP int sci_delmenu(char* fname, void* pvApiCtx);
 GUI_IMPEXP int sci_setmenu(char* fname, void* pvApiCtx);
 GUI_IMPEXP int sci_unsetmenu(char* fname, void* pvApiCtx);
@@ -63,7 +66,7 @@ GUI_IMPEXP int sci_datatip_set_display(char *fname, void* pvApiCtx);
 GUI_IMPEXP int sci_datatip_set_interp(char *fname, void* pvApiCtx);
 GUI_IMPEXP int sci_datatip_set_orient(char *fname, void* pvApiCtx);
 
-// YaSp
+// Scilab 6
 GUI_IMPEXP int sci_about(char* fname, void* pvApiCtx);
 GUI_IMPEXP int sci_mpopup(char* fname, void* pvApiCtx);
 GUI_IMPEXP int sci_fire_closing_finished (char* fname, void* pvApiCtx);

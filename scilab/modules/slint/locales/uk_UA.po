@@ -1,0 +1,363 @@
+# Ukrainian translation for scilab
+# Copyright (c) 2015 Rosetta Contributors and Canonical Ltd 2015
+# This file is distributed under the same license as the scilab package.
+#
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2015.
+# Yuri Chornoivan <yurchor@ukr.net>, 2015.
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2016-06-10 06:21+0000\n"
+"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
+"Language-Team: Ukrainian <uk@li.org>\n"
+"Language: uk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 18315)\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: мало бути вказано принаймні %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"«string».\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A single boolean expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати одинарне "
+"булеве значення.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A string or a boolean expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип «string» "
+"або «boolean».\n"
+
+#, c-format
+msgid "%s: %s\n"
+msgstr "%s: %s\n"
+
+msgid "Module developed with the contribution of CNES."
+msgstr "Модуль створено за участі CNES."
+
+msgid "Expression is not bracketed."
+msgstr "Виразу не взято у дужки."
+
+#, c-format
+msgid "Number of break is limited: %d max."
+msgstr "Кількість зупинок обмежено: не більше %d."
+
+#, c-format
+msgid "Number of continue is limited: %d max."
+msgstr "Кількість continue обмежено: не більше %d."
+
+msgid "Cannot open the file"
+msgstr "Не вдалося відкрити файл"
+
+#, c-format
+msgid ""
+"The minimal ratio between commented lines and total lines is not reached: %d "
+"< %d."
+msgstr ""
+"Не досягнуто мінімального співвідношення між закоментованими рядками і "
+"загальною кількістю рядків: %d < %d."
+
+#, c-format
+msgid "Bad decimal exponent: %s was expected and %s was found."
+msgstr "Помилкова степінь у десятковому числі: мало бути %s, але маємо %s."
+
+msgid "Decimal numbers must not begin by a dot."
+msgstr "Запис десяткових чисел не повинен починатися з крапки."
+
+#, c-format
+msgid "Deprecated function: %s."
+msgstr "Застаріла функція: %s."
+
+#, c-format
+msgid "Deprecated function %s: use %s instead."
+msgstr "Застаріла функція %s: варто використовувати %s."
+
+msgid "svd(..., 0) is deprecated."
+msgstr "svd(..., 0) є застарілою."
+
+msgid "mfprintf(-1, ...) is deprecated."
+msgstr "mfprintf(-1, ...) є застарілою."
+
+msgid "Empty block."
+msgstr "Порожній блок."
+
+msgid ""
+"Possible confusion between assignment operator '=' and equality operator "
+"'=='."
+msgstr ""
+"Можливо оператор присвоювання, «=», переплутано із оператором рівності, «==»."
+
+#, c-format
+msgid "Number of expressions in condition is limited: %d max."
+msgstr "Кількість виразів в умові обмежено: не більше %d."
+
+#, c-format
+msgid "Duplicated function arguments: %s."
+msgstr "Застарілі параметри функції: %s."
+
+#, c-format
+msgid "Duplicated function output values: %s."
+msgstr "Дублювання виведених функцією значень: %s."
+
+#, c-format
+msgid "Function arguments used as output values: %s."
+msgstr "Параметри функції використано як виведені значення: %s."
+
+#, c-format
+msgid "Argument at position %d must be an assignment."
+msgstr "Параметр у позиції %d має бути присвоюванням."
+
+#, c-format
+msgid "Argument %s declared at position %d and assigned at position %d."
+msgstr ""
+"Параметр %s оголошено у позиції %d, а значення йому надано у позиції %d."
+
+#, c-format
+msgid "Function name doesn't match the pattern: %s, %s"
+msgstr "Назва функції не відповідає шаблону: %s, %s"
+
+#, c-format
+msgid "Function name length is lower than minimum: %d < %d"
+msgstr "Довжина назви функції є меншою за мінімальну: %d < %d"
+
+#, c-format
+msgid "Function name length is greater than maximum: %d > %d"
+msgstr "Довжина назви функції є більшою за максимальну: %d > %d"
+
+#, c-format
+msgid "Function %s requires an error checking just after the call."
+msgstr "Функція %s потребує перевірки на помилки одразу після її виклику."
+
+msgid "Function 'global' not allowed."
+msgstr "Не можна використовувати для функцій «global»."
+
+#, c-format
+msgid "Illegal call: %s."
+msgstr "Некоректний виклик: %s."
+
+msgid "Invalid list, it contains NaN or Inf."
+msgstr "Некоректний список, у ньому містяться значення NaN або Inf."
+
+msgid "Bad use of ':' operator."
+msgstr "Помилкове використання оператора «:»."
+
+#, c-format
+msgid "Maximum line length exceeded at lines: %s."
+msgstr "Перевищено максимальну припустиму довжину у таких рядках: %s."
+
+#, c-format
+msgid "Maximum lines number exceeded: %d > %d."
+msgstr "Перевищено обмеження на максимальну кількість рядків: %d > %d."
+
+#, c-format
+msgid "Function %s has at least one argument."
+msgstr "Функції %s слід передати принаймні один параметр."
+
+#, c-format
+msgid "Function %s should be called with names of variables."
+msgstr "Функцію %s слід викликати із назвами змінних."
+
+#, c-format
+msgid "Function %s should be called with constant strings."
+msgstr "Функцію %s слід викликати зі сталими рядками."
+
+#, c-format
+msgid "McCabe's complexity is %d and is greater than %d."
+msgstr "Складність за Мак-Кейбом дорівнює %d, отже є вищою за %d."
+
+msgid "Open file is not assigned."
+msgstr "Не призначено відкритий файл."
+
+msgid "The instruction mclose(\"all\") may have any side effects."
+msgstr "Виконання інструкції mclose(\"all\") може мати небажані наслідки."
+
+#, c-format
+msgid "Open files not closed: %s."
+msgstr "Відкриті файли, які не закрито: %s."
+
+#, c-format
+msgid "Use %nan in a comparison expression will return false."
+msgstr ""
+"Використання %nan у виразі порівняння приведе до повернення значення false."
+
+#, c-format
+msgid "Use isnan() when comparing values with %nan."
+msgstr "Використання isnan() при порівнянні значень з %nan."
+
+#, c-format
+msgid "Too many nested blocks: %d max."
+msgstr "Забагато вкладених блоків: має бути не більше %d."
+
+#, c-format
+msgid "Operator '%s' should be used rather than '%s'."
+msgstr "Слід використовувати оператор «%s», а не «%s»."
+
+msgid "Double negation is not allowed."
+msgstr "Не можна використовувати подвійне заперечення."
+
+msgid "Not operator '~' should be used rather than '@'."
+msgstr "Замість «@» слід використовувати оператор заперечення «~»."
+
+#, c-format
+msgid "Invalid number of arguments in %s: data don't correspond to the format."
+msgstr "Некоректна кількість параметрів у %s: дані не відповідають формату."
+
+#, c-format
+msgid "Redefinition of Scilab's constant: %s."
+msgstr "Перевизначення сталої Scilab: %s."
+
+#, c-format
+msgid "Redefinition of a built-in function: %s."
+msgstr "Перевизначення вбудованої функції: %s."
+
+#, c-format
+msgid "Redefinition of a library function: %s."
+msgstr "Перевизначення бібліотечної функції: %s."
+
+#, c-format
+msgid "Redefinition of a macro: %s."
+msgstr "Перевизначення макросу: %s."
+
+#, c-format
+msgid "Redefinition of a private macro: %s."
+msgstr "Перевизначення приватного макросу: %s."
+
+#, c-format
+msgid "Too many return instructions: %d max."
+msgstr "Забагато інструкцій return: мало бути не більше %d."
+
+msgid "Select should have a default case."
+msgstr "У інструкції вибору має бути типовий варіант."
+
+msgid "Select with no case."
+msgstr "У інструкції вибору немає жодного варіанта."
+
+msgid "Select with one case: it could be replaced by an if statement."
+msgstr "Вибір із одного варіанта: можна замінити інструкцією if."
+
+msgid "Case expression should be a number or string."
+msgstr "Вираз варіанта має бути числом або рядком."
+
+msgid "Case expression types are mixed."
+msgstr "Суміш типів виразів варіантів."
+
+msgid "Instruction not finished by a semi-colon."
+msgstr "Інструкцію не завершено крапкою з комою."
+
+msgid "Two instructions on the same line."
+msgstr "Дві інструкції у одному рядку."
+
+#, c-format
+msgid "Operator %s should be surrounded by single spaces."
+msgstr "Навколо оператора %s має бути додано одинарні пробіли."
+
+msgid "No space after function argument."
+msgstr "Немає пробілу після параметра функції."
+
+msgid "No space before first function argument."
+msgstr "Немає пробілу після першого параметра функції."
+
+msgid "A function argument must be preceded by a single space."
+msgstr "Перед параметром функції має бути додано одинарний пробіл."
+
+msgid "All the fields in a struct should be defined at the struct definition."
+msgstr "Усі поля у структурі має бути визначено у визначенні структури."
+
+msgid "Struct definition must contain an even number of arguments."
+msgstr "Визначення структури має містити парну кількість параметрів."
+
+#, c-format
+msgid "Field name doesn't match the pattern: %s, %s"
+msgstr "Назва поля не відповідає шаблону: %s, %s"
+
+#, c-format
+msgid "Field name length is lower than minimum: %d < %d"
+msgstr "Довжина назви поля є меншою за мінімальну: %d < %d"
+
+#, c-format
+msgid "Field name length is greater than maximum: %d > %d"
+msgstr "Довжина назви поля є більшою за максимальну: %d > %d"
+
+#, c-format
+msgid "Duplicated field definition: %s."
+msgstr "Подвійне визначення поля: %s."
+
+msgid "Field should be defined by a constant string."
+msgstr "Поле має бути визначено сталим рядком."
+
+msgid "Function struct has only one return argument."
+msgstr "Структура функція має лише один параметр, що повертається."
+
+#, c-format
+msgid "It should be better to define field %s at struct definition."
+msgstr "Варто визначити поле %s у визначенні структури."
+
+#, c-format
+msgid "Read an undefined field: %s."
+msgstr "Читання невизначеного поля: %s."
+
+msgid "Comment contains a TODO."
+msgstr "У коментарі міститься TODO."
+
+msgid "The code after the return statement is unreachable."
+msgstr "Код після інструкції return не виконуватиметься."
+
+#, c-format
+msgid "Function argument might be unused: %s."
+msgstr "Параметр функції може бути не використано: %s."
+
+msgid "Possible useless operation."
+msgstr "Можливо непотрібна операція."
+
+#, c-format
+msgid "Function returned value might be unused: %s."
+msgstr "Повернуте функцією значення може бути невикористаним: %s."
+
+#, c-format
+msgid "Variable name doesn't match the pattern: %s, %s"
+msgstr "Назва змінної не відповідає шаблону: %s, %s"
+
+#, c-format
+msgid "Variable name length is lower than minimum: %d < %d"
+msgstr "Довжина назви змінної є меншою за мінімальну: %d < %d"
+
+#, c-format
+msgid "Variable name length is greater than maximum: %d > %d"
+msgstr "Довжина назви змінної є більшою за максимальну: %d > %d"
+
+#, c-format
+msgid "Use of non-initialized variable '%s' may have any side-effects."
+msgstr ""
+"Використання неініціалізованої змінної «%s» може призвести до неочікуваних "
+"наслідків."
+
+#, c-format
+msgid "Use of a private macro '%s' defined in an other file %s."
+msgstr "Використання приватного макросу «%s», визначеного у іншому файлі, %s."
+
+#, c-format
+msgid "Use of non-initialized variable '%s' may have side effects."
+msgstr ""
+"Використання неініціалізованої змінної «%s» може призвести до "
+"непередбачуваних наслідків."
+
+#, c-format
+msgid "Declared variable and might be unused: %s."
+msgstr "Оголошену змінну може бути не використано: %s."
+
+msgid "Cannot create a parser context"
+msgstr "Не вдалося створити контекст обробки"

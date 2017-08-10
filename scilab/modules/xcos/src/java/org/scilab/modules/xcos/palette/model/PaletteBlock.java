@@ -1,18 +1,26 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2015 - Marcos CARDINOT
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
 package org.scilab.modules.xcos.palette.model;
 
+import java.awt.Dimension;
+import java.awt.Image;
 import java.io.File;
+import java.net.MalformedURLException;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -21,6 +29,10 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
+
+import org.apache.batik.transcoder.TranscoderException;
+import org.apache.batik.transcoder.TranscoderInput;
+import org.scilab.modules.xcos.utils.ImageIconTranscoder;
 
 /**
  * <p>
@@ -128,22 +140,61 @@ public class PaletteBlock {
 
     /**
      * Load the icon and return it.
-     *
+     * @param maxWidth maximum width
+     * @param maxHeight maximum height
      * @return the loaded icon
      * @see PaletteBlock#getIcon()
      */
-    public Icon getLoadedIcon() {
+    public Icon getLoadedIcon(int maxWidth, int maxHeight) {
         String path = getIcon().getEvaluatedPath();
+        File file = new File(path);
+        ImageIcon imgIcon = new ImageIcon();
 
-        /*
-         * Return an image icon only if the file exists to avoid caching an
-         * erroneous image status on the Toolkit.
-         */
-        if (new File(path).exists()) {
-            return new ImageIcon(path);
-        } else {
-            return new ImageIcon();
+        if (!file.exists()) {
+            return imgIcon;
         }
+
+        String extension = path.substring(path.lastIndexOf(".") + 1);
+        if (extension.equals("svg")) {
+            ImageIconTranscoder t = new ImageIconTranscoder();
+            try {
+                path = file.toURI().toURL().toString();
+                TranscoderInput ti = new TranscoderInput(path);
+                t.transcode(ti, null);
+                imgIcon = t.getImageIcon();
+                // resizing
+                Dimension newSize = getNewSize(imgIcon, maxWidth, maxHeight);
+                t.setDimensions(newSize.width, newSize.height);
+                t.transcode(ti, null);
+                imgIcon = t.getImageIcon();
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (TranscoderException e) {
+                e.printStackTrace();
+            }
+        } else {
+            imgIcon = new ImageIcon(path);
+            Dimension newSize = getNewSize(imgIcon, maxWidth, maxHeight);
+            imgIcon = new ImageIcon(imgIcon.getImage().getScaledInstance(
+                    newSize.width, newSize.height, Image.SCALE_SMOOTH));
+        }
+
+        return imgIcon;
     }
 
+    /**
+     * Get the new icons size.
+     * @param img original image
+     * @param maxW maximum width
+     * @param maxH maximum height
+     * @return the new dimension
+     */
+    private Dimension getNewSize(ImageIcon img, int maxW, int maxH) {
+        int iconW = img.getIconWidth();
+        int iconH = img.getIconHeight();
+        float scale = Math.min((float) maxW / iconW, (float) maxH / iconH);
+        iconW *= scale;
+        iconH *= scale;
+        return new Dimension(iconW, iconH);
+    }
 }

@@ -10,7 +10,7 @@
             Умножение в обычном смысле. Корректно для констант, матриц логических, полиномиальных, рациональных значений и для списков <literal>syslin</literal> (со значением последовательного соединения).
         </para>
         <para>
-            Поэлементное умножение обозначается как <literal>x.*y</literal>. Если 
+            Поэлементное умножение обозначается как <literal>x.*y</literal>. Если
             <literal>x</literal> или <literal>y</literal> являются скаляром, то <literal> .* </literal>
             то же самое, что и <literal>*</literal>.
         </para>
@@ -19,6 +19,12 @@
         </para>
         <para>
             <literal>A*.B</literal>  оператор без предопределённого значения. Можно использовать для определения нового оператора (см. <link linkend="overloading">перегрузку</link>) с тем же самым приоритетом, что и у <literal>*</literal> или <literal>/</literal>.
+        </para>
+        <para>
+            <note>
+                Remark that <code>/*</code> start to comment a block of code and
+                <code>*/</code> end to comment this block.
+            </note>
         </para>
     </refsection>
     <refsection>
@@ -72,6 +78,9 @@ W' * W
             </member>
             <member>
                 <link linkend="overloading">перегрузка</link>
+            </member>
+            <member>
+                <link linkend="comments">comments</link>
             </member>
         </simplelist>
     </refsection>

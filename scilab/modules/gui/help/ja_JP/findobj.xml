@@ -51,7 +51,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // 図を作成
 h=figure();
 // 図にテキストを表示

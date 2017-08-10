@@ -3,11 +3,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Paul Bignier
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  --><!-- This document was created with Syntext Serna Free. -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="histc">
@@ -16,13 +19,13 @@
         <refpurpose>calcule un histogramme</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Séquence d'appel</title>
+        <title>Syntaxe</title>
         <synopsis>
             [cf, ind] = histc(n, data [,normalization])
             [cf, ind] = histc(x, data [,normalization])
         </synopsis>
     </refsynopsisdiv>
-    <refsection>
+    <refsection role="parameters">
         <title>Paramètres</title>
         <variablelist>
             <varlistentry>
@@ -78,7 +81,7 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Description</title>
         <para>
             Cette fonction calcule un histogramme du vecteur <literal>data</literal> d'après les classes
@@ -103,7 +106,7 @@
             quand <emphasis>x(1)&lt;=min(data)</emphasis> et <emphasis>max(data) &lt;= x(n+1)</emphasis>
         </para>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Exemples</title>
         <simplelist>
             <member> Exemple #1: variations sur l'histogramme d'un échantillon gaussien N(0,1)
@@ -133,11 +136,11 @@ clf()
 subplot(2,1,1)
 [cf, ind] = histc(c, d)
 histplot(c, d, style=2);
-xtitle("Normalized histogram")
+xtitle("Histogramme d''aire normalisée")
 subplot(2,1,2)
 [cf, ind] = histc(c, d, normalization=%f)
 histplot(c, d, normalization=%f, style=5);
-xtitle("Non normalized histogram")
+xtitle("Histogramme brut")
 ]]></programlisting>
                 <scilab:image localized="true">
                     d = grand(1000,1,"bin", 6, 0.5);
@@ -146,15 +149,15 @@ xtitle("Non normalized histogram")
                     subplot(2,1,1)
                     [cf, ind] = histc(c, d)
                     histplot(c, d, style=2);
-                    xtitle("Normalized histogram")
+                    xtitle("Histogramme d''aire normalisée")
                     subplot(2,1,2)
                     [cf, ind] = histc(c, d, normalization=%f)
                     histplot(c, d, normalization=%f, style=5);
-                    xtitle("Non normalized histogram")
+                    xtitle("Histogramme brut")
                 </scilab:image>
             </member>
             <member>
-                Exemple #3: histogramme d'un échantillon de loi exponentielle E(lambda)
+                Exemple #3 : histogramme d'un échantillon de loi exponentielle E(lambda)
                 <programlisting role="example"><![CDATA[
 lambda = 2;
 X = grand(100000,1,"exp", 1/lambda);
@@ -164,7 +167,7 @@ clf()
 histplot(40, X, style=2);
 x = linspace(0, max(Xmax), 100)';
 plot2d(x, lambda*exp(-lambda*x), strf="000", style=5)
-legend(["exponential random sample histogram" "exact density curve"]);
+legend(["Histogramme d''un échantillon de distribution exponentielle" "Fonction densité exacte"]);
 ]]></programlisting>
                 <scilab:image localized="true">
                     lambda = 2;
@@ -175,24 +178,24 @@ legend(["exponential random sample histogram" "exact density curve"]);
                     histplot(40, X, style=2);
                     x = linspace(0, max(Xmax), 100)';
                     plot2d(x, lambda*exp(-lambda*x), strf="000", style=5)
-                    legend(["exponential random sample histogram" "exact density curve"]);
+                    legend(["Histogramme d''un échantillon de distribution exponentielle" "Fonction densité exacte"]);
                 </scilab:image>
             </member>
             <member>
-                Exemple #4: la fréquence polygonale et l'histogramme d'un échantillon gaussien
+                Exemple #4 : polygône des fréquences et histogramme d'un échantillon gaussien
                 <programlisting role="example"><![CDATA[
 n = 10;
 data = rand(1, 1000, "normal");
 [cf, ind] = histc(n, data)
 clf(); histplot(n, data, style=12, polygon=%t);
-legend(["normalized histogram" "frequency polygon chart"]);
+legend(["Histogramme d''aire normalisée" "Polygone des fréquences"]);
 ]]></programlisting>
                 <scilab:image localized="true">
                     n = 10;
                     data = rand(1, 1000, "normal");
                     [cf, ind] = histc(n, data)
                     clf(); histplot(n, data, style=12, polygon=%t);
-                    legend(["normalized histogram" "frequency polygon chart"]);
+                    legend(["Histogramme d''aire normalisée" "Polygone des fréquences"]);
                 </scilab:image>
             </member>
         </simplelist>
@@ -214,8 +217,8 @@ legend(["normalized histogram" "frequency polygon chart"]);
             </member>
         </simplelist>
     </refsection>
-    <refsection>
-        <title>History</title>
+    <refsection role="history">
+        <title>Historique</title>
         <revhistory>
             <revision>
                 <revnumber>5.5.0</revnumber>

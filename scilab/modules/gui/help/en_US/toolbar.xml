@@ -5,7 +5,7 @@
         <refpurpose>show or hide a toolbar</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>state1=toolbar(winnum,state2)
             state1=toolbar(winnum)
         </synopsis>
@@ -39,7 +39,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 toolbar(-1,'off')
 state=toolbar(-1,'on')
 

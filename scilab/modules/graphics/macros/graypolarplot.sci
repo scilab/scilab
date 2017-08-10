@@ -2,11 +2,14 @@
 // Copyright (C) INRIA
 // Copyright (C) Samuel GOUGEON - 2013 : vectorization, code style
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 
 function graypolarplot(theta,rho,z,varargin)
@@ -54,10 +57,8 @@ function graypolarplot(theta,rho,z,varargin)
     axes.clip_state = "clipgrf";
 
     drawGrayplot(theta,rho,z);
+    isoview()
 
-    objectList = gce(); // get all the created objects to glue them at the end.
-
-    axes.isoview = "on";
     axes.box = "off";
     axes.axes_visible = ["off","off","off"];
     axes.x_label.text = "";
@@ -67,6 +68,7 @@ function graypolarplot(theta,rho,z,varargin)
     step = R/5
     r  = step;
     dr = 0.02*r;
+    objectList = gce(); // get all the created objects to glue them at the end.
     for k = 1:4
         xarc(-r, r, 2*r, 2*r, 0, 360*64)
         objectList($ + 1) = gce();

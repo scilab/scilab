@@ -1,24 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="strcmpi">
     <refnamediv>
         <refname>strcmpi</refname>
         <refpurpose>
-            compare character strings (case independent)
+            compare character strings (case independent). <emphasis role="bold">This function is obsolete.</emphasis>
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>res = strcmpi(string_one, string_two)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -59,10 +62,13 @@
             is equal to <varname>string_two</varname> (case independently),
             <literal>1</literal> if <varname>string_one</varname> is greater than <varname>string_two</varname> and <literal>-1</literal> else.
         </para>
+        <warning>
+            This function is obsolete. Please use <link linkend="strcmp">strcmp(s1,s1,"i")</link> instead.
+        </warning>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 TXT1 = ['scilab','SciLab';'Strcmp','STRcmp'];
 TXT2 = ['ScIlAb','sciLab';'sTrCmP','StrCMP'];
 strcmpi(TXT1,TXT2)
@@ -70,7 +76,7 @@ strcmpi(TXT1,'scilab')
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="strcat">strcat</link>
@@ -79,5 +85,16 @@ strcmpi(TXT1,'scilab')
                 <link linkend="strcmp">strcmp</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    Function tagged as obsolete. Will be removed from Scilab 6.1
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

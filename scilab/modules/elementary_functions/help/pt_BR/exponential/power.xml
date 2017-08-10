@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="power" xml:lang="pt">
+    <refnamediv>
+        <refname>power</refname>
+        <refpurpose>operação de potenciação(^,.^)</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>t=A^b
+            t=A**b
+            t=A.^b
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>A,t</term>
+                <listitem>
+                    <para>matriz de escalares, polinômios ou razões de
+                        polinômios.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>b</term>
+                <listitem>
+                    <para>um escalar ou um vetor ou matriz de escalares.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <literal>"(A:square)^(b:scalar)"</literal>Se
+                    <literal>A</literal> é uma matriz quadrada e <literal>b</literal> é um
+                    escalar, então <literal>A^b</literal> é a matriz <literal>A</literal>
+                    elevada à potência <literal>b</literal>.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <literal>"(A:matrix).^(b:scalar)"</literal>Se
+                    <literal>b</literal> é um escalar e <literal>A</literal> uma matriz,
+                    então <literal>A.^b</literal> é formada pelos elementos de
+                    <literal>A</literal> elevados à potência <literal>b</literal>
+                    (potenciação elemento a elemento). Se <literal>A</literal> é um vetor
+                    e <literal>b</literal> é um escalar, então <literal>A^b</literal> e
+                    <literal>A.^b</literal> realizam a mesma operação (i.e., potenciação
+                    elemento a elemento).
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <literal>"(A:scalar).^(b:matrix)"</literal> Se
+                    <literal>A</literal> é um escalar e <literal>b</literal> é uma matriz
+                    (ou vetor) então <literal>A^b</literal> e <literal>A.^b</literal> são
+                    as matrizes (ou vetores) formados por<literal>
+                        a^(b(i,j))
+                    </literal>
+                    .
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <literal>"(A:matrix).^(b:matrix)"</literal> Se
+                    <literal>A</literal> e <literal>b</literal> são vetores (matrizes) de
+                    mesmo tamanho <literal>A.^b</literal> é o vetor
+                    <literal>A(i)^b(i)</literal> (matriz
+                    <literal>A(i,j)^b(i,j)</literal>).
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>Notas:</para>
+        <para>
+            - Para matrizes quadradas <literal>A^p</literal> é computada através
+            de sucessivas multiplicações de matrizes se <literal>p</literal> is é um
+            número inteiro positivo e por diagonalização se não for.
+        </para>
+        <para>- Os operadores ** e ^ são sinônimos.</para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[
+A=[1 2;3 4];
+A^2.5,
+A.^2.5
+(1:10)^2
+(1:10).^2
+
+s=poly(0,'s')
+s^(1:10)
+ ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title> Ver Também </title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="exp">exp</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

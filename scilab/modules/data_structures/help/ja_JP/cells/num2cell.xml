@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2013 - Scilab Enterprises - Charlotte HECQUET
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="num2cell" xml:lang="ja">
+
+    <refnamediv>
+
+        <refname>num2cell</refname>
+
+        <refpurpose>配列をセル配列に変換する</refpurpose>
+
+    </refnamediv>
+
+    <refsynopsisdiv>
+
+        <title>呼び出し手順</title>
+
+        <synopsis>
+
+            y=num2cell(x [,dims])
+
+        </synopsis>
+
+    </refsynopsisdiv>
+
+    <refsection>
+
+        <title>引数</title>
+
+        <variablelist>
+
+            <varlistentry>
+
+                <term>x</term>
+
+                <listitem>
+
+                    <para>実数, 整数, 論理値または文字列行列
+
+                    </para>
+
+                </listitem>
+
+            </varlistentry>
+
+            <varlistentry>
+
+                <term>dims</term>
+
+                <listitem>
+
+                    <para>正の整数のスカラーまたはベクトル
+
+                    </para>
+
+                </listitem>
+
+            </varlistentry>
+
+            <varlistentry>
+
+                <term>y</term>
+
+                <listitem>
+
+                    <para>セル
+
+                    </para>
+
+                </listitem>
+
+            </varlistentry>
+
+        </variablelist>
+
+    </refsection>
+
+    <refsection>
+
+        <title>説明</title>
+
+        <para>
+
+            <function>num2cell</function> は,
+
+            実数, 整数, 論理値または文字列行列 <varname>x</varname> をセルに変換します.
+
+            <varname>dims</varname>が指定されない場合,
+
+            <varname>y</varname> は <varname>x</varname>と同じ大きさとなります.
+
+        </para>
+
+        <para>
+
+            しかし,<varname>dims</varname> が指定された場合,
+
+            <varname>dims</varname>で指定された
+
+            <varname>x</varname> の次元は1に減らされます.
+
+            更に, <varname>y</varname> の要素の次元は,
+
+            その数値が<varname>dims</varname> 次元ベクトルである
+
+            <varname>x</varname> の大きさの次元に等しくなります.
+
+        </para>
+
+        <para>
+
+            例えば,
+
+            size(<varname>x</varname>)=[2 3 4 5 6] および
+
+            <varname>dims</varname>=[2 4]の場合,
+
+            size(<varname>y</varname>)= [2 1 4 1 6] となります,
+
+            2番目および4番目の要素の大きさは1に減らされます.
+
+            そして, size(<varname>y</varname>(i))= [1 3 1 5 1]
+
+            は 2番目と4番目の次元の大きさが
+
+            <varname>x</varname>の2番目及び4番目の大きさに等しいことを意味します.
+
+        </para>
+
+    </refsection>
+
+    <refsection>
+
+        <title>例</title>
+
+        <programlisting role="example">
+            A = [1 2; 3 4]
+            num2cell(A)
+            M = matrix(1:24, [2 3 2 2])
+            c=num2cell(M,[1 2])
+            size(c)
+            size(c{1})
+
+            A = ["a", "b"; "c" "d"]
+            num2cell(A)
+        </programlisting>
+
+    </refsection>
+
+    <refsection role="see also">
+
+        <title>参照</title>
+
+        <simplelist type="inline">
+
+            <member>
+
+                <link linkend="cell">cell</link>
+
+            </member>
+
+            <member>
+
+                <link linkend="cell2mat">cell2mat</link>
+
+            </member>
+
+        </simplelist>
+
+    </refsection>
+
+</refentry>
+

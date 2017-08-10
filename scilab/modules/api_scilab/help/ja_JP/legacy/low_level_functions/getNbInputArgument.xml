@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="getNbInputArgument" xml:lang="ja">
+    <refnamediv>
+        <refname>getNbInputArgument (Scilabゲートウェイ)</refname>
+        <refpurpose>
+            Scilab関数コール時に入力引数の数を調べるCゲートウェイ関数
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>nb_params = getNbInputArgument(void* _pvCtx)</synopsis>
+        <synopsis>nb_params = nbInputArgument</synopsis>
+        <synopsis>nb_params = Rhs</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>_pvCtx</term>
+                <listitem>
+                    <para>
+                        Scilab環境ポインタ, api_scilab.h により定義された "pvApiCtx"で指定.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>nb_params</term>
+                <listitem>
+                    <para>
+                        Scilab関数コール時の入力引数の数
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            Scilab関数コール時に指定された入力引数の数を調べるCゲートウェイ関数.
+            この関数を使用する場合は api_scilab.h をインクルードする必要があります.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <para>
+            この例では,Cインターフェイス関数は複数の入力引数をとり,
+            ScilabコンソールにScilab関数コール時に検出された入力引数の数に
+            対応する整数を出力します.
+        </para>
+        <programlisting role="example">
+            <![CDATA[
+#include "api_scilab.h"
+#include "sciprint.h"
+int sci_myrhs(char * fname)
+{
+  sciprint("The number of input parameters is %d\n", getNbInputArgument);
+  return 0;
+}
+ ]]>
+        </programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="getNbOutputArgument">getNbOutputArgument</link>
+            </member>
+            <member>
+                <link linkend="sciprint">sciprint</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

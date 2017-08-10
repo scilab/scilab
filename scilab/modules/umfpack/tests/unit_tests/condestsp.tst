@@ -24,7 +24,7 @@ if norm(K1e,39.385965) < 1E-6 then pause, end
 if K1e <> K1 then pause, end
 
 // another example
-[A] = ReadHBSparse(SCI+"/modules/umfpack/examples/arc130.rua");
+[A] = ReadHBSparse(SCI+"/modules/umfpack/demos/arc130.rua");
 K1 = condestsp(A);
 if round(K1) <> 10798708075 then pause, end
 

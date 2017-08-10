@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
-    * 
-    * This file must be used under the terms of the CeCILL.
-    * This source file is licensed as described in the file COPYING, which
-    * you should have received as part of this distribution.  The terms
-    * are also available at    
-    * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
+    *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
     *
     -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="About_M2SCI_tools">
@@ -103,7 +106,7 @@
             The contents of these tlists is described in corresponding help pages.
         </para>
         <para>
-            Operations are converted using a fonction named <literal>%&lt;opcode&gt;2sci</literal> with opcode
+            Operations are converted using a function named <literal>%&lt;opcode&gt;2sci</literal> with opcode
             the Scilab code for this operator. See help page for overloading to have these codes. All
             these functions are already written and are in directory SCI/modules/m2sci/macros/percent/.
         </para>
@@ -164,7 +167,7 @@
         <para>To have more details about inference see help page for m2scideclare.</para>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="mfile2sci">mfile2sci</link>

@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - Scilab Enterprises - Alexandre HERISSE
@@ -13,9 +14,8 @@
 // <-- Short Description -->
 // call to getenv with an big environment variable leads to memory corruption
 a = "azerty"
- a  =
- 
- azerty   
+ a  = 
+ azerty
 b = "";
 for i = 1:4000
     b = b + a;

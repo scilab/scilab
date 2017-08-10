@@ -8,11 +8,14 @@
  * Copyright (C) 2010-2011 - DIGITEO - Manuel Juliachs
  * Copyright (C) 2014 - Scilab Enterprises - Cedric Delamarre
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -186,15 +189,15 @@ int set_data_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, i
                     plottype = buildMatplotType(MATPLOT_Char, (DataOrder)dataorder, (ImageType)imagetype);
                     bRGB = true;
                 }
-                else if (piDimsArray[2] != 1 && (DataType)datatype != MATPLOT_HM1_Char)
+                else if (piDimsArray[2] == 1 && (DataType)datatype != MATPLOT_HM1_Char)
                 {
                     plottype = buildMatplotType(MATPLOT_HM1_Char, (DataOrder)dataorder, (ImageType)imagetype);
                 }
-                else if (piDimsArray[2] != 3 && (DataType)datatype != MATPLOT_HM3_Char)
+                else if (piDimsArray[2] == 3 && (DataType)datatype != MATPLOT_HM3_Char)
                 {
                     plottype = buildMatplotType(MATPLOT_HM3_Char, (DataOrder)dataorder, (ImageType)imagetype);
                 }
-                else if (piDimsArray[2] != 4 && (DataType)datatype != MATPLOT_HM4_Char)
+                else if (piDimsArray[2] == 4 && (DataType)datatype != MATPLOT_HM4_Char)
                 {
                     plottype = buildMatplotType(MATPLOT_HM4_Char, (DataOrder)dataorder, (ImageType)imagetype);
                 }
@@ -209,15 +212,15 @@ int set_data_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, i
                     plottype = buildMatplotType(MATPLOT_UChar, (DataOrder)dataorder, (ImageType)imagetype);
                     bRGB = true;
                 }
-                else if ((DataType)datatype != MATPLOT_HM1_Char)
+                else if (piDimsArray[2] == 1 && (DataType)datatype != MATPLOT_HM1_UChar)
                 {
                     plottype = buildMatplotType(MATPLOT_HM1_UChar, (DataOrder)dataorder, (ImageType)imagetype);
                 }
-                else if (piDimsArray[2] != 3 && (DataType)datatype != MATPLOT_HM3_UChar)
+                else if (piDimsArray[2] == 3 && (DataType)datatype != MATPLOT_HM3_UChar)
                 {
                     plottype = buildMatplotType(MATPLOT_HM3_UChar, (DataOrder)dataorder, (ImageType)imagetype);
                 }
-                else if (piDimsArray[2] != 4 && (DataType)datatype != MATPLOT_HM4_UChar)
+                else if (piDimsArray[2] == 4 && (DataType)datatype != MATPLOT_HM4_UChar)
                 {
                     plottype = buildMatplotType(MATPLOT_HM4_UChar, (DataOrder)dataorder, (ImageType)imagetype);
                 }
@@ -283,15 +286,15 @@ int set_data_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, i
                 {
                     plottype = buildMatplotType(MATPLOT_Double, (DataOrder)dataorder, (ImageType)imagetype);
                 }
-                else if ((DataType)datatype != MATPLOT_HM1_Double)
+                else if (piDimsArray[2] == 1 && (DataType)datatype != MATPLOT_HM1_Double)
                 {
                     plottype = buildMatplotType(MATPLOT_HM1_Double, (DataOrder)dataorder, (ImageType)imagetype);
                 }
-                else if (piDimsArray[2] != 3 && (DataType)datatype != MATPLOT_HM3_Double)
+                else if (piDimsArray[2] == 3 && (DataType)datatype != MATPLOT_HM3_Double)
                 {
                     plottype = buildMatplotType(MATPLOT_HM3_Double, (DataOrder)dataorder, (ImageType)imagetype);
                 }
-                else if (piDimsArray[2] != 4 && (DataType)datatype != MATPLOT_HM4_Double)
+                else if (piDimsArray[2] == 4 && (DataType)datatype != MATPLOT_HM4_Double)
                 {
                     plottype = buildMatplotType(MATPLOT_HM4_Double, (DataOrder)dataorder, (ImageType)imagetype);
                 }

@@ -2,11 +2,14 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2011 - DIGITEO - Antoine ELIAS
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 /*--------------------------------------------------------------------------*/
@@ -17,7 +20,6 @@
 #include "sparse.hxx"
 #include "bool.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 
 extern "C"
 {
@@ -41,9 +43,8 @@ types::Function::ReturnValue sci_bool2s(types::typed_list &in, int _iRetCount, t
 
         if (pIn->isComplex())
         {
-            ast::ExecVisitor exec;
             std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_bool2s";
-            return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+            return Overload::call(wstFuncName, in, _iRetCount, out);
         }
 
         types::Double* pD = new types::Double(pIn->getDims(), pIn->getDimsArray());
@@ -77,14 +78,13 @@ types::Function::ReturnValue sci_bool2s(types::typed_list &in, int _iRetCount, t
 
         if (pSpIn->isComplex())
         {
-            ast::ExecVisitor exec;
             std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_bool2s";
-            return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+            return Overload::call(wstFuncName, in, _iRetCount, out);
         }
 
         types::Sparse* pSpOut = new types::Sparse(pSpIn->getRows(), pSpIn->getCols());
 
-        size_t iNonZeros = pSpIn->nonZeros();
+        int iNonZeros = static_cast<int>(pSpIn->nonZeros());
 
         //coords
         int* pRows = new int[iNonZeros * 2];
@@ -102,13 +102,16 @@ types::Function::ReturnValue sci_bool2s(types::typed_list &in, int _iRetCount, t
         }
 
         pOut = pSpOut;
+        delete[] pNonZeroR;
+        delete[] pNonZeroI;
+        delete[] pRows;
     }
     else if (in[0]->isSparseBool())
     {
         types::SparseBool* pSpbIn = in[0]->getAs<types::SparseBool>();
         types::Sparse* pSpOut = new types::Sparse(pSpbIn ->getRows(), pSpbIn ->getCols());
 
-        size_t iNonZeros = pSpbIn ->nbTrue();
+        int iNonZeros = static_cast<int>(pSpbIn->nbTrue());
 
         //coords
         int* pRows = new int[iNonZeros * 2];
@@ -121,12 +124,12 @@ types::Function::ReturnValue sci_bool2s(types::typed_list &in, int _iRetCount, t
         }
 
         pOut = pSpOut;
+        delete[] pRows;
     }
     else
     {
-        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_bool2s";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
     out.push_back(pOut);

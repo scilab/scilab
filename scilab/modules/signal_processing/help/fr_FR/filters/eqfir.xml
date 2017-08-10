@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="eqfir">
+    <refnamediv>
+        <refname>eqfir</refname>
+        <refpurpose>minimax approximation of FIR filter</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[hn]=eqfir(nf,bedge,des,wate)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>nf</term>
+                <listitem>
+                    <para>number of output filter points desired</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>bedge</term>
+                <listitem>
+                    <para>Mx2 matrix giving a pair of edges for each band</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>des</term>
+                <listitem>
+                    <para>M-vector giving desired magnitude for each band</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>wate</term>
+                <listitem>
+                    <para>M-vector giving relative weight of error in each band</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>hn</term>
+                <listitem>
+                    <para>output of linear-phase FIR filter coefficients</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Minimax approximation of multi-band, linear phase, FIR filter
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+hn=eqfir(33,[0 .2;.25 .35;.4 .5],[0 1 0],[1 1 1]);
+[hm,fr]=frmag(hn,256);
+plot(fr,hm),
+ ]]></programlisting>
+        <scilab:image><![CDATA[
+hn=eqfir(33,[0 .2;.25 .35;.4 .5],[0 1 0],[1 1 1]);
+[hm,fr]=frmag(hn,256);
+plot(fr,hm),
+]]>     </scilab:image>
+    </refsection>
+</refentry>

@@ -14,7 +14,7 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=6976
 //
 // <-- Short Description -->
-// Improve connexion from the GUI to the related ATOMS webpages.
+// Improve connection from the GUI to the related ATOMS webpages.
 // In the Presentation frame: Add a "See also" or "Atoms webpage" section,
 // giving the related hyperlink. Ex: For the Matrix Market module, give
 // http://atoms.scilab.org/toolboxes/MatrixMarket

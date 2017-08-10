@@ -12,10 +12,10 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
-            [Dr, Di, Z, RESID, V, IPARAM, IPNTR, WORKD, WORKL, INFO] = dneupd(RVEC, HOWMANY, SELECT, Dr, Di, Z, SIGMAr, SIGMAi, WORKev,
-            BMAT, N, WHICH, NEV, TOL, RESID, NCV, V, IPARAM, IPNTR, WORKD, WORKL, INFO)
+            [Dr, Di, Z, RESID, V, IPARAM, IPNTR, WORKD, WORKL, INFO] = dneupd(RVEC, HOWMANY, SELECT, Dr, Di, Z, ...
+              .. SIGMAr, SIGMAi, WORKev, BMAT, N, WHICH, NEV, TOL, RESID, NCV, V, IPARAM, IPNTR, WORKD, WORKL, INFO)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -480,7 +480,7 @@
     <refsection>
         <title>Example</title>
         <programlisting role="example">
-            <![CDATA[ 
+            <![CDATA[
 
 // The following sets dimensions for this problem.
 
@@ -499,9 +499,9 @@ _select = zeros(ncv, 1);
 dr       = zeros(nev + 1, 1);
 di      = zeros(nev + 1, 1);
 z       = zeros(nx, nev + 1);
-resid   = zeros(nx, 1); 
+resid   = zeros(nx, 1);
 v       = zeros(nx, ncv);
-workd   = zeros(3 * nx, 1); 
+workd   = zeros(3 * nx, 1);
 workev  = zeros(3 * ncv, 1);
 workl   = zeros(3 * ncv * ncv + 6 * ncv, 1);
 
@@ -533,14 +533,14 @@ while(ido <> 99)
   // either convergence is indicated or maxitr has been exceeded.
 
   [ido, resid, v, iparam, ipntr, workd, workl, info_dnaupd] = dnaupd(ido, bmat, nx, which, nev, tol, resid, ncv, v, iparam, ipntr, workd, workl, info_dnaupd);
-  
+
   if(info_dnaupd < 0)
     printf('\nError with dnaupd, info = %d\n',info_dnaupd);
     printf('Check the documentation of dnaupd\n\n');
   end
-  
+
   if(ido == -1 | ido == 1)
-    // Perform matrix vector multiplication 
+    // Perform matrix vector multiplication
     workd(ipntr(2):ipntr(2) + nx -1) = A * workd(ipntr(1):ipntr(1) + nx - 1);
   end
 end
@@ -553,7 +553,7 @@ info_dneupd = 0;
 [dr, di, z, resid, v, iparam, ipntr, workd, workl, info_dneupd] = dneupd(rvec, howmany, _select, dr, di, z, sigmar, sigmai, workev, ...
                                                                        bmat, nx, which, nev, tol, resid, ncv, v, ...
                                                                        iparam, ipntr, workd, workl, info_dneupd);
-                                                                       
+
 if(info_dneupd < 0)
   printf('\nError with dneupd, info = %d\n', info_dneupd);
   printf('Check the documentation of dneupd.\n\n');
@@ -569,12 +569,12 @@ printf('What portion of the spectrum: %s\n', which);
 printf('The number of Implicit Arnoldi update iterations taken is %d\n', iparam(3));
 printf('The number of OP*x is %d\n', iparam(9));
 printf('The convergence criterion is %d\n', tol);
- 
+
 ]]>
         </programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="dsaupd">dsaupd</link>

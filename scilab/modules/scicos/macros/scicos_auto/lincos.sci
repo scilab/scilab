@@ -26,7 +26,7 @@ function sys = lincos(scs_m,x0,u0,param)
     // model from a general dynamical system described by a
     // scicos diagram
 
-    // CALLING SEQUENCE
+    // SYNTAX
     //
     // sys = lincos(scs_m [,x0,u0 [,param] ])
     //
@@ -60,7 +60,7 @@ function sys = lincos(scs_m,x0,u0,param)
 
     //** This function can be (ab)used from the Scilab command line and
     //** inside a Scicos "context". In order to handle the different situations,
-    //** the required library are loaded if not already present in the
+    //** the required libraries are loaded if not already present in the
     //** "semiglobal-local-environment".
 
     if ~exists("scicos_diagram") then

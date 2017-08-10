@@ -3,11 +3,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - Yann COLLETTE <yann.collette@renault.com>
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="temp_law_csa" xml:lang="en">
@@ -16,7 +19,7 @@
         <refpurpose>The classical temperature decrease law</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>T_out = temp_law_csa(T_in,step_mean,step_var,temp_stage,n,param)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -83,11 +86,11 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 function y = rastrigin(x)
   y = x(1)^2+x(2)^2-cos(12*x(1))-cos(18*x(2));
 endfunction
-  
+
 x0 = [-1, -1];
 Proba_start = 0.8;
 It_intern = 1000;
@@ -97,9 +100,13 @@ It_Pre    = 100;
 mprintf('SA: the CSA algorithm\n');
 
 T0 = compute_initial_temp(x0, rastrigin, Proba_start, It_Pre, neigh_func_default);
-mprintf('Initial temperatore T0 = %f\n', T0);
+mprintf('Initial temperature T0 = %f\n', T0);
 
-[x_opt, f_opt, sa_mean_list, sa_var_list, temp_list] = optim_sa(x0, rastrigin, It_extern, It_intern, T0, Log = %T, temp_law_csa, neigh_func_csa);
+saparams = init_param();
+saparams = add_param(saparams, "neigh_func", neigh_func_csa);
+saparams = add_param(saparams, "temp_law", temp_law_csa);
+
+[x_opt, f_opt, sa_mean_list, sa_var_list, temp_list] = optim_sa(x0, rastrigin, It_extern, It_intern, T0, Log = %T, saparams);
 
 mprintf('optimal solution:\n'); disp(x_opt);
 mprintf('value of the objective function = %f\n', f_opt);
@@ -116,7 +123,7 @@ plot(t,temp_list,'k-');
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="optim_sa"> optim_sa </link>

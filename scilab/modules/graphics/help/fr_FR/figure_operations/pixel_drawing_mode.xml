@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010 - DIGITEO - Pierre Lando <pierre.lando@scilab.org>
+ * Copyright (C) 2017 - Samuel GOUGEON
+ *
+ * Copyright (C) 2012 - 2017 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+    xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+    xml:lang="fr" xml:id="pixel_drawing_mode">
+    <refnamediv>
+        <refname>pixel_drawing_mode</refname>
+        <refpurpose>mode d'actualisation des couleurs RVB des pixels lors des tracés graphiques</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Les couleurs des pixels sont encodées selon les 3 canaux RVB (Rouge Vert Bleu). Pour chaque pixel, chaque canal a une valeur entière sur [0, 255] (uint8).
+        </para>
+        <para>
+            <literal>.pixel_drawing_mode</literal> est une des propriétés des  <link linkend="figure_properties">fenêtres graphiques</link>. Elle indique l'opération binaire à effectuer pour chaque canal RVB de chaque pixel entre la couleur préexistante du pixel de la fenêtre avant le tracé, et la couleur du même pixel de l'objet à tracer. Scilab n'actualise pas nécessairement la couleur du pixel en imposant la couleur de l'objet à tracer comme nouvelle couleur "opaque". La couleur du fond peut par exemple être prise en compte, autorisant certains effets de transparence.
+        </para>
+        <para>
+            <itemizedlist>
+                <listitem>
+                    <literal>src</literal> est la couleur du pixel considéré dans l'objet à tracer / dessiner.
+                </listitem>
+                <listitem>
+                    <literal>cur</literal> est la couleur courante préxistante du même pixel, avant le tracé.
+                </listitem>
+            </itemizedlist>
+            Les valeurs possibles (de type texte) de l'attribut <literal>pixel_drawing_mode</literal> sont listées ci-après, suivies de l'opération binaire correspondante. Dans ces expressions logiques,
+            <itemizedlist>
+                <listitem>
+                    <literal>NOT v</literal> signifie <literal>255 - v</literal>
+                </listitem>
+                <listitem>
+                    <literal>a AND b</literal> signifie <literal>a &amp; b</literal>
+                </listitem>
+                <listitem>
+                    <literal>a OR b</literal> signifie <literal>a | b</literal>
+                </listitem>
+                <listitem>
+                    <literal>a XOR b</literal> signifie <literal>(a OR b) AND NOT (a AND b)</literal>
+                </listitem>
+            </itemizedlist>
+        </para>
+        <informaltable border="1" cellpadding="3px">
+            <tr>
+                <th>Valeur</th>
+                <th>opération effectuée / résultat</th>
+            </tr>
+            <tr>
+                <td>"copy" (par défaut)</td>
+                <td>src</td>
+            </tr>
+            <tr>
+                <td>"copyInverted"</td>
+                <td>NOT src</td>
+            </tr>
+            <tr>
+                <td>"noop"</td>
+                <td>cur</td>
+            </tr>
+            <tr>
+                <td>"invert"</td>
+                <td>NOT cur</td>
+            </tr>
+            <tr>
+                <td>"set"</td>
+                <td>White</td>
+            </tr>
+            <tr>
+                <td>"clear"</td>
+                <td>Black</td>
+            </tr>
+            <tr>
+                <td>"equiv"</td>
+                <td>cur XOR (NOT src)</td>
+            </tr>
+            <tr>
+                <td>"xor"</td>
+                <td>cur XOR src</td>
+            </tr>
+            <tr>
+                <td>"or"</td>
+                <td>cur OR src</td>
+            </tr>
+            <tr>
+                <td>"orInverted"</td>
+                <td>cur OR (NOT src)</td>
+            </tr>
+            <tr>
+                <td>"orReverse"</td>
+                <td>(NOT cur) OR src</td>
+            </tr>
+            <tr>
+                <td>"nor"</td>
+                <td>NOT (cur OR src)</td>
+            </tr>
+            <tr>
+                <td>"and"</td>
+                <td>cur AND src</td>
+            </tr>
+            <tr>
+                <td>"andInverted"</td>
+                <td>cur AND (NOT src)</td>
+            </tr>
+            <tr>
+                <td>"andReverse"</td>
+                <td>(NOT cur) AND src</td>
+            </tr>
+            <tr>
+                <td>"nand"</td>
+                <td>NOT (cur AND src)</td>
+            </tr>
+        </informaltable>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[
+pxmodes = ["copy", "copyInverted", "equiv", "xor", ..
+           "and",  "nand", "andReverse", "andInverted", ..
+           "or",   "nor",  "orReverse",  "orInverted", ..
+           "noop", "set",  "clear",      "invert" ..
+           ];
+// Dimensions et recouvrement marginal des fenêtres en damier
+s = 300;
+hm = 8;
+vm = 52;
+//
+for k = 16:-1:1
+    m = pxmodes(k);
+
+    // Position de la fenêtre
+    i = fix((k-1)/4);
+    j = modulo(k-1,4);
+
+    // Création et paramétrage de la fenêtre
+    f = figure("toolbar_visible","off", ..
+               "menubar_visible","off", ..
+               "infobar_visible","off", ..
+               "figure_position", [j*(s-hm), i*(s-vm)], ..
+               "figure_size", [s s], ..
+               "background", color("grey85"), ..
+               "pixel_drawing_mode", m ..
+               );
+    drawlater
+
+    // Configuration du tracé
+    b = 0.82;
+    plot2d([],[],0,"051"," ",[-1 -1 1 1]*b)
+    plot2d([-1 1]*b,[0 0])
+    a = gca();
+    a.isoview = "on";
+    a.tight_limits = "on";
+    title(m,"fontsize",4)
+
+    // Affichage de 3 disques rouge, vert et bleu se recouvrant partiellement
+    xfarc(-0.7, 0.8, 1, 1, 0, 360*64)
+    e = gce();
+    e.background = color("red");
+    e.fill_mode = "on";
+
+    xfarc(-0.2, 0.5, 1, 1, 0, 360*64)
+    e = gce();
+    e.background = color("blue");
+    e.fill_mode = "on";
+
+    xfarc(-0.7,  0.2, 1, 1, 0, 360*64)
+    e = gce();
+    e.background = color("green");
+    e.fill_mode = "on";
+
+    drawnow
+end
+// Ménage : on supprime les 16 fenêtres
+b = messagebox(_("Presser OK pour fermer les fenêtres"),"Clore la démonstration", "question", "modal");
+w = winsid();
+xdel(w($-15:$));
+    ]]></programlisting>
+        <para>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="../../images/pixel_drawing_mode_70.png" />
+                </imageobject>
+            </inlinemediaobject>
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir ausi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="figure_properties">figure_properties</link>
+            </member>
+            <member>
+                <link linkend="colordef">colordef</link>
+            </member>
+            <member>
+                <link linkend="lighting">lighting</link>
+            </member>
+            <member>
+                <link linkend="Matplot">Matplot</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

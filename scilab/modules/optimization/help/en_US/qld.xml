@@ -5,7 +5,7 @@
         <refpurpose>linear quadratic programming solver</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             [x [,lagr [,info]]] = qld(Q, p, C, b, ci, cs, me [,tol])
         </synopsis>
@@ -95,7 +95,7 @@
             <varlistentry>
                 <term>tol</term>
                 <listitem>
-                    <para>Floatting point number, required precision.</para>
+                    <para>Floating point number, required precision.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -141,7 +141,7 @@
                     </para>
                     <para>info==1 : Too many iterations needed</para>
                     <para>
-                        info==2 : Accuracy insufficient to statisfy convergence
+                        info==2 : Accuracy insufficient to satisfy convergence
                         criterion
                     </para>
                     <para>info==5 : Length of working array is too short</para>
@@ -167,7 +167,7 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example">
-            <![CDATA[ 
+            <![CDATA[
 //Find x in R^6 such that:
 //C1*x = b1 (3 equality constraints i.e me=3)
 C1= [1,-1,1,0,3,1;
@@ -196,7 +196,7 @@ me=3;
         </programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="qpsolve">qpsolve</link>

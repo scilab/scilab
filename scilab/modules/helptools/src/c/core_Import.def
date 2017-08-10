@@ -1,12 +1,8 @@
-LIBRARY    core.dll
+	LIBRARY    core.dll
 
 
 EXPORTS
-
-; core
-callFunctionFromGateway
-com_
-getSCIpath
-MyHeapAlloc
+;
+;core
+;
 MyHeapFree
-

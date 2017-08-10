@@ -3,145 +3,148 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="sinc" xml:lang="ja">
-    
+
     <refnamediv>
-        
+
         <refname>sinc</refname>
-        
+
         <refpurpose>sinc関数</refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        
+
         <title>呼び出し手順</title>
-        
+
         <synopsis>t=sinc(x)</synopsis>
-        
+
     </refsynopsisdiv>
-    
+
     <refsection>
-        
+
         <title>引数</title>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>x</term>
-                
+
                 <listitem>
-                    
+
                     <para>実数または複素数のベクトルまたは行列</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>t</term>
-                
+
                 <listitem>
-                    
+
                     <para>実数または複素数のベクトルまたは行列</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>説明</title>
-        
+
         <para>
-            
+
             <varname>x</varname>がベクトルまたは行列の場合,
-            
+
             <code>t=sinc(x)</code>はベクトルまたは行列となります.
-            
+
             ただし,
-            
+
             <code>x(i)~=0</code>の場合に<code>t(i)=sin(x(i))/x(i)</code>,
-            
+
             <code>x(i)==0</code>の場合に<code>t(i)=1</code>
-            
+
             です.
-            
+
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>例</title>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
 x=linspace(-10,10,3000);
 plot2d(x,sinc(x))
  ]]></programlisting>
-        
+
         <scilab:image>
-            
+
             x=linspace(-10,10,3000);
-            
+
             plot2d(x,sinc(x))
-            
+
         </scilab:image>
-        
+
         <programlisting role="example"><![CDATA[
 [X,Y] = meshgrid(-10:0.25:10,-10:0.25:10);
 f = sinc(sqrt((X).^2+(Y).^2));
 mesh(X,Y,f);
  ]]></programlisting>
-        
+
         <scilab:image>
-            
+
             [X,Y] = meshgrid(-10:0.25:10,-10:0.25:10);
-            
+
             f = sinc(sqrt((X).^2+(Y).^2));
-            
+
             mesh(X,Y,f);
-            
+
         </scilab:image>
-        
+
     </refsection>
-    
+
     <refsection role="see also">
-        
+
         <title>参照</title>
-        
+
         <simplelist type="inline">
-            
+
             <member>
-                
+
                 <link linkend="sin">sin</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="cos">cos</link>
-                
+
             </member>
-            
+
         </simplelist>
-        
+
     </refsection>
-    
+
 </refentry>
 

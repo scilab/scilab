@@ -1,10 +1,13 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function plot3d2(x,y,z,vect,theta,alpha,leg,flag,ebox)
     // plot3d2(x,y,z,vect,T,A,leg,flags,ebox)
@@ -61,5 +64,9 @@ function plot3d2(x,y,z,vect,theta,alpha,leg,flag,ebox)
         error(msprintf(gettext("%s: Wrong value for input argument: ''%s'', ''%s'', ''%s'', ''%s'' or ''%s'' expected.\n"),"plot3d2","theta","alpha","leg","flag","ebox"));
     end
 
-    execstr("plot3d(xx,yy,zz,"+strcat(opts,",")+")")
+    if isempty(opts)
+        plot3d(xx, yy, zz);
+    else
+        execstr("plot3d(xx,yy,zz,"+strcat(opts,",")+")")
+    end
 endfunction

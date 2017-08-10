@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="riccati">
+    <refnamediv>
+        <refname>riccati</refname>
+        <refpurpose>Riccati equation</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>X=riccati(A,B,C,dom,[typ])
+            [X1,X2]=riccati(A,B,C,dom,[typ])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>A,B,C</term>
+                <listitem>
+                    <para>
+                        real matrices nxn, <literal>B</literal> and  <literal>C</literal> symmetric.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>dom</term>
+                <listitem>
+                    <para>
+                        <literal>'c'</literal> or <literal>'d'</literal> for the time domain (continuous or discrete)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>typ</term>
+                <listitem>
+                    <para>
+                        string : <literal>'eigen'</literal> for block diagonalization or <literal>schur'</literal> for  Schur method.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>X1,X2,X</term>
+                <listitem>
+                    <para>square real matrices (X2 invertible), X symmetric</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>X=riccati(A,B,C,dom,[typ])</literal> solves the Riccati equation:
+        </para>
+        <programlisting role=""><![CDATA[
+A'*X+X*A-X*B*X+C=0
+ ]]></programlisting>
+        <para>
+            in continuous time case, or:
+        </para>
+        <programlisting role=""><![CDATA[
+A'*X*A-(A'*X*B1/(B2+B1'*X*B1))*(B1'*X*A)+C-X
+ ]]></programlisting>
+        <para>
+            with <literal>B=B1/B2*B1'</literal> in the discrete time case.
+            If called with two output arguments, <literal>riccati</literal> returns <literal>X1,X2</literal>
+            such that <literal>X=X1/X2</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+// Continuous
+n = 10;
+A = rand(n,n);
+B = rand(n,n);
+C = rand(n,n);
+C = C*C';
+R = rand(n,n);
+R = R*R'+eye();
+B = B*inv(R)*B';
+
+
+X = riccati(A,B,C,'c','eigen')
+ ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+// Discrete
+
+n = 10;
+F = rand(n,n);
+G1      = rand(n,n);
+G2 = rand(n,n);
+G2 = G2*G2'+eye();
+G      = G1/G2*G1';
+H      = rand(n,n);
+H = H*H';
+
+[X1,X2]= riccati(F,G,H,'d','schur')
+ ]]></programlisting>
+    </refsection>
+
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="ricc">ricc</link>
+            </member>
+            <member>
+                <link linkend="ric_desc">ric_desc</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

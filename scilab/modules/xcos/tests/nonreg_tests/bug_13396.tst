@@ -54,8 +54,6 @@ function str = x_mdialog(desc, labels, ini)
         str = []; // cancelling
     end
 endfunction
-function messagebox(msg, msg_title)
-endfunction
 
 // set the path for external file
 for i = 1:size(scs_m.objs)

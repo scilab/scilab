@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="feedback">
+    <refnamediv>
+        <refname>feedback</refname>
+        <refpurpose>フィードバック操作</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>Sl=Sl1/.Sl2</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>Sl1,Sl2</term>
+                <listitem>
+                    <para>
+                        状態空間または伝達形式または通常の
+                        ゲイン行列の線形システム (<literal>syslin</literal> リスト).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Sl</term>
+                <listitem>
+                    <para>
+                        状態空間または伝達形式の
+                        線形システム (<literal>syslin</literal> リスト)
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            フィードバック演算は, <literal> /. </literal> (スラッシュドット)
+            と記述されます.
+            このコマンドは,<literal>Sl1</literal> および <literal>Sl2</literal>の
+            <literal>Sl=Sl1*(I+Sl2*Sl1)^-1</literal>, すなわち, (負の)
+            フィードバックを返します.
+            <literal>Sl</literal> は,
+            <literal> y = Sl1 u</literal>, <literal>u = v - Sl2 y</literal>の時の
+            伝達関数<literal> v -&gt; y</literal>です.
+        </para>
+        <para>
+            結果は,<literal>Sl=LFT([0,I;I,-Sl2],Sl1)</literal>と同じです.
+        </para>
+        <para>
+            注意: 小数点を使用しないでください (例. <literal>1/.1</literal> は曖昧です!)
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+S1=ssrand(2,2,3);S2=ssrand(2,2,2);
+W=S1/.S2;
+ss2tf(S1/.S2)
+//Same operation by LFT:
+ss2tf(lft([zeros(2,2),eye(2,2);eye(2,2),-S2],S1))
+//Other approach: with constant feedback
+BigS=sysdiag(S1,S2); F=[zeros(2,2),eye(2,2);-eye(2,2),zeros(2,2)];
+Bigclosed=BigS/.F;
+W1=Bigclosed(1:2,1:2);   //W1=W (in state-space).
+ss2tf(W1)
+//Inverting
+ss2tf(S1*inv(eye()+S2*S1))
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="lft">lft</link>
+            </member>
+            <member>
+                <link linkend="sysdiag">sysdiag</link>
+            </member>
+            <member>
+                <link linkend="augment">augment</link>
+            </member>
+            <member>
+                <link linkend="obscont">obscont</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

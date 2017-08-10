@@ -3,11 +3,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) Scilab Enterprises - 2012 - Paul Bignier
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.
- * The terms are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg"  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr_FR" xml:id="CVode">
     <refnamediv>
@@ -66,7 +69,7 @@
             </para>
         </para>
         <para>
-            Ces méthodes implicites sont caractérisées par leur order <emphasis>q</emphasis>, qui indique le nombre de points intermédiaires requis pour le calcul de
+            Ces méthodes implicites sont caractérisées par leur ordre <emphasis>q</emphasis>, qui indique le nombre de points intermédiaires requis pour le calcul de
             <emphasis>
                 y<subscript>n+1</subscript>
             </emphasis>
@@ -168,7 +171,7 @@
             </emphasis>
         </para>
         <para>
-            La fonction est appelée entre les activations, parce-qu'une activation est susceptible de modifier le système.
+            Le solveur est appelé entre les activations, parce-qu'une activation est susceptible de modifier le système.
         </para>
         <para>
             Suivant la criticalité de l'événement (son effet sur le problème continu), soit le solveur poursuit avec temps initial et final différents comme si rien ne s'était passé, soit, si le système a été modifié, il faut "réinitialiser à froid" le solveur et le relancer.
@@ -262,7 +265,10 @@ Temps pour Adams / Functional :
                 <link linkend="DoPri">Dormand-Prince 4(5)</link>
             </member>
             <member>
-                <link linkend="RKImp">Runge-Kutta Implicit 4(5)</link>
+                <link linkend="ImpRK">Runge-Kutta Implicit 4(5)</link>
+            </member>
+            <member>
+                <link linkend="CRANI">Crank-Nicolson 2(3)</link>
             </member>
             <member>
                 <link linkend="IDA">IDA</link>
@@ -280,7 +286,7 @@ Temps pour Adams / Functional :
                 <link linkend="ode_discrete">ode_discrete</link>
             </member>
             <member>
-                <link linkend="ode_root">ode_root</link>
+                <link linkend="ode_roots">ode_roots</link>
             </member>
             <member>
                 <link linkend="odedc">odedc</link>

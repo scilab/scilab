@@ -25,7 +25,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>xrect</literal> dessine un rectangle défini par <literal>[x,y,w,h]</literal> 
+            <literal>xrect</literal> dessine un rectangle défini par <literal>[x,y,w,h]</literal>
             (point en haut à gauche, largeur, hauteur) en coordonnées utilisateur et en utilisant le style de ligne courant.
         </para>
         <warning>Notez que la valeur de la hauteur est positive en allant vers la bas.</warning>
@@ -33,15 +33,15 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 plot2d(0,0,-1,"010"," ",[-2,-2,2,2])
-xset("color",5)
 xrect(-1,1,2,2)
+gce().foreground = color("red");
  ]]></programlisting>
         <scilab:image>
             plot2d(0,0,-1,"010"," ",[-2,-2,2,2])
-            xset("color",5)
             xrect(-1,1,2,2)
+            gce().foreground = color("red");
         </scilab:image>
     </refsection>
     <refsection role="see also">

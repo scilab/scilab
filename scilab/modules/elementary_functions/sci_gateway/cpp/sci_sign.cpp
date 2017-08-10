@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2014 - Scilab Enterprises - Anais AUBERT
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 /*--------------------------------------------------------------------------*/
@@ -15,14 +18,12 @@
 #include "function.hxx"
 #include "double.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 
 extern "C"
 {
 #include "basic_functions.h"
 #include "Scierror.h"
 }
-
 
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_sign(types::typed_list &in, int _iRetCount, types::typed_list &out)
@@ -36,7 +37,6 @@ types::Function::ReturnValue sci_sign(types::typed_list &in, int _iRetCount, typ
     double *pdblImg     = NULL;
     double *pdblRealRet = NULL;
     double *pdblImgRet  = NULL;
-
 
     if (in.size() != 1)
     {
@@ -98,9 +98,8 @@ types::Function::ReturnValue sci_sign(types::typed_list &in, int _iRetCount, typ
     }
     else
     {
-        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_sign";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
     return types::Function::OK;

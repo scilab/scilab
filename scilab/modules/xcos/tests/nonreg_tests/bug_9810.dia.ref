@@ -1,10 +1,12 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2011 - DIGITEO - Clément DAVID
+// Copyright (C) 2017 - Scilab Enterprises - Clément DAVID
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 // <-- XCOS TEST -->
+// <-- ENGLISH IMPOSED -->
 //
 // <-- Non-regression test for bug 9810 -->
 //
@@ -18,3 +20,6 @@ status = importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_9810.zcos
 if ~status then bugmes();quit;end
 // compile and simulate
 xcos_simulate(scs_m, 4);
+ <html><body>Simulation problem: <br/>The LU factorization has been com 
+ pleted, but the factor <br/>U is exactly singular : U(1,1) is exactly  
+ zero.</body></html>                                                   

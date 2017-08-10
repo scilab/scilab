@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="symbols" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="symbols" xml:lang="pt">
     <refnamediv>
         <refname>symbols</refname>
         <refpurpose>nomes dos operadores Scilab</refpurpose>
     </refnamediv>
     <refsection>
-        <title>Descrição</title>
-        <para>Use os nomes seguintes para obter ajuda em um símbolo
-            específico
+        <title>DescriÃ§Ã£o</title>
+        <para>Use os nomes seguintes para obter ajuda em um sÃ­mbolo
+            especÃ­fico
         </para>
         <informaltable border="1">
             <tr>
@@ -33,19 +33,33 @@
                 </td>
             </tr>
             <tr>
-                <td> *,.*</td>
+                <td> *, .*, *.</td>
                 <td>
-                    <link linkend="star">star</link> (estrela, asterísco)
+                    <link linkend="star">star</link> (estrela, asterÃ­sco)
                 </td>
             </tr>
             <tr>
-                <td> /, ./, /.</td>
+                <td> .*.</td>
+                <td>
+                    <link linkend="kron">kron</link> (produto de Kronecker)
+                </td>
+            </tr>
+            <tr>
+                <td> /, ./, /., ./.</td>
                 <td>
                     <link linkend="slash">slash</link> (barra)
                 </td>
             </tr>
             <tr>
-                <td> \,.\ ,\. </td>
+                <td>
+                    <literal>//, /*  */</literal>
+                </td>
+                <td>
+                    <link linkend="comments">comments</link>
+                </td>
+            </tr>
+            <tr>
+                <td> \, .\, \., .\. </td>
                 <td>
                     <link linkend="backslash">backslash</link> (barra invertida)
                 </td>
@@ -65,7 +79,7 @@
             <tr>
                 <td> &lt;,&gt;,&gt;=,&lt;=,&lt;&gt;</td>
                 <td>
-                    <link linkend="less">less</link>  (comparação "menor do que"), <link linkend="greater">greater</link> (comparação "maior do que")
+                    <link linkend="less">less</link>  (comparaÃ§Ã£o "menor do que"), <link linkend="greater">greater</link> (comparaÃ§Ã£o "maior do que")
                 </td>
             </tr>
             <tr>
@@ -83,7 +97,7 @@
             <tr>
                 <td> ()</td>
                 <td>
-                    <link linkend="parentheses">parentheses</link> (parênteses)
+                    <link linkend="parentheses">parentheses</link> (parÃªnteses)
                 </td>
             </tr>
             <tr>
@@ -101,13 +115,13 @@
             <tr>
                 <td> ,</td>
                 <td>
-                    <link linkend="comma">comma</link> (vírgula)
+                    <link linkend="comma">comma</link> (vÃ­rgula)
                 </td>
             </tr>
             <tr>
                 <td> ;</td>
                 <td>
-                    <link linkend="semicolon">semicolon</link> (ponto-e-vírgula)
+                    <link linkend="semicolon">semicolon</link> (ponto-e-vÃ­rgula)
                 </td>
             </tr>
             <tr>
@@ -115,7 +129,7 @@
                     <literal>^</literal>
                 </td>
                 <td>
-                    <link linkend="hat">hat</link> (chapéu, circunflexo)
+                    <link linkend="hat">hat</link> (chapÃ©u, circunflexo)
                 </td>
             </tr>
             <tr>
@@ -123,25 +137,19 @@
                     <literal>.^</literal>
                 </td>
                 <td>
-                    <link linkend="power">power</link> (potência)
+                    <link linkend="power">power</link> (potÃªncia)
                 </td>
             </tr>
             <tr>
                 <td> |</td>
                 <td>
-                    <link linkend="or_op">or_op</link> (barra vertical, "ou" lógico)
+                    <link linkend="or_op">or_op</link> (barra vertical, "ou" lÃ³gico)
                 </td>
             </tr>
             <tr>
                 <td> &amp;</td>
                 <td>
-                    <link linkend="and_op">and_op</link> ("e" comercial, "e" lógico)
-                </td>
-            </tr>
-            <tr>
-                <td> .*., ./., .\.</td>
-                <td>
-                    <link linkend="kron">kron</link> (produto de Kronecker)
+                    <link linkend="and_op">and_op</link> ("e" comercial, "e" lÃ³gico)
                 </td>
             </tr>
             <tr>
@@ -155,8 +163,8 @@
         </informaltable>
     </refsection>
     <refsection>
-        <title> Observações</title>
-        <para>Por razões históricas, símbolos diferentes podem representar o mesmo
+        <title> ObservaÃ§Ãµes</title>
+        <para>Por razÃµes histÃ³ricas, sÃ­mbolos diferentes podem representar o mesmo
             operador:
         </para>
         <para>
@@ -174,12 +182,12 @@
         <para>
             <literal>`</literal> tem o mesmo significado que &lt;
         </para>
-        <para>É altamente recomendável que não se use esses recursos, pois eles
-            serão removidos futuramente
+        <para>Ã‰ altamente recomendÃ¡vel que nÃ£o se use esses recursos, pois eles
+            serÃ£o removidos futuramente
         </para>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="overloading">overloading</link>

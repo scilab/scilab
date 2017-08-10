@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2010-2010 - DIGITEO - Antoine ELIAS
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -23,8 +26,6 @@ extern "C"
 
 #define FORBIDDEN_CHARS L" */\\.,;:^@><!=+-&|()~\n\t'\""
 
-using namespace types;
-
 types::Function::ReturnValue sci_global(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     //check input arguments
@@ -33,13 +34,13 @@ types::Function::ReturnValue sci_global(types::typed_list &in, int _iRetCount, t
         if (in[i]->isString() == false)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "global", i + 1);
-            return Function::Error;
+            return types::Function::Error;
         }
 
         if (in[i]->getAs<types::String>()->getSize() != 1)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: Single string expected.\n"), "global", i + 1);
-            return Function::Error;
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "global", i + 1);
+            return types::Function::Error;
         }
     }
 
@@ -47,7 +48,7 @@ types::Function::ReturnValue sci_global(types::typed_list &in, int _iRetCount, t
     if (_iRetCount > 1)
     {
         Scierror(999, _("%s: Wrong number of output arguments: At most %d expected.\n"), "global", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     symbol::Context* pCtx = symbol::Context::getInstance();
@@ -60,7 +61,7 @@ types::Function::ReturnValue sci_global(types::typed_list &in, int _iRetCount, t
             char* pstrVarName = wide_string_to_UTF8(wcsVarName);
             Scierror(999, _("%s : Wrong value for argument #%d: %s\n"), "global", i + 1, pstrVarName);
             FREE(pstrVarName);
-            return Function::Error;
+            return types::Function::Error;
         }
 
         symbol::Symbol pstVar(symbol::Symbol(const_cast<wchar_t*>(wcsVarName)));
@@ -78,7 +79,7 @@ types::Function::ReturnValue sci_global(types::typed_list &in, int _iRetCount, t
         }
         else
         {
-            pIT = pCtx->getCurrentLevel(pstVar);
+            pIT = pCtx->get(pstVar);
             pCtx->setGlobal(pstVar);
         }
 

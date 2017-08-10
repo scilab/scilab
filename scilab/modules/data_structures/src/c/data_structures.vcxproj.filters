@@ -12,12 +12,6 @@
     <Filter Include="localization">
       <UniqueIdentifier>{4c98da14-eeba-4ae9-95d7-df683fd0baf6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{5243c23e-16b7-4817-a75d-e7ef5dd6da36}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Libraries Dependencies\Imports">
-      <UniqueIdentifier>{98a4145d-6d10-4696-a17c-345bd0d7e735}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Resource File">
       <UniqueIdentifier>{f14049e4-1dd1-43e4-a7a6-152c148c43d6}</UniqueIdentifier>
     </Filter>
@@ -63,18 +57,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="core_import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
     <None Include="..\..\data_structures.iss" />
     <None Include="..\..\sci_gateway\data_structures_gateway.xml" />
     <None Include="..\..\Makefile.am" />
-    <None Include="Polynomials_f_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
-    <None Include="Linpack_f_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
     <None Include="..\..\locales\data_structures.pot">
       <Filter>localization</Filter>
     </None>

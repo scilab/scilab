@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Serge STEER
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="sub2ind" xml:lang="ru">
+    <refnamediv>
+        <refname>sub2ind</refname>
+        <refpurpose>преобразование подындексов матрицы в линейные индексы</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Синтаксис</title>
+        <synopsis>
+            I = sub2ind(dims,i1,i2,...)
+            J = sub2ind(dims,Mi)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>dims</term>
+                <listitem>
+                    <para>вектор: размеры матрицы</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>i1,i2,...</term>
+                <listitem>
+                    <para>
+                        массивы подындексов (матрица имеет те же размеры, что и <literal>I</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Mi</term>
+                <listitem>
+                    <para>
+                        матрица, чьи столбцы содержат значения подындексов.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>I</term>
+                <listitem>
+                    <para>массив линейных индексов</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Функция <literal>sub2ind</literal> используется для определения эквивалентного отдельного индекса, соответствующего заданному набору значений подындексов.<literal>I    = sub2ind(dims,i1,i2,..)</literal> возвращает линейные индексы, эквивалентные подындексам строки, столбца, ... в массивах <literal>i1</literal>,     <literal>i2</literal>,... для матрицы размером <literal>dims</literal>. В этом случае <literal>i1</literal>, <literal>i2</literal>,... должны быть одинаковых размеров, и результат <literal>I</literal> имеет те же размеры. <literal>I = sub2ind(dims,Mi)</literal> возвращает линейные индексы, эквивалентные подындексов в столбцах матрицы <literal>Mi</literal> для матрицы размером <literal>dims</literal>. В этом случае <literal>I</literal> является вектором-столбцом.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+i=[1 2 1 1 2 1 1];
+j=[1 2 3 1 2 3 3];
+k=[1 2 1 2 1 2 1];
+sub2ind([2,3,2],i,j,k)
+
+sub2ind([2,3,2],[i',j',k'])
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="ind2sub">ind2sub</link>
+            </member>
+            <member>
+                <link linkend="extraction">extraction</link>
+            </member>
+            <member>
+                <link linkend="insertion">insertion</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -5,7 +5,7 @@
         <refpurpose>Lp IIR filter optimization</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[cost,grad,ind]=iirlp(x,ind,p,[flag],lambda,omega,ad,wa,td,wt)</synopsis>
     </refsynopsisdiv>
     <refsection>

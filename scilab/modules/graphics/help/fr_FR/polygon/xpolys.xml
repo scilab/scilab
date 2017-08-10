@@ -42,32 +42,33 @@
                 <para>
                     Si <literal>draw(i)</literal> &lt; 0 , le marqueur numéro
                     <literal>-draw(i)</literal> est utilisé (les marqueurs sont dessinés en
-                    utilisant la couleur courante). Utiliser <literal>xset()</literal> pour
-                    voir les codes des marqueurs.
+                    utilisant la couleur courante).
+                    Voir les <link linkend="polyline_properties">propriétés des courbes</link>
+                    pour voir les numéros des symboles disponibles.
                 </para>
             </listitem>
             <listitem>
                 <para>
                     Si <literal>draw(i)</literal> &gt; 0, la couleur numéro
-                    <literal>draw(i)</literal> est utilisé pour dessiner la ligne brisée
-                    i. Utiliser <literal>xset()</literal> pour voir les codes des
-                    couleurs.
+                    <literal>draw(i)</literal> est utilisé pour dessiner la ligne brisée i.
+                    Voir les <link linkend="polyline_properties">propriétés des courbes</link>
+                    pour voir les numéros des styles de traits disponibles.
                 </para>
             </listitem>
         </itemizedlist>
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 plot2d(0,0,-1,"012"," ",[0,0,1,1])
 rand("uniform")
-xset("color",3)
+gca().foreground = 3;
 xpolys(rand(3,5),rand(3,5),[-1,-2,0,1,2])
  ]]></programlisting>
         <scilab:image>
             plot2d(0,0,-1,"012"," ",[0,0,1,1])
             rand("uniform")
-            xset("color",3)
+            gca().foreground = 3;
             xpolys(rand(3,5),rand(3,5),[-1,-2,0,1,2])
         </scilab:image>
     </refsection>

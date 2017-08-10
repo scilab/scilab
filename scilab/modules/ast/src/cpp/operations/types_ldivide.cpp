@@ -2,19 +2,20 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2013 - Scilab Enterprises - Cedric Delamarre
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
 #include "types_ldivide.hxx"
 #include "types_divide.hxx"
 #include "types_finite.hxx"
-
-#include "scilabexception.hxx"
 
 extern "C"
 {
@@ -72,11 +73,11 @@ InternalType *GenericLDivide(InternalType *_pLeftOperand, InternalType *_pRightO
         switch (iResult)
         {
             case 1 :
-                throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+                throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
             case 2 :
-                throw ast::ScilabError(_W("With NaN or Inf a left division by scalar expected.\n"));
+                throw ast::InternalError(_W("With NaN or Inf a left division by scalar expected.\n"));
             case 3 :
-                throw ast::ScilabError(_W("Left division by zero...\n"));
+                throw ast::InternalError(_W("Left division by zero...\n"));
             case 4 :
                 sciprint(_("Warning : Left division by zero...\n"));
                 break;
@@ -93,6 +94,7 @@ InternalType *GenericLDivide(InternalType *_pLeftOperand, InternalType *_pRightO
 
 int LDivideDoubleByDouble(Double *_pDouble1, Double *_pDouble2, Double **_pDoubleOut)
 {
+    types::Double* pDblTmp = NULL;
     int iErr = 0;
 
     //check finite values of _pDouble1 and _pDouble2
@@ -106,20 +108,46 @@ int LDivideDoubleByDouble(Double *_pDouble1, Double *_pDouble2, Double **_pDoubl
 
     if (_pDouble1->isScalar())
     {
-        //Y \ x => x / Y
+        //x \ Y => Y / x
         return RDivideDoubleByDouble(_pDouble2, _pDouble1, _pDoubleOut);
     }
 
     if (_pDouble2->isScalar())
     {
-        // managed in %s_l_s, call overload
-        return 0;
+        //X \ y => X \ (eye() * y)
+        pDblTmp = new types::Double(_pDouble1->getRows(), _pDouble1->getRows(), _pDouble2->isComplex());
+        double dblScalarReal = _pDouble2->get(0);
+        double* pdblReal = pDblTmp->get();
+        int iSize = pDblTmp->getSize();
+        int iRowsP1 = pDblTmp->getRows() + 1;
+
+        memset(pdblReal, 0x00, iSize * sizeof(double));
+        if (_pDouble2->isComplex())
+        {
+            double dblScalarImag = _pDouble2->getImg(0);
+            double* pdblImag = pDblTmp->getImg();
+            memset(pdblImag, 0x00, iSize * sizeof(double));
+            for (int i = 0; i < iSize; i += iRowsP1)
+            {
+                pdblReal[i] = dblScalarReal;
+                pdblImag[i] = dblScalarImag;
+            }
+        }
+        else
+        {
+            for (int i = 0; i < iSize; i += iRowsP1)
+            {
+                pdblReal[i] = dblScalarReal;
+            }
+        }
+
+        _pDouble2 = pDblTmp;
     }
 
     if (_pDouble1->getDims() > 2 || _pDouble2->getDims() > 2 || _pDouble1->getRows() != _pDouble2->getRows())
     {
         //not managed
-        return 1;
+        return 0;
     }
 
     *_pDoubleOut = new Double(_pDouble1->getCols(), _pDouble2->getCols(), _pDouble1->isComplex() || _pDouble2->isComplex());
@@ -138,6 +166,11 @@ int LDivideDoubleByDouble(Double *_pDouble1, Double *_pDouble2, Double **_pDoubl
                    _pDouble1->getReal(), _pDouble1->getRows(), _pDouble1->getCols(),
                    _pDouble2->getReal(), _pDouble2->getRows(), _pDouble2->getCols(),
                    (*_pDoubleOut)->getReal(), (*_pDoubleOut)->getRows(), (*_pDoubleOut)->getCols(), &dblRcond);
+    }
+
+    if (pDblTmp)
+    {
+        delete pDblTmp;
     }
 
     return iErr;

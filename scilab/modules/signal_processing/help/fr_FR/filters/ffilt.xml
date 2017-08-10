@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="ffilt">
+    <refnamediv>
+        <refname>ffilt</refname>
+        <refpurpose>coefficients of FIR low-pass</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[x]=ffilt(ft,n,fl,fh)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>ft</term>
+                <listitem>
+                    <para>
+                        filter type where <literal>ft</literal> can take the values
+                    </para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>"lp"  </term>
+                            <listitem>
+                                <para>for low-pass filter</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>"hp"  </term>
+                            <listitem>
+                                <para>for high-pass filter</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>"bp"  </term>
+                            <listitem>
+                                <para>for band-pass filter</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>"sb"  </term>
+                            <listitem>
+                                <para>for stop-band filter</para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>integer (number of filter samples desired)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fl</term>
+                <listitem>
+                    <para>real (low frequency cut-off)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fh</term>
+                <listitem>
+                    <para>real (high frequency cut-off)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>vector of filter coefficients</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Get <literal>n</literal> coefficients of a FIR low-pass,
+            high-pass, band-pass, or stop-band filter.
+            For low and high-pass filters one cut-off
+            frequency must be specified whose value is
+            given in <literal>fl</literal>. For band-pass and stop-band
+            filters two cut-off frequencies must be
+            specified for which the lower value is in
+            <literal>fl</literal> and the higher value is in <literal>fh</literal>
+        </para>
+    </refsection>
+</refentry>

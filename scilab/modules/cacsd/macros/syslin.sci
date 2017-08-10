@@ -1,11 +1,14 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function [sl]=syslin(domain,a,b,c,d,x0)
 
@@ -22,7 +25,7 @@ function [sl]=syslin(domain,a,b,c,d,x0)
         z="z"
     case 10 //continuous or discrete
         if size(domain,"*")<>1 then
-            error(msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"),"syslin",1))
+            error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"syslin",1))
         end
 
         domain=part(domain,1)
@@ -104,8 +107,8 @@ function [sl]=syslin(domain,a,b,c,d,x0)
             end
             [mx,nx]=size(x0);
             if mx<>na|nx<>min(na,1) then
-                error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: "+..
-                "number of elements of #%d must match the column dimension of #%d\n"),"syslin",6,1,6,1));
+                msg = _("%s: Incompatible input arguments #%d and #%d: number of elements of #%d must match the column dimension of #%d\n")
+                error(msprintf(msg,"syslin",6,1,6,1));
             end
         end
         if rhs<5  then

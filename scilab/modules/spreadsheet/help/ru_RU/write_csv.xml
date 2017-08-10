@@ -4,189 +4,192 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009-2010 - DIGITEO - Allan CORNET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="write_csv" xml:lang="ru">
-    
+
     <refnamediv>
-        
+
         <refname>write_csv</refname>
-        
+
         <refpurpose>
-            
+
             записывает файл, содержащий значения, разделённые запятой (csv)
-            
+
         </refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        
-        <title>Последовательность вызова</title>
-        
+
+        <title>Синтаксис</title>
+
         <synopsis>write_csv(M, filename [,sep, dec])</synopsis>
-        
+
     </refsynopsisdiv>
-    
+
     <refsection>
-        
+
         <title>Аргументы</title>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>filename</term>
-                
+
                 <listitem>
-                    
+
                     <para>символьная строка.  Имя файла и путь до него</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>M</term>
-                
+
                 <listitem>
-                    
+
                     <para>матрица строк</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>sep</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         знак разделения столбцов, по умолчанию это табуляция: <literal>ascii(9)</literal> или <literal>"\t"</literal>
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>dec</term>
-                
+
                 <listitem>
-                    
+
                     <para>
                         десятичный знак <literal>'.'</literal> или <literal>','</literal>. По умолчанию: <literal>','</literal>
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>Описание</title>
-        
+
         <para>
-            
-            <literal>write_csv(M, filename)</literal> записывает матрицу <literal>M</literal> 
-            
-            в файл с именем <literal>filename</literal> в виде значений, разделённых табуляцией. 
-            
+
+            <literal>write_csv(M, filename)</literal> записывает матрицу <literal>M</literal>
+
+            в файл с именем <literal>filename</literal> в виде значений, разделённых табуляцией.
+
             Входной аргумент <literal>filename</literal> является строкой.
-            
+
         </para>
-        
+
         <para>
-            
-            Если файл с именем <literal>'filename'</literal> уже существует, то он будет 
-            
+
+            Если файл с именем <literal>'filename'</literal> уже существует, то он будет
+
             переписан.
-            
+
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>Примеры</title>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
        // сохраним матрицу в формате csv-файла
       A = [1:10] * 0.1;
       write_csv(A, TMPDIR + '/data.tsv');
-      
+
       // прочитаем как текст
       mgetl(TMPDIR + '/data.tsv')
-      
+
       //значения, разделённые табуляцией
       r = read_csv(TMPDIR + '/data.tsv', ascii(9));
       r = strsubst(r, ',' , '.');
       evstr(r)
-      
-      A = [1:10] * 0.1; 
+
+      A = [1:10] * 0.1;
       write_csv(A', TMPDIR+'/foo.csv', ' ', '.');
       mgetl(TMPDIR+'/foo.csv')
-      
+
       //значения, разделённые табуляцией
       write_csv(A, TMPDIR + '/datas.tsv');
-      
+
       //значения, разделённые запятыми
-      write_csv(A, TMPDIR + '/data.csv', ';'); 
-      
+      write_csv(A, TMPDIR + '/data.csv', ';');
+
      ]]></programlisting>
-        
+
     </refsection>
-    
+
     <refsection role="see also">
-        
+
         <title>Смотрите также</title>
-        
+
         <simplelist type="inline">
-            
+
             <member>
-                
+
                 <link linkend="read_csv">read_csv</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="evstr">evstr</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="mgetl">mgetl</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="format">format</link>
-                
+
             </member>
-            
+
         </simplelist>
-        
+
     </refsection>
-    
+
 </refentry>
 
 

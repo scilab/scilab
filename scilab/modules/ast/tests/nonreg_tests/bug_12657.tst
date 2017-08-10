@@ -15,7 +15,7 @@
 // when v1 and v2 are real arrays, v1 >= 0 and v2 integer.
 
 // <-- ENGLISH IMPOSED -->
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 // Run with test_run('double', 'bug_12657', ['no_check_error_output'])
 

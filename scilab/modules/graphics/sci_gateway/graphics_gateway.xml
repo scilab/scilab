@@ -1,94 +1,100 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
-<GATEWAY name="graphics">
-    <!-- =================== -->
-    <!--
+<!DOCTYPE module SYSTEM "../../functions/xml/gateway.dtd">
+<!--
+/*
+ *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ *  Copyright (C) 2011 - DIGITEO - Antoine ELIAS
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ */
  Scilab
  Interface description. In this file, we define the list of the function which
  will be available into Scilab and the link to the "native" function.
 
- gatewayId is the position in the hashtable 'Interfaces' defined in the
- file SCI/modules/core/src/c/callinterf.h
-
- primitiveId is the position in the hashtable '<module>Table Tab[]' defined
- in the file modules/<module>/sci_gateway/c/gw_<module>.c
-
- primitiveName is the name of the Scilab function
-
- @author Allan CORNET
- @author Sylvestre LEDRU
- @date INRIA 2007
- ===================
  Don't touch if you do not know what you are doing
 -->
-    <!-- =================== -->
-    <PRIMITIVE gatewayId="7" primitiveId="1" primitiveName="champ"/>
-    <PRIMITIVE gatewayId="7" primitiveId="2" primitiveName="champ1"/>
-    <PRIMITIVE gatewayId="7" primitiveId="3" primitiveName="fec"/>
-    <PRIMITIVE gatewayId="7" primitiveId="4" primitiveName="geom3d"/>
-    <PRIMITIVE gatewayId="7" primitiveId="5" primitiveName="grayplot"/>
-    <PRIMITIVE gatewayId="7" primitiveId="6" primitiveName="Matplot"/>
-    <PRIMITIVE gatewayId="7" primitiveId="7" primitiveName="Matplot1"/>
-    <PRIMITIVE gatewayId="7" primitiveId="8" primitiveName="contour2di"/>
-    <PRIMITIVE gatewayId="7" primitiveId="9" primitiveName="param3d"/>
-    <PRIMITIVE gatewayId="7" primitiveId="10" primitiveName="param3d1"/>
-    <PRIMITIVE gatewayId="7" primitiveId="11" primitiveName="xstringb"/>
-    <PRIMITIVE gatewayId="7" primitiveId="12" primitiveName="plot2d"/>
-    <PRIMITIVE gatewayId="7" primitiveId="13" primitiveName="plot2d1"/>
-    <PRIMITIVE gatewayId="7" primitiveId="14" primitiveName="plot2d2"/>
-    <PRIMITIVE gatewayId="7" primitiveId="15" primitiveName="plot2d3"/>
-    <PRIMITIVE gatewayId="7" primitiveId="16" primitiveName="plot2d4"/>
-    <PRIMITIVE gatewayId="7" primitiveId="17" primitiveName="plot3d"/>
-    <PRIMITIVE gatewayId="7" primitiveId="18" primitiveName="plot3d1"/>
-    <PRIMITIVE gatewayId="7" primitiveId="19" primitiveName="winsid"/>
-    <PRIMITIVE gatewayId="7" primitiveId="20" primitiveName="xarc"/>
-    <PRIMITIVE gatewayId="7" primitiveId="21" primitiveName="xarcs"/>
-    <PRIMITIVE gatewayId="7" primitiveId="22" primitiveName="xarrows"/>
-    <PRIMITIVE gatewayId="7" primitiveId="23" primitiveName="drawaxis"/>
-    <PRIMITIVE gatewayId="7" primitiveId="24" primitiveName="xchange"/>
-    <PRIMITIVE gatewayId="7" primitiveId="25" primitiveName="xclick"/>
-    <PRIMITIVE gatewayId="7" primitiveId="26" primitiveName="xdel"/>
-    <PRIMITIVE gatewayId="7" primitiveId="27" primitiveName="xfarc"/>
-    <PRIMITIVE gatewayId="7" primitiveId="28" primitiveName="xfarcs"/>
-    <PRIMITIVE gatewayId="7" primitiveId="29" primitiveName="xfpoly"/>
-    <PRIMITIVE gatewayId="7" primitiveId="30" primitiveName="xfpolys"/>
-    <PRIMITIVE gatewayId="7" primitiveId="31" primitiveName="xfrect"/>
-    <PRIMITIVE gatewayId="7" primitiveId="32" primitiveName="xget"/>
-    <PRIMITIVE gatewayId="7" primitiveId="33" primitiveName="xgetmouse"/>
-    <PRIMITIVE gatewayId="7" primitiveId="34" primitiveName="xgrid"/>
-    <PRIMITIVE gatewayId="7" primitiveId="35" primitiveName="xlfont"/>
-    <PRIMITIVE gatewayId="7" primitiveId="36" primitiveName="xpoly"/>
-    <PRIMITIVE gatewayId="7" primitiveId="37" primitiveName="xpolys"/>
-    <PRIMITIVE gatewayId="7" primitiveId="38" primitiveName="xrect"/>
-    <PRIMITIVE gatewayId="7" primitiveId="39" primitiveName="xrects"/>
-    <PRIMITIVE gatewayId="7" primitiveId="40" primitiveName="xsegs"/>
-    <PRIMITIVE gatewayId="7" primitiveId="41" primitiveName="show_window"/>
-    <PRIMITIVE gatewayId="7" primitiveId="42" primitiveName="xset"/>
-    <PRIMITIVE gatewayId="7" primitiveId="43" primitiveName="xstring"/>
-    <PRIMITIVE gatewayId="7" primitiveId="44" primitiveName="xtitle"/>
-    <PRIMITIVE gatewayId="7" primitiveId="45" primitiveName="xgraduate"/>
-    <PRIMITIVE gatewayId="7" primitiveId="46" primitiveName="xname"/>
-    <PRIMITIVE gatewayId="7" primitiveId="47" primitiveName="zoom_rect"/>
-    <PRIMITIVE gatewayId="7" primitiveId="48" primitiveName="unzoom"/>
-    <PRIMITIVE gatewayId="7" primitiveId="49" primitiveName="stringbox"/>
-    <PRIMITIVE gatewayId="7" primitiveId="50" primitiveName="move"/>
-    <PRIMITIVE gatewayId="7" primitiveId="51" primitiveName="glue"/>
-    <PRIMITIVE gatewayId="7" primitiveId="52" primitiveName="unglue"/>
-    <PRIMITIVE gatewayId="7" primitiveId="53" primitiveName="drawnow"/>
-    <PRIMITIVE gatewayId="7" primitiveId="54" primitiveName="drawlater"/>
-    <PRIMITIVE gatewayId="7" primitiveId="55" primitiveName="copy"/>
-    <PRIMITIVE gatewayId="7" primitiveId="56" primitiveName="delete"/>
-    <PRIMITIVE gatewayId="7" primitiveId="57" primitiveName="get"/>
-    <PRIMITIVE gatewayId="7" primitiveId="58" primitiveName="set"/>
-    <PRIMITIVE gatewayId="7" primitiveId="59" primitiveName="newaxes"/>
-    <PRIMITIVE gatewayId="7" primitiveId="60" primitiveName="swap_handles"/>
-    <PRIMITIVE gatewayId="7" primitiveId="61" primitiveName="rubberbox"/>
-    <PRIMITIVE gatewayId="7" primitiveId="62" primitiveName="rotate_axes"/>
-    <PRIMITIVE gatewayId="7" primitiveId="63" primitiveName="is_handle_valid"/>
-    <PRIMITIVE gatewayId="7" primitiveId="64" primitiveName="captions"/>
-    <PRIMITIVE gatewayId="7" primitiveId="65" primitiveName="light"/>
-    <PRIMITIVE gatewayId="7" primitiveId="66" primitiveName="addcolor"/>
-    <PRIMITIVE gatewayId="7" primitiveId="67" primitiveName="name2rgb"/>
-    <PRIMITIVE gatewayId="7" primitiveId="68" primitiveName="color"/>
-    <PRIMITIVE gatewayId="7" primitiveId="69" primitiveName="contour2dm"/>
-</GATEWAY>
+<module name="graphics">
+    <!-- gateway CPP -->
+    <gateway name="sci_get"             function="get"              type="1" />
+    <gateway name="sci_xget"            function="xget"             type="1" />
+    <gateway name="sci_xset"            function="xset"             type="1" />
+    <gateway name="sci_winsid"          function="winsid"           type="1" />
+    <gateway name="sci_matplot1"        function="Matplot1"         type="1" />
+
+    <!-- gateway CPP OPT-->
+    <gateway name="sci_matplot"         function="Matplot"          type="3" />
+
+    <!-- Gateway C-->
+    <gateway name="sci_light"           function="light"            type="4" />
+
+    <!-- Old gateway C-->
+    <gateway name="sci_champ"           function="champ"            type="0" />
+    <gateway name="sci_champ1"          function="champ1"           type="0" />
+    <gateway name="sci_fec"             function="fec"              type="0" />
+    <gateway name="sci_geom3d"          function="geom3d"           type="0" />
+    <gateway name="sci_grayplot"        function="grayplot"         type="0" />
+    <gateway name="sci_contour2di"      function="contour2di"       type="0" />
+    <gateway name="sci_param3d"         function="param3d"          type="0" />
+    <gateway name="sci_param3d1"        function="param3d1"         type="0" />
+    <gateway name="sci_xstringb"        function="xstringb"         type="0" />
+    <gateway name="sci_plot2d"          function="plot2d"           type="0" />
+    <gateway name="sci_plot2d1_2"       function="plot2d2"          type="0" />
+    <gateway name="sci_plot2d1_3"       function="plot2d3"          type="0" />
+    <gateway name="sci_plot2d1_4"       function="plot2d4"          type="0" />
+    <gateway name="sci_plot3d"          function="plot3d"           type="0" />
+    <gateway name="sci_plot3d"          function="plot3d1"          type="0" />
+    <gateway name="sci_xarc"            function="xarc"             type="0" />
+    <gateway name="sci_xarcs"           function="xarcs"            type="0" />
+    <gateway name="sci_xarrows"         function="xarrows"          type="0" />
+    <gateway name="sci_drawaxis"        function="drawaxis"         type="0" />
+    <gateway name="sci_xchange"         function="xchange"          type="0" />
+    <gateway name="sci_xclick"          function="xclick"           type="0" />
+    <gateway name="sci_xdel"            function="xdel"             type="0" />
+    <gateway name="sci_xarc"            function="xfarc"            type="0" />
+    <gateway name="sci_xfarcs"          function="xfarcs"           type="0" />
+    <gateway name="sci_xfpoly"          function="xfpoly"           type="0" />
+    <gateway name="sci_xfpolys"         function="xfpolys"          type="0" />
+    <gateway name="sci_xrect"           function="xfrect"           type="0" />
+    <gateway name="sci_xgetmouse"       function="xgetmouse"        type="0" />
+    <gateway name="sci_xgrid"           function="xgrid"            type="0" />
+    <gateway name="sci_xlfont"          function="xlfont"           type="0" />
+    <gateway name="sci_xpoly"           function="xpoly"            type="0" />
+    <gateway name="sci_xpolys"          function="xpolys"           type="0" />
+    <gateway name="sci_xrect"           function="xrect"            type="0" />
+    <gateway name="sci_xrects"          function="xrects"           type="0" />
+    <gateway name="sci_xsegs"           function="xsegs"            type="0" />
+    <gateway name="sci_show_window"     function="show_window"      type="0" />
+    <gateway name="sci_xstring"         function="xstring"          type="0" />
+    <gateway name="sci_xtitle"          function="xtitle"           type="0" />
+    <gateway name="sci_xgraduate"       function="xgraduate"        type="0" />
+    <gateway name="sci_xname"           function="xname"            type="0" />
+    <gateway name="sci_zoom_rect"       function="zoom_rect"        type="0" />
+    <gateway name="sci_unzoom"          function="unzoom"           type="0" />
+    <gateway name="sci_stringbox"       function="stringbox"        type="0" />
+    <gateway name="sci_move"            function="move"             type="0" />
+    <gateway name="sci_glue"            function="glue"             type="0" />
+    <gateway name="sci_unglue"          function="unglue"           type="0" />
+    <gateway name="sci_drawnow"         function="drawnow"          type="0" />
+    <gateway name="sci_drawlater"       function="drawlater"        type="0" />
+    <gateway name="sci_copy"            function="copy"             type="0" />
+    <gateway name="sci_delete"          function="delete"           type="0" />
+    <gateway name="sci_set"             function="set"              type="0" />
+    <gateway name="sci_newaxes"         function="newaxes"          type="0" />
+    <gateway name="sci_swap_handles"    function="swap_handles"     type="0" />
+    <gateway name="sci_rubberbox"       function="rubberbox"        type="0" />
+    <gateway name="sci_rotate_axes"     function="rotate_axes"      type="0" />
+    <gateway name="sci_is_handle_valid" function="is_handle_valid"  type="0" />
+    <gateway name="sci_Legend"          function="captions"         type="0" />
+    <gateway name="sci_addcolor"        function="addcolor"         type="0" />
+    <gateway name="sci_name2rgb"        function="name2rgb"         type="0" />
+    <gateway name="sci_color"           function="color"            type="0" />
+    <gateway name="sci_contour2dm"      function="contour2dm"       type="0" />
+</module>

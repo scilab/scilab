@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
- * 
+ *
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
  * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  *  (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
- * 
+ *
  * See the file ./license.txt
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="PRODUCT">
@@ -98,8 +98,7 @@
     <refsection id="Description_PRODUCT">
         <title>Description</title>
         <para>
-            That bloc computes element-wise multiplication or division of its vector inputs. The number of inputs
-            and operation are specified with the <emphasis role="bold">Number of inputs or sign vector</emphasis> parameter.
+            That bloc computes element-wise multiplication or division of its vector inputs. The number of inputs and operation are specified with the <emphasis role="bold">Number of inputs or sign vector</emphasis> parameter.
         </para>
         <itemizedlist>
             <listitem>
@@ -120,20 +119,27 @@
         <para>
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata fileref="../../../../images/gui/PRODUCT_gui.gif" align="center" valign="middle"/>
+                    <imagedata fileref="../../../../images/gui/PRODUCT_gui.png" align="center" valign="middle"/>
                 </imageobject>
             </inlinemediaobject>
         </para>
         <para>
-            
+
         </para>
         <itemizedlist>
             <listitem>
                 <para>
                     <emphasis role="bold">Number of inputs or sign vector </emphasis>
                 </para>
-                <para> Enter the number of inputs.</para>
-                <para> Properties : Type 'vec' of size 1</para>
+                <para>Set the number of inputs and the associated operation.</para>
+                <para>Properties : Type 'vec' of size N</para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Error on divide by zero (1: yes) (0:no)</emphasis>
+                </para>
+                <para>Halt the simulation on divide by zero.</para>
+                <para>Properties : Type 'vec' of size 1</para>
             </listitem>
         </itemizedlist>
     </refsection>

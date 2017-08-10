@@ -2,11 +2,14 @@
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2010 - DIGITEO - Antoine ELIAS
 *
-*  This file must be used under the terms of the CeCILL.
-*  This source file is licensed as described in the file COPYING, which
-*  you should have received as part of this distribution.  The terms
-*  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
@@ -16,6 +19,8 @@
 #include "singlepoly.hxx"
 #include "singlestruct.hxx"
 #include "type_traits.hxx"
+#include "exp.hxx"
+#include "types_tools.hxx"
 
 extern "C"
 {
@@ -24,100 +29,40 @@ extern "C"
 
 namespace types
 {
-//n-uplet in french
-int computeTuples(int* _piCountDim, int _iDims, int _iCurrentDim, int* _piIndex)
-{
-    //if bRet == 1, previous dims has reach max value.
-    int iRet = 0;
 
-    if (_iCurrentDim == 0)
+static int get_max_size(int* _piDims, int _iDims)
+{
+    if (_iDims == 0)
     {
-        //last dims
-        if (_piIndex[_iCurrentDim] >= _piCountDim[_iCurrentDim])
-        {
-            _piIndex[_iCurrentDim] = 0;
-            return 1;
-        }
-    }
-    else
-    {
-        iRet = computeTuples(_piCountDim, _iDims, _iCurrentDim - 1, _piIndex);
-        if (iRet)
-        {
-            _piIndex[_iCurrentDim]++;
-            if (_piIndex[_iCurrentDim] >= _piCountDim[_iCurrentDim])
-            {
-                _piIndex[_iCurrentDim] = 0;
-                return 1;
-            }
-        }
-    }
-    return 0;
-}
-
-InternalType* createEmptyDouble()
-{
-    return Double::Empty();
-}
-
-int getIntValueFromDouble(InternalType* _pIT, int _iPos)
-{
-    return static_cast<int>(_pIT->getAs<Double>()->get(_iPos));
-}
-
-double* getDoubleArrayFromDouble(InternalType* _pIT)
-{
-    return _pIT->getAs<Double>()->get();
-}
-
-InternalType* createDoubleVector(int _iSize)
-{
-    int piDims[] = {1, _iSize};
-    Double* pOut = new Double(2, piDims);
-    for (int i = 0; i < _iSize; i++)
-    {
-        pOut->set(i, i + 1);
-    }
-    return pOut;
-}
-
-bool checkArgValidity(typed_list& _Arg)
-{
-    for (int i = 0; i < (int)_Arg.size(); i++)
-    {
-        if (_Arg[i]->isDouble() == false)
-        {
-            return false;
-        }
-
-        Double* pDbl = _Arg[i]->getAs<Double>();
-        double* pdbl = pDbl->get();
-        for (int j = 0; j < pDbl->getSize(); j++)
-        {
-            if (pdbl[j] <= 0)
-            {
-                return false;
-            }
-        }
+        return 0;
     }
 
-    return true;
+    int iMax = 1;
+    for (int i = 0 ; i < _iDims ; i++)
+    {
+        iMax *= _piDims[i];
+    }
+    return iMax;
 }
 
 template <typename T>
-InternalType* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
+GenericType* ArrayOf<T>::createEmpty()
 {
-    if (getRef() > 1)
-    {
-        // An ArrayOf content in more than one Scilab variable
-        // must be cloned before to be modified.
-        ArrayOf* pClone = clone()->template getAs<ArrayOf>();
-        InternalType* pIT = pClone->insert(_pArgs, _pSource);
-        if (pIT == NULL)
-        {
-            pClone->killMe();
-        }
+    return createEmptyDouble();
+}
 
+template <typename T>
+void ArrayOf<T>::getIndexes(int _iIndex, int* _piIndexes)
+{
+    getIndexesWithDims(_iIndex, _piIndexes, m_piDims, m_iDims);
+}
+
+template <typename T>
+ArrayOf<T>* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
+{
+    ArrayOf<T>* pIT = checkRef(this, &ArrayOf::insert, _pArgs, _pSource);
+    if (pIT != this)
+    {
         return pIT;
     }
 
@@ -137,9 +82,17 @@ InternalType* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
 
         if (isComplex() == false && pIns->isComplex() == false)
         {
-            if (set(index, *pRealData) == true)
+            if (isNativeType() && index < m_iSize)
             {
+                m_pRealData[index] = *pRealData;
                 return this;
+            }
+            else
+            {
+                if (set(index, *pRealData) != NULL)
+                {
+                    return this;
+                }
             }
         }
 
@@ -172,25 +125,58 @@ InternalType* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
         {
             if (sizeIn == 1)
             {
-                for (int & i : indexes)
+                if (isNativeType())
                 {
-                    if (set(i, *pRealData) == false)
+                    for (int i : indexes)
                     {
-                        status = false;
-                        break;
+                        if (i >= m_iSize)
+                        {
+                            status = false;
+                            break;
+                        }
+
+                        m_pRealData[i] = *pRealData;
+                    }
+                }
+                else
+                {
+                    for (int i : indexes)
+                    {
+                        if (set(i, *pRealData) == NULL)
+                        {
+                            status = false;
+                            break;
+                        }
                     }
                 }
             }
             else
             {
-                for (int & i : indexes)
+                if (isNativeType())
                 {
-                    if (set(i, *pRealData) == false)
+                    for (int i : indexes)
                     {
-                        status = false;
-                        break;
+                        if (i >= m_iSize)
+                        {
+                            status = false;
+                            break;
+                        }
+
+                        m_pRealData[i] = *pRealData;
+                        ++pRealData;
                     }
-                    ++pRealData;
+                }
+                else
+                {
+                    for (int i : indexes)
+                    {
+                        if (set(i, *pRealData) == NULL)
+                        {
+                            status = false;
+                            break;
+                        }
+                        ++pRealData;
+                    }
                 }
             }
 
@@ -361,11 +347,10 @@ InternalType* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
     }
 
     //before resize, check input dimension
-
     if (bNeedToResize)
     {
-        bool bPass = resize(piNewDims, iNewDims);
-        if (bPass == false)
+        ArrayOf<T>* pTemp = resize(piNewDims, iNewDims);
+        if (pTemp == NULL)
         {
             delete[] piCountDim;
             delete[] piMaxDim;
@@ -436,7 +421,7 @@ InternalType* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
 
             wchar_t szError[bsiz];
             os_swprintf(szError, bsiz, _W("Invalid index.\n").c_str());
-            throw ast::ScilabError(szError);
+            throw ast::InternalError(szError);
         }
 
         if (pSource->isScalar())
@@ -506,16 +491,50 @@ InternalType* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
 }
 
 template <typename T>
-InternalType* ArrayOf<T>::insertNew(typed_list* _pArgs, InternalType* _pSource)
+GenericType* ArrayOf<T>::insertNew(typed_list* _pArgs)
 {
+    bool bComplex = getImg() != NULL;
+
+    std::vector<int> dims;
+    if (getArgsDims(_pArgs, dims))
+    {
+        InternalType *pOut = NULL;
+
+        if (dims.size() == 1 && getDims() == 2)
+        {
+            if (getCols() != 1)
+            {
+                dims.insert(dims.begin(), 1);
+            }
+            else
+            {
+                dims.push_back(1);
+            }
+        }
+
+        while (dims.size() < 2)
+        {
+            dims.push_back(1);
+        }
+
+        pOut = createEmpty((int)dims.size(), dims.data(), bComplex);
+        ArrayOf* pArrayOut = pOut->getAs<ArrayOf>();
+        pArrayOut->fillDefaultValues();
+        ArrayOf* pOut2 = pArrayOut->insert(_pArgs, this);
+        if (pOut != pOut2)
+        {
+            delete pOut;
+        }
+
+        return pOut2;
+    }
+
     typed_list pArg;
     InternalType *pOut = NULL;
-    ArrayOf* pSource = _pSource->getAs<ArrayOf>();
 
     int iDims = (int)_pArgs->size();
     int* piMaxDim = new int[iDims];
     int* piCountDim = new int[iDims];
-    bool bComplex = pSource->getImg() != NULL;
     bool bUndefine = false;
     bool bIsImpli = false;
 
@@ -540,8 +559,8 @@ InternalType* ArrayOf<T>::insertNew(typed_list* _pArgs, InternalType* _pSource)
     if (bUndefine)
     {
         //manage : and $ in creation by insertion
-        int *piSourceDims = pSource->getDimsArray();
-        int iSourceDims = pSource->getDims();
+        int *piSourceDims = getDimsArray();
+        int iSourceDims = getDims();
         int iCompteurNull = 0;
         int iLastNull = 0;
         for (int i = 0; i < iDims; i++)
@@ -567,19 +586,19 @@ InternalType* ArrayOf<T>::insertNew(typed_list* _pArgs, InternalType* _pSource)
             delete[] piCountDim;
             //free pArg content
             cleanIndexesArguments(_pArgs, &pArg);
-            return _pSource;
+            return this;
         }
 
         //vector case
-        if (pSource->isVector() && iCompteurNull == 1)
+        if (isVector() && iCompteurNull == 1)
         {
-            piMaxDim[iLastNull] = pSource->getSize();
+            piMaxDim[iLastNull] = getSize();
             pArg[iLastNull] = createDoubleVector(piMaxDim[iLastNull]);
         }
         else
         {
             //matrix and hypermatrix case
-            if (iCompteurNull < pSource->getDims())
+            if (iCompteurNull < getDims())
             {
                 delete[] piMaxDim;
                 delete[] piCountDim;
@@ -603,7 +622,7 @@ InternalType* ArrayOf<T>::insertNew(typed_list* _pArgs, InternalType* _pSource)
                     }
                     else
                     {
-                        //fill dimensions after pSource->getDimes() with 1
+                        //fill dimensions after getDimes() with 1
                         piMaxDim[i] = 1;
                         pArg[i] = createDoubleVector(piMaxDim[i]);
                     }
@@ -640,47 +659,74 @@ InternalType* ArrayOf<T>::insertNew(typed_list* _pArgs, InternalType* _pSource)
 
     if (iDims == 1)
     {
-        if (pSource->getCols() == 1)
+        if (getCols() == 1)
         {
             int piRealDim[2] = {piMaxDim[0], 1};
-            pOut = pSource->createEmpty(2, piRealDim, bComplex);
+            pOut = createEmpty(2, piRealDim, bComplex);
         }
         else
         {
             //rows == 1
             int piRealDim[2] = {1, piMaxDim[0]};
-            pOut = pSource->createEmpty(2, piRealDim, bComplex);
+            pOut = createEmpty(2, piRealDim, bComplex);
         }
     }
     else
     {
-        pOut = pSource->createEmpty(iDims, piMaxDim, bComplex);
+        pOut = createEmpty(iDims, piMaxDim, bComplex);
     }
 
     //fill with null item
     ArrayOf* pArrayOut = pOut->getAs<ArrayOf>();
-    T* pRealData = pArrayOut->get();
-    if (bComplex)
-    {
-        T* pImgData = pArrayOut->getImg();
-        for (int i = 0; i < pArrayOut->getSize(); i++)
-        {
-            pArrayOut->deleteData(pRealData[i]);
-            pRealData[i] = pSource->getNullValue();
-            pArrayOut->deleteData(pImgData[i]);
-            pImgData[i] = pSource->getNullValue();
-        }
-    }
-    else
-    {
-        for (int i = 0; i < pArrayOut->getSize(); i++)
-        {
-            pArrayOut->deleteData(pRealData[i]);
-            pRealData[i] = pSource->getNullValue();
-        }
-    }
+    pArrayOut->fillDefaultValues();
+    //T* pRealData = pArrayOut->get();
+    //if (bComplex)
+    //{
+    //    int size = pArrayOut->getSize();
+    //    T* pImgData = pArrayOut->getImg();
 
-    if (bIsImpli && (pArrayOut->getSize() != _pSource->getAs<types::GenericType>()->getSize()))
+    //    if (isNativeType())
+    //    {
+    //        T val = getNullValue();
+    //        for (int i = 0; i < size; i++)
+    //        {
+    //            pRealData[i] = val;
+    //            pImgData[i] = val;
+    //        }
+    //    }
+    //    else
+    //    {
+    //        for (int i = 0; i < size; i++)
+    //        {
+    //            pArrayOut->deleteData(pRealData[i]);
+    //            pRealData[i] = getNullValue();
+    //            pArrayOut->deleteData(pImgData[i]);
+    //            pImgData[i] = getNullValue();
+    //        }
+    //    }
+    //}
+    //else
+    //{
+    //    int size = pArrayOut->getSize();
+    //    if (isNativeType())
+    //    {
+    //        T val = getNullValue();
+    //        for (int i = 0; i < size; i++)
+    //        {
+    //            pRealData[i] = val;
+    //        }
+    //    }
+    //    else
+    //    {
+    //        for (int i = 0; i < size; i++)
+    //        {
+    //            pArrayOut->deleteData(pRealData[i]);
+    //            pRealData[i] = getNullValue();
+    //        }
+    //    }
+    //}
+
+    if (bIsImpli && (pArrayOut->getSize() != getSize()))
     {
         delete[] piMaxDim;
         delete[] piCountDim;
@@ -689,7 +735,7 @@ InternalType* ArrayOf<T>::insertNew(typed_list* _pArgs, InternalType* _pSource)
         return NULL;
     }
     //insert values in new matrix
-    InternalType* pOut2 = pArrayOut->insert(&pArg, _pSource);
+    ArrayOf* pOut2 = pArrayOut->insert(&pArg, this);
     if (pOut != pOut2)
     {
         delete pOut;
@@ -704,8 +750,14 @@ InternalType* ArrayOf<T>::insertNew(typed_list* _pArgs, InternalType* _pSource)
 }
 
 template <typename T>
-bool ArrayOf<T>::append(int _iRows, int _iCols, InternalType* _poSource)
+ArrayOf<T>* ArrayOf<T>::append(int _iRows, int _iCols, InternalType* _poSource)
 {
+    ArrayOf<T>* pIT = checkRef(this, &ArrayOf::append, _iRows, _iCols, _poSource);
+    if (pIT != this)
+    {
+        return pIT;
+    }
+
     ArrayOf * pGT = _poSource->getAs<ArrayOf>();
     int iRows = pGT->getRows();
     int iCols = pGT->getCols();
@@ -713,7 +765,7 @@ bool ArrayOf<T>::append(int _iRows, int _iCols, InternalType* _poSource)
     //insert without resize
     if (iRows + _iRows > m_iRows || iCols + _iCols > m_iCols)
     {
-        return false;
+        return NULL;
     }
 
     //Update complexity if necessary
@@ -748,11 +800,11 @@ bool ArrayOf<T>::append(int _iRows, int _iCols, InternalType* _poSource)
         }
     }
 
-    return true;
+    return this;
 }
 
 template <typename T>
-InternalType* ArrayOf<T>::remove(typed_list* _pArgs)
+GenericType* ArrayOf<T>::remove(typed_list* _pArgs)
 {
     ArrayOf<T>* pOut = NULL;
     int iDims = (int)_pArgs->size();
@@ -823,14 +875,14 @@ InternalType* ArrayOf<T>::remove(typed_list* _pArgs)
         }
     }
 
+    delete[] pbFull;
+
     if (bTooMuchNotEntire == true)
     {
         //free pArg content
         cleanIndexesArguments(_pArgs, &pArg);
         return NULL;
     }
-
-    delete[] pbFull;
 
     //find index to keep
     int iNotEntireSize = pArg[iNotEntire]->getAs<GenericType>()->getSize();
@@ -916,60 +968,97 @@ InternalType* ArrayOf<T>::remove(typed_list* _pArgs)
             int piRealDim[2] = {iNewDimSize, 1};
             pOut = createEmpty(2, piRealDim, m_pImgData != NULL);
         }
+
+        {
+            int iNewPos = 0;
+            int size = getSize();
+
+            //try to sort piNotEntireIndex
+            std::sort(piNotEntireIndex, piNotEntireIndex + iNotEntireSize);
+
+            int last = 0;
+            for (int i = 0; i < iNotEntireSize; ++i)
+            {
+                int ii = piNotEntireIndex[i] - 1;
+                for (int j = last; j < ii; ++j)
+                {
+                    pOut->set(iNewPos, get(j));
+                    if (m_pImgData != NULL)
+                    {
+                        pOut->setImg(iNewPos, getImg(j));
+                    }
+                    iNewPos++;
+                }
+
+                last = ii + 1;
+            }
+
+            for (int i = last; i < size; ++i)
+            {
+                pOut->set(iNewPos, get(i));
+                if (m_pImgData != NULL)
+                {
+                    pOut->setImg(iNewPos, getImg(i));
+                }
+                iNewPos++;
+            }
+        }
     }
     else
     {
         pOut = createEmpty(iDims, piNewDims, m_pImgData != NULL);
+
+        //find a way to copy existing data to new variable ...
+        int iNewPos = 0;
+        int* piIndexes = new int[iOrigDims];
+        int* piViewDims = new int[iOrigDims];
+        for (int i = 0; i < iOrigDims; i++)
+        {
+            piViewDims[i] = getVarMaxDim(i, iOrigDims);
+        }
+
+        for (int i = 0; i < getSize(); i++)
+        {
+            bool bByPass = false;
+            getIndexesWithDims(i, piIndexes, piViewDims, iOrigDims);
+
+            //check if piIndexes use removed indexes
+            for (int j = 0; j < iNotEntireSize; j++)
+            {
+                if ((piNotEntireIndex[j] - 1) == piIndexes[iNotEntire])
+                {
+                    //by pass this value
+                    bByPass = true;
+                    break;
+                }
+            }
+
+            if (bByPass == false)
+            {
+                //compute new index
+                pOut->set(iNewPos, get(i));
+                if (m_pImgData != NULL)
+                {
+                    pOut->setImg(iNewPos, getImg(i));
+                }
+                iNewPos++;
+            }
+        }
+
+        delete[] piIndexes;
+        delete[] piViewDims;
     }
 
     delete[] piNewDims;
-    //find a way to copy existing data to new variable ...
-    int iNewPos = 0;
-    int* piIndexes = new int[iOrigDims];
-    int* piViewDims = new int[iOrigDims];
-    for (int i = 0; i < iOrigDims; i++)
-    {
-        piViewDims[i] = getVarMaxDim(i, iOrigDims);
-    }
-
-    for (int i = 0; i < getSize(); i++)
-    {
-        bool bByPass = false;
-        getIndexesWithDims(i, piIndexes, piViewDims, iOrigDims);
-
-        //check if piIndexes use removed indexes
-        for (int j = 0; j < iNotEntireSize; j++)
-        {
-            if ((piNotEntireIndex[j] - 1) == piIndexes[iNotEntire])
-            {
-                //by pass this value
-                bByPass = true;
-                break;
-            }
-        }
-
-        if (bByPass == false)
-        {
-            //compute new index
-            pOut->set(iNewPos, get(i));
-            if (m_pImgData != NULL)
-            {
-                pOut->setImg(iNewPos, getImg(i));
-            }
-            iNewPos++;
-        }
-    }
 
     //free pArg content
     cleanIndexesArguments(_pArgs, &pArg);
 
-    delete[] piIndexes;
-    delete[] piViewDims;
     return pOut;
 }
 
 template <typename T>
-InternalType* ArrayOf<T>::extract(typed_list* _pArgs)
+GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
 {
     ArrayOf<T>* pOut = NULL;
     int iDims = (int)_pArgs->size();
@@ -1015,12 +1104,20 @@ InternalType* ArrayOf<T>::extract(typed_list* _pArgs)
 
         //std::cout << start << ":" << step << ":" << end << std::endl;
         int size = static_cast<int>((end - start) / step + 1);
-        if (size <= 0 || getSize() == 0)
+
+        if (size <= 0 || m_iSize == 0)
         {
             return createEmpty();
         }
 
-        bool isRowVector = getRows() == 1;
+        //check bounds
+        if (step > 0 && ((size - 1) * step + start > m_iSize || start < 1) ||
+                (step < 0 && (start > m_iSize || end < 1)))
+        {
+            return NULL;
+        }
+
+        bool isRowVector = m_iRows == 1;
         isRowVector = isRowVector && !isForceColVector;
         int dims[2] = {isRowVector ? 1 : size, isRowVector ? size : 1};
         pOut = createEmpty(2, dims, isComplex());
@@ -1325,8 +1422,63 @@ InternalType* ArrayOf<T>::extract(typed_list* _pArgs)
 }
 
 template <typename T>
-bool ArrayOf<T>::resize(int* _piDims, int _iDims)
+ArrayOf<T>* ArrayOf<T>::reshape(int* _piDims, int _iDims)
 {
+    typedef ArrayOf<T>* (ArrayOf<T>::*reshape_t)(int*, int);
+    ArrayOf<T>* pIT = checkRef(this, (reshape_t)&ArrayOf<T>::reshape, _piDims, _iDims);
+    if (pIT != this)
+    {
+        return pIT;
+    }
+
+    int iNewSize = get_max_size(_piDims, _iDims);
+    if (iNewSize != m_iSize)
+    {
+        return NULL;
+    }
+
+    for (int i = 0 ; i < _iDims ; i++)
+    {
+        m_piDims[i] = _piDims[i];
+    }
+
+    if (_iDims == 1)
+    {
+        m_piDims[1] = 1;
+        _iDims++;
+    }
+
+    int iDims = _iDims;
+    for (int i = iDims - 1; i >= 2; --i)
+    {
+        if (m_piDims[i] == 1)
+        {
+            _iDims--;
+        }
+        else
+        {
+            break;
+        }
+    }
+
+    m_iRows = m_piDims[0];
+    m_iCols = m_piDims[1];
+    m_iSize = iNewSize;
+    m_iDims = _iDims;
+
+    return this;
+}
+
+template <typename T>
+ArrayOf<T>* ArrayOf<T>::resize(int* _piDims, int _iDims)
+{
+    typedef ArrayOf<T>* (ArrayOf<T>::*resize_t)(int*, int);
+    ArrayOf<T>* pIT = checkRef(this, (resize_t)&ArrayOf::resize, _piDims, _iDims);
+    if (pIT != this)
+    {
+        return pIT;
+    }
+
     if (_iDims == m_iDims)
     {
         bool bChange = false;
@@ -1342,7 +1494,7 @@ bool ArrayOf<T>::resize(int* _piDims, int _iDims)
         if (bChange == false)
         {
             //nothing to do
-            return true;
+            return this;
         }
     }
 
@@ -1489,16 +1641,12 @@ bool ArrayOf<T>::resize(int* _piDims, int _iDims)
                 int iNewIdx = getIndexWithDims(piIndexes, _piDims, _iDims);
                 pRealData[iNewIdx] = m_pRealData[i];
                 m_pRealData[i] = NULL;
+                T pTemp = getNullValue();
                 for (int j = iPreviousNewIdx; j < iNewIdx; ++j)
                 {
-                    T pTemp = getNullValue();
-                    T pTemp2 = copyValue(pTemp);
-                    pRealData[j] = pTemp2;
-                    if (pTemp != pTemp2)
-                    {
-                        deleteData(pTemp);
-                    }
+                    pRealData[j] = copyValue(pTemp);
                 }
+                deleteData(pTemp);
 
                 iPreviousNewIdx = iNewIdx + 1;
             }
@@ -1524,16 +1672,12 @@ bool ArrayOf<T>::resize(int* _piDims, int _iDims)
             //}
 
             //fill exceeded with NullValue
+            T pTemp = getNullValue();
             for (int i = iPreviousNewIdx; i < m_iSizeMax; ++i)
             {
-                T pTemp = getNullValue();
-                T pTemp2 = copyValue(pTemp);
-                pRealData[i] = pTemp2;
-                if (pTemp != pTemp2)
-                {
-                    deleteData(pTemp);
-                }
+                pRealData[i] = copyValue(pTemp);
             }
+            deleteData(pTemp);
 
             delete[] piIndexes;
             //delete all array
@@ -1597,7 +1741,7 @@ bool ArrayOf<T>::resize(int* _piDims, int _iDims)
     m_iRows = m_piDims[0];
     m_iCols = m_piDims[1];
     m_iSize = iNewSize;
-    return true;
+    return this;
 }
 
 template <typename T>
@@ -1613,6 +1757,52 @@ bool ArrayOf<T>::neg(InternalType *& out)
     type_traits::neg<T, int>(this->m_iSize, this->m_pRealData, static_cast<Bool *>(out)->get());
 
     return true;
+}
+
+template<typename T>
+bool ArrayOf<T>::invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetCount*/, typed_list & out, const ast::Exp & e)
+{
+    if (in.size() == 0)
+    {
+        out.push_back(this);
+    }
+    else
+    {
+        InternalType * _out = extract(&in);
+        if (!_out)
+        {
+            std::wostringstream os;
+            os << _W("Invalid index.\n");
+            throw ast::InternalError(os.str(), 999, e.getLocation());
+        }
+        out.push_back(_out);
+    }
+
+    return true;
+}
+
+template<typename T>
+bool ArrayOf<T>::isInvokable() const
+{
+    return true;
+}
+
+template<typename T>
+bool ArrayOf<T>::hasInvokeOption() const
+{
+    return false;
+}
+
+template<typename T>
+int ArrayOf<T>::getInvokeNbIn()
+{
+    return -1;
+}
+
+template<typename T>
+int ArrayOf<T>::getInvokeNbOut()
+{
+    return 1;
 }
 
 

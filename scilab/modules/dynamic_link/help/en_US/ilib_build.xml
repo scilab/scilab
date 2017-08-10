@@ -3,11 +3,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA -
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="ilib_build" xml:lang="en">
@@ -16,7 +19,7 @@
         <refpurpose>utility for shared library management</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>ilib_build(lib_name,table,files,libs [,makename,ldflags,cflags,fflags,ismex, cc])</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -167,7 +170,7 @@ i=['#include <stdlib.h>'
    ''
    '  if (iType1 != sci_matrix)'
    '  {'
-   '     Scierror(999,_(""%s: Wrong type for input argument #%d: A string expected.\n""), fname, 1);'
+   '     Scierror(999,_(""%s: Wrong type for input argument #%d: string expected.\n""), fname, 1);'
    '     return 0;'
    '  }'
    ''
@@ -224,7 +227,7 @@ i=['#include ""stack-c.h""'
    '#include ""version.h""'
    '#if SCI_VERSION_MAJOR <= 5'
    '#if SCI_VERSION_MINOR <  2'
-   '   #error ""This example is obsolete see help ilib_buid""'
+   '   #error ""This example is obsolete see help ilib_build""'
    '#endif'
    '#endif'
    ''
@@ -304,7 +307,7 @@ i=['#include <string>'
    ''
    ' if (iType1 != sci_strings)'
    ' {'
-   '   Scierror(999,_(""%s: Wrong type for input argument #%d: A string expected.\n""), fname, 1);'
+   '   Scierror(999,_(""%s: Wrong type for input argument #%d: string expected.\n""), fname, 1);'
    '   return 0;'
    ' }'
    ''
@@ -324,7 +327,7 @@ i=['#include <string>'
    ''
    ' if (iType2 != sci_strings)'
    ' {'
-   '   Scierror(999,_(""%s: Wrong type for input argument #%d: A string expected.\n""), fname, 2);'
+   '   Scierror(999,_(""%s: Wrong type for input argument #%d: string expected.\n""), fname, 2);'
    '   return 0;'
    ' }'
    ''
@@ -429,7 +432,7 @@ i=['#include <string>'
    '#include ""version.h""'
    '#if SCI_VERSION_MAJOR <= 5'
    '#if SCI_VERSION_MINOR <  2'
-   '   #error ""This example is obsolete see help ilib_buid""'
+   '   #error ""This example is obsolete see help ilib_build""'
    '#endif'
    '#endif'
    ''
@@ -555,7 +558,7 @@ examplecflag() // __MYDEF_FOR_THIS_FUNCTION__ not detected !!!
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="addinter">addinter</link>
@@ -579,7 +582,7 @@ examplecflag() // __MYDEF_FOR_THIS_FUNCTION__ not detected !!!
                 <link linkend="ilib_for_link">ilib_for_link</link>
             </member>
             <member>
-                <link linkend="api_scilab">api_scilab</link>
+                <link linkend="api_scilab_legacy">api_scilab</link>
             </member>
         </simplelist>
     </refsection>

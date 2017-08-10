@@ -3,31 +3,14 @@
 //
 // This set of scilab 's macros provide a few sparse utilities.
 //
-// This software is governed by the CeCILL license under French law and
-// abiding by the rules of distribution of free software.  You can  use,
-// modify and/ or redistribute the software under the terms of the CeCILL
-// license as circulated by CEA, CNRS and INRIA at the following URL
-// "http://www.cecill.info".
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
-// As a counterpart to the access to the source code and  rights to copy,
-// modify and redistribute granted by the license, users are provided only
-// with a limited warranty  and the software's author,  the holder of the
-// economic rights,  and the successive licensors  have only  limited
-// liability.
-//
-// In this respect, the user's attention is drawn to the risks associated
-// with loading,  using,  modifying and/or developing or reproducing the
-// software by the user in light of its specific status of free software,
-// that may mean  that it is complicated to manipulate,  and  that  also
-// therefore means  that it is reserved for developers  and  experienced
-// professionals having in-depth computer knowledge. Users are therefore
-// encouraged to load and test the software's suitability as regards their
-// requirements in conditions enabling the security of their systems and/or
-// data to be ensured and,  more generally, to use and operate it in the
-// same conditions as regards security.
-//
-// The fact that you are presently reading this means that you have had
-// knowledge of the CeCILL license and that you accept its terms.
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function [col, mark] = ana_style(style)
     //
@@ -38,25 +21,23 @@ function [col, mark] = ana_style(style)
     tab_mark = ["." "+" "x" "*" "D" "d" "^" "v" "o"]
     num_mark = [ 0   1   2   3   4   5   6   7   9 ]
 
-    deff("[b] = is_digit(c)",[ "code = _str2code(c)";...
-    "b = 0 <= code & code <= 9" ])
     n = length(style)
     if n >= 1 then
         c = part(style,1) ; ic = 1
         ind = grep(tab_col, c)
         if ind == [] then
-            if is_digit(c) then
+            if isdigit(c) then
                 while %t
                     ic = ic+1
                     if ic <= n then
                         c = part(style,ic)
-                        if ~is_digit(c) then , break, end
+                        if ~isdigit(c) then , break, end
                     else
                         break
                     end
                 end
                 col = evstr(part(style,1:ic-1))
-                nb_col = xget("lastpattern")
+                nb_col = size(gcf().color_map, 1)
                 if col < 1  |  col > nb_col then
                     col = default_markColor
                 end

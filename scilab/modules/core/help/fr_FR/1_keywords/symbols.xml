@@ -33,19 +33,33 @@
                 </td>
             </tr>
             <tr>
-                <td> *,.*</td>
+                <td>*, .*, *.</td>
                 <td>
                     <link linkend="star">star</link>
                 </td>
             </tr>
             <tr>
-                <td> /, ./, /.</td>
+                <td> .*.</td>
+                <td>
+                    <link linkend="kron">kron</link>
+                </td>
+            </tr>
+            <tr>
+                <td>/, ./, /., ./.</td>
                 <td>
                     <link linkend="slash">slash</link>
                 </td>
             </tr>
             <tr>
-                <td> \,.\ ,\. </td>
+                <td>
+                    <literal>//, /*  */</literal>
+                </td>
+                <td>
+                    <link linkend="comments">commentaires</link>
+                </td>
+            </tr>
+            <tr>
+                <td>\, .\, \., .\.</td>
                 <td>
                     <link linkend="backslash">backslash</link>
                 </td>
@@ -136,12 +150,6 @@
                 <td> &amp;</td>
                 <td>
                     <link linkend="and_op">and_op</link>
-                </td>
-            </tr>
-            <tr>
-                <td> .*., ./., .\.</td>
-                <td>
-                    <link linkend="kron">kron</link>
                 </td>
             </tr>
             <tr>

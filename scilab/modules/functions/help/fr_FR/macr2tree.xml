@@ -2,25 +2,32 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="macr2tree">
     <refnamediv>
         <refname>macr2tree</refname>
-        <refpurpose>conversion d'une fonction en arbre</refpurpose>
+        <refpurpose>fournit le code interne d'une fonction compilée en Scilab</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>t=macr2tree(nom-de-fonction)</synopsis>
+        <synopsis>p = macr2tree(fonction)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Paramètres</title>
         <variablelist>
             <varlistentry>
-                <term>nom-de-fonction</term>
+                <term>fonction</term>
                 <listitem>
-                    <para>une macro Scilab</para>
+                    <para>identifiant direct d'une fonction compilée écrite en
+                    Scilab (NON son nom sous forme texte)</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>t</term>
+                <term>p</term>
                 <listitem>
-                    <para>un "arbre" Scilab</para>
+                    <para>Liste de type <literal>program</literal> avec les champs
+                    <literal>p.name</literal>, <literal>p.nblines</literal>,
+                    <literal>p.inputs</literal>, <literal>p.outputs</literal>, et
+                    <literal>p.statements</literal>. Les 3 derniers sont des
+                    listes imbriquées décrivant le code interne de la
+                    <literal>fonction</literal>.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -28,24 +35,62 @@
     <refsection>
         <title>Description</title>
         <para>
-            Cette primitive convertit une fonction compilée de Scilab <literal>nom-de-fonction</literal>
-            en arbre (tlists imbriquées) qui code la représentation interne de la fonction. 
-            A utiliser avec <literal>tree2code</literal>.
+            Cette primitive convertit une <literal>fonction</literal> compilée
+            de Scilab en un arbre (tlists imbriquées)
+            représentant le code interne de la fonction.
+            A utiliser avec <literal>tree2code()</literal>.
         </para>
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
-tree=macr2tree(cosh);
-txt=tree2code(tree,%T);
-write(%io(2),txt,'(a)');
+        <programlisting role="example"><![CDATA[
+prog = macr2tree(log2);   // Noter que l'entrée est log2, non "log2"
+typeof(prog)
+fieldnames(prog)'
+prog.name
+deftxt = tree2code(prog, %T);
+printf("%s\n", deftxt);
  ]]></programlisting>
+    <screen><![CDATA[--> typeof(prog)
+ ans  =
+ program
+
+--> fieldnames(prog)'
+ ans  =
+!name  outputs  inputs  statements  nblines  !
+
+--> prog.name
+ ans  =
+ log2
+
+--> deftxt = tree2code(prog, %T);
+
+--> printf("%s\n", deftxt);
+function [f,e] = log2(x)
+  [lhs,rhs] = argn(0)
+  if rhs&lt;>1 then
+    msg = gettext("%s: Wrong number of input argument(s): %d expected.\n")
+    error(msprintf(msg, "log2", 1))
+  end
+  if argn(1)==1 then
+    f = log(x)/log(2)
+  else
+    [f,e] = frexp(x)
+  end
+endfunction
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>
         <simplelist type="inline">
             <member>
                 <link linkend="tree2code">tree2code</link>
+            </member>
+            <member>
+                <link linkend="macrovar">macrovar</link>
+            </member>
+            <member>
+                <link linkend="functions">functions</link>
             </member>
         </simplelist>
     </refsection>

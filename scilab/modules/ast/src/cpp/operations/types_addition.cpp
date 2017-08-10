@@ -3,34 +3,32 @@
  *  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
  *  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
+#include <algorithm>
 #include "types_addition.hxx"
 #include "operations.hxx"
 #include "double.hxx"
 #include "int.hxx"
-#include "scilabexception.hxx"
+#include "configvariable.hxx"
 
 extern "C"
 {
-#include <stdio.h>
-#include "core_math.h"
 #include "matrix_addition.h"
-#include "localization.h"
-#include "charEncoding.h"
-#include "os_string.h"
 #include "elem_common.h" //dset
+#include "Sciwarning.h"
 }
 
 using namespace types;
-
-
 //define arrays on operation functions
 static add_function pAddfunction[types::InternalType::IdLast][types::InternalType::IdLast] = {NULL};
 
@@ -161,10 +159,10 @@ void fillAddFunction()
     scilab_fill_add(Empty, UInt64, E_M, Double, UInt64, UInt64);
     scilab_fill_add(Empty, Bool, E_M, Double, Bool, Double);
     scilab_fill_add(Empty, String, E_M, Double, String, String);
-    scilab_fill_add(Empty, Polynom, M_M, Double, Polynom, Polynom);
-    scilab_fill_add(Empty, PolynomComplex, M_M, Double, Polynom, Polynom);
-    scilab_fill_add(Empty, Sparse, M_M, Double, Sparse, Sparse);
-    scilab_fill_add(Empty, SparseComplex, M_M, Double, Sparse, Sparse);
+    scilab_fill_add(Empty, Polynom, E_M, Double, Polynom, Polynom);
+    scilab_fill_add(Empty, PolynomComplex, E_M, Double, Polynom, Polynom);
+    scilab_fill_add(Empty, Sparse, E_M, Double, Sparse, Sparse);
+    scilab_fill_add(Empty, SparseComplex, E_M, Double, Sparse, Sparse);
 
     //Empty + Matrix Complex
     scilab_fill_add(Empty, DoubleComplex, E_MC, Double, Double, Double);
@@ -180,11 +178,11 @@ void fillAddFunction()
     scilab_fill_add(Empty, ScalarUInt64, E_S, Double, UInt64, UInt64);
     scilab_fill_add(Empty, ScalarBool, E_S, Double, Bool, Double);
     scilab_fill_add(Empty, ScalarString, E_S, Double, String, String);
-    scilab_fill_add(Empty, ScalarPolynom, M_M, Double, Polynom, Polynom);
+    scilab_fill_add(Empty, ScalarPolynom, E_S, Double, Polynom, Polynom);
 
     //Empty + Scalar Complex
     scilab_fill_add(Empty, ScalarDoubleComplex, E_SC, Double, Double, Double);
-    scilab_fill_add(Empty, ScalarPolynomComplex, M_M, Double, Polynom, Polynom);
+    scilab_fill_add(Empty, ScalarPolynomComplex, E_M, Double, Polynom, Polynom);
     //Empty + Empty
     scilab_fill_add(Empty, Empty, E_E, Double, Double, Double);
     //Empty + eye
@@ -728,8 +726,8 @@ void fillAddFunction()
     scilab_fill_add(PolynomComplex, ScalarDoubleComplex, M_M, Polynom, Double, Polynom);
 
     //poly + []
-    scilab_fill_add(Polynom, Empty, M_M, Polynom, Double, Polynom);
-    scilab_fill_add(PolynomComplex, Empty, M_M, Polynom, Double, Polynom);
+    scilab_fill_add(Polynom, Empty, M_E, Polynom, Double, Polynom);
+    scilab_fill_add(PolynomComplex, Empty, M_E, Polynom, Double, Polynom);
 
     //poly + eye
     scilab_fill_add(Polynom, Identity, M_I, Polynom, Double, Polynom);
@@ -762,8 +760,8 @@ void fillAddFunction()
     scilab_fill_add(ScalarPolynomComplex, ScalarDoubleComplex, M_M, Polynom, Double, Polynom);
 
     //scalar poly + []
-    scilab_fill_add(ScalarPolynom, Empty, M_M, Polynom, Double, Polynom);
-    scilab_fill_add(ScalarPolynomComplex, Empty, M_M, Polynom, Double, Polynom);
+    scilab_fill_add(ScalarPolynom, Empty, M_E, Polynom, Double, Polynom);
+    scilab_fill_add(ScalarPolynomComplex, Empty, M_E, Polynom, Double, Polynom);
 
     //scalar poly + eye
     scilab_fill_add(ScalarPolynom, Identity, M_I, Polynom, Double, Polynom);
@@ -779,7 +777,7 @@ void fillAddFunction()
     scilab_fill_add(Sparse, ScalarDouble, M_M, Sparse, Double, Double);
     scilab_fill_add(Sparse, ScalarDoubleComplex, M_M, Sparse, Double, Double);
 
-    scilab_fill_add(Sparse, Empty, M_M, Sparse, Double, Sparse);
+    scilab_fill_add(Sparse, Empty, M_E, Sparse, Double, Sparse);
     scilab_fill_add(Sparse, Identity, M_M, Sparse, Double, Sparse);
     scilab_fill_add(Sparse, IdentityComplex, M_M, Sparse, Double, Sparse);
 
@@ -790,7 +788,7 @@ void fillAddFunction()
     scilab_fill_add(SparseComplex, ScalarDouble, M_M, Sparse, Double, Double);
     scilab_fill_add(SparseComplex, ScalarDoubleComplex, M_M, Sparse, Double, Double);
 
-    scilab_fill_add(SparseComplex, Empty, M_M, Sparse, Double, Sparse);
+    scilab_fill_add(SparseComplex, Empty, M_E, Sparse, Double, Sparse);
     scilab_fill_add(SparseComplex, Identity, M_M, Sparse, Double, Sparse);
     scilab_fill_add(SparseComplex, IdentityComplex, M_M, Sparse, Double, Sparse);
 
@@ -897,17 +895,18 @@ int AddSparseToDouble(Sparse* sp, Double* d, GenericType** pDRes)
         {
             for (int i = 0 ; i < std::min(sp->getRows(), sp->getCols()) ; i++)
             {
-                pS->set(i, i, std::complex<double>(d->get(0), d->getImg(0)));
+                pS->set(i, i, std::complex<double>(d->get(0), d->getImg(0)), false);
             }
         }
         else
         {
             for (int i = 0 ; i < std::min(sp->getRows(), sp->getCols()) ; i++)
             {
-                pS->set(i, i, d->get(0));
+                pS->set(i, i, d->get(0), false);
             }
         }
 
+        pS->finalize();
         AddSparseToSparse(sp, pS, (Sparse**)pDRes);
         delete pS;
         return 0;
@@ -1071,7 +1070,7 @@ InternalType* add_M_M(T *_pL, U *_pR)
 
     if (iDimsL != iDimsR)
     {
-        throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+        return nullptr;
     }
 
     int* piDimsL = _pL->getDimsArray();
@@ -1081,7 +1080,7 @@ InternalType* add_M_M(T *_pL, U *_pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
         }
     }
 
@@ -1099,7 +1098,7 @@ InternalType* add_M_MC(T *_pL, U *_pR)
 
     if (iDimsL != iDimsR)
     {
-        throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+        return nullptr;
     }
 
     int* piDimsL = _pL->getDimsArray();
@@ -1109,7 +1108,7 @@ InternalType* add_M_MC(T *_pL, U *_pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
         }
     }
 
@@ -1138,7 +1137,15 @@ InternalType* add_M_SC(T *_pL, U *_pR)
 template<class T, class U, class O>
 InternalType* add_M_E(T *_pL, U * /*_pR*/)
 {
-    return _pL;
+    if (ConfigVariable::getOldEmptyBehaviour())
+    {
+        Sciwarning(_("operation +: Warning adding a matrix with the empty matrix old behaviour.\n"));
+        return _pL;
+    }
+    Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
+    Double* pOut = Double::Empty();
+    add();
+    return pOut;
 }
 
 
@@ -1156,7 +1163,7 @@ InternalType* add_MC_MC(T *_pL, U *_pR)
 
     if (iDimsL != iDimsR)
     {
-        throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+        return nullptr;
     }
 
     int* piDimsL = _pL->getDimsArray();
@@ -1166,7 +1173,7 @@ InternalType* add_MC_MC(T *_pL, U *_pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
         }
     }
 
@@ -1195,8 +1202,14 @@ InternalType* add_MC_SC(T *_pL, U *_pR)
 template<class T, class U, class O>
 InternalType* add_MC_E(T *_pL, U * /*_pR*/)
 {
-    O* pOut = new O(_pL->getDims(), _pL->getDimsArray(), true);
-    add(_pL->get(), _pL->getImg(), (size_t)_pL->getSize(), pOut->get(), pOut->getImg());
+    if (ConfigVariable::getOldEmptyBehaviour())
+    {
+        Sciwarning(_("operation +: Warning adding a matrix with the empty matrix old behaviour.\n"));
+        return _pL;
+    }
+    Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
+    Double* pOut = Double::Empty();
+    add();
     return pOut;
 }
 
@@ -1232,8 +1245,14 @@ InternalType* add_S_SC(T *_pL, U *_pR)
 template<class T, class U, class O>
 InternalType* add_S_E(T *_pL, U * /*_pR*/)
 {
-    O* pOut = new O(0);
-    add(_pL->get(0), pOut->get());
+    if (ConfigVariable::getOldEmptyBehaviour())
+    {
+        Sciwarning(_("operation +: Warning adding a matrix with the empty matrix old behaviour.\n"));
+        return _pL;
+    }
+    Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
+    Double* pOut = Double::Empty();
+    add();
     return pOut;
 }
 
@@ -1267,8 +1286,14 @@ InternalType* add_SC_SC(T *_pL, U *_pR)
 template<class T, class U, class O>
 InternalType* add_SC_E(T *_pL, U * /*_pR*/)
 {
-    O* pOut = new O(0.0, 0.0);
-    add(_pL->get(0), _pL->getImg(0), pOut->get(), pOut->getImg());
+    if (ConfigVariable::getOldEmptyBehaviour())
+    {
+        Sciwarning(_("operation +: Warning adding a matrix with the empty matrix old behaviour.\n"));
+        return _pL;
+    }
+    Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
+    Double* pOut = Double::Empty();
+    add();
     return pOut;
 }
 
@@ -1276,25 +1301,57 @@ InternalType* add_SC_E(T *_pL, U * /*_pR*/)
 template<class T, class U, class O>
 InternalType* add_E_M(T *_pL, U *_pR)
 {
-    return add_M_E<U, T, O>(_pR, _pL);
+    if (ConfigVariable::getOldEmptyBehaviour())
+    {
+        Sciwarning(_("operation +: Warning adding a matrix with the empty matrix old behaviour.\n"));
+        return _pR;
+    }
+    Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
+    Double* pOut = Double::Empty();
+    add();
+    return pOut;
 }
 
 template<class T, class U, class O>
 InternalType* add_E_MC(T *_pL, U *_pR)
 {
-    return add_MC_E<U, T, O>(_pR, _pL);
+    if (ConfigVariable::getOldEmptyBehaviour())
+    {
+        Sciwarning(_("operation +: Warning adding a matrix with the empty matrix old behaviour.\n"));
+        return _pR;
+    }
+    Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
+    Double* pOut = Double::Empty();
+    add();
+    return pOut;
 }
 
 template<class T, class U, class O>
 InternalType* add_E_S(T *_pL, U *_pR)
 {
-    return add_S_E<U, T, O>(_pR, _pL);
+    if (ConfigVariable::getOldEmptyBehaviour())
+    {
+        Sciwarning(_("operation +: Warning adding a matrix with the empty matrix old behaviour.\n"));
+        return _pR;
+    }
+    Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
+    Double* pOut = Double::Empty();
+    add();
+    return pOut;
 }
 
 template<class T, class U, class O>
 InternalType* add_E_SC(T *_pL, U *_pR)
 {
-    return add_SC_E<U, T, O>(_pR, _pL);
+    if (ConfigVariable::getOldEmptyBehaviour())
+    {
+        Sciwarning(_("operation +: Warning adding a matrix with the empty matrix old behaviour.\n"));
+        return _pR;
+    }
+    Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
+    Double* pOut = Double::Empty();
+    add();
+    return pOut;
 }
 
 template<class T, class U, class O>
@@ -1525,25 +1582,53 @@ template<class T, class U, class O> InternalType* add_IC_IC(T *_pL, U *_pR)
 
 template<class T, class U, class O> types::InternalType* add_I_E(T *_pL, U * /*_pR*/)
 {
-    O* pOut = (O*)_pL->clone();
+    if (ConfigVariable::getOldEmptyBehaviour())
+    {
+        Sciwarning(_("operation +: Warning adding a matrix with the empty matrix old behaviour.\n"));
+        return _pL;
+    }
+    Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
+    Double* pOut = Double::Empty();
+    add();
     return pOut;
 }
 
 template<class T, class U, class O> types::InternalType* add_IC_E(T *_pL, U * /*_pR*/)
 {
-    O* pOut = (O*)_pL->clone();
+    if (ConfigVariable::getOldEmptyBehaviour())
+    {
+        Sciwarning(_("operation +: Warning adding a matrix with the empty matrix old behaviour.\n"));
+        return _pL;
+    }
+    Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
+    Double* pOut = Double::Empty();
+    add();
     return pOut;
 }
 
 template<class T, class U, class O> types::InternalType* add_E_I(T * /*_pL*/, U *_pR)
 {
-    O* pOut = (O*)_pR->clone();
+    if (ConfigVariable::getOldEmptyBehaviour())
+    {
+        Sciwarning(_("operation +: Warning adding a matrix with the empty matrix old behaviour.\n"));
+        return _pR;
+    }
+    Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
+    Double* pOut = Double::Empty();
+    add();
     return pOut;
 }
 
 template<class T, class U, class O> types::InternalType* add_E_IC(T * /*_pL*/, U *_pR)
 {
-    O* pOut = (O*)_pR->clone();
+    if (ConfigVariable::getOldEmptyBehaviour())
+    {
+        Sciwarning(_("operation +: Warning adding a matrix with the empty matrix old behaviour.\n"));
+        return _pR;
+    }
+    Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
+    Double* pOut = Double::Empty();
+    add();
     return pOut;
 }
 
@@ -1556,7 +1641,7 @@ InternalType* add_M_M<String, String, String>(String* _pL, String* _pR)
 
     if (iDimsL != iDimsR)
     {
-        throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+        return nullptr;
     }
 
     int* piDimsL = _pL->getDimsArray();
@@ -1566,7 +1651,7 @@ InternalType* add_M_M<String, String, String>(String* _pL, String* _pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
         }
     }
 
@@ -1664,29 +1749,63 @@ InternalType* add_S_S<String, String, String>(String* _pL, String* _pR)
 template<>
 InternalType* add_M_E<String, Double, String>(String* _pL, Double* /*_pR*/)
 {
-    return _pL;
+    if (ConfigVariable::getOldEmptyBehaviour())
+    {
+        Sciwarning(_("operation +: Warning adding a matrix with the empty matrix old behaviour.\n"));
+        return _pL;
+    }
+    Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
+    Double* pOut = Double::Empty();
+    add();
+    return pOut;
 }
 
 template<>
 InternalType* add_S_E<String, Double, String>(String* _pL, Double* /*_pR*/)
 {
-    return _pL;
+    if (ConfigVariable::getOldEmptyBehaviour())
+    {
+        Sciwarning(_("operation +: Warning adding a matrix with the empty matrix old behaviour.\n"));
+        return _pL;
+    }
+    Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
+    Double* pOut = Double::Empty();
+    add();
+    return pOut;
 }
 
 template<>
 InternalType* add_E_M<Double, String, String>(Double* /*_pL*/, String* _pR)
 {
-    return _pR;
+    if (ConfigVariable::getOldEmptyBehaviour())
+    {
+        Sciwarning(_("operation +: Warning adding a matrix with the empty matrix old behaviour.\n"));
+        return _pR;
+    }
+    Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
+    Double* pOut = Double::Empty();
+    add();
+    return pOut;
 }
 
 template<>
 InternalType* add_E_S<Double, String, String>(Double* /*_pL*/, String* _pR)
 {
-    return _pR;
+    if (ConfigVariable::getOldEmptyBehaviour())
+    {
+        Sciwarning(_("operation +: Warning adding a matrix with the empty matrix old behaviour.\n"));
+        return _pR;
+    }
+    Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
+    Double* pOut = Double::Empty();
+    add();
+    return pOut;
 }
 
 template<> InternalType* add_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polynom* _pR)
 {
+    Polynom* pLSave = _pL;
+    Polynom* pRSave = _pR;
 
     Polynom* pOut = NULL;
     if (_pL->getVariableName() != _pR->getVariableName())
@@ -1694,24 +1813,22 @@ template<> InternalType* add_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
         std::wostringstream os;
         os << _W("variables don't have the same formal variable");
         //os << ((Location)e.right_get().getLocation()).getLocationString() << std::endl;
-        throw ast::ScilabError(os.str());
+        throw ast::InternalError(os.str());
     }
+
     if (_pR->isIdentity())
     {
+        //clone to avoid modification of original variable.
+        _pR = _pR->clone();
         SinglePoly *sp  = _pR->get(0);
 
         int iDims = _pL->getDims();
         int* piDims = _pL->getDimsArray();
         int iLeadDims = piDims[0];
-        int* piIndex = new int[iDims];
-        piIndex[0] = 0;
         _pR->resize(piDims, iDims);
         //find smaller dims
         for (int i = 1 ; i < iDims ; ++i)
         {
-            //init
-            piIndex[i] = 0;
-
             if (iLeadDims > piDims[i])
             {
                 iLeadDims = piDims[i];
@@ -1719,42 +1836,35 @@ template<> InternalType* add_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
         }
         for (int i = 1 ; i < iLeadDims ; ++i)
         {
-
             _pR->set(i, i, sp);
-
         }
-    };
+    }
+
     if (_pL->isIdentity())
     {
-        SinglePoly *sp  = _pL->get(0);
+        //clone to avoid modification of original variable.
+        _pL = _pL->clone();
+
+        SinglePoly *sp = _pL->get(0);
 
         int iDims = _pR->getDims();
         int* piDims = _pR->getDimsArray();
         int iLeadDims = piDims[0];
-        int* piIndex = new int[iDims];
-        piIndex[0] = 0;
         _pL->resize(piDims, iDims);
         //find smaller dims
         for (int i = 1 ; i < iDims ; ++i)
         {
-            //init
-            piIndex[i] = 0;
-
             if (iLeadDims > piDims[i])
             {
                 iLeadDims = piDims[i];
             }
         }
+
         for (int i = 1 ; i < iLeadDims ; ++i)
         {
-
             _pL->set(i, i, sp);
-
         }
-
-
     }
-
 
     if (_pL->isScalar())
     {
@@ -1822,6 +1932,16 @@ template<> InternalType* add_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
         delete[] pRank;
         delete[] pRank1;
         delete[] pRank2;
+        if (pLSave != _pL)
+        {
+            _pL->killMe();
+        }
+
+        if (pRSave != _pR)
+        {
+            _pR->killMe();
+        }
+
         return pOut;
     }
 
@@ -1892,6 +2012,17 @@ template<> InternalType* add_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
         delete[] pRank;
         delete[] pRank1;
         delete[] pRank2;
+
+        if (pLSave != _pL)
+        {
+            _pL->killMe();
+        }
+
+        if (pRSave != _pR)
+        {
+            _pR->killMe();
+        }
+
         return pOut;
     }
 
@@ -1900,9 +2031,17 @@ template<> InternalType* add_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
 
     if (iDims1 != iDims2)
     {
-        wchar_t pMsg[bsiz];
-        os_swprintf(pMsg, bsiz, _W("Error: operator %ls: Matrix dimensions must agree (op1 is %ls, op2 is %ls).\n").c_str(),  L"+", _pL->DimToString().c_str(), _pR->DimToString().c_str());
-        throw ast::ScilabError(pMsg);
+        if (pLSave != _pL)
+        {
+            _pL->killMe();
+        }
+
+        if (pRSave != _pR)
+        {
+            _pR->killMe();
+        }
+
+        return nullptr;
     }
 
     int* piDims1 = _pL->getDimsArray();
@@ -1912,9 +2051,19 @@ template<> InternalType* add_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
     {
         if ((piDims1[i] != piDims2[i]))
         {
+            if (pLSave != _pL)
+            {
+                _pL->killMe();
+            }
+
+            if (pRSave != _pR)
+            {
+                _pR->killMe();
+            }
+
             wchar_t pMsg[bsiz];
             os_swprintf(pMsg, bsiz, _W("Error: operator %ls: Matrix dimensions must agree (op1 is %ls, op2 is %ls).\n").c_str(),  L"+", _pL->DimToString().c_str(), _pR->DimToString().c_str());
-            throw ast::ScilabError(pMsg);
+            throw ast::InternalError(pMsg);
         }
     }
 
@@ -1981,6 +2130,16 @@ template<> InternalType* add_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
     delete[] pRank;
     delete[] pRank1;
     delete[] pRank2;
+
+    if (pLSave != _pL)
+    {
+        _pL->killMe();
+    }
+
+    if (pRSave != _pR)
+    {
+        _pR->killMe();
+    }
 
     if (pOut != NULL)
     {
@@ -2108,9 +2267,7 @@ template<> InternalType* add_M_M<Double, Polynom, Polynom>(Double* _pL, Polynom*
 
     if (iDims1 != iDims2)
     {
-        wchar_t pMsg[bsiz];
-        os_swprintf(pMsg, bsiz, _W("Error: operator %ls: Matrix dimensions must agree (op1 is %ls, op2 is %ls).\n").c_str(),  L"+", _pL->DimToString().c_str(), _pR->DimToString().c_str());
-        throw ast::ScilabError(pMsg);
+        return nullptr;
     }
 
     int* piDims1 = _pR->getDimsArray();
@@ -2122,7 +2279,7 @@ template<> InternalType* add_M_M<Double, Polynom, Polynom>(Double* _pL, Polynom*
         {
             wchar_t pMsg[bsiz];
             os_swprintf(pMsg, bsiz, _W("Error: operator %ls: Matrix dimensions must agree (op1 is %ls, op2 is %ls).\n").c_str(),  L"+", _pL->DimToString().c_str(), _pR->DimToString().c_str());
-            throw ast::ScilabError(pMsg);
+            throw ast::InternalError(pMsg);
         }
     }
 
@@ -2284,7 +2441,7 @@ template<> InternalType* add_M_M<Sparse, Sparse, Sparse>(Sparse* _pL, Sparse* _p
      if (_pL->getRows() != _pR->getRows() || _pL->getCols() != _pR->getCols())
      {
          //dimensions not match
-         throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+         throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
      }
 
      if (_pL->nonZeros() == 0)
@@ -2418,7 +2575,7 @@ template<> InternalType* add_M_M<Sparse, Double, Double>(Sparse* _pL, Double* _p
     }
 
 
-    if (_pL->getRows() == _pR->getRows() && _pL->getCols() == _pR->getCols())
+    if (_pR->getDims() == 2 && _pL->getRows() == _pR->getRows() && _pL->getCols() == _pR->getCols())
     {
         //SP + D
         pOut = (Double*)_pR->clone();
@@ -2456,7 +2613,7 @@ template<> InternalType* add_M_M<Sparse, Double, Double>(Sparse* _pL, Double* _p
     }
     else
     {
-        throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+        return nullptr;
     }
 }
 

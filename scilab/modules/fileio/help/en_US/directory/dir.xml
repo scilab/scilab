@@ -3,12 +3,15 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="dir">
@@ -17,7 +20,7 @@
         <refpurpose>gets file list </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>dir path
             S=dir([path])
         </synopsis>
@@ -48,11 +51,11 @@
     <refsection>
         <title>Description</title>
         <para>
-            <function>dir</function> can be used to get the files which match 
-            the patterns given by the <varname>path</varname> argument. 
+            <function>dir</function> can be used to get the files which match
+            the patterns given by the <varname>path</varname> argument.
             Patterns are given to the Unix <command>ls</command> or to the Windows
-            <command>dir</command> commands in order to get information about files. 
-            Thus in order to write portable Scilab script valid wildcard patterns 
+            <command>dir</command> commands in order to get information about files.
+            Thus in order to write portable Scilab script valid wildcard patterns
             for both OS are to be given. Note that pathname conversion is
             performed and for example <literal>SCI/modules/core/macros/*.sci</literal>
             is a valid pattern for both Unix and Windows.
@@ -83,7 +86,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 dir
 dir SCI/modules/core/macros/*.bin
 x=dir('SCI/modules/core/macros/*.bin')
@@ -92,7 +95,7 @@ mprintf("%s: %04d-%02d-%02d %02d:%02d:%02d\n",x.name,dt(:,[1 2 6 7:9]))
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="listfiles">listfiles</link>

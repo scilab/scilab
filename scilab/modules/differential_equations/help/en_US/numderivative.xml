@@ -1,0 +1,520 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - Rainer von Seggern
+ * Copyright (C) 2008 - Bruno Pincon
+ * Copyright (C) 2009 - INRIA - Michael Baudin
+ * Copyright (C) 2010-2011 - DIGITEO - Michael Baudin
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry version="5.0-subset Scilab"
+          xml:id="numderivative"
+          xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+    <refnamediv>
+        <refname>numderivative</refname>
+        <refpurpose>approximate derivatives of a function (Jacobian or Hessian)</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>
+            J = numderivative(f, x)
+            J = numderivative(f, x, h)
+            J = numderivative(f, x, h, order)
+            J = numderivative(f, x, h, order, H_form)
+            J = numderivative(f, x, h, order, H_form, Q)
+            [J, H] = numderivative(...)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>f</term>
+                <listitem>
+                    <para>
+                        a function or a list, the function to differentiate.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>
+                        a n-by-1 or 1-by-n vector of doubles, real, the point where to compute the derivatives.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>h</term>
+                <listitem>
+                    <para>
+                        a 1-by-1 or n-by-1 vector of doubles, the step used in the finite difference
+                        approximations.
+                        If <literal>h</literal> is not provided, then the default step is computed
+                        depending on <literal>x</literal> and the <literal>order</literal>.
+                        If <literal>h</literal> is a 1-by-1 matrix, it is expanded
+                        to the same size as <literal>x</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>order</term>
+                <listitem>
+                    <para>
+                        a 1-by-1 matrix of doubles, integer, positive, the order of the finite difference
+                        formula (default <literal>order=2</literal>).
+                        The available values of <literal>order</literal> are 1, 2 or 4.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>H_form</term>
+                <listitem>
+                    <para>
+                        a string, the form in which the Hessian will be
+                        returned (default <literal>H_form="default"</literal>).
+                    </para>
+                    <para>
+                        The available values are "default", "blockmat" or "hypermat".
+                        See the section "The shape of the Hessian" below for details on this option.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Q</term>
+                <listitem>
+                    <para>
+                        a real matrix of doubles, modifies the directions of differentiation (default is <literal>Q=eye(n,n)</literal>).
+                        The matrix <literal>Q</literal> is expected to be orthogonal. Q provides the possibility to remove
+                        the arbitrariness of using the canonical basis to approximate the derivatives of a function.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>J</term>
+                <listitem>
+                    <para>
+                        a m-by-n matrix of doubles, the approximated Jacobian.
+                        The row <literal>J(k, :)</literal> approximates the gradient of <literal>fk</literal>,
+                        for <literal>k = 1, 2, ..., m</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>H</term>
+                <listitem>
+                    <para>
+                        a matrix of doubles, the approximated Hessian.
+                        The elements of <literal>H</literal> approximate the second-order partial derivatives of <literal>f</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Computes the approximated Jacobian and Hessian matrices of a function with finite differences.
+        </para>
+        <para>
+            The function <literal>f</literal> takes as
+            input argument <literal>x</literal>, a <literal>n-by-1</literal> vector,
+            and returns <literal>y</literal>, a <literal>m-by-1</literal> vector.
+            In the following, the k-th component of <literal>f</literal>
+            is denoted by <literal>fk</literal> and the Hessian matrix of
+            <literal>fk</literal> is denoted by <literal>Hk</literal>,
+            for <literal>k = 1, 2, ..., m</literal>.
+        </para>
+        <para>
+            Any optional argument equal to the empty matrix <literal>[]</literal>
+            is replaced by its default value.
+        </para>
+        <para>
+            In general, the <literal>order=1</literal> formula provides the
+            largest error (least accurate), the <literal>order = 2</literal> formula provides an average
+            error and the <literal>order=4</literal> formula provides the lowest error (most accurate).
+            However, there are cases for which this is not true: see the section "Accuracy issues" below
+            for more details on this topic.
+        </para>
+        <para>
+            The second derivatives are computed by composition of first order derivatives.
+        </para>
+    </refsection>
+    <refsection>
+        <title>The function</title>
+        <para>
+            The function <literal>f</literal> must have the following header:
+        </para>
+        <screen>
+            y = f (x)
+        </screen>
+        <para>where</para>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>a n-by-1 vector of doubles, the current point</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>a m-by-1 vector of doubles, the function value</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+        <para>
+            It might happen that the function requires additional arguments to be evaluated.
+            In this case, we can use the following feature.
+            The argument <literal>f</literal> can also be the list <literal>(myfun, a1, a2, ...)</literal>.
+            In this case, <literal>myfun</literal>, the first element in the list, must be a function and must
+            have the header:
+            <screen>
+                y = myfun (x, a1, a2, ...)
+            </screen>
+            where the input arguments <literal>a1, a2, ...</literal>
+            are automatically appended as parameters to the call.
+        </para>
+    </refsection>
+    <refsection>
+        <title>The shape of the Hessian</title>
+        <para>
+            The <literal>H_form</literal> option changes the dimensions of the output argument
+            <literal>H</literal>.
+            This manages the general case where <literal>m</literal> is different from <literal>1</literal>,
+            that is, when there are several functions to differentiate at the same time.
+        </para>
+        <para>
+            The possible values of <literal>H_form</literal> are:
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>H_form = "default":</term>
+                <listitem>
+                    <para>
+                        H is a <literal>m-by-(n^2)</literal> matrix; in this form,
+                        the row <literal>H(k, :)</literal> contains <literal>Hk</literal>:
+                    </para>
+                    <screen>
+                        H(k, :) == Hk(:)'
+                    </screen>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>H_form = "blockmat":</term>
+                <listitem>
+                    <para>
+                        H is a <literal>(mn)-by-n</literal> matrix: the <literal>n-by-n</literal> Hessian
+                        matrices of each component of <literal>f</literal> are stacked row-by-row, that is:
+                    </para>
+                    <screen>
+                        H == [H1 ; H2 ; ... ; Hm]
+                    </screen>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>H_form = "hypermat":</term>
+                <listitem>
+                    <para>
+                        H is a n-by-n matrix for <literal>m=1</literal>, and a n-by-n-by-m hypermatrix otherwise.
+                        The matrix <literal>H(:, :, k)</literal> is the Hessian matrix of the k-th
+                        component of <literal>f</literal>, i.e.
+                    </para>
+                    <screen>
+                        H(:, :, k) == Hk
+                    </screen>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Performances</title>
+        <para>
+            If the problem is correctly scaled, increasing the order of the finite difference formula may reduce
+            the error of approximation but requires more function evaluations.
+            The following list presents the number of function evaluations required to
+            compute the Jacobian depending on the order of the formula and the dimension of <literal>x</literal>,
+            denoted by <literal>n</literal>:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <literal>order = 1</literal>, the number of function evaluations is <literal>n+1</literal>,
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <literal>order = 2</literal>, the number of function evaluations is <literal>2n</literal>,
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <literal>order = 4</literal>, the number of function evaluations is <literal>4n</literal>.
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            Computing the Hessian matrix requires the square of the number of function evaluations,
+            as detailed in the following list.
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <literal>order = 1</literal>, the number of function evaluations is <literal>(n+1)^2</literal> (total is <literal>(n+1)^2+n+1</literal>),
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <literal>order = 2</literal>, the number of function evaluations is <literal>4n^2</literal> (total is <literal>4n^2+2n</literal>),
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <literal>order = 4</literal>, the number of function evaluations is <literal>16n^2</literal> (total is <literal>16n^2+4n</literal>).
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example">
+            <![CDATA[
+// The function to differentiate
+function y = f(x)
+  f1 = sin(x(1)*x(2)) + exp(x(2)*x(3)+x(1))
+  f2 = sum(x.^3)
+  y = [f1; f2]
+endfunction
+// The exact gradient
+function [g1, g2] = exactg(x)
+  g1(1) = cos(x(1)*x(2))*x(2) + exp(x(2)*x(3)+x(1))
+  g1(2) = cos(x(1)*x(2))*x(1) + exp(x(2)*x(3)+x(1))*x(3)
+  g1(3) = exp(x(2)*x(3) + x(1))*x(2)
+  g2(1) = 3*x(1)^2
+  g2(2) = 3*x(2)^2
+  g2(3) = 3*x(3)^2
+endfunction
+// The exact Hessian
+function [H1, H2] = exactH(x)
+  H1(1, 1) = -sin(x(1)*x(2))*x(2)^2 + exp(x(2)*x(3)+x(1))
+  H1(1, 2) = cos(x(1)*x(2)) - sin(x(1)*x(2))*x(2)*x(1) + exp(x(2)*x(3)+x(1))*x(3)
+  H1(1, 3) = exp(x(2)*x(3)+x(1))*x(2)
+  H1(2, 1) = H1(1, 2)
+  H1(2, 2) = -sin(x(1)*x(2))*x(1)^2 + exp(x(2)*x(3)+x(1))*x(3)^2
+  H1(2, 3) = exp(x(2)*x(3)+x(1)) + exp(x(2)*x(3)+x(1))*x(3)*x(2)
+  H1(3, 1) = H1(1, 3)
+  H1(3, 2) = H1(2, 3)
+  H1(3, 3) = exp(x(2)*x(3)+x(1))*x(2)^2
+  //
+  H2(1, 1) = 6*x(1)
+  H2(1, 2) = 0
+  H2(1, 3) = 0
+  H2(2, 1) = H2(1, 2)
+  H2(2, 2) = 6*x(2)
+  H2(2, 3) = 0
+  H2(3, 1) = H2(1, 3)
+  H2(3, 2) = H2(2, 3)
+  H2(3, 3) = 6*x(3)
+endfunction
+
+// Compute the approximate Jacobian, the Hessian
+x = [1; 2; 3];
+J = numderivative(f, x)
+[J, H] = numderivative(f, x)
+
+// Compare with exact derivatives
+[g1, g2] = exactg(x);
+Jexact = [g1'; g2']
+[H1, H2] = exactH(x);
+Hexact = [H1(:)'; H2(:)']
+
+// Configure the step
+J = numderivative(f, x, 1.e-1)
+
+// Configure the order
+J = numderivative(f, x, [], 4)
+
+// Configure Hessian shapes
+[J, H] = numderivative(f, x, [], [], "blockmat")
+[J, H] = numderivative(f, x, [], [], "hypermat")
+
+// Configure Q
+n = 3;
+Q = qr(rand(n, n))
+J = numderivative(f, x, [], [], [], Q)
+
+// Test order 1, 2 and 4 formulas.
+// For the order 4 formula, there are some entries in H
+// which are computed as nonzero.
+[g1, g2] = exactg(x);
+[H1, H2] = exactH(x);
+Jexact = [g1'; g2'];
+Hexact = [H1(:)'; H2(:)'];
+for i = [1, 2, 4]
+  [J, H] = numderivative(f, x, [], i);
+  dJ = floor(min(assert_computedigits(J, Jexact)));
+  dH = floor(min(assert_computedigits(H, Hexact)));
+  mprintf("order = %d, dJ = %d, dH = %d \n", i, dJ, dH);
+end
+]]>
+        </programlisting>
+    </refsection>
+    <refsection>
+        <title>Passing extra parameters</title>
+        <para>
+            In the following example, we use a function which requires the extra-argument
+            <literal>p</literal>.
+            Hence, we use the feature that the argument <literal>f</literal>
+            can be a list, where the first argument is the function
+            <literal>G</literal> and the remaining elements are automatically passed
+            to the function.
+        </para>
+        <programlisting role="example">
+            <![CDATA[
+function y = G(x, p)
+  f1 = sin(x(1)*x(2)*p) + exp(x(2)*x(3)+x(1))
+  f2 = sum(x.^3)
+  y = [f1; f2]
+endfunction
+
+p = 1;
+[J, H] = numderivative(list(G, p), x)
+]]>
+        </programlisting>
+    </refsection>
+    <refsection>
+        <title>The Taylor formula</title>
+        <para>
+            If <literal>H</literal> is given in its default form, then the Taylor series of
+            <literal>f(x)</literal> up to terms of second order is given by:
+        </para>
+        <para>
+            <latex>
+                <![CDATA[
+f(x+h)\approx f(x)+J(x) h + \frac{1}{2} h^T H(x) h
+]]>
+            </latex>
+        </para>
+        <para>
+            In the following script, we check this formula with numerical differences.
+        </para>
+        <programlisting role="example">
+            <![CDATA[
+// The function to differentiate
+function y = f(x)
+  f1 = sin(x(1)*x(2)) + exp(x(2)*x(3)+x(1))
+  f2 = sum(x.^3)
+  y = [f1; f2]
+endfunction
+x = [1; 2; 3];
+dx = 1e-3*[1; 1; -1];
+[J, H] = numderivative(f, x);
+f(x+dx)
+f(x+dx)-f(x)
+f(x+dx)-f(x)-J*dx
+f(x+dx)-f(x)-J*dx-1/2*H*(dx .*. dx)
+]]>
+        </programlisting>
+        <para>
+            In the following example, we use a function which requires three extra-arguments
+            <literal>A</literal>, <literal>p</literal> and <literal>w</literal>.
+        </para>
+        <programlisting role="example">
+            <![CDATA[
+// A trivial example
+function y = f(x, A, p, w)
+  y = x'*A*x + p'*x + w;
+endfunction
+// with Jacobian and Hessian given
+// by J(x) = x'*(A+A')+p' and H(x) = A+A'.
+A = rand(3, 3);
+p = rand(3, 1);
+w = 1;
+x = rand(3, 1);
+h = 1;
+[J, H] = numderivative(list(f, A, p, w), x, h, [], "blockmat")
+]]>
+        </programlisting>
+    </refsection>
+    <refsection>
+        <title>Accuracy issues</title>
+        <para>
+            When the step <literal>h</literal> is not provided, the <literal>numderivative</literal>
+            function tries to compute a step which provides a sufficient accuracy.
+            This step depends on the degree of the derivative (Jacobian or Hessian),
+            the order of the formula and the point <literal>x</literal>.
+            More precisely, if <literal>x</literal> is nonzero,
+            then the default step <literal>h</literal> is a vector with the
+            same size as <literal>x</literal>, scaled with the absolute value
+            of <literal>x</literal>.
+        </para>
+        <para>
+            In the following example, we compute the derivative of the square root function.
+            The following script plots a graph which represents the relative error of the
+            numerical derivative depending on the step.
+            We can see that there is an optimal step which minimizes the relative error.
+        </para>
+        <programlisting role="example">
+            <![CDATA[
+// Its exact derivative
+function y = mydsqrt (x)
+    y = 0.5 * x^(-0.5)
+endfunction
+
+x = 1.0;
+n = 1000;
+logharray = linspace (-16, 0, n);
+for i = 1:n
+    h = 10^(logharray(i));
+    expected = mydsqrt(x);
+    computed = numderivative (sqrt, x, h);
+    relerr = abs(computed - expected) / abs(expected);
+    logearray (i) = log10 (relerr);
+end
+scf();
+plot (logharray, logearray);
+xtitle("Relative error of numderivative (x = 1.0)", ..
+  "log(h)", "log(RE)");
+]]>
+        </programlisting>
+        <para>
+            The strategy in <literal>numderivative</literal> provides a sufficient accuracy in many
+            cases, but can fail to be accurate in some cases.
+            In fact, the optimal step also depends on the function value <literal>f(x)</literal>
+            and is second derivative, both of which are unknown at the time where the
+            default step is computed.
+            See "Practical optimization", by Gill, Murray and Wright, Academic Press, 1981,
+            for more details on this topic.
+            The relevant sections are "4.6.1. Finite-difference Approximations to First
+            Derivatives" and "8.6 Computing finite differences".
+        </para>
+        <para>
+        </para>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revdescription>
+                    Function <literal>numderivative</literal> introduced.
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

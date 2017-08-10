@@ -1,0 +1,540 @@
+# Localization of the module slint
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007-2008 - INRIA
+# Copyright (C) 2008-2011 - DIGITEO
+# Copyright (C) 2012-2015 - Scilab-Enterprises
+# This file is distributed under the same license as the Scilab package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"Last-Translator: François Granade <francois.granade@scilab-enterprises.com>\n"
+"Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2017-02-01 14:30+0100\n"
+
+# File: modules/slint/sci_gateway/cpp/sci_slint.cpp, line: 58
+#, c-format
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
+msgstr ""
+
+#
+# File: modules/slint/sci_gateway/cpp/sci_slint.cpp, line: 64
+# File: modules/slint/sci_gateway/cpp/sci_slint.cpp, line: 126
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+
+#
+# File: modules/slint/sci_gateway/cpp/sci_slint.cpp, line: 85
+# File: modules/slint/sci_gateway/cpp/sci_slint.cpp, line: 110
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A single boolean expected.\n"
+msgstr ""
+
+#
+# File: modules/slint/sci_gateway/cpp/sci_slint.cpp, line: 95
+# File: modules/slint/sci_gateway/cpp/sci_slint.cpp, line: 120
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A string or a boolean expected.\n"
+msgstr ""
+
+#
+# File: modules/slint/sci_gateway/cpp/sci_slint.cpp, line: 199
+# File: modules/slint/sci_gateway/cpp/sci_slint.cpp, line: 205
+# File: modules/slint/sci_gateway/cpp/sci_slint.cpp, line: 211
+#, c-format
+msgid "%s: %s\n"
+msgstr ""
+
+#
+# File: modules/slint/sci_gateway/cpp/sci_slint.cpp, line: 219
+msgid "Module developed with the contribution of CNES."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/BracketedExpChecker.cpp, line: 60
+msgid "Expression is not bracketed."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/BreaksInLoopChecker.cpp, line: 39
+#, c-format
+msgid "Number of break is limited: %d max."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/BreaksInLoopChecker.cpp, line: 55
+#, c-format
+msgid "Number of continue is limited: %d max."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/CNESCsvResult.cpp, line: 63
+# File: modules/slint/src/cpp/CNESXmlResult.cpp, line: 64
+# File: modules/slint/src/cpp/SLint.cpp, line: 182
+msgid "Cannot open the file"
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/CommentRatioChecker.cpp, line: 62
+#, c-format
+msgid ""
+"The minimal ratio between commented lines and total lines is not reached: %d "
+"< %d."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/DecimalChecker.cpp, line: 45
+#, c-format
+msgid "Bad decimal exponent: %s was expected and %s was found."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/DecimalChecker.cpp, line: 54
+msgid "Decimal numbers must not begin by a dot."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/DeprecatedChecker.cpp, line: 36
+#, c-format
+msgid "Deprecated function: %s."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/DeprecatedChecker.cpp, line: 40
+#, c-format
+msgid "Deprecated function %s: use %s instead."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/DeprecatedChecker.cpp, line: 72
+msgid "svd(..., 0) is deprecated."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/DeprecatedChecker.cpp, line: 86
+msgid "mfprintf(-1, ...) is deprecated."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/EmptyBlockChecker.cpp, line: 41
+msgid "Empty block."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/EqEqChecker.cpp, line: 26
+msgid ""
+"Possible confusion between assignment operator '=' and equality operator "
+"'=='."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/ExpInCondChecker.cpp, line: 34
+#, c-format
+msgid "Number of expressions in condition is limited: %d max."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/FunctionArgsChecker.cpp, line: 74
+#, c-format
+msgid "Duplicated function arguments: %s."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/FunctionArgsChecker.cpp, line: 85
+#, c-format
+msgid "Duplicated function output values: %s."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/FunctionArgsChecker.cpp, line: 96
+#, c-format
+msgid "Function arguments used as output values: %s."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/FunctionArgsOrderChecker.cpp, line: 42
+#, c-format
+msgid "Argument at position %d must be an assignment."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/FunctionArgsOrderChecker.cpp, line: 67
+#, c-format
+msgid "Argument %s declared at position %d and assigned at position %d."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/FunctionNameChecker.cpp, line: 26
+#, c-format
+msgid "Function name doesn't match the pattern: %s, %s"
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/FunctionNameChecker.cpp, line: 31
+#, c-format
+msgid "Function name length is lower than minimum: %d < %d"
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/FunctionNameChecker.cpp, line: 36
+#, c-format
+msgid "Function name length is greater than maximum: %d > %d"
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/FunctionTestReturnChecker.cpp, line: 51
+# File: modules/slint/src/cpp/FunctionTestReturnChecker.cpp, line: 67
+# File: modules/slint/src/cpp/FunctionTestReturnChecker.cpp, line: 81
+# File: modules/slint/src/cpp/FunctionTestReturnChecker.cpp, line: 89
+#, c-format
+msgid "Function %s requires an error checking just after the call."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/GlobalKeywordChecker.cpp, line: 29
+msgid "Function 'global' not allowed."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/IllegalCallsChecker.cpp, line: 27
+#, c-format
+msgid "Illegal call: %s."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/ImplicitListChecker.cpp, line: 31
+# File: modules/slint/src/cpp/ImplicitListChecker.cpp, line: 40
+# File: modules/slint/src/cpp/ImplicitListChecker.cpp, line: 49
+# File: modules/slint/src/cpp/ImplicitListChecker.cpp, line: 58
+# File: modules/slint/src/cpp/ImplicitListChecker.cpp, line: 67
+# File: modules/slint/src/cpp/ImplicitListChecker.cpp, line: 76
+msgid "Invalid list, it contains NaN or Inf."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/ImplicitListChecker.cpp, line: 82
+msgid "Bad use of ':' operator."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/LineLengthChecker.cpp, line: 49
+#, c-format
+msgid "Maximum line length exceeded at lines: %s."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/LinesCountChecker.cpp, line: 29
+#, c-format
+msgid "Maximum lines number exceeded: %d > %d."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/LoadSaveChecker.cpp, line: 35
+#, c-format
+msgid "Function %s has at least one argument."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/LoadSaveChecker.cpp, line: 39
+#, c-format
+msgid "Function %s should be called with names of variables."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/LoadSaveChecker.cpp, line: 48
+#, c-format
+msgid "Function %s should be called with constant strings."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/McCabeChecker.cpp, line: 28
+#, c-format
+msgid "McCabe's complexity is %d and is greater than %d."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/MopenMcloseChecker.cpp, line: 66
+msgid "Open file is not assigned."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/MopenMcloseChecker.cpp, line: 77
+msgid "The instruction mclose(\"all\") may have any side effects."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/MopenMcloseChecker.cpp, line: 110
+#, c-format
+msgid "Open files not closed: %s."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/NaNChecker.cpp, line: 56
+#, c-format
+msgid "Use %nan in a comparison expression will return false."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/NaNChecker.cpp, line: 62
+#, c-format
+msgid "Use isnan() when comparing values with %nan."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/NestedBlocksChecker.cpp, line: 42
+#, c-format
+msgid "Too many nested blocks: %d max."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/NotEqualChecker.cpp, line: 41
+#, c-format
+msgid "Operator '%s' should be used rather than '%s'."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/NotNotChecker.cpp, line: 26
+msgid "Double negation is not allowed."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/OldNotChecker.cpp, line: 29
+msgid "Not operator '~' should be used rather than '@'."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/PrintfChecker.cpp, line: 54
+#, c-format
+msgid "Invalid number of arguments in %s: data don't correspond to the format."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/RedefinitionChecker.cpp, line: 30
+#, c-format
+msgid "Redefinition of Scilab's constant: %s."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/RedefinitionChecker.cpp, line: 39
+#, c-format
+msgid "Redefinition of a built-in function: %s."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/RedefinitionChecker.cpp, line: 43
+#, c-format
+msgid "Redefinition of a library function: %s."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/RedefinitionChecker.cpp, line: 47
+# File: modules/slint/src/cpp/RedefinitionChecker.cpp, line: 56
+#, c-format
+msgid "Redefinition of a macro: %s."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/RedefinitionChecker.cpp, line: 52
+#, c-format
+msgid "Redefinition of a private macro: %s."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/ReturnsCountChecker.cpp, line: 40
+#, c-format
+msgid "Too many return instructions: %d max."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/SelectChecker.cpp, line: 26
+msgid "Select should have a default case."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/SelectChecker.cpp, line: 33
+msgid "Select with no case."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/SelectChecker.cpp, line: 40
+msgid "Select with one case: it could be replaced by an if statement."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/SelectChecker.cpp, line: 59
+msgid "Case expression should be a number or string."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/SelectChecker.cpp, line: 71
+# File: modules/slint/src/cpp/SelectChecker.cpp, line: 79
+msgid "Case expression types are mixed."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/SemicolonAtEOLChecker.cpp, line: 106
+msgid "Instruction not finished by a semi-colon."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/SingleInstrChecker.cpp, line: 33
+msgid "Two instructions on the same line."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/SpacesAroundOpChecker.cpp, line: 64
+#, c-format
+msgid "Operator %s should be surrounded by single spaces."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/SpacesInArgsChecker.cpp, line: 44
+msgid "No space after function argument."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/SpacesInArgsChecker.cpp, line: 53
+msgid "No space before first function argument."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/SpacesInArgsChecker.cpp, line: 61
+msgid "A function argument must be preceded by a single space."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/StructChecker.cpp, line: 34
+msgid "All the fields in a struct should be defined at the struct definition."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/StructChecker.cpp, line: 38
+msgid "Struct definition must contain an even number of arguments."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/StructChecker.cpp, line: 50
+#, c-format
+msgid "Field name doesn't match the pattern: %s, %s"
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/StructChecker.cpp, line: 55
+#, c-format
+msgid "Field name length is lower than minimum: %d < %d"
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/StructChecker.cpp, line: 60
+#, c-format
+msgid "Field name length is greater than maximum: %d > %d"
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/StructChecker.cpp, line: 64
+#, c-format
+msgid "Duplicated field definition: %s."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/StructChecker.cpp, line: 73
+msgid "Field should be defined by a constant string."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/StructChecker.cpp, line: 87
+msgid "Function struct has only one return argument."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/StructChecker.cpp, line: 122
+#, c-format
+msgid "It should be better to define field %s at struct definition."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/StructChecker.cpp, line: 126
+#, c-format
+msgid "Read an undefined field: %s."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/TodoChecker.cpp, line: 26
+msgid "Comment contains a TODO."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/UnreachableCodeChecker.cpp, line: 31
+msgid "The code after the return statement is unreachable."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/UselessArgChecker.cpp, line: 50
+#, c-format
+msgid "Function argument might be unused: %s."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/UselessOpChecker.cpp, line: 26
+msgid "Possible useless operation."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/UselessRetChecker.cpp, line: 50
+#, c-format
+msgid "Function returned value might be unused: %s."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/VariableNameChecker.cpp, line: 44
+#, c-format
+msgid "Variable name doesn't match the pattern: %s, %s"
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/VariableNameChecker.cpp, line: 49
+#, c-format
+msgid "Variable name length is lower than minimum: %d < %d"
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/VariableNameChecker.cpp, line: 54
+#, c-format
+msgid "Variable name length is greater than maximum: %d > %d"
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/VariablesChecker.cpp, line: 105
+#, c-format
+msgid "Use of non-initialized variable '%s' may have any side-effects."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/VariablesChecker.cpp, line: 124
+#, c-format
+msgid "Use of a private macro '%s' defined in an other file %s."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/VariablesChecker.cpp, line: 129
+#, c-format
+msgid "Use of non-initialized variable '%s' may have side effects."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/VariablesChecker.cpp, line: 193
+#, c-format
+msgid "Declared variable and might be unused: %s."
+msgstr ""
+
+#
+# File: modules/slint/src/cpp/XMLtools.cpp, line: 129
+msgid "Cannot create a parser context"
+msgstr ""

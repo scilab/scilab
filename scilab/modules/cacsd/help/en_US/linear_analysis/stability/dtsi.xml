@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="dtsi">
+    <refnamediv>
+        <refname>dtsi</refname>
+        <refpurpose>Continuous time dynamical systems stable anti-stable decomposition</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[Ga,Gs,Gi]=dtsi(G,[tol])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>G</term>
+                <listitem>
+                    <para>a continuous time linear system.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Ga</term>
+                <listitem>
+                    <para>a continuous time linear system antistable and strictly proper.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Gs</term>
+                <listitem>
+                    <para>a continuous time linear system stable and strictly proper.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Gi</term>
+                <listitem>
+                    <para>real matrix (or polynomial matrix for improper systems)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>tol</term>
+                <listitem>
+                    <para>
+                        optional parameter for detecting stables poles. Default value: <literal>100*%eps</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            returns the stable-antistable decomposition of <literal>G</literal>:
+        </para>
+        <para>
+            <literal>G= Ga + Gs + Gi</literal>,  <literal>(Gi = G(oo))</literal>
+        </para>
+        <para>
+            <literal>G</literal> can be given in state-space form or in transfer form.
+        </para>
+        <para>
+            <literal>Ga</literal> and <literal>Gs</literal> are returned in the same
+            representation (transfer function or state-space) than
+            <literal>G</literal>.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="syslin">syslin</link>
+            </member>
+            <member>
+                <link linkend="pbig">pbig</link>
+            </member>
+            <member>
+                <link linkend="psmall">psmall</link>
+            </member>
+            <member>
+                <link linkend="pfss">pfss</link>
+            </member>
+        </simplelist>
+    </refsection>
+
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+a=0.5;
+b=1;
+c=2;
+sl=syslin('c',a,b,c);
+dtsi(sl)
+ ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>
+                    <literal>Sl</literal> is now checked for continuous time linear dynamical system.
+                    This modification has been introduced by this  <ulink url="http://gitweb.scilab.org/?p=scilab.git;a=commit;h=3d7083daae3339813ba747c8adcda1f9599bb80d">commit</ulink>
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

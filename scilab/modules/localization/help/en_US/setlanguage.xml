@@ -3,63 +3,111 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Allan CORNET
  * Copyright (C) 2007 - INRIA - Sylvestre LEDRU
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2016 - Samuel GOUGEON
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="setlanguage">
     <refnamediv>
         <refname>setlanguage</refname>
-        <refpurpose>sets the internal LANGUAGE
-            value (for Windows only)
-        </refpurpose>
+        <refpurpose>chooses the language used for standard messages and help pages for the current session</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>setlanguage(language)</synopsis>
+        <title>Syntax</title>
+        <synopsis>TF = setlanguage(language)</synopsis>
     </refsynopsisdiv>
-    <refsection>
+    <refsection role="parameters">
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
                 <term>language</term>
                 <listitem>
-                    <para>with language='fr' or  'en', ... </para>
+                    <para>single string among 'en', 'fr', 'ja', 'pt', 'ru', 'de', en_US', 'fr_FR',
+                        'ja_JP', 'pt_BR', 'ru_RU', 'de_DE', 'zh_TW'...
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>TF</term>
+                <listitem>
+                    <para>
+                        single boolean: <literal>%T</literal> if the setting has been actually
+                        performed, <literal>%F</literal> otherwise.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Description</title>
         <para>
-            <literal>setlanguage(language)</literal> changes current language in scilab.
+            <literal>setlanguage(language)</literal> changes the language used for error or warning
+            messages or other standard words and texts such as the name of days and months, etc.
+            If their translation is available, help pages are also displayed in the chosen language,
+            after restarting the help browser.
         </para>
+        <para>
+            The chosen language applies only to the current Scilab session.
+        </para>
+        <para>
+            <literal>setlanguage('')</literal> resets the language to the system value
+            <literal>"en_US"</literal> and returns <literal>%F</literal>.
+        </para>
+        <para>
+            <literal>setlanguage</literal> works on all supported operating systems.
+        </para>
+        <warning>The new language is not taken into account in the menus of interfaces (help browser,
+            variables browser, code editor, etc). No menus translation is done neither "on-the-flight"
+            nor after reopening the interfaces. To set the language used in the menus, please use
+            <literal>setdefaultlanguage(..)</literal> instead.
+        </warning>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-setlanguage('en_US')
-getlanguage()
-setlanguage('en')
-getlanguage()
-setlanguage('fr')
-getlanguage()
-setlanguage('fr_FR')
-getlanguage()
+        <programlisting role="example"><![CDATA[
+L = getlanguage();
+
+// Translated strings
+setlanguage ja;
+_ Monday
+setlanguage pt_BR;
+_ Monday
+setlanguage ru;
+_ July
+
+// Error messages:
+setlanguage en;
+linspace("") // to yield and display an error message
+setlanguage ja;
+linspace("")
+setlanguage ru;
+linspace("")
+
+help linspace // the page should appear in Russian (if the help browser was closed)
+
+// Restoring the initial language
+setlanguage(L)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="setdefaultlanguage">setdefaultlanguage</link>
+            </member>
             <member>
                 <link linkend="getlanguage">getlanguage</link>
             </member>
             <member>
-                <link linkend="setdefaultlanguage">setdefaultlanguage</link>
+                <link linkend="gettext">gettext</link>
             </member>
         </simplelist>
     </refsection>

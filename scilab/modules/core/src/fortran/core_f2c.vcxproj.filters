@@ -87,52 +87,16 @@
     <None Include="console_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
-    <None Include="data_structures_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
-    <None Include="double_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
-    <None Include="elementary_functions_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
     <None Include="elementary_functions_f_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
-    <None Include="fftw_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
     <None Include="fileio_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
-    <None Include="integer_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
-    <None Include="io_f_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
-    <None Include="core_import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
     <None Include="linpack_f_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
-    <None Include="Output_stream_f_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
     <None Include="Output_stream_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
-    <None Include="polynomials_f_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
-    <None Include="sparse_f_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
-    <None Include="string_f_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
-    <None Include="string_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
   </ItemGroup>

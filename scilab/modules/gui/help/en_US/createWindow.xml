@@ -5,7 +5,7 @@
         <refpurpose>create a window</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             f = createWindow();
         </synopsis>
@@ -46,7 +46,7 @@ uicontrol(f, "style", "checkbox", "units", "normalized", "position", [0.5 0.5 0.
 ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="figure">figure</link>

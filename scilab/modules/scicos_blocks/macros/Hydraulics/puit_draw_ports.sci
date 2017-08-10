@@ -35,10 +35,16 @@ function puit_draw_ports(o)
     clkin=size(o.model.evtin,1);
     clkout=size(o.model.evtout,1);
 
-    [orig,sz,orient]=(o.graphics.orig,o.graphics.sz,o.graphics.flip)
-    xset("pattern",default_color(0));
+    [orig,sz]=(o.graphics.orig,o.graphics.sz)
+    orient=%t;
+    style=graphics.style;
+    subStr=strstr(style,"flip=");
+    if subStr<>"" then
+        orient=%f;
+    end
+    gca().foreground = default_color(0);
 
-    //xset('thickness',1)
+    //gca().thickness = 1;
     // draw input/output ports
     //------------------------
 
@@ -66,7 +72,7 @@ function puit_draw_ports(o)
         0   1
         -1   1]*diag([xf/7,yf/14])
         dy=sz(2)/(nout+1)
-        xset("pattern",default_color(1));
+        gca().foreground = default_color(1);
 
         dy=sz(2)/(nin+1);
         for k=1:nin
@@ -116,7 +122,7 @@ function puit_draw_ports(o)
 
 
         dy=sz(2)/(nout+1)
-        xset("pattern",default_color(1))
+        gca().foreground = default_color(1);
 
         dy=sz(2)/(nin+1)
         for k=1:nin

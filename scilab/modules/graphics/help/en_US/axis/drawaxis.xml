@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="drawaxis">
@@ -16,7 +19,7 @@
         <refpurpose>draw an axis</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             drawaxis([options]); // options: x,y,dir,sub_int,fontsize,format_n,seg,textcolor,ticscolor,tics
             e = drawaxis([options]);
@@ -111,59 +114,59 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>drawaxis</literal> is used to draw an axis in vertical or horizontal 
-            direction. This function returns the handle of the created axis. 
-            The direction of the axis is given by dir 
-            <literal>dir = 'u'</literal> or <literal>'d'</literal> gives a horizontal axis 
-            with tics going up (<literal>'u'</literal>) or down (<literal>'d'</literal>). 
-            <literal>dir = 'r'</literal> or <literal>'l'</literal> give a vertical axis 
+            <literal>drawaxis</literal> is used to draw an axis in vertical or horizontal
+            direction. This function returns the handle of the created axis.
+            The direction of the axis is given by dir
+            <literal>dir = 'u'</literal> or <literal>'d'</literal> gives a horizontal axis
+            with tics going up (<literal>'u'</literal>) or down (<literal>'d'</literal>).
+            <literal>dir = 'r'</literal> or <literal>'l'</literal> give a vertical axis
             with tics going right (<literal>'r'</literal>) or left (<literal>'l'</literal>).
         </para>
         <para>
-            <literal>x</literal> and <literal>y</literal> give the axis tics positions. 
-            If the axis is horizontal then <literal>y</literal> 
-            must be a scalar or can be omitted and <literal>x</literal> 
-            is a Scilab vector. The meaning of <literal>x</literal> 
+            <literal>x</literal> and <literal>y</literal> give the axis tics positions.
+            If the axis is horizontal then <literal>y</literal>
+            must be a scalar or can be omitted and <literal>x</literal>
+            is a Scilab vector. The meaning of <literal>x</literal>
             is controlled by <literal>tics</literal>.
         </para>
         <para>
             If <literal>tics='v'</literal> then <literal>x</literal> gives the tics positions along the x-axis.
         </para>
         <para>
-            If <literal>tics='r'</literal> then <literal>x</literal> must be of size 3. <literal>x=[xmin,xmax,n]</literal> and 
+            If <literal>tics='r'</literal> then <literal>x</literal> must be of size 3. <literal>x=[xmin,xmax,n]</literal> and
             <literal>n</literal> gives the number of intervals.
         </para>
         <para>
-            If <literal>tics='i'</literal> then <literal>x</literal> must be of size 4, <literal>x=[k1,k2,a,n]</literal>. 
+            If <literal>tics='i'</literal> then <literal>x</literal> must be of size 4, <literal>x=[k1,k2,a,n]</literal>.
             then <literal>xmin=k1*10^a</literal>, <literal>xmax=k2*10^a</literal> and <literal>n</literal> gives the number of intervals
         </para>
         <para>
-            If <literal>y</literal> is omitted then the axis will be positioned at 
+            If <literal>y</literal> is omitted then the axis will be positioned at
             the top of the frame if <literal>dir='u'</literal> or at the bottom if  <literal>dir='d'</literal>
         </para>
         <para>
-            By default, numbers are drawn along the axis. They are drawn using 
-            a default format which can be changed with <literal>format_n</literal>. 
-            It is also possible to display given strings and not numbers, 
-            this is done if <literal>val</literal> is provided. The size of <literal>val</literal> must 
+            By default, numbers are drawn along the axis. They are drawn using
+            a default format which can be changed with <literal>format_n</literal>.
+            It is also possible to display given strings and not numbers,
+            this is done if <literal>val</literal> is provided. The size of <literal>val</literal> must
             match the number of tics.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 plot2d(1:10,1:10,1,"020")
-// horizontal axis 
+// horizontal axis
 e = drawaxis(x=2:7,y=4,dir='u',tics='v')
 // horizontal axis on top of the frame
-drawaxis(x=2:7,dir='u',tics='v') 
+drawaxis(x=2:7,dir='u',tics='v')
 // horizontal axis at the bottom of the frame
-e = drawaxis(x=2:7,dir='d',tics='v') 
+e = drawaxis(x=2:7,dir='d',tics='v')
 
-// horizontal axis given by a range 
-drawaxis(x=[2,7,3],y=4,dir='d',tics='r') 
+// horizontal axis given by a range
+drawaxis(x=[2,7,3],y=4,dir='d',tics='r')
 
-// vertical axis 
+// vertical axis
 e = drawaxis(x=4,y=2:7,dir='r',tics='v')
 e = drawaxis(x=2,y=[2,7,3],dir='l',tics='r')
 e = drawaxis(y=2:7,dir='r',tics='v')
@@ -174,37 +177,37 @@ drawaxis(x=2:7,y=8,dir='u',tics='v',val='A'+string(1:6));
 // vertical axis with strings displayed at tics positions
 drawaxis(x=8,y=2:7,dir='r',tics='v',val='B'+string(1:6));
 
-// horizontal axis given with a 'i' range. 
+// horizontal axis given with a 'i' range.
 e = drawaxis(x=[2,5,0,3],y=9,dir='u',tics='i');
 e = drawaxis(x=9,y=[2,5,0,3],dir='r',tics='i',sub_int=5);
 
-// horizontal axis again 
-drawaxis(x=2:7,y=4,dir='u',tics='v',fontsize=10,textcolor=9,ticscolor=7,seg=0,sub_int=20) 
+// horizontal axis again
+drawaxis(x=2:7,y=4,dir='u',tics='v',fontsize=10,textcolor=9,ticscolor=7,seg=0,sub_int=20)
  ]]></programlisting>
         <scilab:image>
             plot2d(1:10,1:10,1,"020")
             drawaxis(x=2:7,y=4,dir='u',tics='v')
-            drawaxis(x=2:7,dir='u',tics='v') 
-            drawaxis(x=2:7,dir='d',tics='v') 
-            
-            drawaxis(x=[2,7,3],y=4,dir='d',tics='r') 
-            
+            drawaxis(x=2:7,dir='u',tics='v')
+            drawaxis(x=2:7,dir='d',tics='v')
+
+            drawaxis(x=[2,7,3],y=4,dir='d',tics='r')
+
             drawaxis(x=4,y=2:7,dir='r',tics='v')
             drawaxis(x=2,y=[2,7,3],dir='l',tics='r')
             drawaxis(y=2:7,dir='r',tics='v')
             drawaxis(y=2:7,dir='l',tics='v')
-            
+
             drawaxis(x=2:7,y=8,dir='u',tics='v',val='A'+string(1:6));
             drawaxis(x=8,y=2:7,dir='r',tics='v',val='B'+string(1:6));
-            
+
             drawaxis(x=[2,5,0,3],y=9,dir='u',tics='i');
             drawaxis(x=9,y=[2,5,0,3],dir='r',tics='i',sub_int=5);
-            
+
             drawaxis(x=2:7,y=4,dir='u',tics='v',fontsize=10,textcolor=9,ticscolor=7,seg=0,sub_int=20)
         </scilab:image>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="axis_properties">axis_properties</link>

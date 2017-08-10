@@ -70,9 +70,8 @@ function [ok]=translator(filemo,Mblocks,_Modelica_libs,Flat)
         // OS limitation may restrict the length of shell command line
         // arguments. If there are too many .mo file we catenate them into a
         // single MYMOPACKAGE.mo file
-        messagebox(msprintf(_("There are too many Modelica files.\n" + ..
-        "it would be better to define several \n" + ..
-        "Modelica programs in a single file.")),"warning","modal");
+        msg = _("There are too many Modelica files.\nIt would be better to define several \nModelica programs in a single file.")
+        messagebox(msprintf(msg),"warning","modal")
         mymopac = pathconvert(outpath+"MYMOPACKAGE.mo",%f,%t);
         txt = [];
         for k = 1:size(molibs,"*")

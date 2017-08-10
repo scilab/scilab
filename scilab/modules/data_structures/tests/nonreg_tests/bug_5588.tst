@@ -25,8 +25,8 @@ function t=%0_i_a(i,void,t)
     k=find(f==i);
     if k<>[] then
         f(k)=[];
-        setfield(k,null(),t);
-        setfield(1,f,t);
+        t = setfield(k,null(),t);
+        t = setfield(1,f,t);
     end
 endfunction
 if execstr("t.b=null()","errcatch")<>0 then pause,end

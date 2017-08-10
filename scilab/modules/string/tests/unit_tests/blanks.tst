@@ -11,7 +11,7 @@
 // blank unit tests
 //==============================================================================
 
-disp(['xxx' blanks(20) 'yyy']);
+disp(["xxx" blanks(20) "yyy"]);
 
 // Test 1
 //LEN_MAX = 20000000; too slow

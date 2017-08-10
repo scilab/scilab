@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - Serge Steer - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="sum" xml:lang="en">
@@ -16,7 +19,7 @@
         <refpurpose>sum of array elements</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>y=sum(x)
             y=sum(x,orientation)
             y=sum(x,outtype)
@@ -39,12 +42,12 @@
                 <term>orientation</term>
                 <listitem>
                     <para>
-                        it can be either 
+                        it can be either
                     </para>
                     <itemizedlist>
                         <listitem>
                             <para>
-                                a string with possible values <literal>"*"</literal>, <literal>"r"</literal>, 
+                                a string with possible values <literal>"*"</literal>, <literal>"r"</literal>,
                                 <literal>"c"</literal> or  <literal>"m"</literal>
                             </para>
                         </listitem>
@@ -58,7 +61,7 @@
                 <term>outtype</term>
                 <listitem>
                     <para>
-                        a string with possible values <literal>"native"</literal> or <literal>"double"</literal>. 
+                        a string with possible values <literal>"native"</literal> or <literal>"double"</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -117,7 +120,7 @@
             </listitem>
             <listitem>
                 <para>
-                    <literal>y=sum(x,"*")</literal> is equivalent to <literal>y=sum(x)</literal> 
+                    <literal>y=sum(x,"*")</literal> is equivalent to <literal>y=sum(x)</literal>
                 </para>
             </listitem>
             <listitem>
@@ -169,16 +172,12 @@
                 </para>
             </listitem>
         </itemizedlist>
-    </refsection>
-    <refsection>
-        <title>Remark</title>
-        <para>
-            This function applies, with identical rules to <link linkend="sparse">sparse matrices</link> and <link linkend="hypermat">hypermatrices</link>.
-        </para>
+        <note>This function applies with identical rules to <link linkend="sparse">sparse matrices</link>
+        </note>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 A=[1,2;3,4];
 sum(A)
 sum(A,1)
@@ -199,7 +198,7 @@ sum(B,"native") //similar to or(B)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="cumsum">cumsum</link>

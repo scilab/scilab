@@ -2,11 +2,14 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2013 - Scilab Enterprises - Cedric DELAMARRE
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 /*--------------------------------------------------------------------------*/
@@ -15,6 +18,7 @@
 #include "double.hxx"
 #include "string.hxx"
 #include "tlist.hxx"
+#include "numericconstants.hxx"
 
 extern "C"
 {
@@ -54,9 +58,7 @@ types::Function::ReturnValue sci_readmps(types::typed_list &in, int _iRetCount, 
     char typrow[2];
 
     wchar_t* wcsFileName = NULL;
-    char* strErrorBuf = new char[bsiz];
-
-    double big = C2F(dlamch)((char*)"o", 1L);
+    double big = NumericConstants::double_max;
 
     if (in.size() < 2 || in.size() > 3)
     {
@@ -74,7 +76,7 @@ types::Function::ReturnValue sci_readmps(types::typed_list &in, int _iRetCount, 
     // get file name
     if (in[0]->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "readmps", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "readmps", 1);
         return types::Function::Error;
     }
 
@@ -183,6 +185,9 @@ types::Function::ReturnValue sci_readmps(types::typed_list &in, int _iRetCount, 
     pstrRwName[8 * iM] = '\0';
     char* pstrClName = new char[8 * iN + 1];
     pstrClName[8 * iN] = '\0';
+    char* strErrorBuf = new char[bsiz];
+    memset(strErrorBuf, ' ', bsiz-1);
+    strErrorBuf[bsiz - 1] = '\0';
 
     int irobj       = 0;
     int* piStavar   = new int[iN];
@@ -211,25 +216,42 @@ types::Function::ReturnValue sci_readmps(types::typed_list &in, int _iRetCount, 
                 pDblBnds->get() + iN, pDblBnds->get(), pdblRelt,
                 bsiz, 8L, 8L, 8L, 8L, 8L);
 
-    delete piRow;
-    delete pdblRelt;
+    delete[] piRow;
+    delete[] pdblRelt;
 
     mlunit = -lunit;
     C2F(clunit)(&mlunit, NULL, piMode, 0);
 
     if (ierr)
     {
-        int iLen = 4096;
-        char* str = strErrorBuf + 4095;
+        int iPos = bsiz - 1;
+        char* str = strErrorBuf + iPos;
         while (*str == ' ')
         {
-            iLen--;
+            iPos--;
             str--;
         }
 
-        strErrorBuf[iLen] = '\0';
+        iPos = iPos + 1 == bsiz ? iPos - 1 : iPos;
+        strErrorBuf[iPos + 1] = '\0';
         Scierror(999, "%s", strErrorBuf);
+
+        delete[] pstrRwName;
+        delete[] pstrClName;
         delete[] strErrorBuf;
+
+        delete[] piStavar;
+        delete[] piRwstat;
+        delete[] piRowcod;
+        delete[] piColcod;
+        delete[] piRwnmbs;
+        delete[] piClpnts;
+
+        delete pDblCoef;
+        delete pDblRhsb;
+        delete pDblRanges;
+        delete pDblBnds;
+
         return types::Function::Error;
     }
 
@@ -278,7 +300,7 @@ types::Function::ReturnValue sci_readmps(types::typed_list &in, int _iRetCount, 
         pStr->set(i, pstrTemp);
     }
     pTL->append(pStr);
-    delete pstrRwName;
+    delete[] pstrRwName;
 
     pStr = new types::String(1, iN);
     for (int i = 0; i < iN; i++)
@@ -289,7 +311,7 @@ types::Function::ReturnValue sci_readmps(types::typed_list &in, int _iRetCount, 
         pStr->set(i, pstrTemp);
     }
     pTL->append(pStr);
-    delete pstrClName;
+    delete[] pstrClName;
 
     pDbl = new types::Double(iM, 1);
     pdbl = pDbl->get();
@@ -298,7 +320,7 @@ types::Function::ReturnValue sci_readmps(types::typed_list &in, int _iRetCount, 
         pdbl[i] = (double)piRwstat[i];
     }
     pTL->append(pDbl);
-    delete piRwstat;
+    delete[] piRwstat;
 
     pDbl = new types::Double(iM, 2);
     pdbl = pDbl->get();
@@ -307,7 +329,7 @@ types::Function::ReturnValue sci_readmps(types::typed_list &in, int _iRetCount, 
         pdbl[i] = (double)piRowcod[i];
     }
     pTL->append(pDbl);
-    delete piRowcod;
+    delete[] piRowcod;
 
     pDbl = new types::Double(iN, 2);
     pdbl = pDbl->get();
@@ -316,7 +338,7 @@ types::Function::ReturnValue sci_readmps(types::typed_list &in, int _iRetCount, 
         pdbl[i] = (double)piColcod[i];
     }
     pTL->append(pDbl);
-    delete piColcod;
+    delete[] piColcod;
 
     pDbl = new types::Double(iNza, 1);
     pdbl = pDbl->get();
@@ -325,7 +347,7 @@ types::Function::ReturnValue sci_readmps(types::typed_list &in, int _iRetCount, 
         pdbl[i] = (double)piRwnmbs[i];
     }
     pTL->append(pDbl);
-    delete piRwnmbs;
+    delete[] piRwnmbs;
 
     pDbl = new types::Double(1, iN + 1);
     pdbl = pDbl->get();
@@ -334,7 +356,7 @@ types::Function::ReturnValue sci_readmps(types::typed_list &in, int _iRetCount, 
         pdbl[i] = (double)piClpnts[i];
     }
     pTL->append(pDbl);
-    delete piClpnts;
+    delete[] piClpnts;
 
     pTL->append(pDblCoef);
     pTL->append(pDblRhsb);
@@ -348,7 +370,7 @@ types::Function::ReturnValue sci_readmps(types::typed_list &in, int _iRetCount, 
         pdbl[i] = (double)piStavar[i];
     }
     pTL->append(pDbl);
-    delete piStavar;
+    delete[] piStavar;
 
     out.push_back(pTL);
     return types::Function::OK;

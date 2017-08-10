@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2005-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
@@ -34,6 +35,7 @@
 // Non-regression test file for bug 564
 function foo()
 	if ok then
+ 
 		disp(1);
 		edited=%t;
 		disp(2);
@@ -49,27 +51,16 @@ function foo()
 endfunction
 ok = %T;
 foo();
- 
-    1.  
- 
-    2.  
- 
-    3.  
- 
-    4.  
- 
- Replot   
+   1.
+   2.
+   3.
+   4.
+ Replot
 exec(foo);
- 
-    1.  
- 
-    2.  
- needcompile  =
- 
-    4.  
- 
-    3.  
- 
-    4.  
- 
- Replot   
+   1.
+   2.
+ needcompile  = 
+   4.
+   3.
+   4.
+ Replot

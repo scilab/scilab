@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2015 - Scilab Enterprises - Calixte DENIZET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -27,14 +30,24 @@ void AnalysisVisitor::visit(ast::AssignExp & e)
         {
             // We have A = B (so the data associated to b is shared with a)
             const symbol::Symbol & symR = static_cast<ast::SimpleVar &>(e.getRightExp()).getSymbol();
-            getDM().share(sym, symR, getSymInfo(symR).getType(), &e);
+            Info & info = getSymInfo(symR);
+            const TIType & Rtype = info.getType();
+            Result & resL = e.getLeftExp().getDecorator().setResult(Rtype);
+            resL.setConstant(info.getConstant());
+            resL.setRange(info.getRange());
+            Result & resR = e.getRightExp().getDecorator().setResult(Rtype);
+            resR.setConstant(info.getConstant());
+            resR.setRange(info.getRange());
+            getDM().share(sym, symR, Rtype, resR.isAnInt(), &e);
         }
         else
         {
+            // apply the ConstantVisitor
+            cv.setLHS(1);
+            e.getRightExp().accept(cv);
+
             if (e.getRightExp().isCallExp()) // A = foo(...)
             {
-                // apply the ConstantVisitor
-                e.getRightExp().accept(cv);
                 if (e.getRightExp().isCallExp())
                 {
                     visit(static_cast<ast::CallExp &>(e.getRightExp()), /* LHS */ 1);
@@ -46,22 +59,25 @@ void AnalysisVisitor::visit(ast::AssignExp & e)
             }
             else // A = 1 + 2
             {
-                cv.setLHS(1);
-                e.getRightExp().accept(cv);
                 e.getRightExp().accept(*this);
             }
 
             Result & RR = getResult();
-            // Don't remove tmp... temp.remove(RR); WHY THIS COMMENT ?????
-
             var.getDecorator().res = RR;
             Info & info = getDM().define(sym, RR.getType(), RR.isAnInt(), &e);
             info.getConstant() = RR.getConstant();
-            getDM().releaseTmp(RR.getTempId());
+            e.getDecorator().safe = true;
+
+            // Don't remove temp: because the value is transfered to LHS
+            getDM().releaseTmp(RR.getTempId(), nullptr);//&e.getRightExp());
         }
     }
     else if (e.getLeftExp().isCallExp()) // A(12) = ...
     {
+        // apply the ConstantVisitor
+        cv.setLHS(1);
+        e.getRightExp().accept(cv);
+
         ast::CallExp & ce = static_cast<ast::CallExp &>(e.getLeftExp());
         if (ce.getName().isSimpleVar())
         {
@@ -69,13 +85,13 @@ void AnalysisVisitor::visit(ast::AssignExp & e)
             e.getRightExp().accept(*this);
             Result & RR = e.getRightExp().getDecorator().getResult();
             ce.getDecorator().res = RR;
-            Info & info = getDM().write(symL, RR.getType(), &e);
+            Info & info = getDM().write(symL, RR.getType(), &ce.getName());
             ce.getName().getDecorator().setResult(info.type);
             if (analyzeIndices(info.type, ce))
             {
                 e.getDecorator().safe = (RR.getType() == getResult().getType());
             }
-            getDM().releaseTmp(RR.getTempId());
+            getDM().releaseTmp(RR.getTempId(), &e.getRightExp());
         }
     }
     else if (e.getLeftExp().isAssignListExp()) // [A, B] = ...

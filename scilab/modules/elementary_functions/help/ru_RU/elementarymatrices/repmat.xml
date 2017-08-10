@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - INRIA - Serge Steer
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="repmat" xml:lang="ru">
+    <refnamediv>
+        <refname>repmat</refname>
+        <refpurpose>Дублирование массива и его мозаичное размещение</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Синтаксис</title>
+        <synopsis>
+            B = repmat(A, siz)
+            B = repmat(A, m)
+            B = repmat(A, m, n,...)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection role="parameters">
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>A</term>
+                <listitem>
+                    <para>двумерный массив.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>m, n, ...</term>
+                <listitem>
+                    <para>
+                        целые числа, количество блоков <literal>A</literal> для каждой
+                        размерности <literal>B</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>siz</term>
+                <listitem>
+                    <para>
+                        вектор целых чисел, каждый элемент указывает количество блоков
+                        <literal>A</literal> для соответствующей размерности
+                        <literal>B</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>B</term>
+                <listitem>
+                    <para>
+                        результирующая форма массива, полученная мозаичным размещением двумерного
+                        массива <literal>A</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection role="description">
+        <title>Описание</title>
+        <para>
+            <literal>repmat(A,m,n)</literal> или по-другому
+            <literal>repmat(A,[m,n])</literal> возвращает большую матрицу размером <literal>m</literal> на <literal>n</literal>, состоящую из мозаично размещённых
+            копий <literal>A</literal>. Размер результирующей матрицы равен <literal>[size(A,1)*M,
+                size(A,2)*N]
+            </literal>
+            .
+        </para>
+        <para>
+            <literal>repmat(A,m)</literal> создаёт мозаичное размещение размером
+            <literal>m</literal> на <literal>m</literal>.
+        </para>
+        <para>
+            <literal>repmat(A,[m n p ...])</literal> мозаично размещает массив
+            <literal>A</literal> так, чтобы получился многомерный массив, построенный из копий
+            <literal>A</literal>. Размер результата равен <literal>[size(A,1)*M, size(A,2)*N,
+                size(A,3)*P, ...]
+            </literal>
+            .
+        </para>
+        <para>
+            На данный момент поддерживаются только массивы вещественных, целочисленных,
+            логических, строковых, полиномиальных и рациональных значений, а также разрежённые
+            матрицы. Это определение функции может быть расширено с помощью механизма перегрузки.
+        </para>
+    </refsection>
+    <refsection role="examples">
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+    repmat(1:3,2,2)
+    repmat(int8([1 0 1;0 1 0]),2,3,2)
+    repmat("Scilab",3,2)
+    t="Scilab";t(ones(3,2))
+    repmat([1/%s;2/(%s+1)],1,3)
+
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="matrix">matrix</link>
+            </member>
+            <member>
+                <link linkend="extraction">extraction</link>
+            </member>
+            <member>
+                <link linkend="size">size</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.3.1</revnumber>
+                <revremark>Введена функция repmat.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

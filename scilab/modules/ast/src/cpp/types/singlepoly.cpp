@@ -2,15 +2,18 @@
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
 *
-*  This file must be used under the terms of the CeCILL.
-*  This source file is licensed as described in the file COPYING, which
-*  you should have received as part of this distribution.  The terms
-*  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 #include <sstream>
-#include <math.h>
+#include <cmath>
 #include "singlepoly.hxx"
 #include "double.hxx"
 #include "tostring_common.hxx"
@@ -23,8 +26,6 @@ extern "C"
 #include "exp.h"
 #include "elem_common.h"
 }
-
-using namespace std;
 
 namespace types
 {
@@ -106,9 +107,7 @@ double* SinglePoly::allocData(int _iSize)
             m_pImgData = NULL;
             char message[bsiz];
             os_sprintf(message, _("Can not allocate negative size (%d).\n"),  _iSize);
-            ast::ScilabError se(message);
-            se.SetErrorNumber(999);
-            throw (se);
+            throw ast::InternalError(message);
         }
         else
         {
@@ -119,9 +118,7 @@ double* SinglePoly::allocData(int _iSize)
     {
         char message[bsiz];
         os_sprintf(message, _("Can not allocate %.2f MB memory.\n"),  (double) (_iSize * sizeof(double)) / 1.e6);
-        ast::ScilabError se(message);
-        se.SetErrorNumber(999);
-        throw (se);
+        throw ast::InternalError(message);
     }
 
     return pDbl;
@@ -272,15 +269,15 @@ bool SinglePoly::evaluate(double _dblInR, double _dblInI, double *_pdblOutR, dou
     for (int i = 0 ; i < m_iSize ; i++)
     {
         //real part
-        *_pdblOutR += m_pRealData[i] * pow(_dblInR, i);
+        *_pdblOutR += m_pRealData[i] * std::pow(_dblInR, i);
         //only if variable is complex
         if (isComplex())
         {
-            *_pdblOutR -= m_pImgData[i] * pow(_dblInI, i);
+            *_pdblOutR -= m_pImgData[i] * std::pow(_dblInI, i);
             //img part
-            *_pdblOutI += m_pRealData[i] * pow(_dblInR, i);
+            *_pdblOutI += m_pRealData[i] * std::pow(_dblInR, i);
         }
-        *_pdblOutI += m_pRealData[i] * pow(_dblInI, i);
+        *_pdblOutI += m_pRealData[i] * std::pow(_dblInI, i);
     }
 
     return true;
@@ -293,7 +290,7 @@ void SinglePoly::updateRank(void)
     {
         for (int i = getRank(); i > 0 ; i--)
         {
-            if (fabs(m_pRealData[i]) == 0.0 && abs(m_pImgData[i]) == 0.0)
+            if (std::fabs(m_pRealData[i]) == 0.0 && std::fabs(m_pImgData[i]) == 0.0)
             {
                 iNewRank--;
             }
@@ -307,7 +304,7 @@ void SinglePoly::updateRank(void)
     {
         for (int i = getRank(); i > 0 ; i--)
         {
-            if (fabs(m_pRealData[i]) == 0.0)
+            if (std::fabs(m_pRealData[i]) == 0.0)
             {
                 iNewRank--;
             }
@@ -330,12 +327,12 @@ bool SinglePoly::toString(std::wostringstream& ostr)
     return true;
 }
 
-void SinglePoly::toStringReal(wstring _szVar, list<wstring>* _pListExp , list<wstring>* _pListCoef)
+void SinglePoly::toStringReal(const std::wstring& _szVar, std::list<std::wstring>* _pListExp, std::list<std::wstring>* _pListCoef)
 {
     toStringInternal(m_pRealData, _szVar, _pListExp, _pListCoef);
 }
 
-void SinglePoly::toStringImg(wstring _szVar, list<wstring>* _pListExp , list<wstring>* _pListCoef)
+void SinglePoly::toStringImg(const std::wstring& _szVar, std::list<std::wstring>* _pListExp, std::list<std::wstring>* _pListCoef)
 {
     if (isComplex() == false)
     {
@@ -347,17 +344,17 @@ void SinglePoly::toStringImg(wstring _szVar, list<wstring>* _pListExp , list<wst
     toStringInternal(m_pImgData, _szVar, _pListExp, _pListCoef);
 }
 
-bool SinglePoly::subMatrixToString(wostringstream& /*ostr*/, int* /*_piDims*/, int /*_iDims*/)
+bool SinglePoly::subMatrixToString(std::wostringstream& /*ostr*/, int* /*_piDims*/, int /*_iDims*/)
 {
     return false;
 }
 
-void SinglePoly::toStringInternal(double *_pdblVal, wstring _szVar, list<wstring>* _pListExp , list<wstring>* _pListCoef)
+void SinglePoly::toStringInternal(double *_pdblVal, const std::wstring& _szVar, std::list<std::wstring>* _pListExp, std::list<std::wstring>* _pListCoef)
 {
     int iLineLen = ConfigVariable::getConsoleWidth();
 
-    wostringstream ostemp;
-    wostringstream ostemp2;
+    std::wostringstream ostemp;
+    std::wostringstream ostemp2;
 
     ostemp << L" ";
     ostemp2 << L" ";

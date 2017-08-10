@@ -2,11 +2,14 @@
 // Copyright (C) ???? - INRIA - Farid BELAHCENE
 // Copyright (C) 2008 - INRIA - Pierre MARECHAL
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function y = bitget(x,pos)
 
@@ -86,13 +89,7 @@ function y = bitget(x,pos)
     // Algorithm
     // =========================================================================
 
-    if size(pos,"*") == 1;
-        pos  = ones(x)  * pos;
-    end
 
-    if size(x,"*") == 1;
-        x    = ones(pos) * x;
-    end
 
     if type(x)==8 then
 
@@ -118,13 +115,21 @@ function y = bitget(x,pos)
 
         // type == 1
 
+        if size(pos,"*") == 1;
+            pos  = ones(x)  * pos;
+        end
+
+        if size(x,"*") == 1;
+            x    = ones(pos) * x;
+        end
+
         a     = 2^32;
         mask  = uint32(zeros(pos));
         ytemp = uint32(zeros(pos));
 
         if or(pos<=32) then
             mask( pos<=32 )  = uint32( 2^(pos(pos<=32) -1 ));
-            ytemp( pos<=32 ) = uint32( x(pos<=32) - double(uint32(x(pos<=32)/a)) * a ); // permet de récupérer les 32 bits de poid faible
+            ytemp( pos<=32 ) = uint32( x(pos<=32) - double(uint32(x(pos<=32)/a)) * a ); // permet de récupérer les 32 bits de poids faible
         end
 
         if or(pos>32) then

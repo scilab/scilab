@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Cedric Delamarre
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 /*--------------------------------------------------------------------------*/
@@ -68,7 +71,7 @@ types::Double* prod(types::Double* pIn, int iOrientation)
 
         // create output variable
         pOut = new types::Double(iDims, piDims, pIn->isComplex());
-        delete piDims;
+        delete[] piDims;
         piDims = NULL;
 
         // init output
@@ -128,7 +131,7 @@ types::Double* prod(types::Double* pIn, int iOrientation)
             }
         }
 
-        delete piIndex;
+        delete[] piIndex;
         piIndex = NULL;
     }
 
@@ -155,67 +158,51 @@ types::Polynom* prod(types::Polynom* pIn, int iOrientation)
         // create output matrix of poly
         pOut = new types::Polynom(pIn->getVariableName(), 1, 1, &iRankMax);
         pOut->setComplex(pIn->isComplex());
+        double* pdblRealOut = pOut->get(0)->get();
+        memcpy(pdblRealOut, pIn->get(0)->get(), (piRanks[0] + 1) * sizeof(double));
 
         // do prod
-        double* pdblRealOut = pOut->get(0)->get();
+        int iSize = pIn->getSize();
+        double* pdblTempReal = new double[iRankMax + 1];
+        int iRank = piRanks[0];
         if (pIn->isComplex())
         {
             double* pdblImgOut = pOut->get(0)->getImg();
-
             // alloc temporary workspace
-            double* pdblTempReal = new double[iRankMax + 1];
             double* pdblTempImg  = new double[iRankMax + 1];
-
-            // init output to 1 + 0s + 0s²...
-            pdblRealOut[0] = 1;
-            pdblImgOut[0]  = 0;
-            for (int iRankN = 1; iRankN < iRankMax + 1; iRankN++)
-            {
-                pdblRealOut[iRankN] = 0;
-                pdblImgOut[iRankN]  = 0;
-            }
+            memcpy(pdblImgOut, pIn->get(0)->getImg(), (piRanks[0] + 1) * sizeof(double));
 
             // perform operations
-            for (int i = 0; i < pIn->getSize(); i++)
+            for (int i = 1; i < iSize; i++)
             {
                 double* pdblRealIn = pIn->get(i)->get();
                 double* pdblImgIn = pIn->get(i)->getImg();
-                memcpy(pdblTempReal, pdblRealOut, (iRankMax + 1) * sizeof(double));
-                memcpy(pdblTempImg,  pdblImgOut,  (iRankMax + 1) * sizeof(double));
-                iMultiComplexPolyByComplexPoly(pdblTempReal, pdblTempImg, iRankMax + 1,
+                memcpy(pdblTempReal, pdblRealOut, (iRank + 1) * sizeof(double));
+                memcpy(pdblTempImg,  pdblImgOut,  (iRank + 1) * sizeof(double));
+                iMultiComplexPolyByComplexPoly(pdblTempReal, pdblTempImg, iRank + 1,
                                                pdblRealIn, pdblImgIn, piRanks[i] + 1,
                                                pdblRealOut, pdblImgOut, iRankMax + 1);
+                iRank += piRanks[i];
             }
 
-            delete pdblTempReal;
-            delete pdblTempImg;
+            delete[] pdblTempImg;
         }
         else
         {
-            // alloc temporary workspace
-            double* pdblTempReal = new double[iRankMax + 1];
-
-            // init output to 1 + 0s + 0s²...
-            pdblRealOut[0] = 1;
-            for (int iRankN = 1; iRankN < iRankMax + 1; iRankN++)
-            {
-                pdblRealOut[iRankN] = 0;
-            }
-
             // perform operations
-            for (int i = 0; i < pIn->getSize(); i++)
+            for (int i = 1; i < iSize; i++)
             {
                 double* pdblRealIn = pIn->get(i)->get();
-                memcpy(pdblTempReal, pdblRealOut, (iRankMax + 1) * sizeof(double));
-                iMultiScilabPolynomByScilabPolynom(pdblTempReal, iRankMax + 1,
+                memcpy(pdblTempReal, pdblRealOut, (iRank + 1) * sizeof(double));
+                iMultiScilabPolynomByScilabPolynom(pdblTempReal, iRank + 1,
                                                    pdblRealIn, piRanks[i] + 1,
                                                    pdblRealOut, iRankMax + 1);
+                iRank += piRanks[i];
             }
-
-            delete pdblTempReal;
         }
 
-        delete[]piRanks;
+        delete[] pdblTempReal;
+        delete[] piRanks;
     }
     else // sum following a dimension
     {
@@ -266,6 +253,7 @@ types::Polynom* prod(types::Polynom* pIn, int iOrientation)
 
         // move output ranks from types::Double to int*
         int* piRankMax = new int[pDblRanksOut->getSize()];
+        int* piRankTmp = new int[pDblRanksOut->getSize()];
         int iMaxOutputRank = 0;
         for (int i = 0; i < pDblRanksOut->getSize(); i++)
         {
@@ -278,25 +266,36 @@ types::Polynom* prod(types::Polynom* pIn, int iOrientation)
         pOut = new types::Polynom(pIn->getVariableName(), iDims, piDims, piRankMax);
         pOut->setComplex(pIn->isComplex());
 
+        // init output with first element of lead dimension
+        if (pIn->isComplex())
+        {
+
+            for (int i = 0; i < pOut->getSize(); i++)
+            {
+                pOut->getIndexes(i, piIndex);
+                int iIndex = pIn->getIndex(piIndex);
+                memcpy(pOut->get(i)->get(), pIn->get(iIndex)->get(), (piRanks[iIndex] + 1) * sizeof(double));
+                memcpy(pOut->get(i)->getImg(), pIn->get(iIndex)->getImg(), (piRanks[iIndex] + 1) * sizeof(double));
+                piRankTmp[i] = piRanks[iIndex];
+            }
+        }
+        else
+        {
+            for (int i = 0; i < pOut->getSize(); i++)
+            {
+                pOut->getIndexes(i, piIndex);
+                int iIndex = pIn->getIndex(piIndex);
+                memcpy(pOut->get(i)->get(), pIn->get(iIndex)->get(), (piRanks[iIndex] + 1) * sizeof(double));
+                piRankTmp[i] = piRanks[iIndex];
+            }
+        }
+
+        // alloc temporary workspace
+        double* pdblTempReal = new double[iMaxOutputRank + 1];
         if (pIn->isComplex())
         {
             // alloc temporary workspace
-            double* pdblTempReal = new double[iMaxOutputRank + 1];
             double* pdblTempImg  = new double[iMaxOutputRank + 1];
-
-            // init output to a matrix of 1 + 0s + 0s²...
-            for (int i = 0; i < pOut->getSize(); i++)
-            {
-                double* pdblRealOut = pOut->get(i)->get();
-                double* pdblImgOut = pOut->get(i)->getImg();
-                pdblRealOut[0] = 1;
-                pdblImgOut[0]  = 0;
-                for (int iRankN = 1; iRankN < piRankMax[i] + 1; iRankN++)
-                {
-                    pdblRealOut[iRankN] = 0;
-                    pdblImgOut[iRankN]  = 0;
-                }
-            }
 
             // perform operations
             for (int i = 0 ; i < pIn->getSize() ; i++)
@@ -305,6 +304,12 @@ types::Polynom* prod(types::Polynom* pIn, int iOrientation)
                 pIn->getIndexes(i, piIndex);
 
                 //convert indexes for result
+                if (piIndex[iOrientation - 1] == 0)
+                {
+                    // first element of lead dimension is already setted.
+                    continue;
+                }
+
                 piIndex[iOrientation - 1] = 0;
                 int iIndex = pOut->getIndex(piIndex);
 
@@ -313,32 +318,18 @@ types::Polynom* prod(types::Polynom* pIn, int iOrientation)
                 double* pdblRealOut = pOut->get(iIndex)->get();
                 double* pdblImgIn = pIn->get(i)->getImg();
                 double* pdblImgOut = pOut->get(iIndex)->getImg();
-                memcpy(pdblTempReal, pdblRealOut, (piRankMax[iIndex] + 1) * sizeof(double));
-                memcpy(pdblTempImg,  pdblImgOut,  (piRankMax[iIndex] + 1) * sizeof(double));
-                iMultiComplexPolyByComplexPoly(pdblTempReal, pdblTempImg, piRankMax[iIndex] + 1,
+                memcpy(pdblTempReal, pdblRealOut, (piRankTmp[iIndex] + 1) * sizeof(double));
+                memcpy(pdblTempImg,  pdblImgOut,  (piRankTmp[iIndex] + 1) * sizeof(double));
+                iMultiComplexPolyByComplexPoly(pdblTempReal, pdblTempImg, piRankTmp[iIndex] + 1,
                                                pdblRealIn, pdblImgIn, piRanks[i] + 1,
                                                pdblRealOut, pdblImgOut, piRankMax[iIndex] + 1);
+                piRankTmp[iIndex] += piRanks[i];
             }
 
-            delete pdblTempReal;
-            delete pdblTempImg;
+            delete[] pdblTempImg;
         }
         else
         {
-            // alloc temporary workspace
-            double* pdblTempReal = new double[iMaxOutputRank + 1];
-
-            // init output to a matrix of 1 + 0s + 0s²...
-            for (int i = 0; i < pOut->getSize(); i++)
-            {
-                double* pdblRealOut = pOut->get(i)->get();
-                pdblRealOut[0] = 1;
-                for (int iRankN = 1; iRankN < piRankMax[i] + 1; iRankN++)
-                {
-                    pdblRealOut[iRankN] = 0;
-                }
-            }
-
             // perform operations
             for (int i = 0 ; i < pIn->getSize() ; i++)
             {
@@ -346,25 +337,32 @@ types::Polynom* prod(types::Polynom* pIn, int iOrientation)
                 pIn->getIndexes(i, piIndex);
 
                 //convert indexes for result
+                if (piIndex[iOrientation - 1] == 0)
+                {
+                    // first element of lead dimension is already setted.
+                    continue;
+                }
+
                 piIndex[iOrientation - 1] = 0;
                 int iIndex = pOut->getIndex(piIndex);
 
                 // make sum on each ranks
                 double* pdblRealIn = pIn->get(i)->get();
                 double* pdblRealOut = pOut->get(iIndex)->get();
-                memcpy(pdblTempReal, pdblRealOut, (piRankMax[iIndex] + 1) * sizeof(double));
-                iMultiScilabPolynomByScilabPolynom(pdblTempReal, piRankMax[iIndex] + 1,
+                memcpy(pdblTempReal, pdblRealOut, (piRankTmp[iIndex] + 1) * sizeof(double));
+                iMultiScilabPolynomByScilabPolynom(pdblTempReal, piRankTmp[iIndex] + 1,
                                                    pdblRealIn, piRanks[i] + 1,
                                                    pdblRealOut, piRankMax[iIndex] + 1);
+                piRankTmp[iIndex] += piRanks[i];
             }
-
-            delete pdblTempReal;
         }
 
+        delete[] pdblTempReal;
         delete[] piRankMax;
         delete[] piRanks;
         delete[] piIndex;
         delete[] piDims;
+        delete[] piRankTmp;
     }
 
     pOut->updateRank();

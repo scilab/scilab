@@ -2,10 +2,10 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="TCL_EvalStr">
     <refnamediv>
         <refname>TCL_EvalStr</refname>
-        <refpurpose>Evaluate a string whithin the Tcl/Tk interpreter</refpurpose>
+        <refpurpose>Evaluate a string within the Tcl/Tk interpreter</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>TCL_EvalStr(str [,interp])
             res = TCL_EvalStr(str [,interp])
         </synopsis>
@@ -61,7 +61,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //with one call
 TCL_EvalStr(["toplevel .foo1"
              "label .foo1.l -text ""TK married Scilab !!!"""
@@ -72,7 +72,7 @@ TCL_EvalStr(["toplevel .foo1"
 //step by step (debugging)
 TCL_EvalStr("toplevel .foo2");
 
-// creates a toplevel TK window. 
+// creates a toplevel TK window.
 TCL_EvalStr("label .foo2.l -text ""TK married Scilab !!!""");
 
 // create a static label
@@ -86,7 +86,7 @@ TCL_EvalStr("pack .foo2.b");
 //kill the windows by program
 TCL_EvalStr("destroy .foo1");
 TCL_EvalStr("destroy .foo2");
- 
+
 //with one call, and in a slave interpreter
 TCL_CreateSlave('TCLSlave');
 TCL_EvalStr('set test ""in Slave TCL Interp""','TCLSlave');
@@ -101,7 +101,7 @@ res = TCL_EvalStr(["expr 4+5" "lsearch -all {a b c a b c} c" ; "list [list a b c
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="ScilabEval">ScilabEval</link>

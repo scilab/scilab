@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Serge STEER
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="sub2ind" xml:lang="ja">
+
+    <refnamediv>
+
+        <refname>sub2ind</refname>
+
+        <refpurpose>行列添字を線形添字に変換</refpurpose>
+
+    </refnamediv>
+
+    <refsynopsisdiv>
+
+        <title>呼び出し手順</title>
+
+        <synopsis>I = sub2ind(dims,i1,i2,...)
+
+            J = sub2ind(dims,Mi)
+
+        </synopsis>
+
+    </refsynopsisdiv>
+
+    <refsection>
+
+        <title>引数</title>
+
+        <variablelist>
+
+            <varlistentry>
+
+                <term>dims</term>
+
+                <listitem>
+
+                    <para>ベクトル: 行列の次元</para>
+
+                </listitem>
+
+            </varlistentry>
+
+            <varlistentry>
+
+                <term>i1,i2,...</term>
+
+                <listitem>
+
+                    <para>添字値配列(
+
+                        <literal>I</literal>と同じ形の行列)
+
+                    </para>
+
+                </listitem>
+
+            </varlistentry>
+
+            <varlistentry>
+
+                <term>Mi</term>
+
+                <listitem>
+
+                    <para>列に添字値を有する行列.</para>
+
+                </listitem>
+
+            </varlistentry>
+
+            <varlistentry>
+
+                <term>I</term>
+
+                <listitem>
+
+                    <para>線形添字配列</para>
+
+                </listitem>
+
+            </varlistentry>
+
+        </variablelist>
+
+    </refsection>
+
+    <refsection>
+
+        <title>説明</title>
+
+        <para>
+
+            <literal>sub2ind</literal> は
+
+            指定した添字値の集合に対応する等価な添字を定義する際に使用されます.
+
+            <literal>I = sub2ind(dims,i1,i2,..)</literal> は
+
+            大きさ<literal>dims</literal>の行列に関して配列
+
+            <literal>i1</literal>, <literal>i2</literal>,..の中に
+
+            行,列,... 添字に等価な線形添字を返します.
+
+            この場合, <literal>i1</literal>, <literal>i2</literal>,.. は
+
+            同じ形である必要があり,
+
+            結果 <literal>I</literal>は同じ行列の形を有しています.
+
+            <literal>I = sub2ind(dims,Mi)</literal> は,
+
+            大きさ<literal>dims</literal>の行列に関して
+
+            行列<literal>Mi</literal>の列における添字に等価な
+
+            線形添字を返します.
+
+            この場合,<literal>I</literal> は列ベクトルとなります.
+
+        </para>
+
+    </refsection>
+
+    <refsection>
+
+        <title>例</title>
+
+        <programlisting role="example"><![CDATA[
+i=[1 2 1 1 2 1 1];
+j=[1 2 3 1 2 3 3];
+k=[1 2 1 2 1 2 1];
+sub2ind([2,3,2],i,j,k)
+sub2ind([2,3,2],[i',j',k'])
+ ]]></programlisting>
+
+    </refsection>
+
+    <refsection role="see also">
+
+        <title>参照</title>
+
+        <simplelist type="inline">
+
+            <member>
+
+                <link linkend="ind2sub">ind2sub</link>
+
+            </member>
+
+            <member>
+
+                <link linkend="extraction">extraction</link>
+
+            </member>
+
+            <member>
+
+                <link linkend="insertion">insertion</link>
+
+            </member>
+
+        </simplelist>
+
+    </refsection>
+
+</refentry>
+

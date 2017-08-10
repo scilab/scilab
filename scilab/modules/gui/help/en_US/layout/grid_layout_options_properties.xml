@@ -5,7 +5,7 @@
         <refpurpose>Description of the grid layout options set of properties.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             layout_options = createLayoutOptions("grid")
             layout_options = createLayoutOptions("grid", size)
@@ -19,13 +19,13 @@
                 <term>size</term>
                 <listitem>
                     <para>
-                        <literal>[width, heigth]</literal> a 1-by-2 matrix of double, [0,0] by default
+                        <literal>[width, height]</literal> a 1-by-2 matrix of double, [0,0] by default
                     </para>
                     <para>
-                        The <literal>width</literal> and <literal>heigth</literal> of the grid in number of elements (not pixels).
+                        The <literal>width</literal> and <literal>height</literal> of the grid in number of elements (not pixels).
                     </para>
                     <para>
-                        A value of 0 for either <literal>width</literal> or <literal>heigth</literal> defines an indefinite number of elements on the rows or columns of the grid.
+                        A value of 0 for either <literal>width</literal> or <literal>height</literal> defines an indefinite number of elements on the rows or columns of the grid.
                     </para>
                 </listitem>
             </varlistentry>
@@ -55,7 +55,7 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-         //Create a figure with a grid layout 
+         //Create a figure with a grid layout
          f = figure( ...
          "dockable"        , "off",...
          "infobar_visible" , "off",...
@@ -113,7 +113,7 @@
          ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="layout">layout</link>

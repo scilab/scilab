@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // ============================================================================
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 // ============================================================================
 // Unitary tests for mxAddField mex function
 // ============================================================================
@@ -15,13 +15,14 @@ ilib_verbose(0);
 mputl([ "#include ""mex.h""";
 "void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])";
 "{";
-"    mxArray *ptr = prhs[0];"
+"    mxArray *ptr = mxDuplicateArray(prhs[0]);"
 "    int fieldnumber = mxAddField(ptr, ""another"");";
 "    mxSetFieldByNumber(ptr, 0, fieldnumber, mxCreateDoubleScalar(3));";
+"    plhs[0] = ptr;";
 "}"],"mexaddField.c");
 ilib_mex_build("libmextest", ["addField", "mexaddField", "cmex"], "mexaddField.c", []);
 exec("loader.sce");
 
 s = struct();
-addField(s);
-assert_checkequal(s("another"), 3);
+s2 = addField(s);
+assert_checkequal(s2("another"), 3);

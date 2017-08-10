@@ -4,110 +4,110 @@
 
  * Copyright (C) INRIA -  Serge Steer Serge.Steer@inria.fr
 
- * 
+ *
 
- * This file must be used under the terms of the CeCILL.
 
- * This source file is licensed as described in the file COPYING, which
-
- * you should have received as part of this distribution.  The terms
-
- * are also available at    
-
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 
 -->
 
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="jaS" xml:id="datatipSetInterp">
-    
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="datatipSetInterp">
+
     <refnamediv>
-        
+
         <refname>datatipSetInterp</refname>
-        
+
         <refpurpose>datatipの補間モードを設定する. </refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        
+
         <title>呼び出し手順</title>
-        
+
         <synopsis>
-            
+
             datatipSetInterp(datatip_handle,interp_mode)
-            
+
         </synopsis>
-        
+
     </refsynopsisdiv>
-    
+
     <refsection>
-        
+
         <title>引数</title>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>datatip_handle</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
-                        tipのハンドル. 
-                        
+
+                        tipのハンドル.
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>interp_mode</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         論理値で, falseの場合,
-                        
+
                         tipsはメッシュ点にのみ配置できます.
-                        
+
                         trueの場合,メッシュ点の間で補間が行われます.
-                        
+
                         デフォルト値はtrueです.
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>説明</title>
-        
+
         <para>
-            
+
             tipの位置の補間モードを設定します.
-            
+
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>例</title>
-        
+
         <programlisting role="example"><![CDATA[
 
     x=linspace(0,1,8)';
@@ -127,48 +127,48 @@
     datatipSetInterp(t,%f);//datatipを移動
 
     ]]></programlisting>
-        
+
         <scilab:image>
-            
+
             x=linspace(0,1,8)';
-            
+
             y=x.^3;
-            
+
             plot(x,y);
-            
+
             e=gce();p=e.children(1);//get the handle on the polyline
-            
+
             p.mark_mode="on";p.mark_style=2;p.mark_size=5;
-            
+
             t=datatipCreate(p,[0.8,0.512]);
-            
+
             datatipSetInterp(t,%f);//now move the datatip
-            
+
         </scilab:image>
-        
+
     </refsection>
-    
+
     <refsection role="see also">
-        
+
         <title>参照</title>
-        
+
         <simplelist type="inline">
-            
+
             <member>
-                
+
                 <link linkend="datatips">datatips</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="datatipMove">datatipMove</link>
-                
+
             </member>
-            
+
         </simplelist>
-        
+
     </refsection>
-    
+
 </refentry>
 

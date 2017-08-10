@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Serge STEER
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="ctr_gram">
+    <refnamediv>
+        <refname>ctr_gram</refname>
+        <refpurpose>controllability gramian</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[Gc]=ctr_gram(A,B [,dom])
+            [Gc]=ctr_gram(sl)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>A,B</term>
+                <listitem>
+                    <para>two real matrices of appropriate dimensions</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>dom</term>
+                <listitem>
+                    <para>
+                        character string (<literal>'c'</literal> (default value) or <literal>'d'</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sl</term>
+                <listitem>
+                    <para>
+                        linear system, <literal>syslin</literal> list
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Controllability gramian of <literal>(A,B)</literal> or <literal>sl</literal> (a <literal>syslin</literal>
+            linear system).
+        </para>
+        <para>
+            <literal>dom</literal> character string giving the time domain : <literal>"d"</literal> for a
+            discrete time system and <literal>"c"</literal> for continuous time (default case).
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+A=diag([-1,-2,-3]);B=rand(3,2);
+Wc=ctr_gram(A,B)
+U=rand(3,3);A1=U*A/U;B1=U*B;
+Wc1=ctr_gram(A1,B1)    //Not invariant!
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="equil1">equil1</link>
+            </member>
+            <member>
+                <link linkend="obs_gram">obs_gram</link>
+            </member>
+            <member>
+                <link linkend="contr">contr</link>
+            </member>
+            <member>
+                <link linkend="cont_mat">cont_mat</link>
+            </member>
+            <member>
+                <link linkend="cont_frm">cont_frm</link>
+            </member>
+            <member>
+                <link linkend="contrss">contrss</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

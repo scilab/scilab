@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2011 - DIGITEO - Cedric Delamarre
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -36,7 +39,7 @@ types::InternalType *GenericKrontimes(types::InternalType *_pLeftOperand, types:
         int iResult = KroneckerMultiplyDoubleByDouble(pL, pR, &pResult);
         if (iResult)
         {
-            throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
         }
 
         return pResult;
@@ -109,15 +112,15 @@ types::InternalType *GenericKronrdivide(types::InternalType *_pLeftOperand, type
         int iErr = KroneckerRDivideDoubleByDouble(pL, pR, &pResult);
         if (iErr == 1)
         {
-            throw ast::ScilabError(_W("Division by zero...\n"));
+            throw ast::InternalError(_W("Division by zero...\n"));
         }
         else if (iErr == 2)
         {
-            throw ast::ScilabError(_W("Bad value in the left or right operand.\n"));
+            throw ast::InternalError(_W("Bad value in the left or right operand.\n"));
         }
         else if (iErr == 3)
         {
-            throw ast::ScilabError(_W("Bad size for left or right operand.\n"));
+            throw ast::InternalError(_W("Bad size for left or right operand.\n"));
         }
 
         return pResult;
@@ -168,11 +171,11 @@ types::InternalType *GenericKronldivide(types::InternalType *_pLeftOperand, type
         int iErr = KroneckerLDivideDoubleByDouble(pL, pR, &pResult);
         if (iErr == 1)
         {
-            throw ast::ScilabError(_W("Division by zero...\n"));
+            throw ast::InternalError(_W("Division by zero...\n"));
         }
         else if (iErr == 2)
         {
-            throw ast::ScilabError(_W("Bad value in the left operand.\n"));
+            throw ast::InternalError(_W("Bad value in the left operand.\n"));
         }
 
         return pResult;

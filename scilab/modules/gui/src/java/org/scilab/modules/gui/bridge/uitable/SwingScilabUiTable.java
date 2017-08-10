@@ -3,11 +3,14 @@
  * Copyright (C) 2010 - Han DONG
  * Copyright (C) 2011 - DIGITEO - Vincent COUVERT
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 package org.scilab.modules.gui.bridge.uitable;
@@ -24,6 +27,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.UIManager;
 import javax.swing.border.Border;
+
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
+import javax.swing.table.TableModel;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.gui.SwingViewObject;
@@ -281,7 +288,7 @@ public class SwingScilabUiTable extends JScrollPane implements SwingViewObject, 
      */
     private JTable getUiTable() {
         if (uiTable == null) {
-            uiTable = new JTable(data, colNames);
+            uiTable = createTable(data, colNames);
             uiTable.setFillsViewportHeight(true);
             if (uiTable.getGridColor().equals(Color.WHITE)) {
                 uiTable.setGridColor(new Color(128, 128, 128));
@@ -348,7 +355,7 @@ public class SwingScilabUiTable extends JScrollPane implements SwingViewObject, 
         //updates table with new column names
         nCol = names.length;
         colNames = names;
-        uiTable = new JTable(data, names);
+        uiTable = createTable(data, names);
         getViewport().add(uiTable);
         uiTable.doLayout();
     }
@@ -409,7 +416,7 @@ public class SwingScilabUiTable extends JScrollPane implements SwingViewObject, 
         }
 
         //adds and updates table with new data
-        uiTable = new JTable(data, colNames);
+        uiTable = createTable(data, colNames);
         getViewport().add(uiTable);
         uiTable.doLayout();
     }
@@ -420,6 +427,15 @@ public class SwingScilabUiTable extends JScrollPane implements SwingViewObject, 
      */
     public void setId(Integer id) {
         uid = id;
+    }
+
+    /**
+     * To enable or disable editing on table.
+     * @param status status value either True or False
+     */
+    public void setEnabled(boolean status){
+        super.setEnabled(status);
+        uiTable.setEnabled(status);
     }
 
     /**
@@ -496,5 +512,26 @@ public class SwingScilabUiTable extends JScrollPane implements SwingViewObject, 
         if (color != null) {
             setForeground(color);
         }
+    }
+
+    /* Create a JTable and adds an event listener for updating table data */
+    private JTable createTable(Object[][] data, Object[] names) {
+        JTable table = new JTable(data, names);
+
+        table.getModel().addTableModelListener(new TableModelListener() {
+            public void tableChanged(TableModelEvent e) {
+                int row = e.getFirstRow();
+                int column = e.getColumn();
+                Object data = ((TableModel)e.getSource()).getValueAt(row, column);
+
+                String[] tableData = (String[]) GraphicController.getController().getProperty(uid, __GO_UI_STRING__);
+                int ncols = (Integer) GraphicController.getController().getProperty(uid, __GO_UI_STRING_COLNB__);
+                int nrows = tableData.length / ncols;
+                tableData[(column + 1) * nrows + row + 1] = data.toString();
+                GraphicController.getController().setProperty(uid, __GO_UI_STRING__, tableData);
+            }
+        });
+
+        return table;
     }
 }

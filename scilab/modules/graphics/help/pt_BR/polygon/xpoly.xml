@@ -1,26 +1,29 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xpoly" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xpoly" xml:lang="pt">
     <refnamediv>
         <refname>xpoly</refname>
-        <refpurpose>desenha uma poligonal ou um polígono</refpurpose>
+        <refpurpose>desenha uma poligonal ou um polÃ­gono</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>xpoly(xv,yv [,dtype [,close]])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>xv,yv</term>
@@ -31,13 +34,13 @@
             <varlistentry>
                 <term>dtype</term>
                 <listitem>
-                    <para>string (estilo de desenho). O valor padrão é "lines". </para>
+                    <para>string (estilo de desenho). O valor padrÃ£o Ã© "lines". </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>close</term>
                 <listitem>
-                    <para>inteiro. Se close= 1,a poligonal é fechada; o valor padrão é
+                    <para>inteiro. Se close= 1,a poligonal Ã© fechada; o valor padrÃ£o Ã©
                         0.
                     </para>
                 </listitem>
@@ -45,12 +48,12 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             <literal>xpoly</literal> desenha uma poligonal descrita pelos
             vetores de coordenadas <literal>xv</literal> e <literal>yv</literal>. Se
-            <literal>xv</literal> e <literal>yv</literal> forem matrizes, serão
-            considerados vetores obtidos por concatenação de suas colunas.
+            <literal>xv</literal> e <literal>yv</literal> forem matrizes, serÃ£o
+            considerados vetores obtidos por concatenaÃ§Ã£o de suas colunas.
             <literal>dtype</literal> pode ser <literal>"lines"</literal> para uso do
             estilo de linha corrente ou <literal>"marks"</literal> para utilizar a
             marca corrente para desenho da poligonal.
@@ -58,21 +61,20 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 x=sin(2*%pi*(0:4)/5);
 y=cos(2*%pi*(0:4)/5);
 
 plot2d(0,0,-1,"010"," ",[-2,-2,2,2])
-xset("color",5)
-xpoly(x,y,"lines",1) // por padrão é fechado
+xpoly(x,y,"lines",1) // por padrÃ£o Ã© fechado
 
-// apenas no novo estilo de gráficos
-e=gce(); // retorna a entidade corrente (a última criada: aqui, é a poligonal)
-e.closed = 'off' // a poligonal está agora aberta
+e = gce(); // retorna a entidade corrente (a Ãºltima criada: aqui, Ã© a poligonal)
+e.foreground = 5;
+e.closed = 'off' // a poligonal estÃ¡ agora aberta
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="xfpoly">xfpoly</link>

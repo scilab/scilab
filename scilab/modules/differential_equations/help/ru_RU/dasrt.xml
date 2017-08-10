@@ -3,12 +3,15 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="dasrt" xml:lang="ru">
@@ -17,7 +20,7 @@
         <refpurpose>программа решения дифференциально-алгебраических уравнений (ДАУ) с пересечением нуля</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>[r,nn,[,hd]]=dasrt(x0,t0,t [,atol,[rtol]],res [,jac],ng, surf [,info] [,hd])</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -29,7 +32,7 @@
                     <para>
                         представляет собой либо <literal>y0</literal> (<literal>ydot0</literal>
                         оценён с помощью <literal>dassl</literal> с нулём в качестве первой оценки),
-                        либо матрицу <literal>[y0 ydot0]</literal>. <literal>g(t,y0,ydot0)</literal> 
+                        либо матрицу <literal>[y0 ydot0]</literal>. <literal>g(t,y0,ydot0)</literal>
                         должна быть равной нулю. Если оценка <literal>ydot0</literal> известна,
                         то установите <literal>info(7)=1</literal>.
                     </para>
@@ -44,7 +47,7 @@
                             <term>ydot0</term>
                             <listitem>
                                 <para>
-                                    вещественный вектор-столбец производной <literal>y</literal> по 
+                                    вещественный вектор-столбец производной <literal>y</literal> по
                                     времени в момент <literal>t0</literal> (может быть оценкой).
                                 </para>
                             </listitem>
@@ -62,8 +65,8 @@
                 <term>t</term>
                 <listitem>
                     <para>
-                        вещественный скаляр или вектор. Указывает моменты времени для которых 
-                        необходимо найти решение. Заметьте, что вы можете получить решение в 
+                        вещественный скаляр или вектор. Указывает моменты времени для которых
+                        необходимо найти решение. Заметьте, что вы можете получить решение в
                         каждой точке шага <literal>dassl</literal> установкой <literal>info(2)=1</literal>.
                     </para>
                 </listitem>
@@ -82,7 +85,7 @@
                 <term>atol, rtol</term>
                 <listitem>
                     <para>
-                        вещественный скаляры или вектор-столбцы того же размера, что и 
+                        вещественный скаляры или вектор-столбцы того же размера, что и
                         <literal>y</literal>. <literal>atol, rtol</literal> дают, соответственно, допуски абсолютной и относительной ошибки решения. Если это векторы, то допуски определены для каждого элемента <literal>y</literal>.
                     </para>
                 </listitem>
@@ -112,22 +115,22 @@
                         <listitem>
                             <para>Список.</para>
                             <para>
-                                Эта форма позволяет передавать функции параметры, отличные от <literal>t</literal>, 
+                                Эта форма позволяет передавать функции параметры, отличные от <literal>t</literal>,
                                 <literal>y</literal>, <literal>ydot</literal>. Это выполняется следующим способом:
                             </para>
-                            <programlisting role="no-scilab-exec"><![CDATA[  
+                            <programlisting role="no-scilab-exec"><![CDATA[
 list(res,x1,x2,...)
  ]]></programlisting>
                             <para>
-                                где последовательность вызова функции <literal>res</literal> 
+                                где последовательность вызова функции <literal>res</literal>
                                 теперь имеет вид:
                             </para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                            <programlisting role="no-scilab-exec"><![CDATA[
 r=res(t,y,ydot,x1,x2,...)
  ]]></programlisting>
                             <para>
-                                <literal>res</literal> по-прежнему возвращает 
-                                <literal>r=g(t,y,ydot</literal> как функцию от 
+                                <literal>res</literal> по-прежнему возвращает
+                                <literal>r=g(t,y,ydot</literal> как функцию от
                                 <literal>(t,y,ydot,x1,x2,...)</literal>.
                             </para>
                             <para>
@@ -143,12 +146,12 @@ r=res(t,y,ydot,x1,x2,...)
                                 Она должна ссылаться на имя подпрограммы на языке C или Fortran, связанной с Scilab'ом.
                             </para>
                             <para>Последовательность вызова на языке C должна быть:</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                            <programlisting role="no-scilab-exec"><![CDATA[
 void res(double *t, double y[], double yd[], double r[],
-         int *ires, double rpar[], int ipar[]) 
+         int *ires, double rpar[], int ipar[])
  ]]></programlisting>
                             <para>На языке Fortran она должна быть:</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                            <programlisting role="no-scilab-exec"><![CDATA[
 subroutine res(t,y,yd,r,ires,rpar,ipar)
 double precision t, y(*),yd(*),r(*),rpar(*)
 integer ires,ipar(*)
@@ -175,7 +178,7 @@ integer ires,ipar(*)
                             <para>
                                 Её последовательность вызова должна быть
                                 <literal>r=jac(t,y,ydot,cj)</literal> и
-                                <literal>jac</literal> должна возвращать 
+                                <literal>jac</literal> должна возвращать
                                 <literal>r=dg(t,y,ydot)/dy+cj*dg(t,y,ydot)/dydot</literal>, где
                                 <literal>cj</literal> - вещественный скаляр.
                             </para>
@@ -183,13 +186,13 @@ integer ires,ipar(*)
                         <listitem>
                             <para>Список.</para>
                             <para>Он должен иметь следующий вид:</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                            <programlisting role="no-scilab-exec"><![CDATA[
 list(jac,x1,x2,...)
  ]]></programlisting>
-                            <para>где последовательность вызова функции 
+                            <para>где последовательность вызова функции
                                 <literal>jac</literal> теперь имеет вид:
                             </para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                            <programlisting role="no-scilab-exec"><![CDATA[
 r=jac(t,y,ydot,cj,x1,x2,...)
  ]]></programlisting>
                             <para>
@@ -203,12 +206,12 @@ r=jac(t,y,ydot,cj,x1,x2,...)
                             <para>Она должна ссылаться на имя подпрограммы на языке C или Fortran, связанной с Scilab.
                             </para>
                             <para>В C последовательность вызова должна быть следующего вида:</para>
-                            <programlisting role=""><![CDATA[ 
+                            <programlisting role=""><![CDATA[
 void jac(double *t, double y[], double yd[], double pd[],
          double *cj, double rpar[], int ipar[])
  ]]></programlisting>
                             <para>В Fortran она должна быть::</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                            <programlisting role="no-scilab-exec"><![CDATA[
 subroutine jac(t,y,yd,pd,cj,rpar,ipar)
 double precision t, y(*),yd(*),pd(*),cj,rpar(*)
 integer ipar(*)
@@ -221,7 +224,7 @@ integer ipar(*)
                 <term>surf</term>
                 <listitem>
                     <para>
-                        <link linkend="external">внешняя</link> функция, список или строка. Вычисляет 
+                        <link linkend="external">внешняя</link> функция, список или строка. Вычисляет
                         значение вектор-столбца <literal>surf(t,y)</literal> с
                         <literal>ng</literal> элементами. Каждый элемент определяет поверхность.
                         Она может быть определена как:
@@ -236,13 +239,13 @@ integer ipar(*)
                         <listitem>
                             <para>Список.</para>
                             <para>Он должен быть следующего вида:</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                            <programlisting role="no-scilab-exec"><![CDATA[
 list(surf,x1,x2,...)
  ]]></programlisting>
-                            <para>где последовательность вызова функции 
+                            <para>где последовательность вызова функции
                                 <literal>surf</literal>теперь имеет вид:
                             </para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                            <programlisting role="no-scilab-exec"><![CDATA[
 r=surf(t,y,x1,x2,...)
  ]]></programlisting>
                         </listitem>
@@ -251,11 +254,11 @@ r=surf(t,y,x1,x2,...)
                             <para>Она должна ссылаться на имя процедуры Fortran, связанной с Scilab'ом.
                             </para>
                             <para>В C последовательность вызова должна быть:</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                            <programlisting role="no-scilab-exec"><![CDATA[
 void surf(int *ny, double *t, double y[], int *ng, double gout[])
  ]]></programlisting>
                             <para>В Fortran она должна быть:</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                            <programlisting role="no-scilab-exec"><![CDATA[
 subroutine surf(ny,t,y,ng,gout)
 double precision t, y(*),gout(*)
 integer ny,ng
@@ -277,7 +280,7 @@ integer ny,ng
                             <listitem>
                                 <para>
                                     вещественный скаляр, который указывает максимальное время, для которого
-                                    <literal>g</literal> может выполняться, либо пустая матрица 
+                                    <literal>g</literal> может выполняться, либо пустая матрица
                                     <literal>[]</literal>, если время не ограничено.
                                 </para>
                             </listitem>
@@ -298,9 +301,9 @@ integer ny,ng
                             <listitem>
                                 <para>
                                     двухэлементный вектор, который указывает определение <literal>[ml,mu]</literal>
-                                    матрицы пределов, вычисленной с помощью <literal>jac</literal>; 
+                                    матрицы пределов, вычисленной с помощью <literal>jac</literal>;
                                     <literal>r(i - j + ml + mu + 1,j) =  "dg(i)/dy(j)+cj*dg(i)/dydot(j)"</literal>.
-                                    Если <literal>jac</literal> возвращает полную матрицу, то 
+                                    Если <literal>jac</literal> возвращает полную матрицу, то
                                     <literal>info(3)=[]</literal>.
                                 </para>
                             </listitem>
@@ -327,7 +330,7 @@ integer ny,ng
                             <term>info(6)</term>
                             <listitem>
                                 <para>
-                                    <literal>info(6)=1</literal>, если известно, что решение отрицательное, в 
+                                    <literal>info(6)=1</literal>, если известно, что решение отрицательное, в
                                     противном случае установите <literal>info(6)=0</literal>.
                                 </para>
                             </listitem>
@@ -368,7 +371,7 @@ integer ny,ng
     <refsection>
         <title>Описание</title>
         <para>Решение дифференциального уравнения в неявном виде.</para>
-        <programlisting role="no-scilab-exec"><![CDATA[ 
+        <programlisting role="no-scilab-exec"><![CDATA[
 g(t,y,ydot)=0
 y(t0)=y0  and   ydot(t0)=ydot0
  ]]></programlisting>
@@ -379,16 +382,16 @@ y(t0)=y0  and   ydot(t0)=ydot0
     </refsection>
     <refsection>
         <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //dy/dt = ((2*log(y)+8)/t -5)*y,  y(1) = 1,  1<=t<=6
-//g1 = ((2*log(y)+8)/t - 5)*y 
-//g2 = log(y) - 2.2491 
+//g1 = ((2*log(y)+8)/t - 5)*y
+//g2 = log(y) - 2.2491
 y0=1;t=2:6;t0=1;y0d=3;
 atol=1.d-6;rtol=0;ng=2;
- 
+
 deff('[delta,ires]=res1(t,y,ydot)','ires=0;delta=ydot-((2*log(y)+8)/t-5)*y')
 deff('[rts]=gr1(t,y)','rts=[((2*log(y)+8)/t-5)*y;log(y)-2.2491]')
- 
+
 [yy,nn]=dasrt([y0,y0d],t0,t,atol,rtol,res1,ng,gr1);
 //(Should return nn=[2.4698972 2])
  ]]></programlisting>
@@ -406,7 +409,7 @@ deff('[rts]=gr1(t,y)','rts=[((2*log(y)+8)/t-5)*y;log(y)-2.2491]')
                 <link linkend="impl">impl</link>
             </member>
             <member>
-                <link linkend="fort">fort</link>
+                <link linkend="call">call</link>
             </member>
             <member>
                 <link linkend="link">link</link>

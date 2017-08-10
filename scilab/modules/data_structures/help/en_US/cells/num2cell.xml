@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2013 - Scilab Enterprises - Charlotte HECQUET
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="num2cell" xml:lang="en">
+    <refnamediv>
+        <refname>num2cell</refname>
+        <refpurpose>converts an array into a cell array</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>
+            y=num2cell(x [,dims])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>a real, an integer, a boolean or a string matrix
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>dims</term>
+                <listitem>
+                    <para>a scalar or a vector of positive integers
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>a cell
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <function>num2cell</function> converts <varname>x</varname> which is a real, a boolean, or a string matrix into a cell.
+            If <varname>dims</varname> is not mentioned, <varname>y</varname> will have the same size as <varname>x</varname>.
+        </para>
+        <para>
+            But if <varname>dims</varname> is present, the dimensions of <varname>x</varname> mentioned in <varname>dims</varname>
+            will be reduced to 1. Moreover, the dimensions of <varname>y</varname> components will be equal to the dimensions sizes of
+            <varname>x</varname> whose numbers are in <varname>dims</varname> vector.
+        </para>
+        <para>
+            For example, if size(<varname>x</varname>)=[2 3 4 5 6] and <varname>dims</varname>=[2 4], then size(<varname>y</varname>)=
+            [2 1 4 1 6], that is the sizes of the second and the fourth dimensions are reduced to 1. And size(<varname>y</varname>(i))=
+            [1 3 1 5 1], which means that the sizes of the second and the fourth dimensions are equal to the sizes of the second and the
+            fourth ones of <varname>x</varname>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example">
+            A = [1 2; 3 4]
+            num2cell(A)
+            M = matrix(1:24, [2 3 2 2])
+            c=num2cell(M,[1 2])
+            size(c)
+            size(c{1})
+
+            A = ["a", "b"; "c" "d"]
+            num2cell(A)
+        </programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="cell">cell</link>
+            </member>
+            <member>
+                <link linkend="cell2mat">cell2mat</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="phasemag">
+    <refnamediv>
+        <refname>phasemag</refname>
+        <refpurpose>位相と振幅の計算</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼出し手順</title>
+        <synopsis>[phi,db]=phasemag(z [,mod])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>z</term>
+                <listitem>
+                    <para>行列または複素数の行ベクトル.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>mod</term>
+                <listitem>
+                    <para>文字列</para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>mod='c'</term>
+                            <listitem>
+                                <para>"連続" 表現  -無限大 and +360度の間 (デフォルト)</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>mod='m'</term>
+                            <listitem>
+                                <para>-360 と 0 度の間の表現</para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>phi</term>
+                <listitem>
+                    <para>
+                        <literal>z</literal>の位相 (単位:度)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>db</term>
+                <listitem>
+                    <para>振幅 (単位: dB)</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>phasemag</literal> は,複素数行列のエントリの
+            位相と振幅を計算します.
+            <literal>mod='c'</literal>の場合,<literal>phasemag</literal>は
+            <literal>phi(:,i)</literal>との距離を最小化するように
+            <literal>phi(:,i+1)</literal>を計算します.
+            すなわち, 位相の"連続表現"を得ようとします.
+        </para>
+        <para>
+            -%piと%piの間で位相を得るために,
+            <literal>phi=atan(imag(z),real(z))</literal>を使用してください.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+s=poly(0,'s');
+h=syslin('c',1/((s+5)*(s+10)*(100+6*s+s*s)*(s+.3)));
+[frq,rf]=repfreq(h,0.1,20,0.005);
+scf();
+plot2d(frq',phasemag(rf,'c')');
+scf();
+plot2d(frq',phasemag(rf,'m')');
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="repfreq">repfreq</link>
+            </member>
+            <member>
+                <link linkend="gainplot">gainplot</link>
+            </member>
+            <member>
+                <link linkend="atan">atan</link>
+            </member>
+            <member>
+                <link linkend="bode">bode</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

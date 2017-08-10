@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2013 - Samuel GOUGEON
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="unwrap" xml:lang="ja">
+    <refnamediv>
+        <refname>unwrap</refname>
+        <refpurpose>
+            Y(x)輪郭またはZ(x,y)面をアンラップする. Y(x)輪郭を展開する
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>unwrap() // 例を実行
+            [U, breakPoints] = unwrap(Y)
+            [U, breakPoints] = unwrap(Y, z_jump)
+            [U, cuspPoints]  = unwrap(Y, "unfold")
+            U = unwrap(Z)
+            U = unwrap(Z, z_jump)
+            U = unwrap(Z, z_jump, dir)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>Y</term>
+                <listitem>
+                    <para>
+                        実数ベクトル: アンラップまたは展開する外形.
+                        暗黙の座標軸Xが等間隔であることを仮定します.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Z</term>
+                <listitem>
+                    <para>
+                        実数の行列: アンラップする面. 暗黙の座標軸 (X,Y)
+                        は直交軸で等間隔(間隔はXとYで異なることが可能)と仮定されます.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>z_jump</term>
+                <listitem>
+                    <para>
+                        アンラップモードで使用される正のスカラー実数:
+                        アンラップを実行する.不連続点で適用されるジャンプ高さ.
+                        絶対値のみが考慮されます.
+                        実際に適用されるジャンプは各不連続点の
+                        両端をつなぐ傾きの符号を有します.
+                        デフォルト値は, <literal>z_jump = 2*%pi</literal>です.
+                        特別な値  <literal>z_jump = 0</literal> は,
+                        各不連続点の周辺の平均的な傾きに
+                        等しいジャンプを適用し,
+                        外形または面全体に連続的な傾きを回復します.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>dir</term>
+                <listitem>
+                    <para>
+                        "c" | "r" | "" (デフォルト):
+                        アンラップを行う方向.
+                        "c" は列方向にアンラップ, "r" は行方向にアンラップ,
+                        "" は両方向にアンラップします.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"unfold"</term>
+                <listitem>
+                    <para>
+                        指定した曲線が折り畳まれている場合,アンラップではなく,展開します.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>U</term>
+                <listitem>
+                    <para>
+                        外形または面をアンラップ, または外形を展開します.
+                        <varname>U</varname> は<varname>Y</varname> または
+                        <varname>Z</varname>と同じ大きさとなります.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>breakPoints, cuspPoints</term>
+                <listitem>
+                    <para>
+                        <varname>Y</varname>の点の添字のベクトル.
+                        ただし,ラップ及び折りたたみが検出され,処理されています.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>アンラップ処理</para>
+        <para>
+            <function>unwrap()</function> は,例えば
+            <literal>Y = modulo(X,w)</literal> または
+            <literal>Y = atan(tan(X))</literal>のような
+            周期的で単調な関数により外形またはラップされた面を
+            処理する際に有用です.
+            この関数は,これらの関数の逆関数のように,
+            制限された
+            <literal>w</literal> または <literal>[-%pi/2, %pi/2]</literal>
+            の範囲ではなく,全領域で入力 <literal>X</literal> を復元する
+            目的で使用されます.
+        </para>
+        <para>
+            ラップされた外形のブレークポイントは,
+            点の近傍の両端の傾きがほぼ同じだが(絶対値が)非常に小さく,
+            考慮される点における傾きとは逆となる点として検出されます:
+            この点において, 近傍の傾きを分断し, 逆となるジャンプがあります.
+        </para>
+        <para>
+            この検出方法はラップするものを特定のレベルで考慮する
+            ことを避けます.
+            これにより,後で定数(またはトレンドすらも)を追加された
+            ラップされた外形を処理できるようになります.
+        </para>
+        <para>
+            アンラップ処理は,全ての検出されたジャンプを減らし,
+            (元が連続だったとすると)一部を連続した傾きに回復します.
+            この処理は,各点における外形のその他の面に関する全側面への
+            Y-シフト適用により行われます.
+            Yシフトは,ユーザにより指定されるため,
+            全てのブレークポイントで同じとなる可能性があります.
+            ユーザがYシフトにヌルを指定した場合,
+            <function>unwrap()</function> は,
+            各ブレークポイントに依存して近傍の平均的傾きに
+            等しいジャンプを適用します.
+        </para>
+        <warning>
+            アンラップされた外形は常に定義されますが,
+            一定ではありません.
+        </warning>
+        <para>
+            <varname>dir</varname> が使用されない限り,
+            <function>unwrap()</function> は面の最初の列を
+            アンラップします.
+            これらのデータの各点がその点から始まる各線をアンラップする
+            基準レベルとして使用されます.
+        </para>
+        <para> </para>
+        <para>展開処理</para>
+        <para>
+            キーワード<varname>"unfold"</varname> が使用され,
+            面ではなく外形が指定された場合,
+            外形はラップされているのではなく折り畳まれていると
+            仮定されます.
+        </para>
+        <para>
+            折りたたみ点 -- または "尖点" -- において,
+            外形は連続ですが,その傾きは不連続になります:
+            傾きは絶対値がその両側の点でほぼ等しくなりますが,
+            両側で逆方向になります.
+        </para>
+        <para>
+            折りたたみは例えば<varname>Y= acos(cos(X))</varname>
+            のように非単調周期関数およびその逆関数が
+            外形Xに適用された場合に発生します.
+            YからXを回復するのはラップされた場合と比べてはるかに困難です.
+            実際,
+            外形が準水平切片の一つの上に接線方向に折り畳まれた場合のように,
+            あいまいな状況が存在する可能性があります.
+        </para>
+        <para>
+            尖点を検出した場合,
+            a) そこから始まる外形の片側が逆方向(反対)となり,
+            かつ,
+            b) 外形と傾きの連続性が保持され,考慮する点
+            (局所的な傾きに基づく小さなジャンプを付加する必要が
+            あるかもしれません)で回復されます.
+        </para>
+        <warning>
+            入力される外形の左端の傾きが最初の基準として
+            使用されます.展開された外形は元の本当の外形に
+            対して上下逆となる可能性があります.
+            加えて,アンラップする場合,定義はされますが
+            一定となります.
+        </warning>
+        <para>既知の制限: 現在, 折り畳まれている面は処理できません.</para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <para>1次元の外形をアンラップまたは展開:</para>
+        <programlisting role="example"><![CDATA[
+// 1次元の例
+// -----------
+f = scf();
+f.figure_size = [800 1000];
+f.figure_position(2) = 0;
+f.figure_name = "unwrap() & ""unfold""" + _(": 1-D examples ");
+ax = gda();
+ax.y_label.font_size=2;
+drawlater()
+// 元の1次元の外形
+t = linspace(-4,4.2,800);
+alpha = t.^2 + t -1;
+subplot(5,2,1)
+titlepage("unwrap(): unwrap | unfold")
+subplot(5,2,2)
+plot(t,alpha)
+t2 = "$\text{Original profile: } \alpha=t^2+t-1$";
+ax = gca();
+ax.tight_limits = "on";
+yT = max(alpha) - strange(alpha)*0.1;
+xstring(0,yT,t2)
+e = gce();
+e.text_box_mode = "centered";
+e.font_size = 2;
+// 複数の例をループ
+for i=1:4
+    subplot(5,2,2*i+1)
+    if i==1 then
+        // atan(tan())でアンラップ
+        ralpha = atan(tan(alpha));            // 回復したalpha [pi]
+        ylabel("$atan(tan(\alpha))$")
+        [u, K] = unwrap(ralpha, %pi);         // arctan
+        t2 = "$\text{unwrap(Y, \%pi)}$";
+    elseif i==2
+        // modulo() + Y-シフトでアンラップ
+        c = (rand(1,1)-0.5)*4;
+        ralpha = pmodulo(alpha, 5) + c;
+        ylabel("$modulo(\alpha,\ 5)"+msprintf("%+5.2f",c)+"$")
+        [u, K] = unwrap(ralpha, 0);
+        t2 = "$\text{unwrap(Y, 0)}$";
+    elseif i==3
+        // asin(sin()) + Y-シフトで展開
+        ralpha = 1+asin(sin(alpha));          // 回復したalpha [2.pi]
+        ylabel("$1+asin(sin(\alpha))$")
+        [u, K] = unwrap(ralpha, "unfold");
+        t2 = "$\text{unwrap(Y,""unfold"")}$";
+    else
+        // acos(cos()) + トレンド で折りたたみ
+        ralpha = 1+alpha/10+acos(cos(alpha)); // 回復したalpha [2.pi]
+        ylabel("$1+\frac{\alpha}{10}+acos(cos(\alpha))$")
+        [u, K] = unwrap(ralpha, "unfold");
+        t2 = "$\text{unwrap(Y,""unfold"")}$";
+    end
+    // 処理する外形をプロット
+    plot(t, ralpha)
+    // 曲線の不連続点または尖点に星印を付けます:
+    if K~=[] then
+        plot(t(K), ralpha(K),"*")
+    end
+    // 処理(展開またはアンラップ)した外形をプロットします:
+    subplot(5,2,2*i+2)
+    plot(t,u)
+    ax = gca();
+    ax.tight_limits = "on";
+    // Adding a legend:
+    yT = max(u) - strange(u)*0.2;
+    xstring(0,yT,t2)
+    e = gce();
+    e.text_box_mode = "centered";
+    e.font_size = 2;
+end
+sda();
+drawnow()
+        ]]></programlisting>
+        <scilab:image>
+            %_unwrap()
+        </scilab:image>
+        <para>2次元面をアンラップ:</para>
+        <programlisting role="example"><![CDATA[
+// 2次元の例
+// -----------
+ax = gda();
+ax.title.font_size = 2;
+f = scf();
+f.color_map = hotcolormap(100);
+f.figure_size = [475 1050];
+f.figure_position(2) = 0;
+f.figure_name = "unwrap()" + _(": 2-D examples");
+drawlater()
+nx = 300;
+ny = 400;
+rmax = 8.8;
+x = linspace(-rmax/2, rmax/2, nx)-1;
+y = linspace(-rmax/2, rmax/2, ny)+1;
+[X, Y] = meshgrid(x,y);
+for ex=0:1   // 例
+    // 元の面
+        // 面を生成
+    if ex==0 then
+        z = X.^2 + Y.^2;
+    else
+        z = sqrt(0.3+sinc(sqrt(z)*3))*17-7;
+    end
+    // 3次元でプロットします
+    subplot(4,2,1+ex)
+    surf(x, y, z)
+    title("Original profile Z")
+    e = gce();
+    e.thickness = 0; // メッシュを削除
+    e.parent.tight_limits = "on";
+    // ラップされた面 (平面)
+    m = 2.8;
+    zw = pmodulo(z, m); // ラップする
+    subplot(4,2,3+ex)
+    grayplot(x, y, zw')
+    title(msprintf("Zw = pmodulo(Z, %g)  (flat)",m))
+    ax0 = gca();
+    ax0.tight_limits = "on";
+    // アンラップされた面 (平面):
+    // in both directions:
+    u = unwrap(zw, 0);
+    subplot(4,2,5+ex)
+    grayplot(x, y, u')
+    title(msprintf("unwrap(Zw, %g)  (flat)", 0))
+    ax3 = gca();
+    ax3.tight_limits = "on";
+    if ex==0 then
+        direc = "r";
+    else
+        direc = "c";
+    end
+    // 一方向にアンラップ:
+    u = unwrap(zw, m, direc);
+    subplot(4,2,7+ex)
+    grayplot(x, y, u')
+    title(msprintf("unwrap(Zw, %g, ""%s"")  (flat)",m,direc))
+    ax1 = gca();
+    ax1.tight_limits = "on";
+end
+sda();
+drawnow()
+        ]]></programlisting>
+        <!--<scilab:image>
+            %_unwrap("2D")
+        </scilab:image>-->
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="atan">atan</link>
+            </member>
+            <member>
+                <link linkend="modulo">modulo</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection role="bibliography">
+        <title>参考文献</title>
+        <para>
+            <ulink url="http://siptoolbox.sourceforge.net/doc/sip-0.7.0-reference/unwrapl.html">SIP toolbox: unwrap linear</ulink>
+        </para>
+        <para>
+            <ulink url="http://siptoolbox.sourceforge.net/doc/sip-0.7.0-reference/unwrapp.html">SIP toolbox: unwrap along path</ulink>
+        </para>
+    </refsection>
+    <refsection role="history tag">
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revdescription>unwrap() 関数が導入されました</revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

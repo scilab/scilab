@@ -3,152 +3,155 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="pencan">
-    
+
     <refnamediv>
-        
+
         <refname>pencan</refname>
-        
+
         <refpurpose>行列ペンシルの正準形</refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        
+
         <title>呼び出し手順</title>
-        
+
         <synopsis>[Q,M,i1]=pencan(Fs)
-            
+
             [Q,M,i1]=pencan(E,A)
-            
+
         </synopsis>
-        
+
     </refsynopsisdiv>
-    
+
     <refsection>
-        
+
         <title>引数</title>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>Fs</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         標準ペンシル <literal>s*E-A</literal>
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>E,A</term>
-                
+
                 <listitem>
-                    
+
                     <para>実数正方行列</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>Q,M</term>
-                
+
                 <listitem>
-                    
+
                     <para>正則実数行列</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>i1</term>
-                
+
                 <listitem>
-                    
+
                     <para>整数</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>説明</title>
-        
+
         <para>
-            
-            標準ペンシル <literal>Fs=s*E-A</literal>を指定すると, 
-            
+
+            標準ペンシル <literal>Fs=s*E-A</literal>を指定すると,
+
             <literal>pencan</literal> は,
-            
+
             <literal>M*(s*E-A)*Q</literal>が"正準"形となるような
-            
+
             行列<literal>Q</literal> および<literal>M</literal>を返します.
-            
+
         </para>
-        
+
         <para>
-            
+
             <literal>M*E*Q</literal> はブロック行列です.
-            
+
         </para>
-        
-        <programlisting role=""><![CDATA[ 
+
+        <programlisting role=""><![CDATA[
 [I,0;
  0,N]
  ]]></programlisting>
-        
+
         <para>
-            
+
             ただし,<literal>N</literal>は冪零行列<literal>N</literal>,
-            
+
             <literal>i1</literal> = 行列<literal>I</literal>の大きさです.
-            
+
         </para>
-        
+
         <para>
-            
+
             <literal>M*A*Q</literal> は以下のようなブロック行列です:
-            
+
         </para>
-        
-        <programlisting role=""><![CDATA[ 
+
+        <programlisting role=""><![CDATA[
 [Ar,0;
  0,I]
  ]]></programlisting>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>例</title>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
 F=randpencil([],[1,2],[1,2,3],[]);
 F=rand(6,6)*F*rand(6,6);
 [Q,M,i1]=pencan(F);
@@ -156,36 +159,36 @@ W=clean(M*F*Q)
 roots(det(W(1:i1,1:i1)))
 det(W($-2:$,$-2:$))
  ]]></programlisting>
-        
+
     </refsection>
-    
+
     <refsection role="see also">
-        
+
         <title>参照</title>
-        
+
         <simplelist type="inline">
-            
+
             <member>
-                
+
                 <link linkend="glever">glever</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="penlaur">penlaur</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="rowshuff">rowshuff</link>
-                
+
             </member>
-            
+
         </simplelist>
-        
+
     </refsection>
-    
+
 </refentry>
 

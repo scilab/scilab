@@ -5,13 +5,16 @@
 // Copyright (C) 2012 - Scilab Enterprises - Adeline CARNIS
 // Copyright (C) 2013 - A. Khorshidi (new option)
 // Copyright (C) 2013 - Scilab Enterpriss - Paul Bignier: added output
+// Copyright (C) 2016 - Samuel GOUGEON
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
-
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function [y, ind] = histplot(n,data,style,strf,leg,rect,nax,logflag,frameflag,axesflag,normalization,polygon)
     // histplot(n,data,<opt_arg_seq>)
@@ -46,6 +49,7 @@ function [y, ind] = histplot(n,data,style,strf,leg,rect,nax,logflag,frameflag,ax
     //    - modify a little the demo
     //    - add some checking on n|x and data
     //
+
     [lhs, rhs] = argn()
 
     y = [];
@@ -75,18 +79,17 @@ function [y, ind] = histplot(n,data,style,strf,leg,rect,nax,logflag,frameflag,ax
     end
 
     // This is the only specific optional argument for histplot
-    if ~exists("normalization","local") then, normalization=%t,end
-    if ~exists("polygon","local") then, polygon=%f,end
+    if exists("normalization","l")==0, normalization=%t,end
+    if exists("polygon","l")==0, polygon=%f,end
 
     // Now parse optional arguments to be sent to plot2d
-    opt_arg_seq = []
+    opt_arg_seq = "";
     opt_arg_list = ["style","strf","leg","rect","nax","logflag","frameflag","axesflag"]
     for opt_arg = opt_arg_list
         if exists(opt_arg,"local") then
             opt_arg_seq = opt_arg_seq +","+ opt_arg + "=" + opt_arg
         end
     end
-
     [y, ind] = histc(n, data, normalization);
 
     if length(n) == 1 then  // The number of classes is provided
@@ -119,5 +122,16 @@ function [y, ind] = histplot(n,data,style,strf,leg,rect,nax,logflag,frameflag,ax
         execstr("plot2d(X,Y"+opt_arg_seq+")")
         if polygon then plot(xp,yp,"r-o"), end // new line
     end
-
+    e = gca();
+    if polygon then
+        e = e.children(2).children
+    else
+        e = e.children(1).children
+    end
+    e.fill_mode = "on";
+    e.data(:,3) = -0.1;  // unmask the x-axis
+    c = e.foreground;
+    f = gcf();
+    c = f.color_map(max(1,c),:)
+    e.background = addcolor(1-(1-c)/20); // default filling color = edges one but fainter
 endfunction

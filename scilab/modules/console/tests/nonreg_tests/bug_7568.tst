@@ -7,6 +7,7 @@
 
 // <-- INTERACTIVE TEST -->
 // <-- TEST WITH CONSOLE -->
+// <-- LINUX ONLY -->
 //
 // <-- Non-regression test for bug 7568 -->
 //

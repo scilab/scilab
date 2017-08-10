@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="Scierror" xml:lang="ja">
+    <refnamediv>
+        <refname>Scierror</refname>
+        <refpurpose>エラーメッセージをユーザーに表示するCゲートウェイ関数
+            (printf関数と同じプロファイル)で,
+            エラーレベルを示す整数値を返す
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>void Scierror(error_level,format,value_1,..,value_n)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>error_level</term>
+                <listitem>
+                    <para>エラーレベルを示す整数値</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>format</term>
+                <listitem>
+                    <para>char* 文字列.
+                        変換指示を含むリテラル文字を結合した文字列を指定.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>value_i</term>
+                <listitem>
+                    <para>
+                        フォーマットパラメータに基づき変換した
+                        データを指定する.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>returns</term>
+                <listitem>
+                    <para>
+                        処理が成功した場合,
+                        この関数は出力した文字数(文字列の終端に
+                        使用される末尾の '\0' を含まない)を返します.
+                    </para>
+                    <para>エラーが発生した場合, 負の値を返します.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            Scierror はエラーメッセージをユーザに表示するためのC ゲートウェイ関数
+            (printf関数と同じプロファイル)で,エラーレベルを表す整数値を返します.
+            この関数を使用するには Scierror.h を読み込む必要があります.
+            このヘッダは output_stream モジュールで提供されています
+            (このディレクトリはデフォルトで読み込まれます).
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <para>この例は, Cゲートウェイ関数はエラーメッセージを出力し,
+            エラーレベル133を返します.
+        </para>
+        <programlisting role="example"><![CDATA[
+#include <stack-c.h>
+#include <Scierror.h>
+int sci_myscierror(char * fname)
+{
+  Scierror(133,"An error has occurred: %d\n", 1);
+  return 0;
+}
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="printf_conversion">printf_conversion</link>
+            </member>
+            <member>
+                <link linkend="mprintf">mprintf</link>
+            </member>
+            <member>
+                <link linkend="sciprint">sciprint</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

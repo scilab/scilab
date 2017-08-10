@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="pt" xml:id="lin">
+    <refnamediv>
+        <refname>lin</refname>
+        <refpurpose>linearization</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[A,B,C,D]=lin(sim,x0,u0)
+            [sl]=lin(sim,x0,u0)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>sim</term>
+                <listitem>
+                    <para>function</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x0, u0</term>
+                <listitem>
+                    <para>vectors of compatible dimensions</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>A,B,C,D</term>
+                <listitem>
+                    <para>real matrices</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sl</term>
+                <listitem>
+                    <para>
+                        <literal>syslin</literal> list
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            linearization of the non-linear system <literal>[y,xdot]=sim(x,u)</literal>
+            around <literal>x0,u0</literal>.
+        </para>
+        <para>
+            <literal>sim</literal> is a function which computes <literal>y</literal> and <literal>xdot</literal>.
+        </para>
+        <para>
+            The output is a linear system (<literal>syslin</literal> list) <literal>sl</literal> or the
+            four matrices <literal>(A,B,C,D)</literal>
+        </para>
+        <para>
+            For example, if <literal>ftz</literal> is the function passed to ode e.g.
+        </para>
+        <programlisting role=""><![CDATA[
+[zd]=ftz(t,z,u)
+ ]]></programlisting>
+        <para>
+            and if we assume that <literal>y=x</literal>
+        </para>
+        <para>
+            <literal>[z]=ode(x0,t0,tf,list(ftz,u)</literal> compute <literal>x(tf)</literal>.
+        </para>
+        <para>
+            If <literal>simula</literal> is the following function:
+        </para>
+        <programlisting role=""><![CDATA[
+deff('[y,xd]=simula(x,u)','xd=ftz(tf,x,u); y=x;');
+ ]]></programlisting>
+        <para>
+            the tangent linear system <literal>sl</literal> can be obtained by:
+        </para>
+        <programlisting role=""><![CDATA[
+[A,B,C,D]=lin(simula,z,u)
+sl = syslin('c',A,B,C,D,x0)
+ ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+deff('[y,xdot]=sim(x,u)','xdot=[u*sin(x);-u*x^2];y=xdot(1)+xdot(2)')
+sl=lin(sim,1,2);
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="external">external</link>
+            </member>
+            <member>
+                <link linkend="derivat">derivat</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

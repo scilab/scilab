@@ -2,27 +2,30 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="unique" xml:lang="ru">
     <refnamediv>
         <refname>unique</refname>
-        <refpurpose>выделяет уникальные компоненты вектора или матрицы</refpurpose>
+        <refpurpose>удалить все повторяющиеся компоненты из вектора или матрицы</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
-            [N [,k]]=unique(M)
-            [N [,k]]=unique(M ,orient)
+            [N ,k] = unique(M)
+            [N ,k] = unique(M ,orient)
         </synopsis>
     </refsynopsisdiv>
-    <refsection>
+    <refsection role="parameters">
         <title>Аргументы</title>
         <variablelist>
             <varlistentry>
@@ -51,50 +54,48 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Описание</title>
         <para>
-            <literal>unique(M)</literal> возвращает вектор, который содержит уникальные элементы 
+            <literal>unique(M)</literal> возвращает вектор, который содержит уникальные элементы
             <literal>M</literal> в порядке возрастания.
         </para>
         <para>
-            <literal>unique(M,"r")</literal> или <literal>unique(M,1)</literal> возвращает 
+            <literal>unique(M,"r")</literal> или <literal>unique(M,1)</literal> возвращает
             уникальные строки <literal>M</literal> в лексикографическом порядке возрастания.
         </para>
         <para>
-            <literal>unique(M,"c")</literal> или <literal>unique(M,2)</literal> возвращает 
+            <literal>unique(M,"c")</literal> или <literal>unique(M,2)</literal> возвращает
             уникальные столбцы <literal>M</literal> в лексикографическом порядке возрастания.
         </para>
         <para>
             Если нужно, выходной аргумент <literal>k</literal> содержит положение первых из насчитанных уникальных элементов.
         </para>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
-M=round(2*rand(20,1));
- 
+        <programlisting role="example"><![CDATA[
+M = round(2*rand(20,1));
 unique(M)
-[N,k]=unique(M)
- 
+[N,k] = unique(M)
+
 unique(string(M))
-[N,k]=unique(string(M))
- 
+[N,k] = unique(string(M))
+
 A = [0,0,1,1;
      0,1,1,1;
      2,0,1,1;
      0,2,2,2;
      2,0,1,1;
      0,0,1,1];
-T='x'+string(A);
- 
+T = 'x' + string(A);
+
 //уникальные строки
- 
-[m,k]=unique(A,'r')
+[m,k] = unique(A,'r')
 unique(T,'r')
- 
+
 //уникальные столбцы
-[m,k]=unique(T,'c')
+[m,k] = unique(T,'c')
 unique(A,'c')
  ]]></programlisting>
     </refsection>
@@ -102,16 +103,16 @@ unique(A,'c')
         <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
-                <link linkend="union">union</link>
-            </member>
-            <member>
-                <link linkend="intersect">intersect</link>
+                <link linkend="members">members</link>
             </member>
             <member>
                 <link linkend="gsort">gsort</link>
             </member>
             <member>
-                <link linkend="lex_sort">lex_sort</link>
+                <link linkend="union">union</link>
+            </member>
+            <member>
+                <link linkend="intersect">intersect</link>
             </member>
         </simplelist>
     </refsection>

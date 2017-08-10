@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="cellstr" xml:lang="ru">
+    <refnamediv>
+        <refname>cellstr</refname>
+        <refpurpose>преобразует вектор строк (или матрицу строк) в cell-массив строк</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Синтаксис</title>
+        <synopsis>c=cellstr(s)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>s</term>
+                <listitem>
+                    <para>вектор строк или матрица строк</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>cellstr(s) возвращает cell-массив строк</para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    Если <literal>s</literal> является вектором-строкой строковых значений, то
+                    <literal>cellstr(s)</literal> возвращает cell-массив размером 1x1, который содержит один элемент (конкатенация элементов всех столбцов <literal>s</literal>.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Если <literal>s</literal> является вектором-столбцом строк, то
+                    <literal>cellstr(s)</literal> преобразует <literal>s</literal> в cell-массив строк,
+                    который имеет тот же размер: <literal>(size(s,1)-by-one)</literal>.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Если <literal>s</literal> является матрицей строк, то для каждой <literal>i</literal>-той строки <literal>s</literal> <literal>cellstr(s)</literal> конкатенирует все элементы
+                    (т. е. <literal>s(i,1)</literal>, <literal>s(i,2)</literal>,
+                    <literal>s(i,3)</literal>,...) и возвращает cell-массив строк размером <literal>size(s,1)</literal> на 1.
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+cellstr("foo")
+cellstr(["sci","lab"])
+cellstr(["abc","def",'gh';"i","j","klm"])
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="cell">cell</link>
+            </member>
+            <member>
+                <link linkend="makecell">makecell</link>
+            </member>
+            <member>
+                <link linkend="string">string</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

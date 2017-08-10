@@ -24,7 +24,6 @@ for m=1:M;
   end
 end
 F = find(R<>0)
- F  =
- 
-     []
+ F  = 
+    []
 assert_checktrue(isempty(F));

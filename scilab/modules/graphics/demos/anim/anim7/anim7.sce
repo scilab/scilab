@@ -60,13 +60,13 @@ function demo_anim7()
     e = gce();
     data=e.data;
     title("shell","fontsize",3)
+    isoview()
 
     curAxe=gca();
     // set 3D boundaries
     curAxe.data_bounds=[-15 -5 -10; 10  5  12];
     //set view angles
     curAxe.rotation_angles=[103 138];
-    curAxe.isoView = "on";
 
 
     //animation loop

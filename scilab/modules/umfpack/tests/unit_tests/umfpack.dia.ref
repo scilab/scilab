@@ -9,7 +9,7 @@ assert_checkfalse(execstr("umfpack()"   ,"errcatch") == 0);
 refMsg = msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "umfpack", 3);
 assert_checkerror("umfpack()", refMsg);
 assert_checkfalse(execstr("umfpack(speye(3,3), 2, 2)"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"), "umfpack", 2);
+refMsg = msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"), "umfpack", 2);
 assert_checkerror("umfpack(speye(3,3), 2, 2)", refMsg);
 assert_checkfalse(execstr("umfpack(1, ""\"", 2)"   ,"errcatch") == 0);
 refMsg = msprintf(_("%s: Wrong type for input argument #%d: A sparse matrix expected.\n"), "umfpack", 1);

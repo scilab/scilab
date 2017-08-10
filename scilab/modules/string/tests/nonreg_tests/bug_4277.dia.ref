@@ -16,7 +16,7 @@
 //
 //==============================================================
 subject = "subject with the é accentued letter";
-if strsubst(subject,'/é/','e','r') <> 'subject with the e accentued letter' then bugmes();quit;end
-if strsubst(subject,'/[é]/','e','r')<> 'subject with the e accentued letter' then bugmes();quit;end
-if strsubst(subject,'/[c]/','e','r') <> 'subjeet with the é accentued letter' then bugmes();quit;end
+if strsubst(subject,"/é/","e","r") <> "subject with the e accentued letter" then bugmes();quit;end
+if strsubst(subject,"/[é]/","e","r")<> "subject with the e accentued letter" then bugmes();quit;end
+if strsubst(subject,"/[c]/","e","r") <> "subjeet with the é aeeentued letter" then bugmes();quit;end
 //==============================================================

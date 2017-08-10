@@ -2,36 +2,43 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Jean-Baptiste SILVY
- * Copyright (C) 2013 - Samuel GOUGEON (5.5.0)
+ * Copyright (C) 2013, 2016 - Samuel GOUGEON
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="resize_matrix" xml:lang="fr">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="resize_matrix" xml:lang="fr">
     <refnamediv>
         <refname>resize_matrix</refname>
         <refpurpose>élague et/ou étend (et convertit) une matrice ou une hypermatrice</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Séquence d'appel</title>
+        <title>Syntaxe</title>
         <synopsis>
+                     resize_matrix    //  Démo
             resMat = resize_matrix(mat, nbRows, nbCols)
-            
+
             resMat = resize_matrix(mat, nbRows, nbCols, resType)
             resMat = resize_matrix(mat, nbRows, nbCols, resType, padding)
             resMat = resize_matrix(mat, nbRows, nbCols,    ""  , padding)
-            
+
             resMat = resize_matrix(mat, newSizes)
             resMat = resize_matrix(mat, newSizes, resType)
             resMat = resize_matrix(mat, newSizes, resType, padding)
             resMat = resize_matrix(mat, newSizes,    ""  , padding)
         </synopsis>
     </refsynopsisdiv>
-    <refsection>
+    <refsection role="parameters">
         <title>Paramètres</title>
         <variablelist>
             <varlistentry>
@@ -44,20 +51,30 @@
             <varlistentry>
                 <term>nbRows</term>
                 <listitem>
-                    <para>nouveau nombre de lignes de la matrice retaillée. Les lignes en trop sont supprimées. Les lignes manquantes sont créées.</para>
+                    <para>nouveau nombre de lignes de la matrice retaillée. Les lignes en trop sont
+                      supprimées. Les lignes manquantes sont créées.
+                     Spécifier <literal>nbRows &lt; 0</literal> pour conserver le nombre de
+                      lignes courant.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>nbCols</term>
                 <listitem>
-                    <para>nouveau nombre de colonnes de la matrice retaillée. Les colonnes en trop sont supprimées. Les colonnes manquantes sont créées.</para>
+                    <para>nouveau nombre de colonnes de la matrice retaillée. Les colonnes en trop
+                      sont supprimées. Les colonnes manquantes sont créées.
+                     Spécifier <literal>nbCols &lt; 0</literal> pour conserver le nombre de
+                      colonnes courant.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>newSizes</term>
                 <listitem>
                     <para>
-                        vecteur spécifiant la nouvelle taille de <literal>mat</literal> selon chacune de ses dimensions.
+                        vecteur spécifiant les nouvelles tailles de <literal>mat</literal> selon
+                        ses différentes dimensions.
+                        Pour conserver une taille à la taille actuelle, indiquer -1.
                     </para>
                     <para>
                         S'il est plus court que <literal>size(mat)</literal>, il est complété avec des 1. Exemple: si <varname>mat</varname> telle que <literal>size(mat)==[ 4 3 3 2]</literal> est fournie, et <literal>newSizes=[6 2]</literal> est spécifié, <literal>newSizes = [6 2 1 1]</literal> sera utilisé.
@@ -99,7 +116,7 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Description</title>
         <para>
             Crée une matrice de taille <literal>[nbRows, nbCols]</literal> ou <literal>newSizes</literal>, ou une hypermatrice de taille <literal>newSizes</literal>.
@@ -107,18 +124,48 @@
             Le nombre de dimensions peut être augmenté.
         </para>
         <para>
-            Le type du retour peut être modifié en spécifiant l'argument <literal>resType</literal>, avec les restrictions mentionnées ci-dessus.
+            Le type du résultat peut être modifié en spécifiant l'argument <literal>resType</literal>,
+            avec les restrictions mentionnées ci-dessus.
         </para>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Exemples</title>
         <programlisting role="example"><![CDATA[
 // Exemples de démonstration, dont avec des polynômes :
 resize_matrix
 
-// Matrice numérique
+// Retaillage d'une matrice numérique
 M = grand(4, 3, "uin", -9, 9)
+resize_matrix(M, -1, 5)  //  Indiquer -1 pour conserver la taille courante
+resize_matrix(M, 2, -1)
 resize_matrix(M, 3, 4)
+ ]]></programlisting>
+    <screen><![CDATA[--> M = grand(4, 3, "uin", -9, 9)
+ M  =
+  -8.  -5.  -2.
+  -9.   0.  -1.
+   4.  -1.   6.
+   5.   1.   8.
+
+--> resize_matrix(M, -1, 5)  //  Indiquer -1 pour conserver la taille courante
+ ans  =
+  -8.  -5.  -2.   0.   0.
+  -9.   0.  -1.   0.   0.
+   4.  -1.   6.   0.   0.
+   5.   1.   8.   0.   0.
+
+--> resize_matrix(M, 2, -1)
+ ans  =
+  -8.  -5.  -2.
+  -9.   0.  -1.
+
+--> resize_matrix(M, 3, 4)
+ ans  =
+  -8.  -5.  -2.   0.
+  -9.   0.  -1.   0.
+   4.  -1.   6.   0.
+]]></screen>
+        <programlisting role="example"><![CDATA[
 resize_matrix(M, [3 4 2])
 resize_matrix(M, [3 4 2], "", %i)
 resize_matrix(M, [3 4 2], "string", %i)
@@ -165,11 +212,11 @@ resize_matrix(P, [3 3 2], "", %z)
                 <link linkend="strtod">strtod</link>
             </member>
             <member>
-                <link linkend="strtod">string</link>
+                <link linkend="string">string</link>
             </member>
         </simplelist>
     </refsection>
-    <refsection>
+    <refsection role="history">
         <title>Historique</title>
         <revhistory>
             <revision>

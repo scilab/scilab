@@ -2,19 +2,22 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2014 - Scilab Enterprises - Calixte DENIZET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
 #ifndef __DECORATOR_HXX__
 #define __DECORATOR_HXX__
 
-#include "call/Call.hxx"
 #include "Result.hxx"
+#include "OptionalDecoration.hxx"
 
 #include <iostream>
 
@@ -24,53 +27,108 @@ namespace analysis
 struct Decorator
 {
     Result res;
-    Call * call;
-    bool cloneData;
+    OptionalDecoration opt;
     bool deleteData;
-    bool hasRefCount;
     bool safe;
 
-    Decorator() : res(), call(nullptr), cloneData(false), deleteData(false), hasRefCount(false), safe(false) { }
+    Decorator() : res(), opt(), deleteData(false), safe(false) { }
 
     ~Decorator()
     {
-        delete call;
     }
 
     inline Call * getCall() const
     {
-        return call;
+        return opt.get<Call>();
     }
 
     inline Call & setCall(Call * _call)
     {
-        delete call;
-        call = _call;
-        return *call;
+        opt.set(_call);
+        return *_call;
     }
 
     inline Call & setCall(const std::wstring & name)
     {
-        delete call;
-        call = new Call(name);
+        Call * call = new Call(name);
+        opt.set(call);
         return *call;
     }
 
     inline Call & setCall(const std::wstring & name, const std::vector<TIType> & args)
     {
-        delete call;
-        call = new Call(name, args);
+        Call * call = new Call(name, args);
+        opt.set(call);
         return *call;
     }
 
     inline Call & setCall(const std::wstring & name, const TIType & arg)
     {
-        delete call;
-        call = new Call(name, arg);
+        Call * call = new Call(name, arg);
+        opt.set(call);
         return *call;
     }
 
+    inline LoopDecoration * getLoopDecoration() const
+    {
+        return opt.get<LoopDecoration>();
+    }
+
+    inline LoopDecoration & setLoopDecoration(LoopDecoration * _ld)
+    {
+        opt.set(_ld);
+        return *_ld;
+    }
+
+    inline void addClone(const symbol::Symbol & sym)
+    {
+        LoopDecoration * ld = opt.get<LoopDecoration>();
+        if (ld)
+        {
+            ld->addClone(sym);
+        }
+        else
+        {
+            ld = new LoopDecoration();
+            ld->addClone(sym);
+            opt.set(ld);
+        }
+    }
+
+    inline void addPromotion(const symbol::Symbol & sym, const TIType & first, const TIType & second)
+    {
+        LoopDecoration * ld = opt.get<LoopDecoration>();
+        if (ld)
+        {
+            ld->addPromotion(sym, first, second);
+        }
+        else
+        {
+            ld = new LoopDecoration();
+            ld->addPromotion(sym, first, second);
+            opt.set(ld);
+        }
+    }
+
+    inline DollarInfo & setDollarInfo(const DollarInfo & di)
+    {
+        DollarInfo * _di = new DollarInfo(di);
+        opt.set(_di);
+        return *_di;
+    }
+
+    inline DollarInfo * getDollarInfo() const
+    {
+        return opt.get<DollarInfo>();
+    }
+
     inline Result & setResult(Result && _res)
+    {
+        res = _res;
+        return res;
+    }
+
+    inline Result & setResult(Result & _res)
     {
         res = _res;
         return res;
@@ -89,14 +147,18 @@ struct Decorator
     friend std::wostream & operator<<(std::wostream & out, const Decorator & deco)
     {
         out << deco.res;
-        if (deco.call)
+        if (!deco.opt.empty())
         {
-            out << L", " << (*deco.call);
+            out << L", " << deco.opt;
         }
-        out << L", Cl:" << (deco.cloneData ? L"T" : L"F")
-            << L", Del:" << (deco.deleteData ? L"T" : L"F")
-            << L", RefC:" << (deco.hasRefCount ? L"T" : L"F")
-            << L", Safe:" << (deco.safe ? L"T" : L"F");
+        if (deco.deleteData)
+        {
+            out << L", Del: T";
+        }
+        if (deco.safe)
+        {
+            out << L", Safe: T";
+        }
 
         return out;
     }

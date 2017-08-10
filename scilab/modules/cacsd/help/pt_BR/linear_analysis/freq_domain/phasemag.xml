@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="pt" xml:id="phasemag">
+    <refnamediv>
+        <refname>phasemag</refname>
+        <refpurpose>phase and magnitude
+            computation
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[phi,db]=phasemag(z [,mod])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>z</term>
+                <listitem>
+                    <para>matrix or row vector of complex numbers.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>mod</term>
+                <listitem>
+                    <para>character string</para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>mod='c'</term>
+                            <listitem>
+                                <para>"continuous" representation between -infinity and +360
+                                    degrees (default)
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>mod='m'</term>
+                            <listitem>
+                                <para>representation between -360 and 0 degrees</para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>phi</term>
+                <listitem>
+                    <para>
+                        phases (in degree) of <literal>z</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>db</term>
+                <listitem>
+                    <para>magnitude (in Db)</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>phasemag</literal> computes the phases and magnitudes of the entries
+            of a complex matrix. For <literal>mod='c'</literal><literal>phasemag</literal>
+            computes <literal>phi(:,i+1)</literal> to minimize the distance with
+            <literal>phi(:,i)</literal>, i.e. it tries to obtain a "continuous
+            representation" of the phase.
+        </para>
+        <para>To obtain the phase between -%pi and %pi use
+            <literal>phi=atan(imag(z),real(z))</literal>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+s=poly(0,'s');
+h=syslin('c',1/((s+5)*(s+10)*(100+6*s+s*s)*(s+.3)));
+[frq,rf]=repfreq(h,0.1,20,0.005);
+scf();
+plot2d(frq',phasemag(rf,'c')');
+scf();
+plot2d(frq',phasemag(rf,'m')');
+ ]]></programlisting>
+        <scilab:image>
+            s=poly(0,'s');
+            h=syslin('c',1/((s+5)*(s+10)*(100+6*s+s*s)*(s+.3)));
+            [frq,rf]=repfreq(h,0.1,20,0.005);
+            plot2d(frq',phasemag(rf,'c')');
+        </scilab:image>
+        <scilab:image>
+            s=poly(0,'s');
+            h=syslin('c',1/((s+5)*(s+10)*(100+6*s+s*s)*(s+.3)));
+            [frq,rf]=repfreq(h,0.1,20,0.005);
+            plot2d(frq',phasemag(rf,'m')');
+        </scilab:image>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="repfreq">repfreq</link>
+            </member>
+            <member>
+                <link linkend="gainplot">gainplot</link>
+            </member>
+            <member>
+                <link linkend="atan">atan</link>
+            </member>
+            <member>
+                <link linkend="bode">bode</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

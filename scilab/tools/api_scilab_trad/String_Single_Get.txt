@@ -12,7 +12,7 @@
 \1// DO NOT FORGET TO RELEASE MEMORY via freeAllocatedSingleString(\5).
 \1if (getAllocatedSingleString(pvApiCtx, piAddr\5, &\5))\6
 \1{
-\1    Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, \2);
+\1    Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, \2);
 \1    return 1;
 \1}
 

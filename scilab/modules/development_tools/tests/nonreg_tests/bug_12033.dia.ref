@@ -13,7 +13,6 @@
 // <-- Short Description -->
 // assert_checkalmostequal was failing with two %inf values.
 ret=assert_checkalmostequal ( %inf , %inf, 1.e-10)
- ret  =
- 
-  T  
+ ret  = 
+  T
 assert_checkequal(ret, %t);

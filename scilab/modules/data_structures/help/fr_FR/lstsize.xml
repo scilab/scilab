@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="lstsize" xml:lang="fr">
+    <refnamediv>
+        <refname>lstsize</refname>
+        <refpurpose>nombre d'éléments des objets list, tlist et mlist</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>n=lstsize(l)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>l</term>
+                <listitem>
+                    <para>un object de type list, tlist ou mlist</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>un entier, le nombre d'éléments de la liste</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>lstsize(x)</literal> retourne le nombre d'élément d'un
+            objet de type list, tlist ou mlist. Cette fonction est plus efficace que
+            la fonction <literal>size</literal> et à la même signification pour tous
+            les objets de type list tandis que <literal>size</literal> est surcharge
+            pour les objets de type <literal>mlist</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[
+lstsize(list(1,'aqsdf'))
+x=ssrand(3,2,4);
+[ny,nu]=size(x)
+lstsize(x)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="length">length</link>
+            </member>
+            <member>
+                <link linkend="size">size</link>
+            </member>
+            <member>
+                <link linkend="list">list</link>
+            </member>
+            <member>
+                <link linkend="tlist">tlist</link>
+            </member>
+            <member>
+                <link linkend="mlist">mlist</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

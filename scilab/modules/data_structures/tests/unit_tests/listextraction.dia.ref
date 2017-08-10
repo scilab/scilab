@@ -7,9 +7,8 @@
 // <-- CLI SHELL MODE -->
 // test des insertions dans les listes
 a=1,b=3;c=2;d=[1 2 3];e=[3 4 5];f=[10;20];g=[44 55];
- a  =
- 
-    1.  
+ a  = 
+    1.
 h=5;i=4;a0=10;c0=20;b0=30;g0=[44 55 66; 10 20 30];
 l=list(a);if l(1)<>a then bugmes();quit;end
 l=list(a);if l(1)(1)<>a(1) then bugmes();quit;end
@@ -41,9 +40,8 @@ l=list(a,1/%s,g);if l(2)<>1/%s then bugmes();quit;end
 l=list(a,1/%s,g);if l(2)('num')<>1 then bugmes();quit;end
 l=list(a,1/%s,g);if l(2)('den')(1,1)<>%s then bugmes();quit;end
 a=1:10,b=3:2:33;c=(-10:0)';d=[1 2+%s 3];e=['1';'2';'3';'4'];
- a  =
- 
-    1.    2.    3.    4.    5.    6.    7.    8.    9.    10.  
+ a  = 
+    1.    2.    3.    4.    5.    6.    7.    8.    9.    10.
 f=[%t %t %f];g=['12345','abcdefghijk'];
 h=rand(3,3);i=eye(10,10);a0=10+%s;c0=20;b0=sparse(eye(30,30));
 l=list(a);if l(1)<>a then bugmes();quit;end

@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2011 - DIGITEO - Antoine ELIAS
@@ -25,3 +26,4 @@ lusparse = umf_lufact(A);
 err = execstr("save(TMPDIR + ""/lusparse.sod"",""lusparse"")", "errcatch");
 assert_checktrue(err <> 0);
 if ls(TMPDIR+"/lusparse.sod") <> [] then pause end
+umf_ludel(lusparse);

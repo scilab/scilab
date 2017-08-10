@@ -14,19 +14,26 @@
 //
 // <-- Short Description -->
 // Check that an erroneous "From workspace" block does not produce an error.
-// 
+//
 result = importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_8674.zcos");
 if (result <> %T) then bugmes();quit;end
 // overwrtie dialogs
 prot = funcprot();
 funcprot(0);
-function [btn] = messagebox(msg, msgboxtitle, msgboxicon, buttons, ismodal)
-    btn = 1;
-endfunction
 function result = dialog(labels,valueini)
     result = valueini;
 endfunction
 funcprot(prot);
 %cpr = xcos_simulate(scs_m, 4);
- 
- The 'V' variable does not exist.   
+!messagebox: Not enough information to find port sizes.  !
+!                                                        !
+!messagebox: I try to find the problem.                  !
+ <html><body><em>Please update the diagram to avoid this warning.</em>< 
+ br />Block output port has a non-determined size:<ul><li>Output port 1 
+  size is: 1</li><li>Input port 1 size is: 1</li></ul></body></html>   
+ <html><body><em>Please update the diagram to avoid this warning.</em>< 
+ br />Block input port has a non-determined size:<ul><li>Output port 1  
+ size is: 1</li><li>Input port 1 size is: 1</li></ul></body></html>    
+ The 'V' variable does not exist.
+ <html><body>Initialisation problem: <br/>The 'V' variable does not exi 
+ st.</body></html>                                                     

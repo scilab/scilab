@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="findx0BD">
+    <refnamediv>
+        <refname>findx0BD</refname>
+        <refpurpose>Estimates state and B and D matrices of a discrete-time linear system</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[X0,B,D] = findx0BD(A,C,Y,U,WITHX0,WITHD,TOL,PRINTW)
+            [x0,B,D,V,rcnd] = findx0BD(A,C,Y,U)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>A</term>
+                <listitem>
+                    <para>state matrix of the system</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>C</term>
+                <listitem>
+                    <para>C matrix of the system</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Y</term>
+                <listitem>
+                    <para>system output</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>U</term>
+                <listitem>
+                    <para>system input</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>WITHX0</term>
+                <listitem>
+                    <para>a switch for estimating the initial state x0.</para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>1: estimate x0;</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>0: do not estimate x0.</para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                    <para>
+                        Default:    WITHX0 = 1.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>WITHD</term>
+                <listitem>
+                    <para>a switch for estimating the matrix D.</para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>1: estimate the matrix D;</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>0: do not estimate the matrix D.</para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                    <para>
+                        Default:    WITHD = 1.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>TOL</term>
+                <listitem>
+                    <para>the tolerance used for estimating the rank of matrices.  If  TOL &gt; 0,  then the given value of  TOL  is used as a lower bound for the reciprocal condition number. Default:    prod(size(matrix))*epsilon_machine where epsilon_machine             is the relative machine precision.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>PRINTW</term>
+                <listitem>
+                    <para>a switch for printing the warning messages.</para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>1: print warning messages;</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>0: do not print warning messages.</para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                    <para>
+                        Default:    PRINTW = 0.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>X0</term>
+                <listitem>
+                    <para>initial state of the estimated linear system.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>B</term>
+                <listitem>
+                    <para>B matrix of the estimated linear system.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>D</term>
+                <listitem>
+                    <para>D matrix of the estimated linear system.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>V</term>
+                <listitem>
+                    <para>orthogonal matrix which reduces the system state matrix A to a real Schur form</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>rcnd</term>
+                <listitem>
+                    <para>estimates of the reciprocal condition numbers of the matrices involved in rank decisions.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            findx0BD  Estimates the initial state and/or the matrices B and D of a
+            discrete-time linear system, given the (estimated) system
+            matrices A, C, and a set of input/output data.
+        </para>
+        <para>
+            [X0,B,D] = findx0BD(A,C,Y,U,WITHX0,WITHD,TOL,PRINTW)  estimates the
+            initial state X0 and the matrices B and D of a discrete-time
+            system using the system matrices A, C, output data Y and the input
+            data U. The model structure is :
+        </para>
+        <programlisting role=""><![CDATA[
+x(k+1) = Ax(k) + Bu(k),   k >= 1,
+y(k)   = Cx(k) + Du(k),
+ ]]></programlisting>
+        <para>
+            The vectors y(k) and u(k) are transposes of the k-th rows of Y and U,
+            respectively.
+        </para>
+        <para>
+            [x0,B,D,V,rcnd] = findx0BD(A,C,Y,U)  also returns the orthogonal
+            matrix V which reduces the system state matrix A to a real Schur
+            form, as well as some estimates of the reciprocal condition numbers
+            of the matrices involved in rank decisions.
+        </para>
+        <programlisting role=""><![CDATA[
+    B = findx0BD(A,C,Y,U,0,0)  returns B only, and
+[B,D] = findx0BD(A,C,Y,U,0)    returns B and D only.
+ ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+//generate data from a given linear system
+A = [ 0.5, 0.1,-0.1, 0.2;
+      0.1, 0,  -0.1,-0.1;
+     -0.4,-0.6,-0.7,-0.1;
+      0.8, 0,  -0.6,-0.6];
+B = [0.8;0.1;1;-1];
+C = [1 2 -1 0];
+SYS=syslin(0.1,A,B,C);
+nsmp=100;
+U=prbs_a(nsmp,nsmp/5);
+Y=(flts(U,SYS)+0.3*rand(1,nsmp,'normal'));
+
+// Compute R
+S=15;L=1;
+[R,N,SVAL] = findR(S,Y',U');
+
+N=3;
+METH=3;TOL=-1;
+[A,C] = findAC(S,N,L,R,METH,TOL);
+
+[X0,B,D,V,rcnd] = findx0BD(A,C,Y',U');
+SYS1=syslin(1,A,B,C,D,X0);
+
+Y1=flts(U,SYS1);
+clf();plot2d((1:nsmp)',[Y',Y1'])
+]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="findBD">findBD</link>
+            </member>
+            <member>
+                <link linkend="inistate">inistate</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

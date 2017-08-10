@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Add some comments about XML file
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"  xmlns:scilab="http://www.scilab.org" xml:lang="en_US" xml:id="nyquistfrequencybounds">
+    <refnamediv>
+        <refname>nyquistfrequencybounds</refname>
+        <refpurpose>Computes the frequencies for which the nyquist locus enters and leaves a given rectangle. </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[fmin,fmax] = nyquistfrequencybounds(H,bounds)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parameters</title>
+        <variablelist>
+            <varlistentry>
+                <term>H</term>
+                <listitem>
+                    <para>
+                        A SISO linear dynamical system.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>bounds</term>
+                <listitem>
+                    <para>
+                        A 2 by 2 array: [Rmin Imin;Rmax Imax] that defines a complex-plane rectangle.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fmin</term>
+                <listitem>
+                    <para>
+                        a real: the lowest frequency (Hz) such that the nyquist
+                        locus enters the given rectangle or 0 if the 0 Hz point
+                        lies in the rectangle or [] if the locus is completely
+                        outside the rectangle.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fmax</term>
+                <listitem>
+                    <para>
+                        a real: the highest frequency (Hz) such that the nyquist
+                        locus leaves the given rectangle or %inf if the %inf (hz)
+                        point is in the rectangle or [] if the locus is completely
+                        outside the rectangle.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title><para>
+            Given a C plane rectangle,
+            <literal>nyquistfrequencybounds</literal> Computes the lowest
+            frequency for which the nyquist locus enters the rectangle and
+            the highest frequency for which the nyquist locus leaves the
+            rectangle.
+        </para>
+        This function is useful for high definition zoom of a nyquist locus.
+        <para>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+    s=%s
+    num=2+9*s-9*s^2-11*s^3+0.01*s^4;
+    den=43*s^2+65*s^3+34*s^4+8*s^5+s^6+0.1*s^7
+    H=syslin('c',num,den)-1
+
+    clf;set(gcf(),'axes_size',[805,549])
+    subplot(221)
+    nyquist(H)
+
+
+    subplot(222)
+    bounds=[-2 -2;2 2]
+    [fmin,fmax]=nyquistfrequencybounds(H,bounds)
+    nyquist(H,fmin,fmax)
+    title("bounds:"+sci2exp(bounds,0));
+
+
+    subplot(223)
+    bounds=[-1.3 -0.3;0 0.3]
+    [fmin,fmax]=nyquistfrequencybounds(H,bounds)
+    nyquist(H,fmin,fmax)
+    title("bounds:"+sci2exp(bounds,0));
+
+    subplot(224)
+    bounds=[-1.1 -0.1;-0.8 0.1]
+    [fmin,fmax]=nyquistfrequencybounds(H,bounds)
+    nyquist(H,fmin,1d8)
+    title("bounds:"+sci2exp(bounds,0));
+
+    ]]></programlisting>
+        <para>
+            <scilab:image>
+                s=%s
+                num=2+9*s-9*s^2-11*s^3+0.01*s^4;
+                den=43*s^2+65*s^3+34*s^4+8*s^5+s^6+0.1*s^7
+                H=syslin('c',num,den)-1
+
+                clf;set(gcf(),'axes_size',[805,549])
+                subplot(221)
+                nyquist(H)
+
+
+                subplot(222)
+                bounds=[-2 -2;2 2]
+                [fmin,fmax]=nyquistfrequencybounds(H,bounds)
+                nyquist(H,fmin,fmax)
+                title("bounds:"+sci2exp(bounds,0));
+
+
+                subplot(223)
+                bounds=[-1.3 -0.3;0 0.3]
+                [fmin,fmax]=nyquistfrequencybounds(H,bounds)
+                nyquist(H,fmin,fmax)
+                title("bounds:"+sci2exp(bounds,0));
+
+                subplot(224)
+                bounds=[-1.1 -0.1;-0.8 0.1]
+                [fmin,fmax]=nyquistfrequencybounds(H,bounds)
+                nyquist(H,fmin,1d8)
+                title("bounds:"+sci2exp(bounds,0));
+
+            </scilab:image>
+        </para>
+    </refsection>
+    <refsection>
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="nyquist">nyquist</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

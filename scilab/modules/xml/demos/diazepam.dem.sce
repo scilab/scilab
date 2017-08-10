@@ -3,9 +3,10 @@
 //
 // This file is released under the 3-clause BSD license. See COPYING-BSD.
 
+prot = funcprot();
+funcprot(0);
+
 function diazepam_demo()
-
-
 
     my_test_fig = figure(100001);
     my_test_fig.figure_name = "Display of a molecule of diazepam from a CML file (XML)";
@@ -14,9 +15,6 @@ function diazepam_demo()
     demo_viewCode(filename);
 
     listDisplayed = struct();
-
-    prot = funcprot();
-    funcprot(0);
 
     function displayAtom(atomName)
         if ~isfield(listDisplayed,atomName) then
@@ -40,8 +38,6 @@ function diazepam_demo()
         coord = xmlAsNumber(atomX);
         elemType = xmlXPath(xp(1), "string(string[@builtin=''elementType''])");
     endfunction
-
-    funcprot(prot);
 
     xmlAtomsColors = xmlRead(SCI + "/modules/xml/demos/atoms_colors.xml");
     xmlFile = xmlRead(SCI + "/modules/xml/demos/diazepam.xml");
@@ -82,7 +78,6 @@ function diazepam_demo()
             coords(:, $ + 1) = x2 + 0.1 * u;
         end
     end
-    coords = coords(:, 2:$);
 
     xsegs(coords(1, :), coords(2, :));
 
@@ -97,6 +92,8 @@ function diazepam_demo()
     xmlDelete(xmlAtomsColors, xmlFile);
 
 endfunction
+
+funcprot(prot);
 
 diazepam_demo();
 clear diazepam_demo;

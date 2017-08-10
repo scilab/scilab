@@ -8,7 +8,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>y=log1p(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -33,13 +33,13 @@
         <para>
             <literal>log1p(x)</literal> является поэлементной функцией <literal>log(1+x)</literal>, т. е.
             <literal>y(i,j)=log(1 + x(i,j))</literal>. Эта функция, определённая для <literal>x</literal>
-            &gt; -1, должна использоваться если необходимо точно вычислить 
+            &gt; -1, должна использоваться если необходимо точно вычислить
             <literal>log(1+x)</literal> для <literal>|x|</literal> &lt;&lt; 1.
         </para>
     </refsection>
     <refsection>
         <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 format("e",24)
 log(1.001)
 log1p(0.001)

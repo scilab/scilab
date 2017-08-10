@@ -2,15 +2,19 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 #include <list>
-#include <map>
+#include <unordered_map>
+
 #include <hdf5.h>
 #include "hdf5_gw.hxx"
 #include "context.hxx"
@@ -31,7 +35,7 @@
 #include "context.hxx"
 #include "handle_properties.hxx"
 #include "deserializervisitor.hxx"
-#include "execvisitor.hxx"
+#include "overload.hxx"
 
 std::unordered_map<int, Links::PathList> Links::paths;
 
@@ -85,7 +89,7 @@ types::Function::ReturnValue sci_hdf5_load_v3(types::typed_list &in, int _iRetCo
 
     if (in[0]->getId() != types::InternalType::IdScalarString)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname.data(), 1);
+        Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), fname.data(), 1);
         return types::Function::Error;
     }
 
@@ -136,12 +140,13 @@ types::Function::ReturnValue sci_hdf5_load_v3(types::typed_list &in, int _iRetCo
         {
             std::vector<char*> vars(iNbItem);
             iNbItem = getVariableNames6(iFile, vars.data());
-            for (auto &var : vars)
+            for (auto & var : vars)
             {
                 std::string s(var);
+                FREE(var);
                 if (import_variable(iFile, s) == false)
                 {
-                    Scierror(999, _("%s: Unable to load \'%s\'.\n"), fname.data(), var);
+                    Scierror(999, _("%s: Unable to load \'%s\'.\n"), fname.data(), s.data());
                     return types::Function::Error;
                 }
             }
@@ -299,7 +304,7 @@ static types::InternalType* import_double(int dataset)
     int size = getDatasetInfo(dataset, &complex, &dims, d.data());
 
 
-    if (dims == 0 || size == 0)
+    if (dims == 0 || size <= 0)
     {
         closeDataSet(dataset);
         return types::Double::Empty();
@@ -337,7 +342,7 @@ static types::InternalType* import_string(int dataset)
     int size = getDatasetInfo(dataset, &complex, &dims, d.data());
 
 
-    if (dims == 0 || size == 0)
+    if (dims == 0 || size <= 0)
     {
         closeDataSet(dataset);
         return types::Double::Empty();
@@ -374,7 +379,7 @@ static types::InternalType* import_boolean(int dataset)
     int size = getDatasetInfo(dataset, &complex, &dims, d.data());
 
 
-    if (dims == 0 || size == 0)
+    if (dims == 0 || size <= 0)
     {
         closeDataSet(dataset);
         return types::Double::Empty();
@@ -403,7 +408,7 @@ static types::InternalType* import_int(int dataset)
     int size = getDatasetInfo(dataset, &complex, &dims, d.data());
 
 
-    if (dims == 0 || size == 0)
+    if (dims == 0 || size <= 0)
     {
         closeDataSet(dataset);
         return types::Double::Empty();
@@ -521,6 +526,10 @@ static types::InternalType* import_list(int dataset, types::List* lst)
         }
 
         lst->append(child);
+        if (child->isList())
+        {
+            child->killMe();
+        }
     }
 
     closeList6(dataset);
@@ -542,6 +551,10 @@ static int getDimsNode(int dataset, int* complex, std::vector<int>& dims)
     //get dims dimension
     std::vector<int> d(dim);
     int size = getDatasetInfo(id, complex, &dim, d.data());
+    if (size < 0)
+    {
+        return 0;
+    }
 
     //get dims value
     dims.resize(size);
@@ -568,6 +581,7 @@ static types::InternalType* import_struct(int dataset)
     {
         //empty struct
         closeList6(dataset);
+        delete str;
         return new types::Struct();
     }
 
@@ -587,6 +601,12 @@ static types::InternalType* import_struct(int dataset)
     getDatasetInfo(dfield, &complex, &dim, NULL);
     std::vector<int> d(dim);
     size = getDatasetInfo(dfield, &complex, &dim, d.data());
+    if (size < 0)
+    {
+        closeList6(dataset);
+        delete str;
+        return nullptr;
+    }
 
     //get dims value
     std::vector<char*> fields(size);
@@ -595,7 +615,7 @@ static types::InternalType* import_struct(int dataset)
     //open __refs__ node
     int refs = getDataSetIdFromName(dataset, "__refs__");
 
-    for (const auto& name : fields)
+    for (const auto & name : fields)
     {
         wchar_t* field = to_wide_string(name);
         str->addField(field);
@@ -605,6 +625,8 @@ static types::InternalType* import_struct(int dataset)
         {
             closeList6(dataset);
             freeStringMatrix(dfield, fields.data());
+            FREE(field);
+            delete str;
             return nullptr;
         }
 
@@ -617,6 +639,8 @@ static types::InternalType* import_struct(int dataset)
         if (ret < 0)
         {
             freeStringMatrix(dfield, fields.data());
+            FREE(field);
+            delete str;
             return nullptr;
         }
 
@@ -628,6 +652,8 @@ static types::InternalType* import_struct(int dataset)
             if (data < 0)
             {
                 freeStringMatrix(dfield, fields.data());
+                FREE(field);
+                delete str;
                 return nullptr;
             }
 
@@ -635,6 +661,8 @@ static types::InternalType* import_struct(int dataset)
             if (val == nullptr)
             {
                 freeStringMatrix(dfield, fields.data());
+                FREE(field);
+                delete str;
                 return nullptr;
             }
 
@@ -697,7 +725,7 @@ static types::InternalType* import_poly(int dataset)
         types::SinglePoly* ss = NULL;
 
         //get coef
-        if (dims == 0 || datasize == 0)
+        if (dims == 0 || datasize <= 0)
         {
             ss = new types::SinglePoly();
         }
@@ -749,6 +777,11 @@ static types::InternalType* import_sparse(int dataset)
     int sizein = getDatasetInfo(datain, &complex, &dimin, NULL);
     std::vector<int> dimsin(dimin);
     sizein = getDatasetInfo(datain, &complex, &dimin, dimsin.data());
+    if (sizein < 0)
+    {
+        closeList6(dataset);
+        return nullptr;
+    }
 
     std::vector<int> in(sizein);
     int ret = readInteger32Matrix(datain, in.data());
@@ -764,6 +797,11 @@ static types::InternalType* import_sparse(int dataset)
     int sizeout = getDatasetInfo(dataout, &complex, &dimout, NULL);
     std::vector<int> dimsout(dimout);
     sizeout = getDatasetInfo(dataout, &complex, &dimout, dimsout.data());
+    if (sizeout < 0)
+    {
+        closeList6(dataset);
+        return nullptr;
+    }
 
     std::vector<int> out(sizeout);
     ret = readInteger32Matrix(dataout, out.data());
@@ -779,6 +817,11 @@ static types::InternalType* import_sparse(int dataset)
     int sizedata = getDatasetInfo(ddata, &complex, &dimdata, NULL);
     std::vector<int> dimsdata(dimdata);
     sizedata = getDatasetInfo(ddata, &complex, &dimdata, dimsdata.data());
+    if (sizedata < 0)
+    {
+        closeList6(dataset);
+        return nullptr;
+    }
 
     std::vector<double> real(sizedata);
 
@@ -834,6 +877,11 @@ static types::InternalType* import_boolean_sparse(int dataset)
     int sizein = getDatasetInfo(datain, &complex, &dimin, NULL);
     std::vector<int> dimsin(dimin);
     sizein = getDatasetInfo(datain, &complex, &dimin, dimsin.data());
+    if (sizein < 0)
+    {
+        closeList6(dataset);
+        return nullptr;
+    }
 
     std::vector<int> in(sizein);
     int ret = readInteger32Matrix(datain, in.data());
@@ -849,6 +897,11 @@ static types::InternalType* import_boolean_sparse(int dataset)
     int sizeout = getDatasetInfo(dataout, &complex, &dimout, NULL);
     std::vector<int> dimsout(dimout);
     sizeout = getDatasetInfo(dataout, &complex, &dimout, dimsout.data());
+    if (sizeout < 0)
+    {
+        closeList6(dataset);
+        return nullptr;
+    }
 
     std::vector<int> out(sizeout);
     ret = readInteger32Matrix(dataout, out.data());
@@ -915,18 +968,33 @@ static types::InternalType* import_handles(int dataset)
     int refs = getDataSetIdFromName(dataset, "__refs__");
     types::GraphicHandle* handles = new types::GraphicHandle(static_cast<int>(pdims.size()), pdims.data());
     long long* h = handles->get();
-    for (int i = 0; i < size; ++i)
+
+    if (size == 1)
     {
-        int ref = getDataSetIdFromName(refs, std::to_string(i).data());
-        int val = import_handle(ref, -1);
+        //%h_copy
+        int ref = getDataSetIdFromName(refs, std::to_string(0).data());
+        int val = add_current_entity(ref);
         if (val < 0)
         {
             return nullptr;
         }
 
-        h[i] = getHandle(val);
+        h[0] = getHandle(val);
     }
+    else
+    {
+        for (int i = 0; i < size; ++i)
+        {
+            int ref = getDataSetIdFromName(refs, std::to_string(i).data());
+            int val = import_handle(ref, -1);
+            if (val < 0)
+            {
+                return nullptr;
+            }
 
+            h[i] = getHandle(val);
+        }
+    }
     closeList6(refs);
     closeList6(dataset);
 
@@ -935,14 +1003,14 @@ static types::InternalType* import_handles(int dataset)
     if (Links::count())
     {
         std::list<int> legends = Links::legends();
-        for (auto& i : legends)
+        for (auto & i : legends)
         {
             Links::PathList paths = Links::get(i);
             update_link_path(i, paths);
         }
     }
-    return handles;
 
+    return handles;
 }
 
 static types::InternalType* import_macro(int dataset)
@@ -961,13 +1029,20 @@ static types::InternalType* import_macro(int dataset)
     //inputs
     int inputNode = getDataSetIdFromName(dataset, "inputs");
     size = getDatasetInfo(inputNode, &complex, &dims, d.data());
+    if (size < 0)
+    {
+        delete inputList;
+        delete outputList;
+        closeList6(dataset);
+        return nullptr;
+    }
     std::vector<char*> inputNames(size);
 
     if (size != 0)
     {
         readStringMatrix(inputNode, inputNames.data());
 
-        for (auto& input : inputNames)
+        for (auto & input : inputNames)
         {
             wchar_t* winput = to_wide_string(input);
             symbol::Variable* var = ctx->getOrCreate(symbol::Symbol(winput));
@@ -985,13 +1060,20 @@ static types::InternalType* import_macro(int dataset)
     //outputs
     int outputNode = getDataSetIdFromName(dataset, "outputs");
     size = getDatasetInfo(outputNode, &complex, &dims, d.data());
+    if (size < 0)
+    {
+        delete inputList;
+        delete outputList;
+        closeList6(dataset);
+        return nullptr;
+    }
     std::vector<char*> outputNames(size);
 
     if (size != 0)
     {
         readStringMatrix(outputNode, outputNames.data());
 
-        for (auto& output : outputNames)
+        for (auto & output : outputNames)
         {
             wchar_t* woutput = to_wide_string(output);
             symbol::Variable* var = ctx->getOrCreate(symbol::Symbol(woutput));
@@ -1009,6 +1091,13 @@ static types::InternalType* import_macro(int dataset)
     //body
     int bodyNode = getDataSetIdFromName(dataset, "body");
     size = getDatasetInfo(bodyNode, &complex, &dims, d.data());
+    if (size < 0)
+    {
+        delete inputList;
+        delete outputList;
+        closeList6(dataset);
+        return nullptr;
+    }
     std::vector<unsigned char> bodybin(size);
     readUnsignedInteger8Matrix(bodyNode, bodybin.data());
 
@@ -1017,7 +1106,7 @@ static types::InternalType* import_macro(int dataset)
 
     //wname+1 is to remove "/" at the start of the var name from HDF5
     types::Macro* macro = new types::Macro(L"", *inputList, *outputList, *body->getAs<ast::SeqExp>(), L"script");
-
+    delete body;
     closeList6(dataset);
     return macro;
 }
@@ -1066,10 +1155,9 @@ static types::InternalType* import_usertype(int dataset)
 
     types::typed_list out;
     //overload
-    ast::ExecVisitor exec;
     // rational case
     std::wstring wstFuncName = L"%" + data->getShortTypeStr() + L"_load";
-    types::Callable::ReturnValue ret = Overload::call(wstFuncName, in, 1, out, &exec);
+    types::Callable::ReturnValue ret = Overload::call(wstFuncName, in, 1, out);
 
     //clean temporary variables
     delete it; //included type and data
@@ -1081,7 +1169,7 @@ static types::InternalType* import_usertype(int dataset)
 
     if (out.size() != 1)
     {
-        for (auto& i : out)
+        for (auto & i : out)
         {
             i->killMe();
         }

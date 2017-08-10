@@ -98,7 +98,10 @@
     <refsection id="Description_CANIMXY3D">
         <title>Description</title>
         <para>
-            This block realizes the visualization of the evolution of the three regular input signals by drawing the third input as a function of the two others at instants of events on the event input port. When a point is drawn on screen it stays until the buffer length is reached. This scope is useful to make simple animations.
+            This block realizes the visualization of the evolution of the three regular input signals
+            by drawing the third input as a function of the two others at instants of events on the
+            event input port. When a point is drawn on screen it stays until the buffer length is reached.
+            This scope is useful to make simple animations.
         </para>
         <para>
         </para>
@@ -113,7 +116,7 @@
             </inlinemediaobject>
         </para>
         <para>
-            
+
         </para>
         <itemizedlist>
             <listitem>
@@ -128,7 +131,10 @@
                     <emphasis role="bold">color </emphasis>
                 </para>
                 <para>
-                    an integer. It is the color number (≥ 0) or marker type (&lt; 0) used to draw the evolution of the input port signal. See<emphasis role="bold">xset()</emphasis> for color (dash type) definitions.
+                    an integer. It is the color number (≥ 0) or marker type (&lt; 0) used to draw
+                    the evolution of the input port signal.
+                    See <link linkend="polyline_properties">polyline properties</link> for color
+                    (dash type) definitions.
                 </para>
                 <para> Properties : Type 'vec' of size -1 </para>
             </listitem>

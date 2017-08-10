@@ -3,11 +3,14 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="prefs_SciNotes" scilab:needs-examples="no" xml:lang="ja">
@@ -25,7 +28,7 @@
             </inlinemediaobject>
         </para>
         <para>
-            SciNotes はデフォルトのScilabコードエディタです. 
+            SciNotes はデフォルトのScilabコードエディタです.
             システム依存のコマンドまたはScilabマクロ名により
             外部エディタを使用できます,
         </para>
@@ -33,14 +36,14 @@
             <itemizedlist>
                 <listitem>
                     <para>
-                        <emphasis role="bold">SciNotesを使用</emphasis>: 
+                        <emphasis role="bold">SciNotesを使用</emphasis>:
                         エディタまたは編集のようなコマンドで
                         SciNotesを使用する場合はチェックしてください.
                     </para>
                 </listitem>
                 <listitem>
                     <para>
-                        <emphasis role="bold">外部エディタ</emphasis>: 
+                        <emphasis role="bold">外部エディタ</emphasis>:
                         外部システムエディタを使用する場合はこのラジオボタンを
                         チェックしてください.
                         "/usr/bin/gedit"のように入力できます.
@@ -48,7 +51,7 @@
                 </listitem>
                 <listitem>
                     <para>
-                        <emphasis role="bold">Scilabコマンド</emphasis>: 
+                        <emphasis role="bold">Scilabコマンド</emphasis>:
                         Scilabマクロ経由でコール可能な
                         エディタを使用する場合はこのラジオボタンをチェックしてください.
                         このマクロは,エディタコマンドと同種の引数をとります.
@@ -80,7 +83,7 @@
                 </listitem>
                 <listitem>
                     <para>
-                        <emphasis role="bold">ファイルの終端に復改を追加</emphasis>: 
+                        <emphasis role="bold">ファイルの終端に復改を追加</emphasis>:
                         ファイルの終端に(もしない場合に)
                         CRを自動的に追加する場合はこのボックスをチェックしてください,
                     </para>
@@ -99,7 +102,7 @@
                 </listitem>
                 <listitem>
                     <para>
-                        <emphasis role="bold">デフォルトの行末</emphasis>: 
+                        <emphasis role="bold">デフォルトの行末</emphasis>:
                         ファイル保存時に使用する行末文字のデフォルト値を変更します.
                     </para>
                 </listitem>

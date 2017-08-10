@@ -4,11 +4,14 @@
  * Copyright (C) 2008 - INRIA - Vincent COUVERT (Java version)
  * Copyright (C) 2011 - DIGITEO - Allan CORNET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
 */
 
@@ -248,6 +251,7 @@ static int sci_toprint_two_rhs(void* _pvCtx, const char *fname)
                 {
                     printError(&sciErr, 0);
                     Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+                    FREE(lenStVarOne);
                     return 1;
                 }
 
@@ -259,9 +263,8 @@ static int sci_toprint_two_rhs(void* _pvCtx, const char *fname)
                 pStVarOne = (char **)MALLOC(sizeof(char *) * mnOne);
                 if (pStVarOne == NULL)
                 {
-                    FREE(lenStVarOne);
-                    lenStVarOne = NULL;
                     Scierror(999, _("%s: No more memory.\n"), fname);
+                    FREE(lenStVarOne);
                     return 1;
                 }
 
@@ -270,46 +273,35 @@ static int sci_toprint_two_rhs(void* _pvCtx, const char *fname)
                     pStVarOne[i] = (char *)MALLOC(sizeof(char) * (lenStVarOne[i] + 1));
                     if (pStVarOne[i] == NULL)
                     {
-                        freeArrayOfString(pStVarOne, i);
-                        if (lenStVarOne)
-                        {
-                            FREE(lenStVarOne);
-                            lenStVarOne = NULL;
-                        }
                         Scierror(999, _("%s: No more memory.\n"), fname);
+                        freeArrayOfString(pStVarOne, i);
+                        FREE(lenStVarOne);
                         return 1;
                     }
                 }
 
                 sciErr = getMatrixOfString(_pvCtx, piAddressVarOne, &mOne, &nOne, lenStVarOne, pStVarOne);
-                if (lenStVarOne)
-                {
-                    FREE(lenStVarOne);
-                    lenStVarOne = NULL;
-                }
+                FREE(lenStVarOne);
                 if (sciErr.iErr)
                 {
-                    freeArrayOfString(pStVarOne, mnOne);
                     printError(&sciErr, 0);
                     Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+                    freeArrayOfString(pStVarOne, mnOne);
                     return 1;
                 }
 
                 lines = (char *)MALLOC((lenLineToPrint + 1) * sizeof(char));
                 if (lines == NULL)
                 {
-                    freeArrayOfString(pStVarOne, mnOne);
                     Scierror(999, _("%s: No more memory.\n"), fname);
+                    freeArrayOfString(pStVarOne, mnOne);
                     return 1;
                 }
 
-                for (i = 0; i < mnOne; i++)
+                if (mnOne > 0)
                 {
-                    if (i == 0)
-                    {
-                        sprintf(lines, "%s\n", pStVarOne[i]);
-                    }
-                    else
+                    sprintf(lines, "%s\n", pStVarOne[0]);
+                    for (i = 1; i < mnOne; ++i)
                     {
                         sprintf(lines, "%s%s\n", lines, pStVarOne[i]);
                     }

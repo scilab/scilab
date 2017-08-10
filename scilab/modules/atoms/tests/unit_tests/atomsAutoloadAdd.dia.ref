@@ -97,7 +97,7 @@ if or(atomsAutoloadList()<>ref) then bugmes();quit;end
 atomsRemove("toolbox_5V6");
 // no module should be installed
 if ~isempty( atomsGetInstalled() ) then bugmes();quit;end
-// Restore original values
+// Restore original value
 // =============================================================================
 atomsRestoreConfig(%T);
 atomsRepositorySetOfl(mgetl(SCI+"/modules/atoms/tests/unit_tests/repositories.orig"));

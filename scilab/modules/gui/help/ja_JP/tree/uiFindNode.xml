@@ -6,9 +6,11 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>nodeList = uiFindNode(tree, node)</synopsis>
-        <synopsis>nodeList = uiFindNode(tree, position)</synopsis>
-        <synopsis>nodeList = uiFindNode(tree, property, value)</synopsis>
+        <synopsis>
+            nodeList = uiFindNode(tree, node)
+            nodeList = uiFindNode(tree, position)
+            nodeList = uiFindNode(tree, property, value)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>入力パラメータ</title>
@@ -34,7 +36,7 @@
             <varlistentry>
                 <term>property</term>
                 <listitem>
-                    <para>文字列, プロパティ(ラベル, アイコンまたはコールバック)で探したノード 
+                    <para>文字列, プロパティ(ラベル, アイコンまたはコールバック)で探したノード
                     </para>
                 </listitem>
             </varlistentry>
@@ -65,7 +67,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // ツリー作成前にノード(サブツリー)を作成する必要があります.
 leaf11 = uiCreateNode('leaf 1.1', 'iconLeaf1.1', 'callbackLeaf1.1')
 leaf12 = uiCreateNode('leaf 1.2', 'iconLeaf1.2', 'callbackLeaf1.2')

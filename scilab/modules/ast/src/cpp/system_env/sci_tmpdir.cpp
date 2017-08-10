@@ -1,30 +1,37 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2010 - DIGITEO - Antoine ELIAS
+*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+*  Copyright (C) 2010 - DIGITEO - Antoine ELIAS
+*
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- */
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+*
+*/
 
+#include <errno.h>
 #include <stdlib.h>
-
-#include "configvariable.hxx"
-#include "string.hxx"
-#include "context.hxx"
-
-extern "C"
-{
-#include "sci_malloc.h"
+#include <time.h>
 #ifdef _MSC_VER
 #include <process.h>
 #else
 #include <sys/types.h> /* getpid */
-#include <unistd.h> /* getpid */
+#include <unistd.h> /* getpid, readlink & mkdtemp */
 #endif
+
+
+#include "configvariable.hxx"
+#include "string.hxx"
+#include "context.hxx"
+#include "parser.hxx"
+
+extern "C"
+{
+#include "sci_malloc.h"
 #include "sci_tmpdir.h"
 #include "os_string.h"
 #include "charEncoding.h"
@@ -32,7 +39,6 @@ extern "C"
 #include "setenvc.h"
 #include "getenvc.h"
 #include "localization.h"
-#include <errno.h>
 #include "removedir.h"
 #include "setenvvar.h"
 #include "getshortpathname.h"
@@ -116,6 +122,7 @@ char* getenvTMPDIR()
 
         if (ierr == 1)
         {
+            delete[] SciPath;
             return NULL;
         }
     }
@@ -148,31 +155,19 @@ char* computeTMPDIR()
         wchar_t wctmp_dir[PATH_MAX + FILENAME_MAX + 1];
         static wchar_t bufenv[PATH_MAX + 16];
         char *TmpDir = NULL;
-        os_swprintf(wctmp_dir, PATH_MAX + FILENAME_MAX + 1, L"%lsSCI_TMP_%d_", wcTmpDirDefault, _getpid());
-        if ( CreateDirectoryW(wctmp_dir, NULL) == FALSE)
+        srand((unsigned)time(NULL));
+        DWORD attribs;
+        do {
+            os_swprintf(wctmp_dir, PATH_MAX + FILENAME_MAX + 1, L"%lsSCI_TMP_%d_%d", wcTmpDirDefault, _getpid(), rand());
+            attribs = GetFileAttributesW(wctmp_dir);
+        } while ((attribs != INVALID_FILE_ATTRIBUTES) && (attribs & FILE_ATTRIBUTE_DIRECTORY));
+
+        if (CreateDirectoryW(wctmp_dir, NULL) == FALSE)
         {
-            DWORD attribs = GetFileAttributesW(wctmp_dir);
-            if (attribs & FILE_ATTRIBUTE_DIRECTORY)
-            {
-                /* Repertoire existant */
-            }
-            else
-            {
-#ifdef _DEBUG
-                {
-                    char MsgErr[1024];
-                    wsprintfA(MsgErr, _("Impossible to create : %s"), wctmp_dir);
-                    MessageBoxA(NULL, MsgErr, _("Error"), MB_ICONERROR);
-                    exit(1);
-                }
-#else
-                {
-                    GetTempPathW(PATH_MAX, wcTmpDirDefault);
-                    wcscpy(wctmp_dir, wcTmpDirDefault);
-                    wctmp_dir[wcslen(wctmp_dir) - 1] = '\0'; /* Remove last \ */
-                }
-#endif
-            }
+            char MsgErr[1024];
+            wsprintfA(MsgErr, _("Impossible to create : %s"), wctmp_dir);
+            MessageBoxA(NULL, MsgErr, _("Error"), MB_ICONERROR);
+            exit(1);
         }
 
         os_swprintf(bufenv, PATH_MAX + 16, L"TMPDIR=%ls", wctmp_dir);
@@ -201,12 +196,48 @@ char* computeTMPDIR()
     }
     else
     {
-        strcpy(env_dir, "/tmp");
+        char tmp[] = "/tmp";
+        struct stat st;
+
+        if (!lstat(tmp, &st)) // Able to find tmp?
+        {
+            if (S_ISLNK(st.st_mode)) // Is it a symbolink link?
+            {
+                char env_dir2[PATH_MAX + 16];
+                ssize_t end = readlink(tmp, env_dir2, sizeof(env_dir2) - 1); // Use env_dir2 in case we need to add a '/' at the start
+                if (end == -1)
+                {
+                    fprintf(stderr, _("Error: Could not resolve symbolic link %s\n"), tmp);
+                    FREE(env_dir);
+                    exit(1);
+                }
+                env_dir2[end] = '\0';
+                if (env_dir2[0] != '/') // No '/' found, add it at the beginning
+                {
+                    env_dir[0] = '/';
+                    strcpy(env_dir + 1, env_dir2);
+                }
+                else
+                {
+                    strcpy(env_dir, env_dir2);
+                }
+            }
+            else // No, then hard code tmp
+            {
+                strcpy(env_dir, tmp);
+            }
+        }
+        else
+        {
+            fprintf(stderr, _("Error: Could not find %s\n"), tmp);
+            FREE(env_dir);
+            exit(1);
+        }
     }
 
     /* XXXXXX will be randomized by mkdtemp */
     char *env_dir_strdup = os_strdup(env_dir); /* Copy to avoid to have the same buffer as input and output for sprintf */
-    sprintf(env_dir, "%s/SCI_TMP_%d_XXXXXX", env_dir_strdup, (int) getpid());
+    sprintf(env_dir, "%s/SCI_TMP_%d_XXXXXX", env_dir_strdup, (int)getpid());
     free(env_dir_strdup);
 
     if (mkdtemp(env_dir) == NULL)
@@ -230,6 +261,9 @@ void defineTMPDIR()
 void clearTMPDIR()
 {
     char * tmpdir = getTMPDIR();
+    Parser parser;
+    parser.releaseTmpFile();
     removedir(tmpdir);
     FREE(tmpdir);
 }
+

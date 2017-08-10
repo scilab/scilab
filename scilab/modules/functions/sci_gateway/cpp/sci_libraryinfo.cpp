@@ -2,11 +2,14 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 /*--------------------------------------------------------------------------*/
@@ -24,53 +27,49 @@ extern "C" {
 }
 
 /*--------------------------------------------------------------------------*/
-
-using namespace types;
-using namespace std;
-
-Function::ReturnValue sci_libraryinfo(types::typed_list &in, int _iRetCount, types::typed_list &out)
+types::Function::ReturnValue sci_libraryinfo(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     /* Check the number of input argument */
     if (in.size() != 1)
     {
         Scierror(999, _("%s: Wrong number of input argument(s): %d expected.\n"), "libraryinfo", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     /* Check the number of output argument */
     if (_iRetCount != 1 && _iRetCount != 2)
     {
         Scierror(999, _("%s: Wrong number of output argument(s): %d expected.\n"), "libraryinfo", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (in[0]->isString() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), "libraryinfo", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     types::String* pS = in[0]->getAs<types::String>();
     if (pS->isScalar() == false)
     {
         Scierror(999, _("%s: Wrong size for input argument #%d: A String expected.\n"), "libraryinfo", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
-    InternalType* pIT = symbol::Context::getInstance()->get(symbol::Symbol(pS->get(0)));
+    types::InternalType* pIT = symbol::Context::getInstance()->get(symbol::Symbol(pS->get(0)));
     if (pIT == nullptr || pIT->isLibrary() == false)
     {
         char* libname = wide_string_to_UTF8(pS->get()[0]);
         Scierror(999, _("%s: Invalid library %s.\n"), "libraryinfo", libname);
         FREE(libname);
-        return Function::Error;
+        return types::Function::Error;
     }
 
-    types::Library* lib = pIT->getAs<Library>();
+    types::Library* lib = pIT->getAs<types::Library>();
 
     std::list<std::wstring> names;
     int size = lib->getMacrosName(names);
-    String* pNames = new String(size, 1);
+    types::String* pNames = new types::String(size, 1);
     int i = 0;
     for (auto name : names)
     {
@@ -81,8 +80,8 @@ Function::ReturnValue sci_libraryinfo(types::typed_list &in, int _iRetCount, typ
 
     if (_iRetCount == 2)
     {
-        out.push_back(new String(lib->getPath().c_str()));
+        out.push_back(new types::String(lib->getPath().c_str()));
     }
-    return Function::OK;
+    return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

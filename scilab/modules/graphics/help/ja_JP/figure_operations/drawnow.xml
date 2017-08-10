@@ -8,77 +8,77 @@
 
  * Copyright (C) INRIA - Fabrice Leray
 
- * 
+ *
 
- * This file must be used under the terms of the CeCILL.
 
- * This source file is licensed as described in the file COPYING, which
-
- * you should have received as part of this distribution.  The terms
-
- * are also available at    
-
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 
  *
 
  -->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="drawnow">
-    
+
     <refnamediv>
-        
+
         <refname>drawnow</refname>
-        
+
         <refpurpose>隠されたグラフィックエンティティを描画.</refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        
+
         <title>呼び出し手順</title>
-        
+
         <synopsis>drawnow()</synopsis>
-        
+
     </refsynopsisdiv>
-    
+
     <refsection>
-        
+
         <title>説明</title>
-        
+
         <para>カレントの図に関して,
-            
+
             この関数は,
-            
+
             <literal>drawlater</literal>をコールすることにより延期されていた
-            
+
             隠されたグラフィックエンティティとその子を描画するために
-            
+
             使用されます.<literal>カレントの図</literal>の
-            
+
             <literal>immediate_drawing</literal> プロパティは
-            
+
             <literal>"on" </literal>に設定されます.
-            
+
         </para>
-        
+
         <para>
-            
+
             この関数は特に<literal>drawlater</literal> 関数と組み合わせて使用されます.
-            
+
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>例</title>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
 
 f=get("current_figure") // カレントの図のハンドル
 
-  
+
 
 drawlater()
 
@@ -88,7 +88,7 @@ t=1:10;plot2d(t,t.^2)
 
 subplot(222);
 
-x=0:1:7;plot2d(x,cos(x),2) 
+x=0:1:7;plot2d(x,cos(x),2)
 
 subplot(234);
 
@@ -96,53 +96,53 @@ plot2d(t,cos(t),3);
 
 subplot(235);
 
-plot2d(x,sin(2*x),5); 
+plot2d(x,sin(2*x),5);
 
 subplot(236);
 
-plot2d(t,tan(2*t));  
+plot2d(t,tan(2*t));
 
- 
+
 
 drawnow(); // カレントの図を描画
 
  ]]></programlisting>
-        
+
     </refsection>
-    
+
     <refsection role="see also">
-        
+
         <title>参照</title>
-        
+
         <simplelist type="inline">
-            
+
             <member>
-                
+
                 <link linkend="get">get</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="set">set</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="drawlater">drawlater</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="graphics_entities">graphics_entities</link>
-                
+
             </member>
-            
+
         </simplelist>
-        
+
     </refsection>
-    
+
 </refentry>
 

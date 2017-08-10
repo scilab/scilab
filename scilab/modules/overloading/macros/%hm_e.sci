@@ -1,11 +1,14 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function [M] = %hm_e(varargin)
 
@@ -54,10 +57,6 @@ function [M] = %hm_e(varargin)
         elseif type_ik==4 | type_ik==6 then   // boolean and sparse boolean subscript
             if size(ik,"*") ~= dims(k) then, error(21), end
             ik=find(ik)
-        elseif typeof(ik) == "hypermat" then  // hm boolean subscript
-            if type(ik.entries) ~= 4 then, error(21), end
-            if size(ik,"*") ~= dims(k) then, error(21), end
-            ik=find(ik.entries)
         else
             error(21)
         end

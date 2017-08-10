@@ -5,7 +5,7 @@
         <refpurpose>create a Graphic User Interface object</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             h = uicontrol(PropertyName,PropertyValue,...)
             h = uicontrol(parent,PropertyName,PropertyValue,...)
@@ -94,7 +94,7 @@
             <listitem>
                 <para>Radiobutton: a button with two states. RadioButtons are intended to be mutually exclusive.</para>
                 <para>
-                    Your code must implement mutually exclusive behavior if you do not use groups 
+                    Your code must implement mutually exclusive behavior if you do not use groups
                     (See <literal>GroupName</literal> property in <link linkend="uicontrol_properties">uicontrol properties</link>).
                 </para>
             </listitem>
@@ -106,7 +106,7 @@
             </listitem>
             <listitem>
                 <para>
-                    Tab: a container for <literal>frame</literal> style uicontrols enabling to switch between them by cliking on a tab with a given title and/or icon.
+                    Tab: a container for <literal>frame</literal> style uicontrols enabling to switch between them by clicking on a tab with a given title and/or icon.
                 </para>
                 <para>The font related properties set on the frame will be used for the tab label.</para>
             </listitem>
@@ -185,7 +185,7 @@ matrix(ut.string,size(table))
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="uicontrol_properties">uicontrol_properties</link>

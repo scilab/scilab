@@ -1,7 +1,13 @@
+
+Some files in Scilab are licensed under the BSD License below, in particular
+examples, which you can reuse freely.
+
+===
+
 This is the BSD license (3-clause license "New BSD License")
 This license is used in most of the demos and examples provided with Scilab.
 
-Copyright (c) 2011-2015 Scilab Enterprises
+Copyright (c) 2011-2016 Scilab Enterprises
 Copyright (c) 2008-2012 DIGITEO
 Copyright (c) 1989-2012 INRIA
 

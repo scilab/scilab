@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="lstsize" xml:lang="ja">
+
+    <refnamediv>
+
+        <refname>lstsize</refname>
+
+        <refpurpose>list, tlist, mlist エントリの数</refpurpose>
+
+    </refnamediv>
+
+    <refsynopsisdiv>
+
+        <title>呼び出し手順</title>
+
+        <synopsis>n=lstsize(x)</synopsis>
+
+    </refsynopsisdiv>
+
+    <refsection>
+
+        <title>引数</title>
+
+        <variablelist>
+
+            <varlistentry>
+
+                <term>l</term>
+
+                <listitem>
+
+                    <para>list, tlist または mlist オブジェクト</para>
+
+                </listitem>
+
+            </varlistentry>
+
+            <varlistentry>
+
+                <term>n</term>
+
+                <listitem>
+
+                    <para>整数, エントリの数</para>
+
+                </listitem>
+
+            </varlistentry>
+
+        </variablelist>
+
+    </refsection>
+
+    <refsection>
+
+        <title>説明</title>
+
+        <para>
+
+            <literal>lstsize(x)</literal> はlist, list, mlistオブジェクト
+
+            のエントリの数を返します.
+
+            この関数は <literal>size</literal>よりも効率的で
+
+            全てのリスト型で類似の動作をします.
+
+            この際,<literal>size</literal>は<literal>mlist</literal>
+
+            オブジェクト用にオーバーロードされます.
+
+        </para>
+
+    </refsection>
+
+    <refsection>
+
+        <title>例</title>
+
+        <programlisting role="example"><![CDATA[
+lstsize(list(1,'aqsdf'))
+x=ssrand(3,2,4);
+[ny,nu]=size(x)
+lstsize(x)
+ ]]></programlisting>
+
+    </refsection>
+
+    <refsection role="see also">
+
+        <title>参照</title>
+
+        <simplelist type="inline">
+
+            <member>
+
+                <link linkend="length">length</link>
+
+            </member>
+
+            <member>
+
+                <link linkend="size">size</link>
+
+            </member>
+
+            <member>
+
+                <link linkend="list">list</link>
+
+            </member>
+
+            <member>
+
+                <link linkend="tlist">tlist</link>
+
+            </member>
+
+            <member>
+
+                <link linkend="mlist">mlist</link>
+
+            </member>
+
+        </simplelist>
+
+    </refsection>
+
+</refentry>
+

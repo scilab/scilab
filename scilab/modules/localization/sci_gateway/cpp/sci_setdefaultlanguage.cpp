@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -30,8 +33,6 @@ extern "C"
 #include "LanguagePreferences_Windows.h"
 #endif
 }
-
-using namespace types;
 
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
@@ -57,22 +58,18 @@ static wchar_t *getLanguageFromAlias(wchar_t *alias)
 }
 #endif
 /*--------------------------------------------------------------------------*/
-
-
-
-
-Function::ReturnValue sci_setdefaultlanguage(typed_list &in, int _piRetCount, typed_list &out)
+types::Function::ReturnValue sci_setdefaultlanguage(types::typed_list &in, int _piRetCount, types::typed_list &out)
 {
     if (in.size() != 1)
     {
         Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "setdefaultlanguage", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (_piRetCount != 1)
     {
         Scierror(999, _("%s: Wrong number of output arguments: %d expected.\n"), "setdefaultlanguage", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
 #ifndef _MSC_VER
@@ -82,18 +79,17 @@ Function::ReturnValue sci_setdefaultlanguage(typed_list &in, int _piRetCount, ty
     */
     if (getWarningMode())
     {
-        sciprint(_("%ls: This feature is only used on Windows.\n"), L"setdefaultlanguage");
+        sciprint(_("%ls: This feature is only supported on Windows.\n"), L"setdefaultlanguage");
     }
-    Bool* pbOut = new Bool(FALSE);
 
+    types::Bool* pbOut = new types::Bool(FALSE);
     out.push_back(pbOut);
-
-    return Function::OK;
+    return types::Function::OK;
 #else
     if (in[0]->isString() == false || in[0]->getAs<types::String>()->getSize() != 1)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "setdefaultlanguage" , 1);
-        return Function::Error;
+        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "setdefaultlanguage" , 1);
+        return types::Function::Error;
     }
     wchar_t *newlang = getLanguageFromAlias(in[0]->getAs<types::String>()->get(0));
 
@@ -103,9 +99,9 @@ Function::ReturnValue sci_setdefaultlanguage(typed_list &in, int _piRetCount, ty
         {
             sciprint(_("Unsupported language '%ls'.\n"), newlang);
         }
-        out.push_back(new Bool(FALSE));
+        out.push_back(new types::Bool(FALSE));
 
-        return Function::OK;
+        return types::Function::OK;
     }
     else
     {
@@ -113,17 +109,17 @@ Function::ReturnValue sci_setdefaultlanguage(typed_list &in, int _piRetCount, ty
         if ( wcscmp(newlang, savedLanguage) == 0 )
         {
             /* do nothing */
-            out.push_back(new Bool(TRUE));
+            out.push_back(new types::Bool(TRUE));
 
-            return Function::OK;
+            return types::Function::OK;
         }
         else
         {
             // ??                if (savedLanguage) { FREE(savedLanguage); savedLanguage = NULL; }
             if ( !setlanguage(newlang) ) /* */
             {
-                out.push_back(new Bool(FALSE));
-                return Function::OK;
+                out.push_back(new types::Bool(FALSE));
+                return types::Function::OK;
             }
             else
             {
@@ -135,13 +131,13 @@ Function::ReturnValue sci_setdefaultlanguage(typed_list &in, int _piRetCount, ty
                 }
                 if ( setLanguagePreferences() )
                 {
-                    out.push_back(new Bool(TRUE));
+                    out.push_back(new types::Bool(TRUE));
                 }
                 else
                 {
-                    out.push_back(new Bool(FALSE));
+                    out.push_back(new types::Bool(FALSE));
                 }
-                return Function::OK;
+                return types::Function::OK;
             }
         }
     }

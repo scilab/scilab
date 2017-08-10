@@ -5,7 +5,7 @@
         <refpurpose>maximum entropy spectral estimation</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[sm,fr]=mese(x [,npts]);</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -74,10 +74,10 @@
             plot(fr,xm)
         </scilab:image>
     </refsection>
-    
+
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 rand("seed",12345),
 y = (0:10);
 x1 = sin(2*%pi*y/20);
@@ -85,7 +85,7 @@ x2 = sin(3.5*%pi*y/20);
 w = .4*(rand(y)-.5*ones(y));
 x = x1+2*x2+w;
 [sm,fr1] = mese(x,10)
-// Define macro which computes the 
+// Define macro which computes the
 // Blackman-Tukey periodogram
 function [xm,fr] = bt(x)
   xsize = max(size(x))

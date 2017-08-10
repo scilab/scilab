@@ -4,11 +4,14 @@
  * Copyright (C) 2008 - INRIA
  * ...
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="bvode" xml:lang="en">
@@ -23,12 +26,13 @@
         <refpurpose>Simplified call to bvode</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
-            zu=bvode(xpoints,N,m,x_low,x_up,zeta,ipar,ltol,tol,fixpnt,fsub,dfsub,gsub,dgsub,guess)
+            zu = bvode(xpoints,N,m,x_low,x_up,zeta,ipar,ltol,tol,fixpnt,fsub,dfsub,gsub,dgsub,guess)
         </synopsis>
+      <para></para>
         <synopsis>
-            zu=bvodeS(xpoints,m,N,x_low,x_up,fsub,gsub,zeta, &lt;optional_args&gt;)
+            zu = bvodeS(xpoints,m,N,x_low,x_up,fsub,gsub,zeta, &lt;optional_args&gt;)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -66,7 +70,7 @@
                     <para>
                         a vector of size <literal>N</literal> with integer elements.
                         It is the vector of order of each differential equation:
-                        <literal>m(i)</literal> gives the order of the <literal>i</literal>-th differential 
+                        <literal>m(i)</literal> gives the order of the <literal>i</literal>-th differential
                         equation. In the following, <literal>M</literal> will represent the sum of the
                         elements of <literal>m</literal>.
                     </para>
@@ -159,7 +163,7 @@
                                 </para>
                                 <para>
                                     The <literal>ipar(5)</literal> value must respect the constraint
-                                    <literal>ipar(5)&gt;=nmax*nsizef</literal> where  
+                                    <literal>ipar(5)&gt;=nmax*nsizef</literal> where
                                     <literal>nsizef=4 + 3*M + (5+collpnt*N)*(collpnt*N+M) + (2*M-nrec)*2*M</literal>
                                     (<literal>nrec</literal> is the number of right end boundary conditions).
                                 </para>
@@ -230,18 +234,18 @@
                                                     <term>= 1</term>
                                                     <listitem>
                                                         <para>
-                                                            if the initial mesh is provided by the user it is defined in <literal>fspace</literal> as follows: the mesh 
+                                                            if the initial mesh is provided by the user it is defined in <literal>fspace</literal> as follows: the mesh
                                                             will occupy <literal>fspace(1), ..., fspace(n+1)</literal>. The user needs to supply only
                                                             the interior mesh points <literal>fspace(j) = x(j),j = 2, ..., n</literal>.
                                                         </para>
                                                     </listitem>
                                                 </varlistentry>
                                                 <varlistentry>
-                                                    <term>= 2 
+                                                    <term>= 2
                                                     </term>
                                                     <listitem>
                                                         <para>
-                                                            if the initial mesh is supplied by the user as with <literal>ipar(8)=1</literal>, and 
+                                                            if the initial mesh is supplied by the user as with <literal>ipar(8)=1</literal>, and
                                                             in addition no adaptive mesh selection is to be done.
                                                         </para>
                                                     </listitem>
@@ -360,7 +364,7 @@
                         an array of dimension <literal>ntol=ipar(4)</literal>.
                         <literal>ltol(j) = l</literal> specifies that the <literal>j</literal>-th tolerance in
                         the <literal>tol</literal> array controls the error in the <literal>l</literal>-th
-                        component of 
+                        component of
                         <inlinemediaobject>
                             <imageobject>
                                 <imagedata>
@@ -393,7 +397,7 @@
                     </para>
                     <para>
                         <literal>tol(j)</literal> is the error tolerance on the
-                        <literal>ltol(j)</literal>-th component of 
+                        <literal>ltol(j)</literal>-th component of
                         <inlinemediaobject>
                             <imageobject>
                                 <imagedata>
@@ -506,7 +510,7 @@
                                 </imagedata>
                             </imageobject>
                         </inlinemediaobject>
-                        is the approximate solution vector and 
+                        is the approximate solution vector and
                         <inlinemediaobject>
                             <imageobject>
                                 <imagedata>
@@ -542,7 +546,7 @@
                 <listitem>
                     <para>
                         an <link linkend="external">external</link> used to evaluate
-                        the column vector <literal>f=</literal> 
+                        the column vector <literal>f=</literal>
                         <inlinemediaobject>
                             <imageobject>
                                 <imagedata>
@@ -632,20 +636,20 @@
                     <itemizedlist>
                         <listitem>
                             <para>In Fortran the calling sequence must be:</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                            <programlisting role="no-scilab-exec"><![CDATA[
 subroutine fsub(x,zu,f)
-double precision zu(*), f(*),x 
+double precision zu(*), f(*),x
  ]]></programlisting>
                         </listitem>
                         <listitem>
                             <para>In C the function prototype must be:</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                            <programlisting role="no-scilab-exec"><![CDATA[
 void fsub(double *x, double *zu, double *f)
  ]]></programlisting>
                         </listitem>
                         <listitem>
                             <para>And in Scilab:</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                            <programlisting role="no-scilab-exec"><![CDATA[
 function f=fsub(x,zu,parameters)
  ]]></programlisting>
                         </listitem>
@@ -742,20 +746,20 @@ function f=fsub(x,zu,parameters)
                     <itemizedlist>
                         <listitem>
                             <para>In Fortran the calling sequence must be:</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                            <programlisting role="no-scilab-exec"><![CDATA[
 subroutine dfsub(x,zu,df)
 double precision zu(*), df(*),x
  ]]></programlisting>
                         </listitem>
                         <listitem>
                             <para>In C the function prototype must be:</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                            <programlisting role="no-scilab-exec"><![CDATA[
 void dfsub(double *x, double *zu, double *df)
  ]]></programlisting>
                         </listitem>
                         <listitem>
                             <para>And in Scilab:</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                            <programlisting role="no-scilab-exec"><![CDATA[
 function df=dfsub(x,zu,parameters)
  ]]></programlisting>
                         </listitem>
@@ -843,7 +847,7 @@ function df=dfsub(x,zu,parameters)
                     <itemizedlist>
                         <listitem>
                             <para>In Fortran the calling sequence must be:</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                            <programlisting role="no-scilab-exec"><![CDATA[
 subroutine gsub(i,zu,g)
 double precision zu(*), g(*)
 integer i
@@ -851,13 +855,13 @@ integer i
                         </listitem>
                         <listitem>
                             <para>In C the function prototype must be:</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                            <programlisting role="no-scilab-exec"><![CDATA[
 void gsub(int *i, double *zu, double *g)
  ]]></programlisting>
                         </listitem>
                         <listitem>
                             <para>And in Scilab:</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                            <programlisting role="no-scilab-exec"><![CDATA[
 function g=gsub(i,zu,parameters)
  ]]></programlisting>
                             <para>
@@ -873,9 +877,9 @@ function g=gsub(i,zu,parameters)
                     <para>
                         an <link linkend="external">external</link> used to evaluate
                         the <literal>i</literal>-th row of the Jacobian of <literal>g(x,u(x))</literal>. Where
-                        <literal>z(u)</literal> is as for <literal>fsub</literal>, <literal>i</literal> as for 
-                        <literal>gsub</literal> and the <literal>M</literal>-vector <literal>dg</literal> should 
-                        be filled with the partial derivatives of <literal>g</literal>, viz, for a particular call one 
+                        <literal>z(u)</literal> is as for <literal>fsub</literal>, <literal>i</literal> as for
+                        <literal>gsub</literal> and the <literal>M</literal>-vector <literal>dg</literal> should
+                        be filled with the partial derivatives of <literal>g</literal>, viz, for a particular call one
                         calculates
                     </para>
                     <informalequation>
@@ -958,20 +962,20 @@ function g=gsub(i,zu,parameters)
                     <itemizedlist>
                         <listitem>
                             <para>In Fortran the calling sequence must be:</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                            <programlisting role="no-scilab-exec"><![CDATA[
 subroutine dgsub(i,zu,dg)
 double precision zu(*), dg(*)
  ]]></programlisting>
                         </listitem>
                         <listitem>
                             <para>In C the function prototype must be</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                            <programlisting role="no-scilab-exec"><![CDATA[
 void dgsub(int *i, double *zu, double *dg)
  ]]></programlisting>
                         </listitem>
                         <listitem>
                             <para>And in Scilab </para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                            <programlisting role="no-scilab-exec"><![CDATA[
 function dg=dgsub(i,zu,parameters)
  ]]></programlisting>
                         </listitem>
@@ -994,20 +998,20 @@ function dg=dgsub(i,zu,parameters)
                     <itemizedlist>
                         <listitem>
                             <para>In Fortran the calling sequence must be:</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                            <programlisting role="no-scilab-exec"><![CDATA[
 subroutine guess(x,zu,dmval)
 double precision x,z(*), dmval(*)
  ]]></programlisting>
                         </listitem>
                         <listitem>
                             <para>In C the function prototype must be</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                            <programlisting role="no-scilab-exec"><![CDATA[
 void fsub(double *x, double *zu, double *dmval)
  ]]></programlisting>
                         </listitem>
                         <listitem>
                             <para>And in Scilab </para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                            <programlisting role="no-scilab-exec"><![CDATA[
 function [dmval,zu]=fsub(x,parameters)
  ]]></programlisting>
                         </listitem>
@@ -1043,7 +1047,7 @@ function [dmval,zu]=fsub(x,parameters)
                     <para>
                         where all these arguments excepted <literal>ifail</literal> are
                         described above. <literal>ifail</literal> can be used to display the
-                        bvode call corresonding to the selected optional arguments. If
+                        bvode call corresponding to the selected optional arguments. If
                         <literal>guess</literal> is given <literal>iguess</literal> is set to
                         1
                     </para>
@@ -1757,7 +1761,7 @@ function [dmval,zu]=fsub(x,parameters)
                         </imagedata>
                     </imageobject>
                 </mediaobject>
-                <programlisting role="example"><![CDATA[ 
+                <programlisting role="example"><![CDATA[
 N=1;// just one differential equation
 m=4;//a fourth order  differential equation
 M=sum(m);
@@ -2086,7 +2090,7 @@ zu=bvode(xpoints,N,m,x_low,x_up,zeta,ltol=ltol,tol=tol,guess=zstart)
                 <para>
                     for <literal>x=0</literal> and <literal>x=1</literal>
                 </para>
-                <programlisting role="example"><![CDATA[ 
+                <programlisting role="example"><![CDATA[
 N=2;// two differential equations
 m=[2 2];//each differential equation is of second  order
 M=sum(m);
@@ -2186,7 +2190,7 @@ scf(2);clf();plot(xpoints,zu2([1 3],:)) // the evolution of the solution phi and
                 <para>
                     <emphasis role="bold">An eigenvalue problem:</emphasis>
                 </para>
-                <programlisting role="example"><![CDATA[ 
+                <programlisting role="example"><![CDATA[
 // y''(x)=-la*y(x)
 // BV: y(0)=y'(0); y(1)=0
 // Eigenfunctions and eigenvalues are y(x,n)=sin(s(n)*(1-x)), la(n)=s(n)^2,
@@ -2232,7 +2236,7 @@ z=bvodeS(x,m,n,a,b,fsub,gsub,zeta,ystart=list(ystart,la0),iprint=1);
 z=bvodeS(x,m,n,a,b,fsub,gsub,zeta,ystart=list(ystart,la0),iprint=-1);
 
 clf()
-plot(x,[z(1,:)' z(2,:)']) 
+plot(x,[z(1,:)' z(2,:)'])
 xtitle(['Startvalue =  '+string(la0);'Eigenvalue = '+string(z(3,1))],'x',' ')
 legend(['y(x)';'y''(x)']);
  ]]></programlisting>
@@ -2240,40 +2244,40 @@ legend(['y(x)';'y''(x)']);
                     function rhs=fsub(x,z)
                     rhs=[-z(3)*z(1);0]
                     endfunction
-                    
+
                     function g=gsub(i,z)
                     g=[z(1)-z(2) z(1)-1 z(1)]
                     g=g(i)
                     endfunction
-                    
+
                     function [z,lhs]=ystart(x,z,la0)
                     z=[1;0;la0]
                     lhs=[0;0]
                     endfunction
-                    
+
                     a=0;b=1;
                     m=[2;1];
                     n=2;
                     zeta=[a a b];
                     N=101;
                     x=linspace(a,b,N)';
-                    
+
                     la0=10;
                     la0=(%pi/2+la0*%pi)^2;
-                    
+
                     z=bvodeS(x,m,n,a,b,fsub,gsub,zeta,ystart=list(ystart,la0),iprint=1);
-                    
+
                     plot(x,[z(1,:)' z(2,:)']);
                     xtitle(['Startvalue =  '+string(la0);'Eigenvalue = '+string(z(3,1))],'x',' ');
                     legend(['y(x)';'y''(x)']);
                 </scilab:image>
-                
+
             </listitem>
             <listitem>
                 <para>
                     <emphasis role="bold">A boundary value problem with more than one solution.</emphasis>
                 </para>
-                <programlisting role="example"><![CDATA[ 
+                <programlisting role="example"><![CDATA[
 // DE: y''(x)=-exp(y(x))
 // BV: y(0)=0; y(1)=0
 // This boundary value problem has more than one solution.
@@ -2299,7 +2303,7 @@ function g=gsub(i,z)
   g=g(i)
 endfunction
 
-function [z,lhs]=ystart(x,z,M) 
+function [z,lhs]=ystart(x,z,M)
   //z=[4*x*(1-x)*M ; 4*(1-2*x)*M]
   z=[M;0]
   //lhs=[-exp(4*x*(1-x)*M)]
@@ -2337,7 +2341,7 @@ disp(norm(z1(1,:)-yex1(x)),'norm(yex1(x)-z1(1,:))= ')
 clf();
 subplot(2,1,1)
 plot2d(x,z(1,:),style=[5])
-xtitle('Two different solutions','x',' ') 
+xtitle('Two different solutions','x',' ')
 subplot(2,1,2)
 plot2d(x,z1(1,:),style=[5])
 xtitle(' ','x',' ')
@@ -2351,23 +2355,23 @@ xtitle(' ','x',' ')
                     N=101;
                     tol=1e-8*[1 1];
                     x=linspace(a,b,N);
-                    
+
                     function rhs=fsub(x,z)
                     rhs=-exp(z(1));
                     endfunction
-                    
+
                     function g=gsub(i,z)
                     g=[z(1) z(1)]
                     g=g(i)
                     endfunction
-                    
-                    function [z,lhs]=ystart(x,z,M) 
+
+                    function [z,lhs]=ystart(x,z,M)
                     //z=[4*x*(1-x)*M ; 4*(1-2*x)*M]
                     z=[M;0]
                     //lhs=[-exp(4*x*(1-x)*M)]
                     lhs=0
                     endfunction
-                    
+
                     for M=[1 4]
                     if M==1
                     z=bvodeS(x,m,n,a,b,fsub,gsub,zeta,ystart=list(ystart,M),tol=tol,iprint=1);
@@ -2375,25 +2379,25 @@ xtitle(' ','x',' ')
                     z1=bvodeS(x,m,n,a,b,fsub,gsub,zeta,ystart=list(ystart,M),tol=tol,iprint=1);
                     end
                     end
-                    
+
                     // Integrating the ode yield e.g. the two solutions yex and yex1.
-                    
+
                     function y=f(c)
                     y=c.*(1-tanh(sqrt(c)/4).^2)-2;
                     endfunction
                     c=fsolve(2,f);
-                    
+
                     function y=yex(x,c)
                     y=log(c/2*(1-tanh(sqrt(c)*(1/4-x/2)).^2))
                     endfunction
-                    
+
                     function y=f1(c1), y=2*c1^2+tanh(1/4/c1)^2-1;endfunction
                     c1=fsolve(0.1,f1);
-                    
+
                     function y=yex1(x,c1)
                     y=log((1-tanh((2*x-1)/4/c1).^2)/2/c1/c1)
                     endfunction
-                    
+
                     subplot(2,1,1)
                     plot2d(x,z(1,:),style=[5])
                     xtitle('Two different solutions','x',' ')
@@ -2594,7 +2598,7 @@ end
         </itemizedlist>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="link">link</link>

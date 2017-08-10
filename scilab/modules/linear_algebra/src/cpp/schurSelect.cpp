@@ -2,18 +2,21 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 /*--------------------------------------------------------------------------*/
 
 #include "configvariable.hxx"
 #include "callable.hxx"
-#include "execvisitor.hxx"
+#include "double.hxx"
 
 extern "C"
 {
@@ -55,12 +58,27 @@ int schurSelect(types::Double** _pDblIn, types::Double** _pDblOut, bool _bIsComp
     if (_pDblIn[1] == NULL && _bIsComplex == false)
     {
         //dgees
-        double* pWR = (double*)MALLOC(iCols * sizeof(double));
-        double* pWI = (double*)MALLOC(iCols * sizeof(double));
-        pRwork = allocDgeesWorkspace(iCols, iDim, &iWorksize);
-
-        if (pWR == NULL || pWI == NULL || pRwork == NULL)
+        double* pWR = NULL;
+        double* pWI = NULL;
+        
+        if ((pWR = (double*)MALLOC(iCols * sizeof(double))) == NULL)
         {
+            FREE(pBwork);
+            return -1;
+        }
+
+        if ((pWI = (double*)MALLOC(iCols * sizeof(double))) == NULL)
+        {
+            FREE(pWR);
+            FREE(pBwork);
+            return -1;
+        }
+
+        if ((pRwork = allocDgeesWorkspace(iCols, iDim, &iWorksize)) == NULL)
+        {
+            FREE(pWR);
+            FREE(pWI);
+            FREE(pBwork);
             return -1;
         }
 
@@ -115,12 +133,25 @@ int schurSelect(types::Double** _pDblIn, types::Double** _pDblOut, bool _bIsComp
     {
         //zgees
         doublecomplex* pW = NULL;
-        pRwork      = (double*)MALLOC(iCols * sizeof(double));
-        pW          = (doublecomplex*)MALLOC(iCols * sizeof(doublecomplex));
-        pCplxWork   = allocZgeesWorkspace(iCols, iDim, &iWorksize);
-
-        if (pRwork == NULL || pW == NULL || pCplxWork == NULL)
+        
+        if ((pRwork = (double*)MALLOC(iCols * sizeof(double))) == NULL)
         {
+            FREE(pBwork);
+            return -1;
+        }
+
+        if ((pW = (doublecomplex*)MALLOC(iCols * sizeof(doublecomplex))) == NULL)
+        {
+            FREE(pRwork);
+            FREE(pBwork);
+            return -1;
+        }
+
+        if ((pCplxWork = allocZgeesWorkspace(iCols, iDim, &iWorksize)) == NULL)
+        {
+            FREE(pW);
+            FREE(pRwork);
+            FREE(pBwork);
             return -1;
         }
 
@@ -182,13 +213,37 @@ int schurSelect(types::Double** _pDblIn, types::Double** _pDblOut, bool _bIsComp
     else if (_pDblIn[1] && _bIsComplex == false)
     {
         //dgges
-        double* pAlphaR = (double*)MALLOC(iCols * sizeof(double));
-        double* pAlphaI = (double*)MALLOC(iCols * sizeof(double));
-        double* pBeta   = (double*)MALLOC(iCols * sizeof(double));
-        pRwork = allocDggesWorkspace(iCols, iDim, &iWorksize);
-
-        if (pAlphaR == NULL || pAlphaI == NULL || pBeta == NULL || pRwork == NULL)
+        double* pAlphaR = NULL;
+        double* pAlphaI = NULL;
+        double* pBeta = NULL;
+        
+        if ((pAlphaR = (double*)MALLOC(iCols * sizeof(double))) == NULL)
         {
+            FREE(pBwork);
+            return -1;
+        }
+
+        if ((pAlphaI = (double*)MALLOC(iCols * sizeof(double))) == NULL)
+        {
+            FREE(pAlphaR);
+            FREE(pBwork);
+            return -1;
+        }
+
+        if ((pBeta = (double*)MALLOC(iCols * sizeof(double))) == NULL)
+        {
+            FREE(pAlphaI);
+            FREE(pAlphaR);
+            FREE(pBwork);
+            return -1;
+        }
+
+        if ((pRwork = allocDggesWorkspace(iCols, iDim, &iWorksize)) == NULL)
+        {
+            FREE(pBeta);
+            FREE(pAlphaI);
+            FREE(pAlphaR);
+            FREE(pBwork);
             return -1;
         }
 
@@ -247,13 +302,36 @@ int schurSelect(types::Double** _pDblIn, types::Double** _pDblOut, bool _bIsComp
     else if (_pDblIn[1] && _bIsComplex)
     {
         //zgges
-        doublecomplex* pAlpha   = (doublecomplex*)MALLOC(iCols * sizeof(doublecomplex));
-        doublecomplex* pBeta    = (doublecomplex*)MALLOC(iCols * sizeof(doublecomplex));
-        pRwork                  = (double*) MALLOC(8 * iCols * sizeof(double));
-        pCplxWork = allocZggesWorkspace(iCols, iDim, &iWorksize);
+        doublecomplex* pAlpha = NULL;
+        doublecomplex* pBeta = NULL;
 
-        if (pRwork == NULL || pAlpha == NULL || pBeta == NULL || pCplxWork == NULL)
+        if ((pAlpha = (doublecomplex*)MALLOC(iCols * sizeof(doublecomplex))) == NULL)
         {
+            FREE(pBwork);
+            return -1;
+        }
+
+        if ((pBeta = (doublecomplex*)MALLOC(iCols * sizeof(doublecomplex))) == NULL)
+        {
+            FREE(pAlpha);
+            FREE(pBwork);
+            return -1;
+        }
+
+        if ((pRwork = (double*) MALLOC(8 * iCols * sizeof(double))) == NULL)
+        {
+            FREE(pBeta);
+            FREE(pAlpha);
+            FREE(pBwork);
+            return -1;
+        }
+
+        if ((pCplxWork = allocZggesWorkspace(iCols, iDim, &iWorksize)) == NULL)
+        {
+            FREE(pRwork);
+            FREE(pBeta);
+            FREE(pAlpha);
+            FREE(pBwork);
             return -1;
         }
 

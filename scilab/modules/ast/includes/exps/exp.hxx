@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2007-2008 - DIGITEO - Bruno JOFRET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -32,10 +35,10 @@ typedef std::vector<Exp *> exps_t;
 /** \brief Abstract an Expression node. */
 class Exp : public Ast
 {
-
+public:
     /** \name Ctor & dtor.
     ** \{ */
-public:
+
     /** \brief Construct an Expression node.
     ** \param location scanner position informations */
     Exp (const Location& location)
@@ -55,7 +58,7 @@ public:
     /** \brief Destroys an Expression node. */
     virtual ~Exp ()
     {
-        for (exps_t::const_iterator it = _exps.begin(), itEnd = _exps.end(); it != itEnd; ++it)
+        for (exps_t::const_iterator it = _exps.begin(); it != _exps.end(); ++it)
         {
             if (*it != NULL)
             {
@@ -250,13 +253,108 @@ public:
         FUNCTIONDEC,
         LISTEXP,
         OPTIMIZEDEXP,
-	MEMFILLEXP,
+        MEMFILLEXP,
         DAXPYEXP,
         STRINGSELECTEXP,
         TABLEINTSELECTEXP,
         MAPINTSELECTEXP,
         SMALLINTSELECTEXP,
     };
+
+    const std::wstring getTypeString() const
+    {
+        switch (getType())
+        {
+            case SIMPLEVAR:
+                return L"SimpleVar";
+            case DOLLARVAR:
+                return L"DollarVar";
+            case COLONVAR:
+                return L"ColonVar";
+            case ARRAYLISTVAR:
+                return L"ArrayListVar";
+            case DOUBLEEXP:
+                return L"DoubleExp";
+            case BOOLEXP:
+                return L"BoolExp";
+            case STRINGEXP:
+                return L"StringExp";
+            case COMMENTEXP:
+                return L"CommentExp";
+            case CONSTEXP:
+                return L"ConstExp";
+            case NILEXP:
+                return L"NilExp";
+            case CALLEXP:
+                return L"CallExp";
+            case CELLCALLEXP:
+                return L"CellCallExp";
+            case OPEXP:
+                return L"OpExp";
+            case LOGICALOPEXP:
+                return L"LogicalOpExp";
+            case ASSIGNEXP:
+                return L"AssignExp";
+            case IFEXP:
+                return L"IfExp";
+            case WHILEEXP:
+                return L"WhileExp";
+            case FOREXP:
+                return L"ForExp";
+            case BREAKEXP:
+                return L"BreakExp";
+            case CONTINUEEXP:
+                return L"ContinueExp";
+            case TRYCATCHEXP:
+                return L"TryCatchExp";
+            case SELECTEXP:
+                return L"SelectExp";
+            case CASEEXP:
+                return L"CaseExp";
+            case RETURNEXP:
+                return L"ReturnExp";
+            case FIELDEXP:
+                return L"FieldExp";
+            case NOTEXP:
+                return L"NotExp";
+            case TRANSPOSEEXP:
+                return L"TransposeExp";
+            case MATRIXEXP:
+                return L"MatrixExp";
+            case MATRIXLINEEXP:
+                return L"MatrixLineExp";
+            case CELLEXP:
+                return L"CellExp";
+            case SEQEXP:
+                return L"SeqExp";
+            case ARRAYLISTEXP:
+                return L"ArrayListExp";
+            case ASSIGNLISTEXP:
+                return L"AssignListExp";
+            case VARDEC:
+                return L"VarDec";
+            case FUNCTIONDEC:
+                return L"FunctionDec";
+            case LISTEXP:
+                return L"ListExp";
+            case OPTIMIZEDEXP:
+                return L"OptimizedExp";
+            case MEMFILLEXP:
+                return L"MemfillExp";
+            case DAXPYEXP:
+                return L"DAXPYExp";
+            case STRINGSELECTEXP:
+                return L"StringSelectExp";
+            case TABLEINTSELECTEXP:
+                return L"TableIntSelectExp";
+            case MAPINTSELECTEXP:
+                return L"MapIntSelectExp";
+            case SMALLINTSELECTEXP:
+                return L"SmallIntSelectExp";
+            default:
+                return L"????Exp";
+        }
+    }
 
     virtual ExpType getType() const = 0;
 
@@ -343,6 +441,11 @@ public:
     }
 
     inline virtual bool isAssignExp() const
+    {
+        return false;
+    }
+
+    inline virtual bool isControlExp() const
     {
         return false;
     }
@@ -556,6 +659,7 @@ public:
     {
         return _exps;
     }
+
 
 private:
     bool _verbose;

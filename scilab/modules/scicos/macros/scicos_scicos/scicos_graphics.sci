@@ -24,8 +24,6 @@ function graphics=scicos_graphics(v1,v2,v3,v4,v5,v6,v7,v8,v9,v10,...
     //initialisation de graphics scicos_new
     if exists("orig","local")==0 then orig=[0 0],end
     if exists("sz","local")==0 then sz=[20 20],end
-    if exists("flip","local")==0 then flip=%t,end
-    if exists("theta","local")==0 then theta=0,end
     if exists("exprs","local")==0 then exprs=[],end
     if exists("pin","local")==0 then pin=[],end
     if exists("pout","local")==0 then pout=[],end
@@ -53,9 +51,9 @@ function graphics=scicos_graphics(v1,v2,v3,v4,v5,v6,v7,v8,v9,v10,...
     if exists("out_label","local")==0 then
         out_label=emptystr(pout);
     end
-    if exists("style","local")==0 then style="" + [],end
+    if exists("style","local")==0 then style="", end
 
-    graphics=scicos_new(["graphics","orig","sz","flip","theta","exprs","pin",..
+    graphics=scicos_new(["graphics","orig","sz","exprs","pin",..
     "pout","pein","peout","gr_i","id","in_implicit","out_implicit","in_style","out_style","in_label","out_label","style"],..
-    orig,sz,flip,theta,exprs,pin,pout,pein,peout,gr_i,id,in_implicit,out_implicit,in_style,out_style,in_label,out_label,style)
+    orig,sz,exprs,pin,pout,pein,peout,gr_i,id,in_implicit,out_implicit,in_style,out_style,in_label,out_label,style)
 endfunction

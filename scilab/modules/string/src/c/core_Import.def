@@ -3,21 +3,8 @@ LIBRARY    core.dll
 
 EXPORTS
 ;core
-callFunctionFromGateway
 freeArrayOfString
 freeArrayOfWideString
-gettype_
-com_
-checklhs_
-checkrhs_
-iop_
-putlhsvar_
-createvar_
-getrhsvar_
-vartype_
-createvarfromptr_
-overload_
 MyHeapAlloc
 MyHeapFree
-MyHeapRealloc
 

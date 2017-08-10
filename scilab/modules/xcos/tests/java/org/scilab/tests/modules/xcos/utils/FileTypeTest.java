@@ -2,32 +2,42 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
 package org.scilab.tests.modules.xcos.utils;
 
+import java.awt.GraphicsEnvironment;
 import java.io.File;
 import java.io.IOException;
-import java.awt.GraphicsEnvironment;
+import java.rmi.server.UID;
 
-import org.junit.Test;
 import org.junit.Assume;
-
+import org.junit.Before;
+import org.junit.Test;
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.XcosFileType;
-
 
 /**
  * Test the {@link XcosFileType} class.
  */
 public class FileTypeTest {
     private static final String XcosFileHeader = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
+
+    @Before
+    public void loadLibrary() {
+        System.loadLibrary("scilab");
+    }
 
     @Test
     public void checkSupportedType() {
@@ -71,7 +81,9 @@ public class FileTypeTest {
     public void validateXcosFindFileType() throws Exception {
         Assume.assumeTrue(!GraphicsEnvironment.isHeadless());
         File tmp = File.createTempFile("xcosTest", XcosFileType.XCOS.getDottedExtension());
-        XcosFileType.XCOS.save(tmp.getCanonicalPath(), new XcosDiagram());
+
+        JavaController controller = new JavaController();
+        XcosFileType.XCOS.save(tmp.getCanonicalPath(), new XcosDiagram(controller, controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM, new UID().toString()));
 
         assert XcosFileType.XCOS == XcosFileType.findFileType(tmp);
 
@@ -82,7 +94,9 @@ public class FileTypeTest {
     public void validateZcosFindFileType() throws Exception {
         Assume.assumeTrue(!GraphicsEnvironment.isHeadless());
         File tmp = File.createTempFile("xcosTest", XcosFileType.ZCOS.getDottedExtension());
-        XcosFileType.ZCOS.save(tmp.getCanonicalPath(), new XcosDiagram());
+
+        JavaController controller = new JavaController();
+        XcosFileType.ZCOS.save(tmp.getCanonicalPath(), new XcosDiagram(controller, controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM, new UID().toString()));
 
         assert XcosFileType.ZCOS == XcosFileType.findFileType(tmp);
 

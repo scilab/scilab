@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ *
+ * This help file was generated from prettyprint.sci using help_from_sci().
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="prettyprint" xml:lang="ja">
+    <refnamediv>
+        <refname>prettyprint</refname>
+        <refpurpose>Scilabデータ型からTeX, LaTeXまたはMathML形式の出力を得る</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>
+            str = prettyprint(a) // デフォルト形式 (LaTeX)で変数を表示
+            str = prettyprint(a, exportFormat) // 指定された形式で変数を表示
+            str = prettyprint(a, exportFormat, delim) // 上と同様ですが,デリミタを変更
+            str = prettyprint(a, exportFormat, delim, processByElement) // 上と同様ですが,各要素を独立に処理
+            str = prettyprint(a, exportFormat, delim, processByElement, isWrapped) // 上と同様ですが,TeXまたはLaTeXエクスポートのspecialキーワードを追加
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Pパラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>a</term>
+                <listitem>
+                    <para>Scilab変数</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>exportFormat</term>
+                <listitem>
+                    <para>出力形式で,省略された場合はデフォルトで'latex'が使用されます.
+                        'latex', 'tex' または 'mathml'とすることができます.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>delimiter</term>
+                <listitem>
+                    <para> 結果の行列で使用されるデリミタを示す文字列で,
+                        isWrappedがtrueの場合にみ使用されます.
+                        デリミタは '(', '{', '[', '|', '||' または ')' とすることができます
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>processByElement</term>
+                <listitem>
+                    <para> 結果の行列が一つの文字列に変換されるかどうかを設定する論理値.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>isWrapped</term>
+                <listitem>
+                    <para>xstring または xtitleで使用される際,
+                        結果がデリミタ(latexおよびtexの場合は'$',mathmlの場合はなし)で
+                        括られるかどうかを設定する論理値.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>str</term>
+                <listitem>
+                    <para>変数aの表現</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            変数を指定すると,
+            prettyprint 関数はこれを整形した結果を出力します.
+            形式はTeX, LaTeX または MathMLです.
+            これらはサードパーティアプリケーションだけでなく,
+            Scilab内でも多くの
+            <link linkend="math_rendering_features_in_graphic">Scilabグラフィック機能</link>で
+            使用できます.
+            以下の型がこの関数で処理できます:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>実数 / 複素数行列</para>
+            </listitem>
+            <listitem>
+                <para>多項式型</para>
+            </listitem>
+            <listitem>
+                <para>論理値</para>
+            </listitem>
+            <listitem>
+                <para>整数</para>
+            </listitem>
+            <listitem>
+                <para>文字列</para>
+            </listitem>
+            <listitem>
+                <para>tlist</para>
+            </listitem>
+            <listitem>
+                <para>有理数</para>
+            </listitem>
+            <listitem>
+                <para>セル</para>
+            </listitem>
+        </itemizedlist>
+        <para/>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+str = prettyprint(rand(3,3)) // 3x3 行列のLaTeX表現を返す
+xstring(0.2,0.2,str) // グラフィックウインドウに表示
+prettyprint(rand(3,4),"mathml") // 3x4行列のMathML表現を返す
+prettyprint(rand(3,4),"mathml","[") // 3x4行列のMathML表現を'['をデリミタとして 返す
+s=poly(0,'s'); G=[1,s;1+s^2,3*s^3];
+xstring(0.2,0.2,prettyprint(G*s-1)); // LaTeX表現により多項式を表示
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="math_rendering_features_in_graphic">math_rendering_features_in_graphic</link>
+            </member>
+            <member>
+                <link linkend="xtitle">xtitle</link>
+            </member>
+            <member>
+                <link linkend="axes_properties">axes_properties</link>
+            </member>
+            <member>
+                <link linkend="label_properties">label_properties</link>
+            </member>
+            <member>
+                <link linkend="legend_properties">legend_properties</link>
+            </member>
+            <member>
+                <link linkend="sci2exp">sci2exp</link>
+            </member>
+            <member>
+                <link linkend="text_properties">text_properties</link>
+            </member>
+            <member>
+                <link linkend="xstringb">xstringb</link>
+            </member>
+            <member>
+                <link linkend="xstringl">xstringl</link>
+            </member>
+            <member>
+                <link linkend="xstring">xstring</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

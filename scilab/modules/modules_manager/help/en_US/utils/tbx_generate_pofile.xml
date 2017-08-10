@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * Copyright (C) 2016 - Samuel GOUGEON
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="tbx_generate_pofile" xml:lang="en">
+    <refnamediv>
+        <refname>tbx_generate_pofile</refname>
+        <refpurpose>Extract localized strings from toolbox sources (toolbox compilation process)</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>
+            pofile = tbx_generate_pofile()
+            pofile = tbx_generate_pofile(tbx_path)
+            pofile = tbx_generate_pofile(tbx_name)             // obsolete
+            pofile = tbx_generate_pofile(tbx_name, tbx_path)   // obsolete
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection role="parameters">
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>tbx_path</term>
+                <listitem>
+                    <para>path of the toolbox, use to locate files to compile.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>tbx_name (obsolete)</term>
+                <listitem>
+                    <para>name of the toolbox, use to name localization files and domain.</para>
+                    <warning>
+                       <varname>tbx_name</varname> is now retrieved as the basename of the file
+                       <literal>tbx_path/etc/*.start</literal>. This file must exist, even if it is empty.
+                    </warning>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>pofile</term>
+                <listitem>
+                    <para>return the generated po file path.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection role="examples">
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+tbx_generate_pofile("SCI/contrib/toolbox_skeleton")
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="tbx_build_localization">tbx_build_localization</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revdescription>Function tbx_generate_pofile added.</revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revdescription>tbx_name declared obsolete. It is no longer required.</revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

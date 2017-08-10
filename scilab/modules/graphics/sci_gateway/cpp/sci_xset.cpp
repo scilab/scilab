@@ -5,11 +5,14 @@
 * Copyright (C) 2012 - Scilab Enterprises - Bruno JOFRET
 * Copyright (C) 2013 - Scilab Enterprises - Cedric Delamarre
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
@@ -23,8 +26,8 @@
 #include "configvariable.hxx"
 #include "configgraphicvariable.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 #include "internal.hxx"
+#include "string.hxx"
 
 extern "C"
 {
@@ -33,6 +36,7 @@ extern "C"
 #include "DrawObjects.h"
 #include "localization.h"
 #include "Scierror.h"
+#include "Sciwarning.h"
 #include "HandleManagement.h"
 
 #include "createGraphicObject.h"
@@ -57,8 +61,7 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
 
     if (in.size() == 0)
     {
-        ast::ExecVisitor exec;
-        return Overload::call(L"%_xset", in, _iRetCount, out, &exec);
+        return Overload::call(L"%_xset", in, _iRetCount, out);
     }
 
     if (in.size() > 6)
@@ -140,6 +143,8 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
         break;
         case 2 : // auto clear
         {
+            Sciwarning(_("%s: This feature will be permanently removed in Scilab %s\n\n"), _("Warning"), "6.1.0");
+
             if (in.size() != 2)
             {
                 Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 2);
@@ -170,6 +175,8 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
         break;
         case 5 : // clipping
         {
+            Sciwarning(_("%s: This feature will be permanently removed in Scilab %s\n\n"), _("Warning"), "6.1.0");
+
             int clipState = 2;
             double dvalues[4];
             if (in.size() == 2)
@@ -203,6 +210,8 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
         break;
         case 8 : // colormap
         {
+            Sciwarning(_("%s: This feature will be permanently removed in Scilab %s\n\n"), _("Warning"), "6.1.0");
+
             if (in.size() != 2)
             {
                 Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "xset", 2);
@@ -216,6 +225,8 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
         break;
         case 21 : // mark size
         {
+            Sciwarning(_("%s: This feature will be permanently removed in Scilab %s\n\n"), _("Warning"), "6.1.0");
+
             if (in.size() != 2)
             {
                 Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "xset", 2);
@@ -232,6 +243,8 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
         break;
         case 20 : // mark
         {
+            Sciwarning(_("%s: This feature will be permanently removed in Scilab %s\n\n"), _("Warning"), "6.1.0");
+
             if (in.size() != 3)
             {
                 Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 3);
@@ -252,6 +265,8 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
         break;
         case 13 : // font size
         {
+            Sciwarning(_("%s: This feature will be permanently removed in Scilab %s\n\n"), _("Warning"), "6.1.0");
+
             if (in.size() != 2)
             {
                 Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 2);
@@ -263,6 +278,8 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
         break;
         case 10 : // default
         {
+            Sciwarning(_("%s: This feature will be permanently removed in Scilab %s\n\n"), _("Warning"), "6.1.0");
+
             if (in.size() != 1)
             {
                 Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 1);
@@ -289,7 +306,7 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
             // reset format
             ConfigGraphicVariable::setFPF(L"");
 
-            double* pdblColorMap = (double*)malloc(m * 3 * sizeof(double));
+            double* pdblColorMap = new double[m * 3];
             if (pdblColorMap == NULL)
             {
                 Scierror(999, _("%s: No more memory.\n"), "xset");
@@ -302,6 +319,7 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
             {
                 iFigureUID = createNewFigureWithAxes();
                 setCurrentFigure(iFigureUID);
+                delete[] pdblColorMap;
                 return types::Function::OK;
             }
 
@@ -359,10 +377,13 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
 
             setGraphicObjectProperty(iFigureUID, __GO_COLORMAP__, pdblColorMap, jni_double_vector, 3 * m);
             setGraphicObjectProperty(iFigureUID, __GO_PARENT__, "", jni_string, 1);
+            delete[] pdblColorMap;
         }
         break;
         case 6 : // clipgrf
         {
+            Sciwarning(_("%s: This feature will be permanently removed in Scilab %s\n\n"), _("Warning"), "6.1.0");
+
             int clipState = 1;
             /* special treatement for xset("cligrf") */
             setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_CLIP_STATE__, &clipState, jni_int, 1);
@@ -370,6 +391,8 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
         break;
         case 4 : // clipoff
         {
+            Sciwarning(_("%s: This feature will be permanently removed in Scilab %s\n\n"), _("Warning"), "6.1.0");
+
             int clipState = 0;
             /* special treatement for xset("clipoff") */
             setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_CLIP_STATE__, &clipState, jni_int, 1);
@@ -377,6 +400,8 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
         break;
         case 16 : // hidden3d
         {
+            Sciwarning(_("%s: This feature will be permanently removed in Scilab %s\n\n"), _("Warning"), "6.1.0");
+
             if (in.size() != 2)
             {
                 Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 2);
@@ -389,6 +414,8 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
         break;
         case 12 : // font
         {
+            Sciwarning(_("%s: This feature will be permanently removed in Scilab %s\n\n"), _("Warning"), "6.1.0");
+
             if (in.size() != 3)
             {
                 Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 3);
@@ -405,6 +432,8 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
         case 11 : // window
         case 30 : // figure
         {
+            Sciwarning(_("%s: This feature will be permanently removed in Scilab %s\n\n"), _("Warning"), "6.1.0");
+
             if (in.size() != 2)
             {
                 Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 2);
@@ -432,6 +461,8 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
         case 7 : // color
         case 23 : // pattern
         {
+            Sciwarning(_("%s: This feature will be permanently removed in Scilab %s\n\n"), _("Warning"), "6.1.0");
+
             if (in.size() != 2)
             {
                 Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 2);
@@ -444,6 +475,8 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
         break;
         case 3 : // background
         {
+            Sciwarning(_("%s: This feature will be permanently removed in Scilab %s\n\n"), _("Warning"), "6.1.0");
+
             if (in.size() != 2)
             {
                 Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 2);
@@ -456,6 +489,8 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
         break;
         case 25 : // thickness
         {
+            Sciwarning(_("%s: This feature will be permanently removed in Scilab %s\n\n"), _("Warning"), "6.1.0");
+
             if (in.size() != 2)
             {
                 Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 2);
@@ -467,6 +502,8 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
         break;
         case 19 : // line style
         {
+            Sciwarning(_("%s: This feature will be permanently removed in Scilab %s\n\n"), _("Warning"), "6.1.0");
+
             if (in.size() != 2)
             {
                 Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 2);
@@ -479,6 +516,8 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
         break;
         case 9 : // dashes
         {
+            Sciwarning(_("%s: This feature will be permanently removed in Scilab %s\n\n"), _("Warning"), "6.1.0");
+
             if (in.size() != 2)
             {
                 Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 2);
@@ -491,6 +530,8 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
         break;
         case 33 : // wresize
         {
+            Sciwarning(_("%s: This feature will be permanently removed in Scilab %s\n\n"), _("Warning"), "6.1.0");
+
             if (in.size() != 2)
             {
                 Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 2);
@@ -503,6 +544,8 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
         break;
         case 32 : // wpos
         {
+            Sciwarning(_("%s: This feature will be permanently removed in Scilab %s\n\n"), _("Warning"), "6.1.0");
+
             int figurePosition[2];
             if (in.size() != 2)
             {
@@ -520,6 +563,8 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
         case 31 : // wpdim
         case 28 : // wdim
         {
+            Sciwarning(_("%s: This feature will be permanently removed in Scilab %s\n\n"), _("Warning"), "6.1.0");
+
             int figureSize[2] = {0, 0};
             if (in.size() != 2 && in.size() != 3)
             {
@@ -550,6 +595,8 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
         break;
         case 27 : // viewport
         {
+            Sciwarning(_("%s: This feature will be permanently removed in Scilab %s\n\n"), _("Warning"), "6.1.0");
+
             if (in.size() != 3)
             {
                 Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 3);
@@ -557,8 +604,8 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
             }
 
             int viewport[4] = {0, 0, 0, 0};
-            viewport[0] = in[1]->getAs<types::Double>()->get(0);
-            viewport[1] = in[2]->getAs<types::Double>()->get(0);
+            viewport[0] = (int)in[1]->getAs<types::Double>()->get(0);
+            viewport[1] = (int)in[2]->getAs<types::Double>()->get(0);
 
             getOrCreateDefaultSubwin();
             setGraphicObjectProperty(getCurrentFigure(), __GO_VIEWPORT__, viewport, jni_int_vector, 2);
@@ -566,6 +613,8 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
         break;
         case 18 : // line mode
         {
+            Sciwarning(_("%s: This feature will be permanently removed in Scilab %s\n\n"), _("Warning"), "6.1.0");
+
             if (in.size() != 2)
             {
                 Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 2);

@@ -16,6 +16,7 @@
 // contourf did not work when the "Matlab Compatibility functions module" was not installed.
 
 // Clear the Matlab Compatibility functions library
+predef clear
 clear compatibility_functilib
 
 assert_checktrue(execstr("contourf(1:10,1:10,rand(10,10),5,1:5,""011"","" "",[0,0,11,11])", "errcatch") == 0);

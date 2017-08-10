@@ -1,14 +1,17 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) INRIA
-c 
-c This file must be used under the terms of the CeCILL.
-c This source file is licensed as described in the file COPYING, which
-c you should have received as part of this distribution.  The terms
-c are also available at    
-c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+c
+c Copyright (C) 2012 - 2016 - Scilab Enterprises
+c
+c This file is hereby licensed under the terms of the GNU GPL v2.0,
+c pursuant to article 5.3.4 of the CeCILL v.2.1.
+c This file was originally licensed under the terms of the CeCILL v2.1,
+c and continues to be available under such terms.
+c For more information, see the COPYING file which you should have received
+c along with this program.
 c
       subroutine nlis0 (n,simul,prosca,xn,fn,fpn,t,tmin,tmax,d,g,
-     /                  amd,amf,imp,io,logic,nap,napmax,x,izs,rzs,dzs)
+     /                 amd,amf,iprint,io,logic,nap,napmax,x,izs,rzs,dzs)
 c
 c     nlis0 + minuscules + commentaires
 c     ---------------------------------
@@ -27,7 +30,7 @@ c
 c --- arguments
 c
       external simul,prosca
-      integer n,imp,io,logic,nap,napmax,izs(*)
+      integer n,iprint,io,logic,nap,napmax,izs(*)
       real rzs(*)
       double precision xn(n),fn,fpn,t,tmin,tmax,d(n),g(n),amd,amf,x(n)
       double precision dzs(*)
@@ -71,7 +74,7 @@ c
       if (t.gt.tmin) go to 20
       t=tmin
       if (t.le.tmax) go to 20
-      if (imp.gt.0) then
+      if (iprint.gt.0) then
         write (bufstr,1007)
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
@@ -85,7 +88,7 @@ c
           t=tmax
           logic=1
       endif
-      if (imp.ge.3) then
+      if (iprint.ge.3) then
         write (bufstr,1000) fpn,d2,tmin,tmax
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
@@ -130,7 +133,7 @@ c
           td=t
           indicd=indic
           logic=0
-          if (imp.ge.3) then
+          if (iprint.ge.3) then
             write (bufstr,1004) t,indic
             call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
             endif
@@ -151,7 +154,7 @@ c
           fpd=fp
           indicd=indic
           logic=0
-          if(imp.ge.3) then
+          if(iprint.ge.3) then
             write (bufstr,1002) t,ffn,fp
             call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
             endif
@@ -160,7 +163,7 @@ c
 c
 c     --- test 1 ok, donc deuxieme test de Wolfe
 c
-      if(imp.ge.3) then
+      if(iprint.ge.3) then
         write (bufstr,1003) t,ffn,fp
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
@@ -255,7 +258,7 @@ c
       fn=fg
       do 930 i=1,n
   930 xn(i)=xn(i)+tg*d(i)
-  940 if (imp.le.0) go to 999
+  940 if (iprint.le.0) go to 999
       write (bufstr,1001)
       call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
       write (bufstr,1005) tg,fg,fpg

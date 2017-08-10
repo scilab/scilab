@@ -5,20 +5,25 @@
  * Copyright (C) 2009-2011 - DIGITEO - Michael Baudin
  * Copyright (C) 2013 - Scilab Enterprises - Paul Bignier: added 32/64bits separation
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="test_run" xml:lang="en">
     <refnamediv>
         <refname>test_run</refname>
-        <refpurpose>Launch tests</refpurpose>
+        <refpurpose>
+            runs unit tests and non-regression tests of a module or in a directory
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             status = test_run()
             status = test_run(module)
@@ -32,11 +37,13 @@
             <varlistentry>
                 <term>module</term>
                 <listitem>
-                    <para>A String array. This input argument must be</para>
+                    <para>
+                        A String array or <literal>[]</literal> (or equivalently <literal>"[]"</literal>). Name of the modules or directory for the tests, all internal modules if <literal>[]</literal>
+                    </para>
                     <itemizedlist>
                         <listitem>
                             <para>
-                                the name of an internal Scilab module ("core", "time", ...) or a sub-module (e.g. "optimization|neldermead").
+                                the name of an internal Scilab module ("core", "time", ...), a sub-module (e.g. "optimization|neldermead").
                             </para>
                         </listitem>
                         <listitem>
@@ -46,7 +53,7 @@
                         </listitem>
                         <listitem>
                             <para>
-                                the absolute directory path of a module.
+                                the absolute directory path of a module containing test/unit_tests or test/nonreg_tests.
                             </para>
                         </listitem>
                     </itemizedlist>
@@ -55,96 +62,113 @@
             <varlistentry>
                 <term>test_name</term>
                 <listitem>
-                    <para>A string array</para>
+                    <para>
+                        A string array or <literal>[]</literal> or <literal>"[]"</literal>:
+                        The names of the tests to execute during this run. If <varname>test_name</varname>
+                        is <literal>[]</literal>, all tests found in the module or in the directory are executed.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>options</term>
                 <listitem>
-                    <para>A string array</para>
-                    <variablelist>
+                    <para>
+                        A string array or <literal>[]</literal> or <literal>"[]"</literal>. The options for the tests during this run, default options if <literal>[]</literal> or <literal>"[]"</literal>.
+                    </para>
+                    <variablelist> or
                         <varlistentry>
-                            <term>no_check_ref</term>
+                            <term>"no_check_ref"</term>
                             <listitem>
                                 <para>does not check if the .dia and .dia.ref are equal</para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
-                            <term>no_check_error_output</term>
+                            <term>"no_check_error_output"</term>
                             <listitem>
                                 <para>The error output stream is not checked. This option can be used when Scilab complains about the localization being not available.</para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
-                            <term>create_ref</term>
+                            <term>"create_ref"</term>
                             <listitem>
-                                <para>create the .dia.ref file and does not check if the .dia and .dia.ref are equal</para>
+                                <para>creates the .dia.ref file (for tests not having the
+                                  <literal>&lt;-- NO CHECK REF --></literal> flag)
+                                  and does not check if the .dia and .dia.ref are equal.
+                                  </para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
-                            <term>show_error</term>
+                            <term>"show_error"</term>
                             <listitem>
-                                <para>If an error occurs, show the last 10 lines of the execution</para>
+                                <para>If an error occurs, shows the last 10 lines of the execution</para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
-                            <term>show_diff</term>
+                            <term>"show_diff"</term>
                             <listitem>
                                 <para>
-                                    If a difference is found, show the result of the command <literal>diff -u</literal>
+                                    If a difference is found, shows the result of the command <literal>diff -u</literal>
                                 </para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
-                            <term>list</term>
+                            <term>"list"</term>
                             <listitem>
                                 <para>Does not perform the tests but displays a list of available tests</para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
-                            <term>help</term>
+                            <term>"help"</term>
                             <listitem>
                                 <para>display some examples about how to use this command</para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
-                            <term>mode_nw</term>
+                            <term>"mode_nw"</term>
                             <listitem>
                                 <para>Add the "-nw" option to the launch</para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
-                            <term>mode_nwni</term>
+                            <term>"mode_nwni"</term>
                             <listitem>
                                 <para>Add the "-nwni" option to the launch</para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
-                            <term>nonreg_tests</term>
+                            <term>"mode_nwni_profiling"</term>
+                            <listitem>
+                                <para>Add the "-nwni -profiling" option to the launch for detect valgrind error (Linux only)</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>"nonreg_tests"</term>
                             <listitem>
                                 <para>runs only the non-regression tests, skipping unit tests</para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
-                            <term>unit_tests</term>
+                            <term>"unit_tests"</term>
                             <listitem>
                                 <para>Runs only the unit tests, skipping non-regression tests</para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
-                            <term>skip_tests</term>
+                            <term>"skip_tests"</term>
                             <listitem>
-                                <para>Skip the tests</para>
+                                <para>
+                                    Skip the tests specified in <term>test_name</term>.
+                                </para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
-                            <term>enable_lt</term>
+                            <term>"enable_lt"</term>
                             <listitem>
                                 <para>Enable long-time execution tests</para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
-                            <term>short_summary</term>
+                            <term>"short_summary"</term>
                             <listitem>
                                 <para>Does not display statistics nor execution time after execution (only number of executed, passed, failed and skipped tests will be displayed on a single line).</para>
                             </listitem>
@@ -160,7 +184,8 @@
                         Note that the usage of this option enables <literal>show_diff</literal> and <literal>show_error</literal>.
                     </para>
                     <para>
-                        If the file pointed by <varname>exportToFile</varname> already exists, the new result will be added to the existing file.
+                        If the file pointed by <varname>exportToFile</varname> already exists,
+                        the new results are appended to the existing file.
                     </para>
                 </listitem>
             </varlistentry>
@@ -179,14 +204,21 @@
     <refsection>
         <title>Description</title>
         <para>
-            Search for .tst files in the unit test and non-regression test library
-            execute them, and display a report about success of failures.
-            The .tst files are searched in directories SCI+"/modules/*/tests/unit_tests"
-            and SCI+"/modules/*/tests/nonreg_tests".
-            Whenever a test is executed, a .dia file is generated which contains
-            the full list of commands executed along with message which appears in the
-            console. When the script is done, the .dia file is compared with
-            the .dia.ref file which is expected to be in the same directory
+            Search for .tst files in the unit test and non-regression test library,
+            execute them, and display a report about success or failures.
+            The .tst files are searched in directories ~/tests/unit_tests"
+            and ~/tests/nonreg_tests" where "~" is the root directory of targeted modules.
+        </para>
+        <para>
+            First <literal>test_run</literal> checks that a test does not produce an error.
+        </para>
+        <para>
+            Then <literal>test_run</literal> checks that the output and commands of a script are
+            identical to the reference file. Whenever a test is executed, a <literal>.dia</literal>
+            file is generated which contains
+            the full list of commands executed along with messages that appear in the
+            console output. When the script is done, the <literal>.dia</literal> file is compared with
+            the <literal>.dia.ref</literal> file which is expected to be in the same directory
             as the .tst file. If the two file are different, the test fails.
         </para>
         <para>
@@ -218,7 +250,7 @@
             <listitem>
                 <para>
                     &lt;-- TEST WITH GRAPHIC --&gt;
-                    This test will not be executed if the option "mode_nwni" is used.
+                    This test will be executed with scilab -nw. (default mode)
                 </para>
             </listitem>
             <listitem>
@@ -253,8 +285,9 @@
             <listitem>
                 <para>
                     &lt;-- CLI SHELL MODE --&gt;
-                    (was: &lt;-- JVM NOT MANDATORY --&gt;)
-                    This test will be executed with scilab-cli (nwni mode) by default.
+                    (was &lt;-- JVM NOT MANDATORY --&gt; and is obsolete)
+                    This test will be executed with scilab -nwni.
+                    All tests without this, will not be executed in "mode_mwni".
                 </para>
             </listitem>
             <listitem>
@@ -343,7 +376,7 @@
         <para>
             The algorithm is the following.
             First, the <literal>.ref</literal> is considered. If this file does not exist,
-            the platform-specific <literal>.ref</literal> file is examined depending on the current platform.
+            the platform-specific <literal>platform.ref</literal> file is examined depending on the current platform.
         </para>
         <itemizedlist>
             <listitem>
@@ -367,11 +400,14 @@
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
 // Launch all tests
+// This may take some time
 // =============================================
 
-test_run();
-test_run([]);
-test_run([],[]);
+// test_run();
+// test_run([]);
+// test_run([],[]);
+// test_run("[]","[]");
+// test_run [] [];
 
 // Test one or several module
 // =============================================
@@ -428,13 +464,16 @@ test_run('boolean','bug_2799','no_check_error_output');
 
 // Combine several options
 test_run([],[],['no_check_ref','mode_nw']);
+
+// Console mode
+test_run time [] no_check_ref //tests time module with no_check_ref option
  ]]></programlisting>
-        
+
         <programlisting role="example"><![CDATA[
 // Run unitary tests of an external module (with his path)
 test_run('SCI/contrib/toolbox_skeleton')
  ]]></programlisting>
-        
+
         <programlisting role="example"><![CDATA[
 // Export to a XML Xunit file
 test_run('boolean',[],[],TMPDIR+"/boolean_test_run.xml");
@@ -445,9 +484,7 @@ test_run('time','datenum',[],TMPDIR+"/time_datenum_test_run.xml");
         <title>Internal Design</title>
         <para>
             The tests are performed in the temporary directory, not in the directory
-            which originaly contain the tests files.
-            The .tst file is copied into the temporary directory, the test is performed
-            and the .dia.ref is copied back into the original location.
+            which originally contain the tests files.
         </para>
         <para>
             The .tst script is not run as is. Instead, a header and a footer are
@@ -456,6 +493,11 @@ test_run('time','datenum',[],TMPDIR+"/time_datenum_test_run.xml");
             The role of this modification is to redirect the output messages
             into the .dia file, so that the user can have a log file once the test
             is performed.
+        </para>
+        <para>
+            An execution timeout delay (watchdog timer) is setup to 5 minutes
+            for each regular test. To ignore this timeout use the long-time
+            execution (<literal>LONG TIME EXECUTION</literal>) flag.
         </para>
     </refsection>
     <refsection>
@@ -484,8 +526,19 @@ test_run('time','datenum',[],TMPDIR+"/time_datenum_test_run.xml");
                         Fourth argument added to export to a XML file
                     </para>
                 </revdescription>
+            </revision>
+            <revision>
                 <revnumber>5.5.0</revnumber>
                 <revdescription>32/64bits separation available</revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revdescription>
+                    <para>profiling mode added to profile execution with valgrind (Linux only)</para>
+                    <para>
+                        timeout delay (watchdog timer) set to 5 minutes for single tests without <literal>LONG TIME EXECUTION</literal>
+                    </para>
+                </revdescription>
             </revision>
         </revhistory>
     </refsection>

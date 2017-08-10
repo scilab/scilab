@@ -1,238 +1,238 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="colon">
-    
+
     <refnamediv>
-        
+
         <refname>colon</refname>
-        
+
         <refpurpose>(:) コロン演算子</refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsection>
-        
+
         <title>説明</title>
-        
+
         <para>
-            
+
             コロン記号 <literal>:</literal> は暗黙的にベクトルを作成する
-            
+
             際に使用することができます.
-            
-            (<link linkend="linspace">linspace</link>,  
-            
-            <link linkend="logspace">logspace</link>も参照ください) 
-            
+
+            (<link linkend="linspace">linspace</link>,
+
+            <link linkend="logspace">logspace</link>も参照ください)
+
         </para>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>j:k</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         ベクトル <literal>[j, j+1,...,k]</literal> (
-                        
+
                         <literal>j&gt;k</literal>の場合は空ベクトル).
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>j:d:k</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         ベクトル <literal>[j, j+d, ..., j+m*d]  </literal>
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
         <para>
-            
+
             コロン表記は,ベクトルおよび行列の指定した行,列および要素を抽出する際にも
-            
+
             使用することができます(<link linkend="extraction">extraction</link>,
-            
+
             <link linkend="insertion">insertion</link>も参照ください).
-            
+
         </para>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>A(:)</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         は,<literal>A</literal>の全要素を一つの列としてベクトル.
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>A(:,j)</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         は,<literal>A</literal>の<literal>j</literal>番目の列;
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>A(i,:)</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         は,<literal>A</literal>の<literal>i</literal>番目の行;
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>A(j:k)</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         は,<literal>[A(j),A(j+1),...,A(k)]</literal>;
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>A(:,j:k)</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         は,
-                        
+
                         <programlisting><![CDATA[
               [A(1,j)  A(1,j+1)  ... A(1,k)
               A(2,j)  A(2,j+1)  ... A(2,k)
               . . . . . . . . . . .
               A(M,j)  A(M,j+1)  ... A(M,k)]
              ]]></programlisting>
-                        
+
                         ただし,<literal>A</literal> の大きさが
-                        
+
                         <literal>M</literal>行<literal>N</literal>列の場合;
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>A(j:k,:)</term>
-                
+
                 <listitem>
-                    
+
                     <para>は,
-                        
+
                         <programlisting><![CDATA[
               [A(j,1)    A(j,2)   ... A(j,N)
               A(j+1,1)  A(j+1,2) ... A(j+1,N)
               . . . . . . . . . . .
               A(k,1)    A(k,2)   ... A(k,N)]
              ]]></programlisting>
-                        
+
                         ただし,<literal>A</literal>の大きさが
-                        
+
                         <literal>M</literal>行<literal>N</literal>列の場合;
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>A(:)=w</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         行列 <literal>A</literal>に<literal>w</literal>のエントリを代入します
-                        
+
                         (<literal>w</literal> が行列の場合,列毎に取り出されます).
-                        
+
                         <literal>A</literal>のエントリの数は,
-                        
+
                         <literal>w</literal>のエントリの数を等しい必要があります.
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
         <para>
-            
-            <literal>i</literal>, <literal>j</literal>, 
-            
+
+            <literal>i</literal>, <literal>j</literal>,
+
             <literal>k</literal>または<literal>d</literal>に小数点以下が
-            
+
             ある場合でも,整数部のみが使用されることに注意してください.
-            
+
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>例</title>
-        
-        <programlisting><![CDATA[ 
+
+        <programlisting><![CDATA[
 a = 1:5
 b = 1:3:12
 A = matrix(1:42,7,6);
@@ -259,42 +259,42 @@ i = 1:0.4:10; //添字
 A(i)
 
  ]]></programlisting>
-        
+
     </refsection>
-    
+
     <refsection role="see also">
-        
+
         <title>参照</title>
-        
+
         <simplelist type="inline">
-            
+
             <member>
-                
+
                 <link linkend="matrix">matrix</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="for">for</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="linspace">linspace</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="logspace">logspace</link>
-                
+
             </member>
-            
+
         </simplelist>
-        
+
     </refsection>
-    
+
 </refentry>
 

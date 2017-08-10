@@ -23,15 +23,6 @@
     <ClCompile Include="dynamic_gateways.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="dynamic_parallel.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="dynamic_tclsci.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ExceptionMessage.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="freeArrayOfString.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -39,9 +30,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="getdynamicDebugInfo_Windows.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GetExceptionCode.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="getmemory.c">
@@ -78,9 +66,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="returnanan.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="texmacs.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="transposeMatrix.c">
@@ -198,9 +183,6 @@
     <ClInclude Include="..\..\includes\core_math.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\ExceptionMessage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\includes\existfunction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -211,9 +193,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\getcommandlineargs.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\GetExceptionCode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\getmemory.h">
@@ -312,9 +291,6 @@
     <ClInclude Include="..\..\includes\tasks.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\texmacs.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\includes\timer.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -331,12 +307,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="dynamic_gateways.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="dynamic_parallel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="dynamic_tclsci.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="getdebuginfo.h">

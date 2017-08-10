@@ -28,6 +28,7 @@ STRING_C_SOURCES = \
     src/c/StringConvert.c \
     src/c/os_wcsdup.c \
     src/c/os_wcstok.c \
+    src/c/os_wcstod.c \
     src/c/scistrtostr.c \
     src/c/stringToDouble.c \
     src/c/stringToComplex.c \
@@ -64,7 +65,8 @@ GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sci_isdigit.cpp \
     sci_gateway/cpp/sci_isascii.cpp \
     sci_gateway/cpp/sci_strsplit.cpp \
-    sci_gateway/cpp/sci_isnum.cpp
+    sci_gateway/cpp/sci_isnum.cpp \
+    sci_gateway/cpp/sci_emptystr.cpp
 
 libscistring_la_CFLAGS= \
     $(PCRE_CFLAGS) \
@@ -158,6 +160,7 @@ includes/getfastcode.h \
 includes/men_Sutils.h \
 includes/os_string.h \
 includes/os_wcstok.h \
+includes/os_wcstod.h \
 includes/pcre_private.h \
 includes/scistrtostr.h \
 includes/StringConvert.h \

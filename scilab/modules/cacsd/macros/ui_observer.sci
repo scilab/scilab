@@ -1,11 +1,14 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function [UIobs,J,N]=ui_observer(Sys,reject,C1,D1,flag,Alfa,Beta)
     // ------------Unknown input observer------------------
@@ -68,14 +71,12 @@ function [UIobs,J,N]=ui_observer(Sys,reject,C1,D1,flag,Alfa,Beta)
     if RHS==4 then Beta=-1;Alfa=-1;flag="st";end
     if RHS==3 then Beta=-1;Alfa=-1;flag="st";D1=[];end
     if size(C1,2) ~= size(Sys("A"),1) then
-        error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: "+..
-        "state dimension of #%d must be equal to the column dimension of #%d.\n"),..
-        "ui_observer",1,3,1,3))
+        msg = _("%s: Incompatible input arguments #%d and #%d: state dimension of #%d must be equal to the column dimension of #%d.\n")
+        error(msprintf(msg, "ui_observer", 1, 3, 1, 3))
     end
     if size(D1,2) ~= size(Sys("B"),2) then
-        error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: "+..
-        "input dimension of #%d must be equal to the column dimension of #%d.\n"),..
-        "ui_observer",4,1,4,1))
+        msg = _("%s: Incompatible input arguments #%d and #%d: input dimension of #%d must be equal to the column dimension of #%d.\n")
+        error(msprintf(msg, "ui_observer", 4, 1, 4, 1))
     end
     not_reject=1:size(Sys,"c");not_reject(reject)=[];
     Sys1=Sys(:,reject);      //A,B1,C2,D21

@@ -2,15 +2,18 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="legend" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="legend" xml:lang="pt">
     <refnamediv>
         <refname>legend</refname>
         <refpurpose>Imprime uma legenda para o gráfico</refpurpose>
@@ -29,7 +32,7 @@
                 <listitem>
                     <para>manipulador gráfico de uma entidade de eixos ou vetor de
                         manipuladores de entidades poligonais. O valor padrão é o
-                        manipulador dos eixos correntes. 
+                        manipulador dos eixos correntes.
                     </para>
                 </listitem>
             </varlistentry>
@@ -43,7 +46,7 @@
                 <term>strings</term>
                 <listitem>
                     <para>vetor de strings de dimensão n, strings(i) é a legenda da
-                        i-ésima curva 
+                        i-ésima curva
                     </para>
                 </listitem>
             </varlistentry>
@@ -95,7 +98,7 @@
                             <term>-1</term>
                             <listitem>
                                 <para>as legendas são impressas à direita do canto superior
-                                    direito 
+                                    direito
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -103,7 +106,7 @@
                             <term>-2</term>
                             <listitem>
                                 <para>as legendas são impressas à esquerda do canto superior
-                                    esquerdo 
+                                    esquerdo
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -111,7 +114,7 @@
                             <term>-3</term>
                             <listitem>
                                 <para>as legendas são impressas à esquerda do canto inferior
-                                    esquerdo 
+                                    esquerdo
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -119,7 +122,7 @@
                             <term>-4</term>
                             <listitem>
                                 <para>as legendas são impressas à direita do canto inferior
-                                    direito 
+                                    direito
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -127,7 +130,7 @@
                             <term>-5</term>
                             <listitem>
                                 <para>as legendas são impressas acima do canto superior
-                                    esquerdo 
+                                    esquerdo
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -135,7 +138,7 @@
                             <term>-6</term>
                             <listitem>
                                 <para>as legendas são impressas abaixo do canto inferior
-                                    esquerdo 
+                                    esquerdo
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -146,7 +149,7 @@
                 <term>boxed</term>
                 <listitem>
                     <para>um booleano (valor padrão %t) que ajusta se a caixa será
-                        desenhada ou não 
+                        desenhada ou não
                     </para>
                 </listitem>
             </varlistentry>
@@ -165,11 +168,11 @@
         <para>Põe uma legenda no esboço corrente utilizando os strings
             especificados como rótulos. legend pre-anexa rótulos por uma re-chamada à
             linha correspondente ou remendo. A re-chamada é de tipo e propriedades são
-            recobradas dos dados manipuladores: 
+            recobradas dos dados manipuladores:
         </para>
         <para>Quando chamada sem o argumento manipulador (ou com manipulador de
             uma entidade Axes) a função procura vetores de manipuladores de entidades
-            poligonais construídos primeiro que são galhos dos eixos dados. 
+            poligonais construídos primeiro que são galhos dos eixos dados.
         </para>
         <para>Na localização interativa (opt= 5) move-se a caixa de legenda com o
             mouse e aperta-se o botão esquerdo para liberá-la.
@@ -177,11 +180,11 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 t=linspace(0,%pi,20);
 a=gca();a.data_bounds=[t(1) -1.8;t($) 1.8];
 
-plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[-5,2 3]);  
+plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[-5,2 3]);
 e=gce();
 e1=e.children(1);e1.thickness=2;e1.polyline_style=4;e1.arrow_size_factor = 1/2;
 e.children(2).line_style=4;

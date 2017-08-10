@@ -2,18 +2,6 @@ LIBRARY    core.dll
 
 
 EXPORTS
-callFunctionFromGateway
-com_
-getSCIpath
-putlhsvar_
-createvarfromptr_
-getrhsvar_
-gettype_
-checklhs_
-checkrhs_
-createvar_
-getWarningMode
-freeArrayOfString
 MyHeapAlloc
 MyHeapFree
 

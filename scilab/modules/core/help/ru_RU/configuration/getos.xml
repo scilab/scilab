@@ -7,7 +7,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             OS=getos()
             [OS,Version]=getos()
@@ -21,20 +21,20 @@
     </refsection>
     <refsection>
         <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 OS=getos()
 [OS,version] = getos()
-if (getos() == "Windows") then 
-   disp("Scilab on Windows"); 
+if (getos() == "Windows") then
+   disp("Scilab on Windows");
 end
-if (getos() == "Linux") then 
-   disp("Scilab on Linux"); 
+if (getos() == "Linux") then
+   disp("Scilab on Linux");
 end
-if (getos() == "SunOS") then 
-   disp("Scilab on Solaris"); 
+if (getos() == "SunOS") then
+   disp("Scilab on Solaris");
 end
-if (getos() == "Darwin") then 
-   disp("Scilab on MacOs"); 
+if (getos() == "Darwin") then
+   disp("Scilab on MacOs");
 end
  ]]></programlisting>
     </refsection>

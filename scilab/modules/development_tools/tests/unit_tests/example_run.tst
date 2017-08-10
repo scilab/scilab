@@ -21,9 +21,9 @@ assert_checkerror("example_run(""core"", 12);", refMsg);
 refMsg = msprintf(gettext("%s: Wrong size for input argument #%d: A row array of strings or empty matrix expected.\n"), "example_run", 2);
 assert_checkerror("example_run(""core"", [""extraction"", ""insertion""]);", refMsg);
 
-refMsg = msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"), "example_run", 3);
+refMsg = msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"), "example_run", 3);
 assert_checkerror("example_run(""core"", ""extraction"", 12);", refMsg);
-refMsg = msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"), "example_run", 3);
+refMsg = msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"), "example_run", 3);
 assert_checkerror("example_run(""core"", ""extraction"", [""en_US"", ""fr_FR""]);", refMsg);
 
 refMsg = msprintf(gettext("%s: Wrong value for input argument #%d: A Scilab module name expected.\n"), "example_run", 1);

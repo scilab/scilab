@@ -5,7 +5,7 @@
         <refpurpose>Lindquist's algorithm</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[P,R,T]=lindquist(n,H,F,G,R0)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -49,7 +49,7 @@
         <title>Description</title>
         <para>
             computes iteratively the minimal solution of the algebraic
-            Riccati equation and gives the matrices <literal>R</literal> and <literal>T</literal> of the 
+            Riccati equation and gives the matrices <literal>R</literal> and <literal>T</literal> of the
             filter model, by the Lindquist's algorithm.
         </para>
     </refsection>
@@ -79,7 +79,7 @@ R0=c(1:2,1:2);
 ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="srfaur">srfaur</link>

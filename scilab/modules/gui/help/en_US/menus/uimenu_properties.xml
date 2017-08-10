@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="uimenu_properties" xml:lang="en">
+    <refnamediv>
+        <refname>uimenu properties</refname>
+        <refpurpose>Description of uimenu properties.</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>This page lists all available properties for menus in Scilab GUI.</para>
+        <para>
+            These properties can be set at creation through <link linkend="uimenu">uimenu</link> function.
+        </para>
+        <para>
+            Their value can also be changed using the <link linkend="set">set</link> function and read using the <link linkend="get">get</link> function.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Properties</title>
+        <variablelist>
+            <varlistentry>
+                <term>Callback</term>
+                <listitem>
+                    <para>String</para>
+                    <para>Instruction evaluated by the Scilab interpreter when the menu
+                        is activated. Under MacOSX, the callback will not be executed for a "button menu" (a menu without children), you must specify at least a child.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Enable</term>
+                <listitem>
+                    <para>{on} | off</para>
+                    <para>Enable or disable the menu. If this property is set to
+                        <literal>"on"</literal> (default), the menu is operational, but if
+                        this property is set to <literal>"off"</literal>, the menu will not
+                        respond to the mouse actions and will be grayed out.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Checked</term>
+                <listitem>
+                    <para>on | {off}</para>
+                    <para>Item check indicator. Setting this property to "on" the first time displays a checkbox in head of the item's label, and then checks it. Setting "off" keeps the checkbox and unchecks it. This property can be used to display items indicating the state of particular options.</para>
+                    <para>Remarks:
+                        <itemizedlist>
+                            <listitem>There is no way to remove the checkbox after its creation, but deleting the item.</listitem><listitem>By default, no interactive checking or unchecking is possible. Such interactions can be implemented through the Callback property.</listitem><listitem>This property is ignored for parent menus.</listitem>
+                        </itemizedlist>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ForegroundColor</term>
+                <listitem>
+                    <para>[1,3] real vector or string</para>
+                    <para>Foreground color of the uimenu (font color). A color is specified as
+                        Red, Green and Blue values. Those values are real in [0,1]. The
+                        color can be given as a real vector, ie [R,G,B] or a string where
+                        each value is separated by a "|", ie "R|G|B".
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Icon</term>
+                <listitem>
+                    <para>String.</para>
+                    <para>
+                        This property represents the relative (to <link linkend="pwd">Scilab working directory</link>) or absolute path of the image file to be used as icon for the menu.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Label</term>
+                <listitem>
+                    <para>String.</para>
+                    <para>This property represents the text appearing in the
+                        menu. If the text is enclosed between two $ (dollar sign), then it will be
+                        considered as a LaTeX expression, and if it is enclosed between &lt; and &gt;, it will be considered
+                        as a MathML one.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Tag</term>
+                <listitem>
+                    <para>String</para>
+                    <para>This property is generally used to identify the menu. It
+                        allows to give it a "name". Mainly used in conjunction with
+                        <literal>findobj()</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Visible</term>
+                <listitem>
+                    <para>{on} | off</para>
+                    <para>
+                        Set the visibility of the uimenu. If this property is set to <literal>"on"</literal> (default), the uimenu is visible,
+                        but if this property is set to <literal>"off"</literal>, the uimenu will not appear in its parent figure.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="uimenu">uicontextmenu</link>
+            </member>
+            <member>
+                <link linkend="set">set</link>
+            </member>
+            <member>
+                <link linkend="get">get</link>
+            </member>
+            <member>
+                <link linkend="math_rendering_features_in_graphic">LaTeX and MathML</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>
+                    <literal>Icon</literal> property added.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

@@ -2,11 +2,14 @@
 // Copyright (C) 2012 - DIGITEO - Antoine ELIAS
 // Copyright (C) 2012 - DIGITEO - Vincent COUVERT
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function varargout = %_sodload(%__varnameList__)
 
@@ -36,7 +39,7 @@ function varargout = %_sodload(%__varnameList__)
 
     function varValue = parseList(varValue)
 
-        if or(typeof(varValue)==["cell","st"]) then
+        if or(typeof(varValue)==["ce","st"]) then
             if typeof(varValue)=="st" then
                 fieldNames = fieldnames(varValue);
             else
@@ -61,7 +64,17 @@ function varargout = %_sodload(%__varnameList__)
                 end
 
                 if typeof(varValue)=="st" then
-                    varValue(fieldNames(kField)) = fieldValue;
+                    s = size(varValue, "*");
+                    if s > 1 then
+                        if typeof(fieldValue) <> "list" then //houston !
+                        end
+
+                        for iDim = 1:s
+                            varValue(iDim)(fieldNames(kField)) = fieldValue(iDim);
+                        end
+                    else
+                        varValue(fieldNames(kField)) = fieldValue;
+                    end
                 else
                     varValue{kField} = fieldValue;
                 end
@@ -93,7 +106,7 @@ function varargout = %_sodload(%__varnameList__)
                 elseif isList(fieldValue) then
                     fieldValue = parseList(fieldValue);
                 end
-                setfield(kField, fieldValue, varValue);
+                varValue = setfield(kField, fieldValue, varValue);
             end
         end
     endfunction
@@ -867,7 +880,7 @@ function varargout = %_sodload(%__varnameList__)
         if or(fields=="scrollable") then
             // Properties added in Scilab 5.5.0
             //  - scrollable must be set at creation (for frames)
-            //  - contraints & margins must be set before parent
+            //  - constraints & margins must be set before parent
             h = uicontrol("style", uicontrolProperties.style, ...
             "scrollable", uicontrolProperties.scrollable, ...
             "constraints", uicontrolProperties.constraints, ...

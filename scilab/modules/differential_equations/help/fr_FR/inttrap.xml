@@ -47,7 +47,7 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 t=0:0.1:%pi
 inttrap(t,sin(t))
  ]]></programlisting>

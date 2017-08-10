@@ -1,12 +1,15 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2014-2014 - Scilab Enterprises - Clement DAVID
+ *  Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -23,19 +26,26 @@
 #include "bool.hxx"
 #include "double.hxx"
 #include "user.hxx"
+#include "int.hxx"
 #include "internal.hxx"
 #include "tlist.hxx"
 #include "mlist.hxx"
 #include "string.hxx"
 #include "callable.hxx"
 #include "overload.hxx"
-#include "scilabexception.hxx"
 #include "configvariable.hxx"
+#include "exp.hxx"
+#include "types_comparison_eq.hxx"
 
+#include "view_scilab/Adapters.hxx"
+#include "controller_helpers.hxx"
 #include "utilities.hxx"
 #include "Controller.hxx"
-#include "Adapters.hxx"
 #include "model/BaseObject.hxx"
+
+extern "C" {
+#include "localization.h"
+}
 
 namespace org_scilab_modules_scicos
 {
@@ -57,7 +67,27 @@ public:
 
 
     property(const std::wstring& prop, getter_t g, setter_t s) : original_index(fields.size()), name(prop), get(g), set(s) {};
+    property(const property& p) :
+        original_index(p.original_index),
+        name(p.name),
+        get(p.get),
+        set(p.set)
+    {};
     ~property() {};
+    property(property&& p) :
+        original_index(std::move(p.original_index)),
+        name(std::move(p.name)),
+        get(std::move(p.get)),
+        set(std::move(p.set))
+    {};
+    property<Adaptor>& operator= (property<Adaptor>&& p)
+    {
+        original_index = std::move(p.original_index);
+        name = std::move(p.name);
+        get = std::move(p.get);
+        set = std::move(p.set);
+        return *this;
+    };
 
     size_t original_index;
     std::wstring name;
@@ -105,17 +135,24 @@ public:
 template<typename Adaptor, typename Adaptee>
 class BaseAdapter : public types::UserType
 {
+    using BaseObject = org_scilab_modules_scicos::model::BaseObject;
 
 public:
-    BaseAdapter() : m_adaptee(nullptr) {};
+    explicit BaseAdapter() : m_adaptee(nullptr) {}
     BaseAdapter(const Controller& /*c*/, Adaptee* adaptee) : m_adaptee(adaptee) {}
     BaseAdapter(const BaseAdapter& adapter) : BaseAdapter(adapter, true) {}
     BaseAdapter(const BaseAdapter& adapter, bool cloneChildren) : m_adaptee(nullptr)
     {
-        Controller controller;
-        ScicosID id = controller.cloneObject(adapter.getAdaptee()->id(), cloneChildren);
-        m_adaptee = controller.getObject< Adaptee >(id);
+        if (adapter.getAdaptee() != nullptr)
+        {
+            Controller controller;
+
+            std::map<BaseObject*, BaseObject*> mapped;
+            BaseObject* clone = controller.cloneObject(mapped, adapter.getAdaptee(), cloneChildren, true);
+            m_adaptee = static_cast<Adaptee*>(clone);
+        }
     };
+    BaseAdapter(const BaseAdapter&& adapter) : BaseAdapter(Controller(), adapter.m_adaptee) {}
     ~BaseAdapter()
     {
         if (m_adaptee != nullptr)
@@ -140,7 +177,7 @@ public:
         typename property<Adaptor>::props_t_it found = std::lower_bound(property<Adaptor>::fields.begin(), property<Adaptor>::fields.end(), _sKey);
         if (found != property<Adaptor>::fields.end() && !(_sKey < found->name))
         {
-            return found->get(static_cast<Adaptor*>(this), controller);
+            return found->get(*static_cast<Adaptor*>(this), controller);
         }
         return 0;
     }
@@ -153,6 +190,16 @@ public:
             return found->set(*static_cast<Adaptor*>(this), v, controller);
         }
         return false;
+    }
+
+    void copyProperties(const Adaptor& adaptor, Controller controller = Controller())
+    {
+        for (const auto& p : property<Adaptor>::fields)
+        {
+            types::InternalType* pIT = p.get(adaptor, controller);
+            p.set(*static_cast<Adaptor*>(this), pIT, controller);
+            pIT->killMe();
+        }
     }
 
     /**
@@ -177,7 +224,12 @@ public:
         // set the tlist field value
         for (typename property<Adaptor>::props_t_it it = properties.begin(); it != properties.end(); ++it)
         {
-            tlist->append(it->get(*static_cast<Adaptor*>(this), controller));
+            types::InternalType* field = it->get(*static_cast<Adaptor*>(this), controller);
+            tlist->append(field);
+            if (field->isList())
+            {
+                field->killMe();
+            }
         }
 
         return tlist;
@@ -185,47 +237,47 @@ public:
 
     bool setAsTList(types::InternalType* v, Controller& controller)
     {
-        typename property<Adaptor>::props_t properties = property<Adaptor>::fields;
-        std::sort(properties.begin(), properties.end(), property<Adaptor>::original_index_cmp);
-
         if (v->getType() != types::InternalType::ScilabTList && v->getType() != types::InternalType::ScilabMList)
         {
+            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s: Tlist or Mlist expected.\n"), Adaptor::getSharedTypeStr().c_str());
             return false;
         }
         types::TList* current = v->getAs<types::TList>();
-        // The input TList can have fewer elements than the concerned adapter, but not more, and cannot be empty
-        if (current->getSize() > static_cast<int>(1 + properties.size()) || current->getSize() < 1)
+        // The input TList cannot be empty
+        if (current->getSize() < 1)
         {
+            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong length for field %s: at least %d element expected.\n"), Adaptor::getSharedTypeStr().c_str(), 1);
             return false;
         }
 
         // Check the header
         types::String* header = current->getFieldNames();
-        if (header->getSize() > static_cast<int>(1 + properties.size()) || header->getSize() < 1)
+        if (header->getSize() < 1)
         {
+            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong length for header of field %s: at least %d element expected.\n"), Adaptor::getSharedTypeStr().c_str(), 1);
             return false;
         }
+        // Make sure it is the same type as the Adapter
         if (header->get(0) != Adaptor::getSharedTypeStr())
         {
+            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong value for header of field %s: %s expected.\n"), Adaptor::getSharedTypeStr().c_str(), Adaptor::getSharedTypeStr().c_str());
             return false;
         }
-        typename property<Adaptor>::props_t_it it = properties.begin();
-        for (int index = 1; index < header->getSize(); ++index, ++it)
-        {
-            if (header->get(index) != it->name)
-            {
-                return false;
-            }
-        }
 
-        // This is a valid tlist, get each tlist field value and pass it to the right property decoder
-        it = properties.begin();
-        for (int index = 1; index < header->getSize(); ++index, ++it)
+        // Retrieve the Adapter's properties
+        typename property<Adaptor>::props_t properties = property<Adaptor>::fields;
+
+        // For each input property, if it corresponds to an Adapter's property, set it.
+        for (int index = 1; index < header->getSize(); ++index)
         {
-            bool status = it->set(*static_cast<Adaptor*>(this), current->get(index), controller);
-            if (!status)
+            typename property<Adaptor>::props_t_it found = std::lower_bound(properties.begin(), properties.end(), header->get(index));
+            if (found != properties.end() && !(header->get(index) < found->name))
             {
-                return false;
+                bool status = found->set(*static_cast<Adaptor*>(this), current->get(index), controller);
+                if (!status)
+                {
+                    return false;
+                }
             }
         }
 
@@ -236,7 +288,42 @@ public:
      * property comparison
      */
 
-    types::Bool* equal(types::UserType*& ut)
+    bool operator==(const types::InternalType& o) override final
+    {
+
+        const Adapters::adapters_index_t adapter_index = Adapters::instance().lookup_by_typename(o.getShortTypeStr());
+        // Check that 'ut' is an Adapter of the same type as *this
+        if (adapter_index == Adapters::INVALID_ADAPTER)
+        {
+            return false;
+        }
+        if (this->getTypeStr() != o.getTypeStr())
+        {
+            return false;
+        }
+
+        typename property<Adaptor>::props_t properties = property<Adaptor>::fields;
+        std::sort(properties.begin(), properties.end(), property<Adaptor>::original_index_cmp);
+
+        bool internal_equal = true;
+        Controller controller;
+        for (typename property<Adaptor>::props_t_it it = properties.begin(); it != properties.end() && internal_equal; ++it)
+        {
+            types::InternalType* ith_prop1 = it->get(*static_cast<const Adaptor*>(this), controller);
+            types::InternalType* ith_prop2 = it->get(*static_cast<const Adaptor*>(&o), controller);
+
+            // loop while the inner types are equals
+            internal_equal = *ith_prop1 == *ith_prop2;
+
+            // Getting a property allocates data, so free it
+            ith_prop1->killMe();
+            ith_prop2->killMe();
+        }
+
+        return internal_equal;
+    }
+
+    types::Bool* equal(types::UserType*& ut) override final
     {
         const Adapters::adapters_index_t adapter_index = Adapters::instance().lookup_by_typename(ut->getShortTypeStr());
         // Check that 'ut' is an Adapter of the same type as *this
@@ -252,10 +339,10 @@ public:
         typename property<Adaptor>::props_t properties = property<Adaptor>::fields;
         std::sort(properties.begin(), properties.end(), property<Adaptor>::original_index_cmp);
 
-        types::Bool* ret = new types::Bool(1, 1 + properties.size());
+        types::Bool* ret = new types::Bool(1, 1 + (int)properties.size());
         ret->set(0, true); // First field is just the Adapter's name, which has been checked by the above conditions
 
-        Controller controller = Controller();
+        Controller controller;
         int index = 1;
         for (typename property<Adaptor>::props_t_it it = properties.begin(); it != properties.end(); ++it, ++index)
         {
@@ -272,6 +359,28 @@ public:
     }
 
     /**
+     * Return a default constructed Scilab value
+     */
+    template<typename T>
+    static types::InternalType* default_value()
+    {
+        T* o = new T();
+        o->IncreaseRef();
+        return o;
+    }
+
+    /**
+     * Increase reference count to store a Scilab value
+     */
+    template<typename T>
+    static T* reference_value(T* o)
+    {
+        o->IncreaseRef();
+        return o;
+    }
+
+
+    /**
      * @return the Adaptee
      */
     Adaptee* getAdaptee() const
@@ -283,11 +392,11 @@ public:
      * All following methods should be implemented by each template instance
      */
 
-    virtual std::wstring getTypeStr() = 0;
-    virtual std::wstring getShortTypeStr() = 0;
+    virtual std::wstring getTypeStr() const = 0;
+    virtual std::wstring getShortTypeStr() const = 0;
 
 private:
-    types::InternalType* clone()
+    virtual UserType* clone() override final
     {
         return new Adaptor(*static_cast<Adaptor*>(this));
     }
@@ -296,17 +405,23 @@ private:
      * Implement a specific types::User
      */
 
-    bool isAssignable()
+    bool isAssignable() override final
     {
         return true;
     }
 
-    bool extract(const std::wstring & name, types::InternalType *& out)
+    // sb.model.rpar.contrib will return a reference to contrib
+    bool isContainer() override final
+    {
+        return true;
+    }
+
+    bool extract(const std::wstring & name, types::InternalType *& out) override final
     {
         typename property<Adaptor>::props_t_it found = std::lower_bound(property<Adaptor>::fields.begin(), property<Adaptor>::fields.end(), name);
         if (found != property<Adaptor>::fields.end() && !(name < found->name))
         {
-            Controller controller = Controller();
+            Controller controller;
             types::InternalType* value = found->get(*static_cast<Adaptor*>(this), controller);
             if (value == 0)
             {
@@ -320,14 +435,14 @@ private:
         // specific case : to ease debugging let the user retrieve the model ID
         if (name == L"modelID")
         {
-            out = new types::Double(m_adaptee->id());
+            out = new types::Int64(m_adaptee->id());
             return true;
         }
 
         return false;
     }
 
-    types::InternalType* extract(types::typed_list* _pArgs)
+    types::InternalType* extract(types::typed_list* _pArgs) override final
     {
         if (_pArgs->size() == 0)
         {
@@ -376,23 +491,35 @@ private:
         return NULL;
     }
 
-    types::InternalType* insert(types::typed_list* _pArgs, types::InternalType* _pSource)
+    types::UserType* insert(types::typed_list* _pArgs, types::InternalType* _pSource) override final
     {
         for (size_t i = 0; i < _pArgs->size(); i++)
         {
             if ((*_pArgs)[i]->isString())
             {
+                Controller controller;
+
                 types::String* pStr = (*_pArgs)[i]->getAs<types::String>();
                 std::wstring name = pStr->get(0);
 
-                Controller controller = Controller();
+                Adaptor* work;
+                if (getAdaptee()->refCount() > 0)
+                {
+                    // clone()
+                    work = new Adaptor(*static_cast<Adaptor*>(this));
+                }
+                else
+                {
+                    work = static_cast<Adaptor*>(this);
+                }
+
                 typename property<Adaptor>::props_t_it found = std::lower_bound(property<Adaptor>::fields.begin(), property<Adaptor>::fields.end(), name);
                 if (found != property<Adaptor>::fields.end() && !(name < found->name))
                 {
-                    found->set(*static_cast<Adaptor*>(this), _pSource, controller);
+                    found->set(*work, _pSource, controller);
                 }
 
-                return this;
+                return work;
             }
             else
             {
@@ -404,37 +531,37 @@ private:
         return NULL;
     }
 
-    void whoAmI(void)
+    void whoAmI(void) override
     {
         std::cout << "scicos object";
     }
 
-    bool hasToString()
+    bool hasToString() override final
     {
         // Do not allow scilab to call toString of this class
         return false;
     }
 
-    bool toString(std::wostringstream& ostr)
+    bool toString(std::wostringstream& ostr) override final
     {
         // Deprecated, use the overload instead
         typename property<Adaptor>::props_t properties = property<Adaptor>::fields;
         std::sort(properties.begin(), properties.end(), property<Adaptor>::original_index_cmp);
 
-        ostr << L"scicos_" <<  getTypeStr() << L" type :" << std::endl;
+        ostr << L"scicos_" <<  getTypeStr() << L" type :" << '\n';
         for (typename property<Adaptor>::props_t_it it = properties.begin(); it != properties.end(); ++it)
         {
-            ostr << L"  " << it->name << std::endl;
+            ostr << L"  " << it->name << '\n';
         }
         return true;
     }
 
-    bool isInvokable() const
+    bool isInvokable() const override final
     {
         return true;
     }
 
-    bool invoke(types::typed_list & in, types::optional_list & /*opt*/, int /*_iRetCount*/, types::typed_list & out, ast::ConstVisitor & execFunc, const ast::Exp & e)
+    bool invoke(types::typed_list & in, types::optional_list & /*opt*/, int /*_iRetCount*/, types::typed_list & out, const ast::Exp & e) override final
     {
         if (in.size() == 0)
         {
@@ -471,11 +598,11 @@ private:
 
         try
         {
-            ret = Overload::call(L"%" + getShortTypeStr() + L"_e", in, 1, out, &execFunc);
+            ret = Overload::call(L"%" + getShortTypeStr() + L"_e", in, 1, out);
         }
-        catch (ast::ScilabError & /*se*/)
+        catch (ast::InternalError & /*se*/)
         {
-            ret = Overload::call(L"%l_e", in, 1, out, &execFunc);
+            ret = Overload::call(L"%l_e", in, 1, out);
         }
 
         // Remove this from "in" to keep "in" unchanged.
@@ -484,7 +611,7 @@ private:
 
         if (ret == types::Callable::Error)
         {
-            throw ast::ScilabError(ConfigVariable::getLastErrorMessage(), ConfigVariable::getLastErrorNumber(), e.getLocation());
+            throw ast::InternalError(ConfigVariable::getLastErrorMessage(), ConfigVariable::getLastErrorNumber(), e.getLocation());
         }
 
         return true;

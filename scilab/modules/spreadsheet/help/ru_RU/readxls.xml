@@ -5,121 +5,124 @@
  * Copyright (C) 2005      - INRIA - Pierrick MODE
  * Copyright (C) 2005-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="readxls">
-    
+
     <refnamediv>
-        
+
         <refname>readxls</refname>
-        
+
         <refpurpose>читает Excel-файл</refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        
-        <title>Последовательность вызова</title>
-        
+
+        <title>Синтаксис</title>
+
         <synopsis>sheets = readxls(file_path)</synopsis>
-        
+
     </refsynopsisdiv>
-    
+
     <refsection>
-        
+
         <title>Аргументы</title>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>file_path</term>
-                
+
                 <listitem>
-                    
+
                     <para>символьная строка: путь к Excel-файлу.
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>sheets</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         матричноориентированный список (<literal>mlist</literal>) типа
-                        
+
                         <literal>xls</literal>, с одним полем, названным <literal>sheets</literal>
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>Описание</title>
-        
+
         <para>
-            
-            Для указанного пути к Excel-файлу эта функция возвращает структуру данных 
-            
+
+            Для указанного пути к Excel-файлу эта функция возвращает структуру данных
+
             <literal>mlist</literal> типа <literal>xls</literal>, с одним полем,
-            
-            названным <literal>sheets</literal>. Поле <literal>sheets</literal> 
-            
+
+            названным <literal>sheets</literal>. Поле <literal>sheets</literal>
+
             содержит список структур данных листов.
-            
+
         </para>
-        
+
         <para>
-            
-            <literal>sheet=mlist(['xlssheet','name','text','value'],sheetname,Text,Value)</literal>, где 
-            
+
+            <literal>sheet=mlist(['xlssheet','name','text','value'],sheetname,Text,Value)</literal>, где
+
             <literal>sheetname</literal> -- это символьная строка, содержащая имя листа,
-            
+
             <literal>Text</literal> -- это матрица строк, которая содержит строки ячеек, а
-            
+
             <literal>Value</literal> -- это матрица чисел, которая содержит значения ячеек.
-            
+
         </para>
-        
+
         <para>
-            
+
             <warning>
-                
+
                 Обрабатываются только Excel-файлы BIFF8 (Excel-файлы последней версии (2003)).
-                
+
             </warning>
-            
+
         </para>
-        
-        
-        
+
+
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>Примеры</title>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
 Sheets = readxls('SCI/modules/spreadsheet/demos/xls/t1.xls')
 // некоторые основные операции с листами Sheets
 typeof(Sheets)
@@ -129,48 +132,48 @@ s1.value //получим поле значения первого листа
 s1.text  //получим поле текста первого листа
 s1(2,:)  //получим вторую строку листа
 typeof(s1(2,:))
- 
+
 disp(s1)
  ]]></programlisting>
-        
+
     </refsection>
-    
+
     <refsection role="see also">
-        
+
         <title>Смотрите также</title>
-        
+
         <simplelist type="inline">
-            
+
             <member>
-                
+
                 <link linkend="xls_open">xls_open</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="xls_read">xls_read</link>
-                
+
             </member>
-            
+
         </simplelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>Используемые функции</title>
-        
+
         <para>
-            
+
             Эта функция основана на функциях Scilab'а <literal>xls_open</literal>
-            
+
             и <literal>xls_read</literal>.
-            
+
         </para>
-        
+
     </refsection>
-    
+
 </refentry>
 
 

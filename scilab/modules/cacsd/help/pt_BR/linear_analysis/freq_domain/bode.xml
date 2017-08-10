@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="bode" xml:lang="pt">
+    <refnamediv>
+        <refname>bode</refname>
+        <refpurpose>diagrama de Bode</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>bode(sl,[fmin,fmax] [,step] [,comments] )
+            bode(sl,frq [,comments] )
+            bode(frq,db,phi [,comments])
+            bode(frq, repf [,comments])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>sl</term>
+                <listitem>
+                    <para>
+                        <literal>syslin</literal> lista (sistema linear SISO ou
+                        SIMO) em tempo contínuo ou discreto
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fmin,fmax</term>
+                <listitem>
+                    <para>real (limites de freqüência (em Hz)) </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>step</term>
+                <listitem>
+                    <para>real (passo logarítmico.) </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>comments</term>
+                <listitem>
+                    <para>vetor de strings (legendas). </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>frq</term>
+                <listitem>
+                    <para>vetor linha ou matriz (freqüências (em Hz) ) (uma linha para
+                        cada subsistema SISO).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>db</term>
+                <listitem>
+                    <para>vetor linha ou matriz ( magnitudes (em Db)). (um para cada
+                        subsistema SISO).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>phi</term>
+                <listitem>
+                    <para>vetor linha ou matriz ( fases (em graus)) (um para cada
+                        subsistema SISO ).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>repf</term>
+                <listitem>
+                    <para>vetor linha ou matriz de números complexos (freqüência de
+                        resposta complexa).
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>Diagrama de bode , i.e magnitude e fase da freqüência de resposta de
+            <literal>sl</literal>.
+        </para>
+        <para>
+            <literal>sl</literal> pode ser um sistema SIMO de tempo contínuo ou
+            discreto (ver <literal>syslin</literal>). No caso de múltiplas saídas,
+            elas são esboçadas com símbolos diferentes.
+        </para>
+        <para>
+            As freqüências são dadas pelos limites <literal>fmin,fmax</literal>
+            (em Hz) ou por um vetor linha (ou uma matriz para múltiplas saídas)
+            <literal>frq</literal>.
+        </para>
+        <para>
+            <literal>step</literal> é o passo de discretização ( logarítmica).
+            (ver <literal>calfrq</literal> para escolha do valor padrão).
+        </para>
+        <para>
+            <literal>comments</literal> é um vetor de strings (legendas).
+        </para>
+        <para>
+            <literal>db,phi</literal> são matrizes de módulos (em Db) e fases
+            (em graus). (Uma linha para cada resposta).
+        </para>
+        <para>
+            <literal>repf</literal> matriz de números complexos. Uma linha para
+            cada resposta.
+        </para>
+        <para>
+            Valores padrões para <literal>fmin</literal> e
+            <literal>fmax</literal> são <literal>1.d-3</literal>,
+            <literal>1.d+3</literal> se <literal>sl</literal> for de tempo contínuo ou
+            <literal>1.d-3</literal>, <literal>0.5</literal>/sl.dt (freqüência de
+            Nyquist) se <literal>sl</literal> for de tempo discreto. Discretização
+            automática das freqüências é feita por <literal>calfrq</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[
+s=poly(0,'s')
+h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
+clf();bode(h,0.01,100);
+ ]]></programlisting>
+        <para>
+            <scilab:image localized="true">
+                s=poly(0,'s')
+                h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
+                clf();bode(h,0.01,100);
+            </scilab:image>
+        </para>
+        <programlisting role="example"><![CDATA[
+s=poly(0,'s')
+h1=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
+num=22801+4406.18*s+382.37*s^2+21.02*s^3+s^4;
+den=22952.25+4117.77*s+490.63*s^2+33.06*s^3+s^4
+h2=syslin('c',num/den);
+
+clf();bode([h1;h2],0.01,100,['h1';'h2'])
+ ]]></programlisting>
+        <para>
+            <scilab:image localized="true">
+                s=poly(0,'s')
+                h1=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
+                num=22801+4406.18*s+382.37*s^2+21.02*s^3+s^4;
+                den=22952.25+4117.77*s+490.63*s^2+33.06*s^3+s^4
+                h2=syslin('c',num/den);
+
+                clf();bode([h1;h2],0.01,100,['h1';'h2'])
+            </scilab:image>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Ver Também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="black">black</link>
+            </member>
+            <member>
+                <link linkend="nyquist">nyquist</link>
+            </member>
+            <member>
+                <link linkend="gainplot">gainplot</link>
+            </member>
+            <member>
+                <link linkend="repfreq">repfreq</link>
+            </member>
+            <member>
+                <link linkend="g_margin">g_margin</link>
+            </member>
+            <member>
+                <link linkend="p_margin">p_margin</link>
+            </member>
+            <member>
+                <link linkend="calfrq">calfrq</link>
+            </member>
+            <member>
+                <link linkend="phasemag">phasemag</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - DIGITEO - Cedric DELAMARRE
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 /*--------------------------------------------------------------------------*/
@@ -15,9 +18,9 @@
 #include "double.hxx"
 #include "string.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 #include "prod.hxx"
 #include "int.hxx"
+#include "polynom.hxx"
 
 extern "C"
 {
@@ -61,68 +64,67 @@ types::Function::ReturnValue sci_prod(types::typed_list &in, int _iRetCount, typ
     /***** get data *****/
     switch (in[0]->getType())
     {
-        case InternalType::ScilabDouble:
+        case types::InternalType::ScilabDouble:
         {
             pDblIn = in[0]->getAs<types::Double>();
             isCopy = false;
             break;
         }
-        case InternalType::ScilabBool:
+        case types::InternalType::ScilabBool:
         {
             pDblIn = getAsDouble(in[0]->getAs<types::Bool>());
             iOuttype = 2;
             break;
         }
-        case InternalType::ScilabPolynom:
+        case types::InternalType::ScilabPolynom:
         {
             pPolyIn = in[0]->getAs<types::Polynom>();
             break;
         }
-        case InternalType::ScilabInt8:
+        case types::InternalType::ScilabInt8:
         {
             pDblIn = getAsDouble(in[0]->getAs<types::Int8>());
             break;
         }
-        case InternalType::ScilabInt16:
+        case types::InternalType::ScilabInt16:
         {
             pDblIn = getAsDouble(in[0]->getAs<types::Int16>());
             break;
         }
-        case InternalType::ScilabInt32:
+        case types::InternalType::ScilabInt32:
         {
             pDblIn = getAsDouble(in[0]->getAs<types::Int32>());
             break;
         }
-        case InternalType::ScilabInt64:
+        case types::InternalType::ScilabInt64:
         {
             pDblIn = getAsDouble(in[0]->getAs<types::Int64>());
             break;
         }
-        case InternalType::ScilabUInt8:
+        case types::InternalType::ScilabUInt8:
         {
             pDblIn = getAsDouble(in[0]->getAs<types::UInt8>());
             break;
         }
-        case InternalType::ScilabUInt16:
+        case types::InternalType::ScilabUInt16:
         {
             pDblIn = getAsDouble(in[0]->getAs<types::UInt16>());
             break;
         }
-        case InternalType::ScilabUInt32:
+        case types::InternalType::ScilabUInt32:
         {
             pDblIn = getAsDouble(in[0]->getAs<types::UInt32>());
             break;
         }
-        case InternalType::ScilabUInt64:
+        case types::InternalType::ScilabUInt64:
         {
             pDblIn = getAsDouble(in[0]->getAs<types::UInt64>());
             break;
         }
         default:
         {
-            ast::ExecVisitor exec;
             std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_prod";
-            return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+            return Overload::call(wstFuncName, in, _iRetCount, out);
         }
     }
 
@@ -261,7 +263,7 @@ types::Function::ReturnValue sci_prod(types::typed_list &in, int _iRetCount, typ
                 pDblIn->killMe();
             }
 
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "prod", 3);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "prod", 3);
             return types::Function::Error;
         }
 
@@ -363,7 +365,7 @@ types::Function::ReturnValue sci_prod(types::typed_list &in, int _iRetCount, typ
     {
         switch (in[0]->getType())
         {
-            case InternalType::ScilabBool:
+            case types::InternalType::ScilabBool:
             {
                 types::Bool* pB = new types::Bool(pDblOut->getDims(), pDblOut->getDimsArray());
                 int* p = pB->get();
@@ -376,51 +378,53 @@ types::Function::ReturnValue sci_prod(types::typed_list &in, int _iRetCount, typ
                 out.push_back(pB);
                 break;
             }
-            case InternalType::ScilabPolynom:
+            case types::InternalType::ScilabPolynom:
             {
                 out.push_back(pPolyOut);
                 break;
             }
-            case InternalType::ScilabInt8:
+            case types::InternalType::ScilabInt8:
             {
                 out.push_back(toInt<types::Int8>(pDblOut));
                 break;
             }
-            case InternalType::ScilabInt16:
+            case types::InternalType::ScilabInt16:
             {
                 out.push_back(toInt<types::Int16>(pDblOut));
                 break;
             }
-            case InternalType::ScilabInt32:
+            case types::InternalType::ScilabInt32:
             {
                 out.push_back(toInt<types::Int32>(pDblOut));
                 break;
             }
-            case InternalType::ScilabInt64:
+            case types::InternalType::ScilabInt64:
             {
                 out.push_back(toInt<types::Int64>(pDblOut));
                 break;
             }
-            case InternalType::ScilabUInt8:
+            case types::InternalType::ScilabUInt8:
             {
                 out.push_back(toInt<types::UInt8>(pDblOut));
                 break;
             }
-            case InternalType::ScilabUInt16:
+            case types::InternalType::ScilabUInt16:
             {
                 out.push_back(toInt<types::UInt16>(pDblOut));
                 break;
             }
-            case InternalType::ScilabUInt32:
+            case types::InternalType::ScilabUInt32:
             {
                 out.push_back(toInt<types::UInt32>(pDblOut));
                 break;
             }
-            case InternalType::ScilabUInt64:
+            case types::InternalType::ScilabUInt64:
             {
                 out.push_back(toInt<types::UInt64>(pDblOut));
                 break;
             }
+            default:
+                return types::Function::Error;
         }
 
         if (pDblOut)

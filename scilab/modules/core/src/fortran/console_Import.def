@@ -2,6 +2,4 @@ LIBRARY    sciconsole.dll
 
 
 EXPORTS
-setprlev_
-promptecho_
 scilabread_

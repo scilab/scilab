@@ -6,7 +6,7 @@
 
 // Run with test_run('statistics', 'cov', ['no_check_error_output']);
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 // <-- ENGLISH IMPOSED -->
 
 // Check error

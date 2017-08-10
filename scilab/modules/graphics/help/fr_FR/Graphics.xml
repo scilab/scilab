@@ -3,14 +3,17 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="Graphics" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="Graphics" xml:lang="fr">
     <refnamediv>
         <refname>Graphics</refname>
         <refpurpose>contenu de la bibliothèque graphique</refpurpose>
@@ -136,20 +139,6 @@
                 </term>
                 <listitem>
                     <para>courbes de niveau d'une surface</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>
-                    <link linkend="fcontour2d">fcontour2d</link>
-                </term>
-                <listitem>
-                    <para>courbes de niveau d'une surface (définie par une fonction)</para>
-                    <para>
-                        <emphasis role="bold">Exemple:</emphasis>
-                    </para>
-                    <para>
-                        <scilab:image>fcontour2d();</scilab:image>
-                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -364,20 +353,6 @@
                     </para>
                     <para>
                         <scilab:image>contour();</scilab:image>
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>
-                    <link linkend="fcontour">fcontour</link>
-                </term>
-                <listitem>
-                    <para>courbes de niveau sur une surface en 3D définie par une fonction</para>
-                    <para>
-                        <emphasis role="bold">Exemple:</emphasis>
-                    </para>
-                    <para>
-                        <scilab:image>fcontour();</scilab:image>
                     </para>
                 </listitem>
             </varlistentry>
@@ -692,14 +667,6 @@
             </varlistentry>
             <varlistentry>
                 <term>
-                    <link linkend="square">square</link>
-                </term>
-                <listitem>
-                    <para>échelle isométrique (par changement de la taille de la fenêtre)</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>
                     <link linkend="scaling">scaling</link>
                 </term>
                 <listitem>
@@ -798,7 +765,7 @@
         <variablelist>
             <varlistentry>
                 <term>
-                    <link linkend="xset">xset</link>
+                    <link linkend="set">set</link>
                 </term>
                 <listitem>
                     <para>change des valeurs du contexte graphique</para>
@@ -806,10 +773,13 @@
             </varlistentry>
             <varlistentry>
                 <term>
-                    <link linkend="xget">xget</link>
+                    <link linkend="get">get</link>
                 </term>
                 <listitem>
-                    <para>récupère des valeurs du contexte graphique</para>
+                    <para>
+                      fournit la valeur d'un attribut d'un élément graphique passif ou interactif,
+                      à partir de l'identifiant de l'élément.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -936,14 +906,6 @@
             </varlistentry>
             <varlistentry>
                 <term>
-                    <link linkend="xclear">xclear</link>
-                </term>
-                <listitem>
-                    <para>efface une fenêtre graphique</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>
                     <link linkend="driver">driver</link>
                 </term>
                 <listitem>
@@ -972,14 +934,6 @@
                 </term>
                 <listitem>
                     <para>redessine une fenêtre graphique avec de nouvelles bornes</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>
-                    <link linkend="xpause">xpause</link>
-                </term>
-                <listitem>
-                    <para>suspend l'exécution de Scilab</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -1121,20 +1075,6 @@
             </varlistentry>
             <varlistentry>
                 <term>
-                    <link linkend="m_circle">m_circle</link>
-                </term>
-                <listitem>
-                    <para>diagramme M-circle</para>
-                    <para>
-                        <emphasis role="bold">Exemple:</emphasis>
-                    </para>
-                    <para>
-                        <scilab:image>m_circle();</scilab:image>
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>
                     <link linkend="hallchart">hallchart</link>
                 </term>
                 <listitem>
@@ -1244,3 +1184,4 @@
         </variablelist>
     </refsection>
 </refentry>
+

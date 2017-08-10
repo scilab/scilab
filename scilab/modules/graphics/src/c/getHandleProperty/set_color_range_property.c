@@ -4,11 +4,14 @@
  * Copyright (C) 2009 - DIGITEO - Pierre Lando
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -29,6 +32,7 @@
 
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
+#include "Sciwarning.h"
 
 /*------------------------------------------------------------------------*/
 int set_color_range_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
@@ -57,7 +61,7 @@ int set_color_range_property(void* _pvCtx, int iObjUID, void* _pvData, int value
             || values[1] > nbColors || values[1] < 0)
     {
         /* It is possible to set color_range outside the colormap, however it won't be used.*/
-        sciprint(_("WARNING: Wrong value for '%s' property: indices outside the colormap will be clamped.\n"), "color_range");
+        Sciwarning(_("WARNING: Wrong value for '%s' property: indices outside the colormap will be clamped.\n"), "color_range");
     }
 
     status = setGraphicObjectProperty(iObjUID, __GO_COLOR_RANGE__, values, jni_int_vector, 2);

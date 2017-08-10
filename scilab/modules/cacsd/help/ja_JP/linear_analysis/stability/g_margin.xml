@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="g_margin" xml:lang="ja">
+    <refnamediv>
+        <refname>g_margin</refname>
+        <refpurpose>ゲイン余裕およびゲイン交差周波数</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>
+            gm=g_margin(h)
+            [gm,fr]=g_margin(h)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>h</term>
+                <listitem>
+                    <para>
+                        SISO線形システム (参照 :<link linkend="syslin">syslin</link>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>gm</term>
+                <listitem>
+                    <para>
+                        ゲイン余裕(単位:dB)、存在しない場合は <literal>Inf</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fr</term>
+                <listitem>
+                    <para>ゲイン交差周波数(単位:Hz).
+                        ゲイン余裕が存在しない場合は空の行列.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>連続または離散時間SISO線形システムを
+            指定すると,<literal>g_margin</literal>は<literal>h</literal>の
+            ゲイン余裕　<literal>gm</literal> (単位:dB)および
+            ゲイン交差周波数 <literal>fr</literal> (単位:Hz)を返します.
+        </para>
+        <para>ゲイン余裕が存在する場合,この値は
+            ナイキスト線図が実軸の負の部分を通過する点における
+            システムゲインの最小値を表します.
+            言い換えると,ゲイン余裕は,<literal>h</literal>の開ループゲインを
+            <literal>g</literal>とする時,
+            <literal>h</literal>の周波数応答の位相が -180度となった
+            時点での<literal>20*log10(1/g)</literal>となります.
+        </para>
+        <para>このアルゴリズムは,多項式の求解ルーチンを使用して
+            以下の方程式を解いています:
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>h(s)=h(-s)</term>
+                <listitem>
+                    <para> :連続時間システムの場合.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>h(z)=h(1/z)</term>
+                <listitem>
+                    <para> :離散時間システムの場合.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+h=syslin('c',-1+%s,3+2*%s+%s^2) //連続時間系の場合
+[g,fr]=g_margin(h)
+[g,fr]=g_margin(h-10)
+nyquist(h-10)
+h = syslin(0.1,0.04798*%z+0.0464,%z^2-1.81*%z+0.9048);//離散時間系の場合
+[g ,fr]=g_margin(h);
+show_margins(h)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="p_margin">p_margin</link>
+            </member>
+            <member>
+                <link linkend="show_margins">show_margins</link>
+            </member>
+            <member>
+                <link linkend="repfreq">repfreq</link>
+            </member>
+            <member>
+                <link linkend="black">black</link>
+            </member>
+            <member>
+                <link linkend="bode">bode</link>
+            </member>
+            <member>
+                <link linkend="nicholschart">nicholschart</link>
+            </member>
+            <member>
+                <link linkend="nyquist">nyquist</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -41,7 +41,7 @@ function  H=build_sliding_pendulum ()
     ymin = -1.1;
     ymax =  2.25;
     a.data_bounds=[xmin ymin;xmax ymax]
-    a.isoview = "on";
+    isoview()
 
     //the framework
     xrect(xmin,ymax,xmax-xmin,ymax-ymin)

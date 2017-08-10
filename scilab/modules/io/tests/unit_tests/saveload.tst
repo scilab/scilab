@@ -6,6 +6,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 //
+//<-- NOT FIXED --> 6.0.0
 // <-- TEST WITH GRAPHIC -->
 //
 
@@ -188,7 +189,7 @@ assert_checkequal(l(1)(3*5, 9*3), ref);
 assert_checkequal(type(l(1)), 13);
 
 clear toto;
-deff("a = toto(x,y)", "a = x + y;", "n");
+deff("a = toto(x,y)", "a = x + y;");
 save(TMPDIR + "/savemacro.sod", "toto");
 clear toto;
 load(TMPDIR + "/savemacro.sod");

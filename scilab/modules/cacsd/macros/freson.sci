@@ -1,14 +1,38 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA -
+// Copyright (C) 2000 - 2016 - INRIA - Serge Steer
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function fr=freson(h)
     [lhs,rhs]=argn(0);
+
+    if argn(2) < 1 then
+        error(msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"),"freson",1));
+    end
+    if and(typeof(h)<>["state-space","rational","zpk"]) then
+        ierr=execstr("[gm,fr]=%"+overloadname(sys)+"_freson(h)","errcatch")
+        if ierr<>0 then
+            error(msprintf(gettext("%s: Wrong type for input argument: Linear dynamical system expected.\n"),"freson",1))
+        end
+        return
+    end
+    if size(h,"*")<>1 then
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: Single input, single output system expected.\n"),"freson",1))
+    end
+
+    if typeof(h)=="state-space" then
+        h=ss2tf(h)
+    elseif typeof(h)=="zpk" then
+        h=zpk2tf(h)
+    end
+    dt=h.dt
     [n,d]=h(["num","den"]);
     if type(n)==1 then
         n=poly(n,varn(d),"c");
@@ -16,27 +40,27 @@ function fr=freson(h)
     if coeff(d,0)==0 then
         error(msprintf(_("%s: Wrong value for input argument #%d: infinite gain at zero frequency.\n"),"freson",1))
     end
+
     //look for  omega such that derivative of magn. is zero
-    niw=horner(n,%i*poly(0,"w"));
-    diw=horner(d,%i*poly(0,"w"));
-    niw=real(niw*conj(niw));diw=real(diw*conj(diw));
-    modul_d=derivat(niw/diw);w=roots(modul_d.num);
-
-    // get extreme points
-    k=find(imag(w)==0&real(w)>=0);
-    if k==[] then
-        fr=[];
-        g=[];
-        return
-    end
-    w=gsort(real(w(k)),"g","i");
-
-    //find maximums
-    wx=max(w)+0.5;
-    if horner(modul_d,wx)<0 then
-        w=w($:-2:1);
+    if dt=="c" then
+        //find frequencies which zeros the magnitude derivative
+        hh=h*horner(h,-%s)
+        r=roots(derivat(hh).num)
+        k=find(imag(r)>0&abs(real(r))<%eps*abs(r));
+        fr=imag(r(k))/(2*%pi)
     else
-        w=w($-1:-2:1);
+        if dt=="d"|dt==[] then dt=1;end
+        //find frequencies which zeros the magnitude derivative
+        hh=h*horner(h,1/%z)
+        r=roots(derivat(hh).num);
+        k=find(abs(abs(r)-1)<=sqrt(%eps)*abs(r));
+        r=imag(log(r(k)));
+        fr=r(r>0&r<0.999*%pi)/(2*%pi*dt)
     end
-    fr=w/(2*%pi);
+    if fr==[] then return;end
+    //find frequencies that correspond to a magnitude peak
+    k=find(abs(repfreq(h,fr))-abs(repfreq(h,fr*0.999))>0)
+    fr=fr(k)
+    if fr==[] then return;end
+    fr=gsort(fr,"g","d");
 endfunction

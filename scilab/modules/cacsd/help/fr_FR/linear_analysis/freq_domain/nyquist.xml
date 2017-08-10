@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) INRIA
+*
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+*
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="nyquist" xml:lang="fr">
+    <refnamediv>
+        <refname>nyquist</refname>
+        <refpurpose>nyquist plot</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>
+            nyquist( sl,[fmin,fmax] [,step] [,comments] [,symmetry])
+            nyquist( sl, frq [,comments] [,symmetry])
+            nyquist(frq,db,phi [,comments] [,symmetry])
+            nyquist(frq, repf [,comments] [,symmetry])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>sl</term>
+                <listitem>
+                    <para>
+                        a continuous or discrete time SIMO linear dynamical system ( see: <link linkend="syslin">syslin</link>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fmin,fmax</term>
+                <listitem>
+                    <para>real scalars (frequency lower and upper bounds (in Hz)).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>step</term>
+                <listitem>
+                    <para>real (logarithmic discretization step), if not given
+                        an adaptative discretization is used.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>comments</term>
+                <listitem>
+                    <para>string vector (captions).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>symmetry</term>
+                <listitem>
+                    <para>a boolean, default value is %t.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>frq</term>
+                <listitem>
+                    <para>vector or matrix of frequencies (in Hz) (one row for each
+                        output of <literal>sl</literal>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>db,phi</term>
+                <listitem>
+                    <para>real matrices of modulus (in dB) and phases (in degree) (one
+                        row for each output of <literal>sl</literal>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>repf</term>
+                <listitem>
+                    <para>matrix of complex numbers. Frequency response (one row for
+                        each output of <literal>sl</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>Nyquist plot i.e Imaginary part versus Real part of the
+            frequency response of <literal>sl</literal>. If the
+            <literal>symmetry</literal> argument is true or omitted the
+            Nyquist plot displays the symmetric graph (positive and negative
+            frequencies).
+        </para>
+        <para>
+            For continuous time systems <literal>sl(2*%i*%pi*w)</literal> is
+            plotted. For discrete time system or discretized systems
+            <literal>sl(exp(2*%i*%pi*w*fd)</literal> is used ( <literal>fd=1</literal>
+            for discrete time systems and <literal>fd=sl('dt')</literal> for
+            discretized systems )
+        </para>
+        <para>
+            <literal>sl</literal> can be a continuous-time or discrete-time SIMO
+            system (see <literal>syslin</literal>). In case of multi-output the
+            outputs are plotted with different symbols.
+        </para>
+        <para>
+            The frequencies are given by the bounds <literal>fmin,fmax</literal>
+            (in Hz) or by a row-vector (or a matrix for multi-output)
+            <literal>frq</literal>.
+        </para>
+        <para>
+            <literal>step</literal> is the ( logarithmic ) discretization step.
+            (see <literal>calfrq</literal> for the choice of default value).
+        </para>
+        <para>
+            <literal>comments</literal> is a vector of character strings
+            (captions).
+        </para>
+        <para>
+            <literal>db,phi</literal> are the matrices of modulus (in Db) and
+            phases (in degrees). (One row for each response).
+        </para>
+        <para>
+            <literal>repf</literal> is a matrix of complex numbers. One row for
+            each response.
+        </para>
+        <para>
+            Default values for <literal>fmin</literal> and
+            <literal>fmax</literal> are <literal>1.d-3</literal>,
+            <literal>1.d+3</literal> if <literal>sl</literal> is continuous-time or
+            <literal>1.d-3</literal>, <literal>0.5</literal>/sl.dt (nyquist frequency)
+            if <literal>sl</literal> is discrete-time.
+        </para>
+        <para>Automatic discretization of frequencies is made by
+            <link linkend="calfrq">calfrq</link>.
+        </para>
+        <para>To obtain the value of the frequency at a selected point(s) you can
+            activate the <link linkend="datatips">datatips</link> manager and
+            click the desired point on the nyquist curve(s).
+        </para>
+    </refsection>
+    <refsection>
+        <title>Graphics entities organization</title>
+        <para>
+            The <literal>nyquist</literal> function creates a compound
+            object for each SISO system. The following piece of code allows
+            to get the handle on the compound object of the ith system:
+        </para>
+        <programlisting role="getcompound"><![CDATA[
+    ax=gca();//handle on current axes
+    hi=ax.children($+i-1)// the handle on the compound object of the ith system
+    ]]></programlisting>
+        <para>
+            This compound object has two children: a compound object that
+            defines the small arrows (a compound of small polylines)  and the curve labels  (a compound of texts)  and a polyline
+            which is the curve itself. The following piece of code shows how
+            one can customize a particular nyquist curve display.
+        </para>
+        <programlisting role="customize"><![CDATA[
+    hi.children(1).visible='off'; //hides the arrows and labels
+    hi.children(2).thickness=2; //make the curve thicker
+
+    ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+    //Nyquist curve
+    s=poly(0,'s')
+    h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01));
+    h1=h*syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225))
+    clf();    nyquist(h1)
+    // add a datatip
+    ax=gca();
+    h_h=ax.children($).children(2);//handle on Nyquist curve of h
+    tip=datatipCreate(h_h,[1.331,0.684]);
+    datatipSetOrientation(tip,"upper left");
+    ]]></programlisting>
+        <para>
+            <scilab:image localized="true">
+                s=poly(0,'s')
+                h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01));
+                h1=h*syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225))
+                nyquist(h1)
+                ax=gca();
+                h_h=ax.children($).children(2);
+                tip=datatipCreate(h_h,[1.331,0.684]);
+                datatipSetOrientation(tip,"upper left");
+            </scilab:image>
+        </para>
+        <programlisting role="example"><![CDATA[
+    //Hall chart as a grid for nyquist
+    s=poly(0,'s');
+    Plant=syslin('c',16000/((s+1)*(s+10)*(s+100)));
+    //two degree of freedom PID
+    tau=0.2;xsi=1.2;
+    PID=syslin('c',(1/(2*xsi*tau*s))*(1+2*xsi*tau*s+tau^2*s^2));
+    clf();
+    nyquist([Plant;Plant*PID],0.5,100,["Plant";"Plant and PID corrector"]);
+    hallchart(colors=color('light gray')*[1 1])
+    //move the caption in the lower right corner
+    ax=gca();Leg=ax.children(1);
+    Leg.legend_location="in_upper_left";
+    ]]></programlisting>
+        <para>
+            <scilab:image localized="true">
+                s=poly(0,'s');
+                Plant=syslin('c',16000/((s+1)*(s+10)*(s+100)));
+                tau=0.2;xsi=1.2;
+                PID=syslin('c',(1/(2*xsi*tau*s))*(1+2*xsi*tau*s+tau^2*s^2));
+                clf();
+                nyquist([Plant;Plant*PID],0.5,100,["Plant";"Plant and PID corrector"]);
+                hallchart(colors=color('light gray')*[1 1])
+                ax=gca();Leg=ax.children(1);
+                Leg.legend_location="in_upper_left";
+
+            </scilab:image>
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="syslin">syslin</link>
+            </member>
+            <member>
+                <link linkend="bode">bode</link>
+            </member>
+            <member>
+                <link linkend="black">black</link>
+            </member>
+            <member>
+                <link linkend="nyquistfrequencybounds">nyquistfrequencybounds</link>
+            </member>
+            <member>
+                <link linkend="calfrq">calfrq</link>
+            </member>
+            <member>
+                <link linkend="freq">freq</link>
+            </member>
+            <member>
+                <link linkend="repfreq">repfreq</link>
+            </member>
+            <member>
+                <link linkend="phasemag">phasemag</link>
+            </member>
+            <member>
+                <link linkend="datatips">datatips</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

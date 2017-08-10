@@ -138,9 +138,6 @@
     <ClCompile Include="residu.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="rpoly.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="sfact1.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -308,9 +305,6 @@
     <f2c_rule Include="residu.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="rpoly.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="sfact1.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
@@ -372,16 +366,7 @@
     <None Include="Elementary_functions_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
-    <None Include="core_import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
-    <None Include="linear_algebra_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
     <None Include="output_stream_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
-    <None Include="polynomials_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
     <None Include="cacsd_f_Import.def">
@@ -390,7 +375,7 @@
     <None Include="linpack_f_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
-    <None Include="Core_f_Import.def">
+    <None Include="polynomials_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
   </ItemGroup>

@@ -4,11 +4,14 @@
  * Copyright (C) 2011 DIGITEO - Simon GARESTE <simon.gareste@scilab.org>
  * Copyright (C) 2011 DIGITEO - Allan CORNET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="atomsTest" xml:lang="en">
@@ -17,7 +20,7 @@
         <refpurpose>Execute tests of given module installed</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             status = atomsTest(module)
             status = atomsTest(module, test_name)
@@ -76,10 +79,10 @@
         </para>
         <programlisting role="example">// Display some additional information
             atomsSetConfig("Verbose","True");
-            
+
             // Get the list of loaded modules:
             atomsGetLoaded();
-            
+
             //Supposing that toolbox_1 is installed, test :
             atomsTest("toolbox_1");
         </programlisting>
@@ -91,7 +94,7 @@
             </para>
             <programlisting role="example">   atomsTest("apifun")
                 TMPDIR = /var/folders/z+/z+tSde0-FIufFmhuoUJtjE+++TI/-Tmp-//SCI_TMP_17720_kcOsmV
-                
+
                 001/019 - [SCI/contrib/apifun/0.2-2] argindefault...............passed
                 002/019 - [SCI/contrib/apifun/0.2-2] checkcallable..............passed
                 003/019 - [SCI/contrib/apifun/0.2-2] checkdims..................passed
@@ -111,10 +114,10 @@
                 017/019 - [SCI/contrib/apifun/0.2-2] complete...................passed
                 018/019 - [SCI/contrib/apifun/0.2-2] complete2..................passed
                 019/019 - [SCI/contrib/apifun/0.2-2] expandvar..................passed
-                
+
                 --------------------------------------------------------------------------
                 Summary
-                
+
                 tests                       19 - 100 %
                 passed                      17 -  89 %
                 failed                       2 -  10 %
@@ -122,24 +125,24 @@
                 length                          26.34 sec
                 --------------------------------------------------------------------------
                 Details
-                
-                
+
+
                 TEST : [SCI/contrib/apifun/0.2-2] checkveccol
                 failed  : dia and ref are not equal
                 Compare the following files :
                 - /var/folders/z+/z+tSde0-FIufFmhuoUJtjE+++TI/-Tmp-//SCI_TMP_17720_kcOsmV/checkveccol.dia
                 - /Users/scilab/Desktop/scilab-5.3.3.app/Contents/MacOS/share/scilab/contrib/apifun/0.2-2/tests/unit_tests/checkveccol.dia.ref
-                
+
                 TEST : [SCI/contrib/apifun/0.2-2] checkvector
                 failed  : dia and ref are not equal
                 Compare the following files :
                 - /var/folders/z+/z+tSde0-FIufFmhuoUJtjE+++TI/-Tmp-//SCI_TMP_17720_kcOsmV/checkvector.dia
                 - /Users/scilab/Desktop/scilab-5.3.3.app/Contents/MacOS/share/scilab/contrib/apifun/0.2-2/tests/unit_tests/checkvector.dia.ref
-                
-                
+
+
                 --------------------------------------------------------------------------
                 ans  =
-                
+
                 %f
             </programlisting>
             <para>TMPDIR is the general folder where all the temporary files of the
@@ -240,7 +243,7 @@
                         <td>
                             <emphasis>failed : bug reopened</emphasis>
                         </td>
-                        <td>This bug used to be fixed, but it came back to an instable
+                        <td>This bug used to be fixed, but it came back to an unstable
                             status and is waiting another fix from its developer
                         </td>
                     </tr>
@@ -291,14 +294,14 @@
                     </tr>
                 </informaltable>
                 You then have a summary of the execution, indicating
-                how many tests were skipped, failed or suceed, and the duration time of
+                how many tests were skipped, failed or succeed, and the duration time of
                 the whole. In details, you have a report for each test that failed,
                 indicating where to check for error logs.
             </para>
         </refsection>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="atomsIsInstalled">atomsInstall</link>

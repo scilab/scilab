@@ -26,16 +26,16 @@ function [x,y,typ]=CLKOUTV_f(job,arg1,arg2)
     typ=[];
     select job
     case "plot" then
+        ax = gca();
         xf=60;
         yf=40;
         orig=arg1.graphics.orig;
         sz=arg1.graphics.sz;
-        orient=arg1.graphics.flip;
         prt=arg1.model.ipar;
-        pat=xget("pattern");
-        xset("pattern",default_color(-1));
-        thick=xget("thickness");
-        xset("thickness",2);
+        pat = ax.foreground;
+        ax.foreground = default_color(-1);
+        thick = ax.thickness;
+        ax.thickness = 2;
         x=orig(1)+sz(1)*[1/2;1;  1;0;0  ];
         y=orig(2)+sz(2)*[0;  1/3;1;1;1/3];
         xo=orig(1);
@@ -44,11 +44,11 @@ function [x,y,typ]=CLKOUTV_f(job,arg1,arg2)
         gr_i=arg1.graphics.gr_i;
         if type(gr_i)==15 then
             coli=gr_i(2);
-            pcoli=xget("pattern");
+            pcoli = ax.foreground;
             xfpolys(x,y,coli);
-            xset("pattern",coli);
+            ax.foreground = coli;
             xstringb(xo,yo,string(prt),sz(1),sz(2)/1.5);
-            xset("pattern",pcoli);
+            ax.foreground = pcoli;
             xstringb(xo,yo,string(prt),sz(1),sz(2)/1.5);
         else
             xstringb(xo,yo,string(prt),sz(1),sz(2)/1.5);
@@ -60,18 +60,20 @@ function [x,y,typ]=CLKOUTV_f(job,arg1,arg2)
         -1/14  1/7]*diag([xf,yf]);
         xfpoly(in(:,1)+ones(4,1)*(orig(1)+sz(1)/2),..
         in(:,2)+ones(4,1)*(orig(2)+sz(2)),1);
-        xset("thickness",thick);
-        xset("pattern",pat);
+        ax.thickness = thick;
+        ax.foreground = pat;
 
         ident = arg1.graphics.id
         if ident <> [] & ident <> "" then
-            font=xget("font");
-            xset("font", options.ID(1)(1), options.ID(1)(2));
+            font = [ax.font_style, ax.font_size];
+            ax.font_style = options.ID(1)(1);
+            ax.font_size = options.ID(1)(2);
             rectangle = xstringl(orig(1), orig(2), ident);
             w = rectangle(3);
             h = rectangle(4);
             xstringb(orig(1)+sz(1)/2-w/2, orig(2)-3*h/2 , ident , w, h);
-            xset("font", font(1), font(2));
+            ax.font_style = font(1);
+            ax.font_size = font(2);
         end
         x=[];y=[];
     case "getinputs" then

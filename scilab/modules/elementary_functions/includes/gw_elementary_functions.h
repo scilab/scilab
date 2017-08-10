@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 /*--------------------------------------------------------------------------*/
@@ -23,49 +26,51 @@ int sci_chinesehat(char *fname, unsigned long fname_len);
 //int sci_spones(char *fname, unsigned long fname_len);
 int sci_isequalbitwise(char *fname, unsigned long fname_len);
 
-// YaSp
-//C_GATEWAY_PROTOTYPE(sci_abs);
-//C_GATEWAY_PROTOTYPE(sci_acos);
-//C_GATEWAY_PROTOTYPE(sci_asin);
-//C_GATEWAY_PROTOTYPE(sci_atan);
-//C_GATEWAY_PROTOTYPE(sci_ceil);
-//C_GATEWAY_PROTOTYPE(sci_clean);
-//C_GATEWAY_PROTOTYPE(sci_conj);
-//C_GATEWAY_PROTOTYPE(sci_cos);
-//C_GATEWAY_PROTOTYPE(sci_cumprod);
-//C_GATEWAY_PROTOTYPE(sci_cumsum);
-//C_GATEWAY_PROTOTYPE(sci_diag);
-//C_GATEWAY_PROTOTYPE(sci_dsearch);
-//C_GATEWAY_PROTOTYPE(sci_exp);
-//C_GATEWAY_PROTOTYPE(sci_expm);
-//C_GATEWAY_PROTOTYPE(sci_floor);
-//C_GATEWAY_PROTOTYPE(sci_frexp);
-//C_GATEWAY_PROTOTYPE(sci_gsort);
-//C_GATEWAY_PROTOTYPE(sci_imag);
-//C_GATEWAY_PROTOTYPE(sci_imult);
-//C_GATEWAY_PROTOTYPE(sci_int);
-//C_GATEWAY_PROTOTYPE(sci_isreal);
-//C_GATEWAY_PROTOTYPE(sci_kron);
-//C_GATEWAY_PROTOTYPE(sci_log);
-//C_GATEWAY_PROTOTYPE(sci_log1p);
-//C_GATEWAY_PROTOTYPE(sci_scimatrix);
-//C_GATEWAY_PROTOTYPE(sci_maxi);
-//C_GATEWAY_PROTOTYPE(sci_mini);
-C_GATEWAY_PROTOTYPE(sci_nearfloat);
-C_GATEWAY_PROTOTYPE(sci_number_properties);
-//C_GATEWAY_PROTOTYPE(sci_prod);
-//C_GATEWAY_PROTOTYPE(sci_real);
-//C_GATEWAY_PROTOTYPE(sci_round);
-//C_GATEWAY_PROTOTYPE(sci_sign);
-//C_GATEWAY_PROTOTYPE(sci_sin);
-C_GATEWAY_PROTOTYPE(sci_sqrt);
-//C_GATEWAY_PROTOTYPE(sci_tan);
-C_GATEWAY_PROTOTYPE(sci_testmatrix);
-//C_GATEWAY_PROTOTYPE(sci_tril);
-//C_GATEWAY_PROTOTYPE(sci_triu);
-C_GATEWAY_PROTOTYPE(sci_base2dec);
-C_GATEWAY_PROTOTYPE(sci_dec2base);
-C_GATEWAY_PROTOTYPE(sci_log10);
+// Scilab 6
+//STACK_GATEWAY_PROTOTYPE(sci_abs);
+//STACK_GATEWAY_PROTOTYPE(sci_acos);
+//STACK_GATEWAY_PROTOTYPE(sci_asin);
+//STACK_GATEWAY_PROTOTYPE(sci_atan);
+//STACK_GATEWAY_PROTOTYPE(sci_ceil);
+//STACK_GATEWAY_PROTOTYPE(sci_clean);
+//STACK_GATEWAY_PROTOTYPE(sci_conj);
+//STACK_GATEWAY_PROTOTYPE(sci_cos);
+//STACK_GATEWAY_PROTOTYPE(sci_cumprod);
+//STACK_GATEWAY_PROTOTYPE(sci_cumsum);
+//STACK_GATEWAY_PROTOTYPE(sci_diag);
+//STACK_GATEWAY_PROTOTYPE(sci_dsearch);
+//STACK_GATEWAY_PROTOTYPE(sci_exp);
+//STACK_GATEWAY_PROTOTYPE(sci_expm);
+//STACK_GATEWAY_PROTOTYPE(sci_floor);
+//STACK_GATEWAY_PROTOTYPE(sci_frexp);
+//STACK_GATEWAY_PROTOTYPE(sci_gsort);
+//STACK_GATEWAY_PROTOTYPE(sci_imag);
+//STACK_GATEWAY_PROTOTYPE(sci_imult);
+//STACK_GATEWAY_PROTOTYPE(sci_int);
+//STACK_GATEWAY_PROTOTYPE(sci_isreal);
+//STACK_GATEWAY_PROTOTYPE(sci_kron);
+//STACK_GATEWAY_PROTOTYPE(sci_log);
+//STACK_GATEWAY_PROTOTYPE(sci_log1p);
+//STACK_GATEWAY_PROTOTYPE(sci_scimatrix);
+//STACK_GATEWAY_PROTOTYPE(sci_maxi);
+//STACK_GATEWAY_PROTOTYPE(sci_mini);
+STACK_GATEWAY_PROTOTYPE(sci_nearfloat);
+STACK_GATEWAY_PROTOTYPE(sci_number_properties);
+//STACK_GATEWAY_PROTOTYPE(sci_prod);
+//STACK_GATEWAY_PROTOTYPE(sci_real);
+//STACK_GATEWAY_PROTOTYPE(sci_round);
+//STACK_GATEWAY_PROTOTYPE(sci_sign);
+//STACK_GATEWAY_PROTOTYPE(sci_sin);
+//STACK_GATEWAY_PROTOTYPE(sci_sqrt);
+//STACK_GATEWAY_PROTOTYPE(sci_tan);
+STACK_GATEWAY_PROTOTYPE(sci_testmatrix);
+//STACK_GATEWAY_PROTOTYPE(sci_tril);
+//STACK_GATEWAY_PROTOTYPE(sci_triu);
+STACK_GATEWAY_PROTOTYPE(sci_base2dec);
+STACK_GATEWAY_PROTOTYPE(sci_dec2base);
+STACK_GATEWAY_PROTOTYPE(sci_log10);
+C_GATEWAY_PROTOTYPE(sci_isvector);
+C_GATEWAY_PROTOTYPE(sci_issquare);
 
 #endif /*  __GW_ELEMENTARIES_FUNCTIONS__ */
 /*--------------------------------------------------------------------------*/

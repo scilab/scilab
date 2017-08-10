@@ -5,7 +5,7 @@
         <refpurpose>plot the pattern of non nul elements of a sparse matrix  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>PlotSparse(A [,style])</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -20,11 +20,11 @@
             <varlistentry>
                 <term>style  </term>
                 <listitem>
-                    <para>(optional) a string given the color and/or the marker type of the form "[color][mark]" 
-                        where color may be a number referring the color you want to use (in the current colormap). 
+                    <para>(optional) a string given the color and/or the marker type of the form "[color][mark]"
+                        where color may be a number referring the color you want to use (in the current colormap).
                         If you use the std colormap then color may be one of the following letters :
                     </para>
-                    <programlisting role="no-scilab-exec"><![CDATA[ 
+                    <programlisting role="no-scilab-exec"><![CDATA[
 k  for black       b  for blue
 r  for red         g  for green
 c  for cyan        m  for magenta
@@ -34,15 +34,15 @@ G  a dark green
                     <para>
                         mark must be one of the following :
                     </para>
-                    <programlisting role="no-scilab-exec"><![CDATA[ 
-.  point           +  plus 
-x  cross           *  circled plus 
+                    <programlisting role="no-scilab-exec"><![CDATA[
+.  point           +  plus
+x  cross           *  circled plus
 D  filled diamond  d  diamond
 ^  upper triangle  v  down triangle
 o  circle
  ]]></programlisting>
                     <para>
-                        by default you have "b." (in fact the 2d color) and this is also forced in case of error. 
+                        by default you have "b." (in fact the 2d color) and this is also forced in case of error.
                     </para>
                 </listitem>
             </varlistentry>
@@ -52,25 +52,25 @@ o  circle
         <title>Description</title>
         <para>
             plot the pattern of non nul elements of a sparse matrix :
-            each non nul element is drawn with a marker. For "big" 
+            each non nul element is drawn with a marker. For "big"
             matrix use essentially the point . as marker
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-[A,description,ref,mtype] = ReadHBSparse(SCI+"/modules/umfpack/examples/arc130.rua");
+        <programlisting role="example"><![CDATA[
+[A,description,ref,mtype] = ReadHBSparse(SCI+"/modules/umfpack/demos/arc130.rua");
 PlotSparse(A,"y+")
 xtitle(ref + "." + mtype + " : " + description)
  ]]></programlisting>
         <scilab:image>
-            [A,description,ref,mtype] = ReadHBSparse(SCI+"/modules/umfpack/examples/arc130.rua");
+            [A,description,ref,mtype] = ReadHBSparse(SCI+"/modules/umfpack/demos/arc130.rua");
             PlotSparse(A,"y+")
             xtitle(ref + "." + mtype + " : " + description)
         </scilab:image>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="ReadHBSparse">ReadHBSparse</link>

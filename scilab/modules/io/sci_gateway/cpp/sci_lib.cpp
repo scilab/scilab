@@ -2,11 +2,14 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
@@ -21,41 +24,38 @@ extern "C"
 {
 #include "Scierror.h"
 #include "sci_malloc.h"
-#include "expandPathVariable.h"
+#include "pathconvert.h"
 }
 
-using namespace types;
-
 /*--------------------------------------------------------------------------*/
-Function::ReturnValue sci_lib(types::typed_list &in, int _iRetCount, types::typed_list &out)
+types::Function::ReturnValue sci_gwlib(types::typed_list &in, int /*_iRetCount*/, types::typed_list &out)
 {
-    int iXMLFileLen = 0;
     if (in.size() != 1)
     {
         Scierror(78, _("%s: Wrong number of input argument(s): %d expected.\n"), "lib", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
-    InternalType* pIT = in[0];
+    types::InternalType* pIT = in[0];
 
     if (pIT->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "lib", 1);
-        return Function::Error;
+        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "lib", 1);
+        return types::Function::Error;
     }
 
-    String *pS = pIT->getAs<types::String>();
+    types::String *pS = pIT->getAs<types::String>();
 
     if (pS->isScalar() == false)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), "lib", 1);
-        return Function::Error;
+        Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), "lib", 1);
+        return types::Function::Error;
     }
 
     wchar_t* pstPath = pS->get(0);
-    wchar_t* pwstPath = expandPathVariableW(pstPath);
+    wchar_t* pwstPath = pathconvertW(pstPath, TRUE, FALSE, AUTO_STYLE);
     int err = 0;
-    Library* lib = loadlib(pwstPath, &err, false, false);
+    types::Library* lib = loadlib(pwstPath, &err, false, false);
     FREE(pwstPath);
 
     switch (err)
@@ -68,12 +68,22 @@ Function::ReturnValue sci_lib(types::typed_list &in, int _iRetCount, types::type
             char* pst = wide_string_to_UTF8(pstPath);
             Scierror(999, _("%s: %s is not a valid lib path.\n"), "lib", pst);
             FREE(pst);
-            return Function::Error;
+            return types::Function::Error;
         }
         case 2:
         {
             Scierror(999, "%s: %s", "lib", _("Redefining permanent variable.\n"));
-            return Function::Error;
+            return types::Function::Error;
+        }
+        case 3:
+        {
+            Scierror(999, "%s: %s", "lib", _("Cannot read lib file: Not in proper XML format.\n"));
+            return types::Function::Error;
+        }
+        case 4:
+        {
+            Scierror(999, "%s: %s", "lib", _("Old binary lib detected. Please recompile it for Scilab 6.\n"));
+            return types::Function::Error;
         }
         default:
         {
@@ -82,7 +92,7 @@ Function::ReturnValue sci_lib(types::typed_list &in, int _iRetCount, types::type
     }
 
     out.push_back(lib);
-    return Function::OK;
+    return types::Function::OK;
 }
 
 

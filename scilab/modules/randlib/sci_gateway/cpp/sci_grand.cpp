@@ -3,11 +3,14 @@
 * Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
 * Copyright (C) 2014 - Scilab Enterprises - Sylvain GENIN
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 /*--------------------------------------------------------------------------*/
@@ -20,7 +23,6 @@
 #include "polynom.hxx"
 #include "sparse.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 
 extern "C"
 {
@@ -41,11 +43,11 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
 {
     enum
     {
-        MT, KISS, CLCG4, CLCG2, URAND, FSULTRA
+        MT, KISS, CLCG4, CLCG2, URAND
     };
 
     //  names at the scilab level
-    const wchar_t* names_gen[6] = { L"mt", L"kiss", L"clcg4", L"clcg2", L"urand", L"fsultra" };
+    const wchar_t* names_gen[6] = { L"mt", L"kiss", L"clcg4", L"clcg2", L"urand" };
 
     types::String* pStrMethod = NULL;
     types::String* pStrGenOrPhr = NULL;
@@ -76,37 +78,38 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
         return types::Function::Error;
     }
 
-    // *** find the mothod string. ***
+    // *** find the method string. ***
     for (int i = 0; i < in.size(); i++)
     {
         if (in[i]->isString())
         {
             pStrMethod = in[i]->getAs<types::String>();
             iStrPos = i;
-
             break;
         }
     }
 
-    if ((iStrPos == 0) && (in[0]->isString() == false))
+    if (pStrMethod == NULL)
     {
-        ast::ExecVisitor exec;
-        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_grand";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        for (int i = 0; i < in.size(); i++)
+        {
+            if (in[i]->isDouble() == false)
+            {
+                std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_grand";
+                return Overload::call(wstFuncName, in, _iRetCount, out);
+            }
+        }
+
+        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "grand", in.size() + 1);
+        return types::Function::Error;
     }
 
     int iDims = iStrPos > 1 ? iStrPos : 2;
-    int *itab = new int[iStrPos > 1 ? iStrPos : 2];
+    int *itab = new int[iDims];
 
     //all variables are matrix
     itab[0] = 1;
     itab[1] = 1;
-
-    if (pStrMethod == NULL)
-    {
-        Scierror(78, _("%s: Wrong number of output argument(s): At least %d string expected.\n"), "grand", 1);
-        return types::Function::Error;
-    }
 
     wchar_t* wcsMeth = pStrMethod->get(0);
     int iNumInputArg = 5;
@@ -235,19 +238,6 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
             case URAND:
                 iNumInputArg = 2;
                 break;
-            case FSULTRA:
-            {
-                if (in.size() != 2 && in.size() != 3)
-                {
-                    char* pstMeth = wide_string_to_UTF8(wcsMeth);
-                    Scierror(77, _("%s: Wrong number of input argument(s) for method %s: %d or %d expected.\n"), "grand", pstMeth, 2, 3);
-                    FREE(pstMeth);
-                    return types::Function::Error;
-                }
-
-                iNumInputArg = (int)in.size();
-                break;
-            }
         }
         meth = 24;
     }
@@ -286,6 +276,7 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
         char* pstMeth = wide_string_to_UTF8(wcsMeth);
         Scierror(78, _("%s: Wrong method for input argument #%d: %s unknown.\n"), "grand", iStrPos + 1, pstMeth);
         FREE(pstMeth);
+        delete[] itab;
         return types::Function::Error;
     }
 
@@ -295,12 +286,14 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
         if (iStrPos != 1)
         {
             Scierror(999, _("%s: Wrong position for input argument #%d : Must be in position %d.\n"), "grand", iStrPos + 1, 2);
+            delete[] itab;
             return types::Function::Error;
         }
 
         if (in[iPos]->isDouble() == false)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "grand", iPos + 1);
+            delete[] itab;
             return types::Function::Error;
         }
 
@@ -309,6 +302,7 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
         if (pDblTemp->isScalar() == false)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "grand", iPos + 1);
+            delete[] itab;
             return types::Function::Error;
         }
 
@@ -330,6 +324,7 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
             if (in[iPos]->isDouble() == false)
             {
                 Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "grand", iPos + 1);
+                delete[] itab;
                 return types::Function::Error;
             }
 
@@ -338,6 +333,7 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
             if (iStrPos == 3 && vectpDblTemp[i]->isScalar() == false)
             {
                 Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "grand", iPos + 1);
+                delete[] itab;
                 return types::Function::Error;
             }
             iPos++;
@@ -352,7 +348,8 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
 
     if (in[iPos]->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d : A string expected.\n"), "grand", iPos + 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d : string expected.\n"), "grand", iPos + 1);
+        delete[] itab;
         return types::Function::Error;
     }
     iPos++; // method string has been already got.
@@ -362,7 +359,8 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
     {
         if (in[iPos]->isString() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d : A string expected.\n"), "grand", iPos + 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d : string expected.\n"), "grand", iPos + 1);
+            delete[] itab;
             return types::Function::Error;
         }
 
@@ -371,6 +369,7 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
         if (pStrGenOrPhr->isScalar() == false)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d : Only one string expected.\n"), "grand", iPos + 1);
+            delete[] itab;
             return types::Function::Error;
         }
     }
@@ -379,6 +378,7 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
         if (in.size() > 3)
         {
             Scierror(999, _("Missing vect for random permutation\n"));
+            delete[] itab;
             return types::Function::Error;
         }
     }
@@ -390,6 +390,7 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
             if (in[i]->isDouble() == false)
             {
                 Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "grand", iPos + 1);
+                delete[] itab;
                 return types::Function::Error;
             }
 
@@ -416,11 +417,13 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
         else if ((itab[1] != itab[0]) && (itab[0] <= -1))
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: Positive scalar expected.\n"), "grand", 1);
+            delete[] itab;
             return types::Function::Error;
         }
         else if ((itab[1] != itab[0]) && (itab[1] <= -1))
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: Positive scalar expected.\n"), "grand", 2);
+            delete[] itab;
             return types::Function::Error;
         }
         else
@@ -430,12 +433,16 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
     }
     else
     {
-
         types::Double* pDblIn = in[0]->getAs<types::Double>();
-        if (meth == 14)//'mul'
+        if (meth == 14 || meth == 13)//'mul' or 'markov'
         {
-            int* iDimsArraytempo = new int[2];
-            iDimsArraytempo[0] = in[3]->getAs<types::Double>()->getSize() + 1;
+            int iDimsArraytempo[2];
+            iDimsArraytempo[0] = in[3]->getAs<types::Double>()->getSize();
+            if (meth == 14)
+            {
+                iDimsArraytempo[0] = iDimsArraytempo[0] + 1;
+            }
+
             iDimsArraytempo[1] = iNumIter;
             pDblOut = new types::Double(pDblIn->getDims(), iDimsArraytempo);
         }
@@ -502,7 +509,7 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
             if (vectpDblInput[1]->get(0) < 0.0 || vectpDblInput[1]->get(0) > 1.0) // p
             {
                 delete pDblOut;
-                Scierror(999, _("%s: Wrong value for input argument #%d : A value  expected.\n"), "grand", 5);
+                Scierror(999, _("%s: Wrong value for input argument #%d : A value expected.\n"), "grand", 5);
                 return types::Function::Error;
             }
 
@@ -564,7 +571,7 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
             if (vectpDblInput[0]->get(0) < 1.0) // Df
             {
                 delete pDblOut;
-                Scierror(999, _("%s: Wrong value for input argument #%d : value >1.0 expected.\n"), "grand", 4);
+                Scierror(999, _("%s: Wrong value for input argument #%d : value > 1.0 expected.\n"), "grand", 4);
                 return types::Function::Error;
             }
 
@@ -744,7 +751,7 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
             if (vectpDblInput[0]->getRows() != vectpDblInput[1]->getRows())
             {
                 delete pDblOut;
-                Scierror(999, _("%s: Wrong size for input argument #%d and #%d: Mean and Cov have incompatible dimensions.\n"), "grand", 4, 5);
+                Scierror(999, _("%s: Wrong size for input arguments #%d and #%d: Mean and Cov have incompatible dimensions.\n"), "grand", 4, 5);
                 return types::Function::Error;
             }
 
@@ -774,8 +781,8 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
 
             if (ierr == 1)
             {
-                delete work;
-                delete param;
+                delete[] work;
+                delete[] param;
                 delete pDblOut;
                 Scierror(999, _("%s: setgmn return with state %d.\n"), "grand", ierr);
                 return types::Function::Error;
@@ -786,8 +793,8 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
                 C2F(genmn)(param, pDblOut->get() + (size * i), work);
             }
 
-            delete work;
-            delete param;
+            delete[] work;
+            delete[] param;
 
             out.push_back(pDblOut);
             break;
@@ -847,7 +854,7 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
             }
 
             int size = vectpDblInput[0]->getSize() + vectpDblInput[0]->getCols();
-            double* work = (double*)malloc(size * sizeof(double));
+            double* work = new double[(size * sizeof(double))];
 
             for (int i = 0; i < vectpDblInput[0]->getRows(); i++)
             {
@@ -860,6 +867,7 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
                     {
                         delete pDblOut;
                         Scierror(999, _("%s: Wrong value for input argument #%d: P(%d,%d) must be in the range [0 1].\n"), "grand", i + 1, j + 1);
+                        delete[] work;
                         return types::Function::Error;
                     }
 
@@ -870,6 +878,7 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
                 {
                     delete pDblOut;
                     Scierror(999, _("%s: Sum of P(%d,1:%d)=%lf ~= 1.\n"), "grand", i + 1, vectpDblInput[0]->getCols(), ptot);
+                    delete[] work;
                     return types::Function::Error;
                 }
             }
@@ -913,6 +922,7 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
             }
 
             out.push_back(pDblOut);
+            delete[] work;
             break;
         }
         case 14: // multinomial
@@ -934,7 +944,7 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
             if (vectpDblInput[1]->getCols() != 1 || vectpDblInput[1]->getRows() <= 0)
             {
                 delete pDblOut;
-                Scierror(999, _("%s: Wrong size for input argument #%d: A colomn vector expected.\n"), "grand", 5);
+                Scierror(999, _("%s: Wrong size for input argument #%d: A column vector expected.\n"), "grand", 5);
                 return types::Function::Error;
             }
 
@@ -977,8 +987,8 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
                 pDblOut->set(i, static_cast<double>(piOut[i]));
             }
 
-            delete piP;
-            delete piOut;
+            delete[] piP;
+            delete[] piOut;
 
             out.push_back(pDblOut);
             break;
@@ -1162,7 +1172,7 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
             if (low > high)
             {
                 delete pDblOut;
-                Scierror(999, _("%s: Wrong value for input argument #%d and #%d: Low < High expected.\n"), "grand", 4, 5);
+                Scierror(999, _("%s: Wrong value for input arguments #%d and #%d: Low < High expected.\n"), "grand", 4, 5);
                 return types::Function::Error;
             }
 
@@ -1192,7 +1202,7 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
             if (low > high)
             {
                 delete pDblOut;
-                Scierror(999, _("%s: Wrong value for input argument #%d and #%d: Low < High expected.\n"), "grand", 4, 5);
+                Scierror(999, _("%s: Wrong value for input arguments #%d and #%d: Low < High expected.\n"), "grand", 4, 5);
                 return types::Function::Error;
             }
 
@@ -1201,7 +1211,7 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
                     (high - low + 1) > 2147483561)
             {
                 delete pDblOut;
-                Scierror(999, _("%s: Wrong value for input argument #%d and #%d: Low and High must be integers and (high - low + 1) <=  2147483561.\n"), "grand", 4, 5);
+                Scierror(999, _("%s: Wrong value for input arguments #%d and #%d: Low and High must be integers and (high - low + 1) <=  2147483561.\n"), "grand", 4, 5);
                 return types::Function::Error;
             }
 
@@ -1255,13 +1265,9 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
             {
                 ConfigVariable::setCurrentBaseGen(URAND);
             }
-            else if (wcscmp(wcsGen, L"fsultra") == 0)
-            {
-                ConfigVariable::setCurrentBaseGen(FSULTRA);
-            }
             else
             {
-                Scierror(999, _("%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' expected.\n"), "grand", 2, "mt", "kiss", "clcg4", "clcg2", "urand", "fsultra");
+                Scierror(999, _("%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' expected.\n"), "grand", 2, "mt", "kiss", "clcg4", "clcg2", "urand");
                 return types::Function::Error;
             }
 
@@ -1272,7 +1278,6 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
         }
         case 23: // getsd
         {
-            delete pDblOut;
             switch (current_base_gen)
             {
                 case MT:
@@ -1304,12 +1309,6 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
                 {
                     pDblOut = new types::Double(1, 1);
                     get_state_urand(pDblOut->get());
-                    break;
-                }
-                case FSULTRA:
-                {
-                    pDblOut = new types::Double(40, 1);
-                    get_state_fsultra(pDblOut->get());
                     break;
                 }
             }
@@ -1394,34 +1393,6 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
                     }
 
                     ierr = set_state_urand(vectpDblInput[0]->get(0));
-                    break;
-                }
-                case FSULTRA:
-                {
-                    if (in.size() == 2)
-                    {
-                        if (vectpDblInput[0]->getRows() != 40 || vectpDblInput[0]->getCols() != 1)
-                        {
-                            Scierror(999, _("%s: Wrong size for input argument #%d : A vector of size %d x %d expected.\n"), "grand", 2, 40, 1);
-                            return types::Function::Error;
-                        }
-
-                        ierr = set_state_fsultra(vectpDblInput[0]->get());
-                    }
-                    else // in.size() == 3
-                    {
-                        for (int i = 0; i < 2; i++)
-                        {
-                            if (vectpDblInput[i]->isScalar() == false)
-                            {
-                                Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "grand", i + 2);
-                                return types::Function::Error;
-                            }
-                        }
-
-                        ierr = set_state_fsultra_simple(vectpDblInput[0]->get(0), vectpDblInput[1]->get(0));
-                    }
-
                     break;
                 }
             }

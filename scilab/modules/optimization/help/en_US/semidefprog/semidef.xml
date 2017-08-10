@@ -3,12 +3,15 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * Copyright (C) 2011 - DIGITEO - Michael Baudin
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="semidef" xml:lang="en">
@@ -17,7 +20,7 @@
         <refpurpose>Solve semidefinite problems.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             x=semidef(x0,Z0,F,blocksizes,c,options)
             [x,Z]=semidef(...)
@@ -113,15 +116,15 @@
         </para>
         <para>
             exploiting block structure in the matrices
-            <literal>F_i</literal>. 
-            Here, <literal>Tr</literal> is the trace operator, i.e. the sum of the 
+            <literal>F_i</literal>.
+            Here, <literal>Tr</literal> is the trace operator, i.e. the sum of the
             diagonal entries of the matrix.
         </para>
         <para>
-            The problem data are the vector <literal>c</literal> and <literal>m+1</literal> 
+            The problem data are the vector <literal>c</literal> and <literal>m+1</literal>
             block-diagonal symmetric matrices <literal>F0</literal>, <literal>F1</literal>,
-            ..., <literal>Fm</literal>. 
-            Moreover, we assume that the matrices <literal>Fi</literal> have 
+            ..., <literal>Fm</literal>.
+            Moreover, we assume that the matrices <literal>Fi</literal> have
             <literal>L</literal> diagonal blocks.
         </para>
         <para>
@@ -131,7 +134,7 @@
             <literal>F_i</literal>, then
         </para>
         <para>
-            <latex><![CDATA[ 
+            <latex><![CDATA[
         \begin{eqnarray}
         F = \left(
         \begin{array}{cccc}
@@ -145,17 +148,17 @@
  ]]></latex>
         </para>
         <para>
-            where, for each symmetric block <literal>M</literal>, the vector <literal>cmp(M)</literal> is 
-            the compressed representation of <literal>M</literal>, that is 
-            <literal>[M(1,1);M(1,2);...;M(1,n);M(2,2);M(2,3);...;M(2,n);...;M(n,n)]</literal>, 
+            where, for each symmetric block <literal>M</literal>, the vector <literal>cmp(M)</literal> is
+            the compressed representation of <literal>M</literal>, that is
+            <literal>[M(1,1);M(1,2);...;M(1,n);M(2,2);M(2,3);...;M(2,n);...;M(n,n)]</literal>,
             obtained by scanning rowwise the upper triangular part of
-            <literal>M</literal>. 
+            <literal>M</literal>.
         </para>
         <para>
-            For example, the matrix  
+            For example, the matrix
         </para>
         <para>
-            <latex><![CDATA[ 
+            <latex><![CDATA[
         \begin{eqnarray}
         Z = \left(
         \begin{array}{cccccc}
@@ -180,7 +183,7 @@
             with <literal>blocksizes=[2,3,1]</literal>.
         </para>
         <para>
-            In order to create the matrix <literal>F</literal>, the user can combine the 
+            In order to create the matrix <literal>F</literal>, the user can combine the
             <literal>list2vec</literal> and <literal>pack</literal> function, as described in the example below.
         </para>
         <para>
@@ -240,7 +243,7 @@
                     </para>
                 </listitem>
             </itemizedlist>
-            
+
         </para>
         <para>
             On output, the <literal>info</literal> variable contains the status of the execution.
@@ -306,7 +309,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // 1. Define the initial guess
 x0=[0;0];
 //
@@ -325,7 +328,7 @@ F2=[2,2,0,0;
     0,0,3,4;
     0,0,4,4]
 // Define the size of the two blocks:
-// the first block has size 2, 
+// the first block has size 2,
 // the second block has size 2.
 blocksizes=[2,2];
 // Extract the two blocks of the matrices.
@@ -335,12 +338,12 @@ F11=F1(1:2,1:2);
 F12=F1(3:4,3:4);
 F21=F2(1:2,1:2);
 F22=F2(3:4,3:4);
-// Create 3 column vectors, containing nonzero entries 
+// Create 3 column vectors, containing nonzero entries
 // in F0, F1, F2.
 F0nnz = list2vec(list(F01,F02));
 F1nnz = list2vec(list(F11,F12));
 F2nnz = list2vec(list(F21,F22));
-// Create a 16-by-3 matrix, representing the 
+// Create a 16-by-3 matrix, representing the
 // nonzero entries of the 3 matrices F0, F1, F2.
 FF=[F0nnz,F1nnz,F2nnz]
 // Compress FF
@@ -352,7 +355,7 @@ Z0=2*F0;
 // Extract the two blocks of the matrix
 Z01=Z0(1:2,1:2);
 Z02=Z0(3:4,3:4);
-// Create 2 column vectors, containing nonzero entries 
+// Create 2 column vectors, containing nonzero entries
 // in Z0.
 ZZ0 = [Z01(:);Z02(:)];
 // Compress ZZO
@@ -360,7 +363,7 @@ CZZ0 = pack(ZZ0,blocksizes);
 //
 // 4. Create the linear vector c
 c=[trace(F1*Z0);trace(F2*Z0)];
-// 
+//
 // 5. Define the algorithm options
 options=[10,1.d-10,1.d-10,0,50];
 // 6. Solve the problem
@@ -398,7 +401,7 @@ trace(F2*Z)-c(2)
             1994.
         </para>
         <para>
-            SP: Software for Semidefinite Programming, User's Guide, Beta Version, November 1994, 
+            SP: Software for Semidefinite Programming, User's Guide, Beta Version, November 1994,
             L. Vandenberghe and S. Boyd, 1994
             <ulink url="http://www.ee.ucla.edu/~vandenbe/sp.html">http://www.ee.ucla.edu/~vandenbe/sp.html</ulink>
         </para>

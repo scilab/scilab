@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="Sfgrayplot">
@@ -18,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             Sfgrayplot(x, y, f, &lt;opt_args&gt;)
             Sfgrayplot(x, y, f [,strf, rect, nax, zminmax, colminmax, mesh, colout])
@@ -47,7 +50,7 @@
                 <term>&lt;opt_args&gt;</term>
                 <listitem>
                     <para>
-                        this represents a sequence of statements 
+                        this represents a sequence of statements
                         <literal>key1=value1, key2=value2, ...</literal>
                         where <literal>key1</literal>, <literal>key2, ...</literal>
                         can be one of the following: <varname>strf</varname>,
@@ -85,11 +88,11 @@
             surface is plotted assuming that it is linear on a set of triangles built
             from the grid (here with <literal>n1=5</literal>, <literal>n2=3</literal>):
         </para>
-        <screen><![CDATA[ 
+        <screen><![CDATA[
 _____________
 | /| /| /| /|
-|/_|/_|/_|/_| 
-| /| /| /| /| 
+|/_|/_|/_|/_|
+| /| /| /| /|
 |/_|/_|/_|/_|
  ]]></screen>
         <para>
@@ -106,7 +109,8 @@ _____________
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <scilab:image>Sfgrayplot();</scilab:image>
+        <programlisting role="example"><![CDATA[
 // example #1: plot 4 surfaces
 function z=surf1(x,y), z=x*y, endfunction
 function z=surf2(x,y), z=x^2-y^2, endfunction
@@ -136,36 +140,36 @@ subplot(2,2,4)
 drawnow();
 show_window()
  ]]></programlisting>
-        <scilab:image>
-            function z=surf1(x,y), z=x*y, endfunction
-            function z=surf2(x,y), z=x^2-y^2, endfunction
-            function z=surf3(x,y), z=x^3+y^2, endfunction
-            function z=surf4(x,y), z=x^2+y^2, endfunction
-            clf()
-            set(gcf(),"color_map",[jetcolormap(64);hotcolormap(64)])
-            x = linspace(-1,1,60);
-            y = linspace(-1,1,60);
-            drawlater();
-            subplot(2,2,1)
-            colorbar(-1,1,[1,64])
-            Sfgrayplot(x,y,surf1,strf="041",colminmax=[1,64])
-            xtitle("f(x,y) = x*y")
-            subplot(2,2,2)
-            colorbar(-1,1,[65,128])
-            Sfgrayplot(x,y,surf2,strf="041",colminmax=[65,128])
-            xtitle("f(x,y) = x^2-y^2")
-            subplot(2,2,3)
-            colorbar(-1,2,[65,128])
-            Sfgrayplot(x,y,surf3,strf="041",colminmax=[65,128])
-            xtitle("f(x,y) = x^3+y^2")
-            subplot(2,2,4)
-            colorbar(0,2,[1,64])
-            Sfgrayplot(x,y,surf4,strf="041",colminmax=[1,64])
-            xtitle("f(x,y) = x^2+y^2")
-            drawnow();
-        </scilab:image>
-        <programlisting role="example"><![CDATA[ 
-// example #2: plot surf3 and add some contour lines 
+        <scilab:image><![CDATA[
+function z=surf1(x,y), z=x*y, endfunction
+function z=surf2(x,y), z=x^2-y^2, endfunction
+function z=surf3(x,y), z=x^3+y^2, endfunction
+function z=surf4(x,y), z=x^2+y^2, endfunction
+clf()
+set(gcf(),"color_map",[jetcolormap(64);hotcolormap(64)])
+x = linspace(-1,1,60);
+y = linspace(-1,1,60);
+drawlater();
+subplot(2,2,1)
+colorbar(-1,1,[1,64])
+Sfgrayplot(x,y,surf1,strf="041",colminmax=[1,64])
+xtitle("f(x,y) = x*y")
+subplot(2,2,2)
+colorbar(-1,1,[65,128])
+Sfgrayplot(x,y,surf2,strf="041",colminmax=[65,128])
+xtitle("f(x,y) = x^2-y^2")
+subplot(2,2,3)
+colorbar(-1,2,[65,128])
+Sfgrayplot(x,y,surf3,strf="041",colminmax=[65,128])
+xtitle("f(x,y) = x^3+y^2")
+subplot(2,2,4)
+colorbar(0,2,[1,64])
+Sfgrayplot(x,y,surf4,strf="041",colminmax=[1,64])
+xtitle("f(x,y) = x^2+y^2")
+drawnow();
+]]></scilab:image>
+        <programlisting role="example"><![CDATA[
+// example #2: plot surf3 and add some contour lines
 function z=surf3(x,y), z=x^3+y^2, endfunction
 clf()
 x = linspace(-1,1,60);
@@ -179,21 +183,21 @@ xtitle("f(x,y) = x^3+y^2")
 drawnow();
 show_window()
  ]]></programlisting>
-        <scilab:image>
-            function z=surf3(x,y), z=x^3+y^2, endfunction
-            clf()
-            x = linspace(-1,1,60);
-            y = linspace(-1,1,60);
-            set(gcf(),"color_map",hotcolormap(128))
-            drawlater();
-            colorbar(-1,2)
-            Sfgrayplot(x,y,surf3,strf="041")
-            contour2d(x,y,surf3,[-0.1, 0.025, 0.4],style=[1 1 1],strf="000")
-            xtitle("f(x,y) = x^3+y^2")
-            drawnow() ;
-            show_window()
-        </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <scilab:image><![CDATA[
+function z=surf3(x,y), z=x^3+y^2, endfunction
+clf()
+x = linspace(-1,1,60);
+y = linspace(-1,1,60);
+set(gcf(),"color_map",hotcolormap(128))
+drawlater();
+colorbar(-1,2)
+Sfgrayplot(x,y,surf3,strf="041")
+contour2d(x,y,surf3,[-0.1, 0.025, 0.4],style=[1 1 1],strf="000")
+xtitle("f(x,y) = x^3+y^2")
+drawnow();
+show_window()
+]]></scilab:image>
+        <programlisting role="example"><![CDATA[
 // example #3: plot surf3 and use zminmax and colout optional arguments
 //             to restrict the plot for -0.5<= z <= 1
 function z=surf3(x,y), z=x^3+y^2, endfunction
@@ -207,27 +211,27 @@ colorbar(zminmax(1),zminmax(2),colors)
 Sfgrayplot(x, y, surf3, strf="041", zminmax=zminmax, colout=[0 0], colminmax=colors)
 contour2d(x,y,surf3,[-0.5, 1],style=[1 1 1],strf="000")
 xtitle("f(x,y) = x^3+y^2, with parts under z = -0.5 and upper z = 1 removed")
-drawnow() ;
+drawnow();
 show_window()
  ]]></programlisting>
-        <scilab:image>
-            function z=surf3(x,y), z=x^3+y^2, endfunction
-            clf()
-            x = linspace(-1,1,60);
-            y = linspace(-1,1,60);
-            set(gcf(),"color_map",jetcolormap(128))
-            drawlater() ;
-            zminmax = [-0.5 1]; colors=[32 96];
-            colorbar(zminmax(1),zminmax(2),colors)
-            Sfgrayplot(x, y, surf3, strf="041", zminmax=zminmax, colout=[0 0], colminmax=colors)
-            contour2d(x,y,surf3,[-0.5, 1],style=[1 1 1],strf="000")
-            xtitle("f(x,y) = x^3+y^2, with parts under z = -0.5 and upper z = 1 removed")
-            drawnow() ;
-            show_window()
-        </scilab:image>
+        <scilab:image localized="true"><![CDATA[
+function z=surf3(x,y), z=x^3+y^2, endfunction
+clf()
+x = linspace(-1,1,60);
+y = linspace(-1,1,60);
+set(gcf(),"color_map",jetcolormap(128))
+drawlater();
+zminmax = [-0.5 1]; colors=[32 96];
+colorbar(zminmax(1),zminmax(2),colors)
+Sfgrayplot(x, y, surf3, strf="041", zminmax=zminmax, colout=[0 0], colminmax=colors)
+contour2d(x,y,surf3,[-0.5, 1],style=[1 1 1],strf="000")
+xtitle("f(x,y) = x^3+y^2, with parts under z = -0.5 and upper z = 1 removed")
+drawnow();
+show_window()
+]]></scilab:image>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="fec">fec</link>

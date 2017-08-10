@@ -2,13 +2,18 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
  * Copyright (C) 2009 - DIGITEO - Clement DAVID
- * Copyright (C) Scilab Enterprises - 2011-2012 - Clement DAVID
+ * Copyright (C) 2011-2017 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2015 - Marcos CARDINOT
+ * Copyright (C) 2017 - ESI Group - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 package org.scilab.modules.xcos.utils;
@@ -61,6 +66,19 @@ public final class XcosMessages {
     public static final String CUSTOMIZE = Messages.gettext("Customize") + DOTS;
     public static final String SAVE_BLOCK_GUI = Messages.gettext("Save block GUI");
 
+    /* Palette browser */
+    public static final String MATCHES = Messages.gettext("matches");
+    public static final String NEXT = Messages.gettext("Next");
+    public static final String PREVIOUS = Messages.gettext("Previous");
+    public static final String SEARCH = Messages.gettext("Search");
+    public static final String SEARCHING = Messages.gettext("Searching...");
+    public static final String ZOOM_IN = Messages.gettext("Zoom In");
+    public static final String ZOOM_OUT = Messages.gettext("Zoom Out");
+
+    public static final String UNABLE_TO_LOAD_BLOCK = Messages.gettext("Unable to load block from %s .");
+    public static final String UNABLE_TO_LOAD_SELECTED_BLOCKS = Messages.gettext("Unable to load the selected blocks.");
+    public static final String LOADING_BLOCKS = Messages.gettext("Loading blocks") + DOTS;
+
     /* Palette menu in palette browser */
     public static final String LOAD_AS_PAL = Messages.gettext("Load as palette") + DOTS;
     public static final String USER_DEFINED = Messages.gettext("User-Defined");
@@ -78,6 +96,7 @@ public final class XcosMessages {
     public static final String FIT_DIAGRAM_TO_VIEW = Messages.gettext("Fit diagram or blocks to view");
     public static final String NORMAL_100 = Messages.gettext("Normal 100%");
     public static final String PALETTE_BROWSER = Messages.gettext("Palette browser");
+    public static final String OLD_DIAGRAM_BROWSER = Messages.gettext("tree_show(scs_m)");
     public static final String DIAGRAM_BROWSER = Messages.gettext("Diagram browser");
     public static final String VIEWPORT = Messages.gettext("Viewport");
     public static final String GET_INFOS = Messages.gettext("Get infos");
@@ -120,7 +139,8 @@ public final class XcosMessages {
     public static final String XCOS_DOCUMENTATION = Messages.gettext("Xcos Help");
     public static final String BLOCK_DOCUMENTATION = Messages.gettext("Block Help");
     public static final String XCOS_DEMONSTRATIONS = Messages.gettext("Xcos Demonstrations");
-    public static final String ABOUT_XCOS = Messages.gettext("About Xcos") + DOTS;
+    // For the moment, "About Xcos" points to "About Scilab", we may update this when we get a nice splash image
+    public static final String ABOUT_XCOS = Messages.gettext("About Scilab") + DOTS;
 
     /* PALETTES */
     public static final String PALETTES = Messages.gettext("Palettes");
@@ -140,7 +160,7 @@ public final class XcosMessages {
     public static final String DISCRETE_PAL = Messages.gettext("Discrete time systems");
     public static final String EVENTS_PAL = Messages.gettext("Event handling");
     public static final String SIGNALROUTING_PAL = Messages.gettext("Signal Routing");
-    public static final String COMMONUSED_PAL = Messages.gettext("Commonly Used Blocks");
+    public static final String RECENTLYUSED_PAL = Messages.gettext("Recently Used Blocks");
     public static final String USERDEFINEDFUNCTIONS_PAL = Messages.gettext("User-Defined Functions");
     public static final String DEMOBLOCKS_PAL = Messages.gettext("Demonstrations Blocks");
     public static final String ELECTRICAL_PAL = Messages.gettext("Electrical");
@@ -234,9 +254,8 @@ public final class XcosMessages {
     public static final String LOADING_USER_DEFINE = Messages.gettext("Loading user defined palettes") + DOTS;
     public static final String GENERATING_C_CODE = Messages.gettext("Generating C Code for SuperBlock") + DOTS;
     public static final String ERROR_GENERATING_C_CODE = Messages.gettext("A SuperBlock must be selected to generate code");
-    public static final String SIMULATION_IN_PROGRESS = Messages.gettext("Simulation in progress") + DOTS;
-    public static final String COMPILATION_IN_PROGRESS = Messages.gettext("Compilation in progress, results will be stored in the \'scicos_cpr\' variable")
-            + DOTS;
+    public static final String SIMULATION_IN_PROGRESS = Messages.gettext("Simulation in progress");
+    public static final String COMPILATION_IN_PROGRESS = Messages.gettext("Compilation in progress, results will be stored in the \'cpr\' variable");
     public static final String GENERATE_SUPERBLOCK = Messages.gettext("Generate SuperBlock, please wait") + DOTS;
     public static final String DRAW_LINK = Messages.gettext("Click on diagram to add link point or on a compatible target to finish");
 
@@ -252,6 +271,7 @@ public final class XcosMessages {
     public static final String FILE_COS = FILE_COSF;
     public static final String FILE_XCOS = Messages.gettext("Xcos file");
     public static final String FILE_ZCOS = Messages.gettext("Xcos (zip) file");
+    public static final String FILE_XMI = Messages.gettext("XMI (Eclipse EMF) file");
     public static final String FILE_SOD = Messages.gettext("Scilab Open Data file");
 
     /* Superblock mask editor */
@@ -287,9 +307,34 @@ public final class XcosMessages {
     /* Errors */
     public static final String ERROR_UNABLE_TO_COMPILE_THIS_SUPER_BLOCK = Messages.gettext("Error: unable to compile this SuperBlock");
     public static final String WRONG_PORT_NUMBER = Messages.gettext("Evaluation problem: wrong port number.");
-    public static final String EXPECTING_NUMBER = Messages.gettext("Expecting '%d'.");
+    public static final String EXPECTING_NUMBER = Messages.gettext("Expecting <code>%d</code> but got <code>%d</code>.");
     public static final String LINK_NOT_CONNECTED = Messages
             .gettext("<html><body>Compilation error: link ignored because it is not connected. <br/>Please reconnect it.</body></html>");
+
+    /* Tooltips */
+    public static final String TOOLTIP_BLOCK = Messages.gettext("Block name: ");
+    public static final String TOOLTIP_BLOCK_SIMULATION = Messages.gettext("Simulation: ");
+    public static final String TOOLTIP_BLOCK_UID = Messages.gettext("UID: ");
+    public static final String TOOLTIP_BLOCK_STYLE = Messages.gettext("Style: ");
+    public static final String TOOLTIP_BLOCK_RPAR = Messages.gettext("Rpar: ");
+    public static final String TOOLTIP_BLOCK_IPAR = Messages.gettext("Ipar: ");
+    public static final String TOOLTIP_BLOCK_OPAR = Messages.gettext("Opar: ");
+    public static final String TOOLTIP_PORT_DATATYPE = Messages.gettext("Datatype: ");
+    public static final String TOOLTIP_PORT_IMPLICIT = Messages.gettext("Implicit: ");
+    public static final String TOOLTIP_PORT_STYLE = Messages.gettext("Style: ");
+    public static final String TOOLTIP_LINK_SRC_DATATYPE = Messages.gettext("Source datatype: ");
+    public static final String TOOLTIP_LINK_TRG_DATATYPE = Messages.gettext("Target datatype: ");
+    public static final String TOOLTIP_LINK_LABEL = Messages.gettext("Label: ");
+    public static final String TOOLTIP_LINK_STYLE = Messages.gettext("Style: ");
+
+    /* Automatic Layout */
+    public static final String LINK_STYLE_OPTIMAL = Messages.gettext("Optimal");
+    public static final String BLOCK_AUTO_POSITION = Messages.gettext("Auto-Position Block");
+    public static final String BLOCK_AUTO_POSITION_SPLIT_BLOCK = Messages.gettext("Split Block");
+    public static final String BLOCK_AUTO_POSITION_SPLIT_BLOCK_CONTEXTUAL = Messages.gettext("Auto-Position Split Block");
+
+    public static final String ONELINE_DESCRIPTION_TOOLTIP = Messages.gettext("A one-line description of the block");
+    public static final String MULTILINE_DESCRIPTION_TOOLTIP = Messages.gettext("Annotation (or comment) attached to the object");
 
     // CSON: JavadocVariable
     // CSON: LineLength
@@ -308,7 +353,9 @@ public final class XcosMessages {
      * @return true if Java 1.5 and MacOS and mouse clic and ctrl activated
      */
     public static boolean isMacOsPopupTrigger(MouseEvent e) {
-        return (SwingUtilities.isLeftMouseButton(e) && e.isControlDown() && (System.getProperty("os.name").toLowerCase().indexOf("mac") != -1) && (System
-                .getProperty("java.specification.version").equals("1.5")));
+        return (SwingUtilities.isLeftMouseButton(e)
+                && e.isControlDown()
+                && (System.getProperty("os.name").toLowerCase().indexOf("mac") != -1)
+                && (System.getProperty("java.specification.version").equals("1.5")));
     }
 }

@@ -13,6 +13,6 @@
 // Short description:
 // memory leak in grep with regexp crashes scilab
 a = string(rand(500,10));
-for i = 1:500
+for i = 1:500 
   b = grep(a,'/123|456$/','r');
 end

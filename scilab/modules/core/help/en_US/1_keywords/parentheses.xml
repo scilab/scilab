@@ -5,7 +5,7 @@
         <refpurpose>( ) left and right parenthesis</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>(expression)
             [...]=func(e1,e2,...)
             [x1,x2,...]=(e1,e2,...)
@@ -105,7 +105,7 @@ v=%t([1 1 1 1 1])
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="colon">colon</link>

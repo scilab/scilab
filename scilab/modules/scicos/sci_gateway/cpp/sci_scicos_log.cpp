@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2014-2014 - Scilab Enterprises - Clement DAVID
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -16,6 +19,7 @@
 
 #include "types.hxx"
 #include "string.hxx"
+#include "double.hxx"
 #include "mlist.hxx"
 #include "list.hxx"
 #include "function.hxx"
@@ -74,19 +78,58 @@ types::Function::ReturnValue sci_scicos_log(types::typed_list &in, int _iRetCoun
         return types::Function::Error;
     }
 
+    /*
+     * specific usages :
+     */
+
+    // "refCounters" will return reference counters per object, per kind
+    if (std::wstring(L"refCounters") == strLevel->get(0))
+    {
+        Controller controller;
+
+        std::vector<ScicosID> objects;
+        std::vector<ScicosID> tmp;
+
+        tmp = controller.getAll(BLOCK);
+        objects.insert(objects.end(), tmp.begin(), tmp.end());
+        tmp = controller.getAll(DIAGRAM);
+        objects.insert(objects.end(), tmp.begin(), tmp.end());
+        tmp = controller.getAll(LINK);
+        objects.insert(objects.end(), tmp.begin(), tmp.end());
+        tmp = controller.getAll(ANNOTATION);
+        objects.insert(objects.end(), tmp.begin(), tmp.end());
+
+        types::Double* refCounts = new types::Double((int) objects.size(), 3);
+
+        for (int i = 0; i < objects.size(); ++i)
+        {
+            model::BaseObject* o = controller.getObject(objects[i]);
+
+            refCounts->set(i, 0, o->id());
+            refCounts->set(i, 1, o->kind());
+            refCounts->set(i, 2, o->refCount());
+        }
+
+        out.push_back(refCounts);
+        return types::Function::OK;
+    }
+
+    /*
+     * default usage: log level setting
+     */
+
     enum LogLevel logLevel = LoggerView::indexOf(strLevel->get(0));
     if (logLevel < 0)
     {
         std::wstringstream buffer;
-        for (int i = 0; i <= LOG_TRACE; i++)
+        for (int i = LOG_TRACE; i < LOG_FATAL; i++)
         {
             buffer << LoggerView::toString(static_cast<enum LogLevel>(i));
-            if (i != LOG_TRACE)
-            {
-                buffer << L", ";
-            }
+            buffer << L", ";
         }
-        Scierror(999, _("%s: Wrong value for input argument #%d: Must be in the set  {%ls}.\n"), funame.data(), 1, buffer.str().data());
+        buffer << LoggerView::toString(LOG_FATAL);
+
+        Scierror(999, _("%s: Wrong value for input argument #%d: Must be one of %ls.\n"), funame.data(), 1, buffer.str().data());
         return types::Function::Error;
     }
 

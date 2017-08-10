@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="zpch2">
+    <refnamediv>
+        <refname>zpch2</refname>
+        <refpurpose>Chebyshev analog filter</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[zeros,poles,gain]=zpch2(n,A,omegar)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>integer : filter order</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>A</term>
+                <listitem>
+                    <para>
+                        real : attenuation in stop band (<literal>A&gt;1</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>omegar</term>
+                <listitem>
+                    <para>real : cut-off angular frequency in radians per second</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>zeros</term>
+                <listitem>
+                    <para>resulting filter zeros</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>poles</term>
+                <listitem>
+                    <para>resulting filter poles</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>gain</term>
+                <listitem>
+                    <para>Resulting filter gain</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Poles and zeros of a type 2 Chebyshev analog filter
+            gain is the gain of the filter
+        </para>
+        <programlisting role="no-scilab-exec"><![CDATA[
+H(s)=gain*poly(zeros,'s')/poly(poles,'s')
+ ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+n=10;
+A=1/0.2;
+omegar=6;
+[z,p,gain]=zpch2(n,A,omegar)
+ ]]></programlisting>
+    </refsection>
+
+</refentry>

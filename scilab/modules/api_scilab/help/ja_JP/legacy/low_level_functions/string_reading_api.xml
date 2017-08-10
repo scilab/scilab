@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009  - DIGITEO - Antoine ELIAS
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="String_management_reading_API" xml:lang="ja">
+    <refnamediv>
+        <refname>文字列の読み込み (Scilab ゲートウェイ)</refname>
+        <refpurpose>
+            ゲートウェイで文字列の行列を読み込む方法.
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <para>入力引数プロファイル:</para>
+        <synopsis>SciErr getMatrixOfString(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings)</synopsis>
+        <synopsis>SciErr getMatrixOfWideString(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piLength, wchar_t** _pwstStrings)</synopsis>
+        <para>名前指定変数プロファイル:</para>
+        <synopsis>SciErr createNamedMatrixOfString(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, char** _pstStrings)</synopsis>
+        <synopsis>SciErr createNamedMatrixOfWideString(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, wchar_t** _pwstStrings)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>_pvCtx</term>
+                <listitem>
+                    <para>
+                        Scilab環境ポインタ, api_scilab.h により定義された "pvApiCtx"で指定.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piAddress</term>
+                <listitem>
+                    <para>
+                        Scilab変数のアドレス.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_pstName</term>
+                <listitem>
+                    <para>
+                        "名前指定"関数の場合の変数名.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piRows</term>
+                <listitem>
+                    <para>
+                        返される行数.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piCols</term>
+                <listitem>
+                    <para>
+                        返される列数.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piLength</term>
+                <listitem>
+                    <para>
+                        文字列長の配列のアドレス (要メモリ確保, 大きさ: _piRows * _piCols)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_pstStrings</term>
+                <listitem>
+                    <para>
+                        char*の配列のアドレス (要メモリ確保, 大きさ: _piRows * _piCols)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_pwstStrings</term>
+                <listitem>
+                    <para>
+                        wchar_t* の配列のアドレス(要メモリ確保, 大きさ: _piRows * _piCols)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>SciErr</term>
+                <listitem>
+                    <para>
+                        エラー構造体で,エラーメッセージ履歴と最初のエラー番号を格納します.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>このヘルプはScilab APIにより文字列の行列を処理する方法を示します.</para>
+    </refsection>
+    <refsection>
+        <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/string_reading_api.c-->
+        <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/string_reading_api.tst-->
+        <!--Lib_name: string_reading-->
+        <!--Func_list: read_string-->
+        <title>ゲートウェイのソース</title>
+        <programlisting role="code_gateway"><![CDATA[
+#include "api_scilab.h"
+int read_string(char *fname,void* pvApiCtx)
+{
+	SciErr sciErr;
+	int i,j;
+	int iLen		= 0;
+	//変数の情報
+	int iRows		= 0;
+	int iCols		= 0;
+	int* piAddr		= NULL;
+	int* piLen		= NULL;
+	char** pstData	= NULL;
+	//output variable
+	int iRowsOut	= 1;
+	int iColsOut	= 1;
+	char* pstOut	= NULL;
+	//入力/出力引数の確認
+    CheckInputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 1, 1);
+	//変数アドレスを取得
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	//次元を取得するための最初のコール
+	sciErr = getMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, NULL, NULL);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	piLen = (int*)malloc(sizeof(int) * iRows * iCols);
+	//各文字列の長さを取得するための2回目のコール
+	sciErr = getMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, piLen, NULL);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	pstData = (char**)malloc(sizeof(char*) * iRows * iCols);
+	for(i = 0 ; i < iRows * iCols ; i++)
+	{
+		pstData[i] = (char*)malloc(sizeof(char) * (piLen[i] + 1));//+ 1 for null termination
+	}
+	//データ取得用の3回目のコール
+	sciErr = getMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, piLen, pstData);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	//全文字列の長さを計算
+	for(i = 0 ; i < iRows * iCols ; i++)
+	{
+		iLen += piLen[i];
+	}
+	//出力変数用のメモリを確保
+	pstOut = (char*)malloc(sizeof(char) * (iLen + iRows * iCols));
+	//文字列を0x00に初期化
+	memset(pstOut, 0x00, sizeof(char) * (iLen + iRows * iCols));
+	//入力文字列を出力文字列に結合
+	for(i = 0 ; i < iRows ; i++)
+	{
+		for(j = 0 ; j < iCols ; j++)
+		{
+			int iCurLen = strlen(pstOut);
+			if(iCurLen)
+			{
+				strcat(pstOut, " ");
+			}
+			strcpy(pstOut + strlen(pstOut), pstData[j * iRows + i]);
+		}
+	}
+	//新規変数を作成
+	sciErr = createMatrixOfString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, iRowsOut, iColsOut, &pstOut);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	//メモリを解放
+	free(piLen);
+	for(i = 0 ; i < iRows * iCols ; i++)
+	{
+		free(pstData[i]);
+	}
+	free(pstData);
+	free(pstOut);
+	AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+	return 0;
+}
+ ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>Scilabテストスクリプト</title>
+        <programlisting role="code_scilab"><![CDATA[
+a_ref = ["may the puffin be with you"];
+a = ["may", "the", "puffin"; "be","with","you"];
+b = read_string(a);
+if a_ref <> b then error("failed"), end
+ ]]></programlisting>
+    </refsection>
+</refentry>

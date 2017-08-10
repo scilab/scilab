@@ -22,7 +22,7 @@ f.figure_size = [300 300];
 f.viewport = [110 130];
 save('foo.sav',"f");
 delete(f)
-load('foo.sav')
+load('foo.sav');
 f = gcf();
 if (f.figure_size <> [300 300]) then pause; end
 if (f.viewport <> [110, 130]) then pause; end

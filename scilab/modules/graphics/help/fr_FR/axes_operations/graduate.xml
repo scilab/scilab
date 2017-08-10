@@ -10,7 +10,7 @@
             [xi,xa,np]=graduate( xmi, xma)
         </synopsis>
     </refsynopsisdiv>
-    <refsection>
+    <refsection role="parameters">
         <title>Paramètres</title>
         <variablelist>
             <varlistentry>
@@ -43,10 +43,10 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Description</title>
         <para>
-            graduate recherche l'intervalle minimum <literal>[xi,xa]</literal> et un nombre de graduations 
+            graduate recherche l'intervalle minimum <literal>[xi,xa]</literal> et un nombre de graduations
             <literal>np</literal> tels que :
         </para>
         <para>
@@ -59,14 +59,18 @@
             <literal>n1 &lt; np &lt; n2</literal>
         </para>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Exemples</title>
         <programlisting role="example"><![CDATA[
-  y=(0:0.33:145.78)';
-  clf();plot2d1('enn',0,y)
-  [ymn,ymx,np]=graduate(min(y),max(y))
-  rect=[1,ymn,prod(size(y)),ymx];
-  clf();plot2d1('enn',0,y,1,'011',' ',rect,[10,3,10,np])
+y = (0:0.33:145.78)';
+clf();
+subplot(1,2,1)
+plot2d(y)
+
+subplot(1,2,2)
+[ymn,ymx,np] = graduate(min(y), max(y))
+rect = [1, ymn, prod(size(y)),ymx];
+plot2d([], y, 1,'011',' ',rect,[10,3,10,np])
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

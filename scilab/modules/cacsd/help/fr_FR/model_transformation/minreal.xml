@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Serge STEER
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="minreal">
+    <refnamediv>
+        <refname>minreal</refname>
+        <refpurpose>minimal balanced realization</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>slb=minreal(sl [,tol])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>sl,slb</term>
+                <listitem>
+                    <para>
+                        <literal>syslin</literal> lists
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>tol</term>
+                <listitem>
+                    <para>real (threshold)</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>[ae,be,ce]=minreal(a,b,c,domain [,tol]) </literal>
+            returns the balanced realization of linear
+            system <literal>sl</literal> (<literal>syslin</literal> list).
+        </para>
+        <para>
+            <literal>sl</literal> is assumed stable.
+        </para>
+        <para>
+            <literal>tol</literal> threshold used in <literal>equil1</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+A=[-eye(2,2),rand(2,2);zeros(2,2),-2*eye(2,2)];
+B=[rand(2,2);zeros(2,2)];C=rand(2,4);
+sl=syslin('c',A,B,C);
+slb=minreal(sl);
+ss2tf(sl)
+ss2tf(slb)
+ctr_gram(sl)
+clean(ctr_gram(slb))
+clean(obs_gram(slb))
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="minss">minss</link>
+            </member>
+            <member>
+                <link linkend="balreal">balreal</link>
+            </member>
+            <member>
+                <link linkend="arhnk">arhnk</link>
+            </member>
+            <member>
+                <link linkend="equil">equil</link>
+            </member>
+            <member>
+                <link linkend="equil1">equil1</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

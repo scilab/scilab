@@ -3,14 +3,3 @@ LIBRARY    scicos_f.dll
 
 EXPORTS
 ;
-scifunc_
-ltopadj_
-intvec2var_
-intvar2vec_
-scicosdebugcount_
-scicosdebug_
-intree4_
-intree3_
-intree2_
-intcurblk_
-scierr_

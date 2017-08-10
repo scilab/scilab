@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2014 - Scilab Enterprises - Calixte DENIZET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -17,7 +20,7 @@
 namespace analysis
 {
 bool MemInitAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, ast::CallExp & e)
-{	
+{
     const ast::exps_t args = e.getArgs();
     if (args.size() == 2)
     {
@@ -26,8 +29,10 @@ bool MemInitAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs,
 
         first->accept(visitor);
         Result R1 = visitor.getResult();
+        visitor.getDM().releaseTmp(R1.getTempId(), first);
         second->accept(visitor);
         Result & R2 = visitor.getResult();
+        visitor.getDM().releaseTmp(R2.getTempId(), second);
         double val;
         SymbolicDimension rows, cols;
         bool empty = false;
@@ -99,7 +104,7 @@ bool MemInitAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs,
                 return false;
             }
             TIType resT(visitor.getGVN(), TIType::DOUBLE, rows, cols);
-            e.getDecorator().setResult(Result(resT, -1));
+            e.getDecorator().setResult(Result(resT, visitor.getDM().getTmpId(resT, false)));
         }
         visitor.setResult(e.getDecorator().res);
 

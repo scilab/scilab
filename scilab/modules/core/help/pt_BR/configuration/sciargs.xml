@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="sciargs" xml:lang="pt">
+    <refnamediv>
+        <refname>sciargs</refname>
+        <refpurpose>scilab command line arguments</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>args=sciargs()</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Descrição</title>
+        <para>Esta função retorna um vetor de strings contendo os argumentos da
+            linha de comando do Scilab. As primeiras entradas de
+            <literal>args</literal> contém o endereço do arquivo executável
+            rodado.
+        </para>
+        <para>
+            Esta função corresponde a <literal>getarg</literal> na linguagem
+            C.
+        </para>
+    </refsection>
+    <refsection>
+        <title> Ver Também </title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="getenv">getenv</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

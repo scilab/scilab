@@ -1,6 +1,6 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2009-2010 - DIGITEO 
+// Copyright (C) 2009-2010 - DIGITEO
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -15,7 +15,7 @@ ilib_build("string_writing",["write_string","write_string"],"string_writing_api.
 exec("loader.sce");
 
 a_ref = "may the puffin be with you ";
-b = [];
+b = "";
 a = write_string();
 for i=1:size(a,"r")
     for j=1:size(a,"c")

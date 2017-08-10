@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="cheb1mag">
+    <refnamediv>
+        <refname>cheb1mag</refname>
+        <refpurpose>response of Chebyshev type 1 filter</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[h2]=cheb1mag(n,omegac,epsilon,sample)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>integer : filter order</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>omegac</term>
+                <listitem>
+                    <para>real : cut-off frequency</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>epsilon</term>
+                <listitem>
+                    <para>real : ripple in pass band</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sample</term>
+                <listitem>
+                    <para>
+                        vector of frequencies where <literal>cheb1mag</literal> is evaluated
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>h2</term>
+                <listitem>
+                    <para>Chebyshev I filter values at sample points</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Square magnitude response of a type 1 Chebyshev filter.
+        </para>
+        <para>
+            <literal>omegac</literal>=passband edge.
+        </para>
+        <para>
+            <literal>epsilon</literal>such that <literal>1/(1+epsilon^2)</literal>=passband ripple.
+        </para>
+        <para>
+            <literal>sample</literal>vector of frequencies where the square magnitude
+            is desired.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+//Chebyshev; ripple in the passband
+n=13;epsilon=0.2;omegac=3;samples=0:0.05:10;
+h=cheb1mag(n,omegac,epsilon,samples);
+plot2d(samples,h)
+xtitle('','frequencies','magnitude')
+ ]]></programlisting>
+        <scilab:image><![CDATA[
+n=13;epsilon=0.2;omegac=3;samples=0:0.05:10;
+h=cheb1mag(n,omegac,epsilon,samples);
+plot2d(samples,h)
+xtitle('','frequencies','magnitude')
+]]>     </scilab:image>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="buttmag">buttmag</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -3,11 +3,14 @@
 # Copyright (C) INRIA   - 2006 - Sylvestre Ledru
 # Copyright (C) DIGITEO - 2009-2010 - Pierre MARECHAL
 #
-# This file must be used under the terms of the CeCILL.
-# This source file is licensed as described in the file COPYING, which
-# you should have received as part of this distribution.  The terms
-# are also available at
-# http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+# Copyright (C) 2012 - 2016 - Scilab Enterprises
+#
+# This file is hereby licensed under the terms of the GNU GPL v2.0,
+# pursuant to article 5.3.4 of the CeCILL v.2.1.
+# This file was originally licensed under the terms of the CeCILL v2.1,
+# and continues to be available under such terms.
+# For more information, see the COPYING file which you should have received
+# along with this program.
 #
 
 
@@ -169,7 +172,6 @@ GRAPHICS_C_SOURCES = \
     src/c/getHandleProperty/get_outside_colors_property.c \
     src/c/getHandleProperty/get_grid_position_property.c \
     src/c/getHandleProperty/get_anti_aliasing_property.c \
-    src/c/getHandleProperty/get_tag_property.c \
     src/c/getHandleProperty/get_image_type_property.c \
     src/c/getHandleProperty/get_resize_property.c \
     src/c/getHandleProperty/get_toolbar_property.c \
@@ -403,6 +405,7 @@ GRAPHICS_C_SOURCES = \
 
 GRAPHICS_CXX_SOURCES = \
     src/cpp/configgraphicvariable.cpp \
+    src/cpp/get_tag_property.cpp \
     src/cpp/set_data_property.cpp \
     src/cpp/ContourOnMesh.cpp
 
@@ -465,7 +468,6 @@ GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_addcolor.c
 
 GATEWAY_CXX_SOURCES = \
-    sci_gateway/cpp/graphics_gw.cpp \
     sci_gateway/cpp/sci_get.cpp \
     sci_gateway/cpp/sci_xget.cpp \
     sci_gateway/cpp/sci_xset.cpp \
@@ -562,8 +564,7 @@ tcl/ged/images/segs.gif \
 tcl/ged/images/text.gif
 
 libscigraphics_disable_la_SOURCES = \
-	src/nographics/nographics.c \
-	src/nographics/nographics_gw.cpp
+	src/nographics/nographics.c
 
 libscigraphics_disable_la_CPPFLAGS = \
     -I$(srcdir)/includes/ \

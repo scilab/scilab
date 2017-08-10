@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * Copyright (C) 2016 - Samuel GOUGEON
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="and" xml:lang="en">
+    <refnamediv>
+        <refname>and</refname>
+        <refpurpose>logical AND between the elements of a boolean or numerical array</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>
+            b = and(A)
+            b = and(A, 'r')
+            b = and(A, 'c')
+            b = and(A, n)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection role="parameters">
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>A</term>
+                <listitem>
+                    <para>
+                        vector, matrix, or hypermatrix of booleans,
+                        encoded integers (of any
+                        <link linkend="inttype">inttype</link>), real, or complex numbers.
+                        <varname>A</varname> may be
+                            <link linkend="sparse">sparse</link>-encoded.
+                    </para>
+                    <para>
+                        A number is considered as %F (false) if it is 0 or 0+0i.
+                        Otherwise (including %nan), it is equivalent to %T (true).
+                    </para>
+                    <note>Special <varname>A</varname>:
+                        <itemizedlist>
+                            <listitem>
+                                <literal>and([])</literal> returns <literal>%T</literal>.
+                            </listitem>
+                            <listitem>
+                                <literal>and(%nan)</literal> returns <literal>%T</literal>.
+                            </listitem>
+                        </itemizedlist>
+                    </note>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>b</term>
+                <listitem>
+                    <para>
+                        boolean scalar, if <literal>and(A)</literal>
+                        is used without any option <varname>"r", "c", n</varname>.
+                        Then <literal>and(A)</literal> sets <varname>b</varname> to
+                        <itemizedlist>
+                            <listitem>
+                                %F, if at least one of <varname>A</varname>'s
+                                components is %F or zero.
+                            </listitem>
+                            <listitem>
+                                %T, otherwise: All <varname>A</varname>
+                                components are %T or non zero or %nan.
+                            </listitem>
+                        </itemizedlist>
+                    </para>
+                    <para>
+                        Otherwise: boolean vector, matrix or hypermatrix. See
+                        <varname>n</varname> below.
+                    </para>
+                    <para>
+                        When <varname>A</varname> is sparse-encoded,
+                        <varname>b</varname> is so as well.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>
+                        Index &lt;= ndims(A) of the dimension along which
+                        <function>and()</function> is applied / projected.
+                        By default, <function>and()</function> is applied between
+                        all <varname>A</varname>'s elements. Otherwise:
+                        <itemizedlist>
+                            <listitem>
+                                n = 1 | "r" : <function>and()</function> is
+                                applied row-wise. If <varname>A</varname>
+                                is a matrix, the result <varname>b</varname> is a
+                                <emphasis role="bold">r</emphasis>ow, with
+                                <literal>b(j) = and(A(:,j))</literal>
+                            </listitem>
+                            <listitem>
+                                n = 2 | "c" :
+                                <function>and()</function> is applied column-wise.
+                                If <varname>A</varname>
+                                is a matrix, the result <varname>b</varname> is a
+                                <emphasis role="bold">c</emphasis>olumn, with
+                                <literal>b(i) = and(A(i,:))</literal>
+                            </listitem>
+                            <listitem>
+                                n > 2 : If <varname>A</varname> is an
+                                hypermatrix with at least <varname>n</varname>
+                                dimensions, <function>and()</function> is applied
+                                accross the n<superscript>th</superscript> dimension.
+                                <para>
+                                    Example: If <literal>ndims(A)==3</literal>
+                                    and <literal>n=3</literal>,
+                                    <varname>b</varname> is a boolean matrix of size
+                                    size(A)([1 2]), with <literal>b(i,j) = and(A(i,j,:))
+                                    </literal>
+                                </para>
+                            </listitem>
+                        </itemizedlist>
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection role="description">
+        <title>Description</title>
+        <para>
+            <function>and()</function> computes a logical AND between
+            the components of the single input <varname>A</varname>.
+        </para>
+        <para>
+            To compute AND in an element-wise way between two arrays
+            <literal>C</literal> and <literal>D</literal> of same sizes, please
+            use the <varname>&amp;</varname> operator instead.
+        </para>
+        <para>
+            Why is <literal>and([])</literal> set to <literal>%T</literal> ?
+            Whatever are compatible <literal>B</literal> and <literal>C</literal>,
+            <literal>and([B C])==(and(B) &amp; and(C))</literal>.
+            Now, for <literal>B = []</literal>, <literal>and([B C])==and(C)</literal>.
+            To have always <literal>(and([]) &amp; and(C))==and(C)</literal>,
+            <literal>and([])</literal> must be <literal>%T</literal>.
+        </para>
+    </refsection>
+    <refsection role="examples">
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+and([])
+and(0)
+and(0+0*%i)
+and(%eps)
+and(%i)
+and(%nan)
+
+// Projection accross a dimension / along a direction:
+A = rand(2,5)<0.5
+and(A)
+and(A, "r")   // and(A, 1) does the same
+and(A, "c")   // and(A, 2) does the same
+
+// Equivalent application to encoded integers:
+A = int16(grand(3,5,"uin",-10,10));
+A(abs(A)<3) = 0
+and(A)
+and(A,1)
+
+// With an hypermatrix of decimal numbers:
+A = rand(3,4,2);
+A(A<0.2) = 0
+and(A,3)
+
+// With a sparse matrix:
+A = sprand(70,100, 0.001)
+and(A, "r")
+and(A, "c")
+]]></programlisting>
+ <screen><![CDATA[--> and([])
+ ans  =
+  T
+
+--> and(0)
+ ans  =
+  F
+
+--> and(0+0*%i)
+ ans  =
+  F
+
+--> and(%eps)
+ ans  =
+  T
+
+--> and(%i)
+ ans  =
+  T
+
+--> and(%nan)
+ ans  =
+  T
+
+--> // Projection accross a dimension / along a direction:
+--> A = rand(2,5)<0.5
+ A  =
+  T T F F F
+  F T F F T
+
+--> and(A)
+ ans  =
+  F
+
+--> and(A, "r")   // and(A, 1) does the same
+ ans  =
+  F T F F F
+
+--> and(A, "c")   // and(A, 2) does the same
+ ans  =
+  F
+  F
+
+--> // Equivalent application to encoded integers:
+--> A = int16(grand(3,5,"uin",-10,10));
+--> A(abs(A)<3) = 0
+ A  =
+   0  0  -8  -6    8
+ -10  6  -5   3  -10
+   0  3 -10   7   10
+
+--> and(A)
+ ans  =
+  F
+
+--> and(A,1)
+ ans  =
+  F F T T T
+
+--> // With an hypermatrix of decimal numbers:
+--> A = rand(3,4,2);
+--> A(A<0.2) = 0
+ A  =
+(:,:,1)
+   0.4052   0.4819   0.2806   0.2119
+   0.9185   0.264    0.       0.
+   0.       0.4148   0.7783   0.6857
+(:,:,2)
+   0.       0.4062   0.       0.5896
+   0.6971   0.4095   0.       0.6854
+   0.8416   0.8784   0.5619   0.8906
+
+--> and(A,3)
+ ans  =
+  F T F T
+  T T F F
+  F T T T
+
+--> // With a sparse matrix:
+--> A = sprand(70,100, 0.001)
+ A  =
+(  70,  100) sparse matrix
+
+(  4,  87)    0.6463
+(  5,  39)    0.4898
+(  7,  92)    0.7094
+(  29,  87)   0.794
+(  33,   1)   0.4087
+(  36,  79)   0.4876
+(  54,  65)   0.4456
+(  67,  45)   0.458
+
+--> and(A, "r")
+ ans  =
+(  1,  100)False sparse matrix
+
+--> and(A, "c")
+ ans  =
+(  70,  1)False sparse matrix
+]]></screen>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="and_op">&amp; (element-wise)</link>
+            </member>
+            <member>
+                <link linkend="or">or</link>
+            </member>
+            <member>
+                <link linkend="not">not</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

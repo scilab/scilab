@@ -15,7 +15,7 @@
         <refpurpose>Creates a Java ARchive (JAR) from a set of files / directories</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             jcreatejar(jarFilePath, filePaths[, rootPath[, manifestFilePath]])
         </synopsis>
@@ -120,7 +120,7 @@ jcreatejar(jar_dest_path, jar_src_path, '', manifest_path);
       ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="jcompile">jcompile</link>

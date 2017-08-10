@@ -27,18 +27,6 @@
     <None Include="core_import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
-    <None Include="Output_stream_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
-    <None Include="Sparse_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
-    <None Include="linpack_f_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
-    <None Include="Core_f_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <f2c_rule Include="isort1.f">
@@ -56,6 +44,18 @@
     <f2c_rule Include="sz2ptr.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
+    <f2c_rule Include="blkfc1.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="blkfct.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="inpnv.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="symfct.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="isort1.c">
@@ -71,6 +71,18 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sz2ptr.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="blkfc1.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="blkfct.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="inpnv.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="symfct.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

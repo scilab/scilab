@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="cellstr" xml:lang="pt">
+    <refnamediv>
+        <refname>cellstr</refname>
+        <refpurpose>converte um vetor (ou matriz) de strings em um cell de
+            strings
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>c=cellstr(s)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>s</term>
+                <listitem>
+                    <para>vetor de strings ou matriz de strings </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>Retorna um cell array de strings</para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    Se <literal>s</literal>ié um vetor linha de strings, então
+                    <literal>cellstr(s)</literal> retorna um cell (um-por-um) que contém
+                    um componente (a concatenação de todas as colunas componentes de
+                    <literal>s ).</literal>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Se <literal>s</literal> é um vetor coluna de strings, então
+                    <literal>cellstr(s)</literal> converte s em um cell que tem o mesmo
+                    tamanho : cell de strings
+                    <literal>(size(s,1)-por-um)</literal>.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Se <literal>s</literal> é uma matriz de strings, então, para
+                    cada linha<literal> i </literal>de <literal>s</literal>,
+                    <literal>cellstr(s)</literal> concatena todos os componentes da
+                    i-ésima linha da matriz <literal>s</literal> (i.e s(i,1), s(i,2),
+                    s(i,3),...) e retorna um cell de strings
+                    (<literal>size(s,1)-por-um)</literal>.
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[
+cellstr("foo")
+cellstr(["sci","lab"])
+cellstr(["abc","def",'gh';"i","j","klm"])
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Ver Também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="cell">cell</link>
+            </member>
+            <member>
+                <link linkend="string">string</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

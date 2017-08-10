@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2005-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -71,7 +74,7 @@ int sci_besselj(char *fname, void* pvApiCtx)
             return 1;
         }
 
-        if (m1*n1 != 1)
+        if (m1 * n1 != 1)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d.\n"), fname, 4);
             return 1;
@@ -96,7 +99,7 @@ int sci_besselj(char *fname, void* pvApiCtx)
         return 1;
     }
 
-    if (m1*n1 == 0)
+    if (m1 * n1 == 0)
     {
         /*besselj([],x) */
         AssignOutputVariable(pvApiCtx, 1) = 1;
@@ -120,7 +123,7 @@ int sci_besselj(char *fname, void* pvApiCtx)
         return 1;
     }
 
-    if (m2*n2 == 0)
+    if (m2 * n2 == 0)
     {
         /*besselj(alpha,[]) */
         AssignOutputVariable(pvApiCtx, 1) = 2;
@@ -176,7 +179,7 @@ int sci_besselj(char *fname, void* pvApiCtx)
         memset(pdblXI, 0x00, iSize);
     }
 
-    if (m1*n1 == 1)
+    if (m1 * n1 == 1)
     {
         /*besselj(scalar,matrix) */
         double wr[3], wi[3];
@@ -196,7 +199,7 @@ int sci_besselj(char *fname, void* pvApiCtx)
             C2F(zbesjv) (pdblXR, pdblXI, &nx, pdbl1, &na, &kode, lr, li, wr, wi, &ierr);
         }
     }
-    else if (m2*n2 == 1)
+    else if (m2 * n2 == 1)
     {
         /* besselj(matrix,scalar) */
         nx = 1;

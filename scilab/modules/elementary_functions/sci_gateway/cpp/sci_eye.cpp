@@ -3,18 +3,19 @@
  * Copyright (C) 2006 - INRIA - Allan CORNET
  * Copyright (C) 2014 - Scilab Enterprises - Anais AUBERT
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 /*--------------------------------------------------------------------------*/
 #include "elem_func_gw.hxx"
-#include "context.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 
 extern "C"
 {
@@ -24,7 +25,7 @@ extern "C"
 #include "charEncoding.h"
 }
 /*--------------------------------------------------------------------------*/
-Function::ReturnValue sci_eye(types::typed_list &in, int _iRetCount, types::typed_list &out)
+types::Function::ReturnValue sci_eye(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     types::Double* pOut = NULL;
 
@@ -34,8 +35,8 @@ Function::ReturnValue sci_eye(types::typed_list &in, int _iRetCount, types::type
 
     if (in.size() == 0)
     {
-        out.push_back(Double::Identity(-1, -1));
-        return Function::OK;
+        out.push_back(types::Double::Identity(-1, -1));
+        return types::Function::OK;
     }
 
     bool ret = getDimsFromArguments(in, "eye", &iDims, &piDims, &alloc);
@@ -49,21 +50,20 @@ Function::ReturnValue sci_eye(types::typed_list &in, int _iRetCount, types::type
             case 1:
             {
                 //call overload
-                ast::ExecVisitor exec;
-                return Overload::generateNameAndCall(L"eye", in, _iRetCount, out, &exec);
+                return Overload::generateNameAndCall(L"eye", in, _iRetCount, out);
             }
         }
 
         return types::Function::Error;
     }
 
-    pOut = Double::Identity(iDims, piDims);
+    pOut = types::Double::Identity(iDims, piDims);
     if (alloc)
     {
         delete[] piDims;
     }
 
     out.push_back(pOut);
-    return Function::OK;
+    return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

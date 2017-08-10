@@ -1,37 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) INRIA -
+ * Copyright (C) 2016 - Samuel GOUGEON
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="strtod" xml:lang="ru">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="strtod" xml:lang="ru">
     <refnamediv>
         <refname>strtod</refname>
-        <refpurpose>
-            преобразование строки в число удвоенной точности
-        </refpurpose>
+        <refpurpose>проверка синтаксиса и преобразование строк литеральных чисел в десятичные числа</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
-            d =  strtod(str)
-            [d, endstr] = strtod(str)
+            d =  strtod(str [,decimalseparator])
+            [d, tails] = strtod(str [,decimalseparator])
         </synopsis>
     </refsynopsisdiv>
-    <refsection>
+    <refsection role="arguments">
         <title>Аргументы</title>
         <variablelist>
             <varlistentry>
                 <term>str</term>
                 <listitem>
                     <para>
-                        символьная строка или матрица символьных строк.
+                        текстовый (строковый) одиночный элемент, вектор или матрица.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>decimalseparator</term>
+                <listitem>
+                    <para>
+                        выбранный десятичный разделитель: "." (по умолчанию) или ",".
                     </para>
                 </listitem>
             </varlistentry>
@@ -39,38 +51,148 @@
                 <term>d</term>
                 <listitem>
                     <para>
-                        вещественное число или матрица вещественных чисел.
+                        скаляр, вектор или матрица десятичных чисел.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>endstr</term>
+                <term>tails</term>
                 <listitem>
                     <para>
-                        символьная строка или матрица символьных строк
-                        (следующий символ в <varname>str</varname> после
-                        числового значения).
+                        строка или матрица строк: оставшиеся части <varname>str</varname> после
+                        начал чисел (если есть).
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Описание</title>
         <para>
-            <code>[d, endstr] = strtod(str)</code> анализирует строки
-            <varname>str</varname>, интерпретируя их содержимое как числа с
-            плавающей запятой, и возвращает их значения в виде вещественных
-            чисел.
+            Инструкция <code>[d, tails] = strtod(str)</code> проверяет синтаксис каждого строкового
+            значения  <varname>str</varname> и пытается интерпретировать его содержимое как десятичное число:
+            <itemizedlist>
+                <listitem>
+                    Если это удалось, по крайней мере для головной части <varname>str(i)</varname>,
+                    то соответствующее число возвращается в <varname>d(i)</varname>. Если возможно,
+                    завершающая часть <varname>str(i)</varname> игнорируется и возвращается в
+                    <varname>tails(i)</varname>; в противном случае <varname>tails(i)</varname> возвращает "".
+               </listitem>
+                <listitem>
+                    В противном случае <varname>d(i)</varname> возвращает <literal>%nan</literal>,
+                    а <varname>tails(i)</varname> полностью равна <varname>str(i)</varname>.
+                </listitem>
+            </itemizedlist>
         </para>
+        <warning>
+            <itemizedlist>
+                <listitem>
+                    Комплексные числа: функция <function>strtod(..)</function> проверяет
+                    синтаксис и возвращает только их вещественную часть при условии, что она записана перед
+                    мнимой частью.
+                </listitem>
+                <listitem>
+                    <function>strtod(..)</function> не признаёт никаких разделителей тысяч, ни " ", ни ",",
+                    ни каких иных.
+                </listitem>
+                <listitem>
+                    <function>strtod(..)</function> проверяет синтаксис строк только по десятичным числам.
+                    Она не интерпретирует строки шестнадцатеричных, восмеричных или иных чисел.
+                </listitem>
+                <listitem>
+                    <function>strtod(..)</function> не интерпретирует никаких имён переменных, предопределённых
+                    в Scilab или предопределённых пользователем, или специальных строк <literal>%inf</literal>
+                    или <literal>%nan</literal>. Следовательно:
+                    <programlisting role="example"><![CDATA[
+s = ["-0.034" "- 0.034"  "+1234.5678" "1234 5678"
+     "-.764"  "+.432"    "12,231.7"   "-5.458,871"
+     "1e43"   "-3.5d-12" "-1.2+i"     "i+1.2"
+     ""       "%inf"     "Inf"        "-Inf"
+     "%i"     "%pi"      "%e"         "%eps"
+     "%F"     "0x19B"    "#14C4"      "o5745"
+     ]
+strtod(s)
+]]>             </programlisting>
+                <screen><![CDATA[  s  =
+!-0.034  - 0.034   +1234.5678  1234 5678   !
+!-.764   +.432     12,231.7    -5.458,871  !
+!1e43    -3.5d-12  -1.2+i      i+1.2       !
+!        %inf      Inf         -Inf        !
+!%i      %pi       %e          %eps        !
+!%F      0x19B     #14C4       o5745       !
+--> strtod(s)
+ ans  =
+  -0.034       Nan         1234.5678   1234.
+  -0.764       0.432       12.        -5.458
+   1.000D+43  -3.500D-12  -1.2         Nan
+   Nan         Nan         Nan         Nan
+   Nan         Nan         Nan         Nan
+   Nan         0.          Nan         Nan
+]]></screen>
+                </listitem>
+                <listitem>
+                    <function>strtod(..)</function> не интерпретирует эскейп-последовательности  <literal>"\n"</literal>,
+                    <literal>"\t"</literal> и др.
+                </listitem>
+                <listitem>
+                    Эта функция основана на Си-функции strtod, которая по-разному ведёт себя в  Windows и Linux.
+                    На самом деле в Windows можно использовать "d" и "D" для экспонент, но нельзя использовать
+                    шестнадцатеричные числа.
+                </listitem>
+            </itemizedlist>
+        </warning>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
-strtod('123.556Это вещественное число для примера')
-[d,endstr] = strtod('123.556Это вещественное число для примера')
-strtod(['123.556This is a sample real','888.666 здесь'])
-[d,endstr] =strtod(['123.556Это вещественное число для примера','888.666 здесь'])
+        <programlisting role="example"><![CDATA[
+s = ["123.556 abc " ".543"      "#58B" "0x73 " "%inf"
+     "-1.47e-71"    "67,432.57" " 23,5" "-,57" "Inf" ]
+[num, trail] = strtod(s);
+num, "/"+trail+"/"
+// С "," в качестве десятичного разделителя:
+[num, trail] = strtod(s, ",");
+num, "/"+trail+"/"
  ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="evstr">evstr</link>
+            </member>
+            <member>
+                <link linkend="isnum">isnum</link>
+            </member>
+            <member>
+                <link linkend="isdigit">isdigit</link>
+            </member>
+            <member>
+                <link linkend="bin2dec">bin2dec</link>
+            </member>
+            <member>
+                <link linkend="oct2dec">oct2dec</link>
+            </member>
+            <member>
+                <link linkend="hex2dec">hex2dec</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>
+                    Введена опция decimalseparator (SEP 97).
+                </revremark>
+            </revision>
+            <revision>
+                <revnumber>5.4.1</revnumber>
+                <revremark>
+                    Если <varname>str</varname> не содержит никаких числовых значений, то теперь
+                    <varname>d</varname> возвращает <literal>Nan</literal> вместо <literal>0</literal>.
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

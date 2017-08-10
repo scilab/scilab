@@ -25,7 +25,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 h=figure();
 // 1番の図を作成
 uicontrol( h, 'style','text', ...

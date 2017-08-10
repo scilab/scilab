@@ -2,30 +2,29 @@
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
 *
-*  This file must be used under the terms of the CeCILL.
-*  This source file is licensed as described in the file COPYING, which
-*  you should have received as part of this distribution.  The terms
-*  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
 #include <sstream>
 #include "graphichandle.hxx"
 #include "tostring_common.hxx"
-#include "scilabexception.hxx"
 #include "overload.hxx"
 #include "type_traits.hxx"
 
 extern "C"
 {
-#include <stdio.h>
 #include "localization.h"
 #include "os_string.h"
 #include "sci_malloc.h"
 }
-
-using namespace std;
 
 namespace types
 {
@@ -53,7 +52,7 @@ GraphicHandle::GraphicHandle(int _iRows, int _iCols)
 #endif
 }
 
-GraphicHandle::GraphicHandle(int _iDims, int* _piDims)
+GraphicHandle::GraphicHandle(int _iDims, const int* _piDims)
 {
     long long* pH = NULL;
     create(_piDims, _iDims, &pH, NULL);
@@ -79,7 +78,7 @@ GraphicHandle::~GraphicHandle()
 #endif
 }
 
-InternalType* GraphicHandle::clone()
+GraphicHandle* GraphicHandle::clone()
 {
     GraphicHandle* pGH = new GraphicHandle(getDims(), getDimsArray());
     for (int i = 0 ; i < getSize() ; i++)
@@ -143,9 +142,8 @@ bool GraphicHandle::subMatrixToString(std::wostringstream& /*ostr*/, int* /*_piD
     //InternalType* pIT = (InternalType*)context_get(L"%h_p");
     //if(pIT->isFunction())
     //{
-    //    ast::ExecVisitor execCall;
     //    Function* pCall = (Function*)pIT;
-    //    pCall->call(in, 1, out, &execCall);
+    //    pCall->call(in, 1, out);
     //}
 
     return true;
@@ -182,7 +180,7 @@ long long* GraphicHandle::allocData(int _iSize)
     return new long long[_iSize];
 }
 
-bool GraphicHandle::invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_list & out, ast::ConstVisitor & execFunc, const ast::Exp & e)
+bool GraphicHandle::invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_list & out, const ast::Exp & e)
 {
     if (in.size() == 0)
     {
@@ -193,11 +191,11 @@ bool GraphicHandle::invoke(typed_list & in, optional_list & opt, int _iRetCount,
         this->IncreaseRef();
         in.push_back(this);
 
-        Overload::call(L"%h_e", in, 1, out, &execFunc);
+        Overload::call(L"%h_e", in, 1, out);
     }
     else
     {
-        return ArrayOf<long long>::invoke(in, opt, _iRetCount, out, execFunc, e);
+        return ArrayOf<long long>::invoke(in, opt, _iRetCount, out, e);
     }
 
     return true;

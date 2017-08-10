@@ -76,6 +76,9 @@ function [x,y,typ] = DSUPER(job,arg1,arg2)
         end
 
     case "define" then
-        // never used
+        // used only on save / load
+        x=SUPER_f("define");
+        x.gui="DSUPER";
+        x.graphics.exprs=list("", list([], []));
     end
 endfunction

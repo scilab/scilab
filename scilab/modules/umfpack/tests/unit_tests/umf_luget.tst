@@ -37,7 +37,7 @@ B = A;
 for i=1:5, B(i,:) = B(i,:)/R(i); end // apply the row scaling
 B(p,q) - L*U;  // must be a (quasi) nul matrix
 
-assert_checkequal(nnz(L*U), 13);
+assert_checkequal(nnz(L*U), 12);
 assert_checkequal(nnz(B(p,q)), 12);
 
 umf_ludel(Lup); // clear memory
@@ -62,6 +62,6 @@ B = A;
 for i=1:5, B(i,:) = B(i,:)/R(i); end // apply the row scaling
 B(p,q) - L*U;  // must be a (quasi) nul matrix
 assert_checkequal(nnz(B(p,q)), 12);
-assert_checkequal(nnz(L*U), 13);
+assert_checkequal(nnz(L*U), 12);
 
 umf_ludel(Lup) // clear memory

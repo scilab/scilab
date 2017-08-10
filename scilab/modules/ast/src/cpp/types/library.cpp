@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -19,8 +22,10 @@
 
 extern "C"
 {
+#include <PATH_MAX.h>
 #include <wchar.h>
 #include "os_string.h"
+#include "fullpath.h"
 }
 
 namespace types
@@ -28,6 +33,9 @@ namespace types
 Library::Library(const std::wstring& _wstPath) :
     m_wstPath(_wstPath)
 {
+#ifndef NDEBUG
+    Inspector::addItem(this);
+#endif
 }
 
 Library::~Library()
@@ -44,6 +52,9 @@ Library::~Library()
     }
 
     m_macros.clear();
+#ifndef NDEBUG
+    Inspector::removeItem(this);
+#endif
 }
 
 bool Library::toString(std::wostringstream& ostr)
@@ -72,7 +83,7 @@ bool Library::toString(std::wostringstream& ostr)
     return true;
 }
 
-InternalType* Library::clone()
+Library* Library::clone()
 {
     IncreaseRef();
     return this;

@@ -1,6 +1,0 @@
-LIBRARY    sciui_data.dll
-
-
-EXPORTS
-UpdateBrowseVar
-FileBrowserChDir

@@ -12,7 +12,7 @@
 loadXcosLibs();
 
 // on the standard palette
-xcosPalGenerateAllIcons(["Palettes" "Commonly Used Blocks"]);
+xcosPalGenerateAllIcons(["Palettes" "Recently Used Blocks"]);
 
 // on a custom palette
 pal = xcosPal();

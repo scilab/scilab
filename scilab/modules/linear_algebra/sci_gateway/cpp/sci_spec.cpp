@@ -3,11 +3,14 @@
 * Copyright (C) 2009 - DIGITEO - Bernard HUGUENEY
 * Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 /*--------------------------------------------------------------------------*/
@@ -16,7 +19,6 @@
 #include "function.hxx"
 #include "double.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 
 extern "C"
 {
@@ -52,9 +54,8 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
 
     if (in[0]->isDouble() == false)
     {
-        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_spec";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
     types::Double* in0 = in[0]->getAs<types::Double>();
@@ -165,6 +166,7 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
                     out.push_back(pDblEigenVectors);
                 }
                 out.push_back(pDblEigenValues);
+                pDblA->killMe();
             }
             else // not symmetric
             {
@@ -281,9 +283,8 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
 
         if (in[1]->isDouble() == false)
         {
-            ast::ExecVisitor exec;
             std::wstring wstFuncName = L"%" + in[1]->getShortTypeStr() + L"_spec";
-            return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+            return Overload::call(wstFuncName, in, _iRetCount, out);
         }
 
         types::Double* in1 = in[1]->getAs<types::Double>();
@@ -328,10 +329,22 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
             pDataA = (double*)oGetDoubleComplexFromPointer(pDblA->getReal(), pDblA->getImg(), pDblA->getSize());
             pDataB = (double*)oGetDoubleComplexFromPointer(pDblB->getReal(), pDblB->getImg(), pDblB->getSize());
 
-            if (!pDataA || !pDataB)
+            if (!pDataA && !pDataB)
             {
-                delete pDataA;
-                delete pDataB;
+                Scierror(999, _("%s: Cannot allocate more memory.\n"), "spec");
+                return types::Function::Error;
+            }
+
+            if (!pDataA)
+            {
+                vFreeDoubleComplexFromPointer((doublecomplex*)pDataB);
+                Scierror(999, _("%s: Cannot allocate more memory.\n"), "spec");
+                return types::Function::Error;
+            }
+            
+            if (!pDataB)
+            {
+                vFreeDoubleComplexFromPointer((doublecomplex*)pDataA);
                 Scierror(999, _("%s: Cannot allocate more memory.\n"), "spec");
                 return types::Function::Error;
             }

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="system">
+    <refnamediv>
+        <refname>system</refname>
+        <refpurpose>observation update</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[x1,y]=system(x0,f,g,h,q,r)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>x0</term>
+                <listitem>
+                    <para>input state vector</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>f</term>
+                <listitem>
+                    <para>system matrix</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>g</term>
+                <listitem>
+                    <para>input matrix</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>h</term>
+                <listitem>
+                    <para>Output matrix</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>q</term>
+                <listitem>
+                    <para>input noise covariance matrix</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>r</term>
+                <listitem>
+                    <para>output noise covariance matrix</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x1</term>
+                <listitem>
+                    <para>output state vector</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>output observation</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            define system function which generates the next
+            observation given the old state.
+            System recursively calculated
+        </para>
+        <programlisting role=""><![CDATA[
+x1=f*x0+g*u
+y=h*x0+v
+ ]]></programlisting>
+        <para>
+            where <literal>u</literal> is distributed <literal>N(0,q)</literal>
+            and <literal>v</literal> is distribute <literal>N(0,r)</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+// initialize state statistics
+// (mean and err. variance)
+m0=[10 10]';
+p0=[2 0;0 2];
+// create system
+f=[1.1 0.1;0 0.8];
+g=[1 0;0 1];
+h=[1 0;0 1];
+// noise statistics
+q=[.03 0.01;.01 0.03];
+r=2*eye(2);
+// initialize system process
+rand("seed",2);
+rand("normal");
+p0c=chol(p0);
+x0=m0+p0c'*rand(ones(m0));
+yt=[];
+//initialize kalman filter
+xke0=m0;pk0=p0;
+// initialize err. variance
+ecv=[pk0(1,1) pk0(2,2)]';
+[x1,y]=system(x0,f,g,h,q,r)
+ ]]></programlisting>
+    </refsection>
+
+</refentry>

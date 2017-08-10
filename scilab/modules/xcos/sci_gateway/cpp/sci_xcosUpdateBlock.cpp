@@ -1,70 +1,50 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) Scilab Enterprises - 2011 - Clément DAVID
+ * Copyright (C) 2015-2015 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
-#include "Xcos.hxx"
-#include "GiwsException.hxx"
-#include "xcosUtilities.hxx"
-#include "loadStatus.hxx"
+/*--------------------------------------------------------------------------*/
+#include "XcosCellFactory.hxx"
+#include "view_scilab/Adapters.hxx"
 
-extern "C"
-{
-#include "gw_xcos.h"
-#include "api_scilab.h"
-#include "localization.h"
-#include "Scierror.h"
-#include "sci_malloc.h"
+#include "types.hxx"
+#include "int.hxx"
+#include "function.hxx"
+#include "gw_xcos.hxx"
+
+extern "C" {
 #include "getScilabJavaVM.h"
+#include "Scierror.h"
+#include "localization.h"
 }
-
-using namespace org_scilab_modules_xcos;
-
-int sci_xcosUpdateBlock(char *fname, void *pvApiCtx)
+/*--------------------------------------------------------------------------*/
+using namespace org_scilab_modules_scicos;
+using namespace org_scilab_modules_xcos_graph_model;
+/*--------------------------------------------------------------------------*/
+types::Function::ReturnValue sci_xcosUpdateBlock(types::typed_list &in, int /*_iRetCount*/, types::typed_list &/*out*/)
 {
-    CheckRhs(2, 2);
-    CheckLhs(0, 1);
-
-    char *hdf5File = NULL;
-
-    if (readSingleString(pvApiCtx, 1, &hdf5File, fname))
+    if (in.size() == 1 && in[0]->isUserType())
     {
-        return 0;
+        const model::BaseObject* o = view_scilab::Adapters::instance().descriptor(in[0]);
+        if (o == nullptr || (o->kind() != BLOCK && o->kind() != ANNOTATION))
+        {
+            Scierror(77, _("%s: Wrong type for input argument #%d: ""%s"" expected.\n"), "xcosUpdateBlock", 1, "block");
+            return types::Function::Error;
+        }
+
+        XcosCellFactory::update(getScilabJavaVM(), o->id(), static_cast<int>(o->kind()));
     }
-
-    /* Call the java implementation */
-    set_loaded_status(XCOS_CALLED);
-    try
-    {
-        Xcos::updateBlock(getScilabJavaVM(), hdf5File);
-
-        FREE(hdf5File);
-        hdf5File = NULL;
-    }
-    catch (GiwsException::JniCallMethodException &exception)
-    {
-        Scierror(999, "%s: %s\n", fname, exception.getJavaDescription().c_str());
-
-        FREE(hdf5File);
-        hdf5File = NULL;
-        return 0;
-    }
-    catch (GiwsException::JniException &exception)
-    {
-        Scierror(999, "%s: %s\n", fname, exception.whatStr().c_str());
-
-        FREE(hdf5File);
-        hdf5File = NULL;
-        return 0;
-    }
-
-    PutLhsVar();
-    return 0;
+    return types::Function::OK;
 }
+/*--------------------------------------------------------------------------*/
+

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="lev">
+    <refnamediv>
+        <refname>lev</refname>
+        <refpurpose>Yule-Walker equations (Levinson's algorithm)  </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[ar, sigma2, rc]=lev(r)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>r</term>
+                <listitem>
+                    <para>correlation coefficients</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ar</term>
+                <listitem>
+                    <para>auto-Regressive model parameters</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sigma2</term>
+                <listitem>
+                    <para>scale constant</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>rc</term>
+                <listitem>
+                    <para>reflection coefficients</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            This function resolves the Yule-Walker equations using Levinson's algorithm. Generally, it is used to estimate the coefficients of an autoregressive process.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Example</title>
+        <programlisting role="Example"><![CDATA[
+b=1; //numerator
+a=[1 -0.7 0.8]; //denominator
+x=[1 zeros(1,99)]; //input=impulse
+data=filter(b,a,x); //real data
+a2=lev(data); //modelized data
+a2=a2/a2(1); //normalization
+m_data=filter(1,a2,x);
+// Compare real data and modelized data
+plot(data,"color","blue","lineStyle","none","marker","d");
+plot(m_data,"color","red","lineStyle","none","marker","d");
+]]>
+        </programlisting>
+        <scilab:image>
+            b=1;
+            a=[1 -0.7 0.8];
+            x=[1 zeros(1,99)];
+            data=filter(b,a,x);
+            a2=lev(data);
+            a2=a2/a2(1);
+            m_data=filter(1,a2,x);
+            plot(data,"color","blue","lineStyle","none","marker","d");
+            plot(m_data,"color","red","lineStyle","none","marker","d");
+        </scilab:image>
+    </refsection>
+</refentry>

@@ -6,119 +6,119 @@
 
  * Copyright (C) ENPC - Jean-Philippe Chancelier
 
- * 
+ *
 
- * This file must be used under the terms of the CeCILL.
 
- * This source file is licensed as described in the file COPYING, which
-
- * you should have received as part of this distribution.  The terms
-
- * are also available at    
-
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 
  *
 
  -->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ja" xml:id="xpoly">
-    
+
     <refnamediv>
-        
+
         <refname>xpoly</refname>
-        
+
         <refpurpose>ポリラインまたはポリゴンを描画する</refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        
+
         <title>呼び出し手順</title>
-        
+
         <synopsis>xpoly(xv,yv [,dtype [,close]])</synopsis>
-        
+
     </refsynopsisdiv>
-    
+
     <refsection>
-        
+
         <title>引数</title>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>xv,yv</term>
-                
+
                 <listitem>
-                    
+
                     <para>同じ大きさの行列 (ポリラインの点).</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>dtype</term>
-                
+
                 <listitem>
-                    
+
                     <para>文字列 (描画形式). デフォルト値は "lines".</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>close</term>
-                
+
                 <listitem>
-                    
+
                     <para>整数. close=1の場合, ポリラインは閉じられます; デフォルト値は
-                        
+
                         0です.
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>説明</title>
-        
+
         <para>
-            
+
             <literal>xpoly</literal> は座標<literal>xv</literal> および<literal>yv</literal>の
-            
+
             ベクトルにより記述されるポリラインを1つ描画します.
-            
+
             <literal>xv</literal> および
-            
+
             <literal>yv</literal> が行列の場合,  これらは列を結合したベクトルとみなされます.
-            
+
             <literal>dtype</literal> はカレントの線種を用いる場合には
-            
+
             <literal>"lines"</literal>,ポリラインを描画する際に
-            
+
             カレントのマーカを使用する場合には<literal>"marks"</literal>となります.
-            
+
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>例</title>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
 
 x=sin(2*%pi*(0:4)/5);
 
@@ -128,40 +128,38 @@ y=cos(2*%pi*(0:4)/5);
 
 plot2d(0,0,-1,"010"," ",[-2,-2,2,2])
 
-xset("color",5)
-
 xpoly(x,y,"lines",1) // デフォルトで閉じられます
 
+e = gce(); // カレントのエンティティを取得 (直近に作成: ここではポリライン)
 
-
-e=gce(); // カレントのエンティティを取得 (直近に作成: ここではポリライン)
+e.foreground = 5;
 
 e.closed = 'off' // ポリラインはオープンされます
 
  ]]></programlisting>
-        
+
         <scilab:image>
-            
+
             x=sin(2*%pi*(0:4)/5);
-            
+
             y=cos(2*%pi*(0:4)/5);
-            
-            
-            
+
+
+
             plot2d(0,0,-1,"010"," ",[-2,-2,2,2])
-            
+
             xpoly(x,y,"lines")
-            
+
             e=gce();
-            
+
             set(e,"foreground",5)
-            
+
             e.closed = 'off'
-            
-            
-            
+
+
+
         </scilab:image>
-        
+
         <programlisting role="example"><![CDATA[
 
     // 線ではなく記号を使用
@@ -181,61 +179,61 @@ e.closed = 'off' // ポリラインはオープンされます
     set(e,"mark_style",2);
 
     ]]></programlisting>
-        
+
         <scilab:image>
-            
+
             plot2d(0,0,1,rect=[0,0,12,10], frameflag=3)
-            
+
             t=[0:4]*2*%pi/5;
-            
+
             x=5+5*cos(t);
-            
+
             y=5+5*sin(t);
-            
+
             xpoly(x,y,"marks")
-            
+
             e=gce();
-            
+
             set(e,"mark_style",2);
-            
+
         </scilab:image>
-         
-        
+
+
     </refsection>
-    
+
     <refsection role="see also">
-        
+
         <title>参照</title>
-        
+
         <simplelist type="inline">
-            
+
             <member>
-                
+
                 <link linkend="xfpoly">xfpoly</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="xfpolys">xfpolys</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="xpolys">xpolys</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="polyline_properties">polyline_properties</link>
-                
+
             </member>
-            
+
         </simplelist>
-        
+
     </refsection>
-    
+
 </refentry>
 

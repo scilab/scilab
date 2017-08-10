@@ -1,11 +1,16 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) Bruno Pincon
 // Copyright (C) Serge Steer (adaptation to new graphic system)
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2017 - Samuel GOUGEON : http://bugzilla.scilab.org/14711
+//
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function colorbar(umin, umax, colminmax, fmt)
 
@@ -71,7 +76,7 @@ function colorbar(umin, umax, colminmax, fmt)
     a_pl.axes_bounds=[wr(1) , wr(2) , 0.85*wr(3) , wr(4)]
 
     // create a new axes for the colorbar et set its properties
-    a_cb=newaxes();
+    a_cb = newaxes(a.parent);
     a_cb.axes_bounds=[wr(1)+0.83*wr(3) , wr(2)+wr(4)*0.2 , 0.2*wr(3) , wr(4)*0.6];
     a_cb.data_bounds=[0 umin;1 umax];
     a_cb.foreground=a.foreground;

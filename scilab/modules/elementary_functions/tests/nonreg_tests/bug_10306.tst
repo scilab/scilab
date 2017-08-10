@@ -23,7 +23,7 @@ voidelement = list([],[],[]);
 assert_checktrue(isempty(voidelement));
 
 voidelement = list(,,,);
-assert_checkfalse(isempty(voidelement));
+assert_checktrue(isempty(voidelement));
 
 voidelement = list('','','');
 assert_checktrue(isempty(voidelement));

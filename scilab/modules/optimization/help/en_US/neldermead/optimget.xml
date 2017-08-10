@@ -2,13 +2,13 @@
 <!--
  * Ajouter ici d'Ã©ventuels commentaires sur le fichier XML
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="optimget" xml:lang="fr">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="optimget" xml:lang="en">
     <refnamediv>
         <refname>optimget</refname>
         <refpurpose>Queries an optimization data structure.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>SYNOPSIS</title>
+        <title>Syntax</title>
         <synopsis>
             val = optimget ( options , key )
             val = optimget ( options , key , value )
@@ -24,8 +24,8 @@
         <para>In the following, we analyse the various ways to call the optimget
             function.
         </para>
-        <para>The following calling sequence</para>
-        <programlisting role="example"> 
+        <para>The following syntax</para>
+        <programlisting role="example">
             val = optimget(options , key)
         </programlisting>
         <para>
@@ -39,8 +39,8 @@
             field "MaxFunEval". But the key "Tol" corresponds both to the "TolX" and
             "TolFun" fields and therefore will generate an error.
         </para>
-        <para>The following calling sequence</para>
-        <programlisting role="example"> 
+        <para>The following syntax</para>
+        <programlisting role="example">
             val = optimget(options, key, value)
         </programlisting>
         <para>allows to manage default value for optimization parameters. Indeed,
@@ -88,7 +88,7 @@
             set the "TolX" field to 1.e-12. Then we use <literal>optimget</literal> to
             get back the value.
         </para>
-        <programlisting role="example"> 
+        <programlisting role="example">
             op = optimset();
             op = optimset(op,'TolX',1.e-12);
             val = optimget(op,'TolX'); // val is 1.e-12
@@ -101,7 +101,7 @@
             corresponding to the "TolX" field, with 1.e-5 as the default value. Since
             the field is empty, we retrieve 1.e-5.
         </para>
-        <programlisting role="example"> 
+        <programlisting role="example">
             op = optimset();
             val = optimget(op,'TolX' , 1.e-5); // val = 1.e-5
         </programlisting>
@@ -113,7 +113,7 @@
             get back the value corresponding to the "TolX" field, with 1.e-5 as the
             default value. Since the field is not empty, we retrieve 1.e-12.
         </para>
-        <programlisting role="example"> 
+        <programlisting role="example">
             op = optimset();
             op = optimset(op,'TolX',1.e-12);
             val = optimget(op,'TolX' , 1.e-5); // val = 1.e-12
@@ -123,19 +123,19 @@
         <title>Example #4</title>
         <para>In the following example, we create an optimization structure and
             configure the maximum number of function evaluations to 1000. Then we
-            quiery the data structure, giving only the "MaxF" key to the
+            query the data structure, giving only the "MaxF" key to the
             <literal>optimget</literal> function. Since that corresponds only to the
             "MaxFunEvals" field, there is only one match and the function returns
             10000.
         </para>
-        <programlisting role="example"> 
+        <programlisting role="example">
             op = optimset();
             op = optimset(op, 'MaxFunEvals' , 1000);
             val = optimget(op, 'MaxF'); // val = 1000
         </programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="optimset">optimset</link>

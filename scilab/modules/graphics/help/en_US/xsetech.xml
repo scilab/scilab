@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="xsetech">
@@ -18,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             xsetech(wrect, [frect, logflag])
             xsetech(wrect=[...], frect=[..], logflag="..", arect=[...])
@@ -93,7 +96,7 @@
             given the current value of the graphic scale remains unchanged. the
             default value of <varname>rect</varname> is <literal>[0,0,1,1]</literal>
             (at window creation, when switching back to default value with
-            <code>xset('default')</code> or when clearing graphic recorded
+            <code>clf('reset')</code> or when clearing graphic recorded
             events <code>clf()</code>).
         </para>
         <para>
@@ -107,27 +110,27 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // To get a graphical explanation of xsetech parameters enter:
 exec('SCI/modules/graphics/demos/xsetechfig.sce');
 
-// Here xsetech is used to split the graphics window in two parts 
+// Here xsetech is used to split the graphics window in two parts
 // first xsetech is used to set the first sub-window
-// and the graphics scale 
+// and the graphics scale
 xsetech([0,0,1.0,0.5],[-5,-3,5,3])
-// we call plot2d with the "001" option to use the graphics scale 
-// set by xsetech 
+// we call plot2d with the "001" option to use the graphics scale
+// set by xsetech
 plot2d([1:10]',[1:10]',1,"001"," ")
 // then xsetech is used to set the second sub-window
 xsetech([0,0.5,1.0,0.5])
-// the graphics scale is set by xsetech to [0,0,1,1] by default 
-// and we change it with the use of the rect argument in plot2d 
+// the graphics scale is set by xsetech to [0,0,1,1] by default
+// and we change it with the use of the rect argument in plot2d
 plot2d([1:10]',[1:10]',1,"011"," ",[-6,-6,6,6])
  ]]></programlisting>
-        <programlisting role="example"><![CDATA[ 
-// Four plots on a single graphics window 
+        <programlisting role="example"><![CDATA[
+// Four plots on a single graphics window
 clf()
-xset("font",2,0)
+set(gca(),"font_style",2,"font_size",0);
 xsetech([0,0,0.5,0.5]);
 plot3d()
 xsetech([0.5,0,0.5,0.5]);
@@ -140,7 +143,7 @@ histplot()
 xsetech([0,0,1,1])
  ]]></programlisting>
         <scilab:image>
-            xset("font",2,0)
+            set(gca(),"font_style",2,"font_size",0);
             xsetech([0,0,0.5,0.5]);
             plot3d()
             xsetech([0.5,0,0.5,0.5]);
@@ -151,18 +154,18 @@ xsetech([0,0,1,1])
             histplot()
             xsetech([0,0,1,1])
         </scilab:image>
-        
-        <programlisting role="example"><![CDATA[ 
-// One plot with changed arect 
+
+        <programlisting role="example"><![CDATA[
+// One plot with changed arect
 clf()
-xsetech(arect=[0,0,0,0]) 
+xsetech(arect=[0,0,0,0])
 x=1:0.1:10;plot2d(x',sin(x)')
  ]]></programlisting>
         <scilab:image>
-            xsetech(arect=[0,0,0,0]) 
+            xsetech(arect=[0,0,0,0])
             x=1:0.1:10;plot2d(x',sin(x)')
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 clf()
 xsetech(arect=[1/8,1/8,1/16,1/4])
 x=1:0.1:10;plot2d(x',sin(x)')
@@ -174,7 +177,7 @@ clf()
         </scilab:image>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="xgetech">xgetech</link>
@@ -186,7 +189,7 @@ clf()
                 <link linkend="isoview">isoview</link>
             </member>
             <member>
-                <link linkend="square">square</link>
+                <link linkend="replot">replot</link>
             </member>
         </simplelist>
     </refsection>

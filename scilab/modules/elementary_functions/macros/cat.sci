@@ -2,11 +2,14 @@
 // Copyright (C) INRIA - Farid BELAHCENE
 // Copyright (C) DIGITEO - 2011 - Allan CORNET
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function  y = cat(dims, varargin)
     //
@@ -81,20 +84,10 @@ function  y = cat(dims, varargin)
         ytemp = [];
     end
 
-    if typeof(varargin(1))=="hypermat" then
-        vartype = typeof(varargin(1).entries);
-    else
-        vartype = typeof(varargin(1));
-    end
+    vartype = typeof(varargin(1));
 
     for j=2:size(varargin)
-        if typeof(varargin(j))=="hypermat" then
-            if typeof(varargin(j).entries) ==vartype
-                vartype = typeof(varargin(j).entries);
-            else
-                error(msprintf(gettext("%s: Wrong type for input arguments: Same types expected.\n"),"cat"));
-            end
-        elseif  typeof(varargin(j)) ==vartype
+        if  typeof(varargin(j)) ==vartype
             vartype = typeof(varargin(j));
         else
             error(msprintf(gettext("%s: Wrong type for input arguments: Same types expected.\n"),"cat"));
@@ -120,7 +113,7 @@ function  y = cat(dims, varargin)
             lj = size(varargin(j),"*")/prod(sizevarless(j));
             if typeof(permutevarj)=="ce" then
                 for k=1+lj*(i-1):lj*i
-                    ytemp(size(ytemp,"*")+1).entries = permutevarj(k).entries;
+                    ytemp{size(ytemp,"*")+1} = permutevarj{k};
                 end
             else
                 ytemp= [ytemp (permutevarj(1+lj*(i-1):lj*i)).'];
@@ -146,7 +139,7 @@ function  y = cat(dims, varargin)
         if typeof(ytemp)=="ce"
             ceindex = (1:ydimsize*prodxdimless)+ydimsize*prodxdimless*(i);
             for k=1:size(index,"*")
-                y(index(k)).entries = ytemp(ceindex(k)).entries;
+                y{index(k)} = ytemp{ceindex(k)};
             end
         else
             y(index) = ytemp((1:ydimsize*prodxdimless)+ydimsize*prodxdimless*(i));

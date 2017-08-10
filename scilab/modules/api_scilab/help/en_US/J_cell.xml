@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2015  - Scilab Enterprises - Antoine ELIAS
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="api_cell" xml:lang="en">
+    <refnamediv>
+        <refname>API cell functions</refname>
+        <para>This page lists all the functions to manipulate Cell objects.</para>
+        <para></para>
+    </refnamediv>
+    <refsynopsisdiv>
+        <refsection id="api_cell_scilab_createCellMatrix">
+            <literal>
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                <varname>scilab_createCellMatrix</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env, int dim, const int* dims)
+            </literal>
+            <para>
+                Create a cell matrix with <varname>dim</varname> dimensions (<varname>dims</varname>[0], <varname>dims</varname>[1], ..., <varname>dims</varname>[<varname>dim</varname>-1]).
+            </para>
+        </refsection>
+        <refsection id="api_cell_scilab_createCellMatrix2d">
+            <literal>
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                <varname>scilab_createCellMatrix2d</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env, int row, int col)
+            </literal>
+            <para>
+                Create a cell matrix with 2 dimensions (<varname>row</varname>, <varname>col</varname>).
+            </para>
+        </refsection>
+        <refsection id="api_cell_scilab_getCellValue">
+            <literal>
+                <link linkend="api_types_scilabStatus">
+                    <command>scilabStatus</command>
+                </link>
+                <varname>scilab_getCellValue</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env,
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                var, int* index,
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                *val)
+            </literal>
+            <para>
+                Get data at position (<varname>index</varname>[0], <varname>index</varname>[1], ..., <varname>index</varname>[dims-1]) from <varname>var</varname>.
+            </para>
+        </refsection>
+        <refsection id="api_cell_scilab_getCell2dValue">
+            <literal>
+                <link linkend="api_types_scilabStatus">
+                    <command>scilabStatus</command>
+                </link>
+                <varname>scilab_getCell2dValue</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env,
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                var, int row, int col,
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                *val)
+            </literal>
+            <para>
+                Get data at position (<varname>row</varname>, <varname>col</varname>) from <varname>var</varname>.
+            </para>
+        </refsection>
+        <refsection id="api_cell_scilab_setCellValue">
+            <literal>
+                <link linkend="api_types_scilabStatus">
+                    <command>scilabStatus</command>
+                </link>
+                <varname>scilab_setCellValue</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env,
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                var, int* index,
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                val)
+            </literal>
+            <para>
+                Set data at position (<varname>index</varname>[0], <varname>index</varname>[1], ..., <varname>index</varname>[dims-1]) in <varname>var</varname>.
+            </para>
+        </refsection>
+        <refsection id="api_cell_scilab_setCell2dValue">
+            <literal>
+                <link linkend="api_types_scilabStatus">
+                    <command>scilabStatus</command>
+                </link>
+                <varname>scilab_setCell2dValue</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env,
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                var, int row, int col,
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                val)
+            </literal>
+            <para>
+                Set data at position (<varname>row</varname>, <varname>col</varname>) in <varname>var</varname>.
+            </para>
+        </refsection>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="code_gateway">
+            <![CDATA[
+#include <ctype.h>
+#include "api_scilab.h"
+#include "Scierror.h"
+#include "localization.h"
+#include "sciprint.h"
+#include "sci_malloc.h"
+#include "os_string.h"
+
+const char fname[] = "cell_test";
+
+int sci_cell_test(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt opt, int nout, scilabVar* out)
+{
+    int i = 0;
+    //input
+    int size1 = 0;
+    scilabVar in1 = NULL;
+    double* dims = NULL;
+    scilabVar in2 = NULL;
+    int size2 = 0;
+    //output
+    int outSize = 1;
+    scilabVar out1 = NULL;
+    scilabVar* vars = NULL;
+
+    if (nin != 2)
+    {
+        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
+        return STATUS_ERROR;
+    }
+
+    if (nout != 1)
+    {
+        Scierror(999, _("%s: Wrong number of output arguments: %d expected.\n"), fname, 1);
+        return STATUS_ERROR;
+    }
+
+    //in1
+    in1 = in[0];
+    if (scilab_isDouble(env, in1) == 0 || scilab_getSize(env, in1) != 2)
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d: double vector of size 2 expected.\n"), fname, 1);
+        return STATUS_ERROR;
+    }
+
+    size1 = scilab_getSize(env, in1);
+    scilab_getDoubleArray(env, in1, &dims);
+
+    outSize = (int)dims[0] * (int)dims[1];
+
+    //in2
+    in2 = in[1];
+    if (scilab_isList(env, in2) == 0)
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d: A list expected.\n"), fname, 2);
+        return STATUS_ERROR;
+    }
+
+    size2 = scilab_getSize(env, in2);
+
+
+    if (outSize != size2)
+    {
+        Scierror(999, _("%s: Wrong size for input argument #%d.\n"), fname, 2);
+        return STATUS_ERROR;
+    }
+
+    out1 = scilab_createCellMatrix2d(env, (int)dims[0], (int)dims[1]);
+    for (i = 0; i < outSize; ++i)
+    {
+        scilab_setCell2dValue(env, out1, i, 0, scilab_getListItem(env, in2, i));
+    }
+
+    out[0] = out1;
+    return STATUS_OK;
+}
+            ]]>
+        </programlisting>
+    </refsection>
+    <refsection>
+        <title>Scilab test script</title>
+        <programlisting role="code_scilab">
+            <![CDATA[
+mkdir(pathconvert(TMPDIR+"/api_c/"));
+cd(pathconvert(TMPDIR+"/api_c/"));
+copyfile(SCI+"/modules/api_scilab/tests/unit_tests/api_c/cell_test.c",pathconvert(TMPDIR+"/api_c/cell_test.c",%F));
+
+ilib_build("libcell",["cell_test","sci_cell_test", "csci6"],"cell_test.c",[],"","","");
+exec("loader.sce");
+
+data = list(1, "2", %t, %s, list(1,2,3), {1,2;3,4});
+c = cell_test([2 3], data);
+
+assert_checkequal(typeof(c), "ce");
+assert_checkequal(c{1, 1}, 1);
+assert_checkequal(c{2, 1}, "2");
+assert_checkequal(c{1, 2}, %t);
+assert_checkequal(c{2, 2}, %s);
+assert_checkequal(c{1, 3}, list(1,2,3));
+assert_checkequal(c{2, 3}, {1,2;3,4});
+            ]]>
+        </programlisting>
+    </refsection>
+</refentry>

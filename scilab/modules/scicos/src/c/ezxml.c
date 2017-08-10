@@ -297,8 +297,11 @@ char *ezxml_decode(char *s, char **ent, char t)
                     e = strchr((s = r + d), ';'); // fix up pointers
                 }
 
-                memmove(s + c, e + 1, strlen(e)); // shift rest of string
-                strncpy(s, ent[b], c); // copy in replacement text
+                if (e)
+                {
+                    memmove(s + c, e + 1, strlen(e)); // shift rest of string
+                    strncpy(s, ent[b], c); // copy in replacement text
+                }
             }
             else
             {
@@ -490,7 +493,7 @@ void ezxml_proc_inst(ezxml_root_t root, char *s, size_t len)
 short ezxml_internal_dtd(ezxml_root_t root, char *s, size_t len)
 {
     char q, *c, *t, *n = NULL, *v, **ent, **pe;
-    int i, j;
+    int i = 0, j;
 
     pe = memcpy(MALLOC(sizeof(EZXML_NIL)), EZXML_NIL, sizeof(EZXML_NIL));
 
@@ -569,9 +572,13 @@ short ezxml_internal_dtd(ezxml_root_t root, char *s, size_t len)
             {
                 *s = '\0';    // null terminate tag name
             }
-            for (i = 0; root->attr[i] && strcmp(n, root->attr[i][0]); i++)
+
+            if (n)
             {
-                ;
+                for (i = 0; root->attr[i] && strcmp(n, root->attr[i][0]); i++)
+                {
+                    ;
+                }
             }
 
             while (*(n = ++s + strspn(s, EZXML_WS)) && *n != '>')
@@ -1047,7 +1054,10 @@ ezxml_t ezxml_parse_fd(int fd)
     {
         return NULL;
     }
-    fstat(fd, &st);
+    if (fstat(fd, &st) < 0)
+    {
+        return NULL;
+    }
 
 #ifndef EZXML_NOMMAP
     l = (st.st_size + sysconf(_SC_PAGESIZE) - 1) & ~(sysconf(_SC_PAGESIZE) - 1);
@@ -1060,7 +1070,14 @@ ezxml_t ezxml_parse_fd(int fd)
     else   // mmap failed, read file into memory
     {
 #endif // EZXML_NOMMAP
-        l = read(fd, m = MALLOC(st.st_size), st.st_size);
+        int l_read = read(fd, m = MALLOC(st.st_size), st.st_size);
+        if (l_read <= 0)
+        {
+            free(m);
+            return NULL;
+        }
+        l = l_read;
+
         root = (ezxml_root_t)ezxml_parse_str(m, l);
         root->len = (size_t) - 1; // so we know to free s in ezxml_free()
 #ifndef EZXML_NOMMAP

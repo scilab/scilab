@@ -5,7 +5,7 @@
         <refpurpose>bicubic spline gridded 2d interpolation</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>C = splin2d(x, y, z, [,spline_type])</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -75,7 +75,7 @@
             by the <link linkend="interp2d">interp2d</link> function. Several kind of
             splines may be computed by selecting the appropriate
             <literal>spline_type</literal> parameter. The method used to compute the
-            bicubic spline (or sub-spline) is the old fashionned one 's, i.e. to
+            bicubic spline (or sub-spline) is the old fashioned one 's, i.e. to
             compute on each grid point <emphasis>(xi,yj)</emphasis> an approximation
             of the first derivatives <emphasis>ds/dx(xi,yj)</emphasis> and
             <emphasis>ds/dy(xi,yj)</emphasis> and of the cross derivative
@@ -119,7 +119,7 @@
             cases, for instance to limit oscillations (<emphasis role="bold">monotone</emphasis> being the most powerful for that).
         </para>
         <para>To get the coefficients of the bi-cubic patches in a more friendly
-            way you can use <literal>c = hypermat([4,4,nx-1,ny-1],C)</literal> then
+            way you can use <literal>c = matrix(C, [4,4,nx-1,ny-1])</literal> then
             the coefficient <emphasis>(k,l)</emphasis> of the patch
             <emphasis>(i,j)</emphasis> (see equation here before) is stored at
             <literal>c(k,l,i,j)</literal>. Nevertheless the <link linkend="interp2d">interp2d</link> function wait for the big vector
@@ -130,7 +130,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // example 1 : interpolation of cos(x)cos(y)
 n = 7;  // a regular grid with n x n interpolation points
         // will be used
@@ -146,7 +146,7 @@ clf()
 plot3d(xx, yy, zz, flag=[2 4 4])
 [X,Y] = ndgrid(x,y);
 param3d1(X,Y,list(z,-9*ones(1,n)), flag=[0 0])
-str = msprintf(" with %d x %d interpolation points. ermax = %g",n,n,emax) 
+str = msprintf(" with %d x %d interpolation points. ermax = %g",n,n,emax)
 xtitle("spline interpolation of cos(x)cos(y)"+str)
  ]]></programlisting>
         <scilab:image>
@@ -164,11 +164,11 @@ xtitle("spline interpolation of cos(x)cos(y)"+str)
             plot3d(xx, yy, zz, flag=[2 4 4])
             [X,Y] = ndgrid(x,y);
             param3d1(X,Y,list(z,-9*ones(1,n)), flag=[0 0])
-            str = msprintf(" with %d x %d interpolation points. ermax = %g",n,n,emax) 
+            str = msprintf(" with %d x %d interpolation points. ermax = %g",n,n,emax)
             xtitle("spline interpolation of cos(x)cos(y)"+str)
         </scilab:image>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
 // example 2 : different interpolation functions on random data
 n = 6;
 x = linspace(0,1,n); y = x;
@@ -180,7 +180,7 @@ ZP1 = interp2d(XP, YP, x, y, splin2d(x, y, z, "not_a_knot"));
 ZP2 = linear_interpn(XP, YP, x, y, z);
 ZP3 = interp2d(XP, YP, x, y, splin2d(x, y, z, "natural"));
 ZP4 = interp2d(XP, YP, x, y, splin2d(x, y, z, "monotone"));
-xset("colormap", jetcolormap(64))
+gcf().color_map = jetcolormap(64);
 clf()
 subplot(2,2,1)
 plot3d1(xp, yp, ZP1, flag=[2 2 4])
@@ -208,7 +208,7 @@ show_window()
             ZP2 = linear_interpn(XP, YP, x, y, z);
             ZP3 = interp2d(XP, YP, x, y, splin2d(x, y, z, "natural"));
             ZP4 = interp2d(XP, YP, x, y, splin2d(x, y, z, "monotone"));
-            xset("colormap", jetcolormap(64))
+            gcf().color_map = jetcolormap(64);
             clf()
             subplot(2,2,1)
             plot3d1(xp, yp, ZP1, flag=[2 2 4])
@@ -224,14 +224,14 @@ show_window()
             xtitle("monotone")
             show_window()
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // example 3 : not_a_knot spline and monotone sub-spline
 //             on a step function
 a = 0; b = 1; c = 0.25; d = 0.75;
 // create interpolation grid
 n = 11;
 x = linspace(a,b,n);
-ind = find(c <= x & x <= d); 
+ind = find(c <= x & x <= d);
 z = zeros(n,n); z(ind,ind) = 1;  // a step inside a square
 // create evaluation grid
 np = 220;
@@ -241,7 +241,7 @@ zp1 = interp2d(XP, YP, x, x, splin2d(x,x,z));
 zp2 = interp2d(XP, YP, x, x, splin2d(x,x,z,"monotone"));
 // plot
 clf()
-xset("colormap",jetcolormap(128))
+gcf().color_map = jetcolormap(128);
 subplot(1,2,1)
 plot3d1(xp, xp, zp1, flag=[-2 6 4])
 xtitle("spline (not_a_knot)")
@@ -249,10 +249,10 @@ subplot(1,2,2)
 plot3d1(xp, xp, zp2, flag=[-2 6 4])
 xtitle("subspline (monotone)")
  ]]></programlisting>
-        
+
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="cshep2d">cshep2d</link>

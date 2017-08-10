@@ -6,11 +6,14 @@
  * Copyright (C) 2009 - DIGITEO - Pierre Lando
  * Copyright (C) 2011 - DIGITEO - Manuel Juliachs
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -81,11 +84,13 @@ int set_current_axes_property(void* _pvCtx, int iObjUID, void* _pvData, int valu
     // Look for top level figure
     type = -1;
     iCurChildUID = iCurAxesUID;
-    do {
+    do
+    {
         iParentFigureUID = getParentObject(iCurChildUID);
         getGraphicObjectProperty(iParentFigureUID, __GO_TYPE__, jni_int, (void **)&piType);
         iCurChildUID = iParentFigureUID;
-    } while (iParentFigureUID != -1 && type != __GO_FIGURE__);
+    }
+    while (iParentFigureUID != -1 && type != __GO_FIGURE__);
 
     /* The current Axes' parent Figure's selected child property must be updated */
     setGraphicObjectProperty(iParentFigureUID, __GO_SELECTED_CHILD__, &iCurAxesUID, jni_int, 1);

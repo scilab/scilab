@@ -3,9 +3,6 @@ LIBRARY    core.dll
 
 EXPORTS
 ;core
-getExecMode
 freeArrayOfString
-isopt_
-numopt_
 MyHeapAlloc
 MyHeapFree

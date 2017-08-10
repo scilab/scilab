@@ -11,9 +11,9 @@ msgerr = msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n
 assert_checkerror("h5group()",msgerr,77);
 msgerr = msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "h5group", 2);
 assert_checkerror("h5group(42)",msgerr,77);
-msgerr = msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"), "h5group", 1);
+msgerr = msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"), "h5group", 1);
 assert_checkerror("h5group(42,42)",msgerr,999);
-msgerr = msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"), "h5group", 2);
+msgerr = msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"), "h5group", 2);
 assert_checkerror("h5group(""42"",42)",msgerr,999);
 msgerr = msprintf(gettext("%s: %s\n"), "h5group", msprintf(gettext("Invalid hdf5 file: %s."), "42"));
 assert_checkerror("h5group(""42"",""42"")",msgerr,999);

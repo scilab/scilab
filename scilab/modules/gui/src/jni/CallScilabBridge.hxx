@@ -138,13 +138,14 @@ jmethodID voiduseCanvasForDisplayjbooleanbooleanID; // cache method id
 jmethodID jbooleanuseCanvasForDisplayID; // cache method id
 jmethodID voidscilabAboutBoxID; // cache method id
 jmethodID voidfireClosingFinishedjintintID; // cache method id
+jmethodID voidregisterSwingViewID; // cache method id
 
 
 
 jobject instance;
 jclass instanceClass; // cache class
 
-                       
+
 // Caching (if any)
 
 
@@ -171,9 +172,9 @@ CallScilabBridge(JavaVM * jvm_);
 CallScilabBridge(JavaVM * jvm_, jobject JObj);
 
 
-/** 
+/**
 * This is a fake constructor to avoid the constructor
-* chaining when dealing with extended giws classes 
+* chaining when dealing with extended giws classes
 */
 #ifdef FAKEGIWSDATATYPE
 CallScilabBridge(fakeGiwsDataType::fakeGiwsDataType /* unused */) {}
@@ -318,6 +319,8 @@ static bool useCanvasForDisplay(JavaVM * jvm_);
 static void scilabAboutBox(JavaVM * jvm_);
 
 static void fireClosingFinished(JavaVM * jvm_, int figUID);
+
+static void registerSwingView(JavaVM * jvm_);
 
 
                         /**

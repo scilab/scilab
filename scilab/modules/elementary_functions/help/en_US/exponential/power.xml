@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="power">
+    <refnamediv>
+        <refname>power</refname>
+        <refpurpose>(^,.^) power operation</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>t=A^b
+            t=A**b
+            t=A.^b
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>A,t</term>
+                <listitem>
+                    <para>scalar, polynomial or rational matrix.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>b</term>
+                <listitem>
+                    <para>a scalar, a vector or a scalar matrix.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    If <literal>A</literal> is a square matrix and <literal>b</literal> is a scalar then  <literal>A^b</literal> is the matrix <literal>A</literal> to the power <literal>b</literal>.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    If <literal>b</literal> is a scalar and <literal>A</literal> a matrix then
+                    <literal>A.^b</literal>  is the matrix formed by the element of
+                    <literal>A</literal> to the power <literal>b</literal> (element-wise power). If
+                    <literal>A</literal> is a vector and <literal>b</literal> is a scalar then
+                    <literal>A^b</literal> and <literal>A.^b</literal> performs the same operation
+                    (i.e. element-wise power).
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    If <literal>A</literal> is a scalar and <literal>b</literal> is a square matrix <literal>A^b</literal> is the matrix <literal> expm(log(A) * b)</literal>.
+                </para>
+                <para>
+                    If <literal>A</literal> is a scalar and <literal>b</literal> is a vector <literal>A^b</literal> and <literal>A.^b</literal> are the vector formed by  <literal> a^(b(i,j))</literal>.
+                </para>
+                <para>
+                    If <literal>A</literal> is a scalar and <literal>b</literal> is a matrix <literal>A.^b</literal> is the matrix formed by  <literal> a^(b(i,j))</literal>.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    If <literal>A</literal> and <literal>b</literal> are vectors (matrices) of the same size <literal>A.^b</literal> is the  <literal>A(i)^b(i)</literal> vector (<literal>A(i,j)^b(i,j)</literal> matrix).
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection>
+        <title>Additional Remarks</title>
+        <para>
+            <note> Notes: </note>
+        </para>
+        <para>
+            1. For square matrices <literal>A^p</literal> is computed through successive matrices
+            multiplications if <literal>p</literal> is a positive integer, and by <emphasis>diagonalization</emphasis> if not (see "note 2 and 3" below for details).
+        </para>
+        <para>
+            2. If <varname>A</varname> is a square and Hermitian matrix and <varname>p</varname> is a non-integer scalar,
+            <literal>A^p</literal> is computed as:
+        </para>
+        <para>
+            <code>A^p = u*diag(diag(s).^p)*u'</code> (For real matrix <varname>A</varname>, only the real part of the answer is taken into account).
+        </para>
+        <para>
+            <varname>u</varname> and <varname>s</varname> are determined by <code>[u,s] = schur(A)</code> .
+        </para>
+        <para>
+            3. If <varname>A</varname> is not a Hermitian matrix and <varname>p</varname> is a non-integer scalar,
+            <literal>A^p</literal> is computed as:
+        </para>
+        <para>
+            <code>A^p = v*diag(diag(d).^p)*inv(v)</code> (For real matrix <varname>A</varname>, only the real part of the answer is taken into account).
+        </para>
+        <para>
+            <varname>d</varname> and <varname>v</varname> are determined by <code>[d,v] = bdiag(A+0*%i)</code> .
+        </para>
+        <para>
+            4. If <varname>A</varname> and <varname>p</varname> are real or complex numbers,
+            <literal>A^p</literal> is the <emphasis>principal value</emphasis> determined by:
+        </para>
+        <para>
+            <code>A^p = exp(p*log(A))</code> (or <code>A^p = exp(p*(log(abs(A))+ %i*atan(imag(A)/real(A))))</code> ).
+        </para>
+        <para>
+            5. If <varname>A</varname> is a square matrix and <varname>p</varname> is a real or complex number,
+            <literal>A.^p</literal> is the <emphasis>principal value</emphasis> computed as:
+        </para>
+        <para>
+            <code>A.^p = exp(p*log(A))</code> (same as case 4 above).
+        </para>
+        <para>
+            6. <literal>**</literal> and <literal>^</literal> operators are synonyms.
+        </para>
+        <para>
+            <warning>
+                Exponentiation is right-associative in Scilab contrarily to Matlab&#174; and Octave. For example 2^3^4 is equal to 2^(3^4) in Scilab but is equal to (2^3)^4 in Matlab&#174; and Octave.
+            </warning>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+A=[1 2;3 4];
+A^2.5,
+A.^2.5
+(1:10)^2
+(1:10).^2
+
+A^%i
+A.^%i
+exp(%i*log(A))
+
+s=poly(0,'s')
+s^(1:10)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="exp">exp</link>
+            </member>
+            <member>
+                <link linkend="hat">hat</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

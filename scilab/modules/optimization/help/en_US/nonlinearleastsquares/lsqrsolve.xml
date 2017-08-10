@@ -3,12 +3,15 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * Copyright (C) 2011 - DIGITEO - Michael Baudin
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="lsqrsolve" xml:lang="en">
@@ -19,7 +22,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[x [,v [,info]]]=lsqrsolve(x0,fct,m [,stop [,diag]])
             [x [,v [,info]]]=lsqrsolve(x0,fct,m ,fjac [,stop [,diag]])
         </synopsis>
@@ -203,7 +206,7 @@
                             <term>4</term>
                             <listitem>
                                 <para>
-                                    the cosine of the angle between <literal>fvec</literal> and any 
+                                    the cosine of the angle between <literal>fvec</literal> and any
                                     column of the jacobian is at most <literal>gtol</literal> in c absolute
                                     value.
                                 </para>
@@ -269,7 +272,7 @@
         </para>
         <itemizedlist>
             <listitem>
-                <para>a Scilab function whose calling sequence is
+                <para>a Scilab function whose syntax is
                     <literal>v=fct(x,m)</literal> given <literal>x</literal> and
                     <literal>m</literal>.
                 </para>
@@ -286,7 +289,7 @@
                     vector of size <literal>m</literal>.
                 </para>
                 <para>
-                    C calling sequence should be <literal>fct(int *m, int *n, double
+                    C syntax should be <literal>fct(int *m, int *n, double
                         x[],double v[],int *iflag)
                     </literal>
                 </para>
@@ -301,7 +304,7 @@
                 <term>a Scilab function</term>
                 <listitem>
                     <para>
-                        whose calling sequence is <literal>J=fjac(x,m)</literal> given
+                        whose syntax is <literal>J=fjac(x,m)</literal> given
                         <literal>x</literal> and <literal>m</literal>.
                     </para>
                 </listitem>
@@ -320,7 +323,7 @@
                         vector of size <literal>m*n</literal>.
                     </para>
                     <para>
-                        C calling sequence should be <literal>fjac(int *m, int *n,
+                        C syntax should be <literal>fjac(int *m, int *n,
                             double x[],double v[],int *iflag)
                         </literal>
                     </para>
@@ -333,8 +336,8 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-// A simple example with lsqrsolve 
+        <programlisting role="example"><![CDATA[
+// A simple example with lsqrsolve
 a=[1,7;
    2,8
    4 3];
@@ -380,7 +383,7 @@ norm(v)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="external">external</link>

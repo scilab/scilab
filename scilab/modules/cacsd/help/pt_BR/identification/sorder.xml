@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="pt" xml:id="sorder">
+    <refnamediv>
+        <refname>sorder</refname>
+        <refpurpose>computing the order of a discrete-time system</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[Ro[,n,sval,rcnd]] = sorder(meth,alg,jobd,batch,conct,s,Y[,U,tol,printw,ldwork,Ri])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>meth</term>
+                <listitem>
+                    <para>integer option to determine the method to use:</para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>1 : MOESP method with past inputs and outputs;</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>2 : N4SID method.</para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>alg</term>
+                <listitem>
+                    <para>integer option to determine the algorithm for computing the triangular factor of the concatenated block-Hankel matrices built from the input-output data:</para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>1 : Cholesky algorithm on the correlation matrix;</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>2 : fast QR algorithm;</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>3 : standard QR algorithm.</para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>jobd</term>
+                <listitem>
+                    <para>integer option to specify if the matrices B and D should later be computed using the MOESP approach:</para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>1 : the matrices B and D should later be computed using the MOESP approach;</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>2 : the matrices B and D should not be computed using the MOESP approach.</para>
+                                <para>
+                                    This parameter is not relevant for meth = 2.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>batch</term>
+                <listitem>
+                    <para>integer option to specify whether or not sequential data processing is to be used, and, for sequential processing, whether or not the current data block is the first block, an intermediate block, or the last block, as follows:</para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>1 : the first block in sequential data processing;</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>2 : an intermediate block in sequential data processing;</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>3 : the last block in sequential data processing;</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>4 : one block only (non-sequential data processing).</para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>conct</term>
+                <listitem>
+                    <para>integer option to specify whether or not the successive data blocks in sequential data processing belong to a single experiment, as follows:</para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>1 : the current data block is a continuation of the previous data block and/or it will be continued by the next data block;</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>2 : there is no connection between the current data block and the previous and/or the next ones.</para>
+                                <para>
+                                    This parameter is not used if batch = 4.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>s</term>
+                <listitem>
+                    <para>the number of block rows in the input and output block Hankel matrices to be processed.  s &gt; 0</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Y</term>
+                <listitem>
+                    <para>the t-by-l output-data sequence matrix.  Column j of  Y contains the  t  values of the j-th output component for consecutive time increments.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>U</term>
+                <listitem>
+                    <para>(optional) the t-by-m input-data sequence matrix.  Column j of  U  contains the  t  values of the j-th input component for consecutive time increments. Default:    U = [].</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>tol</term>
+                <listitem>
+                    <para>(optional) vector of length 2 containing tolerances: tol(1) - tolerance used for estimating the rank of matrices. If  tol(1) &gt; 0,  then the given value of  tol(1)  is used as a lower bound for the reciprocal condition number; an m-by-n matrix whose estimated condition number is less than  1/tol(1)  is considered to be of full rank. If  tol(1) &lt;= 0,  then a default value m*n*epsilon_machine is used, where epsilon_machine is the relative machine precision.</para>
+                    <para>
+                        tol(2) - tolerance used for determining an estimate of the system order. If  tol(2) &gt;= 0,  the estimate is indicated by the index of the last singular value greater than or equal to  tol(2).  (Singular values less than  tol(2)  are considered as zero.) When  tol(2) = 0,  an internally computed default value,  tol(2) = s*epsilon_machine*sval(1), is used, where  sval(1)  is the maximal singular value, and epsilon_machine the relative machine precision. When  tol(2) &lt; 0,  the estimate is indicated by the index of the singular value that has the largest logarithmic gap to its successor.
+                    </para>
+                    <para>
+                        Default:    tol(1:2) = [0,-1].
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>printw</term>
+                <listitem>
+                    <para>(optional) switch for printing the warning messages.</para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>1:  print warning messages;</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>0:  do not print warning messages.</para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                    <para>
+                        Default:    printw = 0.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ldwork</term>
+                <listitem>
+                    <para>(optional) the workspace size. Default : computed by the formulas</para>
+                    <programlisting role=""><![CDATA[
+nr = 2*( m + l )*s
+LDWORK = ( t - 2*s + 3 + 64 )*nr
+if ( CSIZE > MAX( nr*nr + t*( m + l ) + 16, 2*nr ) ) then
+   LDWORK = MIN( LDWORK, CSIZE - nr*nr - t*( m + l ) - 16 )
+else
+   LDWORK = MIN( LDWORK, MAX( 2*nr, CSIZE/2 ) )
+end if
+ ]]></programlisting>
+                    <para>
+                        LDWORK = MAX( minimum workspace size needed, LDWORK ) where CSIZE is the cache size in double precision words.
+                    </para>
+                    <para>
+                        If LDWORK is specified less than the minimum workspace size  needed, that minimum value is used instead.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Ri</term>
+                <listitem>
+                    <para>(optional) if batch = 2 or 3, the 2*(m+l)*s-by-2*(m+l)*s (upper triangular, if alg &lt;&gt; 2) part of  R  must contain the (upper triangular) matrix  R  computed at the previous call of this mexfile in sequential data processing. If conct = 1, R  has an additional column, also set at the previous call.</para>
+                    <para>
+                        If alg = 2,  R  has m+l+1 additional columns, set at the previous call.
+                    </para>
+                    <para>
+                        This parameter is not used for batch = 1 or batch = 4.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Ro</term>
+                <listitem>
+                    <para>if batch = 3 or 4, the 2*(m+l)*s-by-2*(m+l)*s part of  R  contains the processed upper triangular factor  R  from the QR factorization of the concatenated block-Hankel matrices, and further details needed for computing system matrices. If batch = 1 or 2, then  R  contains intermediate results needed at the next call of this mexfile. If batch = 1 or 2 and conct = 1,  R  has an additional column, also set before return. If batch = 1 or 2 and alg = 2,  R  has m+l+1  additional columns, set before return.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>the order of the system.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sval</term>
+                <listitem>
+                    <para>(optional) the singular values used for estimating the order of the system.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>rcnd</term>
+                <listitem>
+                    <para>(optional) if meth = 2, vector of length 2 containing the reciprocal condition numbers of the matrices involved in rank decisions or least squares solutions.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            sorder  - function for computing the order of a discrete-time
+            system using SLICOT routine IB01AD.
+        </para>
+        <para>
+            For one block (data sequences Y, U):
+            [R,n,sval,rcnd] = sorder(meth,alg,jobd,4,conct,s,Y,U);
+        </para>
+        <para>
+            For f blocks (data sequences Yj, Uj, j = 1 : f):
+        </para>
+        <programlisting role=""><![CDATA[
+R = sorder(meth,alg,jobd,1,conct,s,Y1,U1);
+for j = 2 : f - 1
+   R = sorder(meth,alg,jobd,2,conct,s,Yj,Uj,tol,printw,ldwork,R)
+end
+[R,n,sval,rcnd] = sorder(meth,alg,jobd,3,conct,s,Yf,Uf,tol);
+ ]]></programlisting>
+        <para>
+            sorder preprocesses the input-output data for estimating the matrices
+            of a linear time-invariant dynamical system, using Cholesky or (fast)
+            QR factorization and subspace identification techniques (MOESP and
+            N4SID), and then estimates the order of a discrete-time realization.
+        </para>
+        <para>
+            The model structure is :
+        </para>
+        <programlisting role=""><![CDATA[
+x(k+1) = Ax(k) + Bu(k) + w(k),   k >= 1,
+y(k)   = Cx(k) + Du(k) + e(k),
+ ]]></programlisting>
+        <para>
+            where
+            x(k)  is the  n-dimensional state vector (at time k),
+        </para>
+        <para>
+            u(k)  is the  m-dimensional input vector,
+        </para>
+        <para>
+            y(k)  is the  l-dimensional output vector,
+        </para>
+        <para>
+            w(k)  is the  n-dimensional state disturbance vector,
+        </para>
+        <para>
+            e(k)  is the  l-dimensional output disturbance vector,
+        </para>
+        <para>
+            and  A, B, C, and D  are real matrices of appropriate dimensions.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Comments</title>
+        <para>
+            1. The Cholesky or fast QR algorithms can be much faster (for large data blocks) than QR algorithm, but they cannot be used if the correlation  matrix, H'*H, is not positive definite. In such a case, the code automatically switches to the QR algorithm, if sufficient workspace is provided and batch = 4.
+        </para>
+        <para>
+            2. If ldwork is specified, but it is less than the minimum workspace size  needed, that minimum value is used instead.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="findBD">findBD</link>
+            </member>
+            <member>
+                <link linkend="sident">sident</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

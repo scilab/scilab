@@ -9,7 +9,7 @@
         <para>
             Les matrices sont les objets de base dans Scilab. Elles peuvent être définies de la façon suivante :
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 E=[e11,e12,...,e1n;
    e21,e22,...,e2n;
         ....
@@ -25,7 +25,7 @@ E=[e11,e12,...,e1n;
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 E=[1,2;3,4]
 E=[%T,%F;1==1,1~=1]
 s=poly(0,'s');

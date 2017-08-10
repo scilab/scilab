@@ -5,7 +5,7 @@
         <refpurpose>add a name in the table of functions</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>newfun(function_name, function_ptr)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -30,13 +30,13 @@
         <para>Utility function (for experts only). </para>
         <para>
             Adds the name <literal>function_name</literal> in the table of
-            functions known to the interpreter. 
+            functions known to the interpreter.
         </para>
         <para>
             <literal>function_ptr</literal> is an integer
             <literal>1000*fun+fin</literal> where <literal>fun</literal> and
             <literal>fin</literal> are the internal coding of the primitive
-            <literal>function_name</literal>. 
+            <literal>function_name</literal>.
         </para>
         <para>This function may be useful to associate a primitive to a
             gateway called in <literal>"gw_user.c"</literal>
@@ -54,22 +54,22 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
      absptr=funptr("abs");// get the function_ptr associated with the abs function
      newfun("abs_bis",absptr) // create an alias of the abs function
      abs_bis(-1+%i)
      clearfun("abs") // remove abs as a known function
-     
+
       //redefine abs
       function y=abs(x)
 	y=abs_bis(real(x));
       endfunction
-      
+
      abs(-1+%i)
   ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="clearfun">clearfun</link>

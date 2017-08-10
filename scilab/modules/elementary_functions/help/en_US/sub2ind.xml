@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Serge STEER
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="sub2ind" xml:lang="en">
+    <refnamediv>
+        <refname>sub2ind</refname>
+        <refpurpose>matrix subscript values to linear index</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>I = sub2ind(dims,i1,i2,...)
+            J = sub2ind(dims,Mi)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>dims</term>
+                <listitem>
+                    <para>vector: the matrix dimensions</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>i1,i2,...</term>
+                <listitem>
+                    <para>the subscript value arrays(same matrix shape as
+                        <literal>I</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Mi</term>
+                <listitem>
+                    <para>matrix whose columns contains the subscript values.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>I</term>
+                <listitem>
+                    <para>the linear index array</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>sub2ind</literal> is used to determine the equivalent
+            single index corresponding to a given set of subscript values. <literal>I
+                = sub2ind(dims,i1,i2,..)
+            </literal>
+            returns the linear index equivalent to
+            the row, column, ... subscripts in the arrays <literal>i1</literal>,
+            <literal>i2</literal>,.. for an matrix of size <literal>dims</literal>. In
+            this case <literal>i1</literal>, <literal>i2</literal>,.. must have the
+            same shape and the result <literal>I</literal> has the same matrix shape.
+            <literal>I = sub2ind(dims,Mi)</literal> returns the linear index
+            equivalent to the subscripts in the columns of the matrix
+            <literal>Mi</literal> for a matrix of size <literal>dims</literal>. in
+            this case <literal>I</literal> is a column vector.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+i=[1 2 1 1 2 1 1];
+j=[1 2 3 1 2 3 3];
+k=[1 2 1 2 1 2 1];
+sub2ind([2,3,2],i,j,k)
+
+sub2ind([2,3,2],[i',j',k'])
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="ind2sub">ind2sub</link>
+            </member>
+            <member>
+                <link linkend="extraction">extraction</link>
+            </member>
+            <member>
+                <link linkend="insertion">insertion</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

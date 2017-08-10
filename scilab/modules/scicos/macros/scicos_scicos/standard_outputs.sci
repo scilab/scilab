@@ -31,7 +31,14 @@ function [x,y,typ]=standard_outputs(o)
 
     graphics=o.graphics
     model=o.model
-    orig=graphics.orig;sz=graphics.sz;orient=graphics.flip;
+    orig=graphics.orig;sz=graphics.sz;
+    orient=%t;
+    style=graphics.style;
+    subStr=strstr(style,"flip=");
+    if subStr<>"" then
+        orient=%f;
+    end
+
 
     out=size(model.out,1);clkout=size(model.evtout,1);
 

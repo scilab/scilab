@@ -20,7 +20,7 @@
 //    function test
 //    a='milou'
 //    a
-//    sould be converted to Scilab code :
+//    should be converted to Scilab code :
 //    function test
 //    a='milou'
 //    disp(a)

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+
+ *
+
+
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+
+ *
+
+ -->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="show_window">
+
+    <refnamediv>
+
+        <refname>show_window</refname>
+
+        <refpurpose>特定のグラフィックウインドウを前面に移動する</refpurpose>
+
+    </refnamediv>
+
+    <refsynopsisdiv>
+
+        <title>呼び出し手順</title>
+
+        <synopsis>show_window([figure])</synopsis>
+
+    </refsynopsisdiv>
+
+    <refsection>
+
+        <title>引数</title>
+
+        <variablelist>
+
+            <varlistentry>
+
+                <term>figure</term>
+
+                <listitem>
+
+                    <para>表示する図の番号またはハンドル.</para>
+
+                </listitem>
+
+            </varlistentry>
+
+        </variablelist>
+
+    </refsection>
+
+    <refsection>
+
+        <title>説明</title>
+
+        <para>
+
+            引数を指定しない時,<function>show_window</function>は,
+
+            アイコン化されている場合でも
+
+            カレントのグラフィックウインドウを前面に出します.
+
+            その他の場合,番号またはハンドルで指定したウインドウを前面に出します.
+
+            ウインドウが存在しない場合,作成されます.
+
+        </para>
+
+    </refsection>
+
+</refentry>
+

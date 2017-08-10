@@ -4,7 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // ============================================================================
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 // ============================================================================
 // Unitary tests for mxGetData and mxSetData mex functions
 // ============================================================================
@@ -14,8 +14,8 @@ mputl(["#include ""mex.h""";
 "void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])";
 "{";
 "    void *data = mxGetData(prhs[0]);";
-"    mxSetData(prhs[0], data);";
-"    plhs[0] = prhs[0];";
+"    plhs[0] = mxDuplicateArray(prhs[0]);";
+"    mxSetData(plhs[0], data);";
 "}"],"mexGetSetData.c");
 ilib_mex_build("libmextest",["getSetData","mexGetSetData","cmex"], "mexGetSetData.c",[]);
 exec("loader.sce");

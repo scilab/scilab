@@ -5,11 +5,14 @@
  * Copyright (C) 2012 - DIGITEO - Manuel Juliachs
  * desc : Interface functions between between GetProperty functions and the C++/Java part of module
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -37,6 +40,7 @@ void sciGetJava2dViewPixelCoordinates(int iSubwinUID, const double userCoords[3]
 
     pixCoords[0] = (int) tmp[0];
     pixCoords[1] = (int) tmp[1];
+    delete[] tmp;
 }
 
 /*---------------------------------------------------------------------------------*/
@@ -53,6 +57,7 @@ void sciGetJava2dViewCoordinates(int iSubwinUID, const double userCoords3D[3], d
 
     userCoords2D[0] = tmp[0];
     userCoords2D[1] = tmp[1];
+    delete[] tmp;
 }
 
 /*---------------------------------------------------------------------------------*/
@@ -68,6 +73,7 @@ void sciGetJava2dViewCoordFromPixel(int iSubwinUID, const int pixCoords[2], doub
 
     userCoords2D[0] = tmp[0];
     userCoords2D[1] = tmp[1];
+    delete[] tmp;
 }
 
 /*---------------------------------------------------------------------------------*/
@@ -81,6 +87,7 @@ void sciGetJavaViewingArea(int iSubwinUID, int *xPos, int *yPos, int *width, int
     *yPos = (int) tmp[1];
     *width = (int) tmp[2];
     *height = (int) tmp[3];
+    delete[] tmp;
 }
 
 /*---------------------------------------------------------------------------------*/

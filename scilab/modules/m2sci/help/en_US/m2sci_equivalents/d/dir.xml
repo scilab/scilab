@@ -3,11 +3,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="m2sci_dir">
@@ -43,7 +46,7 @@ dir
     <refsection>
         <title>Particular cases</title>
         <para>
-            When used in command window, Scilab and Matlab <emphasis role="bold">dir</emphasis> are equivalents. When result is stored in a value, Matlab returns a struture but Scilab returns a tlist. To get the same result, you can use <emphasis role="bold">mtlb_dir</emphasis>, note that in this case, hidden files are not get.
+            When used in command window, Scilab and Matlab <emphasis role="bold">dir</emphasis> are equivalents. When result is stored in a value, Matlab returns a structure but Scilab returns a tlist. To get the same result, you can use <emphasis role="bold">mtlb_dir</emphasis>, note that in this case, hidden files are not get.
         </para>
     </refsection>
 </refentry>

@@ -29,7 +29,7 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 x=[0,1,%i]
 acosh(cosh(x))
  ]]></programlisting>

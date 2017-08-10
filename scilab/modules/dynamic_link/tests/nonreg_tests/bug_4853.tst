@@ -7,6 +7,7 @@
 
 // <-- ENGLISH IMPOSED -->
 // <-- CLI SHELL MODE -->
+// <-- WINDOWS ONLY -->
 
 // <-- Non-regression test for bug 4853 -->
 //
@@ -17,11 +18,8 @@
 
 // test only for windows
 
-if getos() == 'Windows' then
-  ilib_verbose(0);
-  exec SCI/modules/dynamic_link/tests/unit_tests/addinter.tst;
-  r = dllinfo(TMPDIR + '/addinter/libintertest.dll','imports');
-  if (r(1)(1) == 'libmmd.dll') | (r(2)(1) == 'libmmd.dll') then pause,end
-end
+exec SCI/modules/dynamic_link/tests/unit_tests/addinter.tst;
+r = dllinfo(TMPDIR + '/addinter/libintertest.dll','imports');
+if (r(1)(1) == 'libmmd.dll') | (r(2)(1) == 'libmmd.dll') then pause,end
 
 // =============================================================================

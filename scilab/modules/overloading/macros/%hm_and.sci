@@ -1,18 +1,24 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010 - INRIA - Serge Steer
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
-function x=%hm_and(m,d)
-    if argn(2)==1|d=="*" then
+// STILL CALLED in 6.0.0-b2
+
+function x = %hm_and(m,d)
+    if argn(2)==1 | d=="*" then
         x=and(m(:));
         return
     end
-    dims=size(m);
+
+    dims = size(m);
     if d=="m" then
         d=find(dims>1,1)
         if d==[] then
@@ -20,12 +26,7 @@ function x=%hm_and(m,d)
             return
         end
     end
-    if type(dims)==8 then
-        flag=1;
-        dims=double(dims);
-    else
-        flag=0;
-    end
+
     N=size(dims,"*");
     p1=prod(dims(1:d-1));// step to build one vector on which and is applied
     p2=p1*dims(d);//step for beginning of next vectors
@@ -47,12 +48,7 @@ function x=%hm_and(m,d)
     else
         dims(d)=1;
     end
-    if size(dims,"*")==2 then
-        x=matrix(x,dims(1),dims(2));
-    elseif dims<>[] then
-        if flag==1 then
-            dims=int32(dims);
-        end
-        x=hypermat(dims,x);
+    if dims<>[]
+        x=matrix(x, dims);
     end
 endfunction

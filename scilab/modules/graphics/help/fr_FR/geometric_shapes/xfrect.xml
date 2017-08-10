@@ -25,21 +25,21 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>xrect</literal> remplit un rectangle défini par <literal>[x,y,w,h]</literal> 
+            <literal>xrect</literal> remplit un rectangle défini par <literal>[x,y,w,h]</literal>
             (point en haut à gauche, largeur, hauteur) en coordonnées utilisateur et en utilisant la couleur courante.
         </para>
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 plot2d(0,0,-1,"010"," ",[-2,-2,2,2])
-xset("color",5)
 xfrect(-1,1,2,2)
+gce().background = color("green");
  ]]></programlisting>
         <scilab:image>
             plot2d(0,0,-1,"010"," ",[-2,-2,2,2])
-            xset("color",5)
             xfrect(-1,1,2,2)
+            gce().background = color("green");
         </scilab:image>
     </refsection>
     <refsection role="see also">

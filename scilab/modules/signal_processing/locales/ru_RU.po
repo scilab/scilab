@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-03-12 14:51+0000\n"
-"Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
+"PO-Revision-Date: 2016-06-28 15:03+0000\n"
+"Last-Translator: Nkolay Parukhin <parukhin@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
-"Language: ru\n"
+"X-Generator: Launchpad (build 18315)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -37,39 +37,174 @@ msgstr ""
 "вектор.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: Real or complex matrix expected.\n"
-msgstr ""
-"%s: Неверный тип параметра %d: ожидалась матрица вещественных или "
-"комплексных чисел.\n"
-
-#, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr "%s: Ошибка выделения памяти.\n"
 
+#, c-format
+msgid "%s : Memory allocation error.\n"
+msgstr "%s : Ошибка распределения памяти.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr "%s: Неверное количество входных аргументов: Ожидалось от %d до %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr "%s: Неверный тип входного аргумента №%d: ожидался скаляр.\n"
+
+msgid "fft call : needs power of two!"
+msgstr "вызов fft : требуется степень двойки!"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
+msgstr "%s: Неверный тип входного аргумента №%d: Ожидалась матрица.\n"
+
+#, c-format
+msgid "%s: Wrong size for argument: Incompatible dimensions.\n"
+msgstr "%s: Неверный размер аргумента: несовместимые размерности.\n"
+
+#, c-format
+msgid "%s: Too many coefficients are required.\n"
+msgstr "%s: Требуется слишком много коэффициентов.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgstr "%s: Неверный тип аргумента %d: ожидалась вещественная матрица.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real scalar expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидался вещественный скаляр.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
+msgstr "%s: Неверный тип входного аргумента №%d: ожидался скаляр.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: %d-element list expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидался %d-элементный список.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for element %d of input argument #%d: A matrix of real "
+"expected.\n"
+msgstr ""
+"%s: Неверный тип элемента %d входного аргумента №%d: ожидалась матрица типа "
+"real.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for element %d of input argument #%d: A row vector expected.\n"
+msgstr ""
+"%s: Неверный размер элемента %d входного аргумента №%d: ожидался вектор-"
+"строка.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for element %d of input argument #%d: Size must be multiple "
+"of %d.\n"
+msgstr ""
+"%s: Неверный размер элемента %d входного аргумента №%d: размер должен быть "
+"кратен %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for element %d of input argument #%d: A square matrix "
+"expected.\n"
+msgstr ""
+"%s: Неверный размер элемента %d входного аргумента №%d: ожидалась квадратная "
+"матрица.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for element %d of input argument #%d: Same sizes of element "
+"%d expected.\n"
+msgstr ""
+"%s: Неверный размер элемента %d входного аргумента №%d: ожидался такой же "
+"размер, как у элемента %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A row vector expected.\n"
+msgstr "%s: Неверный размер входного аргумента №%d: ожидался вектор-строка.\n"
+
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same column dimensions "
+"expected.\n"
+msgstr ""
+"%s: Несовместимые входные аргументы №%d и №%d: ожидалось одинаковое "
+"количество столбцов.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A %d-by-%d matrix expected.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента №%d: ожидалась матрица %d на %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Real scalar expected.\n"
+msgstr "%s: Неверный тип аргумента %d: ожидался вещественный скаляр.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A %d-by-%d array expected.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента №%d: ожидался массив %d на %d.\n"
+
+#, c-format
+msgid "%s: specs => invalid order filter.\n"
+msgstr "%s: specs => недопустимый порядок фильтра.\n"
+
+#, c-format
+msgid "%s: specs => too high order filter.\n"
+msgstr "%s: specs => слишком высокий порядок фильтра.\n"
+
+#, c-format
+msgid "%s: error in function syredi.\n"
+msgstr "%s: ошибка в функции syredi.\n"
+
+#, c-format
+msgid "Undefined function '%ls'.\n"
+msgstr "Неопределённая функция '%ls'.\n"
+
+#, c-format
+msgid "User function '%s' have not been setted.\n"
+msgstr "Пользовательская функция '%s' не установлена.\n"
+
+msgid "An error occurred while getting Signalprocessingfunctions object.\n"
+msgstr "Произошла ошибка при получении объекта Signalprocessingfunctions.\n"
+
+#, c-format
+msgid "%ls: error while calling user function.\n"
+msgstr "%ls: ошибка  во время вызова пользовательской функции.\n"
+
+#, c-format
+msgid "%s: Wrong type for output argument #%d: Real matrix expected.\n"
+msgstr ""
+"%s: Неверный тип выходного аргумента №%d: ожидалась вещественная матрица.\n"
+
 msgid "Simulation of an ARMAX process:"
-msgstr "Моделирование процесса ARMAX:"
+msgstr ""
 
 msgid "Identification ARX (least square):"
-msgstr "Идентификация ARX (МНК):"
+msgstr ""
 
 msgid "Simulation of an ARMAX process: "
-msgstr "Моделирование процесса ARMAX: "
+msgstr ""
 
 msgid "Identification ARX (least square): "
-msgstr "Идентификация ARX (МНК): "
+msgstr ""
 
 msgid "Arma Spectral power estimation:"
 msgstr ""
-"Оценка спектральной мощности моделью авторегрессионного скользящего среднего:"
 
 msgid "Arma identification"
-msgstr "Идентификация модели ARMA"
+msgstr ""
 
 msgid "Theoretical value"
-msgstr "Теоретическое значение"
+msgstr "Теоретическое  значение"
 
 msgid "Using macro mese"
-msgstr "Использование макроса mese"
+msgstr ""
 
 msgid "Spectral power"
 msgstr "Спектральная мощность"
@@ -78,46 +213,46 @@ msgid "frequency"
 msgstr "частота"
 
 msgid "spectral estimate"
-msgstr "оценка спектральной плотности"
+msgstr "спектральная оценка"
 
 msgid "Press Return to continue ... \n"
-msgstr "Нажмите Return для продолжения ... \n"
+msgstr "Для продолжения нажмите ввод ... \n"
 
 msgid "filtered signal"
-msgstr "фильтрованный сигнал"
+msgstr "отфильтрованный сигнал"
 
 msgid "given noisy signal"
-msgstr "заданный сигнал с шумом"
+msgstr "данный зашумлённый сигнал"
 
 msgid "Signal"
 msgstr "Сигнал"
 
 msgid "2 points convolution"
-msgstr "двухточечная свёртка"
+msgstr ""
 
 msgid "3 points convolution"
-msgstr "трёхточечная свёртка"
+msgstr ""
 
 msgid "Signal derivative estimate"
-msgstr "оценка производной сигнала"
+msgstr "Оценка производной сигнала"
 
 msgid "Choose filter type and parameters"
-msgstr "Выберите тип фильтра и параметры"
+msgstr "Выберите тип и параметры фильтра"
 
 msgid "Discrete IIR filter "
 msgstr "Дискретный БИХ-фильтр "
 
 msgid "Discrete IIR filter: low pass  fr < 0.2"
-msgstr "Дискретный БИХ-фильтр: фильтр нижних частот  fr < 0.2"
+msgstr "Дискретный БИХ-фльтр: ФНЧ  fr < 0.2"
 
 msgid "Discrete IIR filter: band pass 0.15 < fr < 0.25"
-msgstr "Дискретный БИХ-фильтр: полосовой фильтр 0.15 < fr < 0.25"
+msgstr "Дискретный БИХ-фльтр: плосовой фильтр 0.15 < fr < 0.25"
 
 msgid "Minimax FIR filter"
 msgstr "Минимаксный КИХ-фильтр"
 
 msgid "low pass  cut-off in [.23,.27]"
-msgstr "частота отсечки фильтра низких частот в [.23,.27]"
+msgstr "частота среза ФНЧ в  [.23,.27]"
 
 msgid "length 33"
 msgstr "длина 33"
@@ -126,7 +261,7 @@ msgid "Remez Triangular filter"
 msgstr "Треугольный фильтр по методу Ремеза"
 
 msgid "magnitude error"
-msgstr "ошибка абсолютной величины"
+msgstr "ошибка магнитуды"
 
 msgid "Signal Processing"
 msgstr "Обработка сигналов"
@@ -135,10 +270,10 @@ msgid "Spectral Estimation"
 msgstr "Спектральное оценивание"
 
 msgid "IIR filter design"
-msgstr "Схема БИХ-фильтра"
+msgstr "Проектирование БИХ-фильтра"
 
 msgid "Minimax FIR filter design"
-msgstr "Минимаксная схема КИХ-фильтра"
+msgstr "Проектирование минимаксного КИХ-фильтра"
 
 msgid "Discrete IIR filter"
 msgstr "Дискретный БИХ-фильтр"
@@ -147,7 +282,7 @@ msgid "Wiener filter"
 msgstr "Винеровский фильтр"
 
 msgid "Bode plots"
-msgstr "Диаграммы Боде"
+msgstr "Графики Боде"
 
 msgid "Window FIR filters"
 msgstr "Оконные КИХ-фильтры"
@@ -160,62 +295,54 @@ msgstr "Двумерная свёртка"
 
 msgid "Arma simulation and identification"
 msgstr ""
-"Моделирование авторегрессионного скользящего среднего и идентификация"
 
 msgid "Arma, bidimensional version"
-msgstr "Модель авторегрессионного скользящего среднего, двумерная версия"
+msgstr ""
 
 msgid "Arma, Spectral power estimation"
 msgstr ""
-"Оценка спектральной мощности, модель авторегрессионного скользящего среднего"
 
 msgid "Data spectrum"
 msgstr "Спектр данных"
 
 msgid "magnitude"
-msgstr "абсолютная величина"
+msgstr "магнитуда"
 
 msgid "Spectral estimation"
-msgstr "Спектральная оценка"
+msgstr "Спектральное оценивание"
 
 msgid "spectral power"
 msgstr "спектральная мощность"
 
 msgid "estimates xf"
-msgstr "оценки xf"
+msgstr "оценивает xf"
 
 msgid "estimates xs"
-msgstr "оценки xs"
+msgstr "оценивает xs"
 
 msgid "real state"
-msgstr "истинное состояние"
+msgstr "реальное состояние"
 
 msgid "Windowed FIR Low pass Filter"
-msgstr "КИХ-фильтр низких частот с оконной обработкой"
+msgstr "Оконный КИХ-фильтр нижних частот"
 
 msgid "Kaiser window, cut-off: 0.2"
-msgstr "Кайзеровское окно, отсечка: 0.2"
+msgstr "Кайзеровское окно, частота среза: 0.2"
 
 msgid "Hamming window, cut-off: 0.2, 0.3"
-msgstr "Окно Хемминга, отсечка 0.2, 0.3"
+msgstr "Окно Хэмминга, частота среза: 0.2, 0.3"
 
 msgid "length 127"
 msgstr "длина 127"
 
 msgid "Windowed FIR Band pass Filter"
-msgstr "полосовой КИХ-фильтр с оконной обработкой"
+msgstr "Оконный полосовой  КИХ-фильтр"
 
 msgid "Chebyshev window, cut-off: 0.15, 0.35"
-msgstr "Окно Чебышева, отсечка: 0.15, 0.35"
+msgstr "Окно Чебышева, частота среза: 0.15, 0.35"
 
 msgid "length 55"
 msgstr "длина 55"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
-msgstr ""
-"%s: Неверное значение входного параметра №%d: должно быть из множества "
-"{%s}.\n"
 
 #, c-format
 msgid ""
@@ -224,10 +351,6 @@ msgid ""
 msgstr ""
 "%s: Неверный тип входного параметра №%d: ожидался массив чисел с плавающей "
 "точкой.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr "%s: Неверный размер входного параметра №%d: ожидался скаляр.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
@@ -243,10 +366,6 @@ msgstr ""
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same degree expected.\n"
 msgstr "%s: Несовместимые параметры №%d и №%d: степени должны совпадать.\n"
-
-#, c-format
-msgid "%s: Input argument #%d must be real.\n"
-msgstr "%s: Входной параметр №%d должен быть вещественным числом.\n"
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d: Elements must be positive.\n"
@@ -301,17 +420,15 @@ msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr "%s: Неверное количество входных параметров: ожидалось %d или %d.\n"
 
 #, c-format
+msgid "%s: Argument #%d: Decimal or complex number(s) expected.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real matrix or polynomial expected.\n"
 msgstr ""
 "%s: Неверный тип входного аргумента №%d: ожидалась матрица вещественных "
 "чисел или полином.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
-msgstr ""
-"%s: Неверный тип входного аргумента №%d: Ожидалась матрица вещественных "
-"чисел.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
@@ -326,8 +443,7 @@ msgstr ""
 "на-1 либо два полинома\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: First element must not be %s.\n"
+msgid "%s: Wrong value for input argument #%d: First element must not be %s.\n"
 msgstr ""
 "%s: Неверное значение входного аргумента №%d: первый элемент НЕ должен быть "
 "%s.\n"
@@ -353,10 +469,6 @@ msgstr ""
 "система или вектор-строка чисел с плавающей точкой.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
-msgstr "%s: Неверное количество аргументов: Ожидалось %d или %d.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A real or polynomial matrix or a "
 "rational expected.\n"
@@ -368,10 +480,6 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A discrete system expected.\n"
 msgstr ""
 "%s: Неверный тип входного аргумента №%d: ожидалась дискретная система.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: Неверное количество входных параметров: ожидалось %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A positive integer expected.\n"
@@ -386,8 +494,7 @@ msgstr ""
 "число.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A positive integer expected.\n"
+msgid "%s: Wrong value for input argument #%d: A positive integer expected.\n"
 msgstr ""
 "%s: Неверное значение входного аргумента №%d: ожидалось положительное целое "
 "значение.\n"
@@ -441,19 +548,20 @@ msgid "%s: Wrong values for input arguments #%d and #%d.\n"
 msgstr "%s: Неверные значения входных параметров №%d и №%d.\n"
 
 #, c-format
+msgid "%s: Argument #%d: Column expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Arguments #%d and #%d: Same numbers of elements expected.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: Argument #%d expected to be "
 "less than argument #%d.\n"
 msgstr ""
 "%s: Несовместимые параметры №%d и №%d: параметр №%d должен быть меньше "
 "параметра №%d.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"
-msgstr ""
-"%s: Неверное значение входного параметра №%d: должно быть в интервале [%s, "
-"%s].\n"
 
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
@@ -473,8 +581,7 @@ msgstr ""
 "функций.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A %d elements array expected.\n"
+msgid "%s: Wrong size for input argument #%d: A %d elements array expected.\n"
 msgstr ""
 "%s: Неверный размер входного аргумента №%d: ожидался массив из %d "
 "элементов.\n"
@@ -637,14 +744,6 @@ msgid ""
 msgstr ""
 "%s: Неверные значения входного параметра №%d: первый элементы должен быть "
 "%s, а последний %s.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Elements must be in increasing "
-"order.\n"
-msgstr ""
-"%s: Неверные значения входного параметра №%d: элементы должны быть "
-"отсортированы по возрастанию\n"
 
 #, c-format
 msgid "%s: Too abrupt change near end of frequency range.\n"

@@ -5,7 +5,7 @@
         <refpurpose>get macros and path of a scilab library</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>macros = libraryinfo(libraryname)
             [macros,path] = libraryinfo(libraryname)
         </synopsis>
@@ -46,12 +46,12 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 [m,p]=libraryinfo('corelib')
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="librarieslist">librarieslist</link>

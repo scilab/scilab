@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 // Here only option specific cases are checked because the other parts
 // are common with dct_part[1 2 3].tst
 //============================================================================================

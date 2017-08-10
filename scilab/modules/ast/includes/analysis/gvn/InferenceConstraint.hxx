@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2015 - Scilab Enterprises - Calixte DENIZET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -14,6 +17,7 @@
 #define __INFERENCE_CONSTRAINT_HXX__
 
 #include <cmath>
+#include <iostream>
 #include <unordered_set>
 #include <vector>
 
@@ -85,7 +89,7 @@ struct PositiveConstraint : public InferenceConstraint
     virtual void applyConstraints(const std::vector<GVN::Value *> & values) const /*override*/;
 };
 
-    struct StrictPositiveConstraint : public InferenceConstraint
+struct StrictPositiveConstraint : public InferenceConstraint
 {
     virtual Result check(GVN & gvn, const std::vector<GVN::Value *> & values) const /*override*/;
     virtual MPolyConstraintSet getMPConstraints(const std::vector<GVN::Value *> & values) const /*override*/;
@@ -99,7 +103,7 @@ struct GreaterConstraint : public InferenceConstraint
     virtual void applyConstraints(const std::vector<GVN::Value *> & values) const /*override*/;
 };
 
-    struct StrictGreaterConstraint : public InferenceConstraint
+struct StrictGreaterConstraint : public InferenceConstraint
 {
     virtual Result check(GVN & gvn, const std::vector<GVN::Value *> & values) const /*override*/;
     virtual MPolyConstraintSet getMPConstraints(const std::vector<GVN::Value *> & values) const /*override*/;
@@ -146,6 +150,11 @@ struct MPolyConstraint : public InferenceConstraint
         }
     }
 
+    inline bool isConstant() const
+    {
+        return poly.isConstant();
+    }
+
     virtual Result check(GVN & gvn, const std::vector<GVN::Value *> & values) const override;
     virtual MPolyConstraintSet getMPConstraints(const std::vector<GVN::Value *> & values) const override;
     virtual void applyConstraints(const std::vector<GVN::Value *> & values) const override;
@@ -158,13 +167,20 @@ struct MPolyConstraint : public InferenceConstraint
         }
     };
 
+    inline bool operator==(const MPolyConstraint & R) const
+    {
+        return kind == R.kind && poly == R.poly;
+    }
+
     struct Eq
     {
         inline bool operator()(const MPolyConstraint & L, const MPolyConstraint & R) const
         {
-            return L.kind == R.kind && L.poly == R.poly;
+            return L == R;
         }
     };
+
+    friend std::wostream & operator<<(std::wostream & out, const MPolyConstraint & mpc);
 };
 
 struct MPolyConstraintSet : public InferenceConstraint
@@ -179,17 +195,26 @@ struct MPolyConstraintSet : public InferenceConstraint
 
     inline void add(MPolyConstraint && mpc)
     {
-        constraints.emplace(std::move(mpc));
+        if (!mpc.isConstant())
+        {
+            constraints.emplace(std::move(mpc));
+        }
     }
 
     inline void add(MultivariatePolynomial && poly, MPolyConstraint::Kind kind)
     {
-        constraints.emplace(std::move(poly), kind);
+        if (!poly.isConstant())
+        {
+            constraints.emplace(std::move(poly), kind);
+        }
     }
 
     inline void add(const MultivariatePolynomial & poly, MPolyConstraint::Kind kind)
     {
-        constraints.emplace(poly, kind);
+        if (!poly.isConstant())
+        {
+            constraints.emplace(poly, kind);
+        }
     }
 
     inline void add(const MPolyConstraintSet & set)
@@ -197,9 +222,42 @@ struct MPolyConstraintSet : public InferenceConstraint
         constraints.insert(set.constraints.begin(), set.constraints.end());
     }
 
+    inline bool empty() const
+    {
+        return constraints.empty();
+    }
+
+    inline std::size_t size() const
+    {
+        return constraints.size();
+    }
+
     virtual Result check(GVN & gvn, const std::vector<GVN::Value *> & values) const override;
     virtual MPolyConstraintSet getMPConstraints(const std::vector<GVN::Value *> & values) const override;
     virtual void applyConstraints(const std::vector<GVN::Value *> & values) const override;
+
+    friend std::wostream & operator<<(std::wostream & out, const MPolyConstraintSet & mpcs);
+
+    struct Hash
+    {
+        inline std::size_t operator()(const MPolyConstraintSet & mpcs) const
+        {
+            std::size_t seed = 0;
+            for (const auto & c : mpcs.constraints)
+            {
+                seed = tools::hash_combine(seed, MPolyConstraint::Hash()(c));
+            }
+            return seed;
+        }
+    };
+
+    struct Eq
+    {
+        inline bool operator()(const MPolyConstraintSet & L, const MPolyConstraintSet & R) const
+        {
+            return L.constraints == R.constraints;
+        }
+    };
 };
 
 

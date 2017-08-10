@@ -3,12 +3,15 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="dassl" xml:lang="en">
@@ -17,7 +20,7 @@
         <refpurpose>differential algebraic equation</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[r [,hd]]=dassl(x0,t0,t [,atol,[rtol]],res [,jac] [,info] [,hd])</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -89,7 +92,7 @@
                     <itemizedlist>
                         <listitem>
                             <para>A Scilab function.</para>
-                            <para>Its calling sequence must be
+                            <para>Its syntax must be
                                 <literal>[r,ires]=res(t,y,ydot)</literal> and
                                 <literal>res</literal> must return the residue
                                 <literal>r=g(t,y,ydot)</literal> and error flag
@@ -103,17 +106,17 @@
                         <listitem>
                             <para>A list.</para>
                             <para>
-                                This form allows to pass parameters other than <literal>t</literal>, 
+                                This form allows to pass parameters other than <literal>t</literal>,
                                 <literal>y</literal>, <literal>ydot</literal> to
                                 the function. It must be as follows:
                             </para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                            <programlisting role="no-scilab-exec"><![CDATA[
 list(res,x1,x2,...)
  ]]></programlisting>
-                            <para>where the calling sequence of the function
+                            <para>where the syntax of the function
                                 <literal>res</literal> is now
                             </para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                            <programlisting role="no-scilab-exec"><![CDATA[
 r=res(t,y,ydot,x1,x2,...)
  ]]></programlisting>
                             <para>
@@ -127,16 +130,16 @@ r=res(t,y,ydot,x1,x2,...)
                             <para>It must refer to the name of a C or Fortran subroutine
                                 linked with Scilab.
                             </para>
-                            <para>In C the calling sequence must be:</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                            <para>In C the syntax must be:</para>
+                            <programlisting role="no-scilab-exec"><![CDATA[
 void res(double *t, double y[], double yd[], double r[],
          int *ires, double rpar[], int ipar[])
  ]]></programlisting>
                             <para>In Fortran it must be:</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                            <programlisting role="no-scilab-exec"><![CDATA[
 subroutine res(t,y,yd,r,ires,rpar,ipar)
 double precision t, y(*),yd(*),r(*),rpar(*)
-integer ires,ipar(*)  
+integer ires,ipar(*)
  ]]></programlisting>
                             <para>
                                 The <literal>rpar</literal> and <literal>ipar</literal> arrays must be present but cannot be
@@ -150,14 +153,14 @@ integer ires,ipar(*)
                 <term>jac</term>
                 <listitem>
                     <para>
-                        an <link linkend="external">external</link> (function or list or string). 
-                        Computes the value of <literal>dg/dy+cj*dg/dydot</literal> for a given 
+                        an <link linkend="external">external</link> (function or list or string).
+                        Computes the value of <literal>dg/dy+cj*dg/dydot</literal> for a given
                         value of parameter <literal>cj</literal>.
                     </para>
                     <itemizedlist>
                         <listitem>
                             <para>A Scilab function.</para>
-                            <para>Its calling sequence must be
+                            <para>Its syntax must be
                                 <literal>r=jac(t,y,ydot,cj)</literal> and the
                                 <literal>jac</literal> function must return
                                 <literal>r=dg(t,y,ydot)/dy+cj*dg(t,y,ydot)/dydot</literal> where
@@ -167,13 +170,13 @@ integer ires,ipar(*)
                         <listitem>
                             <para>A list.</para>
                             <para>It must be as follows</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                            <programlisting role="no-scilab-exec"><![CDATA[
 list(jac,x1,x2,...)
  ]]></programlisting>
-                            <para>where the calling sequence of the function
+                            <para>where the syntax of the function
                                 <literal>jac</literal> is now
                             </para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                            <programlisting role="no-scilab-exec"><![CDATA[
 r=jac(t,y,ydot,cj,x1,x2,...)
  ]]></programlisting>
                             <para>
@@ -187,13 +190,13 @@ r=jac(t,y,ydot,cj,x1,x2,...)
                             <para>It must refer to the name of a C or Fortran subroutine linked
                                 with Scilab.
                             </para>
-                            <para>In C the calling sequence must be:</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                            <para>In C the syntax must be:</para>
+                            <programlisting role="no-scilab-exec"><![CDATA[
 void jac(double *t, double y[], double yd[], double pd[],
          double *cj, double rpar[], int ipar[])
  ]]></programlisting>
                             <para>In Fortran it must be:</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                            <programlisting role="no-scilab-exec"><![CDATA[
 subroutine jac(t,y,yd,pd,cj,rpar,ipar)
 double precision t, y(*),yd(*),pd(*),cj,rpar(*)
 integer ipar(*)
@@ -311,14 +314,14 @@ integer ipar(*)
             The <literal>dassl</literal> function integrate the differential algebraic equation and
             returns the evolution of <literal>y</literal> a given time points
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[ 
+        <programlisting role="no-scilab-exec"><![CDATA[
 g(t,y,ydot)=0
 y(t0)=y0  and   ydot(t0)=ydot0
   ]]></programlisting>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 function [r,ires]=chemres(t,y,yd)
    r=[-0.04*y(1)+1d4*y(2)*y(3)-yd(1)
        0.04*y(1)-1d4*y(2)*y(3)-3d7*y(2)*y(2)-yd(2)
@@ -342,7 +345,7 @@ info=list([],0,[],[],[],0,0);
 info(2)=1;
 y1=dassl([y0,yd0],0,4d10,chemres,info);
 y2=dassl([y0,yd0],0,4d10,chemres,chemjac,info);
- 
+
 //Using extra argument for parameters
 //-----------------------------------
 function [r,ires]=chemres(t,y,yd ,a,b,c)
@@ -399,7 +402,7 @@ y4=dassl([y0,yd0],0,t,'chemres','chemjac');
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="ode">ode</link>
@@ -414,7 +417,7 @@ y4=dassl([y0,yd0],0,t,'chemres','chemjac');
                 <link linkend="impl">impl</link>
             </member>
             <member>
-                <link linkend="fort">fort</link>
+                <link linkend="call">call</link>
             </member>
             <member>
                 <link linkend="link">link</link>

@@ -6,15 +6,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-01-09 21:16+0000\n"
-"Last-Translator: Zbyněk Schwarz <Unknown>\n"
+"PO-Revision-Date: 2015-10-08 21:59+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
+"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 18315)\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
@@ -25,11 +26,11 @@ msgid "%s: Wrong number of input arguments: At most %d expected.\n"
 msgstr "%s: Špatný počet vstupních argumentů: Očekáváno nejvíce %d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n"
 
 #, c-format
@@ -51,6 +52,10 @@ msgstr "%s: Nelze exportovat %s do %s.\n"
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d až %d.\n"
 
+#, c-format
+msgid "%s: Argument #%d: Text(s) expected.\n"
+msgstr ""
+
 msgid "Generating cleaner.sce...\n"
 msgstr "Vytvářím cleaner.ace...\n"
 
@@ -63,8 +68,7 @@ msgstr ""
 "zápis do tohoto souboru.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána matice řetězců.\n"
 
 #, c-format
@@ -112,12 +116,16 @@ msgstr "Vytvářím loader.sce...\n"
 msgid "Generating unloader.sce...\n"
 msgstr "Vytváření unloader.sce...\n"
 
+msgid "Generating localization\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string array expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáváno pole řetězců.\n"
 
-msgid "Generating localization\n"
-msgstr ""
+#, fuzzy
+msgid "Generating cleaner_src.sce...\n"
+msgstr "Vytvářím cleaner.ace...\n"
 
 #, c-format
 msgid "%s: The file '%s' doesn't exist or is not read accessible.\n"
@@ -134,6 +142,14 @@ msgstr "%s: Tento modul vyžaduje kompilátor C a ten nebyl nalezen.\n"
 msgid "Building gateway...\n"
 msgstr "Sestavuji bránu...\n"
 
+#, c-format
+msgid "Could not use the default compilation of gateways in %s."
+msgstr ""
+
+#, c-format
+msgid "No builder script found in %s."
+msgstr ""
+
 msgid "Building help...\n"
 msgstr "Sestavuji nápovědu...\n"
 
@@ -149,6 +165,16 @@ msgstr ""
 msgid "Building sources...\n"
 msgstr "Sestavuji zdroje...\n"
 
+msgid "No builder file found, nothing to be done"
+msgstr ""
+
+msgid "No builder file found, nothing to be done."
+msgstr ""
+
 #, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Yeah! %d is a good number of arguments but I prefer fail, sorry.\n"
 msgstr ""

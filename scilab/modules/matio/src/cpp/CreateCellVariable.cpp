@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Vincent COUVERT
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -26,13 +29,11 @@ extern "C"
 #include "sciprint.h"
 }
 
-using namespace types;
-
 int CreateCellVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * parent, int item_position)
 {
-    GatewayStruct* pStr = (GatewayStruct*)pvApiCtx;
-    typed_list in = *pStr->m_pIn;
-    InternalType** out = pStr->m_pOut;
+    types::GatewayStruct* pStr = (types::GatewayStruct*)pvApiCtx;
+    types::typed_list in = *pStr->m_pIn;
+    types::InternalType** out = pStr->m_pOut;
     int  iSize = 1;
 
     int rhs = iVar - *getNbInputArgument(pvApiCtx);
@@ -48,15 +49,16 @@ int CreateCellVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * pa
 
     if ((iRank == 2) && ((piDims[0] * piDims[1]) <= 0))
     {
-        Cell* pCell = new Cell();
+        types::Cell* pCell = new types::Cell();
         out[rhs - 1] = pCell;
+        FREE(piDims);
         return TRUE;
     }
 
-    Cell* pCell = new Cell(iRank, piDims);
+    types::Cell* pCell = new types::Cell(iRank, piDims);
 
     matvar_t** allData = (matvar_t**)(matVariable->data);
-    InternalType** ppIT = new InternalType*[matVariable->data_size];
+    types::InternalType** ppIT = new types::InternalType*[matVariable->data_size];
     for (int i = 0; i < iSize; i++)
     {
         ppIT[i] = CreateMatlabTreeVariable(allData[i]);

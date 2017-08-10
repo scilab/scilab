@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+    <GlobalKeyword enable="true" id="00001"/>
+    <Redefinition enable="true" id="00002"/>
+    <Variables enable="true" id="00003"/>
+    <FunctionName enable="true" namePattern="" minLength="-1" maxLength="-1" id="00004"/>
+    <FunctionArgs enable="true" id="00005"/>
+    <UselessArg enable="true" id="00006"/>
+    <UselessRet enable="true" id="00007"/>
+    <VariableName enable="true" namePattern="" minLength="-1" maxLength="-1" id="00008"/>
+    <SingleInstr enable="true" id="00009"/>
+    <EmptyBlock enable="true" id="00010"/>
+    <MopenMclose enable="true" id="00011"/>
+    <McCabe enable="true" max="30" id="00012"/>
+    <Decimal enable="true" character="eE" checkDot="true" id="00013"/>
+    <Printf enable="true" id="00014"/>
+    <LineLength enable="true" max="80" id="00015"/>
+    <LinesCount enable="true" max="200" id="00016"/>
+    <Todo enable="true" id="00017"/>
+    <NaN enable="true" id="00018"/>
+    <EqEq enable="true" id="00019"/>
+    <UselessOp enable="true" id="00020"/>
+    <UnreachableCode enable="true" id="00021"/>
+    <Deprecated enable="true" id="00022"/>
+    <Select enable="true" default="true" homogeneity="false" empty="true" oneCase="true" id="00023"/>
+    <ImplicitList enable="true" id="00024"/>
+    <Struct enable="true" fieldPattern=""  minLength="-1" maxLength="-1" id="00025"/>
+    <LoadSave enable="true" id="00026"/>
+    <OldNot enable="true" id="00027"/>
+    <SpacesAroundOp enable="true" id="00028"/>
+    <SpacesInArgs enable="true" id="00029"/>
+    <BreaksInLoop enable="true" maxBreaks="1" maxContinues="1" id="00030"/>
+    <NestedBlocks enable="true" max="3" id="00031"/>
+    <ExpInCond enable="true" max="5" id="00032"/>
+    <BracketedExp enable="true" id="00033"/>
+    <NotNot enable="true" id="00034"/>
+    <IllegalCalls enable="true" id="00035">
+        <keyword name="pause"/>
+        <keyword name="abort"/>
+        <keyword name="quit"/>
+        <keyword name="exit"/>
+        <keyword name="resume"/>
+        <keyword name="stacksize"/>
+        <keyword name="lib"/>
+        <keyword name="disp"/>
+    </IllegalCalls>
+    <CommentRatio enable="true" ratioMin="0.30" id="00036"/>
+    <FunctionArgsOrder enable="true" id="00037"/>
+    <FunctionTestReturn enable="true" id="00038">
+        <keyword name="mopen" arg="2"/>
+        <keyword name="mclose" arg="1"/>
+        <keyword name="meof" arg="1"/>
+        <keyword name="fileinfo" arg="2"/>
+        <keyword name="evstr" arg="2"/>
+    </FunctionTestReturn>
+    <SemicolonAtEOL enable="true" id="00039"/>
+    <ReturnsCount enable="true" max="1" id="00040"/>
+    <NotEqual enable="true" operator="&lt;&gt;" id="00041"/>
+</configuration>

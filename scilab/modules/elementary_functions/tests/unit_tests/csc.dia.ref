@@ -6,9 +6,9 @@
 // =============================================================================
 // <-- CLI SHELL MODE -->
 // Maple code used to create reference
-// Digits := 40:
+// Digits := 40: 
 // writeto("csc.ref"): interface(prettyprint = 0):
-// for i from -179 to 179 do if (i<>0) then print(i*Pi/180, evalf[30](csc(i*Pi/180), 30)) end end do;
+// for i from -179 to 179 do if (i<>0) then print(i*Pi/180, evalf[30](csc(i*Pi/180), 30)) end end do; 
 // writeto(terminal):
 ieee(2);
 pi=%pi;eps=%eps;Inf=%inf;NaN=%nan; //used to make following code runnable under Matlab

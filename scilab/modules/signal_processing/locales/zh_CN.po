@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2009-04-12 06:56+0000\n"
 "Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
-"Language: \n"
+"X-Generator: Launchpad (build 18315)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -34,11 +34,132 @@ msgid "%s: Wrong type for argument #%d: Real or complex vector expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: Real or complex matrix expected.\n"
+msgid "%s: Memory allocation error.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Memory allocation error.\n"
+msgid "%s : Memory allocation error.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr ""
+
+msgid "fft call : needs power of two!"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for argument: Incompatible dimensions.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Too many coefficients are required.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: %d-element list expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for element %d of input argument #%d: A matrix of real "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for element %d of input argument #%d: A row vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for element %d of input argument #%d: Size must be multiple "
+"of %d.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for element %d of input argument #%d: A square matrix "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for element %d of input argument #%d: Same sizes of element "
+"%d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A row vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same column dimensions "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A %d-by-%d matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Real scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A %d-by-%d array expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: specs => invalid order filter.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: specs => too high order filter.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: error in function syredi.\n"
+msgstr ""
+
+#, c-format
+msgid "Undefined function '%ls'.\n"
+msgstr ""
+
+#, c-format
+msgid "User function '%s' have not been setted.\n"
+msgstr ""
+
+msgid "An error occurred while getting Signalprocessingfunctions object.\n"
+msgstr ""
+
+#, c-format
+msgid "%ls: error while calling user function.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for output argument #%d: Real matrix expected.\n"
 msgstr ""
 
 msgid "Simulation of an ARMAX process:"
@@ -123,7 +244,7 @@ msgid "magnitude error"
 msgstr ""
 
 msgid "Signal Processing"
-msgstr "信号处理"
+msgstr ""
 
 msgid "Spectral Estimation"
 msgstr ""
@@ -204,18 +325,10 @@ msgid "length 55"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
-msgstr "%s：输入参数#%d的值错误：必须在集合{%s}中。\n"
-
-#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Array of floating point numbers "
 "expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为浮点数组。\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr "%s：输入参数#%d的大小错误：应该为一个标量。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
@@ -229,10 +342,6 @@ msgstr "%s：输入参数#%d的值错误：度数必须在集合{%s}中。\n"
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same degree expected.\n"
 msgstr "%s：输入参数#%d和#%d不兼容：应该为同样的度数。\n"
-
-#, c-format
-msgid "%s: Input argument #%d must be real.\n"
-msgstr "%s：输入参数#%d必须为实数。\n"
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d: Elements must be positive.\n"
@@ -279,12 +388,12 @@ msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr "%s：输入参数数目错误：应该为%d个或%d个。\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Real matrix or polynomial expected.\n"
+msgid "%s: Argument #%d: Decimal or complex number(s) expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: Real matrix or polynomial expected.\n"
 msgstr ""
 
 #, c-format
@@ -298,8 +407,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: First element must not be %s.\n"
+msgid "%s: Wrong value for input argument #%d: First element must not be %s.\n"
 msgstr ""
 
 #, c-format
@@ -319,10 +427,6 @@ msgid ""
 msgstr "%s：输入参数#%d的类型错误：应该为线性动态系统或浮点行向量。\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
-msgstr ""
-
-#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A real or polynomial matrix or a "
 "rational expected.\n"
@@ -333,10 +437,6 @@ msgid "%s: Wrong type for input argument #%d: A discrete system expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s：输入参数的数目错误：应该为%d。\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A positive integer expected.\n"
 msgstr ""
 
@@ -345,8 +445,7 @@ msgid "%s: Wrong size for input argument #%d: A positive integer expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A positive integer expected.\n"
+msgid "%s: Wrong value for input argument #%d: A positive integer expected.\n"
 msgstr ""
 
 #, c-format
@@ -389,15 +488,18 @@ msgid "%s: Wrong values for input arguments #%d and #%d.\n"
 msgstr ""
 
 #, c-format
+msgid "%s: Argument #%d: Column expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Arguments #%d and #%d: Same numbers of elements expected.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: Argument #%d expected to be "
 "less than argument #%d.\n"
 msgstr "%s：输入参数#%d和#%d不兼容：参数#%d应该小于参数#%d。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"
-msgstr "%s：输入参数#%d的值错误：必须在区间[%s, %s]中。\n"
 
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
@@ -413,8 +515,7 @@ msgid ""
 msgstr "%s：输入参数#%d的类型错误：应该为有理分数数组。\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A %d elements array expected.\n"
+msgid "%s: Wrong size for input argument #%d: A %d elements array expected.\n"
 msgstr "%s：输入参数#%d的大小错误：应该为一个有%d个元素的数组。\n"
 
 #, c-format
@@ -560,12 +661,6 @@ msgid ""
 "%s: Wrong values for input argument #%d: The first element must be %s and "
 "the last %s.\n"
 msgstr "%s：输入参数#%d的值错误：第一个元素必须是%s，最后一个是%s。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Elements must be in increasing "
-"order.\n"
-msgstr "%s：输入参数#%d的值错误：元素必须以升序排列。\n"
 
 #, c-format
 msgid "%s: Too abrupt change near end of frequency range.\n"

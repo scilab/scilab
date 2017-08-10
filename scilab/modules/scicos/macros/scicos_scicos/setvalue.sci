@@ -26,7 +26,7 @@ function [%ok,%1,%2,%3,%4,%5,...
     %11,%12,%13,%14,%15,...
     %16,%17,%18,%19,%20,...
     %21,%22,%23,%24,%25,...
-    %26,%27,%28,%29,%30]=setvalue(%desc,%lables,%typ,%ini)
+    %26,%27,%28,%29,%30]=setvalue(%desc,%labels,%typ,%ini)
 
     // To avoid infinite loops in set section of blocks during eval
     if %scicos_prob==%t then
@@ -93,7 +93,7 @@ function [%ok,%1,%2,%3,%4,%5,...
     // Copyright INRIA
     [%lhs,%rhs]=argn(0)
 
-    %nn=prod(size(%lables))
+    %nn=prod(size(%labels))
     if %lhs<>%nn+2&%lhs<>%nn+1 then error(41),end
     if size(%typ)<>2*%nn then
         error("typ : list(''type'',[sizes],...)")
@@ -243,7 +243,7 @@ function [%ok,%1,%2,%3,%4,%5,...
             else
                 str = gettext("%s: Type %s is not implemented.\n");
                 mess = msprintf(str, arg1.gui + "(''set'')", %typ(2*%kk-1));
-                if length(arg1.doc) > 0 then
+                if length(arg1.model.uid) > 0 & getscilabmode() == "STD" then
                     warnBlockByUID(arg1.doc(1), mess); // arg1 is from the block interface function
                 else
                     error(mess);
@@ -254,8 +254,8 @@ function [%ok,%1,%2,%3,%4,%5,...
         end
         if %noooo>0 then
             str = gettext("%s: Wrong size for block parameter ''%s'': %s expected, getting %s");
-            mess = msprintf(str, arg1.gui + "(''set'')", %lables(%noooo), %ssss, %ini(%noooo));
-            if length(arg1.model.uid) > 0 then
+            mess = msprintf(str, arg1.gui + "(''set'')", %labels(%noooo), %ssss, %ini(%noooo));
+            if length(arg1.model.uid) > 0 & getscilabmode() == "STD" then
                 warnBlockByUID(arg1.model.uid, mess); // arg1 is from the block interface function
             else
                 disp(mess);
@@ -264,8 +264,8 @@ function [%ok,%1,%2,%3,%4,%5,...
             %ok=%f;break
         elseif %noooo<0 then
             str = gettext("%s: Wrong type for block parameter ''%s'': %s(%s) expected, getting %s");
-            mess = msprintf(str, arg1.gui + "(''set'')", %lables(-%noooo), %typ(-2*%noooo-1), strcat(string(%typ(-2*%noooo))," by "), %ini(-%noooo));
-            if length(arg1.model.uid) > 0 then
+            mess = msprintf(str, arg1.gui + "(''set'')", %labels(-%noooo), %typ(-2*%noooo-1), strcat(string(%typ(-2*%noooo))," by "), %ini(-%noooo));
+            if length(arg1.model.uid) > 0 & getscilabmode() == "STD" then
                 warnBlockByUID(arg1.model.uid, mess); // arg1 is from the block interface function
             else
                 disp(mess);

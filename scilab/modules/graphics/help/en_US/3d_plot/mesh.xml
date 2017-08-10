@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Farid Belahcene
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="mesh">
@@ -16,7 +19,7 @@
         <refpurpose>3D mesh plot</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>mesh(Z)
             mesh(X,Y,Z)
             mesh(...,&lt;GlobalProperty&gt;)
@@ -32,7 +35,7 @@
                 <listitem>
                     <para>
                         a real matrix defining the surface height. It can not be
-                        omitted. The <varname>Z</varname> data is a 
+                        omitted. The <varname>Z</varname> data is a
                         <literal>m</literal>-by-<literal>n</literal> matrix.
                     </para>
                 </listitem>
@@ -42,7 +45,7 @@
                 <listitem>
                     <para>
                         two real matrices : always set together, these data defines a
-                        new standard grid. This new <varname>X</varname> and <varname>Y</varname> 
+                        new standard grid. This new <varname>X</varname> and <varname>Y</varname>
                         components of the grid must match <varname>Z</varname> dimensions (see
                         description below).
                     </para>
@@ -97,7 +100,7 @@
         <para>Data entry specification :</para>
         <para>
             In this paragraph and to be more clear, we won't mention
-            <varname>GlobalProperty</varname> optional arguments as they do not interfer
+            <varname>GlobalProperty</varname> optional arguments as they do not interfere
             with entry data (except for <literal>"Xdata"</literal>,
             <literal>"Ydata"</literal> and <literal>"Zdata"</literal>
             property, see <link linkend="GlobalProperty">GlobalProperty</link>). It is
@@ -113,13 +116,13 @@
     <refsection>
         <title>Remarks</title>
         <para>
-            To enable the tranparency mode you should set the 
+            To enable the transparency mode you should set the
             <literal>color_mode</literal> option to 0.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 [X,Y]=meshgrid(-1:.1:1,-1:.1:1);
 Z=X.^2-Y.^2;
 xtitle('$\huge z=x^2-y^2$');
@@ -133,7 +136,7 @@ mesh(X,Y,Z);
         </scilab:image>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="surf">surf</link>

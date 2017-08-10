@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="st_ility">
+    <refnamediv>
+        <refname>st_ility</refname>
+        <refpurpose>stabilizability test</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[ns, [nc, [,U [,Slo] ]]]=st_ility(Sl [,tol])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>Sl</term>
+                <listitem>
+                    <para>
+                        <literal>syslin</literal> list (linear system)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ns</term>
+                <listitem>
+                    <para> integer (dimension of stabilizable subspace)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>nc</term>
+                <listitem>
+                    <para>
+                        integer (dimension of controllable subspace <literal>nc &lt;= ns</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>U</term>
+                <listitem>
+                    <para>
+                        basis such that its <literal>ns</literal> (resp. <literal>nc</literal>) first components span the stabilizable (resp. controllable) subspace
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Slo</term>
+                <listitem>
+                    <para>
+                        a linear system (<literal>syslin</literal> list)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>tol</term>
+                <listitem>
+                    <para>threshold for controllability detection (see contr)</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal> Slo=( U'*A*U, U'*B, C*U, D, U'*x0 )</literal> (<literal>syslin</literal> list)
+            displays the stabilizable form of <literal>Sl</literal>. Stabilizability means
+            <literal>ns=nx</literal> (dim. of <literal>A</literal> matrix).
+        </para>
+        <programlisting role=""><![CDATA[
+         [*,*,*]            [*]
+U'*A*U = [0,*,*]     U'*B = [0]
+         [0,0,*]            [0]
+ ]]></programlisting>
+        <para>
+            where <literal> (A11,B1) </literal> (dim(A11)= <literal>nc</literal>) is controllable and <literal>A22</literal>
+            (dim(A22)=<literal>ns-nc</literal>) is stable.
+            "Stable" means real part of eigenvalues negative for a continuous
+            linear system, and magnitude of eigenvalues lower than one for a
+            discrete-time system (as defined by <literal>syslin</literal>).
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+A=diag([0.9,-2,3]);B=[0;0;1];Sl=syslin('c',A,B,[]);
+[ns,nc,U]=st_ility(Sl);
+U'*A*U
+U'*B
+[ns,nc,U]=st_ility(syslin('d',A,B,[]));
+U'*A*U
+U'*B
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="dt_ility">dt_ility</link>
+            </member>
+            <member>
+                <link linkend="contr">contr</link>
+            </member>
+            <member>
+                <link linkend="stabil">stabil</link>
+            </member>
+            <member>
+                <link linkend="ssrand">ssrand</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

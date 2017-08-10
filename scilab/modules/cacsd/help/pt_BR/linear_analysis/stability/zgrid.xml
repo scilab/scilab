@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="zgrid" xml:lang="pt">
+    <refnamediv>
+        <refname>zgrid</refname>
+        <refpurpose>esboçode um z-grid</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>zgrid()</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Descrição</title>
+        <para>Esboça as linhas de grid de um Z-plano: linhas de fator constante de
+            amortecimento (zeta) e freqüência natural (Wn) são esboçadas dentro do
+            círculo unitário do Z-plano.
+        </para>
+        <para>Curvas de iso-freqüência são exibidas em freqüência*passo no
+            intervalo [0,0.5]. O limite superior corresponde à freqüência de Shannon
+            <literal>( 1/dt &gt; 2*f )</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examplos</title>
+        <programlisting role="example"><![CDATA[
+    //zgrid
+    clf();zgrid(0:0.2:1,[0.2 0.6 0.8 1])
+    ]]></programlisting>
+        <para>
+            <scilab:image>
+                zgrid(0:0.2:1,[0.2 0.6 0.8 1])
+            </scilab:image>
+        </para>
+        <programlisting role="example"><![CDATA[
+    //zgrid with discrete time system  root locus
+    z=poly(0,'z')
+    H=syslin(0.01,(0.54-1.8*z+2.9*z^2-2.6*z^3+z^4)/(0.8+0.78*z-0.1*z^2+0.9*z^3+z^4))
+    clf();evans(H,1000);zgrid(0:0.1:0.5)
+
+    ]]></programlisting>
+        <para>
+            <scilab:image localized="true">
+                z=poly(0,'z')
+                H=syslin(0.01,(0.54-1.8*z+2.9*z^2-2.6*z^3+z^4)/(0.8+0.78*z-0.1*z^2+0.9*z^3+z^4))
+                clf();evans(H,1000);zgrid(0:0.1:0.5)
+            </scilab:image>
+        </para>
+
+    </refsection>
+
+    <refsection role="see also">
+        <title>Ver Também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="frep2tf">frep2tf</link>
+            </member>
+            <member>
+                <link linkend="freson">freson</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

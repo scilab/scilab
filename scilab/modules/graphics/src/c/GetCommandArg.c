@@ -5,11 +5,14 @@
  * Copyright (C) 2009 - INRIA - Pierre Lando
  * Copyright (C) 2011 - DIGITEO - Manuel Juliachs
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -210,33 +213,52 @@ int get_strf_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], char ** st
         char* pstData = NULL;
         getVarAddressFromPosition(_pvCtx, pos, &piAddr);
         getVarType(_pvCtx, piAddr, &iType);
-
-        if (iType)
+        if (iType == 0)
         {
-            getAllocatedSingleString(_pvCtx, piAddr, &pstData);
-            if ((int)strlen(pstData) != 3)
-            {
-                freeAllocatedSingleString(pstData);
-                Scierror(999, _("%s: Wrong size for input argument #%d: String of %d characters expected.\n"), fname, pos, 3);
-                return 0;
-            }
-            *strf = pstData;
-        }
-        else
-        {
-            /* def value can be changed */
-            reinitDefStrf();
+            // For example: grayplot(x,y,m,);
+            reinitDefStrfN();
             *strf = getDefStrf();
+            return 1;
         }
+        else if (iType != 10)
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, pos);
+            return 0;
+        }
+
+        if (getAllocatedSingleString(_pvCtx, piAddr, &pstData))
+        {
+            return 0;
+        }
+
+        if ((int)strlen(pstData) != 3)
+        {
+            Scierror(999, _("%s: Wrong size for input argument #%d: String of %d characters expected.\n"), fname, pos, 3);
+            freeAllocatedSingleString(pstData);
+            return 0;
+        }
+        *strf = pstData;
     }
     else if ((kopt = FindOpt(_pvCtx, "strf", opts)) >= 0)
     {
         char* pstData = NULL;
-        getAllocatedSingleString(_pvCtx, opts[kopt].piAddr, &pstData);
+        int iType = 0;
+        getVarType(_pvCtx, opts[kopt].piAddr, &iType);
+        if (iType != 10)
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, pos);
+            return 0;
+        }
+
+        if (getAllocatedSingleString(_pvCtx, opts[kopt].piAddr, &pstData))
+        {
+            return 0;
+        }
+
         if ((int)strlen(pstData) != 3)
         {
-            freeAllocatedSingleString(pstData);
             Scierror(999, _("%s: Wrong size for input argument #%d: String of %d characters expected.\n"), fname, kopt, 3);
+            freeAllocatedSingleString(pstData);
             return 0;
         }
         *strf = pstData;
@@ -265,7 +287,10 @@ int get_legend_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], char ** 
 
         if (iType)
         {
-            getAllocatedSingleString(_pvCtx, piAddr, &pstData);
+            if (getAllocatedSingleString(_pvCtx, piAddr, &pstData))
+            {
+                return 0;
+            }
             *legend = pstData;
         }
         else
@@ -276,7 +301,10 @@ int get_legend_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], char ** 
     else if ((kopt = FindOpt(_pvCtx, "leg", opts)) >= 0)
     {
         char* pstData = NULL;
-        getAllocatedSingleString(_pvCtx, opts[kopt].piAddr, &pstData);
+        if (getAllocatedSingleString(_pvCtx, opts[kopt].piAddr, &pstData))
+        {
+            return 0;
+        }
         *legend = pstData;
     }
     else
@@ -303,7 +331,10 @@ int get_labels_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], char ** 
 
         if (iType)
         {
-            getAllocatedSingleString(_pvCtx, piAddr, &pstData);
+            if (getAllocatedSingleString(_pvCtx, piAddr, &pstData))
+            {
+                return 0;
+            }
             *labels = pstData;
         }
         else
@@ -323,7 +354,10 @@ int get_labels_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], char ** 
     else if ((kopt = FindOpt(_pvCtx, "leg", opts)) >= 0)
     {
         char* pstData = NULL;
-        getAllocatedSingleString(_pvCtx, opts[kopt].piAddr, &pstData);
+        if (getAllocatedSingleString(_pvCtx, opts[kopt].piAddr, &pstData))
+        {
+            return 0;
+        }
         *labels = pstData;
     }
     else
@@ -629,11 +663,16 @@ int get_logflags_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], char *
         return 1;
     }
 
-    getAllocatedSingleString(_pvCtx, piAddr, &pstLog);
+    if (getAllocatedSingleString(_pvCtx, piAddr, &pstLog))
+    {
+        return 0;
+    }
+
     iLog = (int)strlen(pstLog);
     if (iLog != 2 && iLog != 3)
     {
         Scierror(999, "%s: Wrong size for input argument #%d: %d or %d expected\n", fname, pos, 2, 3);
+        freeAllocatedSingleString(pstLog);
         return 0;
     }
 
@@ -643,6 +682,7 @@ int get_logflags_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], char *
         {
             //Err = pos;
             SciError(116);
+            freeAllocatedSingleString(pstLog);
             return 0;
         }
 
@@ -659,12 +699,17 @@ int get_logflags_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], char *
         {
             //Err = pos;
             SciError(116);
+            freeAllocatedSingleString(pstLog);
             return 0;
         }
 
-        *logFlags = pstLog;
+        logFlagsCpy[0] = pstLog[0];
+        logFlagsCpy[1] = pstLog[1];
+        logFlagsCpy[2] = pstLog[2];
+        *logFlags = logFlagsCpy;
     }
 
+    freeAllocatedSingleString(pstLog);
     return 1;
 }
 /*--------------------------------------------------------------------------*/

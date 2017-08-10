@@ -10,7 +10,7 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=3006
 //
 // <-- Short Description -->
-// submatrix assignment impossible when the matrix is indexed with a boolean array of falses
+// submatrix assignment impossible when the matrix is indexed with a boolean array of falses  
 //test with handle matrix
 a=[gcf() gca();gca() gcf()];a_ref=a;
 a(1,[%f %f])=[];

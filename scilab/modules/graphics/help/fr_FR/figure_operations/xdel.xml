@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="xdel">
+    <refnamediv>
+        <refname>xdel</refname>
+        <refpurpose>supprime des fenêtres graphiques  </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>xdel([win-nums])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>win-nums  </term>
+                <listitem>
+                    <para>entier ou vecteur d'entiers
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>xdel</literal> supprime les fenêtres graphiques dont les numéros sont donnés dans le vecteur <literal>win-nums</literal> ou supprime la
+            fenêtre graphique courante si aucun argument n'est donné.
+        </para>
+    </refsection>
+</refentry>

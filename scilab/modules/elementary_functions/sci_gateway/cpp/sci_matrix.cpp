@@ -3,11 +3,14 @@
  * Copyright (C) 2011 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - DIGITEO - Cedric DELAMARRE
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 /*--------------------------------------------------------------------------*/
@@ -16,8 +19,6 @@
 #include "double.hxx"
 #include "string.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
-
 
 extern "C"
 {
@@ -52,9 +53,8 @@ types::Function::ReturnValue sci_matrix(types::typed_list &in, int _iRetCount, t
             in[0]->isSparse()       == false &&
             in[0]->isSparseBool()   == false)
     {
-        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_matrix";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
     pGTIn = in[0]->getAs<types::GenericType>();
@@ -70,8 +70,8 @@ types::Function::ReturnValue sci_matrix(types::typed_list &in, int _iRetCount, t
     {
         if (in[1]->isDouble() == false)
         {
-            pGTOut->killMe();
             Scierror(999, _("%s: Wrong type for input argument #%d : A real matrix expected.\n"), "matrix", 2);
+            pGTOut->killMe();
             return types::Function::Error;
         }
 
@@ -79,8 +79,8 @@ types::Function::ReturnValue sci_matrix(types::typed_list &in, int _iRetCount, t
 
         if (pDblNewSize->isComplex())
         {
-            pGTOut->killMe();
             Scierror(999, _("%s: Wrong type for input argument #%d : A real matrix expected.\n"), "matrix", 2);
+            pGTOut->killMe();
             return types::Function::Error;
         }
 
@@ -98,15 +98,17 @@ types::Function::ReturnValue sci_matrix(types::typed_list &in, int _iRetCount, t
                 }
                 else
                 {
-                    pGTOut->killMe();
                     Scierror(999, _("%s: Wrong value for input argument #%d : Only one value can be equal to %d.\n"), "matrix", 2, -1);
+                    pGTOut->killMe();
+                    delete[] piSizes;
                     return types::Function::Error;
                 }
             }
             else if (piSizes[i] < -1)
             {
-                pGTOut->killMe();
                 Scierror(999, _("%s: Wrong value for input argument #%d : At most %d expected.\n"), "matrix", 2, -1);
+                pGTOut->killMe();
+                delete[] piSizes;
                 return types::Function::Error;
             }
             else
@@ -119,12 +121,13 @@ types::Function::ReturnValue sci_matrix(types::typed_list &in, int _iRetCount, t
     {
         iDims = static_cast<int>(in.size()) - 1;
         piSizes = new int[iDims];
-        for (int i = 1; i < in.size(); i++)
+        for (int i = 1; i < static_cast<int>(in.size()); i++)
         {
             if (in[i]->isDouble() == false)
             {
-                pGTOut->killMe();
                 Scierror(999, _("%s: Wrong type for input argument #%d : A real scalar expected.\n"), "matrix", i + 1);
+                pGTOut->killMe();
+                delete[] piSizes;
                 return types::Function::Error;
             }
 
@@ -132,8 +135,9 @@ types::Function::ReturnValue sci_matrix(types::typed_list &in, int _iRetCount, t
 
             if (pDblNewSize->isComplex() || pDblNewSize->isScalar() == false)
             {
-                pGTOut->killMe();
                 Scierror(999, _("%s: Wrong type for input argument #%d : A real scalar expected.\n"), "matrix", i + 1);
+                pGTOut->killMe();
+                delete[] piSizes;
                 return types::Function::Error;
             }
 
@@ -146,15 +150,17 @@ types::Function::ReturnValue sci_matrix(types::typed_list &in, int _iRetCount, t
                 }
                 else
                 {
-                    pGTOut->killMe();
                     Scierror(999, _("%s: Wrong value for input argument #%d : Only one value can be equal to %d.\n"), "matrix", i + 1, -1);
+                    pGTOut->killMe();
+                    delete[] piSizes;
                     return types::Function::Error;
                 }
             }
             else if (piSizes[i - 1] < -1)
             {
-                pGTOut->killMe();
                 Scierror(999, _("%s: Wrong value for input argument #%d : At most %d expected.\n"), "matrix", i + 1, -1);
+                pGTOut->killMe();
+                delete[] piSizes;
                 return types::Function::Error;
             }
             else
@@ -171,21 +177,21 @@ types::Function::ReturnValue sci_matrix(types::typed_list &in, int _iRetCount, t
 
     if (pGTOut->isSparse() && iDims > 2)
     {
-        pGTOut->killMe();
         Scierror(999, _("%s: Wrong value for input argument(s) : Sparse matrix cannot be reshaped beyond %d dimensions.\n"), "matrix", 2);
+        pGTOut->killMe();
+        delete[] piSizes;
         return types::Function::Error;
     }
 
     bOk = pGTOut->reshape(piSizes, iDims);
+    delete[] piSizes;
 
     if (bOk == false)
     {
-        pGTOut->killMe();
         Scierror(999, _("%s: Input and output matrices must have the same number of elements.\n"), "matrix");
+        pGTOut->killMe();
         return types::Function::Error;
     }
-
-    delete[] piSizes;
 
     out.push_back(pGTOut);
     return types::Function::OK;

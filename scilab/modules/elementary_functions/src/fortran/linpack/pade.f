@@ -19,7 +19,7 @@ c      n         : the order of the matrices a,ea .
 c      ea        : the  array that contains the n*n
 c                  matrix exp(a).
 c      iea       : the leading dimension of array ea.
-c      alpha     : variable containing the maximun
+c      alpha     : variable containing the maximum
 c                  norm of the eigenvalues of a.
 c      wk        : workspace array of size 2*n*(n+1)
 c      ipvt      : integer workspace of size n

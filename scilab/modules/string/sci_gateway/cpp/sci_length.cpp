@@ -4,11 +4,14 @@
  * Copyright (C) INRIA 2008 - Allan CORNET
  * Copyright (C) DIGITEO 2009 - Allan CORNET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -34,7 +37,6 @@
 #include "string_gw.hxx"
 #include "context.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 
 extern "C"
 {
@@ -43,24 +45,22 @@ extern "C"
 #include "Scierror.h"
 }
 
-using namespace types;
-
 /*----------------------------------------------------------------------------*/
 /* get length */
-static Double* lengthStrings(String* _pS);
-static Double* lengthMatrix(GenericType* _pG);
-static Double* lengthList(List* _pL);
+static types::Double* lengthStrings(types::String* _pS);
+static types::Double* lengthMatrix(types::GenericType* _pG);
+static types::Double* lengthList(types::List* _pL);
 /* !!! WARNING !!! : Read comments about length on sparse matrix */
 //static Double lengthSparse(Sparse* _pS);
 /*----------------------------------------------------------------------------*/
-Function::ReturnValue sci_length(typed_list &in, int _iRetCount, typed_list &out)
+types::Function::ReturnValue sci_length(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    Double* pOut = NULL;
+    types::Double* pOut = NULL;
 
     if (in.size() != 1)
     {
         Scierror(999, _("%s: Wrong number of input argument(s): %d expected.\n"), "length", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (in[0]->isString())
@@ -70,47 +70,46 @@ Function::ReturnValue sci_length(typed_list &in, int _iRetCount, typed_list &out
     else if (in[0]->isMList())
     {
         //build overload name and check if function exists.
-        MList* pML = in[0]->getAs<MList>();
+        types::MList* pML = in[0]->getAs<types::MList>();
         std::wstring wst = L"%" + pML->getShortTypeStr() + L"_length";
         symbol::Context* pCtx = symbol::Context::getInstance();
-        InternalType* pFunc = pCtx->get(symbol::Symbol(wst));
+        types::InternalType* pFunc = pCtx->get(symbol::Symbol(wst));
         if (pFunc && pFunc->isCallable())
         {
             //call overload
-            ast::ExecVisitor exec;
-            Overload::generateNameAndCall(L"length", in, _iRetCount, out, &exec);
-            return Function::OK;
+            Overload::generateNameAndCall(L"length", in, _iRetCount, out);
+            return types::Function::OK;
         }
 
         //MList without overloading, manage like a list
-        pOut = lengthList(in[0]->getAs<List>());
+        pOut = lengthList(in[0]->getAs<types::List>());
     }
     else if (in[0]->isList())
     {
-        pOut = lengthList(in[0]->getAs<List>());
+        pOut = lengthList(in[0]->getAs<types::List>());
     }
     else if (in[0]->isGenericType())
     {
-        pOut = lengthMatrix(in[0]->getAs<GenericType>());
+        pOut = lengthMatrix(in[0]->getAs<types::GenericType>());
     }
     else
     {
         Scierror(999, _("%s: Wrong type for input argument(s).\n"), "length");
-        return Function::Error;
+        return types::Function::Error;
     }
 
     out.push_back(pOut);
-    return Function::OK;
+    return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/
-static Double* lengthStrings(String* _pS)
+static types::Double* lengthStrings(types::String* _pS)
 {
     if (_pS == NULL)
     {
-        return Double::Empty();
+        return types::Double::Empty();
     }
 
-    Double* pD = new Double(_pS->getDims(), _pS->getDimsArray());
+    types::Double* pD = new types::Double(_pS->getDims(), _pS->getDimsArray());
     wchar_t** pwst  = _pS->get();
     double* pdbl    = pD->get();
 
@@ -121,24 +120,24 @@ static Double* lengthStrings(String* _pS)
     return pD;
 }
 /*--------------------------------------------------------------------------*/
-static Double* lengthMatrix(GenericType* _pG)
+static types::Double* lengthMatrix(types::GenericType* _pG)
 {
     if (_pG == NULL)
     {
-        return Double::Empty();
+        return types::Double::Empty();
     }
 
-    return new Double(static_cast<double>(_pG->getSize()));
+    return new types::Double(static_cast<double>(_pG->getSize()));
 }
 /*--------------------------------------------------------------------------*/
-static Double* lengthList(List* _pL)
+static types::Double* lengthList(types::List* _pL)
 {
     if (_pL == NULL)
     {
-        return Double::Empty();
+        return types::Double::Empty();
     }
 
-    return new Double(static_cast<double>(_pL->getSize()));
+    return new types::Double(static_cast<double>(_pL->getSize()));
 }
 /*--------------------------------------------------------------------------*/
 //static Double lengthSparse(Sparse* _pS)

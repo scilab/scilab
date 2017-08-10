@@ -1,11 +1,14 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function [scitree,trad,txt,crp]=m2sci(mtlbtree,nam,Recmode,prettyprintoutput)
     // This function translates Matlab interpreted code tree of a function to Scilab
@@ -17,7 +20,7 @@ function [scitree,trad,txt,crp]=m2sci(mtlbtree,nam,Recmode,prettyprintoutput)
     // Output arguments:
     //  - scitree: Scilab equivalent for mtlbtree
     //  - trad: code of function sci_<nam>
-    //  - txt: Scilab equivalent function code (function declaration and varaibles initialisation)
+    //  - txt: Scilab equivalent function code (function declaration and variables initialisation)
     //  - crp: Scilab equivalent function code (function body)
 
     [lhs,rhs]=argn(0)

@@ -1,10 +1,13 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2000 - 2016 - INRIA - Serge Steer
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function plzr(a,b,c,d)
     //
@@ -25,30 +28,24 @@ function plzr(a,b,c,d)
         if rhs<>1 then
             error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"plzr",1)),
         end
-        a=tf2ss(a),
         dt=a.dt;
-        [a,b,c,d]=a(2:5)
-        if type(d)<>1 then
-            error(msprintf(gettext("%s: Wrong value of input argument #%d: Proper system expected.\n"),"plzr",1));
-        end
+        [a,b,c,d]=abcd(tf2ss(a)),
+
     case "state-space" then
         if rhs<>1 then
             error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"plzr",1)),
         end
-        dt=a(7);
-        [a,b,c,d]=a(2:5)
-        if type(d)<>1 then
-            error(msprintf(gettext("%s: Wrong value of input argument #%d: Proper system expected.\n"),"plzr",1));
-        end
+        dt=a.dt
+        [a,b,c,d]=abcd(a)
     case "constant" then
         if rhs<>4 then
             error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"plzr",4)),
         end
-        if type(d)<>1 then
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: Array of floating point numbers expected.\n"),..
-            "plzr",4));
-        end
+
         dt=[];
+    case "zpk" then
+        dt=a.dt;
+        [a,b,c,d]=abcd(zpk2ss(a));
     else
         if rhs==1 then
             error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear dynamical system expected.\n"),"plzr",1))
@@ -56,6 +53,7 @@ function plzr(a,b,c,d)
             error(msprintf(gettext("%s: Wrong type of input argument #%d: Array of floating point numbers expected.\n"),"plzr",1))
         end
     end
+
     if type(d)<>1 then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: Array of floating point numbers expected.\n"),..
         "plzr",4));
@@ -107,7 +105,7 @@ function plzr(a,b,c,d)
         legs=[gettext("Poles");legs]
         lhandle=[e;lhandle]
     end
-    if dt == "d" then
+    if dt == "d" | type(dt) == 1 then
         ax.grid=ones(1,3)*color("gray")
         ax.box = "on";
         xarc(-1,1,2,2,0,360*64)

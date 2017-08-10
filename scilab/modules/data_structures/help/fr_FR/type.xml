@@ -85,7 +85,7 @@
                 <listitem>
                     <para>
                         matrice d'<link linkend="int8">entiers</link> codés
-                        sur 1 (int8), 2 (int16) ou 4 (int32) octets.
+                        sur 1 (int8), 2 (int16), 4 (int32) ou 8 (int64) octets.
                     </para>
                 </listitem>
             </varlistentry>
@@ -103,15 +103,6 @@
                 <listitem>
                     <para>
                         matrice de <link linkend="strings">chaînes de caractères</link>.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>11</term>
-                <listitem>
-                    <para>fonction non-compilée (code Scilab). Fonction créée
-                        par <link linkend="deff">deff</link> avec l'argument
-                        'n'.
                     </para>
                 </listitem>
             </varlistentry>
@@ -205,8 +196,9 @@
         </variablelist>
         <para>Note: pour certaines variables, à cause de la représentation
             interne, <emphasis role="italic">type(x)</emphasis> retournera
-            tlist (16) ou mlist (17). C'est le cas de <emphasis role="italic">rational</emphasis>, <emphasis role="italic">state-space</emphasis>, 
-<emphasis role="italic">uitree</emphasis>, <emphasis role="italic">hypermat</emphasis> et <emphasis role="italic">struct</emphasis>. Merci de considérer l'utilisation
+            tlist (16) ou mlist (17). C'est le cas de <emphasis role="italic">rational</emphasis>, <emphasis role="italic">state-space</emphasis>,
+            <emphasis role="italic">uitree</emphasis> et <emphasis role="italic">struct</emphasis>.
+            Merci de considérer l'utilisation
             de <link linkend="typeof">typeof</link> à la place.
         </para>
     </refsection>
@@ -242,9 +234,6 @@ type(l)
 
 deff('[x]=mymacro(y,z)',['a=3*y+1'; 'x=a*z+y']);
 type(mymacro)
-
-deff('[x]=myplus(y,z)','x=y+z','n');
-type(myplus)
 
 ]]></programlisting>
     </refsection>

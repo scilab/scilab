@@ -1,21 +1,21 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="splin3d" xml:lang="en">
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="splin3d" xml:lang="pt">
     <refnamediv>
         <refname>splin3d</refname>
-        <refpurpose>interpolação spline em grides 3d</refpurpose>
+        <refpurpose>interpolaÃ§Ã£o spline em grides 3d</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>tl = splin3d(x, y, z, v, [order])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>x,y,z</term>
                 <listitem>
                     <para> vetores linhas estritamente crescentes (cada um com pelo
-                        menos três componentes) definindo o grid de interpolação 3d
+                        menos trÃªs componentes) definindo o grid de interpolaÃ§Ã£o 3d
                     </para>
                 </listitem>
             </varlistentry>
@@ -32,7 +32,7 @@
                 <term>order</term>
                 <listitem>
                     <para>(opcional) um vetor 1x3 [kx,ky,kz] dada a ordem do tensor
-                        spline em cada direção (o padrão é [4,4,4], i.e. spline tricúbico)
+                        spline em cada direÃ§Ã£o (o padrÃ£o Ã© [4,4,4], i.e. spline tricÃºbico)
                     </para>
                 </listitem>
             </varlistentry>
@@ -45,43 +45,43 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            Esta função computa um spline tensor 3d <emphasis>s</emphasis> que
+            Esta funÃ§Ã£o computa um spline tensor 3d <emphasis>s</emphasis> que
             interpola os pontos <emphasis>(xi,yj,zk,vijk)</emphasis>, i.e., temos
             <emphasis>s(xi,yj,zk)=vijk</emphasis> para todo
             <emphasis>i=1,..,nx</emphasis>, <emphasis>j=1,..,ny</emphasis> e
             <emphasis>k=1,..,nz</emphasis>. O spline resultante <emphasis>s</emphasis>
-            é definido por <literal>tl</literal> que consiste em uma representação
-            B-tensor-spline de <emphasis>s</emphasis>. A avaliação de s em alguns
-            pontos deve ser feita pela função <link linkend="interp3d">interp3d</link>
-            (para computar s e suas derivadas primeiras) ou pela função <link linkend="bsplin3val">bsplin3val</link> (para computar uma derivada
-            arbitrária de s) . Vários tipos de splines podem ser computados
-            selecionando a ordem dos splines em cada direção
+            Ã© definido por <literal>tl</literal> que consiste em uma representaÃ§Ã£o
+            B-tensor-spline de <emphasis>s</emphasis>. A avaliaÃ§Ã£o de s em alguns
+            pontos deve ser feita pela funÃ§Ã£o <link linkend="interp3d">interp3d</link>
+            (para computar s e suas derivadas primeiras) ou pela funÃ§Ã£o <link linkend="bsplin3val">bsplin3val</link> (para computar uma derivada
+            arbitrÃ¡ria de s) . VÃ¡rios tipos de splines podem ser computados
+            selecionando a ordem dos splines em cada direÃ§Ã£o
             <literal>order=[kx,ky,kz]</literal>.
         </para>
     </refsection>
     <refsection>
-        <title>Observação</title>
-        <para>Esta função funciona sob as condições: </para>
+        <title>ObservaÃ§Ã£o</title>
+        <para>Esta funÃ§Ã£o funciona sob as condiÃ§Ãµes: </para>
         <programlisting role=""><![CDATA[ 
 nx, ny, nz <= 3
 2 <= kx < nx
 2 <= ky < ny
 2 <= kz < nz
  ]]></programlisting>
-        <para>Há erro quando estas condições não são respeitadas. </para>
+        <para>HÃ¡ erro quando estas condiÃ§Ãµes nÃ£o sÃ£o respeitadas. </para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // exemplo 1
 // =============================================================================
 
 func =  "v=cos(2*%pi*x).*sin(2*%pi*y).*cos(2*%pi*z)";
 deff("v=f(x,y,z)",func);
-n = 10;  // n x n x n  pontos de interpolação
-x = linspace(0,1,n); y=x; z=x; // grid de interpolação
+n = 10;  // n x n x n  pontos de interpolaÃ§Ã£o
+x = linspace(0,1,n); y=x; z=x; // grid de interpolaÃ§Ã£o
 [X,Y,Z] = ndgrid(x,y,z);
 V = f(X,Y,Z);
 tl = splin3d(x,y,z,V,[5 5 5]);
@@ -93,14 +93,14 @@ vp_interp = interp3d(xp,yp,zp, tl);
 er = max(abs(vp_exact - vp_interp))
 // tente agora com n=20 e veja o erro
 
-// exemplo 2 (veja a página de ajuda de linear_interpn que contém o
-//            mesmo exemplo com interpolação trilinear)
+// exemplo 2 (veja a pÃ¡gina de ajuda de linear_interpn que contÃ©m o
+//            mesmo exemplo com interpolaÃ§Ã£o trilinear)
 // =============================================================================
 
 exec("SCI/modules/interpolation/demos/interp_demo.sci")
 func =  "v=(x-0.5).^2 + (y-0.5).^3 + (z-0.5).^2";
 deff("v=f(x,y,z)",func);
-n = 5; 
+n = 5;
 x = linspace(0,1,n); y=x; z=x;
 [X,Y,Z] = ndgrid(x,y,z);
 V = f(X,Y,Z);
@@ -115,24 +115,25 @@ for i = 1:length(val)
    [Xm,Xp,Ym,Yp,Zm,Zp] = slice_parallelepiped(dir(i), val(i), ebox, m, m, m);
    Vm = interp3d(Xm,Ym,Zm, tl);
    [xf,yf,zf,vf] = nf3dq(Xm,Ym,Zm,Vm,1);
-   XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf]; VF = [VF vf]; 
+   XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf]; VF = [VF vf];
    Vp = interp3d(Xp,Yp,Zp, tl);
    [xf,yf,zf,vf] = nf3dq(Xp,Yp,Zp,Vp,1);
-   XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf]; VF = [VF vf]; 
+   XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf]; VF = [VF vf];
 end
 nb_col = 128;
 vmin = min(VF); vmax = max(VF);
 color = dsearch(VF,linspace(vmin,vmax,nb_col+1));
-xset("colormap",jetcolormap(nb_col));
-clf(); xset("hidden3d",xget("background"));
+gcf().color_map = jetcolormap(nb_col);
+clf();
+gca().hiddencolor = gca().background;
 colorbar(vmin,vmax)
 plot3d(XF, YF, list(ZF,color), flag=[-1 6 4])
-xtitle("interpolação por spline 3d da função "+func)
+xtitle("interpolaÃ§Ã£o por spline 3d da funÃ§Ã£o "+func)
 show_window()
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="linear_interpn">linear_interpn</link>
@@ -148,7 +149,7 @@ show_window()
     <refsection>
         <title>Autores</title>
         <simplelist type="vert">
-            <member>R.F. Boisvert, C. De Boor (código da biblioteca FORTRAN CMLIB)
+            <member>R.F. Boisvert, C. De Boor (cÃ³digo da biblioteca FORTRAN CMLIB)
             </member>
             <member>B. Pincon (interface Scilab)</member>
         </simplelist>

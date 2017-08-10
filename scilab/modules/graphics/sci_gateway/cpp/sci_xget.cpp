@@ -5,11 +5,14 @@
  * Copyright (C) 2011 - Scilab Enterprises - Bruno JOFRET
  * Copyright (C) 2013 - Scilab Enterprises - Cedric Delamarre
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -23,14 +26,14 @@
 #include "double.hxx"
 #include "configgraphicvariable.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
-#include "internal.hxx"
+#include "string.hxx"
 
 extern "C"
 {
 #include <string.h>
 #include "GetProperty.h"
 #include "Scierror.h"
+#include "Sciwarning.h"
 #include "localization.h"
 #include "returnProperty.h"
 #include "HandleManagement.h"
@@ -51,8 +54,7 @@ types::Function::ReturnValue sci_xget(types::typed_list &in, int _iRetCount, typ
 
     if (in.size() == 0)
     {
-        ast::ExecVisitor exec;
-        return Overload::call(L"%_xget", in, _iRetCount, out, &exec);
+        return Overload::call(L"%_xget", in, _iRetCount, out);
     }
 
     if (in.size() > 2)
@@ -120,6 +122,8 @@ types::Function::ReturnValue sci_xget(types::typed_list &in, int _iRetCount, typ
         break;
         case 2 : // auto clear
         {
+            Sciwarning(_("%s: This feature will be permanently removed in Scilab %s\n\n"), _("Warning"), "6.1.0");
+
             int iAutoClear = 0;
             int* piAutoClear = &iAutoClear;
             getGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_AUTO_CLEAR__, jni_bool, (void **)&piAutoClear);
@@ -135,6 +139,8 @@ types::Function::ReturnValue sci_xget(types::typed_list &in, int _iRetCount, typ
         break;
         case 8 : // colormap
         {
+            Sciwarning(_("%s: This feature will be permanently removed in Scilab %s\n\n"), _("Warning"), "6.1.0");
+
             int iObjUID = 0;
             // Force figure creation if none exists.
             getOrCreateDefaultSubwin();
@@ -145,6 +151,8 @@ types::Function::ReturnValue sci_xget(types::typed_list &in, int _iRetCount, typ
         break;
         case 20 : // mark
         {
+            Sciwarning(_("%s: This feature will be permanently removed in Scilab %s\n\n"), _("Warning"), "6.1.0");
+
             int iObjUID = getOrCreateDefaultSubwin();
             int iMarkStyle = 0;
             int* piMarkStyle = &iMarkStyle;
@@ -162,17 +170,23 @@ types::Function::ReturnValue sci_xget(types::typed_list &in, int _iRetCount, typ
         break;
         case 21 : // mark size
         {
+            Sciwarning(_("%s: This feature will be permanently removed in Scilab %s\n\n"), _("Warning"), "6.1.0");
+
             int iObjUID = getOrCreateDefaultSubwin();
             out.push_back((types::InternalType*)get_mark_size_property(pvApiCtx, iObjUID));
         }
         break;
         case 19 : // line style
         {
+            Sciwarning(_("%s: This feature will be permanently removed in Scilab %s\n\n"), _("Warning"), "6.1.0");
+
             out.push_back((types::InternalType*)get_line_style_property(pvApiCtx, getOrCreateDefaultSubwin()));
         }
         break;
         case 5 : // clipping
         {
+            Sciwarning(_("%s: This feature will be permanently removed in Scilab %s\n\n"), _("Warning"), "6.1.0");
+
             types::Double* pDblClipBox = new types::Double(1, 4);
             double *clipBox = NULL;
             int iObjUID = getOrCreateDefaultSubwin();
@@ -183,6 +197,8 @@ types::Function::ReturnValue sci_xget(types::typed_list &in, int _iRetCount, typ
         break;
         case 12 : // font
         {
+            Sciwarning(_("%s: This feature will be permanently removed in Scilab %s\n\n"), _("Warning"), "6.1.0");
+
             int iObjUID = getOrCreateDefaultSubwin();
             double dblFontSize = 0;
             double* pdblFontSize = &dblFontSize;
@@ -200,6 +216,8 @@ types::Function::ReturnValue sci_xget(types::typed_list &in, int _iRetCount, typ
         break;
         case 13 : // font size
         {
+            Sciwarning(_("%s: This feature will be permanently removed in Scilab %s\n\n"), _("Warning"), "6.1.0");
+
             double dblFontSize = 0;
             double* pdblFontSize = &dblFontSize;
             getGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_FONT_SIZE__, jni_double, (void **)&pdblFontSize);
@@ -209,6 +227,8 @@ types::Function::ReturnValue sci_xget(types::typed_list &in, int _iRetCount, typ
         break;
         case 9 : // dashes
         {
+            Sciwarning(_("%s: This feature will be permanently removed in Scilab %s\n\n"), _("Warning"), "6.1.0");
+
             int iLineStyle = 0;
             int* piLineStyle = &iLineStyle;
 
@@ -219,12 +239,16 @@ types::Function::ReturnValue sci_xget(types::typed_list &in, int _iRetCount, typ
         break;
         case 16 : // hidden3d
         {
+            Sciwarning(_("%s: This feature will be permanently removed in Scilab %s\n\n"), _("Warning"), "6.1.0");
+
             out.push_back((types::InternalType*)get_hidden_color_property(pvApiCtx, getOrCreateDefaultSubwin()));
         }
         break;
         case 30 : // window
         case 11 : // figure
         {
+            Sciwarning(_("%s: This feature will be permanently removed in Scilab %s\n\n"), _("Warning"), "6.1.0");
+
             int iFigureId = 0;
             int* piFigureId = &iFigureId;
 
@@ -236,12 +260,16 @@ types::Function::ReturnValue sci_xget(types::typed_list &in, int _iRetCount, typ
         break;
         case 25 : // thickness
         {
+            Sciwarning(_("%s: This feature will be permanently removed in Scilab %s\n\n"), _("Warning"), "6.1.0");
+
             out.push_back((types::InternalType*)get_thickness_property(pvApiCtx, getOrCreateDefaultSubwin()));
         }
         break;
         case 28 : // wdim
         case 31 : // wpdim
         {
+            Sciwarning(_("%s: This feature will be permanently removed in Scilab %s\n\n"), _("Warning"), "6.1.0");
+
             int *piFigureSize = NULL;
             types::Double* pDblFigureSize = new types::Double(1, 2);
 
@@ -255,6 +283,8 @@ types::Function::ReturnValue sci_xget(types::typed_list &in, int _iRetCount, typ
         break;
         case 32 : // wpos
         {
+            Sciwarning(_("%s: This feature will be permanently removed in Scilab %s\n\n"), _("Warning"), "6.1.0");
+
             int *piFigurePosition = NULL;
             types::Double* pDblFigurePos = new types::Double(1, 2);
 
@@ -268,6 +298,8 @@ types::Function::ReturnValue sci_xget(types::typed_list &in, int _iRetCount, typ
         break;
         case 27 : // viewport
         {
+            Sciwarning(_("%s: This feature will be permanently removed in Scilab %s\n\n"), _("Warning"), "6.1.0");
+
             int *piViewport = NULL;
             types::Double* pDblViewport = new types::Double(1, 2);
 
@@ -281,6 +313,8 @@ types::Function::ReturnValue sci_xget(types::typed_list &in, int _iRetCount, typ
         break;
         case 3 : // background
         {
+            Sciwarning(_("%s: This feature will be permanently removed in Scilab %s\n\n"), _("Warning"), "6.1.0");
+
             out.push_back((types::InternalType*)get_background_property(pvApiCtx, getOrCreateDefaultSubwin()));
         }
         break;
@@ -288,11 +322,15 @@ types::Function::ReturnValue sci_xget(types::typed_list &in, int _iRetCount, typ
         case 14 : // foreground
         case 23 : // pattern
         {
+            Sciwarning(_("%s: This feature will be permanently removed in Scilab %s\n\n"), _("Warning"), "6.1.0");
+
             out.push_back((types::InternalType*)get_foreground_property(pvApiCtx, getOrCreateDefaultSubwin()));
         }
         break;
         case 17 : // lastpattern
         {
+            Sciwarning(_("%s: This feature will be permanently removed in Scilab %s\n\n"), _("Warning"), "6.1.0");
+
             int iNumColors = 0;
             int* piNumColors = &iNumColors;
 
@@ -304,6 +342,8 @@ types::Function::ReturnValue sci_xget(types::typed_list &in, int _iRetCount, typ
         break;
         case 18 : // line mode
         {
+            Sciwarning(_("%s: This feature will be permanently removed in Scilab %s\n\n"), _("Warning"), "6.1.0");
+
             int iLineMode = 0;
             int* lineMode = &iLineMode;
 
@@ -314,6 +354,8 @@ types::Function::ReturnValue sci_xget(types::typed_list &in, int _iRetCount, typ
         break;
         case 29 : // white
         {
+            Sciwarning(_("%s: This feature will be permanently removed in Scilab %s\n\n"), _("Warning"), "6.1.0");
+
             int iNumColors = 0;
             int* piNumColors = &iNumColors;
 
@@ -326,6 +368,8 @@ types::Function::ReturnValue sci_xget(types::typed_list &in, int _iRetCount, typ
         break;
         case 33 : // wresize
         {
+            Sciwarning(_("%s: This feature will be permanently removed in Scilab %s\n\n"), _("Warning"), "6.1.0");
+
             // autoresize property
             int iAutoResize = 0;
             int* piAutoResize =  &iAutoResize;
@@ -338,6 +382,8 @@ types::Function::ReturnValue sci_xget(types::typed_list &in, int _iRetCount, typ
         break;
         case 6 : // clipgrf
         {
+            Sciwarning(_("%s: This feature will be permanently removed in Scilab %s\n\n"), _("Warning"), "6.1.0");
+
             /* clip_state : 0 = off, 1 = on */
             int iClipState = 0;
             int* piClipState = &iClipState;
@@ -349,6 +395,8 @@ types::Function::ReturnValue sci_xget(types::typed_list &in, int _iRetCount, typ
         break;
         case 4 : // clipoff
         {
+            Sciwarning(_("%s: This feature will be permanently removed in Scilab %s\n\n"), _("Warning"), "6.1.0");
+
             int iClipState = 0;
             int* piClipState = &iClipState;
 

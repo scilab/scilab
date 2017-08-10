@@ -5,12 +5,12 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="acotd" xml:lang="en">
     <refnamediv>
         <refname>acotd</refname>
-        <refpurpose>computes the element-wise inverse cotangeant of the argument,
+        <refpurpose>computes the element-wise inverse cotangent of the argument,
             result in degree.
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>y = acotd(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -33,7 +33,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            Computes the element-wise inverse cotangeant of the argument and
+            Computes the element-wise inverse cotangent of the argument and
             returns the results in degree. For real argument <varname>x</varname> the result is
             real.
         </para>
@@ -47,13 +47,13 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 x=[1 2 -2 sqrt(2) -sqrt(2) 2/sqrt(3) -2/sqrt(3) -1];
 acotd(x)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="cotd">cotd</link>

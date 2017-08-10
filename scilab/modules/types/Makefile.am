@@ -3,11 +3,14 @@
 # Copyright (C) DIGITEO - 2010 - Allan CORNET
 # Copyright (C) DIGITEO - 2010 - Bruno JOFRET
 #
-# This file must be used under the terms of the CeCILL.
-# This source file is licensed as described in the file COPYING, which
-# you should have received as part of this distribution.  The terms
-# are also available at
-# http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+# Copyright (C) 2012 - 2016 - Scilab Enterprises
+#
+# This file is hereby licensed under the terms of the GNU GPL v2.0,
+# pursuant to article 5.3.4 of the CeCILL v.2.1.
+# This file was originally licensed under the terms of the CeCILL v2.1,
+# and continues to be available under such terms.
+# For more information, see the COPYING file which you should have received
+# along with this program.
 #
 
 #### Target ######
@@ -44,33 +47,6 @@ if GIWS
 BUILT_SOURCES+=giws
 endif
 
-TYPES_GATEWAY_CPP_SOURCES = \
-    sci_gateway/cpp/types_gw.cpp \
-	sci_gateway/cpp/sci_list.cpp \
-	sci_gateway/cpp/sci_struct.cpp \
-	sci_gateway/cpp/sci_insert.cpp \
-	sci_gateway/cpp/sci_null.cpp \
-	sci_gateway/cpp/sci_cell.cpp \
-	sci_gateway/cpp/sci_makecell.cpp \
-	sci_gateway/cpp/sci_usertype.cpp \
-	sci_gateway/cpp/sci_typeof.cpp \
-	sci_gateway/cpp/sci_tlist.cpp \
-	sci_gateway/cpp/sci_mlist.cpp \
-	sci_gateway/cpp/sci_isfield.cpp \
-	sci_gateway/cpp/sci_fieldnames.cpp
-
-
-if ENABLE_DEBUG
-TYPES_GATEWAY_CPP_SOURCES += \
-    sci_gateway/cpp/sci_inspectorDeleteUnreferencedItems.cpp \
-	sci_gateway/cpp/sci_inspectorGetItem.cpp \
-	sci_gateway/cpp/sci_inspectorGetItemCount.cpp \
-	sci_gateway/cpp/sci_inspectorGetUnreferencedItem.cpp \
-	sci_gateway/cpp/sci_inspectorShowItem.cpp \
-	sci_gateway/cpp/sci_inspectorShowUnreferencedItem.cpp \
-	sci_gateway/cpp/sci_inspectorGetFunctionList.cpp
-endif
-
 libscitypes_java_la_CFLAGS = \
     $(JAVA_JNI_INCLUDE) \
     -I$(top_srcdir)/modules/ast/includes/ast/ \
@@ -103,29 +79,7 @@ libscitypes_java_la_CPPFLAGS = \
     $(AM_CPPFLAGS)
 
 
-libscitypes_la_CPPFLAGS = \
-	-I$(srcdir)/includes \
-    -I$(top_srcdir)/modules/ast/includes/ast/ \
-    -I$(top_srcdir)/modules/ast/includes/exps/ \
-    -I$(top_srcdir)/modules/ast/includes/operations/ \
-    -I$(top_srcdir)/modules/ast/includes/parse/ \
-    -I$(top_srcdir)/modules/ast/includes/symbol/ \
-    -I$(top_srcdir)/modules/ast/includes/system_env/ \
-    -I$(top_srcdir)/modules/ast/includes/types/ \
-    -I$(top_srcdir)/modules/ast/includes/analysis/ \
-	-I$(top_srcdir)/modules/elementary_functions/includes \
-	-I$(top_srcdir)/modules/localization/includes \
-	-I$(top_srcdir)/modules/output_stream/includes \
-	-I$(top_srcdir)/modules/functions_manager/includes \
-	-I$(top_srcdir)/modules/string/includes \
-	-I$(top_srcdir)/modules/threads/includes \
-    -I$(top_srcdir)/modules/dynamic_link/includes \
-    -I$(top_srcdir)/modules/api_scilab/includes \
-    -I$(top_srcdir)/modules/console/includes \
-	-I$(srcdir)/src/cpp \
-	$(AM_CPPFLAGS)
-
-pkglib_LTLIBRARIES = libscitypes.la
+pkglib_LTLIBRARIES =
 if GUI
 pkglib_LTLIBRARIES += libscitypes-java.la
 endif
@@ -139,7 +93,6 @@ libscitypes_java_la_LIBADD = \
 			$(top_builddir)/modules/jvm/libscijvm.la
 
 libscitypes_java_la_SOURCES = $(TYPES_JAVA_C_SOURCES) $(TYPES_JAVA_CPP_SOURCES)
-libscitypes_la_SOURCES = $(TYPES_GATEWAY_CPP_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC= $(TYPES_C_SOURCES) $(GATEWAY_C_SOURCES)

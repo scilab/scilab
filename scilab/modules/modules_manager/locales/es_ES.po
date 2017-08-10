@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2011-10-22 15:29+0000\n"
-"Last-Translator: Fido <Unknown>\n"
+"PO-Revision-Date: 2015-10-08 22:07+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
-"Language: es\n"
+"X-Generator: Launchpad (build 18315)\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
@@ -26,12 +26,12 @@ msgid "%s: Wrong number of input arguments: At most %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
 
@@ -55,6 +55,10 @@ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 "%s: Número incorrecto de argumentos de entrada: Se esperaban de %d a %d.\n"
 
+#, c-format
+msgid "%s: Argument #%d: Text(s) expected.\n"
+msgstr ""
+
 msgid "Generating cleaner.sce...\n"
 msgstr "Generando cleaner.sce...\n"
 
@@ -67,8 +71,7 @@ msgstr ""
 "escritura.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
 msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba una matriz de "
 "strings.\n"
@@ -116,13 +119,15 @@ msgstr "Generando loader_gateway.sce...\n"
 
 #, c-format
 msgid "%s: documentation cannot be built in this scilab mode: %s.\n"
-msgstr ""
-"%s: No puede construir la documentación en este modo de scilab: %s.\n"
+msgstr "%s: No puede construir la documentación en este modo de scilab: %s.\n"
 
 msgid "Generating loader.sce...\n"
 msgstr "Generando loader.sce...\n"
 
 msgid "Generating unloader.sce...\n"
+msgstr ""
+
+msgid "Generating localization\n"
 msgstr ""
 
 #, c-format
@@ -131,8 +136,9 @@ msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un arreglo de "
 "strings.\n"
 
-msgid "Generating localization\n"
-msgstr ""
+#, fuzzy
+msgid "Generating cleaner_src.sce...\n"
+msgstr "Generando cleaner.sce...\n"
 
 #, c-format
 msgid "%s: The file '%s' doesn't exist or is not read accessible.\n"
@@ -148,6 +154,14 @@ msgstr ""
 "%s: Este módulo requiere de un compilador de C, pero no fue encontrado.\n"
 
 msgid "Building gateway...\n"
+msgstr ""
+
+#, c-format
+msgid "Could not use the default compilation of gateways in %s."
+msgstr ""
+
+#, c-format
+msgid "No builder script found in %s."
 msgstr ""
 
 msgid "Building help...\n"
@@ -166,6 +180,16 @@ msgstr ""
 msgid "Building sources...\n"
 msgstr "Construyendo fuentes...\n"
 
+msgid "No builder file found, nothing to be done"
+msgstr ""
+
+msgid "No builder file found, nothing to be done."
+msgstr ""
+
 #, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Yeah! %d is a good number of arguments but I prefer fail, sorry.\n"
 msgstr ""

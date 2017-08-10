@@ -3,11 +3,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ????-2009 - INRIA
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 #include <string.h> /* memcpy */
@@ -15,7 +18,7 @@
 #include "machine.h"
 #include "core_math.h"
 #include "sci_malloc.h"
-
+#include "numericconstants_interface.h"
 #include "lsq.h"
 
 
@@ -35,9 +38,6 @@ extern void C2F(dlacpy)(char const * uplo /* "U"pper, "L"ower, or full*/, int co
 
 extern void C2F(zlacpy)(char const * uplo /* "U"pper, "L"ower, or full*/, int const * piRows, int const * piCols
                         , doublecomplex const* pdblSource, int const * piLDSource, doublecomplex* pdblDest, int const* piLDDest);
-
-/* query for epsilon */
-extern double C2F(dlamch)(char const query[1], long );
 
 /*
  * [try to] allocate workspace for [d|z]gelsy Lapack routines. First try to allocate optimal worksize (after querying Lapack for this size). If that fails
@@ -64,8 +64,10 @@ static double* allocDgelsyWorkspace(int rows, int cols, int nRhs, int* allocated
     double optim;
     int query = -1;
     int const maxRowsCols = Max(rows, cols);
+    double dblfake = 0;
+    int ifake = 0;
 
-    C2F(dgelsy)( &rows, &cols, &nRhs, NULL, &rows, NULL, &maxRowsCols, NULL, NULL, NULL, &optim, &query, &info);
+    C2F(dgelsy)(&rows, &cols, &nRhs, &dblfake, &rows, &dblfake, &maxRowsCols, &ifake, &dblfake, &ifake, &optim, &query, &info);
     *allocated = (int)optim;
     if ( !(ret = (double*)MALLOC(*allocated * sizeof(double))))
     {
@@ -85,8 +87,11 @@ static doublecomplex* allocZgelsyWorkspace(int rows, int cols, int nRhs, int* al
     doublecomplex optim;
     int query = -1;
     int const maxRowsCols = Max(rows, cols);
+    double dblfake = 0;
+    int ifake = 0;
+    doublecomplex cfake;
 
-    C2F(zgelsy)( &rows, &cols, &nRhs, NULL, &rows, NULL, &maxRowsCols, NULL, NULL, NULL, &optim, &query, NULL, &info);
+    C2F(zgelsy)(&rows, &cols, &nRhs, &cfake, &rows, &cfake, &maxRowsCols, &ifake, &dblfake, &ifake, &optim, &query, &dblfake, &info);
     *allocated = (int)optim.r;
     if ( !(ret = (doublecomplex*)MALLOC(*allocated * sizeof(doublecomplex))))
     {
@@ -109,7 +114,7 @@ int iLsqM(double* pData1, int iRows, int iCols, double* pData2, int iNRhs, int c
     int* pPivot = NULL;
     int worksize = 0 ;
     int unusedRank;
-    double const treshold = pTreshold ? *pTreshold : sqrt(C2F(dlamch)("e", 1L)) ;
+    double const treshold = pTreshold ? *pTreshold : sqrt(nc_eps());
 
     if ( (pRwork = (double*)( complexArgs ? (double*)MALLOC(2 * iCols * sizeof(double)) : allocDgelsyWorkspace(iRows, iCols, iNRhs, &worksize)))
             && (pXb = (double*)MALLOC(Max(iRows, iCols) * iNRhs * (complexArgs ? sizeof(doublecomplex) : sizeof(double))))

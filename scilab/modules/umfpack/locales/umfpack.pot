@@ -2,7 +2,7 @@
 # Please see in SCI/tools/localization for localization management
 # Copyright (C) 2007-2008 - INRIA
 # Copyright (C) 2008-2011 - DIGITEO
-# Copyright (C) 2012-2014 - Scilab-Enterprises
+# Copyright (C) 2012-2015 - Scilab-Enterprises
 # This file is distributed under the same license as the Scilab package.
 #
 msgid ""
@@ -10,20 +10,20 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"Last-Translator: Vincent COUVERT <vincent.couvert@scilab-enterprises.com>\n"
+"Last-Translator: François Granade <francois.granade@scilab-enterprises.com>\n"
 "Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-07-03 10:13+0100\n"
+"Revision-Date: 2017-02-01 14:30+0100\n"
 
-# File: sci_gateway/c/sci_res_with_prec.c, line: 169
+# File: modules/umfpack/sci_gateway/c/sci_res_with_prec.c, line: 154
 #, c-format
 msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_taucs_chdel.c, line: 118
+# File: modules/umfpack/sci_gateway/c/sci_taucs_chdel.c, line: 101
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: not a valid reference to Cholesky "
@@ -31,7 +31,7 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_taucs_chfact.c, line: 136
+# File: modules/umfpack/sci_gateway/c/sci_taucs_chfact.c, line: 119
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Must be symmetric positive definite "
@@ -39,29 +39,29 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_taucs_chfact.c, line: 147
-# File: sci_gateway/c/sci_taucs_chget.c, line: 103
-# File: sci_gateway/c/sci_umf_luget.c, line: 330
-# File: src/c/taucs_scilab.c, line: 279
-# File: src/c/taucs_scilab.c, line: 2532
+# File: modules/umfpack/sci_gateway/c/sci_taucs_chfact.c, line: 130
+# File: modules/umfpack/sci_gateway/c/sci_taucs_chget.c, line: 86
+# File: modules/umfpack/sci_gateway/c/sci_umf_luget.c, line: 323
+# File: modules/umfpack/src/c/taucs_scilab.c, line: 279
+# File: modules/umfpack/src/c/taucs_scilab.c, line: 2532
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_taucs_chfact.c, line: 165
-# File: sci_gateway/c/sci_umf_lufact.c, line: 220
+# File: modules/umfpack/sci_gateway/c/sci_taucs_chfact.c, line: 148
+# File: modules/umfpack/sci_gateway/c/sci_umf_lufact.c, line: 226
 #, c-format
 msgid "%s: An error occurred: %s\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_taucs_chfact.c, line: 165
+# File: modules/umfpack/sci_gateway/c/sci_taucs_chfact.c, line: 148
 msgid "factorization"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_taucs_chget.c, line: 96
+# File: modules/umfpack/sci_gateway/c/sci_taucs_chget.c, line: 79
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Must be a valid reference to a "
@@ -69,22 +69,22 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_taucs_chinfo.c, line: 116
-# File: sci_gateway/c/sci_taucs_chinfo.c, line: 123
-# File: sci_gateway/c/sci_taucs_chinfo.c, line: 130
-# File: sci_gateway/c/sci_umf_luinfo.c, line: 126
-# File: sci_gateway/c/sci_umf_luinfo.c, line: 133
-# File: sci_gateway/c/sci_umf_luinfo.c, line: 140
-# File: sci_gateway/c/sci_umf_luinfo.c, line: 147
-# File: sci_gateway/c/sci_umf_luinfo.c, line: 154
-# File: sci_gateway/c/sci_umf_luinfo.c, line: 161
-# File: sci_gateway/c/sci_umf_luinfo.c, line: 184
+# File: modules/umfpack/sci_gateway/c/sci_taucs_chinfo.c, line: 99
+# File: modules/umfpack/sci_gateway/c/sci_taucs_chinfo.c, line: 106
+# File: modules/umfpack/sci_gateway/c/sci_taucs_chinfo.c, line: 113
+# File: modules/umfpack/sci_gateway/c/sci_umf_luinfo.c, line: 109
+# File: modules/umfpack/sci_gateway/c/sci_umf_luinfo.c, line: 116
+# File: modules/umfpack/sci_gateway/c/sci_umf_luinfo.c, line: 123
+# File: modules/umfpack/sci_gateway/c/sci_umf_luinfo.c, line: 130
+# File: modules/umfpack/sci_gateway/c/sci_umf_luinfo.c, line: 137
+# File: modules/umfpack/sci_gateway/c/sci_umf_luinfo.c, line: 144
+# File: modules/umfpack/sci_gateway/c/sci_umf_luinfo.c, line: 167
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_taucs_chsolve.c, line: 122
+# File: modules/umfpack/sci_gateway/c/sci_taucs_chsolve.c, line: 105
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: not a valid reference to Cholesky "
@@ -92,17 +92,17 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_taucs_chsolve.c, line: 146
-# File: sci_gateway/c/sci_umf_lufact.c, line: 148
-# File: sci_gateway/c/sci_umf_lusolve.c, line: 208
-# File: sci_gateway/c/sci_umfpack.c, line: 210
-# File: sci_gateway/c/sci_umfpack.c, line: 248
+# File: modules/umfpack/sci_gateway/c/sci_taucs_chsolve.c, line: 129
+# File: modules/umfpack/sci_gateway/c/sci_umf_lufact.c, line: 146
+# File: modules/umfpack/sci_gateway/c/sci_umf_lusolve.c, line: 193
+# File: modules/umfpack/sci_gateway/c/sci_umfpack.c, line: 201
+# File: modules/umfpack/sci_gateway/c/sci_umfpack.c, line: 239
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_taucs_chsolve.c, line: 161
+# File: modules/umfpack/sci_gateway/c/sci_taucs_chsolve.c, line: 144
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: not compatible with the Cholesky "
@@ -110,7 +110,7 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_taucs_chsolve.c, line: 185
+# File: modules/umfpack/sci_gateway/c/sci_taucs_chsolve.c, line: 168
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: not compatible with the Cholesky "
@@ -118,24 +118,24 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_taucs_chsolve.c, line: 215
+# File: modules/umfpack/sci_gateway/c/sci_taucs_chsolve.c, line: 199
 #, c-format
 msgid "%s: not enough memory.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_umf_ludel.c, line: 108
-# File: sci_gateway/c/sci_umf_luget.c, line: 98
-# File: sci_gateway/c/sci_umf_luinfo.c, line: 98
-# File: sci_gateway/c/sci_umf_lusolve.c, line: 132
+# File: modules/umfpack/sci_gateway/c/sci_umf_ludel.c, line: 91
+# File: modules/umfpack/sci_gateway/c/sci_umf_luget.c, line: 81
+# File: modules/umfpack/sci_gateway/c/sci_umf_luinfo.c, line: 81
+# File: modules/umfpack/sci_gateway/c/sci_umf_lusolve.c, line: 117
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A pointer expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_umf_ludel.c, line: 134
-# File: sci_gateway/c/sci_umf_luget.c, line: 123
-# File: sci_gateway/c/sci_umf_lusolve.c, line: 146
+# File: modules/umfpack/sci_gateway/c/sci_umf_ludel.c, line: 117
+# File: modules/umfpack/sci_gateway/c/sci_umf_luget.c, line: 106
+# File: modules/umfpack/sci_gateway/c/sci_umf_lusolve.c, line: 131
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Must be a valid reference to (umf) "
@@ -143,63 +143,63 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_umf_lufact.c, line: 116
-# File: sci_gateway/c/sci_umf_lusolve.c, line: 276
-# File: sci_gateway/c/sci_umfpack.c, line: 177
+# File: modules/umfpack/sci_gateway/c/sci_umf_lufact.c, line: 100
+# File: modules/umfpack/sci_gateway/c/sci_umf_lusolve.c, line: 268
+# File: modules/umfpack/sci_gateway/c/sci_umfpack.c, line: 168
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A sparse matrix expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_umf_lufact.c, line: 167
-# File: sci_gateway/c/sci_umf_lufact.c, line: 193
-# File: sci_gateway/c/sci_umfpack.c, line: 305
-# File: sci_gateway/c/sci_umfpack.c, line: 338
+# File: modules/umfpack/sci_gateway/c/sci_umf_lufact.c, line: 173
+# File: modules/umfpack/sci_gateway/c/sci_umf_lufact.c, line: 199
+# File: modules/umfpack/sci_gateway/c/sci_umfpack.c, line: 291
+# File: modules/umfpack/sci_gateway/c/sci_umfpack.c, line: 320
 #, c-format
 msgid "%s: An error occurred: %s: %s\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_umf_lufact.c, line: 167
-# File: sci_gateway/c/sci_umf_lufact.c, line: 193
-# File: sci_gateway/c/sci_umfpack.c, line: 305
+# File: modules/umfpack/sci_gateway/c/sci_umf_lufact.c, line: 173
+# File: modules/umfpack/sci_gateway/c/sci_umf_lufact.c, line: 199
+# File: modules/umfpack/sci_gateway/c/sci_umfpack.c, line: 291
 msgid "symbolic factorization"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_umf_lufact.c, line: 201
+# File: modules/umfpack/sci_gateway/c/sci_umf_lufact.c, line: 207
 msgid "The (square) matrix appears to be singular."
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_umf_lufact.c, line: 201
+# File: modules/umfpack/sci_gateway/c/sci_umf_lufact.c, line: 207
 msgid "Warning"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_umf_lufact.c, line: 220
+# File: modules/umfpack/sci_gateway/c/sci_umf_lufact.c, line: 226
 msgid "no place to store the LU pointer in ListNumeric."
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_umf_lusolve.c, line: 163
-# File: sci_gateway/c/sci_umf_lusolve.c, line: 169
+# File: modules/umfpack/sci_gateway/c/sci_umf_lusolve.c, line: 148
+# File: modules/umfpack/sci_gateway/c/sci_umf_lusolve.c, line: 154
 #, c-format
 msgid "%s: An error occurred: %s.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_umf_lusolve.c, line: 163
+# File: modules/umfpack/sci_gateway/c/sci_umf_lusolve.c, line: 148
 msgid "This is not a factorization of a square matrix"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_umf_lusolve.c, line: 169
+# File: modules/umfpack/sci_gateway/c/sci_umf_lusolve.c, line: 154
 msgid "This is a factorization of a singular matrix"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_umf_lusolve.c, line: 186
+# File: modules/umfpack/sci_gateway/c/sci_umf_lusolve.c, line: 171
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A real or complex column vector or "
@@ -207,277 +207,659 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_umf_lusolve.c, line: 259
-# File: sci_gateway/c/sci_umfpack.c, line: 161
+# File: modules/umfpack/sci_gateway/c/sci_umf_lusolve.c, line: 248
+# File: modules/umfpack/sci_gateway/c/sci_umfpack.c, line: 150
 #, c-format
 msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_umf_lusolve.c, line: 310
+# File: modules/umfpack/sci_gateway/c/sci_umf_lusolve.c, line: 302
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %s.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_umf_lusolve.c, line: 310
+# File: modules/umfpack/sci_gateway/c/sci_umf_lusolve.c, line: 302
 msgid "Matrix is not compatible with the given LU factors"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_umfpack.c, line: 140
+# File: modules/umfpack/sci_gateway/c/sci_umfpack.c, line: 126
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_umfpack.c, line: 226
+# File: modules/umfpack/sci_gateway/c/sci_umfpack.c, line: 217
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_umfpack.c, line: 338
+# File: modules/umfpack/sci_gateway/c/sci_umfpack.c, line: 320
 msgid "numeric factorization"
 msgstr ""
 
 #
-# File: src/c/common_umfpack.c, line: 231
+# File: modules/umfpack/src/c/common_umfpack.c, line: 213
 msgid "singular matrix"
 msgstr ""
 
 #
-# File: src/c/common_umfpack.c, line: 232
+# File: modules/umfpack/src/c/common_umfpack.c, line: 214
 msgid "not enough memory"
 msgstr ""
 
 #
-# File: src/c/common_umfpack.c, line: 233
+# File: modules/umfpack/src/c/common_umfpack.c, line: 215
 msgid "internal error"
 msgstr ""
 
 #
-# File: src/c/common_umfpack.c, line: 234
+# File: modules/umfpack/src/c/common_umfpack.c, line: 216
 msgid "invalid matrix"
 msgstr ""
 
 #
-# File: src/c/taucs_scilab.c, line: 136
+# File: modules/umfpack/src/c/taucs_scilab.c, line: 136
 msgid "GENMMD ordering only works on symmetric matrices.\n"
 msgstr ""
 
 #
-# File: src/c/taucs_scilab.c, line: 144
+# File: modules/umfpack/src/c/taucs_scilab.c, line: 144
 msgid "The lower part of the matrix must be represented.\n"
 msgstr ""
 
 #
-# File: src/c/taucs_scilab.c, line: 290
+# File: modules/umfpack/src/c/taucs_scilab.c, line: 290
 #, c-format
 msgid "%s: No more memory (n=%d, nnz=%d).\n"
 msgstr ""
 
 #
-# File: src/c/taucs_scilab.c, line: 650
+# File: modules/umfpack/src/c/taucs_scilab.c, line: 650
 msgid "    CC^T Factorization: Matrix is not positive definite.\n"
 msgstr ""
 
 #
-# File: src/c/taucs_scilab.c, line: 651
+# File: modules/umfpack/src/c/taucs_scilab.c, line: 651
 #, c-format
 msgid "                        nonpositive pivot in column %d\n"
 msgstr ""
 
 #
-# File: src/noumfpack/noumfpack.c, line: 19
+# File: modules/umfpack/src/noumfpack/noumfpack.c, line: 22
 msgid "Scilab UMFPACK module not installed.\n"
 msgstr ""
 
-# File: macros/PlotSparse.sci, line: 74
+# File: modules/umfpack/demos/condestsp.sce, line: 15
+msgid ""
+"A small test for the condestsp function: condestsp gives an estimate of\n"
+" the condition number K1 in 1-norm of a real sparse matrix A:"
+msgstr ""
+
+#
+# File: modules/umfpack/demos/condestsp.sce, line: 18
+msgid ""
+"     without explicitly computing the inverse of A. condestsp uses a "
+"factorization given by\n"
+" umf_lufact but if you have already computed this one it is recommended to "
+"give the pointer to the factorization."
+msgstr ""
+
+#
+# File: modules/umfpack/demos/condestsp.sce, line: 20
+msgid ""
+"The test consists in forming small sparse matrices (so as to compute K1 "
+"exactly with\n"
+"norm(inv(full(A)),1)) whose values are chosen from the normal distribution."
+msgstr ""
+
+#
+# File: modules/umfpack/demos/condestsp.sce, line: 22
+# File: modules/umfpack/demos/harwell-boeing.sce, line: 17
+# File: modules/umfpack/demos/harwell-boeing.sce, line: 48
+# File: modules/umfpack/demos/harwell-boeing.sce, line: 79
+# File: modules/umfpack/demos/harwell-boeing.sce, line: 110
+# File: modules/umfpack/demos/harwell-boeing.sce, line: 142
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 30
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 60
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 106
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 174
+msgid ""
+"\n"
+"Press Return to continue...\n"
+msgstr ""
+
+#
+# File: modules/umfpack/demos/harwell-boeing.sce, line: 12
+msgid ""
+"This test compares umfpack v3 and sparse v1.3 via their Scilab interface."
+msgstr ""
+
+#
+# File: modules/umfpack/demos/harwell-boeing.sce, line: 13
+msgid ""
+"The test consists in loading Harwell-Boeing sparse matrices and solve linear "
+"system with a random rhs."
+msgstr ""
+
+#
+# File: modules/umfpack/demos/harwell-boeing.sce, line: 14
+msgid "The matrices presented here come from the NIST server Matrix server:"
+msgstr ""
+
+#
+# File: modules/umfpack/demos/harwell-boeing.sce, line: 16
+msgid "Warning: tests 2 and 3 take much more time than the others."
+msgstr ""
+
+#
+# File: modules/umfpack/demos/harwell-boeing.sce, line: 41
+msgid ""
+"Test 1: Jacobian of a nonlinear system of ordinary differential equations "
+"(ODEs) modeling a laser"
+msgstr ""
+
+#
+# File: modules/umfpack/demos/harwell-boeing.sce, line: 42
+# File: modules/umfpack/demos/harwell-boeing.sce, line: 73
+# File: modules/umfpack/demos/harwell-boeing.sce, line: 104
+# File: modules/umfpack/demos/harwell-boeing.sce, line: 136
+# File: modules/umfpack/demos/harwell-boeing.sce, line: 167
+msgid "  Mean time and accuracy for umfpack (t1 and ||A*x-b||):"
+msgstr ""
+
+#
+# File: modules/umfpack/demos/harwell-boeing.sce, line: 44
+# File: modules/umfpack/demos/harwell-boeing.sce, line: 75
+# File: modules/umfpack/demos/harwell-boeing.sce, line: 106
+# File: modules/umfpack/demos/harwell-boeing.sce, line: 138
+# File: modules/umfpack/demos/harwell-boeing.sce, line: 169
+msgid "  Time and accuracy for sparse module (t2 and ||A*x-b||):"
+msgstr ""
+
+#
+# File: modules/umfpack/demos/harwell-boeing.sce, line: 46
+# File: modules/umfpack/demos/harwell-boeing.sce, line: 77
+# File: modules/umfpack/demos/harwell-boeing.sce, line: 108
+# File: modules/umfpack/demos/harwell-boeing.sce, line: 140
+# File: modules/umfpack/demos/harwell-boeing.sce, line: 171
+msgid "  Time comparison (t2/t1):"
+msgstr ""
+
+#
+# File: modules/umfpack/demos/harwell-boeing.sce, line: 72
+msgid "Test 2: Generalized eigenvalue problem Kx = (lambda)Mx"
+msgstr ""
+
+#
+# File: modules/umfpack/demos/harwell-boeing.sce, line: 103
+msgid "Test 3: Matrices generated by the FIDAP Package"
+msgstr ""
+
+#
+# File: modules/umfpack/demos/harwell-boeing.sce, line: 135
+msgid "Test 4: Tokamak Matrices"
+msgstr ""
+
+#
+# File: modules/umfpack/demos/harwell-boeing.sce, line: 166
+msgid "Test 5: Acoustic scattering"
+msgstr ""
+
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 15
+msgid ""
+"To load a sparse matrix stored in the Harwell-Boeing format in Scilab, you "
+"may use the function ReadHBSparse."
+msgstr ""
+
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 16
+msgid ""
+"4 matrices will be loaded for the demo: they come from the University of "
+"Florida Sparse Matrix Collection:"
+msgstr ""
+
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 19
+msgid "    maintained by Tim Davis, author of UMFPACK"
+msgstr ""
+
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 28
+msgid ""
+"To see the pattern of non zeros elements, you may use the function "
+"PlotSparse."
+msgstr ""
+
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 29
+msgid "Here we will display the 4 matrices"
+msgstr ""
+
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 55
+msgid "Now, using umfpack to solve some linear systems:"
+msgstr ""
+
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 56
+msgid "-> to create a rhs"
+msgstr ""
+
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 57
+msgid "-> to solve A1*x1 = b1"
+msgstr ""
+
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 58
+msgid "-> norm of the residual"
+msgstr ""
+
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 59
+msgid "this is done for the 4 matrices A1, A2, A3 and A4."
+msgstr ""
+
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 84
+msgid "A1 ("
+msgstr ""
+
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 85
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 192
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 196
+#, c-format
+msgid "     norm of the residual = "
+msgstr ""
+
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 86
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 194
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 198
+#, c-format
+msgid "     computing time       = "
+msgstr ""
+
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 88
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 188
+msgid "A2 ("
+msgstr ""
+
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 90
+msgid "A3 ("
+msgstr ""
+
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 92
+msgid "A4 ("
+msgstr ""
+
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 95
+msgid "Now we will see how to use the lu factors:"
+msgstr ""
+
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 96
+msgid "  1/ lu factors of a sparse matrix A are obtained through:"
+msgstr ""
+
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 97
+#, c-format
+msgid ""
+"     lup = umf_lufact(A)\n"
+"     lup is a pointer to the lu factors (the memory is outside scilab "
+"space)\n"
+msgstr ""
+
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 98
+msgid "  2/ for solving a linear system A*x = b, use:"
+msgstr ""
+
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 99
+#, c-format
+msgid ""
+"     x = umf_lusolve(lup,b)\n"
+"     or  x = umf_lusolve(lup,b,Ax=b,A)  to add an iterative refinement step\n"
+msgstr ""
+
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 100
+msgid "  3/ to solve A'*x=b you may use:"
+msgstr ""
+
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 101
+#, c-format
+msgid ""
+"     x = umf_lusolve(lup,b,Ax''=b)\n"
+"     or  x = umf_lusolve(lup,b,Ax''=b,A)  to add an iterative refinement "
+"step\n"
+msgstr ""
+
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 102
+msgid "  4/ you may also compute the 1-norm condition number quicky with:"
+msgstr ""
+
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 103
+#, c-format
+msgid ""
+"     K1 = condestsp(A,lup)\n"
+"     K1 = condestsp(A) also works but in this case the lu factors are re-"
+"computed inside\n"
+msgstr ""
+
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 104
+msgid ""
+"  5/ if you don't need the lu factors anymore, it is recommended to free "
+"them with:"
+msgstr ""
+
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 105
+#, c-format
+msgid ""
+"     umf_ludel(lup)\n"
+"     if you have lost your pointer you may use umf_ludel() which frees all "
+"the current umf lu factors\n"
+msgstr ""
+
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 144
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 148
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 152
+#, c-format
+msgid "     norm of the residual    = "
+msgstr ""
+
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 156
+#, c-format
+msgid "     norm of the residual     = "
+msgstr ""
+
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 145
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 149
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 153
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 157
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 193
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 197
+#, c-format
+msgid "     same but with refinement = "
+msgstr ""
+
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 161
+msgid "Now we will see how to use the taucs snmf stuff on the matrix A2."
+msgstr ""
+
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 162
+msgid ""
+"This is useful and recommended when your matrix is symmetric positive "
+"definite (s.p.d.)."
+msgstr ""
+
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 163
+msgid "  1/ the Cholesky factorization of a s.p.d. matrix A is obtained with:"
+msgstr ""
+
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 165
+#, c-format
+msgid ""
+"     Cp is a pointer to the Cholesky fact. (the memory is outside scilab "
+"space)\n"
+msgstr ""
+
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 166
+msgid "  2/ for solving a linear system A*x = b then use:"
+msgstr ""
+
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 167
+#, c-format
+msgid "     x = taucs_chsolve(Cp,b)\n"
+msgstr ""
+
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 168
+msgid "  3/ for the same thing with one refinement step, use:"
+msgstr ""
+
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 169
+#, c-format
+msgid "     xr = taucs_chsolve(Cp,b,A)\n"
+msgstr ""
+
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 170
+msgid "  4/ you may also compute the 2-norm condition number with:"
+msgstr ""
+
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 171
+#, c-format
+msgid "     [K2, lm, vm, lM, vM] = cond2sp(A, Cp [, itermax, eps, verb])\n"
+msgstr ""
+
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 172
+msgid ""
+"  5/ if you don't need the Cholesky factorization anymore, it is recommended "
+"to free it with taucs_chdel(Cp)"
+msgstr ""
+
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 173
+#, c-format
+msgid ""
+"     if you have lost your pointer you may use taucs_chdel() which frees "
+"memory for all the current Cholesky factorizations.\n"
+msgstr ""
+
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 191
+msgid " with umfpack:"
+msgstr ""
+
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 195
+msgid " with the taucs snmf Cholesky solver:"
+msgstr ""
+
+#
+# File: modules/umfpack/demos/umfpack.dem.gateway.sce, line: 12
+msgid "UMFPACK"
+msgstr ""
+
+#
+# File: modules/umfpack/demos/umfpack.dem.gateway.sce, line: 14
+msgid "Sparse Matrices"
+msgstr ""
+
+#
+# File: modules/umfpack/demos/umfpack.dem.gateway.sce, line: 15
+msgid "Harwell-Boeing"
+msgstr ""
+
+#
+# File: modules/umfpack/demos/umfpack.dem.gateway.sce, line: 16
+msgid "condestsp"
+msgstr ""
+
+#
+# File: modules/umfpack/macros/PlotSparse.sci, line: 57
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
 msgstr ""
 
 #
-# File: macros/PlotSparse.sci, line: 81
+# File: modules/umfpack/macros/PlotSparse.sci, line: 64
 #, c-format
 msgid "%s: Wrong type for input argument #%d: sparse matrix expected.\n"
 msgstr ""
 
 #
-# File: macros/PlotSparse.sci, line: 88
-# File: macros/ReadHBSparse.sci, line: 81
+# File: modules/umfpack/macros/PlotSparse.sci, line: 71
+# File: modules/umfpack/macros/ReadHBSparse.sci, line: 64
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
 
 #
-# File: macros/ReadHBSparse.sci, line: 77
+# File: modules/umfpack/macros/ReadHBSparse.sci, line: 60
 msgid "Choose a sparse matrix"
 msgstr ""
 
 #
-# File: macros/ReadHBSparse.sci, line: 78
+# File: modules/umfpack/macros/ReadHBSparse.sci, line: 61
 msgid "   then click on OK   "
 msgstr ""
 
 #
-# File: macros/ReadHBSparse.sci, line: 84
+# File: modules/umfpack/macros/ReadHBSparse.sci, line: 67
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr ""
 
 #
-# File: macros/ReadHBSparse.sci, line: 110
+# File: modules/umfpack/macros/ReadHBSparse.sci, line: 93
 #, c-format
 msgid "%s: The file contains a rhs but it will not be read !"
 msgstr ""
 
 #
-# File: macros/ReadHBSparse.sci, line: 120
+# File: modules/umfpack/macros/ReadHBSparse.sci, line: 103
 #, c-format
 msgid "%s: currently don't read unassembled (elemental) sparse matrix."
 msgstr ""
 
 #
-# File: macros/ReadHBSparse.sci, line: 148
+# File: modules/umfpack/macros/ReadHBSparse.sci, line: 131
 #, c-format
 msgid "%s: No values for this matrix (only non zero pattern) : put some 1."
 msgstr ""
 
 #
-# File: macros/cond2sp.sci, line: 75
+# File: modules/umfpack/macros/cond2sp.sci, line: 58
 msgid ""
 "\n"
 " approximate (lM,vM) with the iterative power method \n"
 msgstr ""
 
 #
-# File: macros/cond2sp.sci, line: 76
+# File: modules/umfpack/macros/cond2sp.sci, line: 59
 msgid " ----------------------------------------------------- \n"
 msgstr ""
 
 #
-# File: macros/cond2sp.sci, line: 84
+# File: modules/umfpack/macros/cond2sp.sci, line: 67
 #, c-format
 msgid " iteration %3d : lM = %e  \n"
 msgstr ""
 
 #
-# File: macros/cond2sp.sci, line: 94
+# File: modules/umfpack/macros/cond2sp.sci, line: 77
 #, c-format
 msgid " Warning : for lM convergence at rtol = %e \n"
 msgstr ""
 
 #
-# File: macros/cond2sp.sci, line: 95
-# File: macros/cond2sp.sci, line: 126
+# File: modules/umfpack/macros/cond2sp.sci, line: 78
+# File: modules/umfpack/macros/cond2sp.sci, line: 109
 #, c-format
 msgid "           don't reached after %d iterations (got only %e) \n"
 msgstr ""
 
 #
-# File: macros/cond2sp.sci, line: 107
+# File: modules/umfpack/macros/cond2sp.sci, line: 90
 msgid ""
 "\n"
 " approximate (lm,vm) with the inverse iterative power method \n"
 msgstr ""
 
 #
-# File: macros/cond2sp.sci, line: 108
+# File: modules/umfpack/macros/cond2sp.sci, line: 91
 msgid " ------------------------------------------------------------\n"
 msgstr ""
 
 #
-# File: macros/cond2sp.sci, line: 116
+# File: modules/umfpack/macros/cond2sp.sci, line: 99
 #, c-format
 msgid " iteration %3d : lm = %e  \n"
 msgstr ""
 
 #
-# File: macros/cond2sp.sci, line: 125
+# File: modules/umfpack/macros/cond2sp.sci, line: 108
 #, c-format
 msgid " Warning : for lm convergence at rtol = %e \n"
 msgstr ""
 
 #
-# File: macros/condestsp.sci, line: 71
+# File: modules/umfpack/macros/condestsp.sci, line: 54
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 
 #
-# File: macros/condestsp.sci, line: 75
+# File: modules/umfpack/macros/condestsp.sci, line: 58
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
 msgstr ""
 
 #
-# File: macros/condestsp.sci, line: 79
+# File: modules/umfpack/macros/condestsp.sci, line: 62
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
 msgstr ""
 
 #
-# File: macros/condestsp.sci, line: 103
+# File: modules/umfpack/macros/condestsp.sci, line: 86
 #, c-format
 msgid "%s: The matrix and the LU factors have not the same dimension !\n"
 msgstr ""
 
 #
-# File: macros/condestsp.sci, line: 107
+# File: modules/umfpack/macros/condestsp.sci, line: 90
 #, c-format
 msgid "%s: Invalid type and/or size and/or value for the second arg.\n"
 msgstr ""
 
 #
-# File: macros/scisptdemo.sci, line: 37
-msgid " For this demo the current stack size is not enough "
-msgstr ""
-
-#
-# File: macros/scisptdemo.sci, line: 38
-msgid " enter the following at the scilab prompt :          "
-msgstr ""
-
-#
-# File: macros/scisptdemo.sci, line: 39
-# File: macros/scisptdemo.sci, line: 41
-# File: macros/scisptdemo.sci, line: 43
-msgid "                                                     "
-msgstr ""
-
-#
-# File: macros/scisptdemo.sci, line: 40
-msgid "              stacksize(3000000);                    "
-msgstr ""
-
-#
-# File: macros/scisptdemo.sci, line: 42
-msgid "           then re enter scisptdemo()                "
-msgstr ""
-
-#
-# File: macros/scisptdemo.sci, line: 44
-msgid "               CLICK TO  CONTINUE                    "
-msgstr ""
-
-#
-# File: macros/scisptdemo.sci, line: 57
+# File: modules/umfpack/macros/scisptdemo.sci, line: 28
 msgid "how to use this stuff"
 msgstr ""
 
 #
-# File: macros/scisptdemo.sci, line: 58
+# File: modules/umfpack/macros/scisptdemo.sci, line: 29
 msgid "display a speed comparison test"
 msgstr ""
 
 #
-# File: macros/scisptdemo.sci, line: 59
+# File: modules/umfpack/macros/scisptdemo.sci, line: 30
 msgid "small tests for condestsp"
 msgstr ""
 
 #
-# File: macros/scisptdemo.sci, line: 61
+# File: modules/umfpack/macros/scisptdemo.sci, line: 32
 msgid "Click to choose a demo"
 msgstr ""

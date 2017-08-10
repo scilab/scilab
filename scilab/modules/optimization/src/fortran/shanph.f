@@ -1,14 +1,17 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) INRIA
 c 
-c This file must be used under the terms of the CeCILL.
-c This source file is licensed as described in the file COPYING, which
-c you should have received as part of this distribution.  The terms
-c are also available at    
-c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+c Copyright (C) 2012 - 2016 - Scilab Enterprises
+c
+c This file is hereby licensed under the terms of the GNU GPL v2.0,
+c pursuant to article 5.3.4 of the CeCILL v.2.1.
+c This file was originally licensed under the terms of the CeCILL v2.1,
+c and continues to be available under such terms.
+c For more information, see the COPYING file which you should have received
+c along with this program.
 c
 
-      subroutine shanph(diag,n,nt,np,y,s,ys,scal,index,io,imp)
+      subroutine shanph(diag,n,nt,np,y,s,ys,scal,index,io,iprint)
 c     mise a l echelle de diag par la methode de shanno-phua
 c     calcul du facteur d echelle scal
 c      diag=(y,(diag-1)y)/(y,s)*diag
@@ -22,7 +25,7 @@ c
       do 203 i=1,n
 203   cof=cof + y(inp,i)**2/diag(i)
       cof=cof/ys(inp)
-      if(imp.gt.3) then
+      if(iprint.gt.3) then
         write(bufstr,1203) cof
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif

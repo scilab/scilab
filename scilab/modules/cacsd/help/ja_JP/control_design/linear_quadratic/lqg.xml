@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - F Delebecque
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="lqg">
+    <refnamediv>
+        <refname>lqg</refname>
+        <refpurpose>LQG 補償器</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼出し手順</title>
+        <synopsis>[K]=lqg(P,r)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>P</term>
+                <listitem>
+                    <para>
+                        状態空間表現の<literal>syslin</literal> リスト (拡張プラント)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>r</term>
+                <listitem>
+                    <para>
+                        1x2 行ベクトル = (観測量の数,入力の数)  (<literal>P</literal>の2,2の部分の次元)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>K</term>
+                <listitem>
+                    <para>
+                        <literal>syslin</literal> リスト (コントローラ)
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>lqg</literal>  は,"拡張"プラント
+            <literal>P=syslin('c',A,B,C,D)</literal> (連続時間)または
+            <literal>P=syslin('d',A,B,C,D)</literal> (離散時間)に関して,
+            線形最適 LQG (H2) コントローラを計算します.
+        </para>
+        <para>
+            関数 <literal>lqg2stan</literal> は,
+            ノミナルプラント,重み項,ノイズの分散を指定すると,
+            <literal>P</literal> および
+            <literal>r</literal> を返します.
+        </para>
+        <para>
+            <literal>K</literal> は以下のABCD行列により計算されます:
+            <literal>[A+B*Kc+Kf*C+Kf*D*Kc,-Kf,Kc,0]</literal> ただし,
+            <literal>Kc=lqr(P12)</literal>
+            はコントローラゲインで <literal>Kf=lqe(P21)</literal> はフィルタゲインです.
+            <literal>lqg2stan</literal>の例を参照ください.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="lqg2stan">lqg2stan</link>
+            </member>
+            <member>
+                <link linkend="lqr">lqr</link>
+            </member>
+            <member>
+                <link linkend="lqe">lqe</link>
+            </member>
+            <member>
+                <link linkend="h_inf">h_inf</link>
+            </member>
+            <member>
+                <link linkend="obscont">obscont</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

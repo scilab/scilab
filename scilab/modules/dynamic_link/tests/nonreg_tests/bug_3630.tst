@@ -33,7 +33,7 @@ copyfile(SCI+'/modules/dynamic_link/tests/nonreg_tests/bug_3630.c' , TEST_DIR + 
 chdir(TEST_DIR);
 
 files=['bug_3630.c'];
-ilib_build('libc_fun',['c_sum','c_intsum';'c_sub','c_intsub'],files,[]);
+ilib_build('libc_fun',['c_interface1','c_interface1';'c_interface2','c_interface2'],files,[]);
 
 [primitives1,commandes] = what();
 nbprimitives1 = size(primitives1,'*');
@@ -48,19 +48,19 @@ nbprimitives2 = size(primitives2,'*');
 
 if (nbprimitives2 - nbprimitives1) <> 2 then pause,end
 
-if ~or(primitives2 == 'c_sum') then pause,end
-if ~or(primitives2 == 'c_sub') then pause,end
+if ~or(primitives2 == 'c_interface1') then pause,end
+if ~or(primitives2 == 'c_interface2') then pause,end
 
 // ulink() all libraries
 ulink();
-clearfun('c_sum');
-clearfun('c_sub');
+clearfun('c_interface1');
+clearfun('c_interface2');
 
 [primitives3,commandes] = what();
 nbprimitives3 = size(primitives3,'*');
 
-if or(primitives3 == 'c_sum') then pause,end
-if or(primitives3 == 'c_sub') then pause,end
+if or(primitives3 == 'c_interface1') then pause,end
+if or(primitives3 == 'c_interface2') then pause,end
 
 if (nbprimitives3 - nbprimitives1) <> 0 then pause,end
 

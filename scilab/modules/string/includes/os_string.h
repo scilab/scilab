@@ -2,11 +2,14 @@
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2010 - DIGITEO - Antoine ELIAS
 *
-*  This file must be used under the terms of the CeCILL.
-*  This source file is licensed as described in the file COPYING, which
-*  you should have received as part of this distribution.  The terms
-*  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
@@ -29,39 +32,9 @@
 #define os_splitpath    _splitpath_s
 #define os_wsplitpath   _wsplitpath_s
 #define os_makepath     _makepath_s
-#endif
 
-// Linux
-#ifdef __linux__
-
-#if __GLIBC__ == 2 && __GLIBC_MINOR__ < 10
-/* Fixes crash issues with wcsdup when: */
-/* - Scilab is compiled against old GLIBC (<2.10) */
-/* - AND executed against recent GLIBC (>=2.10) */
-/* See man wcsdup */
-/* Using #define _GNU_SOURCE is not enough in Scilab because */
-/* <wchar.h> can be included before "os_string.h" */
-wchar_t *_sciwcsdup(const wchar_t *_pwcsSource);
-#define os_wcsdup       _sciwcsdup
 #else
-#define os_wcsdup       wcsdup
-#endif
 
-#define os_strdup       strdup
-#define os_swprintf     swprintf
-#define os_sprintf      sprintf
-#define os_wcsicmp      wcscasecmp
-#define stricmp         strcasecmp
-#define strnicmp        strncasecmp
-#define wcsicmp         wcscasecmp
-#define wcsnicmp        wcsncasecmp
-#define os_strcpy       strcpy
-#define os_splitpath    _splitpath
-#define os_wsplitpath   _wsplitpath
-#define os_makepath     _makepath
-#endif
-
-// MacOS X
 #ifdef __APPLE__
 wchar_t *_sciwcsdup(const wchar_t *_pwcsSource);
 #define os_wcsdup       _sciwcsdup
@@ -111,6 +84,38 @@ static inline int macOSwcscasecmp(const wchar_t *_pwcsS1, const wchar_t *_pwcsS2
 #define os_splitpath    _splitpath
 #define os_wsplitpath   _wsplitpath
 #define os_makepath     _makepath
+
+#else //linux or MinGw
+
+#if __GLIBC__ == 2 && __GLIBC_MINOR__ < 10
+/* Fixes crash issues with wcsdup when: */
+/* - Scilab is compiled against old GLIBC (<2.10) */
+/* - AND executed against recent GLIBC (>=2.10) */
+/* See man wcsdup */
+/* Using #define _GNU_SOURCE is not enough in Scilab because */
+/* <wchar.h> can be included before "os_string.h" */
+wchar_t *_sciwcsdup(const wchar_t *_pwcsSource);
+#define os_wcsdup       _sciwcsdup
+#else
+#define os_wcsdup       wcsdup
 #endif
+
+#define os_strdup       strdup
+#define os_swprintf     swprintf
+#define os_sprintf      sprintf
+#define os_wcsicmp      wcscasecmp
+#define stricmp         strcasecmp
+#define strnicmp        strncasecmp
+#define wcsicmp         wcscasecmp
+#define wcsnicmp        wcsncasecmp
+#define os_strcpy       strcpy
+#define os_splitpath    _splitpath
+#define os_wsplitpath   _wsplitpath
+#define os_makepath     _makepath
+
+#endif //if __APPLE__
+#endif //if _MSC_VER
+
+// MacOS X
 
 #endif /* !__OS_STRING_H__ */

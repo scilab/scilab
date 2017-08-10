@@ -4,11 +4,14 @@
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2011 - DIGITEO - Bruno JOFRET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -47,6 +50,7 @@ int sci_grayplot(char *fname, void *pvApiCtx)
     };
 
     char   * strf    = NULL ;
+    BOOL freeStrf = FALSE;
     char strfl[4];
     double* rect    = NULL ;
     int    * nax     = NULL ;
@@ -167,10 +171,35 @@ int sci_grayplot(char *fname, void *pvApiCtx)
     }
 
 
-    GetStrf(pvApiCtx, fname, 4, opts, &strf);
-    GetRect(pvApiCtx, fname, 5, opts, &rect);
-    GetNax(pvApiCtx, 6, opts, &nax, &flagNax);
-    GetLogflags(pvApiCtx, fname, 7, opts, &logFlags);
+    if (get_strf_arg(pvApiCtx, fname, 4, opts, &strf) == 0)
+    {
+        return 0;
+    }
+    freeStrf = !isDefStrf(strf);
+    if (get_rect_arg(pvApiCtx, fname, 5, opts, &rect) == 0)
+    {
+        if (freeStrf)
+        {
+            freeAllocatedSingleString(strf);
+        }
+        return 0;
+    }
+    if (get_nax_arg(pvApiCtx, 6, opts, &nax, &flagNax)==0)
+    {
+        if (freeStrf)
+        {
+            freeAllocatedSingleString(strf);
+        }
+        return 0;
+    }
+    if (get_logflags_arg(pvApiCtx, fname, 7, opts, &logFlags) == 0)
+    {
+        if (freeStrf)
+        {
+            freeAllocatedSingleString(strf);
+        }
+        return 0;
+    }
 
     getOrCreateDefaultSubwin();
 
@@ -184,12 +213,18 @@ int sci_grayplot(char *fname, void *pvApiCtx)
             strfl[1] = '7';
         }
 
-        GetOptionalIntArg(pvApiCtx, fname, 7, "frameflag", &frame, 1, opts);
+        if (get_optional_int_arg(pvApiCtx, fname, 7, "frameflag", &frame, 1, opts) == 0)
+        {
+            return 0;
+        }
         if (frame != &frame_def)
         {
             strfl[1] = (char)(*frame + 48);
         }
-        GetOptionalIntArg(pvApiCtx, fname, 7, "axesflag", &axes, 1, opts);
+        if (get_optional_int_arg(pvApiCtx, fname, 7, "axesflag", &axes, 1, opts) == 0)
+        {
+            return 0;
+        }
         if (axes != &axes_def)
         {
             strfl[2] = (char)(*axes + 48);
@@ -198,6 +233,10 @@ int sci_grayplot(char *fname, void *pvApiCtx)
 
     Objgrayplot ((l1), (l2), (l3), &m3, &n3, strf, rect, nax, flagNax, logFlags);
 
+    if (freeStrf)
+    {
+        freeAllocatedSingleString(strf);
+    }
     AssignOutputVariable(pvApiCtx, 1) = 0;
     ReturnArguments(pvApiCtx);
     return 0;

@@ -4,11 +4,14 @@
 // Copyright (C) 2010-2012 - DIGITEO - Antoine ELIAS
 // Copyright (C) 2011 - DIGITEO - Allan CORNET
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 // test_run  --
 //   Launch unit tests.
@@ -55,6 +58,9 @@ function test_run_result = test_run(varargin)
     if rhs >= 3 then
 
         option_mat = varargin(3);
+        if (option_mat == "[]")
+            option_mat = [];
+        end
         if (check_option(option_mat, "unit_tests") & check_option(option_mat, "nonreg_tests")) | check_option(option_mat, "all_tests") then
             params.testTypes = "all_tests";
         elseif check_option(option_mat, "unit_tests") then
@@ -77,6 +83,9 @@ function test_run_result = test_run(varargin)
 
         params.wanted_mode  = assign_option(option_mat, "mode_nwni", "NWNI", params.wanted_mode);
         option_mat          = clean_option(option_mat, "mode_nwni");
+
+        params.wanted_mode  = assign_option(option_mat, "mode_nwni_profiling", ["NWNI" "PROFILING"], params.wanted_mode);
+        option_mat          = clean_option(option_mat, "mode_nwni_profiling");
 
         // Reference
         params.reference    = assign_option(option_mat, "no_check_ref", "skip", params.reference);
@@ -135,8 +144,8 @@ function test_run_result = test_run(varargin)
     // Management of the tests to run
     // =======================================================
     if (rhs == 0) ..
-        | ((rhs == 1) & (varargin(1)==[])) ..
-        | (((rhs == 2)|(rhs == 3)|(rhs == 4)) & (varargin(1)==[]) & (varargin(2)==[])) then
+        | ((rhs == 1) & (varargin(1)==[] | varargin(1)=="[]")) ..
+        | (rhs >= 2 & rhs <= 4) & ( varargin(1)==[]|varargin(1)=="[]") & (varargin(2)==[]|varargin(2)=="[]") then
 
 
         // No input argument
@@ -150,7 +159,7 @@ function test_run_result = test_run(varargin)
         test_count = size(module_list,"*");
         for i=1:test_count
             if params.reference <> "list" then
-                printf("   %03d/%03d - [%s] : \n\n", i, test_count, module_list(i));
+                printf(" Module  %03d/%03d - [%s] : \n\n", i, test_count, module_list(i));
             end
 
             params.tests_mat    = [];
@@ -176,9 +185,9 @@ function test_run_result = test_run(varargin)
         end
 
     elseif (rhs == 1) ..
-        | ((rhs == 2) & (varargin(2)==[])) ..
-        | ((rhs == 3) & (varargin(2)==[])) ..
-        | ((rhs == 4) & (varargin(2)==[])) ..
+        | ((rhs == 2) & (varargin(2)==[] || varargin(2)=="[]")) ..
+        | ((rhs == 3) & (varargin(2)==[] || varargin(2)=="[]")) ..
+        | ((rhs == 4) & (varargin(2)==[] || varargin(2)=="[]")) ..
         | ( ~ isempty(params.skip_mat)) then
 
         // One input argument
@@ -191,7 +200,7 @@ function test_run_result = test_run(varargin)
         test_count = size(module_mat,"*");
         for i = 1:test_count
             if params.reference <> "list" then
-                printf("   %03d/%03d - [%s] : \n\n", i, test_count, module_mat(i));
+                printf(" Module  %03d/%03d - [%s] : \n\n", i, test_count, module_mat(i));
             end
 
             params.tests_mat    = [];
@@ -322,9 +331,9 @@ function status = test_module(_params)
     if with_module(name(1)) then
         // It's a scilab internal module
         module.path = pathconvert(SCI + "/modules/" + name(1), %F);
-        //elseif or(librarieslist() == "atomslib") & atomsIsLoaded(name(1)) then //no have librarieslist in scilab 6 yet
+    elseif or(librarieslist() == "atomslib") & atomsIsLoaded(name(1)) then
         // It's an ATOMS module
-        //module.path = pathconvert(atomsGetLoadedPath(name(1)) , %F, %T);
+        module.path = pathconvert(atomsGetLoadedPath(name(1)) , %F, %T);
     elseif isdir(name(1)) then
         // It's an external module
         module.path = pathconvert(name(1), %F);
@@ -448,6 +457,7 @@ function status = test_module(_params)
         result = test_single(_params, tests(i,1), tests(i,2));
         elapsedTimeAfter=toc();
 
+
         testsuite.tests = testsuite.tests + 1
 
         testsuite.testcase(i).name=tests(i,2);
@@ -480,6 +490,10 @@ function status = test_module(_params)
                 // skipped
                 test_skipped_count = test_skipped_count + 1;
             end
+        end
+
+        if ~isempty(result.warning) then
+            warning(result.warning);
         end
     end
 
@@ -524,6 +538,7 @@ function status = test_single(_module, _testPath, _testName)
     tmp_res     = pathconvert( TMPDIR + "/" + _testName + ".res", %F);
     tmp_err     = pathconvert( TMPDIR + "/" + _testName + ".err", %F);
     path_dia    = pathconvert( TMPDIR + "/" + _testName + ".dia", %F);
+    tmp_prof    = pathconvert( TMPDIR + "/" + _testName + ".prof", %F);
 
     path_dia_ref  = _testPath + _testName + ".dia.ref";
     // Reference file management OS by OS
@@ -557,6 +572,7 @@ function status = test_single(_module, _testPath, _testName)
     status.id = 0;
     status.message = "";
     status.details = "";
+    status.warning = "";
 
     //Reset standard globals
     rand("seed",0);
@@ -618,7 +634,7 @@ function status = test_single(_module, _testPath, _testName)
     end
 
     if ~isempty(grep(sciFile, "<-- TEST WITH GRAPHIC -->")) then
-        if _module.wanted_mode == "NWNI" then
+        if or(_module.wanted_mode == "NWNI") then
             status.id = 10;
             status.message = "skipped: Test with graphic";
             return;
@@ -629,7 +645,19 @@ function status = test_single(_module, _testPath, _testName)
         execMode = "NW";
     end
 
-    if (~isempty(grep(sciFile, "<-- JVM NOT MANDATORY -->")) | ~isempty(grep(sciFile, "<-- CLI SHELL MODE -->"))) then
+    if or(_module.wanted_mode == "NWNI") & isempty(grep(sciFile, "<-- CLI SHELL MODE -->")) then
+        status.id = 10;
+        status.message = "skipped: not CLI SHELL MODE test";
+        return;
+    end
+
+    if ~isempty(grep(sciFile, "<-- JVM NOT MANDATORY -->")) then
+        status.warning = _("option ""JVM NOT MANDATORY"" is deprecated, please use ""CLI SHELL MODE"" instead");
+        jvm = %F;
+        execMode = "NWNI";
+    end
+
+    if ~isempty(grep(sciFile, "<-- CLI SHELL MODE -->")) then
         jvm = %F;
         execMode = "NWNI";
     end
@@ -648,7 +676,7 @@ function status = test_single(_module, _testPath, _testName)
     clear MPITestPos
 
     if ~isempty(grep(sciFile, "<-- XCOS TEST -->")) then
-        if _module.wanted_mode == "NWNI" then
+        if or(_module.wanted_mode == "NWNI") then
             status.id = 10;
             status.message = "skipped: Test with xcos";
             return;
@@ -701,10 +729,18 @@ function status = test_single(_module, _testPath, _testName)
     "mode(3);" ;
     "lines(28,72);";
     "lines(0);" ;
-    "function %onprompt" ;
-    "   quit;" ;
-    "endfunction" ;
     "function []=bugmes(), printf(''error on test'');endfunction"
+    "function %onprompt" ;
+    "   [msg, num] = lasterror();" ;
+    "   if (num <> 0) then" ;
+    "       bugmes()" ;
+    "   end" ;
+    "   quit;" ;
+    "endfunction"];
+    if ~interactive then
+        head($+1) = "function []=messagebox(msg, msg_title, info, buttons, isModal), disp(''messagebox: '' + msg);endfunction";
+    end
+    head = [ head ;
     "predef(''all'');";
     "tmpdirToPrint = msprintf(''TMPDIR1=''''%s'''';//\n'',TMPDIR);"
     ];
@@ -765,12 +801,16 @@ function status = test_single(_module, _testPath, _testName)
     end
 
     //mode
+    valgrind_opt = "";
     winbin = "wscilex.exe";
     if _module.wanted_mode == "NW" then
         mode_arg = "-nw";
     elseif _module.wanted_mode == "NWNI" then
         winbin = "scilex.exe";
         mode_arg = "-nwni";
+    elseif _module.wanted_mode == ["NWNI" "PROFILING"] && getos() == "Linux" then
+        mode_arg = "-nwni -profiling";
+        valgrind_opt = "SCILAB_VALGRIND_OPT=""--log-file=" + tmp_prof + " """;
     else
         if execMode == "NWNI" then
             winbin = "scilex.exe";
@@ -792,26 +832,29 @@ function status = test_single(_module, _testPath, _testName)
     //language
     if language == "any" then
         language_arg = "";
-    elseif getos() == "Windows" then
-        language_arg = "-l "+ language;
     else
-        language_arg = "LANG=" + language + " ";
+        language_arg = "-l "+ language;
     end
 
     loader_path = pathconvert(fullfile(_module.moduleName, "loader.sce"), %f);
 
+    SCI_ARGS = " -nb -quit "
+    if ~_module.longtime then
+        SCI_ARGS = SCI_ARGS + "--timeout 15m "
+    end
+
     // Build final command
     if getos() == "Windows" then
         if (isdir(_module.moduleName) & isfile(loader_path)) // external module not in Scilab
-            test_cmd = "( """ + SCI_BIN + "\bin\" + winbin + """" + " " + mode_arg + " " + language_arg + " -nb -e ""exec(""""" + loader_path + """"");exec(""""" + tmp_tst + """"", -1);"" > """ + tmp_res + """ ) 2> """ + tmp_err + """";
+            test_cmd = "( """ + SCI_BIN + "\bin\" + winbin + """" + " " + mode_arg + " " + language_arg + SCI_ARGS + "-e ""exec(""""" + loader_path + """"");exec(""""" + tmp_tst + """"", -1);"" > """ + tmp_res + """ ) 2> """ + tmp_err + """";
         else // standard module
-            test_cmd = "( """ + SCI_BIN + "\bin\" + winbin + """" + " " + mode_arg + " " + language_arg + " -nb -e ""exec(""""" + tmp_tst + """"", -1);"" > """ + tmp_res + """ ) 2> """ + tmp_err + """";
+            test_cmd = "( """ + SCI_BIN + "\bin\" + winbin + """" + " " + mode_arg + " " + language_arg + SCI_ARGS + "-e ""exec(""""" + tmp_tst + """"", -1);"" > """ + tmp_res + """ ) 2> """ + tmp_err + """";
         end
     else
         if (isdir(_module.moduleName) & isfile(loader_path))
-            test_cmd = "( " + language_arg + " " + SCI_BIN + "/bin/scilab " + mode_arg + " -nb -e ""exec(''" + loader_path + "'');exec(''" + tmp_tst +"'');""" + " > " + tmp_res + " ) 2> " + tmp_err;
+            test_cmd = "( " + valgrind_opt + " " + SCI_BIN + "/bin/scilab " + mode_arg + " " + language_arg + SCI_ARGS + "-e ""exec(''" + loader_path + "'');exec(''" + tmp_tst +"'');""" + " > " + tmp_res + " ) 2> " + tmp_err;
         else
-            test_cmd = "( " + language_arg + " " + prefix_bin + " " + SCI_BIN + "/bin/scilab " + mode_arg + " -nb -f " + tmp_tst + " > " + tmp_res + " ) 2> " + tmp_err;
+            test_cmd = "( " + valgrind_opt + " " + prefix_bin + " " + SCI_BIN + "/bin/scilab " + mode_arg + " " + language_arg + SCI_ARGS + " -f " + tmp_tst + " > " + tmp_res + " ) 2> " + tmp_err;
         end
     end
 
@@ -841,6 +884,15 @@ function status = test_single(_module, _testPath, _testName)
     if (returnStatus <> 0)
         status.id = 5;
         status.message = "failed: Slave Scilab exited with error code " + string(returnStatus);
+        if params.show_error then
+            tmp = mgetl(tmp_res)
+            tmp(tmp=="") = []
+            status.details = "   " + strsubst(..
+            [""
+            "----- " + tmp_res + ": 10 last lines: -----"
+            tmp(max(1,size(tmp,1)-9):$)
+            ], TMPDIR, "TMPDIR")
+        end
         return;
     end
 
@@ -868,25 +920,28 @@ function status = test_single(_module, _testPath, _testName)
 
         if getos() == "Linux" then // Ignore JOGL2 debug message
             tmp_errfile_info = fileinfo(tmp_err);
-            msg = "Error: unable to open display (null)"
+            msg = "Error: unable to open display "
 
             if ~isempty(tmp_errfile_info) then
                 txt = mgetl(tmp_err);
                 txt(txt==msg) = [];
+
+                // Remove messages due to warning message from external
+                // libraries
+
+                if ~isempty(txt) then
+                    // MESA / EGL display some warning on stderr
+                    toRemove = grep(txt, "libEGL warning:");
+                    txt(toRemove) = [];
+                end
+
+                if ~isempty(txt) then
+                    toRemove = grep(txt, "extension ""RANDR"" missing on display");
+                    txt(toRemove) = [];
+                end
+
                 if isempty(txt) then
                     deletefile(tmp_err);
-                else // Remove messages due to warning message from library
-                    toRemove = grep(txt, "libEGL warning: failed to find any driver");
-                    txt(toRemove) = [];
-
-                    if ~isempty(txt) then
-                        toRemove = grep(txt, "extension ""RANDR"" missing on display");
-                        txt(toRemove) = [];
-                    end
-
-                    if isempty(txt) then
-                        deletefile(tmp_err);
-                    end
                 end
             end
         end
@@ -909,6 +964,19 @@ function status = test_single(_module, _testPath, _testName)
                 end
             end
         end
+
+        if isfile(tmp_prof) then
+            txt = mgetl(tmp_prof);
+            if grep(txt($), "ERROR SUMMARY: 0 errors from 0 contexts") then
+                deletefile(tmp_prof);
+            else
+                status.id = 5;
+                status.message = "failed: Valgrind error detected";
+                status.details = checkthefile(tmp_prof);
+                return;
+            end
+        end
+
 
         tmp_errfile_info = fileinfo(tmp_err);
 
@@ -946,7 +1014,6 @@ function status = test_single(_module, _testPath, _testName)
         if params.show_error == %t then
             status.details = [ status.details; dia($-10:$) ]
         end
-
         return;
     end
 
@@ -1016,7 +1083,8 @@ function status = test_single(_module, _testPath, _testName)
 
     // Comparaison ref <--> dia
 
-    if ( (reference=="check") & (_module.reference=="check") ) | (_module.reference=="create") then
+    if   (reference=="check" & _module.reference=="check") | ..
+        (reference ~= "skip" & _module.reference=="create") then
         //  Do some modification in  dia file
 
         dia(grep(dia, "printf(''%s\n'',tmpdirToPrint);")) = [];
@@ -1272,32 +1340,35 @@ function exportToXUnitFormat(exportToFile, testsuites)
         testsuite.attributes.tests = string(module.tests);
         testsuite.attributes.errors = string(module.errors);
 
-        for j=1:size(module.testcase,"*") // Export test by test
-            testsuite.children(j) = xmlElement(doc,"testcase");
-            unitTest = module.testcase(j);
-            testsuite.children(j).attributes.name = unitTest.name;
-            testsuite.children(j).attributes.time = string(unitTest.time);
-            testsuite.children(j).attributes.classname = getversion()+"."+module.name;
-            if isfield(unitTest,"failure") & size(unitTest.failure,"*") >= 1 then
-                testsuite.children(j).children(1) = xmlElement(doc,"failure");
-                testsuite.children(j).children(1).attributes.type = unitTest.failure.type;
-                content = unitTest.failure.content;
-                for kL=1:size(content, "*")
-                    ampIdx = strindex(content(kL), "&");
-                    while ~isempty(ampIdx)
-                        cur = ampIdx(1);
-                        ampIdx(1) = [];
-                        if or(part(content(kL), (cur+1):(cur+3))==["gt;" "lt"]) then
-                            // Ignored
-                        else
-                            content(kL) = part(content(kL), 1:cur) + "amp;" + part(content(kL), (cur+1):$);
-                            ampIdx = strindex(part(content(kL), (cur+1):$), "&");
+
+        if isfield(module, "testcase") then
+            for j=1:size(module.testcase,"*") // Export test by test
+                testsuite.children(j) = xmlElement(doc,"testcase");
+                unitTest = module.testcase(j);
+                testsuite.children(j).attributes.name = unitTest.name;
+                testsuite.children(j).attributes.time = string(unitTest.time);
+                testsuite.children(j).attributes.classname = getversion()+"."+module.name;
+                if isfield(unitTest,"failure") & size(unitTest.failure,"*") >= 1 then
+                    testsuite.children(j).children(1) = xmlElement(doc,"failure");
+                    testsuite.children(j).children(1).attributes.type = unitTest.failure.type;
+                    content = unitTest.failure.content;
+                    for kL=1:size(content, "*")
+                        ampIdx = strindex(content(kL), "&");
+                        while ~isempty(ampIdx)
+                            cur = ampIdx(1);
+                            ampIdx(1) = [];
+                            if or(part(content(kL), (cur+1):(cur+3))==["gt;" "lt"]) then
+                                // Ignored
+                            else
+                                content(kL) = part(content(kL), 1:cur) + "amp;" + part(content(kL), (cur+1):$);
+                                ampIdx = strindex(part(content(kL), (cur+1):$), "&");
+                            end
                         end
                     end
+                    testsuite.children(j).children(1).content = content;
+                elseif unitTest.skipped then
+                    testsuite.children(j).children(1) = xmlElement(doc,"skipped");
                 end
-                testsuite.children(j).children(1).content = content;
-            elseif unitTest.skipped then
-                testsuite.children(j).children(1) = xmlElement(doc,"skipped");
             end
         end
 

@@ -5,7 +5,7 @@
         <refpurpose>create a figure</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             f = figure(num);
             f = figure("PropertyName1", Propertyvalue1, ..., ..., "PropertyNameN", PropertyvalueN);
@@ -83,7 +83,7 @@
                 <term>Tag</term>
                 <listitem>
                     <para>string this property is generally used to identify the figure. It
-                        allows to give it a "name". Mainly used in conjontion with findobj().
+                        allows to give it a "name". Mainly used in conjunction with findobj().
                     </para>
                 </listitem>
             </varlistentry>
@@ -121,7 +121,7 @@ close(h);
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="close">close</link>

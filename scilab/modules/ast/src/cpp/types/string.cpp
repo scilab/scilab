@@ -2,15 +2,19 @@
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
 *
-*  This file must be used under the terms of the CeCILL.
-*  This source file is licensed as described in the file COPYING, which
-*  you should have received as part of this distribution.  The terms
-*  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
 #include <sstream>
+#include <iomanip>
 #include "core_math.h"
 #include "string.hxx"
 #include "stringexp.hxx"
@@ -24,8 +28,6 @@ extern "C"
 #include "os_string.h"
 #include "sci_malloc.h"
 }
-
-using namespace std;
 
 #define SIZE_BETWEEN_TWO_STRING_VALUES  2
 #define SPACE_BETWEEN_TWO_STRING_VALUES L"  "
@@ -43,7 +45,7 @@ String::~String()
 #endif
 }
 
-String::String(int _iDims, int* _piDims)
+String::String(int _iDims, const int* _piDims)
 {
     wchar_t** pwsData = NULL;
     create(_piDims, _iDims, &pwsData, NULL);
@@ -100,7 +102,7 @@ String::String(int _iRows, int _iCols, wchar_t const* const* _pstData)
 #endif
 }
 
-InternalType* String::clone()
+String* String::clone()
 {
     String *pstClone = new String(getDims(), getDimsArray());
     pstClone->set(m_pRealData);
@@ -109,14 +111,14 @@ InternalType* String::clone()
 
 void String::whoAmI()
 {
-    cout << "types::String";
+    std::cout << "types::String";
 }
 
 void String::deleteString(int _iPos)
 {
     if (m_pRealData != NULL)
     {
-        if (m_pRealData[_iPos] != NULL)
+        if (m_pRealData[_iPos] != NULL && m_pRealData[_iPos] != String::nullValue())
         {
             FREE(m_pRealData[_iPos]);
             m_pRealData[_iPos] = NULL;
@@ -139,7 +141,7 @@ void String::deleteImg()
     return;
 }
 
-bool String::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*/)
+bool String::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_iDims*/)
 {
     int iPrecision = ConfigVariable::getFormatSize();
     int iLineLen = ConfigVariable::getConsoleWidth();
@@ -176,11 +178,11 @@ bool String::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
 
             ostr << L" ";
             configureStream(&ostr, iStrMaxSize, iPrecision, ' ');
-            ostr << left << wcsStr + iStrPos;
+            ostr << std::left << wcsStr + iStrPos << std::resetiosflags(std::ios::adjustfield);
         }
         else
         {
-            ostr << L" " << wcsStr << endl;
+            ostr << L" " << wcsStr << std::endl;
         }
     }
     else if (getCols() == 1)
@@ -235,29 +237,30 @@ bool String::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
                 }
 
                 configureStream(&ostr, iStrMaxSize, iPrecision, ' ');
-                ostr << left << wcsStr + iStrPos;
+                ostr << std::left << wcsStr + iStrPos;
             }
             else
             {
                 configureStream(&ostr, iMaxLen, iPrecision, ' ');
-                ostr << left << wcsStr << spaces;
+                ostr << std::left << wcsStr << spaces;
             }
 
-            ostr << L"!" << endl;
+            ostr << L"!" << std::endl;
 
             if ((i + 1) < m_iSize)
             {
                 //for all but last one
                 ostr << L"!";
                 configureStream(&ostr, iEmptyLineSize, iPrecision, ' ');
-                ostr << left << L" ";
-                ostr << L"!" << endl;
+                ostr << std::left << L" ";
+                ostr << L"!" << std::endl;
             }
         }
+        ostr << std::resetiosflags(std::ios::adjustfield);
     }
     else if (getRows() == 1)
     {
-        wostringstream ostemp;
+        std::wostringstream ostemp;
         int iLastVal = m_iCols1PrintState;
 
         for (int i = m_iCols1PrintState ; i < getCols() ; i++)
@@ -280,7 +283,7 @@ bool String::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
                 }
 
                 addColumnString(ostr, iLastVal + 1, i);
-                ostr << L"!" << ostemp.str() << L"!" << endl;
+                ostr << L"!" << ostemp.str() << L"!" << std::endl;
                 ostemp.str(L"");
                 iLastVal = i;
             }
@@ -299,12 +302,12 @@ bool String::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
                 }
 
                 configureStream(&ostemp, iStrMaxSize, iPrecision, ' ');
-                ostemp << left << wcsStr + iStrPos;
+                ostemp << std::left << wcsStr + iStrPos;
             }
             else
             {
                 configureStream(&ostemp, iCurLen + 2, iPrecision, ' ');
-                ostemp << left << get(iPos);
+                ostemp << std::left << get(iPos);
             }
         }
 
@@ -313,11 +316,11 @@ bool String::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
             addColumnString(ostr, iLastVal + 1, getCols());
         }
 
-        ostr << L"!" << ostemp.str() << L"!" << endl;
+        ostr << L"!" << ostemp.str() << L"!" << std::endl << std::resetiosflags(std::ios::adjustfield);
     }
     else //Matrix
     {
-        wostringstream ostemp;
+        std::wostringstream ostemp;
         int iLen = 0;
         int iLastCol = m_iCols1PrintState;
 
@@ -364,6 +367,7 @@ bool String::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
                         ostr << ostemp.str();
                         m_iRows2PrintState = iRows2;
                         m_iCols1PrintState = iLastCol;
+                        delete[] piSize;
                         return false;
                     }
 
@@ -389,23 +393,23 @@ bool String::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
                             }
 
                             configureStream(&ostemp, iStrMaxSize, iPrecision, ' ');
-                            ostemp << left << wcsStr + iStrPos;
+                            ostemp << std::left << wcsStr + iStrPos;
                         }
                         else
                         {
                             configureStream(&ostemp, piSize[iCols2], iPrecision, ' ');
-                            ostemp << left << get(iPos) << spaces;
+                            ostemp << std::left << get(iPos) << spaces;
                         }
                     }
-                    ostemp << L"!" << endl;
+                    ostemp << L"!" << std::endl;
 
                     if ((iRows2 + 1) != m_iRows)
                     {
                         ostemp << L"!";
                         // -2 because of two "!"
                         configureStream(&ostemp, iEmptyLineSize, iPrecision, ' ');
-                        ostemp << left << L" ";
-                        ostemp << L"!" << endl;
+                        ostemp << std::left << L" ";
+                        ostemp << L"!" << std::endl;
                     }
                 }
 
@@ -441,6 +445,7 @@ bool String::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
                 ostr << ostemp.str();
                 m_iRows2PrintState = iRows2;
                 m_iCols1PrintState = iLastCol;
+                delete[] piSize;
                 return false;
             }
 
@@ -477,24 +482,24 @@ bool String::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
                     }
 
                     configureStream(&ostemp, iStrMaxSize, iPrecision, ' ');
-                    ostemp << wcsStr + iStrPos << left;
+                    ostemp << wcsStr + iStrPos << std::left;
                     iLen = iStrMaxSize;
                 }
                 else
                 {
                     configureStream(&ostemp, piSize[iCols2], iPrecision, ' ');
-                    ostemp << left << get(iPos) << spaces;
+                    ostemp << std::left << get(iPos) << spaces;
                     iLen += piSize[iCols2] + static_cast<int>(spaces.size());
                 }
             }
-            ostemp << L"!" << endl;
+            ostemp << L"!" << std::endl;
 
             if ((iRows2 + 1) != m_iRows)
             {
                 ostemp << L"!";
                 configureStream(&ostemp, iLen, iPrecision, ' ');
-                ostemp << left << L" ";
-                ostemp << L"!" << endl;
+                ostemp << std::left << L" ";
+                ostemp << L"!" << std::endl;
             }
         }
 
@@ -502,7 +507,8 @@ bool String::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
         {
             addColumnString(ostr, iLastCol + 1, getCols());
         }
-        ostr << ostemp.str();
+        ostr << ostemp.str() << std::resetiosflags(std::ios::adjustfield);
+        delete[] piSize;
     }
 
     return true;
@@ -540,9 +546,12 @@ bool String::operator!=(const InternalType& it)
     return !(*this == it);
 }
 
-wchar_t* String::getNullValue()
+static std::wstring null = L"";
+wchar_t* String::nullValue()
 {
-    return os_wcsdup(L"");
+    // The null value pointer is shared to speed up "" assignement
+    // Empty strings creation can then be done without memory allocation
+    return (wchar_t*) null.data();
 }
 
 String* String::createEmpty(int _iDims, int* _piDims, bool /*_bComplex*/)
@@ -552,6 +561,11 @@ String* String::createEmpty(int _iDims, int* _piDims, bool /*_bComplex*/)
 
 wchar_t* String::copyValue(wchar_t* _pwstData)
 {
+    if (_pwstData == nullValue())
+    {
+        return nullValue();
+    }
+
     try
     {
         return os_wcsdup(_pwstData);
@@ -560,82 +574,109 @@ wchar_t* String::copyValue(wchar_t* _pwstData)
     {
         char message[bsiz];
         os_sprintf(message, _("Can not allocate data.\n"));
-        ast::ScilabError se(message);
-        se.SetErrorNumber(999);
-        throw (se);
+        throw ast::InternalError(message);
     }
-    return NULL;
 
+    return NULL;
 }
 
 wchar_t* String::copyValue(const wchar_t* _pwstData)
 {
+    if (_pwstData == nullValue())
+    {
+        return nullValue();
+    }
+
     return os_wcsdup(_pwstData);
 }
 
 void String::deleteData(wchar_t* data)
 {
-    if (data)
+    if (data && data != nullValue())
     {
         // data are always allocated using C-like malloc API
         FREE(data);
     }
 }
 
-bool String::set(int _iPos, const wchar_t* _pwstData)
+String* String::set(int _iPos, const wchar_t* _pwstData)
 {
     if (m_pRealData == NULL || _iPos >= m_iSize)
     {
-        return false;
+        return NULL;
+    }
+
+    typedef String* (String::*set_t)(int, const wchar_t*);
+    String* pIT = checkRef(this, (set_t)&String::set, _iPos, _pwstData);
+    if (pIT != this)
+    {
+        return pIT;
     }
 
     deleteString(_iPos);
     m_pRealData[_iPos] = copyValue(_pwstData);
-    return true;
+    return this;
 }
 
-bool String::set(int _iRows, int _iCols, const wchar_t* _pwstData)
+String* String::set(int _iRows, int _iCols, const wchar_t* _pwstData)
 {
     int piIndexes[2] = {_iRows, _iCols};
     return set(getIndex(piIndexes), _pwstData);
 }
 
-bool String::set(const wchar_t* const* _pwstData)
+String* String::set(const wchar_t* const* _pwstData)
 {
-    for (int i = 0; i < getSize(); i++)
+    typedef String* (String::*set_t)(const wchar_t * const*);
+    String* pIT = checkRef(this, (set_t)&String::set, _pwstData);
+    if (pIT != this)
     {
-        if (set(i, _pwstData[i]) == false)
-        {
-            return false;
-        }
+        return pIT;
     }
-    return true;
+
+    for (int i = 0; i < m_iSize; i++)
+    {
+        if (m_pRealData == NULL || i >= m_iSize)
+        {
+            return NULL;
+        }
+
+        deleteString(i);
+        m_pRealData[i] = copyValue(_pwstData[i]);
+    }
+    return this;
 }
 
-bool String::set(int _iPos, const char* _pcData)
+String* String::set(int _iPos, const char* _pcData)
 {
     wchar_t* w = to_wide_string(_pcData);
-    bool ret = set(_iPos, w);
+    String* ret = set(_iPos, w);
     FREE(w);
     return ret;
 }
 
-bool String::set(int _iRows, int _iCols, const char* _pcData)
+String* String::set(int _iRows, int _iCols, const char* _pcData)
 {
     int piIndexes[2] = {_iRows, _iCols};
     return set(getIndex(piIndexes), _pcData);
 }
 
-bool String::set(const char* const* _pstrData)
+String* String::set(const char* const* _pstrData)
 {
-    for (int i = 0; i < getSize(); i++)
+    typedef String* (String::*set_t)(const char * const*);
+    String* pIT = checkRef(this, (set_t)&String::set, _pstrData);
+    if (pIT != this)
     {
-        if (set(i, _pstrData[i]) == false)
+        return pIT;
+    }
+
+    for (int i = 0; i < m_iSize; i++)
+    {
+        if (set(i, _pstrData[i]) == NULL)
         {
-            return false;
+            return NULL;
         }
     }
-    return true;
+    return this;
 }
 
 wchar_t** String::allocData(int _iSize)
@@ -650,9 +691,7 @@ wchar_t** String::allocData(int _iSize)
     {
         char message[bsiz];
         os_sprintf(message, _("Can not allocate %.2f MB memory.\n"), (double)(_iSize * sizeof(char*)) / 1.e6);
-        ast::ScilabError se(message);
-        se.SetErrorNumber(999);
-        throw (se);
+        throw ast::InternalError(message);
     }
     return pStr;
 }

@@ -7,7 +7,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>res=getmodules()</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -33,9 +33,9 @@ find(modules=="core");
 with_module("core");
  ]]></programlisting>
     </refsection>
-    
+
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="with_module">with_module</link>

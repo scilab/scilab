@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="getscilabkeywords" xml:lang="pt">
+    <refnamediv>
+        <refname>getscilabkeywords</refname>
+        <refpurpose>retorna uma lista com todas as palavras-chave do
+            Scilab
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>list_keywords=getscilabkeywords()</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>list_keywords</term>
+                <listitem>
+                    <para>uma lista</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>list_keywords(1) : primitivas</para>
+        <para>list_keywords(2) : comandos</para>
+        <para>list_keywords(3) : variáveis predefinidas</para>
+        <para>list_keywords(4) : funções Scilab</para>
+        <para>list_keywords(5) : funções xcos</para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+list_keywords = getscilabkeywords();
+primitives = list_keywords(1)
+commands = list_keywords(2)
+predef_var = list_keywords(3)
+scilab_functions = list_keywords(4)
+xcos_functions = list_keywords(5)
+ ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>Autores</title>
+        <para>A.C, adaptado do código de Enrico Segre's no Scipad.</para>
+    </refsection>
+</refentry>

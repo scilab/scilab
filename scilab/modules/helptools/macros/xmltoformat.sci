@@ -4,12 +4,16 @@
 // Copyright (C) 2009 DIGITEO - Vincent COUVERT <vincent.couvert@scilab.org>
 // Copyright (C) 2010 - 2011 DIGITEO - Allan CORNET
 // Copyright (C) 2013 - Scilab Enterprises - Clement DAVID
+// Copyright (C) 2016 - Samuel GOUGEON
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function generated_files = xmltoformat(output_format,dirs,titles,directory_language,default_language)
 
@@ -361,19 +365,14 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
         //
 
         nb_dir = size(dirs_c,"*");
-        displaydone = 0;
 
+        if nb_dir > 1 then
+            mprintf(_("\nBuilding master documents:\n"));
+        elseif nb_dir==1
+            mprintf(_("\nBuilding the master document:\n"));
+        end
+        
         for k=1:nb_dir
-
-            if nb_dir > 1 then
-                if displaydone == 0 then
-                    mprintf(_("\nBuilding master documents:\n"));
-                    displaydone = 1;
-                end
-            else
-                mprintf(_("\nBuilding the master document:\n"));
-            end
-
             mprintf(_("\t%s\n"),strsubst(dirs_c(k),SCI_long,"SCI"));
 
             this_tree  = contrib_tree(dirs_c(k));
@@ -388,19 +387,14 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
     else
 
         nb_dir = size(dirs,"*");
-        displaydone = 0;
 
+        if nb_dir > 1 then
+            mprintf(_("\nBuilding master documents:\n"));
+        elseif nb_dir==1
+            mprintf(_("\nBuilding the master document:\n"));
+        end
+        
         for k=1:nb_dir
-
-            if nb_dir > 1 then
-                if displaydone == 0 then
-                    mprintf(_("\nBuilding master documents:\n"));
-                    displaydone = 1;
-                end
-            else
-                mprintf(_("\nBuilding the master document:\n"));
-            end
-
             mprintf(_("\t%s\n"),strsubst(dirs(k),SCI_long,"SCI"));
 
             this_tree  = contrib_tree(dirs(k));
@@ -857,6 +851,9 @@ function x2f_reset_help_mod_var(language)
     for k = 1:size_cleaned_modules;
         addchapter_path = SCI + "/modules/" + cleaned_ordered_modules(k) + "/help/" + language + "/addchapter.sce";
         if isfile(addchapter_path) then
+
+
+
             exec(addchapter_path, -1);
         end
     end
@@ -895,7 +892,7 @@ function tree = x2f_dir_to_tree(directory,level)
     // =========================================================================
 
     if type(directory) <> 10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"x2f_dir_to_tree",1));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"x2f_dir_to_tree",1));
     end
 
     if type(level) <> 1 then
@@ -906,7 +903,7 @@ function tree = x2f_dir_to_tree(directory,level)
     // =========================================================================
 
     if size(directory,"*") <> 1 then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"x2f_dir_to_tree",1));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"x2f_dir_to_tree",1));
     end
 
     if size(level,"*") <> 1 then
@@ -960,13 +957,7 @@ function tree = x2f_dir_to_tree(directory,level)
     end
 
     // Get the default title
-
-    if getos() == "Windows" then
-        tmpdirectory = strsubst(directory,"/\\$/","","r");
-    else
-        tmpdirectory = strsubst(directory,"/\/$/","","r");
-    end
-
+    tmpdirectory = strsubst(directory,"/\"+filesep()+"$/","","r");
     tree("title_default") = basename(tmpdirectory);
 
     //
@@ -989,10 +980,8 @@ function tree = x2f_dir_to_tree(directory,level)
 
     for i=1:size(directories,"*")
         this_dir_tree = x2f_dir_to_tree(directory+directories(i),tree("level") + 1);
-        if this_dir_tree("xml_number") > 0 then
-            tree("dir_"+getmd5(directories(i),"string")) = this_dir_tree;
-            tree("xml_number") = tree("xml_number") + this_dir_tree("xml_number");
-        end
+        tree("dir_"+getmd5(directories(i),"string")) = this_dir_tree;
+        tree("xml_number") = tree("xml_number") + this_dir_tree("xml_number");
     end
 
 endfunction
@@ -1023,14 +1012,14 @@ function xmlfiles = x2f_get_xml_files(directory)
     // =========================================================================
 
     if type(directory) <> 10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"x2f_get_xml_files",1));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"x2f_get_xml_files",1));
     end
 
     // Check input argument dimension
     // =========================================================================
 
     if size(directory,"*") <> 1 then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"x2f_get_xml_files",1));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"x2f_get_xml_files",1));
     end
 
     // Check the directory existence
@@ -1112,14 +1101,14 @@ function directories = x2f_get_directories(directory)
     // =========================================================================
 
     if type(directory) <> 10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"x2f_get_directories",1));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"x2f_get_directories",1));
     end
 
     // Check input argument dimension
     // =========================================================================
 
     if size(directory,"*") <> 1 then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"x2f_get_directories",1));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"x2f_get_directories",1));
     end
 
     // Check the directory existence
@@ -1167,8 +1156,6 @@ endfunction
 
 function desc_out = x2f_read_CHAPTER(file_in)
 
-    desc_out = struct();
-
     rhs  = argn(2);
 
     // Check number of input arguments
@@ -1197,6 +1184,7 @@ function desc_out = x2f_read_CHAPTER(file_in)
 
     FILETOPARSE = mgetl(file_in);
 
+    desc_out = struct();
     current_field = "";
 
     for i=1:size(FILETOPARSE,"*")
@@ -1328,8 +1316,7 @@ function desc_out = x2f_cat(desc_in_1,desc_in_2)
     // ... and now, Action
     // =========================================================================
 
-    fields_in_2      = getfield(1,desc_in_2);
-    fields_in_2(1:2) = [];
+    fields_in_2 = fieldnames(desc_in_2);
 
     if or(isfield(desc_in_1,fields_in_2)) then
         error(msprintf(gettext("%s: The 2 mlist must not have any field in common .\n"),"x2f_cat"));
@@ -1470,7 +1457,7 @@ function master_document = x2f_tree_to_master( tree )
     // Loop on dir_
     // =========================================================================
 
-    my_subtrees = getfield(1,tree);
+    my_subtrees = fieldnames(tree);
     my_subtrees(find(part(my_subtrees,1:4)<>"dir_")) = [];
 
     for i=1:size(my_subtrees,"*")
@@ -1581,7 +1568,7 @@ function master_section = x2f_tree_to_section( tree , offset )
     // Loop on dir_
     // =========================================================================
 
-    my_subtrees = getfield(1,tree);
+    my_subtrees = fieldnames(tree);
     my_subtrees(find(part(my_subtrees,1:4)<>"dir_")) = [];
 
     for i=1:size(my_subtrees,"*")
@@ -1599,12 +1586,13 @@ function master_section = x2f_tree_to_section( tree , offset )
     end
 
     master_section = [ master_section ; "</"+section_type+">" ];
-
 endfunction
 
 // =============================================================================
 // tree_out = x2f_merge_trees( tree_in_1 , tree_in_2 )
-//
+//    tree_in_1: reference
+//    tree_in_2: secondary (to be completed from reference)
+//    
 // Date : 27/04/2009
 // =============================================================================
 
@@ -1637,26 +1625,24 @@ function tree_out = x2f_merge_trees( tree_in_1 , tree_in_2 )
 
     // Loop on dir_
     // =========================================================================
-
-    my_subtrees = getfield(1,tree_in_1);
+    my_subtrees = fieldnames(tree_in_1);
     my_subtrees(find(part(my_subtrees,1:4)<>"dir_")) = [];
-
-    for i=1:size(my_subtrees,"*")
+    for my_subtree = my_subtrees(:)'
         // Check if the subtree exists in tree_in_2
-        if ~isfield(tree_in_2,my_subtrees(i)) then
+        if ~isfield(tree_in_2, my_subtree) then
             // if not, copy the whole subtree in tree_in_2
-            this_subtree             = tree_in_1(my_subtrees(i));
-            tree_out(my_subtrees(i)) = tree_in_1(my_subtrees(i));
+            tree_out(my_subtree)     = tree_in_1(my_subtree);
+            this_subtree             = tree_in_1(my_subtree);
             tree_out("xml_number")   = tree_out("xml_number") + this_subtree("xml_number");
 
         else
             // if yes, iterate with x2f_merge_trees
-            this_subtree_before      = tree_in_2(my_subtrees(i))
+            this_subtree_before      = tree_in_2(my_subtree)
             xml_number_before        = this_subtree_before("xml_number");
-            this_subtree_after       = x2f_merge_trees( tree_in_1(my_subtrees(i)) , this_subtree_before );
+            this_subtree_after       = x2f_merge_trees( tree_in_1(my_subtree) , this_subtree_before );
             xml_number_after         = this_subtree_after("xml_number");
 
-            tree_out(my_subtrees(i)) = this_subtree_after;
+            tree_out(my_subtree)     = this_subtree_after;
             tree_out("xml_number")   = tree_out("xml_number") + xml_number_after - xml_number_before;
         end
     end
@@ -1684,9 +1670,11 @@ function tree_out = x2f_merge_trees( tree_in_1 , tree_in_2 )
             tree_out("xml_number")  = tree_out("xml_number") + 1;
         end
     end
-
-    tree_out("xml_list") = xmllist_out;
-
+    
+    // Fix http://bugzilla.scilab.org/11692 :
+    tmp = strsubst(convstr(xmllist_out(:,4)), "/^percent/","%","r")
+    [tmp, k] = gsort(tmp, "g", "i");
+    tree_out("xml_list") = xmllist_out(k,:);
 endfunction
 
 // =============================================================================
@@ -1730,7 +1718,7 @@ function xmllist_out = x2f_cat_xmllist( tree , xmllist_in )
     // Loop on dir_
     // =========================================================================
 
-    my_subtrees = getfield(1,tree);
+    my_subtrees = fieldnames(tree);
     my_subtrees(find(part(my_subtrees,1:4)<>"dir_")) = [];
 
     for i=1:size(my_subtrees,"*")

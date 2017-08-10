@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2010-2010 - DIGITEO - Bernard HUGUENEY
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -61,15 +64,13 @@ void spcompack(int neqns, int nsuper, int nsub, int nnz, XlindxIt xlindx
 }
 }
 
-using namespace types;
-
 //adjncy=spcompack(xadj,xlindx,lindx)
-Function::ReturnValue sci_spcompack(typed_list &in, int nbRes, typed_list &out)
+types::Function::ReturnValue sci_spcompack(types::typed_list &in, int nbRes, types::typed_list &out)
 {
     if (in.size() != 3)
     {
         Scierror(999, _("%s: Wrong number of input argument(s): %d expected.\n"), "spcompack", 3);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     for (std::size_t i = 0; i != 3; i++)
@@ -78,22 +79,22 @@ Function::ReturnValue sci_spcompack(typed_list &in, int nbRes, typed_list &out)
         if (in[i]->isDouble() == false)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: Real vector expected.\n"), "spcompack", i + 1);
-            return Function::Error;
+            return types::Function::Error;
         }
     }
 
     if (nbRes > 1)
     {
         Scierror(999, _("%s: Wrong number of output arguments: %d expected.\n"), "spcompack", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
-    double const*const xadj     = in[0]->getAs<Double>()->getReal();
-    std::size_t const nEqns     = in[0]->getAs<Double>()->getSize();
-    double const*const xlindx   = in[1]->getAs<Double>()->getReal();
-    std::size_t const nbSub     = in[1]->getAs<Double>()->getSize();
-    double const*const lindx    = in[2]->getAs<Double>()->getReal();
-    std::size_t const nSuper    = in[2]->getAs<Double>()->getSize();
+    double const*const xadj     = in[0]->getAs<types::Double>()->getReal();
+    std::size_t const nEqns     = in[0]->getAs<types::Double>()->getSize();
+    double const*const xlindx   = in[1]->getAs<types::Double>()->getReal();
+    std::size_t const nbSub     = in[1]->getAs<types::Double>()->getSize();
+    double const*const lindx    = in[2]->getAs<types::Double>()->getReal();
+    std::size_t const nSuper    = in[2]->getAs<types::Double>()->getSize();
 
     std::size_t const nnz = (std::size_t)xadj[nEqns - 1] - 1;
     types::Double* const pAdjncy = new types::Double((int)nnz, 1);
@@ -101,5 +102,5 @@ Function::ReturnValue sci_spcompack(typed_list &in, int nbRes, typed_list &out)
 
     spcompack((int)nEqns - 1, (int)nbSub - 1,  (int)nSuper - 1, (int)nnz - 1, xlindx, lindx, xadj, adjncy);
     out.push_back(pAdjncy);
-    return Function::OK;
+    return types::Function::OK;
 }

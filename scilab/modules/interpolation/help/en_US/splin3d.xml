@@ -5,7 +5,7 @@
         <refpurpose>spline gridded 3d interpolation</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>tl = splin3d(x, y, z, v, [order])</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -77,7 +77,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // example 1
 // =============================================================================
 
@@ -96,8 +96,8 @@ vp_interp = interp3d(xp,yp,zp, tl);
 er = max(abs(vp_exact - vp_interp))
 // now retry with n=20 and see the error
  ]]></programlisting>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
 
 // example 2 (see linear_interpn help page which have the
 //            same example with trilinear interpolation)
@@ -121,16 +121,17 @@ for i = 1:length(val)
   [Xm,Xp,Ym,Yp,Zm,Zp] = slice_parallelepiped(direction(i), val(i), ebox, m, m, m);
   Vm = interp3d(Xm,Ym,Zm, tl);
   [xf,yf,zf,vf] = nf3dq(Xm,Ym,Zm,Vm,1);
-  XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf]; VF = [VF vf]; 
+  XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf]; VF = [VF vf];
   Vp = interp3d(Xp,Yp,Zp, tl);
   [xf,yf,zf,vf] = nf3dq(Xp,Yp,Zp,Vp,1);
-  XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf]; VF = [VF vf]; 
+  XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf]; VF = [VF vf];
 end
 nb_col = 128;
 vmin = min(VF); vmax = max(VF);
 color_example = dsearch(VF,linspace(vmin,vmax,nb_col+1));
-xset("colormap",jetcolormap(nb_col));
-clf(); xset("hidden3d",xget("background"));
+gcf().color_map = jetcolormap(nb_col);
+clf();
+gca().hiddencolor = gca().background;
 colorbar(vmin,vmax)
 plot3d(XF, YF, list(ZF,color_example), flag=[-1 6 4])
 xtitle("3d spline interpolation of "+func)
@@ -154,23 +155,24 @@ show_window()
             [Xm,Xp,Ym,Yp,Zm,Zp] = slice_parallelepiped(direction(i), val(i), ebox, m, m, m);
             Vm = interp3d(Xm,Ym,Zm, tl);
             [xf,yf,zf,vf] = nf3dq(Xm,Ym,Zm,Vm,1);
-            XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf]; VF = [VF vf]; 
+            XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf]; VF = [VF vf];
             Vp = interp3d(Xp,Yp,Zp, tl);
             [xf,yf,zf,vf] = nf3dq(Xp,Yp,Zp,Vp,1);
-            XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf]; VF = [VF vf]; 
+            XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf]; VF = [VF vf];
             end
             nb_col = 128;
             vmin = min(VF); vmax = max(VF);
             color_example = dsearch(VF,linspace(vmin,vmax,nb_col+1));
-            xset("colormap",jetcolormap(nb_col));
-            clf(); xset("hidden3d",xget("background"));
+            gcf().color_map = jetcolormap(nb_col);
+            clf();
+            gca().hiddencolor = gca().background;
             colorbar(vmin,vmax)
             plot3d(XF, YF, list(ZF,color_example), flag=[-1 6 4])
             xtitle("3d spline interpolation of "+func)
         </scilab:image>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="linear_interpn">linear_interpn</link>

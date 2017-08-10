@@ -2,11 +2,14 @@
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2013 - Scilab Enterprises - Cedric Delamarre
 *
-*  This file must be used under the terms of the CeCILL.
-*  This source file is licensed as described in the file COPYING, which
-*  you should have received as part of this distribution.  The terms
-*  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 #include <string.h> // memcpy
@@ -19,7 +22,7 @@
 
 std::wstring ConfigGraphicVariable::m_wstFPF;
 
-void ConfigGraphicVariable::setFPF(std::wstring _wstFPF)
+void ConfigGraphicVariable::setFPF(const std::wstring& _wstFPF)
 {
     m_wstFPF = _wstFPF;
 }
@@ -42,7 +45,7 @@ std::map<std::wstring, int> ConfigGraphicVariable::m_mapProperties;
 
 void ConfigGraphicVariable::fillProperties()
 {
-    if(m_mapProperties.empty())
+    if (m_mapProperties.empty())
     {
         m_mapProperties[std::wstring(L"alufunction")]   = 1;
         m_mapProperties[std::wstring(L"auto clear")]    = 2;
@@ -77,7 +80,7 @@ void ConfigGraphicVariable::fillProperties()
         m_mapProperties[std::wstring(L"wpdim")]         = 31;
         m_mapProperties[std::wstring(L"wpos")]          = 32;
         m_mapProperties[std::wstring(L"wresize")]       = 33;
-//        m_mapProperties[std::wstring(L" ")]             = 34; /* added */
+        //        m_mapProperties[std::wstring(L" ")]             = 34; /* added */
     }
 }
 
@@ -86,7 +89,7 @@ int ConfigGraphicVariable::getPropertyValue(wchar_t* _wcsKey)
     fillProperties();
     std::map<std::wstring, int>::iterator it;
     it = m_mapProperties.find(_wcsKey);
-    if(it != m_mapProperties.end())
+    if (it != m_mapProperties.end())
     {
         return it->second;
     }
@@ -97,7 +100,7 @@ int ConfigGraphicVariable::getPropertyValue(wchar_t* _wcsKey)
 bool ConfigGraphicVariable::bPropertyFound(wchar_t* _wcsKey)
 {
     fillProperties();
-    if(m_mapProperties.find(_wcsKey) != m_mapProperties.end())
+    if (m_mapProperties.find(_wcsKey) != m_mapProperties.end())
     {
         return true;
     }
@@ -119,7 +122,7 @@ unsigned short* ConfigGraphicVariable::m_siColormap = NULL;
 
 void ConfigGraphicVariable::initColormap()
 {
-    if(m_siColormap == NULL)
+    if (m_siColormap == NULL)
     {
         m_siColormap = new unsigned short[3 * NUMCOLORS_SCI];
 

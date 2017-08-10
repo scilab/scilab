@@ -53,30 +53,58 @@
             <varlistentry>
                 <term>Callback_Type</term>
                 <listitem>
-                    <para>Integer</para>
-                    <para>The type of callback transmitted to the uicontrol.</para>
-                    <itemizedlist>
-                        <listitem>
-                            <para>
-                                <literal>-1</literal> none (callback desactivated)
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <literal>0</literal> a Scilab instruction
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <literal>1</literal> a C or a Fortran function
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <literal>2</literal> a Scilab function
-                            </para>
-                        </listitem>
-                    </itemizedlist>
+                    <para>Scalar</para>
+                    <para>The type of callback transmitted to the uicontrol (see example below).</para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>
+                                <literal>-1</literal>
+                            </term>
+                            <listitem>
+                                <para>none (callback deactivated)</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>
+                                <literal>0</literal> (by default)
+                            </term>
+                            <listitem>
+                                <para>non prioritary (or interruptible) Scilab instructions</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>
+                                <literal>1</literal>
+                            </term>
+                            <listitem>
+                                <para>Cor a Fortran function</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>
+                                <literal>2</literal>
+                            </term>
+                            <listitem>
+                                <para>non prioritary (or interruptible) Scilab function</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>
+                                <literal>10</literal>
+                            </term>
+                            <listitem>
+                                <para>prioritary (or non-interruptible) Scilab instructions</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>
+                                <literal>12</literal>
+                            </term>
+                            <listitem>
+                                <para>prioritary (or non-interruptible) Scilab function</para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -163,7 +191,7 @@
                 <listitem>
                     <para>String</para>
                     <para>
-                        Used for <literal>radiobutton</literal> and <literal>checkbox</literal> style uicontrols, 
+                        Used for <literal>radiobutton</literal> and <literal>checkbox</literal> style uicontrols,
                         this property allow to manage uicontrols of the same group as a whole. For example, <literal>checkbox</literal> uicontrols of a group
                         will manage selection unicity automatically.
                     </para>
@@ -330,7 +358,7 @@
                             </para>
                         </listitem>
                         <listitem>
-                            <para>Other uicontrols: the default value for "Relief" property is "flat".</para>
+                            <para>Other uicontrols: the default value for "Relief" property is relief by default provided by java language.</para>
                         </listitem>
                     </itemizedlist>
                 </listitem>
@@ -374,7 +402,7 @@
                     </para>
                     <itemizedlist>
                         <listitem>
-                            <para>  
+                            <para>
                                 For <literal>pushbutton</literal> or <literal>text</literal> uicontrols, if the text is enclosed between two $ (dollar sign), then it will be
                                 considered as a LaTeX expression, and if it is enclosed between &lt; and &gt;, it will be considered
                                 as a MathML one.
@@ -399,8 +427,8 @@
                             <para>
                                 For <literal>listbox</literal> and <literal>popupmenu</literal> uicontrols which manage colors selection, icons, background
                                 and foreground colors, the <literal>String</literal> property can be set to a matrix matching the format:
-                                <literal>["#color1", "Item1", "#background1", "#foreground1"; "#color2", "Item2", ..., ...]</literal> 
-                                <literal>["icon1", "Item1", "#background1", "#foreground1"; "icon2", "Item2", ..., ...]</literal> 
+                                <literal>["#color1", "Item1", "#background1", "#foreground1"; "#color2", "Item2", ..., ...]</literal>
+                                <literal>["icon1", "Item1", "#background1", "#foreground1"; "icon2", "Item2", ..., ...]</literal>
                                 with <literal>"#color1"</literal>, <literal>"#background1"</literal> and <literal>"#foreground1"</literal> in HTML format <literal>#XXXXXX</literal>.
                                 Then the component will display a colored box or icon on the left of the associated string,
                                 and different background/foreground colors for items.
@@ -434,7 +462,7 @@
                 <listitem>
                     <para>Boolean</para>
                     <para>
-                        Indicates whether the tabs of a <literal>tab</literal> style uicontrol 
+                        Indicates whether the tabs of a <literal>tab</literal> style uicontrol
                         must be wrapped (<literal>title_scroll=%F</literal>) or scrolled (<literal>title_scroll=%T</literal>).
                     </para>
                 </listitem>
@@ -523,8 +551,109 @@
             </varlistentry>
         </variablelist>
     </refsection>
+    <refsection>
+        <title>Example for callback_type property</title>
+        <programlisting role="example"><![CDATA[
+function counter_start()
+    // Callback called after a click on start pushbutton
+    global Stop
+    Stop=%f;
+    while %t
+        i = evstr(get("count", "string"));
+        set("count", "string", string(i+1));
+        if Stop then
+            break
+        end
+    end
+endfunction
+
+function counter_stop()
+    // Callback called after a click on stop pushbutton
+    global Stop
+    Stop=%t
+endfunction
+
+function counter_reinit()
+    // Callback called after a click on reset pushbutton
+    Stop=%t
+    set("count", "string", "0");
+endfunction
+
+
+counter_main_fig = figure( ...
+"dockable", "off", ...
+"infobar_visible", "off", ...
+"toolbar_visible", "off", ...
+"toolbar", "none", ...
+"menubar_visible", "off", ...
+"menubar", "none", ...
+"layout", "none", ...
+"visible", "off", ...
+"resize", "off", ...
+"figure_position", [0 0], ...
+"axes_size", [400, 150], ...
+"figure_name", "Counter", ...
+"layout", "gridbag", ...
+"tag", "counter_main_figure");
+
+
+// Counter frame
+counter_frame = uicontrol(counter_main_fig, ...
+"layout", "gridbag", ...
+"style", "frame", ...
+"constraints", createConstraints("gridbag", [1, 1, 1, 1], [1, 0.5], "both"));
+
+uicontrol(counter_frame, ...
+"style", "text", ...
+"string", "Counter : ", ...
+"constraints", createConstraints("gridbag", [1, 1, 1, 1], [0.5, 1], "horizontal", "center"), ...
+"margins", [5 5 5 5], ...
+"horizontalAlignment", "center");
+
+uicontrol(counter_frame, ...
+"style", "text", ...
+"string", "0", ...
+"constraints", createConstraints("gridbag", [2, 1, 1, 1], [1, 1], "horizontal", "center"), ...
+"tag", "count", ...
+"margins", [5 5 5 5]);
+
+// Buttons frame
+buttons_frame = uicontrol(counter_main_fig, ...
+"layout", "gridbag", ...
+"style", "frame", ...
+"constraints", createConstraints("gridbag", [1, 2, 1, 1], [1, 1], "both"));
+
+// The associated callback needs to be interruptible (when clicking on stop or reset for example)
+uicontrol("parent", buttons_frame, ...
+"Style"     , "pushbutton", ...
+"String"    , "Start", ...
+"callback"  , "counter_start()", ...
+"margins", [5 5 5 5], ...
+"constraints", createConstraints("gridbag", [1, 1, 1, 1], [1, 1], "horizontal", "center"));
+
+// The associated callback needs to have priority in order to interrupt the current callback (in other words to stop the counter)
+uicontrol("parent", buttons_frame, ...
+"Style"     , "pushbutton", ...
+"String"    , "Stop", ...
+"callback"  , "counter_stop()", ...
+"callback_type", 10, ...
+"constraints", createConstraints("gridbag", [2, 1, 1, 1], [1, 1], "horizontal", "center"), ...
+"margins", [5 5 5 5]);
+
+// The same for the callback which reset the counter: it must have the priority over the callback which has started the counter
+uicontrol("parent", buttons_frame, ...
+"Style"     , "pushbutton", ...
+"String"    , "Reset", ...
+"callback"  , "counter_reinit()", ...
+"callback_type", 10, ...
+"constraints", createConstraints("gridbag", [3, 1, 1, 1], [1, 1], "horizontal", "center"), ...
+"margins", [5 5 5 5]);
+
+counter_main_fig.visible = "on";
+ ]]></programlisting>
+    </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="set">set</link>
@@ -540,6 +669,14 @@
     <refsection>
         <title>History</title>
         <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revremark>
+                    <para>
+                        By default, callback_type property is now interruptible but non prioritary.
+                    </para>
+                </revremark>
+            </revision>
             <revision>
                 <revnumber>5.5.0</revnumber>
                 <revremark>

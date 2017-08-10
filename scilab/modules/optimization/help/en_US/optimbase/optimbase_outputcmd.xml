@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="optimbase_outputcmd" xml:lang="en">
@@ -16,7 +19,7 @@
         <refpurpose>Calls back user's output command.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             stop = optimbase_outputcmd(opt, state, data)
         </synopsis>
@@ -86,31 +89,31 @@
     <refsection>
         <title>Description</title>
         <para>
-            The <literal>optimbase_outputcmd</literal> function calls back user's output command. 
-            The <literal>-outputcommand</literal> option allwos to configure a command which is 
-            called back at the start of the optimization, at each iteration and at the end of 
+            The <literal>optimbase_outputcmd</literal> function calls back user's output command.
+            The <literal>-outputcommand</literal> option allows to configure a command which is
+            called back at the start of the optimization, at each iteration and at the end of
             the optimization.
         </para>
         <para>
-            It might happen that the output function requires additional arguments to be evaluated. 
-            In this case, we can use the following feature. The <literal> outputcmd</literal> argument 
-            can also be the list <literal>(outf, a1, a2, ...)</literal>. In this case <literal>outf</literal>, 
+            It might happen that the output function requires additional arguments to be evaluated.
+            In this case, we can use the following feature. The <literal> outputcmd</literal> argument
+            can also be the list <literal>(outf, a1, a2, ...)</literal>. In this case <literal>outf</literal>,
             the first element in the list, must be a function and must have the header :
         </para>
         <programlisting role="no-scilab-exec">
-            <![CDATA[ 
+            <![CDATA[
                  stop = outf(state, data, a1, a2, ....)
                 ]]>
         </programlisting>
         <para>
-            where the input arguments <literal>a1, a2, ...</literal> are automatically appended at 
-            the end of the calling sequence.
+            where the input arguments <literal>a1, a2, ...</literal> are automatically appended
+            as parameters to the call.
         </para>
     </refsection>
     <refsection>
         <title>Example</title>
         <programlisting role="example">
-            <![CDATA[ 
+            <![CDATA[
 function [f,index] = fun(x, index)
     f = 2*x - 4;
 endfunction
@@ -178,7 +181,7 @@ function x = Dicho(opt,a,b)
         opt = optimbase_set ( opt , "-xopt" , x );
         opt = optimbase_set ( opt , "-fopt" , f );
         temp = abs(x-xk);
-        
+
         if temp < optimbase_cget(opt, "-tolxrelative")
             // OutputCmd
             brutedata = optimbase_outstruct ( opt );
@@ -192,7 +195,7 @@ function x = Dicho(opt,a,b)
             break
         end
         xk = x;
-        
+
         // OutputCmd
         brutedata = optimbase_outstruct ( opt );
         data = tlist(["T_OPTBDATA",...
@@ -210,7 +213,7 @@ x = Dicho(opt,a,b)
         </programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="optimbase_outstruct">optimbase_outstruct</link>

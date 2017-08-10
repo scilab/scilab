@@ -24,5 +24,5 @@ int ext11c(int *neq, double *t, double *y, double *ydot)
     ydot[0] = -param[0] * y[0] + param[1] * y[1] * y[2];
     ydot[2] = param[2] * y[1] * y[1];
     ydot[1] = -ydot[0] - ydot[2];
-    return(0);
+    return (0);
 }

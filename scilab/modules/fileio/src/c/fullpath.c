@@ -2,11 +2,14 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2009-2011 - DIGITEO - Allan CORNET
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 /*--------------------------------------------------------------------------*/
@@ -24,6 +27,7 @@
 #include "PATH_MAX.h"
 #include "strsubst.h"
 #include "scicurdir.h"
+#include "expandPathVariable.h"
 /*--------------------------------------------------------------------------*/
 #ifndef _MSC_VER
 static unsigned int isDirSeparator(const char c);
@@ -38,7 +42,7 @@ char *get_full_path(char *_FullPath, const char *_Path, size_t _SizeInBytes)
     wchar_t *wPath = to_wide_string((char *)_Path);
     wchar_t *wFullPath = (wchar_t *) MALLOC(sizeof(wchar_t) * _SizeInBytes);
 
-    _wfullpath(wFullPath, wPath, _SizeInBytes);
+    get_full_pathW(wFullPath, wPath, _SizeInBytes);
     returnedFullPath = wide_string_to_UTF8(wFullPath);
     if (returnedFullPath)
     {
@@ -84,9 +88,10 @@ char *get_full_path(char *_FullPath, const char *_Path, size_t _SizeInBytes)
             int ierr = 0;
             char* pstCurrentPath = scigetcwd(&ierr);
             //alloc buffer + 2, 1 for '/' and 1 for null termination
-            pstWorkingPath = (char*)MALLOC(sizeof(char) * (lenPath + strlen(pstCurrentPath) + 2));
+            pstWorkingPath = (char*)CALLOC(sizeof(char), (lenPath + strlen(pstCurrentPath) + 2));
             sprintf(pstWorkingPath, "%s/%s", pstCurrentPath, _Path);
             lenPath = strlen(pstWorkingPath);
+            FREE(pstCurrentPath);
         }
         else
         {
@@ -96,37 +101,38 @@ char *get_full_path(char *_FullPath, const char *_Path, size_t _SizeInBytes)
         _Path_tmp = (char *)MALLOC(sizeof(char) * (lenPath + 1));
         _Path_start = (char *)MALLOC(sizeof(char) * (lenPath + 1));
         _FullPath_start = (char *)MALLOC(sizeof(char) * (lenFullPath + 1));
+
         //First case(1): fullpath(TMPDIR+"/a/b/c"), second case(2): fullpath("a/b/c") or third case(3): fullpath("../a/b")
         strcpy(_Path_start, pstWorkingPath); // _Path_start=TMPDIR+"/a/b/c" (1) or _Path_start="a/b/c" (2) or _Path_start="../a/b/c" (3)
         strcpy(_FullPath_start, _FullPath); // _Fullpath_Start=TMPDIR+"/a" (1) or _FullPath_start=SCI+"/a" (2) or _FullPath_start=../SCI+"/a" (3)
         strtok(_Path_start, "/"); // _Path_start=/tmp  (1) or _Path_start="a" (2) or _Path_start="a/b/c" (3)
         strtok(_FullPath_start, "/"); // _FullPath_start=/tmp (1) or _FullPath_start=/home (2) and (3)
+
+#if defined(__APPLE__)
+        if (strcmp(_FullPath_start, "/private") == 0) // For case: fullpath(TMPDIR+"/a/b/c") (1)
+        {
+            normalizePath(_FullPath);
+        }
+#else
         if (strcmp(_Path_start, _FullPath_start) == 0) // For case: fullpath(TMPDIR+"/a/b/c") (1)
         {
             strcpy(_FullPath, pstWorkingPath);
             normalizePath(_FullPath);
-            FREE(_Path_start);
-            _Path_start = NULL;
-            FREE(_FullPath_start);
-            _FullPath_start = NULL;
-            FREE(_Path_tmp);
-            _Path_tmp = NULL;
         }
+#endif
         else if (strcmp(_Path, _FullPath) != 0) // For case: fullpath("a/b/c") (2) or fullpath("../a/b/c") (3)
         {
             strcpy(_Path_tmp, pstWorkingPath); //_Path_tmp="a/b/c" (2) or _Path_tmp="../a/b/c" (3)
             strtok(_Path_tmp, "./"); // _Path_tmp becomes a (2) or ../a (3)
             toadd = strsub(pstWorkingPath, _Path_tmp, ""); // to add = "/b/c"
             strcat(_FullPath, toadd); //_FullPath=_Fullpath+toadd
-            FREE(_Path_tmp);
-            _Path_tmp = NULL;
-            FREE(_Path_start);
-            _Path_start = NULL;
-            FREE(_FullPath_start);
-            _FullPath_start = NULL;
+            FREE(toadd);
         }
 
         FREE(pstWorkingPath);
+        FREE(_FullPath_start);
+        FREE(_Path_start);
+        FREE(_Path_tmp);
     }
 
     lenFullPath = (int)strlen(_FullPath);
@@ -142,6 +148,7 @@ char *get_full_path(char *_FullPath, const char *_Path, size_t _SizeInBytes)
             bufTmp = NULL;
         }
     }
+
     return _FullPath;
 #endif
 }
@@ -152,7 +159,9 @@ wchar_t *get_full_pathW(wchar_t * _wcFullPath, const wchar_t * _wcPath, size_t _
 #if defined(_MSC_VER)
     if (_wcPath)
     {
-        _wfullpath(_wcFullPath, _wcPath, _SizeInBytes);
+        wchar_t* pwstExpand = expandPathVariableW(_wcPath);
+        _wfullpath(_wcFullPath, pwstExpand, _SizeInBytes);
+        FREE(pwstExpand);
         return _wcFullPath;
     }
     return NULL;

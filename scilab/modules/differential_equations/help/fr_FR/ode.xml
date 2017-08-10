@@ -5,14 +5,14 @@
         <refpurpose>solveur d'équations différentielles ordinaires</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Séquence d'appel</title>
+        <title>Syntaxe</title>
         <synopsis>y=ode(y0,t0,t,f)
             [y,w,iw]=ode([type],y0,t0,t [,rtol [,atol]],f [,jac] [,w,iw])
-            [y,rd,w,iw]=ode("root",y0,t0,t [,rtol [,atol]],f [,jac],ng,g [,w,iw])
+            [y,rd,w,iw]=ode("roots",y0,t0,t [,rtol [,atol]],f [,jac],ng,g [,w,iw])
             y=ode("discrete",y0,k0,kvect,f)
         </synopsis>
     </refsynopsisdiv>
-    <refsection>
+    <refsection role="parameters">
         <title>Paramètres</title>
         <variablelist>
             <varlistentry>
@@ -53,10 +53,17 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>rtol, atol</term>
+                <term>atol, rtol</term>
                 <listitem>
-                    <para>constantes ou vecteurs réels de même taille que
-                        <literal>y</literal>.
+                    <para>
+                        tolérances absolue et relative sur les valeurs de la
+                        solution
+                        <varname>y</varname> (décimaux). Si <varname>atol</varname>
+                        ou <varname>rtol</varname> est un scalaire, sa valeur est
+                        utilisée pour chaque composante de <varname>y</varname>.
+                        Sinon, elle doit être un vecteur de taille size(y), et
+                        est appliquée aux composantes respectives de
+                        <varname>y</varname>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -66,12 +73,6 @@
                     <para>fonction externe (fonction Scilab, chaîne de caractères ou
                         liste).
                     </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>w, iw</term>
-                <listitem>
-                    <para>vecteurs réels</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -100,9 +101,27 @@
                     <para>vecteur d'entiers.</para>
                 </listitem>
             </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>vecteur ou matrice réel: la solution.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>rd</term>
+                <listitem>
+                    <para>vecteur de réels.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>w, iw</term>
+                <listitem>
+                    <para>vecteurs de réels. Voir les <link linkend="ode_optional_output">options de sortie</link> de ode().</para>
+                </listitem>
+            </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Description</title>
         <para>
             <literal>ode</literal> est la fonction utilisée pour approcher la
@@ -173,12 +192,12 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>"root":</term>
+                <term>"roots":</term>
                 <listitem>
                     <para>Solveur d'EDO avec recherche de racines. Le solveur
                         <literal>lsodar</literal> du package ODEPACK est utilisé. C'est une
                         variante de <literal>lsoda</literal> permettant la recherche d'une
-                        racine d'une fonction vectorielle donnée. Voir <link linkend="ode_root">ode_root</link> pour plus de
+                        racine d'une fonction vectorielle donnée. Voir <link linkend="ode_roots">ode_roots</link> pour plus de
                         détails.
                     </para>
                 </listitem>
@@ -357,7 +376,7 @@ void fex(int *n,double *t,double *y,int *ml,int *mu,double *J,int *nrpd,)
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Exemples</title>
         <programlisting role="example"><![CDATA[
 // ---------- EDO Simple  (external : fonction Scilab)
@@ -414,10 +433,16 @@ ode("stiff",[0;1],0,1,f,Jacobian)
         <title>Voir aussi</title>
         <simplelist type="inline">
             <member>
-                <link linkend="ode_discrete">ode_discrete</link>
+                <link linkend="odeoptions">odeoptions</link>
             </member>
             <member>
-                <link linkend="ode_root">ode_root</link>
+                <link linkend="ode_optional_output">ode_optional_output</link>
+            </member>
+            <member>
+                <link linkend="ode_roots">ode_roots</link>
+            </member>
+            <member>
+                <link linkend="ode_discrete">ode_discrete</link>
             </member>
             <member>
                 <link linkend="dassl">dassl</link>
@@ -427,9 +452,6 @@ ode("stiff",[0;1],0,1,f,Jacobian)
             </member>
             <member>
                 <link linkend="odedc">odedc</link>
-            </member>
-            <member>
-                <link linkend="odeoptions">odeoptions</link>
             </member>
             <member>
                 <link linkend="csim">csim</link>
@@ -445,14 +467,14 @@ ode("stiff",[0;1],0,1,f,Jacobian)
             </member>
         </simplelist>
     </refsection>
-    <refsection>
+    <refsection role="bibliography">
         <title>Bibliographie</title>
         <para>Alan C. Hindmarsh, lsode and lsodi, two new initial value ordinary
             differential equation solvers, acm-signum newsletter, vol. 15, no. 4
             (1980), pp. 10-11.
         </para>
     </refsection>
-    <refsection>
+    <refsection role="references">
         <title>Fonctions Utilisées</title>
         <para>Les sous-programmes associés se trouvent dans le répertoire
             SCI/modules/differential_equations/src/fortran/: lsode.f lsoda.f lsodar.f

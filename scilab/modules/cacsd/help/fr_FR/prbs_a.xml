@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="prbs_a">
+    <refnamediv>
+        <refname>prbs_a</refname>
+        <refpurpose>pseudo random binary sequences generation</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[u]=prbs_a(n,nc,[ids])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            generation of pseudo random binary sequences
+            <literal>u=[u0,u1,...,u_(n-1)]</literal>
+            u takes values in {-1,1} and changes at most nc times its sign.
+            ids can be used to fix the date at which u must change its sign
+            ids is then an integer vector with values in <literal>[1:n]</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+u=prbs_a(50,10);
+plot2d2("onn",(1:50)',u',1,"151",' ',[0,-1.5,50,1.5]);
+ ]]></programlisting>
+        <scilab:image>
+            u=prbs_a(50,10);
+            plot2d2("onn",(1:50)',u',1,"151",' ',[0,-1.5,50,1.5]);
+        </scilab:image>
+    </refsection>
+</refentry>

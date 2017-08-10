@@ -4,12 +4,14 @@ c     Copyright (C) {date_debut_2}-{date_fin_2} - {organisme 2} -
 c     {auteur 2}
 c     ...
 c     
-c     This file must be used under the terms of the CeCILL.
-c     This source file is licensed as described in the file COPYING,
-c     which
-c     you should have received as part of this distribution.  The terms
-c     are also available at
-c     http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+c Copyright (C) 2012 - 2016 - Scilab Enterprises
+c
+c This file is hereby licensed under the terms of the GNU GPL v2.0,
+c pursuant to article 5.3.4 of the CeCILL v.2.1.
+c This file was originally licensed under the terms of the CeCILL v2.1,
+c and continues to be available under such terms.
+c For more information, see the COPYING file which you should have received
+c along with this program.
 C     /MEMBR ADD NAME=IMPINS,SSI=0
 c     Copyright INRIA
       subroutine impins(mat1,dep1,lig1,col1,mat2,

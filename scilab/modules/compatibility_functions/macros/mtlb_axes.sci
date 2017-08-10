@@ -1,16 +1,19 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ???? - INRIA - Scilab
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
-function h=mtlb_axes(varargin)
+function h = mtlb_axes(varargin)
     global AXES_T
     if AXES_T==[] then AXES_T=list([]),end
-    win=xget("window")
+    win = gcf().figure_id
     k=find(AXES_T(1)==win)
     if k==[] then
         AXES_T(1)=[AXES_T(1);win]
@@ -32,6 +35,5 @@ function h=mtlb_axes(varargin)
     else
         error(msprintf(gettext("%s: This feature has not been implemented.\n"),"mtlb_axes"));
     end
-
 
 endfunction

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="gtild">
+    <refnamediv>
+        <refname>gtild</refname>
+        <refpurpose>チルダ処理</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>Gt=gtild(G)
+            Gt=gtild(G,flag)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>G</term>
+                <listitem>
+                    <para>多項式または線形システムのどちらか
+                        (<literal>syslin</literal> リスト) または有理行列
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Gt</term>
+                <listitem>
+                    <para>Gと同じ</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flag</term>
+                <listitem>
+                    <para>
+                        文字列: <literal>'c'</literal> または
+                        <literal>'d'</literal> のどちらか (オプションのパラメータ).
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>G</literal> は多項式行列 (または多項式), <literal>Gt=gtild(G,'c')</literal>
+            は多項式行列 <literal>Gt(s)=G(-s)'</literal>を返します.
+        </para>
+        <para>
+            <literal>G</literal> が多項式行列 (または多項式)の場合,
+            <literal>Gt=gtild(G,'d')</literal> は多項式行列
+            <literal>Gt=G(1/z)*z^n</literal> を返します.
+            ただし, n は <literal>G</literal> の最大次数です.
+        </para>
+        <para>
+            <literal>syslin</literal>リストにより状態空間で表される
+            連続時間システムの場合,
+            <literal>Gt = gtild(G,'c')</literal> は<literal>G(-s)'</literal>の
+            状態空間表現を返します.
+            すなわち, <literal>Gt</literal> の <literal>ABCD</literal> 行列は,
+            <literal>A',-C', B', D'</literal> となります.
+            <literal>G</literal> がプロパーでない場合
+            (<literal> D= D(s)</literal>) ,
+            <literal>Gt</literal> の <literal>D</literal> 行列は
+            <literal>D(-s)'</literal> となります.
+        </para>
+        <para>
+            <literal>syslin</literal>リストにより状態空間で表される
+            離散時間システムの場合,
+            <literal>Gt = gtild(G,'d')</literal> は<literal>G(-1/z)'</literal>
+            の状態空間表現,
+            すなわち, (プロパーでない場合もある)
+            <literal>-z*C*inv(z*A-B)*C + D(1/z) </literal>の状態空間表現,
+            を返します.
+        </para>
+        <para>
+            有理行列の場合, <literal>Gt = gtild(G,'c')</literal> は
+            誘致行列 <literal>Gt(s)=G(-s)</literal> を返し,
+            <literal>Gt = gtild(G,'d')</literal> は有理行列
+            <literal>Gt(z)= G(1/z)'</literal> を返します.
+        </para>
+        <para>
+            パラメータ <literal>flag</literal> は,
+            多項式引数を指定して<literal>gtild</literal>がコール
+            される場合に必要です.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+// 連続時間
+s=poly(0,'s');G=[s,s^3;2+s^3,s^2-5]
+Gt=gtild(G,'c')
+Gt-horner(G,-s)'   //連続時間解釈
+Gt=gtild(G,'d');
+Gt-horner(G,1/s)'*s^3  //離散時間解釈
+G=ssrand(2,2,3);Gt=gtild(G);   //状態空間 (G はデフォルトで連続時間系)
+clean((horner(ss2tf(G),-s))'-ss2tf(Gt))   //確認
+// 離散時間
+z=poly(0,'z');
+Gss=ssrand(2,2,3);Gss('dt')='d'; //離散時間
+Gss(5)=[1,2;0,1];   //定数D行列を指定
+G=ss2tf(Gss);Gt1=horner(G,1/z)';
+Gt=gtild(Gss);
+Gt2=clean(ss2tf(Gt)); clean(Gt1-Gt2)  //確認
+// プロパーでないシステム
+z=poly(0,'z');
+Gss=ssrand(2,2,3);Gss(7)='d'; //離散時間
+Gss(5)=[z,z^2;1+z,3];    //D(z) は多項式
+G=ss2tf(Gss);Gt1=horner(G,1/z)';  //伝達形式で計算
+Gt=gtild(Gss);    //状態空間形式で計算
+Gt2=clean(ss2tf(Gt));clean(Gt1-Gt2)  //確認
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="syslin">syslin</link>
+            </member>
+            <member>
+                <link linkend="horner">horner</link>
+            </member>
+            <member>
+                <link linkend="factors">factors</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

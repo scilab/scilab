@@ -4,11 +4,15 @@
  *  Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
  *  Copyright (C) 2011 - DIGITEO - Antoine ELIAS
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *  Copyright (C) 2017 - Gsoc 2017 - Siddhartha Gairola
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -23,7 +27,7 @@
  *    -Assumes that sparse matrices have been converted into the Matlab
  *    format. Scilab sparse matrices are stored in the transposed Matlab
  *    format. If A is a sparse Scilab matrix, it should be converted
- *    by the command A=mtlb_sparse(A) in the calling sequence of the
+ *    by the command A=mtlb_sparse(A) in the syntax of the
  *    mex function.
  *    -Structs and Cells are Scilab mlists:
  *    Struct=mlist(["st","dims","field1",...,"fieldk"],
@@ -56,7 +60,6 @@
 #include "parser.hxx"
 #include "configvariable.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 #include "printvisitor.hxx"
 
 #include "types.hxx"
@@ -67,10 +70,12 @@
 #include "struct.hxx"
 #include "container.hxx"
 #include "cell.hxx"
+#include "sparse.hxx"
 #include "localization.hxx"
 
 extern "C"
 {
+#include "sci_malloc.h"
 #include "machine.h"
 #include "mex.h"
 #include "os_string.h"
@@ -94,28 +99,29 @@ static int mexCallSCILAB(int nlhs, mxArray **plhs, int nrhs, mxArray **prhs, con
     symbol::Symbol *symbol = new symbol::Symbol(pwst);
     FREE(pwst);
 
-    InternalType *value = context->get(*symbol);
-    Function *func = value->getAs<Function>();
+    types::InternalType *value = context->get(*symbol);
+    delete symbol;
+    types::Function *func = value->getAs<types::Function>();
     if (func == NULL)
     {
         return 1;
     }
 
-    typed_list in;
-    typed_list out;
-    optional_list opt;
+    types::typed_list in;
+    types::typed_list out;
+    types::optional_list opt;
     for (int i = 0; i < nrhs; i++)
     {
-        in.push_back((InternalType*)prhs[i]);
+        in.push_back((types::InternalType*)prhs[i]->ptr);
     }
 
-    func->call(in, opt, nlhs, out, NULL);
+    func->call(in, opt, nlhs, out);
 
     for (int i = 0; i < nlhs; i++)
     {
-        plhs[i] = (mxArray *) (out[i]);
+        plhs[i] = new mxArray;
+        plhs[i]->ptr = (int*) (out[i]);
     }
-
     return 0;
 }
 
@@ -124,15 +130,16 @@ static int mexCallSCILAB(int nlhs, mxArray **plhs, int nrhs, mxArray **prhs, con
 //Create or Delete Array
 mxArray *mxCreateDoubleMatrix(int m, int n, mxComplexity complexFlag)
 {
-    Double *ptr = new Double(m, n, complexFlag == mxCOMPLEX);
-    return (mxArray *)ptr;
+    types::Double *ptr = new types::Double(m, n, complexFlag == mxCOMPLEX);
+    mxArray* ret = new mxArray;
+    ret->ptr = (int*)ptr;
+    return ret;
 }
 
 mxArray *mxCreateDoubleScalar(double value)
 {
     mxArray *ptr = mxCreateDoubleMatrix(1, 1, mxREAL);
-
-    ((Double *)ptr)->set(0, value);
+    ((types::Double *)ptr->ptr)->set(0, value);
     return ptr;
 }
 
@@ -144,59 +151,119 @@ mxArray *mxCreateNumericMatrix(int m, int n, mxClassID CLASS, mxComplexity compl
 
 mxArray *mxCreateNumericArray(int ndim, const int *dims, mxClassID CLASS, mxComplexity complexFlag)
 {
-    GenericType *ptr;
+    types::GenericType *ptr;
 
     switch (CLASS)
     {
         case mxDOUBLE_CLASS:
-            ptr = new Double(ndim, (int *)dims, complexFlag == mxCOMPLEX);
+            ptr = new types::Double(ndim, (int *)dims, complexFlag == mxCOMPLEX);
+            ((types::Double *)ptr)->fillDefaultValues();
             break;
         case mxINT8_CLASS:
-            ptr = new Int8(ndim, (int *)dims);
+            ptr = new types::Int8(ndim, (int *)dims);
+            ((types::Int8 *)ptr)->fillDefaultValues();
             break;
         case mxUINT8_CLASS:
-            ptr = new UInt8(ndim, (int *)dims);
+            ptr = new types::UInt8(ndim, (int *)dims);
+            ((types::UInt8 *)ptr)->fillDefaultValues();
             break;
         case mxINT16_CLASS:
-            ptr = new Int16(ndim, (int *)dims);
+            ptr = new types::Int16(ndim, (int *)dims);
+            ((types::Int16 *)ptr)->fillDefaultValues();
             break;
         case mxUINT16_CLASS:
-            ptr = new UInt16(ndim, (int *)dims);
+            ptr = new types::UInt16(ndim, (int *)dims);
+            ((types::UInt16 *)ptr)->fillDefaultValues();
             break;
         case mxINT32_CLASS:
-            ptr = new Int32(ndim, (int *)dims);
+            ptr = new types::Int32(ndim, (int *)dims);
+            ((types::Int32 *)ptr)->fillDefaultValues();
             break;
         case mxUINT32_CLASS:
-            ptr = new UInt32(ndim, (int *)dims);
+            ptr = new types::UInt32(ndim, (int *)dims);
+            ((types::UInt32 *)ptr)->fillDefaultValues();
             break;
         case mxINT64_CLASS:
-            ptr = new Int64(ndim, (int *)dims);
+            ptr = new types::Int64(ndim, (int *)dims);
+            ((types::Int64 *)ptr)->fillDefaultValues();
             break;
         case mxUINT64_CLASS:
-            ptr = new UInt64(ndim, (int *)dims);
+            ptr = new types::UInt64(ndim, (int *)dims);
+            ((types::UInt64 *)ptr)->fillDefaultValues();
             break;
         default:
             ptr = NULL;
     }
-    return (mxArray *)ptr;
+
+    if (ptr == NULL)
+    {
+        return NULL;
+    }
+
+    mxArray* ret = new mxArray;
+    ret->ptr = (int*)ptr;
+    return ret;
 }
 
 mxArray *mxCreateUninitNumericMatrix(size_t m, size_t n, mxClassID classid, mxComplexity ComplexFlag)
 {
-    //TODO
-    return NULL;
+    int dims[2] = {(int)m, (int)n};
+    return mxCreateUninitNumericArray(2, (size_t *)dims, classid, ComplexFlag);
 }
 
 mxArray *mxCreateUninitNumericArray(size_t ndim, size_t *dims, mxClassID classid, mxComplexity ComplexFlag)
 {
-    //TODO
-    return NULL;
+    types::GenericType *ptr;
+
+    switch (classid)
+    {
+        case mxDOUBLE_CLASS:
+            ptr = new types::Double((int)ndim, (int *)dims, ComplexFlag == mxCOMPLEX);
+            break;
+        case mxINT8_CLASS:
+            ptr = new types::Int8((int)ndim, (int *)dims);
+            break;
+        case mxUINT8_CLASS:
+            ptr = new types::UInt8((int)ndim, (int *)dims);
+            break;
+        case mxINT16_CLASS:
+            ptr = new types::Int16((int)ndim, (int *)dims);
+            break;
+        case mxUINT16_CLASS:
+            ptr = new types::UInt16((int)ndim, (int *)dims);
+            break;
+        case mxINT32_CLASS:
+            ptr = new types::Int32((int)ndim, (int *)dims);
+            break;
+        case mxUINT32_CLASS:
+            ptr = new types::UInt32((int)ndim, (int *)dims);
+            break;
+        case mxINT64_CLASS:
+            ptr = new types::Int64((int)ndim, (int *)dims);
+            break;
+        case mxUINT64_CLASS:
+            ptr = new types::UInt64((int)ndim, (int *)dims);
+            break;
+        default:
+            ptr = NULL;
+    }
+
+    if (ptr == NULL)
+    {
+        return NULL;
+    }
+
+    mxArray* ret = new mxArray;
+    ret->ptr = (int*)ptr;
+    return ret;
 }
 
 mxArray *mxCreateString(const char *string)
 {
-    String *ptr = new String(string);
-    return (mxArray *)ptr;
+    types::String *ptr = new types::String(string);
+    mxArray* ret = new mxArray;
+    ret->ptr = (int*)ptr;
+    return ret;
 }
 
 mxArray *mxCreateCharMatrixFromStrings(int m, const char **str)
@@ -208,9 +275,12 @@ mxArray *mxCreateCharMatrixFromStrings(int m, const char **str)
     {
         strings[k] = to_wide_string(str[k]);
     }
-    String *ptr = new String(m, n, strings);
+
+    types::String *ptr = new types::String(m, n, strings);
     freeArrayOfWideString(strings, m);
-    return (mxArray *)ptr;
+    mxArray* ret = new mxArray;
+    ret->ptr = (int*)ptr;
+    return ret;
 }
 
 mxArray *mxCreateCharArray(int ndim, const int *dims)
@@ -219,46 +289,56 @@ mxArray *mxCreateCharArray(int ndim, const int *dims)
     {
         ndim = 2;
     }
-    String *ptr = new String(ndim, (int *)dims);
 
+    types::String *ptr = new types::String(ndim, (int *)dims);
     int size = ptr->getSize();
     for (int i = 0; i < size; ++i)
     {
         ptr->set(i, L"");
     }
-    return (mxArray *)ptr;
+    mxArray* ret = new mxArray;
+    ret->ptr = (int*)ptr;
+    return ret;
 }
 
 mxArray *mxCreateLogicalScalar(mxLogical value)
 {
     mxArray *ptr = mxCreateLogicalMatrix(1, 1);
 
-    ((Bool *)ptr)->set(0, value);
+    ((types::Bool *)ptr->ptr)->set(0, value);
     return ptr;
 }
 
 mxArray *mxCreateLogicalMatrix(int m, int n)
 {
-    Bool *ptr = new Bool(m, n);
-    return (mxArray *)ptr;
+    types::Bool *ptr = new types::Bool(m, n);
+    mxArray* ret = new mxArray;
+    ret->ptr = (int*)ptr;
+    return ret;
 }
 
 mxArray *mxCreateLogicalArray(int ndim, const int *dims)
 {
-    Bool *ptr = new Bool(ndim, (int *)dims);
-    return (mxArray *)ptr;
+    types::Bool *ptr = new types::Bool(ndim, (int *)dims);
+    mxArray* ret = new mxArray;
+    ret->ptr = (int*)ptr;
+    return ret;
 }
 
 mxArray *mxCreateSparseLogicalMatrix(mwSize m, mwSize n, mwSize nzmax)
 {
-    //TODO
-    return NULL;
+    types::SparseBool* ptr = new types::SparseBool(m, n);
+    mxArray* ret = new mxArray;
+    ret->ptr = (int*)ptr;
+    return ret;
 }
 
 mxArray *mxCreateSparse(int m, int n, int nzmax, mxComplexity cmplx)
 {
-    //TODO
-    return NULL;
+    types::Sparse* ptr = new types::Sparse(m, n, cmplx == mxCOMPLEX);
+    mxArray* ret = new mxArray;
+    ret->ptr = (int*)ptr;
+    return ret;
 }
 
 mxArray *mxCreateStructMatrix(int m, int n, int nfields, const char **field_names)
@@ -269,20 +349,24 @@ mxArray *mxCreateStructMatrix(int m, int n, int nfields, const char **field_name
 
 mxArray *mxCreateStructArray(int ndim, const int *dims, int nfields, const char **field_names)
 {
-    Struct *ptr = new Struct(ndim, (int *)dims);
+    types::Struct *ptr = new types::Struct(ndim, (int *)dims);
     for (int i = 0; i < nfields; i++)
     {
         wchar_t *name = to_wide_string(field_names[i]);
         ptr->addField(name);
         FREE(name);
     }
-    return (mxArray *)ptr;
+    mxArray* ret = new mxArray;
+    ret->ptr = (int*)ptr;
+    return ret;
 }
 
 mxArray *mxCreateCellArray(int ndim, const int *dims)
 {
-    Cell *ptr = new Cell(ndim, (int *)dims);
-    return (mxArray *)ptr;
+    types::Cell *ptr = new types::Cell(ndim, (int *)dims);
+    mxArray* ret = new mxArray;
+    ret->ptr = (int*)ptr;
+    return ret;
 }
 
 mxArray *mxCreateCellMatrix(int m, int n)
@@ -295,20 +379,23 @@ void mxDestroyArray(mxArray *ptr)
 {
     if (mxGetClassID(ptr) != mxUNKNOWN_CLASS)
     {
-        delete (InternalType*)ptr;
-        *ptr = NULL;
+        delete (types::InternalType*)ptr->ptr;
     }
+
+    delete ptr;
 }
 
 mxArray *mxDuplicateArray(const mxArray *ptr)
 {
-    InternalType *pIT = (InternalType *)ptr;
+    types::InternalType *pIT = (types::InternalType *)ptr->ptr;
     if (pIT == NULL)
     {
         return 0;
     }
 
-    return (mxArray *)pIT->clone();
+    mxArray* ret = new mxArray;
+    ret->ptr = (int*)pIT->clone();
+    return ret;
 }
 
 void *mxCalloc(size_t n, size_t size)
@@ -347,17 +434,13 @@ int mxIsSingle(const mxArray *ptr)
 
 int mxIsComplex(const mxArray *ptr)
 {
-    InternalType *pIT = (InternalType *)ptr;
-    if (pIT == NULL)
+    types::InternalType *pIT = (types::InternalType *)ptr->ptr;
+    if (pIT == NULL || pIT->isGenericType() == false)
     {
         return 0;
     }
 
-    GenericType *pGT = pIT->getAs<GenericType>();
-    if (pGT == NULL)
-    {
-        return 0;
-    }
+    types::GenericType *pGT = pIT->getAs<types::GenericType>();
 
     return pGT->isComplex() ? 1 : 0;
 }
@@ -411,8 +494,20 @@ int mxIsUint8(const mxArray *ptr)
 
 int mxIsScalar(const mxArray *array_ptr)
 {
-    //TODO
-    return 0;
+
+    types::InternalType *pIT = (types::InternalType *)array_ptr->ptr;
+
+    if (pIT == NULL || pIT->isGenericType() == false)
+    {
+        return 0;
+    }
+
+    types::GenericType *pGT = pIT->getAs<types::GenericType>();
+
+    if( pGT->isScalar() == true)
+        return 1;
+    else
+        return 0;
 }
 
 int mxIsChar(const mxArray *ptr)
@@ -555,7 +650,7 @@ int mxIsNaN(double x)
 
 int mxIsEmpty(const mxArray *ptr)
 {
-    InternalType * pIT = (InternalType *)ptr;
+    types::InternalType * pIT = (types::InternalType *)ptr->ptr;
     if (pIT == NULL)
     {
         //true or false, whatever ;)
@@ -564,22 +659,22 @@ int mxIsEmpty(const mxArray *ptr)
 
     switch (pIT->getType())
     {
-        case InternalType::ScilabDouble:
+        case types::InternalType::ScilabDouble:
         {
-            Double *pD = pIT->getAs<Double>();
+            types::Double *pD = pIT->getAs<types::Double>();
             return pD->getSize() == 0;
         }
-        case InternalType::ScilabCell:
+        case types::InternalType::ScilabCell:
         {
-            Cell *pC = pIT->getAs<Cell>();
+            types::Cell *pC = pIT->getAs<types::Cell>();
             return pC->getSize() == 0;
         }
-        case InternalType::ScilabContainer:
-        case InternalType::ScilabList:
-        case InternalType::ScilabMList:
-        case InternalType::ScilabTList:
+        case types::InternalType::ScilabContainer:
+        case types::InternalType::ScilabList:
+        case types::InternalType::ScilabMList:
+        case types::InternalType::ScilabTList:
         {
-            Container *pC = pIT->getAs<Container>();
+            types::Container *pC = pIT->getAs<types::Container>();
             return pC->getSize() == 0;
         }
         default:
@@ -592,8 +687,18 @@ int mxIsEmpty(const mxArray *ptr)
 
 int mxIsSparse(const mxArray *ptr)
 {
-    //TODO
-    return 0;
+    types::InternalType *pIT = (types::InternalType *)ptr->ptr;
+    if (pIT == NULL || pIT->isGenericType() == false)
+    {
+        return 0;
+    }
+
+    types::GenericType *pGT = pIT->getAs<types::GenericType>();
+
+    if (pGT->isSparse() == true)
+        return 1;
+    else
+        return 0;
 }
 
 int mxIsFromGlobalWS(const mxArray *pm)
@@ -610,7 +715,7 @@ char *mxArrayToString(const mxArray *ptr)
         return (char *)0;
     }
 
-    String *pa = (String *)ptr;
+    types::String *pa = (types::String *)ptr->ptr;
     int items = mxGetM(ptr);
     int index = 0;
     int length = 1; // one extra char to \0
@@ -620,13 +725,14 @@ char *mxArrayToString(const mxArray *ptr)
         length += (int)wcslen(wstrings[k]);
     }
 
-    char *str = (char *)malloc(sizeof(char *) * length);
+    char *str = (char *)malloc(sizeof(char) * length);
     for (int k = 0; k < items; k++)
     {
         char *dest = wide_string_to_UTF8(wstrings[k]);
         int dest_length = strlen(dest);
         memcpy(str + index, dest, dest_length);
         index += dest_length;
+        FREE(dest);
     }
 
     str[index] = '\0';
@@ -646,7 +752,7 @@ int mxGetString(const mxArray *ptr, char *str, int strl)
         return 1;
     }
 
-    String *pa = (String *)ptr;
+    types::String *pa = (types::String *)ptr->ptr;
     int items = mxGetM(ptr);
     int index = 0;
     int free_space = strl - 1;
@@ -677,13 +783,13 @@ int mxSetClassName(mxArray *array_ptr, const char *classname)
 
 int mxGetNumberOfDimensions(const mxArray *ptr)
 {
-    InternalType *pIT = (InternalType *)ptr;
+    types::InternalType *pIT = (types::InternalType *)ptr->ptr;
     if (pIT == NULL)
     {
         return 0;
     }
 
-    GenericType *pGT = pIT->getAs<GenericType>();
+    types::GenericType *pGT = pIT->getAs<types::GenericType>();
     if (pGT == NULL)
     {
         //InternalType but not GenericType, so mono dimension type.
@@ -745,18 +851,18 @@ int mxGetElementSize(const mxArray *ptr)
     }
     else if (mxIsCell(ptr))
     {
-        return sizeof(InternalType*);
+        return sizeof(types::InternalType*);
     }
     else if (mxIsStruct(ptr))
     {
-        return sizeof(SingleStruct*);
+        return sizeof(types::SingleStruct*);
     }
     return 0;
 }
 
 mwSize *mxGetDimensions(const mxArray *ptr)
 {
-    InternalType *pIT = (InternalType *)ptr;
+    types::InternalType *pIT = (types::InternalType *)ptr->ptr;
     if (pIT == NULL)
     {
         return NULL;
@@ -764,22 +870,23 @@ mwSize *mxGetDimensions(const mxArray *ptr)
 
     switch (pIT->getType())
     {
-        case InternalType::ScilabList:
-        case InternalType::ScilabMList:
-        case InternalType::ScilabTList:
+        case types::InternalType::ScilabList:
+        case types::InternalType::ScilabMList:
+        case types::InternalType::ScilabTList:
         {
             int *piDims = (int *)MALLOC(sizeof(int));
 
-            piDims[0] = pIT->getAs<Container>()->getSize();
+            piDims[0] = pIT->getAs<types::Container>()->getSize();
             return piDims;
         }
         default:
-        {
-            GenericType *pGT = pIT->getAs<GenericType>();
-            if (pGT == NULL)
+        {   
+            if(pIT->isGenericType() == false)
             {
-                return NULL;
-            }
+               return NULL;
+            } 
+            types::GenericType *pGT = pIT->getAs<types::GenericType>();
+
             return pGT->getDimsArray();
         }
     }
@@ -790,15 +897,15 @@ int mxSetDimensions(mxArray *array_ptr, const int *dims, int ndim)
 {
     if (mxIsCell(array_ptr))
     {
-        ((Cell *)array_ptr)->resize((int *)dims, ndim);
+        ((types::Cell *)array_ptr->ptr)->resize((int *)dims, ndim);
     }
     else if (mxIsChar(array_ptr))
     {
-        ((String *)array_ptr)->resize((int *)dims, ndim);
+        ((types::String *)array_ptr->ptr)->resize((int *)dims, ndim);
     }
     else if (mxIsDouble(array_ptr))
     {
-        ((Double *)array_ptr)->resize((int *)dims, ndim);
+        ((types::Double *)array_ptr->ptr)->resize((int *)dims, ndim);
     }
     else if (mxIsSparse(array_ptr))
     {
@@ -806,43 +913,43 @@ int mxSetDimensions(mxArray *array_ptr, const int *dims, int ndim)
     }
     else if (mxIsInt8(array_ptr))
     {
-        ((Int8 *)array_ptr)->resize((int *)dims, ndim);
+        ((types::Int8 *)array_ptr->ptr)->resize((int *)dims, ndim);
     }
     else if (mxIsInt16(array_ptr))
     {
-        ((Int16 *)array_ptr)->resize((int *)dims, ndim);
+        ((types::Int16 *)array_ptr->ptr)->resize((int *)dims, ndim);
     }
     else if (mxIsInt32(array_ptr))
     {
-        ((Int32 *)array_ptr)->resize((int *)dims, ndim);
+        ((types::Int32 *)array_ptr->ptr)->resize((int *)dims, ndim);
     }
     else if (mxIsInt64(array_ptr))
     {
-        ((Int64 *)array_ptr)->resize((int *)dims, ndim);
+        ((types::Int64 *)array_ptr->ptr)->resize((int *)dims, ndim);
     }
     else if (mxIsLogical(array_ptr))
     {
-        ((Bool *)array_ptr)->resize((int *)dims, ndim);
+        ((types::Bool *)array_ptr->ptr)->resize((int *)dims, ndim);
     }
     else if (mxIsStruct(array_ptr))
     {
-        ((Struct *)array_ptr)->resize((int *)dims, ndim);
+        ((types::Struct *)array_ptr->ptr)->resize((int *)dims, ndim);
     }
     else if (mxIsUint8(array_ptr))
     {
-        ((UInt8 *)array_ptr)->resize((int *)dims, ndim);
+        ((types::UInt8 *)array_ptr->ptr)->resize((int *)dims, ndim);
     }
     else if (mxIsUint16(array_ptr))
     {
-        ((UInt16 *)array_ptr)->resize((int *)dims, ndim);
+        ((types::UInt16 *)array_ptr->ptr)->resize((int *)dims, ndim);
     }
     else if (mxIsUint32(array_ptr))
     {
-        ((UInt32 *)array_ptr)->resize((int *)dims, ndim);
+        ((types::UInt32 *)array_ptr->ptr)->resize((int *)dims, ndim);
     }
     else if (mxIsUint64(array_ptr))
     {
-        ((UInt64 *)array_ptr)->resize((int *)dims, ndim);
+        ((types::UInt64 *)array_ptr->ptr)->resize((int *)dims, ndim);
     }
 
     return 0;
@@ -850,13 +957,13 @@ int mxSetDimensions(mxArray *array_ptr, const int *dims, int ndim)
 
 int mxGetNumberOfElements(const mxArray *ptr)
 {
-    InternalType *pIT = (InternalType *)ptr;
+    types::InternalType *pIT = (types::InternalType *)ptr->ptr;
     if (pIT == NULL)
     {
         return 0;
     }
 
-    GenericType *pGT = dynamic_cast<GenericType *>(pIT);
+    types::GenericType *pGT = dynamic_cast<types::GenericType *>(pIT);
     if (pGT == NULL)
     {
         return 0;
@@ -880,74 +987,60 @@ int mxCalcSingleSubscript(const mxArray *ptr, int nsubs, const int *subs)
 
 int mxGetM(const mxArray *ptr)
 {
-    InternalType *pIT = (InternalType *)ptr;
-    if (pIT == NULL)
+    types::InternalType *pIT = (types::InternalType *)ptr->ptr;
+    if (pIT == NULL || pIT->isGenericType() == false)
     {
         return 0;
     }
 
-    GenericType *pGT = pIT->getAs<GenericType>();
-    if (pGT == NULL)
-    {
-        return 0;
-    }
+    types::GenericType *pGT = pIT->getAs<types::GenericType>();
     return pGT->getRows();
 }
 
 void mxSetM(mxArray *ptr, int M)
 {
-    InternalType *pIT = (InternalType *)ptr;
-    if (pIT == NULL)
+    types::InternalType *pIT = (types::InternalType *)ptr->ptr;
+    if (pIT == NULL || pIT->isGenericType() == false)
     {
         return;
     }
 
-    GenericType *pGT = pIT->getAs<GenericType>();
-    if (pGT == NULL)
-    {
-        return;
-    }
+    types::GenericType *pGT = pIT->getAs<types::GenericType>();
 
-    pGT->resize(M, pGT->getCols());
+    types::InternalType* res = pGT->resize(M, pGT->getCols());
+    ptr->ptr = (int*)res;
 }
 
 int mxGetN(const mxArray *ptr)
 {
-    InternalType * pIT = (InternalType *)ptr;
-    if (pIT == NULL)
+    types::InternalType * pIT = (types::InternalType *)ptr->ptr;
+    if (pIT == NULL || pIT->isGenericType() == false)
     {
         return 0;
     }
 
-    GenericType * pGT = pIT->getAs<GenericType>();
-    if (pGT == 0)
-    {
-        return 0;
-    }
+    types::GenericType * pGT = pIT->getAs<types::GenericType>();
     return pGT->getCols();
 }
 
 void mxSetN(mxArray *ptr, int N)
 {
-    InternalType * pIT = (InternalType *)ptr;
-    if (pIT == NULL)
+    types::InternalType * pIT = (types::InternalType *)ptr->ptr;
+    if (pIT == NULL || pIT->isGenericType() == false)
     {
         return;
     }
 
-    GenericType * pGT = pIT->getAs<GenericType>();
-    if (pGT == NULL)
-    {
-        return;
-    }
+    types::GenericType * pGT = pIT->getAs<types::GenericType>();
 
-    pGT->resize(pGT->getRows(), N);
+    types::InternalType* res = pGT->resize(pGT->getRows(), N);
+    ptr->ptr = (int*)res;
 }
 
 double mxGetScalar(const mxArray *ptr)
 {
     // TODO: review spec
-    InternalType *pIT = (InternalType *)ptr;
+    types::InternalType *pIT = (types::InternalType *)ptr->ptr;
     if (pIT == NULL)
     {
         return 0;
@@ -955,54 +1048,54 @@ double mxGetScalar(const mxArray *ptr)
 
     switch (pIT->getType())
     {
-        case InternalType::ScilabDouble:
+        case types::InternalType::ScilabDouble:
         {
-            Double *pD = pIT->getAs<Double>();
+            types::Double *pD = pIT->getAs<types::Double>();
             return pD->get(0);
         }
-        case InternalType::ScilabBool:
+        case types::InternalType::ScilabBool:
         {
-            Bool *pB = pIT->getAs<Bool>();
+            types::Bool *pB = pIT->getAs<types::Bool>();
             return (double)pB->get(0);
         }
-        case InternalType::ScilabInt8:
+        case types::InternalType::ScilabInt8:
         {
-            Int8 *pI = pIT->getAs<Int8>();
+            types::Int8 *pI = pIT->getAs<types::Int8>();
             return (double)pI->get(0);
         }
-        case InternalType::ScilabUInt8:
+        case types::InternalType::ScilabUInt8:
         {
-            UInt8 *pI = pIT->getAs<UInt8>();
+            types::UInt8 *pI = pIT->getAs<types::UInt8>();
             return (double)pI->get(0);
         }
-        case InternalType::ScilabInt16:
+        case types::InternalType::ScilabInt16:
         {
-            Int16 *pI = pIT->getAs<Int16>();
+            types::Int16 *pI = pIT->getAs<types::Int16>();
             return (double)pI->get(0);
         }
-        case InternalType::ScilabUInt16:
+        case types::InternalType::ScilabUInt16:
         {
-            UInt16 *pI = pIT->getAs<UInt16>();
+            types::UInt16 *pI = pIT->getAs<types::UInt16>();
             return (double)pI->get(0);
         }
-        case InternalType::ScilabInt32:
+        case types::InternalType::ScilabInt32:
         {
-            Int32 *pI = pIT->getAs<Int32>();
+            types::Int32 *pI = pIT->getAs<types::Int32>();
             return (double)pI->get(0);
         }
-        case InternalType::ScilabUInt32:
+        case types::InternalType::ScilabUInt32:
         {
-            UInt32 *pI = pIT->getAs<UInt32>();
+            types::UInt32 *pI = pIT->getAs<types::UInt32>();
             return (double)pI->get(0);
         }
-        case InternalType::ScilabInt64:
+        case types::InternalType::ScilabInt64:
         {
-            Int64 *pI = pIT->getAs<Int64>();
+            types::Int64 *pI = pIT->getAs<types::Int64>();
             return (double)pI->get(0);
         }
-        case InternalType::ScilabUInt64:
+        case types::InternalType::ScilabUInt64:
         {
-            UInt64 *pI = pIT->getAs<UInt64>();
+            types::UInt64 *pI = pIT->getAs<types::UInt64>();
             return (double)pI->get(0);
         }
         default:
@@ -1012,39 +1105,34 @@ double mxGetScalar(const mxArray *ptr)
 
 double *mxGetPr(const mxArray *ptr)
 {
-    InternalType *pIT = (InternalType *)ptr;
-    if (pIT == NULL)
+    types::InternalType *pIT = (types::InternalType *)ptr->ptr;
+    if (pIT == NULL || pIT->isDouble() == false)
     {
         return NULL;
     }
 
-    Double *pD = dynamic_cast<Double *>(pIT);
-    if (pD == NULL)
-    {
-        return NULL;
-    }
-
+    types::Double *pD = pIT->getAs<types::Double>();
     return pD->get();
 }
 
 void mxSetPr(mxArray *ptr, double *pr)
 {
-    ((Double *)ptr)->set(pr);
+    ((types::Double *)ptr->ptr)->set(pr);
 }
 
 double *mxGetPi(const mxArray *ptr)
 {
-    return ((Double *)ptr)->getImg();
+    return ((types::Double *)ptr->ptr)->getImg();
 }
 
 void mxSetPi(mxArray *ptr, double *pi)
 {
-    ((Double *)ptr)->setImg(pi);
+    ((types::Double *)ptr->ptr)->setImg(pi);
 }
 
 void *mxGetData(const mxArray *ptr)
 {
-    InternalType *pIT = (InternalType *)ptr;
+    types::InternalType *pIT = (types::InternalType *)ptr->ptr;
     if (pIT == NULL)
     {
         return NULL;
@@ -1052,54 +1140,54 @@ void *mxGetData(const mxArray *ptr)
 
     switch (pIT->getType())
     {
-        case InternalType::ScilabDouble:
+        case types::InternalType::ScilabDouble:
         {
-            Double *pD = pIT->getAs<Double>();
+            types::Double *pD = pIT->getAs<types::Double>();
             return pD->get();
         }
-        case InternalType::ScilabBool:
+        case types::InternalType::ScilabBool:
         {
-            Bool *pB = pIT->getAs<Bool>();
+            types::Bool *pB = pIT->getAs<types::Bool>();
             return pB->get();
         }
-        case InternalType::ScilabInt8:
+        case types::InternalType::ScilabInt8:
         {
-            Int8 *pI = pIT->getAs<Int8>();
+            types::Int8 *pI = pIT->getAs<types::Int8>();
             return pI->get();
         }
-        case InternalType::ScilabUInt8:
+        case types::InternalType::ScilabUInt8:
         {
-            UInt8 *pI = pIT->getAs<UInt8>();
+            types::UInt8 *pI = pIT->getAs<types::UInt8>();
             return pI->get();
         }
-        case InternalType::ScilabInt16:
+        case types::InternalType::ScilabInt16:
         {
-            Int16 *pI = pIT->getAs<Int16>();
+            types::Int16 *pI = pIT->getAs<types::Int16>();
             return pI->get();
         }
-        case InternalType::ScilabUInt16:
+        case types::InternalType::ScilabUInt16:
         {
-            UInt16 *pI = pIT->getAs<UInt16>();
+            types::UInt16 *pI = pIT->getAs<types::UInt16>();
             return pI->get();
         }
-        case InternalType::ScilabInt32:
+        case types::InternalType::ScilabInt32:
         {
-            Int32 *pI = pIT->getAs<Int32>();
+            types::Int32 *pI = pIT->getAs<types::Int32>();
             return pI->get();
         }
-        case InternalType::ScilabUInt32:
+        case types::InternalType::ScilabUInt32:
         {
-            UInt32 *pI = pIT->getAs<UInt32>();
+            types::UInt32 *pI = pIT->getAs<types::UInt32>();
             return pI->get();
         }
-        case InternalType::ScilabInt64:
+        case types::InternalType::ScilabInt64:
         {
-            Int64 *pI = pIT->getAs<Int64>();
+            types::Int64 *pI = pIT->getAs<types::Int64>();
             return pI->get();
         }
-        case InternalType::ScilabUInt64:
+        case types::InternalType::ScilabUInt64:
         {
-            UInt64 *pI = pIT->getAs<UInt64>();
+            types::UInt64 *pI = pIT->getAs<types::UInt64>();
             return pI->get();
         }
         default:
@@ -1111,56 +1199,53 @@ void mxSetData(mxArray *array_ptr, void *data_ptr)
 {
     if (mxIsChar(array_ptr))
     {
-        ((String *)array_ptr)->set((wchar_t **)data_ptr);
+        array_ptr->ptr = (int*)((types::String *)array_ptr->ptr)->set((wchar_t **)data_ptr);
     }
     else if (mxIsDouble(array_ptr))
     {
-        ((Double *)array_ptr)->set((double *)data_ptr);
+        array_ptr->ptr = (int*)((types::Double *)array_ptr->ptr)->set((double *)data_ptr);
     }
     else if (mxIsInt8(array_ptr))
     {
-        ((Int8 *)array_ptr)->set((char *)data_ptr);
+        array_ptr->ptr = (int*)((types::Int8 *)array_ptr->ptr)->set((char *)data_ptr);
     }
     else if (mxIsInt16(array_ptr))
     {
-        ((Int16 *)array_ptr)->set((short *)data_ptr);
+        array_ptr->ptr = (int*)((types::Int16 *)array_ptr->ptr)->set((short *)data_ptr);
     }
     else if (mxIsInt32(array_ptr))
     {
-        ((Int32 *)array_ptr)->set((int *)data_ptr);
+        array_ptr->ptr = (int*)((types::Int32 *)array_ptr->ptr)->set((int *)data_ptr);
     }
     else if (mxIsInt64(array_ptr))
     {
-        ((Int64 *)array_ptr)->set((long long *)data_ptr);
+        array_ptr->ptr = (int*)((types::Int64 *)array_ptr->ptr)->set((long long *)data_ptr);
     }
     else if (mxIsLogical(array_ptr))
     {
-        ((Bool *)array_ptr)->set((int *)data_ptr);
+        array_ptr->ptr = (int*)((types::Bool *)array_ptr->ptr)->set((int *)data_ptr);
     }
-    // else if (mxIsSingle(array_ptr)) {
-    //   ((Float *) array_ptr)->set((float *) data_ptr);
-    // }
     else if (mxIsUint8(array_ptr))
     {
-        ((UInt8 *)array_ptr)->set((unsigned char *)data_ptr);
+        array_ptr->ptr = (int*)((types::UInt8 *)array_ptr->ptr)->set((unsigned char *)data_ptr);
     }
     else if (mxIsUint16(array_ptr))
     {
-        ((UInt16 *)array_ptr)->set((unsigned short *)data_ptr);
+        array_ptr->ptr = (int*)((types::UInt16 *)array_ptr->ptr)->set((unsigned short *)data_ptr);
     }
     else if (mxIsUint32(array_ptr))
     {
-        ((UInt32 *)array_ptr)->set((unsigned int *)data_ptr);
+        array_ptr->ptr = (int*)((types::UInt32 *)array_ptr->ptr)->set((unsigned int *)data_ptr);
     }
     else if (mxIsUint64(array_ptr))
     {
-        ((UInt64 *)array_ptr)->set((unsigned long long *) data_ptr);
+        array_ptr->ptr = (int*)((types::UInt64 *)array_ptr->ptr)->set((unsigned long long *) data_ptr);
     }
 }
 
 void *mxGetImagData(const mxArray *ptr)
 {
-    InternalType *pIT = (InternalType *)ptr;
+    types::InternalType *pIT = (types::InternalType *)ptr->ptr;
     if (pIT == NULL)
     {
         return NULL;
@@ -1168,54 +1253,54 @@ void *mxGetImagData(const mxArray *ptr)
 
     switch (pIT->getType())
     {
-        case InternalType::ScilabDouble:
+        case types::InternalType::ScilabDouble:
         {
-            Double *pD = pIT->getAs<Double>();
+            types::Double *pD = pIT->getAs<types::Double>();
             return pD->getImg();
         }
-        case InternalType::ScilabBool:
+        case types::InternalType::ScilabBool:
         {
-            Bool *pB = pIT->getAs<Bool>();
+            types::Bool *pB = pIT->getAs<types::Bool>();
             return pB->getImg();
         }
-        case InternalType::ScilabInt8:
+        case types::InternalType::ScilabInt8:
         {
-            Int8 *pI = pIT->getAs<Int8>();
+            types::Int8 *pI = pIT->getAs<types::Int8>();
             return pI->getImg();
         }
-        case InternalType::ScilabUInt8:
+        case types::InternalType::ScilabUInt8:
         {
-            UInt8 *pI = pIT->getAs<UInt8>();
+            types::UInt8 *pI = pIT->getAs<types::UInt8>();
             return pI->getImg();
         }
-        case InternalType::ScilabInt16:
+        case types::InternalType::ScilabInt16:
         {
-            Int16 *pI = pIT->getAs<Int16>();
+            types::Int16 *pI = pIT->getAs<types::Int16>();
             return pI->getImg();
         }
-        case InternalType::ScilabUInt16:
+        case types::InternalType::ScilabUInt16:
         {
-            UInt16 *pI = pIT->getAs<UInt16>();
+            types::UInt16 *pI = pIT->getAs<types::UInt16>();
             return pI->getImg();
         }
-        case InternalType::ScilabInt32:
+        case types::InternalType::ScilabInt32:
         {
-            Int32 *pI = pIT->getAs<Int32>();
+            types::Int32 *pI = pIT->getAs<types::Int32>();
             return pI->getImg();
         }
-        case InternalType::ScilabUInt32:
+        case types::InternalType::ScilabUInt32:
         {
-            UInt32 *pI = pIT->getAs<UInt32>();
+            types::UInt32 *pI = pIT->getAs<types::UInt32>();
             return pI->getImg();
         }
-        case InternalType::ScilabInt64:
+        case types::InternalType::ScilabInt64:
         {
-            Int64 *pI = pIT->getAs<Int64>();
+            types::Int64 *pI = pIT->getAs<types::Int64>();
             return pI->getImg();
         }
-        case InternalType::ScilabUInt64:
+        case types::InternalType::ScilabUInt64:
         {
-            UInt64 *pI = pIT->getAs<UInt64>();
+            types::UInt64 *pI = pIT->getAs<types::UInt64>();
             return pI->getImg();
         }
         default:
@@ -1225,52 +1310,9 @@ void *mxGetImagData(const mxArray *ptr)
 
 void mxSetImagData(mxArray *array_ptr, void *data_ptr)
 {
-    if (mxIsChar(array_ptr))
+    if (mxIsDouble(array_ptr))
     {
-        ((String *)array_ptr)->setImg((wchar_t **)data_ptr);
-    }
-    else if (mxIsDouble(array_ptr))
-    {
-        ((Double *)array_ptr)->setImg((double *)data_ptr);
-    }
-    else if (mxIsInt8(array_ptr))
-    {
-        ((Int8 *)array_ptr)->setImg((char *)data_ptr);
-    }
-    else if (mxIsInt16(array_ptr))
-    {
-        ((Int16 *)array_ptr)->setImg((short *)data_ptr);
-    }
-    else if (mxIsInt32(array_ptr))
-    {
-        ((Int32 *)array_ptr)->setImg((int *)data_ptr);
-    }
-    else if (mxIsInt64(array_ptr))
-    {
-        ((Int64 *)array_ptr)->setImg((long long *)data_ptr);
-    }
-    else if (mxIsLogical(array_ptr))
-    {
-        ((Bool *)array_ptr)->setImg((int *)data_ptr);
-    }
-    // else if (mxIsSingle(array_ptr)) {
-    //   ((Float *) array_ptr)->setImg((float *) data_ptr);
-    // }
-    else if (mxIsUint8(array_ptr))
-    {
-        ((UInt8 *)array_ptr)->setImg((unsigned char *)data_ptr);
-    }
-    else if (mxIsUint16(array_ptr))
-    {
-        ((UInt16 *)array_ptr)->setImg((unsigned short *)data_ptr);
-    }
-    else if (mxIsUint32(array_ptr))
-    {
-        ((UInt32 *)array_ptr)->setImg((unsigned int *)data_ptr);
-    }
-    else if (mxIsUint64(array_ptr))
-    {
-        ((UInt64 *)array_ptr)->setImg((unsigned long long *) data_ptr);
+        ((types::Double *)array_ptr->ptr)->setImg((double *)data_ptr);
     }
 }
 
@@ -1280,30 +1322,25 @@ mxChar *mxGetChars(mxArray *array_ptr)
     {
         return NULL;
     }
-    wchar_t *chars = ((String *)array_ptr)->get(0);
+    wchar_t *chars = ((types::String *)array_ptr->ptr)->get(0);
     return (mxChar *)wide_string_to_UTF8(chars);
 }
 
 mxLogical *mxGetLogicals(const mxArray *ptr)
 {
-    InternalType *pIT = (InternalType *)ptr;
-    if (pIT == NULL)
+    types::InternalType *pIT = (types::InternalType *)ptr->ptr;
+    if (pIT == NULL || pIT->isBool() == false)
     {
         return NULL;
     }
 
-    Bool *pB = pIT->getAs<Bool>();
-    if (pB == NULL)
-    {
-        return NULL;
-    }
-
+    types::Bool *pB = pIT->getAs<types::Bool>();
     return (mxLogical *)pB->get();
 }
 
 mxClassID mxGetClassID(const mxArray *ptr)
 {
-    InternalType *pIT = dynamic_cast<InternalType*>((InternalType*)ptr);
+    types::InternalType *pIT = dynamic_cast<types::InternalType*>((types::InternalType*)ptr->ptr);
     if (pIT == NULL)
     {
         return mxUNKNOWN_CLASS;
@@ -1311,35 +1348,35 @@ mxClassID mxGetClassID(const mxArray *ptr)
 
     switch (pIT->getType())
     {
-        case InternalType::ScilabInt8:
+        case types::InternalType::ScilabInt8:
             return mxINT8_CLASS;
-        case InternalType::ScilabUInt8:
+        case types::InternalType::ScilabUInt8:
             return mxUINT8_CLASS;
-        case InternalType::ScilabInt16:
+        case types::InternalType::ScilabInt16:
             return mxINT16_CLASS;
-        case InternalType::ScilabUInt16:
+        case types::InternalType::ScilabUInt16:
             return mxUINT16_CLASS;
-        case InternalType::ScilabInt32:
+        case types::InternalType::ScilabInt32:
             return mxINT32_CLASS;
-        case InternalType::ScilabUInt32:
+        case types::InternalType::ScilabUInt32:
             return mxUINT32_CLASS;
-        case InternalType::ScilabInt64:
+        case types::InternalType::ScilabInt64:
             return mxINT64_CLASS;
-        case InternalType::ScilabUInt64:
+        case types::InternalType::ScilabUInt64:
             return mxUINT64_CLASS;
-        case InternalType::ScilabString:
+        case types::InternalType::ScilabString:
             return mxCHAR_CLASS;
-        case InternalType::ScilabDouble:
+        case types::InternalType::ScilabDouble:
             return mxDOUBLE_CLASS;
-        case InternalType::ScilabBool:
+        case types::InternalType::ScilabBool:
             return mxLOGICAL_CLASS;
-        case InternalType::ScilabFloat:
+        case types::InternalType::ScilabFloat:
             return mxSINGLE_CLASS;
-        case InternalType::ScilabStruct:
+        case types::InternalType::ScilabStruct:
             return mxSTRUCT_CLASS;
-        case InternalType::ScilabCell:
+        case types::InternalType::ScilabCell:
             return mxCELL_CLASS;
-        case InternalType::ScilabFunction:
+        case types::InternalType::ScilabFunction:
             return mxFUNCTION_CLASS;
         default:
             return mxUNKNOWN_CLASS;
@@ -1443,7 +1480,8 @@ int mxGetNumberOfFields(const mxArray *ptr)
     {
         return 0;
     }
-    Struct * pa = (Struct *)ptr;
+
+    types::Struct * pa = (types::Struct*)ptr->ptr;
     return pa->getFieldNames()->getSize();
 }
 
@@ -1457,7 +1495,7 @@ const char *mxGetFieldNameByNumber(const mxArray *array_ptr, int field_number)
     {
         return NULL;
     }
-    String *names = ((Struct *)array_ptr)->getFieldNames();
+    types::String *names = ((types::Struct*)array_ptr->ptr)->getFieldNames();
     wchar_t *name = names->get(field_number);
     return (const char *)wide_string_to_UTF8(name);
 }
@@ -1468,8 +1506,9 @@ int mxGetFieldNumber(const mxArray *ptr, const char *string)
     {
         return -1;
     }
-    Struct *pa = (Struct *)ptr;
-    String *names = pa->getFieldNames();
+
+    types::Struct *pa = (types::Struct *)ptr->ptr;
+    types::String *names = pa->getFieldNames();
     wchar_t *field_name = to_wide_string(string);
 
     for (int i = 0; i < names->getSize(); i++)
@@ -1498,19 +1537,23 @@ mxArray *mxGetFieldByNumber(const mxArray *ptr, int lindex, int field_number)
     {
         return NULL;
     }
-    Struct *pa = (Struct *)ptr;
-    String *names = pa->getFieldNames();
-    SingleStruct *s = pa->get(lindex);
-    return (mxArray *)s->get(names->get(field_number));
+
+    types::Struct *pa = (types::Struct *)ptr->ptr;
+    types::String *names = pa->getFieldNames();
+    types::SingleStruct *s = pa->get(lindex);
+
+    mxArray* ret = new mxArray;
+    ret->ptr = (int*)s->get(names->get(field_number));
+    return ret;
 }
 
 void mxSetFieldByNumber(mxArray *array_ptr, int lindex, int field_number, mxArray *value)
 {
     if (mxIsStruct(array_ptr) && lindex < mxGetNumberOfElements(array_ptr))
     {
-        SingleStruct *ptr = ((Struct *)array_ptr)->get(lindex);
-        String *names = ptr->getFieldNames();
-        ptr->set(names->get(field_number), (InternalType *)value);
+        types::SingleStruct *ptr = ((types::Struct*)array_ptr->ptr)->get(lindex);
+        types::String *names = ptr->getFieldNames();
+        ptr->set(names->get(field_number), (types::InternalType *)value->ptr);
     }
 }
 
@@ -1520,9 +1563,11 @@ int mxAddField(mxArray *ptr, const char *fieldname)
     {
         return -1;
     }
-    Struct *pa = (Struct *)ptr;
+
+    types::Struct *pa = (types::Struct*)ptr->ptr;
     wchar_t *wfieldname = to_wide_string(fieldname);
-    pa->addField(wfieldname);
+    ptr->ptr = (int*)pa->addField(wfieldname);
+    FREE(wfieldname);
     return mxGetFieldNumber(ptr, fieldname);
 }
 
@@ -1533,13 +1578,15 @@ void mxRemoveField(mxArray *pm, int fieldnumber)
 
 mxArray *mxGetCell(const mxArray *ptr, int lindex)
 {
-    Cell * pa = (Cell *)ptr;
-    return (mxArray *)pa->get(lindex);
+    types::Cell * pa = (types::Cell *)ptr->ptr;
+    mxArray* ret = new mxArray;
+    ret->ptr = (int*)pa->get(lindex);
+    return ret;
 }
 
 void mxSetCell(mxArray *array_ptr, int lindex, mxArray *value)
 {
-    ((Cell *)array_ptr)->set(lindex, (InternalType *)value);
+    array_ptr->ptr = (int*)((types::Cell *)array_ptr->ptr)->set(lindex, (types::InternalType *)value->ptr);
 }
 
 int mxGetNzmax(const mxArray *ptr)
@@ -1604,217 +1651,16 @@ mxArray *mexCallMATLABWithTrap(int nlhs, mxArray *plhs[], int nrhs, const mxArra
 
 int mexEvalString(const char *name)
 {
-    // TODO: It is almost copied from sci_execstr.cpp. Refactor needed!
-    int iErr = 0;
-    bool bErrCatch = false;
-    bool bMute = true;
-    Parser parser;
-    parser.parse(to_wide_string(name));
-    if (parser.getExitStatus() != Parser::Succeded)
+    types::typed_list in;
+    types::typed_list out;
+    in.push_back(new types::String(name));
+    types::Callable::ReturnValue ret = Overload::call(L"execstr", in, 1, out);
+    in.back()->killMe();
+    if (ret != types::Callable::OK)
     {
-        //mexPrintf(wide_string_to_UTF8(parser.getErrorMessage()));
         return 1;
     }
 
-    ast::Exp *pExp = parser.getTree();
-
-    if (pExp == NULL)
-    {
-        //mexPrintf("pExp is NULL");
-        return 1;
-    }
-
-    //save current prompt mode
-    int oldVal = ConfigVariable::getPromptMode();
-    if (bMute)
-    {
-        ConfigVariable::setPromptMode(-1);
-    }
-    ast::exps_t LExp = pExp->getAs<ast::SeqExp>()->getExps();
-
-    for (ast::exps_t::iterator j = LExp.begin(), itEnd = LExp.end(); j != itEnd; ++j)
-    {
-        try
-        {
-            //excecute script
-            ast::ExecVisitor execMe;
-            (*j)->accept(execMe);
-
-            //to manage call without ()
-            if (execMe.getResult() != NULL && execMe.getResult()->getAs<Callable>())
-            {
-                Callable *pCall = execMe.getResult()->getAs<Callable>();
-                typed_list out;
-                typed_list in;
-                optional_list opt;
-                try
-                {
-                    ast::ExecVisitor execCall;
-                    Function::ReturnValue Ret = pCall->call(in, opt, 1, out, &execCall);
-                    if (Ret == Callable::OK)
-                    {
-                        if (out.size() == 0)
-                        {
-                            execMe.setResult(NULL);
-                        }
-                        else if (out.size() == 1)
-                        {
-                            out[0]->DecreaseRef();
-                            execMe.setResult(out[0]);
-                        }
-                        else
-                        {
-                            for (int i = 0; i < static_cast<int>(out.size()); i++)
-                            {
-                                out[i]->DecreaseRef();
-                                execMe.setResult(i, out[i]);
-                            }
-                        }
-                    }
-                    else if (Ret == Callable::Error)
-                    {
-                        if (ConfigVariable::getLastErrorFunction() == L"")
-                        {
-                            ConfigVariable::setLastErrorFunction(pCall->getName());
-                        }
-
-                        if (pCall->isMacro() || pCall->isMacroFile())
-                        {
-                            wchar_t szError[bsiz];
-                            os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n").c_str(), (*j)->getLocation().first_line, pCall->getName().c_str());
-                            throw ast::ScilabMessage(szError);
-                        }
-                        else
-                        {
-                            throw ast::ScilabMessage();
-                        }
-                    }
-                }
-                catch (ast::ScilabMessage sm)
-                {
-                    wostringstream os;
-                    ast::PrintVisitor printMe(os);
-                    (*j)->accept(printMe);
-                    os << std::endl << std::endl;
-                    if (ConfigVariable::getLastErrorFunction() == L"")
-                    {
-                        ConfigVariable::setLastErrorFunction(pCall->getName());
-                    }
-
-                    if (pCall->isMacro() || pCall->isMacroFile())
-                    {
-                        wstring szAllError;
-                        wchar_t szError[bsiz];
-                        os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n").c_str(), sm.GetErrorLocation().first_line, pCall->getName().c_str());
-                        szAllError = szError + os.str();
-                        os_swprintf(szError, bsiz, _W("in  execstr instruction    called by :\n").c_str());
-                        szAllError += szError;
-                        throw ast::ScilabMessage(szAllError);
-                    }
-                    else
-                    {
-                        sm.SetErrorMessage(sm.GetErrorMessage() + os.str());
-                        throw sm;
-                    }
-                }
-            }
-
-            //update ans variable.
-            if (execMe.getResult() != NULL && execMe.getResult()->isDeletable())
-            {
-                symbol::Context::getInstance()->put(symbol::Symbol(L"ans"), execMe.getResult());
-                if ((*j)->isVerbose() && bErrCatch == false)
-                {
-                    std::wostringstream ostr;
-                    ostr << L"ans = " << std::endl;
-                    ostr << std::endl;
-                    execMe.getResult()->toString(ostr);
-                    ostr << std::endl;
-                    scilabWriteW(ostr.str().c_str());
-                }
-            }
-        }
-        catch (ast::ScilabMessage sm)
-        {
-            if (bErrCatch == false && bMute == false)
-            {
-                scilabErrorW(sm.GetErrorMessage().c_str());
-
-                ast::CallExp* pCall = dynamic_cast<ast::CallExp*>(*j);
-                if (pCall != NULL)
-                {
-                    //to print call expression only of it is a macro
-                    ast::ExecVisitor execFunc;
-                    pCall->getName().accept(execFunc);
-
-                    if (execFunc.getResult() != NULL &&
-                            (execFunc.getResult()->isMacro() || execFunc.getResult()->isMacroFile()))
-                    {
-                        wostringstream os;
-
-                        //add function failed
-                        ast::PrintVisitor printMe(os);
-                        pCall->accept(printMe);
-                        os << std::endl;
-
-                        //add info on file failed
-                        wchar_t szError[bsiz];
-                        os_swprintf(szError, bsiz, _W("at line % 5d of exec file called by :\n").c_str(), (*j)->getLocation().first_line);
-                        os << szError;
-
-                        if (ConfigVariable::getLastErrorFunction() == L"")
-                        {
-                            ConfigVariable::setLastErrorFunction(execFunc.getResult()->getAs<Callable>()->getName());
-                        }
-
-                        //restore previous prompt mode
-                        ConfigVariable::setPromptMode(oldVal);
-                        throw ast::ScilabMessage(os.str(), 0, (*j)->getLocation());
-                    }
-                }
-                throw ast::ScilabMessage((*j)->getLocation());
-            }
-            else
-            {
-                iErr = ConfigVariable::getLastErrorNumber();
-                break;
-            }
-        }
-        catch (ast::ScilabError se)
-        {
-            if (ConfigVariable::getLastErrorMessage() == L"")
-            {
-                ConfigVariable::setLastErrorMessage(se.GetErrorMessage());
-                ConfigVariable::setLastErrorNumber(se.GetErrorNumber());
-                ConfigVariable::setLastErrorLine(se.GetErrorLocation().first_line);
-                ConfigVariable::setLastErrorFunction(wstring(L""));
-            }
-
-            //store message
-            iErr = ConfigVariable::getLastErrorNumber();
-            if (bErrCatch == false)
-            {
-                //in case of error, change mode to 2 ( prompt )
-                ConfigVariable::setPromptMode(2);
-                //write error
-                scilabErrorW(ConfigVariable::getLastErrorMessage().c_str());
-                scilabErrorW(L"\n");
-
-                //write positino
-                wchar_t szError[bsiz];
-                os_swprintf(szError, bsiz, _W("at line % 5d of exec file called by :\n").c_str(), (*j)->getLocation().first_line);
-                //restore previous prompt mode
-                ConfigVariable::setPromptMode(oldVal);
-                throw ast::ScilabMessage(szError, 1, (*j)->getLocation());
-            }
-            break;
-        }
-    }
-
-    //restore previous prompt mode
-    ConfigVariable::setPromptMode(oldVal);
-
-    delete parser.getTree();
     return 0;
 }
 
@@ -1838,42 +1684,49 @@ int mexSet(double handle, const char *property, mxArray *value)
 
 mxArray *mexGetVariable(const char *workspace, const char *name)
 {
-    mxArray* ret = NULL;
-    const mxArray* ptr = mexGetVariablePtr(workspace, name);
+    mxArray* ptr = const_cast<mxArray*>(mexGetVariablePtr(workspace, name));
 
-    if (ptr)
+    if (ptr && ptr->ptr)
     {
-        ret = (mxArray*)((InternalType*)ptr)->clone();
+        ptr->ptr = (int*)((types::InternalType*)ptr->ptr)->clone();
     }
-    return ret;
+
+    return ptr;
 }
 
 const mxArray *mexGetVariablePtr(const char *workspace, const char *name)
 {
     symbol::Context *context = symbol::Context::getInstance();
     wchar_t *key = to_wide_string(name);
-    InternalType *value = NULL;
+    mxArray* ret = new mxArray;
+    ret->ptr = NULL;
     symbol::Symbol sym = symbol::Symbol(key);
     if (strcmp(workspace, "base") == 0)
     {
-        value = context->get(sym);
+        ret->ptr = (int*)context->get(sym);
     }
     else if (strcmp(workspace, "caller") == 0)
     {
         if (context->isGlobalVisible(sym) == false)
         {
-            value = context->get(sym);
+            ret->ptr = (int*)context->get(sym);
         }
     }
     else if (strcmp(workspace, "global") == 0)
     {
         if (context->isGlobalVisible(sym))
         {
-            value = context->getGlobalValue(sym);
+            ret->ptr = (int*)context->getGlobalValue(sym);
         }
     }
     FREE(key);
-    return (mxArray *)value;
+    if (ret->ptr == NULL)
+    {
+        delete ret;
+        return NULL;
+    }
+
+    return ret;
 }
 
 int mexPutVariable(const char *workspace, const char *varname, const mxArray *pm)
@@ -1882,21 +1735,23 @@ int mexPutVariable(const char *workspace, const char *varname, const mxArray *pm
     wchar_t *dest = to_wide_string(varname);
     if (strcmp(workspace, "base") == 0)
     {
-        context->putInPreviousScope(context->getOrCreate(symbol::Symbol(dest)), (InternalType *)pm);
+        context->putInPreviousScope(context->getOrCreate(symbol::Symbol(dest)), (types::InternalType *)pm->ptr);
     }
     else if (strcmp(workspace, "caller") == 0)
     {
-        context->put(symbol::Symbol(dest), (InternalType *)pm);
+        context->put(symbol::Symbol(dest), (types::InternalType *)pm->ptr);
     }
     else if (strcmp(workspace, "global") == 0)
     {
         context->setGlobalVisible(symbol::Symbol(dest), true);
-        context->put(symbol::Symbol(dest), (InternalType *)pm);
+        context->put(symbol::Symbol(dest), (types::InternalType *)pm->ptr);
     }
     else
     {
+        FREE(dest);
         return 1;
     }
+    FREE(dest);
     return 0;
 }
 
@@ -1909,8 +1764,8 @@ int mexIsGlobal(const mxArray *ptr)
     for (auto it : lst)
     {
         symbol::Symbol s = symbol::Symbol(it);
-        const mxArray *value = (const mxArray *)context->getGlobalValue(s);
-        if (value == ptr)
+        types::InternalType* value = context->getGlobalValue(s);
+        if ((int*)value == ptr->ptr)
         {
             return 1;
         }
@@ -1947,7 +1802,7 @@ void mexWarnMsgIdAndTxt(const char *warningid, const char *warningmsg, ...)
 
 void mexErrMsgTxt(const char *error_msg)
 {
-    throw ast::ScilabError(error_msg);
+    throw ast::InternalError(error_msg);
 }
 
 void mexWarnMsgTxt(const char *error_msg)
@@ -1985,10 +1840,10 @@ void mexMakeMemoryPersistent(void *ptr)
 
 double mxGetInf(void)
 {
-    InternalType *pITInf = symbol::Context::getInstance()->get(symbol::Symbol(L"%inf"));
+    types::InternalType *pITInf = symbol::Context::getInstance()->get(symbol::Symbol(L"%inf"));
     if (pITInf && pITInf->isDouble())
     {
-        return pITInf->getAs<Double>()->get(0);
+        return pITInf->getAs<types::Double>()->get(0);
     }
 
     return -1;
@@ -1996,10 +1851,10 @@ double mxGetInf(void)
 
 double mxGetNaN(void)
 {
-    InternalType *pITInf = symbol::Context::getInstance()->get(symbol::Symbol(L"%nan"));
+    types::InternalType *pITInf = symbol::Context::getInstance()->get(symbol::Symbol(L"%nan"));
     if (pITInf)
     {
-        return pITInf->getAs<Double>()->get(0);
+        return pITInf->getAs<types::Double>()->get(0);
     }
 
     return -1;
@@ -2007,10 +1862,10 @@ double mxGetNaN(void)
 
 double mxGetEps(void)
 {
-    InternalType *pITEps = symbol::Context::getInstance()->get(symbol::Symbol(L"%eps"));
+    types::InternalType *pITEps = symbol::Context::getInstance()->get(symbol::Symbol(L"%eps"));
     if (pITEps && pITEps->isDouble())
     {
-        return pITEps->getAs<Double>()->get(0);
+        return pITEps->getAs<types::Double>()->get(0);
     }
 
     return -1;

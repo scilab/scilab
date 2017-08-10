@@ -1,11 +1,14 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2011 - DIGITEO - Michael Baudin
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 mprintf("Finds the largest n-polygon with diameter smaller than 1.\n");
 
@@ -70,8 +73,7 @@ function polygon_draw(r ,t , nv)
     x($+1) = r(i)*cos(t(i));
     y($+1) = r(i)*sin(t(i));
     plot(x,y,"bo-")
-    h = gcf()
-    h.children.isoview = "on"
+    isoview(gcf(), "on")
 endfunction
 
 function polygon_update(h,r ,t , nv)

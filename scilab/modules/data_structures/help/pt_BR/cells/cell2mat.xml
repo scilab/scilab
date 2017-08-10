@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="cell2mat" xml:lang="pt">
+    <refnamediv>
+        <refname>cell2mat</refname>
+        <refpurpose>converte um cell array (array de células) em uma
+            matriz
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>x=cell2mat(c)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>c</term>
+                <listitem>
+                    <para>cell, os componentes de c devem ter o mesmo tipo e podem ser
+                        escalares ou matrizes
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>matriz</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>Retorna uma matriz que é a concatenação de todos os componentes do
+            cell (célula) c.
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>cell2mat(c)</term>
+                <listitem>
+                    <para>todos os componentes de c devem ter o mesmo tipo de dado
+                        (string, doubles, inteiros ou booleanos). Para cada linha <literal>i
+                        </literal>
+                        de <literal>c,</literal> <literal>cell2mat</literal>
+                        concatena todos os componentes da i-ésima linha do cell
+                        <literal>c</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+        <para>Perceba que se os componentes da entrada do cell c são são strings,
+            então <literal>cell2mat(c)</literal> retorna um vetor-coluna de
+            concatenação de strings.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[
+c=makecell([2,2],[1 2 3; 6 7 8],[4 5;9 10],[11 12;16 17],[14 13 15;18 19 20])
+cell2mat(c)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Ver Também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="cell">cell</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

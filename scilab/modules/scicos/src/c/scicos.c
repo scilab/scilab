@@ -87,6 +87,7 @@
 #include "localization.h"
 #include "charEncoding.h"
 #include "common_structure.h"
+#include "Sciwarning.h"
 
 /*--------------------------------------------------------------------------*/
 typedef struct
@@ -112,6 +113,7 @@ enum Solver
     Dormand_Prince,
     Runge_Kutta,
     Implicit_Runge_Kutta,
+    Crank_Nicolson,
     IDA_BDF_Newton = 100,
     DDaskr_BDF_Newton = 101,
     DDaskr_BDF_GMRes = 102
@@ -368,16 +370,15 @@ int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
     critev = critev_in - 1;
     --ztyp;
     zcptr = zcptr_in - 1;
-    --simpar;
 
     /* Function Body */
-    Atol = simpar[1];
-    rtol = simpar[2];
-    ttol = simpar[3];
-    deltat = simpar[4];
-    C2F(rtfactor).scale = simpar[5];
-    C2F(cmsolver).solver = (int) simpar[6];
-    hmax = simpar[7];
+    Atol = simpar[0];
+    rtol = simpar[1];
+    ttol = simpar[2];
+    deltat = simpar[3];
+    C2F(rtfactor).scale = simpar[4];
+    C2F(cmsolver).solver = (int) simpar[5];
+    hmax = simpar[6];
 
     nordptr = *nordptr1;
     nblk  = *nblk1;
@@ -880,6 +881,7 @@ int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
             case Dormand_Prince:
             case Runge_Kutta:
             case Implicit_Runge_Kutta:
+            case Crank_Nicolson:
                 cossim(t0);
                 break;
             case IDA_BDF_Newton:
@@ -1165,7 +1167,7 @@ static void cosini(double *told)
         }
 
         flag__ = 6;
-        for (jj = 1; jj <= ncord; ++jj)   /*for each continous block*/
+        for (jj = 1; jj <= ncord; ++jj)   /*for each continuous block*/
         {
             C2F(curblk).kfun = cord[jj];
             if (funtyp[C2F(curblk).kfun] >= 0)
@@ -1472,6 +1474,7 @@ static void cossim(double *told)
         case Dormand_Prince:
         case Runge_Kutta:
         case Implicit_Runge_Kutta:
+        case Crank_Nicolson:
             ODEFree = &CVodeFree;
             ODE = &CVode;
             ODEReInit = &CVodeReInit;
@@ -1566,6 +1569,9 @@ static void cossim(double *told)
                 break;
             case Implicit_Runge_Kutta:
                 ode_mem = CVodeCreate(CV_ImpRK, CV_FUNCTIONAL);
+                break;
+            case Crank_Nicolson:
+                ode_mem = CVodeCreate(CV_CRANI, CV_FUNCTIONAL);
                 break;
         }
 
@@ -1721,7 +1727,7 @@ static void cossim(double *told)
         {
             int ierr2 = 0;
             int iUnused;
-            GetCommand(&CommandToUnstack, &SeqSync, &iUnused, &iUnused); //** get to the action
+            GetCommand(&CommandToUnstack, &SeqSync, &iUnused, NONE); //** get to the action
             CommandLength = (int)strlen(CommandToUnstack);
             //syncexec(CommandToUnstack, &CommandLength, &ierr2, &one, CommandLength); //** execute it
             FREE(CommandToUnstack);
@@ -2903,7 +2909,7 @@ static void cossimdaskr(double *told)
         {
             int ierr2 = 0;
             int iUnused;
-            GetCommand(&CommandToUnstack, &SeqSync, &iUnused, &iUnused); //** get to the action
+            GetCommand(&CommandToUnstack, &SeqSync, &iUnused, NONE); //** get to the action
             CommandLength = (int)strlen(CommandToUnstack);
             //syncexec(CommandToUnstack, &CommandLength, &ierr2, &one, CommandLength); //** execute it
             FREE(CommandToUnstack);
@@ -3091,7 +3097,7 @@ L30:
                         {
                             int ierr2 = 0;
                             int iUnused;
-                            GetCommand(&CommandToUnstack, &SeqSync, &iUnused, &iUnused); //** get to the action
+                            GetCommand(&CommandToUnstack, &SeqSync, &iUnused, NONE); //** get to the action
                             CommandLength = (int)strlen(CommandToUnstack);
                             //syncexec(CommandToUnstack, &CommandLength, &ierr2, &one, CommandLength); //** execute it
                             FREE(CommandToUnstack);
@@ -3443,7 +3449,7 @@ L30:
                 {
                     int ierr2 = 0;
                     int iUnused;
-                    GetCommand(&CommandToUnstack, &SeqSync, &iUnused, &iUnused); //** get to the action
+                    GetCommand(&CommandToUnstack, &SeqSync, &iUnused, NONE); //** get to the action
                     CommandLength = (int)strlen(CommandToUnstack);
                     //syncexec(CommandToUnstack, &CommandLength, &ierr2, &one, CommandLength); //** execute it
                     FREE(CommandToUnstack);
@@ -3609,7 +3615,7 @@ void callf(double *t, scicos_block *block, scicos_flag *flag)
     {
         if (cosd != 3)
         {
-            sciprint(_("block %d is called "), C2F(curblk).kfun);
+            sciprint(_("block %d [%s] is called "), C2F(curblk).kfun, block->uid);
             sciprint(_("with flag %d "), *flag);
             sciprint(_("at time %f \n"), *t);
         }
@@ -4122,7 +4128,7 @@ static int simblk(realtype t, N_Vector yy, N_Vector yp, void *f_data)
         {
             if ((xd[i] - xd[i] != 0))
             {
-                sciprint(_("\nWarning: The computing function #%d returns a NaN/Inf"), i);
+                Sciwarning(_("\nWarning: The computing function #%d returns a NaN/Inf"), i);
                 nantest = 1;
                 break;
             }
@@ -4157,7 +4163,7 @@ static int grblk(realtype t, N_Vector yy, realtype *gout, void *g_data)
         for (jj = 0; jj < ng; jj++)
             if (gout[jj] - gout[jj] != 0)
             {
-                sciprint(_("\nWarning: The zero_crossing function #%d returns a NaN/Inf"), jj);
+                Sciwarning(_("\nWarning: The zero_crossing function #%d returns a NaN/Inf"), jj);
                 nantest = 1;
                 break;
             } /* NaN checking */
@@ -4194,7 +4200,7 @@ static void simblklsodar(int * nequations, realtype * tOld, realtype * actual, r
         {
             if ((res[i] - res[i] != 0))
             {
-                sciprint(_("\nWarning: The computing function #%d returns a NaN/Inf"), i);
+                Sciwarning(_("\nWarning: The computing function #%d returns a NaN/Inf"), i);
             }
         }
     }
@@ -4219,7 +4225,7 @@ static void grblklsodar(int * nequations, realtype * tOld, realtype * actual, in
         {
             if (res[jj] - res[jj] != 0)
             {
-                sciprint(_("\nWarning: The zero_crossing function #%d returns a NaN/Inf"), jj);
+                Sciwarning(_("\nWarning: The zero_crossing function #%d returns a NaN/Inf"), jj);
             } /* NaN checking */
         }
     }
@@ -4328,7 +4334,7 @@ static int grblkdaskr(realtype t, N_Vector yy, N_Vector yp, realtype *gout, void
         {
             if (gout[jj] - gout[jj] != 0)
             {
-                sciprint(_("\nWarning: The zero-crossing function #%d returns a NaN"), jj);
+                Sciwarning(_("\nWarning: The zero-crossing function #%d returns a NaN"), jj);
                 nantest = 1;
                 break;
             }
@@ -4373,7 +4379,7 @@ static void simblkddaskr(realtype *tOld, realtype *actual, realtype *actualP, re
         for (jj = 0; jj < *neq; jj++)
             if (res[jj] - res[jj] != 0) /* NaN checking */
             {
-                sciprint(_("\nWarning: The residual function #%d returns a NaN"), jj);
+                Sciwarning(_("\nWarning: The residual function #%d returns a NaN"), jj);
                 *flag = -1; /* recoverable error; */
                 return;
             }
@@ -4407,7 +4413,7 @@ static void grblkddaskr(int *nequations, realtype *tOld, realtype *actual, int *
         {
             if (res[jj] - res[jj] != 0)
             {
-                sciprint(_("\nWarning: The zero-crossing function #%d returns a NaN"), jj);
+                Sciwarning(_("\nWarning: The zero-crossing function #%d returns a NaN"), jj);
                 return;
             }
         }
@@ -4459,7 +4465,7 @@ static void jacpsol(realtype *res, int *ires, int *neq, realtype *tOld, realtype
                 /* NaN test */
                 if (wp[nrow + j] - wp[nrow + j] != 0)
                 {
-                    sciprint(_("\nWarning: The preconditioner evaluation function returns a NaN at index #%d."), nrow + j);
+                    Sciwarning(_("\nWarning: The preconditioner evaluation function returns a NaN at index #%d."), nrow + j);
                     *ier = -1;
                 }
             }
@@ -4503,7 +4509,7 @@ static void psol(int *neq, realtype *tOld, realtype *actual, realtype *actualP,
     {
         if (b[i] - b[i] != 0)
         {
-            sciprint(_("\nWarning: The preconditioner application function returns a NaN at index #%d."), i);
+            Sciwarning(_("\nWarning: The preconditioner application function returns a NaN at index #%d."), i);
             /* Indicate a recoverable error, meaning that the step will be retried with the same step size
                but with a call to 'jacpsol' to update necessary data, unless the Jacobian data is current,
                in which case the step will be retried with a smaller step size. */
@@ -4544,7 +4550,7 @@ static void addevs(double t, int *evtnb, int *ierr1)
                 {
                     sciprint(_("\n Warning: an event is reprogrammed at t=%g by removing another"), t );
                     sciprint(_("\n         (already programmed) event. There may be an error in"));
-                    sciprint(_("\n         your model. Please check your model\n"));
+                    Sciwarning(_("\n         your model. Please check your model\n"));
                     TCritWarning = 1;
                 }
                 do_cold_restart(); /* the erased event could be a critical
@@ -6149,13 +6155,15 @@ int C2F(funnum)(char * fname)
         i++;
     }
     ln = (int)strlen(fname);
-    //C2F(iislink)(fname, &loc);
-    //C2F(iislink)(fname, &loc);
+    /*
+    C2F(iislink)(fname, &loc);
+    C2F(iislink)(fname, &loc);
     if (loc >= 0)
     {
         return (ntabsim + (int)loc + 1);
     }
-    return (0);
+    */
+    return 0;
 }/* funnum */
 /*--------------------------------------------------------------------------*/
 /* Subroutine funnum2 */
@@ -6943,7 +6951,7 @@ int simblkKinsol(N_Vector yy, N_Vector resval, void *rdata)
         {
             if (residual[jj] - residual[jj] != 0)
             {
-                sciprint(_("\nWarning: The initialization system #%d returns a NaN/Inf"), jj);
+                Sciwarning(_("\nWarning: The initialization system #%d returns a NaN/Inf"), jj);
                 nantest = 1;
                 break;
             }
@@ -7117,7 +7125,7 @@ static int CallKinsol(double *told)
             {
                 int ierr2 = 0;
                 int iUnused;
-                GetCommand(&CommandToUnstack, &SeqSync, &iUnused, &iUnused); //** get to the action
+                GetCommand(&CommandToUnstack, &SeqSync, &iUnused, NONE); //** get to the action
                 CommandLength = (int)strlen(CommandToUnstack);
                 //syncexec(CommandToUnstack, &CommandLength, &ierr2, &one, CommandLength); //** execute it
                 FREE(CommandToUnstack);

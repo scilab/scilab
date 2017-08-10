@@ -1,11 +1,14 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function [Nz,Dz]=yulewalk(Norder, frq, mag)
     //YULEWALK  filter design using a least-squares method.
@@ -25,10 +28,10 @@ function [Nz,Dz]=yulewalk(Norder, frq, mag)
     //
     // Example: f=[0,0.4,0.4,0.6,0.6,1];H=[0,0,1,1,0,0];Hz=yulewalk(8,f,H);
     //fs=1000;fhz = f*fs/2;
-    //clf(0);xset('window',0);plot2d(fhz',H');
+    //clf(0); scf(0); plot2d(fhz',H');
     //xtitle('Desired Frequency Response')
     //[frq,repf]=repfreq(Hz,0:0.001:0.5);
-    //clf(1);xset('window',1);plot2d(fs*frq',abs(repf'));
+    //clf(1); scf(1); plot2d(fs*frq',abs(repf'));
     //xtitle('Obtained Frequency Response')
     //
     [LHS,RHS]=argn(0);

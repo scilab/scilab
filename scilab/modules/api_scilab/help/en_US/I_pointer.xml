@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2015  - Scilab Enterprises - Antoine ELIAS
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="api_pointer" xml:lang="en">
+    <refnamediv>
+        <refname>API pointer functions</refname>
+        <para>This page lists all the functions to manipulate Scilab native objects containing pointers</para>
+        <para></para>
+    </refnamediv>
+    <refsynopsisdiv>
+        <refsection id="api_pointer_scilab_createPointer">
+            <literal>
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                <varname>scilab_createPointer</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env, void* val)
+            </literal>
+            <para>
+                Create a pointer variable from <varname>val</varname>.
+            </para>
+        </refsection>
+        <refsection id="api_pointer_scilab_getPointer">
+            <literal>
+                <link linkend="api_types_scilabStatus">
+                    <command>scilabStatus</command>
+                </link>
+                <varname>scilab_getPointer</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env,
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                var, void const** val)
+            </literal>
+            <para>
+                Get pointer value <varname>val</varname> from pointer variable.
+            </para>
+        </refsection>
+        <refsection id="api_pointer_scilab_setPointer">
+            <literal>
+                <link linkend="api_types_scilabStatus">
+                    <command>scilabStatus</command>
+                </link>
+                <varname>scilab_setPointer</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env,
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                var, const void* val)
+            </literal>
+            <para>
+                Set value <varname>val</varname> of a pointer variable <literal>var</literal>.
+            </para>
+        </refsection>
+    </refsynopsisdiv>
+</refentry>

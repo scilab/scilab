@@ -5,11 +5,14 @@
 * Copyright (C) 2010 - DIGITEO - Antoine ELIAS
 * Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 /*--------------------------------------------------------------------------*/
@@ -20,7 +23,7 @@
 #include "string.hxx"
 #include "scilab_sprintf.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
+#include "scilabWrite.hxx"
 
 extern "C"
 {
@@ -36,11 +39,8 @@ extern "C"
 static BOOL forceSTDERRredirect = TRUE;
 #endif
 
-using namespace types;
-using namespace ast;
 /*--------------------------------------------------------------------------*/
-
-Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount, types::typed_list &out)
+types::Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     BOOL isSTD                      = FALSE;
     BOOL isSTDErr                   = FALSE;
@@ -88,9 +88,8 @@ Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount, types:
     {
         if (in[i]->isDouble() == false && in[i]->isString() == false)
         {
-            ast::ExecVisitor exec;
             std::wstring wstFuncName = L"%" + in[i]->getShortTypeStr() + L"_mfprintf";
-            return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+            return Overload::call(wstFuncName, in, _iRetCount, out);
         }
     }
 
@@ -115,6 +114,7 @@ Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount, types:
             }
 #endif
             isSTDErr = TRUE;
+            break;
         case 6:
             isSTD = TRUE;
             break;
@@ -125,7 +125,7 @@ Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount, types:
             isSTD = FALSE;
             types::File* pFile = FileManager::getFile(iFile);
             // file opened with fortran open function
-            if (pFile->getFileType() == 1)
+            if (!pFile || pFile->getFileType() == 1)
             {
                 Scierror(999, _("%s: Wrong file descriptor: %d.\n"), "mfprintf", iFile);
                 return types::Function::Error;
@@ -148,6 +148,11 @@ Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount, types:
     wcsInput = pFileStr->get(0);
     wcsStringToWrite = scilab_sprintf("mfprintf", wcsInput, in, &nbrOfLines, &iNewLine);
 
+    if (wcsStringToWrite == NULL)
+    {
+        return types::Function::Error;
+    }
+
     if (isSTD)
     {
         for (int i = 0; i < nbrOfLines; i++)
@@ -160,8 +165,8 @@ Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount, types:
             {
                 scilabForcedWriteW(wcsStringToWrite[i]);
             }
+            scilabForcedWriteW(L"\n");
         }
-        scilabForcedWriteW(L"\n");
     }
     else
     {
@@ -169,6 +174,11 @@ Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount, types:
         if (iRet)
         {
             Scierror(999, _("%s: Error while writing in file: disk full or deleted file.\n"), "mprintf");
+            for (int i = 0; i < nbrOfLines; i++)
+            {
+                FREE(wcsStringToWrite[i]);
+            }
+            FREE(wcsStringToWrite);
             return types::Function::Error;
         }
     }

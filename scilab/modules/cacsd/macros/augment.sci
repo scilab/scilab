@@ -1,11 +1,14 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 
 function [P,r]=augment(G,SRT,flag)
@@ -194,7 +197,7 @@ function [P,r]=augment(G,SRT,flag)
                 P=[Iu,-Iu;
                 G,-G;
                 Ouu,Iu;
-                -G,G]
+                G,-G]
             end
             return
         case 2 then
@@ -210,7 +213,7 @@ function [P,r]=augment(G,SRT,flag)
                 if ssSRT==1 then
                     P=[Iu,-Iu;
                     G,-G;
-                    -G,G]
+                    G,-G]
                 end
                 return
             end
@@ -226,7 +229,7 @@ function [P,r]=augment(G,SRT,flag)
                 if ssSRT ==1 then
                     P=[Iu,-Iu;
                     Ouu,Iu;
-                    -G,G]
+                    G,-G]
                 end
                 return
             end
@@ -242,7 +245,7 @@ function [P,r]=augment(G,SRT,flag)
                 if ssSRT ==1 then
                     P=[G,-G;
                     Ouu,Iu;
-                    -G,G]
+                    G,-G]
                 end
                 return
             end
@@ -262,7 +265,7 @@ function [P,r]=augment(G,SRT,flag)
                 end;
                 if ssSRT ==1 then
                     P=[Iu,-Iu;
-                    -G,G]
+                    G,-G]
                 end
                 return
             end
@@ -276,7 +279,7 @@ function [P,r]=augment(G,SRT,flag)
                 end
                 if ssSRT ==1 then
                     P=[G,-G;
-                    -G,G]
+                    G,-G]
                 end
                 return
             end
@@ -290,7 +293,7 @@ function [P,r]=augment(G,SRT,flag)
                 end
                 if ssSRT ==1 then
                     P=[Ouu,Iu;
-                    -G,G]
+                    G,-G]
                 end
                 return
             end

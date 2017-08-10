@@ -2,11 +2,14 @@
 // Copyright (C) 2004 - INRIA - Serge Steer
 // Copyright (C) 2004-2006 - INRIA - Fabrice Leray
 // Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 
 function %h_save(h,fd)
@@ -270,7 +273,7 @@ function save_graphichandle(h,fd)
         mput(h.line_style,characterFormat,fd) // line_style
         mput(h.thickness,"sl",fd) // thickness
         mput(h.arrow_size_factor,"sl",fd) // arrow_size_factor
-        mput(max(1,h.polyline_style),characterFormat,fd) // ployline_style
+        mput(max(1,h.polyline_style),characterFormat,fd) // polyline_style
 
         mput( size( h.interp_color_vector, "*" ), "sl", fd ) ; // interp_color_vector
         mput( h.interp_color_vector, "dl", fd ) ;
@@ -310,7 +313,8 @@ function save_graphichandle(h,fd)
         mput(length(h.label_mode),characterFormat,fd); // label_mode
         mput(ascii(h.label_mode),characterFormat,fd);
         mput(h.orientation,characterFormat,fd) // orientation
-        mput(bool2s(h.z_component=="on"),characterFormat,fd) // z_component
+        mput(length(h.display_components),characterFormat,fd);
+        mput(h.display_components,characterFormat,fd) // display_components
         mput(bool2s(h.auto_orientation=="on"),characterFormat,fd) // auto_orientation
         mput(bool2s(h.interp_mode=="on"),characterFormat,fd) // interp_mode
         mput(length(ascii(h.display_function)),stringFormat,fd); // display_function

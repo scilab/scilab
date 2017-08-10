@@ -1,46 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) 2004-2007 - INRIA - Vincent COUVERT
-    * 
-    * This file must be used under the terms of the CeCILL.
-    * This source file is licensed as described in the file COPYING, which
-    * you should have received as part of this distribution.  The terms
-    * are also available at    
-    * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2004-2007 - INRIA - Vincent COUVERT
+ * Copyright (C) 2016 - Samuel GOUGEON
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
     *
     -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="tohome">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="tohome">
     <refnamediv>
         <refname>tohome</refname>
-        <refpurpose>Move the cursor to the upper left corner of the Command Window</refpurpose>
+        <refpurpose>Clears the command window by masking its former content above the top</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>tohome()</synopsis>
+        <title>Syntax</title>
+        <synopsis>tohome</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Description</title>
         <para>
-            <literal>tohome()</literal> moves the cursor to the upper-left corner of the Command Window and clears the screen.
+            <function>tohome</function> sets the commands prompt to the top of the command window,
+            followed by an empty space down to the bottom of the console.
         </para>
-        <para>You can use the scroll bar to see the history of previous functions.</para>
         <para>
-            <note>
-                Note that <literal>tohome()</literal> cannot be used under Windows platforms when Scilab used in no window mode.
-            </note>
+            Unlike <code>clc</code> that erases all preexisting execution results,
+            <function>tohome</function> keeps but rejects them above
+            the visible area of the console, and therefore masks them. It is still possible to see
+            former results by dragging the vertical scroll bar available in the right margin of the console.
         </para>
+        <note>
+          On MS Windows, <function>tohome</function> can only be used when Scilab
+          is launched in standard windowed mode (<code>getscilabmode()=="STD"</code>).
+        </note>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 rand(10,10)
 tohome();
  ]]></programlisting>
     </refsection>
-    
+
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="clc">clc</link>

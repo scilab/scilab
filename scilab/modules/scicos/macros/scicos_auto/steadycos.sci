@@ -25,7 +25,7 @@ function [X,U,Y,XP] = steadycos(scs_m,X,U,Y,Indx,Indu,Indy,Indxp,param)
     // steadycos - Finds an equilibrium state of a general
     // dynamical system described by a scicos diagram
 
-    // CALLING SEQUENCE
+    // SYNTAX
     //
     // [X,U,Y,XP] = steadycos(scs_m,X,U,Y,Indx,Indu,Indy [,Indxp [,param ] ])
     //
@@ -46,7 +46,7 @@ function [X,U,Y,XP] = steadycos(scs_m,X,U,Y,Indx,Indu,Indy,Indxp,param)
 
     //** This function can be (ab)used from the Scilab command line and
     //** inside a Scicos "context". In order to handle the different situations,
-    //** the required library are loaded if not already present in the
+    //** the required libraries are loaded if not already present in the
     //** "semiglobal-local-environment".
 
     if ~exists("scicos_diagram") then
@@ -263,7 +263,15 @@ function [f,g,ind]=cost(ux,ind)
 
     sys = lincos(%cpr,X,U,param); //** lincos is used here
 
-    g  = xp'*[sys.B(:,Indu) sys.A(:,Indx)] - err'*[sys.D(:,Indu) sys.C(:,Indx)];
+    x_der = xp'*[sys.B(:,Indu) sys.A(:,Indx)];
+    x_err = err'*[sys.D(:,Indu) sys.C(:,Indx)];
+    if isempty(sys.A) && isempty(sys.B) then
+        g  =  x_err;
+    elseif isempty(sys.C) && isempty(sys.D) then
+        g  =  x_der;
+    else
+        g = x_der - x_err;
+    end
 
 endfunction
 

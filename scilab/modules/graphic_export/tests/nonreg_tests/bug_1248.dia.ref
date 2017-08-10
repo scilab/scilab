@@ -14,7 +14,7 @@
 // Postcript export export displayed text even if it is ouside the viewing area.
 x=1:.5:100;
 y=2:200;
-xset("window",0);
+scf(0);
 clf();
 // l,r,t,b
 xsetech(arect=[.01,.01,.01,.01]);

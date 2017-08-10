@@ -18,12 +18,6 @@
 // It was not possible to compile a xcos diagram
 // containing Modelica blocks
 
-funcprot(0);
-// Stubbing the messagebox method
-function [btn] = messagebox(msg, msgboxtitle, msgboxicon, buttons, ismodal)
-    btn=1;
-endfunction
-
 ilib_verbose(0);
 // import a diagram of a Modelica demo in Scilab
 result= importXcosDiagram(SCI+"/modules/xcos/demos/ModelicaBlocks/RLC_Modelica.zcos");

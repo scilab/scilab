@@ -3,11 +3,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2000 - INRIA - Carlos Klimann
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="samplef">
@@ -18,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>s = samplef(n,X,f,orient)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -39,20 +42,25 @@
             <varlistentry>
                 <term>f</term>
                 <listitem>
-                    <para>matrix of positive real values. Indicates the corresponding frequencies of the values in <literal>X</literal>.
+                    <para>
+                        matrix of positive real values. Indicates the corresponding frequencies of the values in <literal>X</literal>.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>orient</term>
                 <listitem>
-                    <para>Optional parameter. Admissible values are <literal>{'*'}, 1, 2, 'r' </literal> or <literal>'c'</literal>. The orientation to sample rows or columns. See Description below.</para>
+                    <para>
+                        Optional parameter. Admissible values are <literal>{'*'}, 1, 2, 'r' </literal> or <literal>'c'</literal>. The orientation to sample rows or columns. See Description below.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>s</term>
                 <listitem>
-                    <para> vector or matrix containing the sampled values of <literal>X</literal> at frequencies <literal>f</literal>.</para>
+                    <para>
+                         vector or matrix containing the sampled values of <literal>X</literal> at frequencies <literal>f</literal>.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -94,7 +102,9 @@
     </refsection>
     <refsection>
         <title> Random number generator </title>
-        <para> <literal>samplef</literal> is based on <link linkend="grand">grand</link> for generating the random samples. Use <literal>grand("setsd", seed)</literal> to change the seed for <literal>samplef</literal>.</para>
+        <para>
+             <literal>samplef</literal> is based on <link linkend="grand">grand</link> for generating the random samples. Use <literal>grand("setsd", seed)</literal> to change the seed for <literal>samplef</literal>.
+        </para>
         <programlisting role="example"><![CDATA[
             seed = getdate("s");
             grand("setsd", seed); //sets the seed to current date
@@ -111,13 +121,13 @@ X = [3 7 9; 22 4 2];
 f1 = [10 1 1 1 1 1];
 f2 = [1 ; 15];
 f3 = [10 1 1];
-s=samplef(20, X, f1)      //the first value of matrix X will be choosen with frequency 10/15
-s=samplef(20, X, f2, 'r') //the second row of matrix a will be choosen with frequency  15/16
-s=samplef(20, X, f3, 'c') //the first column of matrix a will be choosen with frequency 10/12
+s=samplef(20, X, f1)      //the first value of matrix X will be chosen with frequency 10/15
+s=samplef(20, X, f2, 'r') //the second row of matrix a will be chosen with frequency  15/16
+s=samplef(20, X, f3, 'c') //the first column of matrix a will be chosen with frequency 10/12
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="sample">sample</link>

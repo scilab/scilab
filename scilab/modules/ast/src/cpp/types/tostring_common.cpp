@@ -2,18 +2,21 @@
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2009 - DIGITEO - Antoine ELIAS
 *
-*  This file must be used under the terms of the CeCILL.
-*  This source file is licensed as described in the file COPYING, which
-*  you should have received as part of this distribution.  The terms
-*  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
-#include <wchar.h>
-#include <stdio.h>
+#include <cmath>
+#include <algorithm>
 #include <iostream>
-#include <math.h>
+#include <iomanip>
 #include "tostring_common.hxx"
 #include "configvariable.hxx"
 
@@ -26,8 +29,6 @@ extern "C"
 #define BLANK_SIZE 1
 #define POINT_SIZE 1
 #define EXPOSANT_SIZE 2         //exposant symbol + exposant sign
-
-using namespace std;
 
 //template <typename T>
 //void GetIntFormat(T _TVal, int *_piWidth)
@@ -55,7 +56,7 @@ using namespace std;
 // }
 //}
 
-void addSign(wostringstream * _postr, double _dblVal, bool _bPrintPlusSign, bool _bPaddSign)
+void addSign(std::wostringstream * _postr, double _dblVal, bool _bPrintPlusSign, bool _bPaddSign)
 {
     if (_bPrintPlusSign == true)
     {
@@ -79,11 +80,11 @@ void getDoubleFormat(double _dblVal, DoubleFormat * _pDF)
 {
     double dblDec = 0;
     double dblEnt = 0;
-    double dblAbs = fabs(_dblVal);
+    double dblAbs = std::fabs(_dblVal);
     int iNbDigit = 0;
     int iNbDec = 0;
     int iBlankSize = _pDF->bPrintBlank ? BLANK_SIZE : 0;
-    _pDF->iSignLen = _pDF->bPrintBlank ? _pDF->iSignLen + 1 : _pDF->iSignLen;
+    _pDF->iSignLen = _pDF->bPrintBlank ? SIGN_LENGTH + BLANK_SIZE : _pDF->iSignLen;
 
     _pDF->bExp |= ConfigVariable::getFormatMode() == 0;
     int iTotalLen = 0;
@@ -91,18 +92,18 @@ void getDoubleFormat(double _dblVal, DoubleFormat * _pDF)
 
     if (ISNAN(_dblVal) || !finite(_dblVal))
     {
-        _pDF->iWidth = 5;      //" nan" or " inf"
+        _pDF->iWidth = 4;      //" nan" or " inf"
         _pDF->iPrec = 0;
         return;
     }
     //get integer part and fractionnal part
-    dblDec = modf(dblAbs, &dblEnt);
+    dblDec = std::modf(dblAbs, &dblEnt);
 
     //compute len of entire part
     if (dblEnt == 0)
     {
         //[-1, 1]
-        iNbDigit = (int)fabs(floor(log10(dblAbs)));
+        iNbDigit = (int)std::fabs(std::floor(std::log10(dblAbs)));
 
         if (iNbDigit >= (iPrecNeeded - 2) || _pDF->bExp)
         {
@@ -188,7 +189,7 @@ void getComplexFormat(double _dblR, double _dblI, int *_piTotalWidth, DoubleForm
         }
         else
         {
-            *_piTotalWidth += _pDFR->iWidth + _pDFR->iSignLen;
+            *_piTotalWidth += _pDFR->iWidth;
             _pDFI->iWidth = 0;
             _pDFI->iSignLen = 0;
         }
@@ -197,16 +198,15 @@ void getComplexFormat(double _dblR, double _dblI, int *_piTotalWidth, DoubleForm
     {
         if (isRealZero(_dblR))
         {
-            *_piTotalWidth += _pDFI->iWidth + _pDFI->iSignLen;
+            *_piTotalWidth += _pDFI->iWidth;
             _pDFR->iWidth = 0;
         }
         else
         {
-            *_piTotalWidth += _pDFR->iWidth + _pDFR->iSignLen + _pDFI->iWidth + _pDFI->iSignLen;
+            *_piTotalWidth += _pDFR->iWidth + _pDFI->iWidth;
         }
 
         // i character
-        _pDFI->iWidth += 1;
         *_piTotalWidth += 1;
     }
 }
@@ -241,55 +241,85 @@ void addDoubleValue(std::wostringstream * _postr, double _dblVal, DoubleFormat *
         }
         else
         {
+            // PLUS_SIGN "+" is not written by default
             pSign = L"";
         }
     }
 
-    os_swprintf(pwstSign, 32, L"%ls%ls%ls", pBlank, pSign, pBlank);
+    // Step 1: BLANK and SIGN in pwstSign
+    if (_pDF->bPrintComplexPlusSpace)
+    {
+        os_swprintf(pwstSign, 32, L"%ls%ls%ls", pBlank, pSign, pBlank);
+    }
+    else
+    {
+        os_swprintf(pwstSign, 32, L"%ls%ls", pBlank, pSign);
+    }
+
 
     if (ISNAN(_dblVal))
     {
         //NaN
-        os_swprintf(pwstOutput, 32, L"%ls%*ls", pwstSign, _pDF->iPrec, L"Nan");
+        os_swprintf(pwstOutput, 32, L"%ls%-*ls", pwstSign, _pDF->iWidth - 1, L"Nan");
     }
     else if (!finite(_dblVal))
     {
         //Inf
-        os_swprintf(pwstOutput, 32, L"%ls%*ls", pwstSign, _pDF->iPrec, L"Inf");
+        os_swprintf(pwstOutput, 32, L"%ls%-*ls", pwstSign, _pDF->iWidth - 1, L"Inf");
     }
     else if (_pDF->bExp)
     {
+        // Prints the exponent part 1.543D+03 for example
         double dblAbs = fabs(_dblVal);
         double dblDec = 0;
         double dblEnt = 0;
         double dblTemp = 0;
 
-        dblDec = modf(dblAbs, &dblEnt);
+        // modf returns the fractional par in dblDec
+        // and stores the pointer to the integral part in dblEnt
+        dblDec = std::modf(dblAbs, &dblEnt);
         if (dblEnt == 0)
         {
-            dblTemp = floor(log10(dblDec));
+            // The integral part in 0
+            // the number in between 0 and 1 in absolute value
+            // dblTemp stores the position of the significant digit
+            // floor(log10(0.01)) = -2
+            // floor(log10(0.00123)) = -3
+            // floor(log10(0.0015)) = -3
+            if (dblDec != 0)
+            {
+                dblTemp = std::floor(std::log10(dblDec));
+            }
+            else
+            {
+                dblTemp = 0;
+            }
         }
         else
         {
-            dblTemp = log10(dblEnt);
+            // dblTemp stores the number of digit of the integral part minus one
+            // log10(15) = 1.176
+            // log10(1530) = 3.185
+            dblTemp = std::log10(dblEnt);
         }
 
-        dblDec = dblAbs / pow(10., (double)(int)dblTemp);
-        dblDec = modf(dblDec, &dblEnt) * pow(10., _pDF->iPrec);
+        dblDec = dblAbs / std::pow(10., (double)(int)dblTemp);
+        dblDec = std::modf(dblDec, &dblEnt) * pow(10., _pDF->iPrec);
 
         if (_pDF->bPrintPoint)
         {
-            os_swprintf(pwstFormat, 32, L"%ls%%#d.%%0%ddD%%+.02d", pwstSign, _pDF->iPrec);
+            os_swprintf(pwstFormat, 32, L"%ls%%#d.%%0%dlldD%%+.02d", pwstSign, _pDF->iPrec);
         }
         else
         {
-            os_swprintf(pwstFormat, 32, L"%ls%%d%%0%ddD%%+.02d", pwstSign, _pDF->iPrec);
+            os_swprintf(pwstFormat, 32, L"%ls%%d%%0%dlldD%%+.02d", pwstSign, _pDF->iPrec);
         }
 
-        if ((int)round(dblDec) != (int)dblDec)
+        if ((long long int)std::round(dblDec) != (long long int)dblDec)
         {
-            double d1 = (int)round(dblDec);
-            d1 = fmod(d1, pow(10., _pDF->iPrec));
+            // casting to long long int to avoid overflow to negative values
+            double d1 = (long long int)std::round(dblDec);
+            d1 = fmod(d1, std::pow(10., _pDF->iPrec));
             if (d1 < dblDec)
             {
                 //inc integer part
@@ -299,7 +329,9 @@ void addDoubleValue(std::wostringstream * _postr, double _dblVal, DoubleFormat *
             dblDec = d1;
         }
 
-        os_swprintf(pwstOutput, 32, pwstFormat, (int)dblEnt, (int)dblDec, (int)dblTemp);
+        // long long int to be able to print up to format(25) otherwise you just write overflow
+        // and write a negative number, dblEnt is at most one digit
+        os_swprintf(pwstOutput, 32, pwstFormat, (int)dblEnt, (long long int)dblDec, (int)dblTemp);
     }
     else if ((_pDF->bPrintOne == true) || (isEqual(fabs(_dblVal), 1)) == false)
     {
@@ -324,7 +356,7 @@ void addDoubleValue(std::wostringstream * _postr, double _dblVal, DoubleFormat *
 }
 
 /*
-void addDoubleValue(wostringstream *_postr, double _dblVal, int _iWidth, int _iPrec, bool bPrintPlusSign, bool bPrintOne, bool bPaddSign)
+void addDoubleValue(std::wostringstream *_postr, double _dblVal, int _iWidth, int _iPrec, bool bPrintPlusSign, bool bPrintOne, bool bPaddSign)
 {
     addSign(_postr, _dblVal, bPrintPlusSign, bPaddSign);
     configureStream(_postr, _iWidth, _iPrec, ' ');
@@ -335,9 +367,9 @@ void addDoubleValue(wostringstream *_postr, double _dblVal, int _iWidth, int _iP
     }
 }
 */
-void addDoubleComplexValue(wostringstream * _postr, double _dblR, double _dblI, int _iTotalWidth, DoubleFormat * _pDFR, DoubleFormat * _pDFI)
+void addDoubleComplexValue(std::wostringstream * _postr, double _dblR, double _dblI, int _iTotalWidth, DoubleFormat * _pDFR, DoubleFormat * _pDFI)
 {
-    wostringstream ostemp;
+    std::wostringstream ostemp;
 
     /*
      * if R && !C -> R
@@ -372,7 +404,7 @@ void addDoubleComplexValue(wostringstream * _postr, double _dblR, double _dblI, 
             df.bPrintPlusSign = false;
             df.bPrintOne = false;
             addDoubleValue(&ostemp, _dblI, &df);
-            ostemp << left << SYMBOL_I;
+            ostemp << std::left << SYMBOL_I;
             if (_dblI == 1)
             {
                 addSpaces(&ostemp, 1);
@@ -411,10 +443,11 @@ void addDoubleComplexValue(wostringstream * _postr, double _dblR, double _dblI, 
             df.iPrec = _pDFI->iPrec;
             df.bExp = _pDFI->bExp;
             df.bPrintPlusSign = true;
+            df.bPrintComplexPlusSpace = true;
             df.bPrintOne = false;
 
             addDoubleValue(&ostemp, _dblI, &df);
-            ostemp << left << SYMBOL_I;
+            ostemp << std::left << SYMBOL_I;
             if (_dblI == 1)
             {
                 addSpaces(&ostemp, 2);
@@ -422,11 +455,11 @@ void addDoubleComplexValue(wostringstream * _postr, double _dblR, double _dblI, 
         }
     }
 
-    configureStream(_postr, _iTotalWidth - 3, 0, ' ');
-    *_postr << left << ostemp.str();
+    configureStream(_postr, _iTotalWidth, 0, ' ');
+    *_postr << std::left << ostemp.str() << std::resetiosflags(std::ios::adjustfield);
 }
 
-void addSpaces(wostringstream * _postr, int _iSpace)
+void addSpaces(std::wostringstream * _postr, int _iSpace)
 {
     for (int i = 0; i < _iSpace; i++)
     {
@@ -434,9 +467,9 @@ void addSpaces(wostringstream * _postr, int _iSpace)
     }
 }
 
-void configureStream(wostringstream * _postr, int _iWidth, int _iPrec, char _cFill)
+void configureStream(std::wostringstream * _postr, int _iWidth, int _iPrec, char _cFill)
 {
-    _postr->setf(ios::showpoint);
+    _postr->setf(std::ios::showpoint);
     _postr->width(_iWidth);
     _postr->precision(_iPrec);
     _postr->fill(_cFill);
@@ -452,4 +485,26 @@ void addColumnString(std::wostringstream& ostr, int _iFrom, int _iTo)
     {
         ostr << std::endl << L"         column " << _iFrom << L" to " << _iTo << std::endl << std::endl;
     }
+}
+
+void printEmptyString(std::wostringstream& ostr)
+{
+    ostr << L"    []";
+}
+
+void printDoubleValue(std::wostringstream& ostr, double val)
+{
+    DoubleFormat df;
+    getDoubleFormat(val, &df);
+    ostr << SPACE_BETWEEN_TWO_VALUES;
+    addDoubleValue(&ostr, val, &df);
+}
+
+void printComplexValue(std::wostringstream& ostr, double val_r, double val_i)
+{
+    DoubleFormat dfR, dfI;
+    getDoubleFormat(ZeroIsZero(val_r), &dfR);
+    getDoubleFormat(ZeroIsZero(val_i), &dfI);
+    ostr << SPACE_BETWEEN_TWO_VALUES;
+    addDoubleComplexValue(&ostr, ZeroIsZero(val_r), ZeroIsZero(val_i), dfR.iWidth + dfI.iWidth, &dfR, &dfI);
 }

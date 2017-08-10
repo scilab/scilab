@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="end">
+
+    <refnamediv>
+
+        <refname>end</refname>
+
+        <refpurpose>end キーワード</refpurpose>
+
+    </refnamediv>
+
+    <refsection>
+
+        <title>説明</title>
+
+        <para>
+
+            ループまたは条件文の末尾で使用されます.
+
+            <literal>for</literal>, <literal>while</literal>, <literal>if</literal>,
+
+            <literal>select</literal> は, <literal>end</literal> で
+
+            終わる必要があります.
+
+        </para>
+
+    </refsection>
+
+    <refsection>
+
+        <title>例</title>
+
+        <programlisting role="example"><![CDATA[
+a=42
+if a==42 then
+   disp("the answer to all questions")
+end
+
+i = 0
+while i<5
+   disp("i");
+   i = i + 1;
+end
+
+n=5;
+for i = 1:n
+    for j = 1:n
+        a(i,j) = 1/(i+j-1);
+    end;
+end
+
+ ]]></programlisting>
+
+    </refsection>
+
+    <refsection role="see also">
+
+        <title>参照</title>
+
+        <simplelist type="inline">
+
+            <member>
+
+                <link linkend="for">for</link>
+
+            </member>
+
+            <member>
+
+                <link linkend="while">while</link>
+
+            </member>
+
+            <member>
+
+                <link linkend="if">if</link>
+
+            </member>
+
+            <member>
+
+                <link linkend="select">select</link>
+
+            </member>
+
+        </simplelist>
+
+    </refsection>
+
+</refentry>
+

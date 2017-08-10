@@ -1,13 +1,16 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
-function [f,x,g]=leastsq(imp,fun,varargin)
+function [f,x,g]=leastsq(iprint,fun,varargin)
 
     //                                                        n     p
     //   min sum (fun(x).^2)    where fun is a function from R  to R
@@ -15,10 +18,10 @@ function [f,x,g]=leastsq(imp,fun,varargin)
     //
     // [f]=fun(x) computes the value f of the function at the point x
     // and the gradient g of f at x g(i,j)=Dfi/dxj
-    if type(imp)<>1 then
+    if type(iprint)<>1 then
         varargin(0)=fun
-        fun=imp
-        imp=0
+        fun=iprint
+        iprint=0
     end
 
     if type(fun)==15 then
@@ -38,7 +41,7 @@ function [f,x,g]=leastsq(imp,fun,varargin)
         else
             J=%t //jacobian
         end
-    elseif type(Dfun)==11|type(Dfun)==13 then
+    elseif type(Dfun)==13 then
         J=%t  //Jacobian provided
     elseif type(Dfun)==15 then
         error(msprintf(gettext("%s: Jacobian cannot be a list, parameters must be set in fun."),"leastsq"));
@@ -98,6 +101,6 @@ function [f,x,g]=leastsq(imp,fun,varargin)
         "g=2*(gf''*ff(:))"])
     end
 
-    [f,x,g]=optim(%opt,varargin(:),imp=imp)
+    [f,x,g]=optim(%opt,varargin(:),iprint=iprint)
 endfunction
 

@@ -4,409 +4,225 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="cumsum" xml:lang="ja">
-    
+
     <refnamediv>
-        
         <refname>cumsum</refname>
-        
         <refpurpose>配列要素の累積和</refpurpose>
-        
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        
         <title>呼び出し手順</title>
-        
-        <synopsis>y=cumsum(x)</synopsis>
-        
-        <synopsis>y=cumsum(x,orientation)</synopsis>
-        
-        <synopsis>y=cumsum(x,outtype)</synopsis>
-        
-        <synopsis>y=cumsum(x,orientation,outtype)</synopsis>
-        
+        <synopsis>
+            y=cumsum(x)
+            y=cumsum(x,orientation)
+            y=cumsum(x,outtype)
+            y=cumsum(x,orientation,outtype)
+        </synopsis>
     </refsynopsisdiv>
-    
-    <refsection>
-        
+
+    <refsection role="parameters">
         <title>引数</title>
-        
         <variablelist>
-            
             <varlistentry>
-                
                 <term>x</term>
-                
                 <listitem>
-                    
                     <para>
-                        
                         実数,複素数,論理値,多項式または有理数の配列
-                        
                     </para>
-                    
                 </listitem>
-                
             </varlistentry>
-            
             <varlistentry>
-                
                 <term>orientation</term>
-                
                 <listitem>
-                    
                     <para>
-                        
                         以下のどちらかを指定します
-                        
                     </para>
-                    
                     <itemizedlist>
-                        
                         <listitem>
-                            
                             <para>
-                                
                                 文字列で,指定可能な値は
-                                
-                                <literal>"*"</literal>, <literal>"r"</literal>, 
-                                
+                                <literal>"*"</literal>, <literal>"r"</literal>,
                                 <literal>"c"</literal> または  <literal>"m"</literal>
-                                
                             </para>
-                            
                         </listitem>
-                        
                         <listitem>
-                            
                             <para>正の整数値</para>
-                            
                         </listitem>
-                        
                     </itemizedlist>
-                    
                 </listitem>
-                
             </varlistentry>
-            
             <varlistentry>
-                
                 <term>outtype</term>
-                
                 <listitem>
-                    
                     <para>
-                        
                         文字列で,指定可能な値は
-                        
                         <literal>"native"</literal> または
-                        
-                        <literal>"double"</literal>. 
-                        
+                        <literal>"double"</literal>.
                     </para>
-                    
                 </listitem>
-                
             </varlistentry>
-            
             <varlistentry>
-                
                 <term>y</term>
-                
                 <listitem>
-                    
                     <para>スカラーまたは配列</para>
-                    
                 </listitem>
-                
             </varlistentry>
-            
         </variablelist>
-        
     </refsection>
-    
-    <refsection>
-        
+
+    <refsection role="description">
         <title>説明</title>
-        
         <para>
-            
-            <literal>x</literal>は配列の場合,<literal>y=cumsum(x)</literal> は,
-            
-            <literal>x</literal>の全要素の累積和を
-            
-            スカラー<literal>y</literal>に返します. 
-            
+            <term>x</term>は配列の場合,<literal>y=cumsum(x)</literal> は,
+            <term>x</term>の全要素の累積和を
+            スカラー<term>y</term>に返します:
         </para>
-        
         <para>
-            
             <literal>y=cumsum(x,orientation)</literal> は
-            
-            <literal>orientation</literal>により指定された次元方向の
-            
-            <literal>x</literal> の累積和を<literal>y</literal>に返します:
-            
+            <term>orientation</term>により指定された次元方向の
+            <term>x</term> の累積和を<term>y</term>に返します:
         </para>
-        
+        <para>
+            <latex><![CDATA[ y(i) = \sum_{k=1}^i x(k)]]></latex>
+        </para>
         <itemizedlist>
-            
             <listitem>
-                
                 <para>
-                    
-                    <literal>orientation</literal> が 1 または "r" の場合: 
-                    
+                    <term>orientation</term> が 1 または "r" の場合:
                 </para>
-                
                 <para>
-                    
                     <latex><![CDATA[ y(\mathbf{l},j) = \sum_{\mathbf{i}=1}^l x(\mathbf{i},j)]]></latex>
-                    
                 </para>
-                
                 <para>または </para>
-                
                 <para>
-                    
                     <latex><![CDATA[ y(\mathbf{l},j,k,\ldots) = \sum_{\mathbf{i}=1}^l x(\mathbf{i},j,k,\ldots)]]></latex>
-                    
                 </para>
-                
             </listitem>
-            
             <listitem>
-                
                 <para>
-                    
-                    <literal>orientation</literal> が 2 または "c" の場合: 
-                    
+                    <term>orientation</term> が 2 または "c" の場合:
                 </para>
-                
                 <para>
-                    
                     <latex><![CDATA[ y(i,\mathbf{l}) = \sum_{\mathbf{j}=1}^l x(i,{\mathbf{j})]]></latex>
-                    
                 </para>
-                
                 <para> または </para>
-                
                 <para>
-                    
                     <latex><![CDATA[ y(i,\mathbf{l},k,\ldots) = \sum_{\mathbf{j}=1}^l x(i,\mathbf{j},k,\ldots)]]></latex>
-                    
                 </para>
-                
             </listitem>
-            
             <listitem>
-                
                 <para>
-                    
-                    <literal>orientation</literal> が n の場合: 
-                    
+                    <term>orientation</term> が n の場合:
                 </para>
-                
                 <para>
-                    
                     <latex><![CDATA[ y(i_1,\ldots,i_{n-1},\mathbf{l},i_{n+1},\ldots) = \sum_{\mathbf{i_n}=1}^l x(i_1,\ldots,i_{n-1},\mathbf{i_n},i_{n+1},\ldots)]]></latex>
-                    
                 </para>
-                
             </listitem>
-            
             <listitem>
-                
                 <para>
-                    
                     <literal>y=cumsum(x,"*")</literal> は
-                    
                     <literal>y=cumsum(x)</literal>と等価です.
-                    
                 </para>
-                
             </listitem>
-            
             <listitem>
-                
                 <para>
-                    
                     <literal>y=cumsum(x,"m")</literal> は
-                    
                     <literal>y=cumsum(x,orientation)</literal> と等価です.
-                    
                     ただし, <literal>orientation</literal> は
-                    
-                    <literal>x</literal>の1より大きい最初の次元の添字です.
-                    
+                    <term>x</term>の1より大きい最初の次元の添字です.
                     このオプションはMatlabとの互換性のために使用されます.
-                    
                 </para>
-                
             </listitem>
-            
         </itemizedlist>
-        
         <para/>
-        
         <para>
-            
-            <literal>outtype</literal>引数は総和の動作を指定します:
-            
+            <term>outtype</term>引数は総和の動作を指定します:
         </para>
-        
         <itemizedlist>
-            
             <listitem>
-                
                 <para>
-                    
                     float, 多項式 有理数の配列の場合, 評価は浮動小数点演算により
-                    
                     行われます.
-                    
                     <literal>"double"</literal> または <literal>"native"</literal>
-                    
                     オプションは等価です.
-                    
                 </para>
-                
             </listitem>
-            
             <listitem>
-                
                 <para>整数の配列の場合,</para>
-                
                 <para>
-                    
                     <literal>outtype="native"</literal>の時,
-                    
                     評価は整数演算(モジュロ 2^b, ただし b は使用されるビット数)で行われます,
-                    
                 </para>
-                
                 <para>
-                    
                     <literal>outtype="double"</literal>の時,評価は浮動小数点演算により
-                    
                     行われます.
-                    
                 </para>
-                
                 <para>
-                    
                     デフォルト値は <literal>outtype="native"</literal>です.
-                    
                 </para>
-                
             </listitem>
-            
             <listitem>
-                
                 <para>論理値の配列の場合,</para>
-                
                 <para>
-                    
                     <literal>outtype="native"</literal>の時,評価は論理値演算
-                    
                     (+ は | で置換)により行われます,
-                    
                 </para>
-                
                 <para>
-                    
                     <literal>outtype="double"</literal>の時,評価は
-                    
                     浮動小数点演算(%t は 1, %f は 0で置換)により行われます.
-                    
                 </para>
-                
                 <para>
-                    
                     デフォルト値は<literal>outtype="double"</literal>です.
-                    
                 </para>
-                
             </listitem>
-            
         </itemizedlist>
-        
+        <note>
+            This function applies with identical rules to <link linkend="sparse">sparse matrices</link>
+        </note>
     </refsection>
-    
-    <refsection>
-        
-        <title>注意</title>
-        
-        <para>
-            
-            この関数には,
-            
-            <link linkend="sparse">疎行列</link> および
-            
-            <link linkend="hypermat">ハイパー行列</link>と
-            
-            同じ規則が適用されます.
-            
-        </para>
-        
-    </refsection>
-    
-    <refsection>
-        
+
+    <refsection role="examples">
         <title>例</title>
-        
         <programlisting role="example"><![CDATA[
 A=[1,2;3,4];
 cumsum(A)
 cumsum(A,1)
-
 I=uint8([2 95 103;254 9 0])
 cumsum(I) //native evaluation
 cumsum(I,"double")
 cumsum(I,2,"double")
-
 s=poly(0,"s");
 P=[s,%i+s;s^2,1];
 cumsum(P),
 cumsum(P,2)
-
 B=[%t %t %f %f];
 cumsum(B) //evaluation in float
 cumsum(B,"native") //similar to or(B)
  ]]></programlisting>
-        
     </refsection>
-    
-    <refsection role="see also">
-        
-        <title>参照</title>
-        
-        <simplelist type="inline">
-            
-            <member>
-                
-                <link linkend="sum">sum</link>
-                
-            </member>
-            
-            <member>
-                
-                <link linkend="cumprod">cumprod</link>
-                
-            </member>
-            
-        </simplelist>
-        
-    </refsection>
-    
-</refentry>
 
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="sum">sum</link>
+            </member>
+            <member>
+                <link linkend="cumprod">cumprod</link>
+            </member>
+        </simplelist>
+    </refsection>
+
+</refentry>

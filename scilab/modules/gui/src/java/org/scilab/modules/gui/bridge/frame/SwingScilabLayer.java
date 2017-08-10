@@ -81,7 +81,7 @@ public class SwingScilabLayer extends SwingScilabFrame {
     }
 
     public Boolean isLayerActive(Integer layer) {
-        return getActiveLayer() == layer;
+        return getActiveLayer().equals(layer);
     }
 
 

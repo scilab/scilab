@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA
@@ -8,8 +9,7 @@
 //tests on functions pointer usage
 funcprot(0);
 f=exp
- f  =
- 
+ f  = 
 if type(f)<>130 then bugmes();quit;end
 if f(1)<>exp(1) then bugmes();quit;end
 l=list(exp,f,3);

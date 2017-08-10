@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2007-2008 - DIGITEO - Bruno JOFRET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -27,11 +30,19 @@ class EXTERN_AST PrintVisitor : public GenVisitor<const_kind>
 {
 public:
 
-    PrintVisitor(std::wostream& my_ostr, bool parenthesis_display = true, bool _displayOriginal = true) :
+    PrintVisitor(std::wostream& my_ostr, bool parenthesis_display = true, bool _displayOriginal = true, bool _headerOnly = false) :
         ostr (&my_ostr),
         force_parenthesis (parenthesis_display),
         displayOriginal(_displayOriginal),
-        indent(0) { }
+        headerOnly(_headerOnly),
+        indent(0),
+        is_last_matrix_line(false),
+        is_last_column_comment(false) { }
+
+    PrintVisitor* clone()
+    {
+        return new PrintVisitor(*ostr, force_parenthesis, displayOriginal, headerOnly);
+    }
 
     /** \name Visit Matrix Expressions nodes.
     ** \{ */
@@ -118,9 +129,10 @@ public:
     `-------------*/
 protected:
     std::wostream   *ostr;
-    int             indent;
     bool            force_parenthesis;
     const bool      displayOriginal;
+    const bool      headerOnly;
+    int             indent;
     bool            is_last_matrix_line;
     bool            is_last_column_comment;
 

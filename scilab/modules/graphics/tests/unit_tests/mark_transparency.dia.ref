@@ -13,55 +13,50 @@
 plot(1:10,sin(1:10))
 e=gce();
 e.children(1).mark_mode='on'
- e  =
- 
+ e  = 
 Handle of type "Compound" with properties:
 ==========================================
 parent: Axes
 children: "Polyline"
 visible = "on"
 user_data = []
-tag = 
+tag = ""
 e.children(1).mark_style=9
- e  =
- 
+ e  = 
 Handle of type "Compound" with properties:
 ==========================================
 parent: Axes
 children: "Polyline"
 visible = "on"
 user_data = []
-tag = 
+tag = ""
 e.children(1).mark_size_unit='tabulated'
- e  =
- 
+ e  = 
 Handle of type "Compound" with properties:
 ==========================================
 parent: Axes
 children: "Polyline"
 visible = "on"
 user_data = []
-tag = 
+tag = ""
 e.children(1).mark_size=4
- e  =
- 
+ e  = 
 Handle of type "Compound" with properties:
 ==========================================
 parent: Axes
 children: "Polyline"
 visible = "on"
 user_data = []
-tag = 
+tag = ""
 e.children(1).mark_background=0
- e  =
- 
+ e  = 
 Handle of type "Compound" with properties:
 ==========================================
 parent: Axes
 children: "Polyline"
 visible = "on"
 user_data = []
-tag = 
+tag = ""
 // check that marks are transparent.
 if e.children(1).mark_background<>0 then
   pause;

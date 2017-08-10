@@ -4,11 +4,14 @@
 * Copyright (C) DIGITEO - 2012 - Allan CORNET
 * Copyright (C) 2014 - Scilab Enterprises - Anais AUBERT
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
@@ -16,9 +19,9 @@
 #include "function.hxx"
 #include "string.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 #include "types.hxx"
 #include "bool.hxx"
+#include "double.hxx"
 
 extern "C"
 {
@@ -26,6 +29,7 @@ extern "C"
 #include "Scierror.h"
 #include "localization.h"
 #include "vect_and.h"
+#include "sci_malloc.h"
 }
 /*--------------------------------------------------------------------------*/
 /* SCILAB function : and */
@@ -55,15 +59,13 @@ types::Function::ReturnValue sci_and(types::typed_list &in, int _iRetCount, type
     if (in[0]->isGenericType() && in[0]->getAs<types::GenericType>()->getDims() > 2)
     {
         //hypermatrix are manage in external macro
-        ast::ExecVisitor exec;
-        return Overload::call(L"%hm_and", in, _iRetCount, out, &exec);
+        return Overload::call(L"%hm_and", in, _iRetCount, out);
     }
 
     if (in[0]->isBool() == false)
     {
-        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_and";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
     if (in.size() == 2)
@@ -98,11 +100,12 @@ types::Function::ReturnValue sci_and(types::typed_list &in, int _iRetCount, type
                 default:
                 {
                     Scierror(999, _("%s: Wrong value for input argument #%d.\n"), "and", 2);
+                    FREE(pStr);
                     return types::Function::Error;
                 }
             }
 
-            delete pStr;
+            FREE(pStr);
             if (len != 1)
             {
                 Scierror(999, _("%s: Wrong value for input argument #%d.\n"), "and", 2);
@@ -111,7 +114,7 @@ types::Function::ReturnValue sci_and(types::typed_list &in, int _iRetCount, type
         }
         else if (in[1]->isDouble())
         {
-            Double *pdblIn = in[1]->getAs<types::Double>();
+            types::Double *pdblIn = in[1]->getAs<types::Double>();
             if (pdblIn->isComplex())
             {
                 Scierror(999, _("%s: Wrong value for input argument #%d.\n"), "and", 2);

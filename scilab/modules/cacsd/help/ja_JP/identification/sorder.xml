@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="sorder">
+    <refnamediv>
+        <refname>sorder</refname>
+        <refpurpose>離散時間システムの次数を計算</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼出し手順</title>
+        <synopsis>[Ro[,n,sval,rcnd]] = sorder(meth,alg,jobd,batch,conct,s,Y[,U,tol,printw,ldwork,Ri])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>meth</term>
+                <listitem>
+                    <para>使用する手法を定義するための整数オプション:</para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>1 : 過去の入力および出力を用いるMOESP法;</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>2 : N4SID 法.</para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>alg</term>
+                <listitem>
+                    <para>
+                        入出力データから構築される
+                        結合されたブロックハンケル行列の三角分解を計算するアルゴリズムを
+                        定義するための整数オプション:
+                    </para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>1 : 相関行列のコレスキーアルゴリズム;</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>2 : 高速 QR アルゴリズム;</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>3 : 標準 QR アルゴリズム.</para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>jobd</term>
+                <listitem>
+                    <para>
+                        行列BおよびDを後でMOESP法により計算するかどうかを指定する
+                        整数オプション:
+                    </para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>1 : 行列 B および D を後でMOESP法により計算します;</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>2 : 行列 B および D はMOESP法により計算されません.</para>
+                                <para>
+                                    このパラメータは mesh = 2 には関連しません.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>batch</term>
+                <listitem>
+                    <para>
+                        連続的なデータ処理を行うかどうか,
+                        また,連続処理の際に,カレントのデータブロックを先頭ブロック,
+                        中間ブロック,または最終ブロックとするかどうかを以下のように
+                        指定する整数オプション:
+                    </para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>1 : 連続データ処理で先頭ブロック;</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>2 : 連続データ処理で中間ブロック;</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>3 : 連続データ処理で最終ブロック;</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>4 : 1ブロックのみ (連続データ処理をしない).</para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>conct</term>
+                <listitem>
+                    <para>
+                        連続データ処理における連続するデータブロックを1回の試行に配置する
+                        かどうかを以下のように指定する整数オプション:
+                    </para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>1 : カレントのデータブロックの処理は, 前のデータブロックと連続し,また,
+                                    次のブロックも継続処理されます.;
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>2 : カレントのデータブロックと前後のデータブロックの間は接続されません.</para>
+                                <para>
+                                    このパラメータは, batch = 4 には使用されません.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>s</term>
+                <listitem>
+                    <para>処理されるブロックハンケル行列の入力/出力のブロック行数.  s &gt; 0</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Y</term>
+                <listitem>
+                    <para>the t行l列の出力データ系列行列.  Yのj列には,
+                        j番目の出力要素のtの時系列の値が含まれます.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>U</term>
+                <listitem>
+                    <para>(オプション) t行m列の入力データ系列行列.  Column j of  Uのj列には,
+                        j番目の入力要素のtの時系列の値が含まれます.デフォルト:    U = [].
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>tol</term>
+                <listitem>
+                    <para>(オプション)
+                        許容誤差を含む長さ2のベクトル:
+                        tol(1) - 行列のランクを推定する際に使用される許容誤差.
+                        tol(1) &gt; 0の場合, 条件数の逆数の下界として,指定したtol(1)の値が使用されます;
+                        m行n列の行列で,推定された条件数が 1/tol(1) より小さい場合,フルランクとみなされます.
+                        tol(1) &lt;= 0 の場合, デフォルト値 m*n*epsilon_machineが使用されます.
+                        ただし,epsilon_machine は相対機械精度です.
+                    </para>
+                    <para>
+                        tol(2) - システム次数の推定値を定義する際に使用される許容誤差.
+                        tol(2) &gt;= 0 の場合, tol(2)以上の最後の特異値の添字が推定値となります.
+                        (tol(2)よち小さな特異値はゼロとみなされます.)
+                        tol(2) = 0の場合,デフォルト値, tol(2) = s*epsilon_machine*sval(1), が内部的に計算され,使用されます.
+                        ただし,sval(1)は最大特異値,epsilon_machineは相対機械精度です.
+                        tol(2) &lt; 0 の場合, 推定値は次の要素への指数的な差異が最大となる特異値の添字となります.
+                    </para>
+                    <para>
+                        デフォルト:    tol(1:2) = [0,-1].
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>printw</term>
+                <listitem>
+                    <para>(オプション) 警告メッセージの出力に関するスイッチ.</para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>1:  警告メッセージを出力します;</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>0:  警告メッセージを出力しません.</para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                    <para>
+                        デフォルト:    printw = 0.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ldwork</term>
+                <listitem>
+                    <para>(オプション) ワークスペースの大きさ. デフォルト : 以下の式で計算</para>
+                    <programlisting role=""><![CDATA[
+nr = 2*( m + l )*s
+LDWORK = ( t - 2*s + 3 + 64 )*nr
+if ( CSIZE > MAX( nr*nr + t*( m + l ) + 16, 2*nr ) ) then
+   LDWORK = MIN( LDWORK, CSIZE - nr*nr - t*( m + l ) - 16 )
+else
+   LDWORK = MIN( LDWORK, MAX( 2*nr, CSIZE/2 ) )
+end if
+ ]]></programlisting>
+                    <para>
+                        LDWORK = MAX( minimum workspace size needed, LDWORK ) ただし,CSIZE は倍精度ワード単位のキャッシュの大きさです.
+                    </para>
+                    <para>
+                        最小ワークスペースの大きさよりも小さなLDWORK が指定された場合,
+                        替わりに最小値が使用されます.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Ri</term>
+                <listitem>
+                    <para>(オプション) batch = 2 または 3の場合, Rの
+                        2*(m+l)*s行2*(m+l)*s列の部分 (alg &lt;&gt; 2の場合は,上三角) に
+                        連続データ処理におけるこの mexfile の前のコールで計算された
+                        (上三角)行列 R を含む必要があります.
+                        conct = 1の場合, Rには同じく前のコールで設定された列が1列追加されます.
+                    </para>
+                    <para>
+                        alg = 2の場合,  R  は m+l+1 個の前のコールで設定された追加の列を有します.
+                    </para>
+                    <para>
+                        このパラメータは, batch = 1 または batch = 4の場合は使用されません.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Ro</term>
+                <listitem>
+                    <para>batch = 3 または 4の場合, Rの2*(m+l)*s行2*(m+l)*s列 の部分には,
+                        結合されたブロックハンケル行列のQR分解に基づく
+                        上三角分解 Rが含まれ,
+                        システム行列を計算する際により詳細な情報が必要となります.
+                        batch = 1 または 2の場合, R にはこのmexfileの次のコールで必要とされる
+                        中間結果が含まれます.
+                        batch = 1 または 2, かつ conct = 1の場合, R には列が追加され,
+                        リターンの前に値が設定されます.
+                        batch = 1 または 2 で alg = 2の場合,R  には m+l+1個の列が追加され,
+                        同じくリターンの前に値が設定されます.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>システムの次数.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sval</term>
+                <listitem>
+                    <para>(オプション) システムの次数を推定する際に使用される特異値.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>rcnd</term>
+                <listitem>
+                    <para>(オプション) meth = 2の場合, 長さ2のベクトルで,
+                        ランク決定や最小二乗解で使用される
+                        行列の条件数の逆数を含みます.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            sorder  - SLICOT の IB01ADルーチンにより離散時間システムの次数を計算する関数.
+        </para>
+        <para>
+            ブロックが1個の場合 (データ系列 Y, U):
+            [R,n,sval,rcnd] = sorder(meth,alg,jobd,4,conct,s,Y,U);
+        </para>
+        <para>
+            ブロックがf個の場合 (データ系列 Yj, Uj, j = 1 : f):
+        </para>
+        <programlisting role=""><![CDATA[
+R = sorder(meth,alg,jobd,1,conct,s,Y1,U1);
+for j = 2 : f - 1
+   R = sorder(meth,alg,jobd,2,conct,s,Yj,Uj,tol,printw,ldwork,R)
+end
+[R,n,sval,rcnd] = sorder(meth,alg,jobd,3,conct,s,Yf,Uf,tol);
+ ]]></programlisting>
+        <para>
+            sorder は,線形時不変システムの行列を推定するために
+            コレスキーまたは(高速)QR分解および
+            部分空間同定法 (MOESP およびN4SID)による
+            入出力データの前処理を行い,
+            離散時間実現の次数を推定します.
+        </para>
+        <para>
+            モデルの構造は以下のようになります :
+        </para>
+        <programlisting role=""><![CDATA[
+x(k+1) = Ax(k) + Bu(k) + w(k),   k >= 1,
+y(k)   = Cx(k) + Du(k) + e(k),
+ ]]></programlisting>
+        <para>
+            ただし,
+            x(k)  は(時刻kにおける) n次元状態ベクトル,
+        </para>
+        <para>
+            u(k)  はm次元入力ベクトル,
+        </para>
+        <para>
+            y(k)  はl次元出力ベクトル,
+        </para>
+        <para>
+            w(k)  はn次元状態外乱ベクトル,
+        </para>
+        <para>
+            e(k)  はl次元出力外乱ベクトル,
+        </para>
+        <para>
+            として  A, B, C, および D  は適当な次元の実数行列です.
+        </para>
+    </refsection>
+    <refsection>
+        <title>コメント</title>
+        <para>
+            1. コレスキーまたは高速QRアルゴリズムは,(大きなデータブロックの場合) QRアルゴリズムよりも
+            はるかに高速ですが, 修正行列 H'*H が正定でない場合には使用できません.
+            このような場合, 十分なワークスペースが確保され, batch = 4 の時に
+            コードは自動的に QR アルゴリズムに切り替えます.
+        </para>
+        <para>
+            2. ldwork が指定されたが,  ワークスペースの大きさの最小値よりも小さい場合,
+            替わりに最小値が使用されます.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="findBD">findBD</link>
+            </member>
+            <member>
+                <link linkend="sident">sident</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

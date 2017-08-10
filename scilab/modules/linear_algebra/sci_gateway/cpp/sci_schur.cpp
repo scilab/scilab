@@ -3,11 +3,14 @@
 * Copyright (C) 2009 - DIGITEO - Bernard HUGUENEY
 * Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 /*--------------------------------------------------------------------------*/
@@ -16,9 +19,9 @@
 #include "function.hxx"
 #include "double.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 #include "configvariable.hxx"
 #include "callable.hxx"
+#include "string.hxx"
 
 extern "C"
 {
@@ -54,9 +57,8 @@ types::Function::ReturnValue sci_schur(types::typed_list &in, int _iRetCount, ty
     // *** check type of input args and get it. ***
     if (in[0]->isDouble() == false)
     {
-        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_schur";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
     pDbl[0] = in[0]->getAs<types::Double>();
@@ -130,9 +132,8 @@ types::Function::ReturnValue sci_schur(types::typed_list &in, int _iRetCount, ty
         }
         else
         {
-            ast::ExecVisitor exec;
             std::wstring wstFuncName = L"%" + in[1]->getShortTypeStr() + L"_schur";
-            return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+            return Overload::call(wstFuncName, in, _iRetCount, out);
         }
     }
 
@@ -140,9 +141,8 @@ types::Function::ReturnValue sci_schur(types::typed_list &in, int _iRetCount, ty
     {
         if (in[2]->isString() == false && in[2]->isCallable() == false)
         {
-            ast::ExecVisitor exec;
             std::wstring wstFuncName = L"%" + in[2]->getShortTypeStr() + L"_schur";
-            return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+            return Overload::call(wstFuncName, in, _iRetCount, out);
         }
 
         if (in[2]->isString())
@@ -183,7 +183,7 @@ types::Function::ReturnValue sci_schur(types::typed_list &in, int _iRetCount, ty
         }
         case 12: // double string
         {
-            if (_iRetCount < 2 && _iRetCount > 3)
+            if (_iRetCount >= 2 && _iRetCount <= 3)
             {
                 Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "schur", 2, 3);
                 return types::Function::Error;
@@ -224,12 +224,11 @@ types::Function::ReturnValue sci_schur(types::typed_list &in, int _iRetCount, ty
         {
             if (pDbl[0]->getCols() == 0)
             {
-                types::Double* zero = new types::Double(0);
-
                 for (int i = 0; i < _iRetCount; i++)
                 {
                     if (i == 1 && !bIsComplexStr && !bIsRealStr)
                     {
+                        types::Double* zero = new types::Double(0);
                         out.push_back(zero);
                     }
                     else
@@ -245,8 +244,6 @@ types::Function::ReturnValue sci_schur(types::typed_list &in, int _iRetCount, ty
         {
             if (pDbl[0]->getCols() == 0)
             {
-                types::Double* zero = new types::Double(0);
-
                 for (int i = 1; i < _iRetCount; i++)
                 {
                     out.push_back(types::Double::Empty());
@@ -254,6 +251,7 @@ types::Function::ReturnValue sci_schur(types::typed_list &in, int _iRetCount, ty
 
                 if (_iRetCount > 1)
                 {
+                    types::Double* zero = new types::Double(0);
                     out.push_back(zero);
                 }
                 else

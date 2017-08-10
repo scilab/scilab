@@ -2,128 +2,187 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) DIGITEO - 2009-2009 - Antoine ELIAS <antoine.elias@scilab.org>
  * Copyright (C) DIGITEO - 2009-2010 - Clément DAVID <clement.david@scilab.org>
+ * Copyright (C) Scilab Enterprises - 2016-2017 - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 /*--------------------------------------------------------------------------*/
 #include "Xcos.hxx"
 #include "GiwsException.hxx"
 #include "loadStatus.hxx"
+#include "Controller.hxx"
+#include "view_scilab/Adapters.hxx"
+
+#include "types.hxx"
+#include "function.hxx"
+#include "string.hxx"
+#include "user.hxx"
+#include "int.hxx"
+
+#include "gw_xcos.hxx"
 
 extern "C"
 {
-#include "gw_xcos.h"
-#include "api_scilab.h"
+#include "sci_malloc.h"
 #include "localization.h"
 #include "Scierror.h"
-#include "sci_malloc.h"
-#include "freeArrayOfString.h"
 #include "getScilabJavaVM.h"
 }
 /*--------------------------------------------------------------------------*/
 using namespace org_scilab_modules_xcos;
-
+using namespace org_scilab_modules_scicos;
 /*--------------------------------------------------------------------------*/
-int sci_xcosDiagramToScilab(char *fname, void *pvApiCtx)
+static char funname[] = "xcosDiagramToScilab";
+static types::InternalType* importFile(char const* file);
+static bool exportFile(int index, char const* file, types::InternalType* uid);
+/*--------------------------------------------------------------------------*/
+types::Function::ReturnValue sci_xcosDiagramToScilab(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    CheckRhs(1, 1);
-    CheckLhs(0, 1);
-
-    SciErr sciErr;
-
-    int iRows1 = 0;
-    int iCols1 = 0;
-    int iLen1 = 0;
-    int *piAddr1 = NULL;
-    char *pstXcosFile = NULL;
-
-    //get xcos filename
-    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr1);
-    if (sciErr.iErr)
-    {
-        printError(&sciErr, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
-        return 0;
-    }
-
-    //get xcos filename matrix dimension
-    sciErr = getMatrixOfString(pvApiCtx, piAddr1, &iRows1, &iCols1, NULL, NULL);
-    if (sciErr.iErr)
-    {
-        printError(&sciErr, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
-        return 0;
-    }
-
-    if (iRows1 * iCols1 != 1)
-    {
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
-    }
-
-    //get xcos filename length
-    sciErr = getMatrixOfString(pvApiCtx, piAddr1, &iRows1, &iCols1, &iLen1, NULL);
-    if (sciErr.iErr)
-    {
-        printError(&sciErr, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
-        return 0;
-    }
-
-    pstXcosFile = (char *)MALLOC(sizeof(char *) * (iLen1 + 1)); //+ 1 for null termination
-    //get xcos filename
-    sciErr = getMatrixOfString(pvApiCtx, piAddr1, &iRows1, &iCols1, &iLen1, &pstXcosFile);
-    if (sciErr.iErr)
-    {
-        printError(&sciErr, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
-        return 0;
-    }
-
     /*
-     * Call the Java implementation
+     * to import some files
+     * scs_m = xcosDiagramToScilab("/path/to/a/file")
+     * [scs_m1, scs_m2] = xcosDiagramToScilab(["/path/to/a/file", "/path/to/files"])
+     *
+     * to export a file
+     * xcosDiagramToScilab("/path/to/a/file", scs_m)
+     * xcosDiagramToScilab(["/path/to/a/file", "/path/to/files"], scs_m1, scs_m2)
      */
-    int iRet = 0;
 
+    if (in.size() < 1)
+    {
+        Scierror(77, _("%s: Wrong number of input arguments: at least %d expected.\n"), funname, 1);
+        return types::Function::Error;
+    }
+
+    if (!in[0]->isString())
+    {
+        Scierror(77, _("%s: Wrong type for input argument #%d: string expected.\n"), funname, 1);
+        return types::Function::Error;
+    }
+
+    types::String* files = in[0]->getAs<types::String>();
+    if (in.size() == 1 && files->getSize() == _iRetCount)
+    {
+        // the user asked to import
+        out.resize(_iRetCount);
+        for (int i = 0; i < _iRetCount; i++)
+        {
+            char* f = wide_string_to_UTF8(files->get(i));
+            out[i] = importFile(f);
+            FREE(f);
+            if (out[i] == nullptr)
+            {
+                return types::Function::Error;
+            }
+        }
+    }
+    else if (in.size() == 1 + files->getSize() && _iRetCount <= 1)
+    {
+        // the user asked to export
+        for (int i = 0; i < _iRetCount; i++)
+        {
+            if (!in[1 + i]->isUserType())
+            {
+                Scierror(77, _("%s: Wrong type for input argument #%d: ""%s"" expected.\n"), funname, "diagram");
+                return types::Function::Error;
+            }
+        }
+        for (int i = 0; i < _iRetCount; i++)
+        {
+            char* f = wide_string_to_UTF8(files->get(i));
+            bool success = exportFile(1 + i, f, in[1 + i]);
+            FREE(f);
+            if (!success)
+            {
+                return types::Function::Error;
+            }
+        }
+    }
+    else
+    {
+        // report a comprehensible error message
+        if (in.size() == 1)
+        {
+            Scierror(77, _("%s: Wrong number of output arguments: %d expected.\n"), funname, files->getSize());
+        }
+        else if (in.size() == 1 + files->getSize())
+        {
+            Scierror(77, _("%s: Wrong number of output arguments: %d expected.\n"), funname, 0);
+        }
+        else
+        {
+            Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), funname, 1);
+        }
+        return types::Function::Error;
+    }
+
+    return types::Function::OK;
+}
+/*--------------------------------------------------------------------------*/
+static types::InternalType* importFile(char const* file)
+{
+    // create a diagram
+    org_scilab_modules_scicos::Controller controller;
+    ScicosID uid = controller.createObject(DIAGRAM);
+
+    // load it
     set_loaded_status(XCOS_CALLED);
     try
     {
-        iRet = Xcos::xcosDiagramToScilab(getScilabJavaVM(), pstXcosFile);
+        Xcos::xcosDiagramToScilab(getScilabJavaVM(), file, uid, false);
     }
-    catch (GiwsException::JniCallMethodException &exception)
+    catch (const GiwsException::JniCallMethodException& exception)
     {
-        Scierror(999, "%s: %s\n", fname, exception.getJavaDescription().c_str());
-        return 0;
+        Scierror(999, "%s: %s\n%s\n", funname, exception.getJavaDescription().c_str(), exception.getJavaStackTrace().c_str());
+        controller.deleteObject(uid);
+        return nullptr;
     }
-    catch (GiwsException::JniException &exception)
+    catch (const GiwsException::JniException& exception)
     {
-        Scierror(999, "%s: %s\n", fname, exception.whatStr().c_str());
-        return 0;
+        Scierror(999, "%s: %s\n", funname, exception.whatStr().c_str());
+        controller.deleteObject(uid);
+        return nullptr;
     }
 
-    if (iRet != 0)
-    {
-        //manage error
-        iRet = 1;
-    }
-
-    double dblResult = iRet;
-
-    sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, 1, 1, &dblResult);
-    if (sciErr.iErr)
-    {
-        printError(&sciErr, 0);
-        Scierror(999, _("%s: Memory allocation error.\n"), fname);
-        return 0;
-    }
-
-    LhsVar(1) = Rhs + 1;
-    PutLhsVar();
-    return 0;
+    types::InternalType* pIT = view_scilab::Adapters::instance().allocate_view(uid, DIAGRAM);
+    return pIT;
 }
+/*--------------------------------------------------------------------------*/
+static bool exportFile(int index, char const* file, types::InternalType* type)
+{
+    // check that the passed argument is a diagram
+    const model::BaseObject* o = view_scilab::Adapters::instance().descriptor(type);
+    if (o == nullptr || o->kind() != DIAGRAM)
+    {
+        Scierror(77, _("%s: Wrong type for input argument #%d: ""%s"" expected.\n"), funname, index, "diagram");
+        return false;
+    }
 
+    // export it
+    set_loaded_status(XCOS_CALLED);
+    try
+    {
+        Xcos::xcosDiagramToScilab(getScilabJavaVM(), file, o->id(), true);
+    }
+    catch (const GiwsException::JniCallMethodException& exception)
+    {
+        Scierror(999, "%s: %s\n%s\n", funname, exception.getJavaDescription().c_str(), exception.getJavaStackTrace().c_str());
+        return false;
+    }
+    catch (const GiwsException::JniException& exception)
+    {
+        Scierror(999, "%s: %s\n", funname, exception.whatStr().c_str());
+        return false;
+    }
+
+    return true;
+}
 /*--------------------------------------------------------------------------*/

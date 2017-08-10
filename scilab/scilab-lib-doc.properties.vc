@@ -3,7 +3,7 @@
 xml_apis_ext.jar =${thirdparty.dir}/xml_apis_ext.jar
 
 ; xml.apache.org SVG Library
-batik.jar=${thirdparty.dir}/batik-all-1.7.jar
+batik.jar=${thirdparty.dir}/batik-all.jar
 
 ; The Saxon XSLT Processor
 saxon.jar=${thirdparty.dir}/saxon.jar
@@ -17,7 +17,7 @@ jlatexmath-fop.jar=${thirdparty.dir}/jlatexmath-fop-1.0.2.jar
 ; A complete MathML rendering solution
 jeuclid-core.jar=${thirdparty.dir}/jeuclid-core.jar
 
-xmlgraphics-commons.jar=${thirdparty.dir}/xmlgraphics-commons-1.4.jar
+xmlgraphics-commons.jar=${thirdparty.dir}/xmlgraphics-commons.jar
 
 library.helptools.dir=${modules.dir}/helptools/${build.jar.dir}/
 library.helptools.name=org.scilab.modules.helptools.jar

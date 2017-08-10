@@ -4,11 +4,14 @@
  * Copyright (C) 2009 - Digiteo - Vincent LIARD
  * Copyright (C) 2009 - DIGITEO - Antoine ELIAS
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -23,6 +26,7 @@
 #include <string.h>
 
 #include "api_scilab.h"
+#include "Sciwarning.h"
 
 int mod(int a, int b);
 int rotate(int i, int step, int length);
@@ -156,7 +160,7 @@ void cdf_error(char const * const fname, int status, double bound)
             {
                 Scierror(999, _("%s: cumgam returned an error\n"), fname);
             }
-            else if (strcmp(fname, "cdfchi") == 0)
+            else if (strcmp(fname, "cdfgam") == 0)
             {
                 Scierror(999, _("%s: gamma or inverse gamma routine failed\n"), fname);
             }
@@ -378,7 +382,7 @@ int CdfBase(char const * const fname, void* pvApiCtx, int inarg, int oarg, int s
         resc = checkInteger(row, col, datas, pos, fname);
         if (resc == 1)
         {
-            sciprint(_("%s: Warning: using non integer values for argument #%d may lead to incorrect results.\n"), fname, pos);
+            Sciwarning(_("%s: Warning: using non integer values for argument #%d may lead to incorrect results.\n"), fname, pos);
         }
     }
     if (pos1 != 0)
@@ -388,7 +392,7 @@ int CdfBase(char const * const fname, void* pvApiCtx, int inarg, int oarg, int s
         resc = checkInteger(row, col, datas, pos1, fname);
         if (resc == 1)
         {
-            sciprint(_("%s: Warning: using non integer values for argument #%d may lead to incorrect results.\n"), fname, pos1);
+            Sciwarning(_("%s: Warning: using non integer values for argument #%d may lead to incorrect results.\n"), fname, pos1);
         }
     }
 #define callpos(i) rotate(i, shift, inarg + oarg)

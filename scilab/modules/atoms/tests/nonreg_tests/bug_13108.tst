@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 //
+// <-- CLI SHELL MODE -->
+//
 // <-- TEST WITH ATOMS -->
 //
 // <-- Non-regression test for bug 13108 -->

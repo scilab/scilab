@@ -4,11 +4,14 @@
  * Copyright (C) 2008 - INRIA
  * Copyright (C) 2011 - DIGITEO - Michael Baudin
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="leastsq" xml:lang="en">
@@ -17,7 +20,7 @@
         <refpurpose>Solves non-linear least squares problems</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             fopt=leastsq(fun, x0)
             fopt=leastsq(fun, x0)
@@ -25,7 +28,7 @@
             fopt=leastsq(fun, cstr, x0)
             fopt=leastsq(fun, dfun, cstr, x0)
             fopt=leastsq(fun, dfun, cstr, x0, algo)
-            fopt=leastsq([imp], fun [,dfun] [,cstr],x0 [,algo],[df0,[mem]],[stop])
+            fopt=leastsq([iprint], fun [,dfun] [,cstr],x0 [,algo],[df0,[mem]],[stop])
             [fopt,xopt] = leastsq(...)
             [fopt,xopt,gopt] =  = leastsq(...)
         </synopsis>
@@ -96,7 +99,7 @@
                         introduced by the string keyword <literal>'b'</literal> followed by
                         the lower bound <literal>binf</literal> then by the upper bound
                         <literal>bsup</literal> (so <literal>cstr</literal> appears as
-                        <literal>'b',binf,bsup</literal> in the calling sequence). Those
+                        <literal>'b',binf,bsup</literal> in the syntax). Those
                         bounds are real vectors with same dimension than
                         <literal>x0</literal> (-%inf and +%inf may be used for dimension
                         which are unrestricted).
@@ -116,14 +119,14 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>imp</term>
+                <term>iprint</term>
                 <listitem>
                     <para>
                         scalar argument used to set the trace mode.
-                        <literal>imp=0</literal> nothing (except errors) is reported,
-                        <literal>imp=1</literal> initial and final reports,
-                        <literal>imp=2</literal> adds a report per iteration,
-                        <literal>imp&gt;2</literal> add reports on linear search. Warning,
+                        <literal>iprint=0</literal> nothing (except errors) is reported,
+                        <literal>iprint=1</literal> initial and final reports,
+                        <literal>iprint=2</literal> adds a report per iteration,
+                        <literal>iprint&gt;2</literal> add reports on linear search. Warning,
                         most of these reports are written on the Scilab standard
                         output.
                     </para>
@@ -258,11 +261,11 @@ y=f(x,a1,a2,...)
                 <listitem>
                     <para>
                         When <literal>fun</literal> is a Fortran or C
-                        routine, it must be <literal>list(fun_name,m[,a1,a2,...])</literal> in the calling sequence of
+                        routine, it must be <literal>list(fun_name,m[,a1,a2,...])</literal> in the syntax of
                         <literal>leastsq</literal>, where <literal>fun_name</literal> is
                         a 1-by-1 matrix of strings, the name of the routine which must be linked to Scilab (see
                         <link linkend="link">link</link>). The header must be, in Fortran:
-                        
+
                         <screen><![CDATA[
 subroutine fun(m, n, x, params, y)
 integer m,n
@@ -272,7 +275,7 @@ double precision x(n), params(*), y(m)
                         <screen><![CDATA[
 void fun(int *m, int *n, double *x, double *params, double *y)
  ]]></screen>
-                        
+
                         where <literal>n</literal> is the dimension of vector
                         <literal>x</literal>, <literal>m</literal> the dimension of vector
                         <literal>y</literal>, with <literal>y=fun(x)</literal>, and
@@ -317,7 +320,7 @@ void fun(int *m, int *n, double *x, double *params, double *y)
  ]]></screen>
                         Note that, even if <literal>dfun</literal>
                         needs extra parameters, it must appear simply as
-                        <literal>dfun</literal> in the calling sequence of
+                        <literal>dfun</literal> in the syntax of
                         <literal>leastsq</literal>.
                     </para>
                 </listitem>
@@ -339,7 +342,7 @@ double precision x(n), params(*), y(m,n)
                         <screen><![CDATA[
           void fun(int *m, int *n, double *x, double *params, double *y)
  ]]></screen>
-                        
+
                         In the C case <literal>y(i,j)=dfi/dxj</literal> must be
                         stored in <literal>y[m*(j-1)+i-1]</literal>.
                     </para>
@@ -368,7 +371,7 @@ double precision x(n), params(*), y(m,n)
             which is non linear but does not really need to be solved with leastsq (applying
             log linearizes the model and the problem may be solved with linear algebra).
             In this example we look for the 2 parameters x(1) and x(2) of a simple
-            exponential decay model (x(1) being the unknow initial value and x(2) the
+            exponential decay model (x(1) being the unknown initial value and x(2) the
             decay constant):
         </para>
         <programlisting role="example"><![CDATA[
@@ -420,7 +423,7 @@ plot(tt, yy, "b-")
 legend(["measure points", "fitted curve"]);
 xtitle("a simple fit with leastsq")
 
-// 3- how to get some information (we use imp=1)
+// 3- how to get some information (we use iprint=1)
 [f,xopt, gopt] = leastsq(1,list(myfun,tm,ym,wm),mydfun,x0)
 
 // 4- using the conjugate gradient (instead of quasi Newton)
@@ -439,31 +442,31 @@ xsup = [%inf, %inf];
 [f,xopt, gopt] = leastsq(1,list(myfun,tm,ym,wm),mydfun,x0,"ar",40,8,0.01,0.1)
  ]]></programlisting>
         <scilab:image>
-            
+
             function y = yth(t, x)
             y  = x(1)*exp(-x(2)*t)
             endfunction
-            
+
             m = 10;
             tm = [0.25, 0.5, 0.75, 1.0, 1.25, 1.5, 1.75, 2.0, 2.25, 2.5]';
             ym = [0.79, 0.59, 0.47, 0.36, 0.29, 0.23, 0.17, 0.15, 0.12, 0.08]';
             wm = ones(m,1);
-            
+
             x0 = [1.5 ; 0.8];
-            
+
             function e = myfun(x, tm, ym, wm)
             e = wm.*( yth(tm, x) - ym )
             endfunction
-            
+
             function g = mydfun(x, tm, ym, wm)
             v = wm.*exp(-x(2)*tm)
             g = [v , -x(1)*tm.*v]
             endfunction
-            
+
             [f,xopt, gopt] = leastsq(list(myfun,tm,ym,wm),x0)
-            
+
             [f,xopt, gopt] = leastsq(list(myfun,tm,ym,wm),mydfun,x0)
-            
+
             tt = linspace(0,1.1*max(tm),100)';
             yy = yth(tt, xopt);
             scf();
@@ -471,7 +474,7 @@ xsup = [%inf, %inf];
             plot(tt, yy, "b-")
             legend(["measure points", "fitted curve"]);
             xtitle("a simple fit with leastsq")
-            
+
         </scilab:image>
     </refsection>
     <refsection>
@@ -566,7 +569,7 @@ link(clibname,names,"c")
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="lsqrsolve">lsqrsolve</link>

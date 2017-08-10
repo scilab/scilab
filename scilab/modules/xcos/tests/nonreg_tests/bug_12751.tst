@@ -28,10 +28,6 @@ function str = x_mdialog(desc, labels, ini)
     str = ["bug_12751"; TMPDIR+"/bug_12751/"; ""];
 endfunction
 
-function num = messagebox(strings, buttons, modal)
-    num = 1;
-endfunction
-
 funcprot(prot);
 
 [ok, XX] = do_compile_superblock42(scs_m.objs(1), [], [], %f);

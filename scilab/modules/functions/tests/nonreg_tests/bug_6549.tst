@@ -12,6 +12,7 @@
 // <-- Short Description -->
 // genlib function had a behavior which was not consistent with the load function.
 // =============================================================================
+// <-- CLI SHELL MODE -->
 f = [
 "function titi()"
 "  disp(''titi'');"
@@ -27,34 +28,34 @@ f = [
 ""
 ];
 cd TMPDIR;
-mkdir('bug_6549');
-cd('bug_6549'); 
-mputl(f,'toto.sci');
-if genlib('bug_6549lib',TMPDIR + '/bug_6549') <> %t then pause,end;
+mkdir("bug_6549");
+cd("bug_6549");
+mputl(f,"toto.sci");
+if genlib("bug_6549lib",TMPDIR + "/bug_6549") <> %t then pause,end;
 // =============================================================================
-ierr = execstr('toto','errcatch');
+ierr = execstr("toto","errcatch");
 if ierr <> 0 then pause,end
-ierr = execstr('titi','errcatch');
-if ierr <> 0 then pause,end
-ierr = execstr('tata','errcatch');
-if ierr <> 0 then pause,end
+ierr = execstr("titi","errcatch");
+if ierr == 0 then pause,end
+ierr = execstr("tata","errcatch");
+if ierr == 0 then pause,end
 clear bug_6549lib titi toto tata ierr;
 // =============================================================================
-load(TMPDIR + '/bug_6549/lib');
-ierr = execstr('toto','errcatch');
+load(TMPDIR + "/bug_6549/lib");
+ierr = execstr("toto","errcatch");
 if ierr <> 0 then pause,end
-ierr = execstr('titi','errcatch');
-if ierr <> 0 then pause,end
-ierr = execstr('tata','errcatch');
-if ierr <> 0 then pause,end
+ierr = execstr("titi","errcatch");
+if ierr == 0 then pause,end
+ierr = execstr("tata","errcatch");
+if ierr == 0 then pause,end
 clear bug_6549lib titi toto tata ierr;
 // =============================================================================
-bug_6549lib = lib(TMPDIR + '/bug_6549');
-ierr = execstr('toto','errcatch');
+bug_6549lib = lib(TMPDIR + "/bug_6549");
+ierr = execstr("toto","errcatch");
 if ierr <> 0 then pause,end
-ierr = execstr('titi','errcatch');
-if ierr <> 0 then pause,end
-ierr = execstr('tata','errcatch');
-if ierr <> 0 then pause,end
+ierr = execstr("titi","errcatch");
+if ierr == 0 then pause,end
+ierr = execstr("tata","errcatch");
+if ierr == 0 then pause,end
 clear bug_6549lib titi toto tata ierr;
 // =============================================================================

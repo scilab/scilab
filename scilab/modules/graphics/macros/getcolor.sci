@@ -1,10 +1,13 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function [c] = getcolor(Title,cini)
 
@@ -15,18 +18,18 @@ function [c] = getcolor(Title,cini)
         cini = 1;
     elseif rhs==1 then
         if type(Title)~=10 then
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"), "getcolor", 1));
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"), "getcolor", 1));
         end
         if size(Title, "*")~=1 then
-            error(msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"), "getcolor", 1));
+            error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"), "getcolor", 1));
         end
         cini = 1;
     elseif rhs==2 then
         if type(Title)~=10 then
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"), "getcolor", 1));
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"), "getcolor", 1));
         end
         if size(Title, "*")~=1 then
-            error(msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"), "getcolor", 1));
+            error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"), "getcolor", 1));
         end
         if type(cini)~=1 then
             error(msprintf(gettext("%s: Wrong type for input argument #%d: A real expected.\n"), "getcolor", 2));
@@ -48,7 +51,12 @@ function [c] = getcolor(Title,cini)
     end;
 
     // create the window for getcolor
-    win = max(winsid()) + 1;
+    
+    win = max(winsid());
+    if isempty(win) then 
+        win = 1;
+    end
+        
     scf(win);
 
     sdf;

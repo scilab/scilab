@@ -5,7 +5,7 @@
         <refpurpose>get scilab libraries</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>s=librarieslist()</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -30,14 +30,14 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 librarieslist()
 // to sort list
 l =  gsort(librarieslist(),'r','i')
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="libraryinfo">libraryinfo</link>

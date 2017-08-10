@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="freq">
+    <refnamediv>
+        <refname>freq</refname>
+        <refpurpose>周波数応答</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[x]=freq(A,B,C [,D],f)
+            [x]=freq(NUM,DEN,f)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>A, B, C, D</term>
+                <listitem>
+                    <para>
+                        適当な次元<literal>nxn, nxp, mxn, mxp</literal>の実数行列 .
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>NUM,DEN</term>
+                <listitem>
+                    <para>
+                        次元 <literal>mxp</literal>の多項式行列
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>実数または複素数の行列</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>x=freq(A,B,C [,D],f)</literal> は次の関係を満たす実数または複素数の
+            <literal>mxp*t</literal> 行列を返します.:
+        </para>
+        <para>
+            <literal>x(:,k*p:(k+1)*p)= C*inv(f(k)*eye()-A)*B + D</literal>.
+        </para>
+        <para>
+            ここで, <literal>f</literal> が虚軸上または単位円上に
+            値を有する場合,
+            <literal>x</literal>は連続系または離散系における
+            <literal>(A,B,C,D)</literal>の周波数応答となります.
+        </para>
+        <para>
+            <literal>x=freq(NUM,DEN,f)</literal> は,
+            <literal>x</literal> の <literal>k*(p-1)+1</literal>列から
+            <literal>k*p</literal>列が行列<literal>NUM(f(k))./DEN(f(k))</literal>を
+            含むような
+            実数または複素数の
+            行列<literal>x</literal>を返します.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+s=poly(0,'s');
+sys=(s+1)/(s^3-5*s+4)
+rep=freq(sys("num"),sys("den"),[0,0.9,1.1,2,3,10,20])
+[horner(sys,0),horner(sys,20)]
+//
+Sys=tf2ss(sys);
+[A,B,C,D]=abcd(Sys);
+freq(A,B,C,[0,0.9,1.1,2,3,10,20])
+ ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="repfreq">repfreq</link>
+            </member>
+            <member>
+                <link linkend="horner">horner</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

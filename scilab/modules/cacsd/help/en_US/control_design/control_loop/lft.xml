@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="lft">
+    <refnamediv>
+        <refname>lft</refname>
+        <refpurpose>linear fractional transformation</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>S=lft(P,R)
+            [S,s]=lft(P,p,R [,r])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>P</term>
+                <listitem>
+                    <para>
+                        linear system (in state space or transfer
+                        function representation) or a simple gain, the
+                        ``augmented'' plant, implicitly partitioned
+                        into four blocks (two input ports and two
+                        output ports).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>p</term>
+                <listitem>
+                    <para>
+                        1x2 row vector,  the  dimensions of the <literal>P_22</literal> block (see below).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>R</term>
+                <listitem>
+                    <para>
+                        llinear system (in state space or transfer
+                        function representation) or a simple gain,
+                        implicitly partitioned into four blocks (two
+                        input ports and two output ports).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>r</term>
+                <listitem>
+                    <para>
+                        1x2 row vector, dimension of the
+                        <literal>R_22</literal> block . This argument should  not
+                        be used. It is retained for compatibility with
+                        previous versions.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>S</term>
+                <listitem>
+                    <para>
+                        linear system, the linear fractional transform.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>s</term>
+                <listitem>
+                    <para>
+                        1x2 row vector, dimension of the <literal>S_22</literal> block (see below).
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Linear fractional transform between two standard plants
+            in state space form or in transfer form:
+        </para>
+        <para>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="../../../images/lft.png"/>
+                </imageobject>
+            </mediaobject>
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>
+                    Syntax  <literal>S=lft(P,R)</literal>
+                </term>
+                <listitem>
+                    <para>
+                        Computes the linear fractional transform between the
+                        systems <literal>P</literal> and a controller
+                        <literal>R</literal>. The system <literal>S</literal> corresponds to the transfer <latex>z=\text{ S } w</latex>
+                    </para>
+                    <para>
+                        if <literal>ny</literal> and <literal>nu</literal> are
+                        respectively the number of inputs and outputs of
+                        <literal>R </literal>, one must have
+                        <literal>size(P)>=[ny nu]</literal>.
+
+                        The system returned is formally equivalent to
+                        <programlisting><![CDATA[
+                i1 = 1:($-ny);j1=1:($-nu);
+                i2 = ($-ny+1):$;j1=($-nu+1):$;
+                S = P(i1,j1) + P(i1,j2) * R * (eye() - P(i2,j2) * R) \P(i2,j1)
+                ]]>
+                        </programlisting>
+                        Using <literal>lft</literal> instead of the code above avoids numerical problems and non
+                        minimal realization.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    Syntax  <literal>[S,s]=lft(P,p,R)</literal>
+                </term>
+                <listitem>
+                    <para>
+                        with <literal>p= [ny,nu]</literal>  Forms the
+                        generalized (2 ports) lft of <literal>P</literal> and
+                        <literal>R</literal>.
+                    </para>
+                    <para>
+                        <literal>S</literal> is the two-port interconnected
+                        plant, which correspond to the transfer: <latex
+              style="display">\left[
+                            \begin{array}{l}z_1\\z_2\end{array}\right]=\text{ S } \left[
+                            \begin{array}{l}w_1\\w_2\end{array}\right]
+                        </latex>
+                        <literal>s</literal> is the dimension of the
+                        <literal>22</literal> block of <literal>S</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+        <para>
+            <literal>P</literal> and <literal>R</literal> can be PSSDs i.e. may admit a
+            polynomial <literal>D</literal> matrix.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+//simple feeback case
+
+P=[1/%s, 1/(%s+1); 1/(%s+2),2/%s];
+R= 1/(%s-1);
+lft(P,R)
+
+P(1,1)+P(1,2)*R*inv(1-P(2,2)*R)*P(2,1)   //Numerically dangerous!
+
+lft(P,-1)
+
+//Improper systems
+W=[1,1;1,1/(%s^2+0.1*%s)];
+K=tf2ss(1+1/%s+%s);////Improper (PID control)
+lft(W,[1,1],K)
+ ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>References</title>
+        <ulink
+      url="http://www.cds.caltech.edu/~doyle/wiki/images/7/70/CDC1991.pdf">"Review
+            of LFTs, LMIs, and μ",John Doyle, Andy Packard and Kemin Zhou, CDC december 1991
+        </ulink>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="sensi">sensi</link>
+            </member>
+            <member>
+                <link linkend="augment">augment</link>
+            </member>
+            <member>
+                <link linkend="feedback">feedback</link>
+            </member>
+            <member>
+                <link linkend="sysdiag">sysdiag</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>
+<!--http://www.cds.caltech.edu/~doyle/wiki/images/7/70/CDC1991.pdf-->

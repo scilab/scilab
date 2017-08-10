@@ -2,41 +2,131 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2016 - Scilab Enterprises - Pierre-Aime AGNEL
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="tbx_builder_gateway" xml:lang="en">
+
     <refnamediv>
         <refname>tbx_builder_gateway</refname>
-        <refpurpose>Run builder_gateway.sce script if it exists (toolbox compilation process)</refpurpose>
+        <refpurpose>
+            Builds the user gateway code in <literal>sci_gateway/</literal> subdirectory.
+        </refpurpose>
     </refnamediv>
+
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             tbx_builder_gateway(toolbox_path)
         </synopsis>
     </refsynopsisdiv>
-    <refsection>
+
+    <refsection role="parameters">
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
                 <term>toolbox_path</term>
                 <listitem>
-                    <para>Root directory of toolbox sources ; builder_gateway.sce script will be searched in the sci_gateway subdirectory of this directory.</para>
+                    <para>
+                        Root directory of toolbox gateway code;
+                        buider script will be searched
+                        in the <literal>sci_gateway/</literal> subdirectory of this directory.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+
+    <refsection role="description">
+        <title>Description</title>
+        <para>
+            <literal>tbx_builder_gateway</literal> is used for compiling the gateway code of a toolbox.
+        </para>
+        <para>
+            The compilation of sources in <literal>sci_gateway</literal> directory follows this convention and priority order:
+        </para>
+        <itemizedlist>
+            <listitem>
+                looks for a <varname>toolbox_path</varname><literal>/sci_gateway/builder*.sce</literal> script, if found, executes it;
+            </listitem>
+            <listitem>
+                otherwize, looks for a <literal>builder</literal> script in each subdirectory of <literal>sci_gateway/</literal> and executes them;
+            </listitem>
+            <listitem>
+                for <literal>c</literal> subdirectory, if no <literal>builder</literal> script is found, a default compilation process is done:
+                <para>
+                    <informaltable border="1">
+                        <tr>
+                            <th align="left" width="50">
+                                <literal>c</literal>
+                            </th>
+                            <td>
+                                <itemizedlist>
+                                    <listitem>
+                                        compilation is done for all <literal>sci_*.c</literal> files;
+                                    </listitem>
+                                    <listitem>
+                                        headers for user (non-gateway code) must be present in the <varname>toolbox_path</varname><literal>/src/c/</literal> directory;
+                                    </listitem>
+                                    <listitem>
+                                        scilab function names will be th name of the file (without the <literal>sci_</literal> prefix and <literal>.c</literal> extension);
+                                    </listitem>
+                                    <listitem>
+                                        only the <link linkend="api_scilab">Scilab 6 API</link> is supported with this automated process.
+                                    </listitem>
+                                </itemizedlist>
+                            </td>
+                        </tr>
+                    </informaltable>
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            The function exits silently if the <literal>sci_gateway</literal> directory is absent.
+        </para>
+        <warning>
+            Little automation is done for <literal>tbx_builder_gateway</literal> and is only specified for <literal>c</literal> because source compiling is a very specific process. Toolbox developers willing to have a more specific compilation process still need to define what the build scripts must perform for compilation.
+        </warning>
+    </refsection>
+
+    <refsection role="examples">
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Recommended usage
 tbx_builder_gateway(get_absolute_file_path('builder.sce'))
  ]]></programlisting>
     </refsection>
+
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revremark>
+                    <para>
+                        No longer restricts the build scripts to <literal>builder_gateway.sce</literal>.
+                        Now any scripts called <literal>builder*.sce</literal> is valid
+                        for source compilation.
+                    </para>
+                    <para>
+                        Automatically scans for builder scripts in subdirectories
+                        if no builder script is found in <literal>sci_gateway</literal>
+                    </para>
+                    <para>
+                        Automated process is introduced for the compilation of Scilab 6 C API gateways.
+                    </para>
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+
 </refentry>

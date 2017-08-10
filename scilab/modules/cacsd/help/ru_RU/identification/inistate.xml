@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="inistate">
+    <refnamediv>
+        <refname>inistate</refname>
+        <refpurpose>Estimates the initial state of a discrete-time system</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>X0 = inistate(SYS,Y,U,TOL,PRINTW)
+            X0 = inistate(A,B,C,Y,U);
+            X0 = inistate(A,C,Y);
+
+            [x0,V,rcnd] = inistate(SYS,Y,U,TOL,PRINTW)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>SYS</term>
+                <listitem>
+                    <para>given system, syslin(dt,A,B,C,D)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Y</term>
+                <listitem>
+                    <para>the output of the system</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>U</term>
+                <listitem>
+                    <para>the input of the system</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>TOL</term>
+                <listitem>
+                    <para>TOL is the tolerance used for estimating the rank of matrices.  If  TOL &gt; 0,  then the given value of  TOL  is used as a lower bound for the reciprocal condition number.</para>
+                    <para>
+                        Default:    prod(size(matrix))*epsilon_machine where epsilon_machine is the relative machine precision.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>PRINTW</term>
+                <listitem>
+                    <para>PRINTW is a switch for printing the warning messages.</para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>1: print warning messages;</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>0: do not print warning messages.</para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                    <para>
+                        Default:    PRINTW = 0.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>X0</term>
+                <listitem>
+                    <para>the estimated initial state vector</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>V</term>
+                <listitem>
+                    <para>orthogonal matrix which reduces the system state matrix A to  a real Schur form</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>rcnd</term>
+                <listitem>
+                    <para>estimate of the reciprocal condition number of the coefficient matrix of the least squares problem solved.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            inistate  Estimates the initial state of a discrete-time system, given the
+            (estimated) system matrices, and a set of input/output data.
+        </para>
+        <para>
+            X0 = inistate(SYS,Y,U,TOL,PRINTW)  estimates the initial state X0 of
+            the discrete-time system SYS = (A,B,C,D), using the output data Y
+            and the input data U. The model structure is :
+        </para>
+        <programlisting role=""><![CDATA[
+x(k+1) = Ax(k) + Bu(k),   k >= 1,
+y(k)   = Cx(k) + Du(k),
+ ]]></programlisting>
+        <para>
+            The vectors y(k) and u(k) are transposes of the k-th rows of Y and U,
+            respectively.
+        </para>
+        <para>
+            Instead of the first input parameter SYS (an syslin object), equivalent
+            information may be specified using matrix parameters, for instance,
+            X0 = inistate(A,B,C,Y,U);   or   X0 = inistate(A,C,Y);
+        </para>
+        <para>
+            [x0,V,rcnd] = inistate(SYS,Y,U,TOL,PRINTW) returns, besides x0,
+            the orthogonal matrix V which reduces the system state matrix A to
+            a real Schur form, as well as an estimate of the reciprocal condition
+            number of the coefficient matrix of the least squares problem solved.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+//generate data from a given linear system
+A = [ 0.5, 0.1,-0.1, 0.2;
+      0.1, 0,  -0.1,-0.1;
+     -0.4,-0.6,-0.7,-0.1;
+      0.8, 0,  -0.6,-0.6];
+B = [0.8;0.1;1;-1];
+C = [1 2 -1 0];
+SYS=syslin(0.1,A,B,C);
+nsmp=100;
+U=prbs_a(nsmp,nsmp/5);
+Y=(flts(U,SYS)+0.3*rand(1,nsmp,'normal'));
+
+// Compute R
+S=15;
+[R,N1,SVAL] = findR(S,Y',U');
+N=3;
+SYS1 = findABCD(S,N,1,R) ;
+SYS1.dt=0.1;
+
+inistate(SYS1,Y',U')
+
+]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="findBD">findBD</link>
+            </member>
+            <member>
+                <link linkend="findx0BD">findx0BD</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

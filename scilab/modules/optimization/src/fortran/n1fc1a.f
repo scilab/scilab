@@ -1,13 +1,16 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) INRIA
 c
-c This file must be used under the terms of the CeCILL.
-c This source file is licensed as described in the file COPYING, which
-c you should have received as part of this distribution.  The terms
-c are also available at
-c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+c Copyright (C) 2012 - 2016 - Scilab Enterprises
 c
-      subroutine n1fc1a(simul,prosca,n,mode,xn,fn,g,df0,eps0,dx,imp,
+c This file is hereby licensed under the terms of the GNU GPL v2.0,
+c pursuant to article 5.3.4 of the CeCILL v.2.1.
+c This file was originally licensed under the terms of the CeCILL v2.1,
+c and continues to be available under such terms.
+c For more information, see the COPYING file which you should have received
+c along with this program.
+c
+      subroutine n1fc1a(simul,prosca,n,mode,xn,fn,g,df0,eps0,dx,iprint,
      &                  zero,io,ntot,iter,nsim,memax,s,gd,x,sa,gg,al,
      &                  aps,anc,poids,q,jc,ic,r,a,e,rr,xga,y,w1,w2,izs,
      &                  rzs,dzs)
@@ -29,8 +32,8 @@ C                5 max simulations
 C                6 impossible d'aller au dela de dx
 C                7 fprf2 mis en echec
 C                8 on commence a boucler
-C      imp
-C                <0 indic=1 toutes les -imp iterations
+C      iprint
+C                <0 indic=1 toutes les -iprint iterations
 C                0 pas d'impressions
 C                1 impressions initiales et finales
 C                2 impressions a chaque convergence
@@ -90,24 +93,24 @@ C
       call prosca(n,g,g,ps,izs,rzs,dzs)
       if (ps .gt. 0.d0) goto 60
       mode = 2
-      if (imp .ne. 0) call n1fc1o(io,3,i1,i2,i3,i4,i5,d1,d2,d3,d4)
+      if (iprint .ne. 0) call n1fc1o(io,3,i1,i2,i3,i4,i5,d1,d2,d3,d4)
       goto 900
  60   diam2 = 100. * df0 * df0 / ps
       eta2 = 1.d-2 * eps0 * eps0 / diam2
       ap = zero * df0 / diam2
-      if (imp .gt. 2) call n1fc1o(io,4,i1,i2,i3,i4,i5,d1,d2,d3,d4)
+      if (iprint .gt. 2) call n1fc1o(io,4,i1,i2,i3,i4,i5,d1,d2,d3,d4)
 C
 C              boucle
 C
  100  iter = iter + 1
       itimp = itimp + 1
       if (iter .lt. itmax) goto 110
-      if (imp .gt. 0) call n1fc1o(io,5,iter,i2,i3,i4,i5,d1,d2,d3,d4)
+      if (iprint .gt. 0) call n1fc1o(io,5,iter,i2,i3,i4,i5,d1,d2,d3,d4)
       mode = 4
       goto 900
  110  ntot = ntot + 1
       if (logic .eq. 3) ro = ro * dsqrt(s2)
-      if (itimp .ne. -imp) goto 200
+      if (itimp .ne. -iprint) goto 200
       itimp = 0
       indic = 1
       call simul(indic,n,xn,f,g,izs,rzs,dzs)
@@ -120,13 +123,13 @@ C
       eps = dmax1(eps,eps0)
       call fremf2(prosca,iflag,n,ntot,nta,memax1,q,poids,e,a,r,izs,rzs,
      &            dzs)
-      call fprf2(iflag,ntot,nv,io,zero,s2,eps,al,imp,u,eta2,memax1,jc,
-     &           ic,r,a,e,rr,xga,y,w1,w2)
+      call fprf2(iflag,ntot,nv,io,zero,s2,eps,al,iprint,u,eta2,memax1,
+     &           jc,ic,r,a,e,rr,xga,y,w1,w2)
 C
 C         fin anormale de fprf2
 C
       if (iflag .eq. 0) goto 250
-      if (imp .gt. 0) call n1fc1o(io,6,i1,i2,i3,i4,i5,d1,d2,d3,d4)
+      if (iprint .gt. 0) call n1fc1o(io,6,i1,i2,i3,i4,i5,d1,d2,d3,d4)
       mode = 7
       goto 900
  250  nta = ntot
@@ -139,7 +142,7 @@ C                                alors nr g est "nul")
 C
       if (nv .lt. n+2) goto 260
       eta2 = dmax1(eta2,10.d0*s2)
-      if (imp .ge. 2) call n1fc1o(io,7,i1,i2,i3,i4,i5,eta2,d2,d3,d4)
+      if (iprint .ge. 2) call n1fc1o(io,7,i1,i2,i3,i4,i5,eta2,d2,d3,d4)
  260  if (s2 .gt. eta2) goto 300
 C
 C         calcul de la precision
@@ -149,10 +152,10 @@ C         calcul de la precision
         if (j .gt. 0) z = z + xga(k)*poids(j)
  270  continue
       epsm = dmin1(eps,z)
-      if (imp.ge.2) call n1fc1o(io,8,iter,nsim,i3,i4,i5,fn,epsm,s2,d4)
+      if(iprint.ge.2) call n1fc1o(io,8,iter,nsim,i3,i4,i5,fn,epsm,s2,d4)
       if (epsm .gt. eps0) goto 280
       mode = 1
-      if (imp .gt. 0) call n1fc1o(io,9,i1,i2,i3,i4,i5,d1,d2,d3,d4)
+      if (iprint .gt. 0) call n1fc1o(io,9,i1,i2,i3,i4,i5,d1,d2,d3,d4)
       goto 900
 C
 C         diminution de epsilon
@@ -165,9 +168,9 @@ C
 C                 suite des iterations
 C                    impressions
 C
- 300  if (imp .gt. 3) call n1fc1o(io,10,i1,i2,i3,i4,i5,d1,d2,d3,d4)
-      if (imp .gt. 2) call n1fc1o(io,11,iter,nsim,nv,i4,i5,fn,eps,s2,u)
-      if (imp .ge. 6) call n1fc1o(io,12,ntot,i2,i3,i4,i5,d1,d2,d3,poids)
+ 300  if (iprint .gt. 3) call n1fc1o(io,10,i1,i2,i3,i4,i5,d1,d2,d3,d4)
+      if (iprint.gt.2) call n1fc1o(io,11,iter,nsim,nv,i4,i5,fn,eps,s2,u)
+      if(iprint.ge.6) call n1fc1o(io,12,ntot,i2,i3,i4,i5,d1,d2,d3,poids)
 C                test de non-pivotage
       if (logic .ne. 3) goto 350
       z = 0.d0
@@ -175,7 +178,7 @@ C                test de non-pivotage
         z1 = s(i) - sa(i)
  310  z = z + z1*z1
       if (z .gt. 10.d0*zero*zero*s2) goto 350
-      if (imp .gt. 0) call n1fc1o(io,13,i1,i2,i3,i4,i5,d1,d2,d3,d4)
+      if (iprint .gt. 0) call n1fc1o(io,13,i1,i2,i3,i4,i5,d1,d2,d3,d4)
       mode = 8
       goto 900
 C
@@ -201,11 +204,11 @@ C                 calcul de la resolution minimale, fonction de dx
       tmin = 1.d0 / tmin
       if (iter .eq. 1) roa = ro
       call nlis2(simul,prosca,n,xn,fn,fpn,ro,tmin,tmax,s,s2,g,gd,alfa,
-     &           beta,imp,io,logic,nsim,napmax,x,tol,ap,tps,tnc,gg,izs,
-     &           rzs,dzs)
+     &         beta,iprint,io,logic,nsim,napmax,x,tol,ap,tps,tnc,gg,izs,
+     &         rzs,dzs)
       if (logic.eq.0 .or. logic.eq.2 .or. logic.eq.3) goto 380
 C                 sortie par anomalie dans nlis2
-      if (imp .le. 0) goto 375
+      if (iprint .le. 0) goto 375
       if (logic.eq.6 .or. logic.lt.0)
      &  call n1fc1o(io,14,i1,i2,i3,i4,i5,d1,d2,d3,d4)
       if (logic .eq. 4) call n1fc1o(io,15,i1,i2,i3,i4,i5,d1,d2,d3,d4)
@@ -228,7 +231,7 @@ C              1ere iteration, ajustement de ap, diam et eta
       ajust = ro / roa
       if (logic .ne. 3) diam2 = diam2 * ajust * ajust
       if (logic .ne. 3) eta2 = eta2 / (ajust*ajust)
-      if (imp .ge. 2) call n1fc1o(io,18,i1,i2,i3,i4,i5,diam2,eta2,ap,d4)
+      if(iprint.ge.2) call n1fc1o(io,18,i1,i2,i3,i4,i5,diam2,eta2,ap,d4)
  390  mm = memax - 1
       if (logic .eq. 2) mm = memax - 2
       if (ntot .le. mm) goto 400
@@ -239,10 +242,10 @@ C
      &           ic,izs,rzs,dzs)
       iflag = 1
       nta = ntot
-      if (imp .ge. 2)
+      if (iprint .ge. 2)
      &  call n1fc1o(io,19,iter,nsim,ntot,i4,i5,fn,d2,d3,d4)
 C
- 400  if (imp .ge. 5) call n1fc1o(io,20,logic,i2,i3,i4,i5,ro,tps,tnc,d4)
+ 400  if(iprint.ge.5) call n1fc1o(io,20,logic,i2,i3,i4,i5,ro,tps,tnc,d4)
       if (logic .eq. 3) goto 500
 C
 C                 iteration de descente

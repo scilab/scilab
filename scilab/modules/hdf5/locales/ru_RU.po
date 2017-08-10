@@ -8,59 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-03-01 15:01+0000\n"
-"Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
+"PO-Revision-Date: 2017-01-27 12:24+0000\n"
+"Last-Translator: Nkolay Parukhin <parukhin@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
-"Language: ru\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
-msgstr ""
-"%s: Неверное значение входного параметра №%d: переменная должна быть "
-"определена.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: \"%s\" is a directory"
-msgstr "%s: Неверное значение входного параметра №%d: «%s» — каталог"
-
-#, c-format
-msgid "%s: Cannot open file %s.\n"
-msgstr "%s: Не удалось открыть файл %s.\n"
-
-#, c-format
-msgid "%s: Wrong SOD file format version. Expected: %d Found: %d\n"
-msgstr ""
-"%s: Неверная версия формата SOD-файла. Ожидалась: %d. Обнаружена: %d\n"
-
-#, c-format
-msgid "%s: Unable to delete existing variable \"%s\"."
-msgstr "%s: Нельзя удалить существующую переменную \"%s\"."
-
-#, c-format
-msgid ""
-"%s: Variable '%s' already exists in file '%s'\n"
-"Use -append option to replace existing variable\n"
-"."
-msgstr ""
-"%s: Переменная '%s' уже существует в файле '%s'\n"
-"Используйте опцию -append, чтобы заменить существующую переменную\n"
-"."
-
-#, c-format
-msgid "%s: Unable to update Scilab version in \"%s\"."
-msgstr "%s: Невозможно обновить версию Scilab''а в \"%s\"."
-
-#, c-format
-msgid "%s: Unable to update HDF5 format version in \"%s\"."
-msgstr "%s: Невозможно обновить версию формата HDF5 в \"%s\"."
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
+"X-Generator: Launchpad (build 18315)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -71,8 +26,7 @@ msgid "%s: Invalid H5Object.\n"
 msgstr "%s: Некорректный H5Object.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A string or a H5Object expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or H5Object expected.\n"
 msgstr ""
 "%s: Неверный тип входного аргумента №%d: ожидалась строка или H5Object.\n"
 
@@ -81,7 +35,11 @@ msgid "%s: No more memory.\n"
 msgstr "%s: Недостаточно памяти.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
@@ -109,8 +67,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
-msgstr ""
-"%s: Неверный тип входного аргумента №%d: ожидалась одиночная строка.\n"
+msgstr "%s: Неверный тип входного аргумента №%d: ожидалась одиночная строка.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: six row vector expected.\n"
@@ -133,7 +90,7 @@ msgid "%s: Wrong type for input argument #%d: a H5Object expected.\n"
 msgstr "%s: Неверный тип входного аргумента №%d: ожидался H5Object.\n"
 
 #, c-format
-msgid "%s: Wrong size for argument #%d: A string expected.\n"
+msgid "%s: Wrong size for argument #%d: string expected.\n"
 msgstr ""
 "%s: Неверный размер входного аргумента №%d: ожидалось строковое значение.\n"
 
@@ -168,8 +125,7 @@ msgstr ""
 "строка или вектор-столбец.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Row array of strings expected.\n"
+msgid "%s: Wrong type for input argument #%d: Row array of strings expected.\n"
 msgstr ""
 "%s: Неверный тип входного аргумента №%d: ожидался вектор-строка строковых "
 "значений.\n"
@@ -186,8 +142,7 @@ msgid "%s: Can not use H5Object: invalid object.\n"
 msgstr "%s: Не могу использовать H5Object: недопустимый объект.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A string or a boolean expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or boolean expected.\n"
 msgstr ""
 "%s: Неверный тип входного аргумента №%d: ожидалась строка или логическое "
 "значение.\n"
@@ -240,6 +195,10 @@ msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: Неверное количество входных аргументов: ожидалось %d.\n"
 
 #, c-format
+msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
+msgstr "%s: Неверное количество входных аргументов: ожидалось не менее %d.\n"
+
+#, c-format
 msgid "%s: Unable to open file: %s\n"
 msgstr "%s: Не удалось открыть файл: %s\n"
 
@@ -254,13 +213,85 @@ msgid "%s: Invalid HDF5 Scilab format.\n"
 msgstr "%s: Неверный формат HDF5 Scilab.\n"
 
 #, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: Неверное количество входных аргументов: ожидалось %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+msgstr "%s: Неверное количество выходных аргументов: ожидалось от %d до %d.\n"
+
+#, c-format
+msgid "%s: Unable to open file: '%s'.\n"
+msgstr "%s: Невозможно открыть файл: '%s'.\n"
+
+msgid "Redefining permanent variable.\n"
+msgstr "Переопределение неизменной переменной.\n"
+
+#, c-format
+msgid "%s: %s is not a valid lib file.\n"
+msgstr "%s: %s не корректный lib-файл.\n"
+
+#, c-format
+msgid "%s: Unable to load '%s'\n"
+msgstr "%s: Невозможно загрузить '%s'\n"
+
+#, c-format
+msgid "%s: Wrong SOD file format version. Expected: %d Found: %d\n"
+msgstr "%s: Неверная версия формата SOD-файла. Ожидалась: %d. Обнаружена: %d\n"
+
+#, c-format
+msgid "%s: Unable to load '%s'.\n"
+msgstr "%s: Невозможно загрузить '%s'.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A String expected.\n"
+msgstr "%s: Неверный тип входного аргумента №%d: ожидалась строка.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
+msgstr ""
+"%s: Неверное значение входного параметра №%d: переменная должна быть "
+"определена.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: \"%s\" is a directory"
+msgstr "%s: Неверное значение входного параметра №%d: «%s» — каталог"
+
+#, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr "%s: Не удалось открыть файл %s.\n"
+
+#, c-format
+msgid "%s: Unable to delete existing variable \"%s\".\n"
+msgstr "%s: Невозможно удалить существующую переменную \"%s\".\n"
+
+#, c-format
+msgid ""
+"%s: Variable '%s' already exists in file '%s'\n"
+"Use -append option to replace existing variable.\n"
+msgstr ""
+"%s: Переменная '%s' уже существует в файле '%s'\n"
+"Используйте опцию -append для замены существующей переменной.\n"
+
+#, c-format
+msgid "%s: Unable to export variable '%s' in file '%s'.\n"
+msgstr "%s: Невозможно экспортировать переменную '%s' в файл '%s'.\n"
+
+#, c-format
+msgid "%s: Unable to update Scilab version in \"%s\"."
+msgstr "%s: Невозможно обновить версию Scilab''а в \"%s\"."
+
+#, c-format
+msgid "%s: Unable to update HDF5 format version in \"%s\"."
+msgstr "%s: Невозможно обновить версию формата HDF5 в \"%s\"."
+
+#, c-format
 msgid "%s: Wrong number of input arguments: More than %d expected.\n"
 msgstr ""
 "%s: Неверное количество входных аргументов: ожидалось больше, чем %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A string or a double expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or double expected.\n"
 msgstr ""
 "%s: Неверный тип входного аргумента №%d: ожидался тип string или double.\n"
 
@@ -284,8 +315,8 @@ msgstr "%s: Не  составной объект H5.\n"
 msgid "%s: Can not print H5Object.\n"
 msgstr "%s: Не могу распечатать H5Object.\n"
 
-msgid "Invalid index."
-msgstr "Недопустимый индекс."
+msgid "Invalid index.\n"
+msgstr "Недопустимый индекс.\n"
 
 msgid "Dimensions"
 msgstr "Размеры"
@@ -362,7 +393,7 @@ msgid "Unknown floating-point datatype."
 msgstr "Неизвестный тип данных числа с плавающей запятой"
 
 msgid "Bitfield is too big"
-msgstr ""
+msgstr "Поле бита слишком велико"
 
 msgid "Cannot get data from an unknown data type."
 msgstr "Немогу получить данных из неизвестного типа данных."
@@ -414,7 +445,7 @@ msgstr "Не могу изменить размерность %d."
 
 #, c-format
 msgid "Cannot set the chunk dimensions: %s"
-msgstr ""
+msgstr "Нельзя установить размеры фрагмента: %s"
 
 #, c-format
 msgid "Cannot create the dataset: %s"
@@ -734,19 +765,11 @@ msgstr "Не могу примонтировать файл: %s"
 
 #, c-format
 msgid "Cannot unmount the file at location: %s"
-msgstr ""
+msgstr "Не могу отмонтировать файл в: %s"
 
 #, c-format
 msgid "Can not read input argument #%d."
 msgstr "Не могу прочитать входной аргумент №%d."
-
-#, c-format
-msgid "Can not get the type of input argument #%d."
-msgstr "Не могу получить тип входного аргумента №%d."
-
-#, c-format
-msgid "%s: Can not read input argument #%d."
-msgstr "%s: Не могу прочитать входной аргумент №%d."
 
 #, c-format
 msgid "%s: Datatype not handled for now."
@@ -785,7 +808,7 @@ msgid "Ring resonator (HDF5 data source)"
 msgstr "Кольцевой резонатор (источник данных HDF5)"
 
 msgid "Ring Resonator from a HDF5 file"
-msgstr "Кольцевой резонатор из файла HDF5"
+msgstr "Кольцевой резонатор из HDF5 файла"
 
 msgid "X position [a]"
 msgstr "положение по X [a]"
@@ -794,7 +817,7 @@ msgid "Y position [a]"
 msgstr "положение по Y [a]"
 
 msgid "Permittivity"
-msgstr "Диэлектрическая проницаемость"
+msgstr ""
 
 msgid "Ring Resonator"
 msgstr "Кольцевой резонатор"

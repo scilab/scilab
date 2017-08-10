@@ -3,11 +3,14 @@
 # Copyright (C) INRIA - 2006-2008 - Sylvestre Ledru
 # Copyright (C) DIGITEO - 2009 - Sylvestre Ledru
 #
-# This file must be used under the terms of the CeCILL.
-# This source file is licensed as described in the file COPYING, which
-# you should have received as part of this distribution.  The terms
-# are also available at
-# http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+# Copyright (C) 2012 - 2016 - Scilab Enterprises
+#
+# This file is hereby licensed under the terms of the GNU GPL v2.0,
+# pursuant to article 5.3.4 of the CeCILL v.2.1.
+# This file was originally licensed under the terms of the CeCILL v2.1,
+# and continues to be available under such terms.
+# For more information, see the COPYING file which you should have received
+# along with this program.
 #
 
 ## Process this file with automake to produce Makefile.in (which will be changed by the ./configure)
@@ -27,8 +30,6 @@ AM_CXXFLAGS = $(SCI_CXXFLAGS)
 AM_FFLAGS   = $(SCI_FFLAGS)
 AM_LDFLAGS  = $(SCI_LDFLAGS)
 
-changelogs = CHANGES CHANGES_5.1.X CHANGES_5.2.X CHANGES_5.3.X CHANGES_5.4.X CHANGES_5.5.X CHANGES_6.0.X
-
 bin_PROGRAMS		= scilab-bin scilab-cli-bin
 
 bin_SCRIPTS			= bin/scilab bin/scilab-adv-cli bin/scilab-cli \
@@ -38,20 +39,21 @@ if IS_MACOSX
 bin_SCRIPTS 		+= bin/checkmacosx.applescript
 endif
 
-scilab_bin_LDFLAGS 	    = $(AM_LDFLAGS) $(OPENMPI_LIBS)
+scilab_bin_LDFLAGS      = $(AM_LDFLAGS) $(OPENMPI_LIBS)
 scilab_cli_bin_LDFLAGS  = $(AM_LDFLAGS) $(OPENMPI_LIBS)
 
+#
+# using the static system libs might produce linkage issue (eg.
+# std::nothrow for instance) but it seems to be the only acceptable
+# solution for now.
+#
 if USE_STATIC_SYSTEM_LIB
-scilab_bin_LDFLAGS += -static-libstdc++ -static-libgcc
-# -static-libgfortran
-scilab_cli_bin_LDFLAGS += -static-libstdc++ -static-libgcc
-#-static-libgfortran
+scilab_bin_LDFLAGS += -static-libstdc++ -static-libgcc -static-libgfortran
+scilab_cli_bin_LDFLAGS += -static-libstdc++ -static-libgcc -static-libgfortran
 else
 # Clang (for example) needs an explicit reference to the lib
-scilab_bin_LDFLAGS += -lstdc++
-# -static-libgfortran
-scilab_cli_bin_LDFLAGS += -lstdc++
-#-static-libgfortran
+scilab_bin_LDFLAGS += -lstdc++ -lgfortran
+scilab_cli_bin_LDFLAGS += -lstdc++ -lgfortran
 endif
 
 
@@ -88,6 +90,10 @@ scilab_bin_CPPFLAGS = \
 # Localization dep already exists because of the `exportLocaleToSystem' symbol
 # (causing issues on some platform)
 COMMON_LIBS = $(LTLIBINTL)
+
+# Link against valgrind library as on some systems (eg. Fedora) it should be
+# link on the final binary
+COMMON_LIBS += $(VALGRIND_LIBS)
 
 scilab_bin_SOURCES = modules/startup/src/cpp/scilab.cpp
 
@@ -176,28 +182,11 @@ $(top_builddir)/etc/logging.properties \
 $(top_builddir)/etc/librarypath.xml
 
 infofilesdir=$(pkgdatadir)/
-infofiles_DATA = $(top_srcdir)/CHANGES_2.X \
-$(top_srcdir)/CHANGES_3.X \
-$(top_srcdir)/CHANGES_4.X \
-$(top_srcdir)/CHANGES_5.0.X \
-$(top_srcdir)/CHANGES_5.1.X \
-$(top_srcdir)/CHANGES_5.2.X \
-$(top_srcdir)/CHANGES_5.3.X \
-$(top_srcdir)/CHANGES_5.4.X \
-$(top_srcdir)/CHANGES_5.5.X \
-$(top_srcdir)/CHANGES_6.0.X \
+infofiles_DATA = $(top_srcdir)/CHANGES.md \
 $(top_srcdir)/ACKNOWLEDGEMENTS \
 $(top_srcdir)/COPYING \
 $(top_srcdir)/COPYING-BSD \
-$(top_srcdir)/COPYING-FR \
-$(top_srcdir)/README_Unix \
-$(top_srcdir)/RELEASE_NOTES_5.0.X \
-$(top_srcdir)/RELEASE_NOTES_5.1.X \
-$(top_srcdir)/RELEASE_NOTES_5.2.X \
-$(top_srcdir)/RELEASE_NOTES_5.3.X \
-$(top_srcdir)/Readme_Visual.txt \
-$(top_srcdir)/README_Windows.txt \
-$(top_builddir)/license.txt \
+$(top_srcdir)/README.md \
 $(top_builddir)/Version.incl
 
 valgrinddir=$(pkgdatadir)/tools/profiling
@@ -205,9 +194,18 @@ valgrind_DATA = $(top_srcdir)/tools/profiling/valgrind.supp
 
 macros: $(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli check-jvm-dep check-libstdcpp-dep
 	-@( cd $(top_builddir) ; \
-	echo "$(top_builddir)/bin/scilab-cli -ns -noatomsautoload -f modules/functions/scripts/buildmacros/buildmacros.sce" ; \
-	$(top_builddir)/bin/scilab-cli -ns -noatomsautoload -f modules/functions/scripts/buildmacros/buildmacros.sce) || exit 1
+	echo "$(top_builddir)/bin/scilab-cli -ns -noatomsautoload -quit -f modules/functions/scripts/buildmacros/buildmacros.sce" ; \
+	$(top_builddir)/bin/scilab-cli -ns -noatomsautoload -quit -f modules/functions/scripts/buildmacros/buildmacros.sce) || exit 1
 
+strip-debug:
+	find $(top_builddir) -name '*.so.?.?.?' | while read file ; \
+	do \
+	    if [ ! -f $$file.debug ]; then \
+	        objcopy --only-keep-debug $$file $$file.debug; \
+	        objcopy --strip-debug $$file; \
+	        objcopy --add-gnu-debuglink=$$file.debug $$file; \
+	    fi \
+	done;
 
 check-jvm-dep:
 # Check that scilab-cli does not have a dependency on libjvm
@@ -280,8 +278,8 @@ if BUILD_HELP
 		for l in $(ALL_LINGUAS_DOC); do \
 			echo "-- Building documentation ($$l) --"; \
 			COMMAND="try xmltojar([],[],'$$l');catch disp(lasterror()); exit(-1);end;exit(0);"; \
-			echo "LANG=C LC_ALL=$$l.UTF-8 SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -noatomsautoload -nb -l $$l -nouserstartup -e \"$$COMMAND\"";\
-			LANG=C LC_ALL=$$l.UTF-8 SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -noatomsautoload -nb -l $$l -nouserstartup -e "$$COMMAND" || exit 1;\
+			echo "LANG=$$l.UTF-8 LC_ALL=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 _JAVA_OPTIONS='-Djava.awt.headless=true' $(top_builddir)/bin/scilab-adv-cli -noatomsautoload -nb -l $$l -nouserstartup -e \"$$COMMAND\"";\
+			LANG=$$l.UTF-8 LC_ALL=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 _JAVA_OPTIONS='-Djava.awt.headless=true' $(top_builddir)/bin/scilab-adv-cli -noatomsautoload -nb -l $$l -nouserstartup -e "$$COMMAND" || exit 1;\
 		done; \
 	else \
 		echo "Cannot find Scilab-adv-cli binary"; \
@@ -297,8 +295,8 @@ if BUILD_HELP
 		for l in $(ALL_LINGUAS_DOC); do \
 			echo "-- Building documentation ($$l) --"; \
 			COMMAND="try xmltoweb([],[],'$$l');catch exit(-1);end;exit(0);";\
-			echo "LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -l $$l -noatomsautoload -nouserstartup -e \"$$COMMAND\"";\
-			LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -l $$l -noatomsautoload -nouserstartup -e "$$COMMAND" || exit 1;\
+			echo "LANG=$$l.UTF-8 SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -l $$l -noatomsautoload -nouserstartup -e \"$$COMMAND\"";\
+			LANG=$$l.UTF-8 SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -l $$l -noatomsautoload -nouserstartup -e "$$COMMAND" || exit 1;\
 			JAVADOC_TARGET=$(top_builddir)/modules/helptools/web/$$l/javasci; \
 			if test ! -d $$JAVADOC_TARGET; then \
 				mkdir $$JAVADOC_TARGET; \
@@ -307,10 +305,16 @@ if BUILD_HELP
 		done; \
 	else \
 		echo "Cannot find Scilab-adv-cli binary"; \
-	fi
+	fi \
 else
 	@echo "Cannot buid help. Add --enable-build-help to the ./configure if you want to build it."
 endif
+
+$(top_builddir)/modules/helptools/data/pages/CHANGES.html: $(top_builddir)/CHANGES.md
+	sed -n '1,/html rendered CHANGES.md/{p;}' $@ >$@~
+	cmark $< >>$@~
+	sed -n '/End of the html rendered CHANGES.md/,$${p;}' $@ >>$@~
+	mv $@~ $@
 
 doxygen: modules/development_tools/etc/doxyfile
 if DOXYGEN
@@ -551,7 +555,7 @@ pkgconfigdir = $(libdir)/pkgconfig
 # Files to install in Pkgconfig directory
 pkgconfig_DATA = scilab.pc
 
-.PHONY: macros localization doc
+.PHONY: macros localization doc strip-debug
 
 .NOTPARALLEL: macros doc
 

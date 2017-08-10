@@ -2,15 +2,19 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2010-2010 - DIGITEO - Antoine ELIAS
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
 //for Visual Leak Detector in debug compilation mode
+//#define DEBUG_VLD
 #if defined(DEBUG_VLD) && defined(_DEBUG)
 #include <vld.h>
 #endif
@@ -21,6 +25,8 @@
 #include "function.hxx"
 
 #define MODULE_NAME L"string"
+
+wchar_t* StringModule::pwstToken = NULL;
 
 int StringModule::Load()
 {
@@ -52,5 +58,26 @@ int StringModule::Load()
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"isdigit", &sci_isdigit, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"isascii", &sci_isascii, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"isnum", &sci_isnum, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"csvIsnum", &sci_isnum, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"emptystr", &sci_emptystr, MODULE_NAME));
     return 1;
+}
+
+wchar_t* StringModule::setToken(wchar_t* _base)
+{
+    deleteToken();
+
+    // clone because strtok is destructive:
+    // it writes the L'\0' characters in the elements of the origin string.
+    pwstToken = os_wcsdup(_base);
+    return pwstToken;
+}
+
+void StringModule::deleteToken()
+{
+    if (pwstToken)
+    {
+        FREE(pwstToken);
+        pwstToken = NULL;
+    }
 }

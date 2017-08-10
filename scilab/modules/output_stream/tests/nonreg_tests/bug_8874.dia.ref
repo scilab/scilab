@@ -32,48 +32,48 @@ assert_checkequal(string(A),["-1+%i*Inf","1+%i*Nan","Inf+%i*Nan","Nan+%i*Nan";"1
 //Check display
 complex(0,%inf)
  ans  =
-    Infi
+   Infi 
 complex(1,%inf)
  ans  =
-    1. + Infi
+   1. + Infi
 complex(-1,%inf)
  ans  =
-  - 1. + Infi
+  -1. + Infi
 complex(1,%nan)
  ans  =
-    1. + Nani
+   1. + Nani
 complex(%inf,%nan)
  ans  =
-    Inf + Nani
+   Inf + Nani
 complex(-%inf,%nan)
  ans  =
-  - Inf + Nani
+  -Inf + Nani
 complex(%nan,%nan)
  ans  =
-    Nan + Nani
+   Nan + Nani
 A
-A  = 
-  - 1. + Infi     1. + Nani     Inf + Nani      Nan + Nani  
-    1.            2.            3.              4.          
+ A  = 
+  -1. + Infi   1. + Nani   Inf + Nani   Nan + Nani
+   1.          2.          3.           4.        
 As
-As  = 
+ As  = 
 (  2,  4) sparse matrix
-(  1,  1)	 - 1. + Infi
-(  1,  2)	   1. + Nani
-(  1,  3)	   Inf + Nani
-(  1,  4)	   Nan + Nani
-(  2,  1)	   1.
-(  2,  2)	   2.
-(  2,  3)	   3.
-(  2,  4)	   4.
+(  1,  1)	 -1. + Infi
+(  1,  2)	  1. + Nani
+(  1,  3)	  Inf + Nani
+(  1,  4)	  Nan + Nani
+(  2,  1)	  1.
+(  2,  2)	  2.
+(  2,  3)	  3.
+(  2,  4)	  4.
 P
-P  = 
+ P  = 
 Real part
-                2       3
-  - 1 + s + Infs  + Nans 
+             2      3
+  -1 +s +Infs  +Nans 
 Imaginary part
-                     2       3
-    Inf + Nans + Nans  + Nans 
+                  2      3
+   Inf +Nans +Nans  +Nans 
 format("e")
 // Check string
 assert_checkequal(string(complex(0,%inf)),"%i*Inf");
@@ -88,49 +88,45 @@ assert_checkequal(string(A),["-1.000D+00+%i*Inf","1.000D+00+%i*Nan","Inf+%i*Nan"
 //Check display
 complex(0,%inf)
  ans  =
-    Infi     
+   Infi        
 complex(1,%inf)
  ans  =
-    1.000D+00 + Infi
+   1.000D+00 + Infi
 complex(-1,%inf)
  ans  =
-  - 1.000D+00 + Infi
+  -1.000D+00 + Infi
 complex(1,%nan)
  ans  =
-    1.000D+00 + Nani
+   1.000D+00 + Nani
 complex(%inf,%nan)
  ans  =
-    Inf + Nani
+   Inf + Nani
 complex(-%inf,%nan)
  ans  =
-  - Inf + Nani
+  -Inf + Nani
 complex(%nan,%nan)
  ans  =
-    Nan + Nani
+   Nan + Nani
 A
-A  = 
-         column 1 to 3
-  - 1.000D+00 + Infi     1.000D+00 + Nani     Inf + Nani  
-    1.000D+00            2.000D+00            3.000D+00   
-         column 4
-    Nan + Nani  
-    4.000D+00   
+ A  = 
+  -1.000D+00 + Infi   1.000D+00 + Nani   Inf + Nani   Nan + Nani
+   1.000D+00          2.000D+00          3.000D+00    4.000D+00 
 As
-As  = 
+ As  = 
 (  2,  4) sparse matrix
-(  1,  1)	 - 1.000D+00 + Infi
-(  1,  2)	   1.000D+00 + Nani
-(  1,  3)	   Inf + Nani
-(  1,  4)	   Nan + Nani
-(  2,  1)	   1.000D+00
-(  2,  2)	   2.000D+00
-(  2,  3)	   3.000D+00
-(  2,  4)	   4.000D+00
+(  1,  1)	 -1.000D+00 + Infi
+(  1,  2)	  1.000D+00 + Nani
+(  1,  3)	  Inf + Nani
+(  1,  4)	  Nan + Nani
+(  2,  1)	  1.000D+00
+(  2,  2)	  2.000D+00
+(  2,  3)	  3.000D+00
+(  2,  4)	  4.000D+00
 P
-P  = 
+ P  = 
 Real part
-                                 2       3
-  - 1.000D+00 + 1.000D+00s + Infs  + Nans 
+                              2      3
+  -1.000D+00 +1.000D+00s +Infs  +Nans 
 Imaginary part
-                     2       3
-    Inf + Nans + Nans  + Nans 
+                  2      3
+   Inf +Nans +Nans  +Nans 

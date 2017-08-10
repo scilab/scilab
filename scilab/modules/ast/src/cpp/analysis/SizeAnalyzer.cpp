@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2014 - Scilab Enterprises - Calixte DENIZET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -18,38 +21,39 @@
 
 namespace analysis
 {
-    bool SizeAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, ast::CallExp & e)
+bool SizeAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, ast::CallExp & e)
+{
+    if (lhs > 2)
     {
-        if (lhs > 2)
-        {
-            return false;
-        }
+        return false;
+    }
 
-        const ast::exps_t args = e.getArgs();
-        enum Kind
-        {
-            ROWS, COLS, ROWSTIMESCOLS, ROWSCOLS, ONE, BOTH
-        } kind;
-        const std::size_t size = args.size();
-        if (size == 0 || size >= 3)
-        {
-            return false;
-        }
+    const ast::exps_t args = e.getArgs();
+    enum Kind
+    {
+        ROWS, COLS, ROWSTIMESCOLS, ROWSCOLS, ONE, BOTH, DUNNO
+    } kind = DUNNO;
+    const std::size_t size = args.size();
+    if (size == 0 || size >= 3)
+    {
+        return false;
+    }
 
-        ast::Exp * first = *args.begin();
-        if (!first)
-        {
-            return false;
-        }
-        first->accept(visitor);
-        Result & res = visitor.getResult();
-        if (!res.getType().ismatrix())
-        {
-            return false;
-        }
+    ast::Exp * first = *args.begin();
+    if (!first)
+    {
+        return false;
+    }
+    first->accept(visitor);
+    Result & res = visitor.getResult();
+    if (!res.getType().ismatrix())
+    {
+        visitor.getDM().releaseTmp(res.getTempId(), first);
+        return false;
+    }
 
-        switch (size)
-        {
+    switch (size)
+    {
         case 1:
             if (lhs == 1)
             {
@@ -82,6 +86,7 @@ namespace analysis
                     }
                     else
                     {
+                        visitor.getDM().releaseTmp(res.getTempId(), first);
                         return false;
                     }
                 }
@@ -103,24 +108,27 @@ namespace analysis
                     }
                     else
                     {
+                        visitor.getDM().releaseTmp(res.getTempId(), first);
                         return false;
                     }
                 }
             }
             else
             {
+                visitor.getDM().releaseTmp(res.getTempId(), first);
                 return false;
             }
             break;
         }
         default:
+            visitor.getDM().releaseTmp(res.getTempId(), first);
             return false;
-        }
+    }
 
-        TIType type(visitor.getGVN(), TIType::DOUBLE);
+    TIType type(visitor.getGVN(), TIType::DOUBLE);
 
-        switch (kind)
-        {
+    switch (kind)
+    {
         case ROWS:
         {
             SymbolicDimension & rows = res.getType().rows;
@@ -173,16 +181,18 @@ namespace analysis
             visitor.setResult(_res);
             break;
         }
-	case BOTH:
+        case BOTH:
         {
-	    TIType _type(visitor.getGVN(), TIType::DOUBLE, 1, 2);
+            TIType _type(visitor.getGVN(), TIType::DOUBLE, 1, 2);
             Result & _res = e.getDecorator().setResult(_type);
             e.getDecorator().setCall(new SizeCall(SizeCall::BOTH));
             visitor.setResult(_res);
             break;
         }
-        }
-
-        return true;
+        default:
+            return false;
     }
+
+    return true;
+}
 }

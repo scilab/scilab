@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-12-11 14:26+0000\n"
-"Last-Translator: Julie PAUL <Unknown>\n"
+"PO-Revision-Date: 2016-06-29 16:17+0000\n"
+"Last-Translator: Mickael Albertus <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
-"Language: fr\n"
+"X-Generator: Launchpad (build 18315)\n"
 
 #, c-format
 msgid "%s: wrong parameter type. %s expected. Return default value %d.\n"
@@ -91,14 +91,14 @@ msgid "Parameters"
 msgstr "Paramètres"
 
 msgid "plist handling"
-msgstr "Gestion d'une plist"
+msgstr "manipulation de plist"
 
 msgid ""
 "This demo shows examples of plist utilizations: creation, insertion, "
 "removal, ..."
 msgstr ""
-"Cette démonstration donne des exemples d'utilisation d'une plist : création, "
-"insertion, suppression..."
+"Cette démo montre des exemples des utilisation de plist : création, "
+"insertion, suppression, ..."
 
 #, c-format
 msgid ""
@@ -107,8 +107,8 @@ msgid ""
 "1].\n"
 msgstr ""
 "\n"
-"Création d'une plist '%s' contenant deux champs 'min' = [0 0 0] et 'max' = "
-"[1 1 1].\n"
+"Crée une plist \"%s\" contenant deux champs 'min' = [0 0 0] et 'max' = [1 1 "
+"1].\n"
 
 #, c-format
 msgid ""
@@ -116,15 +116,15 @@ msgid ""
 "Check fields: \n"
 msgstr ""
 "\n"
-"Vérification des champs : \n"
+"Vérifie les champs : \n"
 
 #, c-format
 msgid "Set 'min' = [0 0 0] and 'max' = [1 1 1]:\n"
-msgstr "Configuration de 'min' = [0 0 0] et 'max' = [1 1 1] :\n"
+msgstr "Modifie 'min' = [0 0 0] et 'max' = [1 1 1] :\n"
 
 #, c-format
 msgid "Check values: \n"
-msgstr "Vérification des valeurs : \n"
+msgstr "Vérifie les valeurs : \n"
 
 #, c-format
 msgid ""
@@ -132,7 +132,7 @@ msgid ""
 "Remove the parameter 'min' from %s.\n"
 msgstr ""
 "\n"
-"Suppression du paramètre 'min' de %s.\n"
+"Supprime le paramètre 'min' de %s.\n"
 
 #, c-format
 msgid ""
@@ -156,7 +156,7 @@ msgid ""
 "Check removal: \n"
 msgstr ""
 "\n"
-"Vérification de la suppression : \n"
+"Vérifie le retrait : \n"
 
 #, c-format
 msgid ""
@@ -164,7 +164,7 @@ msgid ""
 "Check type: \n"
 msgstr ""
 "\n"
-"Vérification du type : \n"
+"Vérifie le type : \n"
 
 #, c-format
 msgid "Second output argument of %s is obsolete.\n"
@@ -194,8 +194,7 @@ msgstr "%s : Le paramètre %s n'est pas défini"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): An even number expected.\n"
-msgstr ""
-"%s : Nombre erroné d'argument(s) d'entrée : Un nombre pair attendu.\n"
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : Un nombre pair attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"

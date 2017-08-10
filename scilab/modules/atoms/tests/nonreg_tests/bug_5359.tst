@@ -21,14 +21,15 @@ load("SCI/modules/atoms/macros/atoms_internals/lib");
 
 atomsRepositorySetOfl("http://scene10.test.atoms.scilab.org");
 atomsSystemUpdate();
+atomsInstall("toolbox_1");
 if ~atomsIsInstalled("toolbox_1") then pause, end
 
 // Now rename the install directory of toolbox_1
 // Restart scilab
 // Have a look to the error
 
-atomsRemove("toolbox_1") then pause, end
 
 // Some cleaning
+atomsRemove("toolbox_1");
 atomsRepositorySetOfl(mgetl(SCI+"/modules/atoms/tests/unit_tests/repositories.orig"));
 atomsSystemUpdate();

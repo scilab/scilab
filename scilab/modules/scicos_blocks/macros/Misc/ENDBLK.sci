@@ -46,7 +46,7 @@ function [x,y,typ]=ENDBLK(job,arg1,arg2)
             end
             xx=arg1(spath)// get the block
             execstr("xxn="+xx.gui+"(''set'',xx)")
-            if diffobjs(xxn,xx)==1 then
+            if or(xxn<>xx) then
                 model=xx.model
                 model_n=xxn.model
                 if ~is_modelica_block(xx) then
@@ -126,8 +126,6 @@ function [x,y,typ]=ENDBLK(job,arg1,arg2)
         graphics=scicos_graphics(..
         orig=[272.104,249.11733],..
         sz=[40,40],..
-        flip=%t,..
-        theta=0,..
         exprs="1.000E+08",..
         pin=[],..
         pout=[],..

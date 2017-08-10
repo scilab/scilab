@@ -14,7 +14,7 @@ int ex2c(double * a, int * ma, int * na,
         b[i] = 3 * b[i];
     }
 
-    return(0);
+    return (0);
 }
 
 int sci_optional_parameters(char * fname)

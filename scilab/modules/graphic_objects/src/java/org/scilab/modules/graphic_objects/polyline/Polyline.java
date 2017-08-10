@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Manuel JULIACHS
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -19,6 +22,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DATATIPS__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DATATIP_DISPLAY_FNC__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DATATIP_MARK__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DATATIP_DISPLAY_MODE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_INTERP_COLOR_MODE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_INTERP_COLOR_VECTOR_SET__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_INTERP_COLOR_VECTOR__;
@@ -52,8 +56,24 @@ public class Polyline extends ClippableContouredObject {
     private enum PolylineProperty { CLOSED, ARROWSIZEFACTOR, POLYLINESTYLE,
                                     INTERPCOLORVECTOR, INTERPCOLORVECTORSET, INTERPCOLORMODE,
                                     XSHIFT, YSHIFT, ZSHIFT, BARWIDTH, DATATIPS, DATATIPSCOUNT,
-                                    TIP_DISPLAY_FNC, TIP_MARK, COLORSET
+                                    TIP_DISPLAY_FNC, TIP_MARK, COLORSET, DATATIPDISPLAYMODE
                                   };
+
+    public enum DatatipDisplayMode { ALWAYS, MOUSECLICK, MOUSEOVER;
+
+    public static DatatipDisplayMode intToEnum(Integer i) {
+        switch (i) {
+            case 0:
+                return DatatipDisplayMode.ALWAYS;
+            case 1:
+                return DatatipDisplayMode.MOUSECLICK;
+            case 2:
+                return DatatipDisplayMode.MOUSEOVER;
+            default:
+                return DatatipDisplayMode.ALWAYS;
+        }
+    }
+                                   };
 
     /** Specifies whether the polyline is closed */
     private boolean closed;
@@ -96,6 +116,8 @@ public class Polyline extends ClippableContouredObject {
     /** has color set */
     private boolean colorSet;
 
+    DatatipDisplayMode datatipDisplayMode;
+
     /** Constructor */
     public Polyline() {
         super();
@@ -113,6 +135,7 @@ public class Polyline extends ClippableContouredObject {
         displayFnc = "";
         tipMark = 11;
         colorSet = false;
+        datatipDisplayMode = DatatipDisplayMode.ALWAYS;
     }
 
     @Override
@@ -157,6 +180,8 @@ public class Polyline extends ClippableContouredObject {
                 return PolylineProperty.TIP_MARK;
             case __GO_COLOR_SET__ :
                 return PolylineProperty.COLORSET;
+            case __GO_DATATIP_DISPLAY_MODE__:
+                return PolylineProperty.DATATIPDISPLAYMODE;
             default :
                 return super.getPropertyFromName(propertyName);
         }
@@ -200,6 +225,8 @@ public class Polyline extends ClippableContouredObject {
                     return getTipMark();
                 case COLORSET:
                     return getColorSet();
+                case DATATIPDISPLAYMODE:
+                    return getDatatipDisplayMode();
             }
         }
         return super.getProperty(property);
@@ -246,7 +273,7 @@ public class Polyline extends ClippableContouredObject {
                         setDatatips((Integer[]) value);
                         break;
                     case DATATIPSCOUNT:
-                    	// nothing should be done
+                        // nothing should be done
                         break;
                     case TIP_DISPLAY_FNC:
                         setDisplayFunction((String) value);
@@ -257,6 +284,8 @@ public class Polyline extends ClippableContouredObject {
                     case COLORSET:
                         setColorSet((Boolean) value);
                         break;
+                    case DATATIPDISPLAYMODE:
+                        return setDatatipDisplayMode((Integer)value);
                 }
             }
             return super.setProperty(property, value);
@@ -489,6 +518,41 @@ public class Polyline extends ClippableContouredObject {
      */
     public UpdateStatus setColorSet(Boolean colorSet) {
         this.colorSet = colorSet;
+        return UpdateStatus.Success;
+    }
+
+
+    /**
+     * Get the current datatip display mode
+     * @return the datatip display mode
+     */
+    public Integer getDatatipDisplayMode() {
+        return datatipDisplayMode.ordinal();
+    }
+
+    /**
+     * Get the current datatip display mode as a enum
+     * @return the datatip display mode
+     */
+    public DatatipDisplayMode getDatatipDisplayModeAsEnum() {
+        return datatipDisplayMode;
+    }
+
+    /**
+     * Set the datatip display mode
+     * @param dm datatip display mode.
+     */
+    public UpdateStatus setDatatipDisplayMode(Integer dm) {
+        datatipDisplayMode = DatatipDisplayMode.intToEnum(dm);
+        return UpdateStatus.Success;
+    }
+
+    /**
+     * Set the datatip display mode
+     * @param dm datatip display mode.
+     */
+    public UpdateStatus setDatatipDisplayModeAsEnum(DatatipDisplayMode dm) {
+        datatipDisplayMode = dm;
         return UpdateStatus.Success;
     }
 

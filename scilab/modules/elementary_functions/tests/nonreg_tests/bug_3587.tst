@@ -13,7 +13,7 @@
 // <-- Short Description -->
 // gsort is not stable: It does not preserve the relative order of equal values
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 a=[3,3,2,0,4,0,2,2,5,3];
 

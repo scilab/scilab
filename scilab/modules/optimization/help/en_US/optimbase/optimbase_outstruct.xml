@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="optimbase_outstruct" xml:lang="en">
@@ -16,7 +19,7 @@
         <refpurpose>Returns a data structure with type T_OPTDATA.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             data = optimbase_outstruct(opt)
         </synopsis>
@@ -67,20 +70,20 @@
     <refsection>
         <title>Description</title>
         <para>
-            The <literal>optimbase_outstruct</literal> function returns a data structure with 
+            The <literal>optimbase_outstruct</literal> function returns a data structure with
             T_OPTDATA type. This data structure contains basic optimization fields.
         </para>
         <para>
-            The output argument <literal>data</literal> is designed to be the input of the 
-            <literal>optimbase_outputcmd</literal> function which, in turn, calls back the output 
-            function. This data structure may be enriched by children (specialized) optimization 
+            The output argument <literal>data</literal> is designed to be the input of the
+            <literal>optimbase_outputcmd</literal> function which, in turn, calls back the output
+            function. This data structure may be enriched by children (specialized) optimization
             methods.
         </para>
     </refsection>
     <refsection>
         <title>Example</title>
         <programlisting role="example">
-            <![CDATA[ 
+            <![CDATA[
 function [f,index] = fun(x, index)
     f = 2*x - 4;
 endfunction
@@ -148,7 +151,7 @@ function x = Dicho(opt,a,b)
         opt = optimbase_set ( opt , "-xopt" , x );
         opt = optimbase_set ( opt , "-fopt" , f );
         temp = abs(x-xk);
-        
+
         if temp < optimbase_cget(opt, "-tolxrelative")
             // OutputCmd
             brutedata = optimbase_outstruct ( opt );
@@ -162,7 +165,7 @@ function x = Dicho(opt,a,b)
             break
         end
         xk = x;
-        
+
         // OutputCmd
         brutedata = optimbase_outstruct ( opt );
         data = tlist(["T_OPTBDATA",...
@@ -180,7 +183,7 @@ x = Dicho(opt,a,b)
         </programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="optimbase_outputcmd">optimbase_outputcmd</link>

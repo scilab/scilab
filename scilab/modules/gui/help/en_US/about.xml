@@ -5,7 +5,7 @@
         <refpurpose>show "about scilab" dialog box</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>about()</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -14,7 +14,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 about()
  ]]></programlisting>
     </refsection>

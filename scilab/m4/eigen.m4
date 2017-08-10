@@ -2,11 +2,14 @@ dnl
 dnl Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 dnl Copyright (C) INRIA - 2008 - Sylvestre Ledru
 dnl
-dnl This file must be used under the terms of the CeCILL.
-dnl This source file is licensed as described in the file COPYING, which
-dnl you should have received as part of this distribution.  The terms
-dnl are also available at
-dnl http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+dnl Copyright (C) 2012 - 2016 - Scilab Enterprises
+dnl
+dnl This file is hereby licensed under the terms of the GNU GPL v2.0,
+dnl pursuant to article 5.3.4 of the CeCILL v.2.1.
+dnl This file was originally licensed under the terms of the CeCILL v2.1,
+dnl and continues to be available under such terms.
+dnl For more information, see the COPYING file which you should have received
+dnl along with this program.
 dnl
 dnl AC_EIGEN
 dnl ------------------------------------------------------
@@ -55,14 +58,14 @@ fi
 CPPFLAGS="$save_CPPFLAGS"
 
 CHK_EIGEN_WORLD=3
-CHK_EIGEN_MAJOR=1
-CHK_EIGEN_MINOR=0
+CHK_EIGEN_MAJOR=3
+CHK_EIGEN_MINOR=2
 
 AC_MSG_CHECKING([if Eigen is version $CHK_EIGEN_WORLD.$CHK_EIGEN_MAJOR.$CHK_EIGEN_MINOR or later])
 AC_GREP_CPP(EIGEN_VERSION_OK,
 [
 #include "$PATH_TO_EIGEN/Eigen/Sparse"
-#if EIGEN_VERSION_AT_LEAST(3,1,0)
+#if EIGEN_VERSION_AT_LEAST(3,3,2)
 EIGEN_VERSION_OK
 #endif
 ],\

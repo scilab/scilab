@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="sciprint" xml:lang="ja">
+    <refnamediv>
+        <refname>sciprint</refname>
+        <refpurpose>ユーザに標準メッセージを出力するCゲートウェイ関数
+            (C printf関数と同じプロファイル)
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>void sciprint(format,value_1,..,value_n)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>format</term>
+                <listitem>
+                    <para>char* 文字列.
+                        変換を指定するリテラル文字からなる文字列を指定します.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>value_i</term>
+                <listitem>
+                    <para>
+                        フォーマットパラメータ(%s, %d, ...)に基づき変換するデータを
+                        指定します.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            このCゲートウェイ関数はScilabユーザにメッセージを表示する機能を提供します.
+            基本的に,この関数は,C言語のprintf関数をエミュレートします.
+            この関数を利用するには sciprint.h を読み込む必要があります.
+            このヘッダは output_stream モジュールで提供されます
+            (このディレクトリはデフォルトで読み込まれます).
+        </para>
+        <para>
+            エラーを発生させたい場合, 関数 Scierrorの方がより適当です.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <para>この例では, C ゲートウェイ関数は
+            sciprint関数の使用方法を表す
+            複数のメッセージをScilabコンソールに出力します.
+        </para>
+        <programlisting role="example"><![CDATA[
+#include <stack-c.h>
+#include <sciprint.h>
+int sci_mysciprint(char * fname)
+{
+  sciprint("printing an integer: %d\n", 1);
+  sciprint("printing a double:   %f\n", 2.1);
+  sciprint("printing a string:   %s\n", "test");
+  return 0;
+}
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="printf_conversion">printf_conversion</link>
+            </member>
+            <member>
+                <link linkend="mprintf">mprintf</link>
+            </member>
+            <member>
+                <link linkend="Scierror">Scierror</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -19,4 +19,4 @@ ierr = execstr("getcolor(10)", "errcatch");
 errmsg = lasterror();
 
 if ierr==0 then pause; end
-if errmsg<>msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"), "getcolor", 1) then pause; end
+if errmsg<>msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"), "getcolor", 1) then pause; end

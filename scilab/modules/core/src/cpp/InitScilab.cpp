@@ -3,11 +3,14 @@
  * Copyright (C) 2013 - Scilab Enterprises - Antoine ELIAS
  * Copyright (C) 2013 - Scilab Enterprises - Cedric DELAMARRE
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -30,11 +33,15 @@
 #include "visitor_common.hxx"
 #include "operations.hxx"
 #include "threadmanagement.hxx"
-
+#include "numericconstants.hxx"
 #include "expandPathVariable.h"
+#include "execvisitor.hxx"
+#include "debugmanager.hxx"
+#include "consoledebugger.hxx"
 
 extern "C"
 {
+#include <locale.h>
 #include "machine.h"
 #include "InitializeLocalization.h"
 #include "elem_common.h"
@@ -45,7 +52,6 @@ extern "C"
 #include "TerminateGraphics.h"
 #include "loadBackGroundClassPath.h"
 #include "sci_tmpdir.h"
-#include "configvariable_interface.h"
 #include "setgetlanguage.h"
 #include "InitializeConsole.h"
 #include "InitializeHistoryManager.h"
@@ -72,6 +78,8 @@ extern "C"
 #include "InnosetupMutex.h"
 #include "MutexClosingScilab.h"
 #include "WinConsole.h"
+#include "SignalManagement.h"
+#include "splashScreen.h"
 #else
 #include "signal_mgmt.h"
 #include "initConsoleMode.h"
@@ -81,7 +89,8 @@ extern "C"
 #include "setPrecisionFPU.h"
 #endif
 
-#include "storeCommand.h"
+#include "InitializeTclTk.h"
+#include "dynamic_link.h"
 
     /* Defined without include to avoid useless header dependency */
     extern BOOL isItTheDisabledLib(void);
@@ -99,10 +108,10 @@ static void Add_Nan(void);
 static void Add_Inf(void);
 static void Add_io(void);
 static void Add_All_Variables(void);
-static void Add_Double_Constant(std::wstring _szName, double _dblReal, double _dblImg, bool _bComplex);
-static void Add_Poly_Constant(std::wstring _szName, std::wstring _szPolyVar, int _iRank, types::Double * _pdblReal);
-static void Add_Boolean_Constant(std::wstring _szName, bool _bBool);
-static void Add_String_Constant(std::wstring _szName, const char *_pstString);
+static void Add_Double_Constant(const std::wstring& _szName, double _dblReal, double _dblImg, bool _bComplex);
+static void Add_Poly_Constant(const std::wstring& _szName, const std::wstring& _szPolyVar, int _iRank, types::Double * _pdblReal);
+static void Add_Boolean_Constant(const std::wstring& _szName, bool _bBool);
+static void Add_String_Constant(const std::wstring& _szName, const char *_pstString);
 static void checkForLinkerErrors(void);
 
 static int batchMain(ScilabEngineInfo* _pSEI);
@@ -126,7 +135,11 @@ ScilabEngineInfo* InitScilabEngineInfo()
     pSEI->isInterruptible = 1;      // by default all thread are interruptible
     pSEI->isPrioritary = 0;         // by default all thread are non-prioritary
     pSEI->iStartConsoleThread = 1;  // used in call_scilab to avoid "prompt" thread execution
+    pSEI->iForceQuit = 0;           // management of -quit argument
+    pSEI->iTimeoutDelay = 0;        // watchdog delay to avoid deadlocking tests
+    pSEI->iCommandOrigin = NONE;
 
+    pSEI->iCodeAction = -1; //default value, no code action ( used on windows by file associations -O -X -P arguments)
     return pSEI;
 }
 
@@ -134,7 +147,22 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
 {
     int iMainRet = 0;
     ConfigVariable::setStartProcessing(true);
-    ConfigVariable::setForceQuit(false);
+
+    // ignore -e argument if the command is empty
+    if (_pSEI->pstExec && strcmp(_pSEI->pstExec, "") == 0)
+    {
+        _pSEI->pstExec = NULL;
+    }
+
+    // ignore -quit if -e or -f are not given
+    _pSEI->iForceQuit = _pSEI->iForceQuit && (_pSEI->pstExec || _pSEI->pstFile);
+    ConfigVariable::setForceQuit(_pSEI->iForceQuit == 1);
+
+    // setup timeout delay
+    if (_pSEI->iTimeoutDelay != 0)
+    {
+        timeout_process_after(_pSEI->iTimeoutDelay);
+    }
 
     /* This bug only occurs under Linux 32 bits
      * See: http://wiki.scilab.org/Scilab_precision
@@ -157,12 +185,21 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
 #endif
 
     ThreadManagement::initialize();
-
+    NumericConstants::Initialize();
     checkForLinkerErrors();
 
 #ifdef _MSC_VER
+
     //get current console window and hide it
     int scilabMode = getScilabMode();
+
+#ifndef _DEBUG
+    if (scilabMode == SCILAB_STD && _pSEI->pstFile == NULL && _pSEI->pstExec == NULL)
+    {
+        splashScreen();
+    }
+#endif
+
     if (scilabMode == SCILAB_STD || scilabMode == SCILAB_NW || scilabMode == SCILAB_API)
     {
         CreateScilabHiddenWndThread();
@@ -219,14 +256,9 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
 
     if (_pSEI->iNoJvm == 0) // With JVM
     {
-        /* bug 3702 */
-        /* tclsci creates a TK window on Windows */
-        /* it changes focus on previous windows */
-        /* we put InitializeTclTk before InitializeGUI */
-
-        //InitializeTclTk();
+        InitializeTclTk();
         InitializeJVM();
-        InitializeGUI();
+        InitializeGUI(_pSEI->iWebMode == 0 ? TRUE : FALSE);
 
         /* create needed data structure if not already created */
         loadGraphicModule();
@@ -236,6 +268,9 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
         //update %gui to true
         Add_Boolean_Constant(L"%gui", true);
     }
+
+    // Make sure the default locale is applied at startup
+    setlocale(LC_NUMERIC, "C");
 
     /* Standard mode -> init Java Console */
     if (_pSEI->iConsoleMode == 0)
@@ -251,78 +286,137 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
     }
 
     //set prompt value
-    int pause = 0;
-    C2F(setprlev) (&pause);
+    setPreviousLevel(0);
 
     //load gateways
-    LoadModules();
+    if (LoadModules() == false)
+    {
+        //clear opened files
+        FileManager::destroy();
+        return 1;
+    }
+
+    //variables are needed by loadModules but must be in SCOPE_CONSOLE under protection
+    //remove (W)SCI/SCIHOME/HOME/TMPDIR
+    types::InternalType* sci = symbol::Context::getInstance()->get(symbol::Symbol(L"SCI"));
+    types::InternalType* wsci = symbol::Context::getInstance()->get(symbol::Symbol(L"WSCI"));
+    types::InternalType* scihome = symbol::Context::getInstance()->get(symbol::Symbol(L"SCIHOME"));
+    types::InternalType* home = symbol::Context::getInstance()->get(symbol::Symbol(L"home"));
+    types::InternalType* tmpdir = symbol::Context::getInstance()->get(symbol::Symbol(L"TMPDIR"));
+
+    sci->IncreaseRef();
+    if (wsci)
+    {
+        wsci->IncreaseRef();
+    }
+    scihome->IncreaseRef();
+    home->IncreaseRef();
+    tmpdir->IncreaseRef();
+
+    symbol::Context::getInstance()->remove(symbol::Symbol(L"SCI"));
+    symbol::Context::getInstance()->remove(symbol::Symbol(L"WSCI"));
+    symbol::Context::getInstance()->remove(symbol::Symbol(L"SCIHOME"));
+    symbol::Context::getInstance()->remove(symbol::Symbol(L"home"));
+    symbol::Context::getInstance()->remove(symbol::Symbol(L"TMPDIR"));
 
     //open a scope for macros
     symbol::Context::getInstance()->scope_begin();
+
+    //put var in good scope
+    Add_All_Variables();
+    symbol::Context::getInstance()->put(symbol::Symbol(L"SCI"), sci);
+    if (wsci)
+    {
+        symbol::Context::getInstance()->put(symbol::Symbol(L"WSCI"), wsci);
+    }
+
+    symbol::Context::getInstance()->put(symbol::Symbol(L"SCIHOME"), scihome);
+    symbol::Context::getInstance()->put(symbol::Symbol(L"home"), home);
+    symbol::Context::getInstance()->put(symbol::Symbol(L"TMPDIR"), tmpdir);
+
+    sci->DecreaseRef();
+    if (wsci)
+    {
+        wsci->DecreaseRef();
+    }
+    scihome->DecreaseRef();
+    home->DecreaseRef();
+    tmpdir->DecreaseRef();
+
+
+    symbol::Context::getInstance()->protect();
     //execute scilab.start
     if (_pSEI->iNoStart == 0)
     {
-        execScilabStartTask(_pSEI->iSerialize != 0);
+        int ierr = execScilabStartTask(_pSEI->iSerialize != 0);
+        if (ierr)
+        {
+            return ierr;
+        }
     }
 
     //open console scope
-    symbol::Context::getInstance()->scope_begin();
+    //symbol::Context::getInstance()->scope_begin();
 
     ConfigVariable::setStartProcessing(false);
 
     ConfigVariable::setPromptMode(0);
     int iScript = 0;
-    try
+    if (_pSEI->pstExec)
     {
-        if (_pSEI->pstExec)
+        //-e option
+        Parser parser;
+        parseCommandTask(&parser, _pSEI->iTimed != 0, _pSEI->pstExec);
+
+        if (parser.getExitStatus() == Parser::Failed)
         {
-            //-e option
-            Parser parser;
-            parseCommandTask(&parser, _pSEI->iTimed != 0, _pSEI->pstExec);
-
-            if (parser.getExitStatus() == Parser::Failed)
-            {
-                scilabWriteW(parser.getErrorMessage());
-            }
-            else if (parser.getControlStatus() !=  Parser::AllControlClosed)
-            {
-                _pSEI->iMultiLine = 1;
-            }
-            else
-            {
-                StoreConsoleCommand(_pSEI->pstExec);
-            }
-
-            if (parser.getTree())
-            {
-                delete parser.getTree();
-                parser.setTree(NULL);
-            }
-            iMainRet = ConfigVariable::getExitStatus();
-            iScript = 1;
+            scilabWriteW(parser.getErrorMessage());
         }
-        else if (_pSEI->pstFile)
+        else if (parser.getControlStatus() !=  Parser::AllControlClosed)
         {
-            //-f option execute exec('%s',-1)
-            char *pstCommand = (char *)MALLOC(sizeof(char) * (strlen("exec(\"\",-1)") + strlen(_pSEI->pstFile) + 1));
-            sprintf(pstCommand, "exec(\"%s\",-1)", _pSEI->pstFile);
+            _pSEI->iMultiLine = 1;
+        }
+        else
+        {
+            StoreConsoleCommand(_pSEI->pstExec, 0);
+        }
 
-            StoreConsoleCommand(pstCommand);
-            FREE(pstCommand);
-            iMainRet = ConfigVariable::getExitStatus();
+        if (parser.getTree())
+        {
+            delete parser.getTree();
+            parser.setTree(NULL);
+        }
+        iMainRet = ConfigVariable::getExitStatus();
+        iScript = 1;
+
+        if (_pSEI->iCodeAction != -1)
+        {
+            //alloc in main to manage shell interaction
+            FREE(_pSEI->pstExec);
             _pSEI->pstExec = NULL;
-            _pSEI->pstFile = NULL;
-            iScript = 1;
         }
     }
-    catch (const ast::ScilabException& se)
+    else if (_pSEI->pstFile)
     {
-        scilabErrorW(se.GetErrorMessage().c_str());
+        //-f option execute exec('%s',-1)
+        char *pstCommand = (char *)MALLOC(sizeof(char) * (strlen("exec(\"\",-1)") + strlen(_pSEI->pstFile) + 1));
+        sprintf(pstCommand, "exec(\"%s\",-1)", _pSEI->pstFile);
+
+        StoreConsoleCommand(pstCommand, 0);
+        FREE(pstCommand);
+        iMainRet = ConfigVariable::getExitStatus();
+        _pSEI->pstExec = NULL;
+        _pSEI->pstFile = NULL;
+        iScript = 1;
     }
 
     ConfigVariable::setPromptMode(2);
 
     InitializePreferences(iScript);
+
+
+    //register console debugger as debugger
+    debugger::DebuggerMagager::getInstance()->addDebugger(new debugger::ConsoleDebugger());
 
     return iMainRet;
 }
@@ -345,8 +439,7 @@ int ExecExternalCommand(ScilabEngineInfo* _pSEI)
 {
     if (_pSEI->pstExec)
     {
-        StoreConsoleCommand(_pSEI->pstExec);
-        ThreadManagement::WaitForConsoleExecDoneSignal();
+        StoreConsoleCommand(_pSEI->pstExec, 1);
         return ConfigVariable::getExitStatus();
     }
 
@@ -366,10 +459,6 @@ void StopScilabEngine(ScilabEngineInfo* _pSEI)
 
     clearScilabPreferences();
 
-    //close console scope
-    symbol::Context::getInstance()->scope_end();
-
-    //execute scilab.quit
     if (_pSEI->pstFile)
     {
         //-f option execute exec('%s',-1)
@@ -382,12 +471,13 @@ void StopScilabEngine(ScilabEngineInfo* _pSEI)
     }
     else if (_pSEI->iNoStart == 0)
     {
+        //execute scilab.quit
         execScilabQuitTask(_pSEI->iSerialize != 0);
         //call all modules.quit
         EndModules();
     }
 
-    //close macros scope
+    // close macros scope
     symbol::Context::getInstance()->scope_end();
 
     //close gateways scope
@@ -397,10 +487,25 @@ void StopScilabEngine(ScilabEngineInfo* _pSEI)
     symbol::Context::getInstance()->clearAll();
     //destroy context
     symbol::Context::destroyInstance();
+
 #ifndef NDEBUG
     //uncomment to print mem leak log
     //types::Inspector::displayMemleak();
 #endif
+
+    //close dynamic linked libraries
+    std::vector<ConfigVariable::DynamicLibraryStr*>* pDLLIst = ConfigVariable::getDynamicLibraryList();
+    int size = pDLLIst->size();
+    for (int i = 0; i < size; i++)
+    {
+        ConfigVariable::DynamicLibraryStr* pStr = ConfigVariable::getDynamicLibrary(i);
+        if (pStr)
+        {
+            DynLibHandle iLib = pStr->hLib;
+            ConfigVariable::removeDynamicLibrary(i);
+            Sci_dlclose(iLib);
+        }
+    }
 
     // cleanup Java dependent features
     saveCWDInPreferences();
@@ -410,7 +515,6 @@ void StopScilabEngine(ScilabEngineInfo* _pSEI)
     // stop the JVM
     if (_pSEI->iNoJvm == 0)
     {
-        //dynamic_TerminateTclTk();
         TerminateGraphics();
         TerminateJVM();
     }
@@ -491,7 +595,7 @@ static void processCommand(ScilabEngineInfo* _pSEI)
         execAstTask((ast::Exp*)_pSEI->pExpTree, _pSEI->iSerialize != 0,
                     _pSEI->iTimed != 0, _pSEI->iAstTimed != 0,
                     _pSEI->iExecVerbose != 0, _pSEI->isInterruptible != 0,
-                    _pSEI->isPrioritary != 0, _pSEI->isConsoleCommand != 0);
+                    _pSEI->isPrioritary != 0, _pSEI->iCommandOrigin);
     }
 
     /*
@@ -506,18 +610,18 @@ static void processCommand(ScilabEngineInfo* _pSEI)
 // Thread used to parse and execute Scilab command setted in storeCommand
 void* scilabReadAndExecCommand(void* param)
 {
+    char* command           = NULL;
     int iInterruptibleCmd   = 0;
     int iPrioritaryCmd      = 0;
-    int iConsoleCmd         = 0;
-    char* command           = NULL;
+
+    command_origin_t iCmdOrigin = NONE;
 
     ScilabEngineInfo* _pSEI = (ScilabEngineInfo*)param;
 
-    while (ConfigVariable::getForceQuit() == false)
+    do
     {
-        if (GetCommand(&command, &iInterruptibleCmd, &iPrioritaryCmd, &iConsoleCmd) == 0)
+        if (GetCommand(&command, &iPrioritaryCmd, &iInterruptibleCmd, &iCmdOrigin) == 0)
         {
-            // command queue is empty
             ThreadManagement::WaitForCommandStoredSignal();
             continue;
         }
@@ -530,7 +634,7 @@ void* scilabReadAndExecCommand(void* param)
 
         _pSEI->isInterruptible = iInterruptibleCmd;
         _pSEI->isPrioritary = iPrioritaryCmd;
-        _pSEI->isConsoleCommand = iConsoleCmd;
+        _pSEI->iCommandOrigin = iCmdOrigin;
 
         ThreadManagement::LockParser();
         Parser parser;
@@ -541,6 +645,7 @@ void* scilabReadAndExecCommand(void* param)
         {
             scilabWriteW(parser.getErrorMessage());
             ThreadManagement::UnlockParser();
+            FREE(command);
             continue;
         }
 
@@ -550,6 +655,7 @@ void* scilabReadAndExecCommand(void* param)
         processCommand(_pSEI);
         FREE(command);
     }
+    while (ConfigVariable::getForceQuit() == false);
 
     return NULL;
 }
@@ -557,9 +663,6 @@ void* scilabReadAndExecCommand(void* param)
 //Thread used to parse and set console commands in storeCommand
 void* scilabReadAndStore(void* param)
 {
-    ThreadManagement::LockStart();
-    ThreadManagement::UnlockStart();
-
     Parser::ControlStatus controlStatus = Parser::AllControlClosed;
 
     char *command = NULL;
@@ -595,7 +698,7 @@ void* scilabReadAndStore(void* param)
 
         Parser::ParserStatus exitStatus = Parser::Failed;
 
-        if (ConfigVariable::isEmptyLineShow())
+        if (ConfigVariable::isPrintCompact() == false)
         {
             scilabWriteW(L"\n");
         }
@@ -608,10 +711,17 @@ void* scilabReadAndStore(void* param)
             int pause = ConfigVariable::getPauseLevel();
 
             //set prompt value
-            C2F(setprlev) (&pause);
+           setPreviousLevel(pause);
 
-            char *pstRead = scilabRead();
+            if (scilabRead() == 0)
+            {
+                // happens when the return of scilabRead must not be interpreted by Scilab.
+                // ie: mscanf, step by step execution (mode 4 or 7)
+                ThreadManagement::WaitForConsoleExecDoneSignal();
+                continue;
+            }
 
+            char* pstRead = ConfigVariable::getConsoleReadStr();
             if (command == NULL)
             {
                 command = pstRead;
@@ -621,21 +731,127 @@ void* scilabReadAndStore(void* param)
                     command = NULL;
                     break;
                 }
+#ifdef DEBUG_THREAD
+                ThreadManagement::PrintDebugHead();
+#endif // DEBUG_THREAD
             }
             else
             {
-                //+1 for null termination and +1 for '\n'
-                size_t iLen = strlen(command) + strlen(pstRead) + 2;
-                char *pstNewCommand = (char *)MALLOC(iLen * sizeof(char));
+                if (ConfigVariable::isExecutionBreak())
+                {
+                    //clean parser state and close opened instruction.
+                    if (parser.getControlStatus() != Parser::AllControlClosed)
+                    {
+                        parser.cleanup();
+                        FREE(command);
+                        command = NULL;
+                        parser.setControlStatus(Parser::AllControlClosed);
+                        controlStatus = parser.getControlStatus();
+                    }
+
+                    ConfigVariable::resetExecutionBreak();
+                    break;
+                }
+                else
+                {
+                    //+1 for null termination and +1 for '\n'
+                    size_t iLen = strlen(command) + strlen(pstRead) + 2;
+                    char *pstNewCommand = (char *)MALLOC(iLen * sizeof(char));
 
 #ifdef _MSC_VER
-                sprintf_s(pstNewCommand, iLen, "%s\n%s", command, pstRead);
+                    sprintf_s(pstNewCommand, iLen, "%s\n%s", command, pstRead);
 #else
-                sprintf(pstNewCommand, "%s\n%s", command, pstRead);
+                    sprintf(pstNewCommand, "%s\n%s", command, pstRead);
 #endif
-                FREE(pstRead);
+                    FREE(pstRead);
+                    FREE(command);
+                    command = pstNewCommand;
+                }
+            }
+
+            if (ConfigVariable::getEnableDebug())
+            {
+                bool disableDebug = false;
+                char* tmpCommand = NULL;
+                int commandsize = strlen(command);
+
+                //all commands must be prefixed by debug except e(xec) (r)un or p(rint) "something" that become "something" or disp("something")
+                if (strncmp(command, "e ", 2) == 0 || strncmp(command, "r ", 2) == 0)
+                {
+                    tmpCommand = os_strdup(command + 2);
+                }
+                else if (commandsize >= 5 && strncmp(command, "exec ", 5) == 0)
+                {
+                    tmpCommand = os_strdup(command + 5);
+                }
+                else if (commandsize >= 4 && strncmp(command, "run ", 4) == 0)
+                {
+                    tmpCommand = os_strdup(command + 5);
+                }
+
+                if (tmpCommand)
+                {
+                    if (debugger::DebuggerMagager::getInstance()->isInterrupted())
+                    {
+                        sciprint(_("Debugger is on a breakpoint\n"));
+                        sciprint(_("(c)ontinue or (a)bort current execution before execute a new command\n"));
+                        FREE(tmpCommand);
+                        continue;
+                    }
+                }
+                else if (commandsize > 1 && command[0] == 'd' && command[1] == ' ')
+                {
+                    std::string s("disp(");
+                    s += command + 2;
+                    s += ")";
+                    tmpCommand = os_strdup(s.data());
+                    disableDebug = true;
+                }
+                else if (commandsize > 5 && strncmp(command, "disp ", 5) == 0)
+                {
+                    std::string s("disp(");
+                    s += command + 5;
+                    s += ")";
+                    tmpCommand = os_strdup(s.data());
+                    disableDebug = true;
+                }
+                else if (commandsize > 1 && command[0] == 'p' && command[1] == ' ')
+                {
+                    std::string s("disp(");
+                    s += command + 2;
+                    s += ")";
+                    tmpCommand = os_strdup(s.data());
+                    disableDebug = true;
+                }
+                else if (commandsize > 6 && strncmp(command, "print ", 6) == 0)
+                {
+                    std::string s("disp(");
+                    s += command + 6;
+                    s += ")";
+                    tmpCommand = os_strdup(s.data());
+                    disableDebug = true;
+                }
+                else
+                {
+                    int iLen = (int)strlen(command) + (int)strlen("debug ") + 1;
+                    tmpCommand = (char*)MALLOC(sizeof(char) * iLen);
+#ifdef _MSC_VER
+                    os_sprintf(tmpCommand, iLen, "%s %s", "debug", command);
+#else
+                    os_sprintf(tmpCommand, "%s %s", "debug", command);
+#endif
+                    disableDebug = true;
+                }
+
+                if (disableDebug)
+                {
+                    //disable debugger time to exec debug command
+                    //it will be enable in debuggervisitor, after execution
+                    ConfigVariable::setEnableDebug(false);
+                }
+
                 FREE(command);
-                command = pstNewCommand;
+                command = tmpCommand;
             }
 
             ThreadManagement::LockParser();
@@ -665,12 +881,11 @@ void* scilabReadAndStore(void* param)
             continue;
         }
 
-        StoreConsoleCommand(command);
+        // store the command and wait for this execution ends.
+        StoreConsoleCommand(command, 1);
 
         FREE(command);
         command = NULL;
-
-        ThreadManagement::WaitForConsoleExecDoneSignal();
     }
 
     // Awake scilabReadAndExecCommand thread in case of scilab exit
@@ -712,6 +927,12 @@ static int interactiveMain(ScilabEngineInfo* _pSEI)
         }
     }
 
+    // -e -quit with parser error, command queue is empty
+    if (_pSEI->iForceQuit && isEmptyCommandQueue())
+    {
+        return 1;
+    }
+
     __threadId threadIdConsole;
     __threadKey threadKeyConsole;
     __threadId threadIdCommand;
@@ -719,7 +940,6 @@ static int interactiveMain(ScilabEngineInfo* _pSEI)
 
     if (_pSEI->iStartConsoleThread)
     {
-        ThreadManagement::LockStart();
         // thread to manage console command
         __CreateThreadWithParams(&threadIdConsole, &threadKeyConsole, &scilabReadAndStore, _pSEI);
 
@@ -732,13 +952,36 @@ static int interactiveMain(ScilabEngineInfo* _pSEI)
     // thread to manage command stored
     __CreateThreadWithParams(&threadIdCommand, &threadKeyCommand, &scilabReadAndExecCommand, _pSEI);
 
-    __WaitThreadDie(threadIdCommand);
+#ifdef DEBUG_THREAD
+    ThreadManagement::SetThreadKey( __GetCurrentThreadKey(), threadKeyCommand, threadKeyConsole);
+#endif // DEBUG_THREAD
 
-#ifdef DEBUG
-    std::cerr << "To end program press [ENTER]" << std::endl;
-#endif
+    int iRet = 0;
+    do
+    {
+        // wait for available runner
+        ThreadManagement::WaitForRunMeSignal();
 
-    return ConfigVariable::getExitStatus();
+        try
+        {
+            iRet = StaticRunner::launch();
+        }
+        catch (const ast::InternalAbort& /*ia*/)
+        {
+            // go out when exit/quit is called
+            iRet = ConfigVariable::getExitStatus();
+        }
+        catch (const ast::RecursionException& /*re*/)
+        {
+            // go out when exit/quit is called
+            iRet = 1;
+        }
+
+        ThreadManagement::SendAwakeRunnerSignal();
+    }
+    while (ConfigVariable::getForceQuit() == false);
+
+    return iRet;
 }
 
 /*
@@ -758,7 +1001,7 @@ static int batchMain(ScilabEngineInfo* _pSEI)
     /*
      ** -*- PARSING -*-
      */
-    parseFileTask(parser, _pSEI->iTimed != 0, pwstFileName, L"YaSp");
+    parseFileTask(parser, _pSEI->iTimed != 0, pwstFileName, L"scilab 6");
 
     /*
      ** -*- DUMPING TREE -*-
@@ -787,72 +1030,20 @@ static int batchMain(ScilabEngineInfo* _pSEI)
 #ifdef DEBUG
     std::cerr << "To end program press [ENTER]" << std::endl;
 #endif
-    return parser->getExitStatus();
+    int ret = parser->getExitStatus();
+    delete parser;
+    FREE(pwstFileName);
+    return ret;
 }
 
 /*
 ** -*- stateView
-** Used to show parser state.
-** Find if we are stuck within some control structure.
 */
 static void stateShow(Parser::ControlStatus status)
 {
-    switch (status)
+    if (status != Parser::AllControlClosed)
     {
-            //case Parser::WithinFor:
-            //    SetTemporaryPrompt("-for       ->");
-            //    break;
-            //case Parser::WithinWhile:
-            //    SetTemporaryPrompt("-while     ->");
-            //    break;
-            //case Parser::WithinIf:
-            //    SetTemporaryPrompt("-if        ->");
-            //    break;
-            //case Parser::WithinElse:
-            //    SetTemporaryPrompt("-else      ->");
-            //    break;
-            //case Parser::WithinElseIf:
-            //    SetTemporaryPrompt("-elseif    ->");
-            //    break;
-            //case Parser::WithinTry:
-            //    SetTemporaryPrompt("-try       ->");
-            //    break;
-            //case Parser::WithinCatch:
-            //    SetTemporaryPrompt("-catch     ->");
-            //    break;
-            //case Parser::WithinFunction:
-            //    SetTemporaryPrompt("-function  ->");
-            //    break;
-            //case Parser::WithinSelect:
-            //    SetTemporaryPrompt("-select    ->");
-            //    break;
-            //case Parser::WithinCase:
-            //    SetTemporaryPrompt("-case      ->");
-            //    break;
-            //case Parser::WithinSwitch:
-            //    SetTemporaryPrompt("-switch    ->");
-            //    break;
-            //case Parser::WithinOtherwise:
-            //    SetTemporaryPrompt("-otherwise ->");
-            //    break;
-            //case Parser::WithinMatrix:
-            //    SetTemporaryPrompt("- [        ->");
-            //    break;
-            //case Parser::WithinCell:
-            //    SetTemporaryPrompt("- {        ->");
-            //    break;
-            //case Parser::WithinBlockComment:
-            //    SetTemporaryPrompt("- /*       ->");
-            //    break;
-            //case Parser::WithinDots:
-            //    SetTemporaryPrompt("- ...      ->");
-            //    break;
-        default :
-            SetTemporaryPrompt("  > ");
-            break;
-        case Parser::AllControlClosed:
-            //ClearTemporaryPrompt();
-            break;
+        SetTemporaryPrompt("  > ");
     }
 }
 
@@ -864,7 +1055,7 @@ static int InitializeEnvironnement(void)
     ConfigVariable::setConsoleWidth(75);
     ConfigVariable::setFormatSize(10);
     ConfigVariable::setFormatMode(1);
-    Add_All_Variables();
+    //Add_All_Variables();
     FileManager::initialize();
     initOperationArray();
     return 0;
@@ -878,7 +1069,7 @@ static void checkForLinkerErrors(void)
 {
 #ifndef _MSC_VER
     /*
-       Depending on the linking order, sometime, libs are not loaded the right way.
+       Depending on the linking order, sometimes, libs are not loaded the right way.
        This can cause painful debugging tasks for packager or developer, we are
        doing the check to help them.
     */
@@ -959,7 +1150,7 @@ static void Add_pi(void)
 
 static void Add_eps(void)
 {
-    Add_Double_Constant(L"%eps", C2F(dlamch) ("p", 1L), 0, false);
+    Add_Double_Constant(L"%eps", NumericConstants::eps_machine, 0, false);
 }
 
 static void Add_e(void)
@@ -974,7 +1165,7 @@ static void Add_i(void)
 
 static void Add_s(void)
 {
-    Double dblCoef(1, 2);
+    types::Double dblCoef(1, 2);
 
     dblCoef.set(0, 0, 0);
     dblCoef.set(0, 1, 1);
@@ -984,7 +1175,7 @@ static void Add_s(void)
 
 static void Add_z(void)
 {
-    Double dblCoef(1, 2);
+    types::Double dblCoef(1, 2);
 
     dblCoef.set(0, 0, 0);
     dblCoef.set(0, 1, 1);
@@ -1000,16 +1191,16 @@ static void Add_io(void)
     symbol::Context::getInstance()->put(symbol::Symbol(L"%io"), pVal);
 }
 
-static void Add_Poly_Constant(wstring _szName, wstring _szPolyVar, int _iRank, Double * _pdbl)
+static void Add_Poly_Constant(const std::wstring& _szName, const std::wstring& _szPolyVar, int _iRank, types::Double * _pdbl)
 {
     types::Polynom * pVar = new types::Polynom(_szPolyVar, 1, 1, &_iRank);
-    SinglePoly *poPoly = pVar->get(0);
+    types::SinglePoly *poPoly = pVar->get(0);
 
     poPoly->setCoef(_pdbl);
     symbol::Context::getInstance()->put(symbol::Symbol(_szName), pVar);
 }
 
-static void Add_Double_Constant(wstring _szName, double _dblReal, double _dblImg, bool _bComplex)
+static void Add_Double_Constant(const std::wstring& _szName, double _dblReal, double _dblImg, bool _bComplex)
 {
     types::Double * pVal = new types::Double(1, 1, _bComplex);
     pVal->set(0, 0, _dblReal);
@@ -1017,13 +1208,13 @@ static void Add_Double_Constant(wstring _szName, double _dblReal, double _dblImg
     symbol::Context::getInstance()->put(symbol::Symbol(_szName), pVal);
 }
 
-static void Add_Boolean_Constant(wstring _szName, bool _bBool)
+static void Add_Boolean_Constant(const std::wstring& _szName, bool _bBool)
 {
     types::Bool * pVal = new types::Bool(_bBool);
     symbol::Context::getInstance()->put(symbol::Symbol(_szName), pVal);
 }
 
-static void Add_String_Constant(wstring _szName, const char *_pstString)
+static void Add_String_Constant(const std::wstring& _szName, const char *_pstString)
 {
     types::String * ps = new types::String(_pstString);
     symbol::Context::getInstance()->put(symbol::Symbol(_szName), ps);

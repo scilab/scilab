@@ -20,5 +20,5 @@ assert_checkfalse(execstr("get_function_path()","errcatch")==0);
 refMsg = msprintf(_("%s: Wrong number of input argument: %d expected.\n"), "get_function_path", 1);
 assert_checkerror("get_function_path()", refMsg);
 assert_checkfalse(execstr("get_function_path(eigs)","errcatch")==0);
-refMsg = msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"),"get_function_path",1);
+refMsg = msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"),"get_function_path",1);
 assert_checkerror("get_function_path(eigs)", refMsg);

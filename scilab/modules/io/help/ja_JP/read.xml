@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="read">
@@ -35,16 +38,16 @@
             <varlistentry>
                 <term>m, n</term>
                 <listitem>
-                    <para>整数 (行列 xの次元). 
+                    <para>整数 (行列 xの次元).
                         行の数が未知の場合には m=-1を設定します.
                         この場合,ファイル全体が読み込まれます.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>format : 文字列,"Fortran" 形式で指定します. </term>
+                <term>format</term>
                 <listitem>
-                    <para>この文字列は右括弧で始まり,
+                    <para>文字列,"Fortran" 形式で指定します. この文字列は右括弧で始まり,
                         左括弧で終わる必要があります. format では
                         浮動小数点数または文字列編集モードを混用することができません.
                     </para>
@@ -87,14 +90,14 @@
         <para>
             <literal>format</literal>の例:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 (1x,e10.3,5x,3(f3.0))
-(10x,a20) 
+(10x,a20)
  ]]></programlisting>
         <para>
             formatが省略された場合,データが数値フリー形式で読み込まれます:
             空白,カンマおよびスラッシュをデータセパレータとして
-            使用でき, 
+            使用でき,
             値 v が n 回現れることを指定するためにn*v を使用できます.
         </para>
         <para>
@@ -118,7 +121,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 if getos() == 'Windows' then unix('del foo');
 else unix('rm -f foo'); end
 A=rand(3,5); write('foo',A);

@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- * 
+ *
  * This help file was generated from xcosPal.sci using help_from_sci().
- * 
+ *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xcosPal" xml:lang="en">
     <refnamediv>
         <refname>xcosPal</refname>
-        <refpurpose>Instanciate a new Xcos palette on Scilab.</refpurpose>
+        <refpurpose>Instantiate a new Xcos palette on Scilab.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             pal = xcosPal();
             pal = xcosPal(name);
             pal = xcosPal(scs_m);
             pal = xcosPal([], scs_m);
             pal = xcosPal(name, scs_m);
-            
+
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -46,7 +46,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            Instanciate a new palette diagram.
+            Instantiate a new palette diagram.
         </para>
         <para>
             The optional name argument can be used to set a name to the palette. The optional scs_m argument can be used to import diagrams as palettes.

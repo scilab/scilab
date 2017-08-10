@@ -12,7 +12,7 @@
         <title>Description</title>
         <para>
             La commande <literal>quit</literal> à deux significations
-            différentes selon le contexte d'appel: 
+            différentes selon le contexte d'appel:
         </para>
         <variablelist>
             <varlistentry>
@@ -43,7 +43,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Quitter Scilab
 function foo(x),if x then quit,end,endfunction
 foo(%t) //quitte Scilab
@@ -58,7 +58,7 @@ function foo1(x),
   if x then pause, mprintf('P2\n'),end,
   mprintf('P3\n')
 endfunction
-     
+
 foo1(%t) //entrez l'instruction "quit" au prompt
  ]]></programlisting>
     </refsection>

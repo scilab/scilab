@@ -1,10 +1,13 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 1992-2010 - INRIA - Serge Steer
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution. The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function [xi,xa,np]=graduate( xmi, xma,n1,n2)
     // graduate - axis pretty graduations
@@ -17,17 +20,20 @@ function [xi,xa,np]=graduate( xmi, xma,n1,n2)
     // xi , xa  : real scalars
     // np       :integer scalar
     //%Description
-    // graduate looks for the mimimum interval [xi,xa] and a number of tics np
+    // graduate looks for the minimum interval [xi,xa] and a number of tics np
     // such that:
     //           xi <= xmi <= xma <= xa
     //           xa - xi / np  =  k(10**n)  k in [1 3 5]   for an integer n
     //           n1 <= np <= n2
     //%Exemple
-    //  y=0:0.33:145.78
-    //  clf();plot2d1('enn',0,y)
-    //  [ymn,ymx,np]=graduate(min(y),max(y))
-    //  rect=[1,ymn,prod(size(y)),ymx];
-    //  clf();plot2d1('enn',0,y,-1,'011',' ',rect,[10,3,10,np])
+    //  clf
+    //  subplot(1,2,1)
+    //  y = 0:0.33:145.78
+    //  plot2d(y)
+    //  subplot(1,2,2)
+    //  [ymn,ymx,np] = graduate(min(y), max(y))
+    //  rect = [1, ymn, prod(size(y)), ymx];
+    //  plot2d([], y, -1, '011', ' ', rect, [10,3,10,np])
 
     kadm=[1,2,5];nadm=prod(size(kadm))
 

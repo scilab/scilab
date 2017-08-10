@@ -1,329 +1,329 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="analpf">
-    
+
     <refnamediv>
-        
+
         <refname>analpf</refname>
-        
+
         <refpurpose>アナログローパスフィルタを作成する</refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        
+
         <title>呼び出し手順</title>
-        
+
         <synopsis>
-            
+
             [hs,pols,zers,gain]=analpf(n,fdesign,rp,omega)
-            
+
             hs=analpf(n,fdesign,rp,omega)
-            
+
         </synopsis>
-        
+
     </refsynopsisdiv>
-    
+
     <refsection>
-        
+
         <title>引数</title>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>n</term>
-                
+
                 <listitem>
-                    
+
                     <para>正の整数 : フィルタ次数</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>fdesign</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         文字列 : 以下のようにフィルタ設計手法を示します:
-                        
+
                     </para>
-                    
+
                     <itemizedlist mark="bullet">
-                        
+
                         <listitem>
-                            
+
                             <para>"butt" は,バターワースフィルタ用です.</para>
-                            
+
                         </listitem>
-                        
+
                         <listitem>
-                            
+
                             <para>"cheb1" は,チェビシェフI型フィルタ用です.</para>
-                            
+
                         </listitem>
-                        
+
                         <listitem>
-                            
+
                             <para>"cheb2" は,チェビシェフII型フィルタ用
-                                
+
                                 (逆チェビシェフフィルタとも呼ばれます)です.
                             </para>
-                            
+
                         </listitem>
-                        
+
                         <listitem>
-                            
+
                             <para>"ellip" は,楕円フィルタ用です.</para>
-                            
+
                         </listitem>
-                        
+
                     </itemizedlist>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>rp</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         "cheb1", "cheb2"および"ellip"フィルタ用の
-                        
+
                         リップル値の2要素ベクトル.
-                        
+
                         この要素は以下の関係を満たす必要があります:
-                        
+
                         <literal>0&lt;rp(1),rp(2)&lt;1</literal>.
-                        
+
                     </para>
-                    
+
                     <itemizedlist mark="bullet">
-                        
+
                         <listitem>
-                            
+
                             <para>
-                                
+
                                 "cheb1"フィルタの場合, <literal>rp(1)</literal>のみが
-                                
+
                                 使用されます. 通過域のリップルは,
-                                
+
                                 <literal>1-rp(1)</literal> および <literal>1</literal>
-                                
+
                                 の間です.
-                                
+
                             </para>
-                            
+
                         </listitem>
-                        
+
                         <listitem>
-                            
+
                             <para>
-                                
+
                                 "cheb2" フィルタの場合, <literal>rp(2)</literal>のみが
-                                
+
                                 使用されます. 阻止域のリップルは,
-                                
+
                                 <literal>0</literal> および
-                                
-                                <literal>rp(2)</literal>の間です. 
-                                
+
+                                <literal>rp(2)</literal>の間です.
+
                             </para>
-                            
+
                         </listitem>
-                        
+
                         <listitem>
-                            
+
                             <para>
-                                
+
                                 "ellip" フィルタの場合, <literal>rp(1)</literal> および
-                                
+
                                 <literal>rp(2)</literal> が共に使用されます.  通過域の
-                                
+
                                 リップルは<literal>1-rp(1)</literal>および<literal>1</literal>の
-                                
+
                                 間, 一方, 阻止域のリップルは,
-                                
-                                <literal>0</literal> および <literal>rp(2)</literal>の間です. 
-                                
+
+                                <literal>0</literal> および <literal>rp(2)</literal>の間です.
+
                             </para>
-                            
+
                         </listitem>
-                        
+
                     </itemizedlist>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>omega</term>
-                
+
                 <listitem>
-                    
+
                     <para>ローパスフィルタのカットオフ周波数(単位:rad/s)</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>hs</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         有理数多項式伝達関数
-                        
-                        (<link linkend="syslin">syslin</link>参照). 
-                        
+
+                        (<link linkend="syslin">syslin</link>参照).
+
                         これは,以下となります:
-                        
+
                         <literal>hs=gain*syslin("c",real(poly(zers,"s")),
-                            
+
                             real(poly(pols,"s")))
-                            
+
                         </literal>
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>pols</term>
-                
+
                 <listitem>
-                    
+
                     <para>行ベクトル: 伝達関数の極</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>zers</term>
-                
+
                 <listitem>
-                    
+
                     <para>行ベクトル: 伝達関数のゼロ</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>gain</term>
-                
+
                 <listitem>
-                    
+
                     <para>スカラー: 伝達関数のゲイン</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>説明</title>
-        
+
         <para>
-            
+
             omegaをカットオフ周波数とするアナログローパスフィルタを作成します.
-            
+
             この関数は,
-            
-            <link linkend="zpbutt">zpbutt</link>, 
-            
-            <link linkend="zpch1">zpch1</link>, 
-            
+
+            <link linkend="zpbutt">zpbutt</link>,
+
+            <link linkend="zpch1">zpch1</link>,
+
             <link linkend="zpch2">zpch2</link>
-            
+
             および<link linkend="zpell">zpell</link>関数のドライバです.
-            
+
         </para>
-        
+
         <para>
-            
+
             バターワースフィルタは通過域にリップルを有さず,
-            
+
             阻止域においてゼロ方向に緩やかにロールオフします.
-            
+
             他のフィルタ型は通過域または阻止域に非単調リップルを
-            
+
             有するのに対して,
-            
+
             バターワースフィルタは,omegaについてゲインが単調に
-            
+
             変換する関数を有します.
-            
+
             バターワースフィルタは,他のフィルタよりも
-            
+
             通過域でより線形な位相応答を有します.
-            
+
         </para>
-        
+
         <para>
-            
+
             チェビシェフフィルタは,バターワースフィルタに比べ,
-            
+
             より急なロールオフと,より大きな通過域リップル(I型)または
-            
+
             阻止域リップル(II型)を有します.
-            
+
             チェビシェフフィルタは,フィルタの範囲において
-            
+
             理想化されたフィルタと実際のフィルタの間の
-            
+
             誤差を最小化する特性を有しますが,
-            
+
             通過域にリップルを有します.
-            
+
         </para>
-        
+
         <para>
-            
+
             楕円フィルタは通過域と阻止域の両方で
-            
+
             均一化したリップル特性を有します.
-            
+
             各バンドにおけるリップルの量は独立に調整でき,
-            
+
             リップルの値を指定された場合,
-            
+
             同じ次数の他のフィルタでは,
-            
+
             通過域と阻止域の間で,より速いゲインの遷移を実現できません.
-            
+
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>例</title>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
 //Evaluate magnitude response of the filter
 fcut=5; //hz
 n=7;//filter order
@@ -348,9 +348,9 @@ xlabel("Frequency (Hz)")
 ylabel("Gain")
 title("Analog filters of order 7")
  ]]></programlisting>
-        
+
         <para>
-            
+
             <scilab:image>
                 fcut=5; //hz
                 n=7;//filter order
@@ -368,51 +368,51 @@ title("Analog filters of order 7")
                 plot(fr,abs(hf),'r')
                 [fr, hf]=repfreq(hb,0,15);
                 plot(fr,abs(hf),'c')
-                
+
                 legend(["Chebyshev I","Chebyshev II","Elliptic","Butterworth"]);
                 xgrid()
                 xlabel("Frequency (Hz)")
                 ylabel("Gain")
                 title("Analog filters of order 7")
             </scilab:image>
-            
+
         </para>
-        
+
     </refsection>
-    
+
     <refsection role="see also">
-        
+
         <title>参照</title>
-        
+
         <simplelist type="inline">
-            
+
             <member>
-                
+
                 <link linkend="repfreq">repfreq</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="bode">bode</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="csim">csim</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="syslin">syslin</link>
-                
+
             </member>
-            
+
         </simplelist>
-        
+
     </refsection>
-    
+
 </refentry>
 

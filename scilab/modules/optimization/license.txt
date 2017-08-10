@@ -4,16 +4,20 @@ Copyright (c) 1989-2008 - INRIA
 Copyright (c) Bruno Pincon
 
 License:
-This module must be used under the terms of the CeCILL.
-This module file is licensed as described in the file COPYING, which
-you should have received as part of this distribution.  The terms
-are also available at
-http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+Copyright (C) 2012 - 2016 - Scilab Enterprises
+
+This module is hereby licensed under the terms of the GNU GPL v2.0,
+pursuant to article 5.3.4 of the CeCILL v.2.1.
+This module was originally licensed under the terms of the CeCILL v2.1,
+and continues to be available under such terms.
+For more information, see the COPYING file which you should have received
+along with this program.
 
 SP:
 ===
 
-File: src/c/sp.c
+Files:
+src/c/sp.c
 
 Copyright:
 1994 by Lieven Vandenberghe and Stephen Boyd.
@@ -32,7 +36,8 @@ of this software or its fitness for any particular purpose.
 Minpack:
 ========
 
-Files: src/fortran/minpack/*
+Files:
+src/fortran/minpack/*
 
 Copyright:
 Jorge More' <more@mcs.anl.gov>, Burt Garbow, and Ken Hillstrom at
@@ -65,10 +70,38 @@ acknowledgment:
 qpgen2:
 =======
 
-Files: src/fortran/{qpgen2.f, qpgen1sci.f}
+Files:
+src/fortran/{qpgen2.f,qpgen1sci.f}
 
 Copyright:
 1995 Berwin A. Turlach <berwin@alphasun.anu.edu.au>
 
 License:
 GPL
+
+HOPDM:
+======
+
+Files:
+src/fortran/rdmps1.f
+
+Copyright:
+1996 Jacek Gondzio, Systems Research Institute
+
+License:
+Public Domain
+
+QLD:
+====
+
+Files:
+src/fortran/ql0001.f
+
+Copyright:
+Prof. K.Schittkowski, University of Bayreuth
+Prof. MJD Powell, University of Cambridge
+A.L. Tits and J.L. Zhou, University of Maryland
+
+License:
+Public Domain
+

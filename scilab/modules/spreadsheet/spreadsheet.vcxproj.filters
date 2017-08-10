@@ -35,9 +35,6 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="core_import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
     <None Include="Makefile.am" />
     <None Include="spreadsheet.iss" />
     <None Include="sci_gateway\spreadsheet_gateway.xml" />

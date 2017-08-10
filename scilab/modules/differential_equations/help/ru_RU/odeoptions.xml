@@ -3,11 +3,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="odeoptions" xml:lang="ru">
@@ -16,7 +19,7 @@
         <refpurpose>установка опций для программ решения ОДУ</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>odeoptions()</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -31,7 +34,7 @@
             </caution>
         </para>
         <para>
-            Переменная <literal>%ODEOPTIONS</literal> является вектором со следующими элементами:      
+            Переменная <literal>%ODEOPTIONS</literal> является вектором со следующими элементами:
         </para>
         <para>
             <literal>[itask, tcrit, h0, hmax, hmin, jactyp, mxstep, maxordn, maxords, ixpr, ml, mu]</literal>.
@@ -59,7 +62,7 @@
                     </itemizedlist>
                 </listitem>
                 <listitem>
-                    <literal>tcrit</literal> критическое время, используемое только если 
+                    <literal>tcrit</literal> критическое время, используемое только если
                     <literal>itask</literal> равняется 4 или 5, как описано выше
                 </listitem>
                 <listitem>
@@ -74,11 +77,11 @@
                 <listitem>
                     <literal>jactype</literal> устанавливает свойства матрицы Якоби:
                     <itemizedlist>
-                        <listitem>0: функциональные итерации, матрица Якоби не используется 
-                            (только для методов <literal>"adams"</literal> или <literal>"stiff"</literal>) 
+                        <listitem>0: функциональные итерации, матрица Якоби не используется
+                            (только для методов <literal>"adams"</literal> или <literal>"stiff"</literal>)
                         </listitem>
                         <listitem>1: заданная пользователем полная матрица Якоби</listitem><listitem>2: внутренне рассчитанная полная матрица Якоби</listitem><listitem>3: внутренне рассчитанная диагональная матрица Якоби
-                            (только для методов <literal>"adams"</literal> или <literal>"stiff"</literal>) 
+                            (только для методов <literal>"adams"</literal> или <literal>"stiff"</literal>)
                         </listitem>
                         <listitem>4: заданная пользователем ленточная матрица Якоби (см.
                             <literal>ml</literal> и <literal>mu</literal> ниже)
@@ -89,7 +92,7 @@
                     </itemizedlist>
                 </listitem>
                 <listitem>
-                    <literal>maxordn</literal> максимально разрешённый нежёсткий порядок, не больше 
+                    <literal>maxordn</literal> максимально разрешённый нежёсткий порядок, не больше
                     12
                 </listitem>
                 <listitem>
@@ -102,17 +105,17 @@
                     <literal>ml</literal>, <literal>mu</literal><para>
                         Если <literal>jactype</literal> равен 4 или 5, то <literal>ml</literal>
                         и <literal>mu</literal> являются нижней и верхней половинными полосами
-                        ленточной матрицы Якоби, где лентой являются <literal>i,j</literal> с 
-                        <literal>i-ml</literal> &lt;= <literal>j</literal> &lt;= <literal>ny-1</literal>. 
+                        ленточной матрицы Якоби, где лентой являются <literal>i,j</literal> с
+                        <literal>i-ml</literal> &lt;= <literal>j</literal> &lt;= <literal>ny-1</literal>.
                     </para>
                     <para>
                         Если <literal>jactype</literal> равен 4, тогда функция Якоби должна возвращать
-                        матрицу <literal>J</literal>, которая имеет размерность <literal>ml+mu+1 x ny</literal> 
-                        (где <literal>ny=dim</literal> вектора <literal>y</literal> в 
-                        <literal>ydot=f(t,y))</literal> так что первый столбец <literal>J</literal> составлен из 
-                        <literal>mu</literal> нулей, за которыми следуют <literal>df1/dy1</literal>, 
+                        матрицу <literal>J</literal>, которая имеет размерность <literal>ml+mu+1 x ny</literal>
+                        (где <literal>ny=dim</literal> вектора <literal>y</literal> в
+                        <literal>ydot=f(t,y))</literal> так что первый столбец <literal>J</literal> составлен из
+                        <literal>mu</literal> нулей, за которыми следуют <literal>df1/dy1</literal>,
                         <literal>df2/dy1</literal>, <literal>df3/dy1</literal>, ... (<literal>1+ml</literal>
-                        возможно ненулевых элементов), второй столбец составлен из <literal>mu-1</literal> 
+                        возможно ненулевых элементов), второй столбец составлен из <literal>mu-1</literal>
                         нулей, за которыми следуют <literal>df1/dx2</literal>, <literal>df2/dx2</literal> и т. д.
                     </para>
                 </listitem>

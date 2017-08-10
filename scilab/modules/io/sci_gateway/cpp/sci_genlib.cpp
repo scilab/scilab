@@ -2,11 +2,14 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2006 - INRIA - Allan CORNET
 *
-7* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
@@ -26,14 +29,13 @@
 #include <libxml/xpath.h>
 #include <libxml/xmlwriter.h>
 
-#include <string.h>
+#include <cstring>
+#include "string.hxx"
 #include "parser.hxx"
 #include "context.hxx"
 #include "io_gw.hxx"
 #include "scilabWrite.hxx"
-#include "expandPathVariable.h"
 #include "configvariable.hxx"
-#include "string.hxx"
 #include "library.hxx"
 #include "macrofile.hxx"
 #include "serializervisitor.hxx"
@@ -56,46 +58,56 @@ extern "C"
 #include "Scierror.h"
 #include "scicurdir.h"
 #include "md5.h"
+#include "pathconvert.h"
+
+#include <wchar.h> // for wcscmp
+#include <stdlib.h> // for qsort
 }
 
 
 xmlTextWriterPtr openXMLFile(const wchar_t *_pstFilename, const wchar_t* _pstLibName);
 void closeXMLFile(xmlTextWriterPtr _pWriter);
-bool AddMacroToXML(xmlTextWriterPtr _pWriter, const wstring& name, const wstring& file, const wstring& md5);
+bool AddMacroToXML(xmlTextWriterPtr _pWriter, const std::wstring& name, const std::wstring& file, const std::wstring& md5);
+static int cmp(const void* p1, const void* p2);
 
 
-using namespace types;
 /*--------------------------------------------------------------------------*/
-Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::typed_list &out)
+types::Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
+    int succes = 1;
+    std::vector<std::wstring> failed_files;
+    std::vector<std::wstring> success_files;
+    std::vector<std::wstring> funcs;
+
     wchar_t pstParseFile[PATH_MAX + FILENAME_MAX];
     wchar_t pstVerbose[65535];
 
-    int iNbFile	            = 0;
-    wchar_t *pstParsePath      = NULL;
-    int iParsePathLen		= 0;
-    wchar_t* pstLibName		= NULL;
-    bool bVerbose           = false;
+    int iNbFile = 0;
+    wchar_t *pstParsePath = NULL;
+    int iParsePathLen = 0;
+    wchar_t* pstLibName = NULL;
+    bool bVerbose = false;
+    bool bForce = false;
 
     if (in.size() < 1 || in.size() > 4)
     {
         Scierror(78, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "genlib", 1, 4);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     //param 1, library name
-    InternalType* pIT = in[0];
+    types::InternalType* pIT = in[0];
     if (pIT->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "genlib", 1);
-        return Function::Error;
+        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "genlib", 1);
+        return types::Function::Error;
     }
 
-    String *pS = pIT->getAs<types::String>();
+    types::String *pS = pIT->getAs<types::String>();
     if (pS->getSize() != 1)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), "genlib", 1);
-        return Function::Error;
+        Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), "genlib", 1);
+        return types::Function::Error;
     }
     pstLibName = pS->get(0);
 
@@ -105,26 +117,43 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
         pIT = in[1];
         if (pIT->isString() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "genlib", 2);
-            return Function::Error;
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "genlib", 2);
+            return types::Function::Error;
         }
     }
     else
     {
         int ierr = 0;
-        pIT = new types::String(scigetcwd(&ierr));
+        char* pstr = scigetcwd(&ierr);
+        pIT = new types::String(pstr);
+        FREE(pstr);
     }
 
     pS = pIT->getAs<types::String>();
     if (pS->isScalar() == false)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), "genlib", 2);
-        return Function::Error;
+        Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), "genlib", 2);
+        return types::Function::Error;
     }
 
+    //param 3, force flag
     if (in.size() > 2)
     {
-        //force flag, do nothing but keep for compatibility
+        pIT = in[2];
+        if (pIT->isBool() == false)
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d: A scalar boolean expected.\n"), "genlib", 3);
+            return types::Function::Error;
+        }
+
+        types::Bool* p = pIT->getAs<types::Bool>();
+        if (p->isScalar() == false)
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d: A scalar boolean expected.\n"), "genlib", 3);
+            return types::Function::Error;
+        }
+
+        bForce = p->get()[0] == 1;
     }
 
     if (in.size() > 3)
@@ -133,16 +162,29 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
         pIT = in[3];
         if (pIT->isBool() == false)
         {
-            return Function::Error;
+            Scierror(999, _("%s: Wrong type for input argument #%d: A scalar boolean expected.\n"), "genlib", 3);
+            return types::Function::Error;
         }
 
-        bVerbose = pIT->getAs<types::Bool>()->get()[0] == 1;
+        types::Bool* p = pIT->getAs<types::Bool>();
+        if (p->isScalar() == false)
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d: A scalar boolean expected.\n"), "genlib", 3);
+            return types::Function::Error;
+        }
+
+        bVerbose = p->get()[0] == 1;
     }
 
     wchar_t* pstFile = pS->get(0);
-    pstParsePath = expandPathVariableW(pstFile);
+    pstParsePath = pathconvertW(pstFile, TRUE, TRUE, AUTO_STYLE);
 
-    os_swprintf(pstParseFile, PATH_MAX + FILENAME_MAX, L"%ls%lslib", pstParsePath, FILE_SEPARATOR);
+    if (in.size() == 1)
+    {
+        delete pS;
+    }
+
+    os_swprintf(pstParseFile, PATH_MAX + FILENAME_MAX, L"%lslib", pstParsePath);
 
     if (bVerbose)
     {
@@ -173,9 +215,9 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
         os_swprintf(pstVerbose, 65535, _W("%ls: Cannot open file ''%ls''.\n").c_str(), L"genlib", pstParseFile);
         scilabWriteW(pstVerbose);
 
-        out.push_back(new Bool(0));
+        out.push_back(new types::Bool(0));
         FREE(pstParsePath);
-        return Function::OK;
+        return types::Function::OK;
     }
 
 
@@ -183,19 +225,33 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
 
     if (pstPath)
     {
+        // sort by name using C-style functions
+        qsort(pstPath, iNbFile, sizeof(wchar_t*), cmp);
+
         types::Library* pLib = new types::Library(pstParsePath);
         for (int k = 0 ; k < iNbFile ; k++)
         {
             //version with direct parsing
             //parse the file to find all functions
-            wstring stFullPath = wstring(pstParsePath) + wstring(FILE_SEPARATOR) + wstring(pstPath[k]);
-            wstring stFullPathBin(stFullPath);
+            std::wstring stFullPath = std::wstring(pstParsePath) + std::wstring(pstPath[k]);
+            std::wstring stFullPathBin(stFullPath);
             stFullPathBin.replace(stFullPathBin.end() - 3, stFullPathBin.end(), L"bin");
-            wstring pstPathBin(pstPath[k]);
+            std::wstring pstPathBin(pstPath[k]);
             pstPathBin.replace(pstPathBin.end() - 3, pstPathBin.end(), L"bin");
 
             //compute file md5
             FILE* fmdf5 = os_wfopen(stFullPath.data(), L"rb");
+            if (fmdf5 == NULL)
+            {
+                char* pstr = wide_string_to_UTF8(stFullPath.data());
+                Scierror(999, _("%s: Cannot open file ''%s''.\n"), "genlib", pstr);
+                FREE(pstr);
+                FREE(pstParsePath);
+                freeArrayOfWideString(pstPath, iNbFile);
+                pLib->killMe();
+                return types::Function::Error;
+            }
+
             char* md5 = md5_file(fmdf5);
             fclose(fmdf5);
 
@@ -204,17 +260,21 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
             std::wstring wide_md5(wmd5);
             FREE(wmd5);
 
-            //check if is exist in old file
-
-            MacroInfoList::iterator it = lstOld.find(pstPathBin);
-            if (it != lstOld.end())
+            if (bForce == false)
             {
-                if (wide_md5 == (*it).second.md5)
+                //check if is exist in old file
+                MacroInfoList::iterator it = lstOld.find(pstPathBin);
+                if (it != lstOld.end())
                 {
-                    //file not change, we can skip it
-                    AddMacroToXML(pWriter, (*it).second.name, pstPathBin, wide_md5);
-                    pLib->add((*it).second.name, new types::MacroFile((*it).second.name, stFullPathBin, pstLibName));
-                    continue;
+                    if (wide_md5 == (*it).second.md5)
+                    {
+                        //file not change, we can skip it
+                        AddMacroToXML(pWriter, (*it).second.name, pstPathBin, wide_md5);
+                        pLib->add((*it).second.name, new types::MacroFile((*it).second.name, stFullPathBin, pstLibName));
+                        success_files.push_back(stFullPath);
+                        funcs.push_back((*it).second.name);
+                        continue;
+                    }
                 }
             }
 
@@ -227,9 +287,28 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
             parser.parseFile(stFullPath, ConfigVariable::getSCIPath());
             if (parser.getExitStatus() !=  Parser::Succeded)
             {
-                scilabWriteW(parser.getErrorMessage());
-                Scierror(999, _("%ls: Error in file %ls.\n"), L"genlib", stFullPath.data());
-                return Function::Error;
+                if (_iRetCount != 4)
+                {
+                    std::wstring wstrErr = parser.getErrorMessage();
+
+                    wchar_t errmsg[256];
+                    os_swprintf(errmsg, 256, _W("%ls: Error in file %ls.\n").c_str(), L"genlib", stFullPath.data());
+                    wstrErr += errmsg;
+
+                    char* str = wide_string_to_UTF8(wstrErr.c_str());
+                    Scierror(999, str);
+                    FREE(str);
+
+                    FREE(pstParsePath);
+                    freeArrayOfWideString(pstPath, iNbFile);
+                    closeXMLFile(pWriter);
+                    delete pLib;
+                    return types::Function::Error;
+                }
+
+                failed_files.push_back(stFullPath);
+                succes = 0;
+                continue;
             }
 
             //serialize ast
@@ -249,7 +328,7 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
                 if ((*j)->isFunctionDec())
                 {
                     ast::FunctionDec* pFD = (*j)->getAs<ast::FunctionDec>();
-                    const wstring& name = pFD->getSymbol().getName();
+                    const std::wstring& name = pFD->getSymbol().getName();
                     if (name + L".sci" == pstPath[k])
                     {
                         if (AddMacroToXML(pWriter, name, pstPathBin, wide_md5) == false)
@@ -259,6 +338,8 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
                         }
 
                         pLib->add(name, new types::MacroFile(name, stFullPathBin, pstLibName));
+                        success_files.push_back(stFullPath);
+                        funcs.push_back(name);
                         break;
                     }
                 }
@@ -278,15 +359,82 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
         else
         {
             Scierror(999, _("Redefining permanent variable.\n"));
-            return Function::Error;
+
+            freeArrayOfWideString(pstPath, iNbFile);
+            FREE(pstParsePath);
+            closeXMLFile(pWriter);
+            delete pLib;
+            return types::Function::Error;
         }
     }
 
     freeArrayOfWideString(pstPath, iNbFile);
-    out.push_back(new Bool(1));
+
+    out.push_back(new types::Bool(succes));
+
+    if (_iRetCount > 1)
+    {
+        int size = static_cast<int>(funcs.size());
+        if (size == 0)
+        {
+            out.push_back(types::Double::Empty());
+        }
+        else
+        {
+            types::String* s = new types::String(size, 1);
+
+            for (int i = 0; i < size; ++i)
+            {
+                s->set(i, funcs[i].data());
+            }
+
+            out.push_back(s);
+        }
+    }
+
+    if (_iRetCount > 2)
+    {
+        int size = static_cast<int>(success_files.size());
+        if (size == 0)
+        {
+            out.push_back(types::Double::Empty());
+        }
+        else
+        {
+            types::String* s = new types::String(size, 1);
+
+            for (int i = 0; i < size; ++i)
+            {
+                s->set(i, success_files[i].data());
+            }
+
+            out.push_back(s);
+        }
+    }
+
+    if (_iRetCount > 3)
+    {
+        int size = static_cast<int>(failed_files.size());
+        if (size == 0)
+        {
+            out.push_back(types::Double::Empty());
+        }
+        else
+        {
+            types::String* s = new types::String(size, 1);
+
+            for (int i = 0; i < size; ++i)
+            {
+                s->set(i, failed_files[i].data());
+            }
+
+            out.push_back(s);
+        }
+    }
+
     FREE(pstParsePath);
     closeXMLFile(pWriter);
-    return Function::OK;
+    return types::Function::OK;
 }
 
 void closeXMLFile(xmlTextWriterPtr _pWriter)
@@ -323,6 +471,8 @@ xmlTextWriterPtr openXMLFile(const wchar_t *_pstFilename, const wchar_t* _pstLib
     pWriter = xmlNewTextWriterFilename(pstFilename, 0);
     if (pWriter == NULL)
     {
+        FREE(pstFilename);
+        FREE(pstLibName);
         return NULL;
     }
 
@@ -334,6 +484,9 @@ xmlTextWriterPtr openXMLFile(const wchar_t *_pstFilename, const wchar_t* _pstLib
     iLen = xmlTextWriterStartDocument(pWriter, NULL, DEFAULT_ENCODING, "no");
     if (iLen < 0)
     {
+        closeXMLFile(pWriter);
+        FREE(pstFilename);
+        FREE(pstLibName);
         return NULL;
     }
 
@@ -341,6 +494,9 @@ xmlTextWriterPtr openXMLFile(const wchar_t *_pstFilename, const wchar_t* _pstLib
     iLen = xmlTextWriterStartElement(pWriter, (xmlChar*)"scilablib");
     if (iLen < 0)
     {
+        closeXMLFile(pWriter);
+        FREE(pstFilename);
+        FREE(pstLibName);
         return NULL;
     }
 
@@ -348,6 +504,9 @@ xmlTextWriterPtr openXMLFile(const wchar_t *_pstFilename, const wchar_t* _pstLib
     iLen = xmlTextWriterWriteAttribute(pWriter, (xmlChar*)"name", (xmlChar*)pstLibName);
     if (iLen < 0)
     {
+        closeXMLFile(pWriter);
+        FREE(pstFilename);
+        FREE(pstLibName);
         return NULL;
     }
 
@@ -357,7 +516,7 @@ xmlTextWriterPtr openXMLFile(const wchar_t *_pstFilename, const wchar_t* _pstLib
     return pWriter;
 }
 
-bool AddMacroToXML(xmlTextWriterPtr _pWriter, const wstring& name, const wstring& file, const wstring& md5)
+bool AddMacroToXML(xmlTextWriterPtr _pWriter, const std::wstring& name, const std::wstring& file, const std::wstring& md5)
 {
     int iLen;
 
@@ -409,3 +568,10 @@ bool AddMacroToXML(xmlTextWriterPtr _pWriter, const wstring& name, const wstring
 
     return true;
 }
+
+
+static int cmp(const void* p1, const void* p2)
+{
+    return wcscmp(* (wchar_t * const *) p1, * (wchar_t * const *) p2);
+}
+

@@ -1,4 +1,0 @@
-TBX_SUM_c - block which perform a basic sum of the inputs
-tbx_sum - Scilab native function which perform the same operation as TBX_SUM.
-TBX_NOOP - Scilab or C no-op with any number of inputs and outputs
-

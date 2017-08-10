@@ -3,156 +3,159 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Farid BELAHCENE
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="char" xml:lang="ja">
-    
+
     <refnamediv>
-        
+
         <refname>char</refname>
-        
+
         <refpurpose>char 関数</refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        
+
         <title>呼び出し手順</title>
-        
+
         <synopsis>
-            
+
             y = char(x)
-            
+
             y = char(st1, st2, st3,....)
-            
+
         </synopsis>
-        
+
     </refsynopsisdiv>
-    
+
     <refsection>
-        
+
         <title>引数</title>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>x</term>
-                
+
                 <listitem>
-                    
+
                     <para>文字列配列のセル, またはアスキーコードの配列</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>st1,st2,st3</term>
-                
+
                 <listitem>
-                    
+
                     <para>文字列配列</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>y:</term>
-                
+
                 <listitem>
-                    
+
                     <para>文字列(列)ベクトル</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>説明</title>
-        
+
         <para>
-            
+
             <emphasis role="bold">入力引数が一つの場合  :</emphasis>
-            
+
         </para>
-        
+
         <para>
-            
+
             文字列配列<varname>x</varname>のセルを指定すると, この関数は
-            
+
             文字列セルの要素を行とする文字列ベクトル <varname>y</varname>
-            
+
             を返します.
-            
+
         </para>
-        
+
         <para>
-            
+
             アスキーコード<varname>x</varname>の配列を指定すると,
-            
-            この関数はそのアスキーコードに対応する文字列の配列 <varname>y</varname> 
-            
+
+            この関数はそのアスキーコードに対応する文字列の配列 <varname>y</varname>
+
             を返します.
-            
+
             <varname>x</varname>の次元が <literal>[n1, n2, n3, n4,...]</literal>の場合,
-            
+
             返り値は2番目の次元以外は入力値と同じ大きさを有します.
-            
+
             すなわち,<varname>y</varname>の次元は,
-            
+
             <literal>[n1, n3, n4,...]</literal>となります.
-            
+
         </para>
-        
+
         <para>
-            
+
             <emphasis role="bold">入力引数が1より多い場合 :</emphasis>
-            
+
         </para>
-        
+
         <para>
-            
+
             文字列配列
-            
+
             <literal>st1,st2,st3,...</literal>を指定すると, この関数は,
-            
+
             <literal>st1,st2,st3,...</literal>を結合した要素が行となる
-            
+
             文字列のベクトルを返します.
-            
+
             ベクトル <varname>y</varname> においては,
-            
+
             文字列<literal>sti</literal>の末尾を空白で埋めることにより,
-            
+
             <literal>sti</literal>の最長のものと同じ長さにしています.
-            
+
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>例</title>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
 //Example with a hypermatrix of ASCII codes :
-x=hypermat([4,2,3],61:84);
+x=matrix(61:84, [4,2,3]);
 y=char(x)
 size(x)
 size(y)
@@ -165,30 +168,30 @@ size(y)
 //all strings rows are completed by 'blanks' to have the same length : 6
 length(y)
  ]]></programlisting>
-        
+
     </refsection>
-    
+
     <refsection role="see also">
-        
+
         <title>参照</title>
-        
+
         <simplelist type="inline">
-            
+
             <member>
-                
+
                 <link linkend="ascii">ascii</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="asciimat">asciimat</link>
-                
+
             </member>
-            
+
         </simplelist>
-        
+
     </refsection>
-    
+
 </refentry>
 

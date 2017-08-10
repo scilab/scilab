@@ -5,7 +5,7 @@
         <refpurpose>Yule-Walker equations (Levinson's algorithm)  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[ar, sigma2, rc]=lev(r)</synopsis>
     </refsynopsisdiv>
     <refsection>

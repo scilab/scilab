@@ -4,7 +4,8 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
+//
+//<-- CLI SHELL MODE -->
 // <-- Non-regression test for bug 3775 -->
 //
 
@@ -18,10 +19,10 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=3775
 //
 
-a=mopen(TMPDIR+'test.sce','wt');
-path_returned = get_absolute_file_path('test.sce');
-if (path_returned <> TMPDIR) then pause,end
+a=mopen(TMPDIR+filesep()+"test.sce","wt");
+path_returned = get_absolute_file_path("test.sce");
+if (path_returned <> TMPDIR+filesep()) then pause,end
 mclose(a);
 
-ierr = execstr('path_returned = get_absolute_file_path(''test.sce'');','errcatch');
+ierr = execstr("path_returned = get_absolute_file_path(''test.sce'');","errcatch");
 if ierr <> 999 then pause,end

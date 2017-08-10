@@ -2,22 +2,30 @@
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2011 - DIGITEO - Antoine ELIAS
 *
-*  This file must be used under the terms of the CeCILL.
-*  This source file is licensed as described in the file COPYING, which
-*  you should have received as part of this distribution.  The terms
-*  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
+
+#include <list>
+#include <vector>
 
 #include "alltypes.hxx"
 #include "types_tools.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
+#include "scilabWrite.hxx"
+
 extern "C"
 {
 #include "elem_common.h"
 #include "os_string.h"
+#include "more.h"
 }
 
 namespace types
@@ -38,6 +46,19 @@ double getIndex(T* val)
 {
     typename T::type* p = val->get();
     return static_cast<double>(p[0]);
+}
+
+template<typename T>
+Double* convertIndex(T* pI)
+{
+    int size = pI->getSize();
+    Double* pCurrentArg = new Double(1, size);
+    double* pdbl = pCurrentArg->get();
+    for (int l = 0; l < size; l++)
+    {
+        pdbl[l] = static_cast<double>(pI->get(l));
+    }
+    return pCurrentArg;
 }
 
 double getIndex(InternalType* val)
@@ -85,6 +106,88 @@ double getIndex(InternalType* val)
 
     return 0;
 }
+
+//get only scalar index
+bool getArgsDims(typed_list* _pArgsIn, std::vector<int>& dims)
+{
+    //input size must be equal to ref dims
+    int dimsIn = static_cast<int>(_pArgsIn->size());
+
+    //same dims and less than internal limit
+    if (dimsIn > MAX_DIMS)
+    {
+        return false;
+    }
+
+    dims.reserve(dimsIn);
+
+    for (int i = 0; i < dimsIn; ++i)
+    {
+        InternalType* in = (*_pArgsIn)[i];
+        //input arg type must be scalar double, int8, int16, ...
+        if (in->isGenericType() && in->getAs<GenericType>()->isScalar())
+        {
+            int ind = static_cast<int>(getIndex(in));
+            if (ind == 0)
+            {
+                return false;
+            }
+
+            dims.push_back(ind);
+        }
+        else if (in->isImplicitList())
+        {
+            ImplicitList* pIL = in->getAs<ImplicitList>();
+            if (pIL->isComputable() == false)
+            {
+                return false;
+            }
+
+            int size = pIL->getSize();
+            if (size <= 0)
+            {
+                return false;
+            }
+
+
+            double start = getIndex(pIL->getStart());
+            double step = getIndex(pIL->getStep());
+            if (step > 0)
+            {
+                double real_end = start + step * (size - 1);
+                dims.push_back(real_end);
+            }
+            else if (step < 0)
+            {
+                dims.push_back(start);
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            //failed, so use entire process
+            return false;
+        }
+    }
+
+
+    //remove last dims == 1
+    while (dims.size() > 2)
+    {
+        if (dims.back() != 1)
+        {
+            break;
+        }
+
+        dims.pop_back();
+    }
+
+    return true;
+}
+
 
 //get only scalar index
 bool getScalarIndex(GenericType* _pRef, typed_list* _pArgsIn, int* index)
@@ -223,7 +326,7 @@ bool getImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<int>
         }
         else if (in->isColon())
         {
-            vector<int> idx(2);
+            std::vector<int> idx(2);
             idx[0] = -1;
             idx[1] = viewAsVector ? _pRef->getSize() : pdims[i];
             lstIdx.push_back(idx);
@@ -245,7 +348,7 @@ bool getImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<int>
                     SinglePoly* end = piEnd->getAs<Polynom>()->get()[0];
                     if (end->getRank() == 1 && end->get()[0] == 0 && end->get()[1] == 1)
                     {
-                        vector<int> idx(2);
+                        std::vector<int> idx(2);
                         idx[0] = -1;
                         idx[1] = viewAsVector ? _pRef->getSize() : pdims[i];
                         lstIdx.push_back(idx);
@@ -263,8 +366,6 @@ bool getImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<int>
                 double step = evalute(pIL->getStep(), sizeRef);
                 double end = evalute(pIL->getEnd(), sizeRef);
 
-                //printf("%.2f : %.2f : %.2f\n", start, step, end);
-
                 int size = (end - start) / step + 1;
                 if (size <= 0)
                 {
@@ -273,13 +374,10 @@ bool getImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<int>
                     return true;
                 }
 
-                vector<int> idx(size);
-                int* pi = idx.data();
-                pi[0] = start - 1; //0-indexed
-                for (int j = 1; j < size; ++j)
-                {
-                    pi[j] = pi[j - 1] + step;
-                }
+                std::vector<int> idx(size);
+
+                double val = start - 1;
+                std::generate(idx.begin(), idx.end(), [&val, step]{ double s = val; val += step; return (int)s; });
 
                 lstIdx.push_back(idx);
                 finalSize *= size;
@@ -303,6 +401,7 @@ bool getImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<int>
     int previousSize = 1;
     int currentDim = 0;
     int previousDims = 1;
+    int* p = index.data();
     while (lstIdx.empty() == false)
     {
         std::vector<int>& v = lstIdx.front();
@@ -326,13 +425,14 @@ bool getImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<int>
                     int idx3 = previousDims * m;
                     for (int j = 0; j < previousSize; ++j)
                     {
-                        index[idx2 + j] += idx3;
+                        p[idx2 + j] += idx3;
                     }
                 }
             }
         }
         else
         {
+            int* p = index.data();
             int occ = finalSize / (currentSize * previousSize);
             for (int n = 0; n < occ; ++n)
             {
@@ -347,7 +447,7 @@ bool getImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<int>
                     int idx3 = previousDims * pv[m];
                     for (int j = 0; j < previousSize; ++j)
                     {
-                        index[idx2 + j] += idx3;
+                        p[idx2 + j] += idx3;
                     }
                 }
             }
@@ -439,7 +539,7 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
                     //not enough information to compute indexes.
                     _pArgsOut->push_back(NULL);
                     bUndefine = true;
-                    pIL->killMe();;
+                    pIL->killMe();
                     continue;
                 }
                 //evalute polynom with "MaxDim"
@@ -489,6 +589,11 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
         else if (pIT->isString())
         {
             String* pStr = pIT->getAs<String>();
+            if(!_pRef)
+            {
+                bUndefine = true;
+                continue;
+            }
             if (_pRef->isStruct())
             {
                 Struct* pStruct = _pRef->getAs<Struct>();
@@ -589,6 +694,52 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
             }
             pCurrentArg = pDbl;
         }
+        else if (pIT->isInt())
+        {
+            switch (pIT->getType())
+            {
+                case InternalType::ScilabInt8:
+                {
+                    pCurrentArg = convertIndex(pIT->getAs<Int8>());
+                    break;
+                }
+                case InternalType::ScilabInt16:
+                {
+                    pCurrentArg = convertIndex(pIT->getAs<Int16>());
+                    break;
+                }
+                case InternalType::ScilabInt32:
+                {
+                    pCurrentArg = convertIndex(pIT->getAs<Int32>());
+                    break;
+                }
+                case InternalType::ScilabInt64:
+                {
+                    pCurrentArg = convertIndex(pIT->getAs<Int64>());
+                    break;
+                }
+                case InternalType::ScilabUInt8:
+                {
+                    pCurrentArg = convertIndex(pIT->getAs<UInt8>());
+                    break;
+                }
+                case InternalType::ScilabUInt16:
+                {
+                    pCurrentArg = convertIndex(pIT->getAs<UInt16>());
+                    break;
+                }
+                case InternalType::ScilabUInt32:
+                {
+                    pCurrentArg = convertIndex(pIT->getAs<UInt32>());
+                    break;
+                }
+                case InternalType::ScilabUInt64:
+                {
+                    pCurrentArg = convertIndex(pIT->getAs<UInt64>());
+                    break;
+                }
+            }
+        }
 
         if (bDeleteNeeded)
         {
@@ -606,7 +757,7 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
                 {
                     wchar_t szError[bsiz];
                     os_swprintf(szError, bsiz, _W("variable size exceeded : less than %d expected.\n").c_str(), INT_MAX);
-                    throw ast::ScilabError(szError);
+                    throw ast::InternalError(szError);
                 }
 
                 int d = static_cast<int>(pCurrentArg->get(j));
@@ -631,7 +782,7 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
             delete[] _piCountDim;
             cleanIndexesArguments(_pArgsIn, _pArgsOut);
 
-            throw ast::ScilabError(szError);
+            throw ast::InternalError(szError);
         }
         _pArgsOut->push_back(pCurrentArg);
 
@@ -670,7 +821,7 @@ void cleanIndexesArguments(typed_list* _pArgsOrig, typed_list* _pArgsNew)
     }
 }
 
-void getIndexesWithDims(int _iIndex, int* _piIndexes, int* _piDims, int _iDims)
+void getIndexesWithDims(int _iIndex, int* _piIndexes, const int* _piDims, int _iDims)
 {
     int iMul = 1;
     for (int i = 0; i < _iDims; i++)
@@ -708,7 +859,7 @@ void getIndexesWithDims(int _iIndex, int* _piIndexes, int* _piDims, int _iDims)
 }
 
 
-int getIndexWithDims(int* _piIndexes, int* _piDims, int _iDims)
+int getIndexWithDims(int* _piIndexes, const int* _piDims, int _iDims)
 {
     int idx = 0;
     int iMult = 1;
@@ -728,21 +879,20 @@ types::Function::ReturnValue VariableToString(types::InternalType* pIT, const wc
         //call overload %type_p
         types::typed_list in;
         types::typed_list out;
-        ast::ExecVisitor exec;
 
         pIT->IncreaseRef();
         in.push_back(pIT);
 
         try
         {
-            ret = Overload::generateNameAndCall(L"p", in, 1, out, &exec);
+            ret = Overload::generateNameAndCall(L"p", in, 1, out);
             pIT->DecreaseRef();
             return ret;
         }
-        catch (ast::ScilabError &e)
+        catch (const ast::InternalError &ie)
         {
             pIT->DecreaseRef();
-            throw e;
+            throw ie;
         }
     }
     else
@@ -769,6 +919,7 @@ types::Function::ReturnValue VariableToString(types::InternalType* pIT, const wc
             {
                 ConfigVariable::resetError();
                 ostr.str(L"");
+                ConfigVariable::resetExecutionBreak();
                 return types::Function::Error;
             }
 
@@ -778,13 +929,103 @@ types::Function::ReturnValue VariableToString(types::InternalType* pIT, const wc
                 bFinish = linesmore() == 1;
             }
 
+            if (ConfigVariable::isPrintCompact() == false && ConfigVariable::isPrintInput() == false)
+            {
+                ostr << std::endl;
+            }
+
             scilabForcedWriteW(ostr.str().c_str());
             ostr.str(L"");
         }
-        while (bFinish == false);
+        while (bFinish == false && ConfigVariable::isExecutionBreak() == false);
 
+        if (bFinish == false)
+        {
+            ConfigVariable::resetExecutionBreak();
+        }
         pIT->clearPrintState();
         return types::Function::OK;
     }
 }
+
+//n-uplet in french
+int computeTuples(int* _piCountDim, int _iDims, int _iCurrentDim, int* _piIndex)
+{
+    //if bRet == 1, previous dims has reach max value.
+    int iRet = 0;
+
+    if (_iCurrentDim == 0)
+    {
+        //last dims
+        if (_piIndex[_iCurrentDim] >= _piCountDim[_iCurrentDim])
+        {
+            _piIndex[_iCurrentDim] = 0;
+            return 1;
+        }
+    }
+    else
+    {
+        iRet = computeTuples(_piCountDim, _iDims, _iCurrentDim - 1, _piIndex);
+        if (iRet)
+        {
+            _piIndex[_iCurrentDim]++;
+            if (_piIndex[_iCurrentDim] >= _piCountDim[_iCurrentDim])
+            {
+                _piIndex[_iCurrentDim] = 0;
+                return 1;
+            }
+        }
+    }
+    return 0;
+}
+
+Double* createEmptyDouble()
+{
+    return Double::Empty();
+}
+
+int getIntValueFromDouble(InternalType* _pIT, int _iPos)
+{
+    return static_cast<int>(_pIT->getAs<Double>()->get(_iPos));
+}
+
+double* getDoubleArrayFromDouble(InternalType* _pIT)
+{
+    return _pIT->getAs<Double>()->get();
+}
+
+Double* createDoubleVector(int _iSize)
+{
+    int piDims[] = {1, _iSize};
+    Double* pOut = new Double(2, piDims);
+    for (int i = 0; i < _iSize; i++)
+    {
+        pOut->set(i, i + 1);
+    }
+    return pOut;
+}
+
+bool checkArgValidity(typed_list& _Arg)
+{
+    for (int i = 0; i < (int)_Arg.size(); i++)
+    {
+        if (_Arg[i]->isDouble() == false)
+        {
+            return false;
+        }
+
+        Double* pDbl = _Arg[i]->getAs<Double>();
+        double* pdbl = pDbl->get();
+        for (int j = 0; j < pDbl->getSize(); j++)
+        {
+            if (pdbl[j] <= 0)
+            {
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
+
 }

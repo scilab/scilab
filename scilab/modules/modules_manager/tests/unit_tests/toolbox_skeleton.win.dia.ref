@@ -16,6 +16,8 @@ assert_checkequal(status, 1);
 exec("TMPDIR/toolbox_skeleton/builder.sce");
 Building macros...
 -- Creation of [toolbox_skeletonlib] (Macros) --
+genlib: Processing file: scilab_error.sci
+genlib: Processing file: scilab_sum.sci
 Building sources...
    Generate a loader file
    Generate a Makefile
@@ -36,16 +38,22 @@ Building sources...
    Creating JAR archive TMPDIR\toolbox_skeleton\jar\org.scilab.contrib.toolboxskeleton.jar
    Create loader script for Java loader.sce
    Create cleaner script for Java cleaner.sce
+Generating cleaner_src.sce...
 Building gateway...
    Generate a gateway file
    Generate a loader file
    Generate a Makefile
    Running the makefile
    Compilation of sci_cerror.c
+   Compilation of sci_cerror6.c
    Compilation of sci_csub.c
+   Compilation of sci_csub6.c
    Compilation of sci_csum.c
+   Compilation of sci_csum6.c
    Compilation of sci_foo.c
+   Compilation of sci_foo6.c
    Compilation of sci_multiplybypi.c
+   Compilation of sci_multiplybypi6.c
    Compilation of skeleton_c.cpp
    Compilation of skeleton_c.h
    Compilation of skeleton_c.hxx
@@ -103,7 +111,7 @@ Start Toolbox Skeleton
 	Load help
 	Load demos
 test_run("TMPDIR/toolbox_skeleton/", [], "short_summary");
-   001/001 - [TMPDIR/toolbox_skeleton/] : 
+ Module  001/001 - [TMPDIR/toolbox_skeleton/] : 
    001/004 - [TMPDIR/toolbox_skeleton/] c_sum...................passed
    002/004 - [TMPDIR/toolbox_skeleton/] fortran_sum.............passed
    003/004 - [TMPDIR/toolbox_skeleton/] java_sum................passed

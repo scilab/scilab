@@ -56,7 +56,7 @@ c     Copyright INRIA
 !C     
 !      icall = 5
 !      krec = -1
-!C      FIXME implement for YaSp
+!C      FIXME implement for Scilab 6
 !C      include "callinter.h.f" (REMOVED)
 ! 200  lhs = ids(1,pt)
 !      rhs = ids(2,pt)

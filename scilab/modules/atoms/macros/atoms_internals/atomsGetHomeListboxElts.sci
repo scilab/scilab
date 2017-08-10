@@ -3,15 +3,18 @@
 // Copyright (C) 2009-2010 - DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
 // Copyright (C) 2013 - Samuel GOUGEON
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution. The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function elements = atomsGetHomeListboxElts()
-    items_str  = [];
-    items_mat  = [];
+    items_str  = "";
+    items_mat  = "";
 
     installed  = atomsGetInstalled();
     tmp = atomsAutoloadList("all")
@@ -21,14 +24,13 @@ function elements = atomsGetHomeListboxElts()
 
         items_str  = atomsSetInstalledList(installed)
         items_mat = installed(:,1)
+        if isempty(items_str)
+            items_str = "";
+            items_mat = "";
+        end
         items_mat = [emptystr(items_mat)+"module" items_mat ]
 
-        if items_str==[] then
-            elements("items_str") = "";
-        else
-            elements("items_str") = items_str;
-        end
-
+        elements("items_str") = items_str;
         elements("items_mat") = items_mat;
     else
         elements = [];

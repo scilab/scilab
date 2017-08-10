@@ -26,7 +26,7 @@ mputl(C,TMPDIR+'/schur_test/mytest.c');
 
 //build and link
 lp=ilib_for_link('mytest','mytest.c',[],'c');
-link(lp,'mytest','c'); 
+link(lp,'mytest','c');
 
 //run it
 [U,dim,T]=schur(A,'mytest');

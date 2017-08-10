@@ -14,7 +14,7 @@
             <varlistentry>
                 <term>x,y,z</term>
                 <listitem>
-                    <para>3次元補間グリッドを定義する単調増加の行ベクトル (各行には最低3個の要素) 
+                    <para>3次元補間グリッドを定義する単調増加の行ベクトル (各行には最低3個の要素)
                     </para>
                 </listitem>
             </varlistentry>
@@ -50,7 +50,7 @@
             <emphasis>(xi,yj,zk,vijk)</emphasis>個の点を補間する
             3次元テンソルスプライン<emphasis>s</emphasis>
             を計算します.
-            すなわち,<emphasis>i=1,..,nx</emphasis>, <emphasis>j=1,..,ny</emphasis> 
+            すなわち,<emphasis>i=1,..,nx</emphasis>, <emphasis>j=1,..,ny</emphasis>
             および<emphasis>k=1,..,nz</emphasis>について
             <emphasis>s(xi,yj,zk)=vijk</emphasis>となります.
             得られるスプライン<emphasis>s</emphasis>は,<emphasis>s</emphasis>の
@@ -81,7 +81,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // 例1
 // =============================================================================
 func =  "v=cos(2*%pi*x).*sin(2*%pi*y).*cos(2*%pi*z)";
@@ -99,14 +99,14 @@ vp_interp = interp3d(xp,yp,zp, tl);
 er = max(abs(vp_exact - vp_interp))
 // n=20で再試行し,誤差を見る
  ]]></programlisting>
-        <programlisting role="example"><![CDATA[ 
-// 例 2 (linear_interpn のヘルプを参照ください, 
+        <programlisting role="example"><![CDATA[
+// 例 2 (linear_interpn のヘルプを参照ください,
 //       trilinear補間に関する同じ例があります)
 // =============================================================================
 exec("SCI/modules/interpolation/demos/interp_demo.sci")
 func =  "v=(x-0.5).^2 + (y-0.5).^3 + (z-0.5).^2";
 deff("v=f(x,y,z)",func);
-n = 5; 
+n = 5;
 x = linspace(0,1,n); y=x; z=x;
 [X,Y,Z] = ndgrid(x,y,z);
 V = f(X,Y,Z);
@@ -121,16 +121,17 @@ for i = 1:length(val)
   [Xm,Xp,Ym,Yp,Zm,Zp] = slice_parallelepiped(dir(i), val(i), ebox, m, m, m);
   Vm = interp3d(Xm,Ym,Zm, tl);
   [xf,yf,zf,vf] = nf3dq(Xm,Ym,Zm,Vm,1);
-  XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf]; VF = [VF vf]; 
+  XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf]; VF = [VF vf];
   Vp = interp3d(Xp,Yp,Zp, tl);
   [xf,yf,zf,vf] = nf3dq(Xp,Yp,Zp,Vp,1);
-  XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf]; VF = [VF vf]; 
+  XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf]; VF = [VF vf];
 end
 nb_col = 128;
 vmin = min(VF); vmax = max(VF);
 color = dsearch(VF,linspace(vmin,vmax,nb_col+1));
-xset("colormap",jetcolormap(nb_col));
-clf(); xset("hidden3d",xget("background"));
+gcf().color_map = jetcolormap(nb_col);
+clf();
+gca().hiddencolor = gca().background;
 colorbar(vmin,vmax)
 plot3d(XF, YF, list(ZF,color), flag=[-1 6 4])
 xtitle("3d spline interpolation of "+func)
@@ -154,16 +155,17 @@ show_window()
             [Xm,Xp,Ym,Yp,Zm,Zp] = slice_parallelepiped(direction(i), val(i), ebox, m, m, m);
             Vm = interp3d(Xm,Ym,Zm, tl);
             [xf,yf,zf,vf] = nf3dq(Xm,Ym,Zm,Vm,1);
-            XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf]; VF = [VF vf]; 
+            XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf]; VF = [VF vf];
             Vp = interp3d(Xp,Yp,Zp, tl);
             [xf,yf,zf,vf] = nf3dq(Xp,Yp,Zp,Vp,1);
-            XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf]; VF = [VF vf]; 
+            XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf]; VF = [VF vf];
             end
             nb_col = 128;
             vmin = min(VF); vmax = max(VF);
             color_example = dsearch(VF,linspace(vmin,vmax,nb_col+1));
-            xset("colormap",jetcolormap(nb_col));
-            clf(); xset("hidden3d",xget("background"));
+            gcf().color_map = jetcolormap(nb_col);
+            clf();
+            gca().hiddencolor = gca().background;
             colorbar(vmin,vmax)
             plot3d(XF, YF, list(ZF,color_example), flag=[-1 6 4])
             xtitle("3d spline interpolation of "+func)

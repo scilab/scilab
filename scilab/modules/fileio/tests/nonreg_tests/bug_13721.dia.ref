@@ -14,7 +14,7 @@
 //
 // <-- Short Description -->
 //
-// Cannot write in a file opened in r+ mode
+// Could not write in a file opened in r+ mode
 fd = mopen(TMPDIR + "/bug_13721.txt", "a");
 mfprintf(fd, "%s\n", "hello");
 mclose(fd);

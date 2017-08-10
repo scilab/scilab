@@ -2,14 +2,18 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Cedric Delamarre
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 /*--------------------------------------------------------------------------*/
+#include <cmath>
 #include <algorithm>
 #include <vector>
 
@@ -27,7 +31,7 @@ void min(std::vector<types::Double*> vectIn, int iOrientation, types::Double* pD
     if (vectIn.size() > 1) // Find the min value between all inputs matrix
     {
         //Find the first non scalar to init output matrix.
-        for (int iter = 0; iter < vectIn.size(); iter++)
+        for (int iter = 0; iter < static_cast<int>(vectIn.size()); iter++)
         {
             if (vectIn[iter]->isScalar() == false)
             {
@@ -55,7 +59,7 @@ void min(std::vector<types::Double*> vectIn, int iOrientation, types::Double* pD
 
             for (int i = 0; i < iSize; i++)
             {
-                for (int iter = 0; iter < vectIn.size(); iter++)
+                for (int iter = 0; iter < static_cast<int>(vectIn.size()); iter++)
                 {
                     int iPos = i;
                     if (vectIn[iter]->isScalar())
@@ -76,7 +80,7 @@ void min(std::vector<types::Double*> vectIn, int iOrientation, types::Double* pD
         {
             for (int i = 0; i < iSize; i++)
             {
-                for (int iter = 0; iter < vectIn.size(); iter++)
+                for (int iter = 0; iter < static_cast<int>(vectIn.size()); iter++)
                 {
                     int iPos = i;
                     if (vectIn[iter]->isScalar())
@@ -124,7 +128,7 @@ void min(std::vector<types::Double*> vectIn, int iOrientation, types::Double* pD
                     {
                         pDblIndex->set(i, piIndexes[i] + 1);
                     }
-                    delete piIndexes;
+                    delete[] piIndexes;
                 }
             }
         }

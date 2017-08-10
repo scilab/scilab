@@ -1,11 +1,15 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) DIGITEO - 2011  - Allan CORNET
+// Copyright (C) Scilab Enterprises - 2015  - Antoine ELIAS
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 //=============================================================================
 function dlwCompile(files, make_command, makename)
 
@@ -30,20 +34,17 @@ function dlwCompile(files, make_command, makename)
         target_build = "all";
     end
 
-    //update DEBUG_SCILAB_DYNAMIC_LINK to match with Scilab compilation mode
-    val = getenv("DEBUG_SCILAB_DYNAMIC_LINK","");
-    if val <> "YES" & val <> "NO" & isDebug()then
-        setenv("DEBUG_SCILAB_DYNAMIC_LINK", "YES");
-    end
-
-    [msg, stat] = unix_g(make_command + makename + " " + target_build + " 2>&0");
-
-    //restore DEBUG_SCILAB_DYNAMIC_LINK
-    setenv("DEBUG_SCILAB_DYNAMIC_LINK", val);
+    cmd = make_command + makename + " " + target_build + " 2>&0"
+    scibuildfile = writeBatchFile(cmd);
+    [msg, stat] = unix_g(scibuildfile);
+    deletefile(scibuildfile);
 
     if stat <> 0 then
         // more feedback when compilation fails
-        [msg, stat, stderr] = unix_g(make_command + makename  + " " + target_build + " 1>&2");
+        cmd = make_command + makename + " " + target_build + " 1>&2"
+        scibuildfile = writeBatchFile(cmd);
+        [msg, stat, stderr] = unix_g(scibuildfile);
+        deletefile(scibuildfile);
         disp(stderr);
         error(msprintf(gettext("%s: Error while executing %s.\n"), "ilib_compile", makename));
     else
@@ -51,5 +52,41 @@ function dlwCompile(files, make_command, makename)
             disp(msg);
         end
     end
+
+
 endfunction
 //=============================================================================
+function filename = writeBatchFile(cmd)
+
+    //update DEBUG_SCILAB_DYNAMIC_LINK to match with Scilab compilation mode
+    val = getenv("DEBUG_SCILAB_DYNAMIC_LINK","");
+    if val <> "NO" & val <> "YES" then
+        if isDebug() then
+            val = "YES";
+        else
+            val = "NO";
+        end
+    end
+    
+    if win64() then
+        if dlwIsExpress() then
+            arch = "x86_amd64";
+        else
+            arch = "x64";
+        end
+    else
+        arch = "x86";
+    end
+
+    path = dlwGetVisualStudioPath();
+
+    scibuild = [ ...
+    "@call """ + path + "\VC\vcvarsall.bat"" " + arch;
+    "set DEBUG_SCILAB_DYNAMIC_LINK=" + val;
+    cmd
+    ];
+
+    filename = TMPDIR + "/scibuild.bat";
+    mputl(scibuild, filename);
+    //filename = "call " + filename;
+endfunction

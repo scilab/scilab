@@ -2,15 +2,19 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2012 - Scilab Enterprises - Cedric DELAMARRE
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
 #include "configvariable.hxx"
+#include "debugmanager.hxx"
 
 extern "C"
 {
@@ -88,19 +92,54 @@ void setPromptMode(int _iMode)
     ConfigVariable::setPromptMode(_iMode);
 }
 
-int isPromptShow(void)
+int isPrintInput()
 {
-    return static_cast<int>(ConfigVariable::isPromptShow());
+    return ConfigVariable::isPrintInput() ? 1 : 0;
 }
 
-int getSilentError(void)
+void setPrintInput(int val)
 {
-    return static_cast<int>(ConfigVariable::getSilentError());
+    ConfigVariable::setPrintInput(val ? true : false);
+}
+
+int isPrintOutput()
+{
+    return ConfigVariable::isPrintOutput() ? 1 : 0;
+}
+
+void setPrintOutput(int val)
+{
+    ConfigVariable::setPrintOutput(val ? true : false);
+}
+
+int isPrintCompact()
+{
+    return ConfigVariable::isPrintCompact() ? 1 : 0;
+}
+
+void setPrintCompact(int val)
+{
+    ConfigVariable::setPrintCompact(val ? true : false);
+}
+
+int isPrintInteractive()
+{
+    return ConfigVariable::isPrintInteractive() ? 1 : 0;
+}
+
+void setPrintInteractive(int val)
+{
+    ConfigVariable::setPrintInteractive(val ? true : false);
+}
+
+int isSilentError(void)
+{
+    return ConfigVariable::isSilentError() ? 1 : 0;
 }
 
 void setSilentError(int _iSilent)
 {
-    ConfigVariable::setSilentError(_iSilent);
+    ConfigVariable::setSilentError(_iSilent ? true : false);
 }
 
 int getieee()
@@ -148,28 +187,28 @@ const char * getScilabModeString(void)
 
 int getWarningMode(void)
 {
-    if (ConfigVariable::getWarningMode())
-    {
-        return 1;
-    }
-    return 0;
+    return ConfigVariable::getWarningMode() ? 1 : 0;
 }
 
 void setWarningMode(int _iMode)
 {
-    if (_iMode == 0)
-    {
-        ConfigVariable::setWarningMode(false);
-    }
-    else
-    {
-        ConfigVariable::setWarningMode(true);
-    }
+    ConfigVariable::setWarningMode(_iMode != 0);
 }
+
+int getWarningStop(void)
+{
+    return ConfigVariable::getWarningStop() ? 1 : 0;
+}
+
+void setWarningStop(int _iStop)
+{
+    ConfigVariable::setWarningStop(_iStop != 0);
+}
+
 
 int checkReferenceModule(const wchar_t* _module)
 {
-    return (ConfigVariable::checkReferenceModule(_module) ? 1 : 0);
+    return ConfigVariable::checkReferenceModule(_module) ? 1 : 0;
 }
 
 void addReferenceModule(const wchar_t* _module)
@@ -195,4 +234,34 @@ dynlib_ptr getEntryPointFromPosition(int position)
 int getForceQuit()
 {
     return ConfigVariable::getForceQuit();
+}
+
+int isEnableDebug()
+{
+    return ConfigVariable::getEnableDebug() ? 1 : 0;
+}
+
+int isDebugInterrupted()
+{
+    return debugger::DebuggerMagager::getInstance()->isInterrupted() ? 1 : 0;
+}
+
+int isExecutionBreak()
+{
+    return ConfigVariable::isExecutionBreak() ? 1 : 0;
+}
+
+void setExecutionBreak()
+{
+    ConfigVariable::setExecutionBreak();
+}
+
+void resetExecutionBreak()
+{
+    ConfigVariable::resetExecutionBreak();
+}
+
+int setRecursionLimit(int val)
+{
+    return ConfigVariable::setRecursionLimit(val);
 }

@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2014 - Scilab Enterprises - Calixte DENIZET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -14,10 +17,9 @@
 #define __DATA_HXX__
 
 #include <iostream>
-#include <set>
 
-#include "tools.hxx"
 #include "symbol.hxx"
+#include "tools.hxx"
 
 namespace analysis
 {
@@ -26,61 +28,19 @@ struct Data
 {
     bool known;
     bool valid;
-    std::set<symbol::Symbol> sharedSyms;
+    tools::SymbolSet sharedSyms;
 
-    Data(const bool _known, const symbol::Symbol & sym) : known(_known), valid(true)
-    {
-        sharedSyms.emplace(sym);
-    }
-    
+    Data(const bool _known, const symbol::Symbol & sym);
     Data(const Data & d) : known(d.known), valid(true), sharedSyms(d.sharedSyms) {  }
 
-    inline void clear()
-    {
-        sharedSyms.clear();
-    }
-    
-    inline void add(const symbol::Symbol & sym)
-    {
-        if (valid)
-        {
-            sharedSyms.emplace(sym);
-        }
-    }
-
-    inline void rem(const symbol::Symbol & sym)
-    {
-        if (valid)
-        {
-            sharedSyms.erase(sym);
-        }
-    }
-
-    inline bool hasOneOwner() const
-    {
-        return valid && known && (sharedSyms.size() == 1);
-    }
-
-    inline bool isDeletable() const
-    {
-        return valid && known && sharedSyms.empty();
-    }
-
-    inline bool same(Data * data)
-    {
-        return (valid && data->valid) && (data == this || (known == data->known && sharedSyms == data->sharedSyms));
-    }
-
-    friend std::wostream & operator<<(std::wostream & out, const Data & data)
-    {
-        out << L"known:" << (data.known ? L"T" : L"F")
-            << L", valid:" << (data.valid ? L"T" : L"F")
-            << L", ";
-
-        tools::printSet(data.sharedSyms, out);
-
-        return out;
-    }
+    void clear();
+    void add(const symbol::Symbol & sym);
+    void rem(const symbol::Symbol & sym);
+    bool hasOneOwner() const;
+    bool isDeletable() const;
+    bool same(Data * data);
+    void setValidity(const bool v);
+    friend std::wostream & operator<<(std::wostream & out, const Data & data);
 };
 
 } // namespace analysis

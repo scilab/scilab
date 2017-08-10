@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
     </Filter>
+    <Filter Include="Libraries Dependencies">
+      <UniqueIdentifier>{71c8b52f-10aa-4272-8040-81244bff78d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libraries Dependencies\Imports">
+      <UniqueIdentifier>{f423646e-6a93-43f1-baeb-3cd2f7b8d614}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_signal_processing_gw.h">
@@ -54,5 +60,10 @@
   <ItemGroup>
     <Library Include="..\..\..\..\bin\libintl.lib" />
     <Library Include="..\..\..\..\bin\blasplus.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="signal_processing_f_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
   </ItemGroup>
 </Project>

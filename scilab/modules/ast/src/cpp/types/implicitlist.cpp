@@ -2,11 +2,14 @@
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
 *
-*  This file must be used under the terms of the CeCILL.
-*  This source file is licensed as described in the file COPYING, which
-*  you should have received as part of this distribution.  The terms
-*  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 #include <sstream>
@@ -18,6 +21,9 @@
 #include "configvariable.hxx"
 #include "scilabWrite.hxx"
 #include "type_traits.hxx"
+#include "types_tools.hxx"
+#include "numericconstants.hxx"
+#include "doubleexp.hxx"
 
 #ifndef NDEBUG
 #include "inspector.hxx"
@@ -77,6 +83,9 @@ ImplicitList::ImplicitList()
     m_pDblStart = NULL;
     m_pDblStep  = NULL;
     m_pDblEnd   = NULL;
+    m_eStartType = ScilabNull;
+    m_eStepType = ScilabNull;
+    m_eEndType = ScilabNull;
 
 #ifndef NDEBUG
     Inspector::addItem(this);
@@ -104,7 +113,7 @@ ImplicitList::ImplicitList(InternalType* _poStart, InternalType* _poStep, Intern
 #endif
 }
 
-InternalType* ImplicitList::clone()
+ImplicitList* ImplicitList::clone()
 {
     return new ImplicitList(m_poStart, m_poStep, m_poEnd);
 }
@@ -235,7 +244,7 @@ bool ImplicitList::compute()
             }
 
             double dblVal = dblStart; // temp value
-            double dblEps = getRelativeMachinePrecision();
+            double dblEps = NumericConstants::eps;
             double dblPrec = 2 * std::max(fabs(dblStart), fabs(dblEnd)) * dblEps;
 
             while (dblStep * (dblVal - dblEnd) <= 0)
@@ -331,55 +340,45 @@ bool ImplicitList::isComputable()
 
 bool ImplicitList::toString(std::wostringstream& ostr)
 {
-    if (isComputable())
+    ostr << L" ";
+    if (m_eStartType == ScilabDouble)
     {
-        types::InternalType* pIT = extractFullMatrix();
-        bool ret = pIT->toString(ostr);
-        delete pIT;
-        return ret;
+        Double *pD = m_poStart->getAs<Double>();
+        ostr << printDouble(pD);
     }
-    else
+    else //Polynom
     {
-        ostr << L" ";
-        if (m_eStartType == ScilabDouble)
-        {
-            Double *pD = m_poStart->getAs<Double>();
-            ostr << printDouble(pD);
-        }
-        else //Polynom
-        {
-            Polynom* pMP = m_poStart->getAs<types::Polynom>();
-            ostr << printInLinePoly(pMP->get(0), pMP->getVariableName());
-        }
-
-        ostr << L":";
-
-        if (m_eStepType == ScilabDouble)
-        {
-            Double *pD = m_poStep->getAs<Double>();
-            ostr << printDouble(pD);
-        }
-        else //Polynom
-        {
-            Polynom* pMP = m_poStep->getAs<types::Polynom>();
-            ostr << printInLinePoly(pMP->get(0), pMP->getVariableName());
-        }
-
-        ostr << L":";
-
-        if (m_eEndType == ScilabDouble)
-        {
-            Double *pD = m_poEnd->getAs<Double>();
-            ostr << printDouble(pD);
-        }
-        else //Polynom
-        {
-            Polynom* pMP = m_poEnd->getAs<types::Polynom>();
-            ostr << printInLinePoly(pMP->get(0), pMP->getVariableName());
-        }
-        ostr << std::endl;
-        return true;
+        Polynom* pMP = m_poStart->getAs<types::Polynom>();
+        ostr << printInLinePoly(pMP->get(0), pMP->getVariableName());
     }
+
+    ostr << L":";
+
+    if (m_eStepType == ScilabDouble)
+    {
+        Double *pD = m_poStep->getAs<Double>();
+        ostr << printDouble(pD);
+    }
+    else //Polynom
+    {
+        Polynom* pMP = m_poStep->getAs<types::Polynom>();
+        ostr << printInLinePoly(pMP->get(0), pMP->getVariableName());
+    }
+
+    ostr << L":";
+
+    if (m_eEndType == ScilabDouble)
+    {
+        Double *pD = m_poEnd->getAs<Double>();
+        ostr << printDouble(pD);
+    }
+    else //Polynom
+    {
+        Polynom* pMP = m_poEnd->getAs<types::Polynom>();
+        ostr << printInLinePoly(pMP->get(0), pMP->getVariableName());
+    }
+    ostr << std::endl;
+    return true;
 }
 
 InternalType::ScilabType ImplicitList::getOutputType()
@@ -601,7 +600,7 @@ bool ImplicitList::neg(InternalType *& out)
     return false;
 }
 
-bool ImplicitList::invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetCount*/, typed_list & out, ast::ConstVisitor & /*execFunc*/, const ast::Exp & e)
+bool ImplicitList::invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetCount*/, typed_list & out, const ast::Exp & e)
 {
     if (in.size() == 0)
     {
@@ -614,7 +613,7 @@ bool ImplicitList::invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetC
         {
             std::wostringstream os;
             os << _W("Invalid index.\n");
-            throw ast::ScilabError(os.str(), 999, e.getLocation());
+            throw ast::InternalError(os.str(), 999, e.getLocation());
         }
         out.push_back(_out);
     }
@@ -657,6 +656,7 @@ InternalType* ImplicitList::extract(typed_list* _pArgs)
     else
     {
         int* piDims = new int[iDims];
+        int* pIndex = new int[iDims];
         for (int i = 0 ; i < iDims ; i++)
         {
             piDims[i] = 1;
@@ -664,7 +664,6 @@ InternalType* ImplicitList::extract(typed_list* _pArgs)
 
         for (int i = 0 ; i < iSeqCount ; i++)
         {
-            int* pIndex = new int[iDims];
             for (int j = 0 ; j < iDims ; j++)
             {
                 Double* pDbl = pArg[j]->getAs<Double>();
@@ -673,6 +672,8 @@ InternalType* ImplicitList::extract(typed_list* _pArgs)
 
             index = getIndexWithDims(pIndex, piDims, iDims);
         }
+        delete[] pIndex;
+        delete[] piDims;
     }
 
     switch (index)
@@ -755,7 +756,6 @@ std::wstring printDouble(types::Double* _pD)
     DoubleFormat df;
     getDoubleFormat(_pD->get(0), &df);
     df.bPrintPoint = false;
-    df.bPaddSign = true;
     df.bPaddSign = false;
     df.bPrintBlank = false;
     addDoubleValue(&ostr, _pD->get(0), &df);

@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2015 - Scilab Enterprises - Paul Bignier
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -106,7 +109,7 @@ types::Function::ReturnValue sci_getscicosvars(types::typed_list &in, int _iRetC
         return types::Function::Error;
     }
 
-    bool ok;
+    bool ok = false;
     // Define accepted entries of getscicosvars -please update me-
     const std::vector<const char*> entry
     {
@@ -419,38 +422,38 @@ types::Function::ReturnValue sci_getscicosvars(types::typed_list &in, int _iRetC
 
                 /* Retrieve 'nblk' by import structure */
                 strcpy(field, "nblk");
-                ok = getscicosvarsfromimport(field, &ptr, &nv, &mv) != 0;
+                getscicosvarsfromimport(field, &ptr, &nv, &mv);
                 int nblk = ((int*)ptr)[0];
 
                 /* Retrieve 'ng' by import structure */
                 strcpy(field, "ng");
-                ok = getscicosvarsfromimport(field, &ptr, &nv, &mv) != 0;
+                getscicosvarsfromimport(field, &ptr, &nv, &mv);
                 //int ng = ((int*)ptr)[0];
 
                 /* Retrieve 'xptr' by import structure */
                 strcpy(field, "xptr");
-                ok = getscicosvarsfromimport(field, &ptr, &nv, &mv) != 0;
+                getscicosvarsfromimport(field, &ptr, &nv, &mv);
                 int* xptr = ((int*)ptr);
 
                 /* Retrieve 'zcptr' by import structure */
                 strcpy(field, "zcptr");
-                ok = getscicosvarsfromimport(field, &ptr, &nv, &mv) != 0;
+                getscicosvarsfromimport(field, &ptr, &nv, &mv);
                 int* zcptr = ((int*)ptr);
 
                 /* Retrieve 'x' and 'xd' by import structure */
                 strcpy(field, "x");
-                ok = getscicosvarsfromimport(field, &ptr, &nv, &mv) != 0;
+                getscicosvarsfromimport(field, &ptr, &nv, &mv);
                 double* x = ((double*)ptr);
                 //double* xd = &x[xptr[nblk] - 1];
 
                 /* Retrieve 'g' by import structure */
                 strcpy(field, "g");
-                ok = getscicosvarsfromimport(field, &ptr, &nv, &mv) != 0;
+                getscicosvarsfromimport(field, &ptr, &nv, &mv);
                 double* g = ((double*)ptr);
 
                 /* Retrieve 'funtyp' by import structure */
                 strcpy(field, "funtyp");
-                ok = getscicosvarsfromimport(field, &ptr, &nv, &mv) != 0;
+                getscicosvarsfromimport(field, &ptr, &nv, &mv);
                 //int* funtyp = ((int*)ptr);
 
                 for (int k = 0; k < nblk; ++k)
@@ -517,6 +520,7 @@ types::Function::ReturnValue sci_getscicosvars(types::typed_list &in, int _iRetC
             Scierror(999, _("%s: Error with parameter \"%s\".\n"), funname.data(), il_str->get(j));
             dyn_char->killMe();
             ret->killMe();
+            FREE(field);
             return types::Function::Error;
         }
 

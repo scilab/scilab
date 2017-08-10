@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2016 - Scilab Enterprises - Delamarre Cedric
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="MPI_Create_comm" xml:lang="en">
+    <refnamediv>
+        <refname>MPI_Create_comm</refname>
+        <refpurpose>Create a MPI subcommunicator of MPI_COMM_WORLD</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>comm = MPI_Create_comm(ranks)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>ranks</term>
+                <listitem>
+                    <para>Vector of World ranks used to create the new communicator.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>comm</term>
+                <listitem>
+                    <para>The new communicator created.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Create a communicator using world ranks given by the array "ranks".
+            The communicator can be passed to MPI functions using the optional argument "comm".
+            This function have to be called by all process.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+            MPI_Init();
+
+            worldRnk  = MPI_Comm_rank();
+            worldSize = MPI_Comm_size();
+
+            evenComm = MPI_Create_comm(0:2:(worldSize-1));
+            oddComm  = MPI_Create_comm(1:2:(worldSize-1));
+
+            // Comm rank / size
+            evenRnk  = MPI_Comm_rank(comm=evenComm);
+            oddRnk   = MPI_Comm_rank(comm=oddComm);
+            evenSize = MPI_Comm_size(comm=evenComm);
+            oddSize  = MPI_Comm_size(comm=oddComm);
+
+            if worldRnk == 0 then
+                disp("world rank | world size | comm rank | comm size");
+            end
+
+            if evenRnk <> -1 then
+                disp("even  "+string(worldRnk)+ "      "+string(worldSize)+ "      "+string(evenRnk)+ "      "+string(evenSize))
+            else
+                disp("odd   "+string(worldRnk)+ "      "+string(worldSize)+ "      "+string(oddRnk) + "      "+string(oddSize))
+            end
+
+            MPI_Finalize();
+        ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="MPI_Recv">MPI_Recv</link>
+            </member>
+            <member>
+                <link linkend="MPI_Send">MPI_Send</link>
+            </member>
+            <member>
+                <link linkend="MPI_Init">MPI_Init</link>
+            </member>
+            <member>
+                <link linkend="MPI_Finalize">MPI_Finalize</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

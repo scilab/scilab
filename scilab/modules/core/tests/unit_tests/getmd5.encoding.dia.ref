@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
@@ -26,4 +27,4 @@ for i = 1 : size(tab_ref,'*')
 	fz = TMPDIR + filesep() + "dir_" + tab_ref(i) + filesep() + "file_" + tab_ref(i);
 	if getmd5(fz) <> v_ref(i) then bugmes();quit;end
 end
-cd(TMPDIR); 
+cd(TMPDIR);

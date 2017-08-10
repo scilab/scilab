@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA
@@ -133,3 +134,13 @@ TL=tlist("x",1:$,2)
 list(TL)
 list(list(TL))
 TL(2)=TL
+
+// boolean
+%t
+%f
+b=[%t %t %t]
+~b
+bp=b'
+~bp
+bb=[b; b; b]
+~bb

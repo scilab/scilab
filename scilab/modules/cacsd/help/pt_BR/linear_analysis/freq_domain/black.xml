@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="black" xml:lang="pt">
+    <refnamediv>
+        <refname>black</refname>
+        <refpurpose>diagrama de Black (carta de Nichols)</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>black( sl,[fmin,fmax] [,step] [,comments] )
+            black( sl,frq [,comments] )
+            black(frq,db,phi [,comments])
+            black(frq,repf [,comments])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>sl</term>
+                <listitem>
+                    <para>
+                        lista ( sistema linear <literal>syslin</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fmin,fmax</term>
+                <listitem>
+                    <para>reais (limites de freqüência) </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>frq</term>
+                <listitem>
+                    <para>vetor linha ou matriz (freqüências) </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>db,phi</term>
+                <listitem>
+                    <para>vetores linhas ou matrizes (módulo, fase) </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>repf</term>
+                <listitem>
+                    <para>vetores linhas ou matrizes (resposta de freqüência complexa)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>step</term>
+                <listitem>
+                    <para>real</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>comments</term>
+                <listitem>
+                    <para>string</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>Diagrama de Black (carta de Nichols) para um sistema linear
+            <literal>sl</literal>. <literal>sl</literal> pode ser um sistema SIMO de
+            tempo contínuo ou discreto (ver <literal>syslin</literal>). No caso de
+            múltiplas saídas, elas são esboçadas com símbolos diferentes.
+        </para>
+        <para>As freqüências são dadas pelos limites
+            <literal>fmin</literal>,<literal>fmax</literal> (em Hz) ou por um vetor
+            linha (ou uma matriz para múltiplas saídas) <literal>frq</literal>.
+        </para>
+        <para>
+            <literal>step</literal> é o passo de discretização ( logarítmica).
+            (ver <literal>calfrq</literal> para escolha do valor padrão).
+        </para>
+        <para>
+            <literal>comments</literal> é um vetor de strings (legendas).
+        </para>
+        <para>
+            <literal>db,phi</literal> são matrizes de módulos (em Db) e fases
+            (em graus). (Uma linha para cada resposta).
+        </para>
+        <para>
+            <literal>repf</literal> matriz de números complexos. Uma linha para
+            cada resposta.
+        </para>
+        <para>Para esboçar o grid de iso-ganho e iso-fase de
+            <literal>y/(1+y)</literal> use <link linkend="nicholschart">nicholschart()</link>.
+        </para>
+        <para>
+            Valores padrões para <literal>fmin</literal> e
+            <literal>fmax</literal> são <literal>1.d-3</literal>,
+            <literal>1.d+3</literal> se <literal>sl</literal> for de tempo contínuo ou
+            <literal>1.d-3</literal>, <literal>0.5</literal>/sl.dt (freqüência de
+            Nyquist) se <literal>sl</literal> for de tempo discreto.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[
+    //Black diagram
+    s=poly(0,'s');
+    sl=syslin('c',5*(1+s)/(.1*s.^4+s.^3+15*s.^2+3*s+1))
+    clf();black(sl,0.01,10);
+    ]]></programlisting>
+        <para>
+            <scilab:image localized="true">
+                s=poly(0,'s');
+                sl=syslin('c',5*(1+s)/(.1*s.^4+s.^3+15*s.^2+3*s+1))
+                black(sl,0.01,10);
+            </scilab:image>
+        </para>
+        <programlisting role="example"><![CDATA[
+    //Black diagram with Nichols chart as a grid
+    s=poly(0,'s');
+    Plant=syslin('c',16000/((s+1)*(s+10)*(s+100)));
+    //two degree of freedom PID
+    tau=0.2;xsi=1.2;
+    PID=syslin('c',(1/(2*xsi*tau*s))*(1+2*xsi*tau*s+tau.^2*s.^2));
+    clf();
+    black([Plant;Plant*PID ],0.01,100,["Plant";"Plant and PID corrector"]);
+    //move the caption in the lower right corner
+    ax=gca();Leg=ax.children(1);
+    Leg.legend_location="in_lower_right";
+    nicholschart(colors=color('light gray')*[1 1])
+
+    ]]></programlisting>
+        <para>
+            <scilab:image localized="true">
+                s=poly(0,'s');
+                Plant=syslin('c',16000/((s+1)*(s+10)*(s+100)));
+                tau=0.2;xsi=1.2;
+                PID=syslin('c',(1/(2*xsi*tau*s))*(1+2*xsi*tau*s+tau.^2*s.^2));
+                black([Plant;Plant*PID ],0.01,100,["Plant";"Plant and PID corrector"]);
+                ax=gca();Leg=ax.children(1);
+                Leg.legend_location="in_lower_right";
+                nicholschart(colors=color('light gray')*[1 1])
+            </scilab:image>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Ver Também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="bode">bode</link>
+            </member>
+            <member>
+                <link linkend="nyquist">nyquist</link>
+            </member>
+            <member>
+                <link linkend="nicholschart">nicholschart</link>
+            </member>
+            <member>
+                <link linkend="freq">freq</link>
+            </member>
+            <member>
+                <link linkend="repfreq">repfreq</link>
+            </member>
+            <member>
+                <link linkend="calfrq">calfrq</link>
+            </member>
+            <member>
+                <link linkend="phasemag">phasemag</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

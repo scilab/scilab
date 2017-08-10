@@ -3,11 +3,14 @@
  * Copyright (C) 2012 - Pedro Arthur dos S. Souza
  * Copyright (C) 2012 - Caio Lucas dos S. Souza
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 package org.scilab.modules.gui.editor.action;
@@ -31,10 +34,10 @@ public class EditorHistory implements ActionHistory {
     LinkedList<Action> history;
 
     /* pointer for the action to undo/redo */
-    Integer head;
+    int head = -1;
 
     /* max size of the history */
-    private final Integer MAX_HISTORY_SIZE = 100;
+    private static final int MAX_HISTORY_SIZE = 100;
 
     public EditorHistory() {
 
@@ -50,9 +53,6 @@ public class EditorHistory implements ActionHistory {
     */
     public void addAction(Action action) {
 
-        if (head == null) {
-            head = 0;
-        }
         while (head > 0) {
             /*same as removeFirst without throwing exception if the deque is empty*/
             Action a = history.pollFirst();

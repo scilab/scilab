@@ -4,12 +4,15 @@
  * Copyright (C) 2008 - INRIA
  * Copyright (C) 2011 - DIGITEO - Michael Baudin
  * Copyright (C) 2012 - Scilab Enterprises - Adeline CARNIS
+ * Copyright (C) 2016 - Samuel GOUGEON
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="ode" xml:lang="en">
@@ -18,21 +21,22 @@
         <refpurpose>ordinary differential equation solver</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             y = ode(y0, t0, t, f)
             [y, w, iw] = ode([type,] y0, t0, t [,rtol [,atol]], f [,jac] [,w, iw])
-            [y, rd, w, iw] = ode("root", y0, t0, t [,rtol [,atol]], f [,jac],ng, g [,w,iw])
+            [y, rd, w, iw] = ode("roots", y0, t0, t [,rtol [,atol]], f [,jac],ng, g [,w,iw])
             y = ode("discrete", y0, k0, kvect, f)
         </synopsis>
     </refsynopsisdiv>
-    <refsection>
+    <refsection role="parameters">
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
                 <term>y0</term>
                 <listitem>
-                    <para>a real vector or matrix, the initial conditions.</para>
+                    <para>a real vector or matrix: initial state,
+                        at <varname>t0</varname>.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -73,20 +77,15 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>rtol</term>
+                <term>atol, rtol</term>
                 <listitem>
                     <para>
-                        a real constant or real vector of the same size as
-                        <varname>y</varname>, the relative tolerance.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>atol</term>
-                <listitem>
-                    <para>
-                        a real constant or real vectors of the same size as
-                        <varname>y</varname>, the absolute tolerance.
+                        absolute and relative tolerances on the final solution
+                        <varname>y</varname> (decimal numbers). If each is a
+                        single value, it applies
+                        to each component of <varname>y</varname>. Otherwise,
+                        it must be a vector of same size as size(y), and
+                        is applied element-wise to <varname>y</varname>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -97,12 +96,6 @@
                         a function, external, string or list, the Jacobian of the
                         function <varname>f</varname>.
                     </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>w, iw</term>
-                <listitem>
-                    <para>real vectors. (INPUT/OUTPUT)</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -132,18 +125,24 @@
             <varlistentry>
                 <term>y</term>
                 <listitem>
-                    <para>a real vector or matrix. (OUTPUT)</para>
+                    <para>a real vector or matrix. The solution.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>rd</term>
                 <listitem>
-                    <para>a real vector. (OUTPUT)</para>
+                    <para>a real vector</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>w, iw</term>
+                <listitem>
+                    <para>real vectors. (INPUT/OUTPUT). See <link linkend="ode_optional_output">ode() optional output</link></para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Description</title>
         <para>
             <function>ode</function> solves explicit Ordinary Different Equations defined by:
@@ -181,7 +180,7 @@
         <itemizedlist>
             <listitem>
                 <para>
-                    If <varname>f</varname> is a Scilab function, its calling sequence
+                    If <varname>f</varname> is a Scilab function, its syntax
                     must be
                 </para>
                 <screen><![CDATA[
@@ -403,13 +402,13 @@ void fex(int *n,double *t,double *y,int *ml,int *mu,double *J,int *nrpd,)
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>"root":</term>
+                <term>"roots":</term>
                 <listitem>
                     <para>
                         ODE solver with rootfinding capabilities. The
                         <literal>lsodar</literal> solver of package ODEPACK is used. It is a
                         variant of the <literal>lsoda</literal> solver where it finds the
-                        roots of a given vector function. See help on <link linkend="ode_root">ode_root</link> for more
+                        roots of a given vector function. See help on <link linkend="ode_roots">ode_roots</link> for more
                         details.
                     </para>
                 </listitem>
@@ -426,7 +425,7 @@ void fex(int *n,double *t,double *y,int *ml,int *mu,double *J,int *nrpd,)
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Examples</title>
         <para>
             In the following example, we solve the Ordinary Differential Equation
@@ -436,7 +435,7 @@ void fex(int *n,double *t,double *y,int *ml,int *mu,double *J,int *nrpd,)
         </para>
         <programlisting role="example"><![CDATA[
 function ydot=f(t,y)
-	ydot=y^2-y*sin(t)+cos(t)
+    ydot=y^2-y*sin(t)+cos(t)
 endfunction
 y0=0;
 t0=0;
@@ -535,7 +534,7 @@ expm(A*t)
 ode("adams",y0,t0,t,f)
  ]]></programlisting>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>With a compiler</title>
         <para>
             The following example requires a C compiler.
@@ -559,13 +558,19 @@ y = ode(y0,t0,t,'myode');
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="ode_discrete">ode_discrete</link>
+                <link linkend="odeoptions">odeoptions</link>
             </member>
             <member>
-                <link linkend="ode_root">ode_root</link>
+                <link linkend="ode_optional_output">ode_optional_output</link>
+            </member>
+            <member>
+                <link linkend="ode_roots">ode_roots</link>
+            </member>
+            <member>
+                <link linkend="ode_discrete">ode_discrete</link>
             </member>
             <member>
                 <link linkend="dassl">dassl</link>
@@ -575,9 +580,6 @@ y = ode(y0,t0,t,'myode');
             </member>
             <member>
                 <link linkend="odedc">odedc</link>
-            </member>
-            <member>
-                <link linkend="odeoptions">odeoptions</link>
             </member>
             <member>
                 <link linkend="csim">csim</link>
@@ -593,7 +595,7 @@ y = ode(y0,t0,t,'myode');
             </member>
         </simplelist>
     </refsection>
-    <refsection>
+    <refsection role="bibliography">
         <title>Bibliography</title>
         <para>
             Alan C. Hindmarsh, "lsode and lsodi, two new initial value ordinary
@@ -601,7 +603,7 @@ y = ode(y0,t0,t,'myode');
             (1980), pp. 10-11.
         </para>
     </refsection>
-    <refsection>
+    <refsection role="references">
         <title>Used Functions</title>
         <para>
             The associated routines can be found in SCI/modules/differential_equations/src/fortran directory:

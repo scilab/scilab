@@ -5,7 +5,7 @@
         <refpurpose>Returns the number of input/output arguments in a function call</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[lhs [,rhs] ]=argn()
             lhs=argn(1)
             rhs=argn(2)
@@ -16,8 +16,8 @@
         <para>
             This function is used inside a function definition.
             It gives the number of actual inputs arguments (<varname>rhs</varname>)
-            and output arguments (<varname>lhs</varname>) passed to the function when the function is 
-            called. It is usually used in function definitions to deal with 
+            and output arguments (<varname>lhs</varname>) passed to the function when the function is
+            called. It is usually used in function definitions to deal with
             optional arguments.
         </para>
         <para>
@@ -29,7 +29,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 function concat=myOwnFunction(name,optional)
   [lhs,rhs]=argn(0);
   disp(lhs);
@@ -44,7 +44,7 @@ endfunction
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="function">function</link>

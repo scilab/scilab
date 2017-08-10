@@ -5,7 +5,7 @@
         <refpurpose>switch Matlab like operations</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>mmode = mtlb_mode()
             mtlb_mode(mmode)
         </synopsis>
@@ -72,7 +72,7 @@ a-[] -->[]
         </para>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="empty">empty</link>

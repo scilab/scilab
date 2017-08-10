@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2015  - Scilab Enterprises - Antoine ELIAS
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="api_optional" xml:lang="en">
+    <refnamediv>
+        <refname>API optional functions</refname>
+        <para>This page lists all the functions to get information about optional parameters.</para>
+    </refnamediv>
+    <refsection id="api_optional_scilab_getOptional">
+        <literal>
+            <link linkend="api_types_scilabVar">
+                <command>scilabVar</command>
+            </link>
+            <varname>scilab_getOptional</varname>(
+            <link linkend="api_types_scilabEnv">
+                <command>scilabEnv</command>
+            </link>
+            env,
+            <link linkend="api_types_scilabOpt">
+                <command>scilabOpt</command>
+            </link>
+            opt, const wchar_t* varname)
+        </literal>
+        <para>
+            Return optional paramter value associated to variable called <varname>varname</varname>, NULL if variable does not exist.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="api_scilab_getting_started">API Scilab getting started</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

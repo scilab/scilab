@@ -1,37 +1,40 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="fec" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="fec" xml:lang="pt">
     <refnamediv>
         <refname>fec</refname>
-        <refpurpose>Esboço pseudo-colorido triangular de uma função definida por
+        <refpurpose>EsboÃ§o pseudo-colorido triangular de uma funÃ§Ã£o definida por
             uma malha triangular
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>fec(x,y,triangles,func,&lt;opt_args&gt;)
             fec(x,y,triangles,func,[strf,leg,rect,nax,zminmax,colminmax,colout,mesh])
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>x,y</term>
                 <listitem>
                     <para>
                         dois vetores de tamanho <literal>n</literal>,
-                        <literal>(x(i),y(i))</literal> fornece as coordenadas do nó
+                        <literal>(x(i),y(i))</literal> fornece as coordenadas do nÃ³
                         <literal>i</literal>
                     </para>
                 </listitem>
@@ -41,8 +44,8 @@
                 <listitem>
                     <para>
                         vetor de tamanho <literal>n</literal> :
-                        <literal>func(i)</literal> fornece o valor no nó
-                        <literal>i</literal> da função para a qual queremos o esboço
+                        <literal>func(i)</literal> fornece o valor no nÃ³
+                        <literal>i</literal> da funÃ§Ã£o para a qual queremos o esboÃ§o
                         pseudo-colorido.
                     </para>
                 </listitem>
@@ -51,12 +54,12 @@
                 <term>triangles</term>
                 <listitem>
                     <para>
-                        é uma matriz <literal>[Ntr,5]</literal>. Cada linha de
-                        <literal>triangles</literal> especifica um triângulo da malha
+                        Ã© uma matriz <literal>[Ntr,5]</literal>. Cada linha de
+                        <literal>triangles</literal> especifica um triÃ¢ngulo da malha
                         <literal>triangle(j) = [number,node1,node2,node3,flag]</literal>.
-                        <literal>node1,node2,node3</literal> são os números dos nós que
-                        constituem o triângulo. number é o número do triângulo e flag é um
-                        inteiro que não é usado na função fec 
+                        <literal>node1,node2,node3</literal> sÃ£o os nÃºmeros dos nÃ³s que
+                        constituem o triÃ¢ngulo. number Ã© o nÃºmero do triÃ¢ngulo e flag Ã© um
+                        inteiro que nÃ£o Ã© usado na funÃ§Ã£o fec 
                     </para>
                 </listitem>
             </varlistentry>
@@ -64,12 +67,12 @@
                 <term>&lt;opt_args&gt;</term>
                 <listitem>
                     <para>
-                        representa uma seqüência de declarações <literal>key1=value1,
+                        representa uma seqÃ¼Ãªncia de declaraÃ§Ãµes <literal>key1=value1,
                             key2=value2
                         </literal>
                         ,... onde <literal>key1</literal>,
                         <literal>key2,...</literal> podem ser um dos seguintes: strf, leg,
-                        rect, nax, zminmax, colminmax, colout, mesh (ver <link linkend="plot2d">plot2d</link> para os quatro primeiros). 
+                        rect, nax, zminmax, colminmax, colout, mesh (ver <link linkend="plot2d">plot2d</link> para os quatro primeiros).
                     </para>
                 </listitem>
             </varlistentry>
@@ -82,7 +85,7 @@
             <varlistentry>
                 <term>zminmax</term>
                 <listitem>
-                    <para>vetor com dois compontentes[zmin zmax] (útil para animações em
+                    <para>vetor com dois compontentes[zmin zmax] (Ãºtil para animaÃ§Ãµes em
                         particular)
                     </para>
                 </listitem>
@@ -102,129 +105,129 @@
             <varlistentry>
                 <term>mesh</term>
                 <listitem>
-                    <para>escalar booleano, valor padrão %f (deve ser verdadeiro se você
-                        também quiser exibir a malha)
+                    <para>escalar booleano, valor padrÃ£o %f (deve ser verdadeiro se vocÃª
+                        tambÃ©m quiser exibir a malha)
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
-        <para>Esta função é boa para se desenhar soluções de elementos finitos
-            triangulares lineares ou simplesmente para se exibir uma função definida
-            sobre uma triangularização. A interpolação de cores é feita através de um
-            software de computação e, portanto, não é tão rápida.
+        <title>DescriÃ§Ã£o</title>
+        <para>Esta funÃ§Ã£o Ã© boa para se desenhar soluÃ§Ãµes de elementos finitos
+            triangulares lineares ou simplesmente para se exibir uma funÃ§Ã£o definida
+            sobre uma triangularizaÃ§Ã£o. A interpolaÃ§Ã£o de cores Ã© feita atravÃ©s de um
+            software de computaÃ§Ã£o e, portanto, nÃ£o Ã© tÃ£o rÃ¡pida.
         </para>
         <para>
-            A função <link linkend="colorbar">colorbar</link> pode se utilizada
-            para se visualizar a escala de cores (ver a seção de exemplos).
+            A funÃ§Ã£o <link linkend="colorbar">colorbar</link> pode se utilizada
+            para se visualizar a escala de cores (ver a seÃ§Ã£o de exemplos).
         </para>
         <para>
             O argumento <literal>zminmax</literal> fornece os valores de z
-            asosicados às primeira e últimas cores (do mapa de cores corrente). Mais
+            asosicados Ã s primeira e Ãºltimas cores (do mapa de cores corrente). Mais
             exatamente, se o mapa de cores possue nc cores e se notarmos <emphasis>dz
                 = (zmax-zmin)/nc
             </emphasis>
-            ,então a parte da triangularização onde
-            <emphasis>zmin + (i-1)dz &lt;= z &lt; zmin + i dz</emphasis> é preenchida
-            com a cor <emphasis>i</emphasis>). Por padrão <emphasis>zmin =
+            ,entÃ£o a parte da triangularizaÃ§Ã£o onde
+            <emphasis>zmin + (i-1)dz &lt;= z &lt; zmin + i dz</emphasis> Ã© preenchida
+            com a cor <emphasis>i</emphasis>). Por padrÃ£o <emphasis>zmin =
                 min(func)
             </emphasis>
-            e<emphasis>zmax = max(func)</emphasis>. Se você
-            quiser uma animação com valores da função que variam no tempo, tome para
-            zmin e zmax os valores máximo e mínimo globais ou algo próximo.
+            e<emphasis>zmax = max(func)</emphasis>. Se vocÃª
+            quiser uma animaÃ§Ã£o com valores da funÃ§Ã£o que variam no tempo, tome para
+            zmin e zmax os valores mÃ¡ximo e mÃ­nimo globais ou algo prÃ³ximo.
         </para>
         <para>
-            O argumento <literal>colout</literal> permite que o usuário escolha
-            as cores para as duas regiões extremas <emphasis>{func &lt;
+            O argumento <literal>colout</literal> permite que o usuÃ¡rio escolha
+            as cores para as duas regiÃµes extremas <emphasis>{func &lt;
                 zmin}
             </emphasis>
             and <emphasis>{func &gt; zmax}</emphasis>,
             <literal>under_min_col</literal> e <literal>upper_max_col</literal> podem
-            ser iguais (independentemente) a: 
+            ser iguais (independentemente) a:
         </para>
         <variablelist>
             <varlistentry>
                 <term>-1</term>
                 <listitem>
-                    <para>neste caso a mesma cor que a zona de vizinhança é utilizada
-                        (CUIDADO: você não vê que o limite correspondente é cruzado), este é
-                        o caso padrão. 
+                    <para>neste caso a mesma cor que a zona de vizinhanÃ§a Ã© utilizada
+                        (CUIDADO: vocÃª nÃ£o vÃª que o limite correspondente Ã© cruzado), este Ã©
+                        o caso padrÃ£o. 
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>0</term>
                 <listitem>
-                    <para>neste caso, a região de extremidade não é pintanda. </para>
+                    <para>neste caso, a regiÃ£o de extremidade nÃ£o Ã© pintanda. </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>k</term>
                 <listitem>
-                    <para>(k sendo um índice de cor válido no mapa de cores corrente) a
-                        região de extremidade é pintada com a cor k. 
+                    <para>(k sendo um Ã­ndice de cor vÃ¡lido no mapa de cores corrente) a
+                        regiÃ£o de extremidade Ã© pintada com a cor k. 
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
-        <para>Se você não quiser usar o mapa de cores completo, você pode utilizar
+        <para>Se vocÃª nÃ£o quiser usar o mapa de cores completo, vocÃª pode utilizar
             o argumento <emphasis>1 &lt;= colmin &lt; colmax &lt;= nc</emphasis> (nc
-            sendo o número de cores do mapa de cores corrente) para utilizar apenas a
-            sub-parte [colmin,colmax] do mapa de cores. (por padrão, todas as cores do
-            mapa de cores são utilizadas). 
+            sendo o nÃºmero de cores do mapa de cores corrente) para utilizar apenas a
+            sub-parte [colmin,colmax] do mapa de cores. (por padrÃ£o, todas as cores do
+            mapa de cores sÃ£o utilizadas). 
         </para>
         <para>
-            Ver arquivos de demonstração <literal>demos/fec</literal>:
+            Ver arquivos de demonstraÃ§Ã£o <literal>demos/fec</literal>:
         </para>
         <para>
-            <literal>fec.ex1</literal> é um simples arquivo de exemplo no qual
-            uma malha e uma função sobre esta malha é completamente construída em
+            <literal>fec.ex1</literal> Ã© um simples arquivo de exemplo no qual
+            uma malha e uma funÃ§Ã£o sobre esta malha Ã© completamente construÃ­da em
             sintaxe do Scilab
         </para>
         <para>
-            <literal>fec.ex2</literal> é um exemplo no qual a malha e os valores
-            da função foram computados por um construtor de malhas externo (malha do
+            <literal>fec.ex2</literal> Ã© um exemplo no qual a malha e os valores
+            da funÃ§Ã£o foram computados por um construtor de malhas externo (malha do
             tipo amdba) e um programa externo. Um conjunto de macros ( fornecido pelo
             arquivo <literal>macros.sci</literal>) pode ser utilizado para ler os
-            arquivos de dados no Scilab e esboçar os resultados.
+            arquivos de dados no Scilab e esboÃ§ar os resultados.
         </para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[ 
-// definindo uma mini-triangularização (4 vértices, 2 triângulos)
+// definindo uma mini-triangularizaÃ§Ã£o (4 vÃ©rtices, 2 triÃ¢ngulos)
 x = [0 1 0 -1];
 y = [0 0 1  1];
 T = [1 1 2 3 1;
      2 3 4 1 1];
-z = [0 1 0 -1];  // valores da função em cada vértice
+z = [0 1 0 -1];  // valores da funÃ§Ã£o em cada vÃ©rtice
 clf()
-xset("colormap",jetcolormap(64))
+gcf().color_map = jetcolormap(64);
 subplot(1,2,1)
    colorbar(-1,1)
    fec(x,y,T,z,strf="040",mesh=%t)
    xtitle("exemplo de fec (com a malha)")
 subplot(1,2,2)
    colorbar(-1,1)
-   fec(x,y,T,z,strf="040")  // rmq: mesh=%f por padrão
+   fec(x,y,T,z,strf="040")  // rmq: mesh=%f por padrÃ£o
    xtitle("exemplo de fec (em a malha)")
 show_window()
 
 // este exemplo mostra o efeito de zminmax e usa os
-// dados de exemplos anteriores (você tem que executá-los primeiro)
+// dados de exemplos anteriores (vocÃª tem que executÃ¡-los primeiro)
 clf()
-xset("colormap",jetcolormap(64))
-colorbar(-0.5,0.5)  // cuidado, a barra de cores deve ser ajustada na mão!
+gcf().color_map = jetcolormap(64);
+colorbar(-0.5,0.5)  // cuidado, a barra de cores deve ser ajustada na mÃ£o!
 fec(x,y,T,z,strf="040", zminmax=[-0.5 0.5], mesh=%t)
 xtitle("exemplo de fec: utilizando o argumento zminmax")
 show_window()
 
 // este exemplo mostra os efeitos de zminmax e colout. Utiliza
-// também os dados de exemplos anteriores (você tem que executá-los primeiro)
+// tambÃ©m os dados de exemplos anteriores (vocÃª tem que executÃ¡-los primeiro)
 clf()
-xset("colormap",jetcolormap(64))
+gcf().color_map = jetcolormap(64);
 subplot(2,2,1)
    colorbar(-0.5,0.5)
    fec(x,y,T,z,strf="040", zminmax=[-0.5 0.5], colout=[0 0], mesh=%t)
@@ -244,10 +247,10 @@ subplot(2,2,4)
 show_window()
 
 // este exemplo mostra um recurso de colminmax:
-// utilizando dois mapas de cores para dois subesboços.
-// Também utiliza dados de exemplos anteriores.
+// utilizando dois mapas de cores para dois subesboÃ§os.
+// TambÃ©m utiliza dados de exemplos anteriores.
 clf()
-xset("colormap",[hotcolormap(64);jetcolormap(64)])
+gcf().color_map = [hotcolormap(64); jetcolormap(64)];
 subplot(1,2,1)
    colorbar(-1,1,[1 64])
    fec(x,y,T,z,strf="040", colminmax=[1 64], mesh=%t)
@@ -260,7 +263,7 @@ show_window()
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="colorbar">colorbar</link>

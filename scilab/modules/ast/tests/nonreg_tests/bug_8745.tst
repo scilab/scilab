@@ -15,7 +15,7 @@
 //
 // Extracting from an empty matrix automatically returns an empty matrix
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 A=[];
 errmsg=msprintf(_("Invalid index.\n"));

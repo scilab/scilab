@@ -5,7 +5,7 @@
         <refpurpose>Dialog for interactive vector/matrix input.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>result=x_mdialog(title,labels,default_inputs_vector)
             result=x_mdialog(title,labelsv,labelsh,default_input_matrix)
         </synopsis>
@@ -80,14 +80,14 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 txt = ['magnitude';'frequency';'phase    '];
 sig = x_mdialog('enter sine signal',txt,['1';'10';'0'])
 mag = evstr(sig(1))
 frq = evstr(sig(2))
 ph  = evstr(sig(3))
  ]]></programlisting>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 rep = x_mdialog(['System Simulation';'with PI regulator'],...
                  ['P gain';'I gain '],[' ';' '])
  ]]></programlisting>
@@ -108,7 +108,7 @@ rep = x_mdialog('Enter a boolean matrix', labelsv, labelsh, default_input_matrix
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="editvar">editvar</link>

@@ -3,20 +3,26 @@
  * Copyright (C) 2011 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - DIGITEO - Cedric DELAMARRE
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 /*--------------------------------------------------------------------------*/
+
+#include <cmath>
+
 #include "elem_func_gw.hxx"
-#include "api_scilab.hxx"
+#include "double.hxx"
+#include "int.hxx"
 #include "function.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
-
+#include "polynom.hxx"
 
 extern "C"
 {
@@ -31,8 +37,8 @@ T* absInt(T* _pIn)
     T* pIntOut = new T(_pIn->getDims(), _pIn->getDimsArray());
     int size = _pIn->getSize();
 
-    auto* pI = _pIn->get();
-    auto* pO = pIntOut->get();
+    typename T::type* pI = _pIn->get();
+    typename T::type* pO = pIntOut->get();
     for (int i = 0; i < size; i++)
     {
         pO[i] = std::abs(pI[i]);
@@ -61,10 +67,10 @@ types::Function::ReturnValue sci_abs(types::typed_list &in, int _iRetCount, type
 
     switch (in[0]->getType())
     {
-        case InternalType::ScilabDouble:
+        case types::InternalType::ScilabDouble:
         {
-            api_scilab::Double* pDblIn = api_scilab::getAsDouble(in[0]);
-            api_scilab::Double* pDblOut = new api_scilab::Double(pDblIn->getDims(), pDblIn->getDimsArray());
+            types::Double* pDblIn = in[0]->getAs<types::Double>();
+            types::Double* pDblOut = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray());
 
             double* pdblInR = pDblIn->get();
             double* pdblInI = pDblIn->getImg();
@@ -98,17 +104,15 @@ types::Function::ReturnValue sci_abs(types::typed_list &in, int _iRetCount, type
                     }
                     else
                     {
-                        pdblOut[i] = std::abs(pdblInR[i]);
+                        pdblOut[i] = std::fabs(pdblInR[i]);
                     }
                 }
             }
 
-            out.push_back(api_scilab::getReturnVariable(pDblOut));
-            delete pDblOut;
-            delete pDblIn;
+            out.push_back(pDblOut);
             break;
         }
-        case InternalType::ScilabPolynom:
+        case types::InternalType::ScilabPolynom:
         {
             types::Polynom* pPolyIn = in[0]->getAs<types::Polynom>();
             types::Polynom* pPolyOut = new types::Polynom(pPolyIn->getVariableName(), pPolyIn->getDims(), pPolyIn->getDimsArray());
@@ -152,39 +156,38 @@ types::Function::ReturnValue sci_abs(types::typed_list &in, int _iRetCount, type
             out.push_back(pPolyOut);
             break;
         }
-        case InternalType::ScilabInt8:
+        case types::InternalType::ScilabInt8:
         {
             out.push_back(absInt(in[0]->getAs<types::Int8>()));
             break;
         }
-        case InternalType::ScilabInt16:
+        case types::InternalType::ScilabInt16:
         {
             out.push_back(absInt(in[0]->getAs<types::Int16>()));
             break;
         }
-        case InternalType::ScilabInt32:
+        case types::InternalType::ScilabInt32:
         {
             out.push_back(absInt(in[0]->getAs<types::Int32>()));
             break;
         }
-        case InternalType::ScilabInt64:
+        case types::InternalType::ScilabInt64:
         {
             out.push_back(absInt(in[0]->getAs<types::Int64>()));
             break;
         }
-        case InternalType::ScilabUInt8:
-        case InternalType::ScilabUInt16:
-        case InternalType::ScilabUInt32:
-        case InternalType::ScilabUInt64:
+        case types::InternalType::ScilabUInt8:
+        case types::InternalType::ScilabUInt16:
+        case types::InternalType::ScilabUInt32:
+        case types::InternalType::ScilabUInt64:
         {
             out.push_back(in[0]);
             break;
         }
         default:
         {
-            ast::ExecVisitor exec;
             std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_abs";
-            return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+            return Overload::call(wstFuncName, in, _iRetCount, out);
         }
     }
 

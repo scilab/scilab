@@ -7,6 +7,7 @@
 // <-- CLI SHELL MODE -->
 // unit tests for datevec function
 // =============================================================================
+warning("off"); // WARNING_EMPTY_OPS
 if datevec(1) <> [0,1,1,0,0,0] then bugmes();quit;end
 if datevec(719529) <> [1970,1,1,0,0,0] then bugmes();quit;end
 in  = [ 158493 247745 637308 ; 567032 499035 514298 ; 165 471293 658662 ];

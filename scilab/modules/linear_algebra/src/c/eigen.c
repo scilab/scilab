@@ -3,11 +3,14 @@
  * Copyright (C) 2009 - DIGITEO - Bernard HUGUENEY
  * Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 #include <string.h> /* memset */
@@ -145,7 +148,7 @@ static void* allocWorkspace(int const ws[2], int const isCplx, int* allocated)
 
 /*
  * internal wrappers around LAPACK function calls
- * For symmetric cases, we use use an int (bool really) computeEigenVectors to express wether eigenvalues should be computed.
+ * For symmetric cases, we use use an int (bool really) computeEigenVectors to express whether eigenvalues should be computed.
  * For unsymmetric cases, eigenvectors are not computed in place, so a NULL pointer for ouput indicates that eigen vectors should not be computed
  *
  * @param pData double[complex]* ptr to data matrix for symmetric matrix, also used as output for eigen vectors (when computed)
@@ -397,7 +400,7 @@ static doublecomplex* allocateZggevWorkspace(int iCols, int* pWorksize)
 
 /*
  * internal wrappers around LAPACK function calls
- * For symmetric cases, we use use an int (bool really) computeEigenVectors to express wether eigenvalues should be computed.
+ * For symmetric cases, we use use an int (bool really) computeEigenVectors to express whether eigenvalues should be computed.
  * For unsymmetric cases, eigenvectors are not computed in place, so a NULL pointer for ouput indicates that eigen vectors should not be computed
  *
  * @param pData double[complex]* ptr to data matrix for symmetric matrix, also used as output for eigen vectors (when computed)

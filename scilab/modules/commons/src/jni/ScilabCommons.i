@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 2010 - Sylvestre Ledru
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -18,12 +21,13 @@
 */
 %module ScilabCommons
 %{
+#include "sci_malloc.h"
 #include "sci_home.h"
 #include "sci_tmpdir.h"
 #include "createtempfilename.h"
 #include "setgetlanguage.h"
 #include "getversion.h"
-#include "setieee.h"
+#include "configvariable_interface.h"
 #include "setformat.h"
 %}
 
@@ -69,6 +73,11 @@ public class%}
   }
 %}
 
+%typemap(out, noblock=1) char * {if ($1)
+{
+    $result = JCALL1(NewStringUTF, jenv, (const char *)$1);
+    FREE($1);
+}}
 
 /* JavaDoc for ScilabCommons class */
 %pragma(java) moduleclassmodifiers="
@@ -217,3 +226,20 @@ int getScilabVersionTimestamp();
    */
 public";
 char* getScilabVersionAsString();
+/* JavaDoc */
+%javamethodmodifiers setRecursionLimit() "
+ /**
+   * returns the Scilab version as string
+   * @return version Scilab version as a string
+   */
+public";
+int setRecursionLimit(int);
+/* JavaDoc */
+%javamethodmodifiers getStartProcessing() "
+ /**
+   * returns the Scilab initialization status
+   * @return 1 if Scilab is being started, 0 if up and running
+   */
+public";
+int getStartProcessing();
+

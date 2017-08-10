@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2015  - Scilab Enterprises - Antoine ELIAS
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="api_scilab" scilab:needs-examples="no" xml:lang="en">
+    <refnamediv>
+        <refname>API Scilab</refname>
+        <refpurpose>api_scilab is the Scilab 6 interface to access Scilab variables.</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>The API for Scilab 6 is a new set of C APIs in Scilab 6 to write C or C++ extensions (toolboxes) to Scilab. It allows defining native functions (commonly called “gateways”), getting input parameters for such functions, setting return parameters, accessing local variables, using common helper functions for accessing environment information (such as warning level), generate errors... It also includes ways to overload existing Scilab functions to support additional parameter types (see scilab_overload). Finally, you can call back Scilab functions (macros and built-in functions) from your gateway (see scilab_call).</para>
+        <para>The API for Scilab 6.0 can also be used to access data in Scilab from another application. A specific set of functions is provided for calling scilab (see call_scilab), but then the API is the same to access data - for example, to access the variables by name.</para>
+        <para>The previous API is still available for backward compatibility. But the new API is the only one that will be maintained in the long term. The old API will be deprecated in a soon-to-come release (most likely in Scilab 6.1), and will likely be removed entirely in the subsequent release (most likely in Scilab 6.2).</para>
+        <para>This new API has better performance than the old one, because it accesses the internal types directly. The API is also simpler, because it does not rely on the “stack” object that was at the core of earlier versions of Scilab, and which has been removed from Scilab 6. The API naming convention should also be clearer than the old version, and even simpler than comparable APIs in similar products.</para>
+        <para>Thus, new gateways should only use this new API.</para>
+        <para>
+            To use the API, only “api_scilab.h” needs to be included in your C code; all API functions are then available. If you write C++ code, you can use the API the same way. You only need to wrap the <literal>#include “api_scilab.h”</literal> in an <literal>extern “C” { … }</literal> block. More information are provided in <link linkend="api_scilab_getting_started">API Scilab getting started</link>.
+        </para>
+        <title>Code optimization</title>
+        <para>
+            If your code does an important amount of access of variables, in particular in loops, then you may want to compile with the <literal>__API_SCILAB_UNSAFE__</literal> flag defined (through a “#define” positioned before the “#include “api_scilab.h”, or -D in the compiler options). It does not change the API’s behavior but reduces the amount of input and output parameters checked done when you call the APIs, thus may improve the performance.
+        </para>
+    </refsection>
+    <refsection>
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="api_common">API common functions</link>
+            </member>
+            <member>
+                <link linkend="api_double">API double functions</link>
+            </member>
+            <member>
+                <link linkend="api_string">API string functions</link>
+            </member>
+            <member>
+                <link linkend="api_boolean">API boolean functions</link>
+            </member>
+            <member>
+                <link linkend="api_integer">API integers functions</link>
+            </member>
+            <member>
+                <link linkend="api_poly">API polynomial functions</link>
+            </member>
+            <member>
+                <link linkend="api_handle">API graphic handle functions</link>
+            </member>
+            <member>
+                <link linkend="api_pointer">API pointer functions</link>
+            </member>
+            <member>
+                <link linkend="api_list">API list, tlist, mlist functions</link>
+            </member>
+            <member>
+                <link linkend="api_struct">API struct functions</link>
+            </member>
+            <member>
+                <link linkend="api_cell">API cell functions</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

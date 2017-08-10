@@ -33,6 +33,9 @@
     <ClCompile Include="..\..\..\src\cpp\scilab_sprintf.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\sci_print.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\includes\output_stream_gw.hxx">

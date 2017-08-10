@@ -2,11 +2,14 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2008-2010 - DIGITEO - Allan CORNET
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
@@ -99,6 +102,8 @@ wchar_t *getLanguagePreferences(void)
             {
                 return LanguageAllUsers;
             }
+
+            FREE(LanguageAllUsers);
         }
     }
     else
@@ -107,6 +112,8 @@ wchar_t *getLanguagePreferences(void)
         {
             return LanguageUser;
         }
+
+        FREE(LanguageUser);
     }
     return os_wcsdup(L"");
 }
@@ -183,9 +190,10 @@ static wchar_t *getLanguagePreferencesAllUsers(void)
 /*--------------------------------------------------------------------------*/
 BOOL setLanguagePreferences(void)
 {
-    char *LANGUAGE = wide_string_to_UTF8(getlanguage());
+    wchar_t* pwstLang = getlanguage();
+    DWORD length = ((DWORD)wcslen(pwstLang) + 1) * 2;
 
-    if (LANGUAGE)
+    if (pwstLang)
     {
         wchar_t *keyString = NULL;
         int lenkeyString = (int)(wcslen(HKCU_LANGUAGE_FORMAT) + wcslen(SCI_VERSION_WIDE_STRING)) + 1;
@@ -217,10 +225,12 @@ BOOL setLanguagePreferences(void)
                     FREE(keyString);
                     keyString = NULL;
                 }
+
+                free(pwstLang);
                 return FALSE;
             }
 
-            if ( RegSetValueExW(hKey, LANGUAGE_ENTRY, 0, REG_SZ, (LPBYTE)LANGUAGE, (DWORD)(strlen(LANGUAGE) + 1)) != ERROR_SUCCESS)
+            if (RegSetValueExW(hKey, LANGUAGE_ENTRY, 0, REG_SZ, (LPBYTE)pwstLang, length) != ERROR_SUCCESS)
             {
                 RegCloseKey(hKey);
                 if (keyString)
@@ -228,6 +238,8 @@ BOOL setLanguagePreferences(void)
                     FREE(keyString);
                     keyString = NULL;
                 }
+
+                free(pwstLang);
                 return FALSE;
             }
 
@@ -237,8 +249,12 @@ BOOL setLanguagePreferences(void)
                 FREE(keyString);
                 keyString = NULL;
             }
+
+            free(pwstLang);
             return TRUE;
         }
+
+        free(pwstLang);
     }
     return FALSE;
 }

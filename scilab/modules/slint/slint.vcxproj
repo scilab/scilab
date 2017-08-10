@@ -1,0 +1,402 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{C4A6EABA-B46E-421A-A8E3-2ACA7F27DD82}</ProjectGuid>
+    <RootNamespace>slint</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>includes;includes/checkers;../../libs/pcre;../../libs/intl;../../libs/libxml2;../threads/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/analysis;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env;../ast/includes/parse;../localization/includes;../core/includes;../dynamic_link/includes;../output_stream/includes;../string/includes;../fileio/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;SLINT_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+    </ClCompile>
+    <PreLinkEvent>
+      <Message>
+      </Message>
+      <Command>
+      </Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+    </Link>
+    <PreBuildEvent>
+      <Message>
+      </Message>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>includes;includes/checkers;../../libs/pcre;../../libs/intl;../../libs/libxml2;../threads/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/analysis;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env;../ast/includes/parse;../localization/includes;../core/includes;../dynamic_link/includes;../output_stream/includes;../string/includes;../fileio/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;SLINT_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+    </ClCompile>
+    <PreLinkEvent>
+      <Message>
+      </Message>
+      <Command>
+      </Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <TargetMachine>MachineX64</TargetMachine>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+    </Link>
+    <PreBuildEvent>
+      <Message>
+      </Message>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>includes;includes/checkers;../../libs/pcre;../../libs/intl;../../libs/libxml2;../threads/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/analysis;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env;../ast/includes/parse;../localization/includes;../core/includes;../dynamic_link/includes;../output_stream/includes;../string/includes;../fileio/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;SLINT_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <PreLinkEvent>
+      <Message>
+      </Message>
+      <Command>
+      </Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+    </Link>
+    <PreBuildEvent>
+      <Message>
+      </Message>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>includes;includes/checkers;../../libs/pcre;../../libs/intl;../../libs/libxml2;../threads/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/analysis;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env;../ast/includes/parse;../localization/includes;../core/includes;../dynamic_link/includes;../output_stream/includes;../string/includes;../fileio/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;SLINT_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <PreLinkEvent>
+      <Message>
+      </Message>
+      <Command>
+      </Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <TargetMachine>MachineX64</TargetMachine>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+    </Link>
+    <PreBuildEvent>
+      <Message>
+      </Message>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ast\ast.vcxproj">
+      <Project>{0d3fa25b-8116-44ec-a45e-260789daa3d9}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\core\src\c\core.vcxproj">
+      <Project>{c6e2bc17-34d8-46e4-85f3-6293cb21adcd}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\fileio\fileio.vcxproj">
+      <Project>{4fc72d4a-80ee-4b1a-8724-0201c1a35621}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\localization\src\localization.vcxproj">
+      <Project>{ecffeb0c-1eda-45ee-9a10-b18143852e17}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\output_stream\src\c\output_stream.vcxproj">
+      <Project>{a5911cd7-f8e8-440c-a23e-4843a0636f3a}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="slint.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="includes\checkers\AllCheckers.hxx" />
+    <ClInclude Include="includes\checkers\BracketedExpChecker.hxx" />
+    <ClInclude Include="includes\checkers\BreaksInLoopChecker.hxx" />
+    <ClInclude Include="includes\checkers\CommentRatioChecker.hxx" />
+    <ClInclude Include="includes\checkers\DecimalChecker.hxx" />
+    <ClInclude Include="includes\checkers\DeprecatedChecker.hxx" />
+    <ClInclude Include="includes\checkers\EmptyBlockChecker.hxx" />
+    <ClInclude Include="includes\checkers\EqEqChecker.hxx" />
+    <ClInclude Include="includes\checkers\ExpInCondChecker.hxx" />
+    <ClInclude Include="includes\checkers\FindSymVisitor.hxx" />
+    <ClInclude Include="includes\checkers\FunctionArgsChecker.hxx" />
+    <ClInclude Include="includes\checkers\FunctionArgsOrderChecker.hxx" />
+    <ClInclude Include="includes\checkers\FunctionNameChecker.hxx" />
+    <ClInclude Include="includes\checkers\FunctionTestReturnChecker.hxx" />
+    <ClInclude Include="includes\checkers\GlobalKeywordChecker.hxx" />
+    <ClInclude Include="includes\checkers\IllegalCallsChecker.hxx" />
+    <ClInclude Include="includes\checkers\ImplicitListChecker.hxx" />
+    <ClInclude Include="includes\checkers\LineLengthChecker.hxx" />
+    <ClInclude Include="includes\checkers\LinesCountChecker.hxx" />
+    <ClInclude Include="includes\checkers\LoadSaveChecker.hxx" />
+    <ClInclude Include="includes\checkers\McCabeChecker.hxx" />
+    <ClInclude Include="includes\checkers\McCabeVisitor.hxx" />
+    <ClInclude Include="includes\checkers\MopenMcloseChecker.hxx" />
+    <ClInclude Include="includes\checkers\NaNChecker.hxx" />
+    <ClInclude Include="includes\checkers\NestedBlocksChecker.hxx" />
+    <ClInclude Include="includes\checkers\NotEqualChecker.hxx" />
+    <ClInclude Include="includes\checkers\NotNotChecker.hxx" />
+    <ClInclude Include="includes\checkers\OldNotChecker.hxx" />
+    <ClInclude Include="includes\checkers\PrintfChecker.hxx" />
+    <ClInclude Include="includes\checkers\RedefinitionChecker.hxx" />
+    <ClInclude Include="includes\checkers\ReturnChecker.hxx" />
+    <ClInclude Include="includes\checkers\ReturnsCountChecker.hxx" />
+    <ClInclude Include="includes\checkers\SelectChecker.hxx" />
+    <ClInclude Include="includes\checkers\SemicolonAtEOLChecker.hxx" />
+    <ClInclude Include="includes\checkers\SingleInstrChecker.hxx" />
+    <ClInclude Include="includes\checkers\SLintChecker.hxx" />
+    <ClInclude Include="includes\checkers\SpacesAroundOpChecker.hxx" />
+    <ClInclude Include="includes\checkers\SpacesInArgsChecker.hxx" />
+    <ClInclude Include="includes\checkers\StructChecker.hxx" />
+    <ClInclude Include="includes\checkers\TodoChecker.hxx" />
+    <ClInclude Include="includes\checkers\UnreachableCodeChecker.hxx" />
+    <ClInclude Include="includes\checkers\UselessArgChecker.hxx" />
+    <ClInclude Include="includes\checkers\UselessOpChecker.hxx" />
+    <ClInclude Include="includes\checkers\UselessRetChecker.hxx" />
+    <ClInclude Include="includes\checkers\VariableNameChecker.hxx" />
+    <ClInclude Include="includes\checkers\VariablesChecker.hxx" />
+    <ClInclude Include="includes\config\cnes\AnalysisConfiguration.hxx" />
+    <ClInclude Include="includes\config\cnes\AnalysisConfigurationType.hxx" />
+    <ClInclude Include="includes\config\cnes\AnalysisRuleParameterType.hxx" />
+    <ClInclude Include="includes\config\cnes\AnalysisRuleType.hxx" />
+    <ClInclude Include="includes\config\cnes\CNESConfig.hxx" />
+    <ClInclude Include="includes\config\cnes\CNESException.hxx" />
+    <ClInclude Include="includes\config\cnes\ExcludedProjectFileType.hxx" />
+    <ClInclude Include="includes\config\cnes\RuleLinkType.hxx" />
+    <ClInclude Include="includes\config\cnes\Standard.hxx" />
+    <ClInclude Include="includes\config\cnes\StandardRuleParameterType.hxx" />
+    <ClInclude Include="includes\config\cnes\StandardRuleParameterValueType.hxx" />
+    <ClInclude Include="includes\config\cnes\StandardRuleType.hxx" />
+    <ClInclude Include="includes\config\cnes\StandardType.hxx" />
+    <ClInclude Include="includes\config\cnes\ToolConfiguration.hxx" />
+    <ClInclude Include="includes\config\cnes\ToolConfigurationType.hxx" />
+    <ClInclude Include="includes\config\XMLConfig.hxx" />
+    <ClInclude Include="includes\dynlib_slint.h" />
+    <ClInclude Include="includes\FileException.hxx" />
+    <ClInclude Include="includes\output\cnes\CNESCsvResult.hxx" />
+    <ClInclude Include="includes\output\cnes\CNESXmlResult.hxx" />
+    <ClInclude Include="includes\output\SLintResult.hxx" />
+    <ClInclude Include="includes\output\SLintScilabResult.hxx" />
+    <ClInclude Include="includes\output\SLintXmlResult.hxx" />
+    <ClInclude Include="includes\PCRE.hxx" />
+    <ClInclude Include="includes\PCREException.hxx" />
+    <ClInclude Include="includes\PCREMatcher.hxx" />
+    <ClInclude Include="includes\SciFile.hxx" />
+    <ClInclude Include="includes\SLint.hxx" />
+    <ClInclude Include="includes\SLintContext.hxx" />
+    <ClInclude Include="includes\SLintOptions.hxx" />
+    <ClInclude Include="includes\SLintVisitor.hxx" />
+    <ClInclude Include="includes\SLintXMLException.hxx" />
+    <ClInclude Include="includes\slint_gw.hxx" />
+    <ClInclude Include="includes\XMLtools.hxx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="sci_gateway\cpp\sci_slint.cpp" />
+    <ClCompile Include="src\cpp\AnalysisConfiguration.cpp" />
+    <ClCompile Include="src\cpp\AnalysisConfigurationType.cpp" />
+    <ClCompile Include="src\cpp\AnalysisRuleParameterType.cpp" />
+    <ClCompile Include="src\cpp\AnalysisRuleType.cpp" />
+    <ClCompile Include="src\cpp\BracketedExpChecker.cpp" />
+    <ClCompile Include="src\cpp\BreaksInLoopChecker.cpp" />
+    <ClCompile Include="src\cpp\CNESConfig.cpp" />
+    <ClCompile Include="src\cpp\CNESCsvResult.cpp" />
+    <ClCompile Include="src\cpp\CNESException.cpp" />
+    <ClCompile Include="src\cpp\CNESXmlResult.cpp" />
+    <ClCompile Include="src\cpp\CommentRatioChecker.cpp" />
+    <ClCompile Include="src\cpp\DecimalChecker.cpp" />
+    <ClCompile Include="src\cpp\DeprecatedChecker.cpp" />
+    <ClCompile Include="src\cpp\EmptyBlockChecker.cpp" />
+    <ClCompile Include="src\cpp\EqEqChecker.cpp" />
+    <ClCompile Include="src\cpp\ExcludedProjectFileType.cpp" />
+    <ClCompile Include="src\cpp\ExpInCondChecker.cpp" />
+    <ClCompile Include="src\cpp\FileException.cpp" />
+    <ClCompile Include="src\cpp\FunctionArgsChecker.cpp" />
+    <ClCompile Include="src\cpp\FunctionArgsOrderChecker.cpp" />
+    <ClCompile Include="src\cpp\FunctionNameChecker.cpp" />
+    <ClCompile Include="src\cpp\FunctionTestReturnChecker.cpp" />
+    <ClCompile Include="src\cpp\GlobalKeywordChecker.cpp" />
+    <ClCompile Include="src\cpp\IllegalCallsChecker.cpp" />
+    <ClCompile Include="src\cpp\ImplicitListChecker.cpp" />
+    <ClCompile Include="src\cpp\LineLengthChecker.cpp" />
+    <ClCompile Include="src\cpp\LinesCountChecker.cpp" />
+    <ClCompile Include="src\cpp\LoadSaveChecker.cpp" />
+    <ClCompile Include="src\cpp\McCabeChecker.cpp" />
+    <ClCompile Include="src\cpp\McCabeVisitor.cpp" />
+    <ClCompile Include="src\cpp\MopenMcloseChecker.cpp" />
+    <ClCompile Include="src\cpp\NaNChecker.cpp" />
+    <ClCompile Include="src\cpp\NestedBlocksChecker.cpp" />
+    <ClCompile Include="src\cpp\NotEqualChecker.cpp" />
+    <ClCompile Include="src\cpp\NotNotChecker.cpp" />
+    <ClCompile Include="src\cpp\OldNotChecker.cpp" />
+    <ClCompile Include="src\cpp\PCREException.cpp" />
+    <ClCompile Include="src\cpp\PCREMatcher.cpp" />
+    <ClCompile Include="src\cpp\PrintfChecker.cpp" />
+    <ClCompile Include="src\cpp\RedefinitionChecker.cpp" />
+    <ClCompile Include="src\cpp\ReturnsCountChecker.cpp" />
+    <ClCompile Include="src\cpp\RuleLinkType.cpp" />
+    <ClCompile Include="src\cpp\SciFile.cpp" />
+    <ClCompile Include="src\cpp\SelectChecker.cpp" />
+    <ClCompile Include="src\cpp\SemicolonAtEOLChecker.cpp" />
+    <ClCompile Include="src\cpp\SingleInstrChecker.cpp" />
+    <ClCompile Include="src\cpp\SLint.cpp" />
+    <ClCompile Include="src\cpp\SLintChecker.cpp" />
+    <ClCompile Include="src\cpp\SLintContext.cpp" />
+    <ClCompile Include="src\cpp\SLintOptions.cpp" />
+    <ClCompile Include="src\cpp\SLintScilabResult.cpp" />
+    <ClCompile Include="src\cpp\SLintVisitor.cpp" />
+    <ClCompile Include="src\cpp\SLintXMLException.cpp" />
+    <ClCompile Include="src\cpp\SLintXmlResult.cpp" />
+    <ClCompile Include="src\cpp\SpacesAroundOpChecker.cpp" />
+    <ClCompile Include="src\cpp\SpacesInArgsChecker.cpp" />
+    <ClCompile Include="src\cpp\Standard.cpp" />
+    <ClCompile Include="src\cpp\StandardRuleParameterType.cpp" />
+    <ClCompile Include="src\cpp\StandardRuleParameterValueType.cpp" />
+    <ClCompile Include="src\cpp\StandardRuleType.cpp" />
+    <ClCompile Include="src\cpp\StandardType.cpp" />
+    <ClCompile Include="src\cpp\StructChecker.cpp" />
+    <ClCompile Include="src\cpp\TodoChecker.cpp" />
+    <ClCompile Include="src\cpp\ToolConfiguration.cpp" />
+    <ClCompile Include="src\cpp\ToolConfigurationType.cpp" />
+    <ClCompile Include="src\cpp\UnreachableCodeChecker.cpp" />
+    <ClCompile Include="src\cpp\UselessArgChecker.cpp" />
+    <ClCompile Include="src\cpp\UselessOpChecker.cpp" />
+    <ClCompile Include="src\cpp\UselessRetChecker.cpp" />
+    <ClCompile Include="src\cpp\VariableNameChecker.cpp" />
+    <ClCompile Include="src\cpp\VariablesChecker.cpp" />
+    <ClCompile Include="src\cpp\XMLConfig.cpp" />
+    <ClCompile Include="src\cpp\XMLtools.cpp" />
+    <ClCompile Include="src\c\DllmainSlint.c" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

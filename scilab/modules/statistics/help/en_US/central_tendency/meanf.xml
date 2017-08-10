@@ -2,22 +2,25 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2000 - INRIA - Carlos Klimann
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
         xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="meanf">
     <refnamediv>
         <refname>meanf</refname>
         <refpurpose>weighted mean of a vector or a matrix</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>m = meanf(x, fre, [orien])
             m = meanf(x, fre, 'r') or m = meanf(x, fre, 1)
             m = meanf(x, fre, 'c') or m = meanf(x, fre, 2)
@@ -81,13 +84,13 @@
         <title>Description</title>
         <para>
             This function computes the mean of a vector or matrix <literal> x</literal>, each of
-            them counted with a frequency given by the corresponding values of the integer 
+            them counted with a frequency given by the corresponding values of the integer
             vector or matrix <literal>fre</literal>.
         </para>
         <para>
-            For a vector or matrix <literal>x</literal>, <literal> m = meanf(x, fre) </literal> or 
-            <literal>m = meanf(x, fre, "*")</literal> returns in scalar <literal> m</literal> the 
-            mean of all the entries of <literal> x </literal>, each value counted with the 
+            For a vector or matrix <literal>x</literal>, <literal> m = meanf(x, fre) </literal> or
+            <literal>m = meanf(x, fre, "*")</literal> returns in scalar <literal> m</literal> the
+            mean of all the entries of <literal> x </literal>, each value counted with the
             multiplicity indicated by the corresponding value of <literal>fre</literal>.
         </para>
         <para>
@@ -97,13 +100,13 @@
         </para>
         <para>
             <literal>m = meanf(x, fre, 'c') </literal> (or,  equivalently, <literal>m = meanf(x, fre, 2) </literal>)
-            returns in  each entry of the column  vector <literal> m</literal> the mean of 
+            returns in  each entry of the column  vector <literal> m</literal> the mean of
             each row of <literal> x</literal>.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 x=[0.2113249 0.0002211 0.6653811;0.7560439 0.3303271 0.6283918]
 m=meanf(x,rand(x))
 m=meanf(x,[10 10 10;1 1 1],'r')
@@ -111,7 +114,7 @@ m=meanf(x,[10 10 10;1 1 1],'c')
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="mean">mean</link>

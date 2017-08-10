@@ -2,11 +2,14 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2010 - DIGITEO - Antoine ELIAS
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 /*--------------------------------------------------------------------------*/
@@ -28,14 +31,14 @@ types::Function::ReturnValue sci_typename(types::typed_list &in, int _iRetCount,
 {
     int iOne = 1;
     const wchar_t* pstShortTypeName[NB_OF_TYPE] = {L"s", L"p", L"b", L"sp", L"spb", L"msp", L"i", L"h", L"c",
-                                            L"m", L"mc", L"f", L"l", L"tl", L"ml", L"ptr", L"ip", L"fptr"
-                                            };
+                                                   L"m", L"mc", L"f", L"l", L"tl", L"ml", L"ptr", L"ip", L"fptr"
+                                                  };
     double pstShortTypeNum[NB_OF_TYPE] = {1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 13, 14, 15, 16, 17, 128, 129, 130};
 
     /* Check the number of input argument */
-    if (in.size() > 2 || in.size() == 1)
+    if (in.size() != 0)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d or %d expected.\n"), "typename" , 0, 2);
+        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "typename" , 0);
         return types::Function::Error;
     }
 
@@ -62,11 +65,6 @@ types::Function::ReturnValue sci_typename(types::typed_list &in, int _iRetCount,
             pStrOut->set(i, pstShortTypeName[i]);
         }
         out.push_back(pStrOut);
-    }
-    else // in.size() == 2
-    {
-        Scierror(999, _("%s: Insert a new type is not managed.\n"), "typename");
-        return types::Function::Error;
     }
 
     return types::Function::OK;

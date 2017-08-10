@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="lsq_splin" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="lsq_splin" xml:lang="pt">
     <refnamediv>
         <refname>lsq_splin</refname>
         <refpurpose>ajuste ponderado por spline cúbico de mínimos
@@ -17,7 +17,7 @@
                 <term>xd, yd</term>
                 <listitem>
                     <para>vetores de mesmo tamanho, dados a serem ajustados por um
-                        spline cúbico 
+                        spline cúbico
                     </para>
                 </listitem>
             </varlistentry>
@@ -34,7 +34,7 @@
                 <term>x</term>
                 <listitem>
                     <para>vetor (linha ou coluna) estritamente crescente, pontos de
-                        interrupção do spline cúbico 
+                        interrupção do spline cúbico
                     </para>
                 </listitem>
             </varlistentry>
@@ -62,11 +62,11 @@
             pontos de interrupção <emphasis>x1 &lt; x2 &lt; ... &lt; xn</emphasis>
             então, o spline resultante s é tal que:
         </para>
-        <programlisting role=""><![CDATA[ 
-_m_                               _m_                       
+        <programlisting role=""><![CDATA[
+_m_                               _m_
 \                           2     \                           2
-/   wd(k) (s(xd(k)) - yd(k))  <=  /   wd(k) (f(xd(k)) - yd(k))    
----                               ---  
+/   wd(k) (s(xd(k)) - yd(k))  <=  /   wd(k) (f(xd(k)) - yd(k))
+---                               ---
 k=1                               k=1
  ]]></programlisting>
         <para>
@@ -94,7 +94,7 @@ k=1                               k=1
             você pode colocar um peso nulo (ou mesmo negativo) a todos os pontos que
             você deseja que sejam ignorados no ajuste. Quando o número total de pontos
             levados em conta no "procedure" de ajuste é (estritamente) menor que 4,
-            ocorre um erro. 
+            ocorre um erro.
         </para>
         <para>
             O vetor <literal>xd</literal> não necessita estar em ordem
@@ -111,7 +111,7 @@ k=1                               k=1
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // este é um exemplo artificial, onde os dados xd e yd
 // são contruídos a partir de uma função seno perturbada
 a = 0; b = 2*%pi;

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="global" xml:lang="pt">
+    <refnamediv>
+        <refname>global</refname>
+        <refpurpose>define variável global</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title> Seqüência de Chamamento </title>
+        <synopsis>global('nam1',...,'namn')
+            global nam1 ... namn
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>nam1,..., namn</term>
+                <listitem>
+                    <para>nomes de variáveis válidos</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>De um modo simples, cada função do Scilab possui suas próprias
+            variáveis locais e pode "ler" todas as variáveis criadas no espaço de
+            trabalho base ou pelas funções de chamamento. A palavra-chave
+            <literal>global</literal> permite realizar leituras ou escritas de
+            variáveis através de funções. Qualquer atribuição àquela variável, em
+            qualquer função, está disponível para todas as outras funções que a
+            declaram como variável <literal>global</literal>.
+        </para>
+        <para>Se a variável global não existe (não possui valor) na primeira vez
+            em que você escrever a declara como <literal>global </literal>, será
+            inicializada como matriz nula.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[
+//primeiro: o ambiente de chamamento e uma função compartilham uma variável
+global a
+a=1
+deff('y=f1(x)','global a,a=x^2,y=a^2')
+f1(2)
+a
+//segundo: três funções compartilham variáveis
+deff('initdata()','global A C ;A=10,C=30')
+deff('letsgo()','global A C ;disp(A) ;C=70')
+deff('letsgo1()','global C ;disp(C)')
+initdata()
+letsgo()
+letsgo1()
+ ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title> Ver Também </title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="who">who</link>
+            </member>
+            <member>
+                <link linkend="isglobal">isglobal</link>
+            </member>
+            <member>
+                <link linkend="clearglobal">clearglobal</link>
+            </member>
+            <member>
+                <link linkend="resume">resume</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

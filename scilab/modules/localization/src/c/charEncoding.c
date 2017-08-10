@@ -3,11 +3,14 @@
 * Copyright (C) 2008 - Yung-Jang Lee
 * Copyright (C) 2009 - DIGITEO - Antoine ELIAS , Allan CORNET
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 /*--------------------------------------------------------------------------*/
@@ -63,23 +66,26 @@ wchar_t *to_wide_string(const char *_UTFStr)
 {
     int nwide = 0;
     wchar_t *_buf = NULL;
-    DWORD dwFlags = 0;
-    UINT codePage = CP_ACP;
+    UINT codePage = CP_UTF8;
 
     if (_UTFStr == NULL)
     {
         return NULL;
     }
 
-    if (IsValidUTF8(_UTFStr))
-    {
-        codePage = CP_UTF8;
-    }
-
-    nwide = MultiByteToWideChar(codePage, dwFlags, _UTFStr, -1, NULL, 0);
+    nwide = MultiByteToWideChar(codePage, MB_ERR_INVALID_CHARS, _UTFStr, -1, NULL, 0);
     if (nwide == 0)
     {
-        return NULL;
+        if (GetLastError() == ERROR_NO_UNICODE_TRANSLATION)
+        {
+            codePage = CP_ACP;
+            nwide = MultiByteToWideChar(codePage, 0, _UTFStr, -1, NULL, 0);
+        }
+
+        if (nwide == 0)
+        {
+            return NULL;
+        }
     }
 
     _buf = (wchar_t *)MALLOC(nwide * sizeof(wchar_t));
@@ -88,7 +94,7 @@ wchar_t *to_wide_string(const char *_UTFStr)
         return NULL;
     }
 
-    if (MultiByteToWideChar(codePage, dwFlags, _UTFStr, -1, _buf, nwide) == 0)
+    if (MultiByteToWideChar(codePage, 0, _UTFStr, -1, _buf, nwide) == 0)
     {
         FREE(_buf);
         _buf = NULL;
@@ -196,12 +202,14 @@ char *wide_string_to_UTF8(const wchar_t *_wide)
     size_t iLeftIn = 0;
     size_t iLeftOut = 0;
     char* pOut = NULL;
-    iconv_t cd_UTF16_to_UTF8 = iconv_open("UTF-8", "WCHAR_T");
+    iconv_t cd_UTF16_to_UTF8;
 
     if (_wide == NULL)
     {
         return NULL;
     }
+
+    cd_UTF16_to_UTF8 = iconv_open("UTF-8", "WCHAR_T");
 
     pSaveIn = (wchar_t*)_wide;
     iLeftIn = wcslen(_wide) * sizeof(wchar_t);
@@ -215,6 +223,7 @@ char *wide_string_to_UTF8(const wchar_t *_wide)
     iconv_close(cd_UTF16_to_UTF8);
     if (iSize == (size_t)(-1))
     {
+        FREE(pOutSave);
         return NULL;
     }
 
@@ -228,15 +237,15 @@ wchar_t *to_wide_string(const char *_UTFStr)
     size_t iSize = 0;
     size_t iLeftIn = 0;
     size_t iLeftOut = 0;
-
+    iconv_t cd_UTF8_to_UTF16 = NULL;
     wchar_t* pOut = NULL;
-
-    iconv_t cd_UTF8_to_UTF16 = iconv_open("WCHAR_T", "UTF-8");
 
     if (_UTFStr == NULL)
     {
         return NULL;
     }
+
+    cd_UTF8_to_UTF16 = iconv_open("WCHAR_T", "UTF-8");
 
     iLeftIn = strlen(_UTFStr);
     pInSave = (char*)_UTFStr;
@@ -264,10 +273,10 @@ wchar_t *to_wide_string(const char *_UTFStr)
         iconv_close(cd_ISO8851_to_UTF16);
         if (iSize == (size_t)(-1))
         {
+            FREE(pOut);
             return NULL;
         }
     }
-
     return pOutSave;
 }
 /*--------------------------------------------------------------------------*/

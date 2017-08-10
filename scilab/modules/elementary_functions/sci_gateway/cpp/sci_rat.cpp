@@ -2,21 +2,23 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Cedric Delamarre
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 /*--------------------------------------------------------------------------*/
 #include <algorithm>
+
 #include "elem_func_gw.hxx"
 #include "function.hxx"
 #include "double.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
-
 
 extern "C"
 {
@@ -30,7 +32,7 @@ extern "C"
 clear a; nb = 2500; a = rand(nb, nb); tic(); rat(a); toc
 */
 /*--------------------------------------------------------------------------*/
-Function::ReturnValue sci_rat(types::typed_list &in, int _iRetCount, types::typed_list &out)
+types::Function::ReturnValue sci_rat(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     types::Double* pDblIn   = NULL;
     types::Double* pDblN    = NULL; // numerator
@@ -54,24 +56,21 @@ Function::ReturnValue sci_rat(types::typed_list &in, int _iRetCount, types::type
     /***** get data *****/
     if (in[0]->isDouble() == false)
     {
-        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_rat";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
     pDblIn = in[0]->getAs<types::Double>();
 
     if (pDblIn->getDims() > 2)
     {
-        ast::ExecVisitor exec;
-        return Overload::call(L"%hm_rat", in, _iRetCount, out, &exec);
+        return Overload::call(L"%hm_rat", in, _iRetCount, out);
     }
 
     if (pDblIn->isComplex())
     {
-        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_rat";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
     if (in.size() == 2)
@@ -96,7 +95,7 @@ Function::ReturnValue sci_rat(types::typed_list &in, int _iRetCount, types::type
     // Make tolerance relative to the element with maximum absolute value
     for (int i = 0; i < size; i++)
     {
-        dblRTol = max(dblRTol, std::abs(pR[i]));
+        dblRTol = std::max(dblRTol, std::fabs(pR[i]));
     }
 
     if (dblRTol > 0)
@@ -144,6 +143,6 @@ Function::ReturnValue sci_rat(types::typed_list &in, int _iRetCount, types::type
         out.push_back(pDblD);
     }
 
-    return Function::OK;
+    return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

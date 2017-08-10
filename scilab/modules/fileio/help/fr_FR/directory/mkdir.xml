@@ -39,7 +39,7 @@
     <refsection>
         <title>Exemples</title>
         <programlisting role="example">
-            <![CDATA[ 
+            <![CDATA[
 // Chemin absolu
 mkdir(TMPDIR+"/mkdir_example_1")
 status_2 = mkdir(TMPDIR+"/mkdir_example_2")

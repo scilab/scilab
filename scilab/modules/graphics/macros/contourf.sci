@@ -1,11 +1,14 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) DIGITEO - 2012 - Allan CORNET
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function contourf(x, y, z, nv, style, strf, leg, rect, nax)
 
@@ -113,11 +116,11 @@ function contourf(x, y, z, nv, style, strf, leg, rect, nax)
     end
 
     if size(strf, "*") <> 1 then
-        error(999, msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"), "contourf", 6));
+        error(999, msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"), "contourf", 6));
     end
 
     if size(leg, "*") <> 1 then
-        error(999, msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"), "contourf", 7));
+        error(999, msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"), "contourf", 7));
     end
 
     nv1 = nv;
@@ -158,7 +161,7 @@ function contourf(x, y, z, nv, style, strf, leg, rect, nax)
         ii = ii + nl + 1;
     end
 
-    lp=xget("lastpattern");
+    lp = size(gcf().color_map, 1);
 
     if size(nv,"*") > 1 // case where nv is a vector defining the level curve values
         if  size(nv,"*") > lp
@@ -188,18 +191,18 @@ function contourf(x, y, z, nv, style, strf, leg, rect, nax)
     H=[];
     [FA,IA]=gsort(abs(Area));
 
-    drawlater(); // postpon the drawing here
-    a=gca();
-    old_foreground = a.foreground;
-    pat=xget("pattern");
+    drawlater(); // postpone the drawing here
+    ax = gca();
+    old_foreground = ax.foreground;
+    pat = old_foreground;
     for jj=IA',
         nl=CS(2,I(jj));
         lev1=CS(1,I(jj));
         if (lev1 ~= minz | draw_min) then
             xp=CS(1,I(jj)+(1:nl));
             yp=CS(2,I(jj)+(1:nl));
-            pat=size(find( nv <= lev1),"*");
-            xset("pattern",pat);
+            pat = size(find( nv <= lev1),"*");
+            ax.foreground = pat;
             xfpoly(xp,yp)
         end
     end
@@ -207,7 +210,7 @@ function contourf(x, y, z, nv, style, strf, leg, rect, nax)
     if style(1)<>-1 then
         contour2d(xx,yy,zz,nv,style,"000",leg,rect,nax);
     end
-    a.foreground = old_foreground;
+    ax.foreground = old_foreground;
     drawnow(); // draw all now!
 
 endfunction

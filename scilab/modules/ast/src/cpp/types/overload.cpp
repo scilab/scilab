@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -23,9 +26,10 @@ extern "C"
 #include "callable.hxx"
 #include "overload.hxx"
 #include "context.hxx"
-#include "scilabexception.hxx"
+#include "opexp.hxx"
+#include "execvisitor.hxx"
 
-std::wstring Overload::buildOverloadName(std::wstring _stFunctionName, types::typed_list &in, int /*_iRetCount*/, bool _isOperator, bool _truncated)
+std::wstring Overload::buildOverloadName(const std::wstring& _stFunctionName, types::typed_list &in, int /*_iRetCount*/, bool _isOperator, bool _truncated)
 {
     std::wstring stType0 = in[0]->getShortTypeStr();
 
@@ -49,18 +53,19 @@ std::wstring Overload::buildOverloadName(std::wstring _stFunctionName, types::ty
     return _stFunctionName;
 }
 
-types::Function::ReturnValue Overload::generateNameAndCall(std::wstring _stFunctionName, types::typed_list &in, int _iRetCount, types::typed_list &out, ast::ConstVisitor *_execMe, bool _isOperator)
+types::Function::ReturnValue Overload::generateNameAndCall(const std::wstring& _stFunctionName, types::typed_list &in, int _iRetCount, types::typed_list &out, bool _isOperator)
 {
     std::wstring stFunc = buildOverloadName(_stFunctionName, in, _iRetCount, _isOperator);
-    types::Function::ReturnValue ret = types::Function::Error;
-    try
+    if (symbol::Context::getInstance()->get(symbol::Symbol(stFunc)))
     {
-        ret = call(stFunc, in, _iRetCount, out, _execMe, _isOperator);
+        return call(stFunc, in, _iRetCount, out, _isOperator);
     }
-    catch (ast::ScilabError se)
+
+    // if overload doesn't existe try with short name
+    std::wstring stFunc2 = buildOverloadName(_stFunctionName, in, _iRetCount, _isOperator, true);
+    if (symbol::Context::getInstance()->get(symbol::Symbol(stFunc)))
     {
-        std::wstring stFunc2 = buildOverloadName(_stFunctionName, in, _iRetCount, _isOperator, true);
-        ret = call(stFunc2, in, _iRetCount, out, _execMe, _isOperator);
+        types::Function::ReturnValue ret = call(stFunc, in, _iRetCount, out, _isOperator);
         if (ret == types::Function::OK && ConfigVariable::getWarningMode())
         {
             char* pstFunc2 = wide_string_to_UTF8(stFunc2.c_str());
@@ -69,11 +74,14 @@ types::Function::ReturnValue Overload::generateNameAndCall(std::wstring _stFunct
             FREE(pstFunc);
             FREE(pstFunc2);
         }
+        return ret;
     }
-    return ret;
+
+    // get exeception with overloading error
+    return call(stFunc, in, _iRetCount, out, _isOperator);
 }
 
-types::Function::ReturnValue Overload::call(std::wstring _stOverloadingFunctionName, types::typed_list &in, int _iRetCount, types::typed_list &out, ast::ConstVisitor *_execMe, bool _isOperator)
+types::Function::ReturnValue Overload::call(const std::wstring& _stOverloadingFunctionName, types::typed_list &in, int _iRetCount, types::typed_list &out, bool _isOperator)
 {
     types::InternalType *pIT = symbol::Context::getInstance()->get(symbol::Symbol(_stOverloadingFunctionName));
     types::Callable *pCall = NULL;
@@ -96,59 +104,59 @@ types::Function::ReturnValue Overload::call(std::wstring _stOverloadingFunctionN
                 os_sprintf(pstError1, "%s%s", _("Function not defined for given argument type(s),\n"), pstError2);
             }
 
-            pwstError = to_wide_string(pstError1);
-            std::wstring wstError(pwstError);
-            FREE(pwstError);
             FREE(pstFuncName);
-            throw ast::ScilabError(wstError, 999, Location(0, 0, 0, 0));
+            ast::InternalError ie(pstError1);
+            ie.SetErrorType(ast::TYPE_EXCEPTION);
+            throw ie;
         }
 
-        pCall = pIT->getAs<types::Callable>();
-
-        types::optional_list opt;
-
-        // add line and function name in where
-        ConfigVariable::where_begin(0, 0, pCall);
-
-        types::Function::ReturnValue ret = pCall->call(in, opt, _iRetCount, out, _execMe);
-
-        // remove function name in where
-        ConfigVariable::where_end();
-
-        return ret;
-    }
-    catch (ast::ScilabMessage sm)
-    {
-        // remove function name in where
-        ConfigVariable::where_end();
-        throw sm;
-    }
-    catch (ast::ScilabError se)
-    {
-        ConfigVariable::fillWhereError(se.GetErrorLocation().first_line);
-        if (ConfigVariable::getLastErrorNumber() == 0)
+        if (ConfigVariable::increaseRecursion())
         {
-            ConfigVariable::setLastErrorMessage(se.GetErrorMessage());
-            ConfigVariable::setLastErrorNumber(se.GetErrorNumber());
-            ConfigVariable::setLastErrorLine(se.GetErrorLocation().first_line);
-            ConfigVariable::setLastErrorFunction(std::wstring(L""));
-        }
+            pCall = pIT->getAs<types::Callable>();
 
-        if (pCall)
-        {
+            types::optional_list opt;
+
+            // add line and function name in where
+            ConfigVariable::where_begin(0, 0, pCall);
+
+            types::Function::ReturnValue ret;
+            ret = pCall->call(in, opt, _iRetCount, out);
+
             // remove function name in where
             ConfigVariable::where_end();
+            ConfigVariable::decreaseRecursion();
+            return ret;
+        }
+        else
+        {
+            throw ast::RecursionException();
+        }
+    }
+    catch (const ast::InternalError& ie)
+    {
+        ConfigVariable::fillWhereError(ie.GetErrorLocation().first_line);
+        if (pCall)
+        {
+            if (ConfigVariable::getLastErrorFunction() == L"")
+            {
+                ConfigVariable::setLastErrorFunction(pCall->getName());
+                ConfigVariable::setLastErrorLine(ie.GetErrorLocation().first_line);
+            }
+
+            // remove function name in where
+            ConfigVariable::where_end();
+            ConfigVariable::decreaseRecursion();
         }
 
-        throw ast::ScilabMessage(se.GetErrorMessage(), se.GetErrorNumber(), se.GetErrorLocation());
+        throw ie;
     }
 }
 
-std::wstring Overload::getNameFromOper(ast::OpExp::Oper _oper)
+std::wstring Overload::getNameFromOper(const int _oper)
 {
     switch (_oper)
     {
-            /* standard operators */
+        /* standard operators */
         case ast::OpExp::plus :
             return std::wstring(L"a");
         case ast::OpExp::unaryMinus :
@@ -162,7 +170,7 @@ std::wstring Overload::getNameFromOper(ast::OpExp::Oper _oper)
             return std::wstring(L"l");
         case ast::OpExp::power :
             return std::wstring(L"p");
-            /* dot operators */
+        /* dot operators */
         case ast::OpExp::dottimes :
             return std::wstring(L"x");
         case ast::OpExp::dotrdivide :
@@ -171,14 +179,14 @@ std::wstring Overload::getNameFromOper(ast::OpExp::Oper _oper)
             return std::wstring(L"q");
         case ast::OpExp::dotpower :
             return std::wstring(L"j");
-            /* Kron operators */
+        /* Kron operators */
         case ast::OpExp::krontimes :
             return std::wstring(L"k");
         case ast::OpExp::kronrdivide :
             return std::wstring(L"y");
         case ast::OpExp::kronldivide :
             return std::wstring(L"z");
-            /* Control Operators ??? */
+        /* Control Operators ??? */
         case ast::OpExp::controltimes :
             return std::wstring(L"u");
         case ast::OpExp::controlrdivide :

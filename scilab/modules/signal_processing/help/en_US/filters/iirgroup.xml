@@ -5,7 +5,7 @@
         <refpurpose>group delay Lp IIR filter optimization</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[lt,grad]=iirgroup(p,r,theta,omega,wt,td)
         </synopsis>
     </refsynopsisdiv>

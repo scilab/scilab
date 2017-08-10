@@ -3,11 +3,14 @@
  * Copyright (C) 2005 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -16,9 +19,8 @@
 #define __INTGRAPHICS__
 
 #include "dynlib_graphics.h"
+#include "c_gateway_prototype.h"
 /*--------------------------------------------------------------------------*/
-GRAPHICS_IMPEXP int gw_graphics(void);
-
 GRAPHICS_IMPEXP int sci_addcb(char *fname, void *pvApiCtx);
 GRAPHICS_IMPEXP int sci_champ(char *fname, void *pvApiCtx);
 GRAPHICS_IMPEXP int sci_champ1(char *fname, void *pvApiCtx);
@@ -63,7 +65,6 @@ GRAPHICS_IMPEXP int sci_rubberbox(char *fname, void *pvApiCtx);
 GRAPHICS_IMPEXP int sci_rotate_axes(char *fname, void *pvApiCtx);
 GRAPHICS_IMPEXP int sci_plot3d(char *fname, void *pvApiCtx);
 GRAPHICS_IMPEXP int sci_plot2d1(char *fname, void *pvApiCtx);
-GRAPHICS_IMPEXP int sci_plot2d1_1(char *fname, void *pvApiCtx);
 GRAPHICS_IMPEXP int sci_plot2d1_2(char *fname, void *pvApiCtx);
 GRAPHICS_IMPEXP int sci_plot2d1_3(char *fname, void *pvApiCtx);
 GRAPHICS_IMPEXP int sci_plot2d1_4(char *fname, void *pvApiCtx);
@@ -94,11 +95,12 @@ GRAPHICS_IMPEXP int sci_demo(char *fname, void *pvApiCtx);
 GRAPHICS_IMPEXP int sci_delete(char *fname, void *pvApiCtx);
 GRAPHICS_IMPEXP int sci_copy(char *fname, void *pvApiCtx);
 GRAPHICS_IMPEXP int sci_contour2di(char *fname, void *pvApiCtx);
-GRAPHICS_IMPEXP int sci_light(char *fname, void *pvApiCtx);
 GRAPHICS_IMPEXP int sci_addcolor(char *fname, void *pvApiCtx);
 GRAPHICS_IMPEXP int sci_name2rgb(char *fname, void *pvApiCtx);
 GRAPHICS_IMPEXP int sci_color(char *fname, void *pvApiCtx);
 GRAPHICS_IMPEXP int sci_contour2dm(char *fname, void *pvApiCtx);
 /*--------------------------------------------------------------------------*/
+GRAPHICS_IMPEXP  C_GATEWAY_PROTOTYPE(sci_light);
+
 #endif /* __INTGRAPHICS__ */
 /*--------------------------------------------------------------------------*/

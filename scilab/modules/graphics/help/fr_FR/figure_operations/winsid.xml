@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="winsid">
+    <refnamediv>
+        <refname>winsid</refname>
+        <refpurpose>renvoie la liste des fenêtre graphiques ouvertes  </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>x=winsid()</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>x  </term>
+                <listitem>
+                    <para>vecteur ligne.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <function>winsid</function> est utilisée pour obtenir la liste des fenêtre graphiques ouvertes, sous forme d'un vecteur ligne.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="close">close</link>
+            </member>
+            <member>
+                <link linkend="xdel">xdel</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

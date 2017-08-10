@@ -6,11 +6,14 @@
 # Copyright (C) DIGITEO - 2009 - Pierre MARECHAL
 # Copyright (C) DIGITEO - 2010 - Clément DAVID
 #
-# This file must be used under the terms of the CeCILL.
-# This source file is licensed as described in the file COPYING, which
-# you should have received as part of this distribution.  The terms
-# are also available at
-# http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+# Copyright (C) 2012 - 2016 - Scilab Enterprises
+#
+# This file is hereby licensed under the terms of the GNU GPL v2.0,
+# pursuant to article 5.3.4 of the CeCILL v.2.1.
+# This file was originally licensed under the terms of the CeCILL v2.1,
+# and continues to be available under such terms.
+# For more information, see the COPYING file which you should have received
+# along with this program.
 #
 
 #### Target ######
@@ -50,7 +53,6 @@ MACROSDIRSEXT = macros/tree
 GUI_C_SOURCES = \
     src/c/buildMainWindowTitle.c \
     src/c/getMainWindowTitle.c \
-    src/c/InitializeGUI.c \
     src/c/setMainWindowTitle.c \
     src/c/addmenu.c \
     src/c/CreateUimenu.c \
@@ -60,6 +62,7 @@ GUI_C_SOURCES = \
     src/jni/ScilabTermination_wrap.c
 
 GUI_CXX_SOURCES = \
+    src/cpp/InitializeGUI.cpp \
     src/cpp/InitUIMenu.cpp \
     src/jni/CallScilabBridge.cpp \
     src/cpp/CreateUIControl.cpp \
@@ -166,15 +169,11 @@ BUILT_SOURCES+=swig
 endif
 
 GATEWAY_C_SOURCES = \
-    sci_gateway/c/sci_x_choice.c \
-    sci_gateway/c/sci_x_mdialog.c \
-    sci_gateway/c/sci_x_dialog.c \
     sci_gateway/c/sci_x_choose.c \
     sci_gateway/c/sci_x_choose_modeless.c \
     sci_gateway/c/sci_unsetmenu.c \
     sci_gateway/c/sci_delmenu.c \
     sci_gateway/c/sci_setmenu.c \
-    sci_gateway/c/sci_ClipBoard.c \
     sci_gateway/c/sci_toolbar.c \
     sci_gateway/c/sci_uicontextmenu.c \
     sci_gateway/c/sci_uicontrol.c \
@@ -184,8 +183,6 @@ GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_messagebox.c \
     sci_gateway/c/sci_waitbar.c \
     sci_gateway/c/sci_progressionbar.c \
-    sci_gateway/c/sci_uigetfont.c \
-    sci_gateway/c/sci_uigetcolor.c \
     sci_gateway/c/sci_getcallbackobject.c \
     sci_gateway/c/sci_exportUI.c \
     sci_gateway/c/sci_figure.c
@@ -199,13 +196,13 @@ GATEWAY_CXX_SOURCES = \
     sci_gateway/cpp/sci_getlookandfeel.cpp \
     sci_gateway/cpp/sci_uigetdir.cpp \
     sci_gateway/cpp/sci_uigetfile.cpp \
+    sci_gateway/cpp/sci_uigetfont.cpp \
     sci_gateway/cpp/sci_displaytree.cpp \
     sci_gateway/cpp/sci_uiputfile.cpp \
     sci_gateway/cpp/sci_about.cpp \
     sci_gateway/cpp/sci_raise_window.cpp \
     sci_gateway/cpp/sci_usecanvas.cpp \
     sci_gateway/cpp/sci_helpbrowser.cpp \
-    sci_gateway/cpp/gui_gw.cpp \
     sci_gateway/cpp/sci_fire_closing_finished.cpp \
     sci_gateway/cpp/sci_useeditor.cpp \
     sci_gateway/cpp/sci_openged.cpp \
@@ -220,7 +217,12 @@ GATEWAY_CXX_SOURCES = \
     sci_gateway/cpp/sci_datatip_set_interp.cpp \
     sci_gateway/cpp/sci_datatip_set_orient.cpp \
     sci_gateway/cpp/sci_saveGui.cpp \
-    sci_gateway/cpp/sci_loadGui.cpp
+    sci_gateway/cpp/sci_loadGui.cpp \
+    sci_gateway/cpp/sci_xchoicesi.cpp \
+    sci_gateway/cpp/sci_uigetcolor.cpp \
+    sci_gateway/cpp/sci_ClipBoard.cpp \
+    sci_gateway/cpp/sci_x_mdialog.cpp \
+    sci_gateway/cpp/sci_x_dialog.cpp
 
 libscigui_la_CPPFLAGS = \
     -I$(srcdir)/includes/ \
@@ -269,8 +271,7 @@ libscigui_disable_la_CPPFLAGS = \
 
 
 GUI_DISABLE_C_SOURCES = src/nogui/nogui.c
-GUI_DISABLE_CXX_SOURCES = src/nogui/nogui_gw.cpp
-libscigui_disable_la_SOURCES = $(GUI_DISABLE_C_SOURCES) $(GUI_DISABLE_CXX_SOURCES)
+libscigui_disable_la_SOURCES = $(GUI_DISABLE_C_SOURCES)
 
 
 pkglib_LTLIBRARIES = libscigui-disable.la

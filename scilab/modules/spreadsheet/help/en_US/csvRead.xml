@@ -2,6 +2,14 @@
 <!--
  * Copyright (C) 2010-2011 - INRIA - Allan CORNET
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  -->
 <refentry version="5.0-subset Scilab" xml:id="csvRead" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
@@ -15,7 +23,7 @@
         <refpurpose>Read comma-separated value file</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             M = csvRead(filename)
             M = csvRead(filename, separator)
@@ -302,7 +310,7 @@ R2 = blocksize + R1-1;
 irange = [R1 C1 R2 C2];
 mprintf("Block #%d, rows #%d to #%d\n",iblock,R1,R2);
 tic();
-M=csvRead(filename , [] , [] , [] , [] , [] , [] , irange );
+M=csvRead(filename , [] , [] , [] , [] , [] , irange );
 t = toc();
 nrows = size(M,"r");
 ncols = size(M,"c");
@@ -352,8 +360,7 @@ csvRead(filename, [], [], "double", [], [], [5 3 7 6])
         Example with header
         <programlisting role="example"><![CDATA[
 comments = [
-"// Copyright (C) INRIA"
-"// This file must be used under the terms of the CeCILL."];
+"// Copyright (C) INRIA"];
 filename = fullfile(TMPDIR , 'foo.csv');
 csvWrite(rand(2,3), filename, ascii(9), ",", [], comments);
 
@@ -362,7 +369,7 @@ header = 2;
     ]]></programlisting>
     </refsection>
     <refsection>
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="csvWrite">csvWrite</link>

@@ -1,11 +1,14 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2008 - INRIA - Sylvestre Ledru <sylvestre.ledru@inria.fr>
 #
-# This file must be used under the terms of the CeCILL.
-# This source file is licensed as described in the file COPYING, which
-# you should have received as part of this distribution.  The terms
-# are also available at
-# http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+# Copyright (C) 2012 - 2016 - Scilab Enterprises
+#
+# This file is hereby licensed under the terms of the GNU GPL v2.0,
+# pursuant to article 5.3.4 of the CeCILL v.2.1.
+# This file was originally licensed under the terms of the CeCILL v2.1,
+# and continues to be available under such terms.
+# For more information, see the COPYING file which you should have received
+# along with this program.
 
 #### Target ######
 modulename=scicos
@@ -18,6 +21,9 @@ src/cpp/il_state.cpp \
 src/cpp/il_sim.cpp \
 src/cpp/var2vec.cpp \
 src/cpp/vec2var.cpp \
+src/cpp/XMIResource.cpp \
+src/cpp/XMIResource_load.cpp \
+src/cpp/XMIResource_save.cpp \
 src/cpp/Controller.cpp \
 src/cpp/controller_helpers.cpp \
 src/cpp/LoggerView.cpp \
@@ -79,7 +85,6 @@ sci_gateway/cpp/sci_duplicate.cpp \
 sci_gateway/cpp/sci_end_scicosim.cpp \
 sci_gateway/cpp/sci_getblocklabel.cpp \
 sci_gateway/cpp/sci_getscicosvars.cpp \
-sci_gateway/cpp/sci_haltscicos.cpp \
 sci_gateway/cpp/sci_phase_simulation.cpp \
 sci_gateway/cpp/sci_pointer_xproperty.cpp \
 sci_gateway/cpp/sci_scicos_new.cpp \
@@ -93,7 +98,8 @@ sci_gateway/cpp/sci_validvar.cpp \
 sci_gateway/cpp/sci_var2vec.cpp \
 sci_gateway/cpp/sci_vec2var.cpp \
 sci_gateway/cpp/sci_callblk.cpp \
-sci_gateway/cpp/sci_model2blk.cpp
+sci_gateway/cpp/sci_model2blk.cpp \
+sci_gateway/cpp/sci_scicosDiagramToScilab.cpp
 
 GATEWAY_C_SOURCES = \
 sci_gateway/c/sci_ftree2.c \
@@ -130,6 +136,7 @@ libsciscicos_algo_la_CPPFLAGS= -I$(srcdir)/includes/ \
 			-I$(srcdir)/src/scicos_sundials/include/sundials/ \
 			-I$(srcdir)/src/scicos_sundials/src/ida/ \
 			-I$(top_srcdir)/modules/output_stream/includes/ \
+			-I$(top_srcdir)/modules/fileio/includes/ \
 			-I$(top_srcdir)/modules/dynamic_link/includes/ \
 			-I$(top_srcdir)/modules/string/includes/ \
 			-I$(top_srcdir)/modules/localization/includes/ \
@@ -147,11 +154,13 @@ libsciscicos_algo_la_CPPFLAGS= -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/threads/includes/ \
 			-I$(top_srcdir)/modules/console/includes/ \
 			-I$(top_srcdir)/modules/differential_equations/includes/ \
+			$(XML_FLAGS) \
 			$(AM_CPPFLAGS)
 else
 libsciscicos_algo_la_CPPFLAGS= -I$(top_srcdir)/modules/output_stream/includes/ \
 			-I$(top_srcdir)/modules/api_scilab/includes/ \
 			-I$(top_srcdir)/modules/scicos/includes/ \
+			$(XML_FLAGS) \
 			$(AM_CPPFLAGS)
 endif
 libsciscicos_cli_la_CPPFLAGS = $(libsciscicos_algo_la_CPPFLAGS)
@@ -167,7 +176,9 @@ libsciscicos_cli_la_SOURCES =
 libsciscicos_la_SOURCES =
 endif
 
-libsciscicos_algo_la_LIBADD =
+libsciscicos_algo_la_LIBADD =  \
+		$(RT_LIB) \
+		$(LIBXML_LIBS)
 libsciscicos_cli_la_LIBADD = libsciscicos-algo.la
 libsciscicos_la_LIBADD = libsciscicos-algo.la
 if XCOS
@@ -178,11 +189,6 @@ libsciscicos_la_LIBADD += libscisundials.la \
     $(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la
 endif
 endif
-
-libsciscicos_algo_la_LIBADD += $(RT_LIB)
-libsciscicos_cli_la_LIBADD += $(RT_LIB)
-libsciscicos_la_LIBADD += $(RT_LIB)
-
 
 # For the code check (splint)
 CHECK_SRC= $(SCICOS_C_SOURCES) $(GATEWAY_C_SOURCES)

@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="chsolve">
@@ -25,7 +28,7 @@
             <varlistentry>
                 <term>spcho  </term>
                 <listitem>
-                    <para>liste contenant les facteurs de Cholesky renvoyés par chfact 
+                    <para>liste contenant les facteurs de Cholesky renvoyés par chfact
                     </para>
                 </listitem>
             </varlistentry>
@@ -41,18 +44,18 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>sol=chsolve(spcho,rhs)</literal> calcule la solution de 
+            <literal>sol=chsolve(spcho,rhs)</literal> calcule la solution de
             <literal>rhs=A*sol</literal>, où <literal>A</literal> est une matrice symétrique
             définie positive. Cette fonction est basée sur le programme Ng-Peyton
             (ORNL). Voir le programme Fortran pour une description complète des
-            variables de la liste <literal>spcho</literal>. 
+            variables de la liste <literal>spcho</literal>.
         </para>
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 A=sprand(20,20,0.1);
-A=A*A'+eye();  
+A=A*A'+eye();
 spcho=chfact(A);
 sol=(1:20)';rhs=A*sol;
 spcho=chfact(A);

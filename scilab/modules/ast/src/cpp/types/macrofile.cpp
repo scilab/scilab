@@ -3,11 +3,14 @@
 *  Copyright (C) 2009-2010 - DIGITEO - Bruno JOFRET
 *  Copyright (C) 2009-2009 - DIGITEO - Antoine ELIAS
 *
-*  This file must be used under the terms of the CeCILL.
-*  This source file is licensed as described in the file COPYING, which
-*  you should have received as part of this distribution.  The terms
-*  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
@@ -29,7 +32,7 @@ extern "C"
 }
 namespace types
 {
-MacroFile::MacroFile(std::wstring _stName, std::wstring _stPath, std::wstring _stModule) :
+MacroFile::MacroFile(const std::wstring& _stName, const std::wstring& _stPath, const std::wstring& _stModule) :
     Callable(), m_stPath(_stPath), m_pMacro(NULL)
 {
     setName(_stName);
@@ -44,7 +47,7 @@ MacroFile::~MacroFile()
     }
 }
 
-InternalType* MacroFile::clone()
+MacroFile* MacroFile::clone()
 {
     IncreaseRef();
     return this;
@@ -57,16 +60,21 @@ void MacroFile::whoAmI()
 
 bool MacroFile::toString(std::wostringstream& ostr)
 {
-    ostr << L"FIXME : Implement MacroFile::toString" << std::endl;
+
+    parse();
+    if (m_pMacro)
+    {
+        m_pMacro->toString(ostr);
+    }
     return true;
 }
 
-Callable::ReturnValue MacroFile::call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc)
+Callable::ReturnValue MacroFile::call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out)
 {
     parse();
     if (m_pMacro)
     {
-        return m_pMacro->call(in, opt, _iRetCount, out, execFunc);
+        return m_pMacro->call(in, opt, _iRetCount, out);
     }
     else
     {
@@ -80,7 +88,7 @@ bool MacroFile::parse(void)
     {
         //load file, only for the first call
         char* pstPath = wide_string_to_UTF8(m_stPath.c_str());
-        std::ifstream f(pstPath, ios::in | ios::binary | ios::ate);
+        std::ifstream f(pstPath, std::ios::in | std::ios::binary | std::ios::ate);
         if (f.is_open() == false)
         {
             Scierror(999, _("Unable to open : %s.\n"), pstPath);

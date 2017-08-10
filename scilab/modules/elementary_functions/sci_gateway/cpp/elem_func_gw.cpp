@@ -3,14 +3,18 @@
 *  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
 *  Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
 *
-*  This file must be used under the terms of the CeCILL.
-*  This source file is licensed as described in the file COPYING, which
-*  you should have received as part of this distribution.  The terms
-*  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 //for Visual Leak Detector in debug compilation mode
+//#define DEBUG_VLD
 #if defined(DEBUG_VLD) && defined(_DEBUG)
 #include <vld.h>
 #endif
@@ -18,7 +22,6 @@
 #include "elem_func_gw.hxx"
 #include "context.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 #include "Scierror.h"
 #include "localization.h"
 #include "charEncoding.h"
@@ -89,11 +92,13 @@ int ElemFuncModule::Load()
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"acosh", &sci_acosh, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"asinh", &sci_asinh, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"atanh", &sci_atanh, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"isvector", &sci_isvector, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"issquare", &sci_issquare, MODULE_NAME));
     return 1;
 }
 
 
-bool getDimsFromArguments(types::typed_list& in, char* _pstName, int* _iDims, int** _piDims, bool* _alloc)
+bool getDimsFromArguments(types::typed_list& in, const std::string& _pstName, int* _iDims, int** _piDims, bool* _alloc)
 {
     types::Double* pOut = 0;
 
@@ -124,14 +129,14 @@ bool getDimsFromArguments(types::typed_list& in, char* _pstName, int* _iDims, in
         {
             if (in[0]->isSparse())
             {
-                Sparse* sp = in[0]->getAs<Sparse>();
+                types::Sparse* sp = in[0]->getAs<types::Sparse>();
                 *_iDims = sp->getDims();
                 *_piDims = sp->getDimsArray();
                 return true;
             }
             else if (in[0]->isSparseBool())
             {
-                SparseBool* sp = in[0]->getAs<SparseBool>();
+                types::SparseBool* sp = in[0]->getAs<types::SparseBool>();
                 *_iDims = sp->getDims();
                 *_piDims = sp->getDimsArray();
                 return true;
@@ -139,7 +144,7 @@ bool getDimsFromArguments(types::typed_list& in, char* _pstName, int* _iDims, in
             return false;
         }
 
-        GenericType* pIn = in[0]->getAs<GenericType>();
+        types::GenericType* pIn = in[0]->getAs<types::GenericType>();
         *_iDims = pIn->getDims();
         *_piDims = pIn->getDimsArray();
 
@@ -154,16 +159,16 @@ bool getDimsFromArguments(types::typed_list& in, char* _pstName, int* _iDims, in
         {
             if (in[i]->isArrayOf() == false)
             {
+                Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), _pstName.c_str(), i + 1);
                 delete[] * _piDims;
-                Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), _pstName, i + 1);
                 return false;
             }
 
             types::GenericType* pGTIn = in[i]->getAs<types::GenericType>();
             if (pGTIn->isScalar() == false || pGTIn->isComplex())
             {
+                Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), _pstName.c_str(), i + 1);
                 delete[] * _piDims;
-                Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), _pstName, i + 1);
                 return false;
             }
 
@@ -174,8 +179,8 @@ bool getDimsFromArguments(types::typed_list& in, char* _pstName, int* _iDims, in
                     double dValue = in[i]->getAs<types::Double>()->get(0);
                     if (dValue >= INT_MAX)
                     {
+                        Scierror(999, _("%s: variable size exceeded : less than %d expected.\n"), _pstName.c_str(), INT_MAX);
                         delete[] * _piDims;
-                        Scierror(999, _("%s: variable size exceeded : less than %d expected.\n"), _pstName, INT_MAX);
                         return false;
                     }
                     (*_piDims)[i] = static_cast<int>(dValue);
@@ -204,8 +209,8 @@ bool getDimsFromArguments(types::typed_list& in, char* _pstName, int* _iDims, in
                     long long llValue = in[i]->getAs<types::Int64>()->get(0);
                     if (llValue >= INT_MAX)
                     {
+                        Scierror(999, _("%s: variable size exceeded : less than %d expected.\n"), _pstName.c_str(), INT_MAX);
                         delete[] * _piDims;
-                        Scierror(999, _("%s: variable size exceeded : less than %d expected.\n"), _pstName, INT_MAX);
                         return false;
                     }
                     (*_piDims)[i] = static_cast<int>(llValue);
@@ -216,15 +221,16 @@ bool getDimsFromArguments(types::typed_list& in, char* _pstName, int* _iDims, in
                     unsigned long long ullValue = in[i]->getAs<types::UInt64>()->get(0);
                     if (ullValue >= INT_MAX)
                     {
+                        Scierror(999, _("%s: variable size exceeded : less than %d expected.\n"), _pstName.c_str(), INT_MAX);
                         delete[] * _piDims;
-                        Scierror(999, _("%s: variable size exceeded : less than %d expected.\n"), _pstName, INT_MAX);
                         return false;
                     }
                     (*_piDims)[i] = static_cast<int>(ullValue);
                     break;
                 }
                 default:
-                    Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), _pstName, i + 1);
+                    Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), _pstName.c_str(), i + 1);
+                    delete[] * _piDims;
                     return false;
             }
         }

@@ -1,14 +1,17 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) INRIA
-c 
-c This file must be used under the terms of the CeCILL.
-c This source file is licensed as described in the file COPYING, which
-c you should have received as part of this distribution.  The terms
-c are also available at    
-c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+c
+c Copyright (C) 2012 - 2016 - Scilab Enterprises
+c
+c This file is hereby licensed under the terms of the GNU GPL v2.0,
+c pursuant to article 5.3.4 of the CeCILL v.2.1.
+c This file was originally licensed under the terms of the CeCILL v2.1,
+c and continues to be available under such terms.
+c For more information, see the COPYING file which you should have received
+c along with this program.
 c
       subroutine zgcbd(simul,n,binf,bsup,x,f,g,zero,napmax,itmax,indgc
-     &  ,ibloc,nfac,imp,io,epsx,epsf,epsg,dir,df0,diag,x2,
+     &  ,ibloc,nfac,iprint,io,epsx,epsf,epsg,dir,df0,diag,x2,
      &izs,rzs,dzs,y,s,z,ys,zs,nt,index,wk1,wk2,alg,ialg,nomf)
 c
       implicit double precision (a-h,o-z)
@@ -23,7 +26,7 @@ c
       external simul
       character bufstr*(4096)
 c
-      if(imp.ge.4) then
+      if(iprint.ge.4) then
         write(bufstr,10000)
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
 10000 format (' dans gcbd. algorithme utilise: ')
@@ -47,7 +50,7 @@ c
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
 10004 format ('  mise a echelle de diag seulement a la 2e iter')
-      if(ialg(4).eq.1) then 
+      if(ialg(4).eq.1) then
         write(bufstr,10005)
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
@@ -62,7 +65,7 @@ c
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
 10007 format ('      relachememt de variables a toutes les iteration')
-      if(ialg(6).eq.2) then 
+      if(ialg(6).eq.2) then
         write(bufstr,10008)
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
@@ -143,6 +146,7 @@ c
       nred=1
       icycl=1
       nap=0
+      znglib=0.0d+0
 c
       iresul=1
       call proj(n,binf,bsup,x)
@@ -152,7 +156,7 @@ c
       if(indsim.gt.0)go to 99
       indgc=-1
       if(indsim.eq.0)indgc=0
-      if(imp.gt.0) then
+      if(iprint.gt.0) then
         write(bufstr,123)indgc
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
@@ -193,7 +197,7 @@ c
       if(indgc.eq.1.or.indgc.ge.100)go to 150
       if(indgc.eq.2)go to 180
       indgc=-13
-      if(imp.gt.0) then
+      if(iprint.gt.0) then
         write(bufstr,123) indgc
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
@@ -221,7 +225,7 @@ c     bouclage
          go to 900
       endif
 201   continue
-      if(imp.ge.2) then
+      if(iprint.ge.2) then
         write(bufstr,1210)iter,f
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
@@ -243,7 +247,7 @@ c     correction powell sur y si (y,s) trop petit
 260   bss=bss + diag(i)*s(inp,i)**2
       bss2=param*bss
       if(ys(inp).gt.bss2)go to 290
-      if(imp.gt.2) then 
+      if(iprint.gt.2) then
         write(bufstr,1270) ys(inp)
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
@@ -256,7 +260,7 @@ c     correction powell sur y si (y,s) trop petit
 c     verif correction powell (facultatif; faire go to 300)
       ys1=ddot(n,s(inp,1),1,y(inp,1),1)
       ys1=abs(bss2-ys1)/bss2
-      if(imp.gt.2) then
+      if(iprint.gt.2) then
         write(bufstr,1280) ys1
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
@@ -268,7 +272,7 @@ c mise a jour de diag
      &  call bfgsd(diag,n,nt,np,y,s,ys,condm,param,zero,index)
 c
       if(ialg(3).eq.1.or.(ialg(3).eq.2.and.iter.eq.2))
-     &  call shanph(diag,n,nt,np,y,s,ys,scal,index,io,imp)
+     &  call shanph(diag,n,nt,np,y,s,ys,scal,index,io,iprint)
 c
       call majz(n,np,nt,y,s,z,ys,zs,diag,index)
 c
@@ -283,9 +287,9 @@ c          relachement si irit=1 (sinon irit=0)
       if(ialg(6).eq.11.and.diff.le.difrit*alg(6))irit=1
       if(irit.eq.1) nred=nred+1
 c    ----choix des variables a relacher
-      imp1=imp
+      iprint1=iprint
 301   if(ialg(7).eq.1)call relvar(ind,n,x,binf,bsup,x2,g,diag,
-     &  imp,io,ibloc,izag,iter,nfac,irit)
+     &  iprint,io,ibloc,izag,iter,nfac,irit)
 c
 c
 c     section 4 expression de dir
@@ -313,7 +317,7 @@ c
             icycl=icycl+1
             np=0
             lb=1
-            if(imp.gt.2) then
+            if(iprint.gt.2) then
               write(bufstr,1000) icycl
               call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
               endif
@@ -349,7 +353,7 @@ c     calcul de la derivee dans la direction dir
          go to 900
       endif
 c     restauration dir
-      if(imp.ge.3) then 
+      if(iprint.ge.3) then
          write(bufstr,1712)dfp,zero
          call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
          endif
@@ -373,8 +377,8 @@ c     pas initial suivant idee fletcher
       amf=0.10d+0
 c
       call rlbd(indrl,n,simul,x,binf,bsup,f,dfp,t,tmax,dir,g,tproj,
-     &  amd,amf,imp,io,zero,nap,napm1,x2,izs,rzs,dzs)
-      if(imp.gt.2) then
+     &  amd,amf,iprint,io,zero,nap,napm1,x2,izs,rzs,dzs)
+      if(iprint.gt.2) then
         write(bufstr,750)indrl,t,f
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
@@ -387,7 +391,7 @@ c
          if(indsim.le.0)then
             indgc=-3
             if(indsim.eq.0)indgc=0
-            if(imp.gt.0) then
+            if(iprint.gt.0) then
               write(bufstr,123)indgc
               call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
               endif
@@ -401,21 +405,21 @@ c
          if(indrl.eq.-3)indgc=13
          if(indrl.eq.-4)indgc=12
          if(indrl.le.-1000)indgc=11
-         if(imp.gt.0) then
+         if(iprint.gt.0) then
            write(bufstr,123)indgc
            call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
            endif
          go to 900
       endif
-      if(imp.ge.5) then
+      if(iprint.ge.5) then
          do 760 i=1,n
-760      if(imp.gt.2) write(io,777)i,x(i),g(i),dir(i)
+760      if(iprint.gt.2) write(io,777)i,x(i),g(i),dir(i)
 777      format(' i=',i2,' xgd ',3f11.4)
-         
+
       endif
 c
       if(nap.lt.napmax)go to 758
-      if(imp.gt.0)  then
+      if(iprint.gt.0)  then
         write(bufstr,755)
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
@@ -428,7 +432,7 @@ c     section 8 test de convergence
       do 805 i=1,n
       if(abs(x(i)-wk1(i)).gt.epsx(i))go to 806
 805   continue
-      if(imp.gt.0) then
+      if(iprint.gt.0) then
         write(bufstr,1805)
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
@@ -439,7 +443,7 @@ c     calcul grad residuel,norme l2
 806   continue
       difg=rednor(n,binf,bsup,x,epsx,g)
       diff=fn-f
-      if(imp.ge.2) then
+      if(iprint.ge.2) then
         write(bufstr,860)epsg,difg,epsf,diff,nap
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
@@ -485,11 +489,11 @@ c
 c      fin des calculs
 900   if(indrl.eq.0)indgc=0
       if(indgc.eq.1.and.indrl.le.0)  indgc=indrl
-      if(imp.gt.0) then
+      if(iprint.gt.0) then
          write(bufstr,123)indgc
          call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
          endif
-      if(imp.ge.1.and.indrl.le.zero) then
+      if(iprint.ge.1.and.indrl.le.zero) then
         write(bufstr,1910)
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         write(bufstr,1911) indrl
@@ -497,7 +501,7 @@ c      fin des calculs
         endif
 1910  format(' arret impose par la recherche lineaire. cf notice rlbd')
 1911  format(' indicateur de rlbd=',i6)
-      if(imp.ge.1) then
+      if(iprint.ge.1) then
         write(bufstr,950)f,difg,nap,iter,indgc
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
@@ -509,7 +513,7 @@ c     autres impressions finales
       if(iter.gt.0) zrl=dble(nap)/dble(iter)
 2000  format('     nom    n       f        norm2g   nf   iter  rl/it ',
      &          ' irl   cpu  cycl   red')
-     
+
       write(bufstr,2001)nomf,f,difg,nap,iter,zrl,irl
       call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
 2001  format(1x,a6,2e11.4,2i5,f6.2,i5)

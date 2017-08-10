@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="intersect" xml:lang="ru">
@@ -16,7 +19,7 @@
         <refpurpose>возвращает вектор значений, общих для двух векторов/матриц</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>[v [,ka,kb]]=intersect(a,b)</synopsis>
         <synopsis>[v [,ka,kb]]=intersect(a,b,orient)</synopsis>
     </refsynopsisdiv>
@@ -67,29 +70,29 @@
             <literal>intersect(a,b)</literal> возвращает отсортированный вектор-строку значений, общих для двух векторов (матриц) <literal>a</literal> и     <literal>b</literal>.
         </para>
         <para>
-            <literal>[v,ka,kb]=intersect(a,b)</literal> также возвращает векторы индексов  <literal>ka</literal> и <literal>kb</literal> такие, что <literal>v=a(ka)</literal> 
+            <literal>[v,ka,kb]=intersect(a,b)</literal> также возвращает векторы индексов  <literal>ka</literal> и <literal>kb</literal> такие, что <literal>v=a(ka)</literal>
             и <literal>v=b(kb)</literal>.
         </para>
         <para>
-            <literal>intersect(a,b,"r")</literal> или <literal>intersect(a,b,1)</literal> 
-            возвращает матрицу, сформированную пересечением уникальных строк <literal>a</literal> и 
+            <literal>intersect(a,b,"r")</literal> или <literal>intersect(a,b,1)</literal>
+            возвращает матрицу, сформированную пересечением уникальных строк <literal>a</literal> и
             <literal>b</literal>, отсортированную в лексикографическом порядке возрастания. В этом случае матрицы <literal>a</literal> и <literal>b</literal> должны иметь одинаковое количество столбцов.
         </para>
         <para>
-            <literal>[v,ka,kb]=intersect(a,b,"r")</literal> также возвращает векторы индексов 
-            <literal>ka</literal> и <literal>kb</literal> такие, что 
+            <literal>[v,ka,kb]=intersect(a,b,"r")</literal> также возвращает векторы индексов
+            <literal>ka</literal> и <literal>kb</literal> такие, что
             <literal>v=a(ka,:)</literal> и <literal>v=b(kb,:)</literal>.
         </para>
         <para>
-            <literal>intersect(a,b,"c")</literal> или 
-            <literal>intersect(a,b,2)</literal> возвращает матрицу, сформированную пересечением 
-            уникальных столбцов <literal>a</literal> и <literal>b</literal>, отсортированную в 
-            лексикографическом порядке возрастания. В этом случае матрицы <literal>a</literal> и 
+            <literal>intersect(a,b,"c")</literal> или
+            <literal>intersect(a,b,2)</literal> возвращает матрицу, сформированную пересечением
+            уникальных столбцов <literal>a</literal> и <literal>b</literal>, отсортированную в
+            лексикографическом порядке возрастания. В этом случае матрицы <literal>a</literal> и
             <literal>b</literal> должны иметь одинаковое количество строк.
         </para>
         <para>
-            <literal>[v,ka,kb]=intersect(a,b,"c")</literal> также возвращает векторы индексов 
-            <literal>ka</literal> и <literal>kb</literal> такие, что 
+            <literal>[v,ka,kb]=intersect(a,b,"c")</literal> также возвращает векторы индексов
+            <literal>ka</literal> и <literal>kb</literal> такие, что
             <literal>v=a(:,ka)</literal> и <literal>v=b(:,kb)</literal>.
         </para>
     </refsection>
@@ -101,17 +104,17 @@
     </refsection>
     <refsection>
         <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 A=round(5*rand(10,1));
 B=round(5*rand(7,1));
- 
+
 intersect(A,B)
 [N,ka,kb]=intersect(A,B)
- 
+
 intersect('a'+string(A),'a'+string(B))
- 
+
 intersect(int16(A),int16(B))
- 
+
 //с матрицами
  A = [0,0,1,1 1;
       0,1,1,1,1;
@@ -125,7 +128,7 @@ B = [1,0,1;
      2,0,4;
      1,2,5;
      %nan,0,6];
- 
+
 [v,ka,kb] = intersect(A,B,'c')
 A(:,ka)
  ]]></programlisting>

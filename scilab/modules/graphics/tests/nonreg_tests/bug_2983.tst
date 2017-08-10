@@ -21,14 +21,14 @@ function [z]=__milk_drop(x,y)
     z= exp( exp(-sq).*(exp(cos(sq).^20)+8*sin(sq).^20+2*sin(2*(sq)).^8) );
 endfunction
 
-x=-2:0.1:2; y=x;
-z=eval3d(__milk_drop,x,y);
-plot3d(x,y,z)
+x = -2:0.1:2;
+X = ndgrid(x,x);
+z = __milk_drop(X,X');
+plot3d(x,x,z)
 
-
-a=gca();
+a = gca();
 a.children(1).hiddencolor
-a.children(1).hiddencolor=5;
+a.children(1).hiddencolor = 5;
 
 // check that no hidden facets appears.
 // Might be updated when image processing will be integrated in Scilab.

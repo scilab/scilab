@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * Copyright (C) 2015 - 2016 - Samuel GOUGEON
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="sign" xml:lang="ja">
+    <refnamediv>
+        <refname>sign</refname>
+        <refpurpose>符号関数</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>X = sign(A)</synopsis>
+    </refsynopsisdiv>
+    <refsection role="parameters">
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>A</term>
+                <listitem>
+                    <para>実数または複素数の行列. <varname>A</varname> may be sparse.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>X</term>
+                <listitem>
+                    <para>実数または複素数の行列</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection role="description">
+        <title>説明</title>
+        <para>
+            <literal>X = sign(A)</literal> は
+            <literal>A(i,j)</literal>の符号からなる行列を返します.
+            <literal>A</literal>が複素数の場合,
+            <literal>sign(A) = A./abs(A)</literal> 関数となります.
+        </para>
+    </refsection>
+    <refsection role="examples">
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+sign(rand(2,3))
+sign(1+%i)
+sign(sprand(8,3,0.3,"normal"))
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="abs">abs</link>
+            </member>
+            <member>
+                <link linkend="csgn">csgn</link>
+            </member>
+            <member>
+                <link linkend="signm">signm</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>Extension to sparse matrices
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

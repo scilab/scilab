@@ -5,7 +5,7 @@
         <refpurpose>solve a linear sparse system given the LU factors  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[x] = umf_lusolve(LU_ptr, b [, st, A])</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -26,8 +26,8 @@
             <varlistentry>
                 <term>st  </term>
                 <listitem>
-                    <para>(optional) a string "Ax=b" (default) or "Ax'=b" 
-                        (to be written "Ax''=b"  in scilab langage: a quote in a string
+                    <para>(optional) a string "Ax=b" (default) or "Ax'=b"
+                        (to be written "Ax''=b"  in scilab language: a quote in a string
                         must be doubled !)
                     </para>
                 </listitem>
@@ -49,12 +49,12 @@
     <refsection>
         <title>Description</title>
         <para>
-            This function must be used in conjonction with <link linkend="umf_lufact">umf_lufact</link> which
+            This function must be used in conjunction with <link linkend="umf_lufact">umf_lufact</link> which
             computes the LU factors of a sparse matrix. The optional
             <literal>st</literal> argument lets us choose between the solving of Ax=b (general case)
             or of A'x=b (sometimes useful). If you give the 4th argument then
-            iterative refinement will be also proceceed (as in umfpack) to
-            give a better numerical solution. 
+            iterative refinement will be also proceeded (as in umfpack) to
+            give a better numerical solution.
         </para>
     </refsection>
     <refsection>
@@ -64,7 +64,7 @@
         </para>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="umfpack">umfpack</link>

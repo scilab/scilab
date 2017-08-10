@@ -3,11 +3,14 @@
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -35,6 +38,7 @@ import com.mxgraph.model.mxGraphModel.mxStyleChange;
 import com.mxgraph.model.mxGraphModel.mxTerminalChange;
 import com.mxgraph.model.mxGraphModel.mxValueChange;
 import com.mxgraph.model.mxGraphModel.mxVisibleChange;
+import com.mxgraph.model.mxIGraphModel;
 import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.swing.handler.mxRubberband;
 import com.mxgraph.swing.util.mxGraphActions;
@@ -45,6 +49,7 @@ import com.mxgraph.util.mxUndoableEdit;
 import com.mxgraph.util.mxUndoableEdit.mxUndoableChange;
 import com.mxgraph.view.mxGraph;
 import com.mxgraph.view.mxGraphView;
+import com.mxgraph.view.mxStylesheet;
 
 /**
  * Represent the base diagram of Xcos.
@@ -62,8 +67,7 @@ public class ScilabGraph extends mxGraph {
 
     private String title = null;
     private File savedFile;
-    private boolean modified;
-    private boolean opened;
+    private boolean modified = false;
     private boolean readOnly;
 
     private transient mxRubberband rubberBand;
@@ -130,11 +134,22 @@ public class ScilabGraph extends mxGraph {
     };
 
     /**
-     * /** Default constructor: - disable unused actions - install listeners -
-     * Replace JGraphX components by specialized components if needed.
+     * Default constructor:
+     * <UL>
+     *   <LI> disable unused actions
+     *   <LI> install listeners
+     *   <LI> Replace JGraphX components by specialized components if needed.
      */
     public ScilabGraph() {
-        super();
+        this(null, null);
+    }
+
+    /**
+     * Constructor using a specific model
+     * @param model the model to use
+     */
+    public ScilabGraph(mxIGraphModel model, mxStylesheet stylesheet) {
+        super(model, stylesheet);
 
         // Disabling the default connected action and event listeners.
         mxGraphActions.getSelectNextAction().setEnabled(false);
@@ -156,6 +171,8 @@ public class ScilabGraph extends mxGraph {
         // Modified property change
         getModel().addListener(mxEvent.CHANGE, changeTracker);
     }
+
+
 
     /**
      * @return The previously saved file or null.
@@ -193,12 +210,7 @@ public class ScilabGraph extends mxGraph {
      * @category UseEvent
      */
     public void setModified(boolean modified) {
-        boolean oldValue = this.modified;
         this.modified = modified;
-
-        if (getAsComponent() != null) {
-            getAsComponent().firePropertyChange("modified", oldValue, modified);
-        }
     }
 
     /**
@@ -279,25 +291,6 @@ public class ScilabGraph extends mxGraph {
         } else {
             rubberBand = null;
         }
-    }
-
-    /**
-     * The instance can be not visible but used (when using SuperBlock). The
-     * openned flag is true in this case and also when the Window/Tab is
-     * visible.
-     *
-     * @param opened
-     *            Openned state
-     */
-    public void setOpened(boolean opened) {
-        this.opened = opened;
-    }
-
-    /**
-     * @return Openned state
-     */
-    public boolean isOpened() {
-        return opened;
     }
 
     /**

@@ -1,31 +1,34 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xarc" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xarc" xml:lang="pt">
     <refnamediv>
         <refname>xarc</refname>
-        <refpurpose>esboça parte de uma elipse</refpurpose>
+        <refpurpose>esboÃ§a parte de uma elipse</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>xarc(x,y,w,h,a1,a2)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>x,y,w,h</term>
                 <listitem>
-                    <para>quatro valores reais definindo um retângulo </para>
+                    <para>quatro valores reais definindo um retÃ¢ngulo </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -37,29 +40,29 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             <literal>xarc</literal> desenha parte de uma elipse contida no
-            retângulo <literal>(x,y,w,h)</literal> ( (ponto superior esquerdo,
-            largura, altura), e no setor definido pelo ângulo
-            <literal>alpha1</literal>e o ângulo <literal>alpha1+alpha2</literal>.
-            <literal>alpha1</literal> e <literal>alpha2</literal> são respectivamente
+            retÃ¢ngulo <literal>(x,y,w,h)</literal> ( (ponto superior esquerdo,
+            largura, altura), e no setor definido pelo Ã¢ngulo
+            <literal>alpha1</literal>e o Ã¢ngulo <literal>alpha1+alpha2</literal>.
+            <literal>alpha1</literal> e <literal>alpha2</literal> sÃ£o respectivamente
             dados por <literal>a1/64</literal> graus e <literal>a2/64</literal> graus.
-            Esta função usa a cor e a escala gráfica correntes.
+            Esta funÃ§Ã£o usa a cor e a escala grÃ¡fica correntes.
         </para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
-// escala de isovisualização
+        <programlisting role="example"><![CDATA[
+// escala de isovisualizaÃ§Ã£o
 plot2d(0,0,-1,"031"," ",[-2,-2,2,2])
-xset("color",3)
 xarc(-1,1,2,2,0,90*64)
 xarc(-1.5,1.5,3,3,0,360*64)
- ]]></programlisting>
+gca().children(1:2).foreground = color("green");
+]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="xarcs">xarcs</link>

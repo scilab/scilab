@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="legends">
@@ -16,7 +19,7 @@
         <refpurpose>draw graph legend</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>legends(strings,style,&lt;opt_args&gt;)
         </synopsis>
     </refsynopsisdiv>
@@ -50,7 +53,7 @@
                             <term>opt</term>
                             <listitem>
                                 <para>specify where to draw the legends; this parameter may be an integer
-                                    flag (or equivalently a string flag) or a vector [x,y] which gives the coordinates 
+                                    flag (or equivalently a string flag) or a vector [x,y] which gives the coordinates
                                     of the upper left corner of the legend box. In the first case the possible values
                                     are:
                                 </para>
@@ -131,71 +134,81 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Example 1
 t=0:0.1:2*%pi;
-plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[-1,2 3]);  
+plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[-1,2 3]);
 legends(['cos(t)';'cos(2*t)';'cos(3*t)'],[-1,2 3],opt="lr")
  ]]></programlisting>
         <scilab:image>
             t=0:0.1:2*%pi;
-            plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[-1,2 3]);  
+            plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[-1,2 3]);
             legends(['cos(t)';'cos(2*t)';'cos(3*t)'],[-1,2 3],opt="lr")
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 t=0:0.1:2*%pi;
-xset("line style",2);plot2d(t,cos(t),style=5);
-xset("line style",4);plot2d(t,sin(t),style=3);
+gca().line_style = 2;
+plot2d(t,cos(t),style=5);
+gca().line_style = 4;
+plot2d(t,sin(t),style=3);
 legends(["sin(t)";"cos(t)"],[[5;2],[3;4]], with_box=%f, opt="?")
  ]]></programlisting>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Example 2
 scf() ;
 subplot(221)
 t=0:0.1:2*%pi;
-plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[-1,2 3]);  
+plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[-1,2 3]);
 legends(['cos(t)';'cos(2*t)';'cos(3*t)'],[-1,2 3], opt=3 )
 
 subplot(222)
-xset("line style",2);plot2d(t,cos(t),style=5);
-xset("line style",4);plot2d(t,sin(t),style=3);
+gca().line_style = 2;
+plot2d(t,cos(t),style=5);
+gca().line_style = 4;
+plot2d(t,sin(t),style=3);
 legends(["sin(t)";"cos(t)"],[[5;2],[3;4]], with_box=%f, opt=6 )
 
 subplot(223)
-xset("line style",2);plot2d(t,cos(t),style=5);
-xset("line style",4);plot2d(t,sin(t),style=3);
+gca().line_style = 2;
+plot2d(t,cos(t),style=5);
+gca().line_style = 4;
+plot2d(t,sin(t),style=3);
 legends(["sin(t)";"cos(t)"],[[5;2],[3;4]], with_box=%f, opt=1, font_size=2 )
 
 subplot(224)
 t=0:0.1:2*%pi;
-plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[-1,2 3]);  
+plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[-1,2 3]);
 legends(['cos(t)';'cos(2*t)';'cos(3*t)'],[-1,2 3], opt=2, font_size=1 )
  ]]></programlisting>
         <scilab:image>
             subplot(221)
             t=0:0.1:2*%pi;
-            plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[-1,2 3]);  
+            plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[-1,2 3]);
             legends(['cos(t)';'cos(2*t)';'cos(3*t)'],[-1,2 3], opt=3 )
-            
+
             subplot(222)
-            xset("line style",2);plot2d(t,cos(t),style=5);
-            xset("line style",4);plot2d(t,sin(t),style=3);
+            gca().line_style = 2;
+            plot2d(t,cos(t),style=5);
+            gca().line_style = 4;
+            plot2d(t,sin(t),style=3);
             legends(["sin(t)";"cos(t)"],[[5;2],[3;4]], with_box=%f, opt=6 )
-            
+
             subplot(223)
-            xset("line style",2);plot2d(t,cos(t),style=5);
-            xset("line style",4);plot2d(t,sin(t),style=3);
+            gca().line_style = 2;
+            plot2d(t,cos(t),style=5);
+            gca().line_style = 4;
+            plot2d(t,sin(t),style=3);
             legends(["sin(t)";"cos(t)"],[[5;2],[3;4]], with_box=%f, opt=1, font_size=2 )
-            
+
             subplot(224)
             t=0:0.1:2*%pi;
-            plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[-1,2 3]);  
+            plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[-1,2 3]);
             legends(['cos(t)';'cos(2*t)';'cos(3*t)'],[-1,2 3], opt=2, font_size=1 )
         </scilab:image>
-        
+
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="plot2d">plot2d</link>

@@ -5,11 +5,14 @@
  * Copyright (C) 2008 - INRIA
  * ...
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="dae" xml:lang="en">
@@ -18,7 +21,7 @@
         <refpurpose>Differential algebraic equations solver</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis> y = dae(initial, t0, t, res)
             [y [,hd]] = dae(initial, t0, t [[,rtol], atol], res [,jac] [,hd])
             [y, rd] = dae("root", initial, t0, t, res, ng, surface)
@@ -93,7 +96,7 @@
                         <varlistentry>
                             <term>a Scilab function</term>
                             <listitem>
-                                <para>In this case, its calling sequence must be
+                                <para>In this case, the syntax must be
                                     <literal>[r,ires]=res(t,x,xdot)</literal> and
                                     <literal>res</literal> must return the residue
                                     <literal>r=g(t,x,xdot)</literal> and error flag
@@ -123,7 +126,7 @@
                                 <programlisting role="no-scilab-exec"><![CDATA[
 list(res,p1,p2,...)
  ]]></programlisting>
-                                <para>where the calling sequence of the function
+                                <para>where the syntax of the function
                                     <literal>res</literal> is now
                                 </para>
                                 <programlisting role="no-scilab-exec"><![CDATA[
@@ -162,7 +165,7 @@ r=res(t,y,ydot,p1,p2,...)
                                     </listitem>
                                     <listitem>
                                         <para>
-                                            The C calling sequence must be
+                                            The C syntax must be
                                         </para>
                                         <para>
                                             <literal>C2F(&lt;r_name&gt;)(double *t, double *x, double
@@ -234,7 +237,7 @@ r=res(t,y,ydot,p1,p2,...)
                         <varlistentry>
                             <term>a Scilab function</term>
                             <listitem>
-                                <para>Its calling sequence must be
+                                <para>Its syntax must be
                                     <literal>r=jac(t,x,xdot,cj)</literal> and the
                                     <literal>jac</literal> function must return
                                     <literal>r=dg(t,x,xdot)/dy+cj*dg(t,x,xdot)/dxdot</literal>
@@ -251,7 +254,7 @@ r=res(t,y,ydot,p1,p2,...)
                                 <programlisting role="no-scilab-exec"><![CDATA[
 list(jac,p1,p2,...)
  ]]></programlisting>
-                                <para>where the calling sequence of the function
+                                <para>where the syntax of the function
                                     <literal>jac</literal> is now
                                 </para>
                                 <programlisting role="no-scilab-exec"><![CDATA[
@@ -291,7 +294,7 @@ r=jac(t,x,xdot,p1,p2,...)
                                     </listitem>
                                     <listitem>
                                         <para>
-                                            The C calling sequence must be
+                                            The C syntax must be
                                         </para>
                                         <para>
                                             <literal>C2F(&lt;j_name&gt;)(double *t, double *x, double
@@ -322,7 +325,7 @@ r=jac(t,x,xdot,p1,p2,...)
                         <varlistentry>
                             <term>a Scilab function</term>
                             <listitem>
-                                <para>Its calling sequence must be
+                                <para>Its syntax must be
                                     <literal>r=surface(t,x)</literal>, this function must return a
                                     vector with <literal>ng</literal> elements.
                                 </para>
@@ -338,7 +341,7 @@ r=jac(t,x,xdot,p1,p2,...)
                                 <programlisting role="no-scilab-exec"><![CDATA[
 list(surface,p1,p2,...)
  ]]></programlisting>
-                                <para>where the calling sequence of the function
+                                <para>where the syntax of the function
                                     <literal>surface</literal> is now
                                 </para>
                                 <programlisting role="no-scilab-exec"><![CDATA[
@@ -373,7 +376,7 @@ r=surface(t,x,p1,p2,...)
                                     </listitem>
                                     <listitem>
                                         <para>
-                                            The C calling sequence must be
+                                            The C syntax must be
                                         </para>
                                         <para>
                                             <literal>C2F(&lt;s_name&gt;)(double *t, double *x, double
@@ -486,7 +489,7 @@ x(t0) = x0 and xdot(t0) = xdot0
         </para>
         <programlisting role="example"><![CDATA[
 // Example with Scilab code
---------------------------------------------------
+//--------------------------------------------------
 function [r, ires] = chemres(t, y, yd)
     r(1) = -0.04*y(1) + 1d4*y(2)*y(3) - yd(1);
     r(2) =  0.04*y(1) - 1d4*y(2)*y(3) - 3d7*y(2)*y(2) - yd(2);
@@ -515,7 +518,7 @@ y = dae([x0, xd0], 0, 4d10, chemres, chemjac); // With jacobian
         </para>
         <programlisting role="example"><![CDATA[
 // Example with C code (C compiler needed)
---------------------------------------------------
+//--------------------------------------------------
 bOK = haveacompiler();
 if bOK <> %t
     [btn] = messagebox(["You need a C compiler for this example."; "Execution of this example is canceled."], "Software problem", 'info');
@@ -613,7 +616,7 @@ cd(previous_dir);
         </para>
         <programlisting role="example"><![CDATA[
 // Example with C code (C compiler needed)
---------------------------------------------------
+//--------------------------------------------------
 bOK = haveacompiler();
 if bOK <> %t
     [btn] = messagebox(["You need a C compiler for this example."; "Execution of this example is canceled."], "Software problem", 'info');
@@ -710,7 +713,7 @@ cd(previous_dir);
  ]]></scilab:image>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="ode">ode</link>
@@ -731,7 +734,7 @@ cd(previous_dir);
                 <link linkend="impl">impl</link>
             </member>
             <member>
-                <link linkend="fort">fort</link>
+                <link linkend="call">call</link>
             </member>
             <member>
                 <link linkend="link">link</link>

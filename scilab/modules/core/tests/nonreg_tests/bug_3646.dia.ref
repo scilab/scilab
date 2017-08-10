@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - DIGITEO - Allan CORNET
@@ -16,10 +17,13 @@ if getos() == 'Windows' then
   mkdir('Lukáš Bùôl');
   path_directory = cd('Lukáš Bùôl');
   prv_APPDATA = getenv('APPDATA');
+  
   // set APPDATA to find another SCIHOME
   setenv('APPDATA', path_directory);
+  
   res = unix('wscilex -e quit');
   if res <> 0 then bugmes();quit;end
+  
   // restore previous env. variables
   setenv('APPDATA',prv_APPDATA);
 end

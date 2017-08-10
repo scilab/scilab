@@ -4,11 +4,14 @@
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2014 - Scilab Enterprises - Anais AUBERT
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -23,7 +26,6 @@
 #include "string.hxx"
 #include "graphichandle.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 #include "int.hxx"
 
 extern "C"
@@ -38,6 +40,7 @@ extern "C"
 #include "localization.h"
 #include "Scierror.h"
 #include "Matplot.h"
+#include "os_string.h"
 }
 
 /*--------------------------------------------------------------------------*/
@@ -54,7 +57,6 @@ types::Function::ReturnValue sci_matplot(types::typed_list &in, types::optional_
     int *axesflag  = NULL;
 
     char* strf      = NULL ;
-    char strfl[4];
     double* rect    = NULL ;
     int* nax        = NULL ;
     BOOL flagNax    = FALSE;
@@ -66,11 +68,10 @@ types::Function::ReturnValue sci_matplot(types::typed_list &in, types::optional_
 
     if (in.size() < 1)
     {
-        ast::ExecVisitor exec;
-        return Overload::call(L"%_Matplot", in, _iRetCount, out, &exec);
-
+        return Overload::call(L"%_Matplot", in, _iRetCount, out);
     }
-    else if (in.size() > 5)
+
+    if (in.size() > 5)
     {
         Scierror(999, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "Matplot", 1, 5);
         return types::Function::Error;
@@ -82,7 +83,6 @@ types::Function::ReturnValue sci_matplot(types::typed_list &in, types::optional_
         l1 = (void*) pIn->get();
         if (pIn->getDims() > 2)
         {
-
             dims = pIn->getDimsArray();
             if (pIn->getDims() > 3 || (dims[2] != 1 && dims[2] != 3 && dims[2] != 4))
             {
@@ -118,7 +118,6 @@ types::Function::ReturnValue sci_matplot(types::typed_list &in, types::optional_
         l1 = (void*) pIn->get();
         if (pIn->getDims() > 2)
         {
-
             dims = pIn->getDimsArray();
             if (pIn->getDims() > 3 || (dims[2] != 1 && dims[2] != 3 && dims[2] != 4))
             {
@@ -134,18 +133,18 @@ types::Function::ReturnValue sci_matplot(types::typed_list &in, types::optional_
             }
             else if (dims[2] == 3)
             {
-                plottype = buildMatplotType(MATPLOT_HM1_Char, MATPLOT_FORTRAN, MATPLOT_RGB);
+                plottype = buildMatplotType(MATPLOT_HM3_Char, MATPLOT_FORTRAN, MATPLOT_RGB);
             }
             else
             {
-                plottype = buildMatplotType(MATPLOT_HM1_Char, MATPLOT_FORTRAN, MATPLOT_RGBA);
+                plottype = buildMatplotType(MATPLOT_HM4_Char, MATPLOT_FORTRAN, MATPLOT_RGBA);
             }
         }
         else
         {
             m1 = pIn->getRows();
             n1 = pIn->getCols();
-            plottype = buildMatplotType(MATPLOT_Char, MATPLOT_FORTRAN, MATPLOT_INDEX);
+            plottype = buildMatplotType(MATPLOT_Char, MATPLOT_FORTRAN, MATPLOT_RGB_332);
         }
     }
     else if (in[0]->isUInt8())
@@ -154,7 +153,6 @@ types::Function::ReturnValue sci_matplot(types::typed_list &in, types::optional_
         l1 = (void*) pIn->get();
         if (pIn->getDims() > 2)
         {
-
             dims = pIn->getDimsArray();
             if (pIn->getDims() > 3 || (dims[2] != 1 && dims[2] != 3 && dims[2] != 4))
             {
@@ -170,18 +168,18 @@ types::Function::ReturnValue sci_matplot(types::typed_list &in, types::optional_
             }
             else if (dims[2] == 3)
             {
-                plottype = buildMatplotType(MATPLOT_HM1_UChar, MATPLOT_FORTRAN, MATPLOT_RGB);
+                plottype = buildMatplotType(MATPLOT_HM3_UChar, MATPLOT_FORTRAN, MATPLOT_RGB);
             }
             else
             {
-                plottype = buildMatplotType(MATPLOT_HM1_UChar, MATPLOT_FORTRAN, MATPLOT_RGBA);
+                plottype = buildMatplotType(MATPLOT_HM4_UChar, MATPLOT_FORTRAN, MATPLOT_RGBA);
             }
         }
         else
         {
             m1 = pIn->getRows();
             n1 = pIn->getCols();
-            plottype = buildMatplotType(MATPLOT_UChar, MATPLOT_FORTRAN, MATPLOT_INDEX);
+            plottype = buildMatplotType(MATPLOT_UChar, MATPLOT_FORTRAN, MATPLOT_GRAY);
         }
     }
     else if (in[0]->isInt16())
@@ -190,7 +188,7 @@ types::Function::ReturnValue sci_matplot(types::typed_list &in, types::optional_
         l1 = (void*) pIn->get();
         m1 = pIn->getRows();
         n1 = pIn->getCols();
-        plottype = buildMatplotType(MATPLOT_Short, MATPLOT_FORTRAN, MATPLOT_INDEX);
+        plottype = buildMatplotType(MATPLOT_Short, MATPLOT_FORTRAN, MATPLOT_RGB_444);
     }
     else if (in[0]->isUInt16())
     {
@@ -198,7 +196,7 @@ types::Function::ReturnValue sci_matplot(types::typed_list &in, types::optional_
         l1 = (void*) pIn->get();
         m1 = pIn->getRows();
         n1 = pIn->getCols();
-        plottype = buildMatplotType(MATPLOT_UShort, MATPLOT_FORTRAN, MATPLOT_INDEX);
+        plottype = buildMatplotType(MATPLOT_UShort, MATPLOT_FORTRAN, MATPLOT_RGBA_4444);
     }
     else if ((in[0]->isInt32()) || (in[0]->isInt64()))
     {
@@ -206,7 +204,7 @@ types::Function::ReturnValue sci_matplot(types::typed_list &in, types::optional_
         l1 = (void*) pIn->get();
         m1 = pIn->getRows();
         n1 = pIn->getCols();
-        plottype = buildMatplotType(MATPLOT_Int, MATPLOT_FORTRAN, MATPLOT_INDEX);
+        plottype = buildMatplotType(MATPLOT_Int, MATPLOT_FORTRAN, MATPLOT_RGB);
     }
     else if ((in[0]->isUInt32()) || (in[0]->isUInt64()))
     {
@@ -214,17 +212,22 @@ types::Function::ReturnValue sci_matplot(types::typed_list &in, types::optional_
         l1 = (void*) pIn->get();
         m1 = pIn->getRows();
         n1 = pIn->getCols();
-        plottype = buildMatplotType(MATPLOT_UInt, MATPLOT_FORTRAN, MATPLOT_INDEX);
+        plottype = buildMatplotType(MATPLOT_UInt, MATPLOT_FORTRAN, MATPLOT_RGBA);
+    }
+    else
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d: A real or integer expected.\n"), "Matplot", 1);
+        return types::Function::Error;
     }
 
     if (in.size() > 1)
     {
         if (in[1]->isString() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "Matplot1", 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "Matplot1", 2);
             return types::Function::Error;
-
         }
+
         strf =  wide_string_to_UTF8(in[1]->getAs<types::String>()->get(0));
         bFREE = true;
         if (in.size() > 2)
@@ -232,8 +235,8 @@ types::Function::ReturnValue sci_matplot(types::typed_list &in, types::optional_
             if (in[2]->isDouble() == false)
             {
                 Scierror(999, _("%s: Wrong type for input argument #%d: A real expected.\n"), "Matplot1", 3);
+                FREE(strf);
                 return types::Function::Error;
-
             }
 
             rect =  in[2]->getAs<types::Double>()->get();
@@ -242,8 +245,8 @@ types::Function::ReturnValue sci_matplot(types::typed_list &in, types::optional_
                 if (in[3]->isDouble() == false)
                 {
                     Scierror(999, _("%s: Wrong type for input argument #%d: A real expected.\n"), "Matplot1", 4);
+                    FREE(strf);
                     return types::Function::Error;
-
                 }
 
                 types::Double* pDbl = in[3]->getAs<types::Double>();
@@ -263,17 +266,41 @@ types::Function::ReturnValue sci_matplot(types::typed_list &in, types::optional_
     if (opt.size() > 4)
     {
         Scierror(999, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "Matplot", 1, 5);
+        if (bFREE)
+        {
+            FREE(strf);
+        }
+        delete[] nax;
         return types::Function::Error;
     }
 
     // get optional argument if necessary
-    for (int i = 0; i < opt.size(); i++)
+    for (const auto& o : opt)
     {
-        if (opt[i].first == L"strf")
+        if (o.first == L"strf")
         {
-            if (opt[i].second->isString() == false)
+            if (o.second->isString() == false)
             {
-                Scierror(999, _("%s: Wrong type for input argument #%ls: A string expected.\n"), "Matplot1", opt[i].first.c_str());
+                Scierror(999, _("%s: Wrong type for input argument #%ls: string expected.\n"), "Matplot1", o.first.c_str());
+                if (bFREE)
+                {
+                    FREE(strf);
+                }
+
+                if (nax)
+                {
+                    delete[] nax;
+                }
+
+                if (frameflag)
+                {
+                    delete[] frameflag;
+                }
+
+                if (axesflag)
+                {
+                    delete[] axesflag;
+                }
                 return types::Function::Error;
             }
 
@@ -282,26 +309,45 @@ types::Function::ReturnValue sci_matplot(types::typed_list &in, types::optional_
                 continue;
             }
 
-            strf =  wide_string_to_UTF8(opt[i].second->getAs<types::String>()->get(0));
+            strf =  wide_string_to_UTF8(o.second->getAs<types::String>()->get(0));
             bFREE = true;
         }
         else
         {
-            if (opt[i].second->isDouble() == false)
+            if (o.second->isDouble() == false)
             {
-                Scierror(999, _("%s: Wrong type for input argument #%ls: A matrix expected.\n"), "Matplot1", opt[i].first.c_str());
+                Scierror(999, _("%s: Wrong type for input argument #%ls: A matrix expected.\n"), "Matplot1", o.first.c_str());
+                if (bFREE)
+                {
+                    FREE(strf);
+                }
+
+                if (nax)
+                {
+                    delete[] nax;
+                }
+
+                if (frameflag)
+                {
+                    delete[] frameflag;
+                }
+
+                if (axesflag)
+                {
+                    delete[] axesflag;
+                }
                 return types::Function::Error;
             }
 
-            types::Double* pDbl = opt[i].second->getAs<types::Double>();
+            types::Double* pDbl = o.second->getAs<types::Double>();
             double* pdbl = pDbl->get();
             int iSize = pDbl->getSize();
 
-            if (opt[i].first == L"rect" && rect == NULL)
+            if (o.first == L"rect" && rect == NULL)
             {
                 rect = pdbl;
             }
-            else if (opt[i].first == L"nax" && nax == NULL)
+            else if (o.first == L"nax" && nax == NULL)
             {
                 nax = new int[iSize];
                 for (int i = 0; i < iSize; i++)
@@ -310,7 +356,7 @@ types::Function::ReturnValue sci_matplot(types::typed_list &in, types::optional_
                 }
                 flagNax = TRUE;
             }
-            else if (opt[i].first == L"frameflag" && frameflag == NULL)
+            else if (o.first == L"frameflag" && frameflag == NULL)
             {
                 frameflag = new int[iSize];
                 for (int i = 0; i < iSize; i++)
@@ -318,7 +364,7 @@ types::Function::ReturnValue sci_matplot(types::typed_list &in, types::optional_
                     frameflag[i] = (int)pdbl[i];
                 }
             }
-            else if (opt[i].first == L"axesflag" && axesflag == NULL)
+            else if (o.first == L"axesflag" && axesflag == NULL)
             {
                 axesflag = new int[iSize];
                 for (int i = 0; i < iSize; i++)
@@ -335,22 +381,21 @@ types::Function::ReturnValue sci_matplot(types::typed_list &in, types::optional_
     {
         reinitDefStrfN();
 
-        strcpy(strfl, DEFSTRFN);
-        strf = strfl;
+        strf = os_strdup(DEFSTRFN);
 
         if (!isDefRect(rect))
         {
-            strfl[1] = '7';
+            strf[1] = '7';
         }
 
         if (frameflag != &frame_def)
         {
-            strfl[1] = (char)(*frame + 48);
+            strf[1] = (char)(*frame + 48);
         }
 
         if (axesflag != &axes_def)
         {
-            strfl[2] = (char)(*axes + 48);
+            strf[2] = (char)(*axes + 48);
         }
     }
 

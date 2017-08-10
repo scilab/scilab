@@ -5,17 +5,20 @@ Copyright (c) 1989-2007 - ENPC
 Copyright (c) Bruno Pincon
 
 License:
-This module must be used under the terms of the CeCILL.
-This module file is licensed as described in the file COPYING, which
-you should have received as part of this distribution.  The terms
-are also available at
-http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+Copyright (C) 2012 - 2016 - Scilab Enterprises
 
+This module is hereby licensed under the terms of the GNU GPL v2.0,
+pursuant to article 5.3.4 of the CeCILL v.2.1.
+This module was originally licensed under the terms of the CeCILL v2.1,
+and continues to be available under such terms.
+For more information, see the COPYING file which you should have received
+along with this program.
 
 mt:
 ===
 
-File: src/c/mt.c
+Files:
+src/c/mt.c
 
 Copyright:
 1997, 1999 Makoto Matsumoto and Takuji Nishimura.
@@ -26,7 +29,8 @@ Artistic license
 Freemat:
 ========
 
-File: src/c/{ignbin.c, genbet.c, ignpoi.c, sgamma.c, sexpo.c}
+Files:
+src/c/{ignbin.c,genbet.c,ignpoi.c,sgamma.c,sexpo.c}
 
 Copyright:
 2002-2004 Samit Basu
@@ -44,17 +48,47 @@ License:
  notice, this list of conditions and the following disclaimer in the
  documentation and/or other materials provided with the distribution.
 
- 3. The names of its contributors may not be used to endorse or promote 
- products derived from this software without specific prior written 
+ 3. The names of its contributors may not be used to endorse or promote
+ products derived from this software without specific prior written
  permission.
 
 kiss:
 =====
 
-File: src/c/kiss.c
+Files:
+src/c/kiss.c
 
 Copyright:
 G. Marsaglia
+
+License:
+Public domain
+
+SNORM:
+======
+
+Files:
+src/fortran/snorm.f
+
+Copyright:
+1973 J.H. AHRENS and U. DIETER
+1988 Barry W. Brown
+
+License:
+Public domain
+
+clcg2 & clcg4:
+========
+
+Files:
+src/c/clcg2.c
+src/c/clcg4.c
+
+Copyright:
+Copyright (C) Luc Devroye
+Copyright (C) Pierre Lecuyer
+Copyright (C) 1998 - Terry H. Andres
+Copyright (C) 1998 - Pierre Lecuyer
 
 License:
 Public domain

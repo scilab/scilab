@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2014 - Scilab Enterprises - Calixte DENIZET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -20,6 +23,11 @@
 #include "gvn/GVN.hxx"
 #include "gvn/SymbolicRange.hxx"
 #include "ConstantValue.hxx"
+
+namespace ast
+{
+class Exp;
+}
 
 namespace analysis
 {
@@ -45,119 +53,25 @@ struct Info
     SymbolicRange range;
     SymbolicDimension maxIndex;
 
-    Info(Data * _data = nullptr) : R(false), W(false), O(false), isint(false), local(Local::INFO_TRUE), cleared(false), exists(true), data(_data), exp(nullptr) { }
-    Info(const Info & i) : R(i.R), W(i.W), O(i.O), isint(i.isint), local(i.local), cleared(i.cleared), exists(i.exists), constant(i.constant), range(i.range), maxIndex(i.maxIndex), type(i.type), data(i.data ? new Data(*i.data) : nullptr), exp(i.exp) { }
+    Info(Data * _data = nullptr) : R(false), W(false), O(false), isint(false), local(Local::INFO_TRUE), cleared(false), exists(true), type(), data(_data), exp(nullptr), constant(), range(), maxIndex() { }
+    Info(const Info & i) : R(i.R), W(i.W), O(i.O), isint(i.isint), local(i.local), cleared(i.cleared), exists(i.exists), type(i.type), data(i.data ? new Data(*i.data) : nullptr), exp(i.exp), constant(i.constant), range(i.range), maxIndex(i.maxIndex) { }
 
-    inline void merge(Info & info)
-    {
-        R = R || info.R;
-        W = W || info.W;
-        O = O || info.O;
-        isint = isint && info.isint;
-        if (local != info.local)
-        {
-            local = Local::INFO_UNKNOWN;
-        }
-        cleared = cleared && info.cleared;
-        exists = exists || info.exists;
-        constant.merge(info.constant);
-	maxIndex.mergeAsMax(info.maxIndex);
-        type.merge(info.type);
-        data->valid = data->same(info.data);
-	// No need to merge range since this info is just used in for loop
-    }
-
-    inline void addData(const bool known, const symbol::Symbol & sym)
-    {
-        data = new Data(known, sym);
-    }
-    inline void addData(Data * _data, const symbol::Symbol & sym)
-    {
-        data = _data;
-        data->add(sym);
-    }
-
-    inline SymbolicRange & getRange()
-    {
-        return range;
-    }
-
-    inline const SymbolicRange & getRange() const
-    {
-        return range;
-    }
-
-    inline SymbolicDimension & getMaxIndex()
-    {
-        return maxIndex;
-    }
-
-    inline const SymbolicDimension & getMaxIndex() const
-    {
-        return maxIndex;
-    }
-
-    inline SymbolicRange & setRange(SymbolicRange & _range)
-    {
-        range = _range;
-        return range;
-    }
-    
-    inline ConstantValue & getConstant()
-    {
-        return constant;
-    }
-
-    inline const ConstantValue & getConstant() const
-    {
-        return constant;
-    }
-
-    inline ConstantValue & setConstant(ConstantValue & val)
-    {
-        constant = val;
-        return constant;
-    }
-
-    inline bool isknown() const
-    {
-        return local == Local::INFO_TRUE;
-    }
-
-    inline static const symbol::Symbol & getRightSym(ast::Exp * exp)
-    {
-        return static_cast<const ast::SimpleVar &>(static_cast<const ast::AssignExp *>(exp)->getRightExp()).getSymbol();
-    }
-
-    inline const TIType & getType() const
-    {
-        return type;
-    }
-
-    friend std::wostream & operator<<(std::wostream & out, const Info & info)
-    {
-        out << L"Type: " << info.type << L" - RWO:"
-            << (info.R ? L"T" : L"F")
-            << (info.W ? L"T" : L"F")
-            << (info.O ? L"T" : L"F")
-            << L" - int:" << (info.isint ? L"T" : L"F")
-            << L" - local:" << (info.local == Local::INFO_TRUE ? L"T" : (info.local == Local::INFO_FALSE ? L"F" : L"U"))
-            << L" - cleared:" << (info.cleared ? L"T" : L"F")
-            << L" - exists:" << (info.exists ? L"T" : L"F")
-            << L" - constant:" << info.constant;
-
-        out << L" - data:";
-        if (info.data)
-        {
-            out << *info.data;
-        }
-        else
-        {
-            out << L"null";
-        }
-
-        return out;
-    }
+    void merge(const Info & info, bool & isSameData);
+    void addData(const bool known, const symbol::Symbol & sym);
+    void addData(Data * _data, const symbol::Symbol & sym);
+    SymbolicRange & getRange();
+    const SymbolicRange & getRange() const;
+    SymbolicDimension & getMaxIndex();
+    const SymbolicDimension & getMaxIndex() const;
+    SymbolicRange & setRange(SymbolicRange & _range);
+    ConstantValue & getConstant();
+    const ConstantValue & getConstant() const;
+    ConstantValue & setConstant(ConstantValue & val);
+    bool isknown() const;
+    bool isAnInt() const;
+    static const symbol::Symbol & getRightSym(ast::Exp * exp);
+    const TIType & getType() const;
+    friend std::wostream & operator<<(std::wostream & out, const Info & info);
 };
 
 } // namespace analysis

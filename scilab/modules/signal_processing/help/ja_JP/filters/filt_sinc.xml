@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="filt_sinc">
+
+    <refnamediv>
+
+        <refname>filt_sinc</refname>
+
+        <refpurpose>sinc関数の標本</refpurpose>
+
+    </refnamediv>
+
+    <refsynopsisdiv>
+
+        <title>呼び出し手順</title>
+
+        <synopsis>[x]=filt_sinc(n,fl)</synopsis>
+
+    </refsynopsisdiv>
+
+    <refsection>
+
+        <title>引数</title>
+
+        <variablelist>
+
+            <varlistentry>
+
+                <term>n</term>
+
+                <listitem>
+
+                    <para>標本の数</para>
+
+                </listitem>
+
+            </varlistentry>
+
+            <varlistentry>
+
+                <term>fl</term>
+
+                <listitem>
+
+                    <para>ローパスフィルタのカットオフ周波数(単位:Hz).</para>
+
+                </listitem>
+
+            </varlistentry>
+
+            <varlistentry>
+
+                <term>x</term>
+
+                <listitem>
+
+                    <para>sinc関数の標本</para>
+
+                </listitem>
+
+            </varlistentry>
+
+        </variablelist>
+
+    </refsection>
+
+    <refsection>
+
+        <title>説明</title>
+
+        <para>
+
+            <literal>t=-(n-1)/2:(n-1)/2</literal> (つまし,原点が中心)について,
+
+            関数<literal>sin(2*pi*fl*t)/(pi*t)</literal>の標本をn個計算します.
+
+        </para>
+
+    </refsection>
+
+    <refsection>
+
+        <title>例</title>
+
+        <programlisting role="example"><![CDATA[
+plot(filt_sinc(100,0.1))
+ ]]></programlisting>
+
+        <scilab:image>
+
+            plot(filt_sinc(100,0.1))
+
+        </scilab:image>
+
+    </refsection>
+
+    <refsection role="see also">
+
+        <title>参照</title>
+
+        <simplelist type="inline">
+
+            <member>
+
+                <link linkend="sincd">sincd</link>
+
+            </member>
+
+        </simplelist>
+
+    </refsection>
+
+</refentry>
+

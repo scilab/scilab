@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="des2ss">
+    <refnamediv>
+        <refname>des2ss</refname>
+        <refpurpose>記述子から状態空間へ</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[Sl]=des2ss(A,B,C,D,E [,tol])
+            [Sl]=des2ss(Des)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>A,B,C,D,E</term>
+                <listitem>
+                    <para>適当な次元の実数行列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Des</term>
+                <listitem>
+                    <para>リスト</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Sl</term>
+                <listitem>
+                    <para>
+                        <literal>syslin</literal> リスト
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>tol</term>
+                <listitem>
+                    <para>
+                        実数パラメータ (閾値) (デフォルト値 <literal>100*%eps</literal>).
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            状態空間変換の記述子.
+        </para>
+        <para>
+            <literal>Sl=des2ss(A,B,C,D,E)</literal> は,
+            記述子システム <literal>(E,A,B,C,D)</literal>と等価な
+            線形システム <literal>Sl</literal> を返します.
+        </para>
+        <para>
+            添え字1個の<literal>(E,A)</literal>ペンシルの場合,
+            明示式が使用され,
+            より高次の添え字のペンシルの場合には<literal>rowshuff</literal>
+            が使用されます.
+        </para>
+        <para>
+            <literal>Sl=des2ss(Des)</literal> (ただし
+            <literal>Des=list('des',A,B,C,D,E)</literal>) は,
+            状態空間表現(多項式 <literal>D</literal> 行列が付く場合もある)の
+            線形システム <literal>Sl</literal> を返します.
+        </para>
+        <para>
+            一般化Leverrierアルゴリズムが使用されます.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+s=poly(0,'s');G=[1/(s-1),s;1,2/s^3];
+S1=tf2des(G);S2=tf2des(G,"withD");
+W1=des2ss(S1);W2=des2ss(S2);
+clean(ss2tf(W1))
+clean(ss2tf(W2))
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="des2tf">des2tf</link>
+            </member>
+            <member>
+                <link linkend="glever">glever</link>
+            </member>
+            <member>
+                <link linkend="rowshuff">rowshuff</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

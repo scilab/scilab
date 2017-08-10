@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA
@@ -17,21 +18,21 @@
 //
 //    On Scilab CVS with " min(), max() " function
 //    The Error Messages are:
-//                                                 !--error    59 
+//                                                 !--error    59
 //    incorrect # of outputs in the function
 //    arguments are :
 //     x
 //
-//    Commands:  a=hypermat([3,3,1],uint16(1:9)); [m,k]=max(a)
+//    Commands:  a=matrix(uint16(1:9),[3,3,1]); [m,k]=max(a)
 //
 //    or
 //
-//     a=hypermat([3,3,1],uint16(1:9)); [m,k]=min(a)
+//     a=matrix(uint16(1:9),[3,3,1]); [m,k]=min(a)
 //
 //    Enrico Segre on Linux version RH9 distribution  with  gnome as window manager
 //    Israel  July 24, 2003 at 17:51:50
 
-a = hypermat([3,3,1],uint16(1:9));
+a = matrix(uint16(1:9), [3,3,1]);
 
 result = execstr("[m,k]=max(a)","errcatch","n");
 

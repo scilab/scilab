@@ -334,7 +334,7 @@ char *PLD_strtok( struct PLD_strtok *st, char *line, char *delimeters )
 
     result = st->start;
 
-    if ((st->start) && (st->start != '\0'))
+    if ((st->start) && (*st->start != '\0'))
     {
         stop = strpbrk( st->start, delimeters ); /* locate our next delimeter */
 

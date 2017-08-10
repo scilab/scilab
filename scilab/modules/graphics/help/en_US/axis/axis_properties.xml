@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="axis_properties">
@@ -17,7 +20,7 @@
             properties
         </refpurpose>
     </refnamediv>
-    <refsection>
+    <refsection role="description">
         <title>Description</title>
         <para>The Axis entity is a leaf of the graphics entities hierarchy. This
             entity defines the parameters for axis scaling and appearance.
@@ -65,7 +68,7 @@
                                     <listitem>
                                         <para>
                                             <literal>"bottom"</literal>. In this case, tics are drawn at the
-                                            bottom of the horizantal axis.
+                                            bottom of the horizontal axis.
                                         </para>
                                     </listitem>
                                     <listitem>
@@ -279,9 +282,9 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 a=get("current_axes");//get the handle of the newly created axes
 a.data_bounds=[-1,-1;10,10];
 
@@ -292,13 +295,13 @@ a1.tics_color=2;
 a1.labels_font_size=3;
 a1.tics_direction="bottom";
 a1.tics_labels= [" February" "May"  "june" "August"  "October"];
-  
+
 drawaxis(x=1.2:1:10,y=5,dir='u',textcolor=13);
 a2=get("hdl")
 a2.sub_tics=0;
 a2.tics_segment="off";
 a2.ytics_coord=4;
-  
+
 drawaxis(x=-1,y=0:1:7,dir='r',fontsize=10,textcolor=5,ticscolor=6,sub_int=10)
 a3=get("hdl");
 a3.tics_labels= 'B'  +string(0:7);
@@ -306,22 +309,22 @@ a3.tics_direction="left";
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="drawaxis">drawaxis</link>
+            </member>
+            <member>
+                <link linkend="axes_properties">axes_properties</link>
+            </member>
+            <member>
+                <link linkend="graphics_entities">graphics_entities</link>
+            </member>
             <member>
                 <link linkend="set">set</link>
             </member>
             <member>
                 <link linkend="get">get</link>
-            </member>
-            <member>
-                <link linkend="delete">delete</link>
-            </member>
-            <member>
-                <link linkend="drawaxis">drawaxis</link>
-            </member>
-            <member>
-                <link linkend="graphics_entities">graphics_entities</link>
             </member>
         </simplelist>
     </refsection>

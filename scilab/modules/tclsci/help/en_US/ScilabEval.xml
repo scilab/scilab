@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) Bertrand Guiheneuf
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="ScilabEval">
@@ -18,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>ScilabEval instruction
             ScilabEval instruction "seq"
             ScilabEval instruction "sync"
@@ -60,8 +63,8 @@
                         used to associate Scilab actions to tcl/tk widgets but not into a tcl
                         script executed by <link linkend="TCL_EvalFile">TCL_EvalFile</link> or <link linkend="TCL_EvalStr">TCL_EvalStr</link>
                         because in this situation the Scilab interpreter is blocked up to the
-                        end of the script. Note that with the 
-                        <literal>ScilabEval instruction</literal> syntax, if there are many 
+                        end of the script. Note that with the
+                        <literal>ScilabEval instruction</literal> syntax, if there are many
                         <literal>ScilabEval</literal>
                         commands stored in the queue the execution of the second one can be
                         started in the middle of the execution of the first one (in particular
@@ -83,7 +86,7 @@
                     <para>
                         If the <literal>ScilabEval instruction "sync"</literal> syntax is used,
                         the instruction is executed immediately (not queued) and the
-                        <literal>ScilabEval</literal>returns when the <literal>instruction</literal> 
+                        <literal>ScilabEval</literal>returns when the <literal>instruction</literal>
                         evaluation is finished. The scilab <literal>instruction</literal>
                         evaluation may be interrupted by new or queued commands.
                     </para>
@@ -119,7 +122,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //Callbacks and "seq" option usage
 
 //create tcl instructions
@@ -173,7 +176,7 @@ TCL_EvalFile(TMPDIR+'/test.tcl');mprintf('TCL_EvalFile finished\n');
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="TCL_EvalFile">TCL_EvalFile</link>

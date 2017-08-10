@@ -5,7 +5,7 @@
         <refpurpose>least-square filter design</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>Hz = yulewalk(N,frq,mag)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -44,7 +44,7 @@
         <para>
             Hz = yulewalk(N,frq,mag) finds the N-th order iir filter
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[ 
+        <programlisting role="no-scilab-exec"><![CDATA[
                   n-1         n-2
       B(z)   b(1)z     + b(2)z    + .... + b(n)
 H(z)= ---- = ---------------------------------
@@ -61,19 +61,19 @@ H(z)= ---- = ---------------------------------
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 f=[0,0.4,0.4,0.6,0.6,1];
 H=[0,0,1,1,0,0];
 Hz=yulewalk(8,f,H);
 fs=1000;
-fhz = f*fs/2; 
-clf(0);
-xset('window',0);
+fhz = f*fs/2;
+scf(0);
+clf
 plot2d(fhz',H');
 xtitle('Desired Frequency Response (Magnitude)')
 [frq,repf]=repfreq(Hz,0:0.001:0.5);
-clf(1);
-xset('window',1);
+scf(1);
+clf
 plot2d(fs*frq',abs(repf'));
 xtitle('Obtained Frequency Response (Magnitude)')
  ]]></programlisting>
@@ -82,9 +82,9 @@ xtitle('Obtained Frequency Response (Magnitude)')
             H=[0,0,1,1,0,0];
             Hz=yulewalk(8,f,H);
             fs=1000;
-            fhz = f*fs/2; 
-            clf(0);
-            xset('window',0);
+            fhz = f*fs/2;
+            scf(0);
+            clf
             plot2d(fhz',H');
             xtitle('Desired Frequency Response (Magnitude)')
             [frq,repf]=repfreq(Hz,0:0.001:0.5);

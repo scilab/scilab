@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Farid BELAHCENE
+ * Copyright (C) 2016 - Samuel GOUGEON
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="permute" xml:lang="en">
+    <refnamediv>
+        <refname>permute</refname>
+        <refpurpose>permute les dimensions d'un tableau à N dimensions</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntaxe</title>
+        <synopsis>y = permute(x, dims)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>Un tableau ayant un nombre quelconque N de dimensions  (0, 1, 2, ou N>2),
+                      de type de données quelconque : booléens, entiers encodés, nombres décimaux
+                      réels ou complexes, polynômes, fractions rationnelles, tableau de structures,
+                      tableau de cells.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>dims</term>
+                <listitem>
+                    <para>
+                      toute permutation des nombres entiers 1:N où N>=Nmin est le nombre de
+                      dimensions du tableau souhaité, a minima <literal>nmin = ndims(x)</literal>.
+                    </para>
+                    <para>
+                     La dimension numéro <literal>#i</literal> dans <literal>y</literal> était la
+                     dimension numéro <literal>#dims(i)</literal> dans <literal>x</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>
+                      Un tableau ayant le même contenu que <literal>x</literal>, avec des tailles
+                      identiques à celles de <literal>x</literal>  mais permutées.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>permute(..)</literal> permute les dimensions du tableau  selon les correspondances
+            données dans le vecteur <varname>dims</varname>.
+        </para>
+        <important>
+             Dans le tableau résultant <literal>y</literal>, toute dimension d'ordre majeur réduite
+             à une taille de 1 (singleton) est automatiquement ignorée (réduction).
+         </important>
+         <note>
+             <literal>permute()</literal> est une généralisation à un nombre de dimensions N
+             quelconque des opérateurs de transposition <literal>.'</literal> ou <literal>'</literal>.
+             Elle est principalement utile pour manipuler les dimensions des hypermatrices.
+             Pour simplement transposer une matrice (permuter ses lignes en colonnes et vice-versa),
+             on utilisera de préférence <literal>.'</literal> ou <literal>'</literal>
+         </note>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[
+// Exemple 1 : Une matrice devient une hypermatrice avec un coté de taille == 1
+//             (ici le nombre de lignes (dans chaque page)
+x = [1 2 3; 4 5 6]
+y = permute(x,[3 1 2])
+ ]]></programlisting>
+    <screen><![CDATA[--> x = [1 2 3; 4 5 6]
+ x  =
+   1.   2.   3.
+   4.   5.   6.
+
+--> y = permute(x,[3 1 2])
+ y  =
+(:,:,1)
+   1.   4.
+(:,:,2)
+   2.   5.
+(:,:,3)
+   3.   6.
+]]></screen>
+        <programlisting role="example"><![CDATA[
+// Exemple 2 : avec des entiers encodés
+x = int8(matrix(1:24, [3 4 2]))
+y = permute(x, [2 3 1])
+ ]]></programlisting>
+    <screen><![CDATA[--> x = int8(matrix(1:24, [3 4 2]))
+ x  =
+(:,:,1)
+  1  4  7  10
+  2  5  8  11
+  3  6  9  12
+(:,:,2)
+  13  16  19  22
+  14  17  20  23
+  15  18  21  24
+
+--> y = permute(x, [2 3 1])
+ y  =
+(:,:,1)
+  1  13
+  4  16
+  7  19
+ 10  22
+(:,:,2)
+  2  14
+  5  17
+  8  20
+ 11  23
+(:,:,3)
+  3  15
+  6  18
+  9  21
+ 12  24
+]]></screen>
+        <programlisting role="example"><![CDATA[
+// Exemple 3 :
+x = matrix(1:8, [2 1 4])
+y = permute(x, [3 1 2]);
+// La dimension 1 était la 3ème : taille = 4 = nouveau nombre de lignes
+// La dimension 2 était la 1ère : taille = 2 = nouveau nombre de colonnes
+// La dimension 3 était la 2ème : taille = 1 = nouveau nombre de pages
+y
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="pertrans">pertrans</link>
+            </member>
+            <member>
+                <link linkend="quote">quote</link>
+            </member>
+            <member>
+                <link linkend="ndims">ndims</link>
+            </member>
+            <member>
+                <link linkend="squeeze">squeeze</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    Extension aux tableaux de fractions rationnelles
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

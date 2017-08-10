@@ -24,7 +24,7 @@ taucs_chdel(Cp)
 
 // Example #2 a real example
 // first load a sparse matrix
-[A] = ReadHBSparse(SCI+"/modules/umfpack/examples/bcsstk24.rsa");
+[A] = ReadHBSparse(SCI+"/modules/umfpack/demos/bcsstk24.rsa");
 // compute the factorization
 Cp = taucs_chfact(A); 
 b = rand(size(A,1),1); // a random rhs

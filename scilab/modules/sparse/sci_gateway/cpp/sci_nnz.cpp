@@ -2,13 +2,18 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2010-2010 - DIGITEO - Bernard HUGUENEY
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
+
+#include <algorithm>
 
 #include "sparse_gw.hxx"
 #include "function.hxx"
@@ -20,9 +25,6 @@ extern "C"
 #include "Scierror.h"
 #include "localization.h"
 }
-
-using namespace types;
-using namespace std;
 
 namespace
 {
@@ -43,30 +45,30 @@ size_t nonZeros(types::Double SPARSE_CONST& d)
     }
     else
     {
-        res = count(d.getReal(), d.getReal() + n, 0);
+        res = std::count(d.getReal(), d.getReal() + n, 0);
     }
     return d.getSize() - res;
 }
 }
 
-Function::ReturnValue sci_nnz(typed_list &in, int nbRes, typed_list &out)
+types::Function::ReturnValue sci_nnz(types::typed_list &in, int nbRes, types::typed_list &out)
 {
     if (in.size() != 1)
     {
         Scierror(999, _("%s: Wrong number of input argument(s): %d expected.\n"), "nnz", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (in[0]->isSparse() == false && in[0]->isSparseBool() == false && in[0]->isDouble() == false)
     {
         Scierror(999, _("%s: Wrong type argument %d: Sparse or matrix expected.\n"), "nnz", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (nbRes > 1)
     {
         Scierror(999, _("%s: Wrong number of output arguments: %d expected.\n"), "nnz", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     double dblVal = 0;
@@ -75,17 +77,17 @@ Function::ReturnValue sci_nnz(typed_list &in, int nbRes, typed_list &out)
 
     if (in[0]->isSparse())
     {
-        dblVal = static_cast<double>(in[0]->getAs<Sparse>()->nonZeros());
+        dblVal = static_cast<double>(in[0]->getAs<types::Sparse>()->nonZeros());
     }
     else if (in[0]->isSparseBool())
     {
-        dblVal = static_cast<double>(in[0]->getAs<SparseBool>()->nbTrue());
+        dblVal = static_cast<double>(in[0]->getAs<types::SparseBool>()->nbTrue());
     }
     else
     {
-        dblVal = static_cast<double>(nonZeros(*in[0]->getAs<Double>()));
+        dblVal = static_cast<double>(nonZeros(*in[0]->getAs<types::Double>()));
     }
 
-    out.push_back(new Double(dblVal));
-    return Function::OK;
+    out.push_back(new types::Double(dblVal));
+    return types::Function::OK;
 }

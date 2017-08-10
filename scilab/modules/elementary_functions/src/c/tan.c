@@ -2,14 +2,18 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Antoine ELIAS
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 #include "elem_common.h"
+#include "numericconstants_interface.h"
 
 /*tan*/
 double dtans(double _dblVal)
@@ -87,7 +91,7 @@ TRANSLATE TO C
 void ztans(double _dblRealIn, double _dblImgIn, double* _pdblRealOut, double* _pdblImgOut)
 {
     double dblTemp = 0;
-    double dblLim = 1 + dlogs(2.0 / dsqrts(getRelativeMachinePrecision()));
+    double dblLim = 1 + dlogs(2.0 / dsqrts(nc_eps()));
 
     dblTemp			= pow(dcoss(_dblRealIn), 2) + pow(dsinhs(_dblImgIn), 2);
     *_pdblRealOut	= 0.5 * dsins(2 * _dblRealIn) / dblTemp;

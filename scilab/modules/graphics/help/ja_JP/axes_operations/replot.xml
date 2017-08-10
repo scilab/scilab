@@ -1,346 +1,256 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
-
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-
  * Copyright (C) ENPC - Jean-Philippe Chancelier
-
- * Copyright (C) 2013 - Samuel GOUGEON
-
- * 
-
- * This file must be used under the terms of the CeCILL.
-
- * This source file is licensed as described in the file COPYING, which
-
- * you should have received as part of this distribution.  The terms
-
- * are also available at    
-
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
-
+ * Copyright (C) 2013, 2016 - Samuel GOUGEON
  *
-
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
  -->
-
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ja" xml:id="replot">
-    
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+    xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+    xml:lang="ja" xml:id="replot">
     <refnamediv>
-        
         <refname>replot</refname>
-        
         <refpurpose>
-            
             新しい境界を指定してカレントまたは指定した軸で再描画
-            
         </refpurpose>
-        
     </refnamediv>
-    
     <refsynopsisdiv>
-        
         <title>呼び出し手順</title>
-        
-        <synopsis>replot(area)</synopsis>
-        
-        <synopsis>replot(area, axesHandles)</synopsis>
-        
+        <synopsis>
+            replot()
+            replot(area)
+            replot(idAxes)
+            replot(area, idAxes)
+            replot(.., tight_limits)
+        </synopsis>
     </refsynopsisdiv>
-    
-    <refsection>
-        
+    <refsection role="parameters">
         <title>引数</title>
-        
         <variablelist>
-            
             <varlistentry>
-                
                 <term>area</term>
-                
                 <listitem>
-                    
                     <para>
-                        
                         行ベクトル [xmin ymin xmax ymax] または
-                        
                         [xmin ymin zmin xmax ymax zmax]: 再プロットされる領域の新しい範囲.
-                        
                         <note>
-                            
-                            範囲を変えない場合は <literal>%nan</literal> を使用してください.
-                            
+                            <itemizedlist>
+                                <listitem>
+                                    範囲を変えない場合は <literal>%nan</literal> を使用してください.
+                                </listitem>
+                                <listitem>
+                                    <literal>%inf</literal> can be used to set
+                                    a bound to the position of the most marginal
+                                    graphical component existing in the axes,
+                                    for the considered direction.
+                                </listitem>
+                            </itemizedlist>
                         </note>
-                        
+                        The default area is [%inf %inf %inf %inf]
+                        for a 2D axes, or [%inf %inf %inf %inf %inf %inf] for a
+                        3D one.
                     </para>
-                    
+                    <para>If N axes are identified in <literal>idAxes</literal>,
+                        <literal>area</literal> may be a matrix with N rows and
+                        4 or 6 columns. The row #i is then related to the axes #i
+                         of <literal>idAxes</literal>.
+                        If <literal>area</literal> is only a vector of 4 or 6
+                        bounds, these ones are used for all axes to be reframed.
+                    </para>
                 </listitem>
-                
             </varlistentry>
-            
             <varlistentry>
-                
-                <term>axesHandles</term>
-                
+                <term>idAxes</term>
                 <listitem>
-                    
-                    <para>
-                        
-                        Axes型のグラフィックハンドルのベクトル:
-                        
-                        選択する軸. デフォルトで, カレントの図のカレントの軸が指定されます.
-                        
+                    <para>Vector of graphic handles, expected to be of Axes type
+                          or to have direct children of type Axes, such as Figures
+                          and possibly frame uicontrols.
+                          <literal>idAxes</literal> specifies direct or children
+                          Axes to crop. If no axes is found, nothing is done.
                     </para>
-                    
+                    <para>By default, the current Axes is considered.</para>
                 </listitem>
-                
             </varlistentry>
-            
+            <varlistentry>
+                <term>tight_limits</term>
+                <listitem>
+                    <para>
+                      Single word <literal>"tight"</literal> or <literal>"on"</literal> or
+                      <literal>"off"</literal>, or vector of 2 (in 2D)
+                      or 3 (in 3D) words <literal>"tight"</literal> or <literal>"on"</literal> or
+                      <literal>"off"</literal>. If a single word is provided,
+                      it is used for every axis. This option forces the
+                      <literal>.tight_limits</literal> attribute of considered
+                      axes to the specified <literal>"on"</literal> or
+                      <literal>"off"</literal> values. By default,
+                      current limits modes are unchanged.
+                    </para>
+                    <para>
+                        By default, current limits modes are unchanged.
+                    </para>
+                </listitem>
+            </varlistentry>
         </variablelist>
-        
     </refsection>
-    
-    <refsection>
-        
+    <refsection role="description">
         <title>説明</title>
-        
         <para>
-            
-            <literal>replot</literal> はカレントのグラフィックウインドウの内容を
-            
-            <literal>area = [xmin,ymin, xmax,ymax]</literal>または
-            
-            <literal>area = [xmin,ymin,zmin, xmax,ymax,zmax]</literal>で定義した新しい境界内に
-            
-            再描画する際に使用されます.
-            
+            <literal>replot</literal> is used to reframe the (set of) axes specified
+            with <literal>idAxes</literal> -- or by default the current axes --
+            with new boundaries defined by
+            <literal>area = [xmin,ymin, xmax,ymax]</literal> or
+            <literal>area = [xmin,ymin,zmin, xmax,ymax,zmax]</literal>.
         </para>
-        
         <para>
-            
-            この変換は<varname>axesHandles</varname>引数でAxesグラフィックハンドルにより
-            
-            指定された特定の軸に適用できます.
-            
-            <varname>axesHandles</varname>が指令されない場合,
-            
-            新しい境界はカレントの図のカレントの軸に適用されます.
-            
-            変換はこれらの軸の<literal>data_bounds</literal>の値を変更します.
-            
+            It changes the <literal>data_bounds</literal> attribute of processed axes.
         </para>
-        
-        <note>
-            
-            これらの範囲を厳密に選択するために
-            
-            axesのプロパティ<literal>tight_limits</literal>を"on" に設定する必要があります
-            
-            (<link linkend="axes_properties">axes_properties</link>を参照ください).
-            
-        </note>
-        
+        <para>
+            When a specified bound is infinite (%inf and -%inf are equivalent),
+            <literal>replot</literal> looks for the most marginal graphical object
+            and sets the actual related bound to its position, taking also
+            objects sizes into account. This ensures not clipping any object
+            that would be beyond the targeted side of the axes.
+        </para>
+        <para>When the <literal>tight_limits</literal> option is provided,
+            its value is assigned to the <literal>.tight_limits</literal>
+            attribute of each considered axes, in an axis-wise way.
+        </para>
     </refsection>
-    
-    <refsection>
-        
+    <refsection role="examples">
         <title>例</title>
-        
-        <programlisting role="example"><![CDATA[ 
-
+        <programlisting role="example"><![CDATA[
 // 最初の例
-
 x=[0:0.1:2*%pi]';
-
-plot2d(x,sin(x)) 
-
-replot([-1,-1,10,2]) 
-
+plot2d(x,sin(x))
+replot([-1,-1,10,2])
       ]]></programlisting>
-        
         <scilab:image>
-            
             x=[0:0.1:2*%pi]';
-            
             plot2d(x,sin(x))
-            
             replot([-1,-1,10,2])
-            
         </scilab:image>
-        
         <programlisting role="example"><![CDATA[
-
 // 二番目の例
-
 xdel(winsid());
-
 plot() // plot demo
-
 f=gcf();
-
 replot([-1,-1,10,2],f.children(1)) // axesハンドルの値を指定
-
-replot([-3,-2,8,4],f.children(2)) 
-
+replot([-3,-2,8,4],f.children(2))
  ]]></programlisting>
-        
         <scilab:image>
-            
             xdel(winsid());
-            
             plot()
-            
             f2=gcf();
-            
             replot([-1,-1,10,2],f2.children(1))
-            
             replot([-3,-2,8,4],f2.children(2))
-            
         </scilab:image>
-        
         <programlisting role="example"><![CDATA[
-
 //値は%nanで示さ端子は変更されません。
-
 x = linspace(0,360,200).';
-
 clf
-
 plot2d(x,[sind(x) tand(x)])
-
 ax = gca();
-
-ax.data_bounds				// 初期限界
-
-replot([%nan,-10,%nan,10])	// YminとYmaxのだけ変更され
-
-ax.data_bounds				// 新しい制限
-
+ax.data_bounds              // 初期限界
+replot([%nan,-10,%nan,10])  // YminとYmaxのだけ変更され
+ax.data_bounds              // 新しい制限
+     ]]></programlisting>
+        <para></para>
+        <programlisting role="example"><![CDATA[
 // 3D端末Zも変更できます。
-
 clf
-
 x = linspace(-4,4,100);
-
 X = meshgrid(x);
-
 R = (X-0.5).^2 + (X.'+0.7).^2;
-
 Z = sinc(R);
-
 surf(x-0.5,x+0.7,Z)
-
 f = gcf();
-
 f.color_map = autumncolormap(100);
-
 ax = gca();
-
 ax.data_bounds
-
 sleep(3000)
-
 replot([-5 0 -0.4 0 5 0.5])
-
 ax.data_bounds
-
+     ]]></programlisting>
+        <para></para>
+        <programlisting role="example"><![CDATA[
 // いくつかのグラフィカルなマーカーを同時にトリミングすることができます。
-
 clf
-
 x = linspace(-%pi,%pi,400);
-
 subplot(2,2,1)
-
 plot2d(x,sin(1 ./sqrt(abs(x))))
-
 ax1 = gca();
-
 subplot(2,2,2)
-
 plot2d(x,sinh(sqrt(abs(x))))
-
 subplot(2,1,2)
-
 plot2d(x,cos(1 ./sqrt(abs(x))))
-
 ax2 = gca();
-
 sleep(4000)
-
 f = gcf();
-
 replot([-1 %nan 1.5 %nan], [ax1 ax2])
-
       ]]></programlisting>
-        
     </refsection>
-    
     <refsection role="see also">
-        
         <title>参照</title>
-        
         <simplelist type="inline">
-            
             <member>
-                
                 <link linkend="zoom_rect">zoom_rect</link>
-                
             </member>
-            
             <member>
-                
                 <link linkend="rubberbox">rubberbox</link>
-                
             </member>
-            
             <member>
-                
                 <link linkend="axes_properties">axes_properties</link>
-                
             </member>
-            
         </simplelist>
-        
     </refsection>
-    
-    <refsection>
-        
+    <refsection role="history">
         <title>履歴</title>
-        
         <revhistory>
-            
             <revision>
-                
                 <revnumber>5.5.0</revnumber>
-                
                 <revdescription>
-                    
                     <itemizedlist>
-                        
                         <listitem>3Dへの拡張
-                            
                         </listitem>
-                        
                         <listitem>axesHandles をベクトル化
-                            
                         </listitem>
-                        
                         <listitem>
-                            
                             範囲を維持するために <literal>%nan</literal> を使用できます.
-                            
                         </listitem>
-                        
                     </itemizedlist>
-                    
                 </revdescription>
-                
             </revision>
-            
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>
+                            Handles of frame uicontrols having Axes children are
+                            now accepted.
+                        </listitem>
+                        <listitem>
+                            %inf can now be used to set a bound to the position
+                            of most marginal contents.
+                        </listitem>
+                        <listitem>
+                            replot() as replot([%inf %inf %inf %inf]) is added.
+                        </listitem>
+                        <listitem>
+                            Option tight_limits added.
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
         </revhistory>
-        
     </refsection>
-    
 </refentry>
-

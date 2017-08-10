@@ -1,12 +1,15 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2014-2014 - Scilab Enterprises - Clement DAVID
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2014-2017 - Scilab Enterprises - Clement DAVID
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -29,7 +32,7 @@ namespace org_scilab_modules_scicos
 {
 
 Model::Model() :
-    lastId(0), has_looped(false), allObjects()
+    lastId(ScicosID()), has_looped(false), allObjects()
 {
     std::vector<int> datatypeDefault (3, 1);
     datatypeDefault[0] = -1;
@@ -44,6 +47,32 @@ Model::~Model()
     }
     datatypes.clear();
 }
+
+/* define a custom delete as the BaseObject class is fully abstract */
+static inline void deleteBaseObject(model::BaseObject* o)
+{
+    switch (o->kind())
+    {
+        case ANNOTATION:
+            delete static_cast<model::Annotation*>(o);
+            break;
+        case DIAGRAM:
+            delete static_cast<model::Diagram*>(o);
+            break;
+        case BLOCK:
+            delete static_cast<model::Block*>(o);
+            break;
+        case LINK:
+            delete static_cast<model::Link*>(o);
+            break;
+        case PORT:
+            delete static_cast<model::Port*>(o);
+            break;
+        default:
+            break;
+    }
+};
+
 
 ScicosID Model::createObject(kind_t k)
 {
@@ -68,13 +97,15 @@ ScicosID Model::createObject(kind_t k)
         case PORT:
             o = new model::Port();
             break;
+        default:
+            return ScicosID();
     }
 
     /*
      * Found the next unused id
      */
     lastId++;
-    if (lastId == 0)
+    if (lastId == ScicosID())
     {
         lastId++;
         has_looped = true;
@@ -91,13 +122,14 @@ ScicosID Model::createObject(kind_t k)
         {
             // try a valid ID
             lastId++;
-            if (lastId == 0)
+            if (lastId == ScicosID())
             {
                 lastId++;
 
                 // return the invalid value if the loop counter encounter 2 zeros.
                 if (has_looped_twice)
                 {
+                    deleteBaseObject(o);
                     return ScicosID();
                 }
                 else
@@ -124,8 +156,8 @@ unsigned Model::referenceObject(const ScicosID uid)
         return 0;
     }
 
-    ModelObject& modelObject = iter->second;
-    return ++(modelObject.m_refCounter);
+    model::BaseObject* modelObject = iter->second;
+    return ++modelObject->refCount();
 }
 
 unsigned& Model::referenceCount(ScicosID uid)
@@ -136,8 +168,8 @@ unsigned& Model::referenceCount(ScicosID uid)
         throw std::string("key has not been found");
     }
 
-    ModelObject& modelObject = iter->second;
-    return modelObject.m_refCounter;
+    model::BaseObject* modelObject = iter->second;
+    return modelObject->refCount();
 
 }
 
@@ -146,20 +178,50 @@ void Model::deleteObject(ScicosID uid)
     objects_map_t::iterator iter = allObjects.find(uid);
     if (iter == allObjects.end())
     {
-        throw std::string("key has not been found");
+        // throw std::string("key has not been found");
+        // but will probably crash Scilab, fallback to safety
+        return;
     }
 
-    ModelObject& modelObject = iter->second;
-    if (modelObject.m_refCounter == 0)
+    model::BaseObject* modelObject = iter->second;
+    if (modelObject->refCount() == 0)
     {
-        model::BaseObject* o = modelObject.m_o;
         allObjects.erase(iter);
-        delete o;
+        deleteBaseObject(modelObject);
     }
     else
     {
-        --(modelObject.m_refCounter);
+        --modelObject->refCount();
     }
+}
+
+kind_t Model::getKind(ScicosID uid) const
+{
+    model::BaseObject* o = getObject(uid);
+    if (o != nullptr)
+    {
+        return o->kind();
+    }
+    else
+    {
+        // return the first kind, it will be always ignored as the object is no more valid
+        return ANNOTATION;
+    }
+}
+
+std::vector<ScicosID> Model::getAll(kind_t k) const
+{
+    std::vector<ScicosID> all;
+
+    for (objects_map_t::const_iterator it = allObjects.begin(); it != allObjects.end(); ++it)
+    {
+        if (it->second->kind() == k)
+        {
+            all.push_back(it->second->id());
+        }
+    }
+
+    return all;
 }
 
 model::BaseObject* Model::getObject(ScicosID uid) const
@@ -167,10 +229,10 @@ model::BaseObject* Model::getObject(ScicosID uid) const
     objects_map_t::const_iterator iter = allObjects.find(uid);
     if (iter == allObjects.end())
     {
-        throw std::string("key has not been found");
+        return nullptr;
     }
 
-    return iter->second.m_o;
+    return iter->second;
 }
 
 // datatypes being a vector of Datatype pointers, we need a dereferencing comparison operator to use std::lower_bound()

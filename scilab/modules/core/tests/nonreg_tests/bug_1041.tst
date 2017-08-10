@@ -28,20 +28,20 @@ txt=['for i=1:10'
 ierr=execstr(txt,'errcatch');
 if ierr==0 then pause,end
 [str,n,l,func]=lasterror(%t);
-if l<>5 then pause,end  
+if l<>5 then pause,end
 
 
-deff('foo',txt,'n');
+deff('foo',txt);
 ierr=execstr('foo()','errcatch');
 if ierr==0 then pause,end
 [str,n,l,func]=lasterror(%t);
-if l<>6 then pause,end  
+if l<>6 then pause,end
 
 deff('foo1',txt)
 ierr=execstr('foo1()','errcatch');
 if ierr==0 then pause,end
 [str,n,l,func]=lasterror(%t);
-if l<>6 then pause,end  
+if l<>6 then pause,end
 
 
 t1=['if %t then'
@@ -50,30 +50,30 @@ t1=['if %t then'
 ierr=execstr(t1,'errcatch');
 if ierr==0 then pause,end
 [str,n,l,func]=lasterror(%t);
-if l<>6 then pause,end  
+if l<>6 then pause,end
 
 clear foo foo1
-deff('foo',t1,'n');
+deff('foo',t1);
 ierr=execstr('foo()','errcatch');
 if ierr==0 then pause,end
 [str,n,l,func]=lasterror(%t);
-if l<>7 then pause,end  
+if l<>7 then pause,end
 
 deff('foo1',t1);
 ierr=execstr('foo1()','errcatch');
 if ierr==0 then pause,end
 [str,n,l,func]=lasterror(%t);
-if l<>7 then pause,end  
+if l<>7 then pause,end
 
 clear foo foo1
-deff('foo','execstr(txt)','n');
+deff('foo','execstr(txt)');
 ierr=execstr('foo()','errcatch');
 if ierr==0 then pause,end
 [str,n,l,func]=lasterror(%t);
-if l<>5 then pause,end  
+if l<>5 then pause,end
 
 deff('foo1','execstr(txt)');
 ierr=execstr('foo1()','errcatch');
 if ierr==0 then pause,end
 [str,n,l,func]=lasterror(%t);
-if l<>5 then pause,end  
+if l<>5 then pause,end

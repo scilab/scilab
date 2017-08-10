@@ -24,6 +24,7 @@ if getos() == 'Windows' then
   currentline = 'cd c:/u';
   r = completeline(currentline,'Users',getfilepartlevel(currentline),getpartlevel(currentline),%t);
   if r <> 'cd c:/Users' then bugmes();quit;end
+  
   currentline = 'cd c:/programs Files/f';
   r = completeline(currentline,'Fichiers',getfilepartlevel(currentline),getpartlevel(currentline),%t);
   if r <> 'cd c:/programs Files/Fichiers' then bugmes();quit;end

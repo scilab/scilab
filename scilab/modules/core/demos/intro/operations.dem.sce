@@ -4,16 +4,27 @@
 //
 // This file is distributed under the same license as the Scilab package.
 //
+A=diag([2,3,4]);
+B=[1 0;0 1;0 0];
+C=[1 -1 0];
+D=0*C*B;
+x0=[0;0;0];
+p=1+3*%z+4.5*%z^2           //polynomial
+r=%z/p                      //rational
+Mp=[p,1-%z;1,%z*p]          //2 x 2 polynomial matrix
+Sl=syslin("c",A,B,C,D,x0)   //Standard state-space linear system
+F=Mp/poly([1+%i 1-%i 1],"z")   //rational matrix
+
 mode(7)
 //To quit this demo, enter CTRL+C, then type "abort"
-
+[ma,na] = size(A);
 //                  OPERATIONS
 v=1:5;W=v'*v                 //constant matrix multiplication
 W(1,:)                       //extracting first row
 W(:,$)                       //extracting last column
 Mp'*Mp+eye()                   //polynomial matrix
 Mp1=Mp(1,1)+4.5*%i           //complex
-Fi=C*(z*eye()-A)^(-1)*B;       //transfer function evaluation
+Fi=C*(%z*eye(ma,na)-A)^(-1)*B;       //transfer function evaluation
 F(:,1)*Fi                    //operations with rationals
 M=[Mp -Mp; Mp' Mp+eye()]       //concatenation of polynomial matrices
 [Fi, Fi(:,1)]                // ... or rationals

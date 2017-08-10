@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) Serge Steer
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en_US" xml:id="comet">
     <refnamediv>
@@ -15,13 +18,15 @@
         <refpurpose>2D comet animated plot. </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>comet(y)</synopsis>
-        <synopsis>comet(x,y)</synopsis>
-        <synopsis>comet(x,fun)</synopsis>
-        <synopsis>comet(x,y,p)</synopsis>
-        <synopsis>comet(x,fun,p)</synopsis>
-        <synopsis>comet(...,"colors",c)</synopsis>
+        <title>Syntax</title>
+        <synopsis>
+            comet(y)
+            comet(x,y)
+            comet(x,fun)
+            comet(x,y,p)
+            comet(x,fun,p)
+            comet(...,"colors",c)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parameters</title>
@@ -56,7 +61,7 @@
                 <term>fun</term>
                 <listitem>
                     <para>
-                        a scilab function with calling sequence <literal>y=fun(x)</literal>.  <varname>fun</varname> can also be a polynomial or a rational fraction.
+                        a scilab function with syntax <literal>y=fun(x)</literal>.  <varname>fun</varname> can also be a polynomial or a rational fraction.
                     </para>
                 </listitem>
             </varlistentry>
@@ -75,16 +80,16 @@
         <para>
             If <literal>(x,y)</literal> are two vectors with the same number
             of elements, this function draws a 2D comet animated plot
-            showing the progession of the curve
+            showing the progression of the curve
             <literal>(x(1:k),y(1:k))</literal> for <literal>k</literal>
             varying from <literal>1</literal> to
-            <literal>size(x,'*')</literal>.  
+            <literal>size(x,'*')</literal>.
         </para>
         <para>
             The plot is made of three parts:
             <variablelist>
                 <varlistentry>
-                    <term>a head</term> 
+                    <term>a head</term>
                     <listitem>
                         <para>
                             mark that shows the current <literal>(x(i),y(i))</literal> position.
@@ -101,7 +106,7 @@
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>a tail</term>                     
+                    <term>a tail</term>
                     <listitem>
                         <para>
                             that shows the  <literal>(x(1:i-k),y(1:i-k))</literal> part of the curve.
@@ -130,11 +135,11 @@
                 case <literal>ny</literal> is the number of rows of
                 <varname>x</varname> and <varname>y</varname>.
             </para>
-            
+
             <para>
                 <literal>comet(...,"colors",c)</literal> can be used to set the colors of each curves.
             </para>
-            
+
         </para>
     </refsection>
     <refsection>
@@ -142,7 +147,7 @@
         <programlisting role="example"><![CDATA[
 t = linspace(0,10*%pi,500);
 clf();
-set(gca(),"isoview","on"); //set isoview axes
+isoview; //set isoview axes
 comet(t.*sin(t), t.*cos(t))
     ]]></programlisting>
         <programlisting role="example"><![CDATA[
@@ -167,7 +172,7 @@ comet(linspace(-2,4,500), (%s-3)/(%s^3+2*%s^2+1))
     ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="color">color</link>

@@ -16,5 +16,5 @@
 // There was a crash with xmlRead when argument had a bad dimension.
 //
 
-asserterrmsg = sprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"), "xmlRead" , 1);
+asserterrmsg = sprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"), "xmlRead" , 1);
 assert_checkerror("xmlRead([""aze"" ""aze""])", asserterrmsg);

@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
- *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
- *
- -->
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
+    *
+    * Copyright (C) 2012 - 2016 - Scilab Enterprises
+    *
+    * This file is hereby licensed under the terms of the GNU GPL v2.0,
+    * pursuant to article 5.3.4 of the CeCILL v.2.1.
+    * This file was originally licensed under the terms of the CeCILL v2.1,
+    * and continues to be available under such terms.
+    * For more information, see the COPYING file which you should have received
+    * along with this program.
+    *
+    -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" scilab:needs-examples="no" xml:id="_atomsGettingStarted">
     <refnamediv>
         <refname>Getting started</refname>
+        <refpurpose>A short introduction to install and load ATOMS modules in Scilab.</refpurpose>
     </refnamediv>
     <refsection>
         <title>Introduction</title>
@@ -28,102 +32,94 @@
             <itemizedlist>
                 <listitem>
                     <para>
-                        <emphasis role="strong">Configure ATOMS to display extra-information</emphasis>
-                        <programlisting><![CDATA[-->atomsSetConfig('Verbose','True');]]></programlisting>
+                        Configure ATOMS to display extra-information:
                     </para>
+                    <screen><![CDATA[-->atomsSetConfig('Verbose','True');]]></screen>
                 </listitem>
+                <para></para>
                 <listitem>
                     <para>
-                        <emphasis role="strong">List available modules</emphasis>
-                        <programlisting><![CDATA[
--->atomsList();
+                        List available modules
+                        <screen><![CDATA[-->atomsList();
 
-      ampl_toolbox - An interface to load .nl files created by AMPL
-       ANN_Toolbox - ANN Toolbox
-            conmin - A Scilab interface to the conmin optimization method
-             CUTEr - Testing environment for optimization and linear algebra solvers
-       dace_scilab - This is a conversion of the well known DACE kriging toolbox for Matlab.
-       dde_toolbox - Dynamic Data Exchange client for Scilab
-        HYDROGRv50 - Models and function for operational hydrology
-           lolimot - A fast neural network - LOcal LInear MOdel Tree
-      module_lycee - Scilab pour les lycées
-              NISP - Non Intrusive Spectral Projection
-           plotlib - "Matlab-like" Plotting library for Scilab
-          scilab2c - Translate Scilab code into C code
-            scipad - Scipad 7.20
-           simplex - This package contains the simplex optimization method
-   sndfile_toolbox - Read & write sound files
-           stixbox - Statistics toolbox for Scilab 5.2
-]]></programlisting>
+ampl_toolbox - An interface to load .nl files created by AMPL
+ANN_Toolbox - ANN Toolbox
+conmin - A Scilab interface to the conmin optimization method
+CUTEr - Testing environment for optimization and linear algebra solvers
+dace_scilab - This is a conversion of the well known DACE kriging toolbox for Matlab.
+dde_toolbox - Dynamic Data Exchange client for Scilab
+HYDROGRv50 - Models and function for operational hydrology
+lolimot - A fast neural network - LOcal LInear MOdel Tree
+module_lycee - Scilab pour les lycées
+NISP - Non Intrusive Spectral Projection
+plotlib - "Matlab-like" Plotting library for Scilab
+scilab2c - Translate Scilab code into C code
+scipad - Scipad 7.20
+simplex - This package contains the simplex optimization method
+sndfile_toolbox - Read & write sound files
+stixbox - Statistics toolbox for Scilab 5.2
+                            ]]></screen>
                     </para>
                 </listitem>
+                <para></para>
                 <listitem>
                     <para>
-                        <emphasis role="strong">Install a module</emphasis>
-                        Installing a module download and extract it.
-                        <programlisting><![CDATA[
--->atomsInstall('NISP');
-
-    NISP (2.1) will be installed in the 'allusers' section
-    Installing NISP (2.1) ... success
-
-]]></programlisting>
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="strong">Load a module</emphasis>
-                        The module is installed but it's not loaded in the scilab environment
+                        Install a module, download it and extract it. The module is installed but it's not loaded in the scilab environment
                         and its functionalities are not available yet.
-                    </para>
-                    <para>
-                        <inlinemediaobject>
-                            <imageobject>
-                                <imagedata fileref="../../images/icons/16x16/status/dialog-information.png"/>
-                            </imageobject>
-                        </inlinemediaobject>
-                        By default, a module is added to the list of modules to load at Scilab
-                        start when it's installed.
-                        <emphasis>
-                            (&gt;&gt; More information on the autoload
-                            system :
-                            <simplelist type="inline">
-                                <member>
-                                    <link linkend="atomsAutoloadList">atomsAutoloadList</link>
-                                </member>
-                                <member>
-                                    <link linkend="atomsAutoloadAdd">atomsAutoloadAdd</link>
-                                </member>
-                                <member>
-                                    <link linkend="atomsAutoloadDel">atomsAutoloadDel</link>
-                                </member>
-                            </simplelist>
-                            ).
-                        </emphasis>
-                    </para>
-                    <para>
-                        <programlisting><![CDATA[
--->atomsLoad('NISP');
+                        <screen><![CDATA[-->atomsInstall('NISP');
 
-    Start NISP Toolbox
-      Load gateways
-      Load help
-      Load demos
-]]></programlisting>
+NISP (2.1) will be installed in the 'allusers' section
+Installing NISP (2.1) ... success
+                            ]]></screen>
                     </para>
                 </listitem>
+                <para></para>
                 <listitem>
                     <para>
-                        <emphasis role="strong">Remove a module:</emphasis>
-                        <programlisting><![CDATA[
--->atomsRemove NISP
+                        Load a module.
+                        <tip>
+                            By default, a module is added to the list of modules to load at Scilab
+                            start when it's installed.
+                        </tip>
+                        <screen><![CDATA[-->atomsLoad('NISP');
 
-    NISP (2.1) will be removed from the 'allusers' section
-    the package NISP (2.1) is currently loaded, It will removed at next Scilab restart
-]]></programlisting>
+Start NISP Toolbox
+Load gateways
+Load help
+Load demos
+                                ]]></screen>
+                    </para>
+                </listitem>
+                <para></para>
+                <listitem>
+                    <para>
+                        Remove a module:
+                        <screen><![CDATA[-->atomsRemove NISP
+
+NISP (2.1) will be removed from the 'allusers' section
+the package NISP (2.1) is currently loaded, It will removed at next Scilab restart
+]]></screen>
                     </para>
                 </listitem>
             </itemizedlist>
+        </para>
+    </refsection>
+    <refsection>
+        <title>See also</title>
+        <para>
+            More information on the autoload
+            system :
+            <simplelist type="inline">
+                <member>
+                    <link linkend="atomsAutoloadList">atomsAutoloadList</link>
+                </member>
+                <member>
+                    <link linkend="atomsAutoloadAdd">atomsAutoloadAdd</link>
+                </member>
+                <member>
+                    <link linkend="atomsAutoloadDel">atomsAutoloadDel</link>
+                </member>
+            </simplelist>
         </para>
     </refsection>
     <!-- ===================================================================== -->

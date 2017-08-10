@@ -1,14 +1,17 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) INRIA
-c 
-c This file must be used under the terms of the CeCILL.
-c This source file is licensed as described in the file COPYING, which
-c you should have received as part of this distribution.  The terms
-c are also available at    
-c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+c
+c Copyright (C) 2012 - 2016 - Scilab Enterprises
+c
+c This file is hereby licensed under the terms of the GNU GPL v2.0,
+c pursuant to article 5.3.4 of the CeCILL v.2.1.
+c This file was originally licensed under the terms of the CeCILL v2.1,
+c and continues to be available under such terms.
+c For more information, see the COPYING file which you should have received
+c along with this program.
 c
       subroutine nlis2 (simul,prosca,n,xn,fn,fpn,t,tmin,tmax,d,d2,g,gd,
-     1     amd,amf,imp,io,logic,nap,napmax,x,tol,a,tps,tnc,gg,izs,rzs
+     1     amd,amf,iprint,io,logic,nap,napmax,x,tol,a,tps,tnc,gg,izs,rzs
      $     ,dzs)
 c
 c cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
@@ -30,7 +33,7 @@ c        5          retour a l'utilisateur
 c        6          non hemi-derivable (au-dela de dx)
 c        < 0        contrainte implicite active
 c
-c        imp
+c        iprint
 c                   =0 pas d'impressions
 c                   >0 message en cas de fin anormale
 c                   >3 informations pour chaque essai de t
@@ -64,7 +67,7 @@ c          elimination d'un t initial ridiculement petit
       if (t.gt.tmin) go to 20
       t=tmin
       if (t.le.tmax) go to 20
-      if (imp.gt.0) call n1fc1o(io,35,i1,i2,i3,i4,i5,d1,d2,d3,d4)
+      if (iprint.gt.0) call n1fc1o(io,35,i1,i2,i3,i4,i5,d1,d2,d3,d4)
       tmin=tmax
    20 if (fn+t*fpn.lt.fn+0.9d0*t*fpn) go to 30
       t=2.d0*t
@@ -73,7 +76,7 @@ c
    30 if(t.lt.tmax) go to 40
       t=tmax
       logic=1
-   40 if (imp.ge.4) call n1fc1o(io,36,i1,i2,i3,i4,i5,fpn,d2,tmin,tmax)
+   40 if(iprint.ge.4) call n1fc1o(io,36,i1,i2,i3,i4,i5,fpn,d2,tmin,tmax)
       do 50 i=1,n
    50 x(i)=xn(i)+t*d(i)
 c
@@ -83,7 +86,7 @@ c
       if(nap.le.napmax) go to 150
 c                sortie par maximum de simulations
       logic=4
-      if(imp.ge.4) call n1fc1o(io,37,nap,i2,i3,i4,i5,d1,d2,d3,d4)
+      if(iprint.ge.4) call n1fc1o(io,37,nap,i2,i3,i4,i5,d1,d2,d3,d4)
       if (tg.eq.0.d0) go to 999
       fn=fg
       do 120 i=1,n
@@ -99,7 +102,7 @@ c                arret demande par l'utilisateur
       fn=f
       do 170 i=1,n
   170 xn(i)=x(i)
-      if(imp.ge.4)call n1fc1o(io,38,i1,i2,i3,i4,i5,d1,d2,d3,d4)
+      if(iprint.ge.4)call n1fc1o(io,38,i1,i2,i3,i4,i5,d1,d2,d3,d4)
       go to 999
 c
 c                les tests elementaires sont faits, on y va
@@ -109,7 +112,7 @@ c
       td=t
       indicd=indic
       logic=0
-      if (imp.ge.4) call n1fc1o(io,39,indic,i2,i3,i4,i5,t,d2,d3,d4)
+      if (iprint.ge.4) call n1fc1o(io,39,indic,i2,i3,i4,i5,t,d2,d3,d4)
       t=tg+0.1d0*(td-tg)
       go to 905
 c
@@ -126,7 +129,7 @@ c         test de descente (premiere inegalite pour un pas serieux)
   230 gd(i)=g(i)
       indicd=indic
       logic=0
-      if(imp.ge.4) call n1fc1o(io,40,i1,i2,i3,i4,i5,t,ffn,fp,d4)
+      if(iprint.ge.4) call n1fc1o(io,40,i1,i2,i3,i4,i5,t,ffn,fp,d4)
       if(tg.ne.0.) go to 500
 c                tests pour un pas nul (si tg=0)
       if(fpd.lt.tesd) go to 500
@@ -138,7 +141,7 @@ c                tests pour un pas nul (si tg=0)
       go to 999
 c
 c                    descente
-  300 if(imp.ge.4) call n1fc1o(io,41,i1,i2,i3,i4,i5,t,ffn,fp,d4)
+  300 if(iprint.ge.4) call n1fc1o(io,41,i1,i2,i3,i4,i5,t,ffn,fp,d4)
 c
 c         test de derivee (deuxieme inegalite pour un pas serieux)
       if(fp.lt.tesd) go to 320
@@ -270,7 +273,7 @@ c                arret sur dx ou de secours
       do 960 i=1,n
       xn(i)=xn(i)+tg*d(i)
   960 g(i)=gg(i)
-  970 if (imp.le.0) go to 999
+  970 if (iprint.le.0) go to 999
       if (logic.lt.0) call n1fc1o(io,42,logic,i2,i3,i4,i5,d1,d2,d3,d4)
       if (logic.eq.6) call n1fc1o(io,42,logic,i2,i3,i4,i5,d1,d2,d3,d4)
       go to 999

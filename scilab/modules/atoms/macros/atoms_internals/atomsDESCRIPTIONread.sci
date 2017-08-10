@@ -1,11 +1,14 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 // Internal function
 
@@ -117,53 +120,12 @@ function description_out = atomsDESCRIPTIONread(file_in,additional)
     for i=1:(size(lines_in,"*")+1)
 
         atomsUpdateProgressBar(winId, i / size(lines_in,"*"));
-        // File totally read : register the latest toolbox
-        if i == (size(lines_in,"*")+1) then
 
-            if and(isfield(current_toolbox,["Toolbox";"Version"])) then
+        // First case : new field, or file all read
+        if ((i == (size(lines_in,"*")+1)) | (regexp(lines_in(i),"/^[a-zA-Z0-9]*:\s/","o") == 1)) then
 
-                if  ~ isfield(packages,current_toolbox("Toolbox")) then
-                    // This is the first version of the package
-                    this_toolbox = struct();
-                else
-                    // Get the version list of this package
-                    this_toolbox = packages(current_toolbox("Toolbox"));
-                end
-
-                // Register the current toolbox : Check the mandatory fields
-                missingfield = atomsCheckFields( current_toolbox );
-                if ~ isempty(missingfield) then
-                    atomsCloseProgressBar(winId);
-                    error(msprintf(gettext("%s: The file ""%s"" is not well formated, the toolbox ""%s - %s"" does not contain the %s field\n"), ..
-                    "atomsDESCRIPTIONread",..
-                    file_in,current_toolbox("Toolbox"),..
-                    current_toolbox("Version"),..
-                    missingfield));
-                end
-
-                // Register the current toolbox : Check the scilab version
-                // comptability
-                if atomsIsCompatible(current_toolbox("ScilabVersion")) then
-                    if isfield(current_toolbox,"PackagingVersion") then
-                        current_toolbox("Version") = current_toolbox("Version") + "-" + current_toolbox("PackagingVersion");
-                        this_toolbox(current_toolbox("Version")) = current_toolbox;
-                    else
-                        this_toolbox(current_toolbox("Version")) = current_toolbox;
-                    end
-                end
-
-                // Register the current toolbox : Fill the packages struct
-                packages(current_toolbox("Toolbox")) = this_toolbox;
-            end
-
-            break;
-        end
-
-        // First case : new field
-        if regexp(lines_in(i),"/^[a-zA-Z0-9]*:\s/","o") == 1 then
-
-            // Start new version of toolbox
-            if regexp(lines_in(i),"/^Toolbox:\s/","o") == 1 then
+            // subcase of First case: new toolbox, or file all read: register the latest toolbox
+            if ((i == (size(lines_in,"*")+1)) | (regexp(lines_in(i),"/^Toolbox:\s/","o") == 1)) then
 
                 if and(isfield(current_toolbox,["Toolbox";"Version"])) then
 
@@ -199,6 +161,10 @@ function description_out = atomsDESCRIPTIONread(file_in,additional)
 
                     // Register the current toolbox : Fill the packages struct
                     packages(current_toolbox("Toolbox")) = this_toolbox;
+
+                    if i == (size(lines_in,"*")+1) then
+                        break
+                    end                
                 end
 
                 // Reset the current_toolbox struct
@@ -266,12 +232,12 @@ function description_out = atomsDESCRIPTIONread(file_in,additional)
             continue;
         end
 
-        // Third case : Blank line
+        // Third case : blank line
         if length(lines_in(i)) == 0 then
             continue;
         end
 
-        // Fourth case : Delimiter
+        // Fourth case: comment
         if regexp(lines_in(i),"/^\/\//","o") == 1 then
             continue;
         end

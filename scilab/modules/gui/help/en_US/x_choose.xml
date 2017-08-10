@@ -5,7 +5,7 @@
         <refpurpose>interactive window choice (modal dialog)</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[num]=x_choose(items,title [,button])</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -50,13 +50,13 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 n = x_choose(['item1';'item2';'item3'],['that is a comment';'for the dialog'])
 n = x_choose(['item1';'item2';'item3'],['that is a comment'],'Return')
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="x_choose_modeless">x_choose_modeless</link>

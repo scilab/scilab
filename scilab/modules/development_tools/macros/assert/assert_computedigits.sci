@@ -1,11 +1,14 @@
 // Copyright (C) 2008-2009 - INRIA - Michael Baudin
 // Copyright (C) 2010 - 2011 - DIGITEO - Michael Baudin
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function d = assert_computedigits ( varargin )
     function argin = assert_argindefault ( rhs , vararglist , ivar , default )
@@ -43,17 +46,22 @@ function d = assert_computedigits ( varargin )
         d( k & expected == %inf & computed <> %inf ) = dmin;
         d( k & expected == -%inf & computed <> -%inf ) = dmin;
         // From now, neither of computed, nor expected is infinity
-        kdinf=find(d==%inf);
+        kdinf = find(d==%inf);
         if ( kdinf <> [] ) then
             relerr = ones(expected)*%nan;
             relerr(kdinf) = abs(computed(kdinf)-expected(kdinf)) ./ abs(expected(kdinf));
+            // specific case of neighbour floats (whose relative error less or equal than %eps in Scilab)
+            k = find( relerr <= %eps );
+            if ( k <> [] ) then
+                d(k) = -log(2^(-52))/log(basis);
+            end
             k = find( relerr >= 1 );
-            if ( k<> [] ) then
+            if ( k <> [] ) then
                 d(k) = dmin;
             end
             k = find( d==%inf & relerr < 1 );
-            if ( k<> [] ) then
-                sigdig(k) = -log ( 2*relerr(k) ) ./ log(basis);
+            if ( k <> [] ) then
+                sigdig(k) = -log (relerr(k)) ./ log(basis);
                 d(k) = max ( sigdig(k) , dmin );
             end
         end

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="bilin">
+    <refnamediv>
+        <refname>bilin</refname>
+        <refpurpose>一般化双一次変換</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[sl1]=bilin(sl,v)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>sl,sl1</term>
+                <listitem>
+                    <para>
+                        線形システム (<literal>syslin</literal> リスト)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>v</term>
+                <listitem>
+                    <para>
+                        4つのエントリを有する実数ベクトル (<literal>v=[a,b,c,d]</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            線形システムを状態空間形式<literal>sl=syslin(dom,A,B,C,D)</literal>
+            (<literal>syslin</literal> リスト)
+            で指定すると,
+            <literal>sl1=bilin(sl,v)</literal> は行列<literal>[A1,B1,C1,D1]</literal>を有する
+            線形システム<literal>sl1</literal>を返します.
+            ここで,行列<literal>[A1,B1,C1,D1]</literal>は
+            その伝達関数<literal>H1(s)=C1*inv(s*eye()-A1)*B1+D1</literal>が
+            <literal>H(z)=C*inv(z*eye()-A)*B+D</literal>において
+            <literal>z</literal>を<literal>z=(a*s+b)/(c*s+d)</literal>で置換することにより
+            得られたものです.
+            <literal>w=bilin(bilin(w,[a,b,c,d]),[d,-b,-c,a])</literal>の関係があります.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+s=poly(0,'s');z=poly(0,'z');
+w=ssrand(1,1,3);
+wtf=ss2tf(w);v=[2,3,-1,4];a=v(1);b=v(2);c=v(3);d=v(4);
+[horner(wtf,(a*z+b)/(c*z+d)),ss2tf(bilin(w,[a,b,c,d]))]
+clean(ss2tf(bilin(bilin(w,[a,b,c,d]),[d,-b,-c,a]))-wtf)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="horner">horner</link>
+            </member>
+            <member>
+                <link linkend="cls2dls">cls2dls</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

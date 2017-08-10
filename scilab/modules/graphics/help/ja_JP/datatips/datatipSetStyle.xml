@@ -6,156 +6,156 @@
 
  *
 
- * This file must be used under the terms of the CeCILL.
 
- * This source file is licensed as described in the file COPYING, which
-
- * you should have received as part of this distribution.  The terms
-
- * are also available at
-
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 
 -->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="datatipSetStyle">
-    
+
     <refnamediv>
-        
+
         <refname>datatipSetStyle</refname>
-        
+
         <refpurpose>datatipの様式を指定する.</refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        
+
         <title>呼び出し手順</title>
-        
+
         <synopsis>
-            
+
             datatipSetStyle(polyline_handle)
-            
+
             datatipSetStyle(polyline_handle,t [,boxed [,labeled]])
-            
+
         </synopsis>
-        
+
     </refsynopsisdiv>
-    
+
     <refsection>
-        
+
         <title>引数</title>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>polyline_handle</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         tipを表示するポリラインのハンドル.
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>t</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         使用可能な値は 1または2です.省略時は
-                        
+
                         選択用ポップアップが開きます.
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>boxed</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         論理値, デフォルト値は %t です.
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>labeled</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         論理値, デフォルト値は %t です.
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>説明</title>
-        
+
         <para>
-            
+
             データティップのポリライン用のマーカは以下の2種類です:
-            
+
         </para>
-        
+
         <para>
-            
+
             - 四角, ティップポイントを中心とする.
-            
+
         </para>
-        
+
         <para>
-            
+
             - ティップ点の接線に沿って描画された矢印.
-            
+
             矢じりはティップ点上にあります.
-            
+
         </para>
-        
+
         <para>
-            
+
             boxedオプションが選択された場合,データティップに関するテキストは
-            
+
             箱付きの領域に書きこまれます.
-            
+
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>例</title>
-        
+
         <programlisting role="example"><![CDATA[
 
     x=linspace(-20,20,1000);
@@ -167,11 +167,11 @@
     d1=datatipCreate(e(1),540);
 
     function str=mydisplay(h)
-	
+
 	pt = h.data;
-	
+
 	str=msprintf('%0.2g \n %0.2g', pt(1), pt(2))
-		
+
 	endfunction
 
     datatipSetDisplay(d1,"mydisplay")
@@ -180,7 +180,7 @@
 
     datatipSetOrientation(d1,"upper left");
 
-    
+
 
     d2=datatipCreate(e(2),200);
 
@@ -191,83 +191,83 @@
 
 
     ]]></programlisting>
-        
+
         <scilab:image>
-            
+
             x=linspace(-20,20,1000);
-            
+
             clf();plot(x,sinc(x),x,sinc(x.^2));
-            
+
             e=gce();e=e.children;
-            
+
             d1=datatipCreate(e(1),540);
-            
+
             function str=mydisplay(h)
-			
-			pt = h.data;
-			
-			str=msprintf('%0.2g \n %0.2g', pt(1), pt(2))
-		
-			endfunction
-            
+
+            pt = h.data;
+
+            str=msprintf('%0.2g \n %0.2g', pt(1), pt(2))
+
+            endfunction
+
             datatipSetDisplay(d1,"mydisplay")
-            
+
             datatipSetStyle(e(1),2,%f)
-            
+
             datatipSetOrientation(d1,"upper left");
-            
-            
-            
+
+
+
             d2=datatipCreate(e(2),200);
-            
+
             datatipSetStyle(e(2),1,%t)
-            
+
             datatipSetOrientation(d2,"lower left");
-            
+
         </scilab:image>
-        
+
     </refsection>
-    
+
     <refsection role="see also">
-        
+
         <title>参照</title>
-        
+
         <simplelist type="inline">
-            
+
             <member>
-                
+
                 <link linkend="datatips">datatips</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="datatipCreate">datatipCreate</link>
-                
+
             </member>
-            
+
         </simplelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>履歴</title>
-        
+
         <revhistory>
-            
+
             <revision>
-                
+
                 <revnumber>5.4.0</revnumber>
-                
+
                 <revremark>関数datatipSetStyleが導入されました.</revremark>
-                
+
             </revision>
-            
+
         </revhistory>
-        
+
     </refsection>
-    
+
 </refentry>
 
 

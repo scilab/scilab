@@ -9,31 +9,14 @@ This is generated code.
 This software is a computer program whose purpose is to hide the complexity
 of accessing Java objects/methods from C++ code.
 
-This software is governed by the CeCILL-B license under French law and
-abiding by the rules of distribution of free software.  You can  use,
-modify and/ or redistribute the software under the terms of the CeCILL-B
-license as circulated by CEA, CNRS and INRIA at the following URL
-"http://www.cecill.info".
+Copyright (C) 2012 - 2016 - Scilab Enterprises
 
-As a counterpart to the access to the source code and  rights to copy,
-modify and redistribute granted by the license, users are provided only
-with a limited warranty  and the software's author,  the holder of the
-economic rights,  and the successive licensors  have only  limited
-liability.
-
-In this respect, the user's attention is drawn to the risks associated
-with loading,  using,  modifying and/or developing or reproducing the
-software by the user in light of its specific status of free software,
-that may mean  that it is complicated to manipulate,  and  that  also
-therefore means  that it is reserved for developers  and  experienced
-professionals having in-depth computer knowledge. Users are therefore
-encouraged to load and test the software's suitability as regards their
-requirements in conditions enabling the security of their systems and/or
-data to be ensured and,  more generally, to use and operate it in the
-same conditions as regards security.
-
-The fact that you are presently reading this means that you have had
-knowledge of the CeCILL-B license and that you accept its terms.
+This file is hereby licensed under the terms of the GNU GPL v2.0,
+pursuant to article 5.3.4 of the CeCILL v.2.1.
+This file was originally licensed under the terms of the CeCILL v2.1,
+and continues to be available under such terms.
+For more information, see the COPYING file which you should have received
+along with this program.
 */
 
 namespace org_scilab_modules_xcos_palette {
@@ -109,7 +92,7 @@ voidaddCategoryjobjectArray_java_lang_Stringjava_lang_StringjbooleanbooleanID=NU
 voidremovejobjectArray_java_lang_Stringjava_lang_StringID=NULL;
 voidenablejobjectArray_java_lang_Stringjava_lang_StringjbooleanbooleanID=NULL;
 voidmovejobjectArray_java_lang_Stringjava_lang_StringjobjectArray_java_lang_Stringjava_lang_StringID=NULL;
-voidgeneratePaletteIconjstringjava_lang_StringID=NULL;
+voidgeneratePaletteIconjlonglongjstringjava_lang_StringID=NULL;
 voidgetjobjectArray_java_lang_Stringjava_lang_StringID=NULL;
 
 
@@ -139,7 +122,7 @@ voidaddCategoryjobjectArray_java_lang_Stringjava_lang_StringjbooleanbooleanID=NU
 voidremovejobjectArray_java_lang_Stringjava_lang_StringID=NULL;
 voidenablejobjectArray_java_lang_Stringjava_lang_StringjbooleanbooleanID=NULL;
 voidmovejobjectArray_java_lang_Stringjava_lang_StringjobjectArray_java_lang_Stringjava_lang_StringID=NULL;
-voidgeneratePaletteIconjstringjava_lang_StringID=NULL;
+voidgeneratePaletteIconjlonglongjstringjava_lang_StringID=NULL;
 voidgetjobjectArray_java_lang_Stringjava_lang_StringID=NULL;
 
 
@@ -443,7 +426,7 @@ throw GiwsException::JniCallMethodException(curEnv);
 }
 }
 
-void Palette::generatePaletteIcon (JavaVM * jvm_, char const* iconPath){
+void Palette::generatePaletteIcon (JavaVM * jvm_, long long uid, char const* iconPath){
 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
@@ -452,8 +435,8 @@ if ( cls == NULL) {
 throw GiwsException::JniCallMethodException(curEnv);
 }
 
-static jmethodID voidgeneratePaletteIconjstringjava_lang_StringID = curEnv->GetStaticMethodID(cls, "generatePaletteIcon", "(Ljava/lang/String;)V" ) ;
-if (voidgeneratePaletteIconjstringjava_lang_StringID == NULL) {
+static jmethodID voidgeneratePaletteIconjlonglongjstringjava_lang_StringID = curEnv->GetStaticMethodID(cls, "generatePaletteIcon", "(JLjava/lang/String;)V" ) ;
+if (voidgeneratePaletteIconjlonglongjstringjava_lang_StringID == NULL) {
 throw GiwsException::JniMethodNotFoundException(curEnv, "generatePaletteIcon");
 }
 
@@ -464,7 +447,7 @@ throw GiwsException::JniBadAllocException(curEnv);
 }
 
 
-                         curEnv->CallStaticVoidMethod(cls, voidgeneratePaletteIconjstringjava_lang_StringID ,iconPath_);
+                         curEnv->CallStaticVoidMethod(cls, voidgeneratePaletteIconjlonglongjstringjava_lang_StringID ,uid, iconPath_);
                         curEnv->DeleteLocalRef(iconPath_);
 if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);

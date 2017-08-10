@@ -3,11 +3,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Fabrice Leray
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ru" xml:id="LineSpec">
@@ -31,7 +34,7 @@
             Чтобы определить красную штрихпунктирную линию с ромбовидными
             маркерами, строка должна быть в виде <literal>'r-.diam'</literal>.
             Как вы можете видеть, полное написание значения каждого свойства не
-            обязательно, однако строка, которая является связкой 
+            обязательно, однако строка, которая является связкой
             (в любом порядке) этих трёх типов свойств, должна оставаться
             однозначной. Кроме того, определение строки не чувствительно
             к регистру.
@@ -46,7 +49,7 @@
                 <listitem>
                     <para>
                         строка, определяющая стиль линии. Это свойство связано
-                        со свойством объекта <literal>line_style</literal> ("стиль линии") 
+                        со свойством объекта <literal>line_style</literal> ("стиль линии")
                         (см. <link linkend="polyline_properties">свойства ломанной линии</link>).
                     </para>
                     <para/>
@@ -317,7 +320,7 @@
                             <td>Пятиконечная звезда (пентаграмма)</td>
                         </tr>
                         <tr>
-                            <td>                                
+                            <td>
                             </td>
                             <td>Нет маркера (по умолчанию)</td>
                         </tr>
@@ -342,7 +345,7 @@ plot(x,sin(x),'r-.>') // строит штрихпунктирную линию 
 clf();
 x=1:0.1:10;
 // Если вы укажете маркер без стиля линии, то только маркеры будут нарисованы
-plot(x,sin(x),'d') 
+plot(x,sin(x),'d')
  ]]></programlisting>
         <scilab:image>
             x=1:0.1:10;

@@ -15,7 +15,7 @@
 //
 // Test at vmin, the smallest normal
 // x = 2.2250738585072013D-308;
-x = 1 * 2^-1022; 
+x = 1 * 2^-1022;
 computed = nearfloat("succ",x);
 assert_checkequal ( computed , 1.0000000000000002 * 2^-1022 );
 computed = nearfloat("pred",x);

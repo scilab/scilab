@@ -38,7 +38,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>xgraduate</literal> renvoie les graduations des axes utilisées par les routines de dessin. Elle renvoie un intervalle <literal>[xi,xa]</literal> contenant l'intervalle donné <literal>[xmi,xma]</literal> avec xi et xa tels que  
+            <literal>xgraduate</literal> renvoie les graduations des axes utilisées par les routines de dessin. Elle renvoie un intervalle <literal>[xi,xa]</literal> contenant l'intervalle donné <literal>[xmi,xma]</literal> avec xi et xa tels que
         </para>
         <para>
             <literal>xi= kMinr*10^ar</literal>, <literal>xa=kMaxr*10^ar</literal> et l'intervalle peut être divise en <literal>np2</literal> intervalles et chaque intervalle est divisé en
@@ -47,7 +47,7 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
   [x1,xa,np1,np2,kMinr,kMaxr,ar]=xgraduate(-0.3,0.2)
  ]]></programlisting>
     </refsection>

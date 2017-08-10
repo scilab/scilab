@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -15,21 +18,23 @@ namespace ast {
 
 /*
     [1,2;3,4] with/without special character $ and :
-*/
+    */
 template<class T>
 void RunVisitorT<T>::visitprivate(const MatrixExp &e)
 {
+    CoverageInstance::invokeAndStartChrono((void*)&e);
     try
     {
         exps_t::const_iterator row;
         exps_t::const_iterator col;
-        InternalType *poResult = NULL;
-        list<InternalType*> rowList;
+        types::InternalType *poResult = NULL;
+        std::list<types::InternalType*> rowList;
 
         exps_t lines = e.getLines();
         if (lines.size() == 0)
         {
-            setResult(Double::Empty());
+            setResult(types::Double::Empty());
+            CoverageInstance::invokeAndStartChrono((void*)&e);
             return;
         }
 
@@ -45,18 +50,19 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                 //manage evstr('//xxx') for example
                 if (getResult() == NULL)
                 {
-                    setResult(Double::Empty());
+                    setResult(types::Double::Empty());
                 }
+                CoverageInstance::invokeAndStartChrono((void*)&e);
                 return;
             }
         }
 
         //do all [x,x]
-        for (row = lines.begin() ; row != lines.end() ; row++)
+        for (row = lines.begin(); row != lines.end(); row++)
         {
-            InternalType* poRow = NULL;
+            types::InternalType* poRow = NULL;
             exps_t cols = (*row)->getAs<MatrixLineExp>()->getColumns();
-            for (col = cols.begin() ; col != cols.end() ; col++)
+            for (col = cols.begin(); col != cols.end(); col++)
             {
                 setResult(NULL); // Reset value on loop re-start
 
@@ -64,7 +70,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                 {
                     (*col)->accept(*this);
                 }
-                catch (ScilabError& error)
+                catch (const InternalError& error)
                 {
                     if (poRow)
                     {
@@ -78,7 +84,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                     throw error;
                 }
 
-                InternalType *pIT = getResult();
+                types::InternalType *pIT = getResult();
                 if (pIT == NULL)
                 {
                     continue;
@@ -89,10 +95,10 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
 
                 if (pIT->isImplicitList())
                 {
-                    ImplicitList *pIL = pIT->getAs<ImplicitList>();
+                    types::ImplicitList *pIL = pIT->getAs<types::ImplicitList>();
                     if (pIL->isComputable())
                     {
-                        InternalType* pIT2 = pIL->extractFullMatrix();
+                        types::InternalType* pIT2 = pIL->extractFullMatrix();
                         pIT->killMe();
                         pIT = pIT2;
                     }
@@ -109,7 +115,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                             {
                                 poRow = callOverloadMatrixExp(L"c", poRow, pIT);
                             }
-                            catch (ScilabError& error)
+                            catch (const InternalError& error)
                             {
                                 if (poResult)
                                 {
@@ -125,36 +131,70 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
 
                 if (pIT->isGenericType() == false)
                 {
-                    pIT->killMe();
-                    std::wostringstream os;
-                    os << _W("unable to concatenate\n");
-                    throw ast::ScilabError(os.str(), 999, (*col)->getLocation());
-                }
+                    if (poRow == NULL)
+                    {
+                        //first loop
+                        poRow = pIT;
+                    }
+                    else
+                    {
+                        try
+                        {
+                            poRow = callOverloadMatrixExp(L"c", poRow, pIT);
+                        }
+                        catch (const InternalError& error)
+                        {
+                            if (poResult)
+                            {
+                                poResult->killMe();
+                            }
 
-                GenericType* pGT = pIT->getAs<GenericType>();
-                if (pGT->isDouble() && pGT->getAs<Double>()->isEmpty())
-                {
-                    pGT->killMe();
+                            pIT->killMe();
+                            throw error;
+                        }
+                    }
+
                     continue;
                 }
+
+                types::GenericType* pGT = pIT->getAs<types::GenericType>();
 
                 if (poRow == NULL)
                 {
                     //first loop
+                    if (poResult == NULL && pGT->isDouble() && pGT->getAs<types::Double>()->isEmpty())
+                    {
+                        pGT->killMe();
+                        continue;
+                    }
+
+                    if (pGT->isDouble() && pGT->getAs<types::Double>()->isEmpty())
+                    {
+                        if (poResult && (poResult->isList() || poResult->isStruct()))
+                        {
+                            //in case of [list(); [], ...]
+
+                            //we don't know what to do with [], keep it as "normal" value and continue process
+                            poRow = pGT;
+                            continue;
+                        }
+
+                        pGT->killMe();
+                        continue;
+                    }
+
                     poRow = pGT;
                     continue;
                 }
 
-                if (    pGT->isList() || poRow->isList() ||
-                        pGT->isStruct() || poRow->isStruct() ||
-                        poRow->isImplicitList() ||
-                        pGT->getDims() > 2)
+                //manage overload on list/struct/implicitlist and hypermatrix before management of []
+                if (pGT->isList() || poRow->isList() || pGT->isStruct() || poRow->isStruct() || poRow->isImplicitList() || pGT->getDims() > 2)
                 {
                     try
                     {
                         poRow = callOverloadMatrixExp(L"c", poRow, pGT);
                     }
-                    catch (ScilabError& error)
+                    catch (const InternalError& error)
                     {
                         if (poResult)
                         {
@@ -166,7 +206,13 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                     continue;
                 }
 
-                GenericType* pGTResult = poRow->getAs<GenericType>();
+                if (pGT->isDouble() && pGT->getAs<types::Double>()->isEmpty())
+                {
+                    pGT->killMe();
+                    continue;
+                }
+
+                types::GenericType* pGTResult = poRow->getAs<types::GenericType>();
 
                 //check dimension
                 if (pGT->getDims() != 2 || pGT->getRows() != pGTResult->getRows())
@@ -178,7 +224,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                     }
                     std::wostringstream os;
                     os << _W("inconsistent row/column dimensions\n");
-                    throw ast::ScilabError(os.str(), 999, (*row)->getLocation());
+                    throw ast::InternalError(os.str(), 999, (*row)->getLocation());
                 }
 
                 // if we concatenate [Double Sparse], transform the Double to Sparse and perform [Sparse Sparse]
@@ -202,8 +248,8 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                     int* piRank = new int[_iRows * _iCols];
                     memset(piRank, 0x00, _iRows * _iCols * sizeof(int));
                     poRow = new types::Polynom(pGT->getAs<types::Polynom>()->getVariableName(), _iRows, _iCols, piRank);
-                    Polynom* pP = poRow->getAs<types::Polynom>();
-                    SinglePoly** pSS = pP->get();
+                    types::Polynom* pP = poRow->getAs<types::Polynom>();
+                    types::SinglePoly** pSS = pP->get();
                     types::Double* pDb = pGTResult->getAs<types::Double>();
                     double* pdblR = pDb->get();
                     if (pDb->isComplex())
@@ -228,8 +274,8 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                     delete[] piRank;
                 }
 
-                InternalType *pNewSize = AddElementToVariable(NULL, poRow, pGTResult->getRows(), pGTResult->getCols() + pGT->getCols());
-                InternalType* p = AddElementToVariable(pNewSize, pGT, 0, pGTResult->getCols());
+                types::InternalType *pNewSize = AddElementToVariable(NULL, poRow, pGTResult->getRows(), pGTResult->getCols() + pGT->getCols());
+                types::InternalType* p = AddElementToVariable(pNewSize, pGT, 0, pGTResult->getCols());
                 if (p != pNewSize)
                 {
                     pNewSize->killMe();
@@ -241,7 +287,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                     {
                         poRow = callOverloadMatrixExp(L"c", pGTResult, pGT);
                     }
-                    catch (ScilabError& error)
+                    catch (const InternalError& error)
                     {
                         if (poResult)
                         {
@@ -282,45 +328,38 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                 {
                     poResult = callOverloadMatrixExp(L"f", poResult, poRow);
                 }
-                catch (ScilabError& error)
+                catch (const InternalError& error)
                 {
                     throw error;
                 }
                 continue;
             }
 
-            GenericType* pGT = poRow->getAs<GenericType>();
+            types::GenericType* pGT = poRow->getAs<types::GenericType>();
 
             //check dimension
-            GenericType* pGTResult = poResult->getAs<GenericType>();
+            types::GenericType* pGTResult = poResult->getAs<types::GenericType>();
 
-            if (pGT->isList() || pGTResult->isList() ||
-                    pGT->isStruct() || pGTResult->isStruct())
+            if (pGT->isList() || pGTResult->isList() || pGT->isStruct() || pGTResult->isStruct() || pGT->getDims() > 2)
             {
                 try
                 {
                     poResult = callOverloadMatrixExp(L"f", pGTResult, pGT);
                 }
-                catch (ScilabError& error)
+                catch (const InternalError& error)
                 {
                     throw error;
                 }
 
                 continue;
             }
-
-            // hypermatrix case, will call %hm_f_hm
-            if (pGT->getDims() > 2)
-            {
-                try
+            else
+            {//[]
+                if (pGT->isDouble() && pGT->getAs<types::Double>()->isEmpty())
                 {
-                    poResult = callOverloadMatrixExp(L"f", pGTResult, pGT);
+                    pGT->killMe();
+                    continue;
                 }
-                catch (ScilabError& error)
-                {
-                    throw error;
-                }
-                continue;
             }
 
             //check dimension
@@ -333,7 +372,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                 }
                 std::wostringstream os;
                 os << _W("inconsistent row/column dimensions\n");
-                throw ast::ScilabError(os.str(), 999, (*e.getLines().begin())->getLocation());
+                throw ast::InternalError(os.str(), 999, (*e.getLines().begin())->getLocation());
             }
 
             // if we concatenate [Double Sparse], transform the Double to Sparse and perform [Sparse Sparse]
@@ -342,17 +381,17 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
             {
                 poResult = new types::Sparse(*pGTResult->getAs<types::Double>());
                 pGTResult->killMe();
-                pGTResult = poResult->getAs<GenericType>();
+                pGTResult = poResult->getAs<types::GenericType>();
             }
             else if (pGT->isSparseBool() && pGTResult->isBool()) // [Bool SparseBool] => [SparseBool SparseBool]
             {
                 poResult = new types::SparseBool(*pGTResult->getAs<types::Bool>());
                 pGTResult->killMe();
-                pGTResult = poResult->getAs<GenericType>();
+                pGTResult = poResult->getAs<types::GenericType>();
             }
 
-            InternalType* pNewSize = AddElementToVariable(NULL, poResult, pGTResult->getRows() + pGT->getRows(), pGT->getCols());
-            InternalType* p = AddElementToVariable(pNewSize, pGT, pGTResult->getRows(), 0);
+            types::InternalType* pNewSize = AddElementToVariable(NULL, poResult, pGTResult->getRows() + pGT->getRows(), pGT->getCols());
+            types::InternalType* p = AddElementToVariable(pNewSize, pGT, pGTResult->getRows(), 0);
             if (p != pNewSize)
             {
                 pNewSize->killMe();
@@ -365,7 +404,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                 {
                     poResult = callOverloadMatrixExp(L"f", pGTResult, pGT);
                 }
-                catch (ScilabError& error)
+                catch (const InternalError& error)
                 {
                     throw error;
                 }
@@ -390,22 +429,24 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
         }
         else
         {
-            setResult(Double::Empty());
+            setResult(types::Double::Empty());
         }
     }
-    catch (ast::ScilabError& error)
+    catch (const InternalError& error)
     {
         setResult(NULL);
+        CoverageInstance::invokeAndStartChrono((void*)&e);
         throw error;
     }
+    CoverageInstance::invokeAndStartChrono((void*)&e);
 }
 
 template<class T>
-types::InternalType* RunVisitorT<T>::callOverloadMatrixExp(std::wstring strType, types::InternalType* _paramL, types::InternalType* _paramR)
+types::InternalType* RunVisitorT<T>::callOverloadMatrixExp(const std::wstring& strType, types::InternalType* _paramL, types::InternalType* _paramR)
 {
     types::typed_list in;
     types::typed_list out;
-    Callable::ReturnValue Ret;
+    types::Callable::ReturnValue Ret;
 
     _paramL->IncreaseRef();
     _paramR->IncreaseRef();
@@ -417,28 +458,23 @@ types::InternalType* RunVisitorT<T>::callOverloadMatrixExp(std::wstring strType,
     {
         if (_paramR->isGenericType() && _paramR->getAs<types::GenericType>()->getDims() > 2)
         {
-            Ret = Overload::call(L"%hm_" + strType + L"_hm", in, 1, out, this, true);
+            Ret = Overload::call(L"%hm_" + strType + L"_hm", in, 1, out, true);
         }
         else
         {
-            Ret = Overload::call(L"%" + _paramL->getAs<List>()->getShortTypeStr() + L"_" + strType + L"_" + _paramR->getAs<List>()->getShortTypeStr(), in, 1, out, this, true);
+            Ret = Overload::call(L"%" + _paramL->getAs<types::List>()->getShortTypeStr() + L"_" + strType + L"_" + _paramR->getAs<types::List>()->getShortTypeStr(), in, 1, out, true);
         }
     }
-    catch (ast::ScilabError error)
+    catch (const InternalError& error)
     {
         cleanInOut(in, out);
         throw error;
     }
-    catch (ast::ScilabMessage msg)
-    {
-        cleanInOut(in, out);
-        throw ScilabError(msg.GetErrorMessage(), msg.GetErrorNumber(), msg.GetErrorLocation());
-    }
 
-    if (Ret != Callable::OK)
+    if (Ret != types::Callable::OK)
     {
         cleanInOut(in, out);
-        throw ScilabError();
+        throw InternalError(ConfigVariable::getLastErrorMessage());
     }
 
     cleanIn(in, out);

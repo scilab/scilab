@@ -208,5 +208,7 @@
         <method name="fireClosingFinished" returnType="void" modifier="static">
             <parameter type="int" name="figUID"/>
         </method>
+        <method name="registerSwingView" returnType="void" modifier="static">
+        </method>
     </object>
 </package>

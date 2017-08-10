@@ -74,6 +74,16 @@ o = BIGSOM_f("set", o)
 o.graphics
 o.model
 
+// Test flip, theta and style
+o.graphics.flip = %f;
+o.graphics.style
+o.graphics.flip = %t;
+o.graphics.style
+o.graphics.theta = 90;
+o.graphics.style
+o.graphics.theta = 0;
+o.graphics.style
+
 // Try with another block containing event inputs
 o = CSCOPE("define")
 o.graphics
@@ -115,7 +125,7 @@ assert_checkequal(o.model.odstate, listRef);
 
 // With hypermatrices
 // Double
-testHM = hypermat([2 2 2], 1:8);
+testHM = matrix(1:8, [2 2 2]);
 listRef = list([], testHM, []);
 o.model.opar = listRef;
 assert_checkequal(o.model.opar, listRef);
@@ -157,9 +167,9 @@ tlistRef = tlist(["tl" "f1" "f2" "f3"], [], testHM, []);
 o.model.opar = tlistRef;
 assert_checkequal(o.model.opar, tlistRef);
 // With struct
-structRef = struct("f1", [], "f2", testHM, "f3", []);
-o.model.opar = structRef;
-assert_checkequal(o.model.opar, structRef);
+//structRef = struct("f1", [], "f2", testHM, "f3", []);
+//o.model.opar = structRef;
+//assert_checkequal(o.model.opar, structRef);
 
 // Test 'equations'
 o = VsourceAC("define")

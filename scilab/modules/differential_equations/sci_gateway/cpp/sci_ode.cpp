@@ -2,11 +2,14 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 /*--------------------------------------------------------------------------*/
@@ -114,7 +117,7 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
         {
             meth = 2;
         }
-        else if (wcscmp(wcsType, L"root") == 0)
+        else if (wcscmp(wcsType, L"roots") == 0)
         {
             meth = 3;
         }
@@ -136,7 +139,7 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
         }
         else
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: It must be one of the following strings: adams, stiff, rk, rkf, fix, root or discrete.\n"), "ode", 1);
+            Scierror(999, _("%s: Wrong value for input argument #%d: It must be one of the following strings: adams, stiff, rk, rkf, fix, roots or discrete.\n"), "ode", 1);
             return types::Function::Error;
         }
     }
@@ -743,7 +746,7 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
     {
         if (getWarningMode())
         {
-            sciprint(_("%s: Warning: Wrong value for maximun stiff/non-stiff order allowed :\nAt most %d for mxordn, %d for mxords and no null value for both expected.\nWrong value will be reduced to the default value.\n"), "ode", 12, 5);
+            sciprint(_("%s: Warning: Wrong value for maximum stiff/non-stiff order allowed :\nAt most %d for mxordn, %d for mxords and no null value for both expected.\nWrong value will be reduced to the default value.\n"), "ode", 12, 5);
         }
 
         mxordn = 12;
@@ -804,8 +807,8 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
             lrn += 20 + nyh * (mxordn + 1) + 3 * (*YSize);
             lrs += 20 + nyh * (mxords + 1) + 3 * (*YSize) + lmat;
 
-            rworkSize   = max(lrn, lrs);
-            iworkSize   = 20 + *YSize;
+            rworkSize = std::max(lrn, lrs);
+            iworkSize = 20 + *YSize;
 
             dStructTabSize += 241;
             iStructTabSize += 50;
@@ -1099,15 +1102,11 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
                     Scierror(999, _("%s: %s exit with state %d.\n"), "ode", strMeth.c_str(), istate);
                 }
             }
-            catch (ast::ScilabMessage &sm)
+            catch (ast::InternalError &ie)
             {
-                os << sm.GetErrorMessage();
+                os << ie.GetErrorMessage();
                 bCatch = true;
-            }
-            catch (ast::ScilabError &e)
-            {
-                os << e.GetErrorMessage();
-                bCatch = true;
+                err = 1;
             }
 
             // FREE allocated data
@@ -1142,9 +1141,11 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
                 if (bCatch)
                 {
                     wchar_t szError[bsiz];
-                    os_swprintf(szError, bsiz, _W("%s: An error occured in '%s' subroutine.\n").c_str(), "ode", strMeth.c_str());
+                    wchar_t* tmp = to_wide_string(strMeth.c_str());
+                    os_swprintf(szError, bsiz, _W("%ls: An error occured in '%ls' subroutine.\n").c_str(), L"ode", tmp);
                     os << szError;
-                    throw ast::ScilabMessage(os.str());
+                    FREE(tmp);
+                    throw ast::InternalError(os.str());
                 }
 
                 return types::Function::Error;
@@ -1157,7 +1158,7 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
             {
                 if (getWarningMode())
                 {
-                    sciprint(_("Integration was stoped at t = %lf.\n"), t0);
+                    sciprint(_("Integration was stopped at t = %lf.\n"), t0);
                 }
                 break;
             }
@@ -1324,15 +1325,9 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
                     Scierror(999, _("%s: %s exit with state %d.\n"), "ode", strMeth.c_str(), istate);
                 }
             }
-            catch (ast::ScilabMessage &sm)
+            catch (ast::InternalError &ie)
             {
-                os << sm.GetErrorMessage();
-                bCatch = true;
-                err = 1;
-            }
-            catch (ast::ScilabError &e)
-            {
-                os << e.GetErrorMessage();
+                os << ie.GetErrorMessage();
                 bCatch = true;
                 err = 1;
             }
@@ -1365,12 +1360,16 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
                     FREE(rtol);
                 }
 
+                delete pDblYOut;
+
                 if (bCatch)
                 {
                     wchar_t szError[bsiz];
-                    os_swprintf(szError, bsiz, _W("%s: An error occured in '%s' subroutine.\n").c_str(), "ode", strMeth.c_str());
+                    wchar_t* tmp = to_wide_string(strMeth.c_str());
+                    os_swprintf(szError, bsiz, _W("%ls: An error occured in '%ls' subroutine.\n").c_str(), L"ode", tmp);
                     os << szError;
-                    throw ast::ScilabMessage(os.str());
+                    FREE(tmp);
+                    throw ast::InternalError(os.str());
                 }
 
                 return types::Function::Error;
@@ -1397,7 +1396,7 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
             {
                 if (getWarningMode())
                 {
-                    sciprint(_("Integration was stoped at t = %lf.\n"), t0);
+                    sciprint(_("Integration was stopped at t = %lf.\n"), t0);
                 }
 
                 types::Double* pDblYOutTemp = pDblYOut;

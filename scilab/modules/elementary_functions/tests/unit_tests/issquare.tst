@@ -24,8 +24,8 @@ assert_checkequal(issquare(["s" "t" "u"]), %f);
 assert_checkequal(issquare(["s" "t" "u"]'), %f);
 assert_checkequal(issquare(["s" "t";"s" "t"]), %t);
 assert_checkequal(issquare("s"), %t);
-assert_checkequal(issquare(hypermat([2,1,2],["s";"s";"s";"s"])), %t);
-assert_checkequal(issquare(hypermat([2,2,3],["t";"t";"t";"t";"t";"t";"t";"t";"t";"t";"t";"t"])), %f);
+assert_checkequal(issquare(matrix(["s";"s";"s";"s"], [2,1,2])), %t);
+assert_checkequal(issquare(matrix(["t";"t";"t";"t";"t";"t";"t";"t";"t";"t";"t";"t"], [2,2,3])), %f);
 
 // Polynomials
 s=poly(0,"s");
@@ -33,16 +33,16 @@ assert_checkequal(issquare([1+s 2+s]), %f);
 assert_checkequal(issquare([1+s 2+s]'), %f);
 assert_checkequal(issquare([1+s 2+s; 3+s 4+s]), %t);
 assert_checkequal(issquare(1+s), %t);
-assert_checkequal(issquare(hypermat([2,1,2],[s;s;s;s])), %t);
-assert_checkequal(issquare(hypermat([2,2,3],[s;s;s;s;s;s;s;s;s;s;s;s])), %f);
+assert_checkequal(issquare(matrix([s;s;s;s], [2,1,2])), %t);
+assert_checkequal(issquare(matrix([s;s;s;s;s;s;s;s;s;s;s;s], [2,2,3])), %f);
 
 // Booleans
 assert_checkequal(issquare([%t %f]), %f);
 assert_checkequal(issquare([%t %f]'), %f);
 assert_checkequal(issquare([%t %f; %f %t]), %t);
 assert_checkequal(issquare(%t), %t);
-assert_checkequal(issquare(hypermat([2,1,2],[%t;%t;%t;%t])), %t);
-assert_checkequal(issquare(hypermat([2,2,3],[%t;%t;%t;%t;%t;%t;%t;%t;%t;%t;%t;%t])), %f);
+assert_checkequal(issquare(matrix([%t;%t;%t;%t], [2,1,2])), %t);
+assert_checkequal(issquare(matrix([%t;%t;%t;%t;%t;%t;%t;%t;%t;%t;%t;%t], [2,2,3])), %f)
 
 // Sparses
 assert_checkequal(issquare(sparse([1 0 2])), %f);
@@ -126,7 +126,6 @@ assert_checkequal(issquare(l), %f); // Column case
 // Error messages
 errmsg1 = msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"),"issquare", 1);
 assert_checkerror("issquare()", errmsg1);
-errmsg2 = msprintf(_("Wrong number of input arguments."));
-assert_checkerror("issquare(1,2)", errmsg2);
-errmsg3 = msprintf(_("Wrong number of output arguments.\n"));
-assert_checkerror("[r,b]=issquare([1 2 3]);", errmsg3);
+assert_checkerror("issquare(1,2)", errmsg1);
+errmsg2 = msprintf(_("%s: Wrong number of output argument(s): %d expected.\n"), "issquare", 1);
+assert_checkerror("[r,b]=issquare([1 2 3]);", errmsg2);

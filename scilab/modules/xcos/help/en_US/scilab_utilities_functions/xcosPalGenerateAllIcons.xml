@@ -6,7 +6,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             lst = xcosPalGenerateAllIcons(path)
         </synopsis>
@@ -40,7 +40,7 @@
 loadXcosLibs();
 
 // will update the default palette
-xcosPalGenerateAllIcons(["Palettes" "Commonly Used Blocks"]);
+xcosPalGenerateAllIcons(["Palettes" "Recently Used Blocks"]);
    ]]></programlisting>
     </refsection>
     <refsection>
@@ -55,7 +55,7 @@ xcosPalGenerateAllIcons(["Palettes" "Commonly Used Blocks"]);
         </revhistory>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="xcosPalAdd">xcosPalAdd</link>

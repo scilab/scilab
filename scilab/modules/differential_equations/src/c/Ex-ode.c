@@ -3,11 +3,14 @@
  * Copyright (C) INRIA
  * Copyright (C) 2014 - Scilab Enterprises - Cedric DELAMARRE
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 /*--------------------------------------------------------------------------*/
@@ -29,7 +32,7 @@
 //       fexab    : a more complex example with matpr
 //-----------------------------------------------------------------
 
-extern C2F(dmmul)(double*, int*, double*, int*, double*, int*, int*, int*, int*);
+extern void C2F(dmmul)(double*, int*, double*, int*, double*, int*, int*, int*, int*);
 
 void fex(int* neq, double* t, double* y, double* ydot)
 {
@@ -58,7 +61,7 @@ void fex(int* neq, double* t, double* y, double* ydot)
     //        y=ode([1;0;0],0,[0.4,4],list('fex',param))
     //        param can be retrieved in fex by:
     //        param(1)=y(neq+1) , param(2)=y(neq+2) etc
-    //        with this calling sequence y is a nc+nd+np vector
+    //        with this syntax y is a nc+nd+np vector
     //        where np=dimension of scilab variable param
 
     ydot[0] = -0.0400 * y[0] + 1e4 * y[1] * y[2];

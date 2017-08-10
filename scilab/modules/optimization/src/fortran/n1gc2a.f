@@ -1,13 +1,16 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) INRIA
 c 
-c This file must be used under the terms of the CeCILL.
-c This source file is licensed as described in the file COPYING, which
-c you should have received as part of this distribution.  The terms
-c are also available at    
-c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+c Copyright (C) 2012 - 2016 - Scilab Enterprises
 c
-      subroutine n1gc2a(simul,prosca,n,x,f,g,dx,df1,eps,imp,io,
+c This file is hereby licensed under the terms of the GNU GPL v2.0,
+c pursuant to article 5.3.4 of the CeCILL v.2.1.
+c This file was originally licensed under the terms of the CeCILL v2.1,
+c and continues to be available under such terms.
+c For more information, see the COPYING file which you should have received
+c along with this program.
+c
+      subroutine n1gc2a(simul,prosca,n,x,f,g,dx,df1,eps,iprint,io,
      /                  niter,nsim,info,memh,d,xx,gg,tabaux,h,
      /                  izs,rzs,dzs)
       implicit double precision (a-h,o-z)
@@ -25,7 +28,7 @@ c declaration des scalaires
       double precision   dg1, dg, alpha, normg0, aux1, aux2, mu, eta,
      / omega, normg, gcarre, ggcarr, nu, sigma, sscalg, uscalg,
      / sscaek
-      integer  n, memh, imp, io, nsim, niter, info
+      integer  n, memh, iprint, io, nsim, niter, info
       integer  memuti, nrzuti, memsup, m, retour, iter,
      /   ntotap, nmisaj, i, iu, is, ieta, inu, j, kj, k, kp1
       logical  gc, iterqn, intfor, redfor, redem, termi
@@ -45,7 +48,7 @@ c
       if (memh .ge. memuti) then
       gc=.false.
       nrzuti=memuti+4*n
-      if (imp .gt. 1) then 
+      if (iprint .gt. 1) then 
       write(bufstr,1) nrzuti
       call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
       endif
@@ -59,7 +62,7 @@ c m est le nombre de mises a jour admissible
 c memuti est ici le nombre de places memoire utilisees pour stocker h
       memuti=m * memsup
       nrzuti=memuti+4*n
-      if (imp .gt. 1) then
+      if (iprint .gt. 1) then
         write(bufstr,2) m
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         write(bufstr,3) nrzuti
@@ -142,10 +145,10 @@ c
       xx(j)=x(j)
       gg(j)=g(j)
 6000  continue
-      call n1gc2b(n,simul,prosca,xx,f,dg,alpha,d,x,g,imp,io,retour,
+      call n1gc2b(n,simul,prosca,xx,f,dg,alpha,d,x,g,iprint,io,retour,
      /           ntotap,nsim,intfor,dx,eps,izs,rzs,dzs)
 c
-      if (imp .gt. 3) then
+      if (iprint .gt. 3) then
       write(bufstr,6003)
       call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
       endif
@@ -153,7 +156,7 @@ c
       info=6
       return
       else if (retour .eq. 1) then
-      if (imp .gt. 1) then
+      if (iprint .gt. 1) then
         write(bufstr,6002) iter,ntotap
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
@@ -163,7 +166,7 @@ c calcul de (g,g)
       if((i .gt. 1) .and. gc) ggcarr=gcarre
       call prosca(n,g,g,gcarre,izs,rzs,dzs)
       normg=sqrt(gcarre)
-      if (imp .gt. 2) then
+      if (iprint .gt. 2) then
         write(bufstr,6001)iter,ntotap,f
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
@@ -362,7 +365,7 @@ c test:la direction de recherche est elle bien de descente
       call prosca(n,d,g,dg1,izs,rzs,dzs)
       if (dg1 .ge. zero) then
       info=7
-      if (imp .gt. 1) then
+      if (iprint .gt. 1) then
         write(bufstr,10101) dg1
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif

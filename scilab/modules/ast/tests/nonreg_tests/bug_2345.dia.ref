@@ -12,7 +12,7 @@
 //
 // <-- Short Description -->
 // Parser bug: "=>" interpreted as "=" in comparisons (even with spacing)
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 if execstr("1=>0", "errcatch") == 0 then bugmes();quit;end
 if execstr("1=>1", "errcatch") == 0 then bugmes();quit;end
 if execstr("1=>2", "errcatch") == 0 then bugmes();quit;end

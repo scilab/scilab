@@ -3,11 +3,14 @@
  * Copyright (C) 2011 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2011 - DIGITEO - Vincent COUVERT
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -36,6 +39,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
+import java.lang.StringBuilder;
 
 import javax.swing.JComponent;
 
@@ -248,11 +252,13 @@ public final class SwingViewWidget {
                 String[] tooltipString = ((String[]) value);
                 String tooltipText = tooltipString[0];
                 if (tooltipString.length > 1) {
-                    tooltipText = "<html>" + tooltipText;
+                    StringBuilder sb = new StringBuilder();
+                    sb.append("<html>" + tooltipText);
                     for (int kString = 1; kString < tooltipString.length; kString++) {
-                        tooltipText = tooltipText + "<br>" + tooltipString[kString];
+                        sb.append("<br>").append(tooltipString[kString]);
                     }
-                    tooltipText = tooltipText + "</html>";
+                    sb.append("</html>");
+                    tooltipText = sb.toString();
                 }
                 if (tooltipText.equals("")) {
                     uiControl.setToolTipText(null);

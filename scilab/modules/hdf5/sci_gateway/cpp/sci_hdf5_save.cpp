@@ -2,11 +2,14 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
@@ -26,7 +29,6 @@
 #include "graphichandle.hxx"
 #include "user.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 #include "handle_properties.hxx"
 #include "context.hxx"
 #include "serializervisitor.hxx"
@@ -112,7 +114,7 @@ types::Function::ReturnValue sci_hdf5_save(types::typed_list &in, int _iRetCount
             return types::Function::OK;
         }
 
-        for (const auto& wvar : lst)
+        for (const auto & wvar : lst)
         {
             types::InternalType* pIT = ctx->getAtLevel(symbol::Symbol(wvar), SCOPE_CONSOLE);
 
@@ -136,7 +138,7 @@ types::Function::ReturnValue sci_hdf5_save(types::typed_list &in, int _iRetCount
         {
             if (in[i]->getId() != types::InternalType::IdScalarString)
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), fname.data(), 1);
+                Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), fname.data(), i+1);
                 return types::Function::Error;
             }
 
@@ -497,7 +499,6 @@ static int export_struct(int parent, const std::string& name, types::Struct* dat
     //save fields list in vector to keep order
     export_string(dset, "__fields__", fields);
 
-
     std::vector<hobj_ref_t> vrefs(size);
     //fill main group with struct field name
     for (int i = 0; i < fieldCount; ++i)
@@ -516,6 +517,8 @@ static int export_struct(int parent, const std::string& name, types::Struct* dat
             ret = addItemStruct6(refs, vrefs.data(), j, refname.data());
             if (ret)
             {
+                delete fields;
+                FREE(cfield);
                 return -1;
             }
         }
@@ -524,9 +527,12 @@ static int export_struct(int parent, const std::string& name, types::Struct* dat
         FREE(cfield);
         if (ret < 0)
         {
+            delete fields;
             return -1;
         }
     }
+
+    delete fields;
 
     if (closeList6(refs) == -1)
     {
@@ -846,7 +852,7 @@ static int export_macro(int parent, const std::string& name, types::Macro* data)
     //inputs
     std::vector<char*> inputNames;
     auto inputs = data->getInputs();
-    for (auto& input : *inputs)
+    for (auto & input : *inputs)
     {
         inputNames.push_back(wide_string_to_UTF8(input->getSymbol().getName().data()));
     }
@@ -855,7 +861,7 @@ static int export_macro(int parent, const std::string& name, types::Macro* data)
     dims[1] = static_cast<int>(inputNames.size());
     writeStringMatrix6(dset, "inputs", 2, dims, inputNames.data());
 
-    for (auto& in : inputNames)
+    for (auto & in : inputNames)
     {
         FREE(in);
     }
@@ -863,7 +869,7 @@ static int export_macro(int parent, const std::string& name, types::Macro* data)
     //outputs
     std::vector<char*> outputNames;
     auto outputs = data->getOutputs();
-    for (auto& output : *outputs)
+    for (auto & output : *outputs)
     {
         outputNames.push_back(wide_string_to_UTF8(output->getSymbol().getName().data()));
     }
@@ -872,7 +878,7 @@ static int export_macro(int parent, const std::string& name, types::Macro* data)
     dims[1] = static_cast<int>(outputNames.size());
     writeStringMatrix6(dset, "outputs", 2, dims, outputNames.data());
 
-    for (auto& in : outputNames)
+    for (auto & in : outputNames)
     {
         FREE(in);
     }
@@ -904,13 +910,12 @@ static int export_usertype(int parent, const std::string& name, types::UserType*
 
         types::typed_list out;
         //overload
-        ast::ExecVisitor exec;
         // rational case
         std::wstring wstFuncName = L"%" + data->getShortTypeStr() + L"_save";
 
         try
         {
-            types::Callable::ReturnValue ret = Overload::call(wstFuncName, in, 1, out, &exec);
+            types::Callable::ReturnValue ret = Overload::call(wstFuncName, in, 1, out);
 
             if (ret != types::Callable::OK)
             {
@@ -919,7 +924,7 @@ static int export_usertype(int parent, const std::string& name, types::UserType*
 
             if (out.size() != 1)
             {
-                for (auto& i : out)
+                for (auto & i : out)
                 {
                     i->killMe();
                 }
@@ -928,7 +933,7 @@ static int export_usertype(int parent, const std::string& name, types::UserType*
 
             it = out[0];
         }
-        catch (ast::ScilabMessage& /*se*/)
+        catch (const ast::InternalError& /*ie*/)
         {
             //overload does not exist
             return -1;

@@ -7,7 +7,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>an=remez(guess,mag,fgrid,weight)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -65,13 +65,13 @@
         <para>Minimax approximation of a frequency domain magnitude response. The
             approximation takes the form
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 h = sum[a(i)*cos(weight)], i=1:n
  ]]></programlisting>
         <para>An FIR, linear-phase filter can be obtained from the output of
             <literal>remez</literal> by using the following commands:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 hn(1:nc-1)=an(nc:-1:2)/2;
 hn(nc)=an(1);
 hn(nc+1:2*nc-1)=an(2:nc)/2;
@@ -117,7 +117,7 @@ hn(nc+1:2*nc-1)=an(2:nc)/2;
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 nc=21;
 ngrid=nc*250;
 fgrid=.5*(0:(ngrid-1))/(ngrid-1);
@@ -131,7 +131,7 @@ an=remez(guess,mag,fgrid,weight);
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="remezb">remezb</link>

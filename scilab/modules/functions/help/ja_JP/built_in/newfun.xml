@@ -1,166 +1,166 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="newfun">
-    
+
     <refnamediv>
-        
+
         <refname>newfun</refname>
-        
+
         <refpurpose>関数のテーブルに名前を追加する</refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        
+
         <title>呼出し手順</title>
-        
+
         <synopsis>newfun(function_name, function_ptr)</synopsis>
-        
+
     </refsynopsisdiv>
-    
+
     <refsection>
-        
+
         <title>引数</title>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>function_name</term>
-                
+
                 <listitem>
-                    
+
                     <para>文字列, 有効な関数名を指定する</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>function_ptr</term>
-                
+
                 <listitem>
-                    
+
                     <para>整数値を有する正の数 (以下参照)</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>説明</title>
-        
+
         <para>ユーティリティ関数 (上級者専用). </para>
-        
+
         <para>
-            
+
             名前 <literal>function-name</literal>を
-            
+
             インタプリタに既知の関数テーブルに追加します.
-            
+
         </para>
-        
+
         <para>
-            
+
             <literal>function_ptr</literal>は整数<literal>1000*fun+fin</literal>です.
-            
+
             ただし,<literal>fun</literal> および <literal>fin</literal>は,
-            
+
             プリミティブ<literal>function_name</literal>の内部的なコーディングです.
-            
+
         </para>
-        
+
         <para>
-            
+
             この関数は,プリミティブを
-            
-            <literal>"gw_user.c"</literal> でコールされるゲートウェイ 
-            
-            (<literal>fun=14</literal>)に関連付ける際に有用です. 
-            
+
+            <literal>"gw_user.c"</literal> でコールされるゲートウェイ
+
+            (<literal>fun=14</literal>)に関連付ける際に有用です.
+
             ただし,
-            
+
             <link linkend="ilib_build">ilib_build</link>関数が
-            
+
             C, C++ または Fortranコードに基づき新しい関数で
-            
+
             Scilabを拡張するためのより簡単な方法であることに注意してください.
-            
+
         </para>
-        
+
         <para>
-            
+
             この関数は,既存のプリミティブ関数にエイリアスを追加したり,
-            
+
             リネームする場合にも使用可能です.
-            
+
         </para>
-        
+
         <para>
-            
+
             <literal>funptr</literal> および <literal>clearfun</literal>
-            
+
             と共に使用すると,既存のプリミティブ関数にエイリアスを
-            
+
             追加したり, リネームすることができます.
-            
+
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>例</title>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
      absptr=funptr("abs");// get the function_ptr associated with the abs function
      newfun("abs_bis",absptr) // create an alias of the abs function
      abs_bis(-1+%i)
      clearfun("abs") // remove abs as a known function
-     
+
       //redefine abs
       function y=abs(x)
 	y=abs_bis(real(x));
       endfunction
-      
+
      abs(-1+%i)
   ]]></programlisting>
-        
+
     </refsection>
-    
+
     <refsection role="see also">
-        
+
         <title>参照</title>
-        
+
         <simplelist type="inline">
-            
+
             <member>
-                
+
                 <link linkend="clearfun">clearfun</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="funptr">funptr</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="ilib_build">ilib_build</link>
-                
+
             </member>
-            
+
         </simplelist>
-        
+
     </refsection>
-    
+
 </refentry>
 

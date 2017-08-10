@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - DIGITEO - Allan CORNET
@@ -10,7 +11,7 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=3687
 //
 // <-- Short Description -->
-// "format" doesn't check input value
+// "format" doesn't check input value 
 current_format = format();
 a = format();
 if and(a <> [1 10]) then bugmes();quit;end

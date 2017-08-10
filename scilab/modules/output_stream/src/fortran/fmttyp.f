@@ -1,11 +1,14 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) INRIA
-c 
-c This file must be used under the terms of the CeCILL.
-c This source file is licensed as described in the file COPYING, which
-c you should have received as part of this distribution.  The terms
-c are also available at    
-c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+c
+c Copyright (C) 2012 - 2016 - Scilab Enterprises
+c
+c This file is hereby licensed under the terms of the GNU GPL v2.0,
+c pursuant to article 5.3.4 of the CeCILL v.2.1.
+c This file was originally licensed under the terms of the CeCILL v2.1,
+c and continues to be available under such terms.
+c For more information, see the COPYING file which you should have received
+c along with this program.
 
 C/MEMBR ADD NAME=FMTTYP,SSI=0
       integer function fmttyp(form,nf)
@@ -20,8 +23,8 @@ c          0 : format incorrect ou ayant des types mixtes
 c!
       integer form(nf),nf
       integer count,quote,lparen,rparen,typf(7),typb(7),ntyp,fk
-      data quote/53/,lparen/41/,rparen/42/,ntyp/7/
-      data typf/18,15,14,13,16,21,10/,typb/2,1,1,1,1,3,4/
+      data quote/39/,lparen/40/,rparen/41/,ntyp/7/
+      data typf/105,102,101,102,103,108,97/,typb/2,1,1,1,1,3,4/
 c
       count=0
       fmttyp=0

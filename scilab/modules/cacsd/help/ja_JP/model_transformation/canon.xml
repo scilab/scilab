@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - F. Delebecque
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="canon">
+    <refnamediv>
+        <refname>canon</refname>
+        <refpurpose>可制御正準形</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[Ac,Bc,U,ind]=canon(A,B)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>Ac,Bc</term>
+                <listitem>
+                    <para>正準形</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>U</term>
+                <listitem>
+                    <para>カレントの基底 (正方正則行列)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ind</term>
+                <listitem>
+                    <para>整数ベクトル, 可制御性の添え字</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            対<literal>(A,B)</literal>の可制御正準形を出力します.
+        </para>
+        <para>
+            <literal>Ac=inv(U)*A*U, Bc=inv(U)*B</literal>
+        </para>
+        <para>
+            ベクトル <literal>ind</literal> は,
+            ペンシル<literal>[sI - A ,  B]</literal>の<literal>epsilon_i</literal>の
+            添え字(降順)から作成されます.
+            例えば,<literal>ind=[3,2]</literal>の場合，
+            <literal>Ac</literal> および <literal>Bc</literal> は以下のようになります:
+        </para>
+        <programlisting role=""><![CDATA[
+      [*,*,*,*,*]           [*]
+      [1,0,0,0,0]           [0]
+Ac=   [0,1,0,0,0]        Bc=[0]
+      [*,*,*,*,*]           [*]
+      [0,0,0,1,0]           [0]
+ ]]></programlisting>
+        <para>
+            <literal>(A,B)</literal> が可制御の場合,適当な<literal>F</literal>を
+            選択することにより,<literal>Ac+Bc*F</literal> のエントリ
+            <literal>*</literal>を任意の値に設定(極配置)することができます.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+A=[1,2,3,4,5;
+   1,0,0,0,0;
+   0,1,0,0,0;
+   6,7,8,9,0;
+   0,0,0,1,0];
+B=[1,2;
+   0,0;
+   0,0;
+   2,1;
+   0,0];
+X=rand(5,5);A=X*A*inv(X);B=X*B;    //可制御対
+[Ac,Bc,U,ind]=canon(A,B);  //2つの添え字 --> ind=[3.2];
+index=1;for k=1:size(ind,'*')-1,index=[index,1+sum(ind(1:k))];end
+Acstar=Ac(index,:);Bcstar=Bc(index,:);
+s=poly(0,'s');
+p1=s^3+2*s^2-5*s+3;p2=(s-5)*(s-3);
+//p1 と p2 は3,2次の閉ループ多項式の目標値
+c1=coeff(p1);c1=c1($-1:-1:1);c2=coeff(p2);c2=c2($-1:-1:1);
+Acstardesired=[-c1,0,0;0,0,0,-c2];
+//Acstardesired(index,:) は,pol=p1*p2のコンパニオン行列
+F=Bcstar\(Acstardesired-Acstar);   //フィードバックゲイン
+Ac+Bc*F         // コンパニオン形式
+spec(A+B*F/U)   // F/U は元の基底のゲイン行列.
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="obsv_mat">obsv_mat</link>
+            </member>
+            <member>
+                <link linkend="cont_mat">cont_mat</link>
+            </member>
+            <member>
+                <link linkend="ctr_gram">ctr_gram</link>
+            </member>
+            <member>
+                <link linkend="contrss">contrss</link>
+            </member>
+            <member>
+                <link linkend="ppol">ppol</link>
+            </member>
+            <member>
+                <link linkend="contr">contr</link>
+            </member>
+            <member>
+                <link linkend="stabil">stabil</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

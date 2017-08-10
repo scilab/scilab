@@ -17,7 +17,7 @@
         </para>
         <para>
             In this mode, <literal>[...]=return(...) </literal>
-            returns the variables of the argument <literal>(...)</literal> to the calling workspace with 
+            returns the variables of the argument <literal>(...)</literal> to the calling workspace with
             names in the output <literal>[...]</literal>. Otherwise, the lower-level variables
             are protected and cannot be modified.
         </para>
@@ -30,7 +30,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
     function c=foo(b)
     a=42+b
     disp("Thanks to the pause, you can investigate if ''a'' has the right value");
@@ -38,12 +38,12 @@
     pause
     c=a+2
     endfunction
-    
+
     foo(2)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="halt">halt</link>

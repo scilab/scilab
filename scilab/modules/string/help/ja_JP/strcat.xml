@@ -2,180 +2,183 @@
 
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="strcat" xml:lang="ja">
-    
+
     <refnamediv>
-        
+
         <refname>strcat</refname>
-        
+
         <refpurpose>文字列を結合する</refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        
+
         <title>呼び出し手順</title>
-        
+
         <synopsis>
-            
+
             txt = strcat(strings [,string_added])
-            
+
             txt = strcat(strings [,string_added, ["flag"]])
-            
+
         </synopsis>
-        
+
     </refsynopsisdiv>
-    
+
     <refsection>
-        
+
         <title>引数</title>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>strings</term>
-                
+
                 <listitem>
-                    
+
                     <para>文字列のベクトルまたは行列</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>string_added</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         追加される文字列, デフォルト値は長さ0の文字列
-                        
+
                         <literal>""</literal>
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>txt</term>
-                
+
                 <listitem>
-                    
+
                     <para>文字列</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>"flag"</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         文字列 (<literal>"r"</literal>は
-                        
+
                         行列<varname>strings</varname>の行の結合,
-                        
+
                         <literal>"c"</literal>は
-                        
+
                         行列<varname>strings</varname>の列の結合)
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>説明</title>
-        
+
         <para>
-            
+
             <code>txt = strcat(strings)</code>は文字列を結合します:
-            
+
             <literal>txt = strings(1) + ... + strings(n)</literal>.
-            
+
         </para>
-        
+
         <para>
-            
+
             <code>txt = strcat(strings, string_added)</code>は,
-            
+
             <literal>txt = strings(1) + string_added + ... + string_added + strings(n)</literal>
-            
+
             を返します.
-            
+
         </para>
-        
+
         <para>
-            
+
             プラス記号の動作は同じです: <code>"a"+"b"</code> は
-            
+
             <code>strcat(["a","b"])</code>と同じです.
-            
+
         </para>
-        
+
         <para>
-            
-            <varname>strings</varname> の大きさが1の場合, 
-            
+
+            <varname>strings</varname> の大きさが1の場合,
+
             <code>txt = strings(1)</code>を返します.
-            
+
         </para>
-        
+
         <para>
-            
+
             <code>strcat('A','B')</code> は <literal>'A'</literal>を返し,
-            
+
             <code>strcat(['A','B'])</code>のように<literal>'AB'</literal>
-            
+
             とはなりません.
-            
+
         </para>
-        
+
         <para>
-            
+
             <varname>strings</varname>が文字列の行列の場合,
-            
+
             <code>strcat(strings,"",'r')</code> は文字列の行ベクトルを返します.
-            
+
             この行ベクトルのエントリは行結合の毛化です.文字列の列ベクトルを返します.
-            
+
             この列ベクトルのエントリは列結合の結果です.
-            
+
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>例</title>
-        
+
         <programlisting role="example"><![CDATA[
 strcat(string(1:10),',')
 strcat(["a","b"])
@@ -194,30 +197,30 @@ strcat(m, "_and_", "r")
 strcat(m, "_and_", "c")
 
     ]]></programlisting>
-        
+
     </refsection>
-    
+
     <refsection role="see also">
-        
+
         <title>参照</title>
-        
+
         <simplelist type="inline">
-            
+
             <member>
-                
+
                 <link linkend="string">string</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="strings">strings</link>
-                
+
             </member>
-            
+
         </simplelist>
-        
+
     </refsection>
-    
+
 </refentry>
 

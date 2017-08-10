@@ -2,11 +2,14 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2013 - Scilab Enterprises - Cedric DELAMARRE
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 /*--------------------------------------------------------------------------*/
@@ -238,14 +241,9 @@ types::Function::ReturnValue sci_intg(types::typed_list &in, int _iRetCount, typ
                    &result, &abserr, &neval, &ier,
                    &limit, &lenw, &last, iwork, dwork);
     }
-    catch (ast::ScilabMessage &sm)
+    catch (ast::InternalError &ie)
     {
-        os << sm.GetErrorMessage();
-        bCatch = true;
-    }
-    catch (ast::ScilabError &e)
-    {
-        os << e.GetErrorMessage();
+        os << ie.GetErrorMessage();
         bCatch = true;
     }
 
@@ -256,9 +254,9 @@ types::Function::ReturnValue sci_intg(types::typed_list &in, int _iRetCount, typ
     if (bCatch)
     {
         wchar_t szError[bsiz];
-        os_swprintf(szError, bsiz, _W("%s: An error occured in '%s' subroutine.\n").c_str(), "intg", "dqags");
+        os_swprintf(szError, bsiz, _W("%ls: An error occured in '%ls' subroutine.\n").c_str(), L"intg", L"dqags");
         os << szError;
-        throw ast::ScilabMessage(os.str());
+        throw ast::InternalError(os.str());
     }
 
     if (ier)

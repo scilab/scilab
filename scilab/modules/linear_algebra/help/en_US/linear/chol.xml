@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="chol">
@@ -16,7 +19,7 @@
         <refpurpose>Cholesky factorization</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[R]=chol(X)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -33,12 +36,12 @@
     <refsection>
         <title>Description</title>
         <para>
-            If <literal>X</literal> is positive definite, then <literal>R = chol(X)</literal> produces an upper 
+            If <literal>X</literal> is positive definite, then <literal>R = chol(X)</literal> produces an upper
             triangular matrix <literal>R</literal> such that <literal>R'*R = X</literal>.
         </para>
         <para>
             <literal>chol(X)</literal> uses only the diagonal and upper triangle of <literal>X</literal>.
-            The lower triangular is assumed to be the (complex conjugate) 
+            The lower triangular is assumed to be the (complex conjugate)
             transpose of the upper.
         </para>
     </refsection>
@@ -51,7 +54,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 W=rand(5,5)+%i*rand(5,5);
 X=W*W';
 R=chol(X);
@@ -59,7 +62,7 @@ norm(R'*R-X)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="spchol">spchol</link>

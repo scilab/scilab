@@ -3,12 +3,15 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="mput">
@@ -17,7 +20,7 @@
         <refpurpose>writes  byte or word in a given binary format</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>mput(x [, type, fd])</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -33,8 +36,8 @@
                 <term>fd</term>
                 <listitem>
                     <para>
-                        a scalar: a file descriptor returned by the function <function>mopen</function>. <literal>-1</literal> 
-                        stands for last opened file. Default value is 
+                        a scalar: a file descriptor returned by the function <function>mopen</function>. <literal>-1</literal>
+                        stands for last opened file. Default value is
                         <literal>-1</literal>.
                     </para>
                 </listitem>
@@ -54,8 +57,8 @@
         <para>
             The <function>mput</function> function writes data to the output specified by the
             stream parameter <varname>fd</varname>. Data is written at the
-            position at which the file pointer is currently pointing and 
-            advances the indicator appropriately. 
+            position at which the file pointer is currently pointing and
+            advances the indicator appropriately.
         </para>
         <para>
             The <varname>type</varname> parameter is a conversion specifier which may be set to any of the
@@ -75,10 +78,10 @@
                 <term>"..l" or "..b"</term>
                 <listitem>
                     <para>
-                        It is also possible to write in little-endian or big-endian 
-                        mode  by adding a <literal>"l"</literal> or 
-                        <literal>"b"</literal> character at the end of a 
-                        <varname>type</varname> specification. For example 
+                        It is also possible to write in little-endian or big-endian
+                        mode  by adding a <literal>"l"</literal> or
+                        <literal>"b"</literal> character at the end of a
+                        <varname>type</varname> specification. For example
                         <literal>"db"</literal> will write a double in big-endian mode.
                     </para>
                 </listitem>
@@ -87,15 +90,15 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 filen = 'test.bin';
 mopen(filen,'wb');
 mput(1996,'l');mput(1996,'i');mput(1996,'s');mput(98,'c');
 
-// force little-endian 
+// force little-endian
 mput(1996,'ll');mput(1996,'il');mput(1996,'sl');mput(98,'cl');
 
-// force big-endian 
+// force big-endian
 mput(1996,'lb');mput(1996,'ib');mput(1996,'sb');mput(98,'cb');
 
 mclose();
@@ -111,7 +114,7 @@ if 1996<>mget(1,'il') then pause,end
 if 1996<>mget(1,'sl') then pause,end
 if   98<>mget(1,'cl') then pause,end
 
-// force big-endian 
+// force big-endian
 if 1996<>mget(1,'lb') then pause,end
 if 1996<>mget(1,'ib') then pause,end
 if 1996<>mget(1,'sb') then pause,end
@@ -121,7 +124,7 @@ mclose();
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="mclose">mclose</link>

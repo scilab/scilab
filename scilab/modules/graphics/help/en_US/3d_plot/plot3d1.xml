@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="plot3d1">
@@ -18,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>plot3d1(x,y,z,[theta,alpha,leg,flag,ebox])
             plot3d1(xf,yf,zf,[theta,alpha,leg,flag,ebox])
             plot3d1(x,y,z,&lt;opts_args&gt;)
@@ -117,7 +120,7 @@
                                                 <literal>"-mode"</literal> ; the boundary of the facet is not
                                                 drawn.
                                             </para>
-                                            <para>Note that the surface color treatement can be done
+                                            <para>Note that the surface color treatment can be done
                                                 using <literal>color_mode</literal> and
                                                 <literal>color_flag</literal> options through the surface
                                                 entity properties (see
@@ -259,7 +262,7 @@
                         together with <literal>type</literal> in <literal>flag</literal> : if it is set
                         to <literal>1</literal>, <literal>3</literal> or <literal>5</literal> (see above to
                         see the corresponding behaviour). If <literal>flag</literal> is missing,
-                        <literal>ebox</literal> is not taken into acoount.
+                        <literal>ebox</literal> is not taken into account.
                     </para>
                     <para>
                         Note that, when specified, the <literal>ebox</literal> argument acts on
@@ -328,7 +331,7 @@ plot3d1(1:10,1:20,10*rand(10,20),35,45,"X@Y@Z",[2,2,3])
         <scilab:image>
             plot3d1(1:10,1:20,10*rand(10,20),35,45,"X@Y@Z",[2,2,3])
         </scilab:image>
-        
+
         <programlisting role="example"><![CDATA[
 // same plot without grid
 plot3d1(1:10,1:20,10*rand(10,20),35,45,"X@Y@Z",[-2,2,3])
@@ -359,7 +362,7 @@ plot3d1(xx,yy,zz) // the 2 graphics are similar
         </scilab:image>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="plot3d">plot3d</link>

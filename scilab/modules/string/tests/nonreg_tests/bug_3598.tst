@@ -13,7 +13,7 @@
 // Short description:
 // stripblanks(1) returns "stripblank : Pas assez de mémoire."
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 //==============================================================
 ierr = execstr("r = stripblanks(1);","errcatch");

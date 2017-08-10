@@ -299,9 +299,6 @@
     <ClInclude Include="src\c\Status2Mode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\c\pathconvert.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\c\movefile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -335,9 +332,6 @@
     <ClInclude Include="src\cpp\mgetstr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\cpp\mputl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\cpp\scilab_sscanf.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -357,6 +351,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\filemanager_interface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\pathconvert.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\mputl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cpp\mputi.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

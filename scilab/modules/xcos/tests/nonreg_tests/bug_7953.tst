@@ -16,9 +16,11 @@
 // No error message were printed when the diagram is invalid.
 
 try
-	xcos(mlist("diagram", "plop"));
-catch, end
+    xcos(mlist("diagram", "plop"));
+catch
+end
+
 [str, n] = lasterror();
-if n <> 999 then pause, end
-if strstr(str, "xcos:") <> str pause, end
+assert_checkequal(n, 999);
+assert_checkequal(strstr(str, "xcos:"), str);
 

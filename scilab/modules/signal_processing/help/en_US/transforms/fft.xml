@@ -4,11 +4,14 @@
  * Copyright (C) 1997   - INRIA
  * Copyright (C) 2012 - Serge Steer - INRIA
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook"
@@ -23,10 +26,10 @@
     </refnamediv>
     <refnamediv xml:id="ifft">
         <refname>ifft</refname>
-        <refpurpose>fast Fourier transform.</refpurpose>
+        <refpurpose>Inverse fast Fourier transform.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>X=fft(A [,sign] [,option])
             X=fft(A,sign,selection  [,option])
             X=fft(A,sign,dims,incr [,option] )
@@ -149,7 +152,7 @@
                                             </para>
                                         </listitem>
                                     </varlistentry>
-                                    
+
                                     <varlistentry>
                                         <term>multivariate</term>
                                         <listitem>
@@ -284,7 +287,7 @@ end
                             <term>unspecified</term> If the option is omitted the
                             fft algorithm automatically checks for exact symmetry.
                         </listitem>
-                        
+
                     </itemizedlist>
                 </listitem>
             </varlistentry>
@@ -342,7 +345,7 @@ X = fftshift(fft(A));
 set(gcf(),"color_map",jetcolormap(128));
 clf;grayplot(0:255,0:255,abs(X)')
      ]]></programlisting>
-        <para>mupliple fft</para>
+        <para>multiple fft</para>
         <programlisting role="example"><![CDATA[
 //simple case, 3 1-D fft at a time
 N=2048;
@@ -398,7 +401,7 @@ timer();fft(a,-1);timer()
      ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="corr">corr</link>

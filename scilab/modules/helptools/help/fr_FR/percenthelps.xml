@@ -4,36 +4,65 @@
  * Copyright (C) 2008 - INRIA
  * Copyright (C) 2010 - DIGITEO - Allan CORNET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="percenthelps">
     <refnamediv>
         <refname>%helps</refname>
-        <refpurpose>variable contenant les noms des répertoires des chapitres d'aide  </refpurpose>
+        <refpurpose>
+            variable globale : chemins des répertoires d'aide des modules externes chargés en session
+        </refpurpose>
     </refnamediv>
-    <refsection>
+    <refsection role="description">
         <title>Description</title>
-        <para>ATTENTION: Cette variable ne doit pas être modifiée manuellement par l'utilisateur.</para>
         <para>
-            <literal>%helps</literal> est une matrice de chaînes de caractères à deux colonnes. Chaque ligne est formée comme ceci
+            La variable globale <literal>%helps</literal> est une matrice texte à 2 colonnes.
+            Chaque ligne référence le chapitre d'aide d'un module externe chargé en session :
+            <itemizedlist>
+               <listitem>
+                   <literal>%helps(k,1)</literal> est le chemin absolu du répertoire d'aide du module.
+               </listitem>
+               <listitem>
+                   <literal>%helps(k,2)</literal> est le titre du chapitre d'aide.
+               </listitem>
+            </itemizedlist>
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[ 
-répertoire_du_chapitre    titre_du_chapitre
- ]]></programlisting>
-        <para>
-            Pour ajouter de nouveaux chapitres d'aide, il faut utiliser la fonction <literal>add_help_chapter</literal>.
-        </para>
+        <warning>
+          Cette variable ne doit PAS être modifiée manuellement. <literal>add_help_chapter</literal>
+          doit être utilisée pour ajouter au navigateur d'aide (à redémarrer) le chapitre relatif
+          à un module externe chargé, et pour actualiser <literal>%helps</literal>.
+        </warning>
+    </refsection>
+    <refsection role="examples">
+       <title>Exemples</title>
+        <programlisting role="example"><![CDATA[
+global %helps  // Création de la variable locale %helps connectée à sa version globale
+%helps
+if %helps==[]                    // Aucun chapitre d'aide n'est déclaré pour aucun module externe
+    if atomsGetInstalled()==[]   // Si aucun module externe n'est installé,
+        atomsInstall uman;       //  on installe le module "uman" (disponible pour Windows, Linux et MacOS)
+    end
+    atomsLoad(atomsGetInstalled()(1));  // On charge le 1er module installé, pages d'aide incluses
+    %helps                       // Le chapitre d'aide correspondant est maintenant indexé dans %helps
+end
+      ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>
         <simplelist type="inline">
             <member>
                 <link linkend="add_help_chapter">add_help_chapter</link>
+            </member>
+            <member>
+                <link linkend="help">help</link>
             </member>
         </simplelist>
     </refsection>

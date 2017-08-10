@@ -2,11 +2,14 @@
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2009-2009 - DIGITEO - Bruno JOFRET
 *
-*  This file must be used under the terms of the CeCILL.
-*  This source file is licensed as described in the file COPYING, which
-*  you should have received as part of this distribution.  The terms
-*  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
@@ -18,7 +21,8 @@
 #include "printvisitor.hxx"
 #include "execvisitor.hxx"
 #include "timedvisitor.hxx"
-#include "debugvisitor.hxx"
+#include "prettyprintvisitor.hxx"
+#include "debuggervisitor.hxx"
 #include "stepvisitor.hxx"
 #include "visitor_common.hxx"
 #include "threadmanagement.hxx"
@@ -93,7 +97,7 @@ void dumpAstTask(ast::Exp *tree, bool timed)
         _timer.start();
     }
 
-    ast::DebugVisitor debugMe;
+    ast::PrettyPrintVisitor debugMe;
     if (tree)
     {
         tree->accept(debugMe);
@@ -119,7 +123,7 @@ void printAstTask(ast::Exp *tree, bool timed)
 
     if (tree)
     {
-        ast::PrintVisitor printMe = *new ast::PrintVisitor(std::wcout);
+        ast::PrintVisitor printMe (std::wcout);
         tree->accept(printMe);
     }
 
@@ -136,7 +140,7 @@ void printAstTask(ast::Exp *tree, bool timed)
 ** Execute the stored AST.
 */
 void execAstTask(ast::Exp* tree, bool serialize, bool timed, bool ASTtimed, bool execVerbose,
-                 bool isInterruptibleThread, bool isPrioritaryThread, bool isConsoleCommand)
+                 bool isInterruptibleThread, bool isPrioritaryThread, command_origin_t iCommandOrigin)
 {
     if (tree == NULL)
     {
@@ -162,7 +166,7 @@ void execAstTask(ast::Exp* tree, bool serialize, bool timed, bool ASTtimed, bool
         newTree = tree;
     }
 
-    ast::ExecVisitor *exec;
+    ast::RunVisitor *exec;
     if (timed)
     {
         _timer.start();
@@ -170,15 +174,13 @@ void execAstTask(ast::Exp* tree, bool serialize, bool timed, bool ASTtimed, bool
 
     if (ASTtimed)
     {
-        exec = (ast::ExecVisitor*)new ast::TimedVisitor();
+        exec = new ast::TimedVisitor();
     }
-
-    if (execVerbose)
+    else if (execVerbose)
     {
-        exec = (ast::ExecVisitor*)new ast::StepVisitor();
+        exec = new ast::StepVisitor();
     }
-
-    if (!execVerbose && !ASTtimed)
+    else
     {
         //call analyzer visitor before exec visitor
         if (ConfigVariable::getAnalyzerOptions() == 1)
@@ -187,10 +189,10 @@ void execAstTask(ast::Exp* tree, bool serialize, bool timed, bool ASTtimed, bool
             //newTree->accept(analysis);
         }
 
-        exec = new ast::ExecVisitor();
+        exec = (ast::RunVisitor*)ConfigVariable::getDefaultVisitor();
     }
 
-    Runner::execAndWait(newTree, exec, isInterruptibleThread, isPrioritaryThread, isConsoleCommand);
+    StaticRunner::execAndWait(newTree, exec, isInterruptibleThread, isPrioritaryThread, iCommandOrigin);
     //DO NOT DELETE tree or newTree, they was deleted by Runner or previously;
 
     if (timed)
@@ -223,50 +225,96 @@ void dumpStackTask(bool timed)
 ** Execute scilab.start
 **
 */
-void execScilabStartTask(bool _bSerialize)
+int execScilabStartTask(bool _bSerialize)
 {
     Parser parse;
-    wstring stSCI = ConfigVariable::getSCIPath();
-
+    std::wstring stSCI = ConfigVariable::getSCIPath();
     stSCI += SCILAB_START;
+
     ThreadManagement::LockParser();
-    parse.parseFile(stSCI, L"");
+    try
+    {
+        parse.parseFile(stSCI, L"");
+    }
+    catch (const ast::InternalError& ie)
+    {
+        scilabWrite(ie.what());
+        ThreadManagement::UnlockParser();
+        return 1;
+    }
 
     if (parse.getExitStatus() != Parser::Succeded)
     {
         scilabWriteW(parse.getErrorMessage());
         scilabWriteW(L"Failed to parse scilab.start");
         ThreadManagement::UnlockParser();
-        return;
+        return 1;
+    }
+    ThreadManagement::UnlockParser();
+
+    ast::Exp* newTree = parse.getTree();
+    if (_bSerialize)
+    {
+        newTree = callTyper(parse.getTree());
     }
 
-    ThreadManagement::UnlockParser();
-    execAstTask(parse.getTree(), _bSerialize, false, false, false, true, true, false);
+    return StaticRunner::exec(newTree, new ast::ExecVisitor()) ? 0 : 1;
 }
 
 /*
 ** Execute scilab.quit
 **
 */
-void execScilabQuitTask(bool _bSerialize)
+int execScilabQuitTask(bool _bSerialize)
 {
     Parser parse;
-    wstring stSCI = ConfigVariable::getSCIPath();
-
+    std::wstring stSCI = ConfigVariable::getSCIPath();
     stSCI += SCILAB_QUIT;
+
     ThreadManagement::LockParser();
-    parse.parseFile(stSCI, L"");
+    try
+    {
+        parse.parseFile(stSCI, L"");
+    }
+    catch (const ast::InternalError& ie)
+    {
+        scilabWrite(ie.what());
+        ThreadManagement::UnlockParser();
+        return 1;
+    }
 
     if (parse.getExitStatus() != Parser::Succeded)
     {
         scilabWriteW(parse.getErrorMessage());
         scilabWriteW(L"Failed to parse scilab.quit");
         ThreadManagement::UnlockParser();
-        return;
+        return 1;
+    }
+    ThreadManagement::UnlockParser();
+
+    ast::Exp* newTree = parse.getTree();
+    if (_bSerialize)
+    {
+        newTree = callTyper(parse.getTree());
     }
 
-    ThreadManagement::UnlockParser();
-    execAstTask(parse.getTree(), _bSerialize, false, false, false, true, true, false);
+    return StaticRunner::exec(newTree, new ast::ExecVisitor()) ? 0 : 1;
 }
 
 
+ast::Exp* parseCommand(std::wstring _command)
+{
+    if (_command.empty())
+    {
+        return NULL;
+    }
+
+    Parser parse;
+    parse.parse((wchar_t*)_command.c_str());
+    if (parse.getExitStatus() != Parser::Succeded)
+    {
+        return NULL;
+    }
+
+    return parse.getTree();
+}

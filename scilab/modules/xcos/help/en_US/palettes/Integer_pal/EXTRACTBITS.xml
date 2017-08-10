@@ -10,16 +10,16 @@
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  *  (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
- * 
+ *
  * See the file ./license.txt
  *
  -->
@@ -295,7 +295,7 @@
                     </listitem>
                     <listitem>
                         <para>
-                            5, this parameter is used to determine range of bits to extract and it must have the <literal>[Start, End]</literal> form vector. <literal>Start</literal> must be less than <literal>End</literal>. 
+                            5, this parameter is used to determine range of bits to extract and it must have the <literal>[Start, End]</literal> form vector. <literal>Start</literal> must be less than <literal>End</literal>.
                             These values must be, if the type is:
                         </para>
                         <itemizedlist>
@@ -509,7 +509,7 @@
             <tr>
                 <td>11010111 (-48)</td>
                 <td>Upper half</td>
-                <td>Ingnored</td>
+                <td>Ignored</td>
                 <td>yes</td>
                 <td>11111101 (-3)</td>
             </tr>

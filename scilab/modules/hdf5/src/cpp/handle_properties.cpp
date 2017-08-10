@@ -2,13 +2,20 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
+
+#include <vector>
+#include <string>
+#include <cfloat>
 
 #include "handle_properties.hxx"
 #include "double.hxx"
@@ -25,17 +32,19 @@ extern "C"
 #include "graphicObjectProperties.h"
 #include "createGraphicObject.h"
 #include "FigureList.h"
+#include "CurrentFigure.h"
 #include "BuildObjects.h"
 #include "Matplot.h"
+#include "HandleManagement.h"
 }
 
 extern types::InternalType* import_data(int dataset);
 extern int export_data(int parent, const std::string& name, types::InternalType* data);
 
-static int getHandleInt(int dataset, const char* prop, int* val)
+static int getHandleInt(int dataset, const std::string& prop, int* val)
 {
     int node = 0;
-    node = getDataSetIdFromName(dataset, prop);
+    node = getDataSetIdFromName(dataset, prop.data());
     if (node < 0)
     {
         return -1;
@@ -45,10 +54,10 @@ static int getHandleInt(int dataset, const char* prop, int* val)
     return 0;
 }
 
-static int getHandleIntVector(int dataset, const char* prop, int* row, int* col, int** vals)
+static int getHandleIntVector(int dataset, const std::string& prop, int* row, int* col, int** vals)
 {
     int node = 0;
-    node = getDataSetIdFromName(dataset, prop);
+    node = getDataSetIdFromName(dataset, prop.data());
     if (node < 0)
     {
         return -1;
@@ -67,7 +76,7 @@ static int getHandleIntVector(int dataset, const char* prop, int* row, int* col,
     std::vector<int> d(dims);
     int size = getDatasetInfo(node, &complex, &dims, d.data());
 
-    if (dims == 0 || size == 0)
+    if (dims == 0 || size <= 0)
     {
         closeDataSet(node);
         return -1;
@@ -80,10 +89,10 @@ static int getHandleIntVector(int dataset, const char* prop, int* row, int* col,
     return 0;
 }
 
-static int getHandleBool(int dataset, const char* prop, int* val)
+static int getHandleBool(int dataset, const std::string& prop, int* val)
 {
     int node = 0;
-    node = getDataSetIdFromName(dataset, prop);
+    node = getDataSetIdFromName(dataset, prop.data());
     if (node < 0)
     {
         return -1;
@@ -93,10 +102,10 @@ static int getHandleBool(int dataset, const char* prop, int* val)
     return 0;
 }
 
-static int getHandleBoolVector(int dataset, const char* prop, int* row, int* col, int** vals)
+static int getHandleBoolVector(int dataset, const std::string& prop, int* row, int* col, int** vals)
 {
     int node = 0;
-    node = getDataSetIdFromName(dataset, prop);
+    node = getDataSetIdFromName(dataset, prop.data());
     if (node < 0)
     {
         return -1;
@@ -115,7 +124,7 @@ static int getHandleBoolVector(int dataset, const char* prop, int* row, int* col
     std::vector<int> d(dims);
     int size = getDatasetInfo(node, &complex, &dims, d.data());
 
-    if (dims == 0 || size == 0)
+    if (dims == 0 || size <= 0)
     {
         closeDataSet(node);
         return -1;
@@ -129,10 +138,10 @@ static int getHandleBoolVector(int dataset, const char* prop, int* row, int* col
     return 0;
 }
 
-static double getHandleDouble(int dataset, const char* prop, double* val)
+static int getHandleDouble(int dataset, const std::string& prop, double* val)
 {
     int node = 0;
-    node = getDataSetIdFromName(dataset, prop);
+    node = getDataSetIdFromName(dataset, prop.data());
     if (node < 0)
     {
         return -1;
@@ -142,10 +151,10 @@ static double getHandleDouble(int dataset, const char* prop, double* val)
     return 0;
 }
 
-static int getHandleDoubleVector(int dataset, const char* prop, int* row, int* col, double** vals)
+static int getHandleDoubleVector(int dataset, const std::string& prop, int* row, int* col, double** vals)
 {
     int node = 0;
-    node = getDataSetIdFromName(dataset, prop);
+    node = getDataSetIdFromName(dataset, prop.data());
     if (node < 0)
     {
         return -1;
@@ -164,7 +173,7 @@ static int getHandleDoubleVector(int dataset, const char* prop, int* row, int* c
     std::vector<int> d(dims);
     int size = getDatasetInfo(node, &complex, &dims, d.data());
 
-    if (dims == 0 || size == 0)
+    if (dims == 0 || size <= 0)
     {
         closeDataSet(node);
         return -1;
@@ -178,10 +187,10 @@ static int getHandleDoubleVector(int dataset, const char* prop, int* row, int* c
     return 0;
 }
 
-static int getHandleString(int dataset, const char* prop, char** val)
+static int getHandleString(int dataset, const std::string& prop, char** val)
 {
     int node = 0;
-    node = getDataSetIdFromName(dataset, prop);
+    node = getDataSetIdFromName(dataset, prop.data());
     if (node < 0)
     {
         return -1;
@@ -200,7 +209,7 @@ static int getHandleString(int dataset, const char* prop, char** val)
     std::vector<int> d(dims);
     int size = getDatasetInfo(node, &complex, &dims, d.data());
 
-    if (dims == 0 || size == 0)
+    if (dims == 0 || size <= 0)
     {
         closeDataSet(node);
         return -1;
@@ -210,10 +219,10 @@ static int getHandleString(int dataset, const char* prop, char** val)
     return node;
 }
 
-static int getHandleStringVector(int dataset, const char* prop, int* row, int* col, char*** vals)
+static int getHandleStringVector(int dataset, const std::string& prop, int* row, int* col, char*** vals)
 {
     int node = 0;
-    node = getDataSetIdFromName(dataset, prop);
+    node = getDataSetIdFromName(dataset, prop.data());
     if (node < 0)
     {
         return -1;
@@ -232,7 +241,7 @@ static int getHandleStringVector(int dataset, const char* prop, int* row, int* c
     std::vector<int> d(dims);
     int size = getDatasetInfo(node, &complex, &dims, d.data());
 
-    if (dims == 0 || size == 0)
+    if (dims == 0 || size <= 0)
     {
         closeDataSet(node);
         return -1;
@@ -342,7 +351,7 @@ static int import_handle_generic(int dataset, int uid, int parent, const HandleP
         import_handle_children(dataset, uid);
     }
 
-    for (auto& prop : props)
+    for (auto & prop : props)
     {
         const char* name = prop.first.data();
         std::vector<int> info(prop.second);
@@ -775,9 +784,6 @@ static int import_handle_border(int dataset)
         case MATTE:
             return import_handle_border_matte(dataset, border);
     }
-
-    closeList6(dataset);
-    return false;
 }
 
 static int import_handle_uicontrol(int dataset, int parent)
@@ -859,6 +865,7 @@ static int import_handle_uicontrol(int dataset, int parent)
     setGraphicObjectProperty(uic, __GO_UI_STRING_COLNB__, &col, jni_int, 1);
     setGraphicObjectProperty(uic, __GO_UI_STRING__, string, jni_string_vector, row * col);
     freeStringMatrix(node, string);
+    delete[] string;
 
     //border
     int dborder = getDataSetIdFromName(dataset, "border");
@@ -938,7 +945,7 @@ static int import_handle_text(int dataset, int parent)
     setGraphicObjectProperty(t, __GO_TEXT_ARRAY_DIMENSIONS__, dims, jni_int_vector, 2);
     setGraphicObjectProperty(t, __GO_TEXT_STRINGS__, text, jni_string_vector, dims[0] * dims[1]);
     freeStringMatrix(textnode, text);
-
+    delete[] text;
     closeList6(dataset);
     return t;
 }
@@ -958,7 +965,7 @@ static int import_handle_legend(int dataset, int parent)
     setGraphicObjectProperty(legend, __GO_TEXT_ARRAY_DIMENSIONS__, dims, jni_int_vector, 2);
     setGraphicObjectProperty(legend, __GO_TEXT_STRINGS__, text, jni_string_vector, dims[0] * dims[1]);
     freeStringMatrix(textnode, text);
-
+    delete[] text;
     //links
 
     //to retore links we need to have the entire hierarchie loaded.
@@ -1052,25 +1059,27 @@ static int import_handle_matplot(int dataset, int parent)
     rect[2] = tmp;
 
     //data
-    getHandleInt(dataset, "num_x", &row);
-    getHandleInt(dataset, "num_y", &col);
+    int num_x = 0;
+    int num_y = 0;
+    getHandleInt(dataset, "num_x", &num_x);
+    getHandleInt(dataset, "num_y", &num_y);
     double* data = nullptr;
     int data_x = 0;
     int data_y = 0;
     getHandleDoubleVector(dataset, "data", &data_x, &data_y, &data);
 
     int grid[4];
-    grid[0] = col;
+    grid[0] = num_x;
     grid[1] = 1;
-    grid[2] = row;
+    grid[2] = num_y;
     grid[3] = 1;
 
     setGraphicObjectPropertyAndNoWarn(plot, __GO_DATA_MODEL_GRID_SIZE__, grid, jni_int_vector, 4);
 
     double scale[2];
     setGraphicObjectProperty(plot, __GO_MATPLOT_TRANSLATE__, rect, jni_double_vector, 2);
-    scale[0] = (rect[2] - rect[0]) / (col - 1.0);
-    scale[1] = (rect[3] - rect[1]) / (row - 1.0);
+    scale[0] = (rect[2] - rect[0]) / (num_x - 1.0);
+    scale[1] = (rect[3] - rect[1]) / (num_y - 1.0);
     setGraphicObjectProperty(plot, __GO_MATPLOT_SCALE__, scale, jni_double_vector, 2);
 
     setGraphicObjectProperty(plot, __GO_DATA_MODEL_MATPLOT_BOUNDS__, rect, jni_double_vector, 4);
@@ -1166,7 +1175,7 @@ static int import_handle_compound(int dataset, int parent)
 static int import_handle_datatip(int dataset, int parent)
 {
     int datatip = createGraphicObject(__GO_DATATIP__);
-    //set parent manualy, these no real releationship between datatip and parent
+    //set parent manually, these no real releationship between datatip and parent
     setGraphicObjectProperty(datatip, __GO_PARENT__, &parent, jni_int, 1);
 
     //data
@@ -1179,7 +1188,7 @@ static int import_handle_datatip(int dataset, int parent)
     setGraphicObjectProperty(datatip, __GO_DATATIP_INDEXES__, indexes, jni_double_vector, 2);
 
     //import "standards" properties
-    import_handle_generic(dataset, datatip, parent, DatatipHandle::getPropertyList(), true);
+    import_handle_generic(dataset, datatip, -1, DatatipHandle::getPropertyList(), true);
 
     closeList6(dataset);
     return datatip;
@@ -1227,6 +1236,76 @@ static int import_polyline_shift(int dataset, int uid, const std::string& name, 
     return uid;
 }
 
+static void updateXYDataBounds(double rect[6], int axes = -1)
+{
+    int firstPlot = 0;
+    int * piFirstPlot = &firstPlot;
+    if (axes == -1)
+    {
+        axes = getOrCreateDefaultSubwin();
+    }
+
+    getGraphicObjectProperty(axes, __GO_FIRST_PLOT__, jni_bool, (void **)&piFirstPlot);
+    if (firstPlot)
+    {
+        rect[4] = 0;
+        rect[5] = 0;
+    }
+    else
+    {
+        double * dataBounds = NULL;
+        getGraphicObjectProperty(axes, __GO_DATA_BOUNDS__, jni_double_vector, (void **)&dataBounds);
+
+        rect[0] = Min(rect[0], dataBounds[0]);
+        rect[1] = Max(rect[1], dataBounds[1]);
+        rect[2] = Min(rect[2], dataBounds[2]);
+        rect[3] = Max(rect[3], dataBounds[3]);
+        rect[4] = dataBounds[4];
+        rect[5] = dataBounds[5];
+    }
+
+    setGraphicObjectProperty(axes, __GO_DATA_BOUNDS__, rect, jni_double_vector, 6);
+}
+
+static int mustUpdate(int axes = -1)
+{
+    int iTmp = 0;
+    int * piTmp = &iTmp;
+    if (axes == -1)
+    {
+        axes = getOrCreateDefaultSubwin();
+    }
+
+    getGraphicObjectProperty(axes, __GO_AUTO_SCALE__, jni_bool, (void **)&piTmp);
+    return iTmp;
+}
+
+void MiniMaxi(const double vect[], int n, double * const min, double * const max)
+{
+    int i = 0;
+    double _min = DBL_MAX;
+    double _max = -DBL_MAX;
+    for (; i < n; i++)
+    {
+        /*    if ( isinf(vect[i])== 0 && isnan(vect[i])==0 && vect[i] < vmin)  */
+        if (finite(vect[i]) == 1)
+        {
+            if (vect[i] < _min)
+            {
+                _min = vect[i];
+            }
+            if (vect[i] > _max)
+            {
+                _max = vect[i];
+            }
+        }
+    }
+
+    *min = _min;
+    *max = _max;
+}
+
+
 static int import_handle_polyline(int dataset, int parent)
 {
     int polyline = createGraphicObject(__GO_POLYLINE__);
@@ -1234,7 +1313,6 @@ static int import_handle_polyline(int dataset, int parent)
 
     //import "standards" properties
     import_handle_generic(dataset, polyline, parent, PolylineHandle::getPropertyList(), true);
-
 
     //x_shift
     import_polyline_shift(dataset, polyline, "x_shift", __GO_DATA_MODEL_X_COORDINATES_SHIFT_SET__, __GO_DATA_MODEL_X_COORDINATES_SHIFT__);
@@ -1298,6 +1376,17 @@ static int import_handle_polyline(int dataset, int parent)
         }
 
         setGraphicObjectProperty(polyline, __GO_DATA_MODEL_Z_COORDINATES_SET__, &zSet, jni_int, 1);
+
+        //update parent axes data_bounds
+        if (mustUpdate())
+        {
+            double rect[6];
+
+            MiniMaxi(dataX, size, rect, rect + 1);
+            MiniMaxi(dataY, size, rect + 2, rect + 3);
+
+            updateXYDataBounds(rect);
+        }
 
         delete[] dataX;
         delete[] dataY;
@@ -1472,6 +1561,7 @@ static int import_handle_label(int dataset, int uid)
     setGraphicObjectProperty(uid, __GO_TEXT_ARRAY_DIMENSIONS__, dims.data(), jni_int_vector, 2);
     setGraphicObjectProperty(uid, __GO_TEXT_STRINGS__, data, jni_string_vector, dims[0] * dims[1]);
     freeStringMatrix(node, data);
+    delete[] data;
 
     closeList6(dataset);
     return uid;
@@ -1481,7 +1571,7 @@ static int import_handle_axes(int dataset, int parent)
 {
     //how to manage call by %h_copy ?
 
-    int axes = getOrCreateDefaultSubwin();
+    int axes = createSubWin(parent);
 
     //hide current axes
     int visible = 0;
@@ -1595,8 +1685,11 @@ static int import_handle_figure(int dataset, int parent)
     //force visible true FOR DEBUG ONLY
     int visible = 0;
 
-    //create a new hidden figure
-    int fig = createFigure(dockable, menubar, toolbar, default_axes, visible);
+    //create a new hidden figure without default_axes.
+    int fig = createFigure(dockable, menubar, toolbar, 0, visible);
+    //set default axes properties after creation to avoid useless axes creation
+    setGraphicObjectProperty(fig, __GO_DEFAULT_AXES__, &default_axes, jni_bool, 1);
+
     int id = getValidDefaultFigureId();
     setGraphicObjectProperty(fig, __GO_ID__, &id, jni_int, 1);
 
@@ -1729,7 +1822,7 @@ void update_link_path(int legend, Links::PathList& paths)
     getGraphicObjectProperty(legend, __GO_PARENT_AXES__, jni_int, (void**)&paxes);
     std::vector<int> links;
     //loop on child following path index
-    for (auto& path : paths)
+    for (auto & path : paths)
     {
         int current = axes;
         for (int j = 0; j < path.size(); ++j)
@@ -1838,7 +1931,7 @@ static bool export_handle_children(int parent, int uid);
 
 static bool export_handle_generic(int parent, int uid, const HandleProp& props)
 {
-    for (auto& prop : props)
+    for (auto & prop : props)
     {
         const char* name = prop.first.data();
         std::vector<int> info(prop.second);
@@ -2409,9 +2502,6 @@ static bool export_handle_border(int dataset, int uid)
         case MATTE:
             return export_handle_border_matte(dataset, uid);
     }
-
-    closeList6(dataset);
-    return false;
 }
 
 static bool export_handle_uicontrol(int parent, int uid)
@@ -2427,22 +2517,23 @@ static bool export_handle_uicontrol(int parent, int uid)
     getHandleIntProperty(uid, __GO_UI_STRING_SIZE__, &size);
     int col = 0;
     getHandleIntProperty(uid, __GO_UI_STRING_COLNB__, &col);
-    int row = size / col;
 
     int dims[2];
-    dims[0] = row;
-    dims[1] = col;
 
-    if (col == 0 || row == 0)
+    if (col == 0)
     {
         dims[0] = 1;
         dims[1] = 1;
-        char* empty = "";
+        char null_char = '\0';
+        char* empty = &null_char;
         writeStringMatrix6(parent, "string", 2, dims, &empty);
 
     }
     else
     {
+        int row = size / col;
+        dims[0] = row;
+        dims[1] = col;
         char** string = nullptr;
         getHandleStringVectorProperty(uid, __GO_UI_STRING__, &string);
         writeStringMatrix6(parent, "string", 2, dims, string);
@@ -2639,9 +2730,9 @@ static bool export_handle_matplot(int parent, int uid)
     }
 
     int row = 0;
-    getHandleIntProperty(uid, __GO_DATA_MODEL_NUM_X__, &row);
     int col = 0;
-    getHandleIntProperty(uid, __GO_DATA_MODEL_NUM_Y__, &col);
+    getHandleIntProperty(uid, __GO_DATA_MODEL_NUM_X__, &col);
+    getHandleIntProperty(uid, __GO_DATA_MODEL_NUM_Y__, &row);
     int datatype = 0;
     getHandleIntProperty(uid, __GO_DATA_MODEL_MATPLOT_DATA_TYPE__, &datatype);
     int imagetype = 0;
@@ -2685,7 +2776,7 @@ static bool export_handle_matplot(int parent, int uid)
             {
                 size *= 3;
             }
-            else if ((ImageType)imagetype == MATPLOT_GL_RGBA)
+            else if ((GLType)imagetype == MATPLOT_GL_RGBA)
             {
                 size *= 4;
             }
@@ -3052,28 +3143,28 @@ static bool export_handle_champ(int parent, int uid)
     getHandleDoubleVectorProperty(uid, __GO_BASE_X__, &arrowBasesX);
     dims[0] = 1;
     dims[1] = dimensions[0];
-    writeDoubleMatrix(parent, "base_x", 2, dims, arrowBasesX);
+    writeDoubleMatrix6(parent, "base_x", 2, dims, arrowBasesX);
     releaseGraphicObjectProperty(__GO_BASE_X__, arrowBasesX, jni_double_vector, dims[1]);
 
     //base y
     getHandleDoubleVectorProperty(uid, __GO_BASE_Y__, &arrowBasesY);
     dims[0] = 1;
     dims[1] = dimensions[1];
-    writeDoubleMatrix(parent, "base_y", 2, dims, arrowBasesY);
+    writeDoubleMatrix6(parent, "base_y", 2, dims, arrowBasesY);
     releaseGraphicObjectProperty(__GO_BASE_Y__, arrowBasesY, jni_double_vector, dims[1]);
 
     //direction x
     getHandleDoubleVectorProperty(uid, __GO_DIRECTION_X__, &arrowDirectionsX);
     dims[0] = dimensions[0];
     dims[1] = dimensions[1];
-    writeDoubleMatrix(parent, "direction_x", 2, dims, arrowDirectionsX);
+    writeDoubleMatrix6(parent, "direction_x", 2, dims, arrowDirectionsX);
     releaseGraphicObjectProperty(__GO_DIRECTION_X__, arrowDirectionsX, jni_double_vector, dims[0] * dims[1]);
 
     //direction y
     getHandleDoubleVectorProperty(uid, __GO_DIRECTION_Y__, &arrowDirectionsY);
     dims[0] = dimensions[0];
     dims[1] = dimensions[1];
-    writeDoubleMatrix(parent, "direction_y", 2, dims, arrowDirectionsY);
+    writeDoubleMatrix6(parent, "direction_y", 2, dims, arrowDirectionsY);
     releaseGraphicObjectProperty(__GO_DIRECTION_Y__, arrowDirectionsY, jni_double_vector, dims[0] * dims[1]);
 
     releaseGraphicObjectProperty(__GO_CHAMP_DIMENSIONS__, dimensions, jni_int_vector, 2);
@@ -3325,4 +3416,33 @@ static bool export_handle_children(int parent, int uid)
     releaseGraphicObjectProperty(__GO_CHILDREN__, children, jni_int_vector, count);
     closeList6(node);
     return true;
+}
+
+int add_current_entity(int dataset)
+{
+    int type = 0;
+    getHandleInt(dataset, "type", &type);
+
+    switch (type)
+    {
+        case __GO_FIGURE__:
+        {
+            return import_handle(dataset, -1);
+        }
+        case __GO_AXES__:
+        {
+            //add handle to current figure
+            getOrCreateDefaultSubwin();
+            int iCurrentFigure = getCurrentFigure();
+            return import_handle(dataset, iCurrentFigure);
+        }
+        case __GO_COMPOUND__:
+        {
+            int axes = getOrCreateDefaultSubwin();
+            return import_handle(dataset, axes);
+        }
+        default:
+            //add handle as child of current axes ( take care of compound ! )
+            return -1;
+    }
 }

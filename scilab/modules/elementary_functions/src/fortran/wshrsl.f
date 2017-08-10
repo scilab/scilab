@@ -1,11 +1,14 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) INRIA - Serge STEER
 c 
-c This file must be used under the terms of the CeCILL.
-c This source file is licensed as described in the file COPYING, which
-c you should have received as part of this distribution.  The terms
-c are also available at    
-c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+c Copyright (C) 2012 - 2016 - Scilab Enterprises
+c
+c This file is hereby licensed under the terms of the GNU GPL v2.0,
+c pursuant to article 5.3.4 of the CeCILL v.2.1.
+c This file was originally licensed under the terms of the CeCILL v2.1,
+c and continues to be available under such terms.
+c For more information, see the COPYING file which you should have received
+c along with this program.
 c
 C/MEMBR ADD NAME=WSHRSL,SSI=0
 c
@@ -19,7 +22,7 @@ c
 c!calling sequence
 c
 c      subroutine wshrsl(ar,ai,br,bi,cr,ci,m,n,na,nb,nc,eps,rmax,fail)
-c   ar,ai  a doubly subscripted array containg the matrix a in
+c   ar,ai  a doubly subscripted array containing the matrix a in
 c          lower triangular form
 c
 c   br,bi  a doubly subscripted array containing tbe matrix br,bi

@@ -3,11 +3,14 @@
  * Copyright (C) 2010 - DIGITEO - Allan CORNET
  * Copyright (C) 2010 - DIGITEO - Bruno JOFRET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -16,6 +19,7 @@
 #include <string>
 #include <iterator>
 #include <set>
+#include <cmath>
 
 #include "BrowseVar.hxx"
 #ifdef _MSC_VER
@@ -93,17 +97,17 @@ void SetBrowseVarData()
     iLocalVariablesUsed = ctx->getVarsToVariableBrowser(lstVars);
     iLocalVariablesUsed += ctx->getLibsToVariableBrowser(lstLibs);
 
-    char **pstAllVariableNames = new char*[iLocalVariablesUsed];
-    char **pstAllVariableVisibility = new char*[iLocalVariablesUsed];
-    char **pstAllVariableListTypes = new char*[iLocalVariablesUsed];
-    int *piAllVariableBytes = new int[iLocalVariablesUsed];
-    char **pstAllVariableSizes = new char*[iLocalVariablesUsed];
-    int *piAllVariableTypes = new int[iLocalVariablesUsed];
-    int *piAllVariableIntegerTypes = new int[iLocalVariablesUsed];
-    bool *piAllVariableFromUser = new bool[iLocalVariablesUsed];
+    char **pstAllVariableNames = new char*[iLocalVariablesUsed]();
+    char **pstAllVariableVisibility = new char*[iLocalVariablesUsed]();
+    char **pstAllVariableListTypes = new char*[iLocalVariablesUsed]();
+    int *piAllVariableBytes = new int[iLocalVariablesUsed]();
+    char **pstAllVariableSizes = new char*[iLocalVariablesUsed]();
+    int *piAllVariableTypes = new int[iLocalVariablesUsed]();
+    int *piAllVariableIntegerTypes = new int[iLocalVariablesUsed]();
+    bool *piAllVariableFromUser = new bool[iLocalVariablesUsed]();
     /* Necessary for the plots in the var browser */
-    int *piAllVariableNbRows = new int[iLocalVariablesUsed];
-    int *piAllVariableNbCols = new int[iLocalVariablesUsed];
+    int *piAllVariableNbRows = new int[iLocalVariablesUsed]();
+    int *piAllVariableNbCols = new int[iLocalVariablesUsed]();
 
     int nbRows, nbCols;
     char *sizeStr = NULL;
@@ -439,7 +443,7 @@ std::string formatMatrix(int nbRows, int nbCols, double *pdblReal, double *pdblI
             {
                 formated += MINUS_STR;
             }
-            formated += addDouble(std::abs(img));
+            formated += addDouble(std::fabs(img));
             formated += I_STR;
         }
         return formated;
@@ -465,7 +469,7 @@ std::string formatMatrix(int nbRows, int nbCols, double *pdblReal, double *pdblI
                     formated += MINUS_STR;
                 }
 
-                formated += addDouble(std::abs(img));
+                formated += addDouble(std::fabs(img));
                 formated += I_STR;
             }
 

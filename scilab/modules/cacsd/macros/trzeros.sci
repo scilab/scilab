@@ -1,11 +1,14 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function [nt,dt,rk]=trzeros(Sl)
     //Transmission zeros of Sl = nt./dt
@@ -31,14 +34,26 @@ function [nt,dt,rk]=trzeros(Sl)
 
     if sltyp == "rational" then
         if size(Sl)==1 then
-            nt=roots(Sl("num"));dt=[];rk=1;
+            nt=roots(Sl.num);dt=[];rk=1;
             return;
         end
         Sl=tf2ss(Sl);
     end
 
+    if sltyp == "zpk" then
+        if size(Sl)==1 then
+            nt=Sl.Z{1};dt=[];rk=1;
+            return;
+        end
+        Sl=zpk2ss(Sl);
+    end
+
     if typeof(Sl)<>"state-space" then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: A linear dynamical system or a polynomial expected.\n"),"trzeros",1))
+        ierr=execstr("[nt,dt,rk]=%"+overloadname(Sl)+"_trzeros(Sl)","errcatch")
+        if ierr<>0 then
+            error(msprintf(gettext("%s: Wrong type for input argument: Linear dynamical system expected.\n"),"trzeros",1))
+        end
+        return
     end
 
     //Sl=minss(Sl);

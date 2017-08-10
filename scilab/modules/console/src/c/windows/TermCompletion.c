@@ -1,14 +1,17 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2008-2010 - DIGITEO - Allan CORNET
-*
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
-*
-*/
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008-2010 - DIGITEO - Allan CORNET
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ */
 
 /*--------------------------------------------------------------------------*/
 #include <string.h>
@@ -32,6 +35,7 @@ static char **concatenateStrings(int *sizearrayofstring, char *string1,
                                  char *string4, char *string5);
 static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFiles,
                                   char *lineBeforeCaret, char *lineAfterCaret, char *filePattern, char *defaultPattern);
+static void separateFilesDirectories(char** dictionary, int size, char*** files, int* sizeFiles, char*** directories, int* sizeDirectories);
 static void TermCompletionOnAll(char *lineBeforeCaret, char *lineAfterCaret, char *defaultPattern);
 /*--------------------------------------------------------------------------*/
 static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFiles,
@@ -54,8 +58,17 @@ static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFile
         {
             char *common = getCommonPart(dictionaryFiles, sizedictionaryFiles);
 
-            displayCompletionDictionary(dictionaryFiles,
-                                        sizedictionaryFiles, gettext("File or Directory"));
+            char** files;
+            int sizeFiles;
+            char** directories;
+            int sizeDirectories;
+            separateFilesDirectories(dictionaryFiles, sizedictionaryFiles, &files, &sizeFiles, &directories, &sizeDirectories);
+
+            //displayCompletionDictionary(dictionaryFiles, sizedictionaryFiles, gettext("File or Directory"));
+            displayCompletionDictionary(files, sizeFiles, gettext("File"));
+            displayCompletionDictionary(directories, sizeDirectories, gettext("Directory"));
+            freeArrayOfString(files, sizeFiles);
+            freeArrayOfString(directories, sizeDirectories);
 
             displayPrompt();
             newLine();
@@ -104,6 +117,33 @@ static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFile
                 FREE(common);
                 common = NULL;
             }
+        }
+    }
+}
+/*--------------------------------------------------------------------------*/
+static void separateFilesDirectories(char** dictionary, int size, char*** files, int* sizeFiles, char*** directories, int* sizeDirectories)
+{
+    int i;
+    *files = NULL;
+    *sizeFiles = 0;
+    *directories = NULL;
+    *sizeDirectories = 0;
+    for (i = 0; i < size; ++i)
+    {
+        // Check that the item is a file or a directory
+        char* word = dictionary[i];
+        int len = (int) strlen(word);
+        if (len && word[len - 1] == '\\')
+        {
+            (*sizeDirectories)++;
+            *directories = (char **) REALLOC(*directories, sizeof(char *) * (*sizeDirectories));
+            (*directories)[*sizeDirectories - 1] = strdup(word);
+        }
+        else
+        {
+            (*sizeFiles)++;
+            *files = (char **) REALLOC(*files, sizeof(char *) * (*sizeFiles));
+            (*files)[*sizeFiles - 1] = strdup(word);
         }
     }
 }
@@ -315,7 +355,7 @@ static void displayCompletionDictionary(char **dictionary, int sizedictionary, c
         for (i = 0; i < sizedictionary; i++)
         {
             int newlenLine = lenCurrentLine + (int)strlen(dictionary[i]) + (int)strlen(" ");
-            if ( newlenLine >= (getConsoleWidth() - 10) )
+            if (newlenLine >= (getConsoleWidth() - 10))
             {
                 TerminalPrintf("\n");
                 lenCurrentLine = 0;

@@ -107,10 +107,10 @@ function [txt,rpar,ipar] = create_modelica(blklst,corinvm,cmat,NvM,name,scs_m)
         if mo.model<>"OutPutPort" & mo.model<>"InPutPort" then
             //## retrieve the object in the scs_m structure
             o_scsm = scs_m(scs_full_path(corinvm(k)));
-            //## get the structure graphics
-            o_gr  = o_scsm.graphics;
+            //## get the structure model
+            o_model  = o_scsm.model;
             //## get the identification field
-            id = stripblanks(o_gr.id)
+            id = stripblanks(o_model.label)
 
             if id<>"" then
                 models($)=models($)+" """+id+""";"
@@ -203,7 +203,7 @@ function r=write_nD_format(x)
         if nD1==1 then // rows vector
             r="{"+strcat(string(x),",")+"}"
             r=strsubst(r,"D","e");
-            return r;
+            return;
         elseif nD2==1   then // column vector
             N=nD1;
             cmd=")"
@@ -211,15 +211,6 @@ function r=write_nD_format(x)
             N=sx(1);
             cmd=",:)"
         end
-    else // hypermatrix
-        // typeof(x)==hypermat
-        //  xd=x.entries
-        //  sdims=x.dims(2:$)
-        //  N=x.dims(1)
-        //  cmd=':)'
-        //  n=size(sx,'c')
-        //  for i=1:n-2;cmd=':,'+cmd;end;
-        //  cmd=','+cmd;
     end
     r=[];
     for i=1:N
@@ -229,27 +220,10 @@ function r=write_nD_format(x)
     r="{"+strcat(r,",")+"}";
 endfunction
 
-// a 2x3 matrix {{xx,xx,xx},{xx,xx,xx}}
-// A[2] {xx,xx}
-// A[1,2] {{xx,xx}}
-// A[2,1] {{xx},{xx}}
-// A[1,1,2] {{{xx,xx}}}
-// a=rand(2,3)
-// a=[3,4];
-// a=[4;2];
-// a=rand(2,3);
-// a=rand(1,2,3,4,5);
-// a=[1 2 3 4 1 4];a(:,:,2)=[5 6 7 8 1 5] ;
-//if typeof(a)== 'hypermat' then
-// disp('not supported')
-//end
-//sa=write_nD_format(a)
-
-
 function     Pari=construct_Pars(Pari,opari,Parembed)
 
     if Pari==[] then
-        return " "
+        return
     end
     // Pars='  parameter Real '+Pars+'(fixed=false);'
     [atemp]=format();
@@ -258,13 +232,13 @@ function     Pari=construct_Pars(Pari,opari,Parembed)
     //erpar=string(rpar); will put 1e-16 to zero in a vector containing
     //big numbers
 
-    C=opari;
-    [a1,b1]=size(C);
-    npi=a1*b1;
-    if typeof(C)== "hypermat" then
+    C = opari;
+    if ndims(C)>2 then
         messagebox(_("Hyper Matrix is not supported"),"error","modal")
         return
     end
+    [a1,b1] = size(C);
+    npi = a1*b1;
 
     if (type(C)==1) then
         if isreal(C) then
@@ -313,7 +287,7 @@ function eopari = construct_redeclar(opari)
     C=opari;
     npi=size(C,"*");
 
-    if typeof(C)== "hypermat" then
+    if ndims(C)>2 then
         messagebox(_("Hyper Matrix is not supported"),"error","modal")
         return
     end

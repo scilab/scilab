@@ -2,113 +2,131 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2009 - DIGITEO - Pierre Lando
+ * Copyright (C) 2010 - DIGITEO - Yann Collette
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="plot2d" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="plot2d" xml:lang="en">
     <refnamediv>
         <refname>plot2d</refname>
-        <refpurpose>esboço 2d</refpurpose>
+        <refpurpose>2D plot</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
-        <synopsis>plot2d([x],y)
-            plot2d([x],y,&lt;opt_args&gt;)
+        <title>Syntax</title>
+        <synopsis>
+            plot2d([logflag,][x,],y[,style[,strf[,leg[,rect[,nax]]]]])
+            plot2d([logflag,][x,],y,&lt;opt_args&gt;)
         </synopsis>
     </refsynopsisdiv>
-    <refsection>
-        <title>Parâmetros</title>
+    <refsection role="parameters">
+        <title>Arguments</title>
         <variablelist>
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>uma matriz ou vetor de reais. Se omitido, é assumido como
-                        sendo o vetor <literal>1:n</literal> onde <literal>n</literal> é o
-                        número de pontos da curva dados pelo parâmetro
-                        <literal>y</literal>.
+                    <para>a real matrix or vector. If omitted, it is assumed to be the
+                        vector <literal>1:n</literal> where <literal>n</literal> is the
+                        number of curve points given by the <literal>y</literal>
+                        parameter.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>y</term>
                 <listitem>
-                    <para>uma matriz ou vetor de reais</para>
+                    <para>a real matrix or vector.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>&lt;opt_args&gt;</term>
                 <listitem>
-                    <para>representa uma seqüência de sentenças
-                        <literal>key1=value1,key2=value2</literal>,... onde
-                        <literal>key1</literal>, <literal>key2,...</literal> podem ser um
-                        dos seguintes:
+                    <para>This represents a sequence of statements
+                        <literal>key1=value1,key2=value2</literal>,... where
+                        <literal>key1</literal>, <literal>key2,...</literal> can be one of
+                        the following:
                     </para>
                     <variablelist>
                         <varlistentry>
-                            <term>style</term>
-                            <listitem>
-                                <para>ajusta o estilo da curva. O valor associado deve ser um
-                                    vetor de reais com valores inteiros (positivos ou
-                                    negativos)
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>rect</term>
-                            <listitem>
-                                <para>as fronteiras mínimas requeridas para o esboço. O valor
-                                    associado deve ser um vetor de reais com quatro entradas:
-                                    <literal>[xmin,ymin,xmax,ymax]</literal>.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
                             <term>logflag</term>
                             <listitem>
-                                <para>ajusta a escala (linear ou logaritmica) ao longo dos
-                                    eixos. O valor associado deve ser um string com um dos
-                                    possíveis valores: <literal>"nn"</literal>,
-                                    <literal>"nl"</literal> , <literal>"ln"</literal> e
-                                    <literal>"ll"</literal> .
+                                <para>sets the scale (linear or logarithmic) along the axes.
+                                    The associated value should be a string with possible
+                                    values: <literal>"nn"</literal>, <literal>"nl"</literal> ,
+                                    <literal>"ln"</literal> and <literal>"ll"</literal> .
                                 </para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
-                            <term>frameflag</term>
+                            <term>style</term>
                             <listitem>
-                                <para>controla a computação dos intervalos de coordenadas
-                                    reais a partir dos valores mínimos requeridos. O valor
-                                    associado deve ser um inteiro entre 0 e 8
+                                <para>sets the style for each curve. The associated value
+                                    should be a real vector with integer (positive or negative)
+                                    values.
                                 </para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
-                            <term>axesflag</term>
+                            <term>strf</term>
                             <listitem>
-                                <para>especifica como os eixos são desenhados. O valor
-                                    associado deve ser um inteiro entre 0 e 5
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>nax</term>
-                            <listitem>
-                                <para>ajusta os rótulos dos eixos e a definição de tiques. O
-                                    valor associado deve ser um vetor de quatro entradas inteiras
-                                    <literal>[nx,Nx,ny,Ny]</literal>
+                                <para>controls the display of captions.</para>
+                                <para>
+                                    <literal>strf</literal> is a string of length 3
+                                    <literal>"xyz"</literal> (by default <literal>strf=
+                                        "081"
+                                    </literal>
+                                    )
                                 </para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
                             <term>leg</term>
                             <listitem>
-                                <para>ajusta a legenda das curvas. O valor associado deve ser
-                                    um string
+                                <para>sets the curves captions. The associated value should be
+                                    a character string.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>rect</term>
+                            <listitem>
+                                <para>sets the minimal bounds requested for the plot. The
+                                    associated value should be a real vector with four entries:
+                                    <literal>[xmin,ymin,xmax,ymax]</literal>.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>nax</term>
+                            <listitem>
+                                <para>sets the axes labels and tics definition. The associated
+                                    value should be a real vector with four integer entries
+                                    <literal>[nx,Nx,ny,Ny].</literal>
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>frameflag</term>
+                            <listitem>
+                                <para>controls the computation of the actual coordinate ranges
+                                    from the minimal requested values. The associated value should
+                                    be an integer ranging from 0 to 8.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>axesflag</term>
+                            <listitem>
+                                <para>specifies how the axes are drawn. The associated value
+                                    should be an integer ranging from 0 to 5 or 9 (default value).
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -117,188 +135,387 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
-        <title>Descrição</title>
+    <refsection role="description">
+        <title>Description</title>
         <para>
-            <literal>plot2d</literal> esboça um conjunto de curvas 2d. Se você
-            está familiarizado com a sintaxe do Matlab da função
-            <literal>plot</literal> , você deve usar <link linkend="plot">plot</link>.
+            <literal>plot2d</literal> plots a set of 2D curves. If you are
+            familiar with Matlab <literal>plot</literal> syntax, you should use <link linkend="plot">plot</link>.
         </para>
         <para>
-            Se <literal>x</literal> e <literal>y</literal> são vetores,
-            plot2d(x,y,&lt;opt_args&gt;) esboça o vetor <literal>y</literal> versus o
-            vetor <literal>x</literal>. Os vetores <literal>x</literal> e
-            <literal>y</literal> vectors devem ter o mesmo número de entradas.
+            If <literal>x</literal> and <literal>y</literal> are vectors,
+            plot2d(x,y,&lt;opt_args&gt;) plots vector <literal>y</literal> versus
+            vector <literal>x</literal>. <literal>x</literal> and <literal>y</literal>
+            vectors should have the same number of entries.
         </para>
         <para>
-            Se <literal>x</literal> é um vetor e <literal>y</literal> uma matriz
-            plot2d(x,y,&lt;opt_args&gt;) esboça cada coluna de <literal>y</literal>
-            versus o vetor <literal>x</literal>. Neste caso, o número de colunas de
-            <literal>y</literal> deve ser igual ao número de entradas de
-            <literal>x</literal>.
+            If <literal>x</literal> is a vector and <literal>y</literal> a
+            matrix plot2d(x,y,&lt;opt_args&gt;) plots each columns of
+            <literal>y</literal> versus vector <literal>x</literal>. The
+            number of rows of <literal>y</literal> must be equal to the number of
+            <literal>x</literal> entries.
         </para>
         <para>
-            Se <literal>x</literal> e <literal>y</literal> são matrizes,
-            plot2d(x,y,&lt;opt_args&gt;) esboça cada coluna de <literal>y</literal>
-            versus a coluna correspondente de <literal>x</literal>. Neste caso,
-            <literal>x</literal> e <literal>y</literal> devem ter o mesmo
-            tamanho.
+            If <literal>x</literal> and <literal>y</literal> are matrices,
+            plot2d(x,y,&lt;opt_args&gt;) plots each columns of <literal>y</literal>
+            versus corresponding column of <literal>x</literal>.
+            <literal>x</literal> and <literal>y</literal> must then have the same sizes.
         </para>
         <para>
-            Se <literal>y</literal> é um vetor, plot2d(y,&lt;opt_args&gt;)
-            esboça o vetor <literal>y</literal> versus o vetor
+            If <literal>y</literal> is a vector, plot2d(y,&lt;opt_args&gt;)
+            plots vector <literal>y</literal> versus vector
             <literal>1:size(y,'*')</literal>.
         </para>
         <para>
-            Se <literal>y</literal> é uma matriz, plot2d(y,&lt;opt_args&gt;)
-            esboça cada coluna de <literal>y</literal> versus o vetor
+            If <literal>y</literal> is a matrix, plot2d(y,&lt;opt_args&gt;)
+            plots each columns of <literal>y</literal> versus vector
             <literal>1:size(y,1)</literal>.
         </para>
         <para>
-            Os argumentos <literal>&lt;opt_args&gt;</literal> devem ser usados
-            para customizar o esboço.
+            The <literal>&lt;opt_args&gt;</literal> arguments should be used to
+            customize the plot
         </para>
         <variablelist>
             <varlistentry>
+                <term>logflag</term>
+                <listitem>
+                    <para>This option may be used to set the scale (linear or
+                        logarithmic) along the axes. The associated value should be a
+                        string with possible values: <literal>"nn"</literal>,
+                        <literal>"nl"</literal> , <literal>"ln"</literal> and
+                        <literal>"ll"</literal>. <literal>"l"</literal> stands for
+                        logarithmic scale and graduations and <literal>"n"</literal> for
+                        normal scale.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>style</term>
                 <listitem>
-                    <para>esta opção deve ser usada para especificar como as curvas são
-                        desenhadas. Se esta opção for especificada, o valor associado deve
-                        ser um vetor com tantas entradas quanto as curvas.
+                    <para>This option may be used to specify how the curves are drawn.
+                        If this option is specified, the associated value should be a vector
+                        with as many entries as curves.
                     </para>
                     <itemizedlist>
                         <listitem>
                             <para>
-                                Se <literal>style(i)</literal> é estritamente crescente, a
-                                curva é desenhada como uma linha simples e
-                                <literal>style(i)</literal> define o índice da cor para
-                                utilizada para desenhar a curva (ver <link linkend="getcolor">getcolor</link>). Note que o estilo de linha
-                                e a espessura podem ser ajustados através das propriedades da
-                                entidade poligonal (ver <link linkend="polyline_properties">polyline_properties</link>).
+                                if <literal>style(i)</literal> is strictly positive, the
+                                curve is drawn as plain line and <literal>style(i)</literal>
+                                defines the index of the color used to draw the curve (see <link linkend="getcolor">getcolor</link>). Note that the line style
+                                and the thickness can be set through the polyline entity
+                                properties (see <link linkend="polyline_properties">polyline_properties</link>).
                             </para>
-                            <para>Interpolação linear é feita entre os dados pontos da
-                                curva.
+                            <para>Piecewise linear interpolation is done between the given
+                                curve points.
                             </para>
                         </listitem>
                         <listitem>
                             <para>
-                                Se <literal>style(i)</literal> é negativo ou zero, os
-                                pontos dados são desenhados utilizando-se marcas,
-                                <literal>abs(style(i))</literal> define a marca com
-                                identificador utilizada. Note que as cores das marcas e seus
-                                tamanhos podem ser ajustados através das propriedades da
-                                entidade poligonal (ver <link linkend="polyline_properties">polyline_properties</link>).
+                                if <literal>style(i)</literal> is negative or zero, the
+                                given curve points are drawn using marks,
+                                <literal>abs(style(i))</literal> defines the mark with id used.
+                                Note that the marks color and marks sizes can be set through
+                                the polyline entity properties (see <link linkend="polyline_properties">polyline_properties</link>).
                             </para>
                         </listitem>
                     </itemizedlist>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>logflag</term>
+                <term>strf</term>
                 <listitem>
-                    <para>esta opção é usada para ajustar a escala (linear ou
-                        logarítmica) ao longo dos eixos O valor associado é um string com um
-                        dos seguintes valores: <literal>"nn"</literal>,
-                        <literal>"nl"</literal> , <literal>"ln"</literal> e
-                        <literal>"ll"</literal>. <literal>"l"</literal> significa escala e
-                        graduação logarítimica e <literal>"n"</literal> escala
-                        normal.
+                    <para>
+                        is a string of length 3 <literal>"xyz"</literal> (by default
+                        <literal>strf= "081"</literal>)
+                    </para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>x</term>
+                            <listitem>
+                                <para>controls the display of captions.</para>
+                                <variablelist>
+                                    <varlistentry>
+                                        <term>x=0</term>
+                                        <listitem>
+                                            <para>no caption.</para>
+                                        </listitem>
+                                    </varlistentry>
+                                    <varlistentry>
+                                        <term>x=1</term>
+                                        <listitem>
+                                            <para>captions are displayed. They are given by the
+                                                optional argument <literal>leg</literal>.
+                                            </para>
+                                        </listitem>
+                                    </varlistentry>
+                                </variablelist>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>y</term>
+                            <listitem>
+                                <para>controls the computation of the actual coordinate ranges
+                                    from the minimal requested values. Actual ranges can be larger
+                                    than minimal requirements.
+                                </para>
+                                <variablelist>
+                                    <varlistentry>
+                                        <term>y=0</term>
+                                        <listitem>
+                                            <para>no computation, the plot use the previous (or
+                                                default) scale
+                                            </para>
+                                        </listitem>
+                                    </varlistentry>
+                                    <varlistentry>
+                                        <term>y=1</term>
+                                        <listitem>
+                                            <para>from the rect arg</para>
+                                        </listitem>
+                                    </varlistentry>
+                                    <varlistentry>
+                                        <term>y=2</term>
+                                        <listitem>
+                                            <para>from the min/max of the x, y data</para>
+                                        </listitem>
+                                    </varlistentry>
+                                    <varlistentry>
+                                        <term>y=3</term>
+                                        <listitem>
+                                            <para>built for an isometric scale from the rect
+                                                arg
+                                            </para>
+                                        </listitem>
+                                    </varlistentry>
+                                    <varlistentry>
+                                        <term>y=4</term>
+                                        <listitem>
+                                            <para>built for an isometric plot from the min/max of
+                                                the x, y data
+                                            </para>
+                                        </listitem>
+                                    </varlistentry>
+                                    <varlistentry>
+                                        <term>y=5</term>
+                                        <listitem>
+                                            <para>enlarged for pretty axes from the rect arg</para>
+                                        </listitem>
+                                    </varlistentry>
+                                    <varlistentry>
+                                        <term>y=6</term>
+                                        <listitem>
+                                            <para>enlarged for pretty axes from the min/max of the
+                                                x, y data
+                                            </para>
+                                        </listitem>
+                                    </varlistentry>
+                                    <varlistentry>
+                                        <term>y=7</term>
+                                        <listitem>
+                                            <para>like y=1 but the previous plot(s) are redrawn to
+                                                use the new scale
+                                            </para>
+                                        </listitem>
+                                    </varlistentry>
+                                    <varlistentry>
+                                        <term>y=8</term>
+                                        <listitem>
+                                            <para>like y=2 but the previous plot(s) are redrawn to
+                                                use the new scale
+                                            </para>
+                                        </listitem>
+                                    </varlistentry>
+                                </variablelist>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>z</term>
+                            <listitem>
+                                <para>controls the display of information on the frame around
+                                    the plot. If axes are requested, the number of tics can be
+                                    specified by the <literal>nax</literal> optional
+                                    argument.
+                                </para>
+                                <variablelist>
+                                    <varlistentry>
+                                        <term>z=0</term>
+                                        <listitem>
+                                            <para>nothing is drawn around the plot.</para>
+                                        </listitem>
+                                    </varlistentry>
+                                    <varlistentry>
+                                        <term>z=1</term>
+                                        <listitem>
+                                            <para>axes are drawn, the y=axis is displayed on the
+                                                left.
+                                            </para>
+                                        </listitem>
+                                    </varlistentry>
+                                    <varlistentry>
+                                        <term>z=2</term>
+                                        <listitem>
+                                            <para>the plot is surrounded by a box without
+                                                tics.
+                                            </para>
+                                        </listitem>
+                                    </varlistentry>
+                                    <varlistentry>
+                                        <term>z=3</term>
+                                        <listitem>
+                                            <para>axes are drawn, the y=axis is displayed on the
+                                                right.
+                                            </para>
+                                        </listitem>
+                                    </varlistentry>
+                                    <varlistentry>
+                                        <term>z=4</term>
+                                        <listitem>
+                                            <para>axes are drawn centred in the middle of the frame
+                                                box.
+                                            </para>
+                                        </listitem>
+                                    </varlistentry>
+                                    <varlistentry>
+                                        <term>z=5</term>
+                                        <listitem>
+                                            <para>axes are drawn so as to cross at point
+                                                <literal>(0,0)</literal>. If point
+                                                <literal>(0,0)</literal> does not lie inside the frame,
+                                                axes will not appear on the graph.
+                                            </para>
+                                        </listitem>
+                                    </varlistentry>
+                                </variablelist>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>leg</term>
+                <listitem>
+                    <para>This option may be used to sets the curve captions. It must be
+                        a string with the form <literal>"leg1@leg2@...."</literal> where
+                        <literal>leg1</literal> , <literal>leg2</literal> , etc. are
+                        respectively the captions of the first curve, of the second curve,
+                        etc. The default is <literal> " "</literal>.
+                    </para>
+                    <para>The curve captions are drawn on below the x-axis. This option
+                        is not flexible enough, use the <link linkend="captions">captions</link> or <link linkend="legend">legend</link> functions preferably.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>rect</term>
                 <listitem>
-                    <para>esta opção pode ser usada para ajustar as fronteiras mínimas
-                        requeridas para o esboço. Se esta opção for especificada, o valor
-                        associado deve ser um vetor real de quatro entradas:
+                    <para>This option may be used to set the minimal bounds requested
+                        for the plot. If this option is specified, the associated value
+                        should be a real vector with four entries:
                     </para>
                     <para>
                         <literal>[xmin,ymin,xmax,ymax]</literal>.
-                        <literal>xmin</literal> e <literal>xmax</literal> definem os limites
-                        para as abscissas, enquanto <literal>ymin</literal> e
-                        <literal>ymax</literal> definem os limites para as ordenadas.
+                        <literal>xmin</literal> and <literal>xmax</literal> defines the
+                        bounds on the abscissae while <literal>ymin</literal> and
+                        <literal>ymax</literal> defines the bounds on the ordinates.
                     </para>
-                    <para>Este argumento pode ser utilizado junto com a opção
-                        <literal>frameflag</literal> para especificar como os limites dos
-                        eixos derivam do argumento dado <literal>rect</literal>. Se a opção
-                        <literal>frameflag</literal> não for fornecida, é suposta como sendo
-                        <literal>frameflag=7</literal>.
+                    <para>This argument may be used together with the
+                        <literal>frameflag</literal> option to specify how the axes
+                        boundaries are derived from the given <literal>rect</literal>
+                        argument. If the <literal>frameflag</literal> option is not given,
+                        it is supposed to be <literal>frameflag=7</literal>.
                     </para>
-                    <para>As fronteiras dos eixos também podem ser customizadas através
-                        das propriedades da entidade de eixos (Axes) (ver <link linkend="axes_properties">axes_properties</link>).
+                    <para>The axes boundaries can also be customized through the axes
+                        entity properties (see <link linkend="axes_properties">axes_properties</link>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>nax</term>
+                <listitem>
+                    <para>This option may be used to specify the axes labels and tics
+                        definition. The associated value should be a real vector with four integer entries
+                        <literal>[nx,Nx,ny,Ny]</literal>.
+                    </para>
+                    <para>
+                        <literal>Nx</literal> gives the number of main tics to be used
+                        on the x-axis (to use autoticks set it to -1), <literal>nx</literal> gives the number of
+                        subtics to be drawn between two main x-axis tics.
+                    </para>
+                    <para>
+                        <literal>Ny</literal> and <literal>ny</literal> give similar
+                        information for the y-axis.
+                    </para>
+                    <para>
+                        If <literal>axesflag</literal> option is not set
+                        <literal>nax</literal> option supposes that
+                        <literal>axesflag</literal> option has been set to 9.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>frameflag</term>
                 <listitem>
-                    <para>esta opção pode ser usada para controlar a computação dos
-                        intervalos de coordenadas reais a partir de valores mínimos
-                        requeridos. Mudanças reais podem ser maiores que os requerimentos
-                        mínimos.
+                    <para>This option may be used to control the computation of the
+                        actual coordinate ranges from the minimal requested values. Actual
+                        ranges can be larger than minimal requirements.
                     </para>
                     <variablelist>
                         <varlistentry>
                             <term>frameflag=0</term>
                             <listitem>
-                                <para>não há computação, o esboço usa a escala anterior (ou
-                                    padrão).
+                                <para>no computation, the plot use the previous (or default)
+                                    scale.
                                 </para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
                             <term>frameflag=1</term>
                             <listitem>
-                                <para>os intervalos reais são dados pela opção
-                                    <literal>rect</literal>.
+                                <para>The actual range is the range given by the
+                                    <literal>rect</literal> option.
                                 </para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
                             <term>frameflag=2</term>
                             <listitem>
-                                <para>os intervalos reais são computados a partir dos valores
-                                    máximos e mínimos dos dados <literal>x</literal> e
-                                    <literal>y</literal>.
+                                <para>The actual range is computed from the min/max of the
+                                    <literal>x</literal> and <literal>y</literal> data.
                                 </para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
                             <term>frameflag=3</term>
                             <listitem>
-                                <para>os intevalo reais são os intervalos fornecidos pela
-                                    opção <literal>rect</literal> e aumentados para se obter uma
-                                    escala isométrica.
+                                <para>The actual range is the range given by the
+                                    <literal>rect</literal> option and enlarged to get an
+                                    isometric scale.
                                 </para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
                             <term>frameflag=4</term>
                             <listitem>
-                                <para>os intervalos reais são computados a partir dos valores
-                                    máximos e mínimos de <literal>x</literal> e
-                                    <literal>y</literal> e aumentados para se obter uma escala
-                                    isométrica.
+                                <para>The actual range is computed from the min/max of the
+                                    <literal>x</literal> and <literal>y</literal> data and
+                                    enlarged to get an isometric scale.
                                 </para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
                             <term>frameflag=5</term>
                             <listitem>
-                                <para>os intervalos reais são os intervalos fornecidos pela
-                                    opção <literal>rect</literal> e aumentados para se obter
-                                    rótulos de eixos embelezados.
+                                <para>The actual range is the range given by the
+                                    <literal>rect</literal> option and enlarged to get pretty axes
+                                    labels.
                                 </para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
                             <term>frameflag=6</term>
                             <listitem>
-                                <para>os intervalos reais são computados a partir dos valores
-                                    mínimos dos dados <literal>x</literal> e <literal>y</literal>
-                                    e então aumentados para se obter rótulos de eixos
-                                    embelezados.
+                                <para>The actual range is computed from the min/max of the
+                                    <literal>x</literal> and <literal>y</literal> data and
+                                    enlarged to get pretty axes labels.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -306,9 +523,9 @@
                             <term>frameflag=7</term>
                             <listitem>
                                 <para>
-                                    é como <literal>frameflag=1</literal> , mas os esboços
-                                    anteriores são redesenhados em uma nova escala. É utilizado
-                                    para adicionar o gráfico corrente a um anterior.
+                                    like <literal>frameflag=1</literal> but the previous
+                                    plot(s) are redrawn to use the new scale. Used to add the
+                                    current graph to a previous one.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -316,9 +533,9 @@
                             <term>frameflag=8</term>
                             <listitem>
                                 <para>
-                                    é como <literal>frameflag=2</literal> , mas os esboços
-                                    anteriores são redesenhados em uma nova escala. É utilizado
-                                    para adicionar o gráfico corrente a um anterior.
+                                    like<literal>frameflag=2</literal> but the previous
+                                    plot(s) are redrawn to use the new scale. Used to add the
+                                    current graph to a previous one.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -326,30 +543,29 @@
                             <term>frameflag=9</term>
                             <listitem>
                                 <para>
-                                    é como <literal>frameflag=8</literal> mas a imagem é
-                                    aumentada enlarged to para se obter rótulos de eixos
-                                    embelezados. Este é o alor padrão
+                                    like<literal>frameflag=8</literal> but the range is
+                                    enlarged to get pretty axes labels. This is the default
+                                    value.
                                 </para>
                             </listitem>
                         </varlistentry>
                     </variablelist>
-                    <para>Os limites dos eixos também podem ser customizados através das
-                        propriedades da entidade de eixos (ver <link linkend="axes_properties">axes_properties</link>)
+                    <para>The axes boundaries can also be customized through the axes
+                        entity properties (see <link linkend="axes_properties">axes_properties</link>)
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>axesflag</term>
                 <listitem>
-                    <para>esta opção pode ser utilizada para especificar como os eixos
-                        são desenhados. O valor associado deve ser um inteiro entre 0 e 5
-                        :
+                    <para>This option may be used to specify how the axes are drawn. The
+                        associated value should be an integer ranging from 0 to 5 :
                     </para>
                     <variablelist>
                         <varlistentry>
                             <term>axesflag=0</term>
                             <listitem>
-                                <para>nada é desenhado ao redor do esboço (axes_visible=["off"
+                                <para>nothing is drawn around the plot (axes_visible=["off"
                                     "off"];box="off").
                                 </para>
                             </listitem>
@@ -357,7 +573,7 @@
                         <varlistentry>
                             <term>axesflag=1</term>
                             <listitem>
-                                <para>os eixos são desenhados, o eixo y é exibido à esquerda
+                                <para>axes are drawn, the y-axis is displayed on the left
                                     (axes_visible=["on" "on"];box="on",y_location="left").
                                 </para>
                             </listitem>
@@ -365,7 +581,7 @@
                         <varlistentry>
                             <term>axesflag=2</term>
                             <listitem>
-                                <para>o esboço é cercado por uma caixa sem tiques.
+                                <para>the plot is surrounded by a box without tics
                                     (axes_visible=["off" "off"];box="on").
                                 </para>
                             </listitem>
@@ -373,8 +589,8 @@
                         <varlistentry>
                             <term>axesflag=3</term>
                             <listitem>
-                                <para>os eixos são desenhados, o eixo y é exibido à direita
-                                    (axes_visible=["on"
+                                <para>axes are drawn, the y-axis is displayed on the
+                                    right (axes_visible=["on"
                                     "on"];box="off",y_location="right").
                                 </para>
                             </listitem>
@@ -382,182 +598,223 @@
                         <varlistentry>
                             <term>axesflag=4</term>
                             <listitem>
-                                <para>os eixos são desenhados centrados no meio da caixa de
-                                    moldura
+                                <para>axes are drawn centered in the middle of the frame, the box
+                                    being not drawn (axes_visible=["on" "on"];box="off",x_location="middle",
+                                    y_location="middle").
                                 </para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
                             <term>axesflag=5</term>
                             <listitem>
-                                <para>os eixos são desenhados para se cruzarem no ponto (0,0)
-                                    . Se o ponto (0,0) não estiver dentro da moldura, os eixos não
-                                    aparecerão no gráfico (axes_visible=["on"
-                                    "on"];box="on",y_location="middle").
+                                <para>axes are drawn centered in the middle of the frame similarly to
+                                    <literal>axesflag=4</literal>, the difference being that the box is drawn
+                                    (axes_visible=["on" "on"];box="on",x_location="middle",y_location="middle").
                                 </para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
                             <term>axesflag=9</term>
                             <listitem>
-                                <para>os eixos são desenhados, o eixo y é exibido à esquerda
-                                    (axes_visible=["on" "on"];box="off",y_location="left"). Este é
-                                    o valor padrão
+                                <para>axes are drawn, the y-axis is displayed on the left
+                                    (axes_visible=["on" "on"];box="off",y_location="left"). This
+                                    is the default value.
                                 </para>
                             </listitem>
                         </varlistentry>
                     </variablelist>
-                    <para>O aspecto dos eixos também pode ser customizado através das
-                        propriedades da entidade de eixos (ver <link linkend="axes_properties">axes_properties</link>).
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>nax</term>
-                <listitem>
-                    <para>esta opção pode ser utilizada para se especificar os rótulos
-                        dos eixos e a definição de tiques quando a opção
-                        <literal>axesflag=1</literal> é utilizada. O valor associado deve
-                        ser um vetor de inteiros com quatro entradas
-                        <literal>[nx,Nx,ny,Ny]</literal>.
-                    </para>
-                    <para>
-                        <literal>Nx</literal> fornece o número de tiques principais
-                        utilizados no eixo x (<emphasis role="bold">não mais levado em
-                            conta
-                        </emphasis>
-                        ), <literal>nx</literal> fornece o número de
-                        subtiques entre dois tiques principais no eixo x.
-                    </para>
-                    <para>
-                        <literal>Ny</literal> e <literal>ny</literal> fornecem as
-                        informações similares para o eixo y.
-                    </para>
-                    <para>
-                        Se a opção <literal>axesflag</literal> não for ajustada, a
-                        opção <literal>nax</literal> supõe que a opção
-                        <literal>axesflag</literal> foi ajustada para 1.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>leg</term>
-                <listitem>
-                    <para>esta opção pode ser usada para se ajustar as legendas das
-                        curvas. deve ser um string com a forma
-                        <literal>"leg1@leg2@...."</literal> onde <literal>leg1</literal> ,
-                        <literal>leg2</literal> , etc. São respectivamente as legendas para
-                        a primeira curva, segunda curva etc. o padrão é <literal> "
-                            "
-                        </literal>
-                        .
-                    </para>
-                    <para>As legendas de curvas são desenhadas abaixo do eixo x. Esta
-                        opção não é tão flexível, use as funções <link linkend="captions">captions</link> ou <link linkend="legend">legend</link> preferivelmente.
+                    <para>The axes aspect can also be customized through the axes
+                        entity properties (see <link linkend="axes_properties">axes_properties</link>).
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
-        <title>Mais Informações</title>
-        <para>Por padrão, esboços sucessivos são superpostos. para limpar o esboço
-            anterior use 
+    <refsection role="description">
+        <title>More information</title>
+        <para>By default, successive plots are superposed. To clear the previous plot, use
             <literal>
                 <link linkend="clf">clf()</link>
             </literal>
             .
         </para>
         <para>
-            Entre com o comando <literal>plot2d()</literal> para uma
-            demonstração.
+            Enter the command <literal>plot2d()</literal> to see a demo.
         </para>
-        <para>Outras funções plot2d de alto nível existem:</para>
+        <para>Other high level plot2d functions exist:</para>
         <itemizedlist>
             <listitem>
                 <para>
-                    plot2d2 é o mesmo que <literal>plot2d</literal> mas as curvas
-                    são supostas seccionalmente constantes.
+                    plot2d2 same as <literal>plot2d</literal> but the curve is
+                    supposed to be piecewise constant.
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    plot2d3 é o mesmo que <literal>plot2d</literal> mas a curva é
-                    esboçada com barras verticais.
+                    plot2d3 same as <literal>plot2d</literal> but the curve is
+                    plotted with vertical bars.
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    plot2d4 é o mesmo que <literal>plot2d</literal> mas a curva é
-                    esboçada com flechas.
+                    plot2d4 same as <literal>plot2d</literal> but the curve is
+                    plotted with vertical arrows.
                 </para>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection>
-        <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
-// inicialização de x
+    <refsection role="examples">
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+// x initialisation
 x=[0:0.1:2*%pi]';
-//esboço simples
+//simple plot
 plot2d(sin(x));
+ ]]></programlisting>
+        <scilab:image>
+            x=[0:0.1:2*%pi]';
+            plot2d(sin(x));
+        </scilab:image>
+        <programlisting role="example"><![CDATA[
 clf();
+x=[0:0.1:2*%pi]';
 plot2d(x,sin(x));
-//múltiplos esboços
+//multiple plot
+ ]]></programlisting>
+        <scilab:image>
+            x=[0:0.1:2*%pi]';
+            plot2d(x,sin(x));
+        </scilab:image>
+        <programlisting role="example"><![CDATA[
 clf();
+x=[0:0.1:2*%pi]';
 plot2d(x,[sin(x) sin(2*x) sin(3*x)])
-// múltiplos esboços sem fornecer as dimensões da moldura
+ ]]></programlisting>
+        <scilab:image>
+            x=[0:0.1:2*%pi]';
+            plot2d(x,[sin(x) sin(2*x) sin(3*x)])
+        </scilab:image>
+        <programlisting role="example"><![CDATA[
+// multiple plot giving the dimensions of the frame
 clf();
+x=[0:0.1:2*%pi]';
 plot2d(x,[sin(x) sin(2*x) sin(3*x)],rect=[0,0,6,0.5]);
-//múltiplos esboços com legendas dados tiques + estilo
+ ]]></programlisting>
+        <scilab:image>
+            x=[0:0.1:2*%pi]';
+            plot2d(x,[sin(x) sin(2*x) sin(3*x)],rect=[0,0,6,0.5]);
+        </scilab:image>
+        <programlisting role="example"><![CDATA[
+//multiple plot with captions and given tics + style
 clf();
+x=[0:0.1:2*%pi]';
 plot2d(x,[sin(x) sin(2*x) sin(3*x)],..
        [1,2,3],leg="L1@L2@L3",nax=[2,10,2,10],rect=[0,-2,2*%pi,2]);
-// isovisualização
-clf();
-plot2d(x,sin(x),1,frameflag= 4);
-// escala 
-clf();
-plot2d(x,sin(x),1,frameflag= 6);
-// auto-escala com esboços anteriores + estilo
-clf();
-plot2d(x,sin(x),-1);
-plot2d(x,2*sin(x),12); 
-plot2d(2*x,cos(x),3);
-// eixo à direita
-clf();
-plot2d(x,sin(x),leg="sin(x)");
-a=gca(); // manipulador da entidade Axes
-a.y_location ="right"; 
-// eixo centrado em (0,0) 
-clf();
-plot2d(x-4,sin(x),1,leg="sin(x)");
-a=gca(); // manipulador da entidade Axes
-a.x_location = "middle"; 
-a.y_location = "middle"; 
-// algumas operações sobre entidades criadas por plot2d ...
-a=gca();
-a.isoview='on'; 
-a.children // lista dos galhos dos eixos
-// há um Compound formado por duas poligonais e uma legenda 
-poly1= a.children(1).children(1); //armazena um manipulador de poligonal em poly1 
-poly1.foreground = 4; // outra maneira de se mudar o estilo...
-poly1.thickness = 3;  // ...e a espessura de uma curva.
-poly1.clip_state='off'; // controle de recorte
-leg = a.children(2); // armazena manipulador de legenda em leg
-leg.font_style = 9; 
-leg.line_mode = "on";
-a.isoview='off';
  ]]></programlisting>
+        <scilab:image>
+            x=[0:0.1:2*%pi]';
+            plot2d(x,[sin(x) sin(2*x) sin(3*x)],..
+            [1,2,3],leg="L1@L2@L3",nax=[2,10,2,10],rect=[0,-2,2*%pi,2]);
+        </scilab:image>
+        <programlisting role="example"><![CDATA[
+// isoview
+clf();
+x=[0:0.1:2*%pi]';
+plot2d(x,sin(x),1,frameflag= 4);
+ ]]></programlisting>
+        <scilab:image>
+            x=[0:0.1:2*%pi]';
+            plot2d(x,sin(x),1,frameflag= 4);
+        </scilab:image>
+        <programlisting role="example"><![CDATA[
+// scale
+clf();
+x=[0:0.1:2*%pi]';
+plot2d(x,sin(x),1,frameflag= 6);
+ ]]></programlisting>
+        <scilab:image>
+            x=[0:0.1:2*%pi]';
+            plot2d(x,sin(x),1,frameflag= 6);
+        </scilab:image>
+        <programlisting role="example"><![CDATA[
+// auto scaling with previous plots + style
+clf();
+x=[0:0.1:2*%pi]';
+plot2d(x,sin(x),-1);
+plot2d(x,2*sin(x),12);
+plot2d(2*x,cos(x),3);
+ ]]></programlisting>
+        <scilab:image>
+            x=[0:0.1:2*%pi]';
+            plot2d(x,sin(x),-1);
+            plot2d(x,2*sin(x),12);
+            plot2d(2*x,cos(x),3);
+        </scilab:image>
+        <programlisting role="example"><![CDATA[
+// axis on the right
+clf();
+x=[0:0.1:2*%pi]';
+plot2d(x,sin(x),leg="sin(x)");
+a=gca(); // Handle on axes entity
+a.y_location ="right";
+ ]]></programlisting>
+        <scilab:image>
+            x=[0:0.1:2*%pi]';
+            plot2d(x,sin(x),leg="sin(x)");
+            a=gca(); // Handle on axes entity
+            a.y_location ="right";
+        </scilab:image>
+        <programlisting role="example"><![CDATA[
+
+// axis centered at (0,0)
+clf();
+x=[0:0.1:2*%pi]';
+plot2d(x-4,sin(x),1,leg="sin(x)");
+a=gca(); // Handle on axes entity
+a.x_location = "origin";
+a.y_location = "origin";
+// Some operations on entities created by plot2d ...
+isoview()
+a=gca();
+a.children // list the children of the axes.
+// There are a compound made of two polylines and a legend
+poly1= a.children(1).children(1); //store polyline handle into poly1
+poly1.foreground = 4; // another way to change the style...
+poly1.thickness = 3;  // ...and the thickness of a curve.
+poly1.clip_state='off'; // clipping control
+leg = a.children(2); // store legend handle into leg
+leg.font_style = 9;
+leg.line_mode = "on";
+isoview("off")
+ ]]></programlisting>
+        <scilab:image>
+            // axis centered at (0,0)
+            clf();
+            x=[0:0.1:2*%pi]';
+            plot2d(x-4,sin(x),1,leg="sin(x)");
+            a=gca(); // Handle on axes entity
+            a.x_location = "origin";
+            a.y_location = "origin";
+            // Some operations on entities created by plot2d ...
+            isoview()
+            a=gca();
+            a.children // list the children of the axes.
+            // There are a compound made of two polylines and a legend
+            poly1= a.children(1).children(1); //store polyline handle into poly1
+            poly1.foreground = 4; // another way to change the style...
+            poly1.thickness = 3;  // ...and the thickness of a curve.
+            poly1.clip_state='off'; // clipping control
+            leg = a.children(2); // store legend handle into leg
+            leg.font_style = 9;
+            leg.line_mode = "on";
+            isoview("off")
+        </scilab:image>
     </refsection>
-    <refsection>
-        <title>Ver Também</title>
+    <refsection role="see also">
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="plot">plot</link>
-            </member>
-            <member>
-                <link linkend="plot2d1">plot2d1</link>
             </member>
             <member>
                 <link linkend="plot2d2">plot2d2</link>
@@ -578,9 +835,5 @@ a.isoview='off';
                 <link linkend="delete">delete</link>
             </member>
         </simplelist>
-    </refsection>
-    <refsection>
-        <title/>
-        <para/>
     </refsection>
 </refentry>

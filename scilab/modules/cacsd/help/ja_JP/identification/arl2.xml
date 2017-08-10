@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"   xml:lang="ja" xml:id="arl2">
+    <refnamediv>
+        <refname>arl2</refname>
+        <refpurpose>L2伝達関数近似による SISO モデル実現</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>h=arl2(y,den0,n [,imp])
+            h=arl2(y,den0,n [,imp],'all')
+            [den,num,err]=arl2(y,den0,n [,imp])
+            [den,num,err]=arl2(y,den0,n [,imp],'all')
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection role="parameters">
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>
+                        <literal>z^-1</literal>の実数ベクトルまたは多項式で,
+                        有理数システムの(インパルス応答の)フーリエ級数近似の係数を有します.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>den0</term>
+                <listitem>
+                    <para>
+                        解の初期推定値を指定する多項式で,
+                        <literal>poly(1,'z','c')</literal>とすることができます.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>整数, 伝達関数近似の次数 (分母denの次数)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>imp</term>
+                <listitem>
+                    <para>
+                        整数で値は <literal>(0,1,2)</literal>のどれか (冗長モード)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>h</term>
+                <listitem>
+                    <para>
+                        伝達関数 <literal>num/den</literal> または<literal>'all'</literal>
+                        フラグが指定された場合は伝達行列  (列ベクトル) <literal>'all'</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>den</term>
+                <listitem>
+                    <para>多項式または多項式ベクトル,解の分母</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>num</term>
+                <listitem>
+                    <para>多項式または多項式ベクトル, 解の分子</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>err</term>
+                <listitem>
+                    <para>実数の定数またはベクトル , 各解のL2誤差</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection role="description">
+        <title>説明</title>
+        <para>
+            <literal>[den,num,err]=arl2(y,den0,n [,imp]) </literal> は,
+            伝達関数<literal>num/den</literal>が安定で,そのインパルス応答が
+            無数のゼロ点で完結すると仮定したベクトル <literal>y</literal> を
+            (最小L2ノルムで)近似する
+            多項式対<literal>num</literal> および <literal>den</literal>を探します.
+        </para>
+        <para>
+            <literal>y(z)  =  y(1)(1/z)+y(2)(1/z^2)+ ...+ y(ny)(1/z^ny)</literal>の場合,
+        </para>
+        <para>
+            <literal>num/den - y(z)</literal>のL2ノルムは,<literal>err</literal>となります.
+        </para>
+        <para>
+            <literal>n</literal> は多項式 <literal>den</literal>の次数です.
+        </para>
+        <para>
+            伝達関数<literal>num/den</literal>は,有理システムのフーリエ級数のL2近似です.
+        </para>
+        <para>
+            <literal>imp</literal>の設定により様々な中間結果が出力されるようになります.
+        </para>
+        <para>
+            <literal>[den,num,err]=arl2(y,den0,n [,imp],'all') </literal>  は,
+            多項式のベクトル<literal>num</literal> および <literal>den</literal>に
+            問題のローカル最適解の集合を返します.
+            解は誤差について昇順にソートされます.
+            この場合, <literal>den0</literal>はすでに
+            <literal>poly(1,'z','c')</literal>であると仮定されます.
+        </para>
+    </refsection>
+    <refsection role="examples">
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+v = ones(1,20);
+clf();
+plot2d([], [v';zeros(80,1)], 2, '051',' ',[1,-0.5,100,1.5])
+
+[d,n,e] = arl2(v, poly(1,'z','c'),1)
+plot2d([], ldiv(n,d,100), 2, '000')
+[d,n,e] = arl2(v,d,3)
+plot2d([], ldiv(n,d,100), 3, '000')
+[d,n,e] = arl2(v,d,8)
+plot2d([], ldiv(n,d,100), 5, '000')
+
+[d,n,e] = arl2(v,poly(1,'z','c'),4,'all')
+plot2d([], ldiv(n(1),d(1),100), 10, '000')
+ ]]></programlisting>
+        <scilab:image>
+            v = ones(1,20);
+            plot2d([], [v';zeros(80,1)], 2, '051',' ',[1,-0.5,100,1.5])
+
+            [d,n,e] = arl2(v, poly(1,'z','c'),1)
+            plot2d([], ldiv(n,d,100), 2, '000')
+            [d,n,e] = arl2(v,d,3)
+            plot2d([], ldiv(n,d,100), 3, '000')
+            [d,n,e] = arl2(v,d,8)
+            plot2d([], ldiv(n,d,100), 5, '000')
+
+            [d,n,e] = arl2(v,poly(1,'z','c'),4,'all')
+            plot2d([], ldiv(n(1),d(1),100), 10, '000')
+        </scilab:image>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="ldiv">ldiv</link>
+            </member>
+            <member>
+                <link linkend="imrep2ss">imrep2ss</link>
+            </member>
+            <member>
+                <link linkend="time_id">time_id</link>
+            </member>
+            <member>
+                <link linkend="armax">armax</link>
+            </member>
+            <member>
+                <link linkend="frep2tf">frep2tf</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

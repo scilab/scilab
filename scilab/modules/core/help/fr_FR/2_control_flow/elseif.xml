@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="elseif">
+    <refnamediv>
+        <refname>elseif</refname>
+        <refpurpose>Mot-clé utilisé dans une structure if-then-else  </refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Si il y existe plus d'une condition alors le mot-clé<literal>elseif</literal> est utile.
+            Si il y a plus d'un <literal>elseif</literal> alors la première condition vraie est sélectionnée
+            (même si d'autres sont aussi vraies).
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[
+a=1;
+if a==1 then
+    disp("a equals 1")
+elseif a==2 then
+    disp("a equals 2")
+if a==1 & a>0 then
+    disp("Cette condition est vraie, mais elle ne sera jamais sélectionnée, car c'est la seconde condition vraie.")
+else
+    disp("Cas non géré.")
+end
+     ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="if">if</link>
+            </member>
+            <member>
+                <link linkend="select">select</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

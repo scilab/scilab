@@ -17,7 +17,7 @@
 // <-- Short Description -->
 // createNamedXXX did not check length of variable name
 //
-// Modified for YaSp : no limit for variable name size
+// Modified for Scilab 6 : no limit for variable name size
 //
 BUGNAME = "bug_9708";
 ilib_verbose(0);

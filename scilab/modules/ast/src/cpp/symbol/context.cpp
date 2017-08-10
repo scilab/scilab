@@ -2,11 +2,14 @@
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
 *
-*  This file must be used under the terms of the CeCILL.
-*  This source file is licensed as described in the file COPYING, which
-*  you should have received as part of this distribution.  The terms
-*  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 #include <iomanip>
@@ -262,7 +265,12 @@ types::InternalType* Context::getFunction(const Symbol& _key)
     return get(_key);
 }
 
-int Context::getFunctionList(std::list<Symbol>& lst, std::wstring _stModuleName)
+int Context::getFunctionList(std::list<Symbol>& lst, const std::wstring& _stModuleName)
+{
+    return variables.getFunctionList(lst, _stModuleName, m_iLevel);
+}
+
+int Context::getFunctionList(std::list<types::Callable *> & lst, std::wstring _stModuleName)
 {
     return variables.getFunctionList(lst, _stModuleName, m_iLevel);
 }
@@ -271,7 +279,7 @@ int Context::getConsoleVarsName(std::list<std::wstring>& lst)
 {
     if (console)
     {
-        for (const auto& var : *console)
+        for (const auto & var : *console)
         {
             lst.push_back(var.first.getName());
         }
@@ -324,7 +332,7 @@ int Context::getLibrariesList(std::list<std::wstring>& lst)
     return libraries.librarieslist(lst);
 }
 
-void Context::put(Variable* _var, types::InternalType* _pIT)
+bool Context::put(Variable* _var, types::InternalType* _pIT)
 {
     if (_pIT->isLibrary())
     {
@@ -332,17 +340,36 @@ void Context::put(Variable* _var, types::InternalType* _pIT)
         lib->put((types::Library*)_pIT, m_iLevel);
     }
 
-    _var->put(_pIT, m_iLevel);
+    if (_var->put(_pIT, m_iLevel) == false)
+    {
+        return false;
+    }
+
     if (varStack.empty() == false)
     {
         (*varStack.top())[_var->getSymbol()] = _var;
     }
+
+    return true;
 }
 
-void Context::put(const Symbol& _key, types::InternalType* _pIT)
+bool Context::put(const Symbol& _key, types::InternalType* _pIT)
 {
     Variable* var = variables.getOrCreate(_key);
-    put(var, _pIT);
+
+    if (var->empty())
+    {
+        //box is empty, check if a macro from a library have this name.
+        //in this case, add it to context before set new value.
+        types::InternalType* pIT = get(_key);
+        if (pIT && (pIT->isMacroFile() || pIT->isMacro()))
+        {
+            put(var, pIT);
+            return put(var, _pIT);
+        }
+    }
+
+    return put(var, _pIT);
 }
 
 bool Context::remove(const Symbol& _key)
@@ -366,7 +393,10 @@ bool Context::removeAll()
 bool Context::putInPreviousScope(Variable* _var, types::InternalType* _pIT)
 {
     //add variable in previous scope
-    variables.putInPreviousScope(_var, _pIT, m_iLevel - 1);
+    if (variables.putInPreviousScope(_var, _pIT, m_iLevel - 1) == false)
+    {
+        return false;
+    }
 
     //add variable in stack of using variables
     if (varStack.empty() == false)
@@ -396,14 +426,12 @@ bool Context::addFunction(types::Function *_info)
 
 bool Context::addMacro(types::Macro *_info)
 {
-    put(Symbol(_info->getName()), _info);
-    return true;
+    return put(Symbol(_info->getName()), _info);
 }
 
 bool Context::addMacroFile(types::MacroFile *_info)
 {
-    put(Symbol(_info->getName()), _info);
-    return true;
+    return put(Symbol(_info->getName()), _info);
 }
 
 bool Context::isGlobalVisible(const Symbol& _key)
@@ -433,22 +461,40 @@ void Context::setGlobal(const Symbol& _key)
     globals->push_back(_key);
 }
 
-void Context::removeGlobal(const Symbol& _key)
+bool Context::removeGlobal(const Symbol& _key)
 {
+    // skip permanant variables : %modalWarning, %toolboxes, %toolboxes_dir
+    if (_key.getName() == L"%modalWarning"  ||
+            _key.getName() == L"%toolboxes"     ||
+            _key.getName() == L"%toolboxes_dir")
+    {
+        return false;
+    }
+
     variables.removeGlobal(_key, m_iLevel);
     globals->remove(_key);
+    return true;
 }
 
 void Context::removeGlobalAll()
 {
     std::list<Symbol>::iterator it = globals->begin();
+
     while (it != globals->end())
     {
-        removeGlobal(*it);
+        if (removeGlobal(*it) == false)
+        {
+            globals->remove(*it);
+        }
+
         it = globals->begin();
     }
 
     globals->clear();
+
+    globals->emplace_back(L"%modalWarning");
+    globals->emplace_back(L"%toolboxes");
+    globals->emplace_back(L"%toolboxes_dir");
 }
 
 void Context::print(std::wostream& ostr, bool sorted) const

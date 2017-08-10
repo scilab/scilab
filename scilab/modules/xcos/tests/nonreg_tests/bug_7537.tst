@@ -1,12 +1,12 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010 - DIGITEO - Clément DAVID
+// Copyright (C) 2015 - Scilab Enterprises - Clément DAVID
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- XCOS TEST -->
-// <-- LONG TIME EXECUTION -->
 //
 // <-- Non-regression test for bug 7537 -->
 //
@@ -43,6 +43,6 @@ err = execstr("save(h5name, ""scs_m"")", "errcatch");
 if err <> 0 then pause, end
 
 // import to xcos (decode/encode synchronous version)
-status = xcosDiagramToScilab(h5name);
+status = importXcosDiagram(h5name);
 if status <> 0 then pause, end
 

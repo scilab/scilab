@@ -28,7 +28,7 @@ if ierr == 0 then pause,end
 
 ierr = execstr("isfield(my_struct,2)","errcatch");
 if ierr == 0 then pause,end
-if lasterror() <> msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"),"isfield",2) then pause, end
+if lasterror() <> msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"isfield",2) then pause, end
 
 my_struct = ["field_1","field_2"];
 

@@ -322,10 +322,12 @@ lib /DEF:"$(ProjectDir)preferences_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     <ClInclude Include="includes\mgetl.h" />
     <ClInclude Include="includes\mopen.h" />
     <ClInclude Include="includes\mput.h" />
+    <ClInclude Include="includes\mputl.h" />
     <ClInclude Include="includes\mseek.h" />
     <ClInclude Include="includes\mtell.h" />
     <ClInclude Include="includes\newest.h" />
     <ClInclude Include="includes\os_wfopen.h" />
+    <ClInclude Include="includes\pathconvert.h" />
     <ClInclude Include="includes\readline.h" />
     <ClInclude Include="includes\removedir.h" />
     <ClInclude Include="includes\scanf_functions.h" />
@@ -333,7 +335,7 @@ lib /DEF:"$(ProjectDir)preferences_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     <ClInclude Include="includes\splitpath.h" />
     <ClInclude Include="includes\URIFileToFilename.h" />
     <ClInclude Include="src\cpp\mgetstr.h" />
-    <ClInclude Include="src\cpp\mputl.h" />
+    <ClInclude Include="src\cpp\mputi.hxx" />
     <ClInclude Include="src\cpp\scilab_sscanf.hxx" />
     <ClInclude Include="src\c\basename.h" />
     <ClInclude Include="src\c\convert_tools.h" />
@@ -346,7 +348,6 @@ lib /DEF:"$(ProjectDir)preferences_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     <ClInclude Include="src\c\getrelativefilename.h" />
     <ClInclude Include="src\c\isDrive.h" />
     <ClInclude Include="src\c\movefile.h" />
-    <ClInclude Include="src\c\pathconvert.h" />
     <ClInclude Include="src\c\Status2Mode.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

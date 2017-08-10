@@ -5,7 +5,7 @@
         <refpurpose>read a Harwell-Boeing sparse format file</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[A, description, ref, mtype] = ReadHBSparse([filename])</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -14,7 +14,7 @@
             <varlistentry>
                 <term>filename</term>
                 <listitem>
-                    <para>(optional) a string given the filename (eventually preceeding
+                    <para>(optional) a string given the filename (eventually preceding
                         by the path), if filename is not given then the function use <link linkend="uigetfile">uigetfile</link> to get filename
                         interactively
                     </para>
@@ -54,10 +54,10 @@
             ref.mtype where mtype is a 3 letters word abc given some information
             (already inside the file) on the matrix :
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 a = R|C|P   for real|complex|pattern (no values given)
 b = S|H|Z|U for symmetric|hermitian|skew symmetric|asymmetric
-c = A|E     for assembled|unassembled matrix 
+c = A|E     for assembled|unassembled matrix
             (case E is not treated by this func)
  ]]></programlisting>
     </refsection>
@@ -66,7 +66,7 @@ c = A|E     for assembled|unassembled matrix
         <para>Users' Guide for the Harwell-Boeing Sparse Matrix Collection Iain S.
             Duff, Roger G. Grimes, John G. Lewis. You may found this guide and
             numerous sparse matrices (in the Harwell-Boeing format) at the University
-            of Florida Sparse Matrix Collection 
+            of Florida Sparse Matrix Collection
         </para>
         <para>
             web site : <ulink url="http://www.cise.ufl.edu/research/sparse/matrices/">http://www.cise.ufl.edu/research/sparse/matrices/</ulink>
@@ -77,12 +77,12 @@ c = A|E     for assembled|unassembled matrix
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-[A] = ReadHBSparse(SCI+"/modules/umfpack/examples/arc130.rua");
+        <programlisting role="example"><![CDATA[
+[A] = ReadHBSparse(SCI+"/modules/umfpack/demos/arc130.rua");
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="PlotSparse">PlotSparse</link>

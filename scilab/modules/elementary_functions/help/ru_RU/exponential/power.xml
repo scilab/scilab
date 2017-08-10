@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="power">
+    <refnamediv>
+        <refname>возведение в степень</refname>
+        <refpurpose>операция возведения в степень (^, .^)</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Синтаксис</title>
+        <synopsis>
+            t=A^b
+            t=A**b
+            t=A.^b
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>A,t</term>
+                <listitem>
+                    <para>
+                        скаляр или вектор/матрица числовых, полиномиальных или рациональных значений
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>b</term>
+                <listitem>
+                    <para>скаляр, вектор или матрица.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    Если <literal>A</literal> -- квадратная матрица, а <literal>b</literal> -- скаляр, то <literal>A^b</literal>
+                    является матрицей <literal>A</literal> в степени <literal>b</literal>.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Если <literal>A</literal> -- матрица, а <literal>b</literal> -- скаляр, то матрица
+                    <literal>A.^b</literal> формируется элементами матрицы <literal>A</literal>
+                    в степени <literal>b</literal> (поэлементное возведение в степень).
+                    Если <literal>A</literal> -- вектор, а <literal>b</literal> -- скаляр, то
+                    <literal>A^b</literal> и <literal>A.^b</literal> выполняют одну и ту же операцию
+                    (т. е. поэлементное возведение в степень).
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Если <literal>A</literal> -- скаляр, а <literal>b</literal> -- матрица (или вектор), то
+                    <literal>A^b</literal> и <literal>A.^b</literal> являются матрицами (или векторами), сформированными
+                    элементами <literal> a^(b(i,j))</literal>.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Если <literal>A</literal> и <literal>b</literal> -- векторы (матрицы) одного размера, то
+                    <literal>A.^b</literal> равно  <literal>A(i)^b(i)</literal> (векторы) или <literal>A(i,j)^b(i,j)</literal> (матрицы).
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            Примечания:
+        </para>
+        <para>
+            -
+            Для квадратных матриц <literal>A^p</literal> вычисляется через последовательное
+            перемножение матриц, если  <literal>p</literal> является положительным числом, а иначе --
+            через диагонализацию.
+        </para>
+        <para>
+            -
+            операторы <literal>**</literal> и <literal>^</literal> являются синонимами.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+A=[1 2;3 4];
+A^2.5,
+A.^2.5
+(1:10)^2
+(1:10).^2
+
+s=poly(0,'s')
+s^(1:10)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="exp">exp</link>
+            </member>
+            <member>
+                <link linkend="hat">крышечка</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

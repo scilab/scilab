@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -22,13 +25,13 @@ class EXTERN_AST List : public Container
 {
 public :
     List();
-    ~List();
+    virtual ~List();
 
 protected :
     std::vector<InternalType *>*    getData();
     List(List *_oListCopyMe);
 public :
-    int                             getSize();
+    int                             getSize() const;
 
     void                            whoAmI(void)
     {
@@ -48,13 +51,13 @@ public :
     ** append(InternalType *_typedValue)
     ** Append the given value to the end of the List
     */
-    void                            append(InternalType *_typedValue);
+    List*                           append(InternalType *_typedValue);
 
     /**
     ** Clone
     ** Create a new List and Copy all values.
     */
-    InternalType*                   clone();
+    virtual List*                   clone();
 
     bool                            toString(std::wostringstream& ostr);
 
@@ -63,10 +66,10 @@ public :
         return true;
     }
 
-    InternalType*                   insert(typed_list* _pArgs, InternalType* _pSource);
+    List*                           insert(typed_list* _pArgs, InternalType* _pSource);
     InternalType*                   extract(typed_list* _pArgs);
 
-    virtual bool invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetCount*/, typed_list & out, ast::ConstVisitor & /*execFunc*/, const ast::Exp & /*e*/)
+    virtual bool invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetCount*/, typed_list & out, const ast::Exp & /*e*/) override
     {
         if (in.size() == 0)
         {
@@ -113,15 +116,15 @@ public :
     }
 
     virtual InternalType*           get(const int _iIndex);
-    virtual bool                    set(const int _iIndex, InternalType* _pIT);
+    virtual List*                   set(const int _iIndex, InternalType* _pIT);
 
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring            getTypeStr()
+    virtual std::wstring            getTypeStr() const
     {
         return L"list";
     }
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring            getShortTypeStr()
+    virtual std::wstring            getShortTypeStr() const
     {
         return L"l";
     }

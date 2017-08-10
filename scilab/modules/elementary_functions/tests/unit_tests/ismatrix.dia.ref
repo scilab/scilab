@@ -22,20 +22,20 @@ assert_checkequal(ismatrix(["s" "t" "u"]), %t);
 assert_checkequal(ismatrix(["s" "t" "u"]'), %t);
 assert_checkequal(ismatrix(["s" "t" "u";"s" "t" "u"]), %t);
 assert_checkequal(ismatrix("s"), %t);
-assert_checkequal(ismatrix(hypermat([2,2,2],["s";"s";"s";"s";"s";"s";"s";"s"])), %f);
+assert_checkequal(ismatrix(matrix(["s";"s";"s";"s";"s";"s";"s";"s"], [2,2,2])), %f);
 // Polynomials
 s=poly(0,"s");
 assert_checkequal(ismatrix([1+s 2+s]), %t);
 assert_checkequal(ismatrix([1+s 2+s]'), %t);
 assert_checkequal(ismatrix([1+s 2+s 3+s; 3+s 4+s 5+s]), %t);
 assert_checkequal(ismatrix(1+s), %t);
-assert_checkequal(ismatrix(hypermat([2,2,2],[s;s;s;s;s;s;s;s;])), %f);
+assert_checkequal(ismatrix(matrix([s;s;s;s;s;s;s;s;], [2,2,2])), %f);
 // Booleans
 assert_checkequal(ismatrix([%t %f]), %t);
 assert_checkequal(ismatrix([%t %f]'), %t);
 assert_checkequal(ismatrix([%t %f %t; %f %t %f]), %t);
 assert_checkequal(ismatrix(%t), %t);
-assert_checkequal(ismatrix(hypermat([2,2,2],[%t;%t;%t;%t;%t;%t;%t;%t])), %f);
+assert_checkequal(ismatrix(matrix([%t;%t;%t;%t;%t;%t;%t;%t], [2,2,2])), %f);
 // Sparses
 assert_checkequal(ismatrix(sparse([1 0 2])), %t);
 assert_checkequal(ismatrix(sparse([1 0 2])'), %t);

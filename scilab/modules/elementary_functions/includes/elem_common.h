@@ -2,11 +2,14 @@
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
 *
-*  This file must be used under the terms of the CeCILL.
-*  This source file is licensed as described in the file COPYING, which
-*  you should have received as part of this distribution.  The terms
-*  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
@@ -42,24 +45,25 @@
 #include "machine.h"
 
 #include "doublecomplex.h"
+#include "numericconstants_interface.h"
 
 #ifdef __cplusplus
-#define getRelativeMachinePrecision()		C2F(dlamch)(const_cast<char*>("e"), 1L)
-#define isRealZero(x)						(fabs(static_cast<double>(x)) <= getRelativeMachinePrecision())
-#define ZeroIsZero(x)						(fabs(static_cast<double>(x)) <= getRelativeMachinePrecision() ? 0 : static_cast<double>(x))
+#define isRealZero(x)						(fabs(static_cast<double>(x)) <= nc_eps())
+#define ZeroIsZero(x)						(fabs(static_cast<double>(x)) <= nc_eps() ? 0 : static_cast<double>(x))
 #else
-#define getRelativeMachinePrecision()		C2F(dlamch)((char*)"e", 1L)
-#define isZero(x)							(fabs((double)x) <= getRelativeMachinePrecision())
-#define ZeroIsZero(x)						(fabs((double)x) <= getRelativeMachinePrecision() ? 0 : (double)x)
+#define isZero(x)							(fabs((double)x) <= nc_eps())
+#define ZeroIsZero(x)						(fabs((double)x) <= nc_eps() ? 0 : (double)x)
 #endif
 
-#define getUnderflowThreshold()					C2F(dlamch)((char*)"u", 1L)
-#define getOverflowThreshold()					C2F(dlamch)((char*)"o", 1L)
-#define isEqual(x,y)										fabs((double)x - (double)y) <= getRelativeMachinePrecision()
+#define getUnderflowThreshold()				nc_double_min()
+#define getOverflowThreshold()				nc_double_max()
+#define isEqual(x,y)						fabs((double)x - (double)y) <= nc_eps()
 
 extern double C2F(dlamch) (const char *_pszCommand, unsigned long int);
 extern double C2F(logp1) (double *_pdblVal);
 extern int C2F(dgemm) (char *_pstTransA, char *_pstTransB, int *_piN, int *_piM, int *_piK, double *_pdblAlpha, double *_pdblA, int *_piLdA,
+                       double *_pdblB, int *_piLdB, double *_pdblBeta, double *_pdblC, int *_piLdC);
+extern int C2F(zgemm) (char *_pstTransA, char *_pstTransB, int *_piN, int *_piM, int *_piK, double *_pdblAlpha, double *_pdblA, int *_piLdA,
                        double *_pdblB, int *_piLdB, double *_pdblBeta, double *_pdblC, int *_piLdC);
 extern int C2F(dswap) (int *_piSize, double *_pdblX, int *_piIncX, double *_pdblY, int *_piIncY);
 extern double C2F(dasum) (int *_iSize, double *_pdbl, int *_iInc);

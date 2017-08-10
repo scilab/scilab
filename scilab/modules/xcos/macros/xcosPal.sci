@@ -2,18 +2,21 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) DIGITEO - 2010-2010 - Clément DAVID
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 //
 //
 
 function pal = xcosPal(name, scs_m)
-    // Instanciate a new Xcos palette on Scilab.
+    // Instantiate a new Xcos palette on Scilab.
     //
-    // Calling Sequence
+    // Syntax
     //   pal = xcosPal();
     //   pal = xcosPal(name);
     //   pal = xcosPal(scs_m);
@@ -26,7 +29,7 @@ function pal = xcosPal(name, scs_m)
     //   pal: palette tlist; the palette instance
     //
     // Description
-    // Instanciate a new palette diagram.
+    // Instantiate a new palette diagram.
     //
     // The optional name argument can be used to set a name to the palette. The optional scs_m argument can be used to import diagrams as palettes.
     //
@@ -58,7 +61,7 @@ function pal = xcosPal(name, scs_m)
         error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "xcosPal", 0, 2));
     end
 
-    if exists("name", "l") == 0 then
+    if ~isdef("name", "l") then
         name = "New palette";
     elseif typeof(name) == "diagram" then
         scs_m = name;
@@ -67,7 +70,7 @@ function pal = xcosPal(name, scs_m)
         name = "New palette";
     end
     // loading the scicos_diagram macro
-    if exists("scicos_diagram", "a") == 0 then loadXcosLibs(), end
+    if exists("Sourceslib", "a") == 0 then loadXcosLibs(), end
     if exists("scs_m", "l") == 0 then scs_m = scicos_diagram(), end
 
     if typeof(name) <> "string" then
@@ -92,7 +95,7 @@ function pal = xcosPal(name, scs_m)
     for block = scs_m.objs
         if typeof(block)=="Block" & block.gui == "PAL_f" then
             // customize palette name
-            name = block.model.rpar.props.title(1);
+            name = scs_m.props.title(1);
 
             // Add PAL_f children blocks
             children = block.model.rpar.objs;

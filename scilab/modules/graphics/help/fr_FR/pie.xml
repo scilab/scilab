@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="pie">
+    <refnamediv>
+        <refname>pie</refname>
+        <refpurpose>cercle graphique</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>pie(x)
+            pie(x[,sp[,txt]])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>un scalaire ou un vecteur de réels positifs.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sp</term>
+                <listitem>
+                    <para>un scalaire ou un vecteur de réels.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>txt</term>
+                <listitem>
+                    <para>une cell ou un vecteur de strings.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>x, sp et style doivent etre de meme longueur.</para>
+        <para>
+            <literal>pie(x) :</literal> si la longueur du vecteur x est N alors la
+            fonction pie dessine un cercle graphique constitué de N part. La surface
+            de la ième part est egale à  : (x(i)/sum(x))*(aire du cercle unité). c'est
+            la division de la valeur de la ième composante de x divisée par la somme
+            des composantes de x
+        </para>
+        <para>
+            <literal>pie(x,sp) : </literal>le vecteur sp permet de couper une ou
+            plusieurs parts du cercle, (la longueur de sp doit etre egale a la
+            longueur de x). Si la valeur de la ième composante de sp est different de
+            0 alors la ième part est séparée des autres part(donc du cercle) par un
+            espace, Si la valeur de la ième composante de sp est egale à  0 alors elle
+            est attachée aux autres.
+        </para>
+        <para>
+            <literal>pie(x,txt) :</literal> le vecteur txt permet d'ecrire un texte à 
+            coté de chacune des part du cercle, la ième composante de txt correspond
+            au texte de la ième part (par défaut : on ecrit à  coté de chaque part le
+            pourcentage de l'aire d'une part par rappport à  la surface totale du
+            cercle. La longueur du vecteur txt doit etre égale à  la longueur.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[
+// Premier exemple : un argument d'entrée  x=[1 2 5]
+scf(0);
+pie([1 2 5]);
+ ]]></programlisting>
+
+        <scilab:image>
+            pie([1 2 5]);
+        </scilab:image>
+
+        <programlisting role="example"><![CDATA[
+// Deuxième example : deux arguments d'entrées x=[5 9  4 6 3], sp=[0 1 0 1 0], la 2ème et 4ème parts du cercle sont séparées des autres
+scf(1);
+pie([5 9 4 6 3],[0 1 0 1 0]);
+ ]]></programlisting>
+
+        <scilab:image>
+            pie([5 9 4 6 3],[0 1 0 1 0]);
+        </scilab:image>
+        <programlisting role="example"><![CDATA[
+// Troisième exemple : trois arguments d'entrées, x=[3 4 6 2], sp=[0 1 0 0], txt=["part1","part2","part3","part4"]
+scf(2);
+pie([3 4 6 2],[0 1 0 0],["part1","part2","part3","part4"]);
+ ]]></programlisting>
+        <scilab:image>
+            pie([3 4 6 2],[0 1 0 0],["part1","part2","part3","part4"]);
+        </scilab:image>
+
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="xfpolys">xfpolys</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

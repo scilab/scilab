@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009  - DIGITEO - Antoine ELIAS
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="String_management_writing_API" xml:lang="en">
+    <refnamediv>
+        <refname>String writing (Scilab gateway)</refname>
+        <refpurpose>
+            How to write matrices of string in a gateway.
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <para>Input argument profile:</para>
+        <synopsis>SciErr createMatrixOfString(void* _pvCtx, int _iVar, int _iRows, int _iCols, const char* const* _pstStrings)</synopsis>
+        <synopsis>SciErr createMatrixOfWideString(void* _pvCtx, int _iVar, int _iRows, int _iCols, const wchar_t* const* _pwstStrings)</synopsis>
+        <para>Named variable profile:</para>
+        <synopsis>SciErr createNamedMatrixOfString(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const char* const* _pstStrings)</synopsis>
+        <synopsis>SciErr createNamedMatrixOfWideString(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const wchar_t* const* _pwstStrings)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>_pvCtx</term>
+                <listitem>
+                    <para>
+                        Scilab environment pointer, pass in "pvApiCtx" provided by api_scilab.h.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_iVar</term>
+                <listitem>
+                    <para>
+                        Position in the Scilab memory where you want to put the variable
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_pstName</term>
+                <listitem>
+                    <para>
+                        Name of the variable for "named" functions.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_iRows</term>
+                <listitem>
+                    <para>
+                        Number of rows of the new variable
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_iCols</term>
+                <listitem>
+                    <para>
+                        Numbers of columns of the new variable
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_pstStrings</term>
+                <listitem>
+                    <para>
+                        Address of array of char* (size: _iCols * _iRows)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>SciErr</term>
+                <listitem>
+                    <para>
+                        Error structure where is stored errors messages history and first error number.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>This help describes how matrix of strings can be handled through the Scilab API.</para>
+    </refsection>
+    <refsection>
+        <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/string_writing_api.c-->
+        <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/string_writing_api.tst-->
+        <!--Lib_name: string_writing-->
+        <!--Func_list: write_string-->
+        <title>Gateway Source</title>
+        <programlisting role="code_gateway"><![CDATA[
+#include "api_scilab.h"
+int write_string(char *fname,void* pvApiCtx)
+{
+	SciErr sciErr;
+	//variable info : matrix of string 2 x 3
+	int iRows		= 2;
+	int iCols		= 3;
+	char** pstData	= NULL;
+	//data to put in the new variable
+	char string11[]	= "may";
+	char string21[]	= "be";
+	char string12[]	= "the";
+	char string22[]	= "with";
+	char string13[]	= "puffin";
+	char string23[]	= "you";
+	//alloc new array
+	pstData			= (char**)malloc(sizeof(char*) * iRows * iCols);
+	//copy data address to the "main" array
+	pstData[0]		= string11;
+	pstData[1]		= string21;
+	pstData[2]		= string12;
+	pstData[3]		= string22;
+	pstData[4]		= string13;
+	pstData[5]		= string23;
+
+	//create the variable
+	sciErr = createMatrixOfString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, iRows, iCols, pstData);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+
+	//free container
+	free(pstData);
+	//assign allocated variables to Lhs position
+    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+	return 0;
+}
+ ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>Scilab test script</title>
+        <programlisting role="code_scilab"><![CDATA[
+a_ref = "may the puffin be with you ";
+b = [];
+a = write_string();
+for i=1:size(a,"r")
+    for j=1:size(a,"c")
+        b = b + a(i,j);
+        b = b + " ";
+    end
+end
+if b <> a_ref then error("failed"), end
+ ]]></programlisting>
+    </refsection>
+</refentry>

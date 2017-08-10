@@ -3,11 +3,14 @@
  *  Copyright (C) 2010-2010 - DIGITEO - Antoine ELIAS
  *  Copyright (C) 2010-2011 - DIGITEO - Bruno JOFRET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -17,6 +20,7 @@
 #include "dynlib_string_gw.h"
 
 #include "cpp_gateway_prototype.hxx"
+#include "sci_malloc.h"
 
 class StringModule
 {
@@ -27,8 +31,13 @@ public :
     EXTERN_STRING_GW static int Load();
     EXTERN_STRING_GW static int Unload()
     {
+        deleteToken();
         return 1;
     }
+
+    static wchar_t* pwstToken;
+    static wchar_t* setToken(wchar_t* _base);
+    static void deleteToken();
 };
 
 CPP_GATEWAY_PROTOTYPE(sci_grep);
@@ -59,4 +68,5 @@ CPP_GATEWAY_PROTOTYPE(sci_isdigit);
 CPP_GATEWAY_PROTOTYPE(sci_isascii);
 CPP_GATEWAY_PROTOTYPE(sci_strsplit);
 CPP_GATEWAY_PROTOTYPE(sci_isnum);
+CPP_GATEWAY_PROTOTYPE(sci_emptystr);
 #endif /* !__STRING_GW_HXX__ */

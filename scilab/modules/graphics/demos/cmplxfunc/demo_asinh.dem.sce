@@ -15,9 +15,6 @@ function demo_asinh()
     theta = -110;
     alpha = 75;
 
-    my_handle = scf(100001);
-    clf(my_handle,"reset");
-
     PlotCmplxFunc(R,e,"Square","Oy",41,"asinh",theta,alpha,[-R,R]);
     demo_viewCode("demo_asinh.dem.sce");
 

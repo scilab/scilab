@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="getscilabkeywords">
+    <refnamediv>
+        <refname>getscilabkeywords</refname>
+        <refpurpose>Scilabキーワードを全リストを返す.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>list_keywords=getscilabkeywords()</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>list_keywords</term>
+                <listitem>
+                    <para>リスト</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>list_keywords(1) : プリミティブ</para>
+        <para>list_keywords(2) : コマンド</para>
+        <para>list_keywords(3) : 定義済みの関数</para>
+        <para>list_keywords(4) :scilab 関数s</para>
+        <para>list_keywords(5) :xcos 関数</para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+list_keywords = getscilabkeywords();
+primitives = list_keywords(1)
+commands = list_keywords(2)
+predef_var = list_keywords(3)
+scilab_functions = list_keywords(4)
+xcos_functions = list_keywords(5)
+ ]]></programlisting>
+    </refsection>
+</refentry>

@@ -36,7 +36,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 currentlnf = getlookandfeel();
 // クラシックなルックアンドフィール
 setlookandfeel("com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel")

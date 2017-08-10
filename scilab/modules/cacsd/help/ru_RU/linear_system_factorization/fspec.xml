@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) Scilab Enterprises - 2013 - Charlotte HECQUET
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="fspec">
+    <refnamediv>
+        <refname>fspec</refname>
+        <refpurpose>spectral factorization of continuous time dynamical systems</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>gm=fspec(g)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>g</term>
+                <listitem>
+                    <para> a continuous time linear dynamical system.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>gm</term>
+                <listitem>
+                    <para> a continuous time linear dynamical system.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            returns <literal>gm</literal> with <literal>gm</literal> and <literal>gm^-1</literal> stable such that:
+        </para>
+        <programlisting role="no-scilab-exec"><![CDATA[
+g = gtild(gm)*gm
+ ]]></programlisting>
+        <para>
+            gtild(gm) returns a state-space representation of gm(-s)'.
+        </para>
+
+        <para>
+            <literal>g</literal> is inversible.
+        </para>
+        <para>
+            Imaginary-axis poles are forbidden.
+        </para>
+        <para>
+            gtild(g)=g (poles and zeros of g are symmetric wrt imaginary axis).
+        </para>
+        <para>
+            g(inf) is positive definite.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+a=-1000;
+b=5;
+c=5;
+d=5;
+sl=syslin('c',a,b,c,d);
+fspec(sl)
+ ]]></programlisting>
+    </refsection>
+</refentry>

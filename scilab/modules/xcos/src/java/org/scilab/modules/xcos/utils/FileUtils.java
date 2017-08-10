@@ -3,11 +3,14 @@
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
  * Copyright (C) 2011-2014 Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -20,17 +23,12 @@ import java.io.IOException;
 import java.nio.channels.FileChannel;
 import java.util.logging.Logger;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-
 import org.scilab.modules.commons.ScilabConstants;
-import org.scilab.modules.commons.xml.ScilabDocumentBuilderFactory;
 import org.w3c.dom.Document;
-import org.xml.sax.SAXException;
 
 import com.mxgraph.io.mxCodec;
 import com.mxgraph.util.mxUtils;
+import com.mxgraph.util.mxXmlUtils;
 import com.mxgraph.view.mxStylesheet;
 
 /**
@@ -59,20 +57,22 @@ public final class FileUtils {
      *             when an errors has occurred
      */
     public static void copy(File in, File out) throws IOException {
-        FileChannel inChannel = new FileInputStream(in).getChannel();
-        FileChannel outChannel = new FileOutputStream(out).getChannel();
+        FileInputStream fis = new FileInputStream(in);
+        FileOutputStream fos = new FileOutputStream(out);
+        FileChannel inChannel = fis.getChannel();
+        FileChannel outChannel = fos.getChannel();
+
         try {
             inChannel.transferTo(0, inChannel.size(), outChannel);
         } catch (IOException e) {
             Logger.getLogger(FileUtils.class.getName()).warning(e.toString());
             throw e;
         } finally {
-            if (inChannel != null) {
-                inChannel.close();
-            }
-            if (outChannel != null) {
-                outChannel.close();
-            }
+            inChannel.close();
+            fis.close();
+
+            outChannel.close();
+            fos.close();
         }
     }
 
@@ -96,10 +96,15 @@ public final class FileUtils {
             }
         }
 
+
         try {
-            inChannel = new FileInputStream(in).getChannel();
-            outChannel = new FileOutputStream(out).getChannel();
+            FileInputStream fis = new FileInputStream(in);
+            FileOutputStream fos = new FileOutputStream(out);
+            inChannel = fis.getChannel();
+            outChannel = fos.getChannel();
             inChannel.transferTo(0, inChannel.size(), outChannel);
+            fis.close();
+            fos.close();
         } catch (IOException e) {
             Logger.getLogger(FileUtils.class.getName()).warning(e.toString());
         } finally {
@@ -185,7 +190,7 @@ public final class FileUtils {
         xml = mxUtils.readFile(baseStyleSheet.getAbsolutePath());
         xml = xml.replaceAll("\\$SCILAB", sciURL);
         xml = xml.replaceAll("\\$SCIHOME", homeURL);
-        document = mxUtils.parseXml(xml);
+        document = mxXmlUtils.parseXml(xml);
         new mxCodec().decode(document.getDocumentElement(), styleSheet);
 
         /*
@@ -195,7 +200,7 @@ public final class FileUtils {
             xml = mxUtils.readFile(userStyleSheet.getAbsolutePath());
             xml = xml.replaceAll("\\$SCILAB", sciURL);
             xml = xml.replaceAll("\\$SCIHOME", homeURL);
-            document = mxUtils.parseXml(xml);
+            document = mxXmlUtils.parseXml(xml);
             new mxCodec().decode(document.getDocumentElement(), styleSheet);
         }
     }

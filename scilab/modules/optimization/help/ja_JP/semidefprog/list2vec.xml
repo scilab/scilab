@@ -26,7 +26,7 @@
             <varlistentry>
                 <term>bigVector</term>
                 <listitem>
-                    <para>列ベクトル. 
+                    <para>列ベクトル.
                         リストのエントリに対応する要素により構成されます.
                     </para>
                 </listitem>
@@ -54,7 +54,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 list2vec(list(1,2,3))
 list2vec(list([1 2 3],[4;5],[%s %s+1]))
  ]]></programlisting>

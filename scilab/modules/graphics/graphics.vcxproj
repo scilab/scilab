@@ -238,12 +238,19 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="sci_gateway\cpp\sci_get.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_matplot.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_matplot1.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_winsid.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_xget.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_xset.cpp" />
     <ClCompile Include="src\cpp\configgraphicvariable.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_contour2dm.cpp" />
     <ClCompile Include="sci_gateway\c\sci_addcolor.c" />
     <ClCompile Include="sci_gateway\c\sci_color.c" />
     <ClCompile Include="sci_gateway\c\sci_light.c" />
     <ClCompile Include="sci_gateway\c\sci_name2rgb.c" />
+    <ClCompile Include="src\cpp\get_tag_property.cpp" />
     <ClCompile Include="src\cpp\set_data_property.cpp" />
     <ClCompile Include="src\cpp\ContourOnMesh.cpp" />
     <ClCompile Include="src\c\addColor.c" />
@@ -390,7 +397,6 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\getHandleProperty\get_surface_color_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_surface_mode_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_tabtitle_property.c" />
-    <ClCompile Include="src\c\getHandleProperty\get_tag_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_text_box_mode_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_text_box_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_text_property.c" />

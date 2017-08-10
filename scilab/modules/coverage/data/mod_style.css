@@ -1,0 +1,584 @@
+body {
+    color:#000000;
+    background-color:#ffffff;
+    font-family:sans-serif;
+    font-size:100%;
+    margin:5px;
+    padding:0;
+}
+
+.inline_percent {
+    font-size:10px;
+}
+
+.fullPercent {
+    display: table;
+    height: 8px;
+    width: 100%;
+    background-color: #faf3ee;
+}
+
+.filledPercent1 {
+    display: table-cell;
+    height: 8px;
+    background-color: rgba(0,0,255,0.2);
+    border: 1px solid black;
+}
+
+.filledPercent2 {
+    display: table-cell;
+    height: 8px;
+    background-color: rgba(233,0,0,0.2);
+    border: 1px solid black;
+}
+
+.filepath {
+    font-size: 14px;
+    font-style: italic;
+    text-decoration: none;
+    border-bottom:1px dotted;
+    color: #354A57;
+}
+
+.filepath:hover {
+   text-decoration: none;
+}
+
+.source tr {
+    display:table-row;
+}
+
+.source table .src {
+    background-color: transparent;
+    word-wrap: break-word;
+    word-break: break-all;
+    position: relative;
+}
+
+.source .functionStats {
+    background-color: rgba(95,151,68,1);
+    position: absolute;
+    display: none;
+    visibility: hidden;
+    height: 0px;
+    z-index: 999;
+    border-radius: 4px;
+    padding: 2px;
+    overflow: visible;
+}
+
+.source .functionInfo {
+    background-color: #ffffff;
+    width: 100%;
+    display: table;
+    border-collapse: separate;
+    border-spacing: 0px;
+}
+
+.source .linkStats {
+    text-decoration: underline;
+    color: #b01813;
+}
+
+.source table td {
+    display: table-cell;
+    text-align: left;
+    border: 0px none;
+    padding: 3px;
+    background-color:rgba(95,151,68,0.2);
+}
+
+.source .functionStats tr {
+    background-color: #ffffff;
+}
+
+.source .functionStats td {
+    background-color: #ffffff;
+}
+
+.module {
+    background-color: #faf3ee;
+    margin-bottom: 80px;
+    padding: 20px 15px;
+    overflow: visible;
+}
+
+.builtins_stats {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+    border-width: 40px;
+}
+
+.builtins_cell {
+    display: table-cell;
+}
+
+.macros_stats {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+    border-width: 40px;
+}
+
+.macros_cell {
+    display: table-row;
+}
+
+.module table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0px;
+    border-width: 3px;
+}
+
+.module table td {
+    border-bottom-style: double;
+}
+
+groupButton {
+    display: inline-block;
+}
+
+.module table .altern1{
+    background-color: #ffffff;
+}
+
+.cover {
+    background-color:rgba(0,0,255,0.2);
+}
+
+.uncover {
+    background-color:rgba(233,0,0,0.2);
+}
+
+.none {
+    background-color:transparent;
+}
+
+.buttonOrderEnable:hover {
+    text-decoration:none;
+    cursor: pointer;
+}
+
+.buttonOrderDisable:hover {
+    text-decoration:none;
+    cursor: pointer;
+}
+
+.buttonOrderEnable {
+    color: #354A57;
+    border: 0px;
+    border-collapse: collapse;
+    text-decoration: none;
+}
+
+.buttonOrderDisable {
+    color: #B8B8B8;
+    border: 0px;
+    border-collapse: collapse;
+    text-decoration: none;
+}
+
+.source table .num {
+    font-size: 11px;
+    width: 30px;
+    text-align: right;
+    vertical-align: top;
+    padding: 3px 6px;
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.source table .src pre {
+    font-size: 11px;
+    margin: 0px;
+    padding: 0px 0px 0px 1em;
+    border: medium none;
+    background: inherit;
+}
+
+.col_name td {
+    font-stretch: condensed;
+    font-weight: bold;
+    font-size: 20px;
+    color: #354A57;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.stats {
+    margin: 0px;
+}
+
+.null_stats {
+    margin: 0px;
+    color: #ff0000;
+}
+
+h2.title {
+    font-stretch: condensed;
+    font-weight: bold;
+    font-size: 30px;
+    color: #354A57;
+    line-height: 1;
+    text-transform: uppercase;
+    text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.5);
+    padding: 0px 0px 20px;
+}
+
+.sourceFile {
+    display: table;
+    border-collapse: separate;
+    border-spacing: 0px;
+}
+
+.modulePath {
+    border-bottom: 2px solid #354A57;
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+    border-bottom-color: #354A57;
+    font-size: 14px;
+    font-style: italic;
+    padding: 10px 0px 5px;
+}
+
+.para {
+    padding-left: 10px;
+}
+
+.refname {
+    color: #ff6c0a;
+}
+.refpurpose {
+    font-size: 110%;
+}
+
+.synopsis {
+    border: 1px solid black;
+    width:80%;
+    padding: 0.5em;
+}
+
+.editbar {
+    text-align: right;
+}
+
+.term {
+    color:#800000;
+    font-size:100%;
+}
+
+h3 {
+    color: #000063;
+    font-weight: bold;
+    font-size:130%;
+    margin-bottom: 10px;
+}
+
+.programlisting {
+    font-family: monospace;
+    font-size: 100%;
+    background-color:#EEEEFF;
+    border-color:#CCCCCC;
+    border-style:solid;
+    border-width:2px medium;
+    width:80%;
+    color:#333333;
+    line-height:120%;
+    padding:10px;
+}
+
+.literal {
+    font-family: monospace;
+    font-size: 100%;
+}
+
+.option {
+    font-family: monospace;
+    font-style: italic;
+    font-size: 100%;
+}
+
+.command {
+    font-family: monospace;
+    font-size: 100%;
+    color: #32b9b9;
+}
+
+.function {
+    font-family: monospace;
+    font-size: 100%;
+    color: #32b9b9;
+}
+
+.varname {
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 100%;
+}
+
+.constant {
+    font-family: monospace;
+    font-size: 100%;
+    color: #da70d6;
+}
+
+a {
+    color: blue;
+    text-decoration:none;
+}
+
+a:hover {
+    text-decoration:underline;
+}
+
+.itemizedlist {
+    list-style-type: disc;
+}
+
+.inline-list li {
+    display: inline;
+    list-style-type: disc;
+}
+
+.vert-list {
+    list-style-type: disc;
+}
+
+pre {
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+.leftpart {
+    position:absolute;
+    float:left;
+    width: 186px;
+    padding: 5px;
+    font-size: smaller;
+}
+
+.content {
+    margin-top: 100px;
+    margin-left: 196px
+}
+
+.container {
+    margin: 0 auto;
+    width:1024px;
+}
+
+ul.toc li.list-active {
+    list-style-type:disc;
+    font-weight:bold;
+}
+
+ul.toc li.parent {
+    font-size: 115%;
+    padding: 5px 0px 5px 11px;
+    border-bottom: 1px solid #cccccc;
+    margin-bottom: 5px;
+}
+
+ul.toc li.root {
+    font-size: 135%;
+    padding: 5px 0px 5px 11px;
+    border-bottom: 1px solid #cccccc;
+    margin-bottom: 5px;
+}
+
+ul.toc li {
+    font-size: 85%;
+    margin: 1px 0 1px 1px;
+    padding: 1px 0 1px 11px;
+    background-repeat: no-repeat;
+    background-position: center left;
+    list-style-type: circle;
+}
+
+.next {
+    float:right;
+    text-align: right;
+}
+
+.center {
+    text-align: center;
+}
+
+.screen {
+    font-family: monospace;
+    font-size: 100%;
+    background-color:#FFFFFF;
+    border-color:#CCCCCC;
+    border-style:solid;
+    border-width:2px medium;
+    width:80%;
+    color:#333333;
+    line-height:120%;
+    padding:10px;
+}
+
+/* Top and bottom navigation controls on manual pages --------------------- */
+div.manualnavbar {
+    background-color: #E0E0E0;
+        color: inherit;
+        padding: 4px;
+        margin-bottom: 10px;
+}
+div.manualnavbar .prev {
+        padding-right: 4px;
+}
+div.manualnavbar .next {
+    text-align: right;
+        padding-left: 4px;
+}
+
+div.manualnavbar .top {
+        text-align: center;
+            display: block;
+}
+
+div.manualnavbar hr {
+        color: #cccccc;
+        background-color: #cccccc;
+}
+
+/* Footer navigation area ------------------------------------------------- */
+
+#pagefooter {
+        position: relative;
+        font-size: 75%;
+        color: inherit;
+        background-color: #e5e5e5;
+        width: 100%;
+}
+
+#pagefooterleft {
+        top: 0px;
+        left: 0px;
+        padding: 6px;
+        margin-right: 30%;
+}
+
+#pagefooterright {
+        text-align: right;
+        margin-left: 50%;
+        padding: 6px;
+}
+#footnav {
+        color: inherit;
+        background-color: #9999cc;
+        border-width: 1px 0px;
+        border-color: #333366;
+        border-style: solid;
+        text-align: right;
+        padding-right: 6px;
+}
+
+
+
+
+                #global{
+/*                      width: 90%; */
+                        max-width: 90em;
+/*                      min-width: 850px; */
+                        margin-left: auto;
+                        margin-right: auto;
+                }
+
+                #myHeader{
+                        background-color:#000000;
+                        color:white;
+                        margin-bottom : 10px;
+    position            : relative;
+    text-align: center;
+/*    width               : 1024px;*/
+    height              : 100px;
+    padding-left        : 20px;
+    background          : url("http://atoms.scilab.org/images/homepage/cadre_head.png");
+    background-repeat   : no-repeat;
+    background-position : 0px 0px;
+
+                }
+
+                #myFooter{
+                        background-color:#E5E5E5;
+                        color:black;
+/*                      width: 90%;*/
+                        max-width: 90em;
+/*                      min-width: 850px;
+                        margin-left: 5%;
+                        margin-right: 5%;*/
+                        margin-top:10px;
+                        padding:10px;
+                }
+
+                #mainArea{
+                        width: 100%;
+                        overflow: hidden;
+                }
+
+                #myLeftArea{
+                        color:white;
+                        float: left;
+                        width: 180px;
+                        padding:5px;
+                }
+
+                #myMiddleArea{
+                        color:black;
+                        margin-left: 200px;
+                        padding: 10px 20px;
+                }
+
+                #myRightArea{
+                        color:white;
+                        float: right;
+                        width: 200px;
+                        padding: 12px 20px;
+                }
+
+
+div#cadre_head
+{
+    position            : relative;
+    text-align: center;
+/*    width               : 1024px;*/
+    height              : 100px;
+    padding-left        : 20px;
+    background          : url("/img/cadre_head.png");
+    background-repeat   : no-repeat;
+    background-position : 0px 0px;
+}
+
+
+div#slogan{
+    position: absolute;
+    top : 50px;
+    left:251px;
+    color:#0000AA;
+}
+div#cadre_help
+{
+    position: absolute;
+    top:45px;
+    right:0px;
+    font-size:0.8em;
+    color:#0000AA;
+}
+
+table.revhistory
+{ 
+  width:80%;
+  border-color:#CCCCCC;
+  border-style:solid;
+  border-width:2px medium;
+  margin-bottom: 10px;
+}
+
+table.revhistory tr.title td
+{ 
+  background-color: #9999CC;
+}

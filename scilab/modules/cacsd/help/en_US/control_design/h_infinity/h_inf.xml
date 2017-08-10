@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - F. Delebecque
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="h_inf">
+    <refnamediv>
+        <refname>h_inf</refname>
+        <refpurpose>Continuous time H-infinity (central) controller</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[Sk,ro]=h_inf(P,r,romin,romax,nmax)
+            [Sk,rk,ro]=h_inf(P,r,romin,romax,nmax)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>P</term>
+                <listitem>
+                    <para>a continuous-time linear dynamical system ("augmented" plant given in state-space form  or in transfer form)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>r</term>
+                <listitem>
+                    <para>
+                        size of the <literal>P22</literal> plant i.e. 2-vector <literal>[#outputs,#inputs]</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>romin,romax</term>
+                <listitem>
+                    <para>
+                        a priori bounds on <literal>ro</literal> with <literal>ro=1/gama^2</literal>; (<literal>romin=0</literal>  usually)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>nmax</term>
+                <listitem>
+                    <para>integer, maximum number of iterations in the gama-iteration.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>h_inf</literal> computes H-infinity optimal controller for the
+            continuous-time plant <literal>P</literal>.
+        </para>
+        <para>
+            The partition of <literal>P</literal> into four sub-plants is given through
+            the 2-vector <literal>r</literal> which is the size of the <literal>22</literal> part of <literal>P</literal>.
+        </para>
+        <para>
+            <literal>P</literal> is given in state-space
+            e.g. <literal>P=syslin('c',A,B,C,D)</literal> with <literal>A,B,C,D</literal> = constant matrices
+            or <literal>P=syslin('c',H)</literal> with <literal>H</literal> a transfer matrix.
+        </para>
+        <para>
+            <literal>[Sk,ro]=H_inf(P,r,romin,romax,nmax)</literal> returns
+            <literal>ro</literal> in <literal>[romin,romax]</literal> and the central
+            controller <literal>Sk</literal> in the same representation as
+            <literal>P</literal>.
+        </para>
+        <para>
+            (All calculations are made in state-space, i.e conversion to
+            state-space is done by the function, if necessary).
+        </para>
+        <para>
+            Invoked with three LHS parameters,
+        </para>
+        <para>
+            <literal>[Sk,rk,ro]=H_inf(P,r,romin,romax,nmax)</literal> returns
+            <literal>ro</literal> and the Parameterization of all stabilizing
+            controllers:
+        </para>
+        <para>
+            a stabilizing controller <literal>K</literal> is obtained by
+            <literal>K=lft(Sk,r,PHI)</literal> where <literal>PHI</literal> is a linear
+            system with dimensions <literal>r'</literal> and satisfy:
+        </para>
+        <para>
+            <literal>H_norm(PHI) &lt; gamma</literal>.  <literal>rk (=r)</literal> is the
+            size of the <literal>Sk22</literal> block and <literal>ro = 1/gama^2</literal>
+            after <literal>nmax</literal> iterations.
+        </para>
+        <para>
+            Algorithm is adapted from Safonov-Limebeer. Note that <literal>P</literal> is assumed to be
+            a continuous-time plant.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="gamitg">gamitg</link>
+            </member>
+            <member>
+                <link linkend="ccontrg">ccontrg</link>
+            </member>
+            <member>
+                <link linkend="leqr">leqr</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>Authors</title>
+        <para>F.Delebecque INRIA (1990)  </para>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>
+                    <literal>Sl</literal> is now checked for
+                    continuous time linear dynamical system.  This modification
+                    has been introduced by this <ulink url="http://gitweb.scilab.org/?p=scilab.git;a=commit;h=3d7083daae3339813ba747c8adcda1f9599bb80d">commit</ulink>
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

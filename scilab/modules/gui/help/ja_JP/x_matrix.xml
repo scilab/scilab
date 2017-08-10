@@ -33,7 +33,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 m=evstr(x_matrix('enter a  3x3 matrix ',rand(3,3)))
  ]]></programlisting>
     </refsection>

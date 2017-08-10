@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="contr">
+    <refnamediv>
+        <refname>contr</refname>
+        <refpurpose>controllability, controllable subspace, staircase</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>n=contr(A,B [,tol])
+            [n,U]=contr(A,B [,tol])
+            [n,U,ind,V,Ac,Bc]=contr(A,B,[,tol])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>A, B</term>
+                <listitem>
+                    <para>real matrices</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>tol</term>
+                <listitem>
+                    <para>tolerance parameter</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para> dimension of controllable subspace.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>U</term>
+                <listitem>
+                    <para>
+                        orthogonal change of basis which puts <literal>(A,B)</literal> in canonical form.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>V</term>
+                <listitem>
+                    <para>orthogonal matrix, change of basis in the control space.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Ac</term>
+                <listitem>
+                    <para>
+                        block Hessenberg matrix <literal>Ac=U'*A*U</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Bc</term>
+                <listitem>
+                    <para>
+                        is <literal>U'*B*V</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ind</term>
+                <listitem>
+                    <para>
+                        p integer vector associated with controllability indices  (dimensions of subspaces <literal>B, B+A*B,...=ind(1),ind(1)+ind(2),...</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>[n,[U]]=contr(A,B,[tol])</literal> gives the controllable form of an <literal>(A,B)</literal>
+            pair.(<literal>dx/dt = A x + B u</literal> or <literal>x(n+1) = A x(n) +b u(n)</literal>).
+            The <literal>n</literal> first columns of <literal>U</literal> make a basis for the controllable
+            subspace.
+        </para>
+        <para>
+            If <literal>V=U(:,1:n)</literal>, then <literal>V'*A*V</literal> and  <literal>V'*B</literal> give the controllable part
+            of the <literal>(A,B)</literal> pair.
+        </para>
+        <para>
+            The pair <literal>(Bc, Ac)</literal> is in staircase controllable form.
+        </para>
+        <programlisting role=""><![CDATA[
+                   |B |sI-A      *  . . .  *      *       |
+                   | 1|    11       .      .      .       |
+                   |  |  A    sI-A    .    .      .       |
+                   |  |   21      22    .  .      .       |
+                   |  |        .     .     *      *       |
+[U'BV|sI - U'AU] = |0 |     0    .     .                  |
+                   |  |            A     sI-A     *       |
+                   |  |             p,p-1    pp           |
+                   |  |                                   |
+                   |0 |         0          0   sI-A       |
+                   |  |                            p+1,p+1|
+ ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>Reference</title>
+        <para>
+            Slicot library (see ab01od in SCI/modules/cacsd/src/slicot).
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+W=ssrand(2,3,5,list('co',3));  //cont. subspace has dim 3.
+A=W("A");B=W("B");
+[n,U]=contr(A,B);n
+A1=U'*A*U;
+spec(A1(n+1:$,n+1:$))  //uncontrollable modes
+spec(A+B*rand(3,5))
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="canon">canon</link>
+            </member>
+            <member>
+                <link linkend="cont_mat">cont_mat</link>
+            </member>
+            <member>
+                <link linkend="unobs">unobs</link>
+            </member>
+            <member>
+                <link linkend="stabil">stabil</link>
+            </member>
+            <member>
+                <link linkend="st_ility">st_ility</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

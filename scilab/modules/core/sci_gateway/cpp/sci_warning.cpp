@@ -2,13 +2,18 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
+
+#include <string>
 
 #include "core_gw.hxx"
 #include "function.hxx"
@@ -25,59 +30,77 @@ extern "C"
 #include "Scierror.h"
 #include "sci_malloc.h"
 #include "os_string.h"
+#include "Sciwarning.h"
 }
 /*--------------------------------------------------------------------------*/
-
-using namespace types;
-
 types::Function::ReturnValue sci_warning(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
+    types::String *psInput = NULL;
+
     if (in.size() != 1)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "warning", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (_iRetCount != 1)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "warning", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (in[0]->isString() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "warning", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
-    String *psInput = in[0]->getAs<types::String>();
+    psInput = in[0]->getAs<types::String>();
 
     if (psInput->getSize() == 1)
     {
-        /* "on" "off" "query" */
+        /* "on" "off" "query" "stop" */
         if (wcscmp(psInput->get(0), L"on") == 0)
         {
             setWarningMode(TRUE);
-            return Function::OK;
+            setWarningStop(FALSE);
+            return types::Function::OK;
         }
 
         if (wcscmp(psInput->get(0), L"off") == 0)
         {
             setWarningMode(FALSE);
-            return Function::OK;
+            setWarningStop(FALSE);
+            return types::Function::OK;
+        }
+
+        if (wcscmp(psInput->get(0), L"stop") == 0)
+        {
+            setWarningMode(TRUE);
+            setWarningStop(TRUE);
+            return types::Function::OK;
         }
 
         if (wcscmp(psInput->get(0), L"query") == 0)
         {
             if (getWarningMode())
             {
-                out.push_back(new String(L"on"));
+                if (getWarningStop())
+                {
+                    // WarningMode and WarningStop => warning stop mode active
+                    out.push_back(new types::String(L"stop"));
+                }
+                else
+                {
+                    // WarningMode and !WarningStop => warning on  mode active
+                    out.push_back(new types::String(L"on"));
+                }
             }
             else
             {
-                out.push_back(new String(L"off"));
+                out.push_back(new types::String(L"off"));
             }
-            return Function::OK;
+            return types::Function::OK;
         }
     }
 
@@ -86,15 +109,24 @@ types::Function::ReturnValue sci_warning(types::typed_list &in, int _iRetCount, 
         for (int i = 0; i < psInput->getSize() ; ++i)
         {
             wchar_t* pwstTemp = psInput->get(i);
-            size_t iSize = (wcslen(pwstTemp) + 10 + 1);
+            std::wstring warning = _W("WARNING: %ls\n");
+            size_t iSize = (wcslen(pwstTemp) + warning.size() + 1);
+
             wchar_t* pwstToPrint = (wchar_t*)MALLOC(sizeof(wchar_t) * iSize);
-            os_swprintf(pwstToPrint, iSize, _W("WARNING: %ls\n").c_str(), pwstTemp);
+            os_swprintf(pwstToPrint, iSize, warning.c_str(), pwstTemp);
+            pwstToPrint[iSize - 1] = L'\0';
+
             scilabForcedWriteW(pwstToPrint);
             FREE(pwstToPrint);
+        }
+
+        if (getWarningStop())
+        {
+            Sciwarning("");
         }
     }
 
 
-    return Function::OK;
+    return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

@@ -40,18 +40,18 @@ function demo_anim1()
     st=2;
     T=35:st:80; //Theta
     A=45:st:80;  //Alpha
-    Angles=[T A(1)*ones(A);T(1)*ones(T) A];
+    Angles=[T A(1)*ones(A);T(1)*ones(T) A]';
 
     //animation loop
     //--------------
     //use realtime to slow down the loop
     realtimeinit(0.1);//set time step and date reference
-    for i=1:size(Angles,2) // loop on theta angle
+    for i=1:size(Angles,1) // loop on theta angle
         realtime(i); //wait till date 0.1*i seconds
         if ~is_handle_valid(curAxe) then
             break
         end
-        curAxe.rotation_angles = Angles(:,i); //change the view angles property
+        curAxe.rotation_angles = Angles(i,:); //change the view angles property
     end
 
 endfunction

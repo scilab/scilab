@@ -5,7 +5,7 @@
         <refpurpose>( ) левая и правая круглые скобки</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             (expression)
             [...]=func(e1,e2,...)

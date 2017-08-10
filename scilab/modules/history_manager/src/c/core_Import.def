@@ -4,15 +4,5 @@
 EXPORTS
 ;core
 freeArrayOfString
-callFunctionFromGateway
-com_
-putlhsvar_
-getrhsvar_
-gettype_
-checklhs_
-checkrhs_
-createvarfromptr_
-createvar_
 MyHeapAlloc
 MyHeapFree
-MyHeapRealloc

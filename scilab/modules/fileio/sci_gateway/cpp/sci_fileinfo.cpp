@@ -4,11 +4,14 @@
  * Copyright (C) 2009 - DIGITEO - Allan CORNET
  * Copyright (C) 2010 - DIGITEO - Antoine ELIAS
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 /*--------------------------------------------------------------------------*/
@@ -27,32 +30,30 @@ extern "C"
 #include "Scierror.h"
 }
 
-using namespace types;
-
 /*--------------------------------------------------------------------------*/
-Function::ReturnValue sci_fileinfo(typed_list &in, int _iRetCount, typed_list &out)
+types::Function::ReturnValue sci_fileinfo(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     if (in.size() != 1)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "fileinfo", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (in[0]->isString() == false )
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "fileinfo", 1);
-        return Function::Error;
+        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "fileinfo", 1);
+        return types::Function::Error;
     }
 
     if (_iRetCount > 2)
     {
         Scierror(78, _("%s: Wrong number of output arguments: %d or %d expected.\n"), "fileinfo", 1, 2);
-        return Function::Error;
+        return types::Function::Error;
     }
 
-    String* pS = in[0]->getAs<types::String>();
-    InternalType* iT = NULL;
-    String* pS1 = NULL;
+    types::String* pS = in[0]->getAs<types::String>();
+    types::InternalType* iT = NULL;
+    types::String* pS1 = NULL;
 
     if (pS->getCols() != 1)
     {
@@ -66,25 +67,32 @@ Function::ReturnValue sci_fileinfo(typed_list &in, int _iRetCount, typed_list &o
        of Scilab < 6 */
     if (pS->getRows() == 1 && *piErr == -1)
     {
-        out.push_back(Double::Empty());
+        out.push_back(types::Double::Empty());
     }
     else
     {
-        Double *pOut = new Double(pS->getRows(), FILEINFO_ARRAY_SIZE);
+        types::Double *pOut = new types::Double(pS->getRows(), FILEINFO_ARRAY_SIZE);
         pOut->set(pData);
         out.push_back(pOut);
     }
 
     if (_iRetCount == 2)
     {
-        Double* pErr = new Double(pS->getRows(), 1);
+        types::Double* pErr = new types::Double(pS->getRows(), 1);
         pErr->setInt(piErr);
         out.push_back(pErr);
     }
 
+
+    if (pS != in[0])
+    {
+        //in case of transpose
+        pS->killMe();
+    }
+
     delete[] piErr;
     FREE(pData);
-    return Function::OK;
+    return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/
 

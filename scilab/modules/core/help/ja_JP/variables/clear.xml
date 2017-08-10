@@ -38,15 +38,15 @@
         </para>
         <para>
             <note>
-                正しい構文は<code>clear a</code>および<code>clear('a')</code>であり, 
+                正しい構文は<code>clear a</code>および<code>clear('a')</code>であり,
                 <code>clear(a)</code>ではないことに注意してください.
-                <code>a=[]</code> は <varname>a</varname> を消去しませんが, 
+                <code>a=[]</code> は <varname>a</varname> を消去しませんが,
                 <varname>a</varname>を空の行列にすることに注意してください.
             </note>
         </para>
         <para>
             コマンド <code>clear</code> は存在しない変数も消去します,
-            すなわち, 
+            すなわち,
             <code>clear</code> は存在しない変数を存在するものとして
             消去します.
         </para>

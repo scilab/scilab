@@ -26,7 +26,7 @@
                 <term>variable</term>
                 <listitem>
                     <para>
-                      値を解析する変数.
+                        値を解析する変数.
                     </para>
                 </listitem>
             </varlistentry>
@@ -34,10 +34,10 @@
                 <term>value1, ..., valuen</term>
                 <listitem>
                     <para>
-		      適当な命令ブロック
-		      <literal>instructions 1, ..., instructions n</literal>
-		      が存在する
-                      <literal>variable</literal>の値.
+                        適当な命令ブロック
+                        <literal>instructions 1, ..., instructions n</literal>
+                        が存在する
+                        <literal>variable</literal>の値.
                     </para>
                 </listitem>
             </varlistentry>
@@ -45,7 +45,7 @@
                 <term>instructions</term>
                 <listitem>
                     <para>
-		      有効な命令のブロック.
+                        有効な命令のブロック.
                     </para>
                 </listitem>
             </varlistentry>
@@ -53,43 +53,43 @@
     </refsection>
     <refsection>
         <title>説明</title>
-       <para>
+        <para>
             注意:
         </para>
         <itemizedlist>
-          <listitem>
-            <para>
-              唯一の規則は,各<literal>then</literal>キーワードを対応する
-	      <literal>case</literal>キーワードと同じ行に置く必要があることです
-	      (または,連続化記号を使用します, <link linkend="dot">ドット</link>参照).
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-	      キーワード <literal>"then"</literal>の代わりにキャレッジリターン
-	      またはカンマを使用することができます.
-              <literal>instructions1</literal> は <literal>expr1=expr</literal> の場合に実行される, 
-              といったようになります.
-            </para>
-          </listitem>
+            <listitem>
+                <para>
+                    唯一の規則は,各<literal>then</literal>キーワードを対応する
+                    <literal>case</literal>キーワードと同じ行に置く必要があることです
+                    (または,連続化記号を使用します, <link linkend="dot">ドット</link>参照).
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    キーワード <literal>"then"</literal>の代わりにキャレッジリターン
+                    またはカンマを使用することができます.
+                    <literal>instructions1</literal> は <literal>expr1=expr</literal> の場合に実行される,
+                    といったようになります.
+                </para>
+            </listitem>
         </itemizedlist>
-       <para>
-	  Scilabプログラミング言語のコード規約に基づき, 以下が推奨されます:
+        <para>
+            Scilabプログラミング言語のコード規約に基づき, 以下が推奨されます:
         </para>
         <itemizedlist>
             <listitem>
                 <para>
-		  各命令を新しい行で開始する.
+                    各命令を新しい行で開始する.
                 </para>
             </listitem>
             <listitem>
                 <para>
-		  1行に複数の命令を記述しない.
+                    1行に複数の命令を記述しない.
                 </para>
             </listitem>
             <listitem>
                 <para>
-		  複合命令は,複数行に分割する.
+                    複合命令は,複数行に分割する.
                 </para>
             </listitem>
         </itemizedlist>
@@ -114,19 +114,19 @@ end
 A = 2;select A case 1 then disp(1); case 2 then disp(2); else  disp(3); end
 ]]></programlisting>
         <para>
-          <warning>
-            警告: 条件文(if while for または select/case)の本体の定義に使用できる
-	    文字数は 16k に制限されています.
-          </warning>
+            <warning>
+                警告: 条件文(if while for または select/case)の本体の定義に使用できる
+                文字数は 16k に制限されています.
+            </warning>
         </para>
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 while %t do
   n=round(10*rand(1,1))
   select n
-  case 0 then 
+  case 0 then
     disp(0)
   case 1 then
     disp(1)

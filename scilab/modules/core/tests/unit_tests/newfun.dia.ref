@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA
@@ -12,9 +13,9 @@ assert_checktrue(clearfun("cosAlias"));
 if execstr("cosAlias(2*%pi)","errcatch") ==  0  then bugmes();quit;end
 errmsg =  msprintf(gettext("%s: Wrong value for input argument #%d: Valid function name expected.\n"), "newfun", 1);
 assert_checkerror('newfun(''1_function_name'',fptr_cos)', errmsg);
-errmsg =  msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"), "newfun", 2);
+errmsg =  msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"), "newfun", 2);
 assert_checkerror('newfun(''new_function_name'',[fptr_cos,fptr_cos])', errmsg);
-errmsg =  msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"), "newfun", 1);
+errmsg =  msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"), "newfun", 1);
 assert_checkerror('newfun([''new_function_name'',''new_function_name''],[fptr_cos,fptr_cos])', errmsg);
 errmsg =  msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"), "newfun", 1);
 assert_checkerror('newfun(1,[fptr_cos,fptr_cos])', errmsg);

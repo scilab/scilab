@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA 
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) INRIA
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="find">
@@ -16,7 +19,7 @@
         <refpurpose>find indices of boolean vector or matrix true elements</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[ii]=find(x [,nmax])
             [i1,i2,..]=find(x [,nmax])
         </synopsis>
@@ -72,7 +75,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 beers=["Desperados", "Leffe", "Kronenbourg", "Heineken"];
 find(beers=="Leffe") // OK
 find(beers=="1664") // KO
@@ -83,19 +86,19 @@ find(beers=="Foster") // OK
 A=rand(1,20);
 w=find(A<0.4)
 A(w)
-w=find(A>100) 
+w=find(A>100)
 
 B=rand(1,20);
 w=find(B<0.4,2) //at most 2 returned values
 
 H=rand(4,3,5); //an hypermatrix
-[i,j,k]=find(H>0.9)  
+[i,j,k]=find(H>0.9)
 
 H(i(1),j(1),k(1))
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="boolean">boolean</link>

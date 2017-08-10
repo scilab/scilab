@@ -103,31 +103,30 @@ extern int yydebug;
     OTHERWISE = 312,
     FUNCTION = 313,
     ENDFUNCTION = 314,
-    HIDDENFUNCTION = 315,
-    HIDDEN = 316,
-    FOR = 317,
-    WHILE = 318,
-    DO = 319,
-    BREAK = 320,
-    CONTINUE = 321,
-    TRY = 322,
-    CATCH = 323,
-    RETURN = 324,
-    STR = 325,
-    ID = 326,
-    VARINT = 327,
-    VARFLOAT = 328,
-    NUM = 329,
-    PATH = 330,
-    COMMENT = 331,
-    BLOCKCOMMENT = 332,
-    TOPLEVEL = 333,
-    HIGHLEVEL = 334,
-    UPLEVEL = 335,
-    LISTABLE = 336,
-    CONTROLBREAK = 337,
-    UMINUS = 338,
-    FUNCTIONCALL = 339
+    FOR = 315,
+    WHILE = 316,
+    DO = 317,
+    BREAK = 318,
+    CONTINUE = 319,
+    TRY = 320,
+    CATCH = 321,
+    RETURN = 322,
+    FLEX_ERROR = 323,
+    STR = 324,
+    ID = 325,
+    VARINT = 326,
+    VARFLOAT = 327,
+    NUM = 328,
+    PATH = 329,
+    COMMENT = 330,
+    BLOCKCOMMENT = 331,
+    TOPLEVEL = 332,
+    HIGHLEVEL = 333,
+    UPLEVEL = 334,
+    LISTABLE = 335,
+    CONTROLBREAK = 336,
+    UMINUS = 337,
+    FUNCTIONCALL = 338
   };
 #endif
 /* Tokens.  */
@@ -189,31 +188,30 @@ extern int yydebug;
 #define OTHERWISE 312
 #define FUNCTION 313
 #define ENDFUNCTION 314
-#define HIDDENFUNCTION 315
-#define HIDDEN 316
-#define FOR 317
-#define WHILE 318
-#define DO 319
-#define BREAK 320
-#define CONTINUE 321
-#define TRY 322
-#define CATCH 323
-#define RETURN 324
-#define STR 325
-#define ID 326
-#define VARINT 327
-#define VARFLOAT 328
-#define NUM 329
-#define PATH 330
-#define COMMENT 331
-#define BLOCKCOMMENT 332
-#define TOPLEVEL 333
-#define HIGHLEVEL 334
-#define UPLEVEL 335
-#define LISTABLE 336
-#define CONTROLBREAK 337
-#define UMINUS 338
-#define FUNCTIONCALL 339
+#define FOR 315
+#define WHILE 316
+#define DO 317
+#define BREAK 318
+#define CONTINUE 319
+#define TRY 320
+#define CATCH 321
+#define RETURN 322
+#define FLEX_ERROR 323
+#define STR 324
+#define ID 325
+#define VARINT 326
+#define VARFLOAT 327
+#define NUM 328
+#define PATH 329
+#define COMMENT 330
+#define BLOCKCOMMENT 331
+#define TOPLEVEL 332
+#define HIGHLEVEL 333
+#define UPLEVEL 334
+#define LISTABLE 335
+#define CONTROLBREAK 336
+#define UMINUS 337
+#define FUNCTIONCALL 338
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED

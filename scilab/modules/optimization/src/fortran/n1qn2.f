@@ -2,13 +2,16 @@ c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) 1988 - INRIA - Jean-Charles GILBERT
 c Copyright (C) 1988 - INRIA - Claude LEMARECHAL
 c 
-c This file must be used under the terms of the CeCILL.
-c This source file is licensed as described in the file COPYING, which
-c you should have received as part of this distribution.  The terms
-c are also available at    
-c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+c Copyright (C) 2012 - 2016 - Scilab Enterprises
 c
-      subroutine n1qn2 (simul,prosca,n,x,f,g,dxmin,df1,epsg,impres,io,
+c This file is hereby licensed under the terms of the GNU GPL v2.0,
+c pursuant to article 5.3.4 of the CeCILL v.2.1.
+c This file was originally licensed under the terms of the CeCILL v2.1,
+c and continues to be available under such terms.
+c For more information, see the COPYING file which you should have received
+c along with this program.
+c
+      subroutine n1qn2 (simul,prosca,n,x,f,g,dxmin,df1,epsg,iprint,io,
      /                  mode,niter,nsim,dz,ndz,izs,rzs,dzs)
 c!But
 c     Minimisation sans contrainte par un algorithme
@@ -37,7 +40,7 @@ c     3) une routine, appelee prosca par n1qn2, qui realise le produit
 c        scalaire de deux vecteurs, ce produit scalaire doit etre
 c        celui utilise pour calculer le gradient de f dans simul.
 c!Liste d'appel
-c     subroutine n1qn2 (simul,prosca,n,x,f,g,dxmin,df1,epsg,impres,io,
+c     subroutine n1qn2 (simul,prosca,n,x,f,g,dxmin,df1,epsg,iprint,io,
 c    /                  mode,niter,nsim,dz,ndz,izs,rzs,dzs)
 c
 c     Dans la description des arguments qui suit, (e) signifie que
@@ -99,9 +102,9 @@ c                convergence est atteinte en x(k) et s'arrete en mode 1
 c                si E(k) := |g(k)|/|g(1)| < epsg, ou g(1) et g(k) sont
 c                les gradients au point d'entree et a l'iteration k,
 c                respectivement. En sortie, epsg = E(k).
-c     impres(e): Scalaire du type integer qui controle les sorties.
+c     iprint(e): Scalaire du type integer qui controle les sorties.
 c                <0:  Rien n'est imprime et n1qn2 appelle le simulateur
-c                     avec indic=1 toutes les (-impres) iterations.
+c                     avec indic=1 toutes les (-iprint) iterations.
 c                =0:  Rien n'est imprime.
 c                >=1: Impressions initiales et finales, messages
 c                     d'erreurs.
@@ -118,7 +121,7 @@ c                     et l'angle de la direction de descente d(k) avec
 c                     -g(k).
 c     io(e):     Scalaire du type integer qui sera pris comme numero
 c                de canal de sortie pour les impressions controlees
-c                par impres.
+c                par iprint.
 c     mode(s):   Scalaire du type integer donnant le mode de sortie de
 c                n1qn2.
 c                <0: Impossibilite de poursuivre la recherche lineaire
@@ -180,7 +183,7 @@ c-----------------------------------------------------------------------
 c
 c     arguments
 c
-      integer n,impres,io,mode,niter,nsim,ndz,izs(*)
+      integer n,iprint,io,mode,niter,nsim,ndz,izs(*)
       real rzs(*)
       double precision x(*),f,g(*),dxmin,df1,epsg,dz(*)
       double precision dzs(*)
@@ -195,7 +198,7 @@ c
 c
 c---- impressions initiales et controle des arguments
 c
-      if (impres.ge.1) then
+      if (iprint.ge.1) then
          write (bufstr,900)
          call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
          
@@ -217,7 +220,7 @@ c
          write (bufstr,9006) nsim
          call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
          
-         write (bufstr,9006) impres
+         write (bufstr,9006) iprint
          call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
       endif
 900   format (' n1qn2: point d''entree')
@@ -227,11 +230,11 @@ c
 9004  format (5x,'precision relative en g (epsg)         :',d9.2)
 9005  format (5x,'nombre maximal d''iterations (niter)    :',i6)
 9006  format (5x,'nombre maximal d''appels a simul (nsim) :',i6)
-9007  format (5x,'niveau d''impression (impres)           :',i4)
+9007  format (5x,'niveau d''impression (iprint)           :',i4)
       if (n.le.0.or.niter.le.0.or.nsim.le.0.or.dxmin.le.0.0d+0
      /    .or.epsg.le.0.0d+0.or.epsg.gt.1.0d+0) then
           mode=2
-          if (impres.ge.1) then
+          if (iprint.ge.1) then
             write (bufstr,901)
             call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
             endif
@@ -240,7 +243,7 @@ c
       endif
       if (ndz.lt.5*n+1) then
           mode=2
-          if (impres.ge.1) then
+          if (iprint.ge.1) then
             write (bufstr,902)
             call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
             endif
@@ -254,7 +257,7 @@ c
       l1memo=2*n+1
       m=ndzu/l1memo
       ndzu=m*l1memo+3*n
-      if (impres.ge.1) then
+      if (iprint.ge.1) then
         write (bufstr,903) ndz
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         write (bufstr,9031) ndzu
@@ -275,14 +278,14 @@ c
 c---- appel du code d'optimisation
 c
       call n1qn2a (simul,prosca,n,x,f,g,dxmin,df1,epsg,
-     /             impres,io,mode,niter,nsim,m,
+     /             iprint,io,mode,niter,nsim,m,
      /             dz(id),dz(igg),dz(iaux),
      /             dz(ialpha),dz(iybar),dz(isbar),izs,rzs,dzs)
 c
 c---- impressions finales
 c
 904   continue
-      if (impres.ge.1) then
+      if (iprint.ge.1) then
         write (bufstr,905) 
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         write (bufstr,9051) mode
@@ -303,7 +306,7 @@ c
       r1=sqrt(ps)
       call prosca (n,g,g,ps,izs,rzs,dzs)
       r2=sqrt(ps)
-      if (impres.ge.1) then
+      if (iprint.ge.1) then
         write (bufstr,906) r1
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         

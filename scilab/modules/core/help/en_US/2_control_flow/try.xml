@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="try" xml:lang="en">
+    <refnamediv>
+        <refname>try</refname>
+        <refpurpose>beginning of try block in try-catch control
+            instruction
+        </refpurpose>
+    </refnamediv>
+    <refnamediv xml:id="catch">
+        <refname>catch</refname>
+        <refpurpose>beginning of catch block in try-catch control
+            instruction
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>
+            try
+            statements
+            catch
+            statements
+            end
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            The <literal>try</literal>-<literal>catch</literal> control
+            instruction can be used to manage codes that could possibly generate
+            errors.
+        </para>
+        <para>
+            When a <literal>try</literal>-<literal>catch</literal> control
+            instruction is executed, normally only the statements between the
+            <literal>try</literal> and <literal>catch</literal> keywords are executed.
+            However, if an error occurs during execution of any of these statements,
+            the error is recorded, the remaining statements up to the
+            <literal>catch</literal> keyword are skipped and the statements between
+            the <literal>catch</literal> and <literal>end</literal> keywords are
+            executed using the default error handling mode.
+        </para>
+        <para>
+            The recorded error can be retrieved using the <link linkend="lasterror">lasterror</link> function.
+        </para>
+        <para>
+            The <literal>catch</literal> statements as well as the
+            <literal>catch</literal> keyword can be omitted if no alternative
+            statements are given.
+        </para>
+        <para>
+            Note that one can also use the <link linkend="execstr">execstr</link> function with
+            <literal>'errcatch'</literal> argument for error handling. This can be
+            particularly useful for handling syntactical errors.
+        </para>
+        <para>
+            Note also that <literal>try-catch</literal> is more or less similar
+            to:
+        </para>
+        <programlisting role=""><![CDATA[
+if execstr("<try instructions>","errcatch")<>0 then
+  <catch instructions>
+end
+ ]]></programlisting>
+        <para>
+            It uses the same internal mechanism as "errcatch". It is the reason why
+            <emphasis>execstr(...,"errcatch")</emphasis> cannot be included in
+            <literal>try</literal>-<literal>catch</literal> control structures. This
+            context is detected and produces a specific error message (this error is
+            caught and stored like any other error if it is triggered in the
+            <literal>try</literal> block).
+        </para>
+        <para>
+            However, <literal>try</literal>-<literal>catch</literal> control
+            structures can be nested (see example 2 below).
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+// example 1
+file_path=TMPDIR+'/wrong'
+try
+  u=mopen(file_path,'r')
+  x=mget(10,'c',u)
+catch
+  disp(['file '+file_path+ ' cannot be read','using default values for x'])
+  x=1:10
+end
+ [error_message,error_number]=lasterror(%t)
+ ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+// example 2 (nested try/catch structures)
+function nestedtry(a,b)
+disp("START")
+mprintf("\ta is %s\t\tb is %s\n",string(a),string(b))
+try
+  disp("try 1")
+  try
+    disp("try 2")
+    z=a+1;  // err when string
+  catch
+    disp("catch 2")
+    t=b+1;  // err when string
+  end
+  disp("after try 2")
+catch
+  disp("catch 1")
+end
+disp("after try 1 - THE END")
+endfunction
+nestedtry(1,1)
+nestedtry("a string",1)
+nestedtry(1,"a string")
+nestedtry("a string","a string")
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="error">error</link>
+            </member>
+            <member>
+                <link linkend="execstr">execstr</link>
+            </member>
+            <member>
+                <link linkend="if">if</link>
+            </member>
+            <member>
+                <link linkend="lasterror">lasterror</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

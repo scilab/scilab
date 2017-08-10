@@ -15,8 +15,8 @@
 // <-- Short Description -->
 // mlist('r'), tlist('r') returned a wrong error message
 
-msgerr = msprintf(gettext("%ls: Can not create a %ls with input argument #%d.\n"), "mlist", "mlist", 1);
+msgerr = msprintf(gettext("%s: Can not create a %s with input argument #%d.\n"), "mlist", "mlist", 1);
 assert_checkerror ("mlist(''r'')", msgerr );
 
-msgerr = msprintf(gettext("%ls: Can not create a %ls with input argument #%d.\n"), "tlist", "tlist", 1);
+msgerr = msprintf(gettext("%s: Can not create a %s with input argument #%d.\n"), "tlist", "tlist", 1);
 assert_checkerror ("tlist(''r'')", msgerr );

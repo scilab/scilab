@@ -1,0 +1,758 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2015 - Scilab Enterprises - Calixte DENIZET
+ * Copyright (C) 2017 - Samuel GOUGEON
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="codechecking_criteria" xml:lang="en">
+    <refnamediv>
+        <refname>Scilab code-checking criteria</refname>
+    </refnamediv>
+    <refsection>
+        <title>Table of contents</title>
+        <simplelist>
+            <member>
+                <link linkend="slint_codetable">Table of checking id</link>
+            </member>
+            <member>
+                <link linkend="slint_function">function() and arguments</link>
+            </member>
+            <member>
+                <link linkend="slint_opsymbkey">Operators, symbols, keywords</link>
+            </member>
+            <member>
+                <link linkend="slint_codestyle">Code style</link>
+            </member>
+            <member>
+                <link linkend="slint_loops_blocks">Loops &amp; blocks</link>
+            </member>
+            <member>
+                <link linkend="slint_miscellaneous">Miscellaneous</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection role="description">
+        Checking codes and default parameters are defined in the <literal>SCI/modules/slint/etc/slint.xml</literal> file. In the same file, each criterium may be enabled (default) or disabled.
+        <!-- ==============================================================-->
+        <refsect2 id="slint_codetable">
+            <title>Checking id</title>
+            <table border="1">
+            <tr valign="top">
+                <td>
+                    <table>
+                        <tr valign="top">
+                            <td>00001</td>
+                            <td>global keyword</td>
+                        </tr>
+                        <tr valign="top">
+                            <td>00002</td>
+                            <td>Redefinition of reserved keywords</td>
+                        </tr>
+                        <tr valign="top">
+                            <td>00003</td>
+                            <td>Variable: valid name</td>
+                        </tr>
+                        <tr valign="top">
+                            <td>00003</td>
+                            <td>Variable: missing usage or missing local definition</td>
+                        </tr>
+                        <tr valign="top">
+                            <td>00004</td>
+                            <td>function: valid name</td>
+                        </tr>
+                        <tr valign="top">
+                            <td>00005</td>
+                            <td>Duplicate argins or/and duplicate argouts</td>
+                        </tr>
+                        <tr valign="top">
+                            <td>00006</td>
+                            <td>Unused input arguments</td>
+                        </tr>
+                        <tr valign="top">
+                            <td>00007</td>
+                            <td>Unassigned output argument</td>
+                        </tr>
+                        <tr valign="top">
+                            <td>00009</td>
+                            <td>One instruction per line</td>
+                        </tr>
+                        <tr valign="top">
+                            <td>00010</td>
+                            <td>Empty block</td>
+                        </tr>
+                        <tr valign="top">
+                            <td>00011</td>
+                            <td>mopen/mclose pairs &amp; mclose all</td>
+                        </tr>
+                        <tr valign="top">
+                            <td>00012</td>
+                            <td>McCabe complexity</td>
+                        </tr>
+                        <tr valign="top">
+                            <td>00013</td>
+                            <td>Format of literal decimal numbers</td>
+                        </tr>
+                        <tr valign="top">
+                            <td>00014</td>
+                            <td>printf: number of data matches the format</td>
+                        </tr>
+                        <tr valign="top">
+                            <td>00015</td>
+                            <td>Too long line</td>
+                        </tr>
+                        <tr valign="top">
+                            <td>00016</td>
+                            <td>function: max number of lines</td>
+                        </tr>
+                        <tr valign="top">
+                            <td>00017</td>
+                            <td>TODO exists</td>
+                        </tr>
+                        <tr valign="top">
+                            <td>00018</td>
+                            <td>NaN comparisons</td>
+                        </tr>
+                        <tr valign="top">
+                            <td>00019</td>
+                            <td>== instead of =</td>
+                        </tr>
+                        <tr valign="top">
+                            <td>00020</td>
+                            <td>Unassigned result. Useless operation</td>
+                        </tr>
+                        <tr valign="top">
+                            <td>00021</td>
+                            <td>unreachable code after return or break</td>
+                        </tr>
+                    </table>
+                </td>
+                <td> </td>
+                <td>
+                    <table>
+                        <tr valign="top">
+                            <td>00022</td>
+                            <td>Deprecated functions</td>
+                        </tr>
+                        <tr valign="top">
+                            <td>00023</td>
+                            <td>select without else</td>
+                        </tr>
+                        <tr valign="top">
+                            <td>00024</td>
+                            <td>Implicit list a:b without %nan nor %inf bounds</td>
+                        </tr>
+                        <tr valign="top">
+                            <td>00024</td>
+                            <td>Bad use of ':' operator</td>
+                        </tr>
+                        <tr valign="top">
+                            <td>00025</td>
+                            <td>struct: fields and data match</td>
+                        </tr>
+                        <tr valign="top">
+                            <td>00026</td>
+                            <td>save/load with variables names</td>
+                        </tr>
+                        <tr valign="top">
+                            <td>00027</td>
+                            <td>Deprecated @ (not) operator</td>
+                        </tr>
+                        <tr valign="top">
+                            <td>00028</td>
+                            <td>Binary operators between spaces</td>
+                        </tr>
+                        <tr valign="top">
+                            <td>00029</td>
+                            <td>Space after separating commas in argin list at function call</td>
+                        </tr>
+                        <tr valign="top">
+                            <td>00030</td>
+                            <td>Loop: max number of break or continue</td>
+                        </tr>
+                        <tr valign="top">
+                            <td>00031</td>
+                            <td>Nesting depth of blocks</td>
+                        </tr>
+                        <tr valign="top">
+                            <td>00032</td>
+                            <td>If or while tested conditions : max number of statements</td>
+                        </tr>
+                        <tr valign="top">
+                            <td>00033</td>
+                            <td>Bracketed expressions</td>
+                        </tr>
+                        <tr valign="top">
+                            <td>00034</td>
+                            <td>no NOT NOT</td>
+                        </tr>
+                        <tr valign="top">
+                            <td>00035</td>
+                            <td>function: illegal calls</td>
+                        </tr>
+                        <tr valign="top">
+                            <td>00036</td>
+                            <td>Comments: minimal required ratio wrt code</td>
+                        </tr>
+                        <tr valign="top">
+                            <td>00037</td>
+                            <td>order of named inputs</td>
+                        </tr>
+                        <tr valign="top">
+                            <td>00038</td>
+                            <td>Returned error flag must be tested</td>
+                        </tr>
+                        <tr valign="top">
+                            <td>00039</td>
+                            <td>Semicolon at end of line</td>
+                        </tr>
+                        <tr valign="top">
+                            <td>00040</td>
+                            <td>function: max number of return()</td>
+                        </tr>
+                        <tr valign="top">
+                            <td>00041</td>
+                            <td>NOT EQUAL consistency</td>
+                        </tr>
+                        <tr valign="top">
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </td>
+                </tr>
+            </table>
+            <para></para>
+        </refsect2>
+        <!-- ==============================================================-->
+        <refsect2 id="slint_function">
+            <title>function</title>
+            <variablelist>
+                <varlistentry>
+                    <term>valid name (00004)</term>
+                    <listitem>
+                        <para>
+                            Checks the name of functions:
+                            <itemizedlist>
+                                <listitem>option: names  may be tested against a given regexp pattern</listitem>
+                                <listitem>option: some minimal and maximal lengths of names may be defined.</listitem>
+                            </itemizedlist>
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>Illegal calls (00035)</term>
+                    <listitem>
+                        <para>
+                            Checks that function calls are allowed: the list of concerned functions is configurable. Default = <code>pause, abort, quit, exit</code>
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>deprecated (00022)</term>
+                    <listitem>
+                        <para>
+                            Looks for calls to deprecated functions.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>number of lines (00016)</term>
+                    <listitem>
+                        <para>
+                            Checks the number of lines inside a function body. Too many lines can decrease the readability. Default max lines number = 200.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>number of return() (00040)</term>
+                    <listitem>
+                        <para>
+                            Checks that the number of calls to <code>return</code> in a function is less than a maximum. Default = only 1.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>arguments</term>
+                    <listitem>
+                        <variablelist>
+                            <varlistentry>
+                                <term>Unused input argument (00006)</term>
+                                <listitem>
+                                    <para>
+                                        Checks if a function's argument is useless or not. Useless arguments can decrease the readability.
+                                    </para>
+                                </listitem>
+                            </varlistentry>
+                            <varlistentry>
+                                <term>Unassigned output argument (00007)</term>
+                                <listitem>
+                                    <para>
+                                        Checks if output arguments are defined before returning.
+                                    </para>
+                                </listitem>
+                            </varlistentry>
+                            <varlistentry>
+                                <term>Space after separating commas (00029)</term>
+                                <listitem>
+                                    <para>
+                                        Checks that there is a space after each comma in the list of function arguments at call.
+                                    </para>
+                                </listitem>
+                            </varlistentry>
+                            <varlistentry>
+                                <term>Duplicate argins or/and duplicate argouts (00005)</term>
+                                <listitem>
+                                    <para>
+                                        Checks if a function's argument (in/out) have no duplicate.
+                                    </para>
+                                    <para>
+                                    <programlisting role="example"><![CDATA[
+                                    function y = foo(a, b, c, a) // probably an error
+                                        ...
+                                    endfunction
+
+                                    function [y, a] = foo(a, b, c) // not necessarily an error but could be one
+                                        ...
+                                    endfunction
+                                ]]></programlisting>
+                                    </para>
+                                </listitem>
+                            </varlistentry>
+                            <varlistentry>
+                                <term>Order of named inputs (00037)</term>
+                                <listitem>
+                                    <para>
+                                        Checks that named arguments are called at the right place.
+                                    </para>
+                                    <para>
+                                    <programlisting role="example"><![CDATA[
+                                    function foo(a, b, c)
+                                        ...
+                                    endfunction
+
+                                    function faa(x, y, z)
+                                        foo(x, b = 1, z) // not ok
+                                    endfunction
+
+                                    function fee(x, y, z)
+                                        foo(x, b = 1, c = 2) // ok
+                                    endfunction
+
+                                    function fii(x, y, z)
+                                        foo(x, c = 2, b = 1) // not ok
+                                    endfunction
+                             ]]></programlisting>
+                                    </para>
+                                </listitem>
+                            </varlistentry>
+                        </variablelist>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+            <para></para>
+        </refsect2>
+        <!-- ============================================================== -->
+        <refsect2 id="slint_opsymbkey">
+            <title>Operators, symbols, keywords</title>
+            <variablelist>
+                <varlistentry>
+                    <term>Bad use of ':' operator (00024)</term>
+                    <listitem>
+                        <para>
+                            Checks that in an implicit list a:b one or both bounds a or b is not another implicit list.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>Deprecated @ (not) operator (00027)</term>
+                    <listitem>
+                        <para>
+                            Checks that the deprecated <literal>@ (not)</literal> operator is not used. <literal>~</literal> must now be used.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>no NOT NOT (00034)</term>
+                    <listitem>
+                        <para>
+                            Checks that no double negation is used. Such expressions shall be simplified.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>NOT EQUAL consistency (00041)</term>
+                    <listitem>
+                        <para>
+                            The 'not equal' operator can be written '~=', '@=' or '&lt;&gt;', so checks that only one is used.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>== instead of = (00019)</term>
+                    <listitem>
+                        <para>
+                            Checks if the equality operator is used in a single instruction.
+                        </para>
+                        <para>
+                            <programlisting role="example"><![CDATA[
+                            function y = foo(x)
+                                y == x + 1;     // probably a typo
+                            endfunction
+                        ]]></programlisting>
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>NaN comparisons (00018)</term>
+                    <listitem>
+                        <para>
+                            Most often, comparing a number with <constant>%nan</constant> isn't a good idea. Using <code>isnan</code> is better.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>global keyword (00001)</term>
+                    <listitem>
+                        <para>
+                            Checks if the keyword <code>global</code> is present.
+                        </para>
+                        <para>
+                            <programlisting role="example"><![CDATA[
+                            function y = foo(x)
+                                global z
+                            endfunction
+                        ]]></programlisting>
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>Redefinition of reserved keywords (00002)</term>
+                    <listitem>
+                        <para>
+                            Checks if a variable redefines a Scilab's constant, built-in or macro.
+                        </para>
+                        <para>
+                            Redefining a Scilab's variable could have undesirable side-effects, so it should be avoided.
+                        </para>
+                        <para>
+                            <programlisting role="example"><![CDATA[
+                            function y = foo(x)
+                                y = x
+                            endfunction
+
+                            function y = bar(x)
+                                y = foo(x)
+                            endfunction
+
+                            function y = oof(x)    // call oof(2) doesn't return 2 !
+                                foo = rand(x, 1);
+                                y = bar(x)
+                            endfunction
+                         ]]></programlisting>
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>TODO (00017)</term>
+                    <listitem>
+                        <para>
+                            Checks if there are comments including the <literal>TODO</literal> mnemonic. Most often, TODO points to something that still must be achieved.
+                        </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+            <para></para>
+        </refsect2>
+        <!-- ============================================================== -->
+        <refsect2 id="slint_codestyle">
+            <title>Code style</title>
+            <variablelist>
+                <varlistentry>
+                    <term>Too long line (00015)</term>
+                    <listitem>
+                    <para>
+                        Checks the line length. Scilab code style recommands a 80-char maximal length. This is the default value for slint.
+                    </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>One instruction per line (00009)</term>
+                    <listitem>
+                        <para>
+                            Checks if there is a single instruction on each line.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>Semicolon at end of line (00039)</term>
+                    <listitem>
+                        <para>
+                            Checks that lines end with a semicolon.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>Binary operators between spaces (00028)</term>
+                    <listitem>
+                        <para>
+                            Checks that each binary operator (<literal>+  -  *  /  >  >= &lt;  &lt;=  =  == ..</literal> is surrounded by spaces.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>Format of literal decimal numbers (00013)</term>
+                    <listitem>
+                        <para>
+                            Checks if in a literal decimal number the correct exponent character is "e" or "E" (instead of "d" or "D"). In addition, checking that the decimal separator is a dot (instead of a comma) is also enabled by default.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>Bracketed expressions (00033)</term>
+                    <listitem>
+                        <para>
+                            Checks that expressions are bracketed: that increases the code readability.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>Comments: minimal required ratio wrt code (00036)</term>
+                    <listitem>
+                        <para>
+                            Computes and checks the ratio between number of lines and number of comments is greater than the minimum required. Default ratio = 30%.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>McCabe complexity (00012)</term>
+                    <listitem>
+                        <para>
+                            Computes the simplified <emphasis role="italic">McCabe</emphasis> complexity of the code, and compares it to a reference.
+                        </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+            <para></para>
+        </refsect2>
+        <!-- ==============================================================-->
+        <refsect2 id="slint_loops_blocks">
+            <title>Loops and blocks</title>
+            <variablelist>
+                <varlistentry>
+                    <term>Empty block (00010)</term>
+                    <listitem>
+                        <para>
+                            Checks if there are some empty blocks.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>If or while tested conditions : max number of statements (00032)</term>
+                    <listitem>
+                        <para>
+                            Checks that the number of statements in the boolean condition is less than a maximum. Default = 5 max.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>Nesting depth of blocks (00031)</term>
+                    <listitem>
+                        <para>
+                            Checks that the nesting depth of blocks is less than a maximum (default 3).
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>select (00023)</term>
+                    <listitem>
+                        <para>
+                            Checks <code>select</code> against various tests:
+                            <itemizedlist>
+                                <listitem>
+                                    A default <literal>else</literal> case is expected. Enabled by default.
+                                </listitem>
+                                <listitem>
+                                    When there is only one <literal>case</literal>, <literal>select</literal> shall be replaced with a simpler <literal>if</literal> statement. Warning enabled by default.
+                                </listitem>
+                                <listitem>
+                                    Empty <literal>case</literal> or <literal>else</literal> blocks are detected. Enabled by default.
+                                </listitem>
+                                <listitem>
+                                    The homogeneity of tested values is checked: all case values must have the same type. Disabled by default.
+                                </listitem>
+                            </itemizedlist>
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>unreachable code after return or break (00021)</term>
+                    <listitem>
+                        <para>
+                            Checks for unreachable code after a <function>break</function> or a <function>return</function> instruction. Unreachable code decreases code readability.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>Loop: max number of break or continue (00030)</term>
+                    <listitem>
+                        <para>
+                            Check that numbers of <function>break</function> or <function>continue</function> in a loop are less than a maximum (default = only 1).
+                        </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+            <para></para>
+        </refsect2>
+        <!-- ==============================================================-->
+        <refsect2 id="slint_miscellaneous">
+            <title>Miscellaneous</title>
+            <variablelist>
+                <varlistentry>
+                    <term>Implicit list a:b without %nan nor %inf bounds (00024)</term>
+                    <listitem>
+                        <para>
+                            Checks that an implicit list a:b is specified without any a or b bound set to %nan or %inf.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>printf: number of data matches the format (00014)</term>
+                    <listitem>
+                        <para>
+                            In calls to <function>printf()</function>, checks when it's possible whether the number of <literal>%</literal> formating directives matches the number of provided data. The data types matching is not tested.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>save/load with variables names (00026)</term>
+                    <listitem>
+                        <para>
+                            Checks that calls to <code>load()</code> and <code>save()</code> use the names of variables instead of variables handles.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>struct: fields and data match (00025)</term>
+                    <listitem>
+                        <para>
+                            Checks the <function>struct()</function> definition:
+                            <itemizedlist>
+                                <listitem>The numbers of fields names and values must match.</listitem>
+                                <listitem>option: field names may be tested against a given regexp pattern</listitem>
+                                <listitem>option: some minimal and maximal lengths of fields names may be defined.</listitem>
+                            </itemizedlist>; .
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>mopen/mclose pairs &amp; mclose all (00011)</term>
+                    <listitem>
+                        <para>
+                            Checks when it's possible if the files opened with <code>mopen()</code> are closed with <code>mclose()</code>. Checks as well if <code>mclose("all")</code> is not used: it may have some side-effects.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>Returned error flag must be tested (00038)</term>
+                    <listitem>
+                        <para>
+                            Checks that the error flag returned by some functions is actually retrieved and tested. The list of such functions is configurable.
+                        </para>
+                        <para>
+                            <programlisting role="example"><![CDATA[
+                            function foo(a, b, c)
+                               [fd, err] = mopen(...) // ok err is returned
+                               if err ... then // ok err is checked
+                                  ...
+                               end
+                               ...
+                               mclose(fd);
+                            endfunction
+                         ]]></programlisting>
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>Unassigned result. Useless operation (00020)</term>
+                    <listitem>
+                        <para>
+                            Checks if an operation without assignment is used in a single instruction.
+                        </para>
+                        <para>
+                        <programlisting role="example"><![CDATA[
+                        function y = foo(x)
+                            x + 1;    // probably useless
+                        endfunction
+                    ]]></programlisting>
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>Variable: valid name (00003)</term>
+                    <listitem>
+                        <para>
+                            Checks if a variable's name matches a regex pattern.
+                            [some names yield an error and stop code-checking, like
+                            "3wrongName"]
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>
+                        Variable: missing usage or missing local definition (00003)
+                    </term>
+                    <listitem>
+                        <para>
+                            Looks for variables that are locally defined but unused.
+                            Such variables are useless and can decrease the code readability.
+                        </para>
+                        <para>
+                            Looks for variables used without being locally defined.
+                            Values of such variables are silently heritated from the calling level. This may have side effects.
+                        </para>
+                        <para>
+                        <programlisting role="example"><![CDATA[
+                        function y = foo(x)
+                            scilab = 123;
+                            y = bar(x);
+                        endfunction
+
+                        function y = bar(x)
+                            Scilab = 456;
+                            y = scilab + 1; // typo error
+                        endfunction
+                     ]]></programlisting>
+                        </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsect2>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="slint">slint</link>
+            </member>
+            <member>
+                <link linkend="debug">debug</link>
+            </member>
+            <member>
+                <link linkend="covStart">coverage</link>
+            </member>
+            <member>
+                <link linkend="test_run">test_run</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -2,21 +2,24 @@
 <!--
  * Copyright (C) INRIA -  Serge Steer Serge.Steer@inria.fr
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en_US" xml:id="datatipGetStruct">
     <refnamediv>
         <refname>datatipGetStruct</refname>
         <refpurpose>
-            Retreive the datatips data structure from the polyline entity. <emphasis role="bold">This function is obsolete.</emphasis>
+            Retrieve the datatips data structure from the polyline entity. <emphasis role="bold">This function is obsolete.</emphasis>
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             datatips_struct=datatipGetStruct(curve_handle)
         </synopsis>
@@ -49,7 +52,7 @@
         <para>
             <literal>datatipGetStruct</literal> extract the datatips data
             structure out of the polyline  entity. It may be called
-            to retreive properties of the datatips data structure to
+            to retrieve properties of the datatips data structure to
             customize the tip display.
         </para>
     </refsection>
@@ -64,7 +67,7 @@
     datatipCreate(p,50);
     datatipCreate(p,20);
     datatips_struct=datatipGetStruct(p)
-    datatips_struct.formatfunction
+    datatips_struct.display_function
     ]]></programlisting>
         <scilab:image>
             x=linspace(0,1,100)';
@@ -87,7 +90,7 @@
         </revhistory>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="datatips">datatips</link>

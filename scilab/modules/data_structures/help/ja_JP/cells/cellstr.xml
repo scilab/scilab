@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="cellstr" xml:lang="ja">
+
+    <refnamediv>
+
+        <refname>cellstr</refname>
+
+        <refpurpose>文字列ベクトル(または文字列行列)を文字列のセルに変換</refpurpose>
+
+    </refnamediv>
+
+    <refsynopsisdiv>
+
+        <title>呼び出し手順</title>
+
+        <synopsis>c=cellstr(s)</synopsis>
+
+    </refsynopsisdiv>
+
+    <refsection>
+
+        <title>引数</title>
+
+        <variablelist>
+
+            <varlistentry>
+
+                <term>s</term>
+
+                <listitem>
+
+                    <para>文字列ベクトル, または文字列行列</para>
+
+                </listitem>
+
+            </varlistentry>
+
+        </variablelist>
+
+    </refsection>
+
+    <refsection>
+
+        <title>説明</title>
+
+        <para>文字列のセル配列を返します.</para>
+
+        <itemizedlist>
+
+            <listitem>
+
+                <para>
+
+                    <literal>s</literal>が文字列の線ベクトルの場合,
+
+                    <literal>cellstr(s)</literal> は,
+
+                    1つの要素(<literal>s</literal>の全ての列要素の結合)を含む
+
+                    <literal>(1×1)</literal> の配列セルとなります.
+
+                </para>
+
+            </listitem>
+
+            <listitem>
+
+                <para>
+
+                    <literal>s</literal> が文字列の列ベクトルの場合,
+
+                    <literal>cellstr(s)</literal>は s を同じ大きさのセル
+
+                    に変換します: 文字列の<literal>(size(s,1)×1)</literal>セル
+
+                </para>
+
+            </listitem>
+
+            <listitem>
+
+                <para>
+
+                    <literal>s</literal> が行列の場合,<literal>s</literal>の
+
+                    各<literal>i</literal> 行目は文字列の行列になり,
+
+                    <literal>cellstr(s)</literal>は全て行列 <literal>s</literal>の
+
+                    i番目の行の要素(すなわち s(i,1), s(i,2), s(i,3),...)を結合したものになり,
+
+                    <literal>(size(s,1)×1)</literal>の文字列のセルを返します.
+
+                </para>
+
+            </listitem>
+
+        </itemizedlist>
+
+    </refsection>
+
+    <refsection>
+
+        <title>例</title>
+
+        <programlisting role="example"><![CDATA[
+cellstr("foo")
+cellstr(["sci","lab"])
+cellstr(["abc","def",'gh';"i","j","klm"])
+ ]]></programlisting>
+
+    </refsection>
+
+    <refsection role="see also">
+
+        <title>参照</title>
+
+        <simplelist type="inline">
+
+            <member>
+
+                <link linkend="cell">cell</link>
+
+            </member>
+
+            <member>
+
+                <link linkend="makecell">makecell</link>
+
+            </member>
+
+            <member>
+
+                <link linkend="string">string</link>
+
+            </member>
+
+        </simplelist>
+
+    </refsection>
+
+</refentry>
+

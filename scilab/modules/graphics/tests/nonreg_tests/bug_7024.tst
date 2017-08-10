@@ -15,14 +15,8 @@
 // <-- Short Description -->
 // Error messages from twinkle was not standard.
 
-ierr = execstr("twinkle()", "errcatch");
-if lasterror() <> msprintf(gettext("%s: Wrong number of input arguments: %d or %d expected.\n"), "twinkle", 1, 2) then pause, end
-
-ierr = execstr("twinkle(1)", "errcatch");
-if lasterror() <> msprintf(gettext("%s: Wrong type for input argument #%d: Graphic handle expected.\n"), "twinkle", 1) then pause, end
-
 ierr = execstr("twinkle(1, 6)", "errcatch");
 if lasterror() <> msprintf(gettext("%s: Wrong type for input argument #%d: Graphic handle expected.\n"), "twinkle", 1) then pause, end
 
 ierr = execstr("twinkle(gcf(), ""a string"")", "errcatch");
-if lasterror() <> msprintf(gettext("%s: Wrong type for input argument #%d: Scalar expected.\n"), "twinkle", 2) then pause, end
+if lasterror() <> msprintf(gettext("%s: Wrong type for input argument #%d: Positive integer expected.\n"), "twinkle", 2) then pause, end

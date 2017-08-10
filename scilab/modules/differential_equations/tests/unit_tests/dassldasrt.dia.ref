@@ -27,7 +27,7 @@ assert_checkalmostequal(norm(yy2,1),norm(yy0,1),1E-5);
 // fortran routines, with jacobian
 yy3=dassl([y0,y0d],t0,t,'dres1','djac1',info);  //=yy1
 assert_checkalmostequal(norm(yy3,1),norm(yy1,1),1E-5);
-yy3bis=dassl([y0,y0d],t0,t,'dres1',djac1,info); 
+yy3bis=dassl([y0,y0d],t0,t,'dres1',djac1,info);
 // call fortran dres1 and scilab's djac1
 yy3ter=dassl([y0,y0d],t0,t,dres1,'djac1',info);
 //
@@ -36,7 +36,7 @@ atol=1.d-6;rtol=0;
 yy4=dassl([y0,y0d],t0,t,atol,rtol,dres1,info);
 yy5=dassl([y0,y0d],t0,t,atol,rtol,'dres1',info); //=yy4
 assert_checkalmostequal(norm(yy5,1),norm(yy4,1),1E-9);
-yy6=dassl([y0,y0d],t0,t,atol,rtol,dres1,djac1,info); 
+yy6=dassl([y0,y0d],t0,t,atol,rtol,dres1,djac1,info);
 yy7=dassl([y0,y0d],t0,t,atol,rtol,'dres1','djac1',info); //==yy6
 assert_checkalmostequal(norm(yy7,1),norm(yy6,1),1E-12);
 //    
@@ -161,8 +161,7 @@ res22=[...
 '      YDOT(2) = 100.0D0*(1.0D0 - Y(1)*Y(1))*Y(2) - Y(1)';
 '      RETURN';
 '      END';]
- res22  =
- 
+ res22  = 
 !      SUBROUTINE RES22(T,Y,YDOT,DELTA,IRES,RPAR,IPAR)    !
 !                                                         !
 !      IMPLICIT DOUBLE PRECISION (A-H,O-Z)                !
@@ -220,8 +219,7 @@ jac22=[...
 '      PD(2,2) = CJ - PD(2,2)';
 '      RETURN';
 '      END';]
- jac22  =
- 
+ jac22  = 
 !      SUBROUTINE JAC22 (T, Y, ydot, PD, CJ, RPAR, IPAR)  !
 !                                                         !
 !                                                         !
@@ -264,8 +262,7 @@ gr22=[...
 '      GROOT(1) = Y(1)';
 '      RETURN';
 '      END';]
- gr22  =
- 
+ gr22  = 
 !      SUBROUTINE GR22 (NEQ, T, Y, NG, GROOT, RPAR, IPAR)  !
 !                                                          !
 !      IMPLICIT DOUBLE PRECISION (A-H,O-Z)                 !

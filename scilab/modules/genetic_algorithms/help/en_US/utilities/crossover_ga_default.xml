@@ -3,11 +3,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - Yann COLLETTE <yann.collette@renault.com>
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="crossover_ga_default" xml:lang="en">
@@ -18,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[Crossed_Indiv1,Crossed_Indiv2] = crossover_ga_default(Indiv1,Indiv2,param)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -45,12 +48,12 @@
                             <para>'beta': the range of the random generator. A random value
                                 will be sampled between -beta and 1+beta. This sampled value
                                 will be used to perform a convex combination between Indiv1 and
-                                Indiv2. 
+                                Indiv2.
                             </para>
                         </listitem>
                         <listitem>
                             <para> 'minbound': a vector of minimum bounds for the variable
-                                X. 
+                                X.
                             </para>
                         </listitem>
                         <listitem>
@@ -82,7 +85,7 @@
             combination. The crossed individuals are computed with the following
             equations :
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 mix = (1 + 2*Beta)*rand(1,1) - Beta;
 Crossed_Indiv1 =     mix*Indiv1 + (1-mix)*Indiv2;
 Crossed_Indiv2 = (1-mix)*Indiv1 +     mix*Indiv2;
@@ -96,7 +99,7 @@ Crossed_Indiv2 = (1-mix)*Indiv1 +     mix*Indiv2;
         </para>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="crossover_ga_binary"> crossover_ga_binary

@@ -12,7 +12,7 @@
             　　ループ変数の定義と命令を分離するために使用されます.
         </para>
     </refsection>
-    
+
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[

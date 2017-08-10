@@ -1,21 +1,28 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
 package org.scilab.modules.xcos.palette.view;
 
 import java.awt.Color;
+import java.awt.Component;
 
 import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
 
 import org.scilab.modules.xcos.palette.model.Category;
 import org.scilab.modules.xcos.palette.model.PaletteNode;
@@ -26,9 +33,10 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  */
 @SuppressWarnings(value = { "serial" })
 public class PaletteConfiguratorListView extends JTable {
-    private static final String[] COLUMN_TITLE = { XcosMessages.ENABLE,
-                                                   XcosMessages.PAL_NAME
-                                                 };
+    private static final String[] COLUMN_TITLE = {
+        XcosMessages.ENABLE,
+        XcosMessages.PAL_NAME
+    };
 
     /**
      * Construct a new view with model
@@ -38,13 +46,32 @@ public class PaletteConfiguratorListView extends JTable {
      */
     public PaletteConfiguratorListView(final PaletteListModel model) {
         super(model);
-        setBackground(Color.white);
+        setBackground(Color.WHITE);
+        setAutoResizeMode(AUTO_RESIZE_LAST_COLUMN);
     }
+
+    /**
+     * @param renderer
+     * @param row
+     * @param column
+     * @return component
+     */
+    @Override
+    public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
+        Component component = super.prepareRenderer(renderer, row, column);
+        if (getColumnModel().getColumnCount() != column + 1) {
+            int rendererWidth = component.getPreferredSize().width;
+            TableColumn tableColumn = getColumnModel().getColumn(column);
+            int width = Math.max(rendererWidth + getIntercellSpacing().width,
+                                 tableColumn.getPreferredWidth());
+            tableColumn.setMaxWidth(width);
+        }
+        return component;
+     }
 
     /**
      * The default model
      */
-    @SuppressWarnings(value = { "serial" })
     public static class PaletteListModel extends AbstractTableModel {
         private final Category category;
 

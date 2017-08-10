@@ -13,14 +13,14 @@ copyfile(SCI+"/modules/api_scilab/tests/unit_tests/hypermatIntExample.c",pathcon
 ilib_build("gw_hypermatIntExample",["hypermatIntExample","hypermatIntExample"],"hypermatIntExample.c",[],"","","");
 exec("loader.sce");
 
-a = hypermat([1 2 3], int8(1:6));
-b = hypermat([1 2 3], uint8(1:6));
-c = hypermat([1 2 3], int16(1:6));
-d = hypermat([1 2 3], uint16(1:6));
-e = hypermat([1 2 3], int32(1:6));
-f = hypermat([1 2 3], uint32(1:6));
-g = hypermat([1 2 3], int64(1:6));
-h = hypermat([1 2 3], uint64(1:6));
+a = matrix(int8(1:6), [1 2 3]);
+b = matrix(uint8(1:6), [1 2 3]);
+c = matrix(int16(1:6), [1 2 3]);
+d = matrix(uint16(1:6), [1 2 3]);
+e = matrix(int32(1:6), [1 2 3]);
+f = matrix(uint32(1:6), [1 2 3]);
+g = matrix(int64(1:6), [1 2 3]);
+h = matrix(uint64(1:6), [1 2 3]);
 
 assert_checkequal(hypermatIntExample(a), a);
 assert_checkequal(hypermatIntExample(b), b);

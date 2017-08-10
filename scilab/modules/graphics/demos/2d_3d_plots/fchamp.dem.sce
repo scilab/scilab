@@ -16,7 +16,6 @@ function demo_fchamp()
     my_handle.figure_name = my_plot_desc;
 
     fchamp();
-    xtitle(my_plot_desc," "," "," ");
 
     // DEMO END
 endfunction

@@ -5,7 +5,7 @@
         <refpurpose>Create a border for a frame uicontrol.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             border = createBorder(borderType, varargin)
         </synopsis>
@@ -17,7 +17,7 @@
                 <term>borderType</term>
                 <listitem>
                     <para>String</para>
-                    <para>The type of the border to be created. Available types of borders are listed below and their specific properties are detailled on dedicated help page:</para>
+                    <para>The type of the border to be created. Available types of borders are listed below and their specific properties are detailed on dedicated help page:</para>
                     <itemizedlist>
                         <listitem>
                             <para>"none": No border will be added to the frame (default). No property is available for this type.</para>
@@ -88,7 +88,7 @@
         </para>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="createBorderFont">createBorderFont</link>

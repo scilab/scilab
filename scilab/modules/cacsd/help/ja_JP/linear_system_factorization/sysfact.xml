@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - F Delebecque
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="sysfact">
+    <refnamediv>
+        <refname>sysfact</refname>
+        <refpurpose>システム分解</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[S,Series]=sysfact(Sys,Gain,flag)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>Sys</term>
+                <listitem>
+                    <para>
+                        行列 <literal>[A,B,C,D]</literal>を含む<literal>syslin</literal> リスト.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Gain</term>
+                <listitem>
+                    <para>実数行列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flag</term>
+                <listitem>
+                    <para>
+                        文字列 <literal>'post'</literal> または<literal>'pre'</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>S</term>
+                <listitem>
+                    <para>
+                        <literal>syslin</literal> リスト
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Series</term>
+                <listitem>
+                    <para>
+                        <literal>syslin</literal> リスト
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>flag</literal> が <literal>'post'</literal>に等しい場合,
+            <literal>sysfact</literal> は,<literal>S</literal>に
+            ABCD行列形式の線形システム <literal>(A+B*Gain, B , Gain, I)</literal>
+            および直列システム <literal>Sys*S</literal> の最小実現である <literal>Series</literal>
+            を返します.
+            <literal>flag</literal> が <literal>'pre'</literal>に等しい場合,
+            <literal>sysfact</literal> は線形システム
+            <literal>(A+Gain*C, Gain , C, I)</literal> および
+            直列システム <literal>S*Sys</literal> の最小実現である <literal>Series</literal>を返します.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+//カルマンフィルタ
+Sys=ssrand(3,2,4);Sys('D')=rand(3,2);
+S=sysfact(Sys,lqr(Sys),'post');
+ww=minss(Sys*S);
+ss2tf(gtild(ww)*ww),Sys('D')'*Sys('D')
+//カーネル
+Sys=ssrand(2,3,4);
+[X,d,F,U,k,Z]=abinv(Sys);
+ss2tf(Sys*Z)
+ss2tf(Sys*sysfact(Sys,F,'post')*U)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="lqr">lqr</link>
+            </member>
+            <member>
+                <link linkend="lqe">lqe</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

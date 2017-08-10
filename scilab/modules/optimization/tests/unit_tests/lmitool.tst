@@ -9,6 +9,8 @@
 
 //<-- ENGLISH IMPOSED -->
 
+lines([120, 0]);
+cd TMPDIR;
 // Constants
 rand("seed", 0);
 n  = 2;
@@ -17,13 +19,6 @@ A2 = rand(n, n);
 Xs = diag(1:n);
 Q1 = -(A1'*Xs+Xs*A1+0.1*eye());
 Q2 = -(A2'*Xs+Xs*A2+0.2*eye());
-
-// Redefining messagebox() to avoid popup
-prot = funcprot();
-funcprot(0);
-function messagebox(msg, msg_title, info)
-endfunction
-funcprot(prot);
 
 lmitool("prob", "X", "A1, A2"); // Create prob.sci
 deletefile "prob.sci";
@@ -44,4 +39,4 @@ assert_checkalmostequal(Z(1), refZ(1), [], 1d-6);
 assert_checkalmostequal(Z(2), refZ(2), [], 1d-6);
 assert_checkalmostequal(c, refC, [], 1d-6);
 
-deletefile "prob.sci"; // Delete created file
+deletefile("prob.sci"); // Delete created file

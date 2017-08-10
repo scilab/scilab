@@ -204,7 +204,6 @@
     <ResourceCompile Include="src\c\sound.rc" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="core_import.def" />
     <None Include="locales\sound.pot" />
     <None Include="scilab_windows_Import.def" />
     <None Include="Makefile.am" />

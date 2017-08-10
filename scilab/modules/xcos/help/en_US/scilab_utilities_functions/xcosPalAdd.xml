@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- * 
+ *
  * This help file was generated from xcosPalAdd.sci using help_from_sci().
- * 
+ *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xcosPalAdd" xml:lang="en">
     <refnamediv>
@@ -10,7 +10,7 @@
         <refpurpose>Add a palette to the Scilab/Xcos palette manager. Optional property can be added to set the category of the palette.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             xcosPalAdd(pal);
             xcosPalAdd(pal, category);
@@ -18,7 +18,7 @@
             status = xcosPalAdd(pal, category);
             [status, msg] = xcosPalAdd(pal);
             [status, msg] = xcosPalAdd(pal, category);
-            
+
         </synopsis>
     </refsynopsisdiv>
     <refsection>

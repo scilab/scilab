@@ -1,13 +1,12 @@
 prefix=@prefix@
 exec_prefix=@exec_prefix@
-bindir=@bindir@
-libdir=@libdir@/scilab
-includedir=@includedir@/scilab
+includedir=@includedir@
+libdir=@libdir@
 
-Name: libscilab
-Description: Scilab Library
+Name: scilab
+Description: Scilab engine as a library
 URL: http://www.scilab.org
 Version: @SCILAB_BINARY_VERSION@
-Requires: libxml-2.0 libpcre
-Libs: -L${libdir} -lscilab
-Cflags: -I${includedir} -lieee -lSM -lncurses @TCLTK_LIBS@
+Cflags: -I${includedir}/scilab
+Libs: -L${libdir}/scilab -lscicall_scilab -lscilab -Wl,-rpath-link=${libdir}/scilab
+

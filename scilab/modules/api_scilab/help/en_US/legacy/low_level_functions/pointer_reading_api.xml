@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009  - DIGITEO - Antoine ELIAS
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="Pointer_reading_API" xml:lang="en">
+    <refnamediv>
+        <refname>Pointer reading (Scilab gateway)</refname>
+        <refpurpose>
+            How to read pointer in a gateway.
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <para>Input argument profile:</para>
+        <synopsis>SciErr getPointer(void* _pvCtx, int* _piAddress, void** _pvPtr)</synopsis>
+        <para>Named variable profile:</para>
+        <synopsis>SciErr readNamedPointer(void* _pvCtx, const char* _pstName, void** _pvPtr)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>_pvCtx</term>
+                <listitem>
+                    <para>
+                        Scilab environment pointer, pass in "pvApiCtx" provided by api_scilab.h
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piAddress</term>
+                <listitem>
+                    <para>
+                        Address of the Scilab variable.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_pvPtr</term>
+                <listitem>
+                    <para>
+                        Return address of pointer.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>SciErr</term>
+                <listitem>
+                    <para>
+                        Error structure where is stored errors messages history and first error number.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>This help describes how pointer can be handled through the Scilab API.</para>
+    </refsection>
+    <refsection>
+        <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/pointer_reading_api.c-->
+        <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/pointer_reading_api.tst-->
+        <!--Lib_name: pointer_reading-->
+        <!--Func_list: read_pointer-->
+        <title>Gateway Source</title>
+        <programlisting role="code_gateway">
+            <![CDATA[
+#include "api_scilab.h"
+int read_pointer(char *fname,void* pvApiCtx)
+{
+	SciErr sciErr;
+
+	CheckInputArgument(pvApiCtx, 0, 1);
+    CheckOutputArgument(pvApiCtx, 1, 1);
+
+	if(nbInputArgument(pvApiCtx) == 0)
+	{//create mode
+		double* pdblData    = (double*)malloc(sizeof(double) * 2 * 2);
+		pdblData[0]			= 1;
+		pdblData[1]			= 3;
+		pdblData[2]			= 2;
+		pdblData[3]			= 4;
+		sciErr = createPointer(pvApiCtx, nbInputArgument(pvApiCtx) + 1, (void*)pdblData);
+	}
+	else if(nbInputArgument(pvApiCtx) == 1)
+	{//read mode
+		int iType			= 0;
+		int* piAddr			= NULL;
+		void* pvPtr			= NULL;
+		double* pdblData	= NULL;
+		sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
+		}
+		sciErr = getPointer(pvApiCtx, piAddr, &pvPtr);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
+		}
+		pdblData = (double*)pvPtr;
+		sciErr = createMatrixOfDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 1, 2, 2, pdblData);
+	}
+	else
+	{
+		return 0;
+	}
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+	return 0;
+}
+ ]]>
+        </programlisting>
+    </refsection>
+    <refsection>
+        <title>Scilab test script</title>
+        <programlisting role="code_scilab"><![CDATA[
+b_ref = [1,2;3,4];
+a = read_pointer();
+b = read_pointer(a);
+if or(b <> b_ref) then error("failed"), end
+ ]]></programlisting>
+    </refsection>
+</refentry>

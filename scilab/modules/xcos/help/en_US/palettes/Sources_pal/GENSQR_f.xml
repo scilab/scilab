@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
- * 
+ *
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
  * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  *  (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
- * 
+ *
  * See the file ./license.txt
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="GENSQR_f">
@@ -119,7 +119,7 @@ v(k)=\begin{cases}-M\\+M\end{cases}\ \ \mbox{,switch on activation}
             </inlinemediaobject>
         </para>
         <para>
-            
+
         </para>
         <itemizedlist>
             <listitem>
@@ -199,7 +199,7 @@ v(k)=\begin{cases}-M\\+M\end{cases}\ \ \mbox{,switch on activation}
     </refsection>
     <refsection id="Example_GENSQR_f">
         <title>Example</title>
-        <para>This is a typical use of this block in context. 
+        <para>This is a typical use of this block in context.
             This example should also alert the user about a specific behavior when linked to the same event its sink.
         </para>
         <para>
@@ -225,7 +225,7 @@ xcos_simulate(scs_m, 4);
             The second source block (blue) illustrate a much more problematic use case. The signal edge is not as fast as the previous one and can lead problematic use case. Users can use these parameters to illustrate some limitations of a design.
         </para>
         <para>
-            The third source block (yellow) illustrate a mis-use and a common first user error. The block activation times are the same as the <link linkend="CMSCOPE">scope</link>. The scope compute only one positve or negative <emphasis>M</emphasis> point at a <latex>t_{n}</latex> and draw a line from <latex>t_{n-1}</latex> (positive) to <latex>t_{n}</latex> (negative).
+            The third source block (yellow) illustrate a mis-use and a common first user error. The block activation times are the same as the <link linkend="CMSCOPE">scope</link>. The scope compute only one positive or negative <emphasis>M</emphasis> point at a <latex>t_{n}</latex> and draw a line from <latex>t_{n-1}</latex> (positive) to <latex>t_{n}</latex> (negative).
         </para>
     </refsection>
     <refsection id="Interfacingfunction_GENSQR_f">

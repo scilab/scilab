@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2013 - Samuel GOUGEON
+ * Copyright (C) 2009 - Université du Maine - Samuel GOUGEON
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="members" xml:lang="fr">
+    <refnamediv>
+        <refname>members</refname>
+        <refpurpose>dénombre (et localise) dans un tableau chaque élément ou ligne ou colonne d'un autre tableau
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>
+            [nb [,loc]] = members(N, H)
+            [nb [,loc]] = members(N, H, "last")
+            [nb [,loc]] = members(N, H, "rows"|"cols")
+            [nb [,loc]] = members(N, H, "rows"|"cols", "last")
+            [nb [,loc]] = members(N, H, "rows"|"cols", "shuffle")
+            [nb [,loc]] = members(N, H, "rows"|"cols", "shuffle", "last")
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>N</term>
+                <listitem>
+                    <para>
+                        Matrice ou hypermatrice dont les éléments, rangées ou colonnes doivent être recherchés. Il peut s'agir de booléens, d'entiers encodés, de nombres décimaux réels ou complexes, de polynômes ou de textes. En mode "rows" ou "cols", l'hypermatrice n'est pas acceptée. Un élément donné (ou une rangée ou colonne) peut apparaitre plusieurs fois dans <literal>N</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>H</term>
+                <listitem>
+                    <para>
+                        Matrice ou hypermatrice scrutée, de même type que <literal>N</literal>. En mode "rows" / "cols", l'hypermatrice n'est pas acceptée, et <literal>N</literal> et <literal>H</literal> doivent avoir le même nombre de colonnes / lignes.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Options :</term>
+                <listitem>
+                    <para>Une à 3 options peuvent être indiquées après H, sans ordre particulier :
+                        <variablelist>
+                            <varlistentry>
+                                <term>"last"</term>
+                                <listitem>
+                                    <para>
+                                        Lorsque la localisation dans <literal>H</literal> des éléments de <literal>N</literal> est retournée via le paramètre de sortie <literal>loc</literal>, par défaut les positions des 1ères occurences dans <literal>H</literal> sont retournées, élément par élément de N. Si <literal>"last"</literal> est indiqué, les positions retournées sont celles des dernières occurences dans <literal>H</literal>.
+                                    </para>
+                                </listitem>
+                            </varlistentry>
+                            <varlistentry>
+                                <term>"rows", "cols"</term>
+                                <listitem>
+                                    <para>
+                                        Par défaut, chaque élément individuel <literal>N(i, j, ..)</literal> de <literal>N</literal> est recherché dans <literal>H</literal>. Si <literal>"rows"</literal> est indiquée, chaque rangée de <literal>N</literal> est recherchée parmi les rangées de <literal>H</literal>. De même, si <literal>"cols"</literal> est indiquée, chaque colonne de <literal>N</literal> est recherchée parmi les colonnes de <literal>H.</literal>.
+                                    </para>
+                                </listitem>
+                            </varlistentry>
+                            <varlistentry>
+                                <term>"shuffle"</term>
+                                <listitem>
+                                    <para>
+                                        En mode <literal>"rows"</literal> ou <literal>"cols"</literal>, par défaut l'ordre des éléments d'une rangée ou d'une colonne est pris en compte : par exemple, <literal>[ 7 3 5 ]</literal> dans <literal>N</literal> et <literal>[ 3 5 7]</literal> dans <literal>H</literal> ne correspondront pas. Lorsque l'option <literal>"shuffle"</literal> est utilisée, toute permutation de --disons--<literal>[3 5 7]</literal> sera reconnue dans H comme correspondant à la rangée <literal>[3 5 7]</literal> dans <literal>N</literal>. Cette option est ignorée pour les polynômes.
+                                    </para>
+                                </listitem>
+                            </varlistentry>
+                        </variablelist>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>nb</term>
+                <listitem>
+                    <para>
+                        En mode normal : <literal>nb(i, j, ..)</literal> (décimaux) retourne le nombre d'occurences dans <literal>H</literal> de <literal>N(i, j, ..)</literal>. <literal>nb</literal> et <literal>N</literal> ont le même format. Si <literal>H</literal> est vide [], une matrice de zéros est retournée. Si <literal>N</literal> est vide, la matrice vide <literal>[]</literal> est retournée.
+                    </para>
+                    <para>
+                        En mode <literal>"rows"</literal> ou <literal>"cols"</literal> : <literal>nb</literal> est un vecteur ligne de décimaux avec autant d'élements que <literal>N</literal> a de rangées ou colonnes. <literal>nb(i)</literal> retourne le nombre d'occurences dans <literal>H(1:$, :)</literal> de <literal>N(i, :)</literal> (ou de <literal>N(:, i)</literal> dans <literal>H(:, 1:$)</literal> ).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>loc</term>
+                <listitem>
+                    <para>
+                        En mode normal : <literal>loc</literal> et <literal>N</literal> ont le même format. <literal>loc(i, j, ..)</literal> retourne le n°(linéarisé) dans <literal>H</literal> le plus petit auquel <literal>N(i, j, ..)</literal> advient : <literal>H(loc(i, j, ..))==N(i, j, ..)</literal>. Si l'option <literal>"last"</literal> est utilisée, le n° le plus grand vérifiant la même condition est retourné à la place. Si <literal>N(i, j, ..)</literal> n'est pas présent dans <literal>H</literal>, <literal>loc(i, j, ..)</literal> est mis à <literal>0</literal>.
+                    </para>
+                    <para>
+                        En mode <literal>"rows"</literal> ou <literal>"cols"</literal> : <literal>loc</literal> est un vecteur ligne de décimaux, avec autant d'éléments que <literal>N</literal> a respectivement de rangées ou de colonnes. <literal>loc(i)</literal> retourne le n° de la 1ère ligne <literal>H(loc(i), :)</literal> identifiable à <literal>N(i, :)</literal> (ou le n° de la 1ère colonne <literal>H(:, loc(i))</literal> identifiable à <literal>N(:, i)</literal>). Si l'option <literal>"shuffle"</literal> est en outre utilisée, l'ordre des éléments de <literal>N(i, :)</literal> est ignoré et toutes les permutations de <literal>N(i, :)</literal> identifiables en rangées de <literal>H</literal> sont considérées.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>nb = members(N, H [,"rows"|"cols"])</literal> retourne le nombre d'occurences de chaque élément ou rangée ou colonne de <literal>N</literal> identifiables dans <literal>H</literal>. Si aucune correspondance n'est trouvée, 0 est retourné pour le composant considéré.
+            La position dans <literal>H</literal> de la 1ère (par défaut) ou de la dernière (avec <literal>"last"</literal>) occurence des <literal>N(i, j, ...)</literal> peut être obtenue via la seconde variable de sortie <literal>loc</literal>.
+            Si des rangées ou colonnes correspondantes sont recherchées, l'ordre de leurs éléments peut être ignoré en utilisant l'option <literal>"shuffle"</literal>.
+        </para>
+        <para>
+            Les valeurs spéciales <literal>%inf</literal> et <literal>-%inf</literal> sont admises dans <literal>N</literal> comme dans <literal>H</literal>.
+            <literal>%nan</literal> est toujours admis dans <literal>N</literal>, mais pas dans <literal>H</literal> en mode normal.
+        </para>
+        <para>
+            En mode normal (élément par élément), members(..) utilise la fonction <link linkend="dsearch">dsearch(..)</link> afin de traiter efficacement les tableaux de booléens, d'entiers encodés (de tous formats : 8-16-32 bits signés ou non), ou de nombres réels. Le traitement des tableaux de nombres complexes, de polynômes ou de textes est réalisé par un algorithme plus lent et gourmand en mémoire vive. Lorsque le traitement est long, une jauge de progression est affichée.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[
+N = [1 8 4 5 2 1];
+H = [9 7 4 2 1 4];
+
+[nb, loc] = members(N, H, "last")
+// Retourne nb  = [1 0 2 0 1 1] : par exemple, 4 apparait 2 fois dans H.
+// Et       loc = [5 0 6 0 4 5] : la dernière occurence de 4 figure en 6ème position dans H
+
+[nb, loc] = members(N, H)
+// Retourne loc = [5 0 3 0 4 5] : la 1ère occurence de 4 figure en 3ème position dans H
+
+// avec des hypermatrices. Avec N et H déclarées ci-dessus :
+N = matrix(N, [3 1 2]);
+H = matrix(H, [3 1 2]);
+[nb, loc] = members(N, H, "last")
+
+// Avec des entiers encodés :
+N = int8(grand(3, 2, "uin", -5, 5));
+H = int8(grand(4, 4, "uin", -5, 5));
+[nb, loc] = members(N, H)
+
+// Avec des polynômes (à coefficients éventuellement complexes) :
+z = %z;
+N = [z (1-z)^2 ; -4 %i*z ];
+H = [2  %i*z -z  3-z  z  z^3 z];
+[nb, loc] = members(N, H)
+
+// Avec des matrices de textes :
+N = [ "Hi" "Hu" "Allo"];
+H = [ "Hello" "Bonjour" "Allo"
+      "Holà"  "Allo"  "Hallo"
+      "Hi"    "Hé"    "Salud" ];
+[nb, loc] = members(N, H, "last")
+
+// Recherche de rangées :
+ H = [
+  3  3  0
+  4  1  0
+  2  0  3
+  0  1  4
+  3  4  3
+  0  4  1
+  3  1  0
+  ];
+ N = [
+  1  2  3
+  0  1  4
+  3  0  3
+  4  1  0
+  2  0  2
+  ];
+ N, H
+ [nb, loc] = members(N, H, "rows")
+ [nb, loc] = members(N, H, "rows","last")
+ [nb, loc] = members(N, H, "rows","shuffle") // [4 1 0], [0 1 4] et [0 4 1] sont associées
+
+// Recherche de colonnes, en utilisant N et H définies ci-dessus :
+ N = N.', H = H.'
+ [nb, loc] = members(N, H, "cols", "shuffle")
+
+]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="dsearch">dsearch</link>
+            </member>
+            <member>
+                <link linkend="intersect">intersect</link>
+            </member>
+            <member>
+                <link linkend="grep">grep</link>
+            </member>
+            <member>
+                <link linkend="find">find</link>
+            </member>
+            <member>
+                <link linkend="vectorfind">vectorfind</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>Introduction de la fonction members()</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

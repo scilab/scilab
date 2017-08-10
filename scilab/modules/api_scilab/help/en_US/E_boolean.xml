@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2015  - Scilab Enterprises - Antoine ELIAS
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="api_boolean" xml:lang="en">
+    <refnamediv>
+        <refname>API boolean functions</refname>
+        <para>This page lists all the functions to manipulate Scilab native objects containing booleans</para>
+        <para></para>
+    </refnamediv>
+    <refsynopsisdiv>
+        <literal>
+            <link linkend="api_types_scilabVar">
+                <command>scilabVar</command>
+            </link>
+            <varname>scilab_createBooleanMatrix</varname>(
+            <link linkend="api_types_scilabEnv">
+                <command>scilabEnv</command>
+            </link>
+            env, int dim, const int* dims)
+        </literal>
+        <para>
+            Create a boolean matrix with <varname>dim</varname> dimensions (<varname>dims</varname>[0], <varname>dims</varname>[1], ..., <varname>dims</varname>[<varname>dim</varname>-1]).
+        </para>
+        <para></para>
+        <literal>
+            <link linkend="api_types_scilabVar">
+                <command>scilabVar</command>
+            </link>
+            <varname>scilab_createBooleanMatrix2d</varname>(
+            <link linkend="api_types_scilabEnv">
+                <command>scilabEnv</command>
+            </link>
+            env, int row, int col)
+        </literal>
+        <para>
+            Create an boolean matrix with 2 dimensions (<varname>row</varname>, <varname>col</varname>).
+        </para>
+        <para></para>
+        <literal>
+            <link linkend="api_types_scilabVar">
+                <command>scilabVar</command>
+            </link>
+            <varname>scilab_createBoolean</varname>(
+            <link linkend="api_types_scilabEnv">
+                <command>scilabEnv</command>
+            </link>
+            env, int val)
+        </literal>
+        <para>Create a scalar boolean.</para>
+        <para></para>
+        <literal>
+            <link linkend="api_types_scilabStatus">
+                <command>scilabStatus</command>
+            </link>
+            <varname>scilab_getBooleanArray</varname>(
+            <link linkend="api_types_scilabEnv">
+                <command>scilabEnv</command>
+            </link>
+            env,
+            <link linkend="api_types_scilabVar">
+                <command>scilabVar</command>
+            </link>
+            var, int** vals)
+        </literal>
+        <para>
+            Get pointer on internal array of boolean of <varname>var</varname>.
+        </para>
+        <para></para>
+        <literal>
+            <link linkend="api_types_scilabStatus">
+                <command>scilabStatus</command>
+            </link>
+            <varname>scilab_getBoolean</varname>(
+            <link linkend="api_types_scilabEnv">
+                <command>scilabEnv</command>
+            </link>
+            env,
+            <link linkend="api_types_scilabVar">
+                <command>scilabVar</command>
+            </link>
+            var, int* val)
+        </literal>
+        <para>Get boolean value from an scalar boolean variable.</para>
+        <para></para>
+        <literal>
+            <link linkend="api_types_scilabStatus">
+                <command>scilabStatus</command>
+            </link>
+            <varname>scilab_setBooleanArray</varname>(
+            <link linkend="api_types_scilabEnv">
+                <command>scilabEnv</command>
+            </link>
+            env,
+            <link linkend="api_types_scilabVar">
+                <command>scilabVar</command>
+            </link>
+            var, const int* vals)
+        </literal>
+        <para>
+            Set values of boolean variable <literal>var</literal>.
+        </para>
+        <para></para>
+        <literal>
+            <link linkend="api_types_scilabStatus">
+                <command>scilabStatus</command>
+            </link>
+            <varname>scilab_setBoolean</varname>(
+            <link linkend="api_types_scilabEnv">
+                <command>scilabEnv</command>
+            </link>
+            env,
+            <link linkend="api_types_scilabVar">
+                <command>scilabVar</command>
+            </link>
+            var, int val)
+        </literal>
+        <para>
+            Set value of a scalar boolean variable <literal>var</literal>.
+        </para>
+        <para></para>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="code_gateway">
+            <![CDATA[
+#include "api_scilab.h"
+#include "Scierror.h"
+#include "localization.h"
+#include "sciprint.h"
+#include "sci_malloc.h"
+
+const char fname[] = "boolean_test";
+
+int sci_boolean_test(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt opt, int nout, scilabVar* out)
+{
+    int i = 0;
+    int inr1 = 0;
+    int inc1 = 0;
+    int size1 = 0;
+    int* in1 = NULL;
+
+    int in2 = 0;
+
+    int* out1 = NULL;
+
+    int* out2dims = NULL;
+    int* out2 = NULL;
+
+    int out3 = 0;
+
+    if (nin != 2)
+    {
+        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
+        return API_ERROR;
+    }
+
+    if (nout != 3)
+    {
+        Scierror(999, _("%s: Wrong number of output arguments: %d expected.\n"), fname, 3);
+        return API_ERROR;
+    }
+
+    //in[0] : matrix 2d of boolean
+    if (scilab_isBoolean(env, in[0]) == 0 || scilab_isMatrix(env, in[0]) == 0)
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d: A boolean matrix expected.\n"), fname, 1);
+        return API_ERROR;
+    }
+
+    size1 = scilab_getDim2d(env, in[0], &inr1, &inc1);
+    scilab_getBooleanArray(env, in[0], &in1);
+
+    //in[1] : bool
+    if (scilab_isBoolean(env, in[1]) == 0 || scilab_isScalar(env, in[1]) == 0)
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d: A boolean expected.\n"), fname, 2);
+        return API_ERROR;
+    }
+
+    scilab_getBoolean(env, in[1], &in2);
+
+    //out1 : matrix 2d of boolean with same size of in[0]
+    out[0] = scilab_createBooleanMatrix2d(env, inr1, inc1);
+    if (scilab_getBooleanArray(env, out[0], &out1) != <link linkend="api_types_scilabStatus"><command>scilabStatus</command></link>::API_OK)
+    {
+        Scierror(999, "blabla\n");
+        return 1;
+    }
+
+    for (i = 0; i < size1; ++i)
+    {
+        out1[i] = in1[i] == 1 ? 0 : 1;
+    }
+
+    //out2 : 3d matrix of boolean
+    out2dims = (int*)MALLOC(3 * sizeof(int));
+    out2dims[0] = inr1;
+    out2dims[1] = inc1;
+    out2dims[2] = 2;
+
+    out[1] = scilab_createBooleanMatrix(env, 3, out2dims);
+    scilab_getBooleanArray(env, out[1], &out2);
+
+    for (i = 0; i < size1; ++i)
+    {
+        out2[i] = in1[i];
+        out2[i + size1] = in1[i] ? 0 : 1;
+    }
+
+    //out3 : bool
+    out[2] = scilab_createBoolean(env, in2 ? 0 : 1);
+    return API_OK;
+}
+            ]]>
+        </programlisting>
+    </refsection>
+    <refsection>
+        <title>Scilab test script</title>
+        <programlisting role="code_scilab">
+            <![CDATA[
+mkdir(pathconvert(TMPDIR+"/api_c/"));
+cd(pathconvert(TMPDIR+"/api_c/"));
+copyfile(SCI+"/modules/api_scilab/tests/unit_tests/api_c/boolean_test.c",pathconvert(TMPDIR+"/api_c/boolean_test.c",%F));
+
+ilib_build("libboolean",["boolean_test","sci_boolean_test", "csci6"],"boolean_test.c",[],"","","");
+exec("loader.sce");
+
+in1 = rand(3,4) > 0.5;
+in2 = rand() > 0.5;
+
+[out1, out2, out3] = boolean_test(in1, in2);
+
+assert_checkequal(out1, ~in1);
+ref(:,:, 1) = in1;
+ref(:,:, 2) = out1;
+assert_checkequal(out2, ref);
+assert_checkequal(out3, ~in2);
+            ]]>
+        </programlisting>
+    </refsection>
+</refentry>

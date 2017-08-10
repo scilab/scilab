@@ -1,17 +1,23 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
+ * Copyright (C) 2011-2017 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
 package org.scilab.modules.xcos.palette;
 
+import com.mxgraph.model.mxGeometry;
+import java.awt.Dimension;
 import java.awt.GraphicsEnvironment;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -34,15 +40,17 @@ import org.scilab.modules.localization.Messages;
 import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.types.ScilabTList;
 import org.scilab.modules.types.ScilabType;
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException;
-import org.scilab.modules.xcos.io.scicos.ScilabDirectHandler;
 import org.scilab.modules.xcos.palette.model.Category;
 import org.scilab.modules.xcos.palette.model.PaletteBlock;
 import org.scilab.modules.xcos.palette.model.PaletteNode;
 import org.scilab.modules.xcos.palette.model.PreLoaded;
+import org.scilab.modules.xcos.palette.view.PaletteManagerPanel;
 import org.scilab.modules.xcos.utils.BlockPositioning;
 import org.scilab.modules.xcos.utils.XcosConstants;
 
@@ -51,6 +59,8 @@ import com.mxgraph.util.mxCellRenderer;
 import com.mxgraph.util.mxRectangle;
 import com.mxgraph.view.mxGraphView;
 import com.mxgraph.view.mxStylesheet;
+import org.scilab.modules.xcos.graph.model.XcosCellFactory;
+import org.scilab.modules.xcos.port.BasicPort;
 
 /**
  * Utility class which is the entry point from Scilab for palette related
@@ -279,7 +289,7 @@ public final class Palette {
                 if (root instanceof PreLoaded) {
                     pal = (PreLoaded) root;
                 } else if (root instanceof Category) {
-                    LinkedList<Category> stash = new LinkedList<Category>();
+                    LinkedList<Category> stash = new LinkedList<>();
                     stash.add((Category) root);
 
                     pal = new PreLoaded();
@@ -312,7 +322,7 @@ public final class Palette {
     }
 
     private static List<PaletteBlock> list(Deque<Category> stash, PreLoaded pal) {
-        final ArrayList<PaletteBlock> blocks = new ArrayList<PaletteBlock>();
+        final ArrayList<PaletteBlock> blocks = new ArrayList<>();
         while (!stash.isEmpty()) {
             final Category c = stash.pop();
             for (PaletteNode n : c.getNode()) {
@@ -491,13 +501,14 @@ public final class Palette {
      * Generate a palette block image from a block instance stored into scilab
      * (need a valid style).
      *
+     * @param uid the block to load an render
      * @param iconPath
      *            the output file path use to save the palette block.
      * @throws Exception
      *             on error
      */
     @ScilabExported(module = XCOS, filename = PALETTE_GIWS_XML)
-    public static void generatePaletteIcon(final String iconPath) throws Exception {
+    public static void generatePaletteIcon(final long uid, final String iconPath) throws Exception {
         /*
          * If the env. is headless does nothing
          */
@@ -506,54 +517,56 @@ public final class Palette {
             return;
         }
 
-        final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
-        try {
-            final BasicBlock block = handler.readBlock();
+        JavaController controller = new JavaController();
+        Kind kind = controller.getKind(uid);
 
-            generateIcon(block, iconPath);
-        } finally {
-            handler.release();
-        }
+        final BasicBlock block = XcosCellFactory.createBlock(controller, uid, kind);
+        generateIcon(block, iconPath);
 
         if (LOG.isLoggable(Level.FINEST)) {
             LOG.finest(iconPath + " updated.");
         }
     }
 
+    /**
+     * Generate icon
+     * @param block BasicBlock
+     * @param iconPath the icon path
+     * @throws IOException error
+     */
     private static void generateIcon(BasicBlock block, final String iconPath) throws IOException {
         if (block == null || block.getGeometry() == null) {
             return;
         }
-        block.getGeometry().setX(XcosConstants.PALETTE_BLOCK_WIDTH);
-        block.getGeometry().setY(XcosConstants.PALETTE_BLOCK_HEIGHT);
 
-        final XcosDiagram graph = new XcosDiagram();
+        mxGeometry geom = block.getGeometry();
+        geom.setX(BasicPort.DEFAULT_PORTSIZE);
+        geom.setY(BasicPort.DEFAULT_PORTSIZE);
+
+        JavaController controller = new JavaController();
+
+        final XcosDiagram graph = new XcosDiagram(controller, controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM, "");
         graph.installListeners();
 
         graph.addCell(block);
         graph.selectAll();
 
-        BlockPositioning.updateBlockView(block);
+        BlockPositioning.updateBlockView(graph, block);
 
         /*
-         * Render
+         * Render wiht the right resolution
          */
         final mxGraphComponent graphComponent = graph.getAsComponent();
         graphComponent.refresh();
 
-        final mxRectangle bounds = graph.getPaintBounds(new Object[] { block });
+        final mxRectangle bounds = graph.getPaintBounds(new Object[] {block});
         final double width = bounds.getWidth();
         final double height = bounds.getHeight();
 
-        final double scale;
-        if (width > XcosConstants.PALETTE_BLOCK_WIDTH || height > XcosConstants.PALETTE_BLOCK_HEIGHT) {
-            scale = Math.min(XcosConstants.PALETTE_BLOCK_WIDTH / width, XcosConstants.PALETTE_BLOCK_HEIGHT / height) / XcosConstants.PALETTE_BLOCK_ICON_RATIO;
-        } else {
-            scale = 1.0;
-        }
-
-        final BufferedImage image = mxCellRenderer.createBufferedImage(graph, null, scale, graphComponent.getBackground(), graphComponent.isAntiAlias(), null,
-                                    graphComponent.getCanvas());
+        final BufferedImage image = mxCellRenderer.createBufferedImage(
+                                        graph, null, 2 * XcosConstants.PALETTE_BLOCK_ICON_RATIO, graphComponent.getBackground(),
+                                        true, null, graphComponent.getCanvas()
+                                    );
 
         final String extension = iconPath.substring(iconPath.lastIndexOf('.') + 1);
         ImageIO.write(image, extension, new File(iconPath));

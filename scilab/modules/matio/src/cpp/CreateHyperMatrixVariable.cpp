@@ -3,11 +3,14 @@
  * Copyright (C) 2008 - INRIA - Vincent COUVERT
  * Copyright (C) 2010 - DIGITEO - Yann COLLETTE
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -27,13 +30,11 @@ extern "C"
 #include "Scierror.h"
 }
 
-using namespace types;
-
 int CreateHyperMatrixVariable(void *pvApiCtx, int iVar, int type, int *iscomplex, int * rank, int *dims, matvar_t *matVariable, int * parent, int item_position)
 {
-    GatewayStruct* pStr = (GatewayStruct*)pvApiCtx;
-    typed_list in = *pStr->m_pIn;
-    InternalType** out = pStr->m_pOut;
+    types::GatewayStruct* pStr = (types::GatewayStruct*)pvApiCtx;
+    types::typed_list in = *pStr->m_pIn;
+    types::InternalType** out = pStr->m_pOut;
 
     int rhs = iVar - *getNbInputArgument(pvApiCtx);
 
@@ -42,7 +43,7 @@ int CreateHyperMatrixVariable(void *pvApiCtx, int iVar, int type, int *iscomplex
         case MAT_C_DOUBLE: /* 6 */
         case MAT_C_SINGLE: /* 7 */
         {
-            Double* pDbl = new Double(rank[0], dims, (bool)(iscomplex[0] != 0));
+            types::Double* pDbl = new types::Double(rank[0], dims, (bool)(iscomplex[0] != 0));
             if (iscomplex[0])
             {
                 mat_complex_split_t *mat5ComplexData = NULL;
@@ -61,7 +62,7 @@ int CreateHyperMatrixVariable(void *pvApiCtx, int iVar, int type, int *iscomplex
         break;
         case MAT_C_INT8: /* 8 */
         {
-            Int8* pInt8 = new Int8(rank[0], dims);
+            types::Int8* pInt8 = new types::Int8(rank[0], dims);
 
             pInt8->set((char*)matVariable->data);
 
@@ -70,7 +71,7 @@ int CreateHyperMatrixVariable(void *pvApiCtx, int iVar, int type, int *iscomplex
         break;
         case MAT_C_UINT8: /* 9 */
         {
-            UInt8* pUInt8 = new UInt8(rank[0], dims);
+            types::UInt8* pUInt8 = new types::UInt8(rank[0], dims);
 
             pUInt8->set((unsigned char*)matVariable->data);
 
@@ -79,7 +80,7 @@ int CreateHyperMatrixVariable(void *pvApiCtx, int iVar, int type, int *iscomplex
         break;
         case MAT_C_INT16: /* 10 */
         {
-            Int16* pInt16 = new Int16(rank[0], dims);
+            types::Int16* pInt16 = new types::Int16(rank[0], dims);
 
             pInt16->set((short*)matVariable->data);
 
@@ -88,7 +89,7 @@ int CreateHyperMatrixVariable(void *pvApiCtx, int iVar, int type, int *iscomplex
         break;
         case MAT_C_UINT16: /* 11 */
         {
-            UInt16* pUInt16 = new UInt16(rank[0], dims);
+            types::UInt16* pUInt16 = new types::UInt16(rank[0], dims);
 
             pUInt16->set((unsigned short*)matVariable->data);
 
@@ -97,7 +98,7 @@ int CreateHyperMatrixVariable(void *pvApiCtx, int iVar, int type, int *iscomplex
         break;
         case MAT_C_INT32: /* 12 */
         {
-            Int32* pInt32 = new Int32(rank[0], dims);
+            types::Int32* pInt32 = new types::Int32(rank[0], dims);
 
             pInt32->set((int*)matVariable->data);
 
@@ -106,7 +107,7 @@ int CreateHyperMatrixVariable(void *pvApiCtx, int iVar, int type, int *iscomplex
         break;
         case MAT_C_UINT32: /* 13 */
         {
-            UInt32* pUInt32 = new UInt32(rank[0], dims);
+            types::UInt32* pUInt32 = new types::UInt32(rank[0], dims);
 
             pUInt32->set((unsigned int*)matVariable->data);
 
@@ -116,7 +117,7 @@ int CreateHyperMatrixVariable(void *pvApiCtx, int iVar, int type, int *iscomplex
 #ifdef __SCILAB_INT64__
         case MAT_C_INT64: /* 14 */
         {
-            Int64* pInt64 = new Int64(rank[0], dims);
+            types::Int64* pInt64 = new types::Int64(rank[0], dims);
 
             pInt64->set((long long*)matVariable->data);
 
@@ -125,7 +126,7 @@ int CreateHyperMatrixVariable(void *pvApiCtx, int iVar, int type, int *iscomplex
         break;
         case MAT_C_UINT64: /* 15 */
         {
-            UInt64* pUInt64 = new UInt64(rank[0], dims);
+            types::UInt64* pUInt64 = new types::UInt64(rank[0], dims);
 
             pUInt64->set((unsigned long long*)matVariable->data);
 
@@ -144,7 +145,7 @@ int CreateHyperMatrixVariable(void *pvApiCtx, int iVar, int type, int *iscomplex
         case MAT_C_FUNCTION: /* 16 to be written */
         default:
         {
-            out[rhs - 1] = Double::Empty();
+            out[rhs - 1] = types::Double::Empty();
             return FALSE;
         }
     }

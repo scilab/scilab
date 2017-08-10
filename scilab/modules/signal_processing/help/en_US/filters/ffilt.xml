@@ -5,7 +5,7 @@
         <refpurpose>coefficients of FIR low-pass</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[x]=ffilt(ft,n,fl,fh)</synopsis>
     </refsynopsisdiv>
     <refsection>

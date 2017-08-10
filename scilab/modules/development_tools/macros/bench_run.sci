@@ -2,17 +2,20 @@
 // Copyright (C) 2007-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
 // Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 //-----------------------------------------------------------------------------
 // Launch benchmarks
 //-----------------------------------------------------------------------------
 
-function bench_run(varargin)
+function [modutests_names, elapsed_time, nb_iterations] = bench_run(varargin)
 
     lhs = argn(1);
     rhs = argn(2);
@@ -21,12 +24,17 @@ function bench_run(varargin)
     global test_count;
 
     test_list          = [];
+    modutests_names    = "";
     test_count         = 0;
     boucle_for_time    = 0;
 
     just_list_tests    = %F;
     print_help         = %F;
     nb_run             = "10000";
+    nb_run_override    = %f;
+
+    elapsed_time       = [];
+    nb_iterations      = [];
 
     xml_str            = "";
 
@@ -35,8 +43,8 @@ function bench_run(varargin)
     // =======================================================
 
     if (rhs == 0) ..
-        | ((rhs == 1) & (varargin(1)==[])) ..
-        | (((rhs == 2)|(rhs == 3)) & (varargin(1)==[]) & (varargin(2)==[])) then
+        | ((rhs == 1) & (varargin(1)==[] | varargin(1)=="[]" | varargin(1) == "")) ..
+        | (((rhs >= 2)) & (varargin(1)==[] | varargin(1)=="[]" | varargin(1) == "") & (varargin(2)==[] | varargin(2)=="[]" | varargin(2) == "")) then
 
         // No input argument
         // bench_run()
@@ -50,8 +58,7 @@ function bench_run(varargin)
         end
 
     elseif (rhs == 1) ..
-        | ((rhs == 2) & (varargin(2)==[])) ..
-        | ((rhs == 3) & (varargin(2)==[])) then
+        | ((rhs >= 2) & (varargin(2)==[] | varargin(2)=="[]" | varargin(2) == "")) ..
 
         // One input argument
         // bench_run(<module_name>)
@@ -70,52 +77,52 @@ function bench_run(varargin)
                 if( with_module(module_mat(i,j)) ) then
                     bench_add_module(module_mat(i,j));
                 else
-                    error(sprintf(gettext("%s is not an installed module"),module_mat(i,j)));
+                    if isdir(module_mat(i,j)) then
+                        bench_add_dir(module_mat(i,j));
+                    else
+                        error(msprintf(gettext("%s: %s is not an installed module"), "bench_run", module_mat(i,j)));
+                    end
                 end
             end
         end
 
-    elseif (rhs == 2) | (rhs == 3) then
+    elseif (rhs >= 2 & rhs <= 4) then
 
         // Two input arguments
         // bench_run(<module_name>,<test_name>)
         // bench_run(<module_name>,[<test_name_1>,<test_name_2>] )
 
-        // varargin(1) = <module_name> ==> string 1x1
-        // varargin(2) = <test_name_1> ==> mat nl x nc
-
-        module     = varargin(1);
+        module_mat = varargin(1);
         test_mat   = varargin(2);
+        bench_list_reduced = [];
 
-        if ((or(size(module) <> [1,1])) & (test_mat <> [])) then
-            example = bench_examples();
-            err     = ["" ; gettext("error : Input argument sizes are not valid") ; "" ; example ];
-            printf("%s\n",err);
-            return;
-        end
-
-        [nl,nc] = size(test_mat);
-
-        for i=1:nl
-            for j=1:nc
-
-                if (fileinfo(SCI+"/modules/"+module+"/tests/benchmarks/"+test_mat(i,j)+".tst")<>[]) then
-                    bench_add_onebench(module,test_mat(i,j));
-                else
-                    error(sprintf(gettext("The test ""%s"" is not available from the ""%s"" module"),test_mat(i,j),module));
-                end
-
+        // get module and test lists
+        bench_list = bench_list_tests(module_mat);
+        // only keep relevant tests
+        // after this loop bench_test_reduced contains the module and relevant tests
+        for i = 1:size(test_mat, "*")
+            found_tests = grep(bench_list(:,2), test_mat(i));
+            if ~isempty(found_tests)
+                bench_list_reduced = [bench_list_reduced; bench_list(found_tests, :)];
+            else
+                // At least one element in the test list is wrong
+                // this is an error
+                error(msprintf(_("%s: Wrong value for input argument #%d: test %s not found in the list of modules"), "bench_run", 2, test_mat(i)));
             end
         end
+
+        for i=1:size(bench_list_reduced, "r") //loops over each row of bench_list_reduced
+            bench_add_onebench(bench_list_reduced(i, 1), bench_list_reduced(i, 2));
+        end
     else
-        error(msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected.\n"), "bench_run", 0, 3));
+        error(msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected.\n"), "bench_run", 0, 4));
     end
 
     // =======================================================
     // Gestion des options
     // =======================================================
 
-    if rhs == 3 then
+    if rhs >= 3 then
 
         option_mat =  varargin(3);
 
@@ -127,9 +134,13 @@ function bench_run(varargin)
             print_help         = %T;
         end
 
-        if grep(option_mat,"nb_run=") <> [] then
-            nb_run_line = grep(option_mat,"nb_run=");
-            nb_run      = strsubst(option_mat(nb_run_line),"nb_run=","");
+        nb_run_line = grep(option_mat,"/nb_run\s*=\s*/", "r")
+        if ~isempty(nb_run_line) then
+            nb_run_override = %t;
+            stripped_option = option_mat(nb_run_line);
+            idx_nonblank = strindex(stripped_option, "/[^ \t\b]/", "r");
+            stripped_option = part(stripped_option, idx_nonblank);
+            nb_run      = strsubst(stripped_option, "nb_run=","");
         end
 
     end
@@ -163,6 +174,13 @@ function bench_run(varargin)
         // Test launch
         // =======================================================
 
+        // Protect user modes during tests
+        saved_modes = mode();
+        saved_ieee = ieee();
+        saved_format = format();
+        saved_warning = warning("query");
+        saved_funcprot = funcprot();
+
         printf("\n");
 
         xml_str = [ xml_str ; "<benchmarks>" ];
@@ -177,6 +195,8 @@ function bench_run(varargin)
 
         printf("            For Loop (as reference) ...........................      %4.2f ms [ 1000000 x]\n\n",boucle_for_time);
 
+        // Creation of return values the size of test_count
+
         for i=1:test_count
 
             // Display
@@ -188,7 +208,18 @@ function bench_run(varargin)
             printf(" ");
 
             // Bench process
-            [returned_time,nb_run_done] = bench_run_onebench(test_list(i,1),test_list(i,2),nb_run);
+            [returned_time, nb_run_done] = bench_run_onebench(test_list(i,1), test_list(i,2), nb_run);
+
+            // restore user modes inside the loop
+            // Protects from tests that modify those settings
+            mode(saved_modes);
+            ieee(saved_ieee);
+            format(saved_format([2 1]));
+            warning(saved_warning);
+            funcprot(saved_funcprot);
+
+            elapsed_time = [elapsed_time; returned_time];
+            nb_iterations = [nb_iterations; nb_run_done];
 
             // Display
             returned_time_str           = sprintf("%4.2f ms",returned_time);
@@ -211,17 +242,37 @@ function bench_run(varargin)
             "    </bench>" ];
 
         end
-
     end
+
+    modutests_names = test_list;
+    nb_iterations = eval(nb_iterations);
 
     // XML management
+    // ==============
+    //      exportToFile can be
+    //      * "", "[]" or []: default behaviour, write the output file in the TMPDIR/benchmarks
+    //      path/to/directory/: export a timestamped xml file to the output directory
+    //      path/to/directory/filename.xml: exports filename.xml to the directory
+    //      get the current date to create a timestamp
+
+    // Close the final tag for export
     xml_str = [ xml_str ; "</benchmarks>" ];
-    xml_file_name = SCI+"/bench_"+getversion()+"_"+date()+".xml";
-    ierr = execstr("fd_xml = mopen(xml_file_name,''wt'');","errcatch");
-    if ierr == 999 then
-        xml_file_name = SCIHOME + "/bench_" + getversion() + "_" + date() +".xml";
-        ierr = execstr("fd_xml = mopen(xml_file_name,''wt'');","errcatch");
+    if size(unique(modutests_names(:,1)), "r") == 1
+        module_name = tokens(pathconvert(modutests_names(1, 1), %f, %f, "u"), "/"); // name of the only module tested
+        module_name = module_name($);
+    else
+        module_name = "";
     end
+
+    if (rhs == 4)
+        exportToFile = varargin(4);
+        if (isempty(exportToFile) | exportToFile == "[]")
+            exportToFile = "";
+        end
+    else
+        exportToFile = "";
+    end
+    [xml_file_name, ierr, fd_xml] = bench_file_output_path(exportToFile);
 
     if ierr == 0 then
         mputl(xml_str, fd_xml);
@@ -231,6 +282,7 @@ function bench_run(varargin)
     clearglobal test_list;
     clearglobal test_count;
     clearglobal boucle_for_time;
+
 
 endfunction
 
@@ -253,6 +305,23 @@ function bench_add_module(module_mat,test_type)
         bench_add_onebench(module_mat,test_mat(i));
     end
 
+endfunction
+
+function [bench_list] = bench_list_tests(module_mat)
+
+    module_test_dir = [];
+    bench_list= [];
+    for i = 1:size(module_mat, "*")
+        if with_module(module_mat(i))
+            // module_mat(i) is a scilab module
+            module_test_dir = [module_test_dir; SCI+"/modules/"+module_mat(i)+"/tests/benchmarks"];
+        else
+            // module_mat(i) is a directory
+            module_test_dir = [module_test_dir; module_mat(i) + "/tests/benchmarks"];
+        end
+        test_mat        = gsort(basename(listfiles(module_test_dir(i) + "/*.tst")),"lr","i");
+        bench_list = [bench_list; [repmat(module_mat(i), size(test_mat, "*"), 1), test_mat]];
+    end
 endfunction
 
 //-----------------------------------------------------------------------------
@@ -283,11 +352,15 @@ endfunction
 // => Run one test
 //-----------------------------------------------------------------------------
 
-function [returned_time,nb_run_done] = bench_run_onebench(module,test,nb_run)
-
+function [returned_time,nb_run_done] = bench_run_onebench(module, test, nb_run)
+    // runs the benchmark for module
     returned_time = 0;
 
-    fullPath      = SCI+"/modules/"+module+"/tests/benchmarks/"+test;
+    if with_module(module)
+        fullPath      = SCI+"/modules/"+module+"/tests/benchmarks/"+test;
+    else
+        fullPath = module + "/tests/benchmarks/" + test;
+    end
 
     tstfile       = pathconvert(fullPath+".tst",%f,%f);
     scefile       = pathconvert(TMPDIR+"/"+test+".sce",%f,%f);
@@ -301,7 +374,7 @@ function [returned_time,nb_run_done] = bench_run_onebench(module,test,nb_run)
 
     nb_run_done   = nb_run;
 
-    if check_nb_run_line <> [] then
+    if (check_nb_run_line <> [] & ~nb_run_override) then
         nb_run_line   = txt(check_nb_run_line);
         nb_run_start  = strindex(nb_run_line,"<-- BENCH NB RUN :") + length("<-- BENCH NB RUN :");
         nb_run_end    = strindex(nb_run_line,"-->") - 1;
@@ -314,8 +387,16 @@ function [returned_time,nb_run_done] = bench_run_onebench(module,test,nb_run)
     line_end   = grep(txt,"<-- BENCH END -->");
 
     // Get the context and the bench
-    context    = txt([1:line_start-1]);
-    bench      = txt([line_start+1:line_end-1]);
+    // Take the whole file as bench if the tags are not found
+    if isempty(line_start) | isempty(line_end)
+        context = "";
+        bench = txt;
+        after = ""
+    else
+        context    = txt([1:line_start-1]);
+        bench      = txt([line_start+1:line_end-1]);
+        after      = txt([line_end:$]);
+    end
 
     // Remove blank lines
     context(find(context == "" )) = [];
@@ -328,6 +409,7 @@ function [returned_time,nb_run_done] = bench_run_onebench(module,test,nb_run)
     bench;
     "end";
     "timing = toc();";
+    after;
     "returned_time = timing * 1000;"]
 
     mputl(tst_str,scefile);
@@ -350,9 +432,10 @@ function example = bench_examples()
     example = [ sprintf("Examples :\n\n") ];
 
     example = [ example ; sprintf("// Launch all tests\n") ];
-    example = [ example ; sprintf("bench_run();\n") ];
-    example = [ example ; sprintf("bench_run([]);\n") ];
-    example = [ example ; sprintf("bench_run([],[]);\n") ];
+    example = [ example ; sprintf("// This may take some time...\n") ];
+    example = [ example ; sprintf("// bench_run();\n") ];
+    example = [ example ; sprintf("// bench_run([]);\n") ];
+    example = [ example ; sprintf("// bench_run([],[]);\n") ];
     example = [ example ; "" ];
     example = [ example ; sprintf("// Test one or several module\n") ];
     example = [ example ; sprintf("bench_run(''core'');\n") ];
@@ -365,7 +448,62 @@ function example = bench_examples()
     example = [ example ; sprintf("// With options\n") ];
     example = [ example ; sprintf("bench_run([],[],''list'');\n") ];
     example = [ example ; sprintf("bench_run([],[],''help'');\n") ];
-    example = [ example ; sprintf("bench_run([],[],''nb_run=2000'');\n") ];
+    example = [ example ; sprintf("bench_run(""string"",[],''nb_run=100'');\n") ];
+    example = [ example ; sprintf("// results in an output file in the local directory\n") ];
+    example = [ example ; sprintf("bench_run(""string"",[],''nb_run=100'', ""my_output_file.xml"");\n") ];
+    example = [ example ; sprintf("// results in an output directory TMPDIR/benchmarks/ is the default \n") ];
+    example = [ example ; sprintf("bench_run(""string"",[],''nb_run=100'', TMPDIR);\n") ];
     example = [ example ; "" ];
 
+endfunction
+
+function bench_add_dir(directory)
+    // Scans directory for tests/benchmarks and add the benchmarks
+    module_test_dir = directory + "/tests/benchmarks";
+    test_mat        = gsort(basename(listfiles(module_test_dir+"/*.tst")),"lr","i");
+
+    nl = size(test_mat,"*");
+    for i=1:nl
+        bench_add_onebench(directory, test_mat(i));
+    end
+endfunction
+
+function [xml_file_name, ierr, fd_xml] = bench_file_output_path(exportPath, module_name)
+    if exportPath == ""
+        // Default for export is TMPDIR/benchmarks/
+        exportPath = TMPDIR + "/benchmarks";
+        if ~isdir(exportPath)
+            createdir(exportPath);
+        end
+    end
+
+    // Create timestamp and scilab short version
+    current_date = getdate();
+    current_date = msprintf("%d-%02d-%02d_%02d%02d%02d", current_date(1), current_date(2), current_date(6), current_date(7), current_date(8), current_date(9));
+    sciversion = getversion("scilab");
+    sciversion = string(sciversion);
+    sciversion = sciversion(1) + "." + sciversion(2) + "." + sciversion(3);
+
+    // Manage a single module name separation
+    if (module_name <> "")
+        module_name_sep = module_name + "_";
+    else
+        module_name_sep = "";
+    end
+
+    if isdir(exportPath)
+        // The exportPath is a directory
+        // build the inside this directory
+        xml_file_name = exportPath + "/bench_" + module_name_sep + sciversion + "_" + current_date +".xml";
+        ierr = execstr("fd_xml = mopen(xml_file_name,''wt'');","errcatch");
+    else
+        // The exportPath is not a directory
+        xml_file_name = exportPath;
+        ierr = execstr("fd_xml = mopen(xml_file_name,''wt'');","errcatch");
+    end
+    if ierr <> 0 then
+        [xml_file_alt, ierr, fd_xml] = bench_file_output_path("", module_name);
+        msg = msprintf(_("%s: Cannot create file %s, created file %s instead.\n"), "bench_run", fullpath(xml_file_name), strsubst(fullpath(xml_file_alt), TMPDIR, "TMPDIR"));
+        warning(msg);
+    end
 endfunction

@@ -26,9 +26,6 @@
     <ClCompile Include="db2int.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DllmainInteger.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="genabs.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -150,6 +147,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="tpconv.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DllmainInteger.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -302,9 +302,6 @@
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\locales\integer.pot">
       <Filter>localization</Filter>
-    </None>
-    <None Include="core_import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

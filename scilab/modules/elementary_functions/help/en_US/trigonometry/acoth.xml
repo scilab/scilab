@@ -5,10 +5,10 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="acoth" xml:lang="en">
     <refnamediv>
         <refname>acoth</refname>
-        <refpurpose>element wise hyperbolic cotangeant inverse.</refpurpose>
+        <refpurpose>element wise hyperbolic cotangent inverse.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>y = acoth(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -30,13 +30,13 @@
     </refsection>
     <refsection>
         <title>Description</title>
-        <para>Computes the element wise hyperbolic cotangeant inverse of the
+        <para>Computes the element wise hyperbolic cotangent inverse of the
             argument.
         </para>
     </refsection>
     <refsection>
         <title>Sample</title>
-        <scilab:image><![CDATA[ 
+        <scilab:image><![CDATA[
 x=-30:0.1:30;
 x(abs(x)<=1)=%nan;
 plot(x,acoth(x))
@@ -44,14 +44,14 @@ plot(x,acoth(x))
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 x=-30:0.1:30;
 x(abs(x)<=1)=%nan;
 plot(x,acoth(x))
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="atanh">atanh</link>

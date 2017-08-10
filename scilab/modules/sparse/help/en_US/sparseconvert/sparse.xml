@@ -3,11 +3,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="sparse">
@@ -16,7 +19,7 @@
         <refpurpose>sparse matrix definition</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>sp=sparse(X)
             sp=sparse(ij,v [,mn])
         </synopsis>
@@ -88,7 +91,7 @@
             depending on the operations.
         </para>
         <para>
-            Note : Any operation involing dense matrices of the same size, either as argument (e.g. <literal>sp=sparse(d)</literal>)
+            Note : Any operation involving dense matrices of the same size, either as argument (e.g. <literal>sp=sparse(d)</literal>)
             or as result (e.g.  <literal>d= sp + 1.</literal>) is provided for convenience purposes but should of course be avoided.
             Furthermore, random access to elements (<literal>sp(r,c)</literal>), especially for insertions, is not efficient, so
             any performance-constrained access should be done in batches with <link linkend="spget">spget</link> for read access
@@ -121,7 +124,7 @@ sp=sparse(dense)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="full">full</link>

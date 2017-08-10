@@ -1,0 +1,44 @@
+//<-- CLI SHELL MODE -->
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- Non-regression test for bug 14212 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/14212
+//
+// <-- Short Description -->
+// Scilab 6 did not load array of struct from Scilab 5.5 files correctly
+//code to generated test struct on Scilab 5.5.2
+//disp(TMPDIR);
+//clear a;
+//a.b = "b";
+//a.c = "c";
+//save("TMPDIR/bug_14212_1x1.h5", "a");
+//clear a;
+//a(1,1).b = "11b";
+//a(1,1).c = "11c";
+//a(1,2).b = "12b";
+//a(1,2).c = "12c";
+//a(2,1).b = "21b";
+//a(2,1).c = "21c";
+//a(2,2).b = "22b";
+//a(2,2).c = "22c";
+//save("TMPDIR/bug_14212_2x2.h5", "a");
+clear a;
+load("SCI/modules/io/tests/nonreg_tests/bug_14212_1x1.h5");
+assert_checkequal(a.b, "b");
+assert_checkequal(a.c, "c");
+clear a;
+load("SCI/modules/io/tests/nonreg_tests/bug_14212_2x2.h5");
+assert_checkequal(a(1,1).b, "11b");
+assert_checkequal(a(1,1).c, "11c");
+assert_checkequal(a(1,2).b, "12b");
+assert_checkequal(a(1,2).c, "12c");
+assert_checkequal(a(2,1).b, "21b");
+assert_checkequal(a(2,1).c, "21c");
+assert_checkequal(a(2,2).b, "22b");
+assert_checkequal(a(2,2).c, "22c");

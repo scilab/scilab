@@ -5,7 +5,7 @@
         <refpurpose>cubic spline evaluation function</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[ yp [,yp1 [,yp2 [,yp3]]]] = interp(xp, x, y, d [, out_mode])</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -30,7 +30,7 @@
                 <term>out_mode</term>
                 <listitem>
                     <para>
-                        (optional) string defining <literal>s(X)</literal> for <literal>X</literal>  outside <latex>[x_1,\ x_n]</latex>. 
+                        (optional) string defining <literal>s(X)</literal> for <literal>X</literal>  outside <latex>[x_1,\ x_n]</latex>.
                         Possible values: "by_zero" | "by_nan" | "C0" | "natural" | "linear" | "periodic"
                     </para>
                 </listitem>
@@ -100,7 +100,7 @@
                 <term>"natural"</term>
                 <listitem>
                     <para>
-                        the extrapolation is defined as follows (<latex>p_i(x)</latex> being the polynomial defining 
+                        the extrapolation is defined as follows (<latex>p_i(x)</latex> being the polynomial defining
                         <literal>s(X)</literal> on <latex>[x_i,\ x_{i+1}]</latex>)
                     </para>
                     <latex style="display" align="center"><![CDATA[ xp_i < x_1   \Rightarrow  yp_i = p_1(xp_i) ]]></latex>
@@ -119,7 +119,7 @@
                 <term>"periodic"</term>
                 <listitem>
                     <para>
-                        <literal>s(X)</literal> is extended by periodicity: 
+                        <literal>s(X)</literal> is extended by periodicity:
                     </para>
                     <latex style="display" align="center"><![CDATA[ yp_i = s( x_1 + ( (xp_i-x_1)\ \mbox{modulo}\ [x_n-x_1] ) ) ]]></latex>
                 </listitem>
@@ -128,7 +128,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // see the examples of splin and lsq_splin
 
 // an example showing C2 and C1 continuity of spline and subspline
@@ -138,8 +138,8 @@ y = sinc(x);
 dk = splin(x,y);  // not_a_knot
 df = splin(x,y, "fast");
 xx = linspace(a,b,800)';
-[yyk, yy1k, yy2k] = interp(xx, x, y, dk); 
-[yyf, yy1f, yy2f] = interp(xx, x, y, df); 
+[yyk, yy1k, yy2k] = interp(xx, x, y, dk);
+[yyf, yy1f, yy2f] = interp(xx, x, y, df);
 clf()
 subplot(3,1,1)
 plot2d(xx, [yyk yyf])
@@ -163,8 +163,8 @@ xtitle("spline interpolation (second derivatives)")
             dk = splin(x,y);  // not_a_knot
             df = splin(x,y, "fast");
             xx = linspace(a,b,800)';
-            [yyk, yy1k, yy2k] = interp(xx, x, y, dk); 
-            [yyf, yy1f, yy2f] = interp(xx, x, y, df); 
+            [yyk, yy1k, yy2k] = interp(xx, x, y, dk);
+            [yyf, yy1f, yy2f] = interp(xx, x, y, df);
             clf()
             subplot(3,1,1)
             plot2d(xx, [yyk yyf])
@@ -181,7 +181,7 @@ xtitle("spline interpolation (second derivatives)")
             legends(["not_a_knot spline","fast sub-spline"], [1 2], "lr",%f)
             xtitle("spline interpolation (second derivatives)")
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // here is an example showing the different extrapolation possibilities
 x = linspace(0,1,11)';
 y = cosh(x-0.5);
@@ -190,7 +190,7 @@ xx = linspace(-0.5,1.5,401)';
 yy0 = interp(xx,x,y,d,"C0");
 yy1 = interp(xx,x,y,d,"linear");
 yy2 = interp(xx,x,y,d,"natural");
-yy3 = interp(xx,x,y,d,"periodic");  
+yy3 = interp(xx,x,y,d,"periodic");
 clf()
 plot2d(xx,[yy0 yy1 yy2 yy3],style=2:5,frameflag=2,leg="C0@linear@natural@periodic")
 xtitle(" different way to evaluate a spline outside its domain")
@@ -203,14 +203,14 @@ xtitle(" different way to evaluate a spline outside its domain")
             yy0 = interp(xx,x,y,d,"C0");
             yy1 = interp(xx,x,y,d,"linear");
             yy2 = interp(xx,x,y,d,"natural");
-            yy3 = interp(xx,x,y,d,"periodic");  
+            yy3 = interp(xx,x,y,d,"periodic");
             clf()
             plot2d(xx,[yy0 yy1 yy2 yy3],style=2:5,frameflag=2,leg="C0@linear@natural@periodic")
             xtitle(" different way to evaluate a spline outside its domain")
         </scilab:image>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="splin">splin</link>

@@ -5,7 +5,7 @@
         <refpurpose>matrix and list entry extraction</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             x(i)
             x(i,j)
@@ -247,19 +247,19 @@
                         </literal>
                     </para>
                     <para>
-                        When path points on more than one list component the
-                        instruction must have as many left hand side arguments as selected
-                        components. But if the extraction syntax is used within a function
-                        input calling sequence each returned list component is added to the
-                        function calling sequence.
+                        When path points to more than one list component, the
+                        instruction must have as many left-hand side arguments as selected
+                        components. But if the extraction syntax is used as function
+                        parameters, each returned list component is added to the
+                        function parameters.
                     </para>
                     <para>
-                        Note that, <literal>l(list())</literal> is the same as
+                        Note that <literal>l(list())</literal> is the same as
                         <literal>l</literal>.
                     </para>
                     <variablelist>
                         <varlistentry>
-                            <term>i and j may be :</term>
+                            <term>i and j may be:</term>
                             <listitem>
                                 <variablelist>
                                     <varlistentry>
@@ -391,7 +391,7 @@ dts(2)('b')(1,2)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="find">find</link>

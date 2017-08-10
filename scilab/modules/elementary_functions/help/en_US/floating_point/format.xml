@@ -1,107 +1,178 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2016 - Samuel GOUGEON
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="format" xml:lang="en">
     <refnamediv>
         <refname>format</refname>
-        <refpurpose>number printing and display format</refpurpose>
+        <refpurpose>set the default output format of decimal numbers</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
-            format([type],[long])
+            format(mode)
+            format(width)
+            format(mode, width)
+            format(wm)
             v = format()
-            format(m)
         </synopsis>
     </refsynopsisdiv>
-    <refsection>
+    <refsection role="parameters">
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>type</term>
+                <term>mode</term>
                 <listitem>
-                    <para>character string</para>
+                    <para>formatting mode:
+                        <itemizedlist>
+                          <listitem>1 or "v": <emphasis role="bold">v</emphasis>ariable adaptative
+                            formatting. Scilab chooses either the direct representation
+                            (e.g. -143.8757) or
+                            the exponential/engineering/scientific notation (e.g. -1.438E+02),
+                            in order to cope with each processed value as well as with the
+                            required width, with a maximal number of output digits.
+                          </listitem>
+                          <listitem>0 or "e": The <emphasis role="bold">e</emphasis>xponential
+                            /<emphasis role="bold">e</emphasis>ngineering notation is forced
+                            and used for all numbers.
+                          </listitem>
+                      </itemizedlist>
+                  </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>long</term>
+                <term>width</term>
                 <listitem>
-                    <para>integer (max number of digits (default 10))</para>
+                    <para>width of numbers = number of output characters used, all included: sign of
+                      the mantissa, its digits, decimal separator, exponent symbol, sign and digits
+                      of the exponent. Default width = 10. Minimal width in "e" mode = 8.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>wm</term>
+                <listitem>
+                    <para>a vector to set new format </para>
+                    <para><literal>wm(1)</literal> is the width</para>
+                    <para><literal>wm(2)</literal> is the formatting mode: 0 for
+                      <literal>'e'</literal> and 1 for <literal>'v'</literal>
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>v</term>
                 <listitem>
-                    <para>a vector for the current format.</para>
-                    <para>
-                        <literal>v(1)</literal> is a type of format : 0 for 'e' 
-                        and 1 for 'v'
-                    </para>
-                    <para>
-                        <literal>v(2)</literal> is a number of digits 
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>m</term>
-                <listitem>
-                    <para>a vector to set new format </para>
-                    <para>m(1) is a number of digits </para>
-                    <para>m(2) is a type of format : 0 for 'e' and 1 for 'v'</para>
-                </listitem>
+                    <para>vector returning the current formatting parameters:
+                        <itemizedlist>
+                          <listitem><literal>v(1)</literal> is the formatting mode:
+                            0 for <literal>'e'</literal> and 1 for <literal>'v'</literal>
+                          </listitem>
+                          <listitem>
+                            <literal>v(2)</literal> is the width:
+                            Number of characters used to output each number.
+                          </listitem>
+                         </itemizedlist>
+                     </para>
+                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Description</title>
-        <para>Sets the current printing format with the parameter
-            <literal>type</literal>; it is one of the following :
-        </para>
-        <variablelist>
-            <varlistentry>
-                <term>"v"</term>
-                <listitem>
-                    <para>for a variable format (default)</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>"e"</term>
-                <listitem>
-                    <para>for the e-format.</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-        <para>
-            <literal>long</literal> defines the max number of digits (default
-            10). <literal>format()</literal> returns a vector for the current format:
-            first component is the type of format (1 if 'v' ; 0 if
-            'e'); second component is the number of digits.
-        </para>
+            <note>
+            For complex numbers, each real and imaginary decimal part is
+            output according to <literal>format(..)</literal>. The total width
+            of a complex number is therefore roughly twice greater (+ 1 character
+            for "i" symbol).
+            </note>
+            <note>Encoded integers are never output according to the "e"xponential mode, even when
+                this formatting is the default mode set for decimal numbers. For them, the decimal
+                separator "." is skipped. This allows to distinguish them from decimal integers
+                that have a dot.
+            </note>
+            <note>For wide format(), digits that may be displayed beyond the
+                relative accuracy <literal>%eps</literal> are set to 0.
+            </note>
+            <warning>The default decimal format set with
+                <function>format(..)</function> is a global parameter:
+                Wherever you set it, it then applies everywhere in Scilab and Xcos.
+            </warning>
         <para>In the old Scilab versions, in "variable format" mode, vector
-            entries which are less than %eps times the maximum absolute value of the
+            entries which are less than <literal>%eps</literal> times the maximum absolute value of the
             entries were displayed as "0". It is no more the case, the clean function
             can be used to set negligible entries to zeros.
         </para>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-x=rand(1,5);
-format('v',10);x
-format(20);x
-format('e',10);x
-format(20);x
+        <programlisting role="example"><![CDATA[
+// format() is not taken into account for encoded integers
+// -------------------------------------------------------
+format("e",8)
+int32(2.^grand(3,5,"uin",0,30))
 
-x=[100 %eps];
-format('e',10);x
-format('v',10);x
+// format() impacts console's output, disp(), string(), sci2exp(),...
+// --------------------------------------------------------------
+a = %pi; p = %pi + %z - %e*%z^2;
+format("v",10);
+a, p
+disp(a,p)
+string(a), string(p)
+[sci2exp(a) sci2exp(p)]
 
-format("v")
+format("e",15);
+a, p
+disp(a,p)
+string(a), string(p)
+[sci2exp(a) sci2exp(p)]
+format("v",10); // reset
+
+// format() set the width, not a fixed number of digits:
+// ----------------------------------------------------
+format("v",10)
+%pi*1e-217, s = string(%pi*1e-217)
+length(s) // the missing char is the implicit "+" sign
+
+// This is useful to get aligned and fully informative display of matrices
+[ -1.234 %pi*1e-10 %nan ; %e*1e137 -%inf 54312]
+
+// Since Scilab 6.0, unrelevant digits displayed with wide format() are set to 0:
+format(22)
+%pi
+
+// format() has a global impact
+// ----------------------------
+function myfun()
+    format("e",20)
+endfunction
+format("v", 10)
+disp(%pi)
+myfun()
+// it remains everywhere, wherever it has been set:
+disp(%pi)
+format("v",10) // reset
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="write">write</link>
+                <link linkend="number_properties">numbers properties</link>
+            </member>
+            <member>
+                <link linkend="string">string</link>
+            </member>
+            <member>
+                <link linkend="sci2exp">sci2exp</link>
             </member>
             <member>
                 <link linkend="disp">disp</link>
@@ -112,6 +183,29 @@ format("v")
             <member>
                 <link linkend="clean">clean</link>
             </member>
-        </simplelist>
+            <member>
+                <link linkend="printf_conversion">C-like format</link>
+            </member>
+            <member>
+                <link linkend="mprintf">mprintf</link>
+            </member>
+            <member>
+                <link linkend="msprintf">msprintf</link>
+            </member>
+            <member>
+                <link linkend="mfprintf">mfprintf</link>
+            </member>
+      </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>For wide format(), digits that may be displayed
+                    beyond the relative accuracy %eps are now set to 0.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

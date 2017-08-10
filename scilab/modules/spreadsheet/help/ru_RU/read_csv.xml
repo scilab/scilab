@@ -4,167 +4,170 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Allan CORNET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="read_csv" xml:lang="ru">
-    
+
     <refnamediv>
-        
+
         <refname>read_csv</refname>
-        
+
         <refpurpose>читает файл, содержащий значения, разделённые запятой (csv)</refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        
-        <title>Последовательность вызова</title>
-        
+
+        <title>Синтаксис</title>
+
         <synopsis>M = read_csv(fname [,sep])</synopsis>
-        
+
     </refsynopsisdiv>
-    
+
     <refsection>
-        
+
         <title>Аргументы</title>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>fname</term>
-                
+
                 <listitem>
-                    
+
                     <para>символьная строка. Имя файла и путь до него.</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>sep</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         символьная строка. Используемый разделитель полей, значение по умолчанию
-                        
+
                         ",".
-                        
+
                     </para>
-                    
+
                     <para>
-                        
+
                         Можно использовать <literal>ascii(9)</literal> или <literal>"\t"</literal> для разделителя табуляцией.
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>M</term>
-                
+
                 <listitem>
-                    
+
                     <para>матрица строковых значений.</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>Описание</title>
-        
+
         <para>
-            
+
             Для указанного ascii-файла с разделёнными полями, например созданного
-            
+
             электронной таблицей, используя формат "Текст и запятая",
-            
+
             <literal>М = read_csv(fname)</literal> возвращает соответствующую Scilab-матрицу
-            
-            строк <literal>M</literal>. Для того, чтобы выбрать иной разделитель, используйте 
-            
+
+            строк <literal>M</literal>. Для того, чтобы выбрать иной разделитель, используйте
+
             <literal>M = read_csv(fname,sep)</literal>.
-            
+
         </para>
-        
+
         <para>
-            
+
             <note>
-                
+
                 Вы можете преобразовать часть или все элементы матрицы <literal>M</literal>
-                
+
                 в числовое представление используя функцию <literal>evstr</literal>,
-                
+
                 которая преобразует строковые значения в числовые.
-                
+
             </note>
-            
+
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>Примеры</title>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
       // создадим файл с какими-то данными, разделёнными табулятором
       A = 1:50;
       mputl(strcat(string(A),ascii(9)), TMPDIR + '/foo.csv');
-      
+
       // прочитаем csv-файл
       B = read_csv(TMPDIR + '/foo.csv');
-      
+
       // представим в числовой вид значения B
       C = evstr(B);
-      
+
       // сравним исходные данные и результат
       and(A == C)
     ]]></programlisting>
-        
+
     </refsection>
-    
+
     <refsection role="see also">
-        
+
         <title>Смотрите также</title>
-        
+
         <simplelist type="inline">
-            
+
             <member>
-                
+
                 <link linkend="write_csv">write_csv</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="evstr">evstr</link>
-                
+
             </member>
-            
+
         </simplelist>
-        
+
     </refsection>
-    
+
 </refentry>
 
 

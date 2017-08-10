@@ -2,7 +2,10 @@
 <!-- Copyright 2013 Clement DAVID <clement.david@scilab-enterprises.com> -->
 <application>
     <id type="desktop">scilab.desktop</id>
-    <licence>CC0</licence>
+    <name>Scilab</name>
+    <metadata_license>CC0-1.0</metadata_license>
+    <project_license>CECILL-2.1 or GPL-2.0+</project_license>
+    <summary>Scientific software package for numerical computations</summary>
     <description>
         <p>Scilab is free and open source software for numerical computation providing a powerful computing environment for engineering and scientific applications. Scilab includes hundreds of mathematical functions. It has a high level programming language allowing access to advanced data structures, 2-D and 3-D graphical functions. A large number of functionalities is included in Scilab:
         </p>

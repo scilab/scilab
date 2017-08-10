@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="cspect" xml:lang="fr">
+    <refnamediv>
+        <refname>cspect</refname>
+        <refpurpose>two sided cross-spectral estimate between 2 discrete time signals using
+            the correlation method
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>
+            [sm [,cwp]]=cspect(nlags,npoints,wtype,x [,y] [,wpar])
+            [sm [,cwp]]=cspect(nlags,npoints,wtype,nx [,ny] [,wpar])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>vector, the data of the first signal.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>
+                        vector, the data of the second signal. If <literal>y</literal>
+                        is omitted it is supposed to be equal to <literal>x</literal>
+                        (auto-correlation). If it is present, it must have the same numer of
+                        element than <literal>x.</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>nx</term>
+                <listitem>
+                    <para>
+                        a scalar : the number of points in the <literal>x</literal>
+                        signal. In this case the segments of the x signal are loaded by a
+                        user defined function named <literal>getx</literal> (see
+                        below).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ny</term>
+                <listitem>
+                    <para>a scalar : the number of points in the
+                        <literal>y</literal> signal. In this case the segments of
+                        the <literal>y</literal> signal are loaded by a user defined
+                        function named <literal>gety</literal> (see below). If
+                        present <literal>ny</literal> must be equal to
+                        <literal>nx</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>nlags</term>
+                <listitem>
+                    <para>number of correlation lags (positive integer)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>npoints</term>
+                <listitem>
+                    <para>number of transform points (positive integer)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>wtype</term>
+                <listitem>
+                    <para>The window type</para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                <literal>'re'</literal>: rectangular
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>'tr'</literal>: triangular
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>'hm'</literal>: Hamming
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>'hn'</literal>: Hann
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>'kr'</literal>: Kaiser,in this case the wpar
+                                argument must be given
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>'ch'</literal>: Chebyshev, in this case the wpar
+                                argument must be given
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>wpar</term>
+                <listitem>
+                    <para>
+                        optional parameters for <literal>Kaiser and Chebyshev
+                            windows:
+                        </literal>
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                'kr': <literal>wpar must be a strictly positive
+                                    number
+                                </literal>
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                'ch': <literal>wpar</literal> must be a 2 element vector
+                                <literal> [main_lobe_width,side_lobe_height]with
+                                </literal>
+                                <literal>0&lt;main_lobe_width&lt;.5</literal>, and
+                                <literal>side_lobe_height&gt;0</literal>
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sm</term>
+                <listitem>
+                    <para>The power spectral estimate in the interval
+                        <literal>[0,1]</literal> of the normalized frequencies. It
+                        is a row array of size <literal>npoints</literal>. The array
+                        is real in case of auto-correlation and complex in case of
+                        cross-correlation.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>cwp</term>
+                <listitem>
+                    <para>the unspecified Chebyshev window parameter in case of Chebyshev
+                        windowing, or an empty matrix.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>Computes the cross-spectrum estimate of two signals
+            <literal>x</literal> and <literal>y</literal> if both are given and the
+            auto-spectral estimate of <literal>x</literal> otherwise. Spectral
+            estimate obtained using the correlation method.
+        </para>
+        <para>The cross spectrum of two signal x and y is defined to be</para>
+        <para>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata>
+                        <mml:math>
+                            <mml:semantics>
+                                <mml:mrow>
+                                    <mml:msub>
+                                        <mml:mi>S</mml:mi>
+                                        <mml:mi mml:fontstyle="italic">xy</mml:mi>
+                                    </mml:msub>
+                                    <mml:mrow>
+                                        <mml:mrow>
+                                            <mml:mo mml:stretchy="false">(</mml:mo>
+                                            <mml:mo mml:stretchy="false">ω</mml:mo>
+                                            <mml:mo mml:stretchy="false">)</mml:mo>
+                                        </mml:mrow>
+                                        <mml:mo mml:stretchy="false">=</mml:mo>
+                                        <mml:mfrac>
+                                            <mml:mn>1</mml:mn>
+                                            <mml:mi>N</mml:mi>
+                                        </mml:mfrac>
+                                    </mml:mrow>
+                                    <mml:mrow>
+                                        <mml:mo mml:stretchy="false">(</mml:mo>
+                                        <mml:mrow>
+                                            <mml:mrow>
+                                                <mml:munderover>
+                                                    <mml:mo mml:stretchy="false">∑</mml:mo>
+                                                    <mml:mrow>
+                                                        <mml:mi>n</mml:mi>
+                                                        <mml:mo mml:stretchy="false">=</mml:mo>
+                                                        <mml:mn>0</mml:mn>
+                                                    </mml:mrow>
+                                                    <mml:mrow>
+                                                        <mml:mi>N</mml:mi>
+                                                        <mml:mo mml:stretchy="false">−</mml:mo>
+                                                        <mml:mn>1</mml:mn>
+                                                    </mml:mrow>
+                                                </mml:munderover>
+                                                <mml:mi>x</mml:mi>
+                                            </mml:mrow>
+                                            <mml:mrow>
+                                                <mml:mo mml:stretchy="false">(</mml:mo>
+                                                <mml:mi>n</mml:mi>
+                                                <mml:mo mml:stretchy="false">)</mml:mo>
+                                            </mml:mrow>
+                                            <mml:msup>
+                                                <mml:mi>e</mml:mi>
+                                                <mml:mrow>
+                                                    <mml:mrow>
+                                                        <mml:mo mml:stretchy="false">−</mml:mo>
+                                                        <mml:mi>i</mml:mi>
+                                                    </mml:mrow>
+                                                    <mml:mo mml:stretchy="false">ω</mml:mo>
+                                                    <mml:mi>n</mml:mi>
+                                                </mml:mrow>
+                                            </mml:msup>
+                                        </mml:mrow>
+                                        <mml:mo mml:stretchy="false">)</mml:mo>
+                                    </mml:mrow>
+                                    <mml:mrow>
+                                        <mml:mo mml:stretchy="false">(</mml:mo>
+                                        <mml:mrow>
+                                            <mml:mrow>
+                                                <mml:munderover>
+                                                    <mml:mo mml:stretchy="false">∑</mml:mo>
+                                                    <mml:mrow>
+                                                        <mml:mi>n</mml:mi>
+                                                        <mml:mo mml:stretchy="false">=</mml:mo>
+                                                        <mml:mn>0</mml:mn>
+                                                    </mml:mrow>
+                                                    <mml:mrow>
+                                                        <mml:mi>N</mml:mi>
+                                                        <mml:mo mml:stretchy="false">−</mml:mo>
+                                                        <mml:mn>1</mml:mn>
+                                                    </mml:mrow>
+                                                </mml:munderover>
+                                                <mml:mover mml:accent="true">
+                                                    <mml:mi>y</mml:mi>
+                                                    <mml:mo mml:stretchy="false">ˉ</mml:mo>
+                                                </mml:mover>
+                                            </mml:mrow>
+                                            <mml:mrow>
+                                                <mml:mo mml:stretchy="false">(</mml:mo>
+                                                <mml:mi>n</mml:mi>
+                                                <mml:mo mml:stretchy="false">)</mml:mo>
+                                            </mml:mrow>
+                                            <mml:msup>
+                                                <mml:mi>e</mml:mi>
+                                                <mml:mrow>
+                                                    <mml:mi>i</mml:mi>
+                                                    <mml:mo mml:stretchy="false">ω</mml:mo>
+                                                    <mml:mi>n</mml:mi>
+                                                </mml:mrow>
+                                            </mml:msup>
+                                        </mml:mrow>
+                                        <mml:mo mml:stretchy="false">)</mml:mo>
+                                    </mml:mrow>
+                                </mml:mrow>
+                                <mml:annotation mml:encoding="StarMath 5.0"> S_{xy}(%omega)={1}
+                                    over {N} (sum from{n=0} to{N-1} x(n)e^{-i %omega n}) ( sum
+                                    from{n=0} to{N-1} bar y(n)e^{i %omega n})
+                                </mml:annotation>
+                            </mml:semantics>
+                        </mml:math>
+                    </imagedata>
+                </imageobject>
+            </inlinemediaobject>
+        </para>
+        <para>The correlation method calculates the spectral estimate as the
+            Fourier transform of a modified estimate of the auto/cross correlation
+            function. This auto/cross correlation modified estimate consist of
+            repeatedly calculating estimates of the autocorrelation function from
+            overlapping sub-segments if the data, and then averaging these estimates
+            to obtain the result.
+        </para>
+        <para>The number of points of the window is
+            <literal>2*nlags-1.</literal>
+        </para>
+        <para>
+            For batch processing, the<literal> x</literal> and
+            <literal>y</literal> data may be read segment by segment using the
+            <literal>getx </literal>and <literal>gety</literal> user defined
+            functions. These functions have the following syntax:
+        </para>
+        <para>
+            <literal>xk=getx(ns,offset)</literal> and
+            <literal>yk=gety(ns,offset)</literal> where <literal>ns</literal> is the
+            segment size and <literal>offset</literal> is the index of the first
+            element of the segment in the full signal.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Warning</title>
+        <para>For Scilab version up to 5.0.2 the returned value was the modulus of the current one.</para>
+    </refsection>
+    <refsection>
+        <title>Reference</title>
+        <para>Oppenheim, A.V., and R.W. Schafer. Discrete-Time Signal Processing,
+            Upper Saddle River, NJ: Prentice-Hall, 1999
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+rand('normal');rand('seed',0);
+x=rand(1:1024-33+1);
+//make low-pass filter with eqfir
+nf=33;bedge=[0 .1;.125 .5];des=[1 0];wate=[1 1];
+h=eqfir(nf,bedge,des,wate);
+//filter white data to obtain colored data
+h1=[h 0*ones(1:max(size(x))-1)];
+x1=[x 0*ones(1:max(size(h))-1)];
+hf=fft(h1,-1);   xf=fft(x1,-1);yf=hf.*xf;y=real(fft(yf,1));
+sm=cspect(100,200,'tr',y);
+smsize=max(size(sm));fr=(1:smsize)/smsize;
+plot(fr,log(sm))
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="pspect">pspect</link>
+            </member>
+            <member>
+                <link linkend="mese">mese</link>
+            </member>
+            <member>
+                <link linkend="corr">corr</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -1,11 +1,14 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2013 - A. Khorshidi
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function [cf, ind] = histc(n, data, normalization)
 
@@ -43,7 +46,6 @@ function [cf, ind] = histc(n, data, normalization)
         data = iconvert(data, 0); // To pass to dsearch
     end
 
-    nd = length(data); // Number of data values
     if length(n) == 1 then  // The number of classes is provided
         if n < 1
             error(msprintf(_("%s: Wrong value for input argument #%d: Must be in the interval %s.\n"),"histc",1,"[1, oo)"));
@@ -68,8 +70,10 @@ function [cf, ind] = histc(n, data, normalization)
 
     // Normalization
     if normalization == %t then
-        cw = cb(2:$)-cb(1:$-1); // Bin width
-        cf = cf./(nd*cw);
+        nd = size(data, "*"); // Number of data values
+        //cw = cb(2:$)-cb(1:$-1); // Bin width
+        //cf = cf./(nd*cw); // Normalization in bin heights
+        cf = cf./nd; // Heights normalization
     end
 
 endfunction

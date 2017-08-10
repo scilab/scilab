@@ -109,12 +109,12 @@ function [x,y,typ]=MBLOCK(job,arg1,arg2)
             //
             //first stage of checking variable name
             //put string symbolic parameters in variable
-            ierr=execstr("in=stripblanks(evstr(Tin));..
-            intype=stripblanks(evstr(Tintype));..
-            out=stripblanks(evstr(Tout));..
-            outtype=stripblanks(evstr(Touttype));..
-            param=stripblanks(evstr(Tparam));..
-            funam=stripblanks(Tfunam)","errcatch")
+            ierr=execstr("in=stripblanks(evstr(Tin));"+..
+            "intype=stripblanks(evstr(Tintype));"+..
+            "out=stripblanks(evstr(Tout));"+..
+            "outtype=stripblanks(evstr(Touttype));"+..
+            "param=stripblanks(evstr(Tparam));"+..
+            "funam=stripblanks(Tfunam)","errcatch")
 
             if ierr<>0 then
                 //You lose! Try again! Insert coin!

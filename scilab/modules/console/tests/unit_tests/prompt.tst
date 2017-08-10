@@ -11,18 +11,26 @@ if curprompt <> ascii([45.    45.    62.    32.]) then pause,end
 
 [curprompt, pause_level] = prompt();
 if curprompt <> ascii([45.    45.    62.    32.]) then pause,end
-if pause_level <> 0 then pause,end
+assert_checkequal(pause_level, 0);
 
 prompt("-- My Prompt -->");
 1+1;
 
 ierr = execstr("[a,b,c] = prompt();","errcatch");
-if ierr <> 999 then pause,end
+assert_checkequal(ierr, 999);
 
 ierr = execstr("[a,b] = prompt(1);","errcatch");
-if ierr <> 999 then pause,end
+assert_checkequal(ierr, 999);
 
 ierr = execstr("[a,b] = prompt(''1'');","errcatch");
-if ierr <> 999 then pause,end
-// =============================================================================
+assert_checkequal(ierr, 999);
+
+ierr = execstr("prompt(""1234567890123456789012345678901234567890123456789012345678901234"");","errcatch");
+assert_checkequal(ierr, 999);
+
+ierr = execstr("prompt(""123456789012345678901234567890123456789012345678901234567890123"");","errcatch");
+assert_checkequal(ierr, 0);
+
+ierr = execstr("prompt(""这段文字很长这段文字很长这段文字很长这段文字很长这段文字很长"");", "errcatch");
+assert_checkequal(ierr, 999);
 

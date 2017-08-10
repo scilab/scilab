@@ -1,14 +1,17 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) INRIA
 c
-c This file must be used under the terms of the CeCILL.
-c This source file is licensed as described in the file COPYING, which
-c you should have received as part of this distribution.  The terms
-c are also available at
-c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+c Copyright (C) 2012 - 2016 - Scilab Enterprises
+c
+c This file is hereby licensed under the terms of the GNU GPL v2.0,
+c pursuant to article 5.3.4 of the CeCILL v.2.1.
+c This file was originally licensed under the terms of the CeCILL v2.1,
+c and continues to be available under such terms.
+c For more information, see the COPYING file which you should have received
+c along with this program.
 c
       subroutine n1qn2a (simul,prosca,n,x,f,g,dxmin,df1,epsg,
-     /                   impres,io,mode,niter,nsim,m,
+     /                   iprint,io,mode,niter,nsim,m,
      /                   d,gg,aux,alpha,ybar,sbar,izs,rzs,dzs)
 c
 c----
@@ -19,7 +22,7 @@ c----
 c
 c     arguments
 c
-      integer n,impres,io,mode,niter,nsim,m,izs(*)
+      integer n,iprint,io,mode,niter,nsim,m,izs(*)
       real rzs(*)
       double precision x(n),f,g(n),dxmin,df1,epsg,d(n),gg(n),aux(n),
      /     alpha(m),ybar(n,m),sbar(n,m)
@@ -47,7 +50,7 @@ c
       isim=1
       call prosca (n,g,g,ps,izs,rzs,dzs)
       gnorm=sqrt(ps)
-      if (impres.ge.1) then
+      if (iprint.ge.1) then
         write (bufstr,900) f,gnorm
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
@@ -61,18 +64,18 @@ c
       do 10 i=1,n
           d(i)=-g(i)*precon
 10    continue
-      if (impres.ge.5) then
+      if (iprint.ge.5) then
         write(bufstr,899) precon
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
 899   format (' n1qn2a: direction de descente -g: precon = ',d10.3)
-      if (impres.eq.3) then
+      if (iprint.eq.3) then
           write(bufstr,901)
           call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
           write(bufstr,9010)
           call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
       endif
-      if (impres.eq.4) then
+      if (iprint.eq.4) then
         write(bufstr,901)
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
@@ -90,29 +93,29 @@ c
 c---- debut de l'iteration. on cherche x(k+1) de la forme x(k) + t*d,
 c     avec t > 0. on connait d.
 c
-c     Si impres<0 et l'itération est un multiple de -impres,
+c     Si iprint<0 et l'itération est un multiple de -iprint,
 c     alors on appelle la fonction fournie, avec indic=1.
 c
 100   iter=iter+1
-      if (impres.lt.0) then
-          if(mod(iter,-impres).eq.0) then
+      if (iprint.lt.0) then
+          if(mod(iter,-iprint).eq.0) then
               indic=1
               call simul (indic,n,x,f,g,izs,rzs,dzs)
 c             error in user function
               if(indic.eq.0) goto 1000
           endif
       endif
-      if (impres.ge.5) then
+      if (iprint.ge.5) then
         write(bufstr,901)
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
 901   format (1x,79('-'))
-      if (impres.ge.4) then
+      if (iprint.ge.4) then
         write(bufstr,9010)
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
 9010  format (1x,' ')
-      if (impres.ge.3) then
+      if (iprint.ge.3) then
         write (bufstr,902) iter,isim
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
 
@@ -129,7 +132,7 @@ c             error in user function
 c
 c     ---- recherche lineaire et nouveau point x(k+1)
 c
-      if (impres.ge.5) then
+      if (iprint.ge.5) then
         write (bufstr,903)
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
@@ -146,7 +149,7 @@ c
       d1=hp0
 c
       call nlis0 (n,simul,prosca,x,f,d1,t,tmin,tmax,d,g,rm1,rm2,
-     /           impres,io,moderl,isim,nsim,aux,izs,rzs,dzs)
+     /           iprint,io,moderl,isim,nsim,aux,izs,rzs,dzs)
 c
 c         ---- nlis0 renvoie les nouvelles valeurs de x, f et g
 c
@@ -164,7 +167,7 @@ c             ---- descente bloquee sur tmax
 c                  [sortie rare (!!) d'apres le code de nlis0]
 c
               mode=3
-              if (impres.ge.1) then
+              if (iprint.ge.1) then
                 write(bufstr,904) iter
                 call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
                 endif
@@ -198,7 +201,7 @@ c
       call prosca(n,g,g,ps,izs,rzs,dzs)
       eps1=sqrt(ps)/gnorm
 c
-      if (impres.ge.5) then
+      if (iprint.ge.5) then
         write (bufstr,905) eps1
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
@@ -209,7 +212,7 @@ c
       endif
       if (iter.eq.niter) then
           mode=4
-          if (impres.ge.1) then
+          if (iprint.ge.1) then
             write (bufstr,906) iter
             call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
             endif
@@ -219,7 +222,7 @@ c
       endif
       if (isim.ge.nsim) then
           mode=5
-          if (impres.ge.1) then
+          if (iprint.ge.1) then
             write (bufstr,907) iter,isim
             call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
             endif
@@ -246,7 +249,7 @@ c
       call prosca (n,ybar(1,jmax),sbar(1,jmax),d1,izs,rzs,dzs)
       if (d1.le.0.0d+0) then
           mode=7
-          if (impres.ge.1) then
+          if (iprint.ge.1) then
             write (bufstr,908) iter,d1
             call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
             endif
@@ -260,7 +263,7 @@ c         ---- precon: facteur de mise a l'echelle
 c
       call prosca (n,ybar(1,jmax),ybar(1,jmax),ps,izs,rzs,dzs)
       precon=d1/ps
-      if (impres.ge.5) then
+      if (iprint.ge.5) then
         write (bufstr,909) d1,precon
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
@@ -289,7 +292,7 @@ c
       call prosca (n,d,g,hp0,izs,rzs,dzs)
       if (hp0.ge.0.0d+0) then
           mode=7
-          if (impres.ge.1) then
+          if (iprint.ge.1) then
             write (bufstr,910) iter,hp0
             call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
             endif
@@ -298,7 +301,7 @@ c
      /             'descente: (g,d) = ',d12.5)
           goto 1000
       endif
-      if (impres.ge.5) then
+      if (iprint.ge.5) then
           call prosca (n,g,g,ps,izs,rzs,dzs)
           ps=sqrt(ps)
           call prosca (n,d,d,ps2,izs,rzs,dzs)

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="CheckRhs" xml:lang="en">
+    <refnamediv>
+        <refname>CheckRhs (deprecated)</refname>
+        <refpurpose>
+            C macro which checks the number of input arguments present in
+            the calling Scilab function.
+            <emphasis role="bold">This function is obsolete.</emphasis>
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>CheckRhs(nb_min_params,nb_max_params)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>nb_min_params</term>
+                <listitem>
+                    <para>
+                        The minimum number of input arguments which must be present in
+                        the calling Scilab function
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>nb_max_params</term>
+                <listitem>
+                    <para>
+                        the maximum number of input arguments which must be present in
+                        the calling Scilab function
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            C macro which checks the number of input arguments present in the
+            calling Scilab function. You must include api_scilab.h to benefit from this
+            function.
+        </para>
+        <para>
+            If the number of input arguments is not between nb_min_params and
+            nb_max_params, we quit the C interface (<literal>return 0;</literal>) and
+            an error is returned in the Scilab console.
+        </para>
+        <para>
+            Since <literal>CheckRhs</literal> is doing a <literal>
+                return
+                0;
+            </literal>
+            within the gateway function, it is important to call this
+            macro before any memory allocation in order to avoid any memory
+            leak.
+        </para>
+        <para>
+            WARNING: This API is deprecated from Scilab 5.2.0 and is going to be removed with Scilab 6.0. Please use <link linkend="api_scilab">API Scilab</link> (the new Scilab API).
+            This function has been replaced by <link linkend="CheckInputArgument">CheckInputArgument</link>.
+        </para>
+    </refsection>
+
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="code_gateway"><![CDATA[
+#include "api_scilab.h"
+
+int sci_my_function(char *fname, unsigned long l)
+{
+/* The expected profile of the function will be:
+* a = my_function(a,b,c);
+*/
+  CheckRhs(3,3);
+  CheckLhs(1,1);
+
+}
+ ]]></programlisting>
+    </refsection>
+
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="CheckInputArgument">CheckInputArgument</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

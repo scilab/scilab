@@ -5,7 +5,7 @@
         <refpurpose>recursive solution of normal equations</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[la,lb]=lattn(n,p,cov)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -74,9 +74,9 @@
             \end{eqnarray}
         </latex>
         <para>
-            
+
         </para>
-        
+
         <para>
             where {<literal>Rk;k=1,nlag</literal>} is the sequence of empirical covariances.
         </para>
@@ -116,7 +116,7 @@ end;
 ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="levin">levin</link>

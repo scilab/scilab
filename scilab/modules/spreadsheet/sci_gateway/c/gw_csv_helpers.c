@@ -3,11 +3,14 @@
  * Copyright (C) 2010 - 2012 - INRIA - Allan CORNET
  * Copyright (C) 2011 - INRIA - Michael Baudin
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  * This code is also published under the GPL v3 license.
  *
@@ -69,7 +72,7 @@ char *csv_getArgumentAsStringWithEmptyManagement(void* pvApiCtx, int _iVar, cons
         else
         {
             *iErr = API_ERROR_INVALID_TYPE;
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, _iVar);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, _iVar);
             return NULL;
         }
     }
@@ -80,7 +83,7 @@ char *csv_getArgumentAsStringWithEmptyManagement(void* pvApiCtx, int _iVar, cons
         if (*iErr == 0 )
         {
             *iErr = API_ERROR_CHECK_VAR_DIMENSION;
-            Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, _iVar);
+            Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), fname, _iVar);
             return NULL;
         }
 
@@ -97,7 +100,8 @@ char *csv_getArgumentAsStringWithEmptyManagement(void* pvApiCtx, int _iVar, cons
         }
         if (strlen(returnedValue) == 0)
         {
-            returnedValue = strdup(defaultValue);
+            FREE(returnedValue);
+            returnedValue = os_strdup(defaultValue);
         }
     }
     return returnedValue;
@@ -134,7 +138,7 @@ char *csv_getArgumentAsString(void* pvApiCtx, int _iVar,
     if (iType != sci_strings)
     {
         *iErr = API_ERROR_INVALID_TYPE;
-        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
         return NULL;
     }
 
@@ -143,7 +147,7 @@ char *csv_getArgumentAsString(void* pvApiCtx, int _iVar,
     if (*iErr == 0 )
     {
         *iErr = API_ERROR_CHECK_VAR_DIMENSION;
-        Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, _iVar);
+        Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), fname, _iVar);
         return NULL;
     }
 
@@ -285,7 +289,7 @@ char **csv_getArgumentAsMatrixOfString(void* pvApiCtx, int _iVar,
     if (iType != sci_strings)
     {
         *iErr =  API_ERROR_INVALID_TYPE;
-        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, _iVar);
+        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, _iVar);
         return NULL;
     }
 

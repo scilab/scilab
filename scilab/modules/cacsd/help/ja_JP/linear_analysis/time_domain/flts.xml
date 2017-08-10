@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="flts" xml:lang="ja">
+    <refnamediv>
+        <refname>flts</refname>
+        <refpurpose>時間応答 (離散時間, 離散化システム)</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[y [,x]]=flts(u,sl [,x0])
+            [y]=flts(u,sl [,past])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>u</term>
+                <listitem>
+                    <para>行列 (入力ベクトル)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sl</term>
+                <listitem>
+                    <para>
+                        リスト (線形システム <literal>syslin</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x0</term>
+                <listitem>
+                    <para>ベクトル (状態量初期値 ; デフォルト値
+                        =<literal>0</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>past</term>
+                <listitem>
+                    <para>
+                        (過去の)行列 (デフォルト値=<literal>0</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x,y</term>
+                <listitem>
+                    <para>行列 (状態量と出力)</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <itemizedlist>
+            <listitem>
+                <para>状態空間形式:</para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            <literal>sl</literal> は,その状態空間表現で指定される離散線形システム
+            です(<link linkend="syslin">syslin</link> 参照):
+        </para>
+        <para>
+            <literal>sl=syslin('d',A,B,C,D)</literal> :
+        </para>
+        <programlisting role=""><![CDATA[
+x[t+1] = A x[t] + B u[t]
+y[t] = C x[t] + D u[t]
+ ]]></programlisting>
+        <para>
+            もしくは,より一般的に,<literal>D</literal> が多項式行列
+            の場合
+            (<literal>p = degree(D(z))</literal>) :
+        </para>
+        <programlisting role=""><![CDATA[
+D(z) = D_0 + z D_1 + z^2 D_2 +..+ z^p D_p
+y[t] = C x[t] + D_0 u[t] + D_1 u[t+1] +..+ D_[p] u[t+p]
+ ]]></programlisting>
+        <itemizedlist>
+            <listitem>
+                <para>伝達関数表現:</para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            <literal> y=flts(u,sl[,past])</literal>. ここで, <literal>sl</literal>
+            は伝達行列形式の線形システムです, すなわち,
+        </para>
+        <para>
+            <literal>sl=syslin('d',transfer_matrix)</literal> (
+            <literal>
+                <link linkend="syslin">syslin</link>
+            </literal>
+            参照).
+        </para>
+        <programlisting role=""><![CDATA[
+past = [u     ,...,  u   ]
+       [ -nd           -1]
+       [y     ,...,  y   ]
+       [ -nd           -1]
+ ]]></programlisting>
+        <para>は, u と y の過去の値の行列です.</para>
+        <para>
+            <literal>nd</literal> は,
+            <literal>sl</literal> の分母行列の各行の最小公倍数の
+            最大自由度です.
+        </para>
+        <programlisting role=""><![CDATA[
+u=[u0 u1 ... un]  (input)
+y=[y0 y1 ... yn]  (output)
+ ]]></programlisting>
+        <para>p は分子の最大次数と分母の最大次数の差です.</para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+sl=syslin('d',1,1,1);u=1:10;
+y=flts(u,sl);
+plot2d(y)
+[y1,x1]=flts(u(1:5),sl);y2=flts(u(6:10),sl,x1);
+y-[y1,y2]
+//多項式Dがある場合:
+z=poly(0,'z');
+D=1+z+z^2; p =degree(D);
+sl=syslin('d',1,1,1,D);
+y=flts(u,sl);[y1,x1]=flts(u(1:5),sl);
+y2=flts(u(5-p+1:10),sl,x1);  // (update)
+y-[y1,y2]
+//遅延 (伝達関数形式): flts(u,1/z)
+// 典型的な応答
+z=poly(0,'z');
+h=syslin(0.1,(1-2*z)/(z^2+0.3*z+1))
+imprep=flts(eye(1,20),tf2ss(h));   //インパルス応答
+clf();
+plot(imprep,'b')
+u=ones(1,20);
+stprep=flts(ones(1,20),tf2ss(h));   //ステップ応答
+plot(stprep,'g')
+// その他の例
+A=[1 2 3;0 2 4;0 0 1];B=[1 0;0 0;0 1];C=eye(3,3);Sys=syslin('d',A,B,C);
+H=ss2tf(Sys); u=[1;-1]*(1:10);
+//
+yh=flts(u,H); ys=flts(u,Sys);
+norm(yh-ys,1)
+//ホット リスタート
+[ys1,x]=flts(u(:,1:4),Sys);ys2=flts(u(:,5:10),Sys,x);
+norm([ys1,ys2]-ys,1)
+//
+yh1=flts(u(:,1:4),H);yh2=flts(u(:,5:10),H,[u(:,2:4);yh(:,2:4)]);
+norm([yh1,yh2]-yh,1)
+//D&lt;&gt;0 を指定
+D=[-3 8;4 -0.5;2.2 0.9];
+Sys=syslin('d',A,B,C,D);
+H=ss2tf(Sys); u=[1;-1]*(1:10);
+rh=flts(u,H); rs=flts(u,Sys);
+norm(rh-rs,1)
+//ホット リスタート
+[ys1,x]=flts(u(:,1:4),Sys);ys2=flts(u(:,5:10),Sys,x);
+norm([ys1,ys2]-rs,1)
+//With H:
+yh1=flts(u(:,1:4),H);yh2=flts(u(:,5:10),H,[u(:,2:4); yh1(:,2:4)]);
+norm([yh1,yh2]-rh)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="ltitr">ltitr</link>
+            </member>
+            <member>
+                <link linkend="dsimul">dsimul</link>
+            </member>
+            <member>
+                <link linkend="rtitr">rtitr</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

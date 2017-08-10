@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -107,7 +110,7 @@ public final class SciDocMain {
             str.append(values[i].toString().toLowerCase());
         }
         str.append(']');
-        System.err.printf("%s is not a supported format : one of %s expected.\n", format.toString(), str);
+        System.err.printf("%s is not a supported format : one of %s expected.%n", format.toString(), str);
 
     }
 
@@ -158,7 +161,7 @@ public final class SciDocMain {
                     converter = new FopConverter(this);
                     break;
                 default:
-                    System.err.printf("%s is not a supported format.\n", format);
+                    System.err.printf("%s is not a supported format.%n", format);
                     return null;
             }
 
@@ -173,10 +176,10 @@ public final class SciDocMain {
             }
 
         } catch (SAXException e) {
-            System.err.println("An error occurred during the conversion:");
+            System.err.println("XML parsing error while generating documentation for file " + sourceDoc + ":");
             System.err.println(e.toString());
         } catch (Throwable e) {
-            System.err.println("An error occurred during the conversion:\n");
+            System.err.println("Unhandled error while generating documentation for file " + sourceDoc + ":");
             e.printStackTrace();
             throw e;
         }

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="dt_ility">
+    <refnamediv>
+        <refname>dt_ility</refname>
+        <refpurpose>可検出性テスト</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[k, [n [,U [,Sld ] ] ]]=dt_ility(Sl [,tol])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>Sl</term>
+                <listitem>
+                    <para>
+                        線形システム (<literal>syslin</literal> リスト)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>不可観測な部分空間の次元</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>k</term>
+                <listitem>
+                    <para>
+                        不安定かつ不可観測な部分空間の次元 (<literal> k&lt;=n</literal>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>U</term>
+                <listitem>
+                    <para>直交行列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Sld</term>
+                <listitem>
+                    <para>
+                        線形システム (<literal>syslin</literal> リスト)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>tol</term>
+                <listitem>
+                    <para>可制御性テストの閾値.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            状態空間表現の線形システム
+            <literal>sl</literal>の可検出性テスト.
+            <literal>U</literal> は基数で,
+            その最初の<literal>k</literal>列に<literal>Sl</literal>の
+            不安定かつ不可検出な部分空間
+            (<literal>(A,C)</literal>の不可観測な部分空間と
+            <literal>A</literal>の不安定な部分空間の共通集合)
+            が広がります.
+            可検出性は,<literal>k=0</literal>を意味します.
+        </para>
+        <para>
+            <literal>Sld = (U'*A*U,U'*B,C*U,D)</literal> は,
+            <literal>Sl=(A,B,C,D)</literal>の"可検出な部分"	を
+            以下のように表示します.
+        </para>
+        <programlisting role=""><![CDATA[
+         [*,*,*]
+U'*A*U = [0,*,*]
+         [0,0,*]
+C*U = [0,0,*]
+ ]]></programlisting>
+        <para>
+            <literal>(A33,C3)</literal>は可観測 (<literal>nx-n</literal>次),
+            <literal>A22</literal> は可安定,
+            ( <literal>n-k</literal>次) ,
+            <literal>A11</literal> は不可安定 ( <literal>k</literal>次)です.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+A=[2,1,1;0,-2,1;0,0,3];
+C=[0,0,1];
+X=rand(3,3);A=inv(X)*A*X;C=C*X;
+W=syslin('c',A,[],C);
+[k,n,U,W1]=dt_ility(W);
+W1("A")
+W1("C")
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="contr">contr</link>
+            </member>
+            <member>
+                <link linkend="st_ility">st_ility</link>
+            </member>
+            <member>
+                <link linkend="unobs">unobs</link>
+            </member>
+            <member>
+                <link linkend="stabil">stabil</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

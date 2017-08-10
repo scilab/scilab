@@ -2,24 +2,31 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2015 - Samuel GOUGEON
  *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="householder">
     <refnamediv>
         <refname>householder</refname>
-        <refpurpose>Matrice de Householder  </refpurpose>
+        <refpurpose>Matrice de Householder. Symétrique par rapport à un plan</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>u=householder(v [,w])</synopsis>
+        <synopsis>
+            householder         // demo
+            u = householder(v [,w])
+            [u, H] = householder(v [,w])
+        </synopsis>
     </refsynopsisdiv>
-    <refsection>
+    <refsection role="arguments">
         <title>Paramètres</title>
         <variablelist>
             <varlistentry>
@@ -33,33 +40,221 @@
                 <term>w  </term>
                 <listitem>
                     <para>
-                        vecteur colonne réel ou complexe de même taille que <literal>v</literal> (la valeur par défaut est <literal>eye(v)</literal>)
+                        vecteur colonne réel ou complexe de même taille que <literal>v</literal>
+                        La valeur par défaut est <literal>eye(v)</literal> (axe (Ox)).
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>u  </term>
                 <listitem>
-                    <para>vecteur colonne réel ou complexe
+                    <para>
+                        vecteur unitaire résidant dans le plan <literal>(v,w)</literal> et orthogonal
+                        à la bissectrice de <literal>(v,w)</literal>.
+                        Colonne de nombres réels ou complexes, de taille size(v).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>H</term>
+                <listitem>
+                    <para>
+                        Matrice orthogonale de réflexion de Householder : <literal>H= eye() - 2*u*u'</literal>.
+                        <varname>H</varname> est telle que <literal>inv(H)==H</literal>,
+                        <literal>H'==H</literal>, et <literal>det(H)==-1</literal>.
+                    </para>
+                    <para>
+                        Si <varname>v</varname> et <varname>w</varname> sont des vecteurs réels,
+                        <literal>H*v</literal> est colinéaire à <varname>w</varname>.
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Description</title>
+        <title role="description">Description</title>
         <para>
-            Etant donnés deux vecteurs colonnes <literal>v</literal> et <literal>w</literal> de même taille, <literal>householder(v,w)</literal> renvoie un vecteur normé <literal>u</literal>, tel que 
-            <literal>(eye()-2*u*u')*v</literal> est colinéaire à <literal>w</literal>.
-            <literal>(eye()-2*u*u')</literal> est la matrice de la transformation de Householder correspondante.
+            <literal>householder(..)</literal> calcule le vecteur unitaire <varname>u</varname>
+            résidant dans le plan <literal>(v,w)</literal> et orthogonal à la bissectrice de
+            <literal>(v,w)</literal>.
         </para>
         <para>
-            La valeur par défaut de <literal>w</literal> est <literal> eye(v)</literal>. Dans ce cas le vecteur <literal> (eye()-2*u*u')*v</literal> est égal à <literal> eye(v)*norm(v)</literal>.
+            Si <varname>v</varname> et <varname>w</varname> sont proportionels :
+            <itemizedlist>
+                <listitem>
+                    S'ils sont opposés, <literal>u= v/|v|</literal> est retourné.
+                </listitem>
+                <listitem>
+                    S'ils sont à coordonnées réelles et sont dans la même direction,
+                    <varname>u</varname> est choisi dans le
+                    plan (xOy) avec a priori <literal>u(1)>0</literal>, et orthogonal à
+                    <varname>v</varname> (<literal>u'*v==0</literal>). Cependant,
+                    <itemizedlist>
+                        <listitem>
+                            S'ils sont selon (Ox), <literal>u = (Oy+)</literal> est retourné.
+                        </listitem>
+                        <listitem>
+                            S'ils sont scalaires (et de mêmes signes),
+                            le sous-espace orthogonal est réduit à <literal>{0}</literal> qui n'est
+                            pas normalisable :
+                            <varname>u</varname> et <varname>H</varname> sont mis à <literal>%nan</literal>.
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </itemizedlist>
         </para>
+
+        <note>
+            Si la matrice de réflexion <varname>H</varname> correspondante est calculée,
+            pour tout point A de coordonnées <literal>a</literal> en colonne, <literal>H*a</literal>
+            sont les coordonnées du symétrique de A par rapport au plan <literal>(v,w)</literal>
+            (exemple ci-dessous).
+        </note>
+        <note>
+            Si <varname>v</varname> ou/et <varname>w</varname> sont des vecteurs ligne,
+            ils sont préalablement transposés en colonnes.
+        </note>
+        <warning>
+            Si <varname>v</varname> ou/et <varname>w</varname> sont <literal>[]</literal>,
+            <varname>u</varname> et <varname>H</varname> valent alors <literal>[]</literal>.
+        </warning>
+    </refsection>
+    <refsection role="examples">
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[
+a = [ rand(1,1) 0  0 ]';
+[ra hm] = householder(a);
+[a ra hm*a ]
+norm(ra)
+
+b = rand(3,1);
+[rb, hm] = householder(b);
+[b rb eye(b) clean(hm*b) ]
+norm(rb)
+
+[rb2b, hm] = householder(b, 2*b);
+[b rb2b clean(hm*b ./ b) ]  // la dernière colonne doit être uniforme
+norm(rb2b)                  // doit valoir 1
+
+c = rand(3,1);
+[rbc, hm] = householder(b,c);
+norm(rbc)          // doit valoir 1
+hm*b ./c           // doit être uniforme
+
+d = b + %i*c;
+e = rand(3,1) + %i*rand(3,1);
+[rde, hm] = householder(d,e);
+norm(rbc)               // doit valoir 1
+clean(inv(hm) - hm)     // doit valoir zeros(3,3)
+clean(hm' - hm)         // doit valoir zeros(3,3)
+clean(det(hm))          // doit valoir -1
+ ]]></programlisting>
+
+        <para>
+            <emphasis role="bold">Application :</emphasis> Symétrique d'un objet par rapport à un plan donné.
+        </para>
+        <programlisting role="example"><![CDATA[
+// (OA) = [0 0 1] se réfléchit en O en (OB) = [ 1 1 0.3 ]:
+[n, H] = householder([0 0 1]', [ 1 1 0.3 ]');
+// "n" est la normale au plan "réflecteur"
+
+// Objet source :
+u = linspace(0,2*%pi,40);
+v = linspace(0,2*%pi,20);
+Xe = (cos(u).*u)'*(1+cos(v)/2)+10;
+Ye = (u/2)'*sin(v);
+Ze = (sin(u).*u)'*(1+cos(v)/2);
+
+// Image symétrique de l'objet :
+P = [ Xe(:)' ; Ye(:)' ; Ze(:)'];
+Pr = H*P;
+Xr = matrix(Pr(1,:),40,-1);
+Yr = matrix(Pr(2,:),40,-1);
+Zr = matrix(Pr(3,:),40,-1);
+
+// Plan réflecteur contenant O : n(1).x + n(2).y + n(3).z = 0:
+//  Grille d'espace :
+x = linspace(min([Xe(:);Xr(:)]), max([Xe(:);Xr(:)]),20);
+y = linspace(min([Ye(:);Yr(:)]), max([Ye(:);Yr(:)]),20);
+[X, Y] = meshgrid(x,y);
+//  Création du plan:
+deff("z = mirror(x,y,n)","z = -n(1)/n(3)*x - n(2)/n(3)*y")
+Zm = mirror(X,Y,n);
+
+// Illustration graphique :
+clf()
+isoview()
+drawlater()
+f = gcf();
+f.color_map = [ 0.8 0.8 0.8 ; jetcolormap(100)];
+surf(Xe,Ye,Ze)
+surf(X,Y,Zm)
+surf(Xr,Yr,Zr)
+a = gca();
+a.rotation_angles = [74 123];
+a.children.color_flag = 0;
+a.children.color_mode = 0;
+a.children(1).foreground = color("red");
+a.children(2).foreground = 1;
+a.children(3).foreground = color("green");
+drawnow()
+ ]]></programlisting>
+        <scilab:image>
+            // (OA) = [0 0 1] is reflected in O into (OB) = [ 1 1 0.3 ]:
+            [n, H] = householder([0 0 1]', [ 1 1 0.3 ]');
+            // "n" is the unit vector orthogonal to the reflecting plane
+
+            // Emitting object (feature from shell demo):
+            u = linspace(0,2*%pi,40);
+            v = linspace(0,2*%pi,20);
+            Xe = (cos(u).*u)'*(1+cos(v)/2)+10;
+            Ye = (u/2)'*sin(v);
+            Ze = (sin(u).*u)'*(1+cos(v)/2);
+
+            // Symetrical object:
+            Pe = [ Xe(:)' ; Ye(:)' ; Ze(:)'];
+            Pr = H*Pe;
+            Xr = matrix(Pr(1,:),40,-1);
+            Yr = matrix(Pr(2,:),40,-1);
+            Zr = matrix(Pr(3,:),40,-1);
+
+            // Reflecting plane containing O: n(1).x + n(2).y + n(3).z = 0
+            //   Sampling space:
+            x = linspace(min([Xe(:);Xr(:)]), max([Xe(:);Xr(:)]),20);
+            y = linspace(min([Ye(:);Yr(:)]), max([Ye(:);Yr(:)]),20);
+            [X, Y] = meshgrid(x,y);
+            //   Generating the mirror:
+            deff("z = mirror(x,y,n)","z = -n(1)/n(3)*x - n(2)/n(3)*y")
+            Zm = mirror(X,Y,n);
+
+            // Plotting:
+            clf
+            drawlater
+            f = gcf();
+            f.color_map = [ 0.8 0.8 0.8 ; jetcolormap(100)];
+            surf(Xe,Ye,Ze)
+            surf(X,Y,Zm)
+            surf(Xr,Yr,Zr)
+            a = gca();
+            a.isoview = "on";
+            a.rotation_angles = [74 123];
+            a.children.color_flag = 0;
+            a.children.color_mode = 0;
+            a.children(1).foreground = color("red");
+            a.children(2).foreground = 1;
+            a.children(3).foreground = color("green");
+            drawnow
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="proj">proj</link>
+            </member>
+            <member>
+                <link linkend="scaling">scaling</link>
+            </member>
             <member>
                 <link linkend="qr">qr</link>
             </member>
@@ -67,5 +262,18 @@
                 <link linkend="givens">givens</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    <para>Matrice de réflexion de Householder fournie en second paramètre de sortie.
+                        Demo householder() ajoutée. Page d'aide revue.
+                    </para>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

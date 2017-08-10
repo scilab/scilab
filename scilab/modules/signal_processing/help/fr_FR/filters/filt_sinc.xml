@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="filt_sinc">
+    <refnamediv>
+        <refname>filt_sinc</refname>
+        <refpurpose>samples of sinc function</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[x]=filt_sinc(n,fl)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>number of samples</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fl</term>
+                <listitem>
+                    <para>cut-off frequency of the associated low-pass filter in Hertz.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>samples of the sinc function</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Calculate n samples of the function <literal>sin(2*pi*fl*t)/(pi*t)</literal>
+            for <literal>t=-(n-1)/2:(n-1)/2</literal> (i.e. centred around the origin).
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+plot(filt_sinc(100,0.1))
+ ]]></programlisting>
+        <scilab:image>
+            plot(filt_sinc(100,0.1))
+        </scilab:image>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="sincd">sincd</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * Copyright (C) 2016 - Samuel GOUGEON
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="or" xml:lang="en">
+    <refnamediv>
+        <refname>or</refname>
+        <refpurpose>logical OR over the elements of a boolean or numerical array</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>
+            b = or(A)
+            b = or(A, 'r')
+            b = or(A, 'c')
+            b = or(A, n)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection role="parameters">
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>A</term>
+                <listitem>
+                    <para>
+                        vector, matrix, or hypermatrix of booleans,
+                        encoded integers (of any
+                        <link linkend="inttype">inttype</link>), real, or complex numbers.
+                        <varname>A</varname> may be
+                        <link linkend="sparse">sparse</link>-encoded.
+                    </para>
+                    <para>
+                        A number is considered as %F (false) if it is 0 or 0+0i.
+                        Otherwise (including %nan), it is equivalent to %T (true).
+                    </para>
+                    <note>Special <varname>A</varname>:
+                        <itemizedlist>
+                            <listitem>
+                                <literal>or([])</literal> returns <literal>%F</literal>.
+                            </listitem>
+                            <listitem>
+                                <literal>or(%nan)</literal> returns <literal>%T</literal>.
+                            </listitem>
+                        </itemizedlist>
+                    </note>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>b</term>
+                <listitem>
+                    <para>
+                        boolean scalar, if <literal>or(A)</literal>
+                        is used without any option <varname>"r", "c", n</varname>.
+                        It is set to
+                        <itemizedlist>
+                            <listitem>
+                                %F, if all <varname>A</varname>'s components are %F or zero.
+                            </listitem>
+                            <listitem>
+                                %T, otherwise (at least one <varname>A</varname>'s
+                                component is %T or non-zero).
+                            </listitem>
+                        </itemizedlist>
+                    </para>
+                    <para>
+                        Otherwise: boolean vector, matrix or hypermatrix.
+                    </para>
+                    <para>
+                        When <varname>A</varname> is sparse-encoded,
+                        <varname>b</varname> is so as well.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>Index &lt;= ndims(A) of the dimension along which
+                        <function>or()</function> is applied / projected.
+                        By default, <function>or()</function> is applied between
+                        all <varname>A</varname>'s elements. Otherwise:
+                        <itemizedlist>
+                            <listitem>
+                                n = 1 | "r" : <function>or()</function> is
+                                applied row-wise. If <varname>A</varname>
+                                is a matrix, the result <varname>b</varname> is a
+                                <emphasis role="bold">r</emphasis>ow, with
+                                <literal>b(j) = or(A(:,j))</literal>
+                            </listitem>
+                            <listitem>
+                                n = 2 | "c" :
+                                <function>or()</function> is applied column-wise.
+                                If <varname>A</varname>
+                                is a matrix, the result <varname>b</varname> is a
+                                <emphasis role="bold">c</emphasis>olumn, with
+                                <literal>b(i) = or(A(i,:))</literal>
+                            </listitem>
+                            <listitem>
+                                n > 2 : If <varname>A</varname> is an
+                                hypermatrix with at least <varname>n</varname>
+                                dimensions, <function>or()</function> is applied
+                                accross the n<superscript>th</superscript> dimension.
+                                <para>
+                                    Example: If <literal>ndims(A)==3</literal>
+                                    and <literal>n=3</literal>,
+                                    <varname>b</varname> is a boolean matrix of size
+                                    size(A)([1 2]), with <literal>b(i,j) = or(A(i,j,:))
+                                    </literal>
+                                </para>
+                            </listitem>
+                        </itemizedlist>
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection role="description">
+        <title>Description</title>
+        <para>
+            <function>or()</function> computes a logical OR between
+            the components of the single input <varname>A</varname>.
+        </para>
+        <para>
+            To compute OR in an element-wise way between two arrays
+            <literal>C</literal> and <literal>D</literal> of same sizes, please
+            use the <varname>|</varname> operator instead.
+        </para>
+        <para>
+            Why is <literal>or([])</literal> equal to <literal>%F</literal> ?
+            Whatever are compatible <literal>B</literal> and <literal>C</literal>,
+            <literal>or([B C]) == (or(B) | or(C))</literal>.
+            Now, for <literal>B = []</literal>, <literal>or([B C]) == or(C)</literal>.
+            To have always <literal>(or([]) | or(C))==or(C)</literal> whatever is
+            <literal>C</literal>,
+            <literal>or([])</literal> must be <literal>%F</literal>.
+        </para>
+    </refsection>
+    <refsection role="examples">
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+or([])
+or(0)
+or(0+0*%i)
+or(%eps)
+or(%i)
+or(%nan)
+
+// Projection accross a dimension / along a direction:
+A = rand(2,5)<0.3
+or(A)
+or(A, "r")   // or(A, 1) does the same
+or(A, "c")   // or(A, 2) does the same
+
+// Equivalent application to encoded integers:
+A = int16(grand(3,5,"uin",-10,10));
+A(abs(A)<8) = 0
+or(A)
+or(A,1)
+
+// With an hypermatrix of decimal numbers:
+A = rand(3,4,2);
+A(A<0.7) = 0
+or(A,3)
+
+// With a sparse matrix:
+A = sprand(70,100, 0.001)
+or(A, "r")
+or(A, "c")
+]]></programlisting>
+ <screen><![CDATA[--> or([])
+ ans  =
+  F
+
+--> or(0)
+ ans  =
+  F
+
+--> or(0+0*%i)
+ ans  =
+  F
+
+--> or(%eps)
+ ans  =
+  T
+
+--> or(%i)
+ ans  =
+  T
+
+--> or(%nan)
+ ans  =
+  F           // %T expected => Bug 14522
+
+--> // Projection accross a dimension / along a direction:
+--> A = rand(2,5)<0.3
+ A  =
+  T F F F F
+  F F T F F
+
+--> or(A)
+ ans  =
+  T
+
+--> or(A, "r")   // or(A, 1) does the same
+ ans  =
+  T F T F F
+
+--> or(A, "c")   // or(A, 2) does the same
+ ans  =
+  T
+  T
+
+--> // Equivalent application to encoded integers:
+--> A = int16(grand(3,5,"uin",-10,10));
+--> A(abs(A)<8) = 0
+ A  =
+  0  0  0 -9  0
+  0 10  0  0  0
+  0  0  0  0  9
+
+--> or(A)
+ ans  =
+  T
+
+--> or(A,1)
+ ans  =
+  F T F T T
+
+
+--> // With an hypermatrix of decimal numbers:
+--> A = rand(3,4,2);
+--> A(A<0.7) = 0
+ A  =
+(:,:,1)
+   0.   0.       0.   0.
+   0.   0.7065   0.   0.7227
+   0.   0.       0.   0.8977
+(:,:,2)
+   0.       0.   0.       0.7901
+   0.       0.   0.       0.9809
+   0.9677   0.   0.7795   0.8187
+
+--> or(A,3)
+ ans  =
+  F F F T
+  F T F T
+  T F T T
+
+
+--> // With a sparse matrix:
+--> A = sprand(70,100, 0.001)
+ A  =
+(  70,  100) sparse matrix
+
+(  18,  53)   0.7943
+(  23,  96)   0.4361
+(  38,  34)   0.9275
+(  56,   1)   0.1622
+(  69,  98)   0.3112
+
+--> or(A, "r")
+ ans  =
+(  1,  100) sparse matrix
+
+(  1,   1)  T
+(  1,  34)  T
+(  1,  53)  T
+(  1,  96)  T
+(  1,  98)  T
+
+--> or(A, "c")
+ ans  =
+(  70,  1) sparse matrix
+
+(  18,  1)  T
+(  23,  1)  T
+(  38,  1)  T
+(  56,  1)  T
+(  69,  1)  T
+]]></screen>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="or_op">| (element-wise)</link>
+            </member>
+            <member>
+                <link linkend="and">and</link>
+            </member>
+            <member>
+                <link linkend="not">~ not</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -1,11 +1,14 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at;
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function []=Delete(sd)
     //destruction d'un objet
@@ -201,15 +204,21 @@ function sd=Move(sd)
 endfunction
 
 function [sd1]=symbs(sd,del)
-    [lhs,rhs]=argn(0);sd1=[];
+    [lhs,rhs]=argn(0);
+    sd1 = [];
+    ax = gca();
     if rhs<=0 then
-        c=xget("mark")
-        n1=c(1);dime=c(2)
+        c = [ax.mark_style ax.mark_size];
+        n1=c(1);
+        dime=c(2)
         sd1=list("symbs",c(1),c(2));
     else
-        n1=sd(2);dime=sd(3)
+        n1=sd(2);
+        dime=sd(3)
     end
-    xset("mark",n1,dime);
+    ax.mark_style = n1;
+    ax.mark_size_unit = "tabulated";
+    ax.mark_size = dime;
 endfunction
 
 function [sd1]=dashs(sd,del)
@@ -224,11 +233,12 @@ function [sd1]=dashs(sd,del)
     else
         n1=sd(2)
     end
-    xset("dashes",n1);
+    gca().line_style = n1;
 endfunction
 
 function [sd1]=patts(sd,del)
-    [lhs,rhs]=argn(0);sd1=[];
+    [lhs,rhs]=argn(0);
+    sd1 = [];
     if rhs<=0 then
         n1=getcolor("Choose a pattern ",0)
         if n1==[] then
@@ -240,7 +250,7 @@ function [sd1]=patts(sd,del)
 
         n1=sd(2)
     end
-    xset("pattern",n1);
+    gca().foreground = n1;
 endfunction
 
 function [sd1]=Thick(sd,del)
@@ -249,7 +259,7 @@ function [sd1]=Thick(sd,del)
 
         T=string(1:15)
         ll=list()
-        t=xget("thickness")
+        t = gca().thickness
         ll(1)=list("Thickness",t,T);
         n1=x_choices("Choose a Thickness",ll);
         if n1==[] then
@@ -260,7 +270,7 @@ function [sd1]=Thick(sd,del)
     else
         n1=sd(2)
     end
-    xset("thickness",n1);
+    gca().thickness = n1;
 endfunction
 
 function sd1 =rect(sd,del)
@@ -522,7 +532,7 @@ endfunction
 function []=redraw(sd,s_t)
     ksd=size(sd)
     plot2d(0,0,[-1],s_t," ",sd(2));
-    xset("clipgrf");
+    gca().clip_state = "clipgrf";
     for k=3:ksd,
         obj=sd(k);
         if size(obj)<>0 then
@@ -551,8 +561,8 @@ function [x0,y0,x,y,ibutton]=xgetm(m_m)
     // Object aquisition
     kpd=driver();
     driver("X11");
-    alu=xget("alufunction")
-    xset("alufunction",6);
+    pdm_old = gcf().pixel_drawing_mode;
+    gcf().pixel_drawing_mode = "xor";
     // attente du click
     [ii,x0,y0]=xclick()
     x=x0;y=y0;
@@ -566,7 +576,7 @@ function [x0,y0,x,y,ibutton]=xgetm(m_m)
         m_m(x0,y0,x,y)
         x=rep(1);y=rep(2);
     end
-    xset("alufunction",alu);
+     gcf().pixel_drawing_mode = pdm_old;
     //m_m(x0,y0,x,y)
     driver(kpd);
 endfunction
@@ -584,7 +594,7 @@ function []=d_xfrect(x0,yy0,x,y)
     w=abs(x0-x);
     yi=max(yy0,y);
     h=abs(yy0-y);
-    xrects([xi,yi,w,h]',xget("pattern"));
+    xrects([xi,yi,w,h]',gca().foreground);
 endfunction
 
 function []=d_circle(c1,c2,x1,x2)
@@ -629,8 +639,8 @@ function [z]=xgetpoly(m_m)
     x=x0;y=y0;
     z=[x0;y0];
     ibutton=1
-    alu=xget("alufunction")
-    xset("alufunction",6);
+    pdm_old = gcf().pixel_drawing_mode;
+    gcf().pixel_drawing_mode = "xor";
     while and(ibutton<>[0 3 10])
         ibutton=-1
         while ibutton==-1
@@ -647,7 +657,7 @@ function [z]=xgetpoly(m_m)
             x0=x;y0=y;
         end
     end
-    xset("alufunction",alu);
+    gcf().pixel_drawing_mode = pdm_old;
 
     [nn,ll]=size(z);
     if ll==1 then z=[];end
@@ -667,8 +677,8 @@ function [xo,yo]=move_object(inst,xo,yo)
     // Object aquisition
     xos=xo;yos=yo
     kpd=driver();
-    alu=xget("alufunction")
-    xset("alufunction",6);
+    pdm_old = gcf().pixel_drawing_mode;
+    gcf().pixel_drawing_mode = "xor";
     execstr(inst) //erase
     driver("X11");
     // suivi de la souris en attendant le button release
@@ -684,7 +694,7 @@ function [xo,yo]=move_object(inst,xo,yo)
     else
         xo=rep(1);yo=rep(2);
     end
-    xset("alufunction",alu);
+    gcf().pixel_drawing_mode = pdm_old;
     driver(kpd);
     execstr(inst) //draw
 endfunction

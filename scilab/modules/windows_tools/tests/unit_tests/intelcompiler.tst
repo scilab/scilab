@@ -5,6 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- NOT FIXED -->
 // Checks that Scilab:
 // - has been compiled using Intel C++ Compiler version 14
 // - and uses MKL

@@ -5,7 +5,7 @@
         <refpurpose>compute symmetric window of various type</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>win_l=window('re',n)
             win_l=window('tr',n)
             win_l=window('hn',n)
@@ -205,7 +205,7 @@
                 w4=window('kr',N,4);
                 w8=window('kr',N,8);
                 w16=window('kr',N,16);
-                
+
                 //plot the window profile
                 plot((1:N)',[w1;w2;w4;w8;w16]')
                 set(gca(),'grid',[1 1]*color('gray'))
@@ -250,7 +250,7 @@
                 w1=window('ch',N,[0.001,-1]);
                 w2=window('ch',N,[0.05,-1]);
                 w3=window('ch',N,[-1,0.4]);
-                
+
                 //plot the window profile
                 subplot(121);plot((1:N)',[w1;w2;w3]')
                 set(gca(),'grid',[1 1]*color('gray'))
@@ -270,11 +270,11 @@
                 legend(["Chebychef dp=0.001";"Chebychef dp=0.05";"Chebychef df=0.4"]);
                 title(gettext("Chebychev window Magnitude plot"))
             </scilab:image>
-            
+
         </para>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="wfir">wfir</link>

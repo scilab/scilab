@@ -6,11 +6,11 @@ msgstr ""
 "PO-Revision-Date: 2012-11-12 18:11+0000\n"
 "Last-Translator: tim loo <timloo0710@gmail.com>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
-"Language: \n"
+"X-Generator: Launchpad (build 18315)\n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
 #, c-format
@@ -26,16 +26,11 @@ msgid "%s: Wrong size for input argument #%d: %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: number of columns %d expected.\n"
+msgid "%s: Wrong size for input argument #%d: number of columns %d expected.\n"
 msgstr "%s: 第 #%d 輸入參數大小錯誤: 應該有 %d 列.\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A real scalar expected.\n"
 msgstr ""
 
 #
@@ -105,6 +100,239 @@ msgid ""
 "%s: Warning: Q is not symmetric positive definite. The results may be "
 "inaccurate.\n"
 "\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Subroutine not found: %s\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Argument #%d: Subroutine not found in list: %s\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: The first argument in the list must "
+"be a string or a function.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A matrix or a function expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: exception caught in '%s' subroutine.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real Scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: At most %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A vector of size %d x %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A vector of size %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A strictly positive vector "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: %s: Number of calls to %s has reached or exceeded %s.\n"
+msgstr ""
+
+msgid "Warning"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: %s: %s is too small. No further reduction in the criterion is possible.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: %s: %s is too small. %s is orthogonal to the columns of the Jacobian to "
+"machine precision.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%s: A scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%s: A real scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%s: A real scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String \"b\" expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d or more expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A matrix or polynom expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Bounds and initial guess are incompatible.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%s: Incorrect stopping parameters.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Scalar string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Can not allocate %.2f MB memory.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: NO hot restart available in this method.\n"
+msgstr ""
+
+#, c-format
+msgid "Hot restart: dimension of working table (argument n:%d).\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Incorrect stopping parameters.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A String expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar of a string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: \"in\" not allowed with simulator defined by a function.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Stop requested by simulator (ind=0).\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Problem with initial constants in simul.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: \"ar\", \"in\", \"ti\" or \"td\" not "
+"allowed.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: This method is NOT implemented.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar string expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A real vector of size %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Error while reading line %d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Unknown row type %s at line %d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: %d logical unit already used.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Too many files opened!\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Unknown file format.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: File \"%s\" already exists or directory write access denied.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: File \"%s\" does not exist or read access denied.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Can not open File \"%s\"\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Input argument %d size expected.\n"
+msgstr ""
+
+msgid "semi def fails.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Input argument %d of %s function has an illegal value.\n"
 msgstr ""
 
 #
@@ -188,7 +416,8 @@ msgstr "dtrcon 內之錯誤, info = %d.\n"
 msgid ""
 "The matrices F_i, i=1,...,m are linearly dependent (or the initial points "
 "are very badly conditioned).\n"
-msgstr "矩陣 F0i, i=1,...,m 為線性相依 (或初始位置 之條件很糟,badly conditioned).\n"
+msgstr ""
+"矩陣 F0i, i=1,...,m 為線性相依 (或初始位置 之條件很糟,badly conditioned).\n"
 
 #
 # File: src/c/sp.c, line: 558
@@ -201,6 +430,82 @@ msgstr "dspst 內之錯誤, info = %d.\n"
 #, c-format
 msgid "Error in dspev, info = %d.\n"
 msgstr "dspev 內之錯誤, info = %d.\n"
+
+#, c-format
+msgid "%s: Too small memory.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong input parameters.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Norm of projected gradient lower than %lg.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: at last iteration f decreases by less than %lg.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Optimization stops because too small variations for x.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Optim stops: maximum number of calls to f is reached.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Optim stops: maximum number of iterations is reached.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Optim stops: too small variations in gradient direction.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Stop during calculation of descent direction.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Stop during calculation of estimated hessian.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: End of optimization.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: End of optimization (linear search fails).\n"
+msgstr ""
+
+#, c-format
+msgid "Undefined function '%ls'.\n"
+msgstr ""
+
+#, c-format
+msgid "User function '%s' have not been setted.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for output argument #%d: Real scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for output argument #%d: Real matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for output argument #%d: A matrix of size %d x %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for output argument #%d: A vector of %d expected.\n"
+msgstr ""
+
+msgid "An error occurred while getting OptimizationFunctions object.\n"
+msgstr ""
 
 msgid "Non linear data fitting"
 msgstr ""
@@ -363,8 +668,7 @@ msgstr ""
 msgid "Relative error on f = %e\n"
 msgstr ""
 
-msgid ""
-"Illustrates the sensitivity to dimension of the Nelder-Mead algorithm\n"
+msgid "Illustrates the sensitivity to dimension of the Nelder-Mead algorithm\n"
 msgstr ""
 
 msgid ""
@@ -526,6 +830,9 @@ msgstr ""
 msgid "fminsearch"
 msgstr ""
 
+msgid "ICSE"
+msgstr ""
+
 msgid "Genetic algorithms"
 msgstr ""
 
@@ -575,52 +882,6 @@ msgstr ""
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s: 輸入參數之數目錯誤: 應為 %d 到 %d 之數.\n"
 
-#
-# File: macros/derivative.sci, line: 32
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: N-dimensional array expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤:  應為 N-維 診陣列.\n"
-
-#
-# File: macros/derivative.sci, line: 36
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
-msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為列向量.\n"
-
-#
-# File: macros/derivative.sci, line: 41
-#, c-format
-msgid "%s: Order must be 1, 2 or 4.\n"
-msgstr "%s: Order 應  1, 2 or 4.\n"
-
-#, c-format
-msgid "%s: Q must be orthogonal.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: H_form must be default,blockmat or hypermat, but current H_form=%s\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong number of elements in input argument #%d: At least %d elements "
-"expected, but current number is %d.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong type for element #%d in input argument #%d: A function is "
-"expected, but current type is %s.\n"
-msgstr ""
-
-#
-# File: macros/derivative.sci, line: 127
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A function expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一函數.\n"
-
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
 msgstr ""
@@ -650,8 +911,7 @@ msgid "%s: Wrong value for input argument #%d. gam must be in [0,1]."
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d. maxiter must be greater than 1."
+msgid "%s: Wrong value for input argument #%d. maxiter must be greater than 1."
 msgstr ""
 
 #, c-format
@@ -675,8 +935,7 @@ msgid "%s: Wrong value for input argument #%d. x0 lower than lower bound lb."
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d. x0 greater than upper bound ub."
+msgid "%s: Wrong value for input argument #%d. x0 greater than upper bound ub."
 msgstr ""
 
 #, c-format
@@ -946,18 +1205,6 @@ msgid "To check the result, use [LME,LMI,OBJ]="
 msgstr ""
 
 #, c-format
-msgid "%s: Unexpected maximum number of iterations %s."
-msgstr ""
-
-#, c-format
-msgid "%s: Unexpected maximum number of function evaluations %s."
-msgstr ""
-
-#, c-format
-msgid "%s: Unknown status %s"
-msgstr ""
-
-#, c-format
 msgid "%s: Unknown step %s"
 msgstr ""
 
@@ -972,7 +1219,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "Calling sequence %s is obsolete."
+msgid "Syntax %s is obsolete."
 msgstr ""
 
 #, c-format
@@ -981,6 +1228,10 @@ msgstr ""
 
 #, c-format
 msgid "This feature will be permanently removed in Scilab %s"
+msgstr ""
+
+#, c-format
+msgid "Calling sequence %s is obsolete."
 msgstr ""
 
 #, c-format
@@ -1000,6 +1251,18 @@ msgid ""
 msgstr ""
 
 #, c-format
+msgid "%s: Unexpected maximum number of iterations %s."
+msgstr ""
+
+#, c-format
+msgid "%s: Unexpected maximum number of function evaluations %s."
+msgstr ""
+
+#, c-format
+msgid "%s: Unknown status %s"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr ""
 
@@ -1016,13 +1279,11 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Expected function but for variable %s at input #%d, got %s instead."
+msgid "%s: Expected function but for variable %s at input #%d, got %s instead."
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Expected boolean but for variable %s at input #%d, got %s instead."
+msgid "%s: Expected boolean but for variable %s at input #%d, got %s instead."
 msgstr ""
 
 #, c-format
@@ -1092,8 +1353,7 @@ msgid "%s: Unknown restart detection %s"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Randomized bounds initial simplex is not available without bounds."
+msgid "%s: Randomized bounds initial simplex is not available without bounds."
 msgstr ""
 
 #, c-format
@@ -1114,8 +1374,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Problem has no constraints, but Box algorithm is designed for them."
+msgid "%s: Problem has no constraints, but Box algorithm is designed for them."
 msgstr ""
 
 #, c-format
@@ -1125,8 +1384,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Randomized bounds restart simplex is not available without bounds."
+msgid "%s: Randomized bounds restart simplex is not available without bounds."
 msgstr ""
 
 #, c-format
@@ -1186,6 +1444,12 @@ msgid ""
 msgstr ""
 
 #, c-format
+msgid ""
+"%s: Wrong number of elements in input argument #%d: At least %d elements "
+"expected, but current number is %d.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for argument #%d: Matrix expected.\n"
 msgstr ""
 
@@ -1210,13 +1474,18 @@ msgid "%s: Wrong type for input argument #%d: String array expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Unknown value %s for option %s.\n"
+msgid "%s: Q must be orthogonal.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Hard coded function not allowed, create a Scilab function using call."
+msgid "%s: Unknown value %s for option %s.\n"
 msgstr ""
+
+#
+# File: macros/derivative.sci, line: 127
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A function expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一函數.\n"
 
 #, c-format
 msgid ""
@@ -1229,8 +1498,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: The max bound %s for variable #%d is lower than the min bound %s.\n"
+msgid "%s: The max bound %s for variable #%d is lower than the min bound %s.\n"
 msgstr ""
 
 #, c-format
@@ -1406,17 +1674,9 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
-msgstr ""
-
-#, c-format
 msgid ""
 "%s: The number of vertices (i.e. the number of rows) is %d which is smaller "
 "than the number of columns %d (i.e. n+1)."
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A real vector expected.\n"
 msgstr ""
 
 #, c-format
@@ -1462,10 +1722,6 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr ""
 
 #, c-format

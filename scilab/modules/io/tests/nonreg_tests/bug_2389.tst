@@ -6,7 +6,7 @@
 // =============================================================================
 
 // <-- Non-regression test for bug 2389 -->
-//
+// <-- CLI SHELL MODE -->
 // <-- Bugzilla URL -->
 // http://bugzilla.scilab.org/show_bug.cgi?id=2389
 //
@@ -16,4 +16,7 @@
 A       = sparse(rand(5,5));
 [h,rk]  = lufact(A);
 
-if execstr("save(TMPDIR+""/pointer.bin"",""h"")", "errcatch")<>0 then pause,end
+// No possibility to save a pointer
+if execstr("save(TMPDIR+""/pointer.bin"",""h"")", "errcatch")==0 then pause,end
+
+ludel(h);

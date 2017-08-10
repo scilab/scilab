@@ -2,11 +2,14 @@
 // Copyright (C) 2009 - DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
 // Copyright (C) 2012 - DIGITEO - Allan CORNET
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 // End user function
 
@@ -18,7 +21,6 @@ function nbChanges = atomsSetConfig(field, value)
 
     rhs        = argn(2);
     nbChanges      = 0;
-    systemUpdateNeeded = %F;
 
     // Check number of input arguments
     // =========================================================================
@@ -50,7 +52,7 @@ function nbChanges = atomsSetConfig(field, value)
 
     i=1;
     for element = field(:)'
-        if strcmpi("verbose",element) == 0 then
+        if strcmp("verbose",element, "i") == 0 then
             field(i) = convstr(part(element,1),"u") + part(element,2:length(element));
         else
             field(i) = convstr(part(element,1),"l") + part(element,2:length(element));
@@ -127,10 +129,6 @@ function nbChanges = atomsSetConfig(field, value)
             continue;
         end
 
-        if field(i) == "offline" then
-            systemUpdateNeeded = %T;
-        end
-
         k = find(field(i) == pref_attrs(1, :));
         if ~isempty(k) then
             if field(i) == "useProxy" then
@@ -169,13 +167,6 @@ function nbChanges = atomsSetConfig(field, value)
     end
 
     mputl(config_str, atoms_directory + "config");
-
-    // SystemUpdate
-    // =========================================================================
-
-    if systemUpdateNeeded then
-        atomsSystemUpdate();
-    end
 
     nbChanges = nbChanges + proxy_changes;
 endfunction

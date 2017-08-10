@@ -2,11 +2,14 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 /*--------------------------------------------------------------------------*/
@@ -107,7 +110,7 @@ types::Function::ReturnValue sci_dasrt(types::typed_list &in, int _iRetCount, ty
 
     if (pDblX0->getCols() > 2)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d: A real matrix with %d to %d colomn(s) expected.\n"), "dasrt", iPos + 1, 1, 2);
+        Scierror(999, _("%s: Wrong size for input argument #%d: A real matrix with %d to %d column(s) expected.\n"), "dasrt", iPos + 1, 1, 2);
         return types::Function::Error;
     }
 
@@ -495,7 +498,7 @@ types::Function::ReturnValue sci_dasrt(types::typed_list &in, int _iRetCount, ty
                 }
                 else if (pDblTemp->getSize() != 0)
                 {
-                    Scierror(267, _("%s: Wrong size for input argument #%d: Argument %d in te list must be of size %d.\n"), "dasrt", iPos + 1, 3, 2);
+                    Scierror(267, _("%s: Wrong size for input argument #%d: Argument %d in the list must be of size %d.\n"), "dasrt", iPos + 1, 3, 2);
                     DifferentialEquation::removeDifferentialEquationFunctions();
                     FREE(pdYdotData);
                     FREE(pdYData);
@@ -678,6 +681,7 @@ types::Function::ReturnValue sci_dasrt(types::typed_list &in, int _iRetCount, ty
             FREE(YSize);
             FREE(iwork);
             FREE(rwork);
+            FREE(root);
             if (pDblAtol == NULL || pDblAtol->isScalar())
             {
                 FREE(atol);
@@ -754,15 +758,9 @@ types::Function::ReturnValue sci_dasrt(types::typed_list &in, int _iRetCount, ty
                 Scierror(999, _("%s: %s return with state %d.\n"), "dasrt", "ddasrt", idid);
             }
         }
-        catch (ast::ScilabMessage &sm)
+        catch (ast::InternalError &ie)
         {
-            os << sm.GetErrorMessage();
-            bCatch = true;
-            iret = 1;
-        }
-        catch (ast::ScilabError &e)
-        {
-            os << e.GetErrorMessage();
+            os << ie.GetErrorMessage();
             bCatch = true;
             iret = 1;
         }
@@ -789,9 +787,9 @@ types::Function::ReturnValue sci_dasrt(types::typed_list &in, int _iRetCount, ty
             if (bCatch)
             {
                 wchar_t szError[bsiz];
-                os_swprintf(szError, bsiz, _W("%s: An error occured in '%s' subroutine.\n").c_str(), "dasrt", "ddasrt");
+                os_swprintf(szError, bsiz, _W("%ls: An error occured in '%ls' subroutine.\n").c_str(), L"dasrt", L"ddasrt");
                 os << szError;
-                throw ast::ScilabMessage(os.str());
+                throw ast::InternalError(os.str());
             }
 
             return types::Function::Error;

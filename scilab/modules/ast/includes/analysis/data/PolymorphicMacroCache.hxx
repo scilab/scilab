@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2014 - Scilab Enterprises - Calixte DENIZET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -28,24 +31,31 @@
 namespace analysis
 {
 
+class GVN;
 class AnalysisVisitor;
 
 class PolymorphicMacroCache
 {
     typedef std::unordered_map<MacroSignature, CompleteMacroSignature, MacroSignature::Hash, MacroSignature::Eq> MacroSignMap;
+    uint64_t id;
     MacroSignMap signatures;
+    GVN gvn;
 
 public:
 
-    PolymorphicMacroCache() { }
+    PolymorphicMacroCache();
+    ~PolymorphicMacroCache();
 
-    const bool getOutTypes(AnalysisVisitor & visitor, MacroDef * macrodef, std::vector<TIType> & in, std::vector<TIType> & out);
+    bool getOutTypes(AnalysisVisitor & visitor, MacroDef * macrodef, std::vector<TIType> & in, std::vector<TIType> & out, uint64_t & functionId);
 
-    static bool getCompleteIn(MacroDef & macrodef, AnalysisVisitor & visitor, const std::vector<TIType> & in, std::vector<TIType> & completeIn);
+    friend std::wostream & operator<<(std::wostream & out, const PolymorphicMacroCache & pmc);
 
 private:
 
     GVN::Value * getValue(const GVN::Value * value, AnalysisVisitor & visitor, const std::vector<const MultivariatePolynomial *> & polys, const int maxVarId) const;
+
+    static bool getCompleteIn(MacroDef & macrodef, AnalysisVisitor & visitor, const std::vector<TIType> & in, std::vector<TIType> & completeIn);
+
 };
 
 } // namespace analysis

@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2009 - DIGITEO - Antoine ELIAS
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -37,7 +40,7 @@
 
 typedef struct __DOUBLE_FORMAT__
 {
-    __DOUBLE_FORMAT__() : iWidth(0), iPrec(0), bExp(false), bPrintPoint(true), bPrintPlusSign(false), bPrintOne(true), bPaddSign(true), iSignLen(SIGN_LENGTH), bPrintBlank(true) {}
+    __DOUBLE_FORMAT__() : iWidth(0), iPrec(0), bExp(false), bPrintPoint(true), bPrintPlusSign(false), bPrintOne(true), bPaddSign(true), iSignLen(SIGN_LENGTH), bPrintBlank(true), bPrintComplexPlusSpace(false) {}
     int iWidth;
     int iPrec;
     bool bExp;
@@ -47,6 +50,7 @@ typedef struct __DOUBLE_FORMAT__
     bool bPaddSign;
     int iSignLen;
     bool bPrintBlank;
+    bool bPrintComplexPlusSpace;
 } DoubleFormat;
 
 /*double*/
@@ -63,6 +67,9 @@ EXTERN_AST void addDoubleComplexValue(std::wostringstream *_postr, double _dblR,
 EXTERN_AST void configureStream(std::wostringstream *_postr, int _iWidth, int _iPrec, char _cFill);
 EXTERN_AST void addSpaces(std::wostringstream *_postr, int _iSpace);
 void addColumnString(std::wostringstream& ostr, int _iFrom, int _iTo);
+EXTERN_AST void printEmptyString(std::wostringstream& ostr);
+EXTERN_AST void printDoubleValue(std::wostringstream& ostr, double val);
+EXTERN_AST void printComplexValue(std::wostringstream& ostr, double val_r, double val_i);
 
 /*int*/
 /*
@@ -92,7 +99,11 @@ void getSignedIntFormat(T _TVal, int *_piWidth)
     }
     else
     {
-        *_piWidth = static_cast<int>(log10(static_cast<long double>(_abs64(_TVal))) + 1);
+        unsigned long long a = _abs64(_TVal);
+        long double b = static_cast<long double>(a);
+        long double c = log10(b + 1);
+        *_piWidth = static_cast<int>(c);
+        //*_piWidth = static_cast<int>(log10(static_cast<unsigned long double>(_abs64(_TVal))) + 1);
     }
     *_piWidth += 1;
 }
@@ -137,7 +148,8 @@ void addSignedIntValue(std::wostringstream *_postr, T _TVal, int _iWidth, bool b
 
     if (bPrintOne == true || _TVal != 1)
     {
-        os_swprintf(pwstFormat, 32, L" %ls%lld", pwstSign, (long long)_abs64(_TVal));
+        unsigned long long a = _abs64(_TVal);
+        os_swprintf(pwstFormat, 32, L" %ls%llu", pwstSign, a);
         os_swprintf(pwstOutput, 32, L"%*ls", _iWidth + 1, pwstFormat);//+1 for blank
         *_postr << pwstOutput;
     }

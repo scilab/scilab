@@ -45,7 +45,6 @@ macros_error_type_1 = ["isscalar"; ..
 "isinf"; ..
 "isnan"; ..
 "isvector"; ..
-"lex_sort"; ..
 "log10"; ..
 "log2"; ..
 "logm"; ..
@@ -77,7 +76,6 @@ macros_error_type_2 = ["base2dec"; ..
 "bitand"; ..
 "ind2sub"; ..
 "intersect"; ..
-"linspace"; ..
 "modulo"; ..
 "permute"; ..
 "pmodulo"; ..
@@ -107,7 +105,7 @@ for i=1:size(macros_error_type_6, "*")
     assert_checkerror (macros_error_type_6(i) + "()" , msg_error_ref_6 , [] , macros_error_type_6(i), 1);
 end
 // =============================================================================
-macros_error_type_5 = ["flipdim"];
+macros_error_type_5 = ["flipdim"; "linspace"];
 msg_error_ref_5 = _("%s: Wrong number of input argument(s): %d to %d expected.\n");
 for i=1:size(macros_error_type_5, "*")
     assert_checkerror (macros_error_type_5(i) + "()" , msg_error_ref_5 , [] , macros_error_type_5(i) , 2, 3);

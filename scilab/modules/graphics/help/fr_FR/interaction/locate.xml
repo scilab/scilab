@@ -30,12 +30,12 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>locate</literal> est utilisée pour récupérer les coordonnées d'un ou plusieurs 
-            points sélectionnés avec la souris dans une fenêtre graphique. Les coordonnées 
-            sont données dans l'échelle graphique courante. 
+            <literal>locate</literal> est utilisée pour récupérer les coordonnées d'un ou plusieurs
+            points sélectionnés avec la souris dans une fenêtre graphique. Les coordonnées
+            sont données dans l'échelle graphique courante.
         </para>
         <para>
-            Si n&gt;0, n points sont sélectionnés et leurs coordonnées sont renvoyées dans 
+            Si n&gt;0, n points sont sélectionnés et leurs coordonnées sont renvoyées dans
             la matrice <literal>x</literal>.
         </para>
         <para>

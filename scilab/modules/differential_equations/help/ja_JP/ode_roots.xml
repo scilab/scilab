@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * ...
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="ode_roots" xml:lang="ja">
+    <refnamediv>
+        <refname>ode_roots</refname>
+        <refpurpose>求解付きの常微分方程式ソルバ</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>
+            [y, rd, w, iw] = ode("roots", y0, t0, t [,rtol [,atol]], f [,jac], ng, g [,w,iw])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection role="parameters">
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>y0</term>
+                <listitem>
+                    <para>実数ベクトルまたは行列 (初期条件).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>t0</term>
+                <listitem>
+                    <para>実数スカラー (初期時間).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>t</term>
+                <listitem>
+                    <para>実数ベクトル (解を計算する時間).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>f</term>
+                <listitem>
+                    <para>外部ルーチン,すなわち,関数または文字列またはリスト.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>rtol, atol</term>
+                <listitem>
+                    <para>
+                        実数定数または<literal>y</literal>と同じ大きさの実数ベクトル.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>jac</term>
+                <listitem>
+                    <para>外部ルーチン,すなわち,関数または文字列またはリスト.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ng</term>
+                <listitem>
+                    <para>整数.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>g</term>
+                <listitem>
+                    <para>外部ルーチン,すなわち,関数または文字列またはリスト.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>実数のベクトルまたは行列.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>rd</term>
+                <listitem>
+                    <para>実数ベクトル.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>w, iw</term>
+                <listitem>
+                    <para>実数ベクトル.(入力/出力).
+                        See <link linkend="ode_optional_output">ode() optional output</link>
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection role="description">
+        <title>説明</title>
+        <para>
+            この構文により (最初の引数が<literal>"roots"</literal>)
+            <literal>ode</literal> は, 状態量<literal>y(t)</literal>が
+            面<literal>g(t,y)=0</literal>と交差するまで
+            微分方程式<literal>dy/dt=f(t,y)</literal>
+            の解を計算します.
+        </para>
+        <para>
+            <literal>g</literal> に面の方程式を指定します.
+            これは指定した構文を有する外部関数,または
+            指定したコール手順を有する
+            FortranサブルーチンまたはC関数(文字列)またはリストです.
+        </para>
+        <para>
+            <literal>g</literal> が関数の場合,その構文は以下のようにする
+            必要があります:
+        </para>
+        <programlisting role="no-scilab-exec"><![CDATA[
+z = g(t,y)
+ ]]></programlisting>
+        <para>
+            ただし, <literal>t</literal> はスカラー実数 (時間),
+            <literal>y</literal> は実数ベクトル (状態量). この関数は,
+            <literal>ng</literal>個の拘束条件に対応する
+            大きさ<literal>ng</literal>のベクトルを返します.
+            <literal>g</literal> が文字列の場合,
+            この文字列は, FortranサブルーチンまたはC関数を指しており,
+            以下のようなコール手順となります: <literal>g(n,t,y,ng,gout)</literal>.
+            ただし, <literal>ng</literal>は拘束条件の数,
+            <literal>gout</literal>は<literal>g</literal>の値
+            (プログラムの出力)です.
+            <literal>g</literal> は,
+            <literal>f</literal> と同じ表記のリストです.
+            (<link linkend="ode">ode</link>のヘルプ参照)．
+        </para>
+        <para>
+            出力 <literal>rd</literal> は <literal>1 x k</literal> ベクトルです.
+            最初のエントリは,停止時間を含んでいます.
+            他のエントリは,<literal>g</literal>のどの要素の符号が変わったのかを
+            示すエントリです.
+            <literal>k</literal>が2より大きい場合,1以上の面
+            (<literal>(k-1)</literal> 個の面)が同時に符号が変わったことを意味します.
+        </para>
+        <para>他の引数と他のオプションは,
+            <literal>ode</literal>と同じです.<link linkend="ode">ode</link>のヘルプを参照ください.
+        </para>
+    </refsection>
+    <refsection role="examples">
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+// 微分方程式の積分
+// dy/dt=y , y(0)=1, として y(t)=2 となる最小の時間 t を探します
+deff("[ydot]=f(t,y)","ydot=y")
+deff("[z]=g(t,y)","z=y-2")
+y0=1;
+ng=1;
+[y,rd]=ode("roots",y0,0,2,f,ng,g)
+deff("[z]=g(t,y)","z=y-[2;2;33]")
+[y,rd]=ode("roots",1,0,2,f,3,g)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="ode">ode</link>
+            </member>
+            <member>
+                <link linkend="ode_optional_output">ode_optional_output</link>
+            </member>
+            <member>
+                <link linkend="ode_discrete">ode_discrete</link>
+            </member>
+            <member>
+                <link linkend="dasrt">dasrt</link>
+            </member>
+            <member>
+                <link linkend="daskr">daskr</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

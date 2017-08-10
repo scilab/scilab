@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA - Francois DELBECQUE
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="pol2des">
+    <refnamediv>
+        <refname>pol2des</refname>
+        <refpurpose>記述形式の多項式行列</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[N,B,C]=pol2des(Ds)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>Ds</term>
+                <listitem>
+                    <para>多項式</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>N, B, C</term>
+                <listitem>
+                    <para>実数行列</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            多項式 <literal>Ds=D_0 +D_1 s +D_2 s^2 +... +D_k s^k</literal>を指定すると,
+            <literal>pol2des</literal> は,<literal>N</literal> 冪ゼロとして
+            3つの行列 <literal>N, B, C</literal>を返します:
+        </para>
+        <para>
+            <literal>Ds = C (s*N-eye())^-1 B</literal>
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+s=poly(0,'s');
+G=[1,s;1+s^2,3*s^3];[N,B,C]=pol2des(G);
+G1=clean(C*inv(s*N-eye())*B),G2=numer(G1)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="ss2des">ss2des</link>
+            </member>
+            <member>
+                <link linkend="tf2des">tf2des</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

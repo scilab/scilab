@@ -47,7 +47,7 @@ yy=flts(u,sld);
 my_handle = scf(100001);clf(my_handle,"reset");
 plot(instants,yy);
 clear u;
-//            system interconnexion
+//            system interconnection
 w1=[w,w];
 clean(ss2tf(w1))
 w2=[w;w];

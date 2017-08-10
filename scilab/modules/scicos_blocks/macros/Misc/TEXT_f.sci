@@ -60,14 +60,12 @@ function [x,y,typ]=TEXT_f(job,arg1,arg2)
                 graphics.exprs = exprs
 
                 //** save the font
-                //** oldfont = xget('font')
                 gh_winpal = gca(); //** get the current Axes proprieties
                 default_font_style = gh_winpal.font_style ;
                 default_font_size  = gh_winpal.font_size  ;
                 default_font_color = gh_winpal.font_color ;
 
                 //** set the new font
-                //** xset('font',font,siz)
                 gh_winpal.font_style = font ;
                 gh_winpal.font_size  = siz  ;
 
@@ -76,7 +74,6 @@ function [x,y,typ]=TEXT_f(job,arg1,arg2)
                 r = xstringl(0,0,exprs(1),evstr(exprs(2)),evstr(exprs(3)));
 
                 //** restore the old font
-                //** xset('font',oldfont(1),oldfont(2));
                 gh_winpal.font_style = default_font_style ;
                 gh_winpal.font_size  = default_font_size  ;
                 gh_winpal.font_color = default_font_color ;

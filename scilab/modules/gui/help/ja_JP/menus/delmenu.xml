@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="delmenu">
+    <refnamediv>
+        <refname>delmenu</refname>
+        <refpurpose>対話的なボタン/メニューを削除</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>delmenu(button)
+            delmenu(gwin,button)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>button</term>
+                <listitem>
+                    <para>文字列. ボタンの名前.
+                        (X Windowではなく) Windowsの場合,
+                        キーボードショートカットで使用される名前の文字の
+                        前に&amp;を指定します;
+                        この文字はGUIで下線が引かれます.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>gwin</term>
+                <listitem>
+                    <para>整数. ボタンをインストールした
+                        グラフィックウインドウの番号
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            この関数により,
+            メインまたはグラフィックウインドウコマンドパネルに
+            <literal>addmenu</literal>で作成された
+            ボタンまたはメニューをユーザが削除できます.
+            Scilabグラフィックウインドウに定義済みのボタンも削除できます.
+        </para>
+        <para>
+            可能ならば,
+            コマンドパネルにすきまを発生しないように
+            指定したウインドウに最後に作成したボタンを最初に削除する
+            と良いでしょう.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+addmenu('foo')
+delmenu('foo')
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="setmenu">setmenu</link>
+            </member>
+            <member>
+                <link linkend="unsetmenu">unsetmenu</link>
+            </member>
+            <member>
+                <link linkend="addmenu">addmenu</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -9,14 +9,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-12-06 19:43+0000\n"
+"PO-Revision-Date: 2016-02-12 11:52+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
+"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
-"Language: uk\n"
+"X-Generator: Launchpad (build 18315)\n"
 
 #, c-format
 msgid "%s: wrong parameter type. %s expected. Return default value %d.\n"
@@ -102,8 +102,8 @@ msgid ""
 "This demo shows examples of plist utilizations: creation, insertion, "
 "removal, ..."
 msgstr ""
-"У цій демонстрації ми наведемо приклад дій з користування plist: створення, "
-"вставлення, вилучення, ..."
+"У цій демонстрації наведено приклади використання plist: створення, "
+"вставлення, вилучення…"
 
 #, c-format
 msgid ""
@@ -112,7 +112,7 @@ msgid ""
 "1].\n"
 msgstr ""
 "\n"
-"Створємо plist «%s», що містить два поля, 'min' = [0 0 0] і 'max' = [1 1 "
+"Створення plist «%s», що містить два поля, «min» = [0 0 0] і «max» = [1 1 "
 "1].\n"
 
 #, c-format
@@ -121,15 +121,15 @@ msgid ""
 "Check fields: \n"
 msgstr ""
 "\n"
-"Перевіряємо поля: \n"
+"Перевірка полів: \n"
 
 #, c-format
 msgid "Set 'min' = [0 0 0] and 'max' = [1 1 1]:\n"
-msgstr "Встановлюємо 'min' = [0 0 0] і 'max' = [1 1 1]:\n"
+msgstr "Встановлення «min» = [0 0 0] і «max» = [1 1 1]:\n"
 
 #, c-format
 msgid "Check values: \n"
-msgstr "Перевіряємо значення: \n"
+msgstr "Перевірка значень: \n"
 
 #, c-format
 msgid ""
@@ -137,7 +137,7 @@ msgid ""
 "Remove the parameter 'min' from %s.\n"
 msgstr ""
 "\n"
-"Вилучаємо параметр «min» з %s.\n"
+"Вилучення параметра «min» з %s.\n"
 
 #, c-format
 msgid ""
@@ -161,7 +161,7 @@ msgid ""
 "Check removal: \n"
 msgstr ""
 "\n"
-"Перевіряємо вилучення: \n"
+"Перевірка вилучення: \n"
 
 #, c-format
 msgid ""
@@ -169,7 +169,7 @@ msgid ""
 "Check type: \n"
 msgstr ""
 "\n"
-"Перевіряємо тип: \n"
+"Перевірка типу: \n"
 
 #, c-format
 msgid "Second output argument of %s is obsolete.\n"
@@ -212,8 +212,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
 
 #, c-format
 msgid "%s: parameter doesn't exist"

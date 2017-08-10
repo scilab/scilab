@@ -1,11 +1,14 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2008 - INRIA - Sylvestre Ledru <sylvestre.ledru@inria.fr>
 #
-# This file must be used under the terms of the CeCILL.
-# This source file is licensed as described in the file COPYING, which
-# you should have received as part of this distribution.  The terms
-# are also available at
-# http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+# Copyright (C) 2012 - 2016 - Scilab Enterprises
+#
+# This file is hereby licensed under the terms of the GNU GPL v2.0,
+# pursuant to article 5.3.4 of the CeCILL v.2.1.
+# This file was originally licensed under the terms of the CeCILL v2.1,
+# and continues to be available under such terms.
+# For more information, see the COPYING file which you should have received
+# along with this program.
 
 #### Target ######
 modulename=scicos_blocks
@@ -45,6 +48,7 @@ SCICOS_BLOCKS_C_SOURCES = \
     src/c/cmat3d.c \
     src/c/cmatview.c \
     src/c/cmscope.c \
+    src/c/scale_cmscope.c \
     src/c/constraint_c.c \
     src/c/convert.c \
     src/c/cos_blk.c \
@@ -52,6 +56,7 @@ SCICOS_BLOCKS_C_SOURCES = \
     src/c/cosh_blk.c \
     src/c/counter.c \
     src/c/cscope.c \
+    src/c/scale_cscope.c \
     src/c/cscopxy3d.c \
     src/c/cscopxy.c \
     src/c/csslti4.c \

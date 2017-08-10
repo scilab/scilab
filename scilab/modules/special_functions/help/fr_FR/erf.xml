@@ -47,14 +47,14 @@ a=erf(x)
 1-erfc(x)
 ]]></programlisting>
     </refsection>
-    
+
     <refsection>
         <title>Algorithmes</title>
         <para>
             Cette fonction est basée sur la bibliothèque <ulink url="http://ab-initio.mit.edu/Faddeeva">Faddeeva</ulink>.
         </para>
     </refsection>
-    
+
     <refsection role="see also">
         <title>Voir aussi</title>
         <simplelist type="inline">
@@ -75,7 +75,7 @@ a=erf(x)
             </member>
         </simplelist>
     </refsection>
-    
+
     <refsection>
         <title>Historique</title>
         <revhistory>

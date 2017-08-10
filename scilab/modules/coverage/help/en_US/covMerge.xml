@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="covMerge">
+    <refnamediv>
+        <refname>covMerge</refname>
+        <refpurpose>Merges coverage results and exports to a file</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>covMerge(binaryFiles, binaryFile)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>binaryFiles</term>
+                <listitem>
+                    <para>a set of coverage binary files</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>binaryFile</term>
+                <listitem>
+                    <para>a binary file</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+
+    <refsection>
+        <title>Description</title>
+        <para>
+            This command is used to merge coverage results and export them to a single file. It is used for in-depth analysis for a set of functions and runs. This will output only the results for the passed paths.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Example</title>
+        <programlisting role="example"><![CDATA[
+covStart(isempty)
+for i=1:1e5; isempty(i); end
+covWrite("binary", "TMPDIR/isempty1")  // write runtime information
+covStop();                             // clear instrumentation
+
+covStart(isempty)
+for i=1:1e5; isempty(string(i)); end
+covWrite("binary", "TMPDIR/isempty2")  // write other runtime information
+covStop();
+
+covMerge(["TMPDIR/isempty1" "TMPDIR/isempty2"], "TMPDIR/isempty") // merge them
+covWrite("html", "TMPDIR/isempty", "TMPDIR/coverage") // render the information as HTML
+    ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="covStart">covStart</link>
+            </member>
+            <member>
+                <link linkend="covStop">covStop</link>
+            </member>
+            <member>
+                <link linkend="covWrite">covWrite</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>
+

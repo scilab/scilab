@@ -2,11 +2,14 @@
 // Copyright (C) INRIA/ENPC
 // Copyright (C) DIGITEO - 2010 - Allan CORNET
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 //=============================================================================
 // ilib_gen_gateway_cpp used by ilib_build
@@ -113,9 +116,12 @@ function gateway_filename = ilib_gen_gateway(name,tables)
                 if or(table(kGw, 3) == ["cmex" "fmex" "Fmex"]) then
                     t = [t;
                     "    if(wcscmp(_pwstFuncName, L""" + table(kGw,1) + """) == 0){ " + "addMexFunction(L""" + table(kGw,1) + """, &" + names(kGw) + ", MODULE_NAME); }"];
-                else
+                elseif table(kGw, 3) == "csci6" then
                     t = [t;
                     "    if(wcscmp(_pwstFuncName, L""" + table(kGw,1) + """) == 0){ " + "addCFunction(L""" + table(kGw,1) + """, &" + names(kGw) + ", MODULE_NAME); }"];
+                else
+                    t = [t;
+                    "    if(wcscmp(_pwstFuncName, L""" + table(kGw,1) + """) == 0){ " + "addCStackFunction(L""" + table(kGw,1) + """, &" + names(kGw) + ", MODULE_NAME); }"];
                 end
             end
 
@@ -237,17 +243,24 @@ function [gate,names,cppCompilation] = new_names(table)
             gate(i, 1) = "MEX_GATEWAY_PROTOTYPE(" + names(i) + ");";
         case "csci"  then
             names(i) = table(i,2);
+            gate(i, 1) = "STACK_GATEWAY_PROTOTYPE(" + names(i) + ");";
+        case "csci6"  then
+            names(i) = table(i,2);
             gate(i, 1) = "C_GATEWAY_PROTOTYPE(" + names(i) + ");";
         case "fsci"  then
             names(i) = "C2F(" + table(i,2) + ")";
-            gate(i, 1) = "C_GATEWAY_PROTOTYPE(" + names(i) + ");";
+            gate(i, 1) = "STACK_GATEWAY_PROTOTYPE(" + names(i) + ");";
         case "cppsci"  then
             cppCompilation = %t;
             names(i) = table(i,2);
             gate(i, 2) = "CPP_GATEWAY_PROTOTYPE(" + names(i) + ");";
+        case "cppsciopt"  then
+            cppCompilation = %t;
+            names(i) = table(i,2);
+            gate(i, 2) = "CPP_OPT_GATEWAY_PROTOTYPE(" + names(i) + ");";
         case "direct"  then
             names(i) = table(i,2);
-            gate(i, 1) = "C_GATEWAY_PROTOTYPE(" + names(i) + ");";
+            gate(i, 1) = "STACK_GATEWAY_PROTOTYPE(" + names(i) + ");";
         else
             error(999,"Wrong interface type " + table(i,3));
         end

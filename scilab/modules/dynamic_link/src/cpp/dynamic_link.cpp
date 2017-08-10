@@ -3,11 +3,14 @@
 * Copyright (C) INRIA/ENPC
 * Copyright (C) DIGITEO - 2011 - Allan CORNET
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
@@ -192,6 +195,8 @@ int Sci_dlsym(wchar_t* _pwstEntryPointName, int _iLibID, BOOL _bFortran)
     if (_iLibID < 0 || ConfigVariable::isDynamicLibrary(_iLibID) == false)
     {
         //no valid library at this ID
+        FREE(pwstEntryPointName);
+        FREE(pEP);
         return -3;
     }
 
@@ -199,24 +204,24 @@ int Sci_dlsym(wchar_t* _pwstEntryPointName, int _iLibID, BOOL _bFortran)
     if (ConfigVariable::getEntryPoint(_pwstEntryPointName, _iLibID) != NULL)
     {
         sciprint(_("Entry name %ls.\n"), _pwstEntryPointName);
+        FREE(pwstEntryPointName);
+        FREE(pEP);
         return -4;
     }
 
     pEP->iLibIndex = _iLibID;
     hDynLib = (DynLibHandle)  ConfigVariable::getDynamicLibrary(_iLibID)->hLib;
-#ifdef _MCS_VER
-    pEP->functionPtr = (function) GetDynLibFuncPtrW(hDynLib, pwstEntryPointName);
-#else
     char* pstEntryPointName = wide_string_to_UTF8(pwstEntryPointName);
     pEP->functionPtr = (function) GetDynLibFuncPtr(hDynLib, pstEntryPointName);
     FREE(pstEntryPointName);
-#endif
     if (pEP->functionPtr == NULL)
     {
         if (getIlibVerboseLevel() != ILIB_VERBOSE_NO_OUTPUT)
         {
             sciprint(_("%ls is not an entry point.\n"), _pwstEntryPointName);
         }
+        FREE(pwstEntryPointName);
+        FREE(pEP);
         return -5;
     }
 

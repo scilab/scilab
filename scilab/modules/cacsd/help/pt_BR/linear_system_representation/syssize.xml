@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="pt" xml:id="syssize">
+    <refnamediv>
+        <refname>syssize</refname>
+        <refpurpose>size of state-space system</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[r,nx]=syssize(Sl)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>Sl</term>
+                <listitem>
+                    <para>
+                        linear system (<literal>syslin</literal> list) in state-space
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>r</term>
+                <listitem>
+                    <para>1 x 2 real vector</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>nx</term>
+                <listitem>
+                    <para>integer</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            returns in <literal>r</literal> the vector [number of outputs, number of inputs]
+            of the linear system <literal>Sl</literal>. <literal>nx</literal> is the number of states of <literal>Sl</literal>.
+        </para>
+    </refsection>
+
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+
+a=[-2.2567e-02  -36.617  -18.897  -32.090  3.2509  -7.6257e-1;
+  9.2572e-05  -1.8997  9.8312e-01  -7.2562e-04  -1.7080e-01  -4.9652e-03;
+    1.2338e-02  11.720  -2.6316  8.7582e-04  -31.604  22.396;
+    0           0        1       0            0       0  ;
+    0           0        0       0           -30      0  ;
+    0           0        0       0            0      -30  ];
+
+b=0*ones(6,2);
+b(5,1)=30;
+b(6,2)=30;
+c=0*ones(2,6);
+c(1,2)=1;
+c(2,4)=1;
+G=syslin('c',a,b,c);
+r=syssize(G)
+   ]]></programlisting>
+
+    </refsection>
+
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="size">size</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

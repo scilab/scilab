@@ -17,5 +17,6 @@
 // resemble the image shown on the screen.
 
 // check that the line is drawn plain
-clf();xset("thickness",1);plot2d(sin(5*(0:0.01:2*%pi)));
-
+clf();
+gca().thickness = 1;
+plot2d(sin(5*(0:0.01:2*%pi)));

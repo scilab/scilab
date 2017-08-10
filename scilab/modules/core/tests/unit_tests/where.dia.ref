@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA
@@ -9,21 +10,21 @@ deff("[a,b]=foo()","[a,b]=where()")
 [a,b]=foo();
 if a(1)<>2|b(1)<>"foo" then bugmes();quit;end
 function [line, fun]=fun1()
-4
-5
-6
-7
-[line, fun] = where();
+    4
+    5
+    6
+    7
+    [line, fun] = where();
 endfunction
 function [line, fun]=fun2()
-k=4
-[line, fun] = fun1();
+    k=4
+    [line, fun] = fun1();
 endfunction
 function [line, fun] = fun3()
-a=2;
-b=3;
-[line, fun] = fun2();
-c=5;
+    a=2;
+    b=3;
+    [line, fun] = fun2();
+    c=5;
 endfunction
 [line, fun] = fun3();
 // the last line represent the exec of this file.

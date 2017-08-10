@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="delmenu">
+    <refnamediv>
+        <refname>delmenu</refname>
+        <refpurpose>interactive button or menu deletion</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>delmenu(button)
+            delmenu(gwin,button)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>button</term>
+                <listitem>
+                    <para>a character string. The button name. On Windows operating systems (not X_window), an &amp; should be placed before the character in the name used for keyboard shortcut; this character is underlined on the GUI.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>gwin</term>
+                <listitem>
+                    <para>integer. The number of graphic window where the button is required to be installed</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            The function allows the user to delete  buttons or menus create by
+            <literal>addmenu</literal> in the main or graphics windows command panels.
+            Predefined buttons on Scilab graphic windows can also be deleted.
+        </para>
+        <para>
+            If possible, it is better to delete first the latest created button
+            for a given window to avoid gaps in  command panels.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+addmenu('foo')
+delmenu('foo')
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="setmenu">setmenu</link>
+            </member>
+            <member>
+                <link linkend="unsetmenu">unsetmenu</link>
+            </member>
+            <member>
+                <link linkend="addmenu">addmenu</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

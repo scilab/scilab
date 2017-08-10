@@ -2,13 +2,16 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA -
- * Copyright (C) DIGITEO - 2011 - Allan CORNET 
+ * Copyright (C) DIGITEO - 2011 - Allan CORNET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="c_link" xml:lang="en">
@@ -17,7 +20,7 @@
         <refpurpose>check if symbol loaded with dynamic link</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>c_link(routine_name)
             [test, ilib] = c_link(routine_name)
             test = c_link(routine_name,num)
@@ -79,7 +82,7 @@
             '  for (k = 0; k &lt; *n; ++k) '
             '      c[k] = a[k] + b[k];'
             '  return(0);}'];
-            
+
             mputl(f1, TMPDIR + '/fun1.c');
             //creating the shared library (a gateway, a Makefile and a loader are
             //generated.
@@ -88,7 +91,7 @@
             exec loader.sce;
             // show link
             link('show')
-            
+
             [test, ilib] = c_link('ext1c') // check if 'ext1c' symbol is linked in scilab (it returns %T, ilib equals to 0)
             c_link('ext1c', -1) // check if 'ext1c' linked in scilab in current library (last used) (it returns %T)
             c_link('ext1c', 0) // check in library (id eqs 0) if 'ext1c' is linked (it returns %T)
@@ -98,16 +101,10 @@
         </programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="link">link</link>
-            </member>
-            <member>
-                <link linkend="fort">fort</link>
-            </member>
-            <member>
-                <link linkend="api_scilab">api_scilab</link>
             </member>
         </simplelist>
     </refsection>

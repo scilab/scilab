@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - DIGITEO
+// Copyright (C) 2016 - Scilab Enterprises - Clement David
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -9,24 +10,47 @@
 
 
 filename = pathconvert(TMPDIR+"/filetodelete_1.txt",%F);
+filename2 = pathconvert(TMPDIR+"/filetodelete_2.txt",%F);
 
-// First test-case : Regular use
+// Regular use
 fd=mopen ( filename , "w" );
-mclose(fd); 
+mclose(fd);
 computed = deletefile ( filename );
 if computed <> %t then pause,end
 
-// Second test-case : Wrong use then correct use
-if getos() == 'Windows' then
-	fd=mopen ( filename , "w" );
-	computed = deletefile ( filename );
-	if computed <> %f then pause,end
-	mclose(fd); 
-	computed = deletefile ( filename );
-	if computed <> %t then pause,end
+// Wrong use then correct use
+// NOTE: windows file API failed to remove an opened file
+if getos() == "Windows" then
+    fd=mopen ( filename , "w" );
+    computed = deletefile ( filename );
+    if computed <> %f then pause,end
+    mclose(fd);
+    computed = deletefile ( filename );
+    if computed <> %t then pause,end
 end
 
-// Third test-case : try to delete a non-existing file
+// try to delete a non-existing file
 filename = pathconvert(TMPDIR+"/filetodelete_2.txt",%F);
 computed = deletefile ( filename );
 if computed <> %f then pause,end
+
+// try to delete two files
+fd=mopen ( filename , "w" );
+mclose(fd);
+fd=mopen ( filename2 , "w" );
+mclose(fd);
+computed = deletefile ( [filename filename2] );
+if computed <> [%t %t] then pause,end
+
+// try to delete twice the same file
+fd=mopen ( filename , "w" );
+mclose(fd);
+computed = deletefile ( [filename filename] );
+if computed <> [%t %f] then pause,end
+
+// try to delete the same file on a matrix
+fd=mopen ( filename , "w" );
+mclose(fd);
+computed = deletefile ( [filename2 filename ; filename2 filename]);
+if computed <> [%f %t ; %f %f] then pause,end
+

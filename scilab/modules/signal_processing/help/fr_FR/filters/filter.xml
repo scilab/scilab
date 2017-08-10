@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2004-2007 - INRIA - Vincent COUVERT
+    *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="filter">
+    <refnamediv>
+        <refname>filter</refname>
+        <refpurpose>filters a data sequence using a digital filter</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[y,zf] = filter(B, A, x [,zi])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>B</term>
+                <listitem>
+                    <para>real vector : the coefficients of the filter numerator in decreasing power order, or a polynomial.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>A</term>
+                <listitem>
+                    <para>real vector : the coefficients of the filter denominator in decreasing power order, or a polynomial.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>real row vector : the input signal</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>zi</term>
+                <listitem>
+                    <para>real row vector of length
+                        <literal>max(length(a),length(b))-1</literal>: the initial
+                        condition relative to a "direct form II transposed" state
+                        space representation. The default value is a vector filled
+                        with zeros.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>real row vector : the filtered signal. </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>zf</term>
+                <listitem>
+                    <para>real row vector : the final state. It can be used to
+                        filter a next batch of the input signal.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            This function filters a data sequence using a digital
+            filter using a "direct form II transposed"
+            implementation.
+        </para>
+        <para>
+            The filter canonical form is :
+        </para>
+        <para>
+            <latex>
+                \[
+                H(z) = \frac{B(z)}{A(z)} = \frac{b_0 + b_1 z^{-1} + \dots + b_n z^{-n}}{a_0 + a_1 z^{-1} + \dots + a_n z^{-n}}
+                \]
+            </latex>
+        </para>
+        <para>
+            The algorithm uses the highest degree between <literal>degree(a)</literal> and <literal>degree(b)</literal> as value for <literal>n</literal>.
+        </para>
+        <para>
+            If the polynomial form is used for <varname>B</varname> (resp. for <varname>A</varname>) then a polynomial or a scalar must be used for <varname>A</varname> (resp. <varname>B</varname>).
+        </para>
+    </refsection>
+    <refsection>
+        <title>References</title>
+        <para>
+            Oppenheim, A. V. and R.W. Schafer. Discrete-Time Signal Processing, Englewood Cliffs, NJ: Prentice-Hall, 1989, pp. 311-312.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+            x = [1 zeros(1,9)]
+            h = [0 0 1];
+            res = filter(h, 1, x) //This creates a delay of 2 elements
+
+            z = poly(0, "z");
+            B = 1;
+            A = z^2;
+            // B/A is z^(-2)
+            // the resulting filter is also a delay of 2 elements
+            res = filter(B, A, x)
+
+            //Integrator filter
+            x = ones(1,10)
+            B = 1;
+            A = [1 -1];
+            res = filter(B, A, x)
+            ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="flts">flts</link>
+            </member>
+            <member>
+                <link linkend="rtitr">rtitr</link>
+            </member>
+            <member>
+                <link linkend="ltitr">ltitr</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

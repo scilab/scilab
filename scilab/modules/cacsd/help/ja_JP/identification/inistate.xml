@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="inistate">
+    <refnamediv>
+        <refname>inistate</refname>
+        <refpurpose>離散時間システムの状態量初期値を推定</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>X0 = inistate(SYS,Y,U,TOL,PRINTW)
+            X0 = inistate(A,B,C,Y,U);
+            X0 = inistate(A,C,Y);
+            [x0,V,rcnd] = inistate(SYS,Y,U,TOL,PRINTW)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>SYS</term>
+                <listitem>
+                    <para>指定するシステム, syslin(dt,A,B,C,D)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Y</term>
+                <listitem>
+                    <para>システムの出力</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>U</term>
+                <listitem>
+                    <para>システムの入力</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>TOL</term>
+                <listitem>
+                    <para>TOL は行列のランクを推定する際に使用される許容誤差です.
+                        TOL &gt; 0 の場合,TOLで指定した値が
+                        条件数の逆数の下界として使用されます.
+                    </para>
+                    <para>
+                        デフォルト:    prod(size(matrix))*epsilon_machine ただし epsilon_machine は相対機械精度です.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>PRINTW</term>
+                <listitem>
+                    <para>PRINTW は警告メッセージの出力に関するスイッチです.</para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>1: 警告メッセージを出力;</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>0: 警告メッセージを出力しない.</para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                    <para>
+                        デフォルト:    PRINTW = 0.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>X0</term>
+                <listitem>
+                    <para>状態量の初期値の推定値</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>V</term>
+                <listitem>
+                    <para>
+                        システム状態行列Aを実数Schur形式に縮減する直交行列
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>rcnd</term>
+                <listitem>
+                    <para>
+                        解く最小二乗問題の係数行列の条件数の逆数の推定値.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            inistate は，
+            (推定された)システム行列,
+            一連の入力/出力データを指定すると,
+            離散時間システムの状態量の初期値を推定します.
+        </para>
+        <para>
+            X0 = inistate(SYS,Y,U,TOL,PRINTW)  は,
+            出力データ Y および　入力データ U を用いて,
+            離散時間システム SYS = (A,B,C,D) の状態量の初期値 X0 を
+            推定します.
+            モデルの構造は以下のようになります :
+        </para>
+        <programlisting role=""><![CDATA[
+x(k+1) = Ax(k) + Bu(k),   k >= 1,
+y(k)   = Cx(k) + Du(k),
+ ]]></programlisting>
+        <para>
+            ベクトル y(k) および u(k) はそれぞれ Y および U のk行目の
+            転置です.
+        </para>
+        <para>
+            最初の入力パラメータ SYS (syslinオブジェクト)の替わりに,
+            等価な情報を,
+            X0 = inistate(A,B,C,Y,U);   または   X0 = inistate(A,C,Y);のように
+            行列パラメータを用いて指定することが可能です.
+        </para>
+        <para>
+            [x0,V,rcnd] = inistate(SYS,Y,U,TOL,PRINTW) は, x0 以外に,
+            システム状態行列 A を実数 Schur 形式に縮減する
+            直交行列 V,
+            解く最小二乗問題の係数行列の条件数の逆数の推定値
+            も返します.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="findBD">findBD</link>
+            </member>
+            <member>
+                <link linkend="findx0BD">findx0BD</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

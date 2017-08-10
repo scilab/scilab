@@ -1,0 +1,359 @@
+# Russian translation for scilab
+# Copyright (c) 2015 Rosetta Contributors and Canonical Ltd 2015
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2015.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2016-06-18 07:53+0000\n"
+"Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
+"Language-Team: Russian <ru@li.org>\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 18315)\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
+msgstr "%s: Неверное количество входных аргументов: ожидалось не менее %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s: Неверный тип входного аргумента №%d: ожидалась строка.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A single boolean expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидалось одиночное логическое "
+"значение.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A string or a boolean expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d:ожидалась строковое или логическое "
+"значение.\n"
+
+#, c-format
+msgid "%s: %s\n"
+msgstr "%s: %s\n"
+
+msgid "Module developed with the contribution of CNES."
+msgstr "Модуль, разработанный при участии CNES."
+
+msgid "Expression is not bracketed."
+msgstr "Выражение не заключеноо в квадратные скобки."
+
+#, c-format
+msgid "Number of break is limited: %d max."
+msgstr "Количество прерываний ограничено: %d максимум."
+
+#, c-format
+msgid "Number of continue is limited: %d max."
+msgstr "Количество продолжений ограничено: максимум %d."
+
+msgid "Cannot open the file"
+msgstr "Не удалось открыть файл"
+
+#, c-format
+msgid ""
+"The minimal ratio between commented lines and total lines is not reached: %d "
+"< %d."
+msgstr ""
+"Минимальное отношение между комментированными и общими строками не "
+"достигнуто: %d < %d."
+
+#, c-format
+msgid "Bad decimal exponent: %s was expected and %s was found."
+msgstr "Плохая десятичная экспонента: ожидалось %s, а обнаружено %s."
+
+msgid "Decimal numbers must not begin by a dot."
+msgstr "Десятичные числа не должны начинаться с точки."
+
+#, c-format
+msgid "Deprecated function: %s."
+msgstr "Устаревшая функция: %s."
+
+#, c-format
+msgid "Deprecated function %s: use %s instead."
+msgstr "Устаревшая функция %s: вместо неё используйте %s."
+
+msgid "svd(..., 0) is deprecated."
+msgstr "svd(..., 0) устарело."
+
+msgid "mfprintf(-1, ...) is deprecated."
+msgstr "mfprintf(-1, ...) устарело."
+
+msgid "Empty block."
+msgstr "Пустой блок."
+
+msgid ""
+"Possible confusion between assignment operator '=' and equality operator "
+"'=='."
+msgstr "Возможно перепутан оператор присвоения '=' и оператор равенства '=='."
+
+#, c-format
+msgid "Number of expressions in condition is limited: %d max."
+msgstr "Количество выражений в  условии ограничено: максимум %d."
+
+#, c-format
+msgid "Duplicated function arguments: %s."
+msgstr "Продублированные аргументы функции: %s."
+
+#, c-format
+msgid "Duplicated function output values: %s."
+msgstr "Продублированные значения на выходе функции: %s."
+
+#, c-format
+msgid "Function arguments used as output values: %s."
+msgstr "Аргументы функции, используемые как выходные значения: %s."
+
+#, c-format
+msgid "Argument at position %d must be an assignment."
+msgstr "Аргумент на позиции %d должнен быть присвоением."
+
+#, c-format
+msgid "Argument %s declared at position %d and assigned at position %d."
+msgstr ""
+"Аргумент %s, объявлен на позиции %d и ему присвоено значение на позиции %d."
+
+#, c-format
+msgid "Function name doesn't match the pattern: %s, %s"
+msgstr "Имя функции не совпадает с шаблоном: %s, %s"
+
+#, c-format
+msgid "Function name length is lower than minimum: %d < %d"
+msgstr "Длина имени функции короче минимума: %d < %d"
+
+#, c-format
+msgid "Function name length is greater than maximum: %d > %d"
+msgstr "Длина имени функции больше максимума: %d > %d"
+
+#, c-format
+msgid "Function %s requires an error checking just after the call."
+msgstr "Функция %s требует проверки на ошибки сразу же после вызова."
+
+msgid "Function 'global' not allowed."
+msgstr "Функция 'global' не разрешена."
+
+#, c-format
+msgid "Illegal call: %s."
+msgstr "Недопустимый вызов: %s."
+
+msgid "Invalid list, it contains NaN or Inf."
+msgstr "Недопустимый список, он содержитNaN или Inf."
+
+msgid "Bad use of ':' operator."
+msgstr "Плохое использование оператора ':'."
+
+#, c-format
+msgid "Maximum line length exceeded at lines: %s."
+msgstr "Максимальная длина строки превышена на строчках: %s."
+
+#, c-format
+msgid "Maximum lines number exceeded: %d > %d."
+msgstr "Максимальное количество строк превышено: %d > %d."
+
+#, c-format
+msgid "Function %s has at least one argument."
+msgstr "Функция %s имеет как минимум один элемент."
+
+#, c-format
+msgid "Function %s should be called with names of variables."
+msgstr "Функция %s должна вызываться с именами переменных."
+
+#, c-format
+msgid "Function %s should be called with constant strings."
+msgstr "Функция %s должна вызываться с неизменными строками."
+
+#, c-format
+msgid "McCabe's complexity is %d and is greater than %d."
+msgstr "Сложность программы по Маккейбу равна %d и больше, чем %d."
+
+msgid "Open file is not assigned."
+msgstr "Не указан файл для открытия."
+
+msgid "The instruction mclose(\"all\") may have any side effects."
+msgstr "Инструкция mclose(\"all\") может иметь какие угодно побочные эффекты."
+
+#, c-format
+msgid "Open files not closed: %s."
+msgstr "Открытые и не закрытые файлы: %s."
+
+#, c-format
+msgid "Use %nan in a comparison expression will return false."
+msgstr "Использование %nan в выражениях сравнения будет возвращать false."
+
+#, c-format
+msgid "Use isnan() when comparing values with %nan."
+msgstr "Используйте isnan() при сравнении значений с %nan."
+
+#, c-format
+msgid "Too many nested blocks: %d max."
+msgstr "Слишком много : %d max."
+
+#, c-format
+msgid "Operator '%s' should be used rather than '%s'."
+msgstr "Следует использовать оператор  '%s', а не '%s'."
+
+msgid "Double negation is not allowed."
+msgstr "Двойное отрицание не разрешено."
+
+msgid "Not operator '~' should be used rather than '@'."
+msgstr "Следует использовать оператор НЕ '~' а не '@'."
+
+#, c-format
+msgid "Invalid number of arguments in %s: data don't correspond to the format."
+msgstr ""
+"Недопустимое количество аргументов в %s: данные не соответствуют формату."
+
+#, c-format
+msgid "Redefinition of Scilab's constant: %s."
+msgstr "Переопределение константы Scilab'а: %s."
+
+#, c-format
+msgid "Redefinition of a built-in function: %s."
+msgstr "Переопределение встроенной функции: %s."
+
+#, c-format
+msgid "Redefinition of a library function: %s."
+msgstr "Переопределение библиотечной функции: %s."
+
+#, c-format
+msgid "Redefinition of a macro: %s."
+msgstr "Переопределение сценария: %s."
+
+#, c-format
+msgid "Redefinition of a private macro: %s."
+msgstr "Переопределение приватного сценария: %s."
+
+#, c-format
+msgid "Too many return instructions: %d max."
+msgstr "Слишком много инструкций return: максимум %d."
+
+msgid "Select should have a default case."
+msgstr "Выбор должен иметь случай по умолчанию."
+
+msgid "Select with no case."
+msgstr "Выбор select без case."
+
+msgid "Select with one case: it could be replaced by an if statement."
+msgstr "Выбор  select  с одним case: он мог бы быть заменён конструкцией if."
+
+msgid "Case expression should be a number or string."
+msgstr "Выражение case должно быть числом или строкой."
+
+msgid "Case expression types are mixed."
+msgstr "Типы выражения case смешаны."
+
+msgid "Instruction not finished by a semi-colon."
+msgstr "Инструкция не завершена точкой с запятой."
+
+msgid "Two instructions on the same line."
+msgstr "Две инструкции на одной строчке."
+
+#, c-format
+msgid "Operator %s should be surrounded by single spaces."
+msgstr "Оператор %s следует  обособить одиночными пробелами."
+
+msgid "No space after function argument."
+msgstr "Нет пробела после аргумента функции."
+
+msgid "No space before first function argument."
+msgstr "Нет пробела перед первым аргументом функции."
+
+msgid "A function argument must be preceded by a single space."
+msgstr "Аргумент функции должен предваряться одиночным пробелом."
+
+msgid "All the fields in a struct should be defined at the struct definition."
+msgstr "Все поля в структуре должны быть определены при определении структуры."
+
+msgid "Struct definition must contain an even number of arguments."
+msgstr "Определение структуры должно содеражать чётное число аргументов."
+
+#, c-format
+msgid "Field name doesn't match the pattern: %s, %s"
+msgstr "Имя поля не соответствует шаблону: %s, %s"
+
+#, c-format
+msgid "Field name length is lower than minimum: %d < %d"
+msgstr "Длина имени поля ниже минимального: %d < %d"
+
+#, c-format
+msgid "Field name length is greater than maximum: %d > %d"
+msgstr "Длина имени поля больше максимальной: %d > %d"
+
+#, c-format
+msgid "Duplicated field definition: %s."
+msgstr "Повтореное определение поля: %s."
+
+msgid "Field should be defined by a constant string."
+msgstr "Поле должно быть определено строкой-константой."
+
+msgid "Function struct has only one return argument."
+msgstr "Функция struct имеет только один возвращаемый аргумент."
+
+#, c-format
+msgid "It should be better to define field %s at struct definition."
+msgstr "Лучше определить поле %s при определении структуры."
+
+#, c-format
+msgid "Read an undefined field: %s."
+msgstr "Читать неопределённое поле: %s."
+
+msgid "Comment contains a TODO."
+msgstr "Коментарий содержит TODO."
+
+msgid "The code after the return statement is unreachable."
+msgstr "Код после инструкции return является недоступным."
+
+#, c-format
+msgid "Function argument might be unused: %s."
+msgstr "Аргумент функции может быть неиспользованным: %s."
+
+msgid "Possible useless operation."
+msgstr "Возможно бесполезная операция."
+
+#, c-format
+msgid "Function returned value might be unused: %s."
+msgstr "Значение, возвращаемая функцией, может быть неиспользовано: %s."
+
+#, c-format
+msgid "Variable name doesn't match the pattern: %s, %s"
+msgstr "Имя переменной не соответствует шаблону: %s, %s"
+
+#, c-format
+msgid "Variable name length is lower than minimum: %d < %d"
+msgstr "Длина имени переменной меньше минимальной: %d < %d"
+
+#, c-format
+msgid "Variable name length is greater than maximum: %d > %d"
+msgstr "Длина имени переменной больше максимальной: %d > %d"
+
+#, c-format
+msgid "Use of non-initialized variable '%s' may have any side-effects."
+msgstr ""
+"Использование неинициализированной переменной '%s' может иметь какие-то "
+"побочные эффекты."
+
+#, c-format
+msgid "Use of a private macro '%s' defined in an other file %s."
+msgstr ""
+"Использование приватного сценария '%s', определённого в другом файле %s."
+
+#, c-format
+msgid "Use of non-initialized variable '%s' may have side effects."
+msgstr ""
+"Использование неинициализированной переменной '%s' может иметь побочный "
+"эффект."
+
+#, c-format
+msgid "Declared variable and might be unused: %s."
+msgstr "Задекларированная переменная and может быть неиспользованной: %s."
+
+msgid "Cannot create a parser context"
+msgstr "Не могу создать контекст синтаксического разбора"

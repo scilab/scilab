@@ -13,7 +13,7 @@
 // <-- Short Description -->
 // Having very long instruction make scilab parser crash.
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 function Xdot = simul(t, X,t1)
     //**************************************

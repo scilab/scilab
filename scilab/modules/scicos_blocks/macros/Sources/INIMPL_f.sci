@@ -74,6 +74,6 @@ function [x,y,typ]=INIMPL_f(job,arg1,arg2)
         x=standard_define([1 1],model,exprs,gr_i)
         x.graphics.out_implicit=["I"]
 
-        //  x.graphics.flip=%f //flip it
+        //  x.graphics.style="flip=0;" //flip it
     end
 endfunction

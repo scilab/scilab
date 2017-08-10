@@ -5,11 +5,14 @@
  * Copyright (C) 2004-2005 - INRIA - Fabrice Leray
  * Copyright (C) 2010-2011 - DIGITEO - Manuel Juliachs
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -39,6 +42,7 @@
 #include "graphicObjectProperties.h"
 #include "CurrentSubwin.h"
 #include "CurrentObject.h"
+#include "Sciwarning.h"
 
 int C2F(xgray)(double *x, double *y, double *z, int *n1, int *n2, char *strflag, double *brect, int *aaint, BOOL flagNax, char *logflags, long int l1)
 {
@@ -56,7 +60,7 @@ int C2F(xgray)(double *x, double *y, double *z, int *n1, int *n2, char *strflag,
     int clipState = 0;
     int autoScale = 0;
     int firstPlot = 0;
-    int logFlags[3];
+    int logFlags[3] = {0};
     char dataflag = 0;
     int autoSubticks = 0;
 
@@ -192,7 +196,7 @@ int C2F(xgray)(double *x, double *y, double *z, int *n1, int *n2, char *strflag,
         }
         else
         {
-            sciprint(_("Warning: Nax does not work with logarithmic scaling.\n"));
+            Sciwarning(_("Warning: Nax does not work with logarithmic scaling.\n"));
         }
     }
 
@@ -343,7 +347,7 @@ int C2F(implot)(unsigned char *z, int *n1, int *n2, char *strflag, double *brect
         }
         else
         {
-            sciprint(_("Warning: Nax does not work with logarithmic scaling.\n"));
+            Sciwarning(_("Warning: Nax does not work with logarithmic scaling.\n"));
         }
     }
 
@@ -496,7 +500,7 @@ int C2F(xgray1)(double *z, int *n1, int *n2, char *strflag, double *brect, int *
         }
         else
         {
-            sciprint(_("Warning: Nax does not work with logarithmic scaling.\n"));
+            Sciwarning(_("Warning: Nax does not work with logarithmic scaling.\n"));
         }
     }
 

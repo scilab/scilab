@@ -36,7 +36,7 @@
             </note>
         </para>
     </refsection>
-    
+
     <refsection>
         <title>Exemples</title>
         <programlisting role="example"><![CDATA[
@@ -69,7 +69,7 @@ endfunction
 foo2()
 // x y z n'existent pas ici
 ]]></programlisting>
-        
+
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>

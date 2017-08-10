@@ -15,19 +15,19 @@
 // <-- Short Description -->
 // "resume" inside an exec crashes Scilab + "resume" restriction of use removed
 
-  //the following instructions has to be copied/pasted in the Scilab console 
+  //the following instructions has to be copied/pasted in the Scilab console
   clear aa bb  foo
   pause
   [aa,bb] = resume(1.1,2.2);
   if aa<>1.1|bb<>2.2 then pause,end
 
-  
-  deff("y=foo()","y=0;pause","n")
+
+  deff("y=foo()","y=0;pause")
   if foo()<>3 then pause,end
   y=resume(3);
-  
+
   clear foo
   deff("y=foo()","y=0;pause")
   if foo()<>3 then pause,end
   y=resume(3);
-  
+

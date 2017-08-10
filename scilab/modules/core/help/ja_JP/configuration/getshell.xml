@@ -16,7 +16,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 getshell()
  ]]></programlisting>
     </refsection>

@@ -205,7 +205,6 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="clcg2.c" />
     <ClCompile Include="clcg4.c" />
     <ClCompile Include="DllmainRandlib.c" />
-    <ClCompile Include="fsultra.c" />
     <ClCompile Include="genbet.c" />
     <ClCompile Include="ignbin.c" />
     <ClCompile Include="igngeom.c" />

@@ -2,13 +2,13 @@
 <!--
  * Ajouter ici d'éventuels commentaires sur le fichier XML
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="optimset" xml:lang="fr">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="optimset" xml:lang="en">
     <refnamediv>
         <refname>optimset</refname>
         <refpurpose>Configures and returns an optimization data structure.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>SYNOPSIS</title>
+        <title>Syntax</title>
         <synopsis>
             options = optimset ()
             options = optimset ( funname )
@@ -24,37 +24,37 @@
             be used on modify the behaviour of optimization methods.
             The goal of this function is to manage the "options" data structure,
             which is a struct with a set of fields (for example, "MaxFunEvals", "MaxIter", etc...).
-            The user can create a new structure with empty fields or create 
-            a new structure with default fields which correspond to a particular 
+            The user can create a new structure with empty fields or create
+            a new structure with default fields which correspond to a particular
             algorithm.
             The user can also configure each field and set it to a particular value.
-            Finally, the user pass the structure to an optimization function 
+            Finally, the user pass the structure to an optimization function
             so that the algorithm uses the options configured by the user.
         </para>
         <para>
             In the following, we analyse the various ways to call the optimset
             function.
         </para>
-        <para>The following calling sequence</para>
-        <programlisting role="example"><![CDATA[ 
+        <para>The following syntax</para>
+        <programlisting role="example"><![CDATA[
 options = optimset ()
  ]]></programlisting>
         <para>creates a new data structure where the fields have been set to the empty matrix (i.e. []).
         </para>
-        <para>The following calling sequence</para>
-        <programlisting role="example"><![CDATA[ 
+        <para>The following syntax</para>
+        <programlisting role="example"><![CDATA[
 options = optimset ( funname )
  ]]></programlisting>
         <para>creates a new data structure where the default parameters which correspond to the "funname" function have been set. For example,</para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 options = optimset ( "fminsearch" )
  ]]></programlisting>
         <para>returns a new data structure where the default parameters which correspond to the "fminsearch" function have been set.</para>
-        <para>The following calling sequence</para>
-        <programlisting role="example"><![CDATA[ 
+        <para>The following syntax</para>
+        <programlisting role="example"><![CDATA[
 options = optimset ( oldoptions , key , value )
  ]]></programlisting>
-        <para>creates a new data structure where all fields from the "oldoptions" 
+        <para>creates a new data structure where all fields from the "oldoptions"
             structure have been copied, except the field corresponding to the "key",
             which has been set to "value".
         </para>
@@ -109,7 +109,7 @@ options = optimset ( oldoptions , key , value )
                             <term>options.Display</term>
                             <listitem>
                                 <para>
-                                    The verbose level. 
+                                    The verbose level.
                                     The default value is "notify".
                                     The following is a list of available verbose levels.
                                 </para>
@@ -122,8 +122,8 @@ options = optimset ( oldoptions , key , value )
                                     <listitem>
                                         <para>
                                             options.Display = "notify": the algorithm displays message if the termination criteria
-                                            is not reached at the end of the optimization. This may happen if the 
-                                            maximum number of iterations of the maximum number of function evaluations 
+                                            is not reached at the end of the optimization. This may happen if the
+                                            maximum number of iterations of the maximum number of function evaluations
                                             is reached and warns the user of a convergence problem.
                                         </para>
                                     </listitem>
@@ -132,15 +132,15 @@ options = optimset ( oldoptions , key , value )
                                             options.Display = "final": the algorithm displays a message at the end of the optimization,
                                             showing the number of iterations, the number of function evaluations
                                             and the status of the optimization.
-                                            This option includes the messages generated by the "notify" option i.e. warns 
+                                            This option includes the messages generated by the "notify" option i.e. warns
                                             in case of a convergence problem.
                                         </para>
                                     </listitem>
                                     <listitem>
                                         <para>
                                             options.Display = "iter": the algorithm displays a one-line message at each iteration.
-                                            This option includes the messages generated by the "notify" option i.e. warns 
-                                            in case of a convergence problem. It also includes the message generated 
+                                            This option includes the messages generated by the "notify" option i.e. warns
+                                            in case of a convergence problem. It also includes the message generated
                                             by the "final" option.
                                         </para>
                                     </listitem>
@@ -167,7 +167,7 @@ options = optimset ( oldoptions , key , value )
                             <term>options.MaxIter</term>
                             <listitem>
                                 <para>
-                                    The maximum number of iterations. 
+                                    The maximum number of iterations.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -175,7 +175,7 @@ options = optimset ( oldoptions , key , value )
                             <term>options.OutputFcn</term>
                             <listitem>
                                 <para>
-                                    A function which is called at each iteration to print out intermediate 
+                                    A function which is called at each iteration to print out intermediate
                                     state of the optimization algorithm (for example into a log file).
                                 </para>
                             </listitem>
@@ -246,15 +246,15 @@ options = optimset ( oldoptions , key , value )
     <refsection>
         <title>Output and plot functions</title>
         <para>
-            The "OutputFcn" and "PlotFcns" options accept as argument a function (or a list 
-            of functions). In the client optimization algorithm, this output or plot function 
-            is called back once per iteration. It can be used by the user 
+            The "OutputFcn" and "PlotFcns" options accept as argument a function (or a list
+            of functions). In the client optimization algorithm, this output or plot function
+            is called back once per iteration. It can be used by the user
             to display a message in the console, write into a file, etc...
         </para>
         <para>
             The output or plot function is expected to have the following definition:
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 function myfun ( x , optimValues , state )
  ]]></programlisting>
         <para>where the input parameters are:</para>
@@ -286,7 +286,7 @@ function myfun ( x , optimValues , state )
                     </listitem>
                     <listitem>
                         <para>
-                            <literal>optimValues.procedure</literal>: the type of step performed. 
+                            <literal>optimValues.procedure</literal>: the type of step performed.
                             This string depends on the specific algorithm see <link linkend="fminsearch">fminsearch</link>
                             for details.
                         </para>
@@ -322,7 +322,7 @@ function myfun ( x , optimValues , state )
         <para>
             In the following example, we create an empty optimization structure.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 op = optimset ()
  ]]></programlisting>
     </refsection>
@@ -332,7 +332,13 @@ op = optimset ()
             In the following example, we create an optimization structure
             with all fields set to specific settings.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
+function y = myoutputfun (x)
+  y = x;
+endfunction
+function y = myplotfun (x)
+  y = x;
+endfunction
 op = optimset ("Display","iter",...
                "FunValCheck","on",...
                "MaxFunEvals",100,...
@@ -350,12 +356,12 @@ op = optimset ("Display","iter",...
             with all fields set to the default settings for the "fminsearch"
             optimization function.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 op = optimset ("fminsearch")
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="optimget">optimget</link>

@@ -2,41 +2,46 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2015 - Samuel GOUGEON
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="imag" xml:lang="en">
     <refnamediv>
         <refname>imag</refname>
-        <refpurpose>imaginary part</refpurpose>
+        <refpurpose>imaginary part of complex numbers, polynomials, or rationals</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>[y]=imag(x)</synopsis>
+        <title>Syntax</title>
+        <synopsis>y = imag(x)</synopsis>
     </refsynopsisdiv>
-    <refsection>
+    <refsection role="parameters">
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>a real or complex vector or matrix.</para>
+                    <para>matrix of real or complex numbers (full or sparse storage),
+                    or of polynomials or rationals with real or complex coefficients.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>y</term>
                 <listitem>
-                    <para>a real vector or matrix.</para>
+                    <para>matrix of real numbers, polynomials or rationals, with same sizes than <varname>x</varname>.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Description</title>
         <para>
             <code>imag(x)</code> is the imaginary part of
@@ -44,23 +49,44 @@
             numbers).
         </para>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-imag([1 %i 2])
-imag(1+0*%i)
-imag(2+3*%i)
-imag(1+%s)
-imag(sprand(3,3,0.1))
+        <programlisting role="example"><![CDATA[
+c = [ 2 %i, 1+0*%i, 2-3*%i  log(-1) (-1)^(1/3) ]
+imag(c)
+
+s = sprand(3,3,0.3) + sprand(3,3,0.3)*%i
+imag(s)
+
+// Polynomials with complex coeficients:
+A = [1-%i*%z (%z-%i)^2]
+imag(A)
+
+// Rationals with complex coeficients:
+A = [ %z/(1-%z)  (1-%z)/%z^2];
+B = A(1,[2 1]);
+C = A + %i*B
+B, imag(C)
  ]]></programlisting>
     </refsection>
-    
+
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="real">real</link>
             </member>
         </simplelist>
+    </refsection>
+
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>Extension to rationals
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

@@ -1,11 +1,14 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2011 - INRIA - Serge Steer
+// Copyright (C) 2011 - 2016 - INRIA - Serge Steer
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function [fmin,fmax]=nyquistfrequencybounds(H,bounds)
     //find frequencies that reaches the nyquist bounds on real an imag part
@@ -18,15 +21,22 @@ function [fmin,fmax]=nyquistfrequencybounds(H,bounds)
     if or(bounds(2,:)<bounds(1,:)) then
         error(msprintf(_("%s: Wrong value for input argument #%d: second row must be greater than first one.\n"),fname,2))
     end
-    if and(typeof(H)<>["state-space" "rational"]) then
-        error(msprintf(_("%s: Wrong type for input argument #%d: Linear dynamical system expected.\n"),fname,1))
+    if and(typeof(H)<>["state-space" "rational" "zpk"]) then
+        ierr=execstr("[fmin,fmax]=%"+overloadname(H)+"_nyquistfrequencybounds(H,bounds)","errcatch")
+        if ierr<>0 then
+            error(msprintf(gettext("%s: Wrong type for input argument: Linear dynamical system expected.\n"),"nyquistfrequencybounds",1))
+        end
+        return
     end
+
     if size(H,"*")<>1 then
         error(msprintf(_("Wrong type for argument #%d: SISO expected.\n"),fname,1))
     end
 
     if typeof(H)=="state-space" then
         H=ss2tf(H)
+    elseif typeof(H)=="zpk" then
+        H=zpk2tf(H)
     end
 
     dom=H.dt

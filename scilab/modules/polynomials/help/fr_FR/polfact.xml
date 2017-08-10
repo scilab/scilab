@@ -54,7 +54,7 @@
             i.e. <literal>f=[f0 f1 ... fn]</literal> tel que <literal>p=prod(f)</literal>
         </para>
     </refsection>
-    
+
     <refsection>
         <title>Exemples</title>
         <programlisting role="example">
@@ -67,7 +67,7 @@ polfact(x^7-1)
  ]]>
         </programlisting>
     </refsection>
-    
+
     <refsection role="see also">
         <title>Voir aussi</title>
         <simplelist type="inline">

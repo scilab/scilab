@@ -1,17 +1,20 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ???? - INRIA - Scilab
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function v=mtlb_get(H,property)
 
     [lhs,rhs]=argn()
-    win=xget("window")
-    xset("window",H)
+    win = gcf().figure_id
+    scf(H)
     if rhs==1 then
     else
         v=[]
@@ -19,7 +22,7 @@ function v=mtlb_get(H,property)
         case "backingstore" then
         case "color" then
         case "colormap" then
-            v=xget("colormap")
+            v = H.color_map
         case "currentaxes" then
             error(msprintf(gettext("%s: No equivalent for ''%s'' property.\n"), "mtlb_get", property));
         case "currentcharacter" then
@@ -39,7 +42,7 @@ function v=mtlb_get(H,property)
         case "menubar" then
             error(msprintf(gettext("%s: No equivalent for ''%s'' property.\n"), "mtlb_get", property));
         case "mincolormap" then
-            v=xget("colormap")
+            v = H.color_map
             v=size(v,1)
         case "name" then
             error(msprintf(gettext("%s: No equivalent for ''%s'' property.\n"), "mtlb_get", property));
@@ -60,8 +63,8 @@ function v=mtlb_get(H,property)
         case "pointer" then
             v="arrow"
         case "position" then
-            o=xget("wpos")
-            sz=xget("wdim")
+            o = H.figure_position
+            sz= H.figure_size
             v=[o(:);sz(:)]'
         case "resize" then
             v="on"
@@ -84,7 +87,7 @@ function v=mtlb_get(H,property)
         case "children" then
             error(msprintf(gettext("%s: No equivalent for ''%s'' property.\n"), "mtlb_get", property));
         case "clipping" then
-            v=xget("clipping")
+            v= gca().clip_box
             if v(1)<>0 then v="on",else v="off",end
         case "interruptible" then
             error(msprintf(gettext("%s: No equivalent for ''%s'' property.\n"), "mtlb_get", property));
@@ -98,5 +101,5 @@ function v=mtlb_get(H,property)
             v="on"
         end
     end
-    xset("window",win)
+    scf(win)
 endfunction

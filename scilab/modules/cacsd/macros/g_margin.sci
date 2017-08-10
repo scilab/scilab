@@ -1,12 +1,12 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2013 - Scilab Enterprises - Paul Bignier
-// Copyright (C) INRIA -  Author: Serge Steer
+// Copyright (C) ???? - 2016 - INRIA -  Serge Steer
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function [gm,fr] = g_margin(h)
     // Compute the gain margin of a SISO transfer function
@@ -14,17 +14,23 @@ function [gm,fr] = g_margin(h)
     if argn(2) < 1 then
         error(msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"),"g_margin",1));
     end
-
-    select typeof(h)
-    case "rational" then
-    case "state-space" then
-        h=ss2tf(h)
-    else
-        error(97,1),
-    end;
-    if or(size(h)<>[1 1]) then
-        error(msprintf(_("%s: Wrong size for input argument #%d: Single input, single output system expected.\n"),"g_margin",1))
+    if and(typeof(h)<>["state-space","rational","zpk"]) then
+        ierr=execstr("[gm,fr]=%"+overloadname(h)+"_g_margin(h)","errcatch")
+        if ierr<>0 then
+            error(msprintf(gettext("%s: Wrong type for input argument: Linear dynamical system expected.\n"),"g_margin",1))
+        end
+        return
     end
+    if size(h,"*")<>1 then
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: Single input, single output system expected.\n"),"g_margin",1))
+    end
+
+    if typeof(h)=="state-space" then
+        h=ss2tf(h)
+    elseif typeof(h)=="zpk" then
+        h=zpk2tf(h)
+    end
+
     //
     epsr=1.e-7;//used for testing if complex numbers are real
     eps1=1.e-7;//used for testing if complex numbers have a modulus near 1
@@ -37,12 +43,16 @@ function [gm,fr] = g_margin(h)
         den=real(horner(h.den,s)*conj(horner(h.den,s)))
         //necessary condition
         w=roots(num,"e");
-        ws=real(w(abs(imag(w))<epsr&real(w)<=0)) //points where phase is -180°
-
-        //remove nearly singular points
-        ws(abs(horner(num,ws))>=epssing*abs(horner(den,ws)))=[]
+        ws=[];
+        if w<>[] then
+            ws=real(w(abs(imag(w))<epsr&real(w)<=0)) //points where phase is -180°
+        end
+        if ws<>[] then
+            //remove nearly singular points
+            ws(abs(horner(num,ws))>=epssing*abs(horner(den,ws)))=[]
+        end
         if ws==[] then gm=%inf,fr=[],return,end
-        mingain=real(freq(h.num,h.den,%i*ws))
+        mingain=real(freq(clean(h.num),clean(h.den),%i*ws))
     else  //discrete time case
         if h.dt=="d" then dt=1,else dt=h.dt,end
         //get z such as h(z)=h(1/z) and z=e^(%i*w*dt)
@@ -51,13 +61,18 @@ function [gm,fr] = g_margin(h)
         sm=simp_mode();simp_mode(%f);hh=h-horner(h,1/z);simp_mode(sm)
         //find the numerator roots
         z=roots(hh.num,"e");
-        z(abs(abs(z)-1)>eps1)=[]// retain only roots with modulus equal to 1
-
-        //remove nearly singular points
-        z(abs(horner(hh.num,z))>=epssing*abs(horner(hh.den,z)))=[];
-
-        w=log(z)/(%i*dt)
-        ws=real(w(abs(imag(w))<epsr)) //points where phase is -180°
+        if z<>[] then
+            z(abs(abs(z)-1)>eps1)=[]// retain only roots with modulus equal to 1
+        end
+        if z<>[] then
+            //remove nearly singular points
+            z(abs(horner(hh.num,z))>=epssing*abs(horner(hh.den,z)))=[];
+        end
+        ws=[];
+        if z<>[] then
+            w=log(z)/(%i*dt)
+            ws=real(w(abs(imag(w))<epsr)) //points where phase is -180°
+        end
         if ws==[] then gm=%inf,fr=[],return,end
         mingain=real(horner(h,exp(%i*ws*dt)))
     end

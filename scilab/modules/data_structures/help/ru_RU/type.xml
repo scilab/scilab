@@ -5,7 +5,7 @@
         <refpurpose>возвращает тип переменной</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>[i]=type(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -79,7 +79,7 @@
                 <term>8</term>
                 <listitem>
                     <para>
-                        матрица <link linkend="int8">целочисленных</link> значений, хранимых в 1 (<literal>int8</literal>), 2 (<literal>int16</literal>) или 4 (<literal>int32</literal>) байтах.
+                        матрица <link linkend="int8">целочисленных</link> значений, хранимых в 1 (<literal>int8</literal>), 2 (<literal>int16</literal>) , 4 (<literal>int32</literal>) или 8 (<literal>int64</literal>) байтах.
                     </para>
                 </listitem>
             </varlistentry>
@@ -96,14 +96,6 @@
                 <listitem>
                     <para>
                         матрица <link linkend="strings">символьных строк</link>.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>11</term>
-                <listitem>
-                    <para>
-                        некомпилированная функция (Scilab-код). Функция, созданная с помощью <link linkend="deff">deff</link> с аргументом <literal>'n'</literal>.
                     </para>
                 </listitem>
             </varlistentry>

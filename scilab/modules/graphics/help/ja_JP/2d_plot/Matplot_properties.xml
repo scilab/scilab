@@ -1,644 +1,330 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
-
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-
  * Copyright (C) INRIA - Fabrice Leray
-
- * 
-
- * This file must be used under the terms of the CeCILL.
-
- * This source file is licensed as described in the file COPYING, which
-
- * you should have received as part of this distribution.  The terms
-
- * are also available at    
-
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
-
  *
-
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
  -->
-
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="Matplot_properties">
-    
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:lang="ja" xml:id="Matplot_properties">
     <refnamediv>
-        
         <refname>Matplot_properties</refname>
-        
         <refpurpose>Matplotエンティティプロパティの説明</refpurpose>
-        
     </refnamediv>
-    
     <refsection>
-        
         <title>説明</title>
-        
         <para>Matplotエンティティはグラフィックエンティティ階層の葉です.
-            
             このエンティティは,曲面および画像の2次元プロットを表します
-            
             (<literal>Matplot</literal> および <literal>Matplot1</literal>参照).
-            
         </para>
-        
         <variablelist>
-            
             <varlistentry>
-                
-                <term>parent: </term>
-                
+                <term>parent</term>
                 <listitem>
-                    
                     <para>このプロパティは親のハンドルを有します.
-                        
                         Matplotエンティティの親は <literal>"Axes"</literal>型となります.
-                        
                     </para>
-                    
                 </listitem>
-                
             </varlistentry>
-            
             <varlistentry>
-                
-                <term>children: </term>
-                
+                <term>children</term>
                 <listitem>
-                    
                     <para>
-                        
                         このプロパティにはハンドルの<literal>children</literal>
-                        
                         のベクトルが含まれます.
-                        
                         しかし,現在,<literal>Matplot</literal>には<literal>children</literal>
-                        
                         がありません.
-                        
                     </para>
-                    
                 </listitem>
-                
             </varlistentry>
-            
             <varlistentry>
-                
-                <term>visible: </term>
-                
+                <term>visible</term>
                 <listitem>
-                    
                     <para>
-                        
                         このフィールドにはエンティティの<literal>visible</literal>
-                        
                         プロパティの値が含まれます.
-                        
                         この値は,<literal>"on" </literal> または <literal>"off"</literal> となります.
-                        
                         デフォルトでプロットは可視であり,このプロパティの値は
-                        
                         <literal>"on"</literal>となります. <literal>"off"</literal>の場合,プロットは
-                        
                         画面に描画されません.
-                        
                     </para>
-                    
                 </listitem>
-                
             </varlistentry>
-            
             <varlistentry>
-                
-                <term>data: </term>
-                
+                <term>data</term>
                 <listitem>
-                    
                     <para>
-                        
                         このフィールドは[<literal>m</literal>x<literal>n</literal>]のデータ行列
-                        
                         <literal>color</literal>をカレントのカラーマップに基づき定義します.
-                        
                         位置<literal>(x=j,y=(m-i+1))</literal>を中心とする長さ1の小さな正方形を
-                        
                         描画する際には<literal>color(i,j)</literal>が指す色が使用されます.
-                        
                     </para>
-                    
                 </listitem>
-                
             </varlistentry>
-            
             <varlistentry>
-                
-                <term>rect: </term>
-                
+                <term>rect</term>
                 <listitem>
-                    
                     <para>
-                        
                         このフィールドは<literal>[xmin, ymin, xmax, ymax]</literal>で
-                        
                         定義される行ベクトルを保持します.
-                        
                         このフィールドはカレントのスケールで矩形を定義し,
-                        
                         この矩形内に行列が描画されます.
-                        
                     </para>
-                    
                 </listitem>
-                
             </varlistentry>
-            
             <varlistentry>
-                
-                <term>image_type: </term>
-                
+                <term>image_type</term>
                 <listitem>
-                    
                     <para>
-                        
-                        このフィールドは画像の型を定義します. 
-                        
+                        このフィールドは画像の型を定義します.
                         値は以下のどれかを指定します:
-                        
-                        "rgb", "rgba", "gray", "index",
-                        
-                        "red", "green", "blue", "rgb332", "rgb444", "rgb555", "rgba5551", "argb".
-                        
+                        "index", "gray", "rgb", "rgba", "argb", "red", "green", "blue", "rgb332", "rgb444", "rgb555", "rgb4444", "rgb5551".
                     </para>
-                    
                     <para>
-                        
                         色はデータ型と image_type により以下のように定義されます:
-                        
                     </para>
-                    
                     <itemizedlist>
-                        
                         <listitem>
-                            
                             <para>
-                                
-                                image_type が index の場合, 
-                                
+                                image_type が index の場合,
                                 データはカラーマップの添字とみなされます.
-                                
                             </para>
-                            
                         </listitem>
-                        
                         <listitem>
-                            
                             <para>
-                                
-                                image_typeがrgbの場合, int8またはuint8のハイパー行列はRGB要素,
-                                
-                                doubleのハイパー行列は正規化されたRGB要素(値は0と1の間),
-                                
-                                int8またはuint8の行列(ただし,行数は3の倍数)はRGB要素,
-                                
-                                int32の行列はRGBカラー,
-                                
-                                uint32の行列はRGBAカラー(ただし,アルファチャネルは0xFFに設定)
-                                
-                                を指定します.
-                                
-                            </para>
-                            
-                        </listitem>
-                        
-                        <listitem>
-                            
-                            <para>
-                                
-                                image_typeがrgbaの場合, int8またはuint8のハイパー行列はRGBA要素,
-                                
-                                doubleのハイパー行列は正規化されたRGBA要素(値は0と1の間),
-                                
-                                int8またはuint8の行列(ただし,行数は4の倍数)はRGBA要素,
-                                
-                                int32の行列はRGBAカラー,uint32の行列はRGBAカラー
-                                
-                                を指定します.
-                                
-                            </para>
-                            
-                        </listitem>
-                        
-                        <listitem>
-                            
-                            <para>
-                                
                                 image_typeがgrayの場合, int8またはuint8の行列は
-                                
                                 グレーレベルカラー(R-G-B=GRAY-GRAY-GRAY)となります.
-                                
                                 その他の型の場合, data はRGBカラーとみなされ,
-                                
                                 グレーカラーに変換されます (0.299*R+0.587*G+0.114*B).
-                                
                             </para>
-                            
                         </listitem>
-                        
                         <listitem>
-                            
                             <para>
-                                
-                                image_typeがredの場合, int8またはuint8の行列は
-                                
-                                レッドレベルカラー(R-G-B=REG-00-00)となります.
-                                
-                                その他の型の場合, data はRGBカラーとみなされ,
-                                
-                                レッドカラーに変換されます(赤要素を保持するマスクが適用されます).
-                                
+                                image_typeがrgbの場合, int8またはuint8のハイパー行列はRGB要素,
+                                doubleのハイパー行列は正規化されたRGB要素(値は0と1の間),
+                                int8またはuint8の行列(ただし,行数は3の倍数)はRGB要素,
+                                int32の行列はRGBカラー,
+                                uint32の行列はRGBAカラー(ただし,アルファチャネルは0xFFに設定)
+                                を指定します.
                             </para>
-                            
                         </listitem>
-                        
                         <listitem>
-                            
                             <para>
-                                
-                                image_typeがredの場合, int8またはuint8の行列は
-                                
-                                グリーンレベルカラー(R-G-B=00-GREEN-00)となります.
-                                
-                                その他の型の場合, data はRGBカラーとみなされ,
-                                
-                                グリーンカラーに変換されます(緑要素を保持するマスクが適用されます).
-                                
+                                image_typeがrgbaの場合, int8またはuint8のハイパー行列はRGBA要素,
+                                doubleのハイパー行列は正規化されたRGBA要素(値は0と1の間),
+                                int8またはuint8の行列(ただし,行数は4の倍数)はRGBA要素,
+                                int32の行列はRGBAカラー,uint32の行列はRGBAカラー
+                                を指定します.
                             </para>
-                            
                         </listitem>
-                        
                         <listitem>
-                            
                             <para>
-                                
-                                image_typeがblueの場合, int8またはuint8の行列は
-                                
-                                ブルーレベルカラー(R-G-B=00-00-BLUE)となります.
-                                
-                                その他の型の場合, data はRGBカラーとみなされ,
-                                
-                                ブルーカラーに変換されます(青要素を保持するマスクが適用されます).
-                                
-                            </para>
-                            
-                        </listitem>
-                        
-                        <listitem>
-                            
-                            <para>
-                                
-                                image_typeがrgb332の場合, int8 または uint8 の行列は
-                                
-                                RGBカラーを指定します.
-                                
-                                ただし,R要素を3ビット,G要素を3ビット,B要素を2ビットで指定します.
-                                
-                                その他のデータ型の場合,
-                                
-                                RGB (8-8-8) データが RGB (3-3-2)に変換されます.
-                                
-                            </para>
-                            
-                        </listitem>
-                        
-                        <listitem>
-                            
-                            <para>
-                                
-                                image_typeがrgb444の場合, int8 または uint8 の行列は
-                                
-                                RGBカラーを指定します.
-                                
-                                ただし,各要素は4ビットです.
-                                
-                                その他のデータ型の場合,
-                                
-                                RGB (8-8-8) データが RGB (4-4-4)に変換されます.
-                                
-                            </para>
-                            
-                        </listitem>
-                        
-                        <listitem>
-                            
-                            <para>
-                                
-                                image_typeがrgb555の場合, int16 または uint16 の行列は
-                                
-                                RGBカラーを指定します.
-                                
-                                ただし,各要素は5ビットです.
-                                
-                                その他のデータ型の場合,
-                                
-                                RGB (8-8-8) データが RGB (5-5-5)に変換されます.
-                                
-                            </para>
-                            
-                        </listitem>
-                        
-                        <listitem>
-                            
-                            <para>
-                                
-                                image_typeがrgb4444の場合, int16 または uint16 の行列は
-                                
-                                RGBAカラーを指定します.
-                                
-                                ただし,各要素は4ビットです.
-                                
-                                その他のデータ型の場合,
-                                
-                                RGBA (8-8-8-8) データが RGBA (4-4-4-4)に変換されます.
-                                
-                            </para>
-                            
-                        </listitem>
-                        
-                        <listitem>
-                            
-                            <para>
-                                
-                                image_typeがrgb5551の場合, int16 または uint16 の行列は
-                                
-                                RGBAカラーを指定します.
-                                
-                                ただし,アルファチャネル以外の要素は5ビット,
-                                
-                                アルファチャネルは1ビットです.
-                                
-                                その他のデータ型の場合,
-                                
-                                RGBA (8-8-8-8) データが RGBA (5-5-5-1)に変換されます.
-                                
-                            </para>
-                            
-                        </listitem>
-                        
-                        <listitem>
-                            
-                            <para>
-                                
                                 image_typeがargbの場合, int8 または uint8 のハイパー行列は
-                                
                                 ARGB要素,
-                                
                                 doubleのハイパー行列は正規化されたARGB要素(値は0と1の間),
-                                
                                 int8またはuint8の行列(ただし行数は4の倍数)はRGB要素,
-                                
                                 int32の行列はARGBカラー,uint32の行列はARGBカラーを指定します.
-                                
                             </para>
-                            
                         </listitem>
-                        
+                        <listitem>
+                            <para>
+                                image_typeがredの場合, int8またはuint8の行列は
+                                レッドレベルカラー(R-G-B=REG-00-00)となります.
+                                その他の型の場合, data はRGBカラーとみなされ,
+                                レッドカラーに変換されます(赤要素を保持するマスクが適用されます).
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                image_typeがgreenの場合, int8またはuint8の行列は
+                                グリーンレベルカラー(R-G-B=00-GREEN-00)となります.
+                                その他の型の場合, data はRGBカラーとみなされ,
+                                グリーンカラーに変換されます(緑要素を保持するマスクが適用されます).
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                image_typeがblueの場合, int8またはuint8の行列は
+                                ブルーレベルカラー(R-G-B=00-00-BLUE)となります.
+                                その他の型の場合, data はRGBカラーとみなされ,
+                                ブルーカラーに変換されます(青要素を保持するマスクが適用されます).
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                image_typeがrgb332の場合, int8 または uint8 の行列は
+                                RGBカラーを指定します.
+                                ただし,R要素を3ビット,G要素を3ビット,B要素を2ビットで指定します.
+                                その他のデータ型の場合,
+                                RGB (8-8-8) データが RGB (3-3-2)に変換されます.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                image_typeがrgb444の場合, int8 または uint8 の行列は
+                                RGBカラーを指定します.
+                                ただし,各要素は4ビットです.
+                                その他のデータ型の場合,
+                                RGB (8-8-8) データが RGB (4-4-4)に変換されます.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                image_typeがrgb555の場合, int16 または uint16 の行列は
+                                RGBカラーを指定します.
+                                ただし,各要素は5ビットです.
+                                その他のデータ型の場合,
+                                RGB (8-8-8) データが RGB (5-5-5)に変換されます.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                image_typeがrgb4444の場合, int16 または uint16 の行列は
+                                RGBAカラーを指定します.
+                                ただし,各要素は4ビットです.
+                                その他のデータ型の場合,
+                                RGBA (8-8-8-8) データが RGBA (4-4-4-4)に変換されます.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                image_typeがrgb5551の場合, int16 または uint16 の行列は
+                                RGBAカラーを指定します.
+                                ただし,アルファチャネル以外の要素は5ビット,
+                                アルファチャネルは1ビットです.
+                                その他のデータ型の場合,
+                                RGBA (8-8-8-8) データが RGBA (5-5-5-1)に変換されます.
+                            </para>
+                        </listitem>
                     </itemizedlist>
-                    
                 </listitem>
-                
             </varlistentry>
-            
             <varlistentry>
-                
-                <term>clip_state: </term>
-                
+                <term>clip_state</term>
                 <listitem>
-                    
                     <para>
-                        
                         このフィールドにはMatplotの<literal>clip_state</literal>
-                        
                         プロパティの値が含まれます. 値は以下となります :
-                        
                     </para>
-                    
                     <itemizedlist>
-                        
                         <listitem>
-                            
                             <para>
-                                
                                 <literal>"off"</literal> Matplot はクリップされません.
-                                
                             </para>
-                            
                         </listitem>
-                        
                         <listitem>
-                            
                             <para>
-                                
-                                <literal>"clipgrf"</literal> 
-                                
+                                <literal>"clipgrf"</literal>
                                 Matplot は軸ボックスの外側でクリップされます.
-                                
                             </para>
-                            
                         </listitem>
-                        
                         <listitem>
-                            
                             <para>
-                                
                                 <literal>"on"</literal>
-                                
                                 Matplot は<literal>clip_box</literal>
-                                
                                 で指定された矩形の外側でクリップされます.
-                                
                             </para>
-                            
                         </listitem>
-                        
                     </itemizedlist>
-                    
                 </listitem>
-                
             </varlistentry>
-            
             <varlistentry>
-                
-                <term>clip_box: </term>
-                
+                <term>clip_box</term>
                 <listitem>
-                    
                     <para>
-                        
                         このフィールドは<literal>clip_box</literal>プロパティを定義します.
-                        
                         デフォルトで,この値はclip_stateが"off"の場合に空の行列となります.
-                        
-                        その他の場合,ベクトル<literal>[x,y,w,h]</literal> 
-                        
+                        その他の場合,ベクトル<literal>[x,y,w,h]</literal>
                         (左上の点,幅,高さ)が<literal>Matplot</literal>
-                        
                         が表示する範囲を定義しますが,
-                        
                         <literal>clip_state</literal>プロパティの値は変更されません.
-                        
                     </para>
-                    
                 </listitem>
-                
             </varlistentry>
-            
             <varlistentry>
-                
-                <term>user_data: </term>
-                
+                <term>user_data</term>
                 <listitem>
-                    
                     <para>
-                        
                         このフィールドは任意のScilab変数を<literal>Matplot</literal>
-                        
                         データ構造体に保存し,復元する際に使用可能です.
-                        
                     </para>
-                    
                 </listitem>
-                
             </varlistentry>
-            
+            <varlistentry>
+                <term>tag</term>
+                <listitem>
+                    <para>
+                      Single text that can be used as identifier/name of the Matplot object.
+                      <literal>findobj("tag", tag_value)</literal> will then return its full graphic handle.
+                    </para>
+                </listitem>
+            </varlistentry>
         </variablelist>
-        
     </refsection>
-    
     <refsection>
-        
         <title>例</title>
-        
-        <programlisting role="example"><![CDATA[ 
-
-Matplot((1:xget("lastpattern")))
-
-e=gce(); // カレントのエンティティを取得
-
-
-
-e.data=e.data($:-1:1) // 逆順
-
+        <programlisting role="example"><![CDATA[
+nbcolors = size(gcf().color_map, 1);
+Matplot(1:nbcolors)
+e = gce(); // カレントのエンティティを取得
+e.data = e.data($:-1:1) // 逆順
  ]]></programlisting>
-        
         <scilab:image>
-            
-            Matplot((1:xget("lastpattern")));
-            
-            e=gce();
-            
-            e.data=e.data($:-1:1);
-            
+            nbcolors = size(gcf().color_map, 1);
+            Matplot(1:nbcolors)
+            e = gce();
+            e.data = e.data($:-1:1);
         </scilab:image>
-        
     </refsection>
-    
     <refsection role="see also">
-        
         <title>参照</title>
-        
         <simplelist type="inline">
-            
             <member>
-                
-                <link linkend="set">set</link>
-                
-            </member>
-            
-            <member>
-                
-                <link linkend="get">get</link>
-                
-            </member>
-            
-            <member>
-                
-                <link linkend="delete">delete</link>
-                
-            </member>
-            
-            <member>
-                
-                <link linkend="grayplot">grayplot</link>
-                
-            </member>
-            
-            <member>
-                
                 <link linkend="Matplot">Matplot</link>
-                
             </member>
-            
             <member>
-                
                 <link linkend="Matplot1">Matplot1</link>
-                
             </member>
-            
             <member>
-                
-                <link linkend="graphics_entities">graphics_entities</link>
-                
+                <link linkend="grayplot">grayplot</link>
             </member>
-            
             <member>
-                
                 <link linkend="grayplot_properties">grayplot_properties</link>
-                
             </member>
-            
+            <member>
+                <link linkend="xrects">xrects</link>
+            </member>
+            <member>
+                <link linkend="graphics_entities">graphics_entities</link>
+            </member>
         </simplelist>
-        
     </refsection>
-    
     <refsection>
-        
         <title>履歴</title>
-        
         <revhistory>
-            
             <revision>
-                
                 <revnumber>5.5.0</revnumber>
-                
                 <revremark>
-                    
                     <itemizedlist>
-                        
                         <listitem>
-                            
                             プロパティ <literal>image_type</literal>が導入されました.
-                            
                         </listitem>
-                        
                         <listitem>
-                            
                             プロパティ <literal>rect</literal>が導入されました.
-                            
                         </listitem>
-                        
                     </itemizedlist>
-                    
                 </revremark>
-                
             </revision>
-            
         </revhistory>
-        
     </refsection>
-    
 </refentry>
-
-
-

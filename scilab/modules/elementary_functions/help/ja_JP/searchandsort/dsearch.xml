@@ -1,259 +1,259 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="dsearch" xml:lang="ja">
-    
+
     <refnamediv>
-        
+
         <refname>dsearch</refname>
-        
+
         <refpurpose>
-            
+
             指定の分類で行列またはハイパー行列の要素を分配, 配置および数える
-            
+
         </refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        
+
         <title>呼び出し手順</title>
-        
+
         <synopsis>
-            
+
             [i_bin [,counts [,outside]]] = dsearch(X, bins )
-            
+
             [i_bin [,counts [,outside]]] = dsearch(X, bins , pm )
-            
+
         </synopsis>
-        
+
     </refsynopsisdiv>
-    
+
     <refsection>
-        
+
         <title>引数</title>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>X</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         実数,エンコードされた整数,またはテキストの行列またはハイパー行列: 分類するエントリ.
-                        
+
                         複素数と多項式はサポートされません.
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>bins</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         分類を定義する<varname>X</varname>と同じ型
-                        
+
                         (<varname>X</varname>のエンコードされた整数の場合, <varname>bins</varname> は10進数とすることができます)
-                        
+
                         の行または列ベクトル,
-                        
+
                         <itemizedlist>
-                            
+
                             <listitem>
-                                
+
                                 離散型の場合(pm="d"): <varname>bins</varname> は,
-                                
+
                                 <varname>X</varname>のエントリを特定する異なった値となります.
-                                
-                                If <varname>X</varname> が数値 (実数またはエンコードされた整数)の場合, 
-                                
+
+                                If <varname>X</varname> が数値 (実数またはエンコードされた整数)の場合,
+
                                 <varname>bins</varname> は厳密に昇順にソートする必要があります.
-                                
+
                             </listitem>
-                            
+
                             <listitem>
-                                
+
                                 連続の場合 (デフォルト, pm="c"): <varname>bins</varname> は
-                                
+
                                 隣接する間隔の境界です:
-                                
-                                <literal>I1 = [bins(1), bins(2)]</literal>, <literal>I2 = (bins(2), bins(3)]</literal>,..., 
-                                
-                                <literal>In = (bins(n), bins(n+1)]</literal>. 
-                                
+
+                                <literal>I1 = [bins(1), bins(2)]</literal>, <literal>I2 = (bins(2), bins(3)]</literal>,...,
+
+                                <literal>In = (bins(n), bins(n+1)]</literal>.
+
                                 <varname>X</varname>からのエントリはbins(1)に等しいものが
-                                
+
                                 <literal>I1</literal>に含まれることに注意してください.
-                                
+
                                 <varname>bins</varname>の値は厳密に昇順である必要があります:
-                                
+
                                 bins(1) &lt; bins(2) &lt; ... &lt; bins(n).
-                                
+
                                 テキスト処理の場合, 大文字小文字を区別する辞書順が使用されます.
-                                
+
                             </listitem>
-                            
+
                         </itemizedlist>
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>pm</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
-                        "c" (連続, デフォルト) または "d" (離散): 処理モード. 連続モードの場合, 
-                        
+
+                        "c" (連続, デフォルト) または "d" (離散): 処理モード. 連続モードの場合,
+
                         <varname>bins</varname> は分類として隣接する範囲の境界を定義します.
-                        
+
                         離散モードの場合,
-                        
+
                         <varname>bins</varname> は<varname>X</varname>を特定する
-                        
+
                         エントリの値を提供します.
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>i_bin</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
-                        <varname>X</varname>と同じ大きさの行列またはハイパー行列: 
-                        
+
+                        <varname>X</varname>と同じ大きさの行列またはハイパー行列:
+
                         <literal>i_bin(k)</literal> は<varname>X(k)</varname> が属する分類の添字です.
-                        
+
                         <varname>X(k)</varname>がどの分類にも属さない場合, <literal>i_bin(k) = 0</literal>となります.
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>counts</term>
-                
+
                 <listitem>各ビンにおけるXエントリの数.
-                    
+
                     <para>
-                        
-                        連続ケース (pm="c"): 
-                        
+
+                        連続ケース (pm="c"):
+
                         counts(i)は,
-                        
+
                         上記 (<varname>bins</varname>パラメータ参照)の範囲<literal>Ik</literal> に属する
-                        
-                        <varname>X</varname>の要素数です. 
-                        
+
+                        <varname>X</varname>の要素数です.
+
                         bins(1)にちょうど等しい<varname>X</varname>の要素はcounts(1)に含まれます.
-                        
+
                         <varname>counts</varname> の大きさは <varname>bins</varname> - 1 です.
-                        
+
                     </para>
-                    
+
                     <para>
-                        
+
                         離散ケース(pm="d"): <literal>counts(i)</literal> は,
-                        
+
                         <literal>bins(i)</literal>に等しい<varname>X</varname> の要素の数です.
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>outside</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         <literal>bins</literal>のどれにも属さないXのエントリの総数.
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>説明</title>
-        
+
         <para>
-            
+
             各<varname>X(i)</varname>エントリについて,
-            
+
             <varname>dsearch</varname>は,<varname>bins</varname>により定義される
-            
+
             値<literal>bins(j)</literal>または
-            
+
             範囲<literal>(bins(j), bins(j+1)]</literal> について
-            
+
             <varname>X(i)</varname>を含まれるまたは等しいかを決めます.
-            
-            その後, 等しいビンがないまたは有する場合に応じて, 
-            
+
+            その後, 等しいビンがないまたは有する場合に応じて,
+
             <literal>i_bin(i) = j</literal> または 0 を返します.
-            
+
             (最初の範囲が<literal>bins(1)</literal>を含みます)
-            
+
             各ビンの母集団が<varname>counts</varname>により返されます.
-            
+
             ビンに含まれないエントリの総数が<varname>outside</varname> に返されます
-            
+
             (よって<literal>outside = sum(bool2s(i_bin==0))</literal>です).
-            
+
         </para>
-        
+
         <para>
-            
+
             <literal>dsearch(..)</literal> はオーバーロードできます.
-            
+
             デフォルト pm="c" オプションはデータ集合を与える関数の実験的なヒストグラムを計算する
-            
+
             際に使用できます.
-            
+
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>例</title>
-        
+
         <programlisting role="example"><![CDATA[
 // DISCRETE values of TEXT
 // -----------------------
@@ -277,29 +277,29 @@ bins = unique(matrix(strsplit(s, L:L:nC*L-1), 1, nC))
 T
 [i_bin, counts, outside] = dsearch(T, bins)
     ]]></programlisting>
-        
+
         <para>
-            
+
             以下の例では, 3つの範囲
-            
+
             <literal>I1 = [5,11]</literal>,
-            
+
             <literal>I2 = (11,15]</literal> および <literal>I3 = (15,20]</literal>を考えます.
-            
+
             <literal>X = [11 13 1 7 5 2 9]</literal>のエントリの位置をこれらの範囲で探してみます.
-            
+
         </para>
-        
+
         <programlisting role="example"><![CDATA[
 [i_bin, counts, outside] = dsearch([11 13 1 7 5 2 9], [5 11 15 20])
     ]]></programlisting>
-        
+
         <para>
-            
+
             表示される出力:
-            
+
         </para>
-        
+
         <screen><![CDATA[
 -->[i_bin, counts, outside] = dsearch([11 13 1 7 5 2 9], [5 11 15 20])
  outside  =
@@ -309,83 +309,83 @@ T
  i_bin  =
     1.    2.    0.    1.    1.    0.    1.
     ]]></screen>
-        
+
         <para>
-            
+
             ここで,
-            
+
         </para>
-        
+
         <itemizedlist>
-            
+
             <listitem>
-                
+
                 <para>X(1)=11 は範囲 I1, すなわち i_bin(1)=1.</para>
-                
+
             </listitem>
-            
+
             <listitem>
-                
+
                 <para> X(2)=13 は範囲 I2, すなわち i_bin(2)=2.</para>
-                
+
             </listitem>
-            
+
             <listitem>
-                
+
                 <para> X(3)=1 は定義された範囲のどれにも属さない, すなわち i_bin(3)=0.</para>
-                
+
             </listitem>
-            
+
             <listitem>
-                
+
                 <para> X(4)=7 は範囲 I1, すなわち i_bin(4)=1.</para>
-                
+
             </listitem>
-            
+
             <listitem>
-                
+
                 <para>...</para>
-                
+
             </listitem>
-            
+
             <listitem>
-                
+
                 <para> I1 には4個のエントリ (5, 7, 9 および 11), すなわち counts(1)=4.</para>
-                
+
             </listitem>
-            
+
             <listitem>
-                
+
                 <para> I2 のエントリは1個のみ (13), すなわち counts(2)=1.</para>
-                
+
             </listitem>
-            
+
             <listitem>
-                
+
                 <para> I3 にはXのエントリなし, すなわち counts(3)=0.</para>
-                
+
             </listitem>
-            
+
             <listitem>
-                
+
                 <para> 2個のXのエントリは定義された範囲のどれにも属さない(1, 2),  すなわち outside=2.</para>
-                
+
             </listitem>
-            
+
         </itemizedlist>
-        
+
         <programlisting role="example"><![CDATA[
 // Numbers in DISCRETE categories (having specific values)
 // ------------------------------
 [i_bin, counts, outside] = dsearch([11 13 1 7 5 2 9], [5 11 15 20],"d" )
     ]]></programlisting>
-        
+
         <para>
-            
+
             は以下を出力します
-            
+
         </para>
-        
+
         <screen><![CDATA[
 -->[i_bin, counts, outside] = dsearch([11 13 1 7 5 2 9], [5 11 15 20], "d" )
  outside  =
@@ -395,93 +395,93 @@ T
  i_bin  =
     2.    0.    0.    0.    1.    0.    0.
     ]]></screen>
-        
+
         <para>
-            
+
             ここで,
-            
+
         </para>
-        
+
         <itemizedlist>
-            
+
             <listitem>
-                
+
                 <para>
-                    
+
                     X(1)=11 は位置 #2にある集合<literal>bins</literal>, すなわち i_bin(1)=2.
-                    
+
                 </para>
-                
+
             </listitem>
-            
+
             <listitem>
-                
+
                 <para>
-                    
+
                     X(2)=13 は集合<literal>bins</literal>に含まれない, すなわち i_bin(2)=0.
-                    
+
                 </para>
-                
+
             </listitem>
-            
+
             <listitem>
-                
+
                 <para>...</para>
-                
+
             </listitem>
-            
+
             <listitem>
-                
+
                 <para>
-                    
+
                     X(7)=9 は集合<literal>bins</literal>に含まれない, すなわち i_bin(7)=0.
-                    
+
                 </para>
-                
+
             </listitem>
-            
+
             <listitem>
-                
+
                 <para>
-                    
+
                     5に等しいXのエントリ(5)は1つのみ, すなわち, counts(1)=1.
-                    
+
                 </para>
-                
+
             </listitem>
-            
+
             <listitem>
-                
+
                 <para>
-                    
+
                     <literal>bins(4)</literal>に一致するエントリはなし, すなわち counts(4)=0.
-                    
+
                 </para>
-                
+
             </listitem>
-            
+
             <listitem>
-                
+
                 <para>
-                    
+
                     集合<literal>bins</literal>に含まれないXのエントリは5個(すなわち 13, 1, 7, 2, 9), よってoutside=5.
-                    
+
                 </para>
-                
+
             </listitem>
-            
+
         </itemizedlist>
-        
+
         <para>
-            
+
             処理モード(連続または離散)によらず
-            
+
             <literal>bins</literal>の数は昇順にする必要があります.
-            
+
             これ以外の場合, エラーが発生します:
-            
+
         </para>
-        
+
         <screen><![CDATA[
 -->dsearch([11 13 1 7 5 2 9], [2 1])
 !--error 999
@@ -490,37 +490,37 @@ dsearch   : the array s (arg 2) is not well ordered
 !--error 999
 dsearch   : the array s (arg 2) is not well ordered
     ]]></screen>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>高度な例</title>
-        
+
         <para>
-            
-            以下の例では, 
-            
+
+            以下の例では,
+
             [0,1) の一様乱数の経験的ヒストグラムを一様分布関数と比較します.
-            
+
             この比較を行うために, 範囲(pm="c")に基づくデフォルトの探索アルゴリズムを
-            
+
             使用します.
-            
+
             Xを [0,1)の範囲の一様乱数の集合(m=50 000)として生成します.
-            
+
             n=10とし,[0,1]の範囲に等間隔の値を配置し,
-            
+
             関連する範囲を設定します.
-            
+
             次に,各範囲に入るXのエントリの数を数えます:
-            
+
             これは,一様分布関数の経験的ヒストグラムです.
-            
+
             数/mの期待値は 1/(n-1) に等しくなります.
-            
+
         </para>
-        
+
         <programlisting role="example"><![CDATA[
 m = 50000 ;
 n = 10;
@@ -534,43 +534,43 @@ plot(bins(1:n-1), e', "r-");
 legend(["Experiment", "Expectation"]);
 xtitle("Uniform random numbers", "X", "P(X)");
  ]]></programlisting>
-        
+
         <scilab:image>
-            
+
             m = 50000 ;
-            
+
             n = 10;
-            
+
             X = grand(m,1, "def");
-            
+
             bins = linspace(0, 1, n)';
-            
+
             [i_bin, counts] = dsearch(X, bins);
-            
+
             e = 1/(n-1)*ones(1, n-1);
-            
+
             scf() ;
-            
+
             plot(bins(1:n-1), counts/m, "bo");
-            
+
             plot(bins(1:n-1), e', "r-");
-            
+
             legend(["Experiment","Expectation"]);
-            
+
             xtitle("Uniform random numbers", "X", "P(X)");
-            
+
         </scilab:image>
-        
+
         <para>
-            
+
             以下の例では,二項分布乱数のヒストグラムを
-            
+
             N=8 および p=0.5の二項確率分布関数B(N,p)と比較します.
-            
+
             この比較を行うために, 集合に基づく離散アルゴリズム(pm="d")を使用します.
-            
+
         </para>
-        
+
         <programlisting role="example"><![CDATA[
 N = 8 ;
 p = 0.5;
@@ -586,43 +586,43 @@ plot(bins, Pexa', "r-");
 xtitle("Binomial distribution B(8,0.5)","X","P(X)");
 legend(["Experiment","Expectation"]);
 ]]></programlisting>
-        
+
         <scilab:image>
-            
+
             N = 8 ;
-            
+
             p = 0.5;
-            
+
             m = 50000;
-            
+
             X = grand(m,1,"bin",N,p);
-            
+
             bins = (0:N)';
-            
+
             [i_bin, counts] = dsearch(X, bins, "d");
-            
+
             Pexp = counts/m;
-            
+
             Pexa = binomial(p,N);
-            
+
             scf() ;
-            
+
             plot(bins, Pexp, "bo");
-            
+
             plot(bins, Pexa',"r-");
-            
+
             xtitle("Binomial distribution B(8,0.5)","X","P(X)");
-            
+
             legend(["Experiment","Expectation"]);
-            
+
         </scilab:image>
-        
+
         <para>
-            
+
             以下の例では,データ集合を補間するたねい離散エルミート多項式を使用します.
-            
+
         </para>
-        
+
         <programlisting role="example"><![CDATA[
       // define Hermite base functions
       function y=Ll(t,k,x)
@@ -660,116 +660,116 @@ legend(["Experiment","Expectation"]);
       // NOTE : it can be verified by adding these ones :
       // YY = interp(X,x,y,d); plot2d(X,YY,3,"000")
       ]]></programlisting>
-        
+
         <scilab:image>
-            
+
             function y=Ll(t,k,x)
-            
+
             y=(t-x(k+1))./(x(k)-x(k+1))
-            
+
             endfunction
-            
+
             function y=Lr(t,k,x)
-            
+
             y=(t-x(k))./(x(k+1)-x(k))
-            
+
             endfunction
-            
+
             function y=Hl(t,k,x)
-            
+
             y=(1-2*(t-x(k))./(x(k)-x(k+1))).*Ll(t,k,x).^2
-            
+
             endfunction
-            
+
             function y=Hr(t,k,x)
-            
+
             y=(1-2*(t-x(k+1))./(x(k+1)-x(k))).*Lr(t,k,x).^2
-            
+
             endfunction
-            
+
             function y=Kl(t,k,x)
-            
+
             y=(t-x(k)).*Ll(t,k,x).^2
-            
+
             endfunction
-            
+
             function y=Kr(t,k,x)
-            
+
             y=(t-x(k+1)).*Lr(t,k,x).^2
-            
+
             endfunction
-            
+
             x = [0 ; 0.2 ; 0.35 ; 0.5 ; 0.65 ; 0.8 ;  1];
-            
+
             y = [0 ; 0.1 ;-0.1  ; 0   ; 0.4  ;-0.1 ;  0];
-            
+
             d = [1 ; 0   ; 0    ; 1   ; 0    ; 0   ; -1];
-            
+
             X = linspace(0, 1, 200)';
-            
+
             i_bin = dsearch(X, x);
-            
+
             Y = y(i_bin).*Hl(X,i_bin) + y(i_bin+1).*Hr(X,i_bin) + d(i_bin).*Kl(X,i_bin) + d(i_bin+1).*Kr(X,i_bin);
-            
+
             scf();
-            
+
             plot(X,Y,"k-");
-            
+
             plot(x,y,"bo")
-            
+
             xtitle("Hermite piecewise polynomial");
-            
+
             legend(["Polynomial","Data"]);
-            
+
         </scilab:image>
-        
+
     </refsection>
-    
+
     <refsection role="see also">
-        
+
         <title>参照</title>
-        
+
         <simplelist type="inline">
-            
+
             <member>
-                
+
                 <link linkend="find">find</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="members">members</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="tabul">tabul</link>
-                
+
             </member>
-            
+
         </simplelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>履歴</title>
-        
+
         <revhistory>
-            
+
             <revision>
-                
+
                 <revnumber>5.5.0</revnumber>
-                
+
                 <revremark>ハイパー行列, エンコードされた整数,およびテキストへの拡張.</revremark>
-                
+
             </revision>
-            
+
         </revhistory>
-        
+
     </refsection>
-    
+
 </refentry>
 

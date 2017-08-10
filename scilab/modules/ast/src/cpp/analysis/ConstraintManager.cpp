@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2015 - Scilab Enterprises - Calixte DENIZET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -33,11 +36,11 @@ std::vector<std::shared_ptr<InferenceConstraint>> ConstraintManager::init()
     v.emplace_back(new GreaterConstraint());
     // Is a value strict greater than an other ?
     v.emplace_back(new StrictGreaterConstraint());
-   // Valid index
+    // Valid index
     v.emplace_back(new ValidIndexConstraint());
     // Valid range
     v.emplace_back(new ValidRangeConstraint());
- 
+
     return v;
 }
 
@@ -53,23 +56,37 @@ bool ConstraintManager::check(const MPolyConstraintSet & set, const std::vector<
     InferenceConstraint::Result res = set.check((parent && parent->function) ? parent->function->getGVN() : function->getGVN(), values);
     switch (res)
     {
-        case InferenceConstraint::Result::RESULT_TRUE:
+        case InferenceConstraint::RESULT_TRUE:
         {
-            mpConstraints.add(set);
-            set.applyConstraints(values);
+            if (!set.empty())
+            {
+                verified.add(set);
+                set.applyConstraints(values);
+            }
             return true;
         }
-        case InferenceConstraint::Result::RESULT_FALSE:
+        case InferenceConstraint::RESULT_FALSE:
+            if (!set.empty())
+            {
+                unverified.emplace(set);
+            }
             return false;
-        case InferenceConstraint::Result::RESULT_DUNNO:
+        case InferenceConstraint::RESULT_DUNNO:
         {
             if (parent && parent->function)
             {
                 const bool ret = parent->check(set.getMPConstraints(values), parent->function->getInValues());
-                if (ret)
+                if (!set.empty())
                 {
-                    mpConstraints.add(set);
-                    set.applyConstraints(values);
+                    if (ret)
+                    {
+                        verified.add(set);
+                        set.applyConstraints(values);
+                    }
+                    else
+                    {
+                        unverified.emplace(set);
+                    }
                 }
                 return ret;
             }
@@ -83,70 +100,111 @@ bool ConstraintManager::check(const MPolyConstraintSet & set, const std::vector<
 
 bool ConstraintManager::check(Kind kind, const std::vector<GVN::Value *> & values)
 {
-    const InferenceConstraint & ic = *generalConstraints[kind];
-    InferenceConstraint::Result res = ic.check(function->getGVN(), values);
-    //std::wcerr << "DEBUG2=" << res << std::endl;
-
-    switch (res)
+    if (function)
     {
-        case InferenceConstraint::Result::RESULT_TRUE:
+        const InferenceConstraint & ic = *generalConstraints[kind];
+        InferenceConstraint::Result res = ic.check(function->getGVN(), values);
+        const MPolyConstraintSet set = ic.getMPConstraints(values);
+        //std::wcerr << "DEBUG2=" << res << std::endl;
+
+        switch (res)
         {
-            mpConstraints.add(ic.getMPConstraints(values));
-            ic.applyConstraints(values);
-            return true;
-        }
-        case InferenceConstraint::Result::RESULT_FALSE:
-            return false;
-        case InferenceConstraint::Result::RESULT_DUNNO:
-        {
-            if (function)
+            case InferenceConstraint::RESULT_TRUE:
+            {
+                if (!set.empty())
+                {
+                    verified.add(set);
+                    ic.applyConstraints(values);
+                }
+                return true;
+            }
+            case InferenceConstraint::RESULT_FALSE:
+                if (!set.empty())
+                {
+                    unverified.emplace(set);
+                }
+                return false;
+            case InferenceConstraint::RESULT_DUNNO:
             {
                 MPolyConstraintSet set = ic.getMPConstraints(values);
                 const bool ret = check(set, function->getInValues());
-                if (ret)
+
+                if (!set.empty())
                 {
-                    mpConstraints.add(set);
-                    ic.applyConstraints(values);
+                    if (ret)
+                    {
+                        verified.add(set);
+                        ic.applyConstraints(values);
+                    }
+                    else
+                    {
+                        unverified.emplace(set);
+                    }
                 }
                 return ret;
             }
-            return false;
         }
+    }
+
+    return false;
+}
+
+bool ConstraintManager::checkGlobalConstant(const symbol::Symbol & sym)
+{
+    if (constantConstraints.find(sym) == constantConstraints.end())
+    {
+        // TODO: fix that !!!
+        const bool ret = true; //symbol::Context::getInstance()->isOriginalSymbol(sym);
+        if (ret)
+        {
+            ConstraintManager * cm = this;
+            while (cm)
+            {
+                cm->constantConstraints.emplace(sym);
+                cm = cm->parent;
+            }
+        }
+        return ret;
+    }
+    else
+    {
+        return true;
     }
 }
 
-    bool ConstraintManager::checkGlobalConstant(const symbol::Symbol & sym)
+bool ConstraintManager::checkGlobalConstants(const std::set<symbol::Symbol> & gc)
+{
+    for (const auto sym : gc)
     {
-	if (constantConstraints.find(sym) == constantConstraints.end())
-	{
-	    // TODO: fix that !!!
-	    const bool ret = true; //symbol::Context::getInstance()->isOriginalSymbol(sym);
-	    if (ret)
-	    {
-		ConstraintManager * cm = this;
-		while (cm)
-		{
-		    cm->constantConstraints.emplace(sym);
-		    cm = cm->parent;
-		}
-	    }
-	    return ret;
-	}
-	else
-	{
-	    return true;
-	}
+        if (!symbol::Context::getInstance()->isOriginalSymbol(sym))
+        {
+            return false;
+        }
     }
+    return true;
+}
 
-    bool ConstraintManager::checkGlobalConstants(const std::set<symbol::Symbol> & gc)
-	{
-	    for (const auto sym : gc)
-	    {
-		if (!symbol::Context::getInstance()->isOriginalSymbol(sym))
-		{
-		    return false;
-		}
-	    }
-	    return true;
-	}
+std::wostream & operator<<(std::wostream & out, const ConstraintManager & cm)
+{
+    if (!cm.verified.empty())
+    {
+        out << L"Verified: " << cm.verified << L'\n';
+    }
+    if (!cm.unverified.empty())
+    {
+        out << L"Unverified: ";
+        for (const auto & unv : cm.unverified)
+        {
+            out << unv << L' ';
+        }
+        out << L'\n';
+    }
+    if (!cm.constantConstraints.empty())
+    {
+        out << L"Constants: ";
+        tools::printSet(cm.constantConstraints, out);
+        out << L'\n';
+    }
+    return out;
+}
 }

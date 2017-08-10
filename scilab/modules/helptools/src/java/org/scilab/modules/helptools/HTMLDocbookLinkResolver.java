@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -40,13 +43,13 @@ public class HTMLDocbookLinkResolver extends DefaultHandler {
 
     private static boolean isCaseInsensitiveOS = System.getProperty("os.name").toLowerCase().contains("windows");
 
-    private Map<String, String> mapId = new LinkedHashMap<String, String>();
-    private List<String> listIdIgnoreCase = new ArrayList<String>();
-    private Map<String, String> toc = new LinkedHashMap<String, String>();
-    private Map<String, String> mapIdPurpose = new LinkedHashMap<String, String>();
-    private Map<String, String> mapIdRefname = new LinkedHashMap<String, String>();
-    private Map<String, TreeId> mapTreeId = new HashMap<String, TreeId>();
-    private Map<String, String> mapIdDeclaringFile = new HashMap<String, String>();
+    private Map<String, String> mapId = new LinkedHashMap<>();
+    private List<String> listIdIgnoreCase = new ArrayList<>();
+    private Map<String, String> toc = new LinkedHashMap<>();
+    private Map<String, String> mapIdPurpose = new LinkedHashMap<>();
+    private Map<String, String> mapIdRefname = new LinkedHashMap<>();
+    private Map<String, TreeId> mapTreeId = new HashMap<>();
+    private Map<String, String> mapIdDeclaringFile = new HashMap<>();
     private TreeId tree = new TreeId(null, "root");
 
     private TreeId currentLeaf = tree;
@@ -188,6 +191,12 @@ public class HTMLDocbookLinkResolver extends DefaultHandler {
             currentLeaf.add(leaf);
             currentLeaf = leaf;
         } else if (id != null && current != null) {
+            if (mapIdDeclaringFile.containsKey(id)) {
+                String prev = mapIdDeclaringFile.get(id);
+                throw new SAXException("The id " + id + " in file " + currentFileName + " was previously declared in " + prev);
+            } else {
+                mapIdDeclaringFile.put(id, currentFileName);
+            }
             mapId.put(id, current + "#" + id);
         }
     }
@@ -318,7 +327,7 @@ public class HTMLDocbookLinkResolver extends DefaultHandler {
         return "No id attribute in <refentry> or <refnamediv> in file " + str + " at line " + locator.getLineNumber();
     }
 
-    class TreeId {
+    public class TreeId {
 
         String id;
         TreeId parent;
@@ -336,7 +345,7 @@ public class HTMLDocbookLinkResolver extends DefaultHandler {
 
         void add(TreeId child) {
             if (children == null) {
-                children = new ArrayList<TreeId>();
+                children = new ArrayList<>();
             }
             child.pos = children.size();
             children.add(child);

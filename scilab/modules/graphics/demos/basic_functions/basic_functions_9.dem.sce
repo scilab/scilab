@@ -19,7 +19,8 @@ function demo_basic_functions9()
 
     x = -2:0.1:2;
     y = x;
-    z = eval3d(__milk_drop, x, y);
+    [X,Y] = ndgrid(x,y);
+    z = __milk_drop(X,Y);
     plot3d(x, y, z);
     e = gce();
     e.color_flag = 1;

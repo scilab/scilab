@@ -6,6 +6,3 @@ EXPORTS
 ;core
 ;
 clunit_
-readinter_
-rewindinter_
-backspaceinter_

@@ -3,110 +3,113 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="classmarkov">
-    
+
     <refnamediv>
-        
+
         <refname>classmarkov</refname>
-        
+
         <refpurpose>マルコフ行列の再帰的かつ一時的なクラス</refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        
+
         <title>呼び出し手順</title>
-        
+
         <synopsis>[perm,rec,tr,indsRec,indsT]=classmarkov(M)</synopsis>
-        
+
     </refsynopsisdiv>
-    
+
     <refsection>
-        
+
         <title>引数</title>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>M</term>
-                
+
                 <listitem>
-                    
+
                     <para>実数 N x N マルコフ行列. 各行のエントリの合計を
-                        
+
                         1に加えたもの
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>perm</term>
-                
+
                 <listitem>
-                    
+
                     <para>整数交換ベクトル.</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>rec, tr</term>
-                
+
                 <listitem>
-                    
+
                     <para>整数ベクトル, 数値 (各再帰的クラスにおける状態量の数,
-                        
+
                         一時的な状態量の数).
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>indsRec,indsT</term>
-                
+
                 <listitem>
-                    
+
                     <para>整数ベクトル. (再帰的および一時的な状態量の添字).</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>説明</title>
-        
+
         <para>
-            
+
             以下のような置換ベクトル<literal>perm</literal>を返します
-            
+
         </para>
-        
-        <programlisting role=""><![CDATA[ 
+
+        <programlisting role=""><![CDATA[
 M(perm,perm) = [M11 0 0 0 0   0]
                [0 M22 0 0     0]
                [0 0 M33       0]
@@ -114,63 +117,63 @@ M(perm,perm) = [M11 0 0 0 0   0]
                [0 0       Mrr 0]
                [* *        *  Q]
  ]]></programlisting>
-        
+
         <para>
-            
+
             各 <literal>Mii</literal> は<literal>rec(i)  i=1,..,r</literal>次の
-            
+
             マルコフ行列です.
-            
+
             <literal>Q</literal>は,<literal>tr</literal>次のサブマルコフ行列です.
-            
+
             1 から sum(rec)の状態量は再帰的で,
-            
+
             r+1からnは一時的な状態量です.
-            
+
             <literal>perm=[indsRec,indsT]</literal>となります.
-            
+
             ただし, indsRec は大きさ sum(rec)のベクトル,
-            
+
             indsT は大きさ trのベクトルです.
-            
+
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>例</title>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
 //P は2つの再帰的なクラス (2および1個の状態量を有する) 2つの一時的な状態量
 P=genmarkov([2,1],2,'perm')
 [perm,rec,tr,indsRec,indsT]=classmarkov(P);
 P(perm,perm)
  ]]></programlisting>
-        
+
     </refsection>
-    
+
     <refsection role="see also">
-        
+
         <title>参照</title>
-        
+
         <simplelist type="inline">
-            
+
             <member>
-                
+
                 <link linkend="genmarkov">genmarkov</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="eigenmarkov">eigenmarkov</link>
-                
+
             </member>
-            
+
         </simplelist>
-        
+
     </refsection>
-    
+
 </refentry>
 

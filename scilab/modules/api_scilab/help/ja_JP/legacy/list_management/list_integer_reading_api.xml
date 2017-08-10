@@ -1,0 +1,677 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009  - DIGITEO - Antoine ELIAS
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="list_integer_reading_API" xml:lang="ja">
+    <refnamediv>
+        <refname>整数の読み込み (Scilab ゲートウェイ)</refname>
+        <refpurpose>
+            リスト中の整数行列を読み込む方法.
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <para>入力引数プロファイル:</para>
+        <para>符号あり整数 :</para>
+        <synopsis>SciErr getMatrixOfInteger8InList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, char** _pcData)</synopsis>
+        <synopsis>SciErr getMatrixOfInteger16InList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, short** _psData)</synopsis>
+        <synopsis>SciErr getMatrixOfInteger32InList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int** _piData)</synopsis>
+        <para>符号無し整数 :</para>
+        <synopsis>SciErr getMatrixOfUnsignedInteger8InList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned char** _pucData)</synopsis>
+        <synopsis>SciErr getMatrixOfUnsignedInteger16InList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned short** _pusData)</synopsis>
+        <synopsis>SciErr getMatrixOfUnsignedInteger32InList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned int** _puiData)</synopsis>
+        <para>名前指定変数プロファイル:</para>
+        <para>符号あり整数 :</para>
+        <synopsis>SciErr readMatrixOfIntger8InNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, char* _pcData)</synopsis>
+        <synopsis>SciErr readMatrixOfIntger16InNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, short* _psData)</synopsis>
+        <synopsis>SciErr readMatrixOfIntger32InNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piData)</synopsis>
+        <para>符号無し整数 :</para>
+        <synopsis>SciErr readMatrixOfUnsignedInteger8InNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned char* _pucData)</synopsis>
+        <synopsis>SciErr readMatrixOfUnsignedInteger16InNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned short* _pusData)</synopsis>
+        <synopsis>SciErr readMatrixOfUnsignedInteger32InNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned int* _puiData)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>_pvCtx</term>
+                <listitem>
+                    <para>
+                        Scilab環境ポインタ, api_scilab.hで定義された"pvApiCtx"で指定.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piParent</term>
+                <listitem>
+                    <para>
+                        新規要素の親のアドレス.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_pstName</term>
+                <listitem>
+                    <para>
+                        "名前指定" 関数の変数名.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_iItemPos</term>
+                <listitem>
+                    <para>
+                        リストにおける新規要素の位置.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piRows</term>
+                <listitem>
+                    <para>
+                        返される変数の行数.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piCols</term>
+                <listitem>
+                    <para>
+                        返される変数の列数.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_pcData, _pucData, _psData, _pusData, _piData, _puiData</term>
+                <listitem>
+                    <para>
+                        返されるデータ配列 (大きさ: _iRows * _iCols)のアドレス.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>SciErr</term>
+                <listitem>
+                    <para>
+                        エラーメッセージの履歴と最初のエラー番号が保存されるエラー構造体.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>このヘルプはリスト中の整数行列を読み込む方法を説明します.</para>
+    </refsection>
+    <refsection>
+        <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/common_read_api.c-->
+        <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/common_read_api.tst-->
+        <!--Lib_name: common_read-->
+        <!--Func_list: common_read-->
+        <title>ゲートウェイソース</title>
+        <programlisting role="code_gateway"><![CDATA[
+#include "api_scilab.h"
+static int iTab = 0;
+void insert_indent(void)
+{
+	int i = 0;
+	for(i = 0 ; i < iTab ; i++)
+	{
+		sciprint("\t");
+	}
+}
+int get_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos);
+int get_list_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos);
+int get_double_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos);
+int get_poly_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos);
+int get_boolean_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos);
+int get_sparse_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos);
+int get_bsparse_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos);
+int get_integer_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos);
+int get_string_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos);
+int get_pointer_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos);
+int common_read(char *fname,void* pvApiCtx)
+{
+	SciErr sciErr;
+	int iItem       = 0;
+	int iRet        = 0;
+	int *piAddr     = NULL;
+	CheckInputArgument(pvApiCtx, 1, 1);
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	get_info(1, NULL, piAddr, 0);
+	AssignOutputVariable(pvApiCtx, 1) = 0;
+	return 0;
+}
+int get_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
+{
+	SciErr sciErr;
+	int iRet    = 0;
+	int iType   = 0;
+	sciErr = getVarType(pvApiCtx, _piAddr, &iType);
+	switch(iType)
+	{
+	case sci_matrix :
+		iRet = get_double_info(_iRhs, _piParent, _piAddr, _iItemPos);
+		break;
+	case sci_poly :
+		iRet = get_poly_info(_iRhs, _piParent, _piAddr, _iItemPos);
+		break;
+	case sci_boolean :
+		iRet = get_boolean_info(_iRhs, _piParent, _piAddr, _iItemPos);
+		break;
+	case sci_sparse :
+		iRet = get_sparse_info(_iRhs, _piParent, _piAddr, _iItemPos);
+		break;
+	case sci_boolean_sparse :
+		iRet = get_bsparse_info(_iRhs, _piParent, _piAddr, _iItemPos);
+		break;
+	case sci_ints :
+		iRet = get_integer_info(_iRhs, _piParent, _piAddr, _iItemPos);
+		break;
+	case sci_strings :
+		iRet = get_string_info(_iRhs, _piParent, _piAddr, _iItemPos);
+		break;
+	case sci_list :
+		insert_indent();
+		sciprint("List ");
+		iRet = get_list_info(_iRhs, _piParent, _piAddr, _iItemPos);
+		break;
+	case sci_tlist :
+		insert_indent();
+		sciprint("TList ");
+		iRet = get_list_info(_iRhs, _piParent, _piAddr, _iItemPos);
+		break;
+	case sci_mlist :
+		insert_indent();
+		sciprint("MList ");
+		iRet = get_list_info(_iRhs, _piParent, _piAddr, _iItemPos);
+		break;
+	case sci_pointer :
+		iRet = get_pointer_info(_iRhs, _piParent, _piAddr, _iItemPos);
+		break;
+	default :
+		insert_indent();
+		sciprint("Unknown type\n");
+		return 1;
+	}
+	return iRet;
+}
+int get_list_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
+{
+	SciErr sciErr;
+	int i;
+	int iRet        = 0;
+	int iItem       = 0;
+	int* piChild    = NULL;
+	sciErr = getListItemNumber(pvApiCtx, _piAddr, &iItem);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	sciprint("(%d)\n", iItem);
+	for(i = 0 ; i < iItem ; i++)
+	{
+		sciErr = getListItemAddress(pvApiCtx, _piAddr, i + 1, &piChild);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
+		}
+		iTab++;
+		iRet = get_info(_iRhs, _piAddr, piChild, i + 1);
+		iTab--;
+	}
+	return 0;;
+}
+int get_double_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
+{
+	SciErr sciErr;
+	int iRows           = 0;
+	int iCols           = 0;
+	double* pdblReal    = NULL;
+	double* pdblImg     = NULL;
+	if(_iItemPos == 0)
+	{//not in list
+		if(isVarComplex(pvApiCtx, _piAddr))
+		{
+			sciErr = getComplexMatrixOfDouble(pvApiCtx, _piAddr, &iRows, &iCols, &pdblReal, &pdblImg);
+		}
+		else
+		{
+			sciErr = getMatrixOfDouble(pvApiCtx, _piAddr, &iRows, &iCols, &pdblReal);
+		}
+	}
+	else
+	{
+		if(isVarComplex(pvApiCtx, _piAddr))
+		{
+			sciErr = getComplexMatrixOfDoubleInList(pvApiCtx, _piParent, _iItemPos, &iRows, &iCols, &pdblReal, &pdblImg);
+		}
+		else
+		{
+			sciErr = getMatrixOfDoubleInList(pvApiCtx, _piParent, _iItemPos, &iRows, &iCols, &pdblReal);
+		}
+	}
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	insert_indent();
+	sciprint("Double (%d x %d)\n", iRows, iCols);
+	return 0;;
+}
+int get_poly_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
+{
+	SciErr sciErr;
+	int i;
+	int iLen            = 0;
+	int iRows           = 0;
+	int iCols           = 0;
+	char pstVar[16];
+	int* piCoeff        = NULL;
+	double** pdblReal   = NULL;
+	double** pdblImg    = NULL;
+	sciErr = getPolyVariableName(pvApiCtx, _piAddr, pstVar, &iLen);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	if(_iItemPos == 0)
+	{//not in list
+		sciErr = getMatrixOfPoly(pvApiCtx, _piAddr, &iRows, &iCols, NULL, NULL);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
+		}
+		piCoeff     = (int*)malloc(sizeof(int) * iRows * iCols);
+		sciErr = getMatrixOfPoly(pvApiCtx, _piAddr, &iRows, &iCols, piCoeff, NULL);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
+		}
+		pdblReal    = (double**)malloc(sizeof(double*) * iRows * iCols);
+		pdblImg     = (double**)malloc(sizeof(double*) * iRows * iCols);
+		for(i = 0 ; i < iRows * iCols ; i++)
+		{
+			pdblReal[i] = (double*)malloc(sizeof(double) * piCoeff[i]);
+			pdblImg[i]  = (double*)malloc(sizeof(double) * piCoeff[i]);
+		}
+		if(isVarComplex(pvApiCtx, _piAddr))
+		{
+			sciErr = getComplexMatrixOfPoly(pvApiCtx, _piAddr, &iRows, &iCols, piCoeff, pdblReal, pdblImg);
+			if(sciErr.iErr)
+			{
+				printError(&sciErr, 0);
+				return 0;
+			}
+		}
+		else
+		{
+			sciErr = getMatrixOfPoly(pvApiCtx, _piAddr, &iRows, &iCols, piCoeff, pdblReal);
+			if(sciErr.iErr)
+			{
+				printError(&sciErr, 0);
+				return 0;
+			}
+		}
+	}
+	else
+	{
+		sciErr = getMatrixOfPolyInList(pvApiCtx, _piParent, _iItemPos, &iRows, &iCols, NULL, NULL);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
+		}
+		piCoeff = (int*)malloc(sizeof(int) * iRows * iCols);
+		sciErr = getMatrixOfPolyInList(pvApiCtx, _piParent, _iItemPos, &iRows, &iCols, piCoeff, NULL);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
+		}
+		pdblReal    = (double**)malloc(sizeof(double*) * iRows * iCols);
+		pdblImg     = (double**)malloc(sizeof(double*) * iRows * iCols);
+		for(i = 0 ; i < iRows * iCols ; i++)
+		{
+			pdblReal[i] = (double*)malloc(sizeof(double) * piCoeff[i]);
+			pdblImg[i]  = (double*)malloc(sizeof(double) * piCoeff[i]);
+		}
+		if(isVarComplex(pvApiCtx, _piAddr))
+		{
+			sciErr = getComplexMatrixOfPolyInList(pvApiCtx, _piParent, _iItemPos, &iRows, &iCols, piCoeff, pdblReal, pdblImg);
+		}
+		else
+		{
+			sciErr = getMatrixOfPolyInList(pvApiCtx, _piParent, _iItemPos, &iRows, &iCols, piCoeff, pdblReal);
+		}
+	}
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	insert_indent();
+	sciprint("Poly  (%d x %d), varname : \'%s\'\n", iRows, iCols, pstVar);
+	for(i = 0 ; i < iRows * iCols ; i++)
+	{
+		free(pdblReal[i]);
+		free(pdblImg[i]);
+	}
+	free(pdblReal);
+	free(pdblImg);
+	free(piCoeff);
+	return 0;;
+}
+int get_boolean_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
+{
+	SciErr sciErr;
+	int iRows       = 0;
+	int iCols       = 0;
+	int* piBool     = NULL;
+	if(_iItemPos == 0)
+	{
+		sciErr = getMatrixOfBoolean(pvApiCtx, _piAddr, &iRows, &iCols, &piBool);
+	}
+	else
+	{
+		sciErr = getMatrixOfBooleanInList(pvApiCtx, _piParent, _iItemPos, &iRows, &iCols, &piBool);
+	}
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	insert_indent();
+	sciprint("Boolean (%d x %d)\n", iRows, iCols);
+	return 0;
+}
+int get_sparse_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
+{
+	SciErr sciErr;
+	int iRows           = 0;
+	int iCols           = 0;
+	int iItem           = 0;
+	int* piNbRow        = NULL;
+	int* piColPos       = NULL;
+	double* pdblReal    = NULL;
+	double* pdblImg     = NULL;
+	if(_iItemPos == 0)
+	{//Not in list
+		if(isVarComplex(pvApiCtx, _piAddr))
+		{
+			sciErr = getComplexSparseMatrix(pvApiCtx, _piAddr, &iRows, &iCols, &iItem, &piNbRow, &piColPos, &pdblReal, &pdblImg);
+		}
+		else
+		{
+			sciErr = getSparseMatrix(pvApiCtx, _piAddr, &iRows, &iCols, &iItem, &piNbRow, &piColPos, &pdblReal);
+		}
+	}
+	else
+	{
+		if(isVarComplex(pvApiCtx, _piAddr))
+		{
+			sciErr = getComplexSparseMatrixInList(pvApiCtx, _piParent, _iItemPos, &iRows, &iCols, &iItem, &piNbRow, &piColPos, &pdblReal, &pdblImg);
+		}
+		else
+		{
+			sciErr = getSparseMatrixInList(pvApiCtx, _piParent, _iItemPos, &iRows, &iCols, &iItem, &piNbRow, &piColPos, &pdblReal);
+		}
+	}
+	insert_indent();
+	sciprint("Sparse (%d x %d), Item(s) : %d \n", iRows, iCols, iItem);
+	return 0;;
+}
+int get_bsparse_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
+{
+	SciErr sciErr;
+	int iRows       = 0;
+	int iCols       = 0;
+	int iItem       = 0;
+	int* piNbRow    = NULL;
+	int* piColPos   = NULL;
+	if(_iItemPos == 0)
+	{//Not in list
+		sciErr = getBooleanSparseMatrix(pvApiCtx, _piAddr, &iRows, &iCols, &iItem, &piNbRow, &piColPos);
+	}
+	else
+	{
+		sciErr = getBooleanSparseMatrixInList(pvApiCtx, _piParent, _iItemPos, &iRows, &iCols, &iItem, &piNbRow, &piColPos);
+	}
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	insert_indent();
+	sciprint("Boolean Sparse (%d x %d), Item(s) : %d \n", iRows, iCols, iItem);
+	return 0;;
+}
+int get_integer_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
+{
+	SciErr sciErr;
+	int iPrec               = 0;
+	int iRows               = 0;
+	int iCols               = 0;
+	char* pcData            = NULL;
+	short* psData           = NULL;
+	int* piData             = NULL;
+	unsigned char* pucData  = NULL;
+	unsigned short* pusData = NULL;
+	unsigned int* puiData   = NULL;
+	if(_iItemPos == 0)
+	{//Not in list
+		sciErr = getMatrixOfIntegerPrecision(pvApiCtx, _piAddr, &iPrec);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
+		}
+		switch(iPrec)
+		{
+		case SCI_INT8 :
+			sciErr = getMatrixOfInteger8(pvApiCtx, _piAddr, &iRows, &iCols, &pcData);
+			break;
+		case SCI_INT16 :
+			sciErr = getMatrixOfInteger16(pvApiCtx, _piAddr, &iRows, &iCols, &psData);
+			break;
+		case SCI_INT32 :
+			sciErr = getMatrixOfInteger32(pvApiCtx, _piAddr, &iRows, &iCols, &piData);
+			break;
+		case SCI_UINT8 :
+			sciErr = getMatrixOfUnsignedInteger8(pvApiCtx, _piAddr, &iRows, &iCols, &pucData);
+			break;
+		case SCI_UINT16 :
+			sciErr = getMatrixOfUnsignedInteger16(pvApiCtx, _piAddr, &iRows, &iCols, &pusData);
+			break;
+		case SCI_UINT32 :
+			sciErr = getMatrixOfUnsignedInteger32(pvApiCtx, _piAddr, &iRows, &iCols, &puiData);
+			break;
+		default :
+			return 1;
+		}
+	}
+	else
+	{
+		sciErr = getMatrixOfIntegerPrecision(pvApiCtx, _piAddr, &iPrec);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
+		}
+		switch(iPrec)
+		{
+		case SCI_INT8 :
+			sciErr = getMatrixOfInteger8InList(pvApiCtx, _piParent, _iItemPos, &iRows, &iCols, &pcData);
+			break;
+		case SCI_INT16 :
+			sciErr = getMatrixOfInteger16InList(pvApiCtx, _piParent, _iItemPos, &iRows, &iCols, &psData);
+			break;
+		case SCI_INT32 :
+			sciErr = getMatrixOfInteger32InList(pvApiCtx, _piParent, _iItemPos, &iRows, &iCols, &piData);
+			break;
+		case SCI_UINT8 :
+			sciErr = getMatrixOfUnsignedInteger8InList(pvApiCtx, _piParent, _iItemPos, &iRows, &iCols, &pucData);
+			break;
+		case SCI_UINT16 :
+			sciErr = getMatrixOfUnsignedInteger16InList(pvApiCtx, _piParent, _iItemPos, &iRows, &iCols, &pusData);
+			break;
+		case SCI_UINT32 :
+			sciErr = getMatrixOfUnsignedInteger32InList(pvApiCtx, _piParent, _iItemPos, &iRows, &iCols, &puiData);
+			break;
+		default :
+			return 1;
+		}
+	}
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	insert_indent();
+	if(iPrec > 10)
+	{
+		sciprint("Unsigned ");
+	}
+	sciprint("Integer %d bits (%d x %d)\n", (iPrec % 10) * 8, iRows, iCols);
+	return 0;;
+}
+int get_string_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
+{
+	SciErr sciErr;
+	int i;
+	int iRows       = 0;
+	int iCols       = 0;
+	int* piLen      = NULL;
+	char **pstData  = NULL;
+	if(_iItemPos == 0)
+	{//Not in list
+		sciErr = getMatrixOfString(pvApiCtx, _piAddr, &iRows, &iCols, NULL, NULL);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
+		}
+		piLen = (int*)malloc(sizeof(int) * iRows * iCols);
+		sciErr = getMatrixOfString(pvApiCtx, _piAddr, &iRows, &iCols, piLen, NULL);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
+		}
+		pstData = (char**)malloc(sizeof(char*) * iRows * iCols);
+		for(i = 0 ; i < iRows * iCols ; i++)
+		{
+			pstData[i] = (char*)malloc(sizeof(char) * (piLen[i] + 1));//+ 1 for null termination
+		}
+		sciErr = getMatrixOfString(pvApiCtx, _piAddr, &iRows, &iCols, piLen, pstData);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
+		}
+	}
+	else
+	{
+		sciErr = getMatrixOfStringInList(pvApiCtx, _piParent, _iItemPos, &iRows, &iCols, NULL, NULL);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
+		}
+		piLen = (int*)malloc(sizeof(int) * iRows * iCols);
+		sciErr = getMatrixOfStringInList(pvApiCtx, _piParent, _iItemPos, &iRows, &iCols, piLen, NULL);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
+		}
+		pstData = (char**)malloc(sizeof(char*) * iRows * iCols);
+		for(i = 0 ; i < iRows * iCols ; i++)
+		{
+			pstData[i] = (char*)malloc(sizeof(char) * (piLen[i] + 1));//+ 1 for null termination
+		}
+		sciErr = getMatrixOfStringInList(pvApiCtx, _piParent, _iItemPos, &iRows, &iCols, piLen, pstData);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
+		}
+	}
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	insert_indent();
+	sciprint("Strings (%d x %d)\n", iRows, iCols);
+	return 0;;
+}
+int get_pointer_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
+{
+	SciErr sciErr;
+	void* pvPtr     = NULL;
+	if(_iItemPos == 0)
+	{
+		sciErr = getPointer(pvApiCtx, _piAddr, &pvPtr);
+	}
+	else
+	{
+		sciErr = getPointerInList(pvApiCtx, _piParent, _iItemPos, &pvPtr);
+	}
+	if(sciErr.iErr)
+<	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	insert_indent();
+	sciprint("Pointer : 0x%08X\n", pvPtr);
+	return 0;
+}
+ ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>Scilab テストスクリプト</title>
+        <programlisting role="code_scilab"><![CDATA[
+function read_all()
+d = [1,2,3;4,5,6;7,8,9];common_read(d);
+s=poly(0,"x");p=1+s+2*s^2;p = [(p * 2),(p * s + 3);(p * 2 * s ** 2 - 6),(12 - 4 * p * (- s) ** 2)];common_read(p);
+b = [%t,%f;%t,%f;%f,%t];common_read(b);
+sp=sparse([2,-1,0,0,0;-1,2,-1,0,0;0,-1,2,-1,0;0,0,-1,2,-1;0,0,0,-1,2]);common_read(sp);
+bsp=sparse([1,2;4,5;3,10],[%t,%t,%t]);common_read(bsp);
+i8 = int8([1,2,3]);common_read(i8);
+ui32 = uint32([3;2;1]);common_read(ui32);
+str = ["may", "the", "puffin"; "be", "with","you"];common_read(str);
+if with_module('umfpack') then
+    Cp = taucs_chfact(sp);
+    l = list(list(d, p, list(b, sp)), list(i8, bsp), list(ui32, str), Cp);
+else
+    l = list(list(d, p, list(b, sp)), list(i8, bsp), list(ui32, str));
+end
+common_read(l)
+endfunction
+read_all;
+ ]]></programlisting>
+    </refsection>
+</refentry>

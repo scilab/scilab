@@ -7,7 +7,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>[y] = testmatrix(name, n)</synopsis>
     </refsynopsisdiv>
     <refsection>

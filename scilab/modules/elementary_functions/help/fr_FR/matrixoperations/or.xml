@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * Copyright (C) 2016 - Samuel GOUGEON
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="or" xml:lang="fr">
+    <refnamediv>
+        <refname>or</refname>
+        <refpurpose>OU logique entre éléments d'un tableau booléen ou numérique</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntaxe</title>
+        <synopsis>
+            b = or(A)
+            b = or(A, 'r')
+            b = or(A, 'c')
+            b = or(A, n)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection role="parameters">
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>A</term>
+                <listitem>
+                    <para>
+                        vecteur, matrice ou hypermatrice de booléens, d'entiers
+                        encodés (de type entier <link linkend="inttype">inttype</link>
+                        quelconque), de décimaux, ou de nombres complexes.
+                        <varname>A</varname> peut être encodée creuse
+                            (<link linkend="sparse">sparse</link>).
+                    </para>
+                    <para>
+                        Un nombre est identifié à <literal>%F</literal> (faux)
+                        s'il vaut 0 ou 0+0i. Sinon (%nan inclus), il est identifé
+                        à <literal>%T</literal> (vrai).
+                    </para>
+                    <note>Valeurs particulières de <varname>A</varname> :
+                        <itemizedlist>
+                            <listitem>
+                                <literal>or([])</literal> vaut <literal>%F</literal>.
+                            </listitem>
+                            <listitem>
+                                <literal>or(%nan)</literal> vaut <literal>%T</literal>.
+                            </listitem>
+                        </itemizedlist>
+                    </note>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>b</term>
+                <listitem>
+                    <para>
+                        Booléen simple si <literal>or(A)</literal> est utilisée
+                        sans option <varname>"r", "c", n</varname>.
+                        <varname>b</varname> vaut alors
+                        <itemizedlist>
+                            <listitem>
+                                %F, si tous les éléments de <varname>A</varname>
+                                sont %F ou nuls.
+                            </listitem>
+                            <listitem>
+                                %T, sinon : au moins un des éléments de <varname>A</varname>
+                                est %T ou non nul.
+                            </listitem>
+                        </itemizedlist>
+                    </para>
+                    <para>
+                        Sinon : vecteur ligne, colonne, matrice ou hypermatrice.
+                        Voir la description de <varname>n</varname> ci-dessous.
+                    </para>
+                    <para>
+                        Lorsque <varname>A</varname> est encodée creuse,
+                        <varname>b</varname> l'est également.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>
+                        N° &lt;= ndims(A) de la dimension selon laquelle
+                        <function>or()</function> est appliqué / projeté.
+                        Par défaut, <function>or()</function> est appliqué
+                        entre <emphasis>tous</emphasis> les éléments de
+                        <varname>A</varname>. Sinon :
+                        <itemizedlist>
+                            <listitem>
+                                n = 1 | "r" : <function>or()</function> est
+                                appliqué entre les rangées de <varname>A</varname>.
+                                Si <varname>A</varname> est une matrice,
+                                <varname>b</varname> est alors une
+                                <emphasis role="bold">r</emphasis>angée, avec
+                                <literal>b(j) = or(A(:,j))</literal>
+                            </listitem>
+                            <listitem>
+                                n = 2 | "c" :
+                                <function>or()</function> est appliqué entre les
+                                colonnes de <varname>A</varname>.
+                                Si <varname>A</varname> est une matrice,
+                                <varname>b</varname> est alors une
+                                <emphasis role="bold">c</emphasis>olonne, avec
+                                <literal>b(i) = or(A(i,:))</literal>.
+                            </listitem>
+                            <listitem>
+                                n > 2 : Si <varname>A</varname> est une hypermatrice
+                                <function>or()</function> est appliqué selon
+                                sa n<superscript>ème</superscript> dimension.
+                                <para>
+                                    Exemple: Si <literal>ndims(A)==3</literal>
+                                    et <literal>n=3</literal>,
+                                    <varname>b</varname> sera une matrice booléenne
+                                    de tailles <literal>size(A)([1 2])</literal>, avec
+                                    <literal>b(i,j) = or(A(i,j,:))</literal>.
+                                </para>
+                            </listitem>
+                        </itemizedlist>
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection role="description">
+        <title>Description</title>
+        <para>
+            <function>or()</function> applique un "OU" logique entre les éléments
+            de l'opérande unique <varname>A</varname>, et en calcule le résultat.
+        </para>
+        <para>
+            Pour appliquer un OU logique entre éléments respectifs de 2 tableaux
+            <literal>C</literal> et <literal>D</literal> de mêmes tailles,
+            utiliser l'opérateur dédié <varname>|</varname>.
+        </para>
+        <para>
+            Pourquoi <literal>or([])</literal> vaut-il <literal>%F</literal> ?
+            Quels que soient les tableaux compatibles <literal>B</literal> et
+            <literal>C</literal>,
+            <literal>or([B C]) == (or(B) | or(C))</literal>.
+            Or, pour <literal>B = []</literal>, <literal>or([B C])==or(C)</literal>.
+            Pour avoir toujours <literal>(or([]) | or(C)) == or(C)</literal>,
+            <literal>or([])</literal> doit impérativement être <literal>%F</literal>.
+        </para>
+    </refsection>
+    <refsection role="examples">
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[
+or([])
+or(0)
+or(0+0*%i)
+or(%eps)
+or(%i)
+or(%nan)
+
+// Projection à travers une dimension / selon une direction :
+A = rand(2,5)<0.3
+or(A)
+or(A, "r")   // or(A, 1) est équivalent
+or(A, "c")   // or(A, 2) est équivalent
+
+// Utilisation entre entiers encodés :
+A = int16(grand(3,5,"uin",-10,10));
+A(abs(A)<8) = 0
+or(A)
+or(A,1)
+
+// Avec une hypermatrice de nombres décimaux :
+A = rand(3,4,2);
+A(A<0.7) = 0
+or(A,3)
+
+// Avec une matrice encodée creuse :
+A = sprand(70,100, 0.001)
+or(A, "r")
+or(A, "c")
+]]></programlisting>
+ <screen><![CDATA[--> or([])
+ ans  =
+  F
+
+--> or(0)
+ ans  =
+  F
+
+--> or(0+0*%i)
+ ans  =
+  F
+
+--> or(%eps)
+ ans  =
+  T
+
+--> or(%i)
+ ans  =
+  T
+
+--> or(%nan)
+ ans  =
+  F           // %T attendu  => Bug 14522
+
+--> // Projection à travers une dimension / selon une direction :
+--> A = rand(2,5)<0.3
+ A  =
+  T F F F F
+  F F T F F
+
+--> or(A)
+ ans  =
+  T
+
+--> or(A, "r")   // or(A, 1) est équivalent
+ ans  =
+  T F T F F
+
+--> or(A, "c")   // or(A, 2) est équivalent
+ ans  =
+  T
+  T
+
+--> // Utilisation entre entiers encodés :
+--> A = int16(grand(3,5,"uin",-10,10));
+--> A(abs(A)<8) = 0
+ A  =
+  0  0  0 -9  0
+  0 10  0  0  0
+  0  0  0  0  9
+
+--> or(A)
+ ans  =
+  T
+
+--> or(A,1)
+ ans  =
+  F T F T T
+
+
+--> // Avec une hypermatrice de nombres décimaux :
+--> A = rand(3,4,2);
+--> A(A<0.7) = 0
+ A  =
+(:,:,1)
+   0.   0.       0.   0.
+   0.   0.7065   0.   0.7227
+   0.   0.       0.   0.8977
+(:,:,2)
+   0.       0.   0.       0.7901
+   0.       0.   0.       0.9809
+   0.9677   0.   0.7795   0.8187
+
+--> or(A,3)
+ ans  =
+  F F F T
+  F T F T
+  T F T T
+
+
+--> // Avec une matrice encodée creuse :
+--> A = sprand(70,100, 0.001)
+ A  =
+(  70,  100) sparse matrix
+
+(  18,  53)   0.7943
+(  23,  96)   0.4361
+(  38,  34)   0.9275
+(  56,   1)   0.1622
+(  69,  98)   0.3112
+
+--> or(A, "r")
+ ans  =
+(  1,  100) sparse matrix
+
+(  1,   1)  T
+(  1,  34)  T
+(  1,  53)  T
+(  1,  96)  T
+(  1,  98)  T
+
+--> or(A, "c")
+ ans  =
+(  70,  1) sparse matrix
+
+(  18,  1)  T
+(  23,  1)  T
+(  38,  1)  T
+(  56,  1)  T
+(  69,  1)  T
+]]></screen>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="or_op">| (distributif)</link>
+            </member>
+            <member>
+                <link linkend="and">and</link>
+            </member>
+            <member>
+                <link linkend="not">~ not</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

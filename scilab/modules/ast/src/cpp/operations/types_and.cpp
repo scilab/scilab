@@ -1,12 +1,16 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
+ *  Copyright (C) 2016 - Scilab Enterprises - Pierre-Aimé AGNEL
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 extern "C"
@@ -397,22 +401,123 @@ void fillAndFunction()
 InternalType* GenericShortcutAnd(InternalType* _pL)
 {
     InternalType* pResult = NULL;
-    if (_pL->isBool())
+    switch (_pL->getType())
     {
-        BoolAndBool(_pL->getAs<Bool>(), (Bool**)&pResult);
-    }
-
-    if (_pL->isInt())
-    {
-        IntAndInt(_pL, (Bool**)&pResult);
-    }
-
-    if (_pL->isSparseBool())
-    {
-        SparseBoolAndSparseBool(_pL, (Bool**)&pResult);
+        case InternalType::ScilabBool :
+            isValueFalse(_pL->getAs<Bool>(), (Bool**)&pResult);
+            break;
+        case InternalType::ScilabDouble :
+            isValueFalse(_pL->getAs<Double>(), (Bool**)&pResult);
+            break;
+        case InternalType::ScilabInt8 :
+            isValueFalse(_pL->getAs<Int8>(), (Bool**)&pResult);
+            break;
+        case InternalType::ScilabUInt8 :
+            isValueFalse(_pL->getAs<UInt8>(), (Bool**)&pResult);
+            break;
+        case InternalType::ScilabInt16 :
+            isValueFalse(_pL->getAs<Int16>(), (Bool**)&pResult);
+            break;
+        case InternalType::ScilabUInt16 :
+            isValueFalse(_pL->getAs<UInt16>(), (Bool**)&pResult);
+            break;
+        case InternalType::ScilabInt32 :
+            isValueFalse(_pL->getAs<Int32>(), (Bool**)&pResult);
+            break;
+        case InternalType::ScilabUInt32 :
+            isValueFalse(_pL->getAs<UInt32>(), (Bool**)&pResult);
+            break;
+        case InternalType::ScilabInt64 :
+            isValueFalse(_pL->getAs<Int64>(), (Bool**)&pResult);
+            break;
+        case InternalType::ScilabUInt64 :
+            isValueFalse(_pL->getAs<UInt64>(), (Bool**)&pResult);
+            break;
+        case InternalType::ScilabSparse :
+            isValueFalse(_pL->getAs<Sparse>(), (Bool**)&pResult);
+            break;
+        case InternalType::ScilabSparseBool :
+            isValueFalse(_pL->getAs<SparseBool>(), (Bool**)&pResult);
+            break;
+        default:
+            // will return NULL
+            break;
     }
 
     return pResult;
+}
+
+template<typename T>
+void isValueFalse(T* _pL, types::Bool** _pOut)
+{
+    for (int i = 0 ; i < _pL->getSize() ; i++)
+    {
+        if (_pL->get(i) == 0)
+        {
+            if ( !_pL->isComplex() || (_pL->getImg(i) == 0) )
+            {
+                *_pOut = new Bool(0); //false && something -> false
+                return;
+            }
+        }
+    }
+
+    //call non shortcut operation
+    *_pOut = NULL;
+    return;
+}
+
+template<>
+void isValueFalse(Double* _pL, Bool** _pOut)
+{
+    if (_pL->isEmpty())
+    {
+        //call non shorcut operation
+        *_pOut = new Bool(0); //[] && something -> false
+        return;
+    }
+
+    for (int i = 0 ; i < _pL->getSize() ; i++)
+    {
+        if (_pL->get(i) == 0)
+        {
+            if ( !_pL->isComplex() || (_pL->getImg(i) == 0) )
+            {
+                *_pOut = new Bool(0); //false && something -> false
+                return;
+            }
+        }
+    }
+
+    //call non shortcut operation
+    *_pOut = NULL;
+    return;
+}
+
+template<>
+void isValueFalse(Sparse* _pL, Bool** _pOut)
+{
+    if (_pL->nonZeros() != (size_t)_pL->getSize())
+    {
+        *_pOut = new Bool(0);
+        return;
+    }
+
+    *_pOut = NULL;
+    return;
+}
+
+template<>
+void isValueFalse(SparseBool* _pL, Bool** _pOut)
+{
+    if (_pL->nbTrue() != (size_t)_pL->getSize())
+    {
+        *_pOut = new Bool(0);
+        return;
+    }
+
+    *_pOut = NULL;
+    return;
 }
 
 // &
@@ -436,98 +541,6 @@ InternalType* GenericLogicalAnd(InternalType* _pL, InternalType* _pR)
     return NULL;
 }
 
-int BoolAndBool(Bool* _pL, Bool** _pOut)
-{
-    for (int i = 0 ; i < _pL->getSize() ; i++)
-    {
-        if (_pL->get(i) == 0)
-        {
-            //false && something -> false
-            *_pOut = new Bool(0);
-            return 0;
-        }
-    }
-
-    //call non shorcut opearion
-    *_pOut = NULL;
-    return 0;
-}
-
-template <class K>
-static int IntAndInt(K* _pL, Bool** _pOut)
-{
-    for (int i = 0 ; i < _pL->getSize() ; i++)
-    {
-        if (_pL->get(i) == 0)
-        {
-            //false && something -> false
-            *_pOut = new Bool(0);
-            return 0;
-        }
-    }
-
-    //call non shorcut opearion
-    *_pOut = NULL;
-    return 0;
-}
-
-int IntAndInt(InternalType* _pL, Bool** _pOut)
-{
-    switch (_pL->getType())
-    {
-        case InternalType::ScilabInt8 :
-        {
-            return IntAndInt(_pL->getAs<Int8>(), _pOut);
-        }
-        case InternalType::ScilabUInt8 :
-        {
-            return IntAndInt(_pL->getAs<UInt8>(), _pOut);
-        }
-        case InternalType::ScilabInt16 :
-        {
-            return IntAndInt(_pL->getAs<Int16>(), _pOut);
-        }
-        case InternalType::ScilabUInt16 :
-        {
-            return IntAndInt(_pL->getAs<UInt16>(), _pOut);
-        }
-        case InternalType::ScilabInt32 :
-        {
-            return IntAndInt(_pL->getAs<Int32>(), _pOut);
-        }
-        case InternalType::ScilabUInt32 :
-        {
-            return IntAndInt(_pL->getAs<UInt32>(), _pOut);
-        }
-        case InternalType::ScilabInt64 :
-        {
-            return IntAndInt(_pL->getAs<Int64>(), _pOut);
-        }
-        case InternalType::ScilabUInt64 :
-        {
-            return IntAndInt(_pL->getAs<UInt64>(), _pOut);
-        }
-        default:
-        {
-            return 3;
-        }
-    }
-}
-
-int SparseBoolAndSparseBool(InternalType* _pL, Bool** _pOut)
-{
-    SparseBool* pL = _pL->getAs<SparseBool>();
-    if (pL->nbTrue() != (size_t)pL->getSize())
-    {
-        *_pOut = new Bool(0);
-        return 0;
-    }
-
-    *_pOut = NULL;
-    return 0;
-}
-
-
 template<class T, class U, class O>
 InternalType* and_M_M(T *_pL, U *_pR)
 {
@@ -536,7 +549,7 @@ InternalType* and_M_M(T *_pL, U *_pR)
 
     if (iDimsL != iDimsR)
     {
-        throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+        return nullptr;
     }
 
     int* piDimsL = _pL->getDimsArray();
@@ -546,7 +559,7 @@ InternalType* and_M_M(T *_pL, U *_pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
         }
     }
 
@@ -625,7 +638,7 @@ InternalType* and_int_M_M(T *_pL, U *_pR)
 
     if (iDimsL != iDimsR)
     {
-        throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+        return nullptr;
     }
 
     int* piDimsL = _pL->getDimsArray();
@@ -635,7 +648,7 @@ InternalType* and_int_M_M(T *_pL, U *_pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
         }
     }
 
@@ -704,7 +717,7 @@ InternalType* and_M_M<SparseBool, SparseBool, SparseBool>(SparseBool* _pL, Spars
 
     if (_pL->getRows() != _pR->getRows() || _pL->getCols() != _pR->getCols())
     {
-        throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+        throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
     }
 
     return _pL->newLogicalAnd(*_pR);

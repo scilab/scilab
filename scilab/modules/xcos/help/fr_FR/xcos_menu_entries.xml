@@ -3,11 +3,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - Bernard DUJARDIN <develop.dujardin@numericable.fr>
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xcos_menu_entries" xml:lang="fr_FR">
@@ -810,6 +813,38 @@
             </listitem>
             <listitem>
                 <para>
+                    <emphasis role="bold">Format : Auto-positionnement</emphasis>
+                </para>
+                <para/>
+                <mediaobject>
+                    <imageobject>
+                        <imagedata align="center" fileref="../gui/xcos_menu_entries/fr_FR/xcos_menu_format_auto_position.png"/>
+                    </imageobject>
+                </mediaobject>
+                <para/>
+                <para>
+                    Ce menu permet de modifier automatiquement la position des blocs.
+                </para>
+                <para>
+                    Sélectionner le(s) bloc(s) puis le menu adéquat ou utiliser le raccourci
+                    (<emphasis>P</emphasis>).
+                    La liste suivante montre les résultats obtenus.
+                </para>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            Bloc split (<emphasis>P</emphasis>)
+                        </para>
+                        <mediaobject>
+                            <imageobject>
+                                <imagedata fileref="../images/xcos_menu_entries/fr_FR/xcos_auto_position_split_block_fr_FR.png"/>
+                            </imageobject>
+                        </mediaobject>
+                    </listitem>
+                </itemizedlist>
+            </listitem>
+            <listitem>
+                <para>
                     <emphasis role="bold">Format : Style de liaison</emphasis>
                 </para>
                 <para/>
@@ -842,6 +877,14 @@
                         <mediaobject>
                             <imageobject>
                                 <imagedata fileref="../images/xcos_menu_entries/fr_FR/xcos_link_vertical_fr_FR.png"/>
+                            </imageobject>
+                        </mediaobject>
+                    </listitem>
+                    <listitem>
+                        <para>Optimal</para>
+                        <mediaobject>
+                            <imageobject>
+                                <imagedata fileref="../images/xcos_menu_entries/fr_FR/xcos_link_optimal_fr_FR.png"/>
                             </imageobject>
                         </mediaobject>
                     </listitem>
@@ -953,7 +996,7 @@
         </itemizedlist>
     </refsection>
     <refsection role="see also" id="Seealso_Menu_entries">
-        <title>See Also</title>
+        <title>See also</title>
         <itemizedlist>
             <listitem>
                 <link linkend="scicos_debug">scicos_debug</link>

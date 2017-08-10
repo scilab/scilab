@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="aff2ab">
@@ -16,7 +19,7 @@
         <refpurpose>linear (affine) function to A,b conversion</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[A,b]=aff2ab(afunction,dimX,D [,flag])</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -81,14 +84,14 @@
             <literal> Y=afunction(X,D) </literal> where <literal> X=list(X1,X2,...,Xp) </literal> is
             a list of p real matrices, and <literal> Y=list(Y1,...,Yq) </literal> is
             a list of q real real matrices which depend linearly of
-            the <literal> Xi</literal>'s. The (optional) input <literal> D</literal> contains 
-            parameters needed to compute Y as a function of X. 
+            the <literal> Xi</literal>'s. The (optional) input <literal> D</literal> contains
+            parameters needed to compute Y as a function of X.
             (It is generally a list of matrices).
         </para>
         <para>
             <literal> dimX</literal> is a p x 2 matrix: <literal>dimX(i)=[nri,nci]</literal>
             is the actual number of rows and columns of matrix <literal>Xi</literal>.
-            These dimensions determine <literal>na</literal>, the column dimension of 
+            These dimensions determine <literal>na</literal>, the column dimension of
             the resulting matrix <literal>A</literal>: <literal>na=nr1*nc1 +...+ nrp*ncp</literal>.
         </para>
         <para>
@@ -102,7 +105,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Lyapunov equation solver (one unknown variable, one constraint)
 deff('Y=lyapunov(X,D)','[A,Q]=D(:);Xm=X(:); Y=list(A''*Xm+Xm*A-Q)')
 A=rand(3,3);Q=rand(3,3);Q=Q+Q';D=list(A,Q);dimX=[3,3];
@@ -120,9 +123,9 @@ A=rand(3,3);Q=rand(3,3);Q=Q+Q';D=list(A,Q);dimX=[3,3];
 // Francis equations
 // Find matrices X1 and X2 such that:
 // A1*X1 - X1*A2 + B*X2 -A3 = 0
-// D1*X1 -D2 = 0 
-deff('Y=bruce(X,D)','[A1,A2,A3,B,D1,D2]=D(:),...
-[X1,X2]=X(:);Y=list(A1*X1-X1*A2+B*X2-A3,D1*X1-D2)')
+// D1*X1 -D2 = 0
+deff('Y=bruce(X,D)','[A1,A2,A3,B,D1,D2]=D(:)'+,...
+'[X1,X2]=X(:);Y=list(A1*X1-X1*A2+B*X2-A3,D1*X1-D2)')
 A1=[-4,10;-1,2];A3=[1;2];B=[0;1];A2=1;D1=[0,1];D2=1;
 D=list(A1,A2,A3,B,D1,D2);
 [n1,m1]=size(A1);[n2,m2]=size(A2);[n3,m3]=size(B);
@@ -140,7 +143,7 @@ C=Xsol(:); A*C-C*A
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="linsolve">linsolve</link>

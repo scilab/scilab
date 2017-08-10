@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="uimenu" xml:lang="ja">
+    <refnamediv>
+        <refname>uimenu</refname>
+        <refpurpose>図にメニューまたはサブメニューを作成する</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>h=uimenu([prop1,val1] [,prop2, val2] ...)
+            h=uimenu(parent,[prop1, val1] [,prop2, val2] ...)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>parent</term>
+                <listitem>
+                    <para>ハンドル</para>
+                    <para>メニューの親のハンドル</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>prop{1, 2 ...}</term>
+                <listitem>
+                    <para>文字列</para>
+                    <para>設定するプロパティの名前</para>
+                    <para>
+                        利用可能なプロパティについては
+                        <link linkend="uimenu_properties">uimenuプロパティ</link>ヘルプページ参照.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>val{1, 2 ...}</term>
+                <listitem>
+                    <para>Scilabオブジェクト</para>
+                    <para>
+                        対応するプロパティに作用する値
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>h</term>
+                <listitem>
+                    <para>ハンドル</para>
+                    <para>作成されたメニューのハンドル</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            この関数により図にメニューを作成できます.
+            <literal>parent</literal>が図の場合,
+            メニュー要素が図のメニューバーに追加されます.
+            <literal>parent</literal>がメニュー要素の場合,
+            新規要素が親の要素に追加され,
+            カスケード状のサブメニューを作成できます.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+f=figure('position', [10 10 300 200]);
+// 図を作成
+m=uimenu(f,'label', 'windows');
+// メニューバーに要素を作成
+m1=uimenu(m,'label', 'operations');
+m2=uimenu(m,'label', 'quit scilab', 'callback', "exit");
+// メニュー"windows"に2つの要素を作成
+m11=uimenu(m1,'label', 'new window', 'callback',"show_window()");
+m12=uimenu(m1,'label', 'clear  window', 'callback',"clf()");
+// 要素"operations"にサブメニューを作成
+close(f);
+// 図を閉じる
+ ]]></programlisting>
+        <para>
+            メニューまたはサブメニューはLaTeXまたはMathMLラベルを
+            持つことができます
+        </para>
+        <programlisting role="example"><![CDATA[
+f=figure();
+//LaTeX
+mlatex=uimenu(f,'label', '$\LaTeX$');
+ml1=uimenu(mlatex,'label', '$\int_0^\infty\mathrm{e}^{-x^2}\,dx$');
+ml2=uimenu(mlatex,'label', '$\frac\sqrt{\pi}2$');
+//MathML
+mmathml=uimenu(f,'label', 'MathML');
+mm1=uimenu(mmathml,'label', '<msup><mn>x</mn><mi>2</mi></msup>');
+mm2=uimenu(mmathml,'label', '<mrow><msup><mn>a</mn><mi>2</mi></msup><mo>+</mo><msup><mn>b</mn><mi>2</mi></msup><mo>=</mo><msup><mn>c</mn><mi>2</mi></msup></mrow>');
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>要素</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="uimenu_properties">uimenuプロパティ</link>
+            </member>
+            <member>
+                <link linkend="figure">figure</link>
+            </member>
+            <member>
+                <link linkend="uicontrol">uicontrol</link>
+            </member>
+            <member>
+                <link linkend="uicontextmenu">uicontextmenu</link>
+            </member>
+            <member>
+                <link linkend="set">set</link>
+            </member>
+            <member>
+                <link linkend="get">get</link>
+            </member>
+            <member>
+                <link linkend="math_rendering_features_in_graphic">LaTeX および MathML</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

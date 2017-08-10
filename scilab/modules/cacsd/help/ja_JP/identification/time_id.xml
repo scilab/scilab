@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Serge STEER
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="time_id">
+    <refnamediv>
+        <refname>time_id</refname>
+        <refpurpose>SISO 最小二乗同定</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼出し手順</title>
+        <synopsis>[H [,err]]=time_id(n,u,y)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>伝達関数の次元</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>u</term>
+                <listitem>
+                    <para>以下のどれか</para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>u1</term>
+                            <listitem>
+                                <para>システムへの入力ベクトル</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>"impuls"  </term>
+                            <listitem>
+                                <para>y はインパルス応答</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>"step"  </term>
+                            <listitem>
+                                <para>yはステップ応答.</para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>応答ベクトル.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>H</term>
+                <listitem>
+                    <para>
+                        y(1)==0 の場合は分母がn次，分子がn-1次の有理関数,
+                        y(1)&lt;&gt;0 の場合, 分母と分子が n次の有理関数.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>err</term>
+                <listitem>
+                    <para>
+                        <literal>||y - impuls(H,npt)||^2</literal>, ただし,
+                        <literal>impuls(H,npt)</literal> は
+                        <literal>H</literal>のインパルス応答の最初の
+                        <literal>npt</literal>個の係数です.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            離散時間応答の同定.
+            <literal>y</literal>が厳密にプロパーの場合(<literal>y(1)=0</literal>) ,
+            <literal>time_id</literal>は線形方程式に関する以下の最小二乗解
+            を計算します: <literal>coeff(Den,n):=1</literal> を拘束条件とする
+            <literal>Den*y-Num*u=0</literal>.
+            <literal>y(1)~=0</literal>の場合,
+            アルゴリズムはまず解のプロパーな部分を計算した後,y(1)を
+            解に追加します.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+z=poly(0,'z');
+h=(1-2*z)/(z^2-0.5*z+5)
+rep=[0;ldiv(h('num'),h('den'),20)]; //インパルス応答
+H=time_id(2,'impuls',rep)
+//  flts および uを用いる同じ例
+u=zeros(1,20);u(1)=1;
+rep=flts(u,tf2ss(h));        //インパルス応答
+H=time_id(2,u,rep)
+//  step response
+u=ones(1,20);
+rep=flts(u,tf2ss(h));     //ステップ応答.
+H=time_id(2,'step',rep)
+H=time_id(3,u,rep)    // uを入力として指定, 高次過ぎる系を指定
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="imrep2ss">imrep2ss</link>
+            </member>
+            <member>
+                <link linkend="arl2">arl2</link>
+            </member>
+            <member>
+                <link linkend="armax">armax</link>
+            </member>
+            <member>
+                <link linkend="frep2tf">frep2tf</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

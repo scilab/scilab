@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - DIGITEO
@@ -23,8 +24,7 @@ assert_checkalmostequal(c1, c3, [], 10*%eps);
 [c4,m4]=corr('fft',xx,256,32);
 assert_checkalmostequal(c1, -c2, [], 10*%eps)
  ans  =
- 
-  T  
+  T
 assert_checkequal(size(c4), [1 32]);
 assert_checkequal(size(m4), [1 1]);
 assert_checkalmostequal(norm(m3, 1), %eps, [], %eps);

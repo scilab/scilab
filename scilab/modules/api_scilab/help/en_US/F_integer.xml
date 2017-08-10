@@ -1,0 +1,871 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2015  - Scilab Enterprises - Antoine ELIAS
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="api_integer" xml:lang="en">
+    <refnamediv>
+        <refname>API integer functions</refname>
+        <para>This page lists all the functions to manipulate Scilab native objects containing integers</para>
+        <para></para>
+    </refnamediv>
+    <refsynopsisdiv>
+        <refsection id="api_integer_scilab_getIntegerPrecision">
+            <literal>
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                <varname>scilab_getIntegerPrecision</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env,
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                var)
+            </literal>
+            <para>
+                Return precision of an integer variable <varname>var</varname>.
+            </para>
+        </refsection>
+        <refsection id="api_integer_scilab_isInt">
+            <literallayout>
+                int <varname>scilab_isInt8</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env,
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                var)
+                int <varname>scilab_isInt16</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env,
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                var)
+                int <varname>scilab_isInt32</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env,
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                var)
+                int <varname>scilab_isInt64</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env,
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                var)
+                int <varname>scilab_isUnsignedInt8</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env,
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                var)
+                int <varname>scilab_isUnsignedInt16</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env,
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                var)
+                int <varname>scilab_isUnsignedInt32</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env,
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                var)
+                int <varname>scilab_isUnsignedInt64</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env,
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                var)
+            </literallayout>
+            <para>
+                Return 1 if variable <varname>val</varname> is an integer otherwise 0. Precision is specified in function name.
+            </para>
+        </refsection>
+        <refsection id="api_integer_scilab_createInteger">
+            <literallayout>
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                <varname>scilab_createInteger8</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env, char val)
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                <varname>scilab_createInteger16</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env, short val)
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                <varname>scilab_createInteger32</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env, int val)
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                <varname>scilab_createInteger64</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env, long long val)
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                <varname>scilab_createUnsignedInteger8</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env, unsigned char val)
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                <varname>scilab_createUnsignedInteger16</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env, unsigned short val)
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                <varname>scilab_createUnsignedInteger32</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env, unsigned int val)
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                <varname>scilab_createUnsignedInteger64</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env, unsigned long long val)
+            </literallayout>
+            <para>
+                Create a scalar integer from <varname>val</varname>. Precision is specified in function name.
+            </para>
+        </refsection>
+        <refsection id="api_integer_scilab_createIntegerMatrix">
+            <literal>
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                <varname>scilab_createIntegerMatrix</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env, int prec, int dim, const int* dims)
+            </literal>
+            <para>
+                Create an integer matrix with <varname>dim</varname> dimensions (<varname>dims</varname>[0], <varname>dims</varname>[1], ..., <varname>dims</varname>[<varname>dim</varname>-1]).
+            </para>
+            <para>
+                <varname>prec</varname> parameter give precision of integer :
+            </para>
+            <variablelist>
+                <varlistentry>
+                    <term>SCI_INT8</term>
+                    <listitem>
+                        <para>integer 8-bits</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>SCI_INT16</term>
+                    <listitem>
+                        <para>Integer 16-bits</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>SCI_INT32</term>
+                    <listitem>
+                        <para>Integer 32-bits</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>SCI_INT64</term>
+                    <listitem>
+                        <para>Integer 64-bits</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>SCI_UINT8</term>
+                    <listitem>
+                        <para>Unsigned integer 8-bits</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>SCI_UINT16</term>
+                    <listitem>
+                        <para>Unsigned integer 16-bits</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>SCI_UINT32</term>
+                    <listitem>
+                        <para>Unsigned integer 32-bits</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>SCI_UINT64</term>
+                    <listitem>
+                        <para>Unsigned integer 64-bits</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection id="api_integer_scilab_createIntegerXXMatrix">
+            <literallayout>
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                <varname>scilab_createInteger8Matrix</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env, int prec, int dim, const int* dims)
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                <varname>scilab_createInteger16Matrix</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env, int prec, int dim, const int* dims)
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                <varname>scilab_createInteger32Matrix</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env, int prec, int dim, const int* dims)
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                <varname>scilab_createInteger64Matrix</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env, int prec, int dim, const int* dims)
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                <varname>scilab_createUnsignedInteger8Matrix</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env, int prec, int dim, const int* dims)
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                <varname>scilab_createUnsignedInteger16Matrix</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env, int prec, int dim, const int* dims)
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                <varname>scilab_createUnsignedInteger32Matrix</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env, int prec, int dim, const int* dims)
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                <varname>scilab_createUnsignedInteger64Matrix</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env, int prec, int dim, const int* dims)
+            </literallayout>
+            <para>
+                Create an integer matrix with <varname>dim</varname> dimensions (<varname>dims</varname>[0], <varname>dims</varname>[1], ..., <varname>dims</varname>[<varname>dim</varname>-1]). Precision is specified in function name.
+            </para>
+        </refsection>
+        <refsection id="api_integer_scilab_createIntegerMatrix2d">
+            <literal>
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                <varname>scilab_createIntegerMatrix2d</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env, int prec, int row, int col)
+            </literal>
+            <para>
+                Create an integer matrix with 2 dimensions (<varname>row</varname>, <varname>col</varname>).
+            </para>
+            <para>
+                <varname>prec</varname> parameter give precision.
+            </para>
+        </refsection>
+        <refsection id="api_integer_scilab_createIntegerXXMatrix2d">
+            <literallayout>
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                <varname>scilab_createInteger8Matrix2d</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env, int row, int col)
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                <varname>scilab_createInteger16Matrix2d</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env, int row, int col)
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                <varname>scilab_createInteger32Matrix2d</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env, int row, int col)
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                <varname>scilab_createInteger64Matrix2d</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env, int row, int col)
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                <varname>scilab_createUnsignedInteger8Matrix2d</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env, int row, int col)
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                <varname>scilab_createUnsignedInteger16Matrix2d</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env, int row, int col)
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                <varname>scilab_createUnsignedInteger32Matrix2d</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env, int row, int col)
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                <varname>scilab_createUnsignedInteger64Matrix2d</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env, int row, int col)
+            </literallayout>
+            <para>
+                Create an integer matrix with 2 dimensions (<varname>row</varname>, <varname>col</varname>). Precision is specified in function name.
+            </para>
+        </refsection>
+        <refsection id="api_integer_scilab_getInteger">
+            <literallayout>
+                <link linkend="api_types_scilabStatus">
+                    <command>scilabStatus</command>
+                </link>
+                <varname>scilab_getInteger8</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env,
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                var, char* vals)
+                <link linkend="api_types_scilabStatus">
+                    <command>scilabStatus</command>
+                </link>
+                <varname>scilab_getInteger16</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env,
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                var, short* vals)
+                <link linkend="api_types_scilabStatus">
+                    <command>scilabStatus</command>
+                </link>
+                <varname>scilab_getInteger32</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env,
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                var, int* vals)
+                <link linkend="api_types_scilabStatus">
+                    <command>scilabStatus</command>
+                </link>
+                <varname>scilab_getInteger64</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env,
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                var, long long* vals)
+                <link linkend="api_types_scilabStatus">
+                    <command>scilabStatus</command>
+                </link>
+                <varname>scilab_getUnsignedInteger8</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env,
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                var, unsigned char* vals)
+                <link linkend="api_types_scilabStatus">
+                    <command>scilabStatus</command>
+                </link>
+                <varname>scilab_getUnsignedInteger16</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env,
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                var, unsigned short* vals)
+                <link linkend="api_types_scilabStatus">
+                    <command>scilabStatus</command>
+                </link>
+                <varname>scilab_getUnsignedInteger32</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env,
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                var, unsigned int* vals)
+                <link linkend="api_types_scilabStatus">
+                    <command>scilabStatus</command>
+                </link>
+                <varname>scilab_getUnsignedInteger64</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env,
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                var, unsigned long long* vals)
+            </literallayout>
+            <para>Get integer value from an scalar integer variable. Precision is specified in function name.</para>
+            <para>
+                precision of output must match with precision of <varname>var</varname>.
+            </para>
+        </refsection>
+        <refsection id="api_integer_scilab_getIntegerArray">
+            <literallayout>
+                <link linkend="api_types_scilabStatus">
+                    <command>scilabStatus</command>
+                </link>
+                <varname>scilab_getIntegerArray</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env,
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                var, void** vals)
+                <link linkend="api_types_scilabStatus">
+                    <command>scilabStatus</command>
+                </link>
+                <varname>scilab_getInteger8Array</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env,
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                var, char** vals)
+                <link linkend="api_types_scilabStatus">
+                    <command>scilabStatus</command>
+                </link>
+                <varname>scilab_getInteger16Array</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env,
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                var, short** vals)
+                <link linkend="api_types_scilabStatus">
+                    <command>scilabStatus</command>
+                </link>
+                <varname>scilab_getInteger32Array</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env,
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                var, int** vals)
+                <link linkend="api_types_scilabStatus">
+                    <command>scilabStatus</command>
+                </link>
+                <varname>scilab_getInteger64Array</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env,
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                var, long long** vals)
+                <link linkend="api_types_scilabStatus">
+                    <command>scilabStatus</command>
+                </link>
+                <varname>scilab_getUnsignedInteger8Array</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env,
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                var, unsigned char** vals)
+                <link linkend="api_types_scilabStatus">
+                    <command>scilabStatus</command>
+                </link>
+                <varname>scilab_getUnsignedInteger16Array</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env,
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                var, unsigned short** vals)
+                <link linkend="api_types_scilabStatus">
+                    <command>scilabStatus</command>
+                </link>
+                <varname>scilab_getUnsignedInteger32Array</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env,
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                var, unsigned int** vals)
+                <link linkend="api_types_scilabStatus">
+                    <command>scilabStatus</command>
+                </link>
+                <varname>scilab_getUnsignedInteger64Array</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env,
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                var, unsigned long long** vals)
+            </literallayout>
+            <para>
+                Get pointer on internal array of integer of <varname>var</varname>.
+            </para>
+        </refsection>
+        <refsection id="api_integer_scilab_setIntegerArray">
+            <literallayout>
+                <link linkend="api_types_scilabStatus">
+                    <command>scilabStatus</command>
+                </link>
+                <varname>scilab_setIntegerArray</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env,
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                var, const void* vals);
+                <link linkend="api_types_scilabStatus">
+                    <command>scilabStatus</command>
+                </link>
+                <varname>scilab_setInteger8Array</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env,
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                var, const char* vals);
+                <link linkend="api_types_scilabStatus">
+                    <command>scilabStatus</command>
+                </link>
+                <varname>scilab_setInteger16Array</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env,
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                var, const short* vals);
+                <link linkend="api_types_scilabStatus">
+                    <command>scilabStatus</command>
+                </link>
+                <varname>scilab_setInteger32Array</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env,
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                var, const int* vals);
+                <link linkend="api_types_scilabStatus">
+                    <command>scilabStatus</command>
+                </link>
+                <varname>scilab_setInteger64Array</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env,
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                var, const long long* vals);
+                <link linkend="api_types_scilabStatus">
+                    <command>scilabStatus</command>
+                </link>
+                <varname>scilab_setUnsignedInteger8Array</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env,
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                var, const unsigned char* vals);
+                <link linkend="api_types_scilabStatus">
+                    <command>scilabStatus</command>
+                </link>
+                <varname>scilab_setUnsignedInteger16Array</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env,
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                var, const unsigned short* vals);
+                <link linkend="api_types_scilabStatus">
+                    <command>scilabStatus</command>
+                </link>
+                <varname>scilab_setUnsignedInteger32Array</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env,
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                var, const unsigned int* vals);
+                <link linkend="api_types_scilabStatus">
+                    <command>scilabStatus</command>
+                </link>
+                <varname>scilab_setUnsignedInteger64Array</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env,
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                var, const unsigned long long* vals);
+            </literallayout>
+            <para>
+                Set values of integer variable <varname>var</varname>.
+            </para>
+        </refsection>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="code_gateway">
+            <![CDATA[
+#include "api_scilab.h"
+#include "Scierror.h"
+#include "localization.h"
+#include "sciprint.h"
+#include "sci_malloc.h"
+
+const char fname[] = "int_test";
+
+int sci_int_test(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt opt, int nout, scilabVar* out)
+{
+    int i = 0;
+    int inr1 = 0;
+    int inc1 = 0;
+    int size1 = 0;
+    int* in1 = NULL;
+
+    int in2 = 0;
+
+    int* out1 = NULL;
+
+    int* out2dims = NULL;
+    int* out2 = NULL;
+
+    int out3 = 0;
+
+    if (nin != 2)
+    {
+        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
+        return SCILAB_ERROR;
+    }
+
+    if (nout != 3)
+    {
+        Scierror(999, _("%s: Wrong number of output arguments: %d expected.\n"), fname, 3);
+        return SCILAB_ERROR;
+    }
+
+    //in[0] : matrix 2d of int32
+    if (scilab_isInt32(env, in[0]) == 0 || scilab_isMatrix(env, in[0]) == 0)
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d: A int32 matrix expected.\n"), fname, 1);
+        return SCILAB_ERROR;
+    }
+
+    size1 = scilab_getDim2d(env, in[0], &inr1, &inc1);
+    scilab_getInteger32Array(env, in[0], &in1);
+
+    //in[1] : int
+    if (scilab_isInt32(env, in[1]) == 0 || scilab_isScalar(env, in[1]) == 0)
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d: A int expected.\n"), fname, 2);
+        return SCILAB_ERROR;
+    }
+
+    scilab_getInteger32(env, in[1], &in2);
+
+    //out1 : matrix 2d of int with same size of in[0]
+    out[0] = scilab_createIntegerMatrix2d32(env, inr1, inc1);
+    scilab_getInteger32Array(env, out[0], &out1);
+
+    for (i = 0; i < size1; ++i)
+    {
+        out1[i] = in1[i] * 10;
+    }
+
+    //out2 : 3d matrix of int
+    out2dims = (int*)MALLOC(3 * sizeof(int));
+    out2dims[0] = inr1;
+    out2dims[1] = inc1;
+    out2dims[2] = 2;
+
+    out[1] = scilab_createIntegerMatrix32(env, 3, out2dims, 0);
+    scilab_getInteger32Array(env, out[1], &out2);
+
+    for (i = 0; i < size1; ++i)
+    {
+        out2[i] = in1[i] * 10;
+        out2[i + size1] = in1[i] * 100;
+    }
+
+    //out3 : int
+    out[2] = scilab_createInteger32(env, in2 * 1000);
+    return SCIALB_OK;
+}
+            ]]>
+        </programlisting>
+    </refsection>
+    <refsection>
+        <title>Scilab test script</title>
+        <programlisting role="code_scilab">
+            <![CDATA[
+mkdir(pathconvert(TMPDIR+"/api_c/"));
+cd(pathconvert(TMPDIR+"/api_c/"));
+copyfile(SCI+"/modules/api_scilab/tests/unit_tests/api_c/int_test.c",pathconvert(TMPDIR+"/api_c/int_test.c",%F));
+
+ilib_build("libint",["int_test","sci_int_test", "csci6"],"int_test.c",[],"","","");
+exec("loader.sce");
+
+in1 = int32(rand(3,4) *1000);
+in2 = int32(rand() * 1000);
+
+[out1, out2, out3] = int_test(in1, in2);
+
+assert_checkequal(out1, in1 * 10);
+ref(:,:, 1) = in1 * 10;
+ref(:,:, 2) = in1 * 100;
+assert_checkequal(out2, ref);
+assert_checkequal(out3, in2 * 1000);
+disp("OK");
+            ]]>
+        </programlisting>
+    </refsection>
+</refentry>

@@ -3,7 +3,7 @@
 #include "machine.h"
 #include "core_math.h"
 #include "Ex-daskr.h"
-#include "elem_common.h" // dlamch
+#include "numericconstants_interface.h"
 
 void pjac1( resfunc res, int *ires, int *nequations, double *tOld, double *actual, double *actualP,
             double *rewt, double *savr, double *wk, double *h, double *cj, double *wp, int *iwp,
@@ -21,8 +21,7 @@ void pjac1( resfunc res, int *ires, int *nequations, double *tOld, double *actua
     double * e = NULL;
 
     int neq = *nequations;
-    char cP[1] = "P";
-    double SQuround = sqrt(C2F(dlamch)(cP, 1L));
+    double SQuround = sqrt(nc_eps_machine());
 
     tx = *tOld;
 

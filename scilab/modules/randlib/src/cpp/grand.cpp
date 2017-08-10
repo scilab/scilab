@@ -2,11 +2,14 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 /*--------------------------------------------------------------------------*/
@@ -31,7 +34,7 @@ unsigned long int clcg4_with_gen(void)
 double C2F(ranf)(void)
 {
     //  pointers onto the generators func
-    unsigned long int (*gen[NbGenInScilab])() = {randmt, kiss, clcg4_with_gen, clcg2, urandc, fsultra};
+    unsigned long int (*gen[NbGenInScilab])() = {randmt, kiss, clcg4_with_gen, clcg2, urandc};
 
     int current_gen = ConfigVariable::getCurrentBaseGen();
 
@@ -42,9 +45,8 @@ double C2F(ranf)(void)
         2.3283064365386963e-10,  // kiss
         4.6566128752457969e-10,  // clcg4
         4.6566130595601735e-10,  // clcg2
-        4.6566128730773926e-10,  // urand
-        2.3283064365386963e-10
-    }; // fsultra
+        4.6566128730773926e-10   // urand
+    };
 
     // random deviate from U[0,1)
     return ((double)gen[current_gen]() * factor[current_gen]);
@@ -53,7 +55,7 @@ double C2F(ranf)(void)
 double ignlgi(void)
 {
     //  pointers onto the generators func
-    unsigned long int (*gen[NbGenInScilab])() = {randmt, kiss, clcg4_with_gen, clcg2, urandc, fsultra};
+    unsigned long int (*gen[NbGenInScilab])() = {randmt, kiss, clcg4_with_gen, clcg2, urandc};
 
     int current_gen = ConfigVariable::getCurrentBaseGen();
 
@@ -90,9 +92,8 @@ double C2F(ignuin)(double *a, double *b)
         4294967295ul,  // kiss
         2147483646ul,  // clcg4
         2147483561ul,  // clcg2
-        2147483647ul,  // urand
-        4294967295ul
-    }; // fsultra
+        2147483647ul   // urand
+    };
 
     int current_gen = ConfigVariable::getCurrentBaseGen();
 
@@ -100,7 +101,7 @@ double C2F(ignuin)(double *a, double *b)
 
     if (d == 1)
     {
-        return(*a);
+        return (*a);
     }
 
     qd = RngMaxInt[current_gen] - RngMaxInt[current_gen] % d;
@@ -111,6 +112,6 @@ double C2F(ignuin)(double *a, double *b)
     }
     while (k >= qd);
 
-    return(*a + (double)(k % d));
+    return (*a + (double)(k % d));
 }
 

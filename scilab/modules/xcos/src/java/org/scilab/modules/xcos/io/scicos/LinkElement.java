@@ -1,12 +1,16 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -14,6 +18,7 @@ package org.scilab.modules.xcos.io.scicos;
 
 import static java.util.Arrays.asList;
 
+import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -24,6 +29,9 @@ import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.types.ScilabMList;
 import org.scilab.modules.types.ScilabString;
 import org.scilab.modules.types.ScilabType;
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
+import org.scilab.modules.xcos.ObjectProperties;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongElementException;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongStructureException;
@@ -33,8 +41,8 @@ import org.scilab.modules.xcos.link.LinkPortMap;
 import org.scilab.modules.xcos.port.BasicPort;
 
 import com.mxgraph.model.mxGeometry;
-import com.mxgraph.model.mxICell;
 import com.mxgraph.util.mxPoint;
+import java.rmi.server.UID;
 
 /**
  * Perform a link transformation between Scicos and Xcos.
@@ -66,7 +74,9 @@ public final class LinkElement extends AbstractElement<BasicLink> {
      * @param blocks
      *            the already decoded blocks
      */
-    public LinkElement(Map<Integer, BasicBlock> blocks) {
+    public LinkElement(final JavaController controller, Map<Integer, BasicBlock> blocks) {
+        super(controller);
+
         this.blocks = blocks;
     }
 
@@ -80,8 +90,7 @@ public final class LinkElement extends AbstractElement<BasicLink> {
      * @return the decoded block.
      * @throws ScicosFormatException
      *             when e decoding error occurred.
-     * @see org.scilab.modules.xcos.io.scicos.Element#decode(org.scilab.modules.types.ScilabType,
-     *      java.lang.Object)
+     * @see org.scilab.modules.xcos.io.scicos.Element#decode(org.scilab.modules.types.ScilabType, java.lang.Object)
      */
     @Override
     public BasicLink decode(ScilabType element, BasicLink into) throws ScicosFormatException {
@@ -102,8 +111,8 @@ public final class LinkElement extends AbstractElement<BasicLink> {
         /*
          * Fill the data
          */
-        link.setSource(start);
-        link.setTarget(end);
+        link.setTerminal(start, true);
+        link.setTerminal(end, false);
 
         mxGeometry geom = link.getGeometry();
         if (geom == null) {
@@ -124,11 +133,13 @@ public final class LinkElement extends AbstractElement<BasicLink> {
         BasicLink link = null;
         final int type = (int) ((ScilabDouble) data.get(CT_INDEX)).getRealPart()[0][1];
 
+        String id = new UID().toString();
+
         try {
-            link = LinkPortMap.getLinkClass(type).newInstance();
-        } catch (InstantiationException e) {
-            LOG.severe(e.toString());
-        } catch (IllegalAccessException e) {
+            Class<? extends BasicLink> klass = LinkPortMap.getLinkClass(type);
+            Constructor<? extends BasicLink> cstr = klass.getConstructor(JavaController.class, Long.TYPE, Kind.class, Object.class, mxGeometry.class, String.class, String.class);
+            link = cstr.newInstance(controller, controller.createObject(Kind.LINK), Kind.LINK, null, null, null, id);
+        } catch (ReflectiveOperationException e) {
             LOG.severe(e.toString());
         }
 
@@ -270,7 +281,9 @@ public final class LinkElement extends AbstractElement<BasicLink> {
                 }
 
                 if (block != null) {
-                    LOG.warning("Unable to get " + block.getSimulationFunctionName() + "[" + index + "]" + block.toString());
+                    String[] v = new String[1];
+                    controller.getObjectProperty(block.getUID(), block.getKind(), ObjectProperties.SIM_FUNCTION_NAME, v);
+                    LOG.warning("Unable to get " + v[0] + "[" + index + "]" + block.toString());
                 } else {
                     return;
                 }
@@ -297,8 +310,7 @@ public final class LinkElement extends AbstractElement<BasicLink> {
     /**
      * Look for the ordered ports.
      *
-     * This method assume that the startPorts and endPorts are sorted according
-     * to {@link BasicBlock#sortChildren()} and have the right ordering.
+     * This method assume that the startPorts and endPorts are sorted according to {@link BasicBlock#sortChildren()} and have the right ordering.
      *
      * @param link
      *            the link to connect
@@ -313,8 +325,8 @@ public final class LinkElement extends AbstractElement<BasicLink> {
      */
     private void lookForOrderedPorts(final BasicLink link, final List<BasicPort> startPorts, final boolean startIsStart, final List<BasicPort> endPorts,
                                      final boolean endIsStart) {
-        Class <? extends BasicPort > startKlass = LinkPortMap.getPortClass(link.getClass(), startIsStart);
-        Class <? extends BasicPort > endKlass = LinkPortMap.getPortClass(link.getClass(), endIsStart);
+        Class<? extends BasicPort> startKlass = LinkPortMap.getPortClass(link.getClass(), startIsStart);
+        Class<? extends BasicPort> endKlass = LinkPortMap.getPortClass(link.getClass(), endIsStart);
 
         /*
          * Clear the state
@@ -354,9 +366,7 @@ public final class LinkElement extends AbstractElement<BasicLink> {
     /**
      * Validate the current data.
      *
-     * This method doesn't pass the metrics because it perform many test.
-     * Therefore all these tests are trivial and the conditioned action only
-     * throw an exception.
+     * This method doesn't pass the metrics because it perform many test. Therefore all these tests are trivial and the conditioned action only throw an exception.
      *
      * @throws ScicosFormatException
      *             when there is a validation error.
@@ -455,133 +465,6 @@ public final class LinkElement extends AbstractElement<BasicLink> {
 
         final String type = ((ScilabString) data.get(0)).getData()[0][0];
         return type.equals(DATA_FIELD_NAMES.get(0));
-    }
-
-    /**
-     * Encode the instance into the element
-     *
-     * @param from
-     *            the source instance
-     * @param element
-     *            the previously allocated element.
-     * @return the element parameter
-     * @see org.scilab.modules.xcos.io.scicos.Element#encode(java.lang.Object,
-     *      org.scilab.modules.types.ScilabType)
-     */
-    @Override
-    public ScilabType encode(BasicLink from, ScilabType element) {
-        if (element == null) {
-            data = new ScilabMList(DATA_FIELD_NAMES.toArray(new String[0]));
-        } else {
-            data = (ScilabMList) element;
-        }
-
-        data = (ScilabMList) beforeEncode(from, data);
-
-        start = (BasicPort) from.getSource();
-        end = (BasicPort) from.getTarget();
-
-        // non-connected link
-        if ((start == null) || (end == null)) {
-            return null;
-        }
-
-        final mxICell srcBlock = start.getParent();
-        final mxICell endBlock = end.getParent();
-
-        // connection not valid
-        if ((srcBlock == null) || (endBlock == null)) {
-            return null;
-        }
-        if (!((srcBlock instanceof BasicBlock) && (endBlock instanceof BasicBlock))) {
-            return null;
-        }
-
-        final mxGeometry srcGeom = start.getGeometry();
-        final mxGeometry endGeom = end.getGeometry();
-
-        // xx and yy
-        encodePoints(from, srcGeom, endGeom);
-
-        data.add(new ScilabString("drawlink")); // id
-
-        double[][] thick = { { 0, 0 } };
-        data.add(new ScilabDouble(thick)); // thick
-
-        data.add(new ScilabDouble(from.getColorAndType())); // ct
-
-        double fromBlockID = ((BasicBlock) srcBlock).getOrdering();
-        double fromPortID = start.getOrdering();
-        double fromType = LinkPortMap.isStart(start);
-
-        double[][] fromData = { { fromBlockID, fromPortID, fromType } };
-        data.add(new ScilabDouble(fromData)); // from
-
-        double toBlockID = ((BasicBlock) endBlock).getOrdering();
-        double toPortID = end.getOrdering();
-        double toType = LinkPortMap.isStart(end);
-
-        double[][] toData = { { toBlockID, toPortID, toType } };
-        data.add(new ScilabDouble(toData)); // to
-
-        data = (ScilabMList) afterEncode(from, data);
-
-        return data;
-    }
-
-    /**
-     * Encode the link points
-     *
-     * @param from
-     *            the link instance
-     * @param srcGeom
-     *            the source geometry (output port)
-     * @param endGeom
-     *            the target geometry (input port)
-     */
-    private void encodePoints(BasicLink from, final mxGeometry srcGeom, final mxGeometry endGeom) {
-        final int ptCount = from.getPointCount();
-
-        mxGeometry geometry;
-        final double[][] xx = new double[2 + ptCount][1];
-        final double[][] yy = new double[2 + ptCount][1];
-
-        /*
-         * Start point
-         */
-        xx[0][0] = srcGeom.getCenterX();
-        yy[0][0] = -srcGeom.getCenterY();
-        geometry = start.getParent().getGeometry();
-        if (geometry != null) {
-            xx[0][0] += geometry.getX();
-            yy[0][0] -= geometry.getY() - geometry.getHeight();
-        }
-
-        /*
-         * Control points
-         */
-        if (ptCount > 0 && from.getGeometry() != null) {
-            final List<mxPoint> lnkPoints = from.getGeometry().getPoints();
-            for (int i = 0; i < ptCount; i++) {
-                xx[1 + i][0] = (lnkPoints.get(i)).getX();
-                yy[1 + i][0] = -(lnkPoints.get(i)).getY();
-            }
-        }
-
-        /*
-         * End point
-         */
-        xx[1 + ptCount][0] = endGeom.getCenterX();
-        yy[1 + ptCount][0] = -endGeom.getCenterY();
-
-        geometry = end.getParent().getGeometry();
-        if (geometry != null) {
-            xx[1 + ptCount][0] += geometry.getX();
-            yy[1 + ptCount][0] -= geometry.getY() - geometry.getHeight();
-        }
-
-        data.add(new ScilabDouble(xx));
-        data.add(new ScilabDouble(yy));
     }
 }
 // CSON: ClassDataAbstractionCoupling

@@ -6,11 +6,14 @@
  * Copyright (C) 2011 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - Scilab Enterprises - Cedric Delamarre
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -49,6 +52,7 @@
 #include "CurrentFigure.h"
 #include "CurrentSubwin.h"
 #include "CurrentObject.h"
+#include "Sciwarning.h"
 
 /*--------------------------------------------------------------------
  *  plot2dn(ptype,Logflags,x,y,n1,n2,style,strflag,legend,brect,aaint,lstr1,lstr2)
@@ -106,7 +110,7 @@ int plot2dn(int ptype, char *logflags, double *x, double *y, int *n1, int *n2, i
     int *pObj = NULL;
     int cmpt = 0;
     int with_leg = 0;
-    double drect[6];
+    double drect[6] = {0};
     char dataflag = 0;
 
     BOOL bounds_changed = FALSE;
@@ -388,7 +392,7 @@ int plot2dn(int ptype, char *logflags, double *x, double *y, int *n1, int *n2, i
         }
         else
         {
-            sciprint(_("Warning: Nax does not work with logarithmic scaling.\n"));
+            Sciwarning(_("Warning: Nax does not work with logarithmic scaling.\n"));
         }
 
     }
@@ -625,10 +629,16 @@ BOOL update_specification_bounds(int iSubwinUID, double rect[6], int flag)
     {
         getGraphicObjectProperty(iSubwinUID, __GO_DATA_BOUNDS__, jni_double_vector, (void **)&dataBounds);
 
-        rect[4] = dataBounds[4];
-        rect[5] = dataBounds[5];
-
-        releaseGraphicObjectProperty(__GO_DATA_BOUNDS__, dataBounds, jni_double_vector, 6);
+        if (dataBounds)
+        {
+            rect[4] = dataBounds[4];
+            rect[5] = dataBounds[5];
+            releaseGraphicObjectProperty(__GO_DATA_BOUNDS__, dataBounds, jni_double_vector, 6);
+        }
+        else
+        {
+            return FALSE;
+        }
     }
 
     setGraphicObjectProperty(iSubwinUID, __GO_DATA_BOUNDS__, rect, jni_double_vector, 6);

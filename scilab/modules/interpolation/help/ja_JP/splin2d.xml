@@ -127,11 +127,11 @@
         <para>
             <emphasis role="bold">natural</emphasis>, <emphasis role="bold">monotone</emphasis>, <emphasis role="bold">fast</emphasis> (または
             <emphasis role="bold">fast_periodic</emphasis>) 型は,
-            例えば発振を防止したい場合(<emphasis role="bold">monotone</emphasis> 
+            例えば発振を防止したい場合(<emphasis role="bold">monotone</emphasis>
             がこの用途には最も強力です)に有用です.
         </para>
         <para>より簡便な方法で双三次パッチの係数を得るには,
-            <literal>c = hypermat([4,4,nx-1,ny-1],C)</literal>を使用し,
+            <literal>c = matrix(C, [4,4,nx-1,ny-1])</literal>を使用し,
             続いてパッチ<emphasis>(i,j)</emphasis>(前記の式参照)
             の係数<emphasis>(k,l)</emphasis>
             を<literal>c(k,l,i,j)</literal>に保存します.
@@ -144,7 +144,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // 例1 : cos(x)cos(y)の補間
 n = 7;  //  n x n 個の補間点を有する通常のグリッドを
         // 使用します
@@ -160,7 +160,7 @@ clf()
 plot3d(xx, yy, zz, flag=[2 4 4])
 [X,Y] = ndgrid(x,y);
 param3d1(X,Y,list(z,-9*ones(1,n)), flag=[0 0])
-str = msprintf(" with %d x %d interpolation points. ermax = %g",n,n,emax) 
+str = msprintf(" with %d x %d interpolation points. ermax = %g",n,n,emax)
 xtitle("spline interpolation of cos(x)cos(y)"+str)
 ]]></programlisting>
         <scilab:image>
@@ -178,10 +178,10 @@ xtitle("spline interpolation of cos(x)cos(y)"+str)
             plot3d(xx, yy, zz, flag=[2 4 4])
             [X,Y] = ndgrid(x,y);
             param3d1(X,Y,list(z,-9*ones(1,n)), flag=[0 0])
-            str = msprintf(" with %d x %d interpolation points. ermax = %g",n,n,emax) 
+            str = msprintf(" with %d x %d interpolation points. ermax = %g",n,n,emax)
             xtitle("spline interpolation of cos(x)cos(y)"+str)
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // 例2 : ランダムなデータに異なる補間関数を適用
 n = 6;
 x = linspace(0,1,n); y = x;
@@ -193,7 +193,7 @@ ZP1 = interp2d(XP, YP, x, y, splin2d(x, y, z, "not_a_knot"));
 ZP2 = linear_interpn(XP, YP, x, y, z);
 ZP3 = interp2d(XP, YP, x, y, splin2d(x, y, z, "natural"));
 ZP4 = interp2d(XP, YP, x, y, splin2d(x, y, z, "monotone"));
-xset("colormap", jetcolormap(64))
+gcf().color_map = jetcolormap(64);
 clf()
 subplot(2,2,1)
 plot3d1(xp, yp, ZP1, flag=[2 2 4])
@@ -212,7 +212,7 @@ show_window()
         <scilab:image>
             // example 2 : different interpolation functions on random data
             n = 6;
-            x = linspace(0,1,n); y = x;   
+            x = linspace(0,1,n); y = x;
             z = rand(n,n);
             np = 50;
             xp = linspace(0,1,np); yp = xp;
@@ -221,7 +221,7 @@ show_window()
             ZP2 = linear_interpn(XP, YP, x, y, z);
             ZP3 = interp2d(XP, YP, x, y, splin2d(x, y, z, "natural"));
             ZP4 = interp2d(XP, YP, x, y, splin2d(x, y, z, "monotone"));
-            xset("colormap", jetcolormap(64))
+            gcf().color_map = jetcolormap(64);
             clf()
             subplot(2,2,1)
             plot3d1(xp, yp, ZP1, flag=[2 2 4])
@@ -237,14 +237,14 @@ show_window()
             xtitle("monotone")
             show_window()
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // 例3 : ステップ関数のnot_a_knot スプラインおよびmonotoneスプライン
-//             
+//
 a = 0; b = 1; c = 0.25; d = 0.75;
 // 補間グリッドを作成
 n = 11;
 x = linspace(a,b,n);
-ind = find(c &lt;= x &amp; x &lt;= d); 
+ind = find(c &lt;= x &amp; x &lt;= d);
 z = zeros(n,n); z(ind,ind) = 1;  // 正方形の中にステップ
 // 評価グリッドを作成
 np = 220;
@@ -254,7 +254,7 @@ zp1 = interp2d(XP, YP, x, x, splin2d(x,x,z));
 zp2 = interp2d(XP, YP, x, x, splin2d(x,x,z,"monotone"));
 // プロット
 clf()
-xset("colormap",jetcolormap(128))
+gcf().color_map = jetcolormap(128);
 subplot(1,2,1)
 plot3d1(xp, xp, zp1, flag=[-2 6 4])
 xtitle("spline (not_a_knot)")

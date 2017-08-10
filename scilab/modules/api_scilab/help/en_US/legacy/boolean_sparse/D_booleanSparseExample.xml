@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009  - DIGITEO - Antoine ELIAS
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="booleanSparseExample" xml:lang="en">
+    <refnamediv>
+        <refname>boolean sparse example</refname>
+        <refpurpose>
+            Boolean sparse use case.
+        </refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>This example shows how to get a boolean sparse variable and return it to Scilab.</para>
+    </refsection>
+    <refsection>
+        <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/booleanSparseExample.c-->
+        <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/booleanSparseExample.tst-->
+        <!--Lib_name: booleanSparseExample-->
+        <!--Func_list: booleanSparseExample-->
+        <title>Gateway Source</title>
+        <programlisting role="code_gateway">
+            <![CDATA[
+#include "api_scilab.h"
+
+int booleanSparseExample(char *fname,void* pvApiCtx)
+{
+	SciErr sciErr;
+	int* piAddr		= NULL;
+	int iType		= 0;
+	int iRet		= 0;
+
+    CheckInputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
+
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
+	if(sciErr.iErr)
+	{
+			printError(&sciErr, 0);
+			return 0;
+	}
+
+	if(isBooleanSparseType(pvApiCtx, piAddr))
+	{
+		int iRows			= 0;
+		int iCols			= 0;
+		int iNbItem			= 0;
+		int* piNbItemRow	= NULL;
+		int* piColPos		= NULL;
+
+		iRet = getAllocatedBooleanSparseMatrix(pvApiCtx, piAddr, &iRows, &iCols, &iNbItem, &piNbItemRow, &piColPos);
+		if(iRet)
+		{
+			freeAllocatedBooleanSparse(piNbItemRow, piColPos);
+			return iRet;
+		}
+
+		sciErr = createBooleanSparseMatrix(pvApiCtx, nbInputArgument(pvApiCtx) + 1, iRows, iCols, iNbItem, piNbItemRow, piColPos);
+		if(sciErr.iErr)
+		{
+			freeAllocatedBooleanSparse(piNbItemRow, piColPos);
+			printError(&sciErr, 0);
+			return sciErr.iErr;
+		}
+
+		freeAllocatedBooleanSparse(piNbItemRow, piColPos);
+		AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+	}
+	return 0;
+}
+ ]]>
+        </programlisting>
+    </refsection>
+    <refsection>
+        <title>Scilab test script</title>
+        <programlisting role="code_scilab"><![CDATA[
+bsp = sparse([1,1;2,2;3,3],[%t,%t,%t]);
+or(booleanSparseExample(bsp) == bsp)
+ ]]></programlisting>
+    </refsection>
+</refentry>

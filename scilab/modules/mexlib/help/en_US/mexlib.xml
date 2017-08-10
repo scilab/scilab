@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011-2011 - GSoC 2011 - Iuri SILVIO
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry version="5.0-subset Scilab" xml:id="mexlib" xml:lang="en"
@@ -20,21 +23,21 @@
     <info>
         <pubdate>$LastChangedDate$</pubdate>
     </info>
-    
+
     <refnamediv>
         <refname>mexlib</refname>
-        
+
         <refpurpose>
-            Mexlib is a module in Scilab YaSp. You can find build instructions in YaSp page. This module is based in <ulink url="http://www.mathworks.com/help/techdoc/apiref/bqoqnz0.html">MATLAB mexlib specification.</ulink>
+            Mexlib is a module of Scilab 6. You can find build instructions in Scilab 6 page. This module is based in <ulink url="http://www.mathworks.com/help/techdoc/apiref/bqoqnz0.html">MATLAB mexlib specification.</ulink>
         </refpurpose>
     </refnamediv>
-    
+
     <refsection>
         <title>How to</title>
-        
+
         <para>First of all, to use a mex function you need a mex file. Here is a small example (call it example.c):</para>
-        
-        <programlisting><![CDATA[ 
+
+        <programlisting><![CDATA[
 #include "mex.h"
 
 void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])
@@ -48,28 +51,28 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])
     memcpy(output, data, 3*sizeof(double));
 }
 ]]></programlisting>
-        
+
         <para>This function is really simple, it just return a double array with 3 values. The important part is the mex.h included and mexFunction defined with these arguments.</para>
-        
+
         <para>
             To compile this file, you should use Scilab <link linkend="ilib_mex_build">ilib_mex_build</link> function.
         </para>
-        
-        <programlisting><![CDATA[ 
+
+        <programlisting><![CDATA[
 --> ilib_mex_build('libmexexample',['mexgetdouble','example', 'cmex'], 'example.c',[],'Makelib','','','');
 ]]></programlisting>
-        
+
         <para>This creates a loader file you should run:</para>
-        
+
         <programlisting><![CDATA[
 --> exec('loader.sce');
 ]]></programlisting>
     </refsection>
-    
+
     <refsection>
         <title>Examples</title>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
 #include "mex.h"
 
 void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])
@@ -83,19 +86,19 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])
     memcpy(output, data, 3*sizeof(double));
 }
  ]]></programlisting>
-        
+
         <para>After that, just call your function, created with name mexgetdouble:</para>
         <programlisting><![CDATA[
 --> r = mexgetdouble()
-r  = 
+r  =
 
   1    2.1    3
 ]]></programlisting>
     </refsection>
-    
+
     <refsection role="see also">
-        <title>See Also</title>
-        
+        <title>See also</title>
+
         <simplelist type="inline">
             <member>
                 <link linkend="ilib_mex_build">ilib_mex_build</link>
@@ -103,15 +106,12 @@ r  =
             <member>
                 <ulink url="http://www.mathworks.com/help/techdoc/apiref/bqoqnz0.html">mexlib specification</ulink>
             </member>
-            <member>
-                <ulink url="http://wiki.scilab.org/YaSp">Build YaSp</ulink>
-            </member>
         </simplelist>
     </refsection>
-    
+
     <refsection>
         <title>Authors</title>
-        
+
         <para>Iuri de Silvio</para>
     </refsection>
 </refentry>

@@ -4,11 +4,14 @@
 * Copyright (C) 1997   - INRIA
 * Copyright (C) 2012 - Serge Steer - INRIA
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 -->
 <refentry xmlns="http://docbook.org/ns/docbook"
@@ -26,7 +29,7 @@
         <refpurpose>Inverse discrete sine transform.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>X=dst(A [,sign] [,option])
             X=dst(A,sign,selection [,option])
             X=dst(A,sign,dims,incr [,option])
@@ -68,7 +71,7 @@
                     dimensions.  See the Description part for details.
                 </listitem>
             </varlistentry>
-            
+
             <varlistentry>
                 <term>dims</term>
                 <listitem>
@@ -161,8 +164,8 @@
                         </latex>
                     </para>
                 </listitem>
-                
-                
+
+
                 <listitem>
                     <para>
                         For <literal>"dst4"</literal>  the function computes the unnormalized DST-IV transform. the 1-D transform of a vector of length <latex>$n$</latex> is:
@@ -185,7 +188,7 @@
                         </latex>
                     </para>
                 </listitem>
-                
+
                 <listitem>
                     <para>
                         For <literal>"idst"</literal> the function computes the normalized DST-I transform. The 1-D transform of a vector of length <latex>$n$</latex> is:
@@ -206,7 +209,7 @@
                 transform will result in the original array scaled by the
                 product of the dimension sizes.
             </para>
-            
+
         </refsection>
         <refsection>
             <title>Syntax description</title>
@@ -255,7 +258,7 @@
                         </variablelist>
                     </listitem>
                 </varlistentry>
-                
+
                 <varlistentry>
                     <term>Long syntax for DST along specified dimensions</term>
                     <listitem>
@@ -331,7 +334,7 @@
         </para>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="fft">fft</link>

@@ -7,14 +7,15 @@
 // ============================================================================
 
 // <-- TEST WITH GRAPHIC -->
+// <-- NOT FIXED -->
 
 // libs are not loaded at startup
-if isdef('BIGSOM_f') then pause, end
+if isdef("BIGSOM_f") then pause, end
 
 // we launch xcos then libs should be loaded
 xcos();
 sleep(500);
-if ~isdef('BIGSOM_f') then pause, end
+if ~isdef("BIGSOM_f") then pause, end
 
 // we launch xcos with an xcos demo file
 xcos(SCI + "/modules/xcos/demos/Simple_Demo.zcos");
@@ -22,10 +23,6 @@ sleep(500);
 
 // we launch xcos with an xcos demo file with full path resolution
 xcos("SCI/modules/xcos/demos/Simple_Demo.zcos");
-sleep(500);
-
-// we launch xcos with cos file
-xcos(SCI + "/modules/xcos/tests/nonreg_tests/Antrieb3.cos");
 sleep(500);
 
 // we launch xcos with cosf file

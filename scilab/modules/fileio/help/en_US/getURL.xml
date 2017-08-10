@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) - S/E - Sylvestre Ledru
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xml:id="getURL" xml:lang="en"
@@ -18,22 +21,22 @@
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:scilab="http://www.scilab.org"
           xmlns:db="http://docbook.org/ns/docbook">
-    
+
     <refnamediv>
         <refname>getURL</refname>
-        
+
         <refpurpose>Download an URL (HTTP, HTTPS, FTP...) </refpurpose>
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        
+        <title>Syntax</title>
+
         <synopsis>filename = getURL(URL);
             [filename, [content]] = getURL(URL [, targetDir [, username [, password]]]]);
             [filename, [content]] = getURL(URL [, targetFile [, username [, password]]]]);
         </synopsis>
     </refsynopsisdiv>
-    
+
     <refsection>
         <title>Arguments</title>
         <variablelist>
@@ -81,73 +84,73 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    
+
     <refsection>
         <title>Description</title>
-        
+
         <para>Download a file from an URL</para>
-        
+
         <para>
             getURL will download a file from a remote URL. By default, getURL will use the same name as provided in the URL. However, under some circumstances (for example, <emphasis role="italic">http://www.scilab.org/</emphasis>), the filename is not provided by the URL itself, getURL will rename the file to <emphasis role="italic">index.html</emphasis>
         </para>
-        
+
         <para>content contains the content of a page pointed by an URL.</para>
-        
+
         <para>
             This function is based on the <ulink url="http://curl.haxx.se/libcurl/">curl library</ulink>.
         </para>
-        
+
         <para> Username and Password can be specified for the websites which required authentication. The authentication method used is the CURLAUTH_ANY provided by CURLOPT_HTTPAUTH parameter of the libcurl library.</para>
-        
+
         <para>IPv6 (and obviously IPv4) are supported out-of-the box by getURL.</para>
-        
+
         <para>Proxy configuration is enabled in this version, it can be modified in the Preferences under the rubric "Internet".</para>
-        
+
         <para>
             The <emphasis role="italic">CURLOPT_FOLLOWLOCATION</emphasis> curl option is activated to make sure the download follow the URL.
         </para>
-        
+
         <para>
             <literal>getURL</literal> is based on libcurl. The version of this library in the official Scilab binary has been compiled with HTTP, HTTPS, FTP and FTPS support. If Scilab has been installed through a packaging system in a distribution, it is likely that <ulink url="http://curl.haxx.se/docs/features.html">other protocols</ulink> than HTTP, HTTPS and FTPS will work. However, they have not been tested enough.
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
         <title>Examples</title>
-        
+
         <programlisting role="example">
-            
+
             // Will download the URL and name the file maths_simulation
             getURL("http://www.scilab.org/products/scilab/features/maths_simulation");
-            
+
             // Save the Scilab homepage in the current directory (and rename the file)
             getURL("http://www.scilab.org","scilab_homepage.html");
-            
+
             // Download a Scilab example and execute it
             myFile = getURL("http://fileexchange.scilab.org/toolboxes/contour3d/10.03/files/contour3d.sci",TMPDIR)
             exec(myFile);
             contour3d();
-            
+
             // Use authentication
             getURL("http://httpbin.org/basic-auth/user/passwd",TMPDIR+"/testfile.html","user","passwd")
-            
+
             // Needs IPv6 connectivity
             getURL("http://ipv6.google.com/intl/en_com/images/srpr/logo3w.png")
-            
+
             // Retrieve the content
             [myFile, content] = getURL("http://fileexchange.scilab.org/toolboxes/contour3d/10.03/files/contour3d.sci",TMPDIR)
         </programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="splitURL">splitURL</link>
             </member>
         </simplelist>
     </refsection>
-    
+
     <refsection>
         <title>History</title>
         <revhistory>
@@ -159,5 +162,5 @@
             </revision>
         </revhistory>
     </refsection>
-    
+
 </refentry>

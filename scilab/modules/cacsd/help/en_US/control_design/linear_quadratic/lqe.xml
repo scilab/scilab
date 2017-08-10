@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - F. Delebecque
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="lqe">
+    <refnamediv>
+        <refname>lqe</refname>
+        <refpurpose>linear quadratic estimator (Kalman Filter)  </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[K,X]=lqe(Pw)</synopsis>
+        <synopsis>[K,X]=lqe(P,Qww,Rvv [,Swv])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>Pw</term>
+                <listitem>
+                    <para>
+                        A state space representation of a linear
+                        dynamical system (see <link
+                        linkend="syslin">syslin</link>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>P</term>
+                <listitem>
+                    <para>
+                        A state space representation of a linear
+                        dynamical system (<literal>nu</literal> inputs,
+                        <literal>ny</literal> outputs,
+                        <literal>nx</literal> states) (see <link
+                      linkend="syslin">syslin</link>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Qww</term>
+                <listitem>
+                    <para>
+                        Real <literal>nx</literal> by
+                        <literal>nx</literal> symmetric matrix, the
+                        process noise variance
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Rvv</term>
+                <listitem>
+                    <para>
+                        full rank real <literal>ny</literal> by
+                        <literal>ny</literal> symmetric matrix, the
+                        measurement noise variance.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Swv</term>
+                <listitem>
+                    <para>
+                        real <literal>nx</literal> by
+                        <literal>ny</literal> matrix, the process
+                        noise vs measurement noise covariance. The
+                        default value is zeros(nx,ny).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>K</term>
+                <listitem>
+                    <para>a real matrix, the optimal gain.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>X</term>
+                <listitem>
+                    <para>a real symmetric matrix, the stabilizing solution of the Riccati equation.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            This function computes the linear optimal LQ estimator gain of
+            the state estimator for a detectable (see <link
+        linkend="dt_ility">dt_ility</link>) linear dynamical system and
+            the variance matrices for the process and the measurement
+            noises.
+        </para>
+        <refsection>
+            <title>
+                Syntax <literal>[K,X]=lqe(P,Qww,Rvv [,Swv])</literal>
+            </title>
+            <para>
+                Computes the linear optimal LQ estimator gain K for the
+                dynamical system:
+                <latex style="display"
+          align="left"><![CDATA[\text{P}=\left\lbrace \begin{array}{l}\dot{x}=A x+B
+          u+w\\y=C x+D u +v\end{array}\right. \text{ in continuous time}]]></latex>
+            </para>
+            or
+            <para>
+                <latex style="display"
+          align="left"><![CDATA[\text{P}=\left\lbrace \begin{array}{l}x^+=A x+B u
+          +w\\y=C x+D u +v\end{array}\right. \text{ in discrete time}]]></latex>
+            </para>
+            <para>
+                Where <latex>w \text{ and } v</latex> are white noises such
+                as <latex>\mathbb{E}(w w')=Q_{ww} \text{ , }\mathbb{E}(v
+                    v')=R_{vv} \text{ and }\mathbb{E}w v')=S_{wv}
+                </latex>
+            </para>
+            <note>
+                <title>Caution</title>
+                <para>
+                    The values of <latex>B</latex> and <latex>D</latex>
+                    are not taken into account.
+                </para>
+            </note>
+            <note>
+                <title>Standard form</title>
+                <para>
+                    <latex style="display"
+           align="left"><![CDATA[\mathbb{E}\left(\left[\begin{array}{l}w\\v\end{array}\right]\left[\begin{array}{ll}w'&v'\end{array}\right]\right)=\left[\begin{array}{ll}Q_{ww}&S_{wv}\\S_{wv}'&R_{vv}\end{array}\right]]]></latex>
+           This covariance matrix can be factored using full-rank
+           factorization (see <link linkend="fullrf">fuffrf</link>) as
+           <latex style="display"
+           align="left"><![CDATA[\left[\begin{array}{l}B_w\\D_w\end{array}\right]
+           \left[\begin{array}{ll}B_w'&D_w'\end{array}\right]]]></latex>
+
+           And consequently the initial dynamical system is equivalent to
+
+           <latex style="display"
+           align="left">\left\{\begin{array}{l}\dot{x}=A x+B u +B_w w
+           \\y=C x+D u+D_w w\end{array}\right. \text{ in continuous time }
+           </latex>
+           or
+           <latex style="display"
+                  align="left">\left\{\begin{array}{l}x^+=A x+B u+B_w
+           w\\y=C x+D u+D_w w \end{array}\right. \text{ in discrete time.}</latex>
+
+           Where <latex>w</latex> is now a white noise such
+           as <latex>\mathbb{E}(w w')=I</latex>
+        </para>
+        </note>
+      </refsection>
+
+      <refsection>
+        <title>Syntax <literal>[K,X]=lqe(Pw)</literal></title>
+        <para>
+          Computes the linear optimal LQ estimator  gain K  for the dynamical system
+
+          <latex style="display"
+          align="left">\text{Pw}=\left\{\begin{array}{l}\dot{x}=A
+          x+B_w w\\z=C x+D_w w\end{array}\right. \text{ in continuous time or }\text{Pw}=\left\{\begin{array}{l}x^+=A
+          x+B_w w\\z=C x+D_w w\end{array}\right. \text{ in discrete time.}</latex>
+        </para>
+        <para>
+          Where <latex>w</latex> is a white noise with unit covariance.
+        </para>
+      </refsection>
+      <refsection>
+      <title>Properties</title>
+      <itemizedlist>
+        <listitem>
+        <para>
+           <latex>A+K C</latex> is stable.
+        </para>
+        </listitem>
+        <listitem>
+        <para>
+          the state estimator is given by the dynamical system:
+
+          <latex style="display" align="left">\dot{\hat{x}}=(A+K
+          C)\hat{x}+(B_w+K D_w) u -K y \text{ in continuous time }</latex>
+
+          <para>or </para>
+          <latex style="display"
+          align="left">\hat{x}^+=(A+K C)\hat{x}+(B_w+K D_w) u -K y \text{
+          in discrete time.}</latex>
+          It minimizes the covariance of the steady state error
+          <latex>x-\hat{x}</latex>.
+        </para>
+        </listitem>
+        <listitem>
+        <para>
+          For discrete time systems  the state estimator is such that:
+          <latex>\hat{x}_{k+1}= \mathbb{E}(x_k| y_0,...,y_k)</latex> (one-step predicted <latex>x</latex>).
+        </para>
+        </listitem>
+      </itemizedlist>
+      </refsection>
+       <refsection>
+      <title>Algorithm</title>
+      <para>
+        let <latex>Q=B_w B_w'</latex>, <latex>R=D_w D_w'</latex> and  <latex>S=B_w D_w'</latex>
+      </para>
+      <itemizedlist>
+        <listitem>
+        <para>
+          For the continuous time case K is given by
+          <latex style="display"  align="left">K=-(X C'+S) R^{-1} </latex>
+        </para>
+        <para>
+          where <literal>X</literal> is the solution of the
+          stabilizing Riccati equation
+
+          <latex style="display" align="left">(A-S R^{-1} C) X+X (A-S
+          R^{-1} C)'-X C' R^{-1} C X+Q-S R^{-1} S'=0 </latex>
+        </para>
+        </listitem>
+        <listitem>
+        <para>
+          For the discrete time case K is given by
+          <latex style="display"  align="left">K=-(A X C'+S) (C X C'+R)^+</latex>
+        </para>
+        <para>where <literal>X</literal> is the solution of the stabilizing Riccati equation
+
+          <latex style="display" align="left">A X A'-X-(A X C'+S) (C X
+          C'+R)^+ (C X A'+S')+Q </latex>
+        </para>
+        </listitem>
+      </itemizedlist>
+     </refsection>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <para>
+          Assume the dynamical system formed by two masses connected by a spring and a damper:
+
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="../../../images/twoMasses.png"/>
+            </imageobject>
+          </mediaobject>
+
+          A force <latex> u=\bar{u}+e</latex> (where <latex>e</latex> is a noise) is applied to the big one, the deviations from  equilibrium positions <latex>dy_1</latex> and <latex>dy_2</latex> of the masses are measured. These measures are also subject to an additionnal noise <latex>v</latex>.
+        </para>
+        <para>
+          A continuous time state space representation of this system is:
+          <latex style="display" align="left"><![CDATA[\left\lbrace\begin{array}{l}
+          \dot{x}=\left[\begin{array}{llll}0&1&0&0\\ -k/M&-b/M&k/M&b/M\\ 0&0&0&1\\ k/m&b/m&-k/m&-b/m \end{array}\right] x +\left[\begin{array}{l}0\\ 1/M\\ 0\\ 0 \end{array}\right] (\bar{u}+e)\\
+          \left[\begin{array}{l}dy_1\\ dy_2\end{array}\right]=\left[\begin{array}{llll}1&0&0&0\\ 0&0&1&0 \end{array}\right] x +v
+          \end{array}\right.]]></latex>
+                    <latex style="display"  align="left">\text{Where }x=\left[\begin{array}{l}dy_1\\ \dot{dy_1}\\ dy_2\\ \dot{dy_2}\end{array}\right]</latex>
+                    and <latex>e</latex> and  <latex>v</latex> are discrete time white noises such as
+                    <latex style="display"  align="left">\mathbb{E}(e e')=Q_e \text{ , }\mathbb{E}(v v')=R_vv \text{ and }\mathbb{E}(e v')=S_{ev} </latex>
+                </para>
+                <para>
+                    The instructions below can be used  to compute a LQ state observer of the discretized version of this dynamical system.
+                </para>
+                <programlisting role="example"><![CDATA[
+// Form the state space model
+M = 1; m = 0.2; k = 0.1; b = 0.004;
+A = [  0     1    0    0
+      -k/M  -b/M  k/M  b/M
+       0     0    0    1
+      k/m  b/m  -k/m  -b/m];
+B = [0; 1/M; 0; 0];
+C = [1 0 0 0  //dy1
+     0 0 1 0];//dy2
+//inputs u and e; outputs dy1 and dy2
+P = syslin("c",A, B, C);
+// Discretize it
+dt=0.5;
+Pd=dscr(P, dt);
+
+//  Set the noise covariance matrices
+Q_e=0.01; //additive input noise variance
+R_vv=0.001*eye(2,2); //measurement noise variance
+Q_ww=Pd.B*Q_e*Pd.B'; //input noise adds to regular input u
+
+//----syntax [K,X]=lqe(P,Qww,Rvv [,Swv])---
+Ko=lqe(Pd,Q_ww,R_vv); //observer gain
+
+//----syntax [K,X]=lqe(P21)---
+bigR =sysdiag(Q_ww, R_vv);
+[W,Wt]=fullrf(bigR);
+Bw=W(1:size(Pd.B,1),:);
+Dw=W(($+1-size(Pd.C,1)):$,:);
+Pw=syslin(Pd.dt,Pd.A,Bw,Pd.C,Dw);
+Ko1=lqe(Pw); //same observer gain
+
+//Check gains equality
+norm(Ko-Ko1,1)
+
+// Form the observer
+O=observer(Pd,Ko);
+//check stability
+and(abs(spec(O.A))<1)
+// Check by simulation
+// Modify Pd to make it return the state
+Pdx=Pd;Pdx.C=eye(4,4);Pdx.D=zeros(4,1);
+t=0:dt:30;
+u=zeros(t);
+x=flts(u,Pdx,[1;0;0;0]);//state evolution
+y=Pd.C*x;
+// simulate the observer
+x_hat=flts([u+0.01*rand(u);y+0.0001*rand(y)],O);
+clf;
+subplot(2,2,1)
+  plot2d(t',[x(1,:);x_hat(1,:)]'),
+  e=gce();e.children.polyline_style=2;
+  L=legend('$x_1=dy_1$', '$\hat{x_1}$');L.font_size=3;
+  xlabel('Time (s)')
+subplot(2,2,2)
+  plot2d(t',[x(2,:);x_hat(2,:)]')
+  e=gce();e.children.polyline_style=2;
+  L=legend('$x_2=dy_1^+$', '$\hat{x_2}$');L.font_size=3;
+  xlabel('Time (s)')
+subplot(2,2,3)
+  plot2d(t',[x(3,:);x_hat(3,:)]')
+  e=gce();e.children.polyline_style=2;
+  L=legend('$x_3=dy_2$', '$\hat{x_3}$');L.font_size=3;
+  xlabel('Time (s)')
+subplot(2,2,4)
+  plot2d(t',[x(4,:);x_hat(4,:)]')
+  e=gce();e.children.polyline_style=2;
+  L=legend('$x_4=dy_2^+$', '$\hat{x_4}$');L.font_size=3;
+  xlabel('Time (s)')
+]]></programlisting>
+                <scilab:image>  <![CDATA[
+// Form the state space model
+M = 1; m = 0.2; k = 0.1; b = 0.004;
+A = [  0     1    0    0
+      -k/m  -b/m  k/m  b/m
+       0     0    0    1
+      k/M  b/M  -k/M  -b/M];
+B = [0; 0; 0; 1/M];
+C = [1 0 0 0  //dy1
+     0 0 1 0];//dy2
+//inputs u and e; outputs dy1 and dy2
+P = syslin("c",A, B, C);
+// Discretize it
+dt=0.5;
+Pd=dscr(P, dt);
+
+//  Set the noise covariance matrices
+Q_e=0.01; //additive input noise variance
+R_vv=0.001*eye(2,2); //measurement noise variance
+Q_ww=Pd.B*Q_e*Pd.B'; //input noise adds to regular input u
+
+//----syntax [K,X]=lqe(P,Qww,Rvv [,Swv])---
+Ko=lqe(Pd,Q_ww,R_vv); //observer gain
+
+//----syntax [K,X]=lqe(P21)---
+bigR =sysdiag(Q_ww, R_vv);
+[W,Wt]=fullrf(bigR);
+Bw=W(1:size(Pd.B,1),:);
+Dw=W(($+1-size(Pd.C,1)):$,:);
+Pw=syslin(Pd.dt,Pd.A,Bw,Pd.C,Dw);
+Ko1=lqe(Pw); //same observer gain
+
+//Check gains equality
+norm(Ko-Ko1,1)
+
+// Form the observer
+O=observer(Pd,Ko);
+//check stability
+and(abs(spec(O.A))<1)
+// Check by simulation
+// Modify Pd to make it return the state
+Pdx=Pd;Pdx.C=eye(4,4);Pdx.D=zeros(4,1);
+t=0:dt:30;
+u=zeros(t);
+x=flts(u,Pdx,[1;0;0;0]);//state evolution
+y=Pd.C*x;
+// simulate the observer
+x_hat=flts([u+0.01*rand(u);y+0.0001*rand(y)],O);
+clf;
+subplot(2,2,1)
+  plot2d(t',[x(1,:);x_hat(1,:)]'),
+  e=gce();e.children.polyline_style=2;
+  L=legend('$x_1=dy_1$', '$\hat{x_1}$');L.font_size=3;
+  xlabel('Time (s)')
+subplot(2,2,2)
+  plot2d(t',[x(2,:);x_hat(2,:)]')
+  e=gce();e.children.polyline_style=2;
+  L=legend('$x_2=dy_1^+$', '$\hat{x_2}$');L.font_size=3;
+  xlabel('Time (s)')
+subplot(2,2,3)
+  plot2d(t',[x(3,:);x_hat(3,:)]')
+  e=gce();e.children.polyline_style=2;
+  L=legend('$x_3=dy_2$', '$\hat{x_3}$');L.font_size=3;
+  xlabel('Time (s)')
+subplot(2,2,4)
+  plot2d(t',[x(4,:);x_hat(4,:)]')
+  e=gce();e.children.polyline_style=2;
+  L=legend('$x_4=dy_2^+$', '$\hat{x_4}$');L.font_size=3;
+  xlabel('Time (s)')]]>
+                </scilab:image>
+            </refsection>
+            <refsection>
+                <title>Reference</title>
+                <para>
+                    <ulink url="http://www.springer.com/us/book/9780817640095"> Engineering and Scientific Computing with Scilab</ulink>, Claude Gomez and al.,Springer Science+Business Media, LLC,1999, ISNB:978-1-4612-7204-5
+                </para>
+            </refsection>
+            <refsection role="see also">
+                <title>See also</title>
+                <simplelist type="inline">
+                    <member>
+                        <link linkend="lqr">lqr</link>
+                    </member>
+                    <member>
+                        <link linkend="observer">observer</link>
+                    </member>
+                    <member>
+                        <link linkend="obscont">obscont</link>
+                    </member>
+                    <member>
+                        <link linkend="lqg">lqg</link>
+                    </member>
+                    <member>
+                        <link linkend="fullrf">fullrf</link>
+                    </member>
+                </simplelist>
+            </refsection>
+        </refentry>

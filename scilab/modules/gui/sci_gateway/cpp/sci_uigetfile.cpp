@@ -4,11 +4,14 @@
  * Copyright (C) 2008 - DIGITEO - Vincent COUVERT
  * Copyright (C) 2009 - DIGITEO - Allan CORNET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -35,43 +38,45 @@ extern "C"
 #include "BOOL.h"
 }
 /*--------------------------------------------------------------------------*/
-#define freePointersUigetfile()                 \
-    if (selection)                              \
-    {                                           \
-        for (int i = 0; i < selectionSize; i++) \
-        {                                       \
-            if (selection[i])                   \
-            {                                   \
-                delete selection[i];            \
-                selection[i] = NULL;            \
-            }                                   \
-        }                                       \
-        delete [] selection;                    \
-        selection = NULL;                       \
-    }                                           \
-    if (selectionPathName)                      \
-    {                                           \
-        delete selectionPathName;               \
-        selectionPathName = NULL;               \
-    }                                           \
-    if (selectionFileNames)                     \
-    {                                           \
-        for (int i = 0; i < selectionSize; i++) \
-        {                                       \
-            if (selectionFileNames[i])          \
-            {                                   \
-                delete selectionFileNames[i];   \
-                selectionFileNames[i] = NULL;   \
-            }                                   \
-        }                                       \
-        delete [] selectionFileNames;           \
-        selectionFileNames = NULL;              \
-    }                                           \
-    if (menuCallback)                           \
-    {                                           \
-        delete menuCallback;                    \
-        menuCallback = NULL;                    \
+static void freePointersUigetfile(char **selection, char **selectionFileNames, char *selectionPathName, char *menuCallback,int selectionSize)
+{
+    if (selection)
+    {
+        for (int i = 0; i < selectionSize; i++)
+        {
+            if (selection[i])
+            {
+                delete selection[i];
+                selection[i] = NULL;
+            }
+        }
+        delete [] selection;
+        selection = NULL;
     }
+    if (selectionPathName)
+    {
+        delete[] selectionPathName;
+        selectionPathName = NULL;
+    }
+    if (selectionFileNames)
+    {
+        for (int i = 0; i < selectionSize; i++)
+        {
+            if (selectionFileNames[i])
+            {
+                delete selectionFileNames[i];
+                selectionFileNames[i] = NULL;
+            }
+        }
+        delete [] selectionFileNames;
+        selectionFileNames = NULL;
+    }
+    if (menuCallback)
+    {
+        delete[] menuCallback;
+        menuCallback = NULL;
+    }
+}
 /*--------------------------------------------------------------------------*/
 using namespace org_scilab_modules_gui_filechooser;
 
@@ -170,7 +175,7 @@ int sci_uigetfile(char *fname, void* pvApiCtx)
         {
             freeAllocatedMatrixOfString(nbRow, nbCol, mask);
             freeArrayOfString(description, nbRow);
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 2);
             return 0;
         }
 
@@ -201,7 +206,7 @@ int sci_uigetfile(char *fname, void* pvApiCtx)
     {
         if (checkInputArgumentType(pvApiCtx, 3, sci_strings) == FALSE)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 3);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 3);
             freeAllocatedMatrixOfString(nbRow, nbCol, mask);
             freeArrayOfString(description, nbRow);
             return 1;
@@ -250,7 +255,7 @@ int sci_uigetfile(char *fname, void* pvApiCtx)
             {
                 if (checkInputArgumentType(pvApiCtx, 4, sci_boolean) == FALSE)
                 {
-                    Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 4);
+                    Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 4);
                     freeArrayOfString(description, nbRow);
                     freeAllocatedMatrixOfString(nbRow, nbCol, mask);
                     freeAllocatedSingleString(initialDirectory);
@@ -326,6 +331,7 @@ int sci_uigetfile(char *fname, void* pvApiCtx)
         {
             printError(&sciErr, 0);
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            freePointersUigetfile(selection, selectionFileNames, selectionPathName, menuCallback, selectionSize);
             return 1;
         }
 
@@ -339,6 +345,7 @@ int sci_uigetfile(char *fname, void* pvApiCtx)
             {
                 printError(&sciErr, 0);
                 Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                freePointersUigetfile(selection, selectionFileNames, selectionPathName, menuCallback, selectionSize);
                 return 1;
             }
 
@@ -354,14 +361,15 @@ int sci_uigetfile(char *fname, void* pvApiCtx)
             {
                 printError(&sciErr, 0);
                 Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                freePointersUigetfile(selection, selectionFileNames, selectionPathName, menuCallback, selectionSize);
                 return 1;
             }
 
             AssignOutputVariable(pvApiCtx, 3) = nbInputArgument(pvApiCtx) + 3;
         }
 
-        freePointersUigetfile();
-        returnArguments(pvApiCtx);
+        freePointersUigetfile(selection, selectionFileNames, selectionPathName, menuCallback, selectionSize);
+        ReturnArguments(pvApiCtx);
         return 0;
     }
 
@@ -373,12 +381,13 @@ int sci_uigetfile(char *fname, void* pvApiCtx)
         {
             printError(&sciErr, 0);
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            freePointersUigetfile(selection, selectionFileNames, selectionPathName, menuCallback, selectionSize);
             return 1;
         }
 
         AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
-        freePointersUigetfile();
-        returnArguments(pvApiCtx);
+        freePointersUigetfile(selection, selectionFileNames, selectionPathName, menuCallback, selectionSize);
+        ReturnArguments(pvApiCtx);
         return 0;
     }
 
@@ -388,12 +397,14 @@ int sci_uigetfile(char *fname, void* pvApiCtx)
     {
         printError(&sciErr, 0);
         Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        freePointersUigetfile(selection, selectionFileNames, selectionPathName, menuCallback, selectionSize);
         return 1;
     }
 
     if (createSingleString(pvApiCtx, nbInputArgument(pvApiCtx) + 2, selectionPathName))
     {
         printError(&sciErr, 0);
+        freePointersUigetfile(selection, selectionFileNames, selectionPathName, menuCallback, selectionSize);
         return 1;
     }
 
@@ -410,8 +421,8 @@ int sci_uigetfile(char *fname, void* pvApiCtx)
         AssignOutputVariable(pvApiCtx, 3) = nbInputArgument(pvApiCtx) + 3;
     }
 
-    freePointersUigetfile();
-    returnArguments(pvApiCtx);
+    freePointersUigetfile(selection, selectionFileNames, selectionPathName, menuCallback, selectionSize);
+    ReturnArguments(pvApiCtx);
     return 0;
 }
 

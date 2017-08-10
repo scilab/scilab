@@ -3,86 +3,89 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="ludel">
-    
+
     <refnamediv>
-        
+
         <refname>ludel</refname>
-        
+
         <refpurpose>lufactで使用されるユーティリティ関数</refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        
+
         <title>呼び出し手順</title>
-        
+
         <synopsis>ludel(hand)</synopsis>
-        
+
     </refsynopsisdiv>
-    
+
     <refsection>
-        
+
         <title>引数</title>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>hand</term>
-                
+
                 <listitem>
-                    
+
                     <para>疎行列LU分解のハンドル (lufactの出力)</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>説明</title>
-        
+
         <para>
-            
+
             この関数は,<literal>lufact</literal>と組み合わせて使用されます.
-            
+
             この関数は,<literal>lufact</literal>の結果を保存するために使用される
-            
+
             内部メモリ空間を消去します.
-            
+
         </para>
-        
+
         <para>
-            
+
             一連のコマンド,<literal>[p,r]=lufact(A);x=lusolve(p,b);ludel(p);</literal>
-            
+
             により線形疎行列システム<literal>A*x = b</literal>を解き,
-            
+
             <literal>p</literal>を消去することができます.
-            
+
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>例</title>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
 non_zeros=[1,2,3,4];
 rows_cols=[1,1;2,2;3,3;4,4];
 sp=sparse(rows_cols,non_zeros);
@@ -91,36 +94,36 @@ x=lusolve(h,[1;1;1;1]);
 ludel(h)
 rk,sp*x
  ]]></programlisting>
-        
+
     </refsection>
-    
+
     <refsection role="see also">
-        
+
         <title>参照</title>
-        
+
         <simplelist type="inline">
-            
+
             <member>
-                
+
                 <link linkend="sparse">sparse</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="lufact">lufact</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="luget">luget</link>
-                
+
             </member>
-            
+
         </simplelist>
-        
+
     </refsection>
-    
+
 </refentry>
 

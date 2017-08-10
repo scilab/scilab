@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2015  - Scilab Enterprises - Antoine ELIAS
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="api_handle" xml:lang="en">
+    <refnamediv>
+        <refname>API handle functions</refname>
+        <para>This page lists all the functions to manipulate Scilab native objects containing graphic handles</para>
+        <para></para>
+    </refnamediv>
+    <refsynopsisdiv>
+        <refsection id="api_handle_scilab_createHandleMatrix">
+            <literal>
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                <varname>scilab_createHandleMatrix</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env, int dim, const int* dims)
+            </literal>
+            <para>
+                Create a handle matrix with <varname>dim</varname> dimensions (<varname>dims</varname>[0], <varname>dims</varname>[1], ..., <varname>dims</varname>[<varname>dim</varname>-1]).
+            </para>
+        </refsection>
+        <refsection id="api_handle_scilab_createHandleMatrix2d">
+            <literal>
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                <varname>scilab_createHandleMatrix2d</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env, int row, int col)
+            </literal>
+            <para>
+                Create a matrix of handle with <literal>2</literal> dimensions <literal>M(row, col)</literal>.
+            </para>
+        </refsection>
+        <refsection id="api_handle_scilab_createHandle">
+            <literal>
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                <varname>scilab_createHandle</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env, int val)
+            </literal>
+            <para>Create a scalar handle.</para>
+        </refsection>
+        <refsection id="api_handle_scilab_getHandleArray">
+            <literal>
+                <link linkend="api_types_scilabStatus">
+                    <command>scilabStatus</command>
+                </link>
+                <varname>scilab_getHandleArray</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env,
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                var, int** vals)
+            </literal>
+            <para>
+                Get pointer on internal array of handle of <varname>var</varname>.
+            </para>
+        </refsection>
+        <refsection id="api_handle_scilab_getHandle">
+            <literal>
+                <link linkend="api_types_scilabStatus">
+                    <command>scilabStatus</command>
+                </link>
+                <varname>scilab_getHandle</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env,
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                var, int* val)
+            </literal>
+            <para>Get handle value from an scalar handle variable.</para>
+        </refsection>
+        <refsection id="api_handle_scilab_setHandleArray">
+            <literal>
+                <link linkend="api_types_scilabStatus">
+                    <command>scilabStatus</command>
+                </link>
+                <varname>scilab_setHandleArray</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env,
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                var, const int* vals)
+            </literal>
+            <para>
+                Set values of handle variable <literal>var</literal>.
+            </para>
+        </refsection>
+        <refsection id="api_handle_scilab_setHandle">
+            <literal>
+                <link linkend="api_types_scilabStatus">
+                    <command>scilabStatus</command>
+                </link>
+                <varname>scilab_setHandle</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env,
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                var, int val)
+            </literal>
+            <para>
+                Set value of a scalar handle variable <literal>var</literal>.
+            </para>
+        </refsection>
+    </refsynopsisdiv>
+</refentry>

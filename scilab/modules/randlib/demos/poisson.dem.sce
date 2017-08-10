@@ -43,7 +43,7 @@ function [z]=PoissonT(n)
     plot2d3("onn",i',z'/n,1);
     deff("[y]=fact(n)","if n==0 then y=1;else y=n*fact(n-1);end");
     zt=[];for i1=0:N; zt=[zt, exp(-pmean) *pmean^i1/fact(i1)];end
-    plot2d1("onn",i',zt',[-2,6]);
+    plot2d(i, zt', [-2,6])
     xtitle(_("Simulation of a Poisson random variable"));
     current_axe = gca();
     current_axe.title.font_size = 3;

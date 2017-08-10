@@ -1,13 +1,16 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) 1986 - INRIA - F. BONNANS
 c 
-c This file must be used under the terms of the CeCILL.
-c This source file is licensed as described in the file COPYING, which
-c you should have received as part of this distribution.  The terms
-c are also available at    
-c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+c Copyright (C) 2012 - 2016 - Scilab Enterprises
 c
-      subroutine qnbd(indqn,simul,n,x,f,g,imp,io,zero,
+c This file is hereby licensed under the terms of the GNU GPL v2.0,
+c pursuant to article 5.3.4 of the CeCILL v.2.1.
+c This file was originally licensed under the terms of the CeCILL v2.1,
+c and continues to be available under such terms.
+c For more information, see the COPYING file which you should have received
+c along with this program.
+c
+      subroutine qnbd(indqn,simul,n,x,f,g,iprint,io,zero,
      & napmax,itmax,epsf,epsg,epsx,df0,binf,bsup,nfac,
      & trav,ntrav,itrav,nitrav,izs,rzs,dzs)
 c!but
@@ -30,7 +33,7 @@ c     rlbd,satur   recherche lineaire avec bornes
 c
 c!liste d'appel
 c
-c     subroutine qnbd(indqn,simul,n,x,f,g,imp,io,zero,
+c     subroutine qnbd(indqn,simul,n,x,f,g,iprint,io,zero,
 c    & napmax,itmax,epsf,epsg,epsx,df0,binf,bsup,nfac,
 c    & trav,ntrav,itrav,nitrav,izs,rzs,dzs)
 c
@@ -73,7 +76,7 @@ c     napmax nombre maximum d appels de simul                               e
 c     itmax nombre maximum d iterations de descente               e
 c     itrav vect travail dim nitrav=2n , se decompose en indic et izig
 c     nfac nombre de variables factorisees                  (e si indqn=2)  s
-c     imp facteur d impression                                              e
+c     iprint facteur d impression                                              e
 c         varie de 0 (pas d impressions) a 3 (nombreuses impressions)
 c     io numero du fichier de resultats                                     e
 c     epsx vect dim n precision sur x                                       e
@@ -107,11 +110,11 @@ c
       external simul
 c
 c---- initial printing
-      if(imp.ge.1) then
+      if(iprint.ge.1) then
          call basout(io_out, io, '')
          write(bufstr,1010)
          call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
-         write(bufstr,750) n,epsg,imp
+         write(bufstr,750) n,epsg,iprint
          call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
          write(bufstr,751) itmax
          call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
@@ -121,7 +124,7 @@ c---- initial printing
      $    '------------------------------------------------')
 1010    format(' *********** qnbd (with bound cstr) ****************')
 750     format('dimension=',i10,', epsq=',e24.16,
-     $ ', verbosity level: imp=',i10)
+     $ ', verbosity level: iprint=',i10)
 751     format('max number of iterations allowed: iter=',i10)
 752     format('max number of calls to costf allowed: nap=',i10)
       endif
@@ -151,7 +154,7 @@ c     decoupage du vecteur trav
       n4=n3+n
       n5=n4+n-1
       if(ntrav.lt.n5) then
-         if(imp.gt.0) then
+         if(iprint.gt.0) then
            write(bufstr,110)ntrav,n5
            call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
            endif
@@ -162,7 +165,7 @@ c     decoupage du vecteur trav
       ni1=n+1
       if(nitrav.lt.2*n) then
          ni2=2*n
-         if(imp.gt.0) then
+         if(iprint.gt.0) then
            write(bufstr,111)nitrav,ni2
            call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
            endif
@@ -171,7 +174,7 @@ c     decoupage du vecteur trav
          return
       endif
       call zqnbd(indqn,simul,trav(1),n,binf,bsup,x,f,g,zero,napmax,
-     &itmax,itrav,itrav(ni1),nfac,imp,io,epsx,epsf,epsg,trav(n1),
+     &itmax,itrav,itrav(ni1),nfac,iprint,io,epsx,epsf,epsg,trav(n1),
      &trav(n2),trav(n3),trav(n4),df0,ig,in,irel,izag,iact,
      &epsrel,ieps1,izs,rzs,dzs)
       return

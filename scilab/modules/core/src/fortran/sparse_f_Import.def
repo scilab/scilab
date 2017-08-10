@@ -1,8 +1,0 @@
-	LIBRARY    sparse_f.dll
-
-
-EXPORTS
-; sparse_f
-lspops_
-spops_
-isort1_

@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="optimsimplex_new" xml:lang="en">
@@ -16,23 +19,23 @@
         <refpurpose>Creates a new simplex object.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             newobj = optimsimplex_new([coords, [fun]])
             [newobj, data] = optimsimplex_new(coords, fun, data)
-            
+
             newobj = optimsimplex_new("axes", x0, [fun, [len]])
             [newobj, data] = optimsimplex_new("axes", x0, x0, fun, len, data)
-            
+
             newobj = optimsimplex_new("pfeffer", x0, [fun, [deltausual, [deltazero]]])
             [newobj, data] = optimsimplex_new("pfeffer", x0, fun, deltausual, deltazero, data)
-            
+
             newobj = optimsimplex_new("randbounds", x0, fun, boundsmin, boundsmax)
             [newobj, data] = optimsimplex_new("randbounds", x0, fun, boundsmin, boundsmax, nbpoints, [data])
-            
+
             newobj = optimsimplex_new("spendley", x0, [fun, [len]])
             [newobj, data] = optimsimplex_new("spendley", x0, fun, len, data)
-            
+
             newobj = optimsimplex("oriented", simplex0, fun)
             [newobj, data] = optimsimplex("oriented", simplex0, fun, data)
         </synopsis>
@@ -55,11 +58,11 @@
             <varlistentry>
                 <term>coords</term>
                 <listitem>
-                    <para>Matrix of point coordinatres in the simplex (optional).</para>
+                    <para>Matrix of point coordinates in the simplex (optional).</para>
                     <para>
-                        This argument is expected to be <literal>nbve</literal>-by-<literal>n</literal> 
+                        This argument is expected to be <literal>nbve</literal>-by-<literal>n</literal>
                         matrix, where <literal>n</literal> is the dimension of the space and <literal>nbve</literal>
-                        is the number of vertices in the simplex, 
+                        is the number of vertices in the simplex,
                         with <literal>nbve</literal> &gt;= <literal>n + 1</literal>
                     </para>
                 </listitem>
@@ -85,8 +88,8 @@
                 <term>len</term>
                 <listitem>
                     <para>the length of the simplex (default length = 1.0) (optional).</para>
-                    <para>If length is a value, that unique lenght is used in all directions. If length is 
-                        a vector with n values, each length is used with the corresponding direction (n is 
+                    <para>If length is a value, that unique length is used in all directions. If length is
+                        a vector with n values, each length is used with the corresponding direction (n is
                         the dimension of the space).
                     </para>
                     <para>This argument is only used if the method is "axes" or "spendley".</para>
@@ -123,7 +126,7 @@
             <varlistentry>
                 <term>nbpoints</term>
                 <listitem>
-                    <para>total number of points in the simplex (default value = n+1, where n is the 
+                    <para>total number of points in the simplex (default value = n+1, where n is the
                         size of x0).
                     </para>
                     <para>This argument is only used if the method is "randbounds".</para>
@@ -141,12 +144,12 @@
                 <term>optimsimplex_new()</term>
                 <listitem>
                     <para>
-                        The <literal>optimsimplex_new</literal> function creates a new simplex object. 
-                        All input arguments are optional. If no input argument is provided, this function 
+                        The <literal>optimsimplex_new</literal> function creates a new simplex object.
+                        All input arguments are optional. If no input argument is provided, this function
                         returns an empty simplex object.
                     </para>
                     <para>
-                        The following calling sequences are available.
+                        The following syntaxes are available.
                     </para>
                     <programlisting role="no-scilab-exec">
                         newobj = optimsimplex_new ( )
@@ -161,10 +164,10 @@
             <varlistentry>
                 <term>newobj = optimsimplex_new("axes", ...)</term>
                 <listitem>
-                    <para>This function creates a new simplex object so that it is computed 
+                    <para>This function creates a new simplex object so that it is computed
                         axis by axis, with the given length.
                     </para>
-                    <para>The following calling sequences are available.</para>
+                    <para>The following syntaxes are available.</para>
                     <programlisting role="no-scilab-exec">
                         newobj = optimsimplex_new ( "axes" , x0 )
                         newobj = optimsimplex_new ( "axes" , x0 , fun )
@@ -178,11 +181,11 @@
             <varlistentry>
                 <term>newobj = optimsimplex_new("pfeffer", ...)</term>
                 <listitem>
-                    <para>This function creates a new simplex object so that it is computed 
-                        from Pfeffer's method, i.e. a relative delta for non-zero values and an 
+                    <para>This function creates a new simplex object so that it is computed
+                        from Pfeffer's method, i.e. a relative delta for non-zero values and an
                         absolute delta for zero values.
                     </para>
-                    <para>The following calling sequences are available.</para>
+                    <para>The following syntaxes are available.</para>
                     <programlisting role="no-scilab-exec">
                         newobj = optimsimplex_new ( "pfeffer" , x0 )
                         newobj = optimsimplex_new ( "pfeffer" , x0 , fun )
@@ -197,11 +200,11 @@
             <varlistentry>
                 <term>newobj = optimsimplex_new("randbounds", ...)</term>
                 <listitem>
-                    <para>This function creates a new simplex object so that it is computed 
-                        by taking the bounds into account with random scaling. The number of 
+                    <para>This function creates a new simplex object so that it is computed
+                        by taking the bounds into account with random scaling. The number of
                         vertices in the simplex is arbitrary.
                     </para>
-                    <para>The following calling sequences are available.</para>
+                    <para>The following syntaxes are available.</para>
                     <programlisting role="no-scilab-exec">
                         newobj = optimsimplex_new ( "randbounds", x0, fun, boundsmin, boundsmax )
                         [ newobj , data ] = optimsimplex_new ( "randbounds", x0, fun, boundsmin, boundsmax, nbpoints )
@@ -212,7 +215,7 @@
                     </para>
                     <para>
                         Each component <literal>ix= 1,n</literal> of the vertex <literal>#k = 2</literal>,
-                        <literal>nbve</literal> is computed from the formula 
+                        <literal>nbve</literal> is computed from the formula
                         <literal>x(k,ix) = boundsmin(ix) + rand() * (boundsmax(ix) - boundsmin(ix))</literal>
                     </para>
                 </listitem>
@@ -222,11 +225,11 @@
             <varlistentry>
                 <term>newobj = optimsimplex_new("spendley", ...)</term>
                 <listitem>
-                    <para>This function creates a new simplex object so that it is computed 
-                        from Spendley's et al. method, i.e. a regular simplex made of 
+                    <para>This function creates a new simplex object so that it is computed
+                        from Spendley's et al. method, i.e. a regular simplex made of
                         <literal>nbve</literal> = <literal>n + 1</literal> vertices.
                     </para>
-                    <para>The following calling sequences are available.</para>
+                    <para>The following syntaxes are available.</para>
                     <programlisting role="no-scilab-exec">
                         newobj = optimsimplex_new ( "spendley" , x0 )
                         newobj = optimsimplex_new ( "spendley" , x0 , fun )
@@ -240,12 +243,12 @@
             <varlistentry>
                 <term>newobj = optimsimplex_new("oriented", ...)</term>
                 <listitem>
-                    <para>This function returns a new oriented simplex, in sorted order. The 
-                        new simplex has the same sigma-length of the base simplex, but is 
-                        "oriented" depending on the function value. The created simplex may be 
+                    <para>This function returns a new oriented simplex, in sorted order. The
+                        new simplex has the same sigma-length of the base simplex, but is
+                        "oriented" depending on the function value. The created simplex may be
                         used, as Kelley suggest, for a restart of Nelder-Mead algorithm.
                     </para>
-                    <para>The following calling sequences are available.</para>
+                    <para>The following syntaxes are available.</para>
                     <programlisting role="no-scilab-exec">
                         newobj = optimsimplex_new ( "oriented" , simplex0 , fun )
                         [ newobj , data ] = optimsimplex_new ( "oriented" , simplex0 , fun, data )
@@ -254,12 +257,12 @@
             </varlistentry>
         </variablelist>
         <para>
-            When creating a new simplex with this functions, the <literal>fun</literal> argument 
+            When creating a new simplex with this functions, the <literal>fun</literal> argument
             can be used to compute the function value at the vertices.
         </para>
         <para>
-            The <literal>fun</literal> function is expected to have the following input and output 
-            arguments: 
+            The <literal>fun</literal> function is expected to have the following input and output
+            arguments:
         </para>
         <programlisting role="no-scilab-exec">
             y = myfunction (x)
@@ -287,11 +290,11 @@
             The function values at the vertices are unset.
         </para>
         <programlisting role="example">
-            <![CDATA[ 
+            <![CDATA[
     coords = [
-    0.    0.  
-    1.    0.  
-    0.    1.  
+    0.    0.
+    1.    0.
+    0.    1.
 ];
 
 s1 = optimsimplex_new ( coords );
@@ -313,7 +316,7 @@ s1 = optimsimplex_destroy(s1);
             value of mystuff.nb is 5, which is the expected result because there is
             one function call by vertex.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 function y = rosenbrock (x)
   y = 100*(x(2)-x(1)^2)^2+(1-x(1))^2;
 endfunction
@@ -332,7 +335,7 @@ s1 = optimsimplex_destroy ( s1 );
 ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="optimsimplex_destroy">optimsimplex_destroy</link>

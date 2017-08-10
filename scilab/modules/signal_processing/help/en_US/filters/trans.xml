@@ -5,7 +5,7 @@
         <refpurpose>low-pass to other filter transform</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             hzt=trans(hz,tr_type,frq)
             hzt=trans(pd,zd,gd,tr_type,frq)
@@ -51,7 +51,7 @@
                 <listitem>
                     <para>2-vector of discrete cut-off frequencies
                         (i.e.,<literal>0&lt;frq&lt;.5</literal>). see description
-                        for details. 
+                        for details.
                     </para>
                 </listitem>
             </varlistentry>
@@ -150,7 +150,7 @@ l.legend_location="in_lower_left";
 ]]>     </scilab:image>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="iir">iir</link>

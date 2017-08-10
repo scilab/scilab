@@ -3,19 +3,6 @@ LIBRARY    core.dll
 
 EXPORTS
 ;core
-callFunctionFromGateway
-com_
-putlhsvar_
-checklhs_
-checkrhs_
-getrhsvar_
-getrhscvar_
-createvar_
-check_dim_prop
-createcvar_
-check_scalar
-check_same_dims
 returnanan_
-overload_
 MyHeapAlloc
 MyHeapFree

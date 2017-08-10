@@ -1,24 +1,37 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2010-2011 - INRIA - Serge Steer
+// Copyright (C) 2010 - 2016 - INRIA - Serge Steer
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function [phm,fr]=p_margin(h)
     //compute the phase margin of a SISO transfer function
-    select typeof(h)
-    case "rational" then
-    case "state-space" then
-        h=ss2tf(h);
-    else
-        error(97,1)
+    if argn(2) < 1 then
+        error(msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"),"g_margin",1));
     end
-    if or(size(h)<>[1 1]) then
-        error(msprintf(_("%s: Wrong size for input argument #%d: Single input, single output system expected.\n"),"p_margin",1))
+    if and(typeof(h)<>["state-space","rational","zpk"]) then
+        ierr=execstr("[phm,fr]=%"+overloadname(h)+"_p_margin(h)","errcatch")
+        if ierr<>0 then
+            error(msprintf(gettext("%s: Wrong type for input argument: Linear dynamical system expected.\n"),"p_margin",1))
+        end
+        return
     end
+    if size(h,"*")<>1 then
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: Single input, single output system expected.\n"),"p_margin",1))
+    end
+
+    if typeof(h)=="state-space" then
+        h=ss2tf(h)
+    elseif typeof(h)=="zpk" then
+        h=zpk2tf(h)
+    end
+
     eps=1.e-7;// threshold used for testing if complex numbers are real or pure imaginary
 
     if h.dt=="c" then  //continuous time case

@@ -5,10 +5,42 @@ Copyright (c) 1989-2007 - ENPC
 Copyright (c) Bruno Pincon
 
 License:
-This module must be used under the terms of the CeCILL.
-This module file is licensed as described in the file COPYING, which
-you should have received as part of this distribution.  The terms
-are also available at
-http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+Copyright (C) 2012 - 2016 - Scilab Enterprises
+
+This module is hereby licensed under the terms of the GNU GPL v2.0,
+pursuant to article 5.3.4 of the CeCILL v.2.1.
+This module was originally licensed under the terms of the CeCILL v2.1,
+and continues to be available under such terms.
+For more information, see the COPYING file which you should have received
+along with this program.
+
+IEEE publications:
+==================
+
+Files:
+src/fortran/cmpse2.f
+src/fortran/cmpse3.f
+src/fortran/remez.f
+
+Copyright:
+James H. MCCLELLAN,  Massachusetts Institute of Technology
+Thomas W. PARKS, Rice University
+Lawrence R. RABINER, Bell laboratories
+
+License:
+Public domain
 
 
+DOREDI:
+=======
+
+Files:
+src/fortran/syredi.f
+
+Copyright:
+DR.-ING. GUENTER F. DEHNER
+INSTITUT FUER NACHRICHTENTECHNIK
+UNIVERSITAET ERLANGEN-NUERNBERG
+
+License:
+Public Domain

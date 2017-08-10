@@ -52,8 +52,8 @@
             <literal>(xv(i),yv(i),zv(i))--&gt;(xv(i+1),yv(i+1),zv(i+1))</literal>.
         </para>
         <para>Par exemple, en utilisant des matrices de taille (2,n) :</para>
-        <programlisting><![CDATA[ 
-xv=[xi_1 xi_2 ...; xf_1 xf_2 ...] 
+        <programlisting><![CDATA[
+xv=[xi_1 xi_2 ...; xf_1 xf_2 ...]
 yv=[yi_1 yi_2 ...; yf_1 yf_2 ...]
 zv=[zi_1 zi_2 ...; zf_1 zf_2 ...]
  ]]></programlisting>
@@ -63,7 +63,7 @@ zv=[zi_1 zi_2 ...; zf_1 zf_2 ...]
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 x=2*%pi*(0:9)/10;
 xv=[sin(x);9*sin(x)];
 yv=[cos(x);9*cos(x)];

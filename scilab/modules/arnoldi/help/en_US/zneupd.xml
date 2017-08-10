@@ -12,10 +12,10 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
-            [D, Z, RESID, IPARAM, IPNTR, WORKD, WORKL, RWORK, INFO] = zneupd(RVEC, HOWMANY, SELECT, D, Z, SIGMA, WORKev,
-            BMAT, N, WHICH, NEV, TOL, RESID, NCV, V, IPARAM, IPNTR, WORKD, WORKL, RWORK, INFO)
+            [D, Z, RESID, IPARAM, IPNTR, WORKD, WORKL, RWORK, INFO] = zneupd(RVEC, HOWMANY, SELECT, D, Z, ...
+            .. SIGMA, WORKev, BMAT, N, WHICH, NEV, TOL, RESID, NCV, V, IPARAM, IPNTR, WORKD, WORKL, RWORK, INFO)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -476,7 +476,7 @@ printf('The convergence criterion is %d\n', tol);
         </programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="dnaupd">znaupd</link>

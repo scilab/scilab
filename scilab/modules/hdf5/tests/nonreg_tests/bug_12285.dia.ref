@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2011 - DIGITEO - Antoine ELIAS
@@ -11,7 +12,7 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=12285
 //
 // <-- Short Description -->
-// 
+//
 // save function could not handle any matrix in append mode.
 function checknoerror(str)
     err = execstr(str, "errcatch");

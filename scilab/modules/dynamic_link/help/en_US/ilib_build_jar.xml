@@ -15,7 +15,7 @@
         <refpurpose>Build Java packages from sources into a JAR file</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             ilib_build_jar(jarFilePath, packageNames[, sourcePath[, classPath, [, manifestFilePath]]])
         </synopsis>
@@ -118,7 +118,7 @@ bar = Bar.new();
       ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="jcompile">jcompile</link>

@@ -46,7 +46,7 @@ function [x,y,typ] = FROMWSB(job,arg1,arg2)
             end
             xx=arg1(spath)// get the block
             execstr("xxn="+xx.gui+"(''set'',xx)")
-            if diffobjs(xxn,xx)==1 then
+            if or(xxn<>xx) then
                 model=xx.model
                 model_n=xxn.model
                 if ~is_modelica_block(xx) then
@@ -125,8 +125,6 @@ function [x,y,typ] = FROMWSB(job,arg1,arg2)
         graphics=scicos_graphics(..
         orig=[260.37067,261.584],..
         sz=[70,40],..
-        flip=%t,..
-        theta=0,..
         exprs=["V";"1";"1";"0"],..
         pin=[],..
         pout=4,..
@@ -173,8 +171,6 @@ function [x,y,typ] = FROMWSB(job,arg1,arg2)
         graphics=scicos_graphics(..
         orig=[358.9421,271.584],..
         sz=[20,20],..
-        flip=%t,..
-        theta=0,..
         exprs="1",..
         pin=4,..
         pout=[],..

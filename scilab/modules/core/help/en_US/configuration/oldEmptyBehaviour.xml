@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="oldEmptyBehaviour">
+    <refnamediv>
+        <refname>oldEmptyBehaviour</refname>
+        <refpurpose>Controls the operation+ and operation- behaviour for Scilab</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>oldEmptyBehaviour(behaviour)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>behaviour</term>
+                <listitem>
+                    <para>
+                        a single string amongst <literal>"on"</literal>, <literal>"off"</literal> or <literal>"query"</literal>. The behaviour mode for operation+ and operation-
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Controls the behaviour of the empty matrix addition and subtraction. On versions prior to scilab-6.0.0, adding or subtracting and empty matrix to any other value <literal>val</literal> would return <literal>val</literal>.
+        </para>
+        <para>
+            If <literal>behaviour == "off"</literal>, adding or subtracting the empty matrix will yield to the empty matrix. This is the default behaviour of scilab after version 6.0.0.
+        </para>
+        <para>
+            If <literal>behaviour == "on"</literal>, activates the behaviour prior to scilab-6.0.0.
+        </para>
+        <para>
+            If <literal>behaviour == "query"</literal>, returns the current value (<literal>"on"</literal> or <literal>"off"</literal>) for the <literal>oldEmptyBehaviour</literal> tag.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+// Get the current behaviour
+behaviour = oldEmptyBehaviour("query");
+
+// These will return empty
+oldEmptyBehaviour("off");
+1 + []
+"Test string" + []
+[] - int8(1)
+[] - %s
+
+// These will leave the other operand unchanged
+oldEmptyBehaviour("on");
+1 + [] // returns 1
+"Test string" + [] // returns "Test string"
+[] - int8(1) // returns int8(1)
+[] - %s // returns %s
+
+// Get back to the saved behaviour
+oldEmptyBehaviour(behaviour)
+ ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="warning">warning</link> for the warning behaviour on operation+ and operation-
+            </member>
+            <member>
+                <link linkend="plus">plus</link> for the behaviour of the operation+.
+            </member>
+            <member>
+                <link linkend="minus">minus</link> for the behaviour of the operation-.
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

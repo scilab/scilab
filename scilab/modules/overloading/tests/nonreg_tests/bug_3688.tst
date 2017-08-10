@@ -6,7 +6,7 @@
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
-
+// <-- NOT FIXED --> 6.0.0
 // <-- Non-regression test for bug 3688 -->
 //
 // <-- Bugzilla URL -->
@@ -16,39 +16,39 @@
 // The assignment using ":" subscript for a dimension that does not exist
 // does not work for hypermatrices
 
-A=[];A(1,1,:) = [-1 3]; 
+A=[];A(1,1,:) = [-1 3];
 if or(size(A)<>[1 1 2])|or(matrix(A(1,1,:),1,-1)<>[-1 3]) then pause,end
 
-A=[];A(1,1,:) = [-1;3]; 
+A=[];A(1,1,:) = [-1;3];
 if or(size(A)<>[1 1 2])|or(matrix(A(1,1,:),1,-1)<>[-1 3]) then pause,end
 
-A=[];A(1,2,:) = [-1 3]; 
+A=[];A(1,2,:) = [-1 3];
 if or(size(A)<>[1 2 2])|or(matrix(A(1,:,:),2,-1)<>[0 0;-1 3]) then pause,end
 
-A=[];A(1,2,:) = [-1;3]; 
+A=[];A(1,2,:) = [-1;3];
 if or(size(A)<>[1 2 2])|or(matrix(A(1,:,:),2,-1)<>[0 0;-1 3]) then pause,end
 
-A=[];A(2,1,:) = [-1 3]; 
+A=[];A(2,1,:) = [-1 3];
 if or(size(A)<>[2 1 2])|or(matrix(A(:,1,:),2,-1)<>[0 0;-1 3]) then pause,end
 
 
 
-A=[];A(1,:,1) = [-1 3]; 
+A=[];A(1,:,1) = [-1 3];
 if or(A<>[-1 3]) then pause,end
 
-A=[];A(1,:,1) = [-1;3]; 
+A=[];A(1,:,1) = [-1;3];
 if or(A<>[-1 3]) then pause,end
 
-A=[];A(:,1,1) = [-1 3]; 
+A=[];A(:,1,1) = [-1 3];
 if or(A<>[-1;3]) then pause,end
 
-A=[];A(:,1,1) = [-1;3]; 
+A=[];A(:,1,1) = [-1;3];
 if or(A<>[-1;3]) then pause,end
 
-A=[];A(1,:,:) = [-1 3;5 7]; 
+A=[];A(1,:,:) = [-1 3;5 7];
 if or(size(A)<>[1 2 2])|or(matrix(A(1,:,:),2,-1)<>[-1 3;5 7]) then pause,end
 
-A=[];A(:,1,:) = [-1 3;5 7]; 
+A=[];A(:,1,:) = [-1 3;5 7];
 if or(size(A)<>[2 1 2])|or(matrix(A(:,1,:),2,-1)<>[-1 3;5 7]) then pause,end
 
 A=[];A(1,:,:) = [-1 3 5 7];
@@ -56,48 +56,48 @@ if or(size(A)<>[1 1 4])|or(matrix(A(1,1,:),1,-1)<>[-1 3 5 7]) then pause,end
 
 if execstr("A=[];A(1,1:2,:) = [-1 3 5 7];","errcatch")==0 then pause,end
 
-A=[];A(1,1,2)=3;A(1,1,1,:)=[-1 3]; 
+A=[];A(1,1,2)=3;A(1,1,1,:)=[-1 3];
 if or(size(A)<>[1 1 2 2])|or(matrix(A(1,1,1,:),1,-1)<>[-1 3]) then pause,end
 
-A=[];A(1,1,2)=3;A(1,1,1,:)=[-1;3]; 
+A=[];A(1,1,2)=3;A(1,1,1,:)=[-1;3];
 if or(size(A)<>[1 1 2 2])|or(matrix(A(1,1,1,:),1,-1)<>[-1 3]) then pause,end
 
-A=[];A(1,1,2)=3;A(2,1,1,:)=[-1;3]; 
+A=[];A(1,1,2)=3;A(2,1,1,:)=[-1;3];
 if or(size(A)<>[2 1 2 2])|or(matrix(A(2,1,1,:),1,-1)<>[-1 3]) then pause,end
 
 //insertion of integer
-A=[];A(1,1,:) = int32([-1 3]); 
+A=[];A(1,1,:) = int32([-1 3]);
 if or(size(A)<>[1 1 2])|or(matrix(A(1,1,:),1,-1)<>int32([-1 3])) then pause,end
 
-A=[];A(1,1,:) = int32([-1;3]); 
+A=[];A(1,1,:) = int32([-1;3]);
 if or(size(A)<>[1 1 2])|or(matrix(A(1,1,:),1,-1)<>int32([-1 3])) then pause,end
 
-A=[];A(1,2,:) = int32([-1 3]); 
+A=[];A(1,2,:) = int32([-1 3]);
 if or(size(A)<>[1 2 2])|or(matrix(A(1,:,:),2,-1)<>int32([0 0;-1 3])) then pause,end
 
-A=[];A(1,2,:) = int32([-1;3]); 
+A=[];A(1,2,:) = int32([-1;3]);
 if or(size(A)<>[1 2 2])|or(matrix(A(1,:,:),2,-1)<>int32([0 0;-1 3])) then pause,end
 
-A=[];A(2,1,:) = int32([-1 3]); 
+A=[];A(2,1,:) = int32([-1 3]);
 if or(size(A)<>[2 1 2])|or(matrix(A(:,1,:),2,-1)<>int32([0 0;-1 3])) then pause,end
 
-A=[];A(1,:,1) = int32([-1 3]); 
+A=[];A(1,:,1) = int32([-1 3]);
 if or(A<>int32([-1 3])) then pause,end
 
-A=[];A(1,:,1) = int32([-1;3]); 
+A=[];A(1,:,1) = int32([-1;3]);
 if or(A<>int32([-1 3])) then pause,end
 
-A=[];A(:,1,1) = int32([-1 3]); 
+A=[];A(:,1,1) = int32([-1 3]);
 if or(A<>int32([-1;3])) then pause,end
 
-A=[];A(:,1,1) = int32([-1;3]); 
+A=[];A(:,1,1) = int32([-1;3]);
 if or(A<>int32([-1;3])) then pause,end
 
 
-A=[];A(1,:,:) = int32([-1 3;5 7]); 
+A=[];A(1,:,:) = int32([-1 3;5 7]);
 if or(size(A)<>[1 2 2])|or(matrix(A(1,:,:),2,-1)<>int32([-1 3;5 7])) then pause,end
 
-A=[];A(:,1,:) = int32([-1 3;5 7]); 
+A=[];A(:,1,:) = int32([-1 3;5 7]);
 if or(size(A)<>[2 1 2])|or(matrix(A(:,1,:),2,-1)<>int32([-1 3;5 7])) then pause,end
 
 A=[];A(1,:,:) = int32([-1 3 5 7]);
@@ -105,13 +105,13 @@ if or(size(A)<>[1 1 4])|or(matrix(A(1,1,:),1,-1)<>int32([-1 3 5 7])) then pause,
 
 if execstr("A=[];A(1,1:2,:) = int32([-1 3 5 7];","errcatch")==0 then pause,end
 
-A=[];A(1,1,2)=int32(3);A(1,1,1,:)=int32([-1 3]); 
+A=[];A(1,1,2)=int32(3);A(1,1,1,:)=int32([-1 3]);
 if or(size(A)<>[1 1 2 2])|or(matrix(A(1,1,1,:),1,-1)<>int32([-1 3])) then pause,end
 
-A=[];A(1,1,2)=int32(3);A(1,1,1,:)=int32([-1;3]); 
+A=[];A(1,1,2)=int32(3);A(1,1,1,:)=int32([-1;3]);
 if or(size(A)<>[1 1 2 2])|or(matrix(A(1,1,1,:),1,-1)<>int32([-1 3])) then pause,end
 
-A=[];A(1,1,2)=int32(3);A(2,1,1,:)=int32([-1;3]); 
+A=[];A(1,1,2)=int32(3);A(2,1,1,:)=int32([-1;3]);
 if or(size(A)<>[2 1 2 2])|or(matrix(A(2,1,1,:),1,-1)<>int32([-1 3])) then pause,end
 
 //same should work for other types that uses the same algorithm (generic_i_hm)
@@ -119,16 +119,16 @@ if or(size(A)<>[2 1 2 2])|or(matrix(A(2,1,1,:),1,-1)<>int32([-1 3])) then pause,
 A=[];A(1,1,:) = [-1 3]+%s;
 if or(size(A)<>[1 1 2])|or(matrix(A(1,1,:),1,-1)<>[-1 3]+%s) then pause,end
 
-A=[];A(1,1,2)=3;A(2,1,1,:)=[-1;3]+%s; 
+A=[];A(1,1,2)=3;A(2,1,1,:)=[-1;3]+%s;
 if or(size(A)<>[2 1 2 2])|or(matrix(A(2,1,1,:),1,-1)<>[-1 3]+%s) then pause,end
 
 //booleans
 A=[];A(1,1,:) = [%t %f];
 if or(size(A)<>[1 1 2])|or(matrix(A(1,1,:),1,-1)<>[%t %f]) then pause,end
 
-A=[];A(1,1,2)=%t;A(2,1,1,:)= [%t; %f]; 
+A=[];A(1,1,2)=%t;A(2,1,1,:)= [%t; %f];
 if or(size(A)<>[2 1 2 2])|or(matrix(A(2,1,1,:),1,-1)<>[%t %f]) then pause,end
 
 //added because a bug found in %b_i_b.sci
-A=%t;A(2,1,1,:)= [%t; %f]; 
+A=%t;A(2,1,1,:)= [%t; %f];
 if or(size(A)<>[2 1 1 2])|or(matrix(A(2,1,1,:),1,-1)<>[%t %f]) then pause,end

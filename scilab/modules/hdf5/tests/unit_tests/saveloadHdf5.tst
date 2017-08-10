@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2014 - Scilab Enterprises - Vladislav TRUBKIN
@@ -193,7 +194,7 @@ checkValue(lstRef);
 lstRef = tlist(["hmInTlist";
 "Name";
 "Example_1"
-"Example_2"], "List", ones(1, 2, 3), hypermat([2 2 1 2], (1:8) == 0));
+"Example_2"], "List", ones(1, 2, 3), matrix((1:8) == 0, [2 2 1 2]));
 checkValue(lstRef);
 // tlist in tlist
 lstRef = tlist(["tlistInTlist";
@@ -219,7 +220,7 @@ checkValue(lstRef);
 lstRef = mlist(["hmInMlist";
 "Name";
 "Example_1"
-"Example_2"], "List", ones(1, 2, 3), hypermat([2 2 1 2], (1:8) == 0));
+"Example_2"], "List", ones(1, 2, 3), matrix((1:8) == 0, [2 2 1 2]));
 checkValue(lstRef);
 
 //// Hypermatrix
@@ -232,7 +233,7 @@ for i = flag
     checkValue(createIntValues(ones(1, 2, 3, 4), i));
 end
 // boolean
-checkValue(hypermat([2 2 1 2],(1:8) == 0));
+checkValue(matrix((1:8) == 0, [2 2 1 2]));
 
 //// Undefined
 valueRef = list(1, "two", "three");
@@ -284,7 +285,7 @@ Cell_{4} = int8(2);
 Cell_{5} = 5;
 Cell_{6} = 6;
 Cell_{7} = poly(1:3,"s");
-Cell_{8} = "Yasp";
+Cell_{8} = "Scilab 6";
 checkValue(Cell_);
 
 emptyCell = cell();

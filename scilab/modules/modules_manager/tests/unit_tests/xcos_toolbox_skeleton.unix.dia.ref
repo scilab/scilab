@@ -24,7 +24,6 @@ genlib: Processing file: TBX_SUM_c.sci
 genlib: Processing file: TBX_SUM_modelica.sci
 genlib: Processing file: TBX_SUM_sci.sci
 genlib: Processing file: TBX_SUM_sim.sci
-genlib: Regenerate names and lib
 Building blocks...
 Building sources...
    Generate a loader file
@@ -37,12 +36,15 @@ Building sources...
    ilib_gen_Make: Modification of the Makefile in TMPDIR.
    Running the Makefile
    Generate a cleaner file
+Generating cleaner_src.sce...
 Building gateway...
    Generate a gateway file
    Generate a loader file
    Generate a Makefile
    ilib_gen_Make: Copy compilation files (Makefile*, libtool...) to TMPDIR
-   ilib_gen_Make: Copy libxcos_toolbox_skeleton_c.c to TMPDIR
+   ilib_gen_Make: Copy libxcos_toolbox_skeleton_c.cpp to TMPDIR
+   ilib_gen_Make: Copy libxcos_toolbox_skeleton_c.h to TMPDIR
+   ilib_gen_Make: Copy libxcos_toolbox_skeleton_c.hxx to TMPDIR
    ilib_gen_Make: Copy sci_tbx_sum.c to TMPDIR
    ilib_gen_Make: configure : Generate Makefile.
    ilib_gen_Make: Modification of the Makefile in TMPDIR.
@@ -51,10 +53,8 @@ Building gateway...
 Generating loader_gateway.sce...
 Generating cleaner_gateway.sce...
 Building help...
-
 Building the master document:
 	TMPDIR/xcos_toolbox_skeleton/help/en_US
-
 Building the manual file [javaHelp] in TMPDIR/xcos_toolbox_skeleton/help/en_US.
 Generating loader.sce...
 Generating unloader.sce...
@@ -68,11 +68,8 @@ Start Xcos toolbox skeleton
 	Load help
 	Load demos
 test_run("TMPDIR/xcos_toolbox_skeleton/", [], "short_summary");
-   001/001 - [TMPDIR/xcos_toolbox_skeleton/] : 
-
+ Module  001/001 - [TMPDIR/xcos_toolbox_skeleton/] : 
    001/001 - [TMPDIR/xcos_toolbox_skeleton/] tbx_sum............passed
-
-
    --------------------------------------------------------------------------
    Tests:    1,    Passed:    1,    Failed:    0,    Skipped:    0
    --------------------------------------------------------------------------

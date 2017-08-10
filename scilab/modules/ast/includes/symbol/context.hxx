@@ -2,11 +2,14 @@
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2007-2008 - INRIA - Bruno JOFRET
 *
-*  This file must be used under the terms of the CeCILL.
-*  This source file is licensed as described in the file COPYING, which
-*  you should have received as part of this distribution.  The terms
-*  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
@@ -74,7 +77,9 @@ public:
     types::InternalType* getFunction(const Symbol& key);
 
     /*return function list in the module _stModuleName*/
-    int getFunctionList(std::list<Symbol>& lst, std::wstring _stModuleName);
+    int getFunctionList(std::list<Symbol>& lst, const std::wstring& _stModuleName);
+    /*return function list in the module _stModuleName*/
+    int getFunctionList(std::list<types::Callable *>& lst, std::wstring _stModuleName);
 
     int getConsoleVarsName(std::list<std::wstring>& lst);
     int getVarsName(std::list<std::wstring>& lst);
@@ -96,7 +101,7 @@ public:
 
     /*remove global variable and all visibility references */
     //clearglobal("a")
-    void removeGlobal(const Symbol& key);
+    bool removeGlobal(const Symbol& key);
 
     /*remove all global variables and references */
     //clearglobal
@@ -117,8 +122,8 @@ public:
     types::InternalType* getGlobalValue(const Symbol& _key);
 
     /*add symbol and value in the stack*/
-    void put(const Symbol& _key, types::InternalType* _pIT);
-    void put(Variable* _var, types::InternalType* _pIT);
+    bool put(const Symbol& _key, types::InternalType* _pIT);
+    bool put(Variable* _var, types::InternalType* _pIT);
     /*add symbol and value in the previous scope*/
     bool putInPreviousScope(Variable* _var, types::InternalType* _pIT);
 

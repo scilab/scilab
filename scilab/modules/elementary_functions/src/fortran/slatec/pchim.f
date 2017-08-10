@@ -52,7 +52,7 @@ C     by DPCHFE or DPCHFD.
 C
 C ----------------------------------------------------------------------
 C
-C  Calling sequence:
+C  Syntax:
 C
 C        PARAMETER  (INCFD = ...)
 C        INTEGER  N, IERR

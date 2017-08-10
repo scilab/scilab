@@ -38,6 +38,9 @@
     <ClCompile Include="InitializeWindows_tools.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\cpp\SignalManagement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="TerminateWindows_tools.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -106,6 +109,9 @@
     <ClInclude Include="..\..\includes\MutexClosingScilab.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\includes\SignalManagement.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\includes\TerminateWindows_tools.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -139,9 +145,6 @@
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="core_import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
-    <None Include="localization_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="scilab_windows_Import.def">

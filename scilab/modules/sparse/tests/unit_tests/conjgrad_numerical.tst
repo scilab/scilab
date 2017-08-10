@@ -36,7 +36,7 @@ b = [154.
 // With the default 10 iterations, the algorithm performs well
 [xcomputed, fail, err, iter, res]=conjgrad(A,b,"pcg");
 xexpected=ones(10,1);
-if norm(xcomputed-xexpected)>10**3*%eps then pause,end
+if norm(xcomputed-xexpected)>11**3*%eps then pause,end
 if fail<>0 then pause,end
 if iter<>10 then pause,end
 if err > 10**3*%eps then pause,end
@@ -78,7 +78,7 @@ if iter<>maxIter then pause,end
 
 // With the default 10 iterations, the algorithm performs well
 [xcomputed, fail, err, iter, res]=conjgrad(A,b,"bicg");
-if norm(xcomputed-xexpected)>10**3*%eps then pause,end
+if norm(xcomputed-xexpected)>11**3*%eps then pause,end
 if fail<>0 then pause,end
 if iter<>10 then pause,end
 if err > 10**3*%eps then pause,end

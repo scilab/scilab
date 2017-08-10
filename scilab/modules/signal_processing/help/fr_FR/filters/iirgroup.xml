@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="iirgroup">
+    <refnamediv>
+        <refname>iirgroup</refname>
+        <refpurpose>group delay Lp IIR filter optimization</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[lt,grad]=iirgroup(p,r,theta,omega,wt,td)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>p</term>
+                <listitem>
+                    <para>Lp criterion</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>r</term>
+                <listitem>
+                    <para>vector of the module of the poles and the zeros of the filters</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>theta</term>
+                <listitem>
+                    <para>vector of the argument of the poles and the zeros of the filters</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>omega</term>
+                <listitem>
+                    <para>frequencies where the filter specifications are given</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>wt</term>
+                <listitem>
+                    <para>weighting function for and the group delay</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>td</term>
+                <listitem>
+                    <para>desired group delay</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>lt, grad</term>
+                <listitem>
+                    <para>criterium and gradient values</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            optimization of IIR filters for the Lp criterium for the
+            the group delay. (Rabiner &amp; Gold pp270-273).
+        </para>
+    </refsection>
+</refentry>

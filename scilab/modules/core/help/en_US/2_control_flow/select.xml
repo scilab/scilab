@@ -5,7 +5,7 @@
         <refpurpose>select keyword</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             select variable
             case value1 then
@@ -133,7 +133,7 @@ end
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="if">if</link>

@@ -16,21 +16,20 @@
 // Create a menu and display its properties value
 // Do not remove display since it is used to compare with .dia.ref file
 mymenu = uimenu(gcf(),"Label","Test") // Do not had a semi-colon here
- mymenu  =
- 
+ mymenu  = 
 Handle of type "uimenu" with properties:
 ========================================
 Parent: Figure
 Children: []
 Enable = "on"
 Foregroundcolor = [0,0,0]
-Label = Test
+Label = "Test"
 Handle_Visible = "on"
 Visible = "on"
-Callback = 
+Callback = ""
 Callback_Type = 0
 Checked =  "off"
 Icon =  ""
 Userdata = []
-Tag = 
+Tag = ""
 delete(gcf());

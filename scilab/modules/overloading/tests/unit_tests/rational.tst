@@ -7,7 +7,7 @@
 // <-- CLI SHELL MODE -->
 
 
-s=poly(0,'s');
+s=poly(0,"s");
 z = s^0;
 h=1/(2*s);
 assert_checkequal(size(h), [1 1]);
@@ -94,10 +94,10 @@ assert_checkequal(H.num, 1+2*s);
 assert_checkequal(H.den, 2*s);
 
 H=h+[];
-assert_checkequal(H, h);
+assert_checkequal(H, []);
 
 H=[]+h;
-assert_checkequal(H, h);
+assert_checkequal(H, []);
 
 H=h+s;
 assert_checkequal(H.num, 1+2*s^2);

@@ -6,6 +6,7 @@
 // =============================================================================
 //
 // <-- TEST WITH GRAPHIC -->
+// <-- NO CHECK REF -->
 //
 // <-- Non-regression test for bug 7411 -->
 //
@@ -13,13 +14,14 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=7411
 //
 // <-- Short Description -->
-// clf() forgets to turn off the datatip mode
+// clf() forgets to turn off the event handler
 
-clf();
+f = scf();
 plot2d();
-datatipToggle();
-clf();
-h=gcf();
-assert_checkequal(h.event_handler_enable, "off");
-assert_checkequal(h.info_message, "");
-close;
+f.event_handler = "foo";
+f.event_handler_enable = "on";
+clf
+assert_checkequal(f.event_handler, "foo");
+assert_checkequal(f.event_handler_enable, "off");
+assert_checkequal(f.info_message, "");
+

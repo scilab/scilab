@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 // <-- CLI SHELL MODE -->
-// unit tests for nansum function 
+// unit tests for nansum function
 // =============================================================================
 assert_checkfalse(execstr("nansum()"   ,"errcatch") == 0);
 refMsg = msprintf(_("%s: Wrong number of input argument(s): %d to %d expected.\n"), "nansum", 1, 2);
@@ -17,7 +17,7 @@ assert_checkfalse(execstr("nansum(1, ""p"")"   ,"errcatch") == 0);
 refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), "nansum", 2, """r"", ""c"", ""*"", 1, 2");
 assert_checkerror("nansum(1, ""p"")", refMsg);
 assert_checkfalse(execstr("nansum(1, %s)"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong type for input argument #%d: A string or scalar expected.\n"), "nansum", 2);
+refMsg = msprintf(_("%s: Wrong type for input argument #%d: string or scalar expected.\n"), "nansum", 2);
 assert_checkerror("nansum(1, %s)", refMsg);
 assert_checkequal(nansum([]), 0);
 assert_checkequal(nansum(%nan), 0);

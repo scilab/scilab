@@ -3,12 +3,15 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
  * Copyright (C) 2010 - DIGITEO - Allan CORNET
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="read">
@@ -17,7 +20,7 @@
         <refpurpose>matrices read</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[x] = read(file-desc,m,n,[format])
             [x]=read(file-desc,m,n,k,format)
         </synopsis>
@@ -40,9 +43,10 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>format : character string, specifies a "Fortran" format. This</term>
+                <term>format</term>
                 <listitem>
-                    <para>character string must begin with a right parenthesis and end with a left parenthesis.  Formats cannot mix floating point or character edition modes.</para>
+                    <para>character string specifying a "Fortran" format. It must begin with a right parenthesis and end with a left parenthesis.Formats cannot mix floating point or character edition modes.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -64,7 +68,7 @@
             of <literal>file-desc</literal> file.
         </para>
         <para>
-            The type of the result will depend on the specified format. 
+            The type of the result will depend on the specified format.
             If format contains only <literal>(d,e,f,g)</literal>  descriptors the function
             tries to read numerical data (the result is matrix of real numbers).
         </para>
@@ -79,17 +83,17 @@
         <para>
             Examples for <literal>format</literal>:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 (1x,e10.3,5x,3(f3.0))
-(10x,a20) 
+(10x,a20)
  ]]></programlisting>
         <para>
-            When format is omitted data are read using numerical free format: 
+            When format is omitted data are read using numerical free format:
             blank, comma and slash may be used as data separators, n*v may be use
             to represent n occurrences of value n.
         </para>
         <para>
-            A direct access file can be used if using the parameter <literal>k</literal> which is 
+            A direct access file can be used if using the parameter <literal>k</literal> which is
             is the vector of record numbers to be read (one record per row),
             thus <literal>m</literal> must be <literal>m=prod(size(k))</literal>.
         </para>
@@ -105,7 +109,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 mdelete(TMPDIR + '/foo');
 A = rand(3,5);
 write(TMPDIR + '/foo', A);
@@ -115,7 +119,7 @@ read(%io(1), 1, 1, '(a)')  // waits for user's input
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="write">write</link>

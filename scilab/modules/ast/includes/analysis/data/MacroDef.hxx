@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2014 - Scilab Enterprises - Calixte DENIZET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -23,6 +26,7 @@
 #include "allvar.hxx"
 #include "alltypes.hxx"
 #include "symbol.hxx"
+#include "tools.hxx"
 
 namespace analysis
 {
@@ -31,12 +35,12 @@ class MacroDef
 {
 
 protected:
-    
+
     const unsigned int lhs;
     const unsigned int rhs;
     ast::Exp * const original;
 
-    std::set<symbol::Symbol> globals;
+    tools::SymbolOrdSet globals;
 
 public:
 
@@ -44,6 +48,7 @@ public:
     virtual ~MacroDef() { }
 
     virtual ast::SeqExp & getBody() = 0;
+    virtual const ast::SeqExp & getOriginalBody() = 0;
     virtual const std::wstring & getName() = 0;
     virtual std::vector<symbol::Symbol> getIn() = 0;
     virtual std::vector<symbol::Symbol> getOut() = 0;
@@ -60,16 +65,16 @@ public:
     }
 
     inline ast::Exp * getOriginal() const
-	{
-	    return original;
-	}
-    
-    inline std::set<symbol::Symbol> & getGlobals()
+    {
+        return original;
+    }
+
+    inline tools::SymbolOrdSet & getGlobals()
     {
         return globals;
     }
 
-    inline const std::set<symbol::Symbol> & getGlobals() const
+    inline const tools::SymbolOrdSet & getGlobals() const
     {
         return globals;
     }
@@ -100,21 +105,18 @@ public:
 class ExistingMacroDef : public MacroDef
 {
     const std::wstring name;
-    ast::SeqExp * se;
     std::vector<symbol::Symbol> inputs;
     std::vector<symbol::Symbol> outputs;
-    
+
 public:
 
     ExistingMacroDef(types::Macro & _macro);
     ExistingMacroDef(const ExistingMacroDef & emd);
 
-    ~ExistingMacroDef()
-	{
-	    delete se;
-	}
-    
+    ~ExistingMacroDef() { }
+
     ast::SeqExp & getBody();
+    const ast::SeqExp & getOriginalBody();
     const std::wstring & getName();
     std::vector<symbol::Symbol> getIn();
     std::vector<symbol::Symbol> getOut();
@@ -123,18 +125,15 @@ public:
 
 class DeclaredMacroDef : public MacroDef
 {
-    ast::FunctionDec * dec;
 
 public:
 
     DeclaredMacroDef(ast::FunctionDec * const _dec);
 
-    ~DeclaredMacroDef()
-	{
-	    delete dec;
-	}
+    ~DeclaredMacroDef() { }
 
     ast::SeqExp & getBody();
+    const ast::SeqExp & getOriginalBody();
     const std::wstring & getName();
     std::vector<symbol::Symbol> getIn();
     std::vector<symbol::Symbol> getOut();

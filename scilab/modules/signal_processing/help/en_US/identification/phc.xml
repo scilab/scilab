@@ -5,7 +5,7 @@
         <refpurpose>Markovian representation</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[H,F,G]=phc(hk,d,r)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -40,7 +40,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            Function which computes the matrices <literal>H, F, G</literal> of a Markovian 
+            Function which computes the matrices <literal>H, F, G</literal> of a Markovian
             representation by the principal hankel
             component approximation method, from the hankel matrix built
             from the covariance sequence of a stochastic process.
@@ -48,12 +48,12 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-//This example may usefully be compared with the results from 
+        <programlisting role="example"><![CDATA[
+//This example may usefully be compared with the results from
 //the 'levin' macro (see the corresponding help and example)
 //
-//We consider the process defined by two sinusoids (1Hz and 2 Hz) 
-//in additive Gaussian noise (this is the observation); 
+//We consider the process defined by two sinusoids (1Hz and 2 Hz)
+//in additive Gaussian noise (this is the observation);
 //the simulated process is sampled at 10 Hz.
 
 t=0:.1:100;rand('normal');
@@ -74,17 +74,17 @@ h=hank(n,m,c);
 //compute the Markov representation (mh,mf,mg)
 //We just take here a state dimension equal to 4 :
 //this is the rather difficult problem of estimating the order !
-//Try varying ns ! 
+//Try varying ns !
 //(the observation dimension is here equal to one)
 
 ns=4;
 [mh,mf,mg]=phc(h,1,ns);
 
-//verify that the spectrum of mf contains the 
+//verify that the spectrum of mf contains the
 //frequency spectrum of the observed process y
-//(remember that y is sampled -in our example 
-//at 10Hz (T=0.1s) so that we need 
-//to retrieve the original frequencies through the log 
+//(remember that y is sampled -in our example
+//at 10Hz (T=0.1s) so that we need
+//to retrieve the original frequencies through the log
 //and correct scaling by the frequency sampling)
 
 s=spec(mf);s=log(s);
@@ -95,7 +95,7 @@ imag(s),
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="levin">levin</link>

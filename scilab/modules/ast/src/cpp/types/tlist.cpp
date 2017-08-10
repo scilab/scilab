@@ -2,23 +2,30 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2010-2010 - DIGITEO - Antoine ELIAS
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
 #include <cstring>
 #include <sstream>
+#include "exp.hxx"
 #include "string.hxx"
 #include "list.hxx"
 #include "tlist.hxx"
 #include "listundefined.hxx"
 #include "callable.hxx"
+#include "polynom.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
+#include "configvariable.hxx"
+#include "types_tools.hxx"
+#include "scilabWrite.hxx"
 
 #ifndef NDEBUG
 #include "inspector.hxx"
@@ -52,7 +59,7 @@ TList::~TList()
 ** Clone
 ** Create a new List and Copy all values.
 */
-InternalType* TList::clone()
+TList* TList::clone()
 {
     return new TList(this);
 }
@@ -77,7 +84,7 @@ bool TList::exists(const std::wstring& _sKey)
     return false;
 }
 
-bool TList::invoke(typed_list & in, optional_list & /*opt*/, int _iRetCount, typed_list & out, ast::ConstVisitor & execFunc, const ast::Exp & e)
+bool TList::invoke(typed_list & in, optional_list & /*opt*/, int _iRetCount, typed_list & out, const ast::Exp & e)
 {
     if (in.size() == 0)
     {
@@ -162,9 +169,9 @@ bool TList::invoke(typed_list & in, optional_list & /*opt*/, int _iRetCount, typ
     std::wstring stType = getShortTypeStr();
     try
     {
-        ret = Overload::call(L"%" + stType + L"_e", in, _iRetCount, out, &execFunc);
+        ret = Overload::call(L"%" + stType + L"_e", in, _iRetCount, out);
     }
-    catch (ast::ScilabError &se)
+    catch (const ast::InternalError &ie)
     {
         try
         {
@@ -173,16 +180,16 @@ bool TList::invoke(typed_list & in, optional_list & /*opt*/, int _iRetCount, typ
             if (stType.size() > 8)
             {
                 std::wcout << (L"%" + stType.substr(0, 8) + L"_e") << std::endl;
-                ret = Overload::call(L"%" + stType.substr(0, 8) + L"_e", in, 1, out, &execFunc);
+                ret = Overload::call(L"%" + stType.substr(0, 8) + L"_e", in, 1, out);
             }
             else
             {
-                throw se;
+                throw ie;
             }
         }
-        catch (ast::ScilabError & /*se*/)
+        catch (ast::InternalError & /*se*/)
         {
-            ret = Overload::call(L"%l_e", in, 1, out, &execFunc);
+            ret = Overload::call(L"%l_e", in, 1, out);
         }
     }
 
@@ -192,7 +199,7 @@ bool TList::invoke(typed_list & in, optional_list & /*opt*/, int _iRetCount, typ
 
     if (ret == Callable::Error)
     {
-        throw ast::ScilabError(ConfigVariable::getLastErrorMessage(), ConfigVariable::getLastErrorNumber(), e.getLocation());
+        throw ast::InternalError(ConfigVariable::getLastErrorMessage(), ConfigVariable::getLastErrorNumber(), e.getLocation());
     }
 
     return true;
@@ -261,7 +268,7 @@ InternalType* TList::extractStrings(const std::list<std::wstring>& _stFields)
     return pLResult;
 }
 
-std::wstring TList::getTypeStr()
+std::wstring TList::getTypeStr() const
 {
     if (getSize() < 1)
     {
@@ -271,22 +278,22 @@ std::wstring TList::getTypeStr()
     return getFieldNames()->get(0);
 }
 
-std::wstring TList::getShortTypeStr()
+std::wstring TList::getShortTypeStr() const
 {
     return getTypeStr();
 }
 
-bool TList::set(const std::wstring& _sKey, InternalType* _pIT)
+TList* TList::set(const std::wstring& _sKey, InternalType* _pIT)
 {
-    return List::set(getIndexFromString(_sKey), _pIT);
+    return List::set(getIndexFromString(_sKey), _pIT)->getAs<TList>();
 }
 
-bool TList::set(const int _iIndex, InternalType* _pIT)
+TList* TList::set(const int _iIndex, InternalType* _pIT)
 {
-    return List::set(_iIndex, _pIT);
+    return List::set(_iIndex, _pIT)->getAs<TList>();
 }
 
-String* TList::getFieldNames()
+String* TList::getFieldNames() const
 {
     return (*m_plData)[0]->getAs<types::String>();
 }
@@ -299,14 +306,13 @@ bool TList::toString(std::wostringstream& ostr)
     //call overload %type_p if exists
     types::typed_list in;
     types::typed_list out;
-    ast::ExecVisitor exec;
 
     IncreaseRef();
     in.push_back(this);
 
     try
     {
-        if (Overload::generateNameAndCall(L"p", in, 1, out, &exec) == Function::Error)
+        if (Overload::generateNameAndCall(L"p", in, 1, out) == Function::Error)
         {
             ConfigVariable::setError();
         }
@@ -315,8 +321,14 @@ bool TList::toString(std::wostringstream& ostr)
         DecreaseRef();
         return true;
     }
-    catch (ast::ScilabMessage /* &e */)
+    catch (ast::InternalError& e)
     {
+        if (e.GetErrorType() == ast::TYPE_ERROR)
+        {
+            DecreaseRef();
+            throw e;
+        }
+
         // avoid error message about undefined overload %type_p
         ConfigVariable::resetError();
     }

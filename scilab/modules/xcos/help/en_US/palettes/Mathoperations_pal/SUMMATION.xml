@@ -359,7 +359,7 @@
         <itemizedlist>
             <listitem>
                 <para>
-                    <link linkend="BIGSOM_f">BIGSOM_f - Sclar/Vector Addition/Soustraction (Xcos block)</link>
+                    <link linkend="BIGSOM_f">BIGSOM_f - Scalar/Vector Addition/Subtraction (Xcos block)</link>
                 </para>
             </listitem>
             <listitem>

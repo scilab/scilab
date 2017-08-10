@@ -22,7 +22,7 @@
                 <listitem>
                     <para>
                         項目のリスト <literal>items=list(item1,...,itemn)</literal>, ただし,各 <literal>item</literal> はそれ自体以下の型のリストです:
-                        <literal>item=list('label',default_choice,choices)</literal>. 
+                        <literal>item=list('label',default_choice,choices)</literal>.
                         <literal>default_choice</literal> は
                         エントリのトグルのデフォルト値を指定する整数で,
                         <literal>choices</literal> は選択肢を指定する文字列の
@@ -56,7 +56,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 l1  = list('choice 1',1,['toggle c1','toggle c2','toggle c3']);
 l2  = list('choice 2',2,['toggle d1','toggle d2','toggle d3']);
 l3  = list('choice 3',3,['toggle e1','toggle e2']);

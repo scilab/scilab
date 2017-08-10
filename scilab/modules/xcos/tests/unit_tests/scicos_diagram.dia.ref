@@ -6,16 +6,20 @@
 //
 // <-- Short Description -->
 // Check scicos_diagram
-function assert_check_diagram(scs_m)
+function assert_check_diagram(scs_m, version)
     // check type
-    assert_checkequal(type(scs_m), 17);
+    assert_checktrue(or(type(scs_m) == [17 128]));
     assert_checkequal(fieldnames(scs_m), ["props"; "objs"; "version"; "contrib"]);
     // check props
     assert_check_props(scs_m.props);
     // check objs
     assert_checkequal(scs_m.objs, list());
     // check version
-    assert_checkequal(scs_m.version, "");
+    if exists("version") then
+        assert_checkequal(scs_m.version, version);
+    else
+        assert_checkequal(scs_m.version, "");
+    end
     // check contrib
     assert_checkequal(scs_m.contrib, list());
 endfunction
@@ -66,4 +70,4 @@ endfunction
 assert_check_diagram(scicos_diagram());
 // assert on an empty xcos diagram
 assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/tests/unit_tests/empty.zcos"));
-assert_check_diagram(scs_m);
+assert_check_diagram(scs_m, "scicos4.4");

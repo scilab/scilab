@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="ss2ss" xml:lang="ja">
+    <refnamediv>
+        <refname>ss2ss</refname>
+        <refpurpose>状態空間から状態空間への変換, フィードバック, 注入</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼出し手順</title>
+        <synopsis>[Sl1,right,left]=ss2ss(Sl,T, [F, [G , [flag]]])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>Sl</term>
+                <listitem>
+                    <para>
+                        状態空間形式の線形システム (<literal>syslin</literal> リスト)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>T</term>
+                <listitem>
+                    <para>正方 (正則) 行列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Sl1, 右, 左</term>
+                <listitem>
+                    <para>状態空間形式の線形システム (syslin リスト) </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>F</term>
+                <listitem>
+                    <para>実数行列 (状態フィードバックゲイン)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>G</term>
+                <listitem>
+                    <para>実数行列 (出力注入ゲイン)</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            線形システム <literal>Sl1=[A1,B1,C1,D1]</literal> を返します.
+            ただし, <literal>A1=inv(T)*A*T, B1=inv(T)*B, C1=C*T, D1=D</literal>.
+        </para>
+        <para>
+            オプションのパラメータ <literal>F</literal> および <literal>G</literal>
+            は,それぞれ状態フィードバックおよび出力注入です.
+        </para>
+        <para>
+            例えば, <literal>Sl1=ss2ss(Sl,T,F)</literal> は,以下のような
+            <literal>Sl1</literal> を返します:
+        </para>
+        <mediaobject>
+            <imageobject>
+                <imagedata align="center" fileref="../../mml/ss2ss_equation1.mml"/>
+            </imageobject>
+        </mediaobject>
+        <para>
+            <literal>right</literal> は,<literal>Sl1=Sl*right</literal>となる
+            正則な線形システムです.
+        </para>
+        <para>
+            <literal>Sl1*inv(right)</literal> は
+            <literal>Sl</literal>の分解です.
+        </para>
+        <para>
+            <literal>Sl1=ss2ss(Sl,T,0*F,G)</literal> は以下のような
+            <literal>Sl1</literal> を返します:
+        </para>
+        <mediaobject>
+            <imageobject>
+                <imagedata align="center" fileref="../../mml/ss2ss_equation2.mml"/>
+            </imageobject>
+        </mediaobject>
+        <para>
+            <literal>left</literal> は,
+            <literal>Sl1=left*Sl</literal> (<literal>right=Id</literal>となる
+            正則な線形システムです.
+            (<literal>F=0</literal>の場合に<literal>right=Id</literal>)
+        </para>
+        <para>
+            <literal>F</literal> および <literal>G</literal> の両方と指定した場合,
+            <literal>Sl1=left*Sl*right</literal>となります.
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <literal>flag</literal> を使用し,<literal>flag=1</literal>の場合,
+                    以下のような出力注入が使用されます.
+                </para>
+                <mediaobject>
+                    <imageobject>
+                        <imagedata fileref="../../mml/ss2ss_equation3.mml"/>
+                    </imageobject>
+                </mediaobject>
+                <para>
+                    この後，フィードバックが行われ,<literal>F</literal>の
+                    大きさは<literal>(m+p,n)</literal>となります.
+                </para>
+                <mediaobject>
+                    <imageobject>
+                        <imagedata align="left" fileref="../../mml/ss2ss_equation4.mml"/>
+                    </imageobject>
+                </mediaobject>
+                <para>
+                    <literal>right</literal> および <literal>left</literal> は
+                    以下の特徴を有します:
+                </para>
+                <programlisting role=""><![CDATA[
+Sl1 = left*sysdiag(sys,eye(p,p))*right
+ ]]></programlisting>
+            </listitem>
+            <listitem>
+                <para>
+                    <literal>flag</literal> を使用し, <literal>flag=2</literal> とした場合,
+                    フィードバック
+                    (<literal>F</literal> の大きさは
+                    <literal>(m,n)</literal>である必要があります)が行われ,その後,
+                    上記の出力注入が適用されます.
+                    <literal>right</literal> および
+                    <literal>left</literal>は以下の特徴を有します:
+                </para>
+                <programlisting role=""><![CDATA[
+ Sl1 = left*sysdiag(sys*right,eye(p,p)))
+ ]]></programlisting>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+Sl=ssrand(2,2,5); trzeros(Sl)       // zeros are invariant:
+Sl1=ss2ss(Sl,rand(5,5),rand(2,5),rand(5,2));
+trzeros(Sl1), trzeros(rand(2,2)*Sl1*rand(2,2))
+// output injection [ A + GC, (B+GD,-G)]
+//                  [   C   , (D   , 0)]
+p=1,m=2,n=2; sys=ssrand(p,m,n);
+// feedback (m,n)  first and then output injection.
+F1=rand(m,n);
+G=rand(n,p);
+[sys1,right,left]=ss2ss(sys,rand(n,n),F1,G,2);
+// Sl1 equiv left*sysdiag(sys*right,eye(p,p)))
+res=clean(ss2tf(sys1) - ss2tf(left*sysdiag(sys*right,eye(p,p))))
+// output injection then feedback (m+p,n)
+F2=rand(p,n); F=[F1;F2];
+[sys2,right,left]=ss2ss(sys,rand(n,n),F,G,1);
+// Sl1 equiv left*sysdiag(sys,eye(p,p))*right
+res=clean(ss2tf(sys2)-ss2tf(left*sysdiag(sys,eye(p,p))*right))
+// when F2= 0; sys1 and sys2 are the same
+F2=0*rand(p,n);F=[F1;F2];
+[sys2,right,left]=ss2ss(sys,rand(n,n),F,G,1);
+res=clean(ss2tf(sys2)-ss2tf(sys1))
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="projsl">projsl</link>
+            </member>
+            <member>
+                <link linkend="feedback">feedback</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -8,7 +8,7 @@
         <refpurpose>Concatenates list entries in a matrix.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[bigVector,varsizes] = list2vec(li)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -52,13 +52,13 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 list2vec(list(1,2,3))
 list2vec(list([1 2 3],[4;5],[%s %s+1]))
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="vec2list">vec2list</link>

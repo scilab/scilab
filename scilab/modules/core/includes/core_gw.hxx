@@ -3,11 +3,14 @@
 *  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
 *  Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
 *
-*  This file must be used under the terms of the CeCILL.
-*  This source file is licensed as described in the file COPYING, which
-*  you should have received as part of this distribution.  The terms
-*  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
@@ -58,6 +61,7 @@ CPP_GATEWAY_PROTOTYPE(sci_ieee);
 CPP_GATEWAY_PROTOTYPE(sci_funcprot);
 CPP_GATEWAY_PROTOTYPE(sci_mode);
 CPP_GATEWAY_PROTOTYPE(sci_typename);
+CPP_GATEWAY_PROTOTYPE(sci_what);
 CPP_GATEWAY_PROTOTYPE(sci_where);
 CPP_GATEWAY_PROTOTYPE(sci_getmemory);
 CPP_GATEWAY_PROTOTYPE(sci_errclear);
@@ -68,5 +72,30 @@ CPP_GATEWAY_PROTOTYPE(sci_funptr);
 CPP_GATEWAY_PROTOTYPE(sci_analyzeroptions);
 CPP_GATEWAY_PROTOTYPE(sci_macr2tree);
 CPP_GATEWAY_PROTOTYPE(sci_predef);
+CPP_GATEWAY_PROTOTYPE(sci_debug);
+CPP_GATEWAY_PROTOTYPE(sci_recursionlimit);
+CPP_GATEWAY_PROTOTYPE(sci_type);
+CPP_GATEWAY_PROTOTYPE(sci_list_gw);
+CPP_GATEWAY_PROTOTYPE(sci_struct_gw);
+CPP_GATEWAY_PROTOTYPE(sci_null);
+CPP_GATEWAY_PROTOTYPE(sci_insert);
+CPP_GATEWAY_PROTOTYPE(sci_cell_gw);
+CPP_GATEWAY_PROTOTYPE(sci_makecell);
+CPP_GATEWAY_PROTOTYPE(sci_typeof);
+CPP_GATEWAY_PROTOTYPE(sci_tlist_gw);
+CPP_GATEWAY_PROTOTYPE(sci_mlist_gw);
+CPP_GATEWAY_PROTOTYPE(sci_isfield);
+CPP_GATEWAY_PROTOTYPE(sci_fieldnames);
+CPP_GATEWAY_PROTOTYPE(sci_oldEmptyBehaviour);
+
+#ifndef NDEBUG
+CPP_GATEWAY_PROTOTYPE(sci_inspectorGetItemCount);
+CPP_GATEWAY_PROTOTYPE(sci_inspectorShowItem);
+CPP_GATEWAY_PROTOTYPE(sci_inspectorGetItem);
+CPP_GATEWAY_PROTOTYPE(sci_inspectorGetUnreferencedItem);
+CPP_GATEWAY_PROTOTYPE(sci_inspectorDeleteUnreferencedItems);
+CPP_GATEWAY_PROTOTYPE(sci_inspectorShowUnreferencedItem);
+CPP_GATEWAY_PROTOTYPE(sci_inspectorGetFunctionList);
+#endif
 
 #endif /* __CORE_GW_HXX__ */

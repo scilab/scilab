@@ -7,11 +7,14 @@
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * Copyright (C) 2010 - Paul Griffiths
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -46,6 +49,8 @@
 #include "getGraphicObjectProperty.h"
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
+#include "Sciwarning.h"
+#include "Scierror.h"
 
 //#include "../../../tclsci/includes/GedManagement.h"
 
@@ -78,6 +83,12 @@ void sciGetDisplayedBounds(int iSubWinUID,
         getGraphicObjectProperty(iSubWinUID, __GO_DATA_BOUNDS__, jni_double_vector, (void **)&bounds);
     }
 
+    if (!bounds)
+    {
+        Scierror(999, _("Could not retrieve bounds.\n"));
+        return;
+    }
+
     *xmin = bounds[0];
     *xmax = bounds[1];
     *ymin = bounds[2];
@@ -94,7 +105,7 @@ void sciGetDisplayedBounds(int iSubWinUID,
     {
         if (sciGetLogExponent(*xmin, *xmax, xmin, xmax) != 0)
         {
-            sciprint(_("Warning: Can't use Log on X-axis xmin is negative.\n"));
+            Sciwarning(_("Warning: Can't use Log on X-axis xmin is negative.\n"));
         }
     }
 
@@ -107,7 +118,7 @@ void sciGetDisplayedBounds(int iSubWinUID,
     {
         if (sciGetLogExponent(*ymin, *ymax, ymin, ymax) != 0)
         {
-            sciprint(_("Warning: Can't use Log on Y-axis ymin is negative.\n"));
+            Sciwarning(_("Warning: Can't use Log on Y-axis ymin is negative.\n"));
         }
     }
 
@@ -120,7 +131,7 @@ void sciGetDisplayedBounds(int iSubWinUID,
     {
         if (sciGetLogExponent(*zmin, *zmax, zmin, zmax) != 0)
         {
-            sciprint(_("Warning: Can't use Log on Z-axis zmin is negative.\n"));
+            Sciwarning(_("Warning: Can't use Log on Z-axis zmin is negative.\n"));
         }
     }
 }

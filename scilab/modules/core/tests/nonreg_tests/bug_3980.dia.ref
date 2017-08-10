@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - INRIA - Serge Steer
@@ -13,7 +14,7 @@
 //
 // <-- Short Description -->
 // Wrong line number in error message
-deff("l=foo()","[l,m]=where()","n");
+deff("l=foo()","[l,m]=where()");
 ll = foo();
 assert_checkequal(ll(1), 2);
 deff("foo1","a=aaaa")

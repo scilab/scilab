@@ -3,12 +3,15 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * Copyright (C) 2011 - DIGITEO - Michael Baudin
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="rand" xml:lang="ru">
@@ -17,17 +20,17 @@
         <refpurpose>Случайные числа</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             r = rand()
             r = rand(m1,m2,...)
             r = rand(m1,m2,...,key)
             r = rand(x)
             r = rand(x,key)
-            
+
             s = rand("seed")
             rand("seed",s)
-            
+
             rand(key)
             key = rand("info")
         </synopsis>
@@ -181,14 +184,14 @@
         <para>
             В следующем примере мы генерируем случайные числа двойной точности с различными законами распределения.
         </para>
-        <programlisting role="example"><![CDATA[  
+        <programlisting role="example"><![CDATA[
 // Получим одно случайное число (на основе текущего распределения)
 r=rand()
 
 // Получим матрицу размером 4 на 6 (на основе текущего распределения)
 r=rand(4,6)
 
-// Получим матрицу размером 4 на 6 со значениями элементов, 
+// Получим матрицу размером 4 на 6 со значениями элементов,
 // распределёнными по равновероятному закону распределения
 r=rand(4,6,"uniform")
 
@@ -202,14 +205,14 @@ r=rand(2,2,2)
         <para>
             В следующем примере мы изменим закон распределения чисел, генерируемых функцией <literal>rand</literal>. Сначала генерируем числа по нормальному закону распределения, а затем числа но равновероятному закону на интервале [0,1).
         </para>
-        <programlisting role="example"><![CDATA[  
+        <programlisting role="example"><![CDATA[
     // настроим генератор случайных чисел на
     // нормальный закон распределения
     rand("normal")
     r=rand(4,6)
     // получим текущий закон распределения
     key=rand("info")
-    
+
     // настроим генератор случайных чисел на
     // равновероятный закон распределения
     rand("uniform")
@@ -220,7 +223,7 @@ r=rand(2,2,2)
         <para>
             В следующем примере мы сгенерируем матрицу комплексных чисел размером 2 на 3 по нормальному закону распределения.
         </para>
-        <programlisting role="example"><![CDATA[  
+        <programlisting role="example"><![CDATA[
     // формируем матрицу случайных комплексных чисел размером 2 на 3
     x=rand(2,3)+%i*rand(2,3)
     // Формируем матрицу случайных комплексных чисел по нормальному
@@ -230,7 +233,7 @@ r=rand(2,2,2)
         <para>
             В следующем примере мы построим на графике распределение случайных равновероятных чисел, полученных <literal>rand</literal>.
         </para>
-        <programlisting role="example"><![CDATA[  
+        <programlisting role="example"><![CDATA[
     r=rand(1000,1,"uniform");
     scf();
     histplot(10,r);
@@ -239,7 +242,7 @@ r=rand(2,2,2)
         <para>
             В следующем примере мы построим на графике распределение случайных чисел, сгенерированных <literal>rand</literal> по нормальному закону распределения.
         </para>
-        <programlisting role="example"><![CDATA[  
+        <programlisting role="example"><![CDATA[
     r=rand(1000,1,"normal");
     scf();
     histplot(10,r);
@@ -257,7 +260,7 @@ r=rand(2,2,2)
         <para>
             В некоторых случаях моделирования мы можем захотеть инициализировать семя генератора случайных чисел для того, чтобы получить менее предсказуемые последовательности. В этом случае мы можем инициализировать семя с помощью выходного значения функции <literal>getdate</literal>:
         </para>
-        <programlisting role="example"><![CDATA[  
+        <programlisting role="example"><![CDATA[
 n=getdate("s");
 rand("seed",n);
  ]]></programlisting>
@@ -281,7 +284,7 @@ rand("seed",n);
             где константами являются
         </para>
         <para>
-            <latex><![CDATA[  
+            <latex><![CDATA[
 	  \begin{eqnarray}
       a &=& 843314861\\
       c &=& 453816693\\

@@ -1,31 +1,41 @@
 // ============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2011-2011 - Gsoc 2011 - Iuri SILVIO
+// Copyright (C) 2017-2017 - Gsoc 2017 - Siddhartha Gairola
 //
 //  This file is distributed under the same license as the Scilab package.
 // ============================================================================
 
-// <-- JVM NOT MANDATORY -->
-//
-// <-- NOT FIXED -->
+// <-- CLI SHELL MODE -->
 // ============================================================================
 // Unitary tests for mxMalloc mex function
 // ============================================================================
 
 cd(TMPDIR);
 ilib_verbose(0);
+
 mputl(["#include ""mex.h""";
 "void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])";
 "{";
-"    double *data = mxMalloc(2 * sizeof(double *));";
-"    data[0] = 1.0;";
-"    data[1] = 3.2;";
-"    plhs[0] = mxCreateDoubleMatrix(2, 1, mxREAL);"
-"    mxSetPr(plhs[0], data);";
-"}"],"mexmalloc.c");
-ilib_mex_build("libmextest",["malloc","mexmalloc","cmex"], "mexmalloc.c",[]);
+" int *buf = NULL;";
+" int check1 = 0;";
+" int check2 = 0;";
+" if (buf != NULL) {";
+"    check1 = 1;";
+" }";
+" buf = mxMalloc(16);";
+" if (buf != NULL) {";
+"    check2 = 1;";
+" mexPrintf(""Buffer is Not NULL.\n"");";
+" }";
+" mxFree(buf);";
+" mxArray* pOut1 = mxCreateLogicalScalar(check1);";
+" mxArray* pOut2 = mxCreateLogicalScalar(check2);";
+" plhs[0] = pOut1;";
+" plhs[1] = pOut2;";
+"}"],"mxMalloc.c");
+ilib_mex_build("libmextest",["mxMalloc","mxMalloc","cmex"], "mxMalloc.c",[]);
 exec("loader.sce");
 
-r = malloc();
-assert_checkequal(r(1), 1);
-assert_checkequal(r(2), 3.2);
+[res1, res2] = mxMalloc();
+assert_checkfalse(res1);
+assert_checktrue(res2);

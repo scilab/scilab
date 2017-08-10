@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010 - DIGITEO - Pierre Lando <pierre.lando@scilab.org>
+ * Copyright (C) 2016 - Samuel GOUGEON
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+    xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+    xml:lang="en" xml:id="pixel_drawing_mode">
+    <refnamediv>
+        <refname>pixel_drawing_mode</refname>
+        <refpurpose>Figure's property setting the RGBwise pixels update mode when drawing</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Pixels colors are RGB encoded. Each R, G or B channel has an uint(8) value on [0, 255].
+        </para>
+        <para>
+            The <literal>pixel_drawing_mode</literal> is a <link linkend="figure_properties">figure property</link> that specifies a RGBwise operation applied on every pixel of the incoming object, between RGB values of the input pixel color and RGB values the already existing pixel color of the figure. The result of this operation sets the new pixel color.
+        </para>
+        <para>
+            <itemizedlist>
+                <listitem>
+                    <literal>src</literal> is the incoming color of the pixel.
+                </listitem>
+                <listitem>
+                    <literal>cur</literal> is the current color of the pixel (which is already drawn).
+                </listitem>
+            </itemizedlist>
+            Possible case-sensitive values for <literal>pixel_drawing_mode</literal> are listed herebelow.
+            <itemizedlist>
+                <listitem>
+                    <literal>NOT v</literal> means <literal>255 - v</literal>
+                </listitem>
+                <listitem>
+                    <literal>a AND b</literal> means <literal>a &amp; b</literal>
+                </listitem>
+                <listitem>
+                    <literal>a OR b</literal> means <literal>a | b</literal>
+                </listitem>
+                <listitem>
+                    <literal>a XOR b</literal> means <literal>(a OR b) AND NOT (a AND b)</literal>
+                </listitem>
+            </itemizedlist>
+        </para>
+        <informaltable border="1" cellpadding="3px">
+            <tr>
+                <th>Value</th>
+                <th>result</th>
+            </tr>
+            <tr>
+                <td>"copy" (default)</td>
+                <td>src</td>
+            </tr>
+            <tr>
+                <td>"copyInverted"</td>
+                <td>NOT src</td>
+            </tr>
+            <tr>
+                <td>"noop"</td>
+                <td>cur</td>
+            </tr>
+            <tr>
+                <td>"invert"</td>
+                <td>NOT cur</td>
+            </tr>
+            <tr>
+                <td>"set"</td>
+                <td>White</td>
+            </tr>
+            <tr>
+                <td>"clear"</td>
+                <td>Black</td>
+            </tr>
+            <tr>
+                <td>"equiv"</td>
+                <td>cur XOR (NOT src)</td>
+            </tr>
+            <tr>
+                <td>"xor"</td>
+                <td>cur XOR src</td>
+            </tr>
+            <tr>
+                <td>"or"</td>
+                <td>cur OR src</td>
+            </tr>
+            <tr>
+                <td>"orInverted"</td>
+                <td>cur OR (NOT src)</td>
+            </tr>
+            <tr>
+                <td>"orReverse"</td>
+                <td>(NOT cur) OR src</td>
+            </tr>
+            <tr>
+                <td>"nor"</td>
+                <td>NOT (cur OR src)</td>
+            </tr>
+            <tr>
+                <td>"and"</td>
+                <td>cur AND src</td>
+            </tr>
+            <tr>
+                <td>"andInverted"</td>
+                <td>cur AND (NOT src)</td>
+            </tr>
+            <tr>
+                <td>"andReverse"</td>
+                <td>(NOT cur) AND src</td>
+            </tr>
+            <tr>
+                <td>"nand"</td>
+                <td>NOT (cur AND src)</td>
+            </tr>
+        </informaltable>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+pxmodes = ["copy", "copyInverted", "equiv", "xor", ..
+            "and", "nand", "andReverse", "andInverted", ..
+            "or", "nor", "orReverse", "orInverted", ..
+            "noop", "set", "clear", "invert" ..
+           ];
+// sizes, and overlaying margins of figures
+s = 300;
+hm = 8;
+vm = 52;
+//
+for k = 16:-1:1
+    m = pxmodes(k);
+
+    // Position of the figure
+    i = fix((k-1)/4);
+    j = modulo(k-1,4);
+
+    // Creating the figure
+    f = figure("toolbar_visible","off", ..
+               "menubar_visible","off", ..
+               "infobar_visible","off", ..
+               "figure_position", [j*(s-hm), i*(s-vm)], ..
+               "figure_size", [s s], ..
+               "background", color("grey85"), ..
+               "pixel_drawing_mode", m ..
+               );
+    drawlater
+
+    // Setting the axes
+    b = 0.82;
+    plot2d([],[],0,"051"," ",[-1 -1 1 1]*b)
+    plot2d([-1 1]*b,[0 0])
+    a = gca();
+    a.isoview = "on";
+    a.tight_limits = "on";
+    title(m,"fontsize",4)
+
+    // Drawing 3 overlaying colored disks
+    xfarc(-0.7, 0.8, 1, 1, 0, 360*64)
+    e = gce();
+    e.background = color("red");
+    e.fill_mode = "on";
+
+    xfarc(-0.2, 0.5, 1, 1, 0, 360*64)
+    e = gce();
+    e.background = color("blue");
+    e.fill_mode = "on";
+
+    xfarc(-0.7,  0.2, 1, 1, 0, 360*64)
+    e = gce();
+    e.background = color("green");
+    e.fill_mode = "on";
+
+    drawnow
+end
+// Removing all figures
+b = messagebox(_("Press OK to close all figures"),_("End of demo"), "question", "modal");
+w = winsid();
+xdel(w($-15:$));
+    ]]></programlisting>
+        <para>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="../../images/pixel_drawing_mode_70.png" />
+                </imageobject>
+            </inlinemediaobject>
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="figure_properties">Figure properties</link>
+            </member>
+            <member>
+                <link linkend="colordef">colordef</link>
+            </member>
+            <member>
+                <link linkend="lighting">lighting</link>
+            </member>
+            <member>
+                <link linkend="Matplot">Matplot</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

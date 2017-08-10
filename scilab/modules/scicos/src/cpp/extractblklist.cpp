@@ -23,8 +23,6 @@
 /*--------------------------------------------------------------------------*/
 #include <cstring>
 
-#include "extractblklist.hxx"
-
 #include "internal.hxx"
 #include "list.hxx"
 #include "tlist.hxx"
@@ -37,6 +35,9 @@ extern "C"
 #include "scicos_block4.h"
 #include "charEncoding.h"
 }
+
+#include "extractblklist.hxx"
+
 /*--------------------------------------------------------------------------*/
 
 template <typename T>

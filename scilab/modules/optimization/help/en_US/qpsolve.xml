@@ -5,7 +5,7 @@
         <refpurpose>linear quadratic programming solver</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[x [,iact [,iter [,f]]]]=qpsolve(Q,p,C,b,ci,cs,me)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -125,13 +125,13 @@
             the compiled qp_solve primitive. It is provided as a facility, in order to
             be a direct replacement for the former quapro solver : indeed, the qpsolve
             solver has been designed so that it provides the same interface, that is,
-            the same input/output arguments. But the x0 and imp input arguments are
+            the same input/output arguments. But the x0 and iprint input arguments are
             available in quapro, but not in qpsolve.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //Find x in R^6 such that:
 //C1*x = b1 (3 equality constraints i.e me=3)
 C1= [1,-1,1,0,3,1;
@@ -156,11 +156,11 @@ C=[C1;C2];
 b=[b1;b2];
 me=3;
 [x,iact,iter,f]=qpsolve(Q,p,C,b,ci,cs,me)
-//Only linear constraints (1 to 4) are active 
+//Only linear constraints (1 to 4) are active
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="optim">optim</link>
@@ -179,13 +179,13 @@ me=3;
     <refsection>
         <title>Memory requirements</title>
         <para>Let r be</para>
-        <programlisting role=""><![CDATA[  
+        <programlisting role=""><![CDATA[
 r=min(m,n)
  ]]></programlisting>
         <para>Then the memory required by qpsolve during the computations
             is
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 2*n+r*(r+5)/2 + 2*m +1
  ]]></programlisting>
     </refsection>

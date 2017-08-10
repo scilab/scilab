@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - DIGITEO - Antoine ELIAS
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 #include "basic_functions.h"
@@ -14,7 +17,7 @@
 /*
 purpose
     computes the product of the entries of a matrix according to flag
-calling sequence
+syntax
     subroutine dmprod(flag,a,na,m,n,v,nv)
     double precision a(na,n),v(*)
     integer na,n,m,nv
@@ -71,7 +74,7 @@ void vDmProd(int _iMode, double* _pdblIn, int _iLeadDim, int _iRows, int _iCols,
 /*
 purpose
     computes the product of the entries of a complex matrix according to flag
-calling sequence
+syntax
     subroutine wmprod(flag,ar,ai,na,m,n,vr,vi,nv)
     double precision ar(na,n),ai(na,n),vr(*),vi(*)
     integer na,n,m,nv

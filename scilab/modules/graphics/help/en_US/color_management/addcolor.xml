@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="addcolor">
@@ -16,7 +19,7 @@
         <refpurpose>add new colors to the current colormap</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>new=addcolor(c)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -40,7 +43,7 @@
         <title>Description</title>
         <para>
             <literal>addcolor</literal> adds new colors given in the <literal>c</literal> argument to the
-            current colormap. <literal>c</literal> must be a matrix with 3 columns 
+            current colormap. <literal>c</literal> must be a matrix with 3 columns
             <literal>[R G B]</literal><literal>R</literal> is red component, <literal>G</literal> is green component,
             <literal>B</literal> is blue component). Each entry in <literal>c</literal> must be a non
             negative number less or equal to 1.
@@ -55,13 +58,13 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 plot3d();
 h = gcf();
 h.color_map = jetcolormap(16);
 addcolor(name2rgb('grey')/255);
  ]]></programlisting>
-        <scilab:image> 
+        <scilab:image>
             plot3d();
             h = gcf();
             h.color_map = jetcolormap(16);
@@ -69,7 +72,7 @@ addcolor(name2rgb('grey')/255);
         </scilab:image>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="colormap">colormap</link>

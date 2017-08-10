@@ -3,11 +3,14 @@
 * Copyright (C) 2013 - Scilab Enterprises - Paul Bignier
 * Copyright (C) 2013 - Scilab Enterprises - Cedric DELAMARRE
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 /*--------------------------------------------------------------------------*/
@@ -133,7 +136,7 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
 
     if (pDblX0->getCols() > 2)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d: A real matrix with %d to %d colomn(s) expected.\n"), "daskr", iPos + 1, 1, 2);
+        Scierror(999, _("%s: Wrong size for input argument #%d: A real matrix with %d to %d column(s) expected.\n"), "daskr", iPos + 1, 1, 2);
         return types::Function::Error;
     }
 
@@ -163,6 +166,9 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
     if (in[iPos]->isDouble() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "daskr", iPos + 1);
+        FREE(pdYdotData);
+        FREE(pdYData);
+        FREE(YSize);
         return types::Function::Error;
     }
 
@@ -171,6 +177,9 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
     if (pDblT0->isScalar() == false)
     {
         Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), "daskr", iPos + 1);
+        FREE(pdYdotData);
+        FREE(pdYData);
+        FREE(YSize);
         return types::Function::Error;
     }
 
@@ -179,6 +188,9 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
     if (in[iPos]->isDouble() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A matrix expected.\n"), "daskr", iPos + 1);
+        FREE(pdYdotData);
+        FREE(pdYData);
+        FREE(YSize);
         return types::Function::Error;
     }
 
@@ -187,6 +199,9 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
     if (pDblT->isComplex())
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "daskr", iPos + 1);
+        FREE(pdYdotData);
+        FREE(pdYData);
+        FREE(YSize);
         return types::Function::Error;
     }
 
@@ -568,7 +583,7 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
                 }
                 else if (pDblTemp->getSize() != 0)
                 {
-                    Scierror(267, _("%s: Wrong size for input argument #%d: Argument %d in te list must be of size %d.\n"), "daskr", iPos + 1, 3, 2);
+                    Scierror(267, _("%s: Wrong size for input argument #%d: Argument %d in the list must be of size %d.\n"), "daskr", iPos + 1, 3, 2);
                     DifferentialEquation::removeDifferentialEquationFunctions();
                     FREE(pdYdotData);
                     FREE(pdYData);
@@ -628,7 +643,7 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
                 if (pDblTemp->getSize() == 0)
                 {
                     // maxl and kmp need default values
-                    maxl = min(5, pDblX0->getRows());
+                    maxl = std::min(5, pDblX0->getRows());
                     kmp = maxl;
                 }
                 else
@@ -827,7 +842,7 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
     rworksize = 60;
     if (info[11] == 0)
     {
-        rworksize += max(maxord + 4, 7) * pDblX0->getRows() + 3 * ng;
+        rworksize += std::max(maxord + 4, 7) * pDblX0->getRows() + 3 * ng;
         if (info[5] == 0)
         {
             // For the full (dense) JACOBIAN case
@@ -851,7 +866,7 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
 
         LENWP = pDblX0->getRows() * pDblX0->getRows();
         rworksize += (maxord + 5) * pDblX0->getRows() + 3 * ng
-                     + (maxl + 3 + min(1, maxl - kmp)) * pDblX0->getRows()
+                     + (maxl + 3 + std::min(1, maxl - kmp)) * pDblX0->getRows()
                      + (maxl + 3) * maxl + 1 + LENWP;
     }
 
@@ -901,6 +916,7 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
             FREE(YSize);
             FREE(iwork);
             FREE(rwork);
+            FREE(root);
             if (pDblAtol == NULL || pDblAtol->isScalar())
             {
                 FREE(atol);
@@ -1063,15 +1079,9 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
                 Scierror(999, _("%s: %s return with state %d.\n"), "daskr", "ddaskr", ididtmp);
             }
         }
-        catch (ast::ScilabMessage &sm)
+        catch (ast::InternalError &ie)
         {
-            os << sm.GetErrorMessage();
-            bCatch = true;
-            iret = 1;
-        }
-        catch (ast::ScilabError &e)
-        {
-            os << e.GetErrorMessage();
+            os << ie.GetErrorMessage();
             bCatch = true;
             iret = 1;
         }
@@ -1099,9 +1109,9 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
             if (bCatch)
             {
                 wchar_t szError[bsiz];
-                os_swprintf(szError, bsiz, _W("%s: An error occured in '%s' subroutine.\n").c_str(), "daskr", "ddaskr");
+                os_swprintf(szError, bsiz, _W("%ls: An error occured in '%ls' subroutine.\n").c_str(), L"daskr", L"ddaskr");
                 os << szError;
-                throw ast::ScilabMessage(os.str());
+                throw ast::InternalError(os.str());
             }
 
             return types::Function::Error;

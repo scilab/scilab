@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="phc">
+    <refnamediv>
+        <refname>phc</refname>
+        <refpurpose>Markovian representation</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[H,F,G]=phc(hk,d,r)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>hk</term>
+                <listitem>
+                    <para>hankel matrix</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>d</term>
+                <listitem>
+                    <para>dimension of the observation</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>r</term>
+                <listitem>
+                    <para>desired dimension of the state vector for the approximated model</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>H, F, G</term>
+                <listitem>
+                    <para>relevant matrices of the Markovian model</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Function which computes the matrices <literal>H, F, G</literal> of a Markovian
+            representation by the principal hankel
+            component approximation method, from the hankel matrix built
+            from the covariance sequence of a stochastic process.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+//This example may usefully be compared with the results from
+//the 'levin' macro (see the corresponding help and example)
+//
+//We consider the process defined by two sinusoids (1Hz and 2 Hz)
+//in additive Gaussian noise (this is the observation);
+//the simulated process is sampled at 10 Hz.
+
+t=0:.1:100;rand('normal');
+y=sin(2*%pi*t)+sin(2*%pi*2*t);y=y+rand(y);plot(t,y)
+
+//covariance of y
+
+nlag=128;
+c=corr(y,nlag);
+
+//hankel matrix from the covariance sequence
+//(we can choose to take more information from covariance
+//by taking greater n and m; try it to compare the results !
+
+n=20;m=20;
+h=hank(n,m,c);
+
+//compute the Markov representation (mh,mf,mg)
+//We just take here a state dimension equal to 4 :
+//this is the rather difficult problem of estimating the order !
+//Try varying ns !
+//(the observation dimension is here equal to one)
+
+ns=4;
+[mh,mf,mg]=phc(h,1,ns);
+
+//verify that the spectrum of mf contains the
+//frequency spectrum of the observed process y
+//(remember that y is sampled -in our example
+//at 10Hz (T=0.1s) so that we need
+//to retrieve the original frequencies through the log
+//and correct scaling by the frequency sampling)
+
+s=spec(mf);s=log(s);
+s=s/2/%pi/.1;
+
+//now we get the estimated spectrum
+imag(s),
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="levin">levin</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

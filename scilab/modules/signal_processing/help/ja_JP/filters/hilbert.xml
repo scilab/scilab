@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="hilbert">
+
+    <refnamediv>
+
+        <refname>hilbert</refname>
+
+        <refpurpose>
+
+            ヒルバート変換により実信号の離散解析信号を計算する
+
+        </refpurpose>
+
+    </refnamediv>
+
+    <refsynopsisdiv>
+
+        <title>呼び出し手順</title>
+
+        <synopsis>x=hilbert(xr)</synopsis>
+
+    </refsynopsisdiv>
+
+    <refsection>
+
+        <title>引数</title>
+
+        <variablelist>
+
+            <varlistentry>
+
+                <term>xr</term>
+
+                <listitem>
+
+                    <para>実数ベクトル : 実信号標本</para>
+
+                </listitem>
+
+            </varlistentry>
+
+            <varlistentry>
+
+                <term>x</term>
+
+                <listitem>
+
+                    <para>複素ベクトル: 離散時間解析信号.</para>
+
+                </listitem>
+
+            </varlistentry>
+
+        </variablelist>
+
+    </refsection>
+
+    <refsection>
+
+        <title>説明</title>
+
+        <para>
+
+            実データ系列に基づく解析信号を返します.
+
+        </para>
+
+        <para>
+
+            解析信号 <literal>x= xr + i*xi</literal> は元データを
+
+            実部<literal>xr</literal>に有し,
+
+            虚部<literal>xi</literal>にヒルバート変換を有します.
+
+            虚部は元の実系列の90°位相シフトしたものです.
+
+        </para>
+
+    </refsection>
+
+    <refsection>
+
+        <title>参考文献</title>
+
+        <para>
+
+            <literal>
+
+                <ulink url="http://ieeexplore.ieee.org/iel5/78/16975/00782222.pdf?arnumber=782222">http://ieeexplore.ieee.org/iel5/78/16975/00782222.pdf?arnumber=782222</ulink>
+
+            </literal>
+
+        </para>
+
+        <para>
+
+            Marple, S.L., "Computing the discrete-time analytic signal via FFT,"
+
+            IEEE Transactions on Signal Processing, Vol. 47, No.9 (September
+
+            1999), pp.2600-2603
+
+        </para>
+
+    </refsection>
+
+    <refsection role="see also">
+
+        <title>参照</title>
+
+        <simplelist type="inline">
+
+            <member>
+
+                <link linkend="window">window</link>
+
+            </member>
+
+            <member>
+
+                <link linkend="hilb">hil</link>
+
+            </member>
+
+        </simplelist>
+
+    </refsection>
+
+    <refsection>
+
+        <title>例</title>
+
+        <programlisting role="example"><![CDATA[
+// 実インパルス信号の離散時間解析信号の虚部を
+// ヒルバート変換フィルタのFIR近似と比較
+m=25;
+n=2*m+1;
+y=hilbert(eye(n,1));
+h=hilb(n)';
+h=[h((m+1):$);h(1:m)];
+plot([imag(y) h])
+ ]]></programlisting>
+
+        <scilab:image>
+
+            m=25;
+
+            n=2*m+1;
+
+            y=hilbert(eye(n,1));
+
+            h=hilb(n)';
+
+            h=[h((m+1):$);h(1:m)];
+
+            plot([imag(y) h])
+
+        </scilab:image>
+
+    </refsection>
+
+</refentry>
+

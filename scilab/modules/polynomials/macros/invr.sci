@@ -1,15 +1,18 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 
 function [f,d]=invr(h,flag)
-    //if h is a scalar, polynomial or rational fonction matrix, invr
+    //if h is a scalar, polynomial or rational function matrix, invr
     //computes h^(-1).
     //!
     if argn(2)==1 then
@@ -60,6 +63,12 @@ function [f,d]=invr(h,flag)
     case "rational" then
         [m,n]=size(h(2));
         if m<>n then error(20),end
+        if m==1 then
+          f=h.den
+          d=h.num
+          if lhs==1 then f=f/d;end
+          return
+        end
         select flag
         case "L" //    Leverrier
             f=eye(n,n);

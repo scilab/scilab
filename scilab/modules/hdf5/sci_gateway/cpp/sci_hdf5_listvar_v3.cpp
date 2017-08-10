@@ -2,11 +2,14 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2012 - DIGITEO - Antoine ELIAS
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
@@ -75,7 +78,7 @@ types::Function::ReturnValue sci_hdf5_listvar_v3(types::typed_list &in, int _iRe
         return types::Function::Error;
     }
 
-    if (_iRetCount < 1 && _iRetCount > 4)
+    if (_iRetCount < 1 || _iRetCount > 4)
     {
         Scierror(999, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), fname.data(), 1, 4);
         return types::Function::Error;
@@ -84,7 +87,7 @@ types::Function::ReturnValue sci_hdf5_listvar_v3(types::typed_list &in, int _iRe
     //get filename
     if (in[0]->getId() != types::InternalType::IdScalarString)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname.data(), 1);
+        Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), fname.data(), 1);
         return types::Function::Error;
     }
 
@@ -128,9 +131,10 @@ types::Function::ReturnValue sci_hdf5_listvar_v3(types::typed_list &in, int _iRe
         for (int i = 0; i < items; i++)
         {
             info[i].name = vars[i];
+            FREE(vars[i]);
             info[i].size = 0;
 
-            int dset = getDataSetIdFromName(iFile, vars[i]);
+            int dset = getDataSetIdFromName(iFile, info[i].name.data());
             if (dset == 0)
             {
                 break;
@@ -434,6 +438,11 @@ static bool read_double(int dataset, VarInfo6& info)
 
     info.pdims.resize(info.dims);
     int size = getDatasetInfo(dataset, &complex, &info.dims, info.pdims.data());
+    if (size < 0)
+    {
+        closeDataSet(dataset);
+        return false;
+    }
     info.size = size * (complex + 1) * sizeof(double);
 
     generateInfo(info);
@@ -453,6 +462,11 @@ static bool read_string(int dataset, VarInfo6& info)
 
     info.pdims.resize(info.dims);
     int size = getDatasetInfo(dataset, &complex, &info.dims, info.pdims.data());
+    if (size < 0)
+    {
+        closeDataSet(dataset);
+        return false;
+    }
 
     std::vector<char*> str(size);
     ret = readStringMatrix(dataset, str.data());
@@ -480,6 +494,11 @@ static bool read_boolean(int dataset, VarInfo6& info)
 
     info.pdims.resize(info.dims);
     int size = getDatasetInfo(dataset, &complex, &info.dims, info.pdims.data());
+    if (size < 0)
+    {
+        closeDataSet(dataset);
+        return false;
+    }
     info.size = size * sizeof(int);
 
     generateInfo(info);
@@ -499,6 +518,11 @@ static bool read_integer(int dataset, VarInfo6& info)
 
     info.pdims.resize(info.dims);
     int size = getDatasetInfo(dataset, &complex, &info.dims, info.pdims.data());
+    if (size < 0)
+    {
+        closeDataSet(dataset);
+        return false;
+    }
 
     int prec = 0;
     getDatasetPrecision(dataset, &prec);
@@ -580,6 +604,10 @@ static bool read_poly(int dataset, VarInfo6& info)
 
         std::vector<int> d(dims);
         int datasize = getDatasetInfo(poly, &complex, &dims, d.data());
+        if (datasize < 0)
+        {
+            return false;
+        }
         info.size += datasize * sizeof(double) * (complex + 1);
     }
 
@@ -691,6 +719,11 @@ static bool read_struct(int dataset, VarInfo6& info)
             getDatasetInfo(dataref, &complex, &refdim, NULL);
             std::vector<int> refdims(refdim);
             int refcount = getDatasetInfo(dataref, &complex, &refdim, refdims.data());
+            if (refcount < 0)
+            {
+                closeList6(dataset);
+                return false;
+            }
             std::vector<hobj_ref_t> vrefs(refcount);
             ret = H5Dread(dataref, H5T_STD_REF_OBJ, H5S_ALL, H5S_ALL, H5P_DEFAULT, vrefs.data());
             if (ret < 0)
@@ -830,6 +863,10 @@ static int getDimsNode(int dataset, int* complex, std::vector<int>& dims)
     //get dims dimension
     std::vector<int> d(dim);
     int size = getDatasetInfo(id, complex, &dim, d.data());
+    if (size < 0)
+    {
+        return 0;
+    }
 
     //get dims value
     dims.resize(size);

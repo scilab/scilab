@@ -1,3 +1,10 @@
+//<-- CLI SHELL MODE -->
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
 // <-- Non-regression test for bug 474 -->
 //
 // <-- Bugzilla URL -->
@@ -7,13 +14,13 @@
 //    Bug Report Id: 120442003624174827
 //    k should be a 2 element vector!! like
 //
-//    -->a=matrix(1:9,3,3); [m,k]=min(a)
+//    -->a=matrix(1:9,3,3); [m,k]=min(a)       
 //     k  =
 //
 //    !   1.    1. !
 //     m  =
 //
-//        1.
+//        1.  
 //
 //    -->a=matrix(1:9,3,3); [m,k]=max(a)
 //     k  =
@@ -27,45 +34,35 @@
 // ...
 //correct=%F
 a=matrix(1:9,3,3)
- a  =
- 
-    1.    4.    7.  
-    2.    5.    8.  
-    3.    6.    9.  
+ a  = 
+   1.   4.   7.
+   2.   5.   8.
+   3.   6.   9.
 [mia,kia]=min(a)
- kia  =
- 
-    1.    1.  
- mia  =
- 
-    1.  
+ kia  = 
+   1.   1.
+ mia  = 
+   1.
 [maa,kaa]=max(a)
- kaa  =
- 
-    3.    3.  
- maa  =
- 
-    9.  
+ kaa  = 
+   3.   3.
+ maa  = 
+   9.
 b=int16(matrix(1:9,3,3))
- b  =
- 
-  1  4  7  
-  2  5  8  
-  3  6  9  
+ b  = 
+  1  4  7
+  2  5  8
+  3  6  9
 [mib,kib]=min(b)
- kib  =
- 
-    1.    1.  
- mib  =
- 
-  1  
+ kib  = 
+   1.   1.
+ mib  = 
+  1
 [mab,kab]=max(b)
- kab  =
- 
-    3.    3.  
- mab  =
- 
-  9  
+ kab  = 
+   3.   3.
+ mab  = 
+  9
 if mia<>mib     then bugmes();quit;end
 if or(kia<>kib) then bugmes();quit;end
 if maa<>mab     then bugmes();quit;end

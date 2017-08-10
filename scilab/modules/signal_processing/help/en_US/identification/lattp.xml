@@ -5,7 +5,7 @@
         <refpurpose>Identification of MA part of a vector ARMA process</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[la,lb]=lattp(n,p,cov)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -75,7 +75,7 @@ n=5; p=2;
 ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="levin">levin</link>

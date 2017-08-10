@@ -3,193 +3,196 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Farid BELAHCENE
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="cat" xml:lang="ja">
-    
+
     <refnamediv>
-        
+
         <refname>cat</refname>
-        
+
         <refpurpose>複数の配列を結合する</refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        
+
         <title>呼び出し手順</title>
-        
+
         <synopsis>y=cat(dims,A1,A2,...,An)</synopsis>
-        
+
     </refsynopsisdiv>
-    
+
     <refsection>
-        
+
         <title>引数</title>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>dims</term>
-                
+
                 <listitem>
-                    
+
                     <para>正の実数スカラー.</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>A1,A2,..An</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         スカラー, ベクトル, 行列または多次元配列, またはセル配列.
-                        
+
                         <literal>A1,A2,...,An</literal>は
-                        
+
                         (次元<literal>dims</literal>を除き)同じ大きさとなります.
-                        
+
                         <literal>dims</literal>以外の<literal>i</literal>について
-                        
+
                         <literal>size(A1,i)=size(A2,i)=...=size(An,i)</literal>
-                        
+
                         であり,
-                        
+
                         <literal>size(A1,dims), size(A2,dims),...,size(An,dims)</literal>
-                        
+
                         は異なる数とすることができます.
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>y</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         スカラー, ベクトル, 行列またはセル配列, <literal>y</literal> は
-                        
+
                         <literal>A1,A2,...,An</literal>と同じ型となります.
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>説明</title>
-        
+
         <para>
-            
+
             <literal>y=cat(dims,A1,A2,...,An)</literal>:
-            
+
             <literal>y</literal> は,入力引数<literal>A1,A2,...,An</literal>
-            
+
             を結合したものとなります.
-            
+
         </para>
-        
+
         <para>
-            
+
             <literal>dims=1</literal>の場合,
-            
+
             結合は行方向に行われます.
-            
+
         </para>
-        
+
         <para>
-            
+
             <literal>A1=[1 2 3 ; 4 5 6]</literal>; <literal>A2=[7 8 9 ; 10 11 12]</literal>; <literal>y=cat(1,A1,A2)</literal> =&gt; <literal>y=[1
-                
+
                 2 3 ; 4 5 6 ;7 8 9; 10 11 12]
-                
+
             </literal>
-            
-            .     
-            
-        </para>
-        
-        <para>
-            
-            <literal>dims=2</literal>の場合,結合は入力引数の列方向に行われます,...
-            
-        </para>
-        
-        <para>
-            
-            <literal>A1=[1 2 3;4 5 6]</literal>; <literal>A2=[7 8 9 ;10 11 12]</literal>; <literal>y=cat(2,A1,A2)</literal> =&gt; <literal>y=[1 2
-                
-                3 7 8 9 ; 4 5 6 10 11 12]
-                
-            </literal>
-            
+
             .
-            
+
         </para>
-        
+
+        <para>
+
+            <literal>dims=2</literal>の場合,結合は入力引数の列方向に行われます,...
+
+        </para>
+
+        <para>
+
+            <literal>A1=[1 2 3;4 5 6]</literal>; <literal>A2=[7 8 9 ;10 11 12]</literal>; <literal>y=cat(2,A1,A2)</literal> =&gt; <literal>y=[1 2
+
+                3 7 8 9 ; 4 5 6 10 11 12]
+
+            </literal>
+
+            .
+
+        </para>
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>例</title>
-        
-        <programlisting role="example"><![CDATA[ 
-// first example : concatenation according to the rows 
+
+        <programlisting role="example"><![CDATA[
+// first example : concatenation according to the rows
 dims=1; A1=[1 2 3]; A2=[4 5 6 ; 7 8 9]; A3=[10 11 12]; y=cat(dims,A1,A2,A3)
 // second example :  concatenation according to the columns
 dims=2; A1=[1 2 3]'; A2=[4 5;7 8;9 10]; y=cat(dims,A1,A2)
-// third example : concatenation according to the 3th dimension 
+// third example : concatenation according to the 3th dimension
 dims=3; A1=matrix(1:12,[2,2,3]); A2=[13 14;15 16]; A3=matrix(21:36,[2,2,4]); y=cat(dims,A1,A2,A3)
  ]]></programlisting>
-        
+
     </refsection>
-    
+
     <refsection role="see also">
-        
+
         <title>参照</title>
-        
+
         <simplelist type="inline">
-            
+
             <member>
-                
+
                 <link linkend="permute">permute</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="matrix">matrix</link>
-                
+
             </member>
-            
+
         </simplelist>
-        
+
     </refsection>
-    
+
 </refentry>
 

@@ -28,10 +28,16 @@ function standard_draw_ports(o)
     clkin  = size(o.model.evtin,1);
     clkout = size(o.model.evtout,1);
 
-    [orig,sz,orient]=(o.graphics.orig,o.graphics.sz,o.graphics.flip)
+    [orig,sz]=(o.graphics.orig,o.graphics.sz)
+    orient=%t;
+    style=graphics.style;
+    subStr=strstr(style,"flip=");
+    if subStr<>"" then
+        orient=%f;
+    end
 
-    // xset('pattern',default_color(0));
-    // xset('thickness',1)
+    // gca().foreground = default_color(0);
+    // gca().thickness = 1;
     // draw input/output ports
     //------------------------
 
@@ -63,7 +69,7 @@ function standard_draw_ports(o)
         -1   1]*diag([xf/7,yf/14])
         dy=sz(2)/(nout+1)
 
-        //** xset('pattern',default_color(1))
+        //** gca().foreground = default_color(1);
 
         for k=1:nout
 
@@ -129,7 +135,7 @@ function standard_draw_ports(o)
 
         dy=sz(2)/(nout+1)
 
-        // xset('pattern',default_color(1))
+        // gca().foreground = default_color(1);
         for k=1:nout
 
             if outporttype==[] then
@@ -186,7 +192,7 @@ function standard_draw_ports(o)
 
 
     dx=sz(1)/(clkout+1)
-    //** xset('pattern',default_color(-1))
+    //** gca().foreground = default_color(-1);
 
     for k=1:clkout
         xfpoly(out(:,1)+ones(4,1)*(orig(1)+k*dx), out(:,2)+ones(4,1)*orig(2),1)
@@ -206,6 +212,6 @@ function standard_draw_ports(o)
         gh_e.background = default_color(-1);
     end
 
-    //** xset('pattern',default_color(0))
+    //** gca().foreground = default_color(0);
 
 endfunction

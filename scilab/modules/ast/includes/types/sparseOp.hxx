@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2010-2010 - DIGITEO - Bernard Hugueney
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -42,7 +45,7 @@ typedef double (*cplxFun_t)(std::complex<double> const&);
 cplxFun_t const mostSignificant (&std::abs);
 cplxFun_t const leastSignificant(&std::arg);
 #else
-/*  on real and imaginary parts as per SEP 21 recommandation.  */
+/*  on real and imaginary parts as per SEP 21 recommendation.  */
 cplxFun_t const mostSignificant (&std::real);
 cplxFun_t const leastSignificant(&std::imag);
 #endif
@@ -101,7 +104,7 @@ namespace
  * of one arg does not set the result to the default result value.
  * For example, '==' does require full traversal because "0. == 0" is true (and the default SparseBool value is false)
  * However, '!=' does not require it because "0. != 0." is false so the default value of the sparse result is good.
- * we dispatch according the the operators thanks to the OperatorTraits struct (as is usually done for example to
+ * we dispatch according the operators thanks to the OperatorTraits struct (as is usually done for example to
  * dispatch amongst std:: algorithms implementations according to the iterator_category in std::iterator_traits<>
  */
 struct FullTraversal {};

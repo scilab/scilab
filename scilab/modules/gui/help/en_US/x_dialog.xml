@@ -5,7 +5,7 @@
         <refpurpose>Dialog for interactive multi-lines input.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>result=x_dialog(labels,valueini)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -44,7 +44,7 @@ m=evstr(x_dialog('Enter a 3x3 matrix',['[0 0 0';'0 0 0';'0 0 0]']))
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="x_mdialog">x_mdialog</link>

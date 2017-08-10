@@ -5,7 +5,7 @@
         <refpurpose>изменение вектора или матрицы в матрицу иных размеров</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             y=matrix(v,n,m)
             y=matrix(v,[sizes])
@@ -43,26 +43,26 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Для вектора или матрицы с элементами <literal>n x m</literal> команда 
+            Для вектора или матрицы с элементами <literal>n x m</literal> команда
             <literal>y=matrix(v,n,m)</literal> или аналогичная <literal>y=matrix(v,[n,m])</literal>
-            преобразует вектор (или матрицу) <literal>v</literal> в матрицу размерами 
+            преобразует вектор (или матрицу) <literal>v</literal> в матрицу размерами
             <literal>n x m</literal> постолбцовой установкой элементов <literal>v</literal>.
         </para>
         <para>
             Если один из размеров <literal>m</literal> или <literal>n</literal> равен -1, то он автоматически присваивается отношению  <literal>size(v,'*')</literal> к другому размеру.
         </para>
         <para>
-            Для гиперматрицы такой, что <literal>prod(size(v))==prod(sizes)</literal> команда 
-            <literal>y=matrix(v,sizes)</literal> (или аналогичная <literal>y=matrix(v,n1,n2,...nm)</literal>) 
-            преобразует <literal>v</literal> в матрицу или гиперматрицу постолбцовой установкой 
-            (первый размер меняется первым) элементов <literal>v</literal>. 
-            <literal>y=matrix(v,sizes)</literal> даёт обычную матрицу, если размеры являются скалярами или 
+            Для гиперматрицы такой, что <literal>prod(size(v))==prod(sizes)</literal> команда
+            <literal>y=matrix(v,sizes)</literal> (или аналогичная <literal>y=matrix(v,n1,n2,...nm)</literal>)
+            преобразует <literal>v</literal> в матрицу или гиперматрицу постолбцовой установкой
+            (первый размер меняется первым) элементов <literal>v</literal>.
+            <literal>y=matrix(v,sizes)</literal> даёт обычную матрицу, если размеры являются скалярами или
             двумерным вектором.
         </para>
     </refsection>
     <refsection>
         <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 a=[1 2 3;4 5 6]
 matrix(a,1,6)
 matrix(a,1,-1)
@@ -83,6 +83,9 @@ matrix(a,3,2)
             </member>
             <member>
                 <link linkend="zeros">zeros</link>
+            </member>
+            <member>
+                <link linkend="emptystr">emptystr</link>
             </member>
             <member>
                 <link linkend="rand">rand</link>

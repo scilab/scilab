@@ -16,9 +16,6 @@ function demo_log()
     theta = 30;
     alpha = 60;
 
-    my_handle = scf(100001);
-    clf(my_handle,"reset");
-
     PlotCmplxFunc(R,e,"Disk","Ox",[40 20],"log",theta,alpha,[e,R]);
     demo_viewCode("demo_log.dem.sce");
 

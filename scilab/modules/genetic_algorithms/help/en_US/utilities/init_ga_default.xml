@@ -4,11 +4,14 @@
  * Copyright (C) 2008 - Yann COLLETTE <yann.collette@renault.com>
  * Copyright (C) 2010 - DIGITEO - Michael Baudin
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="init_ga_default" xml:lang="en">
@@ -17,7 +20,7 @@
         <refpurpose>A function a initialize a population</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>Pop_init = init_ga_default(popsize,param)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -39,7 +42,7 @@
                         </listitem>
                         <listitem>
                             <para> "minbound": a vector of minimum bounds for the variable
-                                X. Default minbound = -2*ones(1,dimension). 
+                                X. Default minbound = -2*ones(1,dimension).
                             </para>
                         </listitem>
                         <listitem>
@@ -67,19 +70,19 @@
             individuals.
             It uses the rand function to generate the points uniformly distributed in the
             bounds.
-            As a side effect, it modifies the state of the random generator of the rand 
+            As a side effect, it modifies the state of the random generator of the rand
             function.
-            Other initial populations might be generated from the grand 
+            Other initial populations might be generated from the grand
             function, or any other uniform random generator (including low discrepancy sequences).
-            In the case were we want to compute another initial population, we 
-            might define our own init function: in this case, we may use the init_ga_default 
+            In the case were we want to compute another initial population, we
+            might define our own init function: in this case, we may use the init_ga_default
             function as a template and plug our customized population generator.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-// Generate 10 points in 2 dimensions, in the 
+        <programlisting role="example"><![CDATA[
+// Generate 10 points in 2 dimensions, in the
 // interval [-2,2]^2.
 popsize = 10;
 ga_params = init_param();
@@ -95,7 +98,7 @@ end
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="crossover_ga_default"> crossover_ga_default

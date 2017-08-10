@@ -4,28 +4,35 @@
  * Copyright (C) 2010 - DIGITEO - Yann COLLETTE
  * Copyright (C) 2015 - Scilab Enterprises - Sylvain GENIN
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
 #include "CreateMatlabTreeVariable.hxx"
+#include "cell.hxx"
+#include "struct.hxx"
+#include "string.hxx"
+#include "sparse.hxx"
+#include "int.hxx"
 
 extern "C"
 {
 #include "CreateMatlabVariable.h"
 #include "api_scilab.h"
 #include "Scierror.h"
+#include "sci_malloc.h"
 }
 
-
-
-InternalType* CreateMatlabTreeVariable(matvar_t *matVariable)
+types::InternalType* CreateMatlabTreeVariable(matvar_t *matVariable)
 {
-    InternalType* pOut = NULL;
+    types::InternalType* pOut = NULL;
     /* To be sure isComplex is 0 or 1 */
     bool isComplex = (matVariable->isComplex != 0);
     int* piDims = NULL;
@@ -51,6 +58,11 @@ InternalType* CreateMatlabTreeVariable(matvar_t *matVariable)
         }
     }
 
+    if (!piDims)
+    {
+        return types::Double::Empty();
+    }
+
     switch (matVariable->class_type)
     {
         case MAT_C_CELL: /* 1 */
@@ -58,20 +70,21 @@ InternalType* CreateMatlabTreeVariable(matvar_t *matVariable)
 
             if ((iRank == 2) && ((piDims[0] * piDims[1]) <= 0))
             {
-                pOut = new Cell();
+                pOut = new types::Cell();
             }
             else
             {
-                pOut = new Cell(iRank, piDims);
+                pOut = new types::Cell(iRank, piDims);
 
                 matvar_t** allData = (matvar_t**)(matVariable->data);
-                InternalType** ppIT = new InternalType*[matVariable->data_size];
-                for (int i = 0; i < matVariable->data_size; i++)
+                int iSize = pOut->getAs<types::Cell>()->getSize();
+                types::InternalType** ppIT = new types::InternalType*[iSize];
+                for (int i = 0; i < iSize; i++)
                 {
                     ppIT[i] = CreateMatlabTreeVariable(allData[i]);
                 }
 
-                pOut->getAs<Cell>()->set(ppIT);
+                pOut->getAs<types::Cell>()->set(ppIT);
             }
 
         }
@@ -80,13 +93,13 @@ InternalType* CreateMatlabTreeVariable(matvar_t *matVariable)
         {
             if (matVariable->data == NULL)
             {
-                pOut = new Struct();
+                pOut = new types::Struct();
             }
             else
             {
-                pOut = new Struct(iRank, piDims);
+                pOut = new types::Struct(iRank, piDims);
                 int iSizeStruct = Mat_VarGetNumberOfFields(matVariable);
-
+                wchar_t* temp;
                 matvar_t** allData = (matvar_t**)(matVariable->data);
 
                 bool bSearchSizeStruck = false;
@@ -100,16 +113,20 @@ InternalType* CreateMatlabTreeVariable(matvar_t *matVariable)
                             break;
                         }
                     }
-                    std::wstring wstField(to_wide_string((char*)allData[i]->name));
-                    pOut->getAs<Struct>()->addField(wstField);
+                    temp = to_wide_string((char*)allData[i]->name);
+                    std::wstring wstField(temp);
+                    FREE(temp);
+                    pOut->getAs<types::Struct>()->addField(wstField);
                 }
 
-                for (int i = 0; i < pOut->getAs<Struct>()->getSize(); i++)
+                for (int i = 0; i < pOut->getAs<types::Struct>()->getSize(); i++)
                 {
                     for (int j = 0; j < iSizeStruct; j++)
                     {
-                        std::wstring wstField(to_wide_string((char*)allData[j]->name));
-                        pOut->getAs<Struct>()->get(i)->set(wstField, CreateMatlabTreeVariable(allData[i * iSizeStruct + j]));
+                        temp = to_wide_string((char*)allData[j]->name);
+                        std::wstring wstField(temp);
+                        FREE(temp);
+                        pOut->getAs<types::Struct>()->get(i)->set(wstField, CreateMatlabTreeVariable(allData[i * iSizeStruct + j]));
                     }
                 }
             }
@@ -121,15 +138,16 @@ InternalType* CreateMatlabTreeVariable(matvar_t *matVariable)
             char* pChar = (char*)MALLOC(sizeof(char) * (piDims[1] + 1));
             pChar[0] = '\0';
             strncat(pChar, (char*)matVariable->data, piDims[1]);
-            String* pString = new String(pChar);
+            types::String* pString = new types::String(pChar);
             pOut = pString;
+            FREE(pChar);
         }
         break;
         case MAT_C_SPARSE: /* 5 */
         {
             mat_sparse_t *sparseData = (mat_sparse_t*)matVariable->data;
 
-            Sparse* pSparse = new Sparse(piDims[0], piDims[1], isComplex);
+            types::Sparse* pSparse = new types::Sparse(piDims[0], piDims[1], isComplex);
             int *colIndexes = NULL;
             int *rowIndexes = NULL;
 
@@ -140,6 +158,8 @@ InternalType* CreateMatlabTreeVariable(matvar_t *matVariable)
                 if (colIndexes == NULL)
                 {
                     Scierror(999, _("%s: No more memory.\n"), "CreateMatlabTreeVariable");
+                    delete pSparse;
+                    FREE(piDims);
                     return NULL;
                 }
 
@@ -154,6 +174,9 @@ InternalType* CreateMatlabTreeVariable(matvar_t *matVariable)
             if (rowIndexes == NULL)
             {
                 Scierror(999, _("%s: No more memory.\n"), "CreateMatlabTreeVariable");
+                delete pSparse;
+                FREE(colIndexes);
+                FREE(piDims);
                 return NULL;
             }
 
@@ -205,7 +228,7 @@ InternalType* CreateMatlabTreeVariable(matvar_t *matVariable)
         case MAT_C_DOUBLE: /* 6 */
         case MAT_C_SINGLE: /* 7 */
         {
-            Double* pDbl = new Double(iRank, piDims, isComplex);
+            types::Double* pDbl = new types::Double(iRank, piDims, isComplex);
             if (isComplex)
             {
                 mat_complex_split_t *mat5ComplexData = NULL;
@@ -224,7 +247,7 @@ InternalType* CreateMatlabTreeVariable(matvar_t *matVariable)
         break;
         case MAT_C_INT8: /* 8 */
         {
-            Int8* pInt8 = new Int8(iRank, piDims);
+            types::Int8* pInt8 = new types::Int8(iRank, piDims);
 
             pInt8->set((char*)matVariable->data);
 
@@ -233,7 +256,7 @@ InternalType* CreateMatlabTreeVariable(matvar_t *matVariable)
         break;
         case MAT_C_UINT8: /* 9 */
         {
-            UInt8* pUInt8 = new UInt8(iRank, piDims);
+            types::UInt8* pUInt8 = new types::UInt8(iRank, piDims);
 
             pUInt8->set((unsigned char*)matVariable->data);
 
@@ -242,7 +265,7 @@ InternalType* CreateMatlabTreeVariable(matvar_t *matVariable)
         break;
         case MAT_C_INT16: /* 10 */
         {
-            Int16* pInt16 = new Int16(iRank, piDims);
+            types::Int16* pInt16 = new types::Int16(iRank, piDims);
 
             pInt16->set((short*)matVariable->data);
 
@@ -251,7 +274,7 @@ InternalType* CreateMatlabTreeVariable(matvar_t *matVariable)
         break;
         case MAT_C_UINT16: /* 11 */
         {
-            UInt16* pUInt16 = new UInt16(iRank, piDims);
+            types::UInt16* pUInt16 = new types::UInt16(iRank, piDims);
 
             pUInt16->set((unsigned short*)matVariable->data);
 
@@ -260,7 +283,7 @@ InternalType* CreateMatlabTreeVariable(matvar_t *matVariable)
         break;
         case MAT_C_INT32: /* 12 */
         {
-            Int32* pInt32 = new Int32(iRank, piDims);
+            types::Int32* pInt32 = new types::Int32(iRank, piDims);
 
             pInt32->set((int*)matVariable->data);
 
@@ -269,7 +292,7 @@ InternalType* CreateMatlabTreeVariable(matvar_t *matVariable)
         break;
         case MAT_C_UINT32: /* 13 */
         {
-            UInt32* pUInt32 = new UInt32(iRank, piDims);
+            types::UInt32* pUInt32 = new types::UInt32(iRank, piDims);
 
             pUInt32->set((unsigned int*)matVariable->data);
 
@@ -279,7 +302,7 @@ InternalType* CreateMatlabTreeVariable(matvar_t *matVariable)
 #ifdef __SCILAB_INT64__
         case MAT_C_INT64: /* 14 */
         {
-            Int64* pInt64 = new Int64(iRank, piDims);
+            types::Int64* pInt64 = new types::Int64(iRank, piDims);
 
             pInt64->set((long long*)matVariable->data);
 
@@ -288,7 +311,7 @@ InternalType* CreateMatlabTreeVariable(matvar_t *matVariable)
         break;
         case MAT_C_UINT64: /* 15 */
         {
-            UInt64* pUInt64 = new UInt64(iRank, piDims);
+            types::UInt64* pUInt64 = new types::UInt64(iRank, piDims);
 
             pUInt64->set((unsigned long long*)matVariable->data);
 
@@ -303,13 +326,9 @@ InternalType* CreateMatlabTreeVariable(matvar_t *matVariable)
         case MAT_C_FUNCTION: /* 16 to be written */
         default:
             /* Empty matrix returned */
-            return Double::Empty();
+            FREE(piDims);
+            return types::Double::Empty();
     }
-
-    if (iRank != 0)
-    {
-        FREE(piDims);
-    }
-
+    FREE(piDims);
     return pOut;
 }

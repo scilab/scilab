@@ -15,13 +15,13 @@
 //
 // <-- Short Description -->
 // this example with optim crashs 'optim' on windows (release mode)
-// 
+//
 // =============================================================================
 xref=[1;2;3];
 x0=[1;-1;1];
 function [f,g,ind] = cost(x,ind)
-  f=0.5*norm(x-xref)^2;
-  g=x-xref;
+    f=0.5*norm(x-xref)^2;
+    g=x-xref;
 endfunction
-[f,xopt]=optim(cost,x0,imp=3)
+[f,xopt]=optim(cost,x0,iprint=3)
 // =============================================================================

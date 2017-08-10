@@ -1,12 +1,15 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2014-2014 - Scilab Enterprises - Clement DAVID
+ *  Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -49,8 +52,7 @@ struct graphics
     static types::InternalType* get(const BlockAdapter& adaptor, const Controller& controller)
     {
         GraphicsAdapter localAdaptor(controller, controller.referenceObject(adaptor.getAdaptee()));
-        types::InternalType* v = localAdaptor.getAsTList(new types::MList(), controller);
-        return v;
+        return localAdaptor.getAsTList(new types::MList(), controller);
     }
 
     static bool set(BlockAdapter& adaptor, types::InternalType* v, Controller& controller)
@@ -64,23 +66,14 @@ struct model
 {
     static types::InternalType* get(const BlockAdapter& adaptor, const Controller& controller)
     {
-        ModelAdapter localAdaptor(controller, controller.referenceObject(adaptor.getAdaptee()), adaptor.getDiagram());
-        types::InternalType* mlist = localAdaptor.getAsTList(new types::MList(), controller)->getAs<types::MList>();
-
-        const_cast<BlockAdapter&>(adaptor).setDiagram(localAdaptor.getDiagram());
-        return mlist;
+        ModelAdapter localAdaptor(controller, controller.referenceObject(adaptor.getAdaptee()));
+        return localAdaptor.getAsTList(new types::MList(), controller);
     }
 
     static bool set(BlockAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        ModelAdapter localAdaptor(controller, controller.referenceObject(adaptor.getAdaptee()), adaptor.getDiagram());
-        if (!localAdaptor.setAsTList(v, controller))
-        {
-            return false;
-        }
-
-        adaptor.setDiagram(localAdaptor.getDiagram());
-        return true;
+        ModelAdapter localAdaptor(controller, controller.referenceObject(adaptor.getAdaptee()));
+        return localAdaptor.setAsTList(v, controller);
     }
 };
 
@@ -133,14 +126,56 @@ struct doc
     }
 };
 
+link_indices_t getPortEnd(const Controller& controller, org_scilab_modules_scicos::model::Block* adaptee, portKind port)
+{
+    ScicosID parent;
+    kind_t parentKind = BLOCK;
+    controller.getObjectProperty(adaptee->id(), adaptee->kind(), PARENT_BLOCK, parent);
+    if (parent == ScicosID())
+    {
+        parentKind = DIAGRAM;
+        controller.getObjectProperty(adaptee->id(), adaptee->kind(), PARENT_DIAGRAM, parent);
+    }
+
+    // early return if this block is out of a hierarchy
+    if (parent == ScicosID())
+    {
+        return link_indices_t();
+    }
+
+    std::vector<ScicosID> children;
+    controller.getObjectProperty(parent, parentKind, CHILDREN, children);
+
+    std::vector<ScicosID> ports;
+    controller.getObjectProperty(parent, parentKind, property_from_port(port), children);
+
+    // store the index of the connected signal, 0 if absent
+    link_indices_t portIndices(ports.size());
+    for (size_t i = 0; i < ports.size(); ++i)
+    {
+        ScicosID signal;
+        controller.getObjectProperty(ports[i], PORT, CONNECTED_SIGNALS, signal);
+
+        if (signal != ScicosID())
+        {
+            auto it = std::find(children.begin(), children.end(), signal);
+            if (it != children.end())
+            {
+                portIndices[i] = (int)std::distance(children.begin(), it);
+            }
+        }
+    }
+
+    return portIndices;
+};
+
 } /* namespace */
 
 template<> property<BlockAdapter>::props_t property<BlockAdapter>::fields = property<BlockAdapter>::props_t();
 
 BlockAdapter::BlockAdapter(const Controller& c, org_scilab_modules_scicos::model::Block* adaptee) :
     BaseAdapter<BlockAdapter, org_scilab_modules_scicos::model::Block>(c, adaptee),
-    diagramAdapter(nullptr),
-    doc_content(nullptr)
+    doc_content(default_value<types::List>())
 {
     if (property<BlockAdapter>::properties_have_not_been_set())
     {
@@ -150,72 +185,32 @@ BlockAdapter::BlockAdapter(const Controller& c, org_scilab_modules_scicos::model
         property<BlockAdapter>::add_property(L"gui", &gui::get, &gui::set);
         property<BlockAdapter>::add_property(L"doc", &doc::get, &doc::set);
     }
-
-    setDocContent(new types::List());
 }
 
 BlockAdapter::BlockAdapter(const BlockAdapter& adapter) :
-    BaseAdapter<BlockAdapter, org_scilab_modules_scicos::model::Block>(adapter, false),
-    diagramAdapter(nullptr),
-    doc_content(nullptr)
+    BaseAdapter<BlockAdapter, org_scilab_modules_scicos::model::Block>(adapter),
+    doc_content(reference_value(adapter.doc_content))
 {
     Controller controller;
-
-    if (adapter.getDiagram() != nullptr)
-    {
-        types::InternalType* model = model::get(adapter, controller);
-        model::set(*this, model, controller);
-        model->killMe();
-    }
-
-    setDocContent(adapter.getDocContent());
+    GraphicsAdapter::add_partial_links_information(controller, adapter.getAdaptee(), getAdaptee());
 }
 
 BlockAdapter::~BlockAdapter()
 {
-    // CHILDREN will be unreferenced on Controller::deleteObject
-
-    if (diagramAdapter != nullptr)
-    {
-        diagramAdapter->DecreaseRef();
-        diagramAdapter->killMe();
-    }
-
     doc_content->DecreaseRef();
     doc_content->killMe();
+
+    GraphicsAdapter::remove_partial_links_information(getAdaptee());
 }
 
-std::wstring BlockAdapter::getTypeStr()
+std::wstring BlockAdapter::getTypeStr() const
 {
     return getSharedTypeStr();
 }
 
-std::wstring BlockAdapter::getShortTypeStr()
+std::wstring BlockAdapter::getShortTypeStr() const
 {
     return getSharedTypeStr();
-}
-
-DiagramAdapter* BlockAdapter::getDiagram() const
-{
-    return diagramAdapter;
-}
-
-void BlockAdapter::setDiagram(DiagramAdapter* v)
-{
-    // The old 'diagramAdapter' needs to be freed after setting it to 'v'
-    DiagramAdapter* temp = diagramAdapter;
-
-    if (v != nullptr)
-    {
-        v->IncreaseRef();
-        diagramAdapter = v;
-    }
-
-    if (temp != nullptr)
-    {
-        temp->DecreaseRef();
-        temp->killMe();
-    }
 }
 
 types::InternalType* BlockAdapter::getDocContent() const
@@ -227,14 +222,12 @@ void BlockAdapter::setDocContent(types::InternalType* v)
 {
     types::InternalType* temp = doc_content;
 
+    // Do not check if v is nullptr on purpose ; it *should* not
     v->IncreaseRef();
     doc_content = v;
 
-    if (temp != nullptr)
-    {
-        temp->DecreaseRef();
-        temp->killMe();
-    }
+    temp->DecreaseRef();
+    temp->killMe();
 }
 
 } /* namespace view_scilab */

@@ -3,11 +3,14 @@
  *  Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
  *  Copyright (C) 2014 - Scilab Enterprises - Cedric Delamarre
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -27,14 +30,14 @@ extern "C"
 
 types::Function::ReturnValue sci_who(types::typed_list& in, int _iRetCount, types::typed_list& out)
 {
-    wchar_t* wcsWhat = L"";
+    std::wstring wcsWhat(L"");
     bool bSorted = false;
     types::String* pStrOut = NULL;
     types::Double* pDblOut = NULL;
     std::list<std::wstring> lstVar;
     int size = 0;
 
-    if (in.size() < 0 || in.size() > 2)
+    if (in.size() > 2)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "who", 0, 2);
         return types::Function::Error;
@@ -59,7 +62,7 @@ types::Function::ReturnValue sci_who(types::typed_list& in, int _iRetCount, type
     {
         if (in[1]->isString() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "who", 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "who", 2);
             return types::Function::Error;
         }
 
@@ -86,7 +89,7 @@ types::Function::ReturnValue sci_who(types::typed_list& in, int _iRetCount, type
     {
         if (in[0]->isString() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "who", 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "who", 1);
             return types::Function::Error;
         }
 
@@ -101,15 +104,15 @@ types::Function::ReturnValue sci_who(types::typed_list& in, int _iRetCount, type
         wcsWhat = pStrWhat->get(0);
     }
 
-    if (wcscmp(wcsWhat, L"local") == 0 || wcscmp(wcsWhat, L"get") == 0)
+    if (wcsWhat == L"local" || wcsWhat == L"get")
     {
         size = symbol::Context::getInstance()->getVarsNameForWho(lstVar, bSorted);
     }
-    else if (wcscmp(wcsWhat, L"global") == 0)
+    else if (wcsWhat == L"global")
     {
         size = symbol::Context::getInstance()->getGlobalNameForWho(lstVar, bSorted);
     }
-    else if (bSorted == false && wcscmp(wcsWhat, L"sorted") == 0)
+    else if (bSorted == false && wcsWhat == L"sorted")
     {
         bSorted = true;
         std::wstringstream wstream;

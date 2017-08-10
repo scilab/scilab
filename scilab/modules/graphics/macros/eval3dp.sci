@@ -1,13 +1,16 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 1990 - INRIA - Serge Steer
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function [x,y,z]=eval3dp(fun,p1,p2)
-    // eval3d - retourne une representation par facettes d'une fonction z=f(u,v)
+    // eval3dp - retourne une representation par facettes d'une fonction z=f(u,v)
     //%Syntaxe
     //  [x,y,z]=eval3dp(fun,p1,p2)
     //%Parametres
@@ -34,7 +37,7 @@ function [x,y,z]=eval3dp(fun,p1,p2)
     //  [x,y,z]=eval3dp(scp,0:0.3:2*%pi,-%pi:0.3:%pi);
     //  fac3d(x,y,z,35,45,'x@y@z')
     //%Voir aussi
-    // plot3d eval3d fac3d
+    // plot3d fac3d
     //!
 
     [lhs,rhs]=argn(0)

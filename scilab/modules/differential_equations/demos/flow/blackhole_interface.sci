@@ -458,6 +458,7 @@ function start_simu()
     my_figure_handle = get("main_figure");
     fin=my_figure_handle.user_data
     my_figure_handle.user_data=%f
+    set("clear_button", "userdata", %f);
     slider_r     = get("slider_r");
     slider_theta = get("slider_theta");
     slider_speed = get("slider_speed");
@@ -487,16 +488,18 @@ function start_simu()
         end
     end
 
+    if get("clear_button", "userdata") then
+        clear_simu()
+    end
+
     if is_handle_valid(my_figure_handle) then
         my_figure_handle.user_data = %t;
     end
 endfunction
 
 function stop_simu()
-    //stop button callback
-    my_figure_handle = get("main_figure");
-    fin = %T;
-    my_figure_handle.user_data = fin
+    set("main_figure", "userdata", %t);
+    set("clear_button", "userdata", %f);
 endfunction
 
 function clear_simu()
@@ -507,5 +510,8 @@ function clear_simu()
         curAxe = gca();
         traj_handle = curAxe.children(1).children(5);
         traj_handle.data = [0 0 0];
+        return
     end
+    set("main_figure", "userdata", %t);
+    set("clear_button", "userdata", %t);
 endfunction

@@ -94,7 +94,7 @@ localInstance = curEnv->NewObject( this->instanceClass, constructObject ) ;
 if(localInstance == NULL){
 throw GiwsException::JniObjectCreationException(curEnv, this->className());
 }
- 
+
 this->instance = curEnv->NewGlobalRef(localInstance) ;
 if(this->instance == NULL){
 throw GiwsException::JniObjectCreationException(curEnv, this->className());
@@ -164,6 +164,7 @@ voiduseCanvasForDisplayjbooleanbooleanID=NULL;
 jbooleanuseCanvasForDisplayID=NULL;
 voidscilabAboutBoxID=NULL;
 voidfireClosingFinishedjintintID=NULL;
+voidregisterSwingViewID=NULL;
 
 
 }
@@ -247,6 +248,7 @@ voiduseCanvasForDisplayjbooleanbooleanID=NULL;
 jbooleanuseCanvasForDisplayID=NULL;
 voidscilabAboutBoxID=NULL;
 voidfireClosingFinishedjintintID=NULL;
+voidregisterSwingViewID=NULL;
 
 
 }
@@ -383,7 +385,7 @@ delete[] myStringBuffer;
                                 throw GiwsException::JniCallMethodException(curEnv);
 }
 return myStringBuffer;
- } else { 
+ } else {
 curEnv->DeleteLocalRef(res);
 return NULL;
 }
@@ -750,7 +752,7 @@ delete[] arrayOfString;
 }
 curEnv->DeleteLocalRef(res);
 return arrayOfString;
- } else { 
+ } else {
 curEnv->DeleteLocalRef(res);
 return NULL;
 }
@@ -1325,7 +1327,7 @@ delete[] myStringBuffer;
                                 throw GiwsException::JniCallMethodException(curEnv);
 }
 return myStringBuffer;
- } else { 
+ } else {
 curEnv->DeleteLocalRef(res);
 return NULL;
 }
@@ -1568,7 +1570,7 @@ delete[] myStringBuffer;
                                 throw GiwsException::JniCallMethodException(curEnv);
 }
 return myStringBuffer;
- } else { 
+ } else {
 curEnv->DeleteLocalRef(res);
 return NULL;
 }
@@ -2005,6 +2007,26 @@ throw GiwsException::JniMethodNotFoundException(curEnv, "fireClosingFinished");
 }
 
                          curEnv->CallStaticVoidMethod(cls, voidfireClosingFinishedjintintID ,figUID);
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+void CallScilabBridge::registerSwingView (JavaVM * jvm_){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+
+static jmethodID voidregisterSwingViewID = curEnv->GetStaticMethodID(cls, "registerSwingView", "()V" ) ;
+if (voidregisterSwingViewID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "registerSwingView");
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidregisterSwingViewID );
                         if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }

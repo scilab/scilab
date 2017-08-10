@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -20,15 +23,20 @@
 #endif
 #include "gw_time.h"
 #include "api_scilab.h"
+#include "sciprint.h"
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
 int sci_xpause(char *fname, void* pvApiCtx)
 {
+
     SciErr sciErr;
     int m1 = 0, n1 = 0, sec = 0;
     int * p1_in_address = NULL;
     double * pDblReal = NULL;
+
+    sciprint(_("%s: Feature %s is obsolete and will be permanently removed in Scilab %s\n"), _("Warning"), fname, "6.1");
+    sciprint(_("%s: Please use %s instead.\n"), _("Warning"), "sleep()");
 
     CheckLhs(0, 1);
     CheckRhs(1, 1);
@@ -36,7 +44,17 @@ int sci_xpause(char *fname, void* pvApiCtx)
     if (Rhs == 1)
     {
         sciErr = getVarAddressFromPosition(pvApiCtx, 1, &p1_in_address);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 0;
+        }
         sciErr = getMatrixOfDouble(pvApiCtx, p1_in_address, &m1, &n1, &pDblReal);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 0;
+        }
 
         if (isScalar(pvApiCtx, p1_in_address) == 0)
         {
@@ -83,6 +101,6 @@ int sci_xpause(char *fname, void* pvApiCtx)
     PutLhsVar();
 
     return 0;
-
 }
 /*--------------------------------------------------------------------------*/
+

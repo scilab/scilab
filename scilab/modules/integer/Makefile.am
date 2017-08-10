@@ -38,6 +38,8 @@ INTEGER_C_SOURCES = \
     src/c/genimpl.c
 
 GATEWAY_CPP_SOURCES = \
+    src/cpp/DllmainInteger_gw.cpp \
+    src/cpp/iconvert_converter.cpp \
     sci_gateway/cpp/integer_gw.cpp \
     sci_gateway/cpp/sci_inttype.cpp \
     sci_gateway/cpp/sci_double.cpp \
@@ -46,6 +48,7 @@ GATEWAY_CPP_SOURCES = \
 
 libsciinteger_la_CPPFLAGS = \
     -I$(srcdir)/includes/ \
+    -I$(srcdir)/src/cpp/ \
     -I$(top_srcdir)/modules/ast/includes/ast/ \
     -I$(top_srcdir)/modules/ast/includes/exps/ \
     -I$(top_srcdir)/modules/ast/includes/operations/ \

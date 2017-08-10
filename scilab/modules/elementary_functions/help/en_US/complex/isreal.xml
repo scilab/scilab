@@ -2,23 +2,26 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2015 - Samuel GOUGEON
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="isreal" xml:lang="en">
     <refnamediv>
         <refname>isreal</refname>
-        <refpurpose>check if a variable has real or complex entries</refpurpose>
+        <refpurpose>check if a variable is stored as a complex matrix</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>t=isreal(x)
-            t=isreal(x,eps)
+        <title>Syntax</title>
+        <synopsis>t = isreal(x)
+            t = isreal(x, eps)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -27,9 +30,15 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>vector or matrix with floating point entries or
-                        coefficients
+                    <para>Matrices of real or complex numbers (full or sparse storage).
+                    Matrices of polynomials or rationals, with real or complex coefficients.
                     </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>eps</term>
+                <listitem>
+                    <para>a positive or null real (default value = 0)</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -43,25 +52,44 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>isreal(x)</literal> returns true if <literal>x</literal> is
-            stored as a real variable and false if <literal>x</literal> is stored with
+            <literal>isreal(x)</literal> returns %T (true) if <literal>x</literal> is
+            stored as a real variable, and %F (false) <literal>x</literal> is stored with
             an (eventually zero) imaginary part.
         </para>
         <para>
-            <literal>isreal(x,eps)</literal> returns true if
-            <literal>x</literal> is stored as a real variable or if maximum absolute
-            value of imaginary floating points is less or equal than
-            <literal>eps</literal>.
+            <literal>isreal(x, eps)</literal> returns %T (true) if
+            <literal>x</literal> is stored as a real variable, or if the maximal absolute
+            value of imaginary parts of its components is less or equal than <literal>eps</literal>.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
+isreal([])        // => %T
 isreal([1 2])
 isreal(1+0*%i)
 isreal(1+0*%i,0)
-isreal(1+%s)
-isreal(sprand(3,3,0.1))
+
+// Sparse matrix:
+isreal(sparse([1-%i -3+4*%i]))
+
+// Polynomial:
+p = (1-2*%s)^2
+isreal(p)
+
+// Rational fraction:
+r = [ (%i-%s)/%s^2 %s/(2-%s)]
+isreal(r)
  ]]></programlisting>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>Extension to rationals
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

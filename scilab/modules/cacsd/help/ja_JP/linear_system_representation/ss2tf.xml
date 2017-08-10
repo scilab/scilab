@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="ss2tf">
+    <refnamediv>
+        <refname>ss2tf</refname>
+        <refpurpose>状態空間から伝達関数への変換</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[h]=ss2tf(sl)
+            [Ds,NUM,chi]=ss2tf(sl)
+            [h]=ss2tf(sl,"b")
+            [Ds,NUM,chi]=ss2tf(sl,"b")
+            [h]=ss2tf(sl,rmax)
+            [Ds,NUM,chi]=ss2tf(sl,rmax)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>sl</term>
+                <listitem>
+                    <para>
+                        線形システム (<literal>syslin</literal> リスト)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>h</term>
+                <listitem>
+                    <para>伝達関数行列</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            出力を3個としてコール <literal>[Ds,NUM,chi]=ss2tf(sl)</literal> すると、
+            分子多項式行列 <literal>NUM</literal>,
+            特性方程式 <literal>chi</literal>および
+            多項式部分 <literal>Ds</literal> が別々に得られる.
+            すなわち:
+        </para>
+        <programlisting role=""><![CDATA[
+h = NUM/chi + Ds
+ ]]></programlisting>
+        <para>
+            手法:
+        </para>
+        <para>
+            特性多項式と
+            <literal>det(A+Eij)=det(A)+C(i,j)</literal> が使用される.
+            ただし,<literal>C</literal> は <literal>A</literal>の随伴行列である.
+        </para>
+        <para>
+            <literal>rmax</literal> または引数 <literal>"b"</literal> を指定した場合,
+            sl.A のブロック対角化を行い,このブロックに
+            "Leverrier" アルゴリズムを適用する.
+            指定した場合, <literal>rmax</literal> は条件数を制御する (bdiag参照).
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+s=poly(0,'s');
+h=[1,1/s;1/(s^2+1),s/(s^2-2)]
+sl=tf2ss(h);
+h=clean(ss2tf(sl))
+[Ds,NUM,chi]=ss2tf(sl)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="tf2ss">tf2ss</link>
+            </member>
+            <member>
+                <link linkend="syslin">syslin</link>
+            </member>
+            <member>
+                <link linkend="nlev">nlev</link>
+            </member>
+            <member>
+                <link linkend="glever">glever</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

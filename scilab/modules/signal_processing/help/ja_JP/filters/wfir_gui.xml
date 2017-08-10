@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja_JP" xml:id="wfir_gui">
+    <refnamediv>
+        <refname>wfir_gui</refname>
+        <refpurpose>
+            対話的にwfirフィルタを設計する際に使用するGUI
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[ftype,forder,cfreq,wtype,fpar] = wfir_gui()</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>ftype</term>
+                <listitem>
+                    <para>
+                        文字列: 選択されたフィルタ形式.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>forder</term>
+                <listitem>
+                    <para>
+                        正の整数値(スカラー): 選択されたフィルタ次数
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>cfreq</term>
+                <listitem>
+                    <para>
+                        2要素のベクトル: 正規化された周波数のカットオフ周波数
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>wtype</term>
+                <listitem>
+                    <para>
+                        文字列: 選択されたウィンドウ形式.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fpar</term>
+                <listitem>
+                    <para>
+                        ウィンドウパラメータの2要素ベクトル.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            この関数はウィンドウ付き有限インパルス応答フィルタの設計パラメータを
+            対話的に選択できるGUIを提供します
+            (<link linkend="wfir">wfir</link>参照).
+            引数が指定されない場合,<literal>wfir</literal>により
+            コールされます.
+        </para>
+        <para>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="../../images/wfir_gui_dialog.png"/>
+                </imageobject>
+            </inlinemediaobject>
+        </para>
+        <para>
+            リクエストされた場合,
+            フィルタの周波数応答は
+            以下のダイアログウインドウで設定されたパラメータに基づき
+            自動的に更新されます:
+        </para>
+        <para>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="../../images/wfir_gui_view.svg"/>
+                </imageobject>
+            </inlinemediaobject>
+        </para>
+    </refsection>
+    <refsection>
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="wfir">wfir</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>使用される関数</title>
+        <para>
+            <link linkend="uicontrol">uicontrol</link> 関数に基づきます.
+        </para>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>関数 wfir_gui は,
+                    より使いやすくするために一から再設計されました.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

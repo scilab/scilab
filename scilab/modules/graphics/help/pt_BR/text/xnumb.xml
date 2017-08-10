@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xnumb" xml:lang="pt">
+    <refnamediv>
+        <refname>xnumb</refname>
+        <refpurpose>Imprime números</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>xnumb(x,y,nums,[box,angle])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>x,y,nums</term>
+                <listitem>
+                    <para>vetores de mesmo tamanho </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>box</term>
+                <listitem>
+                    <para>valor inteiro</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>angle</term>
+                <listitem>
+                    <para>
+                        vetor opcional de mesmo tamanho de <literal>x</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>
+            <literal>xnumb</literal> imprime os valores de
+            <literal>nums(i)</literal> na posição <literal>x(i),y(i)</literal> na
+            escala corrente. Se <literal>box</literal> tem valor 1, um retângulo é
+            desenhado ao redor dos números. Se <literal>angle</literal> for dado,
+            fornece a direção para escrita do string.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[
+plot2d([-100,500],[-100,600],[-1,-1],"022")
+x=0:100:200;
+xnumb(x,500*ones(x),[10,20,35],1)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Ver Também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="xstring">xstring</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

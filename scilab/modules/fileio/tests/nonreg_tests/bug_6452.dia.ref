@@ -37,4 +37,4 @@ ref = "&é""''(-è_çà)=";
 if r <> ref then bugmes();quit;end
 r = part(lines_result(9),2:4);
 ref = "ロー・";
-if r <> ref then bugmes();quit;end 
+if r <> ref then bugmes();quit;end

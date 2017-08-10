@@ -19,7 +19,10 @@ fi
 #
 # Configuration check
 #
-XMLINDENT="$(git config --get hooks.xmlindent)"
+if test ! -x "$XMLINDENT"
+then
+    XMLINDENT="$(git config --get hooks.xmlindent)"
+fi
 if test ! -x "$XMLINDENT"
 then
     echo "Unable to find xmlindent executable on the configuration."
@@ -45,7 +48,10 @@ else
     XMLINDENT_IGNORED="$(find $(git config --get-all xmlindent.ignored))"
 fi
 
-ASTYLE="$(git config --get hooks.astyle)"
+if test ! -x "$ASTYLE"
+then
+    ASTYLE="$(git config --get hooks.astyle)"
+fi
 if test ! -x "$ASTYLE"
 then
     echo "Unable to find astyle executable on the configuration."
@@ -76,6 +82,10 @@ then
     echo "  git config --add astyle.ignored 'scilab/modules/scinotes/src/java/org/scilab/modules/scinotes/IndentScanner.java' "
     echo "  git config --add astyle.ignored 'scilab/modules/scinotes/src/java/org/scilab/modules/scinotes/MatchingBlockScanner.java' "
     echo "  git config --add astyle.ignored 'scilab/modules/scinotes/src/java/org/scilab/modules/scinotes/ScilabLexer.java' "
+    echo "  git config --add astyle.ignored 'scilab/modules/xcos/src/java/org/scilab/modules/xcos/Controller.java' "
+    echo "  git config --add astyle.ignored 'scilab/modules/xcos/src/java/org/scilab/modules/xcos/JavaController.java' "
+    echo "  git config --add astyle.ignored 'scilab/modules/xcos/src/java/org/scilab/modules/xcos/Kind.java' "
+    echo "  git config --add astyle.ignored 'scilab/modules/xcos/src/java/org/scilab/modules/xcos/ObjectProperties.java' "
     echo "  git config --add astyle.ignored 'scilab/modules/scicos/src/scicos_sundials/*' "
 
     echo
@@ -124,6 +134,9 @@ __indent_xml() {
 
     echo "Formatting" "$FILES"
     "$XMLINDENT" -w -i 4 $FILES || return 2;
+    # xmlindent does not remove trailing whitespaces
+    # and might add some on empty lines
+    sed -i -e 's/[ \t]*$//' $FILES || return 2;
     git add $FILES || return 3;
 }
 
@@ -177,7 +190,7 @@ __indent_scilab() {
         scilab/bin/scilab -nw -f $TMPFILE || return 2
     else
         if test -f scilab/bin/WScilex.exe; then
-            scilab/bin/wscilex.exe -nw -f $TMPFILE || return 2
+            scilab/bin/scilex.exe -f $TMPFILE || return 2
         else
             echo "Scilab has not been built."
             rm $TMPFILE

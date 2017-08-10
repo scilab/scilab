@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="dcf">
+    <refnamediv>
+        <refname>dcf</refname>
+        <refpurpose>2重既約分解</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[N,M,X,Y,NT,MT,XT,YT]=dcf(G,[polf,polc,[tol]])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>G</term>
+                <listitem>
+                    <para>
+                        <literal>syslin</literal> リスト (連続時間線形システム)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>polf, polc</term>
+                <listitem>
+                    <para>
+                        それぞれ,<literal>XT</literal>と<literal>YT</literal>の極と,
+                        <literal>N</literal>  と <literal>M</literal>の極 (デフォルト値=-1).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>tol</term>
+                <listitem>
+                    <para>
+                        安定な極を検出するための閾値(実数) (デフォルト値 <literal>100*%eps</literal>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>N,M,XT,YT,NT,MT,X,Y</term>
+                <listitem>
+                    <para>
+                        <literal>syslin</literal> リストで表された線形システム
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            は2重既約分解により,8個の安定なシステム<literal>(N,M,X,Y,NT,MT,XT,YT) </literal>
+            を返します.
+        </para>
+        <para>
+            <literal>G</literal> は可安定で可検出である必要があります.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="copfac">copfac</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

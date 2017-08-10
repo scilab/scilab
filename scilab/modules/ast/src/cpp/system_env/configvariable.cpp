@@ -2,20 +2,28 @@
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
 *
-*  This file must be used under the terms of the CeCILL.
-*  This source file is licensed as described in the file COPYING, which
-*  you should have received as part of this distribution.  The terms
-*  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
 #include <vector>
 #include <list>
+#include <iomanip>
 #include "context.hxx"
 #include "configvariable.hxx"
 #include "macrofile.hxx"
 #include "threadmanagement.hxx"
+#include "execvisitor.hxx"
+#include "threadId.hxx"
+#include "cell.hxx"
+#include "callable.hxx"
 
 extern "C"
 {
@@ -255,6 +263,48 @@ bool ConfigVariable::getWarningMode(void)
 /*
 ** \}
 */
+/*
+** \}
+*/
+
+/*
+** Warning Stop
+** \{
+*/
+bool ConfigVariable::m_bWarningStop = false;
+
+void ConfigVariable::setWarningStop(bool _bWarningStop)
+{
+    m_bWarningStop = _bWarningStop;
+}
+
+bool ConfigVariable::getWarningStop(void)
+{
+    return m_bWarningStop;
+}
+/*
+** \}
+*/
+
+/*
+** Old Empty Behaviour
+** \{
+*/
+bool ConfigVariable::m_bOldEmptyBehaviour = false;
+
+void ConfigVariable::setOldEmptyBehaviour(bool _bOldEmptyBehaviour)
+{
+    m_bOldEmptyBehaviour = _bOldEmptyBehaviour;
+}
+
+bool ConfigVariable::getOldEmptyBehaviour(void)
+{
+    return m_bOldEmptyBehaviour;
+}
+/*
+** \}
+*/
+
 
 /*
 ** HOME
@@ -381,7 +431,7 @@ int ConfigVariable::getLastErrorLine(void)
 ** \{
 */
 
-std::wstring ConfigVariable::m_wstErrorFunction;
+std::wstring ConfigVariable::m_wstErrorFunction = L"";
 
 void ConfigVariable::setLastErrorFunction(const std::wstring& _wstErrorFunction)
 {
@@ -397,72 +447,8 @@ std::wstring& ConfigVariable::getLastErrorFunction()
 ** \}
 */
 
-/*
-** Prompt Mode
-** \{
-*/
-
-int ConfigVariable::m_iPromptMode = 0;
-int ConfigVariable::m_iSilentError = 0;
+/* verbose */
 bool ConfigVariable::m_bVerbose = true;
-
-void ConfigVariable::setPromptMode(int _iPromptMode)
-{
-    m_iPromptMode = _iPromptMode;
-    if (m_iPromptMode == 5)
-    {
-        m_iPromptMode = 1;
-    }
-
-    if (m_iPromptMode == 6)
-    {
-        m_iPromptMode = 7;
-    }
-}
-
-int ConfigVariable::getPromptMode(void)
-{
-    return m_iPromptMode;
-}
-
-bool ConfigVariable::isEmptyLineShow(void)
-{
-    if ( m_iPromptMode == 0     ||
-            m_iPromptMode == 2  ||
-            m_iPromptMode == 3)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-}
-
-bool ConfigVariable::isPromptShow(void)
-{
-    if ( m_iPromptMode == 0     ||
-            m_iPromptMode == 1  ||
-            m_iPromptMode == 2  ||
-            m_iPromptMode == 3)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-}
-
-void ConfigVariable::setSilentError(int _iSilentError)
-{
-    m_iSilentError = _iSilentError;
-}
-
-int ConfigVariable::getSilentError(void)
-{
-    return m_iSilentError;
-}
 
 void ConfigVariable::setVerbose(bool _bVerbose)
 {
@@ -474,106 +460,180 @@ bool ConfigVariable::getVerbose(void)
     return m_bVerbose;
 }
 
+/* silent error */
+
+bool ConfigVariable::m_iSilentError = false;
+
+void ConfigVariable::setSilentError(bool _iSilentError)
+{
+    m_iSilentError = _iSilentError;
+}
+
+bool ConfigVariable::isSilentError(void)
+{
+    return m_iSilentError;
+}
+
+
+/* Prompt Mode */
+
+int ConfigVariable::m_iPromptMode = 0;
+bool ConfigVariable::m_printInput = true;
+bool ConfigVariable::m_printOutput = true;
+bool ConfigVariable::m_printInteractive = false;
+bool ConfigVariable::m_printCompact = false;
+
 /*
-** ThreadList
-** \{
+mode        input   output      compact     interactive
+-----------------------------------------------
+-1              0       0           0           0
+0               0       1           1           0
+1               1       1           1           0
+2               0       1           0           0
+3               1       1           0           0
+4               1       1           1           1
+7               1       1           0           1
 */
 
-std::list<types::ThreadId *> ConfigVariable::m_threadList;
-
-types::ThreadId* ConfigVariable::getLastPausedThread()
+void ConfigVariable::setPromptMode(int _iPromptMode)
 {
-    std::list<types::ThreadId *>::reverse_iterator it;
-    for (it = m_threadList.rbegin() ; it != m_threadList.rend() ; it++)
+    m_iPromptMode = _iPromptMode;
+    switch (_iPromptMode)
     {
-        if ((*it)->getStatus() == types::ThreadId::Paused)
-        {
-            return *it;
-        }
-    }
-    return NULL;
-}
-
-types::ThreadId* ConfigVariable::getLastRunningThread()
-{
-    std::list<types::ThreadId *>::reverse_iterator it;
-    for (it = m_threadList.rbegin() ; it != m_threadList.rend() ; it++)
-    {
-        if ((*it)->getStatus() == types::ThreadId::Running)
-        {
-            return *it;
-        }
-    }
-    return NULL;
-}
-
-types::ThreadId* ConfigVariable::getLastThread()
-{
-    return m_threadList.back();
-}
-
-types::Cell* ConfigVariable::getAllThreads(void)
-{
-    int iSize = (int) ConfigVariable::m_threadList.size();
-
-    if (iSize == 0)
-    {
-        return new types::Cell();
-    }
-
-    int i = 0;
-    types::Cell *pcResult = new types::Cell(iSize, 1);
-    std::list<types::ThreadId *>::iterator it;
-
-    for (auto thread : ConfigVariable::m_threadList)
-    {
-        pcResult->set(i++, *it);
-    }
-
-    return pcResult;
-}
-
-
-void ConfigVariable::addThread(types::ThreadId* _thread)
-{
-    _thread->IncreaseRef();
-    m_threadList.push_back(_thread);
-}
-
-
-types::ThreadId* ConfigVariable::getThread(__threadKey _key)
-{
-    std::list<types::ThreadId *>::const_iterator it;
-
-    for (it = ConfigVariable::m_threadList.begin() ; it != ConfigVariable::m_threadList.end() ; ++it)
-    {
-        if ((*it)->getKey() == _key)
-        {
-            return *it;
-        }
-    }
-    return NULL;
-}
-
-
-void ConfigVariable::deleteThread(__threadKey _key)
-{
-    std::list<types::ThreadId *>::iterator it;
-    for (it = ConfigVariable::m_threadList.begin() ; it != ConfigVariable::m_threadList.end() ; ++it)
-    {
-        if ((*it)->getKey() == _key)
-        {
-            (*it)->DecreaseRef();
-            if ((*it)->isDeletable())
-            {
-                (*it)->killMe();
-                (*it) = NULL;
-                m_threadList.erase(it);
-                return;
-            }
-        }
+        default:
+        case -1:
+            ConfigVariable::setPrintInput(false);
+            ConfigVariable::setPrintOutput(false);
+            ConfigVariable::setPrintCompact(true);
+            ConfigVariable::setPrintInteractive(false);
+            break;
+        case 0:
+            ConfigVariable::setPrintInput(false);
+            ConfigVariable::setPrintOutput(true);
+            ConfigVariable::setPrintCompact(true);
+            ConfigVariable::setPrintInteractive(false);
+            break;
+        case 5:
+        case 1:
+            ConfigVariable::setPrintInput(true);
+            ConfigVariable::setPrintOutput(true);
+            ConfigVariable::setPrintCompact(true);
+            ConfigVariable::setPrintInteractive(false);
+            break;
+        case 2:
+            ConfigVariable::setPrintInput(false);
+            ConfigVariable::setPrintOutput(true);
+            ConfigVariable::setPrintCompact(false);
+            ConfigVariable::setPrintInteractive(false);
+            break;
+        case 3:
+            ConfigVariable::setPrintInput(true);
+            ConfigVariable::setPrintOutput(true);
+            ConfigVariable::setPrintCompact(false);
+            ConfigVariable::setPrintInteractive(false);
+            break;
+        case 4:
+            ConfigVariable::setPrintInput(true);
+            ConfigVariable::setPrintOutput(true);
+            ConfigVariable::setPrintCompact(true);
+            ConfigVariable::setPrintInteractive(true);
+            break;
+        case 6:
+        case 7:
+            ConfigVariable::setPrintInput(true);
+            ConfigVariable::setPrintOutput(true);
+            ConfigVariable::setPrintCompact(false);
+            ConfigVariable::setPrintInteractive(true);
+            break;
     }
 }
+
+int ConfigVariable::getPromptMode(void)
+{
+    //bool input = isPrintInput();
+    //bool output = isPrintOutput();
+    //bool compact = isPrintCompact();
+    //bool interactive = isPrintInteractive();
+
+    //return !interactive ?
+    //    (/*-1*/ !input && !output ? -1 :
+    //    /* 0*/ !input &&  output &&  compact ? 0 :
+    //    /* 1*/  input &&  output &&  compact ? 1 :
+    //    /* 2*/ !input &&  output && !compact ? 2 :
+    //    /* 3*/  input &&  output && !compact ? 3 : 2 /*default*/) :
+    //    (/* 4*/  compact ? 4 :
+    //    /* 7*/ 7);
+
+    return m_iPromptMode;
+}
+
+void ConfigVariable::setPrintInput(bool val)
+{
+    m_printInput = val;
+}
+
+bool ConfigVariable::isPrintInput(void)
+{
+    return m_printInput;
+}
+
+bool ConfigVariable::togglePrintInput(void)
+{
+    m_printInput = !m_printInput;
+    return m_printInput;
+}
+
+
+void ConfigVariable::setPrintOutput(bool val)
+{
+    m_printOutput = val;
+}
+
+bool ConfigVariable::isPrintOutput(void)
+{
+    return m_printOutput;
+}
+
+bool ConfigVariable::togglePrintOutput(void)
+{
+    m_printOutput = !m_printOutput;
+    return m_printOutput;
+}
+
+
+void ConfigVariable::setPrintInteractive(bool val)
+{
+    m_printInteractive = val;
+}
+
+bool ConfigVariable::isPrintInteractive(void)
+{
+    return m_printInteractive;
+}
+
+bool ConfigVariable::togglePrintInteractive(void)
+{
+    m_printInteractive = !m_printInteractive;
+    return m_printInteractive;
+}
+
+
+void ConfigVariable::setPrintCompact(bool val)
+{
+    m_printCompact = val;
+}
+
+bool ConfigVariable::isPrintCompact(void)
+{
+    return m_printCompact;
+}
+
+bool ConfigVariable::togglePrintCompact(void)
+{
+    m_printCompact = !m_printCompact;
+    return m_printCompact;
+}
+
 
 /*
 ** \}
@@ -685,7 +745,7 @@ void ConfigVariable::removeDynamicLibrary(int _iDynamicLibraryIndex)
     if (_iDynamicLibraryIndex < (int)m_DynLibList.size())
     {
         std::list<EntryPointStr*>::const_iterator it;
-        for (it = m_EntryPointList.begin() ; it != m_EntryPointList.end() ; it++)
+        for (it = m_EntryPointList.begin() ; it != m_EntryPointList.end() ; )
         {
             //clear all entry points linked to removed dynamic library
             if ((*it)->iLibIndex == _iDynamicLibraryIndex)
@@ -693,17 +753,21 @@ void ConfigVariable::removeDynamicLibrary(int _iDynamicLibraryIndex)
                 EntryPointStr* pEP = *it;
                 m_EntryPointList.remove(*it);
                 FREE(pEP->pwstEntryPointName);
-                delete pEP;
+                FREE(pEP);
                 if (m_EntryPointList.size() == 0)
                 {
                     break;
                 }
                 it = m_EntryPointList.begin();
             }
+            else
+            {
+                ++it;
+            }
         }
         //remove dynamic library
         FREE(m_DynLibList[_iDynamicLibraryIndex]->pwstLibraryName);
-        delete m_DynLibList[_iDynamicLibraryIndex];
+        FREE(m_DynLibList[_iDynamicLibraryIndex]);
         m_DynLibList[_iDynamicLibraryIndex] = NULL;
     }
 
@@ -816,17 +880,17 @@ std::list<ConfigVariable::EntryPointStr*>* ConfigVariable::getEntryPointList()
 //dynamic modules
 std::map<std::wstring, DynLibHandle> ConfigVariable::m_DynModules;
 
-void ConfigVariable::addDynModule(std::wstring _name, DynLibHandle _lib)
+void ConfigVariable::addDynModule(const std::wstring& _name, DynLibHandle _lib)
 {
     m_DynModules[_name] = _lib;
 }
 
-void ConfigVariable::removeDynModule(std::wstring _name)
+void ConfigVariable::removeDynModule(const std::wstring& _name)
 {
     m_DynModules.erase(_name);
 }
 
-DynLibHandle ConfigVariable::getDynModule(std::wstring _name)
+DynLibHandle ConfigVariable::getDynModule(const std::wstring& _name)
 {
     std::map<std::wstring, DynLibHandle>::iterator it;
     it = m_DynModules.find(_name);
@@ -1044,7 +1108,7 @@ bool ConfigVariable::getEndProcessing()
 ** ieee
 ** \{
 */
-int ConfigVariable::m_iIeee = 0;
+int ConfigVariable::m_iIeee = 2;
 
 void ConfigVariable::setIeee(int _iIeee)
 {
@@ -1102,8 +1166,8 @@ int ConfigVariable::getFuncprot()
 ** \{
 */
 
-std::vector<ConfigVariable::WhereEntry> ConfigVariable::m_Where;
-std::vector<ConfigVariable::WhereEntry> ConfigVariable::m_WhereError;
+ConfigVariable::WhereVector ConfigVariable::m_Where;
+ConfigVariable::WhereVector ConfigVariable::m_WhereError;
 std::vector<int> ConfigVariable::m_FirstMacroLine;
 void ConfigVariable::where_begin(int _iLineNum, int _iLineLocation, types::Callable* _pCall)
 {
@@ -1129,7 +1193,7 @@ void ConfigVariable::where_end()
     m_Where.pop_back();
 }
 
-const std::vector<ConfigVariable::WhereEntry>& ConfigVariable::getWhere()
+const ConfigVariable::WhereVector& ConfigVariable::getWhere()
 {
     return m_Where;
 }
@@ -1178,7 +1242,7 @@ void ConfigVariable::whereErrorToString(std::wostringstream &ostr)
             continue;
         }
 
-        iLenName = (std::max)((int)where.m_name.length(), iLenName);
+        iLenName = std::max((int)where.m_name.length(), iLenName);
 
         // in case of bin file, the file path and line is displayed only if the associated .sci file exists
         if (where.m_file_name != L"" && where.m_file_name.find(L".bin") != std::wstring::npos)
@@ -1203,15 +1267,15 @@ void ConfigVariable::whereErrorToString(std::wostringstream &ostr)
 
     // compute max size between "at line xxx of function" and "in builtin "
     // +1 : line number is pad to 5. length of "% 5d" + 1 == 5
-    int iMaxLen = (std::max)(wstrAtLine.length() + 1, wstrBuiltin.length());
+    int iMaxLen = std::max(wstrAtLine.length() + 1, wstrBuiltin.length());
     if (isExecstr)
     {
-        iMaxLen = (std::max)(((int)wstrExecStr.length()) + 1, iMaxLen);
+        iMaxLen = std::max(((int)wstrExecStr.length()) + 1, iMaxLen);
     }
 
     if (isExecstr)
     {
-        iMaxLen = (std::max)(((int)wstrExecFile.length()) + 1, iMaxLen);
+        iMaxLen = std::max(((int)wstrExecFile.length()) + 1, iMaxLen);
     }
 
     // print call stack
@@ -1260,6 +1324,8 @@ void ConfigVariable::whereErrorToString(std::wostringstream &ostr)
 
         ostr << std::endl;
     }
+
+    ostr << std::endl << std::resetiosflags(std::ios::adjustfield);
 }
 
 void ConfigVariable::fillWhereError(int _iErrorLine)
@@ -1401,4 +1467,136 @@ void ConfigVariable::setExecutedFileID(int _iFileID)
 int ConfigVariable::getExecutedFileID()
 {
     return m_iFileID;
+}
+
+/*
+** string read from console by scilabRead
+** \{
+*/
+std::atomic<char*> ConfigVariable::m_pcConsoleReadStr(nullptr);
+void ConfigVariable::setConsoleReadStr(char* _pcConsoleReadStr)
+{
+    m_pcConsoleReadStr = _pcConsoleReadStr;
+}
+
+char* ConfigVariable::getConsoleReadStr()
+{
+    ThreadManagement::LockScilabRead();
+    char* tmp = m_pcConsoleReadStr.exchange(NULL);
+    ThreadManagement::UnlockScilabRead();
+    return tmp;
+}
+/*
+** \}
+*/
+
+/*
+** Tell to the console thread if the scilabRead return
+** is a scilab command or not.
+** \{
+*/
+std::atomic<int> ConfigVariable::m_isScilabCommand(1);
+void ConfigVariable::setScilabCommand(int _isciCmd)
+{
+    m_isScilabCommand = _isciCmd;
+}
+
+int ConfigVariable::isScilabCommand()
+{
+    return m_isScilabCommand.exchange(1);
+}
+/*
+** \}
+*/
+
+//debugger information
+bool ConfigVariable::m_bEnabledebug = false;
+std::unique_ptr<ast::ConstVisitor> ConfigVariable::m_defaultvisitor(nullptr);
+
+bool ConfigVariable::getEnableDebug()
+{
+    return m_bEnabledebug;
+}
+
+void ConfigVariable::setEnableDebug(bool _enable)
+{
+    m_bEnabledebug = _enable;
+}
+
+void ConfigVariable::setDefaultVisitor(ast::ConstVisitor* _default)
+{
+    m_defaultvisitor.reset(_default);
+}
+
+ast::ConstVisitor* ConfigVariable::getDefaultVisitor()
+{
+    if (m_defaultvisitor.get() == nullptr)
+    {
+        m_defaultvisitor.reset(new ast::ExecVisitor());
+    }
+    return m_defaultvisitor->clone();
+}
+
+bool ConfigVariable::executionbreak = false;
+
+bool ConfigVariable::isExecutionBreak()
+{
+    return executionbreak;
+}
+
+void ConfigVariable::setExecutionBreak()
+{
+    executionbreak = true;
+}
+
+void ConfigVariable::resetExecutionBreak()
+{
+    executionbreak = false;
+}
+
+
+#ifdef _DEBUG
+int ConfigVariable::recursionLimit = 25;
+#else
+int ConfigVariable::recursionLimit = 1000;
+#endif
+int ConfigVariable::recursionLevel = 0;
+
+int ConfigVariable::getRecursionLimit()
+{
+    return recursionLimit;
+}
+
+int ConfigVariable::setRecursionLimit(int val)
+{
+    int old = recursionLimit;
+    recursionLimit = std::max(10, val);
+    return old;
+}
+
+int ConfigVariable::getRecursionLevel()
+{
+    return recursionLevel;
+}
+
+bool ConfigVariable::increaseRecursion()
+{
+    if (recursionLevel < recursionLimit)
+    {
+        ++recursionLevel;
+        return true;
+    }
+
+    return false;
+}
+
+void ConfigVariable::decreaseRecursion()
+{
+    //recursionLevel = std::max(--recursionLevel, 0);
+    --recursionLevel;
+}
+
+void ConfigVariable::resetRecursionLevel()
+{
+    recursionLevel = 0;
 }

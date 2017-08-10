@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="plot3d3">
@@ -18,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>plot3d3(X,Y,Z [,vect,theta,alpha,leg,flag,ebox])
             plot3d3(X,Y,Z, &lt;opt_args&gt;)
         </synopsis>
@@ -216,7 +219,7 @@
                         together with <literal>type</literal> in <literal>flag</literal> : if it is set
                         to <literal>1</literal>, <literal>3</literal> or <literal>5</literal> (see above to
                         see the corresponding behaviour). If <literal>flag</literal> is missing,
-                        <literal>ebox</literal> is not taken into acoount. Note that, when
+                        <literal>ebox</literal> is not taken into account. Note that, when
                         specified, the <literal>ebox</literal> argument acts on the
                         <literal>data_bounds</literal> field that can also be reset through the
                         axes entity properties (see <link linkend="axes_properties">axes_properties</link>).
@@ -245,7 +248,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 u = linspace(-%pi/2,%pi/2,40);
 v = linspace(0,2*%pi,20);
 X = cos(u)'*cos(v);
@@ -263,10 +266,10 @@ e.visible='on'; // back to the mesh view
             Z = sin(u)'*ones(v);
             plot3d3(X,Y,Z);
         </scilab:image>
-        
+
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="plot3d2">plot3d2</link>

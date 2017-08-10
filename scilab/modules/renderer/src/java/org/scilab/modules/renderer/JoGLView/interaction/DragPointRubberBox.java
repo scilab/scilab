@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Bruno JOFRET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  */
 
 package org.scilab.modules.renderer.JoGLView.interaction;
@@ -33,6 +36,7 @@ public class DragPointRubberBox extends TwoPointsRubberBox {
     public final void mouseClicked(MouseEvent e) {
 
     }
+
     @Override
     public void mousePressed(MouseEvent e) {
         mouseButton = e.getButton();
@@ -47,7 +51,7 @@ public class DragPointRubberBox extends TwoPointsRubberBox {
                 break;
             case WAIT_POINT_B:
                 setPointB(e.getPoint());
-                if (pointBComputer.is2D()) {
+                if (!valid3D()) {
                     process();
                     setEnable(false);
                     fireRubberBoxEnd();
@@ -67,7 +71,7 @@ public class DragPointRubberBox extends TwoPointsRubberBox {
                 break;
             default:
         }
-        updateInfoMessage();
+        updateInfoMessage(e.getPoint());
     }
 
     @Override
@@ -84,7 +88,7 @@ public class DragPointRubberBox extends TwoPointsRubberBox {
                 break;
             case WAIT_POINT_B:
                 setPointB(e.getPoint());
-                if (pointBComputer.is2D()) {
+                if (!valid3D()) {
                     process();
                     setEnable(false);
                     fireRubberBoxEnd();
@@ -104,7 +108,7 @@ public class DragPointRubberBox extends TwoPointsRubberBox {
                 break;
             default:
         }
-        updateInfoMessage();
+        updateInfoMessage(e.getPoint());
     }
 
     @Override
@@ -128,7 +132,7 @@ public class DragPointRubberBox extends TwoPointsRubberBox {
                 break;
             default:
         }
-        updateInfoMessage();
+        updateInfoMessage(e.getPoint());
     }
 
 

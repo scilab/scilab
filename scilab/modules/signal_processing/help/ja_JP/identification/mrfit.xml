@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="mrfit">
+
+    <refnamediv>
+
+        <refname>mrfit</refname>
+
+        <refpurpose>周波数応答フィッティング</refpurpose>
+
+    </refnamediv>
+
+    <refsynopsisdiv>
+
+        <title>呼び出し手順</title>
+
+        <synopsis>sys=mrfit(w,mag,order)
+
+            [num,den]=mrfit(w,mag,order)
+
+            sys=mrfit(w,mag,order,weight)
+
+            [num,den]=mrfit(w,mag,order,weight)
+
+        </synopsis>
+
+    </refsynopsisdiv>
+
+    <refsection>
+
+        <title>引数</title>
+
+        <variablelist>
+
+            <varlistentry>
+
+                <term>w</term>
+
+                <listitem>
+
+                    <para>周波数ベクトルで正の実数(Hz)</para>
+
+                </listitem>
+
+            </varlistentry>
+
+            <varlistentry>
+
+                <term>mag</term>
+
+                <listitem>
+
+                    <para>
+
+                        周波数応答の振幅の実数ベクトル (<literal>w</literal>と同じ大きさ)
+
+                    </para>
+
+                </listitem>
+
+            </varlistentry>
+
+            <varlistentry>
+
+                <term>order</term>
+
+                <listitem>
+
+                    <para>
+
+                        整数 (必要な次数, <literal>den</literal>の次数)
+
+                    </para>
+
+                </listitem>
+
+            </varlistentry>
+
+            <varlistentry>
+
+                <term>weight</term>
+
+                <listitem>
+
+                    <para>
+
+                        正の実数ベクトル (デフォルト値: <literal>ones(w)</literal>).
+
+                    </para>
+
+                </listitem>
+
+            </varlistentry>
+
+            <varlistentry>
+
+                <term>num,den</term>
+
+                <listitem>
+
+                    <para>安定な多項式</para>
+
+                </listitem>
+
+            </varlistentry>
+
+        </variablelist>
+
+    </refsection>
+
+    <refsection>
+
+        <title>説明</title>
+
+        <para>
+
+            <literal>sys=mrfit(w,mag,order,weight)</literal> は,
+
+            周波数応答の振幅<literal>abs(G(w(i)))</literal>が
+
+            <literal>mag(i)</literal>に一致する,すなわち,
+
+            <literal>abs(freq(num,den,%i*w))</literal>が<literal>mag</literal>に近い,
+
+            指定された次数<literal>order</literal>の
+
+            双安定伝達関数<literal>G(s)=sys=num/den</literal>を返します.
+
+            <literal>weight(i)</literal> は<literal>w(i)</literal>に関する重みです.
+
+        </para>
+
+    </refsection>
+
+    <refsection>
+
+        <title>例</title>
+
+        <programlisting role="example"><![CDATA[
+w=0.01:0.01:2;s=poly(0,'s');
+G=syslin('c',2*(s^2+0.1*s+2),(s^2+s+1)*(s^2+0.3*s+1)); // syslin('c',Num,Den);
+fresp=repfreq(G,w);
+mag=abs(fresp);
+Gid=mrfit(w,mag,4);
+frespfit=repfreq(Gid,w);
+plot2d([w',w'],[mag(:),abs(frespfit(:))])
+ ]]></programlisting>
+
+        <scilab:image>
+
+            w=0.01:0.01:2;
+
+            s=poly(0,'s');
+
+            G=syslin('c',2*(s^2+0.1*s+2),(s^2+s+1)*(s^2+0.3*s+1));
+
+            fresp=repfreq(G,w);
+
+            mag=abs(fresp);
+
+            Gid=mrfit(w,mag,4);
+
+            frespfit=repfreq(Gid,w);
+
+            plot2d([w',w'],[mag(:),abs(frespfit(:))])
+
+        </scilab:image>
+
+    </refsection>
+
+    <refsection role="see also">
+
+        <title>参照</title>
+
+        <simplelist type="inline">
+
+            <member>
+
+                <link linkend="cepstrum">cepstrum</link>
+
+            </member>
+
+            <member>
+
+                <link linkend="frfit">frfit</link>
+
+            </member>
+
+            <member>
+
+                <link linkend="freq">freq</link>
+
+            </member>
+
+            <member>
+
+                <link linkend="calfrq">calfrq</link>
+
+            </member>
+
+        </simplelist>
+
+    </refsection>
+
+</refentry>
+

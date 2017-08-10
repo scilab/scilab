@@ -1306,7 +1306,7 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block, int flag)
                 varName = strcat(varName, "_val");
                 switch (ut)
                 {
-                        // By default, nCols = 1, so should the input be a matrix, scalar or vector, perform the same operations
+                    // By default, nCols = 1, so should the input be a matrix, scalar or vector, perform the same operations
                     case SCSREAL_N    :
                         ptr_d = (SCSREAL_COP *) ((ismat) ? &ptr_i[44] : &ptr_i[10]);
                         if ((MatDouble = (double *) scicos_malloc(nRows * nCols * nCols2 * sizeof(double))) == NULL)

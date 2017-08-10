@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - JPC
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="arma">
+    <refnamediv>
+        <refname>arma</refname>
+        <refpurpose>Scilab arma library</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Armax processes can be coded with Scilab tlist of type <literal>'ar'</literal>.
+            <literal>armac</literal> is used to build <literal>Armax</literal> scilab object. An <literal>'ar'</literal>
+            tlist contains the fields <literal>['a','b','d','ny','nu','sig']</literal>.
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>armac</term>
+                <listitem>
+                    <para>this function creates a Scilab tlist which code an  Armax
+                        process    <literal> A(z^-1)y= B(z^-1)u + D(z^-1)sig*e(t)</literal>
+                    </para>
+                    <programlisting role=""><![CDATA[
+-->ar=armac([1,2],[3,4],1,1,1,sig);
+
+-->ar('a')
+ ans  =
+
+!   1.    2. !
+-->ar('sig')
+ ans  =
+
+    1.
+ ]]></programlisting>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>armap(ar [,out])</term>
+                <listitem>
+                    <para>
+                        Display the armax equation associated with <literal>ar</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>armap_p(ar [,out])</term>
+                <listitem>
+                    <para>
+                        Display the armax equation associated with <literal>ar</literal>  using polynomial matrix display.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>[A,B,D]=armap2p(ar)</term>
+                <listitem>
+                    <para>extract polynomial matrices from ar representation</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>armax</term>
+                <listitem>
+                    <para>
+                        is used to identify the coefficients of a n-dimensional  ARX process   <literal>A(z^-1)y= B(z^-1)u + sig*e(t)</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>armax1</term>
+                <listitem>
+                    <para>armax1 is used to identify the coefficients of a 1-dimensional  ARX process
+                        <literal>A(z^-1)y= B(z^-1)u + D(z^-1)sig*e(t)</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>arsimul</term>
+                <listitem>
+                    <para>armax trajectory simulation.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>narsimul</term>
+                <listitem>
+                    <para>armax simulation ( using rtitr)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>odedi</term>
+                <listitem>
+                    <para>Simple tests of ode and arsimul. Tests the option 'discret' of ode</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>prbs_a</term>
+                <listitem>
+                    <para>pseudo random binary sequences generation</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>reglin</term>
+                <listitem>
+                    <para>Linear regression</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Example</title>
+        <programlisting role="example"><![CDATA[
+// Example extracted from the demo arma3.dem.sce in the cacsd module
+// Spectral power estimation
+// ( form Sawaragi et all)
+m = 18;
+a = [1,-1.3136,1.4401,-1.0919,+0.83527];
+b = [0.0,0.13137,0.023543,0.10775,0.03516];
+u = rand(1,1000,'n');
+z = arsimul(a,b,[0],0,u);
+
+//----Using macro mese
+[sm,fr]=mese(z,m);
+
+//----The theoretical result
+
+function gx=gxx(z,a,b)
+  w  = exp(-%i*2*%pi*z*(0:4))'
+  gx = abs(b*w)^2/(abs(a*w)^2);
+endfunction
+
+res=[];
+for x=fr
+  res=[ res, gxx(x,a,b)];
+end
+
+//----using armax estimation of order  (4,4)
+// it's a bit tricky because we are not supposed to know the order
+
+[arc,la,lb,sig,resid]=armax(4,4,z,u);
+res1=[];
+for x=fr
+  res1=[ res1, gxx(x,la(1),lb(1))];
+end
+
+//-- visualization of the results
+plot2d([fr;fr;fr]',[20*log10(sm/sm(1));20*log10(res/res(1));20*log10(res1/res1(1))]',[2,1,-1])
+legend(["Using macro mese";"Theoretical value";"Arma identification"])
+xtitle("Spectral power","frequency","spectral estimate")
+ ]]></programlisting>
+        <scilab:image localized="true">
+            m = 18;
+            a = [1,-1.3136,1.4401,-1.0919,+0.83527];
+            b = [0.0,0.13137,0.023543,0.10775,0.03516];
+            u = rand(1,1000,'n');
+            z = arsimul(a,b,[0],0,u);
+
+            [sm,fr]=mese(z,m);
+
+            function gx=gxx(z,a,b)
+            w  = exp(-%i*2*%pi*z*(0:4))'
+            gx = abs(b*w)^2/(abs(a*w)^2);
+            endfunction
+
+            res=[];
+            for x=fr
+            res=[ res, gxx(x,a,b)];
+            end
+
+            [arc,la,lb,sig,resid]=armax(4,4,z,u);
+            res1=[];
+            for x=fr
+            res1=[ res1, gxx(x,la(1),lb(1))];
+            end
+
+            plot2d([fr;fr;fr]',[20*log10(sm/sm(1));20*log10(res/res(1));20*log10(res1/res1(1))]',[2,1,-1])
+            legend(["Using macro mese";"Theoretical value";"Arma identification"])
+            xtitle("Spectral power","frequency","spectral estimate")
+        </scilab:image>
+    </refsection>
+</refentry>

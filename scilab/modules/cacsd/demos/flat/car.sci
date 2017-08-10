@@ -74,10 +74,12 @@ endfunction
 
 function display_car_trajectory(state)
     bigL=1
-    set figure_style new;clf();show_window()
+    set figure_style new;
+    clf();
+    show_window()
     a=gca()
     drawlater()
-    a.isoview="on"
+    isoview()
     a.data_bounds=[min(state(:,1))-0.5*bigL, min(state(:,2))-1.5*bigL
     max(state(:,1))+1.5*bigL, max(state(:,2))+1.5*bigL]
     rect=matrix(a.data_bounds',-1,1)

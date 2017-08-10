@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-06-17 19:40+0000\n"
-"Last-Translator: jojolebestof <Unknown>\n"
+"PO-Revision-Date: 2016-06-29 16:08+0000\n"
+"Last-Translator: Mickael Albertus <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
-"Language: fr\n"
+"X-Generator: Launchpad (build 18315)\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected."
@@ -23,8 +23,7 @@ msgstr "%s : Nombre erroné d'arguments d'entrée : entre %d et %d attendus."
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Une matrice attendue.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Une matrice attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
@@ -186,8 +185,7 @@ msgstr ""
 "d'arguments d'entrée %d."
 
 #, c-format
-msgid ""
-"%s: Expected %d rows in input argument #%d, but found %d rows instead."
+msgid "%s: Expected %d rows in input argument #%d, but found %d rows instead."
 msgstr ""
 "%s : L'argument d'entrée #%d doit avoir exactement %d lignes, et non %d."
 
@@ -198,20 +196,31 @@ msgstr ""
 "%s : L'argument d'entrée n°%d doit contenir exactement %d colonnes, et non "
 "%d."
 
-#, c-format
-msgid "%s is not an installed module"
-msgstr "%s n'est pas un module installé"
-
-msgid "error : Input argument sizes are not valid"
-msgstr "Erreur : Les dimensions de l'argument d'entrée sont invalides."
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Must be real.\n"
+msgstr "%s : Valeur erronée de l'argument d'entrée n°%d : Doit être > %d.\n"
 
 #, c-format
-msgid "The test %s is not available from the %s module"
-msgstr "Le test %s n'est pas disponible dans le module %s"
+msgid "%s: %s is not an installed module"
+msgstr "%s : %s n'est pas un module installé"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: test %s not found in the list of "
+"modules"
+msgstr ""
+"%s : Valeur erronée pour l'argument d'entrée n°%d : le test %s n'a pas été "
+"trouvé dans la liste des modules"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr "%s : Mauvais nombre d'argument(s) d'entrée : %d à %d attendu.\n"
+
+#, c-format
+msgid "%s: Cannot create file %s, created file %s instead.\n"
+msgstr ""
+"%s : Le fichier %s n'a pas pu être créée, le fichier %s a été créée à la "
+"place.\n"
 
 #, c-format
 msgid ""
@@ -244,13 +253,13 @@ msgstr ""
 "chaînes de caractères ou une matrice vide attendu.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
 "attendue.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : Une chaîne de "
 "caractères attendue.\n"
@@ -296,8 +305,16 @@ msgid "Test passed"
 msgstr "Succès du test"
 
 #, c-format
+msgid "%s is not an installed module"
+msgstr "%s n'est pas un module installé"
+
+#, c-format
 msgid "%s: Wrong size for input argument."
 msgstr "%s : Dimension erronée de l'argument d'entrée."
+
+#, c-format
+msgid "The test %s is not available from the %s module"
+msgstr "Le test %s n'est pas disponible dans le module %s"
 
 #, c-format
 msgid "%s: Wrong number of input arguments."
@@ -306,6 +323,12 @@ msgstr "%s : Nombre erroné d'arguments d'entrée."
 #, c-format
 msgid "%s is not an installed module or toolbox"
 msgstr "%s n'est pas une boîte-à-outils ou un module installé"
+
+msgid ""
+"option JVM NOT MANDATORY is deprecated, please use CLI SHELL MODE instead"
+msgstr ""
+"l'option JVM NOT MANDATORY est dépréciée, veuillez utiliser CLI SHELL MODE à "
+"la place"
 
 #, c-format
 msgid "The ref file (%s) doesn't exist"

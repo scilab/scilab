@@ -34,33 +34,41 @@
             <literal>x</literal> avec la convention suivante :
         </para>
         <para>
-            1 
+            1
             :  codage entier à 1 octet
         </para>
         <para>
-            2 
+            2
             :  codage entier à 2 octets
         </para>
         <para>
-            4 
+            4
             :  codage entier à 4 octets
         </para>
         <para>
-            11 
+            8
+            :  codage entier à 8 octets
+        </para>
+        <para>
+            11
             :  codage entier non-signé à 1 octet
         </para>
         <para>
-            12 
+            12
             :  codage entier non-signé à 2 octets
         </para>
         <para>
-            14 
+            14
             :  codage entier non-signé à 4 octets
+        </para>
+        <para>
+            18
+            :  codage entier non-signé à 8 octets
         </para>
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 x=uint16(1:10);
 inttype(x)
  ]]></programlisting>

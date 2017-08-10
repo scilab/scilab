@@ -22,6 +22,12 @@
             <literal>A*.B</literal>  is an operator with no predefined meaning. It may be used
             to define a new operator (see <link linkend="overloading">overloading</link>) with  the same precedence as <literal>*</literal> or <literal>/</literal>.
         </para>
+        <para>
+            <note>
+                Remark that <code>/*</code> start to comment a block of code and
+                <code>*/</code> end to comment this block.
+            </note>
+        </para>
     </refsection>
     <refsection>
         <title>Examples</title>
@@ -46,20 +52,20 @@ p * q
 s=poly(0,'s');
 W=[1/s,1/(s+1)];
 W' * W
-//    1           1          
-//    -         -----        
-//     2             2       
-//    s         s + s        
-//                           
-//      1           1        
-//    -----     ---------    
-//         2              2  
-//    s + s     1 + 2s + s   
+//    1           1
+//    -         -----
+//     2             2
+//    s         s + s
+//
+//      1           1
+//    -----     ---------
+//         2              2
+//    s + s     1 + 2s + s
  ]]></programlisting>
     </refsection>
-    
+
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="dot">dot</link>
@@ -75,6 +81,9 @@ W' * W
             </member>
             <member>
                 <link linkend="overloading">overloading</link>
+            </member>
+            <member>
+                <link linkend="comments">comments</link>
             </member>
         </simplelist>
     </refsection>

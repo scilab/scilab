@@ -55,6 +55,17 @@
                         <xsl:call-template name="context"/>
                     </actionPerformed>
                 </NumericalSpinner>
+                <Label gridx="1" gridy="4" weightx="0" text="_(Recursion limit: )"/>
+                <Panel gridx="2" gridy="1" weightx="1"/>
+                <NumericalSpinner gridx="3" gridy="4" weightx="0" length="3"
+                    increment="1"
+                    min-value="10"
+                    listener="ActionListener"
+                    value="{@recursion-limit}">
+                    <actionPerformed choose="recursion-limit">
+                        <xsl:call-template name="context"/>
+                    </actionPerformed>
+                </NumericalSpinner>
             </Grid>
         </Title>
     </xsl:template>
@@ -108,7 +119,7 @@
             </Grid>
         </Title>
     </xsl:template>
-    
+
     <xsl:template match="startup">
         <VSpace height="10"/>
         <Title text="_(Start-up directory)">

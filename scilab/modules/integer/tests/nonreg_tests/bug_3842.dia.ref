@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010 - INRIA - Serge Steer
@@ -20,7 +21,7 @@ exec SCI/modules/elementary_functions/tests/unit_tests/prod.tst
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// <-- CLI SHELL MODE 
+// <-- CLI SHELL MODE -->
 // prod
 // Check error
 d=[1 10;254 9];
@@ -49,7 +50,7 @@ assert_checkfalse(execstr("prod(i,""orient"", ""t"")"   ,"errcatch") == 0);
 refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), "prod",2,"""*"",""r"",""c"",""m""");
 assert_checkerror("prod(i,""orient"", ""t"")", refMsg);
 assert_checkfalse(execstr("prod(i,1,1)"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"), "prod", 3);
+refMsg = msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"), "prod", 3);
 assert_checkerror("prod(i,1,1)", refMsg);
 //==============================================================================
 // sparse matrices
@@ -58,7 +59,7 @@ assert_checkfalse(execstr("prod(d, ""orient"")","errcatch") == 0);
 refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), "prod",2,"""*"",""r"",""c"",""m""");
 assert_checkerror("prod(d, ""orient"")", refMsg);
 assert_checkfalse(execstr("prod(d, [""r"", ""c""])"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"),"prod",2);
+refMsg = msprintf(_("%s: Wrong size for input argument #%d: string expected.\n"),"prod",2);
 assert_checkerror("prod(d, [""r"", ""c""])", refMsg);
 //==============================================================================
 // boolean matrices
@@ -80,7 +81,7 @@ refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set 
 "prod",2,"""*"",""r"",""c"",""m""");
 assert_checkerror("prod(d,""orient"", ""t"")", refMsg);
 assert_checkfalse(execstr("prod(d,1,1)"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"),"prod",3);
+refMsg = msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"),"prod",3);
 assert_checkerror("prod(d,1,1)", refMsg);
 //==============================================================================
 // sparse boolean matrices
@@ -90,20 +91,20 @@ refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set 
 "prod",2,"""*"",""r"",""c"",""m""");
 assert_checkerror("prod(d, ""orient"")", refMsg);
 assert_checkfalse(execstr("prod(d, [""r"", ""c""])"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"),"prod",2);
+refMsg = msprintf(_("%s: Wrong size for input argument #%d: string expected.\n"),"prod",2);
 assert_checkerror("prod(d, [""r"", ""c""])", refMsg);
 assert_checkfalse(execstr("prod(d,""r"", ""nat"")"   ,"errcatch") == 0);
 refMsg = msprintf(_("%s: Wrong value for input argument #%d: ""%s"" or ""%s"" expected.\n"),"prod", 3, "native", "double");
 assert_checkerror("prod(d,""r"", ""nat"")", refMsg);
 assert_checkfalse(execstr("prod(d,""r"", [""nat"" ""dble""])"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"),"prod",3);
+refMsg = msprintf(_("%s: Wrong size for input argument #%d: string expected.\n"),"prod",3);
 assert_checkerror("prod(d,""r"", [""nat"" ""dble""])", refMsg);
 assert_checkfalse(execstr("prod(d,""orient"", ""t"")"   ,"errcatch") == 0);
 refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),..
 "prod",2,"""*"",""r"",""c"",""m""");
 assert_checkerror("prod(d,""orient"", ""t"")", refMsg);
 assert_checkfalse(execstr("prod(d,1,1)"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"),"prod",3);
+refMsg = msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"),"prod",3);
 assert_checkerror("prod(d,1,1)", refMsg);
 //==============================================================================
 // hypermatrices
@@ -132,7 +133,7 @@ assert_checkfalse(execstr("prod(d, ""orient"")"   ,"errcatch") == 0);
 refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),"prod",2,"""*"",""r"",""c"",""m""");
 assert_checkerror("prod(d, ""orient"")", refMsg);
 assert_checkfalse(execstr("prod(d, [""r"", ""c""])"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"),"prod",2);
+refMsg = msprintf(_("%s: Wrong size for input argument #%d: string expected.\n"),"prod",2);
 assert_checkerror("prod(d, [""r"", ""c""])", refMsg);
 //empty matrices
 T=list(list(),list("native"),list("double"));
@@ -160,8 +161,8 @@ T=list(list(),list("native"),list("double"));
 for typ=T
     assert_checkequal(prod(d, typ(:)), 22860);
     assert_checkequal(prod(d, "*", typ(:)), 22860);
-    assert_checkequal(prod(d, 1, typ(:)), hypermat([1,2,2],[254;90;1;1]));
-    assert_checkequal(prod(d, 2, typ(:)), hypermat([2,1,2],[10;2286;1;1]));
+    assert_checkequal(prod(d, 1, typ(:)), matrix([254;90;1;1], [1,2,2]));
+    assert_checkequal(prod(d, 2, typ(:)), matrix([10;2286;1;1], [2,1,2]));
     assert_checkequal(prod(d, 3, typ(:)), [1,10;254,9]);
     assert_checkequal(prod(d, 5, typ(:)), d);
 end
@@ -187,15 +188,15 @@ T = list(list(),list("native"));
 for typ=T
     assert_checkequal(prod(i, typ(:)), uint8(76));
     assert_checkequal(prod(i, "*", typ(:)), uint8(76));
-    assert_checkequal(prod(i, 1, typ(:)), hypermat([1,2,2],uint8([254;90;1;1])));
-    assert_checkequal(prod(i, 2, typ(:)), hypermat([2,1,2],uint8([10;238;1;1])));
+    assert_checkequal(prod(i, 1, typ(:)), matrix(uint8([254;90;1;1]), [1,2,2]));
+    assert_checkequal(prod(i, 2, typ(:)), matrix(uint8([10;238;1;1]), [2,1,2]));
     assert_checkequal(prod(i, 3, typ(:)), uint8([1,10;254,9]));
     assert_checkequal(prod(i, 5, typ(:)), i);
 end
 assert_checkequal(prod(i, "double"), 22860);
 assert_checkequal(prod(i, "*", "double"), 22860);
-assert_checkequal(prod(i, 1, "double"), hypermat([1,2,2],[254;90;1;1]));
-assert_checkequal(prod(i, 2, "double"), hypermat([2,1,2],[10;2286;1;1]));
+assert_checkequal(prod(i, 1, "double"), matrix([254;90;1;1], [1,2,2]));
+assert_checkequal(prod(i, 2, "double"), matrix([10;2286;1;1], [2,1,2]));
 assert_checkequal(prod(i, 3, "double"), [1,10;254,9]);
 assert_checkequal(prod(i, 5, "double"), double(i));
 //Polynomials
@@ -214,8 +215,8 @@ T=list(list(),list("native"),list("double"));
 for typ=T
     assert_checkequal(prod(p, typ(:)), 2*s^4+4*s^5+2*s^6);
     assert_checkequal(prod(p, "*", typ(:)), 2*s^4+4*s^5+2*s^6);
-    assert_checkequal(prod(p, 1, typ(:)), hypermat([1,2,2],[s^3;1+s;1+s;2*s]));
-    assert_checkequal(prod(p, 2, typ(:)), hypermat([2,1,2],[s+s^2;s^2;s;2+2*s]));
+    assert_checkequal(prod(p, 1, typ(:)), matrix([s^3;1+s;1+s;2*s], [1,2,2]));
+    assert_checkequal(prod(p, 2, typ(:)), matrix([s+s^2;s^2;s;2+2*s], [2,1,2]));
     assert_checkequal(prod(p, 3, typ(:)), [s,s+s^2;s^2+s^3,2]);
     assert_checkequal(prod(p, 5, typ(:)), p);
 end
@@ -252,15 +253,15 @@ T = list(list(),list("double"));
 for typ=T
     assert_checkequal(prod(b, typ(:)), 0);
     assert_checkequal(prod(b, "*", typ(:)), 0);
-    assert_checkequal(prod(b, 1, typ(:)), hypermat([1,2,2],[0;1;0;0]));
-    assert_checkequal(prod(b, 2, typ(:)), hypermat([2,1,2],[1;0;0;0]));
+    assert_checkequal(prod(b, 1, typ(:)), matrix([0;1;0;0], [1,2,2]));
+    assert_checkequal(prod(b, 2, typ(:)), matrix([1;0;0;0], [2,1,2]));
     assert_checkequal(prod(b, 3, typ(:)), [1,0;0,0]);
     assert_checkequal(prod(b, 5, typ(:)), double(b));
 end
 assert_checkequal(prod(b, "native"), %f);
 assert_checkequal(prod(b, "*", "native"), %f);
-assert_checkequal(prod(b, 1, "native"), hypermat([1,2,2],[%f;%t;%f;%f]));
-assert_checkequal(prod(b, 2, "native"), hypermat([2,1,2],[%t;%f;%f;%f]));
+assert_checkequal(prod(b, 1, "native"), matrix([%f;%t;%f;%f], [1,2,2]));
+assert_checkequal(prod(b, 2, "native"), matrix([%t;%f;%f;%f], [2,1,2]));
 assert_checkequal(prod(b, 3, "native"), [%t,%f;%f,%f]);
 assert_checkequal(prod(b, 5, "native"), b);
 //=======================================================================
@@ -300,7 +301,7 @@ exec SCI/modules/elementary_functions/tests/unit_tests/cumprod.tst
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// <-- CLI SHELL MODE 
+// <-- CLI SHELL MODE -->
 // Check error
 //==============================================================================
 //float matrices
@@ -330,7 +331,7 @@ assert_checkfalse(execstr("cumprod(i,""orient"", ""t"")"   ,"errcatch") == 0);
 refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), "cumprod",2,"""*"",""r"",""c"",""m""");
 assert_checkerror("cumprod(i,""orient"", ""t"")", refMsg);
 assert_checkfalse(execstr("cumprod(i,1,1)"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"), "cumprod", 3);
+refMsg = msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"), "cumprod", 3);
 assert_checkerror("cumprod(i,1,1)", refMsg);
 //==============================================================================
 // sparse matrices
@@ -339,7 +340,7 @@ assert_checkfalse(execstr("cumprod(d, ""orient"")","errcatch") == 0);
 refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), "cumprod",2,"""*"",""r"",""c"",""m""");
 assert_checkerror("cumprod(d, ""orient"")", refMsg);
 assert_checkfalse(execstr("cumprod(d, [""r"", ""c""])"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"),"cumprod",2);
+refMsg = msprintf(_("%s: Wrong size for input argument #%d: string expected.\n"),"cumprod",2);
 assert_checkerror("cumprod(d, [""r"", ""c""])", refMsg);
 //==============================================================================
 // boolean matrices
@@ -361,7 +362,7 @@ refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set 
 "cumprod",2,"""*"",""r"",""c"",""m""");
 assert_checkerror("cumprod(d,""orient"", ""t"")", refMsg);
 assert_checkfalse(execstr("cumprod(d,1,1)"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"),"cumprod",3);
+refMsg = msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"),"cumprod",3);
 assert_checkerror("cumprod(d,1,1)", refMsg);
 //==============================================================================
 // sparse boolean matrices
@@ -371,20 +372,20 @@ refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set 
 "cumprod",2,"""*"",""r"",""c"",""m""");
 assert_checkerror("cumprod(d, ""orient"")", refMsg);
 assert_checkfalse(execstr("cumprod(d, [""r"", ""c""])"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"),"cumprod",2);
+refMsg = msprintf(_("%s: Wrong size for input argument #%d: string expected.\n"),"cumprod",2);
 assert_checkerror("cumprod(d, [""r"", ""c""])", refMsg);
 assert_checkfalse(execstr("cumprod(d,""r"", ""nat"")"   ,"errcatch") == 0);
 refMsg = msprintf(_("%s: Wrong value for input argument #%d: ""%s"" or ""%s"" expected.\n"),"cumprod", 3, "native", "double");
 assert_checkerror("cumprod(d,""r"", ""nat"")", refMsg);
 assert_checkfalse(execstr("cumprod(d,""r"", [""nat"" ""dble""])"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"),"cumprod",3);
+refMsg = msprintf(_("%s: Wrong size for input argument #%d: string expected.\n"),"cumprod",3);
 assert_checkerror("cumprod(d,""r"", [""nat"" ""dble""])", refMsg);
 assert_checkfalse(execstr("cumprod(d,""orient"", ""t"")"   ,"errcatch") == 0);
 refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),..
 "cumprod",2,"""*"",""r"",""c"",""m""");
 assert_checkerror("cumprod(d,""orient"", ""t"")", refMsg);
 assert_checkfalse(execstr("cumprod(d,1,1)"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"),"cumprod",3);
+refMsg = msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"),"cumprod",3);
 assert_checkerror("cumprod(d,1,1)", refMsg);
 //==============================================================================
 // hypermatrices
@@ -414,7 +415,7 @@ refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set 
 "cumprod",2,"""*"",""r"",""c"",""m""");
 assert_checkerror("cumprod(d, ""orient"")", refMsg);
 assert_checkfalse(execstr("cumprod(d, [""r"", ""c""])"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"),"cumprod",2);
+refMsg = msprintf(_("%s: Wrong size for input argument #%d: string expected.\n"),"cumprod",2);
 assert_checkerror("cumprod(d, [""r"", ""c""])", refMsg);
 //cumprod
 //Empty matrices
@@ -441,11 +442,11 @@ end
 d=[1 10;254 9];d(1,1,2)=1;
 T=list(list(),list("native"),list("double"));
 for typ=T
-    assert_checkequal(cumprod(d,typ(:)), hypermat([2,2,2],[1;254;2540;22860;22860;0;0;0]));
-    assert_checkequal(cumprod(d,"*",typ(:)), hypermat([2,2,2],[1;254;2540;22860;22860;0;0;0]));
-    assert_checkequal(cumprod(d,1,typ(:)), hypermat([2,2,2],[1;254;10;90;1;0;0;0]));
-    assert_checkequal(cumprod(d,2,typ(:)), hypermat([2,2,2],[1;254;10;2286;1;0;0;0]));
-    assert_checkequal(cumprod(d,3,typ(:)), hypermat([2,2,2],[1;254;10;9;1;0;0;0]));
+    assert_checkequal(cumprod(d,typ(:)), matrix([1;254;2540;22860;22860;0;0;0], [2,2,2]));
+    assert_checkequal(cumprod(d,"*",typ(:)), matrix([1;254;2540;22860;22860;0;0;0], [2,2,2]));
+    assert_checkequal(cumprod(d,1,typ(:)), matrix([1;254;10;90;1;0;0;0], [2,2,2]));
+    assert_checkequal(cumprod(d,2,typ(:)), matrix([1;254;10;2286;1;0;0;0], [2,2,2]));
+    assert_checkequal(cumprod(d,3,typ(:)), matrix([1;254;10;9;1;0;0;0], [2,2,2]));
     assert_checkequal(cumprod(d,5,typ(:)), d);
 end
 //=======================================================================
@@ -466,18 +467,18 @@ assert_checkequal(cumprod(i,3,"double"), double(i));
 //with hypermatrices
 i=uint8([1 10;254 9]);i(1,1,2)=uint8(1);
 for typ=list(list(),list("native"));
-    assert_checkequal(cumprod(i,typ(:)), hypermat([2,2,2],uint8([1;254;236;76;76;0;0;0])));
-    assert_checkequal(cumprod(i,"*",typ(:)), hypermat([2,2,2],uint8([1;254;236;76;76;0;0;0])));
-    assert_checkequal(cumprod(i,1,typ(:)), hypermat([2,2,2],uint8([1;254;10;90;1;0;0;0])));
-    assert_checkequal(cumprod(i,2,typ(:)), hypermat([2,2,2],uint8([1;254;10;238;1;0;0;0])));
-    assert_checkequal(cumprod(i,3,typ(:)), hypermat([2,2,2],uint8([1;254;10;9;1;0;0;0])));
+    assert_checkequal(cumprod(i,typ(:)), matrix(uint8([1;254;236;76;76;0;0;0]), [2,2,2]));
+    assert_checkequal(cumprod(i,"*",typ(:)), matrix(uint8([1;254;236;76;76;0;0;0]), [2,2,2]));
+    assert_checkequal(cumprod(i,1,typ(:)), matrix(uint8([1;254;10;90;1;0;0;0]), [2,2,2]));
+    assert_checkequal(cumprod(i,2,typ(:)), matrix(uint8([1;254;10;238;1;0;0;0]), [2,2,2]));
+    assert_checkequal(cumprod(i,3,typ(:)), matrix(uint8([1;254;10;9;1;0;0;0]), [2,2,2]));
     assert_checkequal(cumprod(i,5,typ(:)), double(i));
 end
-assert_checkequal(cumprod(i,"double"), hypermat([2,2,2],[1;254;2540;22860;22860;0;0;0]));
-assert_checkequal(cumprod(i,"*","double"), hypermat([2,2,2],[1;254;2540;22860;22860;0;0;0]));
-assert_checkequal(cumprod(i,1,"double"), hypermat([2,2,2],[1;254;10;90;1;0;0;0]));
-assert_checkequal(cumprod(i,2,"double"), hypermat([2,2,2],[1;254;10;2286;1;0;0;0]));
-assert_checkequal(cumprod(i,3,"double"), hypermat([2,2,2],[1;254;10;9;1;0;0;0]));
+assert_checkequal(cumprod(i,"double"), matrix([1;254;2540;22860;22860;0;0;0], [2,2,2]));
+assert_checkequal(cumprod(i,"*","double"), matrix([1;254;2540;22860;22860;0;0;0], [2,2,2]));
+assert_checkequal(cumprod(i,1,"double"), matrix([1;254;10;90;1;0;0;0], [2,2,2]));
+assert_checkequal(cumprod(i,2,"double"), matrix([1;254;10;2286;1;0;0;0], [2,2,2]));
+assert_checkequal(cumprod(i,3,"double"), matrix([1;254;10;9;1;0;0;0], [2,2,2]));
 assert_checkequal(cumprod(i,5,"double"), double(i));
 //=======================================================================
 //Matrices of Polynomials
@@ -494,11 +495,11 @@ end
 s=%s;p=[s s+1;s^2 0];p(1,1,2)=-1;
 T=list(list(),list("native"),list("double"));
 for typ=T
-    assert_checkequal(cumprod(p,typ(:)), hypermat([2,2,2],[s;s^3;s^3+s^4;0*s;0*s;0*s;0*s;0*s]));
-    assert_checkequal(cumprod(p,"*",typ(:)), hypermat([2,2,2],[s;s^3;s^3+s^4;0*s;0*s;0*s;0*s;0*s]));
-    assert_checkequal(cumprod(p,1,typ(:)), hypermat([2,2,2],[s;s^3;1+s;0*s;-1;0*s;0*s;0*s]));
-    assert_checkequal(cumprod(p,2,typ(:)), hypermat([2,2,2],[s;s^2;s+s^2;0*s;-1;0*s;0*s;0*s]));
-    assert_checkequal(cumprod(p,3,typ(:)), hypermat([2,2,2],[s;s^2;1+s;0*s;-s;0*s;0*s;0*s]));
+    assert_checkequal(cumprod(p,typ(:)), matrix([s;s^3;s^3+s^4;0*s;0*s;0*s;0*s;0*s], [2,2,2]));
+    assert_checkequal(cumprod(p,"*",typ(:)), matrix([s;s^3;s^3+s^4;0*s;0*s;0*s;0*s;0*s], [2,2,2]));
+    assert_checkequal(cumprod(p,1,typ(:)), matrix([s;s^3;1+s;0*s;-1;0*s;0*s;0*s], [2,2,2]));
+    assert_checkequal(cumprod(p,2,typ(:)), matrix([s;s^2;s+s^2;0*s;-1;0*s;0*s;0*s], [2,2,2]));
+    assert_checkequal(cumprod(p,3,typ(:)), matrix([s;s^2;1+s;0*s;-s;0*s;0*s;0*s], [2,2,2]));
     assert_checkequal(cumprod(p,5,typ(:)), p);
 end
 //=======================================================================
@@ -530,18 +531,18 @@ assert_checkequal(cumprod(b,3,"native"), b);
 //with hypermatrices
 b=[%t %t;%f %t];b(1,1,2)=%f;
 for typ=list(list(),list("double"));
-    assert_checkequal(cumprod(b,typ(:)), hypermat([2,2,2],[1;0;0;0;0;0;0;0]));
-    assert_checkequal(cumprod(b,"*",typ(:)), hypermat([2,2,2],[1;0;0;0;0;0;0;0]));
-    assert_checkequal(cumprod(b,1,typ(:)), hypermat([2,2,2],[1;0;1;1;0;0;0;0]));
-    assert_checkequal(cumprod(b,2,typ(:)), hypermat([2,2,2],[1;0;1;0;0;0;0;0]));
-    assert_checkequal(cumprod(b,3,typ(:)), hypermat([2,2,2],[1;0;1;1;0;0;0;0]));
+    assert_checkequal(cumprod(b,typ(:)), matrix([1;0;0;0;0;0;0;0], [2,2,2]));
+    assert_checkequal(cumprod(b,"*",typ(:)), matrix([1;0;0;0;0;0;0;0], [2,2,2]));
+    assert_checkequal(cumprod(b,1,typ(:)), matrix([1;0;1;1;0;0;0;0], [2,2,2]));
+    assert_checkequal(cumprod(b,2,typ(:)), matrix([1;0;1;0;0;0;0;0], [2,2,2]));
+    assert_checkequal(cumprod(b,3,typ(:)), matrix([1;0;1;1;0;0;0;0], [2,2,2]));
     assert_checkequal(cumprod(b,5,typ(:)), double(b));
 end
-assert_checkequal(cumprod(b,"native"), hypermat([2,2,2],[%t;%f;%f;%f;%f;%f;%f;%f]));
-assert_checkequal(cumprod(b,"*","native"), hypermat([2,2,2],[%t;%f;%f;%f;%f;%f;%f;%f]));
-assert_checkequal(cumprod(b,1,"native"), hypermat([2,2,2],[%t;%f;%t;%t;%f;%f;%f;%f]));
-assert_checkequal(cumprod(b,2,"native"), hypermat([2,2,2],[%t;%f;%t;%f;%f;%f;%f;%f]));
-assert_checkequal(cumprod(b,3,"native"), hypermat([2,2,2],[%t;%f;%t;%t;%f;%f;%f;%f]));
+assert_checkequal(cumprod(b,"native"), matrix([%t;%f;%f;%f;%f;%f;%f;%f], [2,2,2]));
+assert_checkequal(cumprod(b,"*","native"), matrix([%t;%f;%f;%f;%f;%f;%f;%f], [2,2,2]));
+assert_checkequal(cumprod(b,1,"native"), matrix([%t;%f;%t;%t;%f;%f;%f;%f], [2,2,2]));
+assert_checkequal(cumprod(b,2,"native"), matrix([%t;%f;%t;%f;%f;%f;%f;%f], [2,2,2]));
+assert_checkequal(cumprod(b,3,"native"), matrix([%t;%f;%t;%t;%f;%f;%f;%f], [2,2,2]));
 assert_checkequal(cumprod(b,5,"native"), b);
 //=======================================================================
 //sparse matrices of floats
@@ -578,7 +579,7 @@ exec SCI/modules/elementary_functions/tests/unit_tests/prod.tst
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// <-- CLI SHELL MODE 
+// <-- CLI SHELL MODE -->
 // prod
 // Check error
 d=[1 10;254 9];
@@ -607,7 +608,7 @@ assert_checkfalse(execstr("prod(i,""orient"", ""t"")"   ,"errcatch") == 0);
 refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), "prod",2,"""*"",""r"",""c"",""m""");
 assert_checkerror("prod(i,""orient"", ""t"")", refMsg);
 assert_checkfalse(execstr("prod(i,1,1)"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"), "prod", 3);
+refMsg = msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"), "prod", 3);
 assert_checkerror("prod(i,1,1)", refMsg);
 //==============================================================================
 // sparse matrices
@@ -616,7 +617,7 @@ assert_checkfalse(execstr("prod(d, ""orient"")","errcatch") == 0);
 refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), "prod",2,"""*"",""r"",""c"",""m""");
 assert_checkerror("prod(d, ""orient"")", refMsg);
 assert_checkfalse(execstr("prod(d, [""r"", ""c""])"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"),"prod",2);
+refMsg = msprintf(_("%s: Wrong size for input argument #%d: string expected.\n"),"prod",2);
 assert_checkerror("prod(d, [""r"", ""c""])", refMsg);
 //==============================================================================
 // boolean matrices
@@ -638,7 +639,7 @@ refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set 
 "prod",2,"""*"",""r"",""c"",""m""");
 assert_checkerror("prod(d,""orient"", ""t"")", refMsg);
 assert_checkfalse(execstr("prod(d,1,1)"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"),"prod",3);
+refMsg = msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"),"prod",3);
 assert_checkerror("prod(d,1,1)", refMsg);
 //==============================================================================
 // sparse boolean matrices
@@ -648,20 +649,20 @@ refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set 
 "prod",2,"""*"",""r"",""c"",""m""");
 assert_checkerror("prod(d, ""orient"")", refMsg);
 assert_checkfalse(execstr("prod(d, [""r"", ""c""])"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"),"prod",2);
+refMsg = msprintf(_("%s: Wrong size for input argument #%d: string expected.\n"),"prod",2);
 assert_checkerror("prod(d, [""r"", ""c""])", refMsg);
 assert_checkfalse(execstr("prod(d,""r"", ""nat"")"   ,"errcatch") == 0);
 refMsg = msprintf(_("%s: Wrong value for input argument #%d: ""%s"" or ""%s"" expected.\n"),"prod", 3, "native", "double");
 assert_checkerror("prod(d,""r"", ""nat"")", refMsg);
 assert_checkfalse(execstr("prod(d,""r"", [""nat"" ""dble""])"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"),"prod",3);
+refMsg = msprintf(_("%s: Wrong size for input argument #%d: string expected.\n"),"prod",3);
 assert_checkerror("prod(d,""r"", [""nat"" ""dble""])", refMsg);
 assert_checkfalse(execstr("prod(d,""orient"", ""t"")"   ,"errcatch") == 0);
 refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),..
 "prod",2,"""*"",""r"",""c"",""m""");
 assert_checkerror("prod(d,""orient"", ""t"")", refMsg);
 assert_checkfalse(execstr("prod(d,1,1)"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"),"prod",3);
+refMsg = msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"),"prod",3);
 assert_checkerror("prod(d,1,1)", refMsg);
 //==============================================================================
 // hypermatrices
@@ -690,7 +691,7 @@ assert_checkfalse(execstr("prod(d, ""orient"")"   ,"errcatch") == 0);
 refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),"prod",2,"""*"",""r"",""c"",""m""");
 assert_checkerror("prod(d, ""orient"")", refMsg);
 assert_checkfalse(execstr("prod(d, [""r"", ""c""])"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"),"prod",2);
+refMsg = msprintf(_("%s: Wrong size for input argument #%d: string expected.\n"),"prod",2);
 assert_checkerror("prod(d, [""r"", ""c""])", refMsg);
 //empty matrices
 T=list(list(),list("native"),list("double"));
@@ -718,8 +719,8 @@ T=list(list(),list("native"),list("double"));
 for typ=T
     assert_checkequal(prod(d, typ(:)), 22860);
     assert_checkequal(prod(d, "*", typ(:)), 22860);
-    assert_checkequal(prod(d, 1, typ(:)), hypermat([1,2,2],[254;90;1;1]));
-    assert_checkequal(prod(d, 2, typ(:)), hypermat([2,1,2],[10;2286;1;1]));
+    assert_checkequal(prod(d, 1, typ(:)), matrix([254;90;1;1], [1,2,2]));
+    assert_checkequal(prod(d, 2, typ(:)), matrix([10;2286;1;1], [2,1,2]));
     assert_checkequal(prod(d, 3, typ(:)), [1,10;254,9]);
     assert_checkequal(prod(d, 5, typ(:)), d);
 end
@@ -745,15 +746,15 @@ T = list(list(),list("native"));
 for typ=T
     assert_checkequal(prod(i, typ(:)), uint8(76));
     assert_checkequal(prod(i, "*", typ(:)), uint8(76));
-    assert_checkequal(prod(i, 1, typ(:)), hypermat([1,2,2],uint8([254;90;1;1])));
-    assert_checkequal(prod(i, 2, typ(:)), hypermat([2,1,2],uint8([10;238;1;1])));
+    assert_checkequal(prod(i, 1, typ(:)), matrix(uint8([254;90;1;1]), [1,2,2]));
+    assert_checkequal(prod(i, 2, typ(:)), matrix(uint8([10;238;1;1]), [2,1,2]));
     assert_checkequal(prod(i, 3, typ(:)), uint8([1,10;254,9]));
     assert_checkequal(prod(i, 5, typ(:)), i);
 end
 assert_checkequal(prod(i, "double"), 22860);
 assert_checkequal(prod(i, "*", "double"), 22860);
-assert_checkequal(prod(i, 1, "double"), hypermat([1,2,2],[254;90;1;1]));
-assert_checkequal(prod(i, 2, "double"), hypermat([2,1,2],[10;2286;1;1]));
+assert_checkequal(prod(i, 1, "double"), matrix([254;90;1;1], [1,2,2]));
+assert_checkequal(prod(i, 2, "double"), matrix([10;2286;1;1], [2,1,2]));
 assert_checkequal(prod(i, 3, "double"), [1,10;254,9]);
 assert_checkequal(prod(i, 5, "double"), double(i));
 //Polynomials
@@ -772,8 +773,8 @@ T=list(list(),list("native"),list("double"));
 for typ=T
     assert_checkequal(prod(p, typ(:)), 2*s^4+4*s^5+2*s^6);
     assert_checkequal(prod(p, "*", typ(:)), 2*s^4+4*s^5+2*s^6);
-    assert_checkequal(prod(p, 1, typ(:)), hypermat([1,2,2],[s^3;1+s;1+s;2*s]));
-    assert_checkequal(prod(p, 2, typ(:)), hypermat([2,1,2],[s+s^2;s^2;s;2+2*s]));
+    assert_checkequal(prod(p, 1, typ(:)), matrix([s^3;1+s;1+s;2*s], [1,2,2]));
+    assert_checkequal(prod(p, 2, typ(:)), matrix([s+s^2;s^2;s;2+2*s], [2,1,2]));
     assert_checkequal(prod(p, 3, typ(:)), [s,s+s^2;s^2+s^3,2]);
     assert_checkequal(prod(p, 5, typ(:)), p);
 end
@@ -810,15 +811,15 @@ T = list(list(),list("double"));
 for typ=T
     assert_checkequal(prod(b, typ(:)), 0);
     assert_checkequal(prod(b, "*", typ(:)), 0);
-    assert_checkequal(prod(b, 1, typ(:)), hypermat([1,2,2],[0;1;0;0]));
-    assert_checkequal(prod(b, 2, typ(:)), hypermat([2,1,2],[1;0;0;0]));
+    assert_checkequal(prod(b, 1, typ(:)), matrix([0;1;0;0], [1,2,2]));
+    assert_checkequal(prod(b, 2, typ(:)), matrix([1;0;0;0], [2,1,2]));
     assert_checkequal(prod(b, 3, typ(:)), [1,0;0,0]);
     assert_checkequal(prod(b, 5, typ(:)), double(b));
 end
 assert_checkequal(prod(b, "native"), %f);
 assert_checkequal(prod(b, "*", "native"), %f);
-assert_checkequal(prod(b, 1, "native"), hypermat([1,2,2],[%f;%t;%f;%f]));
-assert_checkequal(prod(b, 2, "native"), hypermat([2,1,2],[%t;%f;%f;%f]));
+assert_checkequal(prod(b, 1, "native"), matrix([%f;%t;%f;%f], [1,2,2]));
+assert_checkequal(prod(b, 2, "native"), matrix([%t;%f;%f;%f], [2,1,2]));
 assert_checkequal(prod(b, 3, "native"), [%t,%f;%f,%f]);
 assert_checkequal(prod(b, 5, "native"), b);
 //=======================================================================
@@ -858,7 +859,7 @@ exec SCI/modules/elementary_functions/tests/unit_tests/cumprod.tst
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// <-- CLI SHELL MODE 
+// <-- CLI SHELL MODE -->
 // Check error
 //==============================================================================
 //float matrices
@@ -888,7 +889,7 @@ assert_checkfalse(execstr("cumprod(i,""orient"", ""t"")"   ,"errcatch") == 0);
 refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), "cumprod",2,"""*"",""r"",""c"",""m""");
 assert_checkerror("cumprod(i,""orient"", ""t"")", refMsg);
 assert_checkfalse(execstr("cumprod(i,1,1)"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"), "cumprod", 3);
+refMsg = msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"), "cumprod", 3);
 assert_checkerror("cumprod(i,1,1)", refMsg);
 //==============================================================================
 // sparse matrices
@@ -897,7 +898,7 @@ assert_checkfalse(execstr("cumprod(d, ""orient"")","errcatch") == 0);
 refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), "cumprod",2,"""*"",""r"",""c"",""m""");
 assert_checkerror("cumprod(d, ""orient"")", refMsg);
 assert_checkfalse(execstr("cumprod(d, [""r"", ""c""])"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"),"cumprod",2);
+refMsg = msprintf(_("%s: Wrong size for input argument #%d: string expected.\n"),"cumprod",2);
 assert_checkerror("cumprod(d, [""r"", ""c""])", refMsg);
 //==============================================================================
 // boolean matrices
@@ -919,7 +920,7 @@ refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set 
 "cumprod",2,"""*"",""r"",""c"",""m""");
 assert_checkerror("cumprod(d,""orient"", ""t"")", refMsg);
 assert_checkfalse(execstr("cumprod(d,1,1)"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"),"cumprod",3);
+refMsg = msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"),"cumprod",3);
 assert_checkerror("cumprod(d,1,1)", refMsg);
 //==============================================================================
 // sparse boolean matrices
@@ -929,20 +930,20 @@ refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set 
 "cumprod",2,"""*"",""r"",""c"",""m""");
 assert_checkerror("cumprod(d, ""orient"")", refMsg);
 assert_checkfalse(execstr("cumprod(d, [""r"", ""c""])"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"),"cumprod",2);
+refMsg = msprintf(_("%s: Wrong size for input argument #%d: string expected.\n"),"cumprod",2);
 assert_checkerror("cumprod(d, [""r"", ""c""])", refMsg);
 assert_checkfalse(execstr("cumprod(d,""r"", ""nat"")"   ,"errcatch") == 0);
 refMsg = msprintf(_("%s: Wrong value for input argument #%d: ""%s"" or ""%s"" expected.\n"),"cumprod", 3, "native", "double");
 assert_checkerror("cumprod(d,""r"", ""nat"")", refMsg);
 assert_checkfalse(execstr("cumprod(d,""r"", [""nat"" ""dble""])"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"),"cumprod",3);
+refMsg = msprintf(_("%s: Wrong size for input argument #%d: string expected.\n"),"cumprod",3);
 assert_checkerror("cumprod(d,""r"", [""nat"" ""dble""])", refMsg);
 assert_checkfalse(execstr("cumprod(d,""orient"", ""t"")"   ,"errcatch") == 0);
 refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),..
 "cumprod",2,"""*"",""r"",""c"",""m""");
 assert_checkerror("cumprod(d,""orient"", ""t"")", refMsg);
 assert_checkfalse(execstr("cumprod(d,1,1)"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"),"cumprod",3);
+refMsg = msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"),"cumprod",3);
 assert_checkerror("cumprod(d,1,1)", refMsg);
 //==============================================================================
 // hypermatrices
@@ -972,7 +973,7 @@ refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set 
 "cumprod",2,"""*"",""r"",""c"",""m""");
 assert_checkerror("cumprod(d, ""orient"")", refMsg);
 assert_checkfalse(execstr("cumprod(d, [""r"", ""c""])"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"),"cumprod",2);
+refMsg = msprintf(_("%s: Wrong size for input argument #%d: string expected.\n"),"cumprod",2);
 assert_checkerror("cumprod(d, [""r"", ""c""])", refMsg);
 //cumprod
 //Empty matrices
@@ -999,11 +1000,11 @@ end
 d=[1 10;254 9];d(1,1,2)=1;
 T=list(list(),list("native"),list("double"));
 for typ=T
-    assert_checkequal(cumprod(d,typ(:)), hypermat([2,2,2],[1;254;2540;22860;22860;0;0;0]));
-    assert_checkequal(cumprod(d,"*",typ(:)), hypermat([2,2,2],[1;254;2540;22860;22860;0;0;0]));
-    assert_checkequal(cumprod(d,1,typ(:)), hypermat([2,2,2],[1;254;10;90;1;0;0;0]));
-    assert_checkequal(cumprod(d,2,typ(:)), hypermat([2,2,2],[1;254;10;2286;1;0;0;0]));
-    assert_checkequal(cumprod(d,3,typ(:)), hypermat([2,2,2],[1;254;10;9;1;0;0;0]));
+    assert_checkequal(cumprod(d,typ(:)), matrix([1;254;2540;22860;22860;0;0;0], [2,2,2]));
+    assert_checkequal(cumprod(d,"*",typ(:)), matrix([1;254;2540;22860;22860;0;0;0], [2,2,2]));
+    assert_checkequal(cumprod(d,1,typ(:)), matrix([1;254;10;90;1;0;0;0], [2,2,2]));
+    assert_checkequal(cumprod(d,2,typ(:)), matrix([1;254;10;2286;1;0;0;0], [2,2,2]));
+    assert_checkequal(cumprod(d,3,typ(:)), matrix([1;254;10;9;1;0;0;0], [2,2,2]));
     assert_checkequal(cumprod(d,5,typ(:)), d);
 end
 //=======================================================================
@@ -1024,18 +1025,18 @@ assert_checkequal(cumprod(i,3,"double"), double(i));
 //with hypermatrices
 i=uint8([1 10;254 9]);i(1,1,2)=uint8(1);
 for typ=list(list(),list("native"));
-    assert_checkequal(cumprod(i,typ(:)), hypermat([2,2,2],uint8([1;254;236;76;76;0;0;0])));
-    assert_checkequal(cumprod(i,"*",typ(:)), hypermat([2,2,2],uint8([1;254;236;76;76;0;0;0])));
-    assert_checkequal(cumprod(i,1,typ(:)), hypermat([2,2,2],uint8([1;254;10;90;1;0;0;0])));
-    assert_checkequal(cumprod(i,2,typ(:)), hypermat([2,2,2],uint8([1;254;10;238;1;0;0;0])));
-    assert_checkequal(cumprod(i,3,typ(:)), hypermat([2,2,2],uint8([1;254;10;9;1;0;0;0])));
+    assert_checkequal(cumprod(i,typ(:)), matrix(uint8([1;254;236;76;76;0;0;0]), [2,2,2]));
+    assert_checkequal(cumprod(i,"*",typ(:)), matrix(uint8([1;254;236;76;76;0;0;0]), [2,2,2]));
+    assert_checkequal(cumprod(i,1,typ(:)), matrix(uint8([1;254;10;90;1;0;0;0]), [2,2,2]));
+    assert_checkequal(cumprod(i,2,typ(:)), matrix(uint8([1;254;10;238;1;0;0;0]), [2,2,2]));
+    assert_checkequal(cumprod(i,3,typ(:)), matrix(uint8([1;254;10;9;1;0;0;0]), [2,2,2]));
     assert_checkequal(cumprod(i,5,typ(:)), double(i));
 end
-assert_checkequal(cumprod(i,"double"), hypermat([2,2,2],[1;254;2540;22860;22860;0;0;0]));
-assert_checkequal(cumprod(i,"*","double"), hypermat([2,2,2],[1;254;2540;22860;22860;0;0;0]));
-assert_checkequal(cumprod(i,1,"double"), hypermat([2,2,2],[1;254;10;90;1;0;0;0]));
-assert_checkequal(cumprod(i,2,"double"), hypermat([2,2,2],[1;254;10;2286;1;0;0;0]));
-assert_checkequal(cumprod(i,3,"double"), hypermat([2,2,2],[1;254;10;9;1;0;0;0]));
+assert_checkequal(cumprod(i,"double"), matrix([1;254;2540;22860;22860;0;0;0], [2,2,2]));
+assert_checkequal(cumprod(i,"*","double"), matrix([1;254;2540;22860;22860;0;0;0], [2,2,2]));
+assert_checkequal(cumprod(i,1,"double"), matrix([1;254;10;90;1;0;0;0], [2,2,2]));
+assert_checkequal(cumprod(i,2,"double"), matrix([1;254;10;2286;1;0;0;0], [2,2,2]));
+assert_checkequal(cumprod(i,3,"double"), matrix([1;254;10;9;1;0;0;0], [2,2,2]));
 assert_checkequal(cumprod(i,5,"double"), double(i));
 //=======================================================================
 //Matrices of Polynomials
@@ -1052,11 +1053,11 @@ end
 s=%s;p=[s s+1;s^2 0];p(1,1,2)=-1;
 T=list(list(),list("native"),list("double"));
 for typ=T
-    assert_checkequal(cumprod(p,typ(:)), hypermat([2,2,2],[s;s^3;s^3+s^4;0*s;0*s;0*s;0*s;0*s]));
-    assert_checkequal(cumprod(p,"*",typ(:)), hypermat([2,2,2],[s;s^3;s^3+s^4;0*s;0*s;0*s;0*s;0*s]));
-    assert_checkequal(cumprod(p,1,typ(:)), hypermat([2,2,2],[s;s^3;1+s;0*s;-1;0*s;0*s;0*s]));
-    assert_checkequal(cumprod(p,2,typ(:)), hypermat([2,2,2],[s;s^2;s+s^2;0*s;-1;0*s;0*s;0*s]));
-    assert_checkequal(cumprod(p,3,typ(:)), hypermat([2,2,2],[s;s^2;1+s;0*s;-s;0*s;0*s;0*s]));
+    assert_checkequal(cumprod(p,typ(:)), matrix([s;s^3;s^3+s^4;0*s;0*s;0*s;0*s;0*s], [2,2,2]));
+    assert_checkequal(cumprod(p,"*",typ(:)), matrix([s;s^3;s^3+s^4;0*s;0*s;0*s;0*s;0*s], [2,2,2]));
+    assert_checkequal(cumprod(p,1,typ(:)), matrix([s;s^3;1+s;0*s;-1;0*s;0*s;0*s], [2,2,2]));
+    assert_checkequal(cumprod(p,2,typ(:)), matrix([s;s^2;s+s^2;0*s;-1;0*s;0*s;0*s], [2,2,2]));
+    assert_checkequal(cumprod(p,3,typ(:)), matrix([s;s^2;1+s;0*s;-s;0*s;0*s;0*s], [2,2,2]));
     assert_checkequal(cumprod(p,5,typ(:)), p);
 end
 //=======================================================================
@@ -1088,18 +1089,18 @@ assert_checkequal(cumprod(b,3,"native"), b);
 //with hypermatrices
 b=[%t %t;%f %t];b(1,1,2)=%f;
 for typ=list(list(),list("double"));
-    assert_checkequal(cumprod(b,typ(:)), hypermat([2,2,2],[1;0;0;0;0;0;0;0]));
-    assert_checkequal(cumprod(b,"*",typ(:)), hypermat([2,2,2],[1;0;0;0;0;0;0;0]));
-    assert_checkequal(cumprod(b,1,typ(:)), hypermat([2,2,2],[1;0;1;1;0;0;0;0]));
-    assert_checkequal(cumprod(b,2,typ(:)), hypermat([2,2,2],[1;0;1;0;0;0;0;0]));
-    assert_checkequal(cumprod(b,3,typ(:)), hypermat([2,2,2],[1;0;1;1;0;0;0;0]));
+    assert_checkequal(cumprod(b,typ(:)), matrix([1;0;0;0;0;0;0;0], [2,2,2]));
+    assert_checkequal(cumprod(b,"*",typ(:)), matrix([1;0;0;0;0;0;0;0], [2,2,2]));
+    assert_checkequal(cumprod(b,1,typ(:)), matrix([1;0;1;1;0;0;0;0], [2,2,2]));
+    assert_checkequal(cumprod(b,2,typ(:)), matrix([1;0;1;0;0;0;0;0], [2,2,2]));
+    assert_checkequal(cumprod(b,3,typ(:)), matrix([1;0;1;1;0;0;0;0], [2,2,2]));
     assert_checkequal(cumprod(b,5,typ(:)), double(b));
 end
-assert_checkequal(cumprod(b,"native"), hypermat([2,2,2],[%t;%f;%f;%f;%f;%f;%f;%f]));
-assert_checkequal(cumprod(b,"*","native"), hypermat([2,2,2],[%t;%f;%f;%f;%f;%f;%f;%f]));
-assert_checkequal(cumprod(b,1,"native"), hypermat([2,2,2],[%t;%f;%t;%t;%f;%f;%f;%f]));
-assert_checkequal(cumprod(b,2,"native"), hypermat([2,2,2],[%t;%f;%t;%f;%f;%f;%f;%f]));
-assert_checkequal(cumprod(b,3,"native"), hypermat([2,2,2],[%t;%f;%t;%t;%f;%f;%f;%f]));
+assert_checkequal(cumprod(b,"native"), matrix([%t;%f;%f;%f;%f;%f;%f;%f], [2,2,2]));
+assert_checkequal(cumprod(b,"*","native"), matrix([%t;%f;%f;%f;%f;%f;%f;%f], [2,2,2]));
+assert_checkequal(cumprod(b,1,"native"), matrix([%t;%f;%t;%t;%f;%f;%f;%f], [2,2,2]));
+assert_checkequal(cumprod(b,2,"native"), matrix([%t;%f;%t;%f;%f;%f;%f;%f], [2,2,2]));
+assert_checkequal(cumprod(b,3,"native"), matrix([%t;%f;%t;%t;%f;%f;%f;%f], [2,2,2]));
 assert_checkequal(cumprod(b,5,"native"), b);
 //=======================================================================
 //sparse matrices of floats

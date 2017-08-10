@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2005-2008 - INRIA - Serge Steer
@@ -18,6 +19,8 @@
 //  matrix does not have the same effect. It makes me believe it is a bug 
 //  in the try-catch primitive.
 
+m_ieee = ieee();
+ieee(0);
 function x=foo
   x=%t	
   try
@@ -38,3 +41,5 @@ endfunction
 
 if ~foo() then pause,end
 if ~rf() then pause,end
+
+ieee(m_ieee);

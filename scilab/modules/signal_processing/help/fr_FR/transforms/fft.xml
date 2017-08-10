@@ -3,19 +3,22 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 1997   - INRIA
  * Copyright (C) 2012 - Serge Steer - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" 
-          xmlns:xlink="http://www.w3.org/1999/xlink" 
-          xmlns:svg="http://www.w3.org/2000/svg" 
-          xmlns:mml="http://www.w3.org/1998/Math/MathML" 
-          xmlns:db="http://docbook.org/ns/docbook" 
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook"
           xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="fft">
     <refnamediv>
         <refname>fft</refname>
@@ -97,7 +100,7 @@
                         être strictement inférieur au nombre total d'éléments de
                         <literal>A</literal>.
                     </para>
-                    
+
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -155,7 +158,7 @@
                                                     $x(k) = \sum_{m=1}^n {a(m)*e^{-\frac{2i*\pi}{n}(m-1) (k-1)}$
                                                 </latex>
                                             </para>
-                                            
+
                                             <para>
                                                 A noter: (l'argument <literal>-1</literal>
                                                 argument de la fonction
@@ -164,7 +167,7 @@
                                             </para>
                                         </listitem>
                                     </varlistentry>
-                                    
+
                                     <varlistentry>
                                         <term>multivariable</term>
                                         <listitem>
@@ -179,7 +182,7 @@
                                         </listitem>
                                     </varlistentry>
                                 </variablelist>
-                                
+
                             </listitem>
                         </varlistentry>
                         <varlistentry>
@@ -194,7 +197,7 @@
                                 <variablelist>
                                     <varlistentry>
                                         <term>mono-variable</term>
-                                        
+
                                         <listitem>
                                             <para>
                                                 Si <literal>A</literal> est un vecteur
@@ -228,7 +231,7 @@
                     </variablelist>
                 </listitem>
             </varlistentry>
-            
+
             <varlistentry>
                 <term>Syntaxe longue pour la FFT mutidimensionnelle</term>
                 <listitem>
@@ -245,7 +248,7 @@
                                 Par exemple si, <literal>A</literal> est un tableau 3-D,
                                 <literal>X=fft(A,-1,2)</literal> est équivalent à:
                             </para>
-                            <programlisting role=""><![CDATA[ 
+                            <programlisting role=""><![CDATA[
               for i1=1:size(A,1)
               for i3=1:size(A,3)
               X(i1,:,i3)=fft(A(i1,:,i3),-1);
@@ -255,13 +258,13 @@
                             <para>
                                 et <literal>X=fft(A,-1,[1 3])</literal> est équivalent à:
                             </para>
-                            <programlisting role=""><![CDATA[ 
+                            <programlisting role=""><![CDATA[
               for i2=1:size(A,2)
               X(:,i2,:)=fft(A(:,i2,:),-1);
               end
               ]]></programlisting>
                         </listitem>
-                        
+
                         <listitem>
                             <para>
                                 <literal>X=fft(A,sign,dims,incr [,option])</literal>
@@ -295,7 +298,7 @@
                 qui a pour dimensions <literal>n1</literal>, ...,
                 <literal>np</literal> est symétrique conjugué pour la fft si
                 et seulement si <literal>B==conj(B([1 n1:-1:2],[1
-                    n2:-1:2],...,[1 np:-1:2])) 
+                    n2:-1:2],...,[1 np:-1:2]))
                 </literal>
                 .Dans un tel cas le
                 résultat de la fft est réel et un algorithme spécifique
@@ -322,7 +325,7 @@
                             <literal>option</literal> est omis l'algorithme va
                             réaliser automatiquement un test de symmétrie exacte.
                         </listitem>
-                        
+
                     </itemizedlist>
                 </listitem>
             </varlistentry>
@@ -336,7 +339,7 @@
                         fft suivants correspondants aux mêmes dimensions et mêmes
                         options.
                     </para>
-                    <para> 
+                    <para>
                         Les fonctions <link
              linkend="get_fftw_wisdom">get_fftw_wisdom</link>, <link
              linkend="set_fftw_wisdom">set_fftw_wisdom</link>
@@ -354,22 +357,22 @@
             Cette fonction est basée sur la bibliothèque <ulink
         url="http://www.fftw.org/">fftw3</ulink>.
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
         <title>Examples</title>
         <para>1-D fft</para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //Composantes fréquentielles d'un signal
 //----------------------------------
-// Construction d'un signal bruité échantilloné à 1000hz 
+// Construction d'un signal bruité échantilloné à 1000hz
 //        contenant deux fréquences pures à  50 et 70 Hz.
 sample_rate=1000;
 t = 0:1/sample_rate:0.6;
 N=size(t,'*'); //nombre d'échantillons
 s=sin(2*%pi*50*t)+sin(2*%pi*70*t+%pi/4)+grand(1,N,'nor',0,1);
-  
+
 y=fft(s);
 //y est symétrique, on ne garde que  N/2 points
 f=sample_rate*(0:(N/2))/N; //vecteur de fréquences associé
@@ -377,10 +380,10 @@ n=size(f,'*')
 clf()
 plot(f,abs(y(1:n)))
     ]]></programlisting>
-        
+
         <para>2-D fft</para>
-        <programlisting role="example"><![CDATA[ 
-----------------------------------
+        <programlisting role="example"><![CDATA[
+//----------------------------------
 A = zeros(256,256);
 A(5:24,13:17) = 1;
 X = fftshift(fft(A));
@@ -388,7 +391,7 @@ set(gcf(),"color_map",jetcolormap(128));
 clf;grayplot(0:255,0:255,abs(X)')
      ]]></programlisting>
         <para>mupliple fft</para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //simple case, 3 1-D fft at a time
 N=2048;
 t=linspace(0,10,2048);
@@ -410,15 +413,15 @@ y=fft(A,-1,[2 4 5]);
 
 //equivalent (but less efficient code)
 y1=zeros(A);
-for i1=1:Dims(1) 
+for i1=1:Dims(1)
   for i3=1:Dims(3)
     ind=list(i1,:,i3,:,:);
     y1(ind(:))=fft(A(ind(:)),-1);
   end
 end
    ]]></programlisting>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
 //Définition directe de la transformée de Fourier discrete
 //--------------------------------------------------------
 function xf=DFT(x,flag);
@@ -437,7 +440,7 @@ endfunction
 //Comparaison avec l'algorithme de la transformée rapide:
 a=rand(1,1000);
 norm(DFT(a,1) - fft(a,1))
-norm(DFT(a,-1) - fft(a,-1)) 
+norm(DFT(a,-1) - fft(a,-1))
 
 timer();DFT(a,-1);timer()
 timer();fft(a,-1);timer()

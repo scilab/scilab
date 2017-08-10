@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Serge STEER
@@ -16,7 +17,7 @@
 
 
 tl = tlist(["test","cube"],[]);
-tl.cube = hypermat([2,2,2],[1:8]);
+tl.cube = matrix([1:8], [2,2,2]);
 tl.cube(:,:,1) = ones(2,2);
 if or(tl.cube(:)<>[1;1;1;1;5;6;7;8]) then pause,end
 

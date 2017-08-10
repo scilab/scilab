@@ -57,7 +57,7 @@ if ( r <> [TAB_CHAR + '  123   '+TAB_CHAR,'xyz'] ) then bugmes();quit;end
 STRING = ' '+ascii(9)+' '+'S'+' '+ascii(9)+'C'+' '+ascii(9)+'I'+' '+ascii(9)+'L'+' '+ascii(9)+'A'+' '+ascii(9)+'B'+' '+ascii(9)+' ';
 //===============================
 R1 = ascii('!'+stripblanks(STRING,%T)+'!');
-W1 = [33.    83.    32.    9.    67.    32.    9.    73.    32.    9.    76.    32.    9.    65.    32.    9.    66.    33.]; 
+W1 = [33.    83.    32.    9.    67.    32.    9.    73.    32.    9.    76.    32.    9.    65.    32.    9.    66.    33.];
 if (R1 <> W1) then bugmes();quit;end
 //===============================
 R2 = ascii('!'+stripblanks(STRING,%F)+'!');

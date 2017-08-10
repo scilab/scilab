@@ -9,20 +9,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-02-23 08:48+0000\n"
+"PO-Revision-Date: 2016-06-10 06:33+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
+"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
-"Language: uk\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
-msgstr ""
-"%s: помилкове значення вхідного параметра №%d: слід використовувати значення "
-"між %d та %d.\n"
+"X-Generator: Launchpad (build 18315)\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments: Scalar values expected.\n"
@@ -52,7 +46,7 @@ msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати «%s».\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
 
@@ -73,11 +67,35 @@ msgstr ""
 "%s: помилковий тип вхідного параметра №%d: мало бути ціле число або «%s».\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A real scalar expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати дійсне "
+"число.\n"
+
+#, c-format
 msgid ""
 "%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
 msgstr ""
 "%s: помилкові значення вхідного параметра №%d: слід використовувати "
 "невід’ємні цілі числа\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: 's' expected.\n"
+msgstr "%s: помилкове значення вхідного параметра №%d: мало бути «s».\n"
+
+#, c-format
+msgid ""
+"%s: Feature %s is obsolete and will be permanently removed in Scilab %s\n"
+msgstr ""
+"%s: можливість %s вважається застарілою, її буде остаточно вилучено у Scilab "
+"%s\n"
+
+msgid "Warning"
+msgstr "Попередження"
+
+#, c-format
+msgid "%s: Please use %s instead.\n"
+msgstr "%s: будь ласка, скористайтеся %s.\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments: Must be scalars.\n"
@@ -147,8 +165,7 @@ msgstr ""
 "розмірності mx3 або mx6.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
+msgid "%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: %s має бути між %d та %d.\n"
 
@@ -196,8 +213,7 @@ msgstr ""
 "значення.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
+msgid "%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 "%s: помилкова розмірність вхідних параметрів №%d і №%d: розмірність мала "
 "збігатися.\n"
@@ -219,10 +235,6 @@ msgid "%s: Wrong size for input arguments #%d and #%d: Same size expected.\n"
 msgstr ""
 "%s: помилкові розмірності вхідних параметрів №%d та №%d: розмірності мали "
 "бути однаковими.\n"
-
-#, c-format
-msgid "%s: You must call tic() before calling toc().\n"
-msgstr "%s: перед викликом toc() слід викликати tic().\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"

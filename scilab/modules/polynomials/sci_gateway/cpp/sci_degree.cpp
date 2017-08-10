@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Cedric DELAMARRE
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 /*--------------------------------------------------------------------------*/
@@ -16,7 +19,6 @@
 #include "string.hxx"
 #include "polynom.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 
 extern "C"
 {
@@ -60,9 +62,8 @@ types::Function::ReturnValue sci_degree(types::typed_list &in, int _iRetCount, t
     }
     else
     {
-        ast::ExecVisitor exec;
-        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_coeff";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_degree";
+        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
     out.push_back(pDblOut);

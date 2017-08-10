@@ -1,0 +1,508 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{d9bf83dd-1baf-45e6-9879-66f1fbeb65c1}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{d8fc54b8-74ed-4b17-9b4b-760058549a64}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl</Extensions>
+    </Filter>
+    <Filter Include="localization">
+      <UniqueIdentifier>{8f6c9d89-6623-4ca0-82a0-1b3f216e71bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{d3d6fc04-eeff-42c8-9ac1-f20fb74b6b26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\checkers">
+      <UniqueIdentifier>{322ac4c8-1c3e-4691-915b-73becc66da45}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\config">
+      <UniqueIdentifier>{2eb79468-933e-497d-82b2-88089f110965}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\output">
+      <UniqueIdentifier>{9f137ccc-400e-45bc-9e0a-70108af226f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\output\cnes">
+      <UniqueIdentifier>{d303f476-858e-41e1-99e9-be17e9d2903e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\config\cnes">
+      <UniqueIdentifier>{a4318558-430e-4f93-a921-3881e0267214}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="slint.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="includes\checkers\AllCheckers.hxx">
+      <Filter>Header Files\checkers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\checkers\BracketedExpChecker.hxx">
+      <Filter>Header Files\checkers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\checkers\BreaksInLoopChecker.hxx">
+      <Filter>Header Files\checkers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\checkers\DecimalChecker.hxx">
+      <Filter>Header Files\checkers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\checkers\DeprecatedChecker.hxx">
+      <Filter>Header Files\checkers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\checkers\EmptyBlockChecker.hxx">
+      <Filter>Header Files\checkers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\checkers\EqEqChecker.hxx">
+      <Filter>Header Files\checkers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\checkers\FunctionArgsChecker.hxx">
+      <Filter>Header Files\checkers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\checkers\FunctionNameChecker.hxx">
+      <Filter>Header Files\checkers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\checkers\IllegalCallsChecker.hxx">
+      <Filter>Header Files\checkers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\checkers\ImplicitListChecker.hxx">
+      <Filter>Header Files\checkers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\checkers\LineLengthChecker.hxx">
+      <Filter>Header Files\checkers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\checkers\LinesCountChecker.hxx">
+      <Filter>Header Files\checkers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\checkers\LoadSaveChecker.hxx">
+      <Filter>Header Files\checkers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\checkers\McCabeChecker.hxx">
+      <Filter>Header Files\checkers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\checkers\McCabeVisitor.hxx">
+      <Filter>Header Files\checkers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\checkers\MopenMcloseChecker.hxx">
+      <Filter>Header Files\checkers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\checkers\NaNChecker.hxx">
+      <Filter>Header Files\checkers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\checkers\NestedBlocksChecker.hxx">
+      <Filter>Header Files\checkers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\checkers\NotNotChecker.hxx">
+      <Filter>Header Files\checkers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\checkers\OldNotChecker.hxx">
+      <Filter>Header Files\checkers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\checkers\PrintfChecker.hxx">
+      <Filter>Header Files\checkers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\checkers\RedefinitionChecker.hxx">
+      <Filter>Header Files\checkers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\checkers\SelectChecker.hxx">
+      <Filter>Header Files\checkers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\checkers\SemicolonAtEOLChecker.hxx">
+      <Filter>Header Files\checkers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\checkers\SingleInstrChecker.hxx">
+      <Filter>Header Files\checkers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\checkers\SLintChecker.hxx">
+      <Filter>Header Files\checkers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\checkers\SpacesAroundOpChecker.hxx">
+      <Filter>Header Files\checkers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\checkers\SpacesInArgsChecker.hxx">
+      <Filter>Header Files\checkers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\checkers\StructChecker.hxx">
+      <Filter>Header Files\checkers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\checkers\TodoChecker.hxx">
+      <Filter>Header Files\checkers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\checkers\UnreachableCodeChecker.hxx">
+      <Filter>Header Files\checkers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\checkers\UselessArgChecker.hxx">
+      <Filter>Header Files\checkers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\checkers\UselessOpChecker.hxx">
+      <Filter>Header Files\checkers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\checkers\UselessRetChecker.hxx">
+      <Filter>Header Files\checkers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\checkers\VariableNameChecker.hxx">
+      <Filter>Header Files\checkers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\checkers\VariablesChecker.hxx">
+      <Filter>Header Files\checkers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\config\XMLConfig.hxx">
+      <Filter>Header Files\config</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\output\SLintResult.hxx">
+      <Filter>Header Files\output</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\output\SLintScilabResult.hxx">
+      <Filter>Header Files\output</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\output\SLintXmlResult.hxx">
+      <Filter>Header Files\output</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\dynlib_slint.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\FileException.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\PCRE.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\PCREException.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\PCREMatcher.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\SciFile.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\SLint.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\slint_gw.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\SLintContext.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\SLintOptions.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\SLintVisitor.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\SLintXMLException.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\XMLtools.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\config\cnes\AnalysisConfiguration.hxx">
+      <Filter>Header Files\config\cnes</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\config\cnes\AnalysisConfigurationType.hxx">
+      <Filter>Header Files\config\cnes</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\config\cnes\AnalysisRuleParameterType.hxx">
+      <Filter>Header Files\config\cnes</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\config\cnes\AnalysisRuleType.hxx">
+      <Filter>Header Files\config\cnes</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\config\cnes\CNESConfig.hxx">
+      <Filter>Header Files\config\cnes</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\config\cnes\CNESException.hxx">
+      <Filter>Header Files\config\cnes</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\config\cnes\ExcludedProjectFileType.hxx">
+      <Filter>Header Files\config\cnes</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\config\cnes\RuleLinkType.hxx">
+      <Filter>Header Files\config\cnes</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\config\cnes\Standard.hxx">
+      <Filter>Header Files\config\cnes</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\config\cnes\StandardRuleParameterType.hxx">
+      <Filter>Header Files\config\cnes</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\config\cnes\StandardRuleParameterValueType.hxx">
+      <Filter>Header Files\config\cnes</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\config\cnes\StandardRuleType.hxx">
+      <Filter>Header Files\config\cnes</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\config\cnes\StandardType.hxx">
+      <Filter>Header Files\config\cnes</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\config\cnes\ToolConfiguration.hxx">
+      <Filter>Header Files\config\cnes</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\config\cnes\ToolConfigurationType.hxx">
+      <Filter>Header Files\config\cnes</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\checkers\CommentRatioChecker.hxx">
+      <Filter>Header Files\checkers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\checkers\FindSymVisitor.hxx">
+      <Filter>Header Files\checkers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\checkers\FunctionArgsOrderChecker.hxx">
+      <Filter>Header Files\checkers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\checkers\FunctionTestReturnChecker.hxx">
+      <Filter>Header Files\checkers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\checkers\GlobalKeywordChecker.hxx">
+      <Filter>Header Files\checkers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\checkers\ReturnChecker.hxx">
+      <Filter>Header Files\checkers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\checkers\ReturnsCountChecker.hxx">
+      <Filter>Header Files\checkers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\checkers\NotEqualChecker.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\checkers\ExpInCondChecker.hxx">
+      <Filter>Header Files\checkers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\output\cnes\CNESCsvResult.hxx">
+      <Filter>Header Files\output\cnes</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\output\cnes\CNESXmlResult.hxx">
+      <Filter>Header Files\output\cnes</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\cpp\BracketedExpChecker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\BreaksInLoopChecker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\DecimalChecker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\DeprecatedChecker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\EmptyBlockChecker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\EqEqChecker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\FileException.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\FunctionArgsChecker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\FunctionNameChecker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\IllegalCallsChecker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\ImplicitListChecker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\LineLengthChecker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\LinesCountChecker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\LoadSaveChecker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\McCabeChecker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\McCabeVisitor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\MopenMcloseChecker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\NaNChecker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\NestedBlocksChecker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\NotNotChecker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\OldNotChecker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\PCREException.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\PCREMatcher.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\PrintfChecker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\RedefinitionChecker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\SciFile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\SelectChecker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\SemicolonAtEOLChecker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\SingleInstrChecker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\SLint.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\SLintChecker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\SLintContext.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\SLintOptions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\SLintScilabResult.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\SLintVisitor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\SLintXMLException.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\SLintXmlResult.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\SpacesAroundOpChecker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\SpacesInArgsChecker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\StructChecker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\TodoChecker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\UnreachableCodeChecker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\UselessArgChecker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\UselessOpChecker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\UselessRetChecker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\VariableNameChecker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\VariablesChecker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\XMLConfig.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\XMLtools.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\DllmainSlint.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_gateway\cpp\sci_slint.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\AnalysisConfiguration.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\AnalysisConfigurationType.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\AnalysisRuleParameterType.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\AnalysisRuleType.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\CNESConfig.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\CNESException.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\CommentRatioChecker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\ExcludedProjectFileType.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\FunctionArgsOrderChecker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\FunctionTestReturnChecker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\GlobalKeywordChecker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\ReturnsCountChecker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\RuleLinkType.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\Standard.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\StandardRuleParameterType.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\StandardRuleParameterValueType.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\StandardRuleType.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\StandardType.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\ToolConfiguration.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\ToolConfigurationType.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\NotEqualChecker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\ExpInCondChecker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\CNESCsvResult.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\CNESXmlResult.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

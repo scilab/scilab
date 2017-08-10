@@ -41,7 +41,7 @@ ilib_verbose(0);
 cd TMPDIR;
 TEST_NAME = "optim_external_c";
 mkdir(TEST_NAME);
-cd(TEST_NAME);    
+cd(TEST_NAME);
 mputl(C, TMPDIR + '/' + TEST_NAME + '/rosenc.c');
 // compile the C code
 l = ilib_for_link('rosenc', 'rosenc.c', [], 'c');

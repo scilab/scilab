@@ -2,33 +2,77 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2000 - INRIA - Carlos Klimann
+ * Copyright (C) 2016 - Samuel GOUGEON
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="geomean">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+    xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+    xml:lang="en" xml:id="geomean">
     <refnamediv>
         <refname>geomean</refname>
         <refpurpose>geometric mean</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>gm=geomean(x)
-            gm=geomean(x,'r')(or, equivalently, gm=geomean(x,1))
-            gm=geomean(x,'c')(or, equivalently, gm=geomean(x,2))
+        <title>Syntax</title>
+        <synopsis>
+            gm = geomean(X)
+            GM = geomean(X, orien)   // orien: 'r'|1|'c'|2..ndims(X)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>x</term>
+                <term>X</term>
                 <listitem>
-                    <para>real or complex vector or matrix</para>
+                    <para>
+                        Vector, matrix or hypermatrix of real or complex numbers.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>orien</term>
+                <listitem>
+                    <para>
+                        Dimension accross which the geometric average is computed. The value must be among <literal>'r', 1, 'c', 2, .. ndims(X)</literal>. Values <literal>'r'</literal> (rows) and <literal>1</literal> are equivalent, as <literal>'c'</literal> (columns) and <literal>2</literal> are.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>gm</term>
+                <listitem>
+                    <para>
+                        Scalar number: the geometric mean <literal>gm = prod(X)^(1/N)</literal>, where <literal>N = length(X)</literal> is the number of components in <literal>X</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>GM</term>
+                <listitem>
+                    <para>
+                        Vector, matrix or hypermatrix of numbers. <literal>s = size(GM)</literal> is equal to <literal>size(X)</literal>, except that <literal>s(orien)</literal> is set to 1 (due to the projected application of geomean() over components along the orien dimension).
+                    </para>
+                    <para>
+                        If <varname>X</varname> is a matrix, we have:
+                        <itemizedlist>
+                            <listitem>
+                                <literal>GM = geomean(X,1)  =>  GM(1,j) = geomean(X(:,j))</literal>
+                            </listitem>
+                            <listitem>
+                                <literal>GM = geomean(X,2)  =>  GM(i,1) = geomean(X(i,:))</literal>
+                            </listitem>
+                        </itemizedlist>
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -36,27 +80,115 @@
     <refsection>
         <title>Description</title>
         <para>
-            This  function computes the  geometric mean of a vector or
-            matrix <literal> x</literal>.  For a  vector or matrix  <literal> x</literal>,
-            <literal>gm=geomean(x) </literal>   returns  in  scalar  <literal>   gm</literal> the
-            geometric mean of all the entries of <literal> x</literal>.
+            <function>geomean(X,..)</function> computes the geometric mean of values stored in <literal>X</literal>.
         </para>
         <para>
-            <literal> gm=geomean(x,'r')    </literal>   (or,   equivalently,
-            <literal>gm=gmean(x,1)  </literal>  )  returns in  each   entry of the row
-            vector <literal> gm</literal> the geometric mean of each column of <literal> x</literal>.
+            If <varname>X</varname> stores only positive or null values, <varname>gm</varname> or <varname>GM</varname> are real. Otherwise they are most often complex.
         </para>
-        <para>
-            <literal> gm=geomean(x,'c')    </literal>  (or,    equivalently,
-            <literal>gm=gmean(x,2) </literal>  ) returns in each  entry  of the column
-            vector <literal> gm</literal> the geometric mean of  each row of <literal> x </literal>.
-        </para>
+        <note>
+            If <varname>X</varname> is sparse-encoded, then
+            <itemizedlist>
+                <listitem>it is reencoded in full format before being processed.</listitem>
+                <listitem>
+                    <varname>gm</varname> is always full-encoded.
+                </listitem>
+                <listitem>
+                    <varname>GM</varname> is sparse-encoded as well.
+                </listitem>
+            </itemizedlist>
+        </note>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
 geomean(1:10) // Returns factorial(10)^(1/10) = 4.5287286881167648
+
+// Projected geomean:
+// -----------------
+m = grand(4,5, "uin", 1, 100);
+m(3,2) = 0; m(2,4) = %inf; m(4,5) =  %nan
+geomean(m, "r")
+geomean(m, 2)
+h = grand(3,5,2, "uin",1,100)
+geomean(h,3)
+    ]]></programlisting>
+        <screen><![CDATA[
+--> m = grand(4,5, "uin", 1, 100);
+--> m(3,2) = 0; m(2,4) = %inf; m(4,5) =  %nan
+ m  =
+   13.   5.    99.   41.   20.
+   3.    92.   4.    Inf   5.
+   35.   0.    36.   40.   98.
+   86.   86.   66.   21.   Nan
+
+--> geomean(m, "r")
+ ans  =
+   18.510058   0.   31.14479   Inf   Nan
+
+--> geomean(m, 2)
+ ans  =
+   22.104082
+   Inf
+   0.
+   Nan
+
+--> h = grand(3,5,2, "uin",1,100)
+ h  =
+(:,:,1)
+   10.   40.   37.   72.   30.
+   10.   47.   54.   13.   19.
+   44.   27.   61.   10.   27.
+(:,:,2)
+   96.   88.   7.    98.   35.
+   54.   29.   96.   77.   8.
+   94.   45.   21.   46.   3.
+
+--> geomean(h,3)
+ ans  =
+   16.522712   43.150898   23.2379     36.91883    72.
+   14.142136   13.747727   64.311741   34.85685    35.79106
+   12.247449   30.983867   59.329588   16.093477   84.
+]]></screen>
+        <para></para>
+        <programlisting role="example"><![CDATA[
+// APPLICATION: Average growing rate
+// ---------------------------------
+// During 8 years, we measure the diameter D(i=1:8) of the trunc of a tree.
+D = [10 14 18 26 33 42 51 70];          // in mm
+
+// The growing rate gr(i) for year #i+1 wrt year #i is, in %:
+gr = (D(2:$)./D(1:$-1) - 1)*100
+
+// The average yearly growing rate is then, in %:
+mgr = (geomean(1+gr/100)-1)*100
+
+// If this tree had a constant growing rate, its diameter would have been:
+D(1)*(1+mgr/100)^(0:7)
  ]]></programlisting>
+        <screen><![CDATA[
+--> gr = (D(2:$)./D(1:$-1) - 1)*100
+ gr  =
+   40.   28.57   44.44   26.92   27.27   21.43   37.25
+
+--> mgr = (geomean(1+gr/100)-1)*100
+ mgr  =
+   32.05
+
+--> D(1)*(1+mgr/100)^(0:7)
+ ans  =
+   10.   13.2   17.44   23.02   30.4   40.15   53.01   70.
+]]></screen>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="prod">prod</link>
+            </member>
+            <member>
+                <link linkend="harmean">harmean</link>
+            </member>
+        </simplelist>
     </refsection>
     <refsection>
         <title>Bibliography</title>

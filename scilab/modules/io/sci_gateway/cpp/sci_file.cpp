@@ -4,11 +4,14 @@
  * Copyright (C) 2009-2010 - DIGITEO - Allan CORNET
  * Copyright (C) 2013 - Scilab Enterprises - Cedric Delamarre
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -62,7 +65,7 @@ types::Function::ReturnValue sci_file(types::typed_list &in, int _iRetCount, typ
     // get action
     if (in[0]->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d : A string expected.\n"), "file", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d : string expected.\n"), "file", 1);
         return types::Function::Error;
     }
 
@@ -90,7 +93,7 @@ types::Function::ReturnValue sci_file(types::typed_list &in, int _iRetCount, typ
         // get path
         if (in[1]->isString() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d : A string expected.\n"), "file", 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d : string expected.\n"), "file", 2);
             return types::Function::Error;
         }
 
@@ -124,7 +127,7 @@ types::Function::ReturnValue sci_file(types::typed_list &in, int _iRetCount, typ
             }
             else
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d : A string expected.\n"), "file", i + 1);
+                Scierror(999, _("%s: Wrong type for input argument #%d : string expected.\n"), "file", i + 1);
                 return types::Function::Error;
             }
 
@@ -480,7 +483,7 @@ types::Function::ReturnValue sci_file_one_rhs(types::typed_list &in, int _iRetCo
         {
             types::String* pS = new types::String(pstType);
             out.push_back(pS);
-            delete[] pstType;
+            FREE(pstType);
         }
     }
 
@@ -491,7 +494,7 @@ types::Function::ReturnValue sci_file_one_rhs(types::typed_list &in, int _iRetCo
         {
             types::String* pS = new types::String(pstName);
             out.push_back(pS);
-            delete[] pstName;
+            FREE(pstName);
         }
     }
 

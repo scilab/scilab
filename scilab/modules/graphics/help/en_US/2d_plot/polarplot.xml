@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="polarplot">
@@ -18,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>polarplot(theta,rho,[style,strf,leg,rect])
             polarplot(theta,rho,&lt;opt_args&gt;)
         </synopsis>
@@ -62,8 +65,9 @@
                             <listitem>
                                 <para>
                                     if <literal>style(i)</literal> is negative, the curve is plotted
-                                    using the mark with id <literal>abs(style(i))+1</literal>; use
-                                    <literal>xset()</literal> to see the mark ids.
+                                    using the mark with id <literal>abs(style(i))+1</literal>.
+                                    See <link linkend="polyline_properties">polyline properties</link>
+                                    to see the mark ids.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -73,8 +77,9 @@
                                 <para>
                                     if <literal>style(i)</literal> is strictly positive, a plain
                                     line with color id <literal>style(i)</literal> or a dashed line with
-                                    dash id <literal>style(i)</literal> is used; use <literal>xset()</literal>
-                                    to see the color ids.
+                                    dash id <literal>style(i)</literal> is used.
+                                    See <link linkend="polyline_properties">polyline properties</link>
+                                    to see the line style ids.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -273,25 +278,23 @@ clf();polarplot(sin(7*t),cos(8*t))
             t= 0:.01:2*%pi;
             polarplot(sin(7*t),cos(8*t))
         </scilab:image>
-        
+
     </refsection>
     <refsection>
         <title>Example 2</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 t= 0:.01:2*%pi;
 
 clf();polarplot([sin(7*t') sin(6*t')],[cos(8*t') cos(8*t')],[1,2])
  ]]></programlisting>
         <scilab:image>
             t= 0:.01:2*%pi;
-            
             clf();polarplot([sin(7*t') sin(6*t')],[cos(8*t') cos(8*t')],[1,2])
         </scilab:image>
-        
     </refsection>
     <refsection>
         <title>Example 3</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 t = 0:0.01:2*%pi;
 polarplot(t, -1 + sin(t));
 
@@ -305,21 +308,18 @@ polarplot(t, -1 + sin(t));
         <title>Example 4</title>
         <programlisting role="example"><![CDATA[
   clf()
+  isoview()
   theta=[0:0.02:2*%pi]';
   rho=1+0.2*cos(theta.^2)
   polarplot(theta,rho,style=5)
-  a=gca()
-  a.isoview='on'
-  a.data_bounds=[-1.2,-1.2;1.2,01.2] 
+  gca().data_bounds=[-1.2,-1.2;1.2,01.2;
  ]]></programlisting>
         <scilab:image>
             theta=[0:0.02:2*%pi]';
             rho=1+0.2*cos(theta.^2)
             polarplot(theta,rho,style=5)
-            a=gca()
-            a.isoview='on'
-            a.data_bounds=[-1.2,-1.2;1.2,01.2] 
-            
+            isoview()
+            gca().data_bounds=[-1.2,-1.2;1.2,01.2]
         </scilab:image>
     </refsection>
 </refentry>

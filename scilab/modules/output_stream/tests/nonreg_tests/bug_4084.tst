@@ -6,6 +6,7 @@
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NOT FIXED --> 6.0.0
 
 // <-- Non-regression test for bug 4084 -->
 //
@@ -22,7 +23,7 @@
 s1 = -9.999999999;
 s2 = 0.999999999999;
 
-print(TMPDIR+'/bug.txt',s1,s2);
+print(TMPDIR+"/bug.txt",s1,s2);
 ref = [
 " s2  =";
 " ";
@@ -30,5 +31,5 @@ ref = [
 " s1  =";
 " ";
 "  -10.  "]
-r = mgetl(TMPDIR+'/bug.txt');
+r = mgetl(TMPDIR+"/bug.txt");
 if and(r<>ref) then pause,end

@@ -22,7 +22,6 @@ function t=%p_part(t,p)
     t=part(t,n)
 endfunction
 Warning : redefining function: %p_part                 . Use funcprot(0) to avoid this message
-
 if part("xyz",$)<>"z" then bugmes();quit;end
 //testing overloading
 function t=%s_part(t,p)

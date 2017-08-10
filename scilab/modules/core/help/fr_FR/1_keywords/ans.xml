@@ -8,7 +8,7 @@
         <title>Description</title>
         <para>
             <literal>ans</literal> signifie réponse (answer).
-            La variable <literal>ans</literal> est créée automatiquement quand des expressions 
+            La variable <literal>ans</literal> est créée automatiquement quand des expressions
             ne sont pas affectées à une variable. <literal>ans</literal> contient la dernière expression non affectée.
         </para>
         <para>
@@ -18,7 +18,7 @@
         </para>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="predef">predef</link>

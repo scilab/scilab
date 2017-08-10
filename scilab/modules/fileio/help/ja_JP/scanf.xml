@@ -5,152 +5,155 @@
  * Copyright (C) 2008 - INRIA
  * ...
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="scanf">
-    
+
     <refnamediv>
-        
+
         <refname>scanf</refname>
-        
+
         <refpurpose>標準入力を整形された入力に変換する</refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        
+
         <title>呼び出し手順</title>
-        
+
         <synopsis>[v_1, ..., v_n] = scanf(format);</synopsis>
-        
+
     </refsynopsisdiv>
-    
+
     <refsection>
-        
+
         <title>引数</title>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>format</term>
-                
+
                 <listitem>
-                    
+
                     <para>文字列: フォーマット変換を指定します.</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>v_1, ..., v_n</term>
-                
+
                 <listitem>
-                    
+
                     <para>変換された結果.</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>説明</title>
-        
+
         <para>
-            
+
             <function>scanf</function>関数は標準入力(<code>%io(1)</code>)から文字データを取得し,
-            
+
             これを<varname>format</varname>に基づき解釈し,変換した結果
-            
+
             <varname>v_1</varname>, ..., <varname>v_n</varname>を返します.
-            
+
         </para>
-        
+
         <para>
-            
+
             <varname>format</varname>パラメータには入力を解釈する際に使用される変換指定子が含まれます.
-            
+
         </para>
-        
+
         <para>
-            
+
             <varname>format</varname>パラメータには空白文字(空白,タブ,改行,またはフォームフィード)を
-            
+
             含めることができ,以下の2つの場合を除き,
-            
+
             入力を次の非空白文字まで読み込みます.制御文字に一致しない限り,
-            
+
             (改行文字を含む)後続の空白文字は読み込まれません.
-            
+
         </para>
-        
+
         <itemizedlist>
-            
+
             <listitem>
-                
+
                 <para>
                     <literal>%</literal>(パーセント記号)以外の任意の文字は,
-                    
+
                     入力ストリームの次の文字に一致する必要があります.
-                    
+
                 </para>
-                
+
             </listitem>
-            
+
             <listitem>
-                
+
                 <para>次の入力フィールドの変換を指示する変換指定子.
-                    
+
                     詳細は <link linkend="scanf_conversion">scanf_conversion</link> 参照.
-                    
+
                 </para>
-                
+
             </listitem>
-            
+
         </itemizedlist>
-        
+
     </refsection>
-    
+
     <refsection role="see also">
-        
+
         <title>参照</title>
-        
+
         <simplelist type="inline">
-            
+
             <member>
-                
+
                 <link linkend="read">read</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="mfscanf">mfscanf</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="scanf_conversion">scanf_conversion</link>
-                
+
             </member>
-            
+
         </simplelist>
-        
+
     </refsection>
-    
+
 </refentry>
 

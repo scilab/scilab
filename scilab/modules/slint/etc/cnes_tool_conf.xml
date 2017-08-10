@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<toolConfiguration toolConfigurationId="" toolName="slint" toolVersion="0.0">
+    <ruleLink standardRuleId="SCI.INST.Global" analysisRuleId="GlobalKeyword" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="COM.NAME.Homonymy" analysisRuleId="Redefinition" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="COM.DATA.Initialisation" analysisRuleId="Variables.Uninitialized" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="COM.DATA.NotUsed" analysisRuleId="Variables.Unused" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="" analysisRuleId="FunctionName" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="" analysisRuleId="FunctionArgs" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="COM.DATA.NotUsed" analysisRuleId="UselessArg" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="COM.DATA.NotUsed" analysisRuleId="UselessRet" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="" analysisRuleId="VariableName" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="COM.INST.Line" analysisRuleId="SingleInstr" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="" analysisRuleId="EmptyBlock" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="SCI.INST.EndLine" analysisRuleId="SemicolonAtEOL" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="SCI.DATA.mclose" analysisRuleId="MopenMclose" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="COM.MET.ComplexitySimplified" analysisRuleId="McCabe" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="SCI.PRES.ScientificNotation" analysisRuleId="Decimal" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="" analysisRuleId="Printf" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="SCI.PRES.LengthLine" analysisRuleId="LineLength" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="COM.MET.LineOfCode" analysisRuleId="LinesCount" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="" analysisRuleId="Todo" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="SCI.INST.isNAN" analysisRuleId="NaN" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="" analysisRuleId="EqEq" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="" analysisRuleId="UselessOp" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="" analysisRuleId="UnreachableCode" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="SCI.INST.Deprecated" analysisRuleId="Deprecated" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="COM.FLOW.CaseSwitch" analysisRuleId="Select" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="" analysisRuleId="ImplicitList" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="SCI.INST.At" analysisRuleId="OldNot" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="COM.PRES.Ventilate" analysisRuleId="SpacesAroundOp" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="COM.PRES.Ventilate" analysisRuleId="SpacesInArgs" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="SCI.INST.Break" analysisRuleId="BreaksInLoop.Break" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="SCI.INST.Continue" analysisRuleId="BreaksInLoop.Continue" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="COM.MET.Nesting" analysisRuleId="NestedBlocks" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="COM.FLOW.BooleanExpression" analysisRuleId="ExpInCond" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="COM.INST.Brace" analysisRuleId="BracketedExp" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="COM.INST.BoolNegation" analysisRuleId="NotNot" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="SCI.INST.BannedFunction" analysisRuleId="IllegalCalls" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="COM.MET.RatioComment" analysisRuleId="CommentRatio" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="SCI.FLOW.ArgumentName" analysisRuleId="FunctionArgsOrder" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="COM.FLOW.CheckCodeReturn" analysisRuleId="FunctionTestReturn" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="COM.FLOW.Exit" analysisRuleId="ReturnsCount" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="SCI.PRES.Comparison" analysisRuleId="NotEqual" ruleCoverage="Complete" standardId=""/>
+</toolConfiguration>

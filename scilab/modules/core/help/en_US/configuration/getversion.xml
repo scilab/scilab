@@ -5,7 +5,7 @@
         <refpurpose>get scilab and modules version information</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>version = getversion()
             [version, opts] = getversion()
             version_numbers = getversion('scilab')
@@ -64,7 +64,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 getversion()
 
 [version, opts] = getversion()
@@ -84,7 +84,7 @@ versionstr = getversion('overloading','string_info')
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="getmodules">getmodules</link>

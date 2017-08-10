@@ -1260,7 +1260,7 @@ c-----------------------------------------------------------------------
       if (nhnil .lt. mxhnil) go to 290
       call xerrwv('lsode--  preceding message given i1 times',
      1   50, 102, 1, 0, 0, 0, 0, 0.0d+0, 0.0d+0)
-      call xerrwv('     wiil not be repeated',
+      call xerrwv('     will not be repeated',
      1   50, 102, 1, 1, mxhnil, 0, 0, 0.0d+0, 0.0d+0)
  290  continue
 c-----------------------------------------------------------------------

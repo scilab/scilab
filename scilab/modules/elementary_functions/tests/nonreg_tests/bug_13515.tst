@@ -12,7 +12,7 @@
 // <-- Short Description -->
 // there were wrong results for matrix/hypermatrix with bitset function
 //
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 clear "checkBitset"
 function checkBitset(x, pos, v, isOne, typeOfx)
@@ -263,10 +263,10 @@ checkBitset(uint32Value, uint32Pos, uint32BitValue + 1, %t, 32);
 checkBitset(uint32Value, uint32Pos, uint32BitValue, %f, 32);
 
 // create value to check
-value = hypermat([2 3 1 2], 1:12);
+value = matrix(1:12, [2 3 1 2]);
 position = ones(value)*3;
 position(1:6) = 4;
-bitValue = hypermat(size(value), zeros(1:12));
+bitValue = matrix(zeros(1:12), size(value));
 [dbValue, dbPos, dbBitValue, ...
 uint8Value, uint8Pos, uint8BitValue, ...
 uint16Value, uint16Pos, uint16BitValue, ...
@@ -275,8 +275,8 @@ uint32Value, uint32Pos, uint32BitValue] = createValues(value, position, bitValue
 // create references
 refOne = [9, 10, 11, 12, 13, 14, 7, 12, 13, 14, 15, 12];
 refZero = [1, 2, 3, 4, 5, 6, 3, 8, 9, 10, 11, 8];
-refOne = hypermat([2 3 1 2], refOne);
-refZero = hypermat([2 3 1 2], refZero);
+refOne = matrix(refOne, [2 3 1 2]);
+refZero = matrix(refZero, [2 3 1 2]);
 [dbRefOne, dbRefZero, ...
 uint8RefOne, uint8RefZero, ...
 uint16RefOne, uint16RefZero, ...

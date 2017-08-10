@@ -8,7 +8,7 @@ function nonisothermal_reactor()
     //system of ODEs example
     //nonisothermal plug flow reactor model
 
-    global w dR mc cpc U cp ro //declare global variables for ODE function
+    global w dR mc cpc U cp ro; //declare global variables for ODE function
 
     function [F] = odefun (t,y)
         global w dR mc cpc U cp ro
@@ -50,7 +50,7 @@ function nonisothermal_reactor()
     Tc = solution(4,:);
 
     f = scf(1); //create new figure, figure_id=1
-    clf    //clear previous graph
+    clf;    //clear previous graph
     plot(z',[cA; cB]')
     legend("Concentration of compound A","Concentration of compound B"); //make legend for lines
     xlabel("z [m]")  //tag x axis
@@ -58,7 +58,7 @@ function nonisothermal_reactor()
 
     g = scf(2); //figure_id=2
     g.figure_position(1) = g.figure_position(1)+f.figure_size(1); // So the windows don't overlay
-    clf
+    clf;
     plot(z',[T; Tc]')
     legend("Temperature of reaction mixture","Temperature of cooling water");
     xlabel("z [m]")

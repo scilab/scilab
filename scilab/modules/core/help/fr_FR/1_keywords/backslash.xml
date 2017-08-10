@@ -40,7 +40,7 @@ A=rand(3,1)*rand(1,2); b=[1;1;1]; x=A\b; y=pinv(A)*b; A*x-b, A*y-b
 A=rand(2,1)*rand(1,3); b=[1;1]; x=A\b; y=pinv(A)*b; A*x-b, A*y-b
 // Une comparaison de différents solveurs linéaire creux
 
-[A,descr,ref,mtype] = ReadHBSparse(SCI+"/modules/umfpack/examples/bcsstk24.rsa");
+[A,descr,ref,mtype] = ReadHBSparse(SCI+"/modules/umfpack/demos/bcsstk24.rsa");
 
 b = zeros(size(A,1),1);
 

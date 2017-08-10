@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE module SYSTEM "../../functions/xml/gateway.dtd">
+<!--
+/*
+ *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ *  Copyright (C) 2012 - Scilab Enterprises - Cedric DELAMARRE
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - ESI-Group
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ */
+ Scilab
+ Interface description. In this file, we define the list of the function which
+ will be available into Scilab and the link to the "native" function.
+
+ Don't touch if you do not know what you are doing
+-->
+<module name="webtools">
+    <gateway name="sci_http_get"        function="http_get"     type="3" />
+    <gateway name="sci_http_post"       function="http_post"    type="3" />
+    <gateway name="sci_http_put"        function="http_put"     type="3" />
+    <gateway name="sci_http_patch"      function="http_patch"   type="3" />
+    <gateway name="sci_http_delete"     function="http_delete"  type="3" />
+    <gateway name="sci_http_upload"     function="http_upload"  type="3" />
+    <gateway name="sci_toJSON"          function="toJSON"       type="4" />
+    <gateway name="sci_fromJSON"        function="fromJSON"     type="4" />
+</module>

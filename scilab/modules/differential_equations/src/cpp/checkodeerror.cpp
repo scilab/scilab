@@ -2,11 +2,14 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 /*--------------------------------------------------------------------------*/
@@ -29,7 +32,7 @@ int checkOdeError(int meth, int istate)
         {
             if (istate == -7)
             {
-                sciprint(_("Work space insufficient to finish (see messages).\n"));
+                sciprint(_("Insufficient Work space to finish (see messages).\n"));
                 return 1;
             }
         }
@@ -38,12 +41,12 @@ int checkOdeError(int meth, int istate)
         {
             if (istate == -1)
             {
-                sciprint(_("Excess work done on this call (perhaps wrong jacobian type).\n"));
+                sciprint(_("Excessive work done on this call (perhaps wrong jacobian type).\n"));
                 return 1;
             }
             else if (istate == -2)
             {
-                sciprint(_("Excess accuracy requested (tolerances too small).\n"));
+                sciprint(_("Excesive accuracy requested (tolerances too small).\n"));
                 return 1;
             }
             else if (istate == -3)
@@ -132,7 +135,7 @@ int checkOdeError(int meth, int istate)
                 }
                 case 8:
                 {
-                    sciprint(_("invalid input parameters : atol and rtol must be greater than 0.\n"));
+                    sciprint(_("Invalid input parameters : atol and rtol must be greater than 0.\n"));
                     return 1;
                 }
                 default :
@@ -184,7 +187,7 @@ int checkError(int idid, std::string strName)
         {
             if (getWarningMode())
             {
-                sciprint(_("To many steps necessary to reached next required time discretization point. Change discretisation of time vector t or decrease accuracy.\n"));
+                sciprint(_("Too many steps necessary to reach next required time discretization point. Change discretisation of time vector t or decrease accuracy.\n"));
             }
             return 2;
         }
@@ -246,14 +249,14 @@ int checkError(int idid, std::string strName)
         {
             if (getWarningMode())
             {
-                sciprint(_("External ''res'' return many times with ires=-1.\n"));
+                sciprint(_("External 'res' return many times with ires=-1.\n"));
             }
             return 2;
         }
         case -11 : //IRES equal to -2 was encountered and
         {
             //control is being returned to the calling program.
-            sciprint(_("Error in external ''res''.\n"));
+            sciprint(_("Error in external 'res'.\n"));
             return 1;
         }
         case -12 : //DDASSL, dasrt or daskr failed to compute the initial YPRIME.

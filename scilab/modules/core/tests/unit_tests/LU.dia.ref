@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA
@@ -37,11 +38,11 @@ assert_checktrue(abs(l*u-a)< 100*%eps);
 assert_checktrue(abs(l*u-ac)< 100*%eps);
 //
 h1(5,5)=0;for k=1:5,for l=1:5, h1(k,l)=1/(k+l-1);end;end;
-assert_checktrue(abs(inv(h1)-testmatrix('hilb',5))< 1.e-7);
+assert_checkalmostequal(inv(h1),testmatrix("hilb",5));
 //
-assert_checktrue(abs(det(testmatrix('magic',5))-5070000)< 1.e-7);
+assert_checktrue(abs(det(testmatrix("magic",5))-5070000)< 1.e-7);
 //
 b=a*a';h=chol(b);
-assert_checktrue(abs(h'*h-b)< 100*%eps);
+assert_checkalmostequal(h'*h, b, [], 100*%eps);
 bc=triu(ac*ac');bc=bc+bc'-diag(real(diag(bc)));;h=chol(bc);
-assert_checktrue(abs(h'*h-bc)< 100*%eps);
+assert_checkalmostequal(h'*h, bc, [], 100*%eps);

@@ -4,6 +4,7 @@
 //
 // This file is released under the 3-clause BSD license. See COPYING-BSD.
 
+prot = funcprot();
 funcprot(0);
 
 function demo_custom()
@@ -38,6 +39,7 @@ function demo_custom()
     "background", -2, ...
     "figure_position", [0 0], ...
     "axes_size", [axes_w axes_h], ...
+    "rotation_style", "multiple", ...
     "figure_name", _("Customize your complex function"));
 
     // The plot will be in the right 2/3 of the figure
@@ -814,7 +816,7 @@ function updateStatusBar(tag,msg, msg_color)
     end
 endfunction
 
-funcprot(1);
+funcprot(prot);
 
 demo_custom();
 

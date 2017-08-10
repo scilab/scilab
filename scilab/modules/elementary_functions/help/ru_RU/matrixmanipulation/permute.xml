@@ -2,36 +2,64 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Farid BELAHCENE
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2016 - Samuel GOUGEON
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="permute" xml:lang="ru">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="permute" xml:lang="ru">
     <refnamediv>
         <refname>permute</refname>
-        <refpurpose>перестановка размерностей массива</refpurpose>
+        <refpurpose>переставляет размерности массива</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
-        <synopsis>y=permute(x,dims)</synopsis>
+        <title>Синтаксис</title>
+        <synopsis>y = permute(x, dims)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
         <variablelist>
             <varlistentry>
-                <term>dims</term>
+                <term>x</term>
                 <listitem>
-                    <para>скаляр или вектор положительных вещественных чисел.</para>
+                    <para>
+                      массив с любым числом размерностей (0, 1, 2 или  любым числом n>2) любого типа
+                      данных: логических, целочисленных десятичных вещественных  или комплексных
+                      чисел, полиномов, рациональных значений, массива структур, cell-массива.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>x</term>
+                <term>dims</term>
                 <listitem>
-                    <para>скаляр, вектор, матрица или многомерный массив.</para>
+                    <para>
+                      допустимая перестановка <literal>1:n>=nmin</literal>, где <literal>n</literal>
+                      - это количество размерностей желаемого массива, по меньшей мере
+                      <literal>nmin = ndims(x)</literal>.
+                    </para>
+                    <para>
+                      Размерность <literal>#i</literal> в <varname>y</varname> была размерностью
+                      <literal>#dims(i)</literal> в <varname>x</varname>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>
+                      массив, у которого содержимое массива <varname>x</varname>,  с одинаковыми,
+                      не переставленными размерами.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -39,19 +67,85 @@
     <refsection>
         <title>Описание</title>
         <para>
-            <literal>Перестановка размерностей массива.</literal>
+            Переставляет размерности массива согласно <varname>dims</varname>.
         </para>
+        <important>
+             Любые размерности в конце последовательности результата <varname>y</varname>, которые
+             оказываются одноэлементным множеством (имеют новый размер равный 1, произошедший из
+             предыдущей размерности неединичного размера не в конце последовательности),
+             автоматически игнорируются (удаляются).
+         </important>
+         <note>
+             Главным образом <code>permute()</code> представляет интерес, когда идёт работа с
+             гиперматрицами. Чтобы просто транспонировать матрицу (переставить местами их
+             строки и столбцы и наоборот), то лучше использовать операторы <literal>.
+             '</literal> или <literal>'</literal>.
+         </note>
     </refsection>
     <refsection>
         <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
-//Пример 1:
-x=[1 2 3; 4 5 6];
-y=permute(x,[2 1]);
- 
-//пример 2:
-x=matrix(1:12,[2, 3, 2]);
-y=permute(x,[3 1 2]);
+        <programlisting role="example"><![CDATA[
+// Пример 1: матрица становится гиперматрицей, одна сторона которой имеет размер
+//           равный единице (здесь количество строк)
+x = [1 2 3; 4 5 6]
+y = permute(x,[3 1 2])
+ ]]></programlisting>
+    <screen><![CDATA[--> x = [1 2 3; 4 5 6]
+ x  =
+   1.   2.   3.
+   4.   5.   6.
+
+--> y = permute(x,[3 1 2])
+ y  =
+(:,:,1)
+   1.   4.
+(:,:,2)
+   2.   5.
+(:,:,3)
+   3.   6.
+]]></screen>
+        <programlisting role="example"><![CDATA[
+// Пример 2: С закодированными целыми числами
+x = int8(matrix(1:24, [3 4 2]))
+y = permute(x, [2 3 1])
+ ]]></programlisting>
+    <screen><![CDATA[--> x = int8(matrix(1:24, [3 4 2]))
+ x  =
+(:,:,1)
+  1  4  7  10
+  2  5  8  11
+  3  6  9  12
+(:,:,2)
+  13  16  19  22
+  14  17  20  23
+  15  18  21  24
+
+--> y = permute(x, [2 3 1])
+ y  =
+(:,:,1)
+  1  13
+  4  16
+  7  19
+ 10  22
+(:,:,2)
+  2  14
+  5  17
+  8  20
+ 11  23
+(:,:,3)
+  3  15
+  6  18
+  9  21
+ 12  24
+]]></screen>
+        <programlisting role="example"><![CDATA[
+// Пример 3:
+x = matrix(1:8, [2 1 4])
+y = permute(x, [3 1 2]);
+// Размерность 1 была третьей: размер = 4 = новое количество строк
+// Размерность 2 была первой: размер = 2 = новое количество строк
+// Размерность 3 была второй: размер = 1 = новое количество страниц
+y
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -64,8 +158,22 @@ y=permute(x,[3 1 2]);
                 <link linkend="quote">quote</link>
             </member>
             <member>
-                <link linkend="cat">cat</link>
+                <link linkend="ndims">ndims</link>
+            </member>
+            <member>
+                <link linkend="squeeze">squeeze</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    Расширение для рациональных значений.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

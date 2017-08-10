@@ -1,0 +1,17 @@
+LIBRARY    signal_processing_f.dll
+
+
+EXPORTS
+; --------------------------------------- 
+; signal_processing_f
+; --------------------------------------- 
+amell_
+remez_
+delip_
+fft842_
+dfft2_
+rpem_
+tscccf_
+cmpse2_
+cmpse3_
+syredi_

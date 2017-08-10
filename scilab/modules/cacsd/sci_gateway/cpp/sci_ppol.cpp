@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2014 - Scilab Enterprises - Cedric DELAMARRE
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 /*--------------------------------------------------------------------------*/
@@ -34,8 +37,7 @@ types::Function::ReturnValue sci_ppol(types::typed_list &in, int _iRetCount, typ
     types::Double* pDblB = NULL;
     types::Double* pDblP = NULL;
 
-    char cP       = 'p';
-    double dblEps = 0.1 * sqrt(C2F(dlamch)(&cP, 1L));
+    double dblEps = 0.1 * sqrt(nc_eps_machine());
 
     int iOne   = 1;
     int iSizeP = 0;
@@ -121,8 +123,8 @@ types::Function::ReturnValue sci_ppol(types::typed_list &in, int _iRetCount, typ
 
     double* pdblG   = pDblOut->get();
     double* pdblZ   = new double[iSizeP * iSizeP];
-    int iSizeWork   = (std::max)(iSizeP * iColB + 3 * iColB,
-                                 iColB * iColB + iColB * (std::max)(2, iColB) + 3 * iColB + 2 * iSizeP);
+    int iSizeWork   = std::max(iSizeP * iColB + 3 * iColB,
+                               iColB * iColB + iColB * std::max(2, iColB) + 3 * iColB + 2 * iSizeP);
     double* pdblW   = new double[iSizeWork];
     int* piW        = new int[iSizeP];
 
@@ -162,7 +164,7 @@ types::Function::ReturnValue sci_ppol(types::typed_list &in, int _iRetCount, typ
     }
 
     double* pdblW1 = pdblW  + iColB + iColB * iColB;
-    double* pdblW2 = pdblW1 + iColB * (std::max)(2, iColB);
+    double* pdblW2 = pdblW1 + iColB * std::max(2, iColB);
     double* pdblW3 = pdblW2 + iSizeP;
     double* pdblW4 = pdblW3 + iSizeP;
     double* pdblW5 = pdblW4 + iColB;

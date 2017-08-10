@@ -4,11 +4,14 @@
  * Copyright (C) 2008 - INRIA
  * ...
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="dae" xml:lang="ru">
@@ -19,7 +22,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             y=dae(initial,t0,t,res)
             [y [,hd]]=dae(initial,t0,t [,rtol, [atol]],res [,jac] [,hd])
@@ -474,49 +477,50 @@
         <title>Примеры</title>
         <programlisting role="example"><![CDATA[
 //Пример с кодом Scilab
-function [r,ires]=chemres(t,y,yd)
+//--------------------------------------------------
+function [r, ires] = chemres(t, y, yd)
     r(1) = -0.04*y(1) + 1d4*y(2)*y(3) - yd(1);
     r(2) =  0.04*y(1) - 1d4*y(2)*y(3) - 3d7*y(2)*y(2) - yd(2);
     r(3) =       y(1) +     y(2)      + y(3)-1;
     ires =  0;
 endfunction
 
-function pd=chemjac(x,y,yd,cj)
-    pd=[-0.04-cj , 1d4*y(3)               , 1d4*y(2);
-         0.04    ,-1d4*y(3)-2*3d7*y(2)-cj ,-1d4*y(2);
-         1       , 1                      , 1       ]
+function pd = chemjac(x, y, yd, cj)
+    pd = [-0.04-cj , 1d4*y(3)               , 1d4*y(2);
+           0.04    ,-1d4*y(3)-2*3d7*y(2)-cj ,-1d4*y(2);
+           1       , 1                      , 1       ]
 endfunction
 
-x0=[1; 0; 0];
-xd0=[-0.04; 0.04; 0];
-t=[1.d-5:0.02:.4, 0.41:.1:4, 40, 400, 4000, 40000, 4d5, 4d6, 4d7, 4d8, 4d9, 4d10];
+x0 = [1; 0; 0];
+xd0 = [-0.04; 0.04; 0];
+t = [1.d-5:0.02:.4, 0.41:.1:4, 40, 400, 4000, 40000, 4d5, 4d6, 4d7, 4d8, 4d9, 4d10];
 
-y=dae([x0,xd0],0,t,chemres);// возвращает запрошенные моменты времени наблюдения
+y = dae([x0, xd0], 0, t, chemres); // возвращает запрошенные моменты времени наблюдения
 
-%DAEOPTIONS=list([],1,[],[],[],0,0); // просит вернуть сетку точек dae
-y=dae([x0,xd0],0,4d10,chemres); // без якобиана
-y=dae([x0,xd0],0,4d10,chemres,chemjac); // с якобианом
+%DAEOPTIONS = list([], 1, [], [], [], 0, 0); // просит вернуть сетку точек dae
+y = dae([x0, xd0], 0, 4d10, chemres); // без якобиана
+y = dae([x0, xd0], 0, 4d10, chemres, chemjac); // с якобианом
  ]]></programlisting>
         <programlisting role="example"><![CDATA[
 //пример с кодом C (необходим C-компилятор)
---------------------------------------------------
-bOK=haveacompiler();
-if bOK<>%t
+//--------------------------------------------------
+bOK = haveacompiler();
+if bOK <> %t
     [btn] = messagebox(["Для этого примера Вам необходим C-компилятор.";"Выполнение этого примера отменено."], "Проблема с программным обеспечением", 'info');
     return
 end
 
 //-1- создать C-код в TMPDIR - Уравнение Вандерпола, неявная форма
-code=['#include <math.h>'
-      'void res22(double *t,double *y,double *yd,double *res,int *ires,double *rpar,int *ipar)'
+code = ['#include <math.h>'
+      'void res22(double *t, double *y, double *yd, double *res, int *ires, double *rpar, int *ipar)'
       '{res[0] = yd[0] - y[1];'
       ' res[1] = yd[1] - (100.0*(1.0 - y[0]*y[0])*y[1] - y[0]);}'
       ' '
-      'void jac22(double *t,double *y,double *yd,double *pd,double *cj,double *rpar,int *ipar)'
-      '{pd[0]=*cj - 0.0;'
-      ' pd[1]=    - (-200.0*y[0]*y[1] - 1.0);'
-      ' pd[2]=    - 1.0;'
-      ' pd[3]=*cj - (100.0*(1.0 - y[0]*y[0]));}'
+      'void jac22(double *t, double *y, double *yd, double *pd, double *cj, double *rpar, int *ipar)'
+      '{pd[0] = *cj - 0.0;'
+      ' pd[1] =     - (-200.0*y[0]*y[1] - 1.0);'
+      ' pd[2] =     - 1.0;'
+      ' pd[3] = *cj - (100.0*(1.0 - y[0]*y[0]));}'
       ' '
       'void gr22(int *neq, double *t, double *y, int *ng, double *groot, double *rpar, int *ipar)'
       '{ groot[0] = y[0];}']
@@ -525,40 +529,34 @@ cd TMPDIR;
 mputl(code, 't22.c')
 
 //-2- скомпилировать и загрузить его
-ilib_for_link(['res22' 'jac22' 'gr22'],'t22.c',[],'c',[],'t22loader.sce');
+ilib_for_link(['res22' 'jac22' 'gr22'], 't22.c', [], 'c', [], 't22loader.sce');
 exec('t22loader.sce')
 
 //-3- запустить
-rtol=[1.d-6;1.d-6];
-atol=[1.d-6;1.d-4];
-t0=0;y0=[2;0];
-y0d=[0;-2];
-t=[20:20:200];
-ng=1;
+rtol = [1.d-6; 1.d-6];
+atol = [1.d-6; 1.d-4];
+t0 = 0; t = [20:20:200];
+y0 = [2; 0]; y0d = [0; -2];
+ng = 1;
 
 //простое моделирование
-t=0:0.003:300;
-yy=dae([y0,y0d],t0,t,atol,rtol,'res22','jac22');
-clf();plot(yy(1,:),yy(2,:))
-
-// найти первую точку, где yy(1)=0
-[yy,nn,hotd]=dae("root",[y0,y0d],t0,300,atol,rtol,'res22','jac22',ng,'gr22');
-plot(yy(1,1),yy(2,1),'r+')
-xstring(yy(1,1)+0.1,yy(2,1),string(nn(1)))
-t=0:0.003:300;
-yy=dae([y0,y0d],t0,t,atol,rtol,'res22','jac22');
-clf();plot(yy(1,:),yy(2,:))
+t = 0:0.003:300;
+yy = dae([y0, y0d], t0, t, atol, rtol, 'res22', 'jac22');
+clf(); plot(yy(1, :), yy(2, :))
+// Найти первую точку, где yy(1) = 0
+[yy, nn, hotd] = dae("root", [y0, y0d], t0, 300, atol, rtol, 'res22', 'jac22', ng, 'gr22');
+plot(yy(1, 1), yy(2, 1), 'r+')
+xstring(yy(1, 1)+0.1, yy(2, 1), string(nn(1)));
 
 // горячий перезапуск для следующей точки
-t01=nn(1);
-[pp,qq]=size(yy);
-y01=yy(2:3,qq);
-y0d1=yy(3:4,qq);
-[yy,nn,hotd]=dae("root",[y01,y0d1],t01,300,atol,rtol,'res22','jac22',ng,'gr22',hotd);
-plot(yy(1,1),yy(2,1),'r+')
-xstring(yy(1,1)+0.1,yy(2,1),string(nn(1)))
+t01 = nn(1);
+[pp, qq] = size(yy);
+y01 = yy(2:3, qq); y0d1 = yy(3:4, qq);
+[yy, nn, hotd] = dae("root", [y01, y0d1], t01, 300, atol, rtol, 'res22', 'jac22', ng, 'gr22', hotd);
+plot(yy(1, 1), yy(2, 1), 'r+')
+xstring(yy(1, 1)+0.1, yy(2, 1), string(nn(1)));
 cd(previous_dir);
-]]></programlisting>
+ ]]></programlisting>
         <scilab:image localized="false"><![CDATA[
 code = ['#include <math.h>'
       'void res22(double *t, double *y, double *yd, double *res, int *ires, double *rpar, int *ipar)'
@@ -615,7 +613,7 @@ cd(previous_dir);
                 <link linkend="impl">impl</link>
             </member>
             <member>
-                <link linkend="fort">fort</link>
+                <link linkend="call">call</link>
             </member>
             <member>
                 <link linkend="link">link</link>

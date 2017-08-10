@@ -1,12 +1,15 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2014-2014 - Scilab Enterprises - Clement DAVID
+ *  Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -25,22 +28,35 @@ namespace org_scilab_modules_scicos
 namespace model
 {
 
-enum portKind
-{
-    PORT_UNDEF, PORT_IN, PORT_OUT, PORT_EIN, PORT_EOUT
-};
-
 class Port: public BaseObject
 {
 public:
-    Port() : BaseObject(PORT), m_dataType(0), m_sourceBlock(0), m_kind(PORT_UNDEF), m_implicit(false),
-        m_style(), m_label(), m_firing(0), m_connectedSignals(std::vector<ScicosID> (1, 0)) {};
-    Port(const Port& o) : BaseObject(PORT), m_dataType(o.m_dataType), m_sourceBlock(o.m_sourceBlock), m_kind(o.m_kind), m_implicit(o.m_implicit),
+    Port() : BaseObject(PORT), m_uid(), m_dataType(0), m_sourceBlock(ScicosID()), m_kind(PORT_UNDEF), m_implicit(false),
+        m_style(), m_label(), m_firing(0)
+    {
+        m_connectedSignals = {ScicosID()};
+    }
+    Port(const Port& o) : BaseObject(PORT), m_uid(o.m_uid), m_dataType(o.m_dataType), m_sourceBlock(o.m_sourceBlock), m_kind(o.m_kind), m_implicit(o.m_implicit),
         m_style(o.m_style), m_label(o.m_label), m_firing(0), m_connectedSignals(o.m_connectedSignals) {};
-    ~Port() = default;
 
 private:
     friend class ::org_scilab_modules_scicos::Model;
+
+    void getUID(std::string& data) const
+    {
+        data = m_uid;
+    }
+
+    update_status_t setUID(const std::string& data)
+    {
+        if (data == m_uid)
+        {
+            return NO_CHANGES;
+        }
+
+        m_uid = data;
+        return SUCCESS;
+    }
 
     const std::vector<ScicosID>& getConnectedSignals() const
     {
@@ -164,7 +180,7 @@ private:
 
     void getLabel(std::string& l) const
     {
-        l = m_style;
+        l = m_label;
     }
 
     update_status_t setLabel(const std::string& label)
@@ -193,6 +209,7 @@ private:
     }
 
 private:
+    std::string m_uid;
     Datatype* m_dataType;
     ScicosID m_sourceBlock;
     portKind m_kind;

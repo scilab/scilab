@@ -1,14 +1,17 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) INRIA
 c 
-c This file must be used under the terms of the CeCILL.
-c This source file is licensed as described in the file COPYING, which
-c you should have received as part of this distribution.  The terms
-c are also available at    
-c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+c Copyright (C) 2012 - 2016 - Scilab Enterprises
+c
+c This file is hereby licensed under the terms of the GNU GPL v2.0,
+c pursuant to article 5.3.4 of the CeCILL v.2.1.
+c This file was originally licensed under the terms of the CeCILL v2.1,
+c and continues to be available under such terms.
+c For more information, see the COPYING file which you should have received
+c along with this program.
 c
       subroutine zqnbd(indqn,simul,dh,n,binf,bsup,x,f,g,zero,napmax,
-     &itmax,indic,izig,nfac,imp,io,epsx,epsf,epsg,x1,x2,g1,dir,df0,
+     &itmax,indic,izig,nfac,iprint,io,epsx,epsf,epsg,x1,x2,g1,dir,df0,
      &ig,in,irel,izag,iact,epsrel,ieps1,izs,rzs,dzs)
 c
       implicit double precision (a-h,o-z)
@@ -20,7 +23,7 @@ c
      &izs(*)
       external simul,proj
 c
-      if(imp.lt.4)go to 3
+      if(iprint.lt.4)go to 3
       write(bufstr,1020)izag,ig,in,irel,iact,epsrel
       call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
 1020  format(' qnbd :  izag,ig,in,irel,iact,epsrel=',5i3,f11.4)
@@ -88,13 +91,13 @@ c
       if(indqn.eq.1)go to 10
       if(indqn.eq.2)go to 30
 c     erreur
-      if(imp.gt.0) then
+      if(iprint.gt.0) then
         write(bufstr,105)indqn
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
 105   format(' qnbd  : valeur non admissible de indqn  ',i5)
       indqn=-105
-      if(imp.gt.0) then
+      if(iprint.gt.0) then
         write(bufstr,123)indqn
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
@@ -120,7 +123,7 @@ c     iter nombre d iterations de descente
       if(indsim.le.0)then
       indqn=-1
       if(indsim.eq.0)indqn=0
-      if(imp.gt.0) then
+      if(iprint.gt.0) then
         write(bufstr,123)indqn
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
@@ -143,18 +146,18 @@ c     d ou cst=som((y(i)*(dx))**2))/(2*df0)
       iconv=0
 200   iter=iter +1
       if(iter.le.itmax)go to 202
-      if(imp.gt.0) then
+      if(iprint.gt.0) then
         write(bufstr,1202)
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
 1202  format(' qnbd : maximum d iterations atteint')
       indqn=5
-      if(imp.gt.0) then
+      if(iprint.gt.0) then
         write(bufstr,123)indqn
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
       return
-202   if(imp.ge.2) then
+202   if(iprint.ge.2) then
          write(bufstr,1210)iter,f
          call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
          endif
@@ -174,7 +177,7 @@ c      dh=(y,y)/(y,s)*id
       do 203 i=1,n
 203   cof2=cof2 + g1(i)**2
       cof2=cof2/cof1
-      if(imp.gt.3) then
+      if(iprint.gt.3) then
         write(bufstr,1203)cof2
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
@@ -282,7 +285,7 @@ c     calcul sig1 pour 2eme mise a jour
       do 271 i=1,n
 271   sig1=sig1+dir(i)*x2(i)
       if(sig1.gt.0.0d+0)go to 272
-      if(imp.gt.2) then
+      if(iprint.gt.2) then
         write(bufstr,1272)sig1
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
@@ -291,7 +294,7 @@ c
 c     ******************************************************
       indqn=8
       if(iter.eq.1)indqn=-5
-      if(imp.gt.0) then
+      if(iprint.gt.0) then
         write(bufstr,123)indqn
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
@@ -299,7 +302,7 @@ c     ******************************************************
 272      sig1=-1.0d+0/sig1
 c     truc powell si (y,s) negatif
       if(cof1.gt.zero)go to 277
-      if(imp.gt.2) then
+      if(iprint.gt.2) then
         write(bufstr,1270)cof1
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
@@ -323,14 +326,14 @@ c      premiere mise a jour de dh
       call calmaj(dh,n,dir,sig1,x2,ir,mk,epsmc,nfac)
       if(ir.ne.nfac)go to 280
       go to 300
-280   if(imp.gt.0) then
+280   if(iprint.gt.0) then
          write(bufstr,282)
          call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
          endif
 282   format(' qnbd : pb dans appel majour')
       indqn=8
       if(iter.eq.1)indqn=-5
-      if(imp.gt.0) then
+      if(iprint.gt.0) then
         write(bufstr,123)indqn
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
@@ -353,7 +356,7 @@ c
       eps1=min(eps0,eps1)
       if(ieps1.eq.1)eps1=0.0d+0
       if(ieps1.eq.2)eps1=eps1*1.0d+4
-      if(imp.gt.3) then
+      if(iprint.gt.3) then
          write(bufstr,322)eps1
          call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
          endif
@@ -373,7 +376,7 @@ c     si irit=1 on peut relacher des variables
       irit=0
       if(difg1.le.epsrel*difg0)irit=1
       if(irel.eq.0.or.iter.eq.1)irit=1
-      if(irit*irel.gt.0.and.imp.gt.3) then
+      if(irit*irel.gt.0.and.iprint.gt.3) then
         write(bufstr,1320)difg0,epsrel,difg1
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
@@ -401,7 +404,7 @@ c     on defactorise si necessaire
       if(ic.gt.nfac)go to 340
       idfac=idfac+1
       mode=-1
-      if(imp.ge.4) then
+      if(iprint.ge.4) then
         write(bufstr,336)k
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
@@ -409,14 +412,14 @@ c     on defactorise si necessaire
       izig(k)=izig(k) + izag
       call ajour(mode,n,k,nfac,dh,x2,indic)
       if(mode.eq.0) go to 340
-      if(imp.gt.0) then
+      if(iprint.gt.0) then
         write(bufstr,333)mode
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
 333   format(' qnbd : pb dans ajour. mode=',i3)
       indqn=8
       if(iter.eq.1)indqn=-5
-      if(imp.gt.0) then
+      if(iprint.gt.0) then
         write(bufstr,123)indqn
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
@@ -430,26 +433,26 @@ c     on factorise
       if(ifac.ge.n3.and.iter.gt.1)go to 340
       if(abs(g(k)).le.gr)go to 340
       ifac=ifac+1
-      if(imp.ge.4) then
+      if(iprint.ge.4) then
         write(bufstr,339)k
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
 339   format(' on factorise l indice ',i3)
       call ajour(mode,n,k,nfac,dh,x2,indic)
       if(mode.eq.0)go to 340
-      if(imp.gt.0) then
+      if(iprint.gt.0) then
         write(bufstr,333)mode
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
       indqn=8
       if(iter.eq.1)indqn=-5
-      if(imp.gt.0) then
+      if(iprint.gt.0) then
         write(bufstr,123)indqn
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
       return
 340   continue
-      if(imp.ge.2) then
+      if(iprint.ge.2) then
         write(bufstr,350)ifac,idfac,nfac
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
@@ -495,14 +498,14 @@ c     dans le nouveau syst d indices
 411   x2(i)=v
 412   continue
       if(ir.eq.nfac)go to 660
-      if(imp.gt.0) then
+      if(iprint.gt.0) then
         write(bufstr,650)
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
 650   format(' qnbd : pb num dans mult par inverse')
       indqn=7
       if(iter.eq.1)indqn=-6
-      if(imp.gt.0) then
+      if(iprint.gt.0) then
         write(bufstr,123)indqn
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
@@ -537,14 +540,14 @@ c     ifp =1 si fpn trop petit. on prend alors d=-g
 710   fpn=fpn + g(i)*dir(i)
       if(fpn.gt.0.0d+0) then
          if(ifp.eq.1) then
-            if(imp.gt.0) then
+            if(iprint.gt.0) then
               write(bufstr,1705) fpn
               call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
               endif
 1705        format(' qnbd : arret fpn non negatif=',d11.4)
             indqn=6
             if(iter.eq.1)indqn=-3
-            if(imp.gt.0) then
+            if(iprint.gt.0) then
               write(bufstr,123)indqn
               call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
               endif
@@ -575,7 +578,7 @@ c     amd,amf tests sur h'(t) et diff
       napm1=nap + napm
       if(napm1.gt.napmax)napm1=napmax
       call rlbd(indrl,n,simul,x,binf,bsup,fn,fpn,t,tmax,dir,g,
-     & tproj,amd,amf,imp,io,zero,nap,napm1,x2,izs,rzs,dzs)
+     & tproj,amd,amf,iprint,io,zero,nap,napm1,x2,izs,rzs,dzs)
       if(indrl.ge.10)then
          indsim=4
          nap=nap + 1
@@ -583,7 +586,7 @@ c     amd,amf tests sur h'(t) et diff
          if(indsim.le.0)then
             indqn=-3
             if(indsim.eq.0)indqn=0
-            if(imp.gt.0) then
+            if(iprint.gt.0) then
               write(bufstr,123)indqn
               call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
               endif
@@ -596,14 +599,14 @@ c     amd,amf tests sur h'(t) et diff
          if(indrl.eq.-3)indqn=13
          if(indrl.eq.-4)indqn=12
          if(indrl.le.-1000)indqn=11
-         if(imp.gt.0) then
+         if(iprint.gt.0) then
            write(bufstr,123)indqn
            call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
            endif
          return
       endif
 c
-753   if(imp.lt.6)go to 778
+753   if(iprint.lt.6)go to 778
       do 760 i=1,n
 760      write(bufstr,777)i,x(i),g(i),dir(i)
          call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
@@ -612,13 +615,13 @@ c
 778   continue
       if(nap.lt.napmax)go to 758
       f=fn
-      if(imp.gt.0) then
+      if(iprint.gt.0) then
         write(bufstr,755)napmax
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
 755   format(' qnbd : retour cause max appels simul',i9)
       indqn=4
-      if(imp.gt.0) then
+      if(iprint.gt.0) then
         write(bufstr,123)indqn
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
@@ -630,13 +633,13 @@ c
       if(abs(x(i)-x1(i)).gt.epsx(i))go to 806
 805   continue
       f=fn
-      if(imp.gt.0) then
+      if(iprint.gt.0) then
         write(bufstr,1805)
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
 1805  format(' qnbd : retour apres convergence de x')
       indqn=3
-      if(imp.gt.0) then
+      if(iprint.gt.0) then
         write(bufstr,123)indqn
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
@@ -663,7 +666,7 @@ c
       df0=-diff
       if(irit.eq.1)difg0=difg1
       f=fn
-      if(imp.ge.2) then
+      if(iprint.ge.2) then
          write(bufstr,860)epsg,difg,epsf,diff,nap
          call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
          endif
@@ -671,12 +674,12 @@ c
      &,'  nap=',i3)
       if(diff.lt.epsf)then
       indqn=2
-      if(imp.gt.0) then
+      if(iprint.gt.0) then
         write(bufstr,1865)diff
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
 1865  format(' qnbd : retour cause decroissance f trop petite=',d11.4)
-      if(imp.gt.0) then
+      if(iprint.gt.0) then
         write(bufstr,123)indqn
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
@@ -684,12 +687,12 @@ c
       endif
       if(difg.gt.epsg)go to 200
       indqn=1
-      if(imp.gt.0) then
+      if(iprint.gt.0) then
         write(bufstr,1900)difg
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
 1900  format(' qnbd : retour cause gradient projete petit=',d11.4)
-      if(imp.gt.0) then
+      if(iprint.gt.0) then
         write(bufstr,123)indqn
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif

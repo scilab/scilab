@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en_US" xml:id="wfir_gui">
+    <refnamediv>
+        <refname>wfir_gui</refname>
+        <refpurpose>Graphical user interface that can be used to interactively design wfir filters</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[ftype,forder,cfreq,wtype,fpar] = wfir_gui()</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parameters</title>
+        <variablelist>
+            <varlistentry>
+                <term>ftype</term>
+                <listitem>
+                    <para>
+                        a string: the selected filter type.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>forder</term>
+                <listitem>
+                    <para>
+                        a scalar with positive integer value: the selected filter order
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>cfreq</term>
+                <listitem>
+                    <para>
+                        a 2 vector: the cut-off frequencies in normalized frequencies
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>wtype</term>
+                <listitem>
+                    <para>
+                        a string: the selected window type.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fpar</term>
+                <listitem>
+                    <para>
+                        2-vector of window parameters.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            This function proposes a graphical user interface to allow user
+            interactively select the design parameters of windowed
+            finite impulse response filters (see <link linkend="wfir">wfir</link>). It is called by
+            <literal>wfir</literal> when no input arguments are given.
+        </para>
+        <para>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="../../images/wfir_gui_dialog.png"/>
+                </imageobject>
+            </inlinemediaobject>
+        </para>
+        <para>
+            If requested, the frequency response of the filter is
+            automatically updated according to the parameters set in the
+            dialog window:
+        </para>
+        <para>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="../../images/wfir_gui_view.svg"/>
+                </imageobject>
+            </inlinemediaobject>
+        </para>
+    </refsection>
+    <refsection>
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="wfir">wfir</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>Used Functions</title>
+        <para>
+            Based on <link linkend="uicontrol">uicontrol</link> functions.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+wfir_gui()
+ ]]></programlisting>
+    </refsection>
+
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>Function wfir_gui is redesigned from scratch to provide a better user experience.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

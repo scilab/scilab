@@ -19,21 +19,33 @@ dia1 = diary(TMPDIR+'/my_log_2');
 b = 1;
 diary(dia0, 'close');
 diary(dia1, 'close');
-mgetl(TMPDIR+'/my_log_1')
- ans  =
- 
+ret = mgetl(TMPDIR+'/my_log_1')
+ ret  = 
+!                                       !
+!                                       !
 !a = 1;                             !
-!                                      !
+!                                       !
+!                                       !
+!                                       !
 !dia1 = diary(TMPDIR+'/my_log_2');  !
-!                                      !
+!                                       !
+!                                       !
+!                                       !
 !b = 1;                             !
-!                                      !
+!                                       !
+!                                       !
+!                                       !
 !diary(dia0, 'close');              !
-mgetl(TMPDIR+'/my_log_2') 
- ans  =
- 
+ret = mgetl(TMPDIR+'/my_log_2')
+ ret  = 
+!                           !
+!                           !
 !b = 1;                 !
-!                          !
+!                           !
+!                           !
+!                           !
 !diary(dia0, 'close');  !
-!                          !
+!                           !
+!                           !
+!                           !
 !diary(dia1, 'close');  !

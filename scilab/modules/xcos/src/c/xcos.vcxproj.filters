@@ -15,9 +15,6 @@
     <Filter Include="Libraries Dependencies">
       <UniqueIdentifier>{97ee0208-8b7d-40b5-9b30-d57ee2e50f84}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Libraries Dependencies\Imports">
-      <UniqueIdentifier>{33fb5793-e89b-497e-86e5-6c794a65e365}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{2dda7dd9-8a5e-47a5-830c-1e6a617396a6}</UniqueIdentifier>
     </Filter>
@@ -41,10 +38,13 @@
     <ClCompile Include="..\..\sci_gateway\cpp\sci_Xcos.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_xcosConfigureXmlFile.cpp">
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_xcosCellCreated.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_xcosDiagramToScilab.cpp">
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_xcosUpdateBlock.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_xcosConfigureXmlFile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\cpp\sci_xcosPalCategoryAdd.cpp">
@@ -80,9 +80,6 @@
     <ClCompile Include="..\..\sci_gateway\cpp\sci_xcosAddToolsMenu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_xcosUpdateBlock.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\cpp\sci_loadXcos.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -95,12 +92,24 @@
     <ClCompile Include="..\jni\JavaController_wrap.cxx">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\jni\JavaXMIResource_wrap.cxx">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\jni\XcosCellFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_xcosDiagramToScilab.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_xcos.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\gw_xcos.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\gw_xcos.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\jni\Modelica.hxx">
@@ -118,11 +127,11 @@
     <ClInclude Include="..\cpp\loadStatus.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\jni\XcosCellFactory.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="core_import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\xcos.iss" />
     <None Include="..\..\sci_gateway\xcos_gateway.xml" />

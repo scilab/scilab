@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="rpem">
+    <refnamediv>
+        <refname>rpem</refname>
+        <refpurpose>Recursive Prediction-Error Minimization estimation</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[w1,[v]]=rpem(w0,u0,y0,[lambda,[k,[c]]])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>w0</term>
+                <listitem>
+                    <para>
+                        <literal>list(theta,p,l,phi,psi)</literal> where:
+                    </para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>theta</term>
+                            <listitem>
+                                <para>
+                                    [a,b,c] is a real vector of order <literal>3*n</literal>
+                                </para>
+                                <variablelist>
+                                    <varlistentry>
+                                        <term>a,b,c</term>
+                                        <listitem>
+                                            <para>
+                                                <literal>a=[a(1),...,a(n)], b=[b(1),...,b(n)], c=[c(1),...,c(n)]</literal>
+                                            </para>
+                                        </listitem>
+                                    </varlistentry>
+                                </variablelist>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>p</term>
+                            <listitem>
+                                <para>(3*n x 3*n) real matrix.</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>phi,psi,l</term>
+                            <listitem>
+                                <para>
+                                    real vector of dimension <literal>3*n</literal>
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                    <para>
+                        Applicable values for the first call:
+                    </para>
+                    <programlisting role=""><![CDATA[
+theta=phi=psi=l=0*ones(1,3*n). p=eye(3*n,3*n)
+ ]]></programlisting>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>u0</term>
+                <listitem>
+                    <para>
+                        real vector of inputs (arbitrary size). (<literal>u0($)</literal> is not used by rpem)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y0</term>
+                <listitem>
+                    <para>
+                        vector of outputs (same dimension as <literal>u0</literal>). (<literal>y0(1)</literal> is not used by rpem).
+                    </para>
+                    <para>
+                        If the time domain is <literal>(t0,t0+k-1)</literal> the <literal>u0</literal> vector contains the inputs
+                    </para>
+                    <para>
+                        <literal>u(t0),u(t0+1),..,u(t0+k-1)</literal> and <literal>y0</literal> the outputs
+                    </para>
+                    <para>
+                        <literal>y(t0),y(t0+1),..,y(t0+k-1)</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Optional arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>lambda</term>
+                <listitem>
+                    <para>optional argument (forgetting constant) chosen close to 1 as convergence occur:</para>
+                    <para>
+                        <literal>lambda=[lambda0,alfa,beta]</literal> evolves according to :
+                    </para>
+                    <programlisting role=""><![CDATA[
+lambda(t)=alfa*lambda(t-1)+beta
+ ]]></programlisting>
+                    <para>
+                        with <literal>lambda(0)=lambda0</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>k</term>
+                <listitem>
+                    <para>contraction factor to be chosen close to 1 as convergence occurs.</para>
+                    <para>
+                        <literal>k=[k0,mu,nu]</literal> evolves according to:
+                    </para>
+                    <programlisting role=""><![CDATA[
+k(t)=mu*k(t-1)+nu
+ ]]></programlisting>
+                    <para>
+                        with <literal>k(0)=k0</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>c</term>
+                <listitem>
+                    <para>
+                        Large argument.(<literal>c=1000</literal> is the default value).
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Outputs:</title>
+        <variablelist>
+            <varlistentry>
+                <term>w1</term>
+                <listitem>
+                    <para>
+                        Update for <literal>w0</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>v</term>
+                <listitem>
+                    <para>
+                        sum of squared prediction errors on <literal>u0, y0</literal>.(optional).
+                    </para>
+                    <para>
+                        In particular <literal>w1(1)</literal> is the new
+                        estimate of <literal>theta</literal>. If a new
+                        sample <literal>u1, y1</literal> is available the update is
+                        obtained by:
+                    </para>
+                    <para>
+                        <literal>[w2,[v]]=rpem(w1,u1,y1,[lambda,[k,[c]]])</literal>. Arbitrary
+                        large series can thus be treated.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Recursive estimation of arguments in an ARMAX model.
+            Uses Ljung-Soderstrom recursive prediction error method.
+            Model considered is the following:
+        </para>
+        <programlisting role=""><![CDATA[
+y(t)+a(1)*y(t-1)+...+a(n)*y(t-n)=
+b(1)*u(t-1)+...+b(n)*u(t-n)+e(t)+c(1)*e(t-1)+...+c(n)*e(t-n)
+ ]]></programlisting>
+        <para>
+        </para>
+        <para>
+            The effect of this command is to update the estimation of
+            unknown argument <literal>theta=[a,b,c]</literal> with
+        </para>
+        <para>
+            <literal>a=[a(1),...,a(n)], b=[b(1),...,b(n)], c=[c(1),...,c(n)]</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Example</title>
+        <programlisting role="Example"><![CDATA[
+nbPoints = 50; // Number of points computed
+
+// Real parameters a,b,c: here, y=u
+a=cat(2,1,zeros(1,nbPoints - 1));
+b=cat(2,1,zeros(1,nbPoints - 1));
+c=zeros(1,nbPoints);
+
+// Generate input signal
+t=linspace(0,50,600);
+w=%pi/3;
+u=cos(w*t);
+
+// Generate output signal
+Arma=armac(a,b,c,1,1,0);
+y=arsimul(Arma,u);
+
+f1=figure("figure_name","figure1","backgroundColor",[1 1 1]);
+subplot(3,1,1);
+plot(t, u, "b+");
+xtitle("Input");
+subplot(3,1,2);
+plot(t, y);
+
+// Arguments of rpem
+phi=zeros(1,nbPoints*3);
+psi=zeros(1,nbPoints*3);
+l=zeros(1,nbPoints*3);
+p=1*eye(nbPoints*3,nbPoints*3);
+theta=[0*a 0*b 0*c];
+w0=list(theta,p,l,phi,psi);
+[w0, v]=rpem(w0,u,y);
+
+// Get estimated parameters:
+a_est=w0(1)(1);
+b_est=w0(1)(nbPoints + 1);
+c_est=w0(1)(2 * nbPoints + 1);
+for i=2:nbPoints
+    a_est=cat(2,a_est,w0(1)(i));
+    b_est=cat(2,b_est,w0(1)(i+nbPoints));
+    c_est=cat(2,c_est,w0(1)(i+2*nbPoints));
+end
+
+// Generate and plot output estimated
+Arma_est=armac(a_est,b_est,c_est,1,1,0);
+y_est=arsimul(Arma_est,u);
+plot(t, y_est,"color","red");
+xtitle("Real output(blue), Estimated output (red)");
+
+// Plot estimated parameters
+subplot(3,1,3);
+xtitle("a,b,c estimated");
+plot(a_est(1,:),"color","red");
+plot(b_est(1,:),"color","green");
+plot(c_est(1,:),"color","blue");
+]]>
+        </programlisting>
+        <scilab:image>
+            nbPoints = 50; // Number of points computed
+
+            // Real parameters a,b,c: here, y=u
+            a=cat(2,1,zeros(1,nbPoints - 1));
+            b=cat(2,1,zeros(1,nbPoints - 1));
+            c=zeros(1,nbPoints);
+
+            // Generate input signal
+            t=linspace(0,50,600);
+            w=%pi/3;
+            u=cos(w*t);
+
+            // Generate output signal
+            Arma=armac(a,b,c,1,1,0);
+            y=arsimul(Arma,u);
+
+            f1=figure("figure_name","figure1","backgroundColor",[1 1 1]);
+            subplot(3,1,1);
+            plot(t, u, "b+");
+            xtitle("Input");
+            subplot(3,1,2);
+            plot(t, y);
+
+            // Arguments of rpem
+            phi=zeros(1,nbPoints*3);
+            psi=zeros(1,nbPoints*3);
+            l=zeros(1,nbPoints*3);
+            p=1*eye(nbPoints*3,nbPoints*3);
+            theta=[0*a 0*b 0*c];
+            w0=list(theta,p,l,phi,psi);
+            [w0, v]=rpem(w0,u,y);
+
+            // Get estimated parameters:
+            a_est=w0(1)(1);
+            b_est=w0(1)(nbPoints + 1);
+            c_est=w0(1)(2 * nbPoints + 1);
+            for i=2:nbPoints
+            a_est=cat(2,a_est,w0(1)(i));
+            b_est=cat(2,b_est,w0(1)(i+nbPoints));
+            c_est=cat(2,c_est,w0(1)(i+2*nbPoints));
+            end
+
+            // Generate and plot output estimated
+            Arma_est=armac(a_est,b_est,c_est,1,1,0);
+            y_est=arsimul(Arma_est,u);
+            plot(t, y_est,"color","red");
+            xtitle("Real output(blue), Estimated output (red)");
+
+            // Plot estimated parameters
+            subplot(3,1,3);
+            xtitle("a,b,c estimated");
+            plot(a_est(1,:),"color","red");
+            plot(b_est(1,:),"color","green");
+            plot(c_est(1,:),"color","blue");
+        </scilab:image>
+    </refsection>
+</refentry>

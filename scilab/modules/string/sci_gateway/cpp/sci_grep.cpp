@@ -2,11 +2,14 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2010 - DIGITEO - Antoine ELIAS
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
@@ -32,8 +35,6 @@ extern "C"
 #include "pcre_error.h"
 }
 
-using namespace types;
-
 /*------------------------------------------------------------------------*/
 #define GREP_OK             0
 #define GREP_ERROR          1
@@ -50,8 +51,7 @@ typedef struct grep_results
 static int GREP_NEW(GREPRESULTS *results, char **Inputs_param_one, int mn_one, char **Inputs_param_two, int mn_two);
 static int GREP_OLD(GREPRESULTS *results, char **Inputs_param_one, int mn_one, char **Inputs_param_two, int mn_two);
 /*------------------------------------------------------------------------*/
-
-Function::ReturnValue sci_grep(typed_list &in, int _iRetCount, typed_list &out)
+types::Function::ReturnValue sci_grep(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     bool bRegularExpression = false;
 
@@ -59,14 +59,20 @@ Function::ReturnValue sci_grep(typed_list &in, int _iRetCount, typed_list &out)
     if (in.size() < 2 || in.size() > 3)
     {
         Scierror(999, _("%s: Wrong number of input arguments: %d or %d expected.\n"), "grep", 2, 3);
-        return Function::Error;
+        return types::Function::Error;
     }
 
-    if (in[0]->isDouble() && in[0]->getAs<Double>()->getSize() == 0)
+    if (_iRetCount > 2)
     {
-        Double *pD = Double::Empty();
+        Scierror(999, _("%s: Wrong number of output arguments: %d or %d expected.\n"), "grep", 1, 2);
+        return types::Function::Error;
+    }
+
+    if (in[0]->isDouble() && in[0]->getAs<types::Double>()->getSize() == 0)
+    {
+        types::Double *pD = types::Double::Empty();
         out.push_back(pD);
-        return Function::OK;
+        return types::Function::OK;
     }
 
     if (in.size() == 3)
@@ -75,14 +81,14 @@ Function::ReturnValue sci_grep(typed_list &in, int _iRetCount, typed_list &out)
         if (in[2]->isString() == false)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "grep", 3);
-            return Function::Error;
+            return types::Function::Error;
         }
 
-        String* pS = in[2]->getAs<types::String>();
+        types::String* pS = in[2]->getAs<types::String>();
         if (pS->getSize() != 1)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: Single string expected.\n"), "grep", 3);
-            return Function::Error;
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "grep", 3);
+            return types::Function::Error;
         }
 
         if (pS->get(0)[0] == 'r')
@@ -94,17 +100,17 @@ Function::ReturnValue sci_grep(typed_list &in, int _iRetCount, typed_list &out)
     if (in[0]->isString() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "grep", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (in[1]->isString() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "grep", 2);
-        return Function::Error;
+        return types::Function::Error;
     }
 
-    String* pS1 = in[0]->getAs<types::String>();
-    String* pS2 = in[1]->getAs<types::String>();
+    types::String* pS1 = in[0]->getAs<types::String>();
+    types::String* pS2 = in[1]->getAs<types::String>();
 
 
     for (int i = 0 ; i < pS2->getSize() ; i++)
@@ -112,7 +118,7 @@ Function::ReturnValue sci_grep(typed_list &in, int _iRetCount, typed_list &out)
         if (wcslen(pS2->get(i)) == 0)
         {
             Scierror(249, _("%s: Wrong values for input argument #%d: Non-empty strings expected.\n"), "grep", 2);
-            return Function::Error;
+            return types::Function::Error;
         }
     }
 
@@ -161,14 +167,14 @@ Function::ReturnValue sci_grep(typed_list &in, int _iRetCount, typed_list &out)
     {
         case GREP_OK :
         {
-            Double* pD1 = NULL;
+            types::Double* pD1 = NULL;
             if (grepresults.currentLength == 0)
             {
-                pD1 = Double::Empty();
+                pD1 = types::Double::Empty();
             }
             else
             {
-                pD1 = new Double(1, grepresults.currentLength);
+                pD1 = new types::Double(1, grepresults.currentLength);
                 double* pDbl1 = pD1->getReal();
                 for (int i = 0 ; i < grepresults.currentLength ; i++ )
                 {
@@ -180,14 +186,14 @@ Function::ReturnValue sci_grep(typed_list &in, int _iRetCount, typed_list &out)
 
             if (_iRetCount == 2)
             {
-                Double* pD2 = NULL;
+                types::Double* pD2 = NULL;
                 if (grepresults.currentLength == 0)
                 {
-                    pD2 = Double::Empty();
+                    pD2 = types::Double::Empty();
                 }
                 else
                 {
-                    pD2 = new Double(1, grepresults.currentLength);
+                    pD2 = new types::Double(1, grepresults.currentLength);
                     double* pDbl2 = pD2->getReal();
                     for (int i = 0 ; i < grepresults.currentLength ; i++ )
                     {
@@ -226,12 +232,12 @@ Function::ReturnValue sci_grep(typed_list &in, int _iRetCount, typed_list &out)
                 FREE(grepresults.positions);
                 grepresults.positions = NULL;
             }
-            return Function::Error;
+            return types::Function::Error;
         }
         break;
     }
 
-    return Function::OK;
+    return types::Function::OK;
 }
 //Function::ReturnValue sci_grep(typed_list &in, int _iRetCount, typed_list &out)
 //{
@@ -295,13 +301,10 @@ static int GREP_NEW(GREPRESULTS *results, char **Inputs_param_one, int mn_one, c
     char *save = NULL;
     int iRet = GREP_OK;
     pcre_error_code answer = PCRE_FINISHED_OK;
-    for (x = 0; x <  mn_one ; x++)
-    {
-        results->sizeArraysMax = results->sizeArraysMax + (int)strlen(Inputs_param_one[x]);
-    }
+    results->sizeArraysMax = mn_one * mn_two;
 
-    results->values = (int *)MALLOC(sizeof(int) * (3 * results->sizeArraysMax + 1));
-    results->positions = (int *)MALLOC(sizeof(int) * (3 * results->sizeArraysMax + 1));
+    results->values = (int *)MALLOC(sizeof(int) * results->sizeArraysMax);
+    results->positions = (int *)MALLOC(sizeof(int) * results->sizeArraysMax);
 
     if ( (results->values == NULL) || (results->positions == NULL) )
     {
@@ -328,32 +331,24 @@ static int GREP_NEW(GREPRESULTS *results, char **Inputs_param_one, int mn_one, c
             save = os_strdup(Inputs_param_two[x]);
             answer = pcre_private(Inputs_param_one[y], save, &Output_Start, &Output_End, NULL, NULL);
 
-            if ( answer == PCRE_FINISHED_OK )
-            {
-                if (results->currentLength < results->sizeArraysMax)
-                {
-                    results->values[results->currentLength] = y + 1;
-                    results->positions[results->currentLength] = x + 1;
-                    results->currentLength++;
-                }
-            }
-            else if (answer != NO_MATCH)
-            {
-                pcre_error("grep", answer);
-                iRet = GREP_ERROR;
-            }
-
             if (save)
             {
                 FREE(save);
                 save = NULL;
             }
-        }
-    }
 
-    if (results->currentLength > results->sizeArraysMax)
-    {
-        results->currentLength = results->sizeArraysMax;
+            if ( answer == PCRE_FINISHED_OK )
+            {
+                results->values[results->currentLength] = y + 1;
+                results->positions[results->currentLength] = x + 1;
+                results->currentLength++;
+            }
+            else if (answer != NO_MATCH)
+            {
+                pcre_error("grep", answer);
+                return GREP_ERROR;
+            }
+        }
     }
 
     return iRet;

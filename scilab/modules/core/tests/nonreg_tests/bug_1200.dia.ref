@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2005-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
@@ -20,5 +21,4 @@ J=0.001;
 format("v",7);
 diary(TMPDIR+"/bug1200.dia");
 disp(J);
- 
-    0.001  
+   0.001

@@ -77,12 +77,6 @@
     <ClCompile Include="more.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="prompt.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="promptecho.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="scilines.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -113,10 +107,16 @@
     <ClCompile Include="windows\TermPrintf.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="windows\TermReadAndProcess.c">
+    <ClCompile Include="..\cpp\scilabRead.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\cpp\scilabRead.cpp">
+    <ClCompile Include="getpipeline.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\prompt.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="windows\TermReadAndProcess.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -155,9 +155,6 @@
     <ClInclude Include="..\..\includes\more.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\prompt.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\includes\scilines.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -180,9 +177,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GuiManagement.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="promptecho.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PromptToHome.h">
@@ -237,6 +231,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="windows\TermLine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\getpipeline.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\prompt.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

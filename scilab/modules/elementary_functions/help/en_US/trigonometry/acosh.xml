@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2016 - Samuel GOUGEON
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="acosh" xml:lang="en">
@@ -16,46 +19,94 @@
         <refpurpose>hyperbolic cosine inverse</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>[t] = acosh(x)</synopsis>
+        <title>Syntax</title>
+        <synopsis>t = acosh(x)</synopsis>
     </refsynopsisdiv>
-    <refsection>
+    <refsection role="parameters">
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>x</term>
+                <term>x, t</term>
                 <listitem>
-                    <para>a real or complex vector or matrix.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>t</term>
-                <listitem>
-                    <para>a real or complex vector or matrix.</para>
+                    <para>each is a real or complex vector or matrix.
+                        <literal>t</literal> has the sizes of <literal>x</literal>.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Description</title>
         <para>
-            The components of <varname>t</varname> are the inverse hyperbolic
-            cosine of the corresponding entries of <varname>x</varname>.
-            Definition domain is <latex>]1,+\infty)</latex>].
+            <function>acosh(x)</function> returns <varname>t</varname> such that
+            <literal>cosh(t)==x</literal> and <literal>real(t)>=0</literal>.
+            <literal>-t</literal> are always other possible answers.
+        </para>
+        <para>For real input numbers <literal>-1 &lt; x &lt; 1</literal>,
+           <literal>real(t)==0</literal> and <literal>imag(t)</literal>
+           belongs to <literal>]0, %pi[</literal>.
+        </para>
+        <para>For complex numbers <literal>x</literal>,
+            <literal>imag(t)</literal> belongs to <literal>[-pi, pi]</literal>
+            and any <literal>t + k*%pi*%i</literal> with integer k are other
+            possible answers.
         </para>
     </refsection>
     <refsection>
         <title>Sample</title>
-        <scilab:image>
-            x=-360:1:360
-            plot(x,acosh(x))
-        </scilab:image>
+        <scilab:image><![CDATA[
+            subplot(2,2,1)
+            x = -20:0.2:-1;
+            t = acosh(x);
+            plot(x, real(acosh(x)))
+            xtitle("acosh(x) = a + pi.i", "x <= -1", "a > 0")
+            xstring(-18, 0.5, "-a + pi.i other solution")
+
+            subplot(2,1,2)
+            x = -1:0.01:1;
+            plot(x, imag(acosh(x)))
+            title("acosh(x) = b.i  is pure imaginary")
+            xlabel("-1 < x < 1")
+            ylabel("0 < b < pi")
+
+            subplot(2,2,2)
+            x = 1:0.2:20;
+            plot(x, acosh(x))
+            xlabel("x >= 1")
+            ylabel("acosh(x)")
+        ]]></scilab:image>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-x=[0,1,%i];
-cosh(acosh(x))
+        <programlisting role="example"><![CDATA[
+x = [ -2 -1.001 -1 -0.999 -0.5  0
+       2  1.001  1  0.999  0.5  0]'
+t = acosh(x)
+cosh(t) - x
+cosh(-t) - x
+
+// With complex numbers:
+acosh([-0.01*%i  0.01*%i
+       -0.1*%i   0.1*%i
+       -%i       %i
+       -10*%i    10*%i
+       -1 - %i,  1 + %i
+       -2 - 2*%i, 2 + 2*%i
+       ])
  ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="cosh">cosh</link>
+            </member>
+            <member>
+                <link linkend="sinh">sinh</link>
+            </member>
+            <member>
+                <link linkend="tanh">tanh</link>
+            </member>
+        </simplelist>
     </refsection>
 </refentry>

@@ -46,7 +46,7 @@ for i=1:5:100
     if rep(3)~=-1 then 
           p=locate(2);
           v=round(p(1,:)); 
-          xset("window",2)
+          scf(2);
           xsetech([0,0,1,0.5]),
           plot(x(origen+v(1):origen+v(2)));
           xsetech([0,0.5,1,0.5]),

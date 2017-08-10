@@ -4,11 +4,14 @@
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2009 - DIGITEO - Pierre Lando
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -70,7 +73,7 @@ int sci_xstring(char *fname, void *pvApiCtx)
     // Retrieve a matrix of string at position 3.
     if (getAllocatedMatrixOfString(pvApiCtx, piAddrStr, &m3, &n3, &Str))
     {
-        Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 3);
+        Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 3);
         return 1;
     }
 
@@ -78,6 +81,7 @@ int sci_xstring(char *fname, void *pvApiCtx)
     {
         AssignOutputVariable(pvApiCtx, 1) = 0;
         ReturnArguments(pvApiCtx);
+        freeArrayOfString(Str, m3 * n3);
         return 0;
     }
 
@@ -85,6 +89,7 @@ int sci_xstring(char *fname, void *pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        freeArrayOfString(Str, m3 * n3);
         return 1;
     }
 
@@ -94,6 +99,7 @@ int sci_xstring(char *fname, void *pvApiCtx)
     {
         printError(&sciErr, 0);
         Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 1);
+        freeArrayOfString(Str, m3 * n3);
         return 1;
     }
 
@@ -101,6 +107,7 @@ int sci_xstring(char *fname, void *pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        freeArrayOfString(Str, m3 * n3);
         return 1;
     }
 
@@ -110,6 +117,7 @@ int sci_xstring(char *fname, void *pvApiCtx)
     {
         printError(&sciErr, 0);
         Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 2);
+        freeArrayOfString(Str, m3 * n3);
         return 1;
     }
 
@@ -127,6 +135,7 @@ int sci_xstring(char *fname, void *pvApiCtx)
         Scierror(999, _("%s: Incompatible input arguments #%d and #%d: Same element number expected.\n"), fname, 1, 2);
         AssignOutputVariable(pvApiCtx, 1) = 0;
         ReturnArguments(pvApiCtx);
+        freeArrayOfString(Str, m3 * n3);
         return 0;
     }
 
@@ -134,6 +143,7 @@ int sci_xstring(char *fname, void *pvApiCtx)
     {
         AssignOutputVariable(pvApiCtx, 1) = 0;
         ReturnArguments(pvApiCtx);
+        freeArrayOfString(Str, m3 * n3);
         return 0;
     }
 
@@ -143,6 +153,7 @@ int sci_xstring(char *fname, void *pvApiCtx)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            freeArrayOfString(Str, m3 * n3);
             return 1;
         }
 
@@ -152,6 +163,7 @@ int sci_xstring(char *fname, void *pvApiCtx)
         {
             printError(&sciErr, 0);
             Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 4);
+            freeArrayOfString(Str, m3 * n3);
             return 1;
         }
 
@@ -160,6 +172,7 @@ int sci_xstring(char *fname, void *pvApiCtx)
             Scierror(999, _("%s: Wrong size for input argument #%d: %d or %d elements expected.\n"), fname, 4, 1, nbElement);
             AssignOutputVariable(pvApiCtx, 1) = 0;
             ReturnArguments(pvApiCtx);
+            freeArrayOfString(Str, m3 * n3);
             return 0;
         }
     }
@@ -169,6 +182,7 @@ int sci_xstring(char *fname, void *pvApiCtx)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            freeArrayOfString(Str, m3 * n3);
             return 1;
         }
 
@@ -178,6 +192,7 @@ int sci_xstring(char *fname, void *pvApiCtx)
         {
             printError(&sciErr, 0);
             Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 5);
+            freeArrayOfString(Str, m3 * n3);
             return 1;
         }
 
@@ -186,6 +201,7 @@ int sci_xstring(char *fname, void *pvApiCtx)
             Scierror(999, _("%s: Wrong size for input argument #%d: %d or %d elements expected.\n"), fname, 5, 1, nbElement);
             AssignOutputVariable(pvApiCtx, 1) = 0;
             ReturnArguments(pvApiCtx);
+            freeArrayOfString(Str, m3 * n3);
             return 0;
         }
     }

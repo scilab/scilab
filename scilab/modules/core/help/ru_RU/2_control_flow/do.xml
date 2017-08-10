@@ -7,8 +7,8 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Может использоваться внутри циклов <literal>for</literal>  
-            или <literal>while</literal> для отделения определения 
+            Может использоваться внутри циклов <literal>for</literal>
+            или <literal>while</literal> для отделения определения
             переменной цикла и набором инструкций.
         </para>
     </refsection>
@@ -31,7 +31,7 @@ end
 
  ]]></programlisting>
     </refsection>
-    
+
     <refsection role="see also">
         <title>Смотрите также</title>
         <simplelist type="inline">

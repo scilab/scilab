@@ -125,8 +125,8 @@ SS:=linsolve(Aprim,matrix(ncont,1,0)):
 # can be used to see that eta[i]=thd[i] ( eta[i] is the maple variable ti )
 # but the indices can be mixed and linsolve doesn't 
 # always return the same result 
-# We have to check the correspondance between t.sig(i)=thd[i]
-# and to change SS to have a good corespondance 
+# We have to check the correspondence between t.sig(i)=thd[i]
+# and to change SS to have a good corespondence
 #-------------------------------------------------------------------------
 
 permut:={seq(SS[mm*i,1]=t_s[i],i=1..n)}:

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="iirlp">
+    <refnamediv>
+        <refname>iirlp</refname>
+        <refpurpose>Lp IIR filter optimization</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[cost,grad,ind]=iirlp(x,ind,p,[flag],lambda,omega,ad,wa,td,wt)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>p</term>
+                <listitem>
+                    <para>Lp criterion</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>1X2 vector of the module and argument of the poles and the zeros of the filters</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flag</term>
+                <listitem>
+                    <para>
+                        string : <literal>'a'</literal> for amplitude, 'gd' for group delay; default case for amplitude and group delay.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>omega</term>
+                <listitem>
+                    <para>frequencies where the filter specifications are given</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>wa,wt</term>
+                <listitem>
+                    <para>weighting functions for the amplitude and the group delay</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>lambda</term>
+                <listitem>
+                    <para>
+                        weighting (with <literal>1-lambda</literal>) of the costs (<literal>'a'</literal> and <literal>'gd'</literal> for getting the global cost.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ad, td</term>
+                <listitem>
+                    <para>desired amplitude and group delay</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>cost, grad</term>
+                <listitem>
+                    <para>criterium and gradient values</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            optimization of IIR filters for the Lp criterium for the
+            amplitude and/or the group delay. (Rabiner &amp; Gold pp270-273).
+        </para>
+    </refsection>
+</refentry>

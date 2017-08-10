@@ -2,11 +2,14 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2008 - DIGITEO - Allan CORNET
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
@@ -23,10 +26,11 @@
 #include "TermPosition.h"
 #include "../../../windows_tools/src/c/scilab_windows/console.h"
 #include "os_string.h"
+#include "storeCommand.h"
 /*--------------------------------------------------------------------------*/
 static int CURRENT_MAX_LINE_SIZE = bsiz;
 static char *cur_line = NULL;	/* current contents of the line */
-static char *currentPrompt = NULL;
+static const char *currentPrompt = NULL;
 static int cur_pos = 0;		/* current position of the cursor */
 static int max_pos = 0;
 /*--------------------------------------------------------------------------*/
@@ -200,7 +204,7 @@ void deleteCurrentChar(void)
     reallocLineBuffer();
     if (max_pos == 0)
     {
-        TerminalBeep();
+        StorePrioritaryCommand("exit");
     }
     else
     {
@@ -387,12 +391,12 @@ static void backSpace(void)
     }
 }
 /*--------------------------------------------------------------------------*/
-static char *getCurrentPrompt(void)
+static const char *getCurrentPrompt(void)
 {
     return currentPrompt;
 }
 /*--------------------------------------------------------------------------*/
-void setCurrentPrompt(char *prompt)
+void setCurrentPrompt(const char *prompt)
 {
     currentPrompt = prompt;
 }
@@ -444,7 +448,6 @@ char *getLineAfterCaret(void)
     if (cur_pos != max_pos)
     {
         line = os_strdup(&cur_line[cur_pos]);
-        line[(max_pos - cur_pos) + 1] = '\0';
     }
     else
     {

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="colregul">
+    <refnamediv>
+        <refname>colregul</refname>
+        <refpurpose>無限大にある極及びゼロを取り除く</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順e</title>
+        <synopsis>[Stmp,Ws]=colregul(Sl,alfa,beta)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>Sl,Stmp</term>
+                <listitem>
+                    <para>
+                        <literal>syslin</literal>リスト
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>alfa,beta</term>
+                <listitem>
+                    <para>実数 (新しい極およびゼロの位置)</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>Stmp=Sl*Ws</literal>がプロパーで
+            <literal>D</literal>行列がフルランクとなるようなプリフィルタ<literal>Ws</literal>
+            を計算します.
+        </para>
+        <para>
+            <literal>Sl</literal>の無限大にある極は<literal>alfa</literal>に移動されます.
+        </para>
+        <para>
+            <literal>Sl</literal>の無限大にあるゼロは<literal>beta</literal>に移動されます.
+        </para>
+        <para>
+            <literal>Sl</literal> は,
+            多項式<literal>D</literal>行列が付属する可能性がある状態空間表現の
+            左可逆線形システム(<literal>syslin</literal> リスト)であると仮定されます.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="invsyslin">invsyslin</link>
+            </member>
+            <member>
+                <link linkend="inv">inv</link>
+            </member>
+            <member>
+                <link linkend="rowregul">rowregul</link>
+            </member>
+            <member>
+                <link linkend="rowshuff">rowshuff</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

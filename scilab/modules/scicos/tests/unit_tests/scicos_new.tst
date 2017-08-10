@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- CLI SHELL MODE -->
+
 loadXcosLibs();
 
 // sub-objects not mapped to the model
@@ -49,4 +51,11 @@ lnk = scs_m.objs($);
 lnk.from = [1 1 0]
 lnk.to = [2 1 1]
 scs_m.objs($+1) = lnk;
+
+// use scicos_new to retrieve and adapter from an uid
+blk2 = scicos_new(blk.modelID);
+
+clear blk
+blk2.model.rpar;
+clear blk2
 

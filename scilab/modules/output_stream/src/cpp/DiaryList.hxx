@@ -3,11 +3,14 @@
 * ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) DIGITEO - 2009 - Allan CORNET
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 /*--------------------------------------------------------------------------*/
@@ -29,8 +32,8 @@ public:
     ~DiaryList();
 
     /* open a diary */
-    int openDiary(std::wstring _wfilename, int _mode, bool autorename);
-    int openDiary(std::wstring _wfilename, bool autorename);
+    int openDiary(const std::wstring& _wfilename, int _mode, bool autorename);
+    int openDiary(const std::wstring& _wfilename, bool autorename);
 
     /* close a diary by ID */
     bool closeDiary(int ID_diary);
@@ -42,20 +45,20 @@ public:
     int * getIDs(int *sizeID);
 
     /* get filenames of diaries */
-    std::wstring * getFilenames(int *sizeFilenames);
+    std::list<std::wstring> getFilenames();
 
     /* get filename by IDs */
     std::wstring getFilename(int ID_diary);
 
     /* write string in diaries */
-    void write(std::wstring _wstr, bool bInput);
-    void writeln(std::wstring _wstr, bool bInput);
+    void write(const std::wstring& _wstr, bool bInput);
+    void writeln(const std::wstring& _wstr, bool bInput);
 
     /* test if exists a diary by ID */
     bool exists(int ID_diary);
 
     /* test if exists a diary by filename */
-    bool exists(std::wstring _wfilename);
+    bool exists(const std::wstring& _wfilename);
 
     /* set & get Resume mode */
     void setSuspendWrite(bool bWith);
@@ -65,7 +68,7 @@ public:
     bool getSuspendWrite(int ID_diary);
 
     /* get ID by filename */
-    int getID(std::wstring _wfilename);
+    int getID(const std::wstring& _wfilename);
 
     /* set & get mode */
     void setFilterMode(int ID_diary, diary_filter mode);

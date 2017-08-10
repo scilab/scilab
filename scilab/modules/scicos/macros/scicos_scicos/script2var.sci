@@ -84,7 +84,7 @@ function [%ll,%ierr]=getvardef(%txt,%ll)
         if typeof(%v)=="scs_m" then
             mprintf(_("The variable name %s cannot be used as block parameter: ignored\n"),"scs_m")
             continue
-        elseif or(type(%v)==[11 13 14]) then
+        elseif or(type(%v)==[13 14]) then
             continue
         end
 

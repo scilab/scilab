@@ -1,16 +1,29 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA -
+// Copyright (C) 1996 - 2016 - INRIA - Serge Steer
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
-
-function [f,r]=dscr(a,dt,m)
+function [f,r]=dscr(sys,dt,m)
 
     [lhs,rhs]=argn(0);
+    if and(typeof(sys) <> ["state-space" "rational" "zpk"]) then
+        args=["sys","dt","m"]
+        ierr=execstr("%"+overloadname(sys)+"_dscr("+strcat(args(1:rhs),",")+")","errcatch")
+        if ierr<>0 then
+            error(msprintf(_("%s: Wrong type for input argument #%d: Linear dynamical system expected.\n"),"dscr",1))
+        end
+        return
+    end
+    dom=sys.dt
+    if dom<>"c" then
+        warning(msprintf(gettext("%s: Input argument %d is assumed continuous time.\n"),"dscr",1))
+    end
     if type(dt)<>1 then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: A real expected.\n"),"dscr",2))
     end
@@ -25,17 +38,18 @@ function [f,r]=dscr(a,dt,m)
         error(msprintf(gettext("%s: Input argument #%d must be strictly positive.\n"),"dscr",2))
     end
 
-    select typeof(a)
-    case "rational" then
-        a=tf2ss(a);
-        [a,b,c,d,x0,dom]=a(2:7);
+    select typeof(sys)
     case "state-space" then
-        [a,b,c,d,x0,dom]=a(2:7)
-    else
-        error(97,1),
-    end;
-    if dom<>"c" then
-        warning(msprintf(gettext("%s: Input argument %d is assumed continuous time.\n"),"dscr",1))
+        S=sys
+    case "rational" then
+        S=tf2ss(sys);
+    case "zpk" then
+        S=zpk2ss(sys);
+    end
+
+    [a,b,c,d,x0]=S(2:6);
+    if degree(d)>0 then
+        error(msprintf(_("%s: Wrong value for input argument #%d: Proper system expected.\n"),"dscr",1));
     end
     [n1,m1]=size(b),
     s=expm([a,b;0*ones(m1,n1+m1)]*dt),

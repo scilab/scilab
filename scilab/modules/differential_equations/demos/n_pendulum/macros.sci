@@ -8,7 +8,7 @@
 function [n]=np()
     // Return the size  of the Fortran pendulum
     n=1;
-    n=fort("np",n,1,"i","sort",1);
+    n=call("np",n,1,"i","sort",1);
 endfunction
 
 
@@ -18,13 +18,13 @@ function [ydot]=npend ( t, th)
     //      data m  / 1.0, 1.0, 1.0, 1.0 /
     //      data j  / 0.3, 0.3, 0.3, 0.3 /
     ydot=ones(6,1)
-    ydot=fort("npend",3,1,"i",t,2,"d",th,3,"d",ydot,4,"d","sort",4);
+    ydot=call("npend",3,1,"i",t,2,"d",th,3,"d",ydot,4,"d","sort",4);
 endfunction
 
 
 function [E]=ener( th)
     E=0.0;
-    E=fort("ener",th,1,"d",E,2,"d","sort",2);
+    E=call("ener",th,1,"d",E,2,"d","sort",2);
 endfunction
 
 

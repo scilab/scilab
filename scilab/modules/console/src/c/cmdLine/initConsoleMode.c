@@ -2,11 +2,14 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2011 - DIGITEO - Karim Mamode
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 */
 
 #include <termios.h>
@@ -18,6 +21,7 @@
 #include <string.h>
 #include <errno.h>
 #include "sci_malloc.h"
+#include "cliDisplayManagement.h"
 #include "initConsoleMode.h"
 
 static void canonicMode(struct termios *t)
@@ -69,6 +73,11 @@ static void resetShellAttr(void)
 int setAttr(int bin)
 {
     struct termios shellAttr;
+
+    if (getCLIColor() == FALSE)
+    {
+        return 0;
+    }
 
     if (bin == ATTR_RESET)
     {

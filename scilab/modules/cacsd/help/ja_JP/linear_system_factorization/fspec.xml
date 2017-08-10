@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) Scilab Enterprises - 2013 - Charlotte HECQUET
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="fspec">
+    <refnamediv>
+        <refname>fspec</refname>
+        <refpurpose>連続時間動的システムのスペクトル分解</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>gm=fspec(g)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>g</term>
+                <listitem>
+                    <para>連続時間動的システム.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>gm</term>
+                <listitem>
+                    <para> 連続時間動的システム.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>gm</literal> および <literal>gm^-1</literal>
+            安定で,以下の関係を有するような<literal>gm</literal>を返します:
+        </para>
+        <programlisting role="no-scilab-exec"><![CDATA[
+g = gtild(gm)*gm
+ ]]></programlisting>
+        <para>
+            gtild(gm) は gm(-s)'の状態空間表現を返します.
+        </para>
+        <para>
+            <literal>g</literal> は可逆です.
+        </para>
+        <para>
+            虚軸に極を有することはできません.
+        </para>
+        <para>
+            gtild(g)=g (gの極・ゼロは虚軸に対して対称です).
+        </para>
+        <para>
+            g(inf) は正定です.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+a=-1000;
+b=5;
+c=5;
+d=5;
+sl=syslin('c',a,b,c,d);
+fspec(sl)
+ ]]></programlisting>
+    </refsection>
+</refentry>

@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
- * 
+ *
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
  * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  *  (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
- * 
+ *
  * See the file ./license.txt
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="CUMSUM">
@@ -103,30 +103,28 @@
     <refsection id="Description_CUMSUM">
         <title>Description</title>
         <para>
-            The CUMSUM block sums the element of an input MxN matrix U along either the rows, the columns or the first non singleton dimension.
+            The CUMSUM block cumulatively sums the element of an input MxN matrix U along either the rows, the columns or the first non singleton dimension.
+            The size of the output is also MxN.
         </para>
         <para>
-            When the <emphasis role="bold">Sum along</emphasis> parameter is set to :
+            When the <emphasis role="bold">Sum along</emphasis> parameter is set to:
         </para>
         <itemizedlist>
             <listitem>
                 <para>
-                    <emphasis role="bold">1</emphasis> : the block sums across the elements of each row. The output result will
-                    be a Mx1 matrix.
+                    <emphasis role="bold">1</emphasis>: the block progressively sums across the elements of each row.
                 </para>
                 <para/>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">2</emphasis> : the block sums across the elements of each column. The output result will
-                    be a 1xN matrix.
+                    <emphasis role="bold">2</emphasis>: the block progressively sums across the elements of each column.
                 </para>
                 <para/>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">0</emphasis> : the block sums across the first non singleton dimension.
-                    The output result will be a scalar.
+                    <emphasis role="bold">0</emphasis>: the block progressively sums across the first non singleton dimension.
                 </para>
             </listitem>
         </itemizedlist>
@@ -160,7 +158,7 @@
                     <emphasis role="bold">Sum along (0=the first non singleton dimension 1=Rows 2=Columns)</emphasis>
                 </para>
                 <para>
-                    Indicate whether to sum across the rows, the columns or the first non singleton dimension.
+                    Indicate whether to cumulatively sum across the rows, the columns or the first non singleton dimension.
                 </para>
                 <para>Properties : Type 'vec' of size 1.</para>
             </listitem>
@@ -169,9 +167,9 @@
     <refsection id="Example_CUMSUM">
         <title>Example</title>
         <programlisting role="example">
-            A=[1 2 3;4 5 6;7 8 9]
-            If the sum is along the row the result will be
-            B=[12;15;18]
+            A = [1 2 3 ; 4 5 6 ; 7 8 9]
+            If the sum is along the row the result will be:
+            B = [1 2 3 ; 5 7 9 ; 12 15 18]
         </programlisting>
     </refsection>
     <refsection id="Defaultproperties_CUMSUM">
@@ -202,7 +200,7 @@
                     <emphasis role="bold">regular inputs:</emphasis>
                 </para>
                 <para>
-                    <emphasis role="bold">- port 1 : size [-1,-2] / type 1</emphasis>
+                    <emphasis role="bold">- port 1: size [-1,-2] / type 1</emphasis>
                 </para>
             </listitem>
             <listitem>
@@ -210,7 +208,7 @@
                     <emphasis role="bold">regular outputs:</emphasis>
                 </para>
                 <para>
-                    <emphasis role="bold">- port 1 : size [-1,-2] / type 1</emphasis>
+                    <emphasis role="bold">- port 1: size [-1,-2] / type 1</emphasis>
                 </para>
             </listitem>
             <listitem>
@@ -276,6 +274,16 @@
                 <para>SCI/modules/scicos_blocks/src/c/cumsumz_c.c</para>
             </listitem>
         </itemizedlist>
+    </refsection>
+    <refsection id="Example_CUMSUM2">
+        <title>Cumulative Sum example</title>
+        <link type="scilab" linkend="scilab.xcos/xcos/examples/matrix_pal/CUMSUM_Example.zcos">
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../../../examples/matrix_pal/CUMSUM_Example.zcos" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </link>
     </refsection>
     <refsection id="Seealso_CUMSUM">
         <title>See also</title>

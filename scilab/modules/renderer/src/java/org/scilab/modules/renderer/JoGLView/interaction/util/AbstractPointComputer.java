@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009-2012 - DIGITEO - Pierre Lando
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  */
 
 package org.scilab.modules.renderer.JoGLView.interaction.util;
@@ -97,6 +100,24 @@ public abstract class AbstractPointComputer implements PointComputer {
         }
         return true;
     }
+
+    /**
+     * Check if the given vector has valid components
+     * not NaN and not Inf.
+     *
+     * @param v the 3d vector
+     * @return true if all components are valid, false otherwise
+     */
+    protected final boolean isValid(Vector3d v) {
+        double[] data = v.getData();
+        for (int i = 0; i < AXIS_NUMBER; i++) {
+            if (Double.isNaN(data[i]) || Double.isInfinite(data[i])) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 
     /**
      * Check if the given position feet axes bounds.

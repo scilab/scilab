@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Adeline CARNIS
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="eigs" xml:lang="ja">
@@ -102,7 +105,7 @@
                 <term>d = eigs(A) または d = eigs(Af, n)</term>
                 <listitem>
                     <para>
-                        は,固有値問題<literal>A * v = lambda * v</literal>を解きます. 
+                        は,固有値問題<literal>A * v = lambda * v</literal>を解きます.
                         このコールは,大きさが最大の6個の固有値を有する
                         ベクトル <literal>d</literal>を返します.
                         <literal>A</literal> は正方行列で,
@@ -117,7 +120,7 @@
                         この関数は,以下のヘッダを有する必要があります:
                     </para>
                     <programlisting role="no-scilab-exec">
-                        <![CDATA[ 
+                        <![CDATA[
 function y = A ( x )
  ]]>
                     </programlisting>
@@ -159,19 +162,19 @@ function y = A ( x )
                 <listitem>
                     <para>
                         は,正定行列<literal>B</literal>を指定して,
-                        一般化固有値問題 <literal>A * v = lambda  * B * v </literal> 
+                        一般化固有値問題 <literal>A * v = lambda  * B * v </literal>
                         を解きます.
                     </para>
                     <itemizedlist>
                         <listitem>
                             <para>
-                                <literal>B</literal> が指定されない場合, 
+                                <literal>B</literal> が指定されない場合,
                                 <literal>B = []</literal> が使用されます.
                             </para>
                         </listitem>
                         <listitem>
                             <para>
-                                <literal>B</literal> が指定された場合, 
+                                <literal>B</literal> が指定された場合,
                                 <literal>B</literal> はAと同じ大きさとする必要があります.
                             </para>
                         </listitem>
@@ -183,7 +186,7 @@ function y = A ( x )
                 <listitem>
                     <para>
                         は,<literal>k</literal>個の固有値をベクトル<literal>d</literal>に返します.
-                        <literal>k</literal> が指定されない場合, 
+                        <literal>k</literal> が指定されない場合,
                         <literal>k = min(n, 6)</literal>, ただし, nはAの行数となります.
                     </para>
                 </listitem>
@@ -260,7 +263,7 @@ function y = A ( x )
                 <term>d = eigs(A, B, k, sigma, opts)</term>
                 <listitem>
                     <para>
-                        <literal> opts </literal> 構造体が指定された場合, 
+                        <literal> opts </literal> 構造体が指定された場合,
                         <literal>k</literal> 個の固有値を計算する際に
                         異なるオプションを使用できます:
                     </para>
@@ -322,7 +325,7 @@ function y = A ( x )
                             <para>
                                 <term>isreal</term>
                                 <para>
-                                    <literal>Af</literal> が指定された場合, 
+                                    <literal>Af</literal> が指定された場合,
                                     <literal>isreal</literal> を定義できます.
                                     デフォルトで, <literal>isreal</literal> は %t です.
                                     この引数は,<literal>A</literal>が行列の場合,
@@ -334,8 +337,8 @@ function y = A ( x )
                             <para>
                                 <term>issym</term>
                                 <para>
-                                    <literal>Af</literal> が指定された場合, 
-                                    <literal>issym</literal> を定義できます. 
+                                    <literal>Af</literal> が指定された場合,
+                                    <literal>issym</literal> を定義できます.
                                     デフォルトで <literal>issym</literal> は %f です.
                                     この引数は,<literal>A</literal>が行列の場合,
                                     指定する必要がありません.
@@ -368,7 +371,7 @@ function y = A ( x )
     <refsection>
         <title>実対称問題の例</title>
         <programlisting role="example">
-            <![CDATA[ 
+            <![CDATA[
 clear opts
 A            = diag(10*ones(10,1));
 A(1:$-1,2:$) = A(1:$-1,2:$) + diag(6*ones(9,1));
@@ -414,7 +417,7 @@ d = eigs(fn, 10, [], k, 4, opts)
     <refsection>
         <title>実非対称問題の例</title>
         <programlisting role="example">
-            <![CDATA[ 
+            <![CDATA[
 	clear opts
     A            = diag(10*ones(10,1));
     A(1:$-1,2:$) = A(1:$-1,2:$) + diag(6*ones(9,1));
@@ -426,7 +429,7 @@ d = eigs(fn, 10, [], k, 4, opts)
     d = eigs(A)
 [d, v] = eigs(A)
     d = eigs(A, B, k, sigma)
-    [d, v] = eigs(A, B, k, sigma) 
+    [d, v] = eigs(A, B, k, sigma)
     d = eigs(A, B, k, sigma, opts)
     [d, v] = eigs(A, B, k, sigma, opts)
 // 疎行列
@@ -460,7 +463,7 @@ d = eigs(fn, 10, [], k, 4, opts)
     <refsection>
         <title>複素問題の例</title>
         <programlisting role="example">
-            <![CDATA[ 
+            <![CDATA[
 	clear opts
     A            = diag(10*ones(10,1) + %i * ones(10,1));
     A(1:$-1,2:$) = A(1:$-1,2:$) + diag(6*ones(9,1));
@@ -517,7 +520,7 @@ d = eigs(fn, 10, [], k, 4, opts)
             <revision>
                 <revnumber>5.4.0</revnumber>
                 <revremark>
-                    関数が導入されました. 
+                    関数が導入されました.
                     dnaupd, dneupd, dsaupd, dseupd, znaupd および zneupdは廃止されました.
                 </revremark>
             </revision>

@@ -1,13 +1,15 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function ged_insert(k,win)
-    //xset, xget used because ged should handle both old and new style
 
     [lhs,rhs]=argn(0);
 
@@ -21,8 +23,8 @@ function ged_insert(k,win)
     active=active+1;men=k
     if  active>1 then return,end
 
-    ged_current_figure=xget("window")
-    xset("window",win)
+    ged_current_figure = gcf().figure_id
+    scf(win)
 
     scf(win);
     ged_cur_fig_handle=gcf();
@@ -216,7 +218,9 @@ function  ged_insert_end()
         f=gcf()
         clearglobal active men
     end
-    if win<>ged_current_figure then xset("window",ged_current_figure),end
+    if win <> ged_current_figure then
+        scf(ged_current_figure)
+    end
 
 endfunction
 function [men,xc,yc]=ged_click()

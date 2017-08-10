@@ -8,14 +8,25 @@ SOURCE="$2"
 COMMIT="$3"
 
 case $SOURCE in
-'')
-    TMP=$(mktemp) && \
-    cat $FILE >$TMP && \
-    git diff --cached scilab/CHANGES_* |sed -n '/^+/p' |sed -n '/^+++/!p' |sed 's/^.\{1\}//g' >$FILE && \
-    cat $TMP >>$FILE && \
-    rm $TMP
-  ;;
-*)
-  ;;
+    'merge')
+        # On merges adds the commit messages found in CHANGES
+        TMP=`mktemp 2> /dev/null || mktemp -t 'mytmpdir'` && \
+            cat $FILE >$TMP && \
+            sed -i '/^Merge.*/d' $TMP && \
+            git diff --cached scilab/CHANGES* |sed -n '/^+/p' |sed -n '/^+++/!p' |sed 's/^.\{1\}//g' >$FILE && \
+            cat $TMP >>$FILE && \
+            rm $TMP
+        ;;
+
+    '')
+        # On normal commit add messages found in CHANGES
+        TMP=`mktemp 2> /dev/null || mktemp -t 'mytmpdir'` && \
+            cat $FILE >$TMP && \
+            git diff --cached scilab/CHANGES* |sed -n '/^+/p' |sed -n '/^+++/!p' |sed 's/^.\{1\}//g' >$FILE && \
+            cat $TMP >>$FILE && \
+            rm $TMP
+        ;;
+    *)
+        ;;
 esac
 

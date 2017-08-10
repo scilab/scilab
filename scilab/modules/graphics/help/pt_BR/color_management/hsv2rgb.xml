@@ -2,29 +2,32 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Serge Steer
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="hsv2rgb" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="hsv2rgb" xml:lang="pt">
     <refnamediv>
         <refname>hsv2rgb</refname>
         <refpurpose>Converte cores HSV para RGB</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>[r,g,b] = hsv2rgb(h,s,v)
             rgb = hsv2rgb(h,s,v)
             [r,g,b] = hsv2rgb(hsv)
             rgb = hsv2rgb(hsv)
         </synopsis>
     </refsynopsisdiv>
-    <refsection>
-        <title>Parâmetros</title>
+    <refsection role="parameters">
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>h</term>
@@ -35,7 +38,7 @@
             <varlistentry>
                 <term>s</term>
                 <listitem>
-                    <para>um vetor de tamanho n. Os valores "saturation" (de saturação)
+                    <para>um vetor de tamanho n. Os valores "saturation" (de saturaÃ§Ã£o)
                     </para>
                 </listitem>
             </varlistentry>
@@ -48,8 +51,8 @@
             <varlistentry>
                 <term>hsv</term>
                 <listitem>
-                    <para>uma matriz n x 3. Cada linha contém uma tripla [hue saturation
-                        value]. 
+                    <para>uma matriz n x 3. Cada linha contÃ©m uma tripla [hue saturation
+                        value].
                     </para>
                 </listitem>
             </varlistentry>
@@ -77,42 +80,57 @@
             <varlistentry>
                 <term>rgb</term>
                 <listitem>
-                    <para>uma matriz n x 3. Cada linha contém uma tripla [red green
-                        blue]. 
+                    <para>uma matriz n x 3. Cada linha contÃ©m uma tripla [red green
+                        blue].
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
-        <title>Descrição</title>
-        <para>A função hsv2rgb converte mapas de cores entre os espaços de cores
+    <refsection role="description">
+        <title>DescriÃ§Ã£o</title>
+        <para>A funÃ§Ã£o hsv2rgb converte mapas de cores entre os espaÃ§os de cores
             RGB e HSV. Como a matiz varia de 0 a 1.0 , as cores correspondentes podem
             variar partindo do vermelho entre amarelo, verde, ciano, azul, magenta, e
-            preto, até vermelho novamente, de modo que há na verdade valores de
-            vermelho tanto em 0 quanto em 1.0 . À medida em que a saturação varia de 0
-            a 1.0, as cores correspondentes (matizes) variam de insaturadas (gradações
-            de cinza) a completamente saturadas (nenhum componente branco). à medida
-            em que o valor, ou brilho, varia de 0 a 1.0, as cores correspondentes vão
-            se tornando mais brilhantes. 
+            preto, atÃ© vermelho novamente, de modo que hÃ¡ na verdade valores de
+            vermelho tanto em 0 quanto em 1.0 . Ã€ medida em que a saturaÃ§Ã£o varia de 0
+            a 1.0, as cores correspondentes (matizes) variam de insaturadas (gradaÃ§Ãµes
+            de cinza) a completamente saturadas (nenhum componente branco). Ã  medida
+            em que o valor, ou brilho, varia de 0 a 1.0, as cores correspondentes vÃ£o
+            se tornando mais brilhantes.
         </para>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
-t=[0:0.3:2*%pi]'; z=sin(t)*cos(t'); 
-plot3d1(t,t,z) 
-f=gcf();
-for h=0:0.1:1
-  hsv=[h*ones(32,1) linspace(0,1,32)' 0.7*ones(32,1)];
-  f.color_map=hsv2rgb(hsv);
-  xpause(10000)
+        <programlisting role="example"><![CDATA[
+t = [0:0.3:2*%pi]';
+z = sin(t)*cos(t');
+plot3d1(t,t,z)
+f = gcf();
+for h = 0:0.1:1
+  hsv = [h*ones(32,1) linspace(0,1,32)' 0.7*ones(32,1)];
+  f.color_map = hsv2rgb(hsv);
+  sleep(10)
 end
-for v=0:0.1:1
-  hsv=[ones(32,1) linspace(0,1,32)' v*ones(32,1)];
-  f.color_map=hsv2rgb(hsv);
-  xpause(10000)
+for v = 0:0.1:1
+  hsv = [ones(32,1) linspace(0,1,32)' v*ones(32,1)];
+  f.color_map = hsv2rgb(hsv);
+  sleep(10)
 end
  ]]></programlisting>
+        <scilab:image>
+            t=[0:0.3:2*%pi]'; z=sin(t)*cos(t');
+            plot3d1(t,t,z)
+            f=gcf();
+            for h=0:0.1:1
+            hsv=[h*ones(32,1) linspace(0,1,32)' 0.7*ones(32,1)];
+            f.color_map=hsv2rgb(hsv);
+            end
+            for v=0:0.1:1
+            hsv=[ones(32,1) linspace(0,1,32)' v*ones(32,1)];
+            f.color_map=hsv2rgb(hsv);
+            end
+        </scilab:image>
     </refsection>
 </refentry>
+

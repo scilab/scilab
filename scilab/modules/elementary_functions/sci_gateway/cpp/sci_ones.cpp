@@ -5,20 +5,21 @@
  * Copyright (C) 2013 - Scilab Enterprises - Cedric Delamarre
  * Copyright (C) 2014 - Scilab Enterprises - Anais Aubert
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 /*--------------------------------------------------------------------------*/
 #include "elem_func_gw.hxx"
 #include "function.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 #include "double.hxx"
-#include "context.hxx"
 
 extern "C"
 {
@@ -47,15 +48,14 @@ types::Function::ReturnValue sci_ones(types::typed_list &in, int _iRetCount, typ
             case 1:
             {
                 //call overload
-                ast::ExecVisitor exec;
-                return Overload::generateNameAndCall(L"ones", in, _iRetCount, out, &exec);
+                return Overload::generateNameAndCall(L"ones", in, _iRetCount, out);
             }
         }
 
         return types::Function::Error;
     }
 
-    pOut = new Double(iDims, piDims);
+    pOut = new types::Double(iDims, piDims);
     if (alloc)
     {
         delete[] piDims;
@@ -64,6 +64,6 @@ types::Function::ReturnValue sci_ones(types::typed_list &in, int _iRetCount, typ
     pOut->setOnes();
 
     out.push_back(pOut);
-    return Function::OK;
+    return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

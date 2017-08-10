@@ -378,13 +378,13 @@ computed = cotd(x);
 e=max(abs((expected-computed)./expected));
 if e>100*eps then bugmes();quit;end
 //
-x=ref(:,1)+2^6*360; 
+x=ref(:,1)+2^6*360;
 expected = ref(:,2);
 computed = cotd(x);
 e=max(abs((expected-computed)./expected));
 if e>100*eps then bugmes();quit;end
 //
-x=ref(:,1)+2^10*360; 
+x=ref(:,1)+2^10*360;
 expected = ref(:,2);
 computed = cotd(x);
 e=max(abs((expected-computed)./expected));

@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ * Add some comments about XML file
+-->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja_JP" xml:id="conv">
+
+    <refnamediv>
+
+        <refname>conv</refname>
+
+        <refpurpose>離散一次元畳み込み</refpurpose>
+
+    </refnamediv>
+
+    <refsynopsisdiv>
+
+        <title>呼び出し手順</title>
+
+        <synopsis>C = conv(A,B [,shape])</synopsis>
+
+    </refsynopsisdiv>
+
+    <refsection>
+
+        <title>パラメータ</title>
+
+        <variablelist>
+
+            <varlistentry>
+
+                <term>A</term>
+
+                <listitem>
+
+                    <para>
+
+                        実数または複素数ベクトル.
+
+                    </para>
+
+                </listitem>
+
+            </varlistentry>
+
+            <varlistentry>
+
+                <term>B</term>
+
+                <listitem>
+
+                    <para>
+
+                        実数または複素数ベクトル.
+
+                    </para>
+
+                </listitem>
+
+            </varlistentry>
+
+            <varlistentry>
+
+                <term>shape</term>
+
+                <listitem>
+
+                    <para>
+
+                        オプション文字列で値は以下のどれか:
+
+                    </para>
+
+                    <itemizedlist>
+
+                        <listitem>
+
+                            <literal>"full"</literal>, <literal>conv</literal>
+
+                            は完全な畳み込みを計算します. これがデフォルト値です.
+
+                        </listitem>
+
+                        <listitem>
+
+                            <literal>"same"</literal>, <literal>conv</literal>
+
+                            は<literal>A</literal>と同じ大きさの畳み込みの
+
+                            中央部を計算します.
+
+                        </listitem>
+
+                        <listitem>
+
+                            <literal>"valid"</literal>, <literal>conv</literal>
+
+                            は<literal>A</literal>のゼロパディングなしの畳み込み部分を計算します.
+
+                        </listitem>
+
+                    </itemizedlist>
+
+                </listitem>
+
+            </varlistentry>
+
+            <varlistentry>
+
+                <term>C</term>
+
+                <listitem>
+
+                    <para>
+
+                        実数または複素数ベクトル.
+
+                    </para>
+
+                </listitem>
+
+            </varlistentry>
+
+        </variablelist>
+
+    </refsection>
+
+    <refsection>
+
+        <title>説明</title>
+
+        <para>
+
+            <literal>conv</literal>は空間的な１次元畳み込み方程式の
+
+            一般的な実装を使用します.
+
+        </para>
+
+        <para>
+
+            <literal>C=conv(A,B [,shape])</literal> はベクトル
+
+            <literal>A</literal>および <literal>B</literal>の一次元畳み込みを
+
+            計算します:
+
+        </para>
+
+        <itemizedlist>
+
+            <listitem>
+
+                <literal>shape=="full"</literal>を指定した場合、
+
+                結果<literal>C</literal>の次元は
+
+                <literal>size(A,'*')+size(B,'*')+1</literal>となります.
+
+                <literal>B</literal>の中心要素の添字は
+
+                <literal>floor((size(B,'*')+1)/2)</literal>となります.
+
+            </listitem>
+
+            <listitem>
+
+                <literal>shape=="same"</literal> を指定した場合,
+
+                結果<literal>C</literal>の次元は
+
+                <literal>size(A)</literal>となります.
+
+                <literal>B</literal>の中心要素の添字は
+
+                <literal>floor((size(B,'*')+1)/2)</literal>となります.
+
+            </listitem>
+
+            <listitem>
+
+                <literal>shape=="valid"</literal> を指定した場合,
+
+                結果<literal>C</literal>の次元は
+
+                <literal>and(size(A,'*')-size(B,'*'))&gt;=0</literal>の場合
+
+                <literal>size(A,'*')-size(B,'*')+1)</literal>,
+
+                それ以外は
+
+                <literal>C</literal>が空となります.
+
+                <literal>B</literal>の中心要素の添字は
+
+                <literal>1</literal>となります.
+
+            </listitem>
+
+        </itemizedlist>
+
+        <para>
+
+            大きな配列に対しては,
+
+            <link linkend="convol">convol</link> の方がより効率的
+
+            となる可能性があることに注意してください.
+
+        </para>
+
+    </refsection>
+
+    <refsection>
+
+        <title>例</title>
+
+        <programlisting role="example"><![CDATA[
+        A=1:10;
+        B=[1 -1];
+        conv(A,B)
+    ]]></programlisting>
+
+    </refsection>
+
+    <refsection>
+
+        <title>参照</title>
+
+        <simplelist type="inline">
+
+            <member>
+
+                <link linkend="convol">convol</link>
+
+            </member>
+
+            <member>
+
+                <link linkend="conv2">conv2</link>
+
+            </member>
+
+        </simplelist>
+
+    </refsection>
+
+    <refsection>
+
+        <title>使用される関数</title>
+
+        <para>
+
+            conv関数は組込み関数<link linkend="conv2">conv2</link>に基づいています.
+
+        </para>
+
+    </refsection>
+
+    <refsection>
+
+        <title>履歴</title>
+
+        <revhistory>
+
+            <revision>
+
+                <revnumber>5.4.0</revnumber>
+
+                <revremark>関数convが導入されました.</revremark>
+
+            </revision>
+
+        </revhistory>
+
+    </refsection>
+
+</refentry>
+

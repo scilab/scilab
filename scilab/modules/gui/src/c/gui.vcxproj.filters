@@ -149,9 +149,6 @@
     <ClCompile Include="iconifyMainWindow.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="InitializeGUI.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\cpp\InitUIMenu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -170,7 +167,7 @@
     <ClCompile Include="messageboxoptions.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_ClipBoard.c">
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_ClipBoard.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_delmenu.c">
@@ -224,7 +221,7 @@
     <ClCompile Include="..\..\sci_gateway\c\sci_uicontrol.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_uigetcolor.c">
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_uigetcolor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\cpp\sci_uigetdir.cpp">
@@ -233,7 +230,7 @@
     <ClCompile Include="..\..\sci_gateway\cpp\sci_uigetfile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_uigetfont.c">
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_uigetfont.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_uimenu.c">
@@ -254,19 +251,16 @@
     <ClCompile Include="..\..\sci_gateway\c\sci_waitbar.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_x_choice.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_x_choose.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_x_choose_modeless.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_x_dialog.c">
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_x_dialog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_x_mdialog.c">
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_x_mdialog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\jni\ScilabDisplayTree.cpp">
@@ -453,6 +447,18 @@
       <Filter>Header Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\cpp\sci_loadGui.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_displaytree.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_helpbrowser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\InitializeGUI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_xchoicesi.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -657,6 +663,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\cpp\CreateUIControl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\gui_gw.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

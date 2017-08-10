@@ -40,7 +40,7 @@
             </tr>
             <tr>
                 <td>
-                    <literal>*,.*</literal>
+                    <literal>*, .*, *.</literal>
                 </td>
                 <td>
                     <link linkend="star">star</link>
@@ -48,7 +48,15 @@
             </tr>
             <tr>
                 <td>
-                    <literal>/, ./, /.</literal>
+                    <literal>.*.</literal>
+                </td>
+                <td>
+                    <link linkend="kron">kron</link>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>/, ./, /., ./.</literal>
                 </td>
                 <td>
                     <link linkend="slash">slash</link>
@@ -56,7 +64,15 @@
             </tr>
             <tr>
                 <td>
-                    <literal>\,.\ ,\.</literal>
+                    <literal>//, /*  */</literal>
+                </td>
+                <td>
+                    <link linkend="comments">comments</link>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>\,.\ ,\., .\.</literal>
                 </td>
                 <td>
                     <link linkend="backslash">backslash</link>
@@ -176,14 +192,6 @@
             </tr>
             <tr>
                 <td>
-                    <literal>.*., ./., .\.</literal>
-                </td>
-                <td>
-                    <link linkend="kron">kron</link>
-                </td>
-            </tr>
-            <tr>
-                <td>
                     <literal>$</literal>
                 </td>
                 <td>
@@ -210,7 +218,7 @@
         <para> It is highly recommended not to use these features because they will be removed in the future. </para>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="overloading">overloading</link>

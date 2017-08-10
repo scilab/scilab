@@ -48,9 +48,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="core_import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
     <None Include="signal_processing_f_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>

@@ -1,17 +1,19 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006-2008 - INRIA - Sylvestre LEDRU
 #
-# This file must be used under the terms of the CeCILL.
-# This source file is licensed as described in the file COPYING, which
-# you should have received as part of this distribution.  The terms
-# are also available at
-# http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+# Copyright (C) 2012 - 2016 - Scilab Enterprises
+#
+# This file is hereby licensed under the terms of the GNU GPL v2.0,
+# pursuant to article 5.3.4 of the CeCILL v.2.1.
+# This file was originally licensed under the terms of the CeCILL v2.1,
+# and continues to be available under such terms.
+# For more information, see the COPYING file which you should have received
+# along with this program.
 
 
 CORE_C_SOURCES = \
     src/c/csignal.c \
     src/c/md5.c \
-    src/c/texmacs.c \
     src/c/getmodules.c \
     src/c/getmemory.c \
     src/c/isanan.c \
@@ -30,8 +32,6 @@ CORE_C_SOURCES = \
     src/c/getos.c \
     src/c/transposeMatrix.c \
     src/c/getversion.c \
-    src/c/dynamic_tclsci.c \
-    src/c/dynamic_parallel.c \
     src/c/backtrace.c \
     src/c/signal_mgmt.c \
     src/c/suspendProcess.c \
@@ -68,7 +68,6 @@ CORE_FORTRAN_SOURCES = \
 	src/fortran/read_inter.f
 
 GATEWAY_C_SOURCES = \
-	sci_gateway/c/sci_type.c \
 	sci_gateway/c/sci_getdebuginfo.c
 
 GATEWAY_CPP_SOURCES = \
@@ -103,13 +102,40 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_funcprot.cpp \
 	sci_gateway/cpp/sci_mode.cpp \
 	sci_gateway/cpp/sci_typename.cpp \
+	sci_gateway/cpp/sci_what.cpp \
 	sci_gateway/cpp/sci_where.cpp \
 	sci_gateway/cpp/sci_getmemory.cpp \
 	sci_gateway/cpp/sci_errclear.cpp \
 	sci_gateway/cpp/sci_intppty.cpp \
 	sci_gateway/cpp/sci_analyzeroptions.cpp \
 	sci_gateway/cpp/sci_macr2tree.cpp \
-	sci_gateway/cpp/sci_predef.cpp
+	sci_gateway/cpp/sci_predef.cpp \
+	sci_gateway/cpp/sci_debug.cpp \
+	sci_gateway/cpp/sci_recursionlimit.cpp \
+	sci_gateway/cpp/sci_type.cpp \
+	sci_gateway/cpp/sci_list.cpp \
+	sci_gateway/cpp/sci_struct.cpp \
+	sci_gateway/cpp/sci_insert.cpp \
+	sci_gateway/cpp/sci_null.cpp \
+	sci_gateway/cpp/sci_cell.cpp \
+	sci_gateway/cpp/sci_makecell.cpp \
+	sci_gateway/cpp/sci_typeof.cpp \
+	sci_gateway/cpp/sci_tlist.cpp \
+	sci_gateway/cpp/sci_mlist.cpp \
+	sci_gateway/cpp/sci_isfield.cpp \
+	sci_gateway/cpp/sci_oldEmptyBehaviour.cpp \
+	sci_gateway/cpp/sci_fieldnames.cpp
+
+if ENABLE_DEBUG
+GATEWAY_CPP_SOURCES += \
+    sci_gateway/cpp/sci_inspectorDeleteUnreferencedItems.cpp \
+	sci_gateway/cpp/sci_inspectorGetItem.cpp \
+	sci_gateway/cpp/sci_inspectorGetItemCount.cpp \
+	sci_gateway/cpp/sci_inspectorGetUnreferencedItem.cpp \
+	sci_gateway/cpp/sci_inspectorShowItem.cpp \
+	sci_gateway/cpp/sci_inspectorShowUnreferencedItem.cpp \
+	sci_gateway/cpp/sci_inspectorGetFunctionList.cpp
+endif
 
 libscicore_la_CPPFLAGS = \
     -I$(srcdir)/includes/ \
@@ -202,28 +228,28 @@ libscicore_la_xml_DATA = xml/modules.dtd xml/version.dtd
 #### core : include files ####
 libscicore_la_includedir=$(pkgincludedir)
 libscicore_la_include_HEADERS = \
+includes/backtrace_print.h \
 includes/BOOL.h \
 includes/core_math.h \
-includes/ExceptionMessage.h \
 includes/existfunction.h \
+includes/exit_status.hxx \
 includes/freeArrayOfString.h \
 includes/getcommandlineargs.h \
 includes/getmemory.h \
 includes/getos.h \
-includes/machine.h \
-includes/sci_malloc.h \
-includes/PATH_MAX.h \
-includes/scilabDefaults.h \
-includes/scisparse.h \
-includes/sci_types.h \
-includes/version.h \
 includes/getversion.h \
-includes/backtrace_print.h \
-includes/sci_mem_alloc.h \
 includes/hashtable.h \
 includes/hashtable_utility.h \
-includes/exit_status.hxx \
-includes/timer.hxx
+includes/machine.h \
+includes/PATH_MAX.h \
+includes/scilabDefaults.h \
+includes/sci_malloc.h \
+includes/sci_mem_alloc.h \
+includes/scisparse.h \
+includes/sci_types.h \
+includes/storeCommand.h \
+includes/timer.hxx \
+includes/version.h
 
 
 if GUI

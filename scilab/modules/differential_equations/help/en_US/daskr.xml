@@ -3,11 +3,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Paul Bignier
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.
- * The terms are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="daskr" xml:lang="en">
@@ -16,7 +19,7 @@
         <refpurpose>DAE solver with zero crossing</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[r, nn [, hd]] = daskr(x0, t0, t [, atol [, rtol]], res [, jac], ng, surf [, info [, psol] [, pjac]] [, hd])</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -87,7 +90,7 @@
                     <itemizedlist>
                         <listitem>
                             <para>A Scilab function.</para>
-                            <para>Its calling sequence must be
+                            <para>Its syntax must be
                                 <literal>[r, ires] = res(t, y, ydot)</literal> and must return the residual
                                 <literal>r = g(t, y, ydot)</literal> and error flag
                                 <literal>ires</literal>. <literal>ires = 0</literal> if
@@ -105,7 +108,7 @@
                             <programlisting role="no-scilab-exec"><![CDATA[
 list(res, x1, x2, ...)
  ]]></programlisting>
-                            <para>where the calling sequence of the function
+                            <para>where the syntax of the function
                                 <literal>res</literal> is now
                             </para>
                             <programlisting role="no-scilab-exec"><![CDATA[
@@ -125,7 +128,7 @@ r = res(t, y, ydot, x1, x2, ...)
                             <para>It must refer to the name of a C function or a Fortran subroutine
                                 linked with Scilab.
                             </para>
-                            <para>In C, the calling sequence must be:</para>
+                            <para>In C, the syntax must be:</para>
                             <programlisting role="no-scilab-exec"><![CDATA[
 void res(double *t, double y[], double yd[], double r[],
          int *ires, double rpar[], int ipar[])
@@ -155,7 +158,7 @@ integer ires, ipar(*)
                     <itemizedlist>
                         <listitem>
                             <para>A Scilab function.</para>
-                            <para>Its calling sequence must be
+                            <para>Its syntax must be
                                 <literal>r = jac(t, y, ydot, cj)</literal> and must return
                                 <literal>r = dg(t, y, ydot)/dy + cj*dg(t, y, ydot)/dydot</literal> where
                                 <literal>cj</literal> is a real scalar.
@@ -167,7 +170,7 @@ integer ires, ipar(*)
                             <programlisting role="no-scilab-exec"><![CDATA[
 list(jac, x1, x2, ...)
  ]]></programlisting>
-                            <para>where the calling sequence of the function
+                            <para>where the syntax of the function
                                 <literal>jac</literal> is now
                             </para>
                             <programlisting role="no-scilab-exec"><![CDATA[
@@ -183,7 +186,7 @@ r=jac(t, y, ydot, cj, x1, x2,...)
                             <para>A character string.</para>
                             <para>It must refer to the name of a C function or a Fortran subroutine linked with Scilab
                             </para>
-                            <para>In C, the calling sequence must be:</para>
+                            <para>In C, the syntax must be:</para>
                             <programlisting role="no-scilab-exec"><![CDATA[
 void jac(double *t, double y[], double yd[], double pd[],
          double *cj, double rpar[], int ipar[])
@@ -210,7 +213,7 @@ integer ipar(*)
                     <itemizedlist>
                         <listitem>
                             <para>A Scilab function.</para>
-                            <para>Its calling sequence must be
+                            <para>Its syntax must be
                                 <literal>surf(t, y)</literal>
                             </para>
                         </listitem>
@@ -220,7 +223,7 @@ integer ipar(*)
                             <programlisting role="no-scilab-exec"><![CDATA[
 list(surf, x1, x2, ...)
  ]]></programlisting>
-                            <para>where the calling sequence of the function
+                            <para>where the syntax of the function
                                 <literal>surf</literal> is now
                             </para>
                             <programlisting role="no-scilab-exec"><![CDATA[
@@ -231,7 +234,7 @@ r = surf(t, y, x1, x2, ...)
                             <para>A character string.</para>
                             <para>It must refer to the name of a C function or a Fortran subroutine linked with Scilab.
                             </para>
-                            <para>In C, the calling sequence must be:</para>
+                            <para>In C, the syntax must be:</para>
                             <programlisting role="no-scilab-exec"><![CDATA[
 void surf(int *ny, double *t, double y[], int *ng, double gout[])
  ]]></programlisting>
@@ -282,7 +285,7 @@ integer ny, ng
                                     by <literal>jac</literal>; <literal>r(i - j + ml + mu + 1,j) = "dg(i)/dy(j)+cj*dg(i)/dydot(j)"</literal>.
                                     If <literal>jac</literal> returns a full matrix set
                                     <literal>info(3)=[]</literal>.
-                                    Treat as dummmy if
+                                    Treat as dummy if
                                     <literal>info(8)=1</literal>.
                                 </para>
                             </listitem>
@@ -457,7 +460,7 @@ integer ny, ng
                     <itemizedlist>
                         <listitem>
                             <para>A Scilab function.</para>
-                            <para>Its calling sequence must be
+                            <para>Its syntax must be
                                 <literal>[r, ier] = psol(wp, iwp, b)</literal> and must return the solution of the system in
                                 <literal>r</literal> and an error flag <literal>ier</literal>.
                             </para>
@@ -469,7 +472,7 @@ integer ny, ng
 list(psol, x1, x2, ...)
  ]]></programlisting>
                             <para>
-                                where the calling sequence of <literal>psol</literal> is now
+                                where the syntax of <literal>psol</literal> is now
                             </para>
                             <programlisting role="no-scilab-exec"><![CDATA[
 psol(wp, iwp, b, x1, x2, ...)
@@ -482,7 +485,7 @@ psol(wp, iwp, b, x1, x2, ...)
                             <para>A character string.</para>
                             <para>It must refer to the name of a C function or a Fortran subroutine linked with Scilab
                             </para>
-                            <para>In C, the calling sequence must be:</para>
+                            <para>In C, the syntax must be:</para>
                             <programlisting role="no-scilab-exec"><![CDATA[
 void psol (int*neq, double*t, double*y, double*ydot, double*savr,
   double*wk, double*cj, double*wght, double*wp, int*iwp, double*b, double*eplin, int*ier, double*rpar, int*ipar)
@@ -513,7 +516,7 @@ integer neq, iwp(*), ier, ipar(*)
                     <itemizedlist>
                         <listitem>
                             <para>A Scilab function.</para>
-                            <para>Its calling sequence must be
+                            <para>Its syntax must be
                                 <literal>[wp, iwp, ires] = pjac(neq, t, y, ydot, h, cj, rewt, savr)</literal> and in return,
                                 the arrays <literal>wp</literal> and <literal>iwp</literal> must contain all factored preconditioner information.
                             </para>
@@ -525,7 +528,7 @@ integer neq, iwp(*), ier, ipar(*)
 list(pjac, x1, x2, ...)
  ]]></programlisting>
                             <para>
-                                where the calling sequence of <literal>pjac</literal> is
+                                where the syntax of <literal>pjac</literal> is
                             </para>
                             <programlisting role="no-scilab-exec"><![CDATA[
 pjac(neq, t, y, ydot, h, cj, rewt, savr, x1, x2,...)
@@ -540,7 +543,7 @@ pjac(neq, t, y, ydot, h, cj, rewt, savr, x1, x2,...)
                             <para>A character string.</para>
                             <para>It must refer to the name of a C function or a Fortran subroutine linked with Scilab
                             </para>
-                            <para>In C, the calling sequence must be:</para>
+                            <para>In C, the syntax must be:</para>
                             <programlisting role="no-scilab-exec"><![CDATA[
 void pjac (double*res, int*ires, int*neq, double*t, double*y, double*ydot, double*rewt, double*savr,
 double*wk, double*h, double*cj, double*wp, int*iwp, int*ier, double*rpar, int*ipar)
@@ -620,7 +623,7 @@ nn
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="ode">ode</link>
@@ -635,7 +638,7 @@ nn
                 <link linkend="impl">impl</link>
             </member>
             <member>
-                <link linkend="fort">fort</link>
+                <link linkend="call">call</link>
             </member>
             <member>
                 <link linkend="link">link</link>

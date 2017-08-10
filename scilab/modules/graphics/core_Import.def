@@ -5,17 +5,7 @@ EXPORTS
 ;--------------------------
 ; core
 ;--------------------------
-callFunctionFromGateway
-com_
-elementtype_
-findopt_
-firstopt_
 freeArrayOfString
-iop_
-numopt_
-vartype_
-GetDataSize
-GetData
 MyHeapAlloc
 MyHeapFree
 MyHeapRealloc

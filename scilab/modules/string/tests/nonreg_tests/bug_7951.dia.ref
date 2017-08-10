@@ -31,13 +31,10 @@ typ = list();
 values = string(1:num)';
 for i=1:num
   varName = baseName + string(i);
-
   // variable declaration
   execstr(varName + " = []");
-
   // description update
   labels = [labels; varName];
-
   // typ update
   typ(i * 2 - 1) = "mat";
   typ(i * 2) = [1 1];

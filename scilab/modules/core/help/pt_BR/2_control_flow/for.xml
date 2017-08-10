@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="for" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="for" xml:lang="pt">
     <refnamediv>
         <refname>for</refname>
         <refpurpose>palavra-chave de linguagem para laços ("loops") (significa
@@ -41,7 +41,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // laços "for" tradicionais
 n=5;
 for i = 1:n
@@ -50,20 +50,20 @@ for i = 1:n
     end;
 end
 for j = 2:n-1
-    a(j,j) = j; 
-end; 
+    a(j,j) = j;
+end;
 a
 for j= 4:-1:1
     disp(j);
 end // laço decrescente
 
 //laço em colunas de matrizes
-for  e=eye(3,3), e, end  
+for  e=eye(3,3), e, end
 for v=a, write(6,v), end
-for j=1:n, v=a(:,j), write(6,v), end 
+for j=1:n, v=a(:,j), write(6,v), end
 
 //laço em listas de entradas
-for l=list(1,2,'example'); l, end 
+for l=list(1,2,'example'); l, end
 
  ]]></programlisting>
     </refsection>

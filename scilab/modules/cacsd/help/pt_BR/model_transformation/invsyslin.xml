@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="pt" xml:id="invsyslin">
+    <refnamediv>
+        <refname>invsyslin</refname>
+        <refpurpose>system inversion</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[sl2]=invsyslin(sl1)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>sl1,sl2</term>
+                <listitem>
+                    <para>
+                        <literal>syslin</literal> lists (linear systems in state space representation)
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Utility function. Computes the state form of the inverse <literal>sl2</literal> of
+            the linear system <literal>sl1</literal> (which is also given in state form).
+        </para>
+        <para>
+            The <literal>D</literal>-matrix is supposed to be full rank. Old stuff used by
+            <literal>inv(S)</literal> when <literal>S</literal> is a <literal>syslin</literal> list.
+        </para>
+    </refsection>
+
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+a=0.5;
+b=1;
+c=2;
+sl=syslin('c',a,b,c);
+slInversed=invsyslin(sl)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="rowregul">rowregul</link>
+            </member>
+            <member>
+                <link linkend="inv">inv</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

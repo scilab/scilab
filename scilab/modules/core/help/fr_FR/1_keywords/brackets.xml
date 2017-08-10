@@ -1,69 +1,417 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="brackets">
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2016 - Samuel GOUGEON
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="fr" xml:id="brackets">
     <refnamediv>
-        <refname>brackets ([,])</refname>
-        <refpurpose>([,]) crochets à droite et à gauche  </refpurpose>
+        <refname>brackets [,;]</refname>
+        <refpurpose>Concatenation. Récipients d'une affectation. Résultats d'une function</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Séquence d'appel</title>
-        <synopsis>[a11,a12,...;a21,a22,...;...]
-            [s1,s2,...]=func(...)
+        <title>Syntaxe</title>
+        <synopsis>
+            Mh = [m11 m12 m13.. m1N] or [m11, m12, m13,.., m1N]
+            Mv = [m11 ; m21 ; m31..; mN1]
+            M  = [m11, m12,...; m21, m22,...;...]
+            [r1, r2,...] = func(...)
+            [r1, r2,.., rN] = (e1, e2, .., eN)
+            [r1, r2,.., rk] = (e1, e2, .., ek,.., eN)
+            [r1, r2,.., rN] = mylist(:)
+            [r1, r2,.., rN] = S.field([i1 i2.. iN])
         </synopsis>
     </refsynopsisdiv>
-    <refsection>
-        <title>Paramètres</title>
+    <refsection role="parameters">
+        <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>a11,a12,...  </term>
+                <term>m11, m12,...  </term>
                 <listitem>
                     <para>
-                        toute matrice (réelle, complexe, polynomiale, rationnelle, liste de type <literal>syslin</literal> ...) de dimensions adéquates
+                    Ensemble d'objets à concaténer (rassembler) et à fusionner :
+                    les conteneurs individuels initiaux des objets sont supprimés.
+                    Les types d'objets des familles suivantes peuvent
+                    être mélangés entre eux dans une même famille, mais pas
+                    entre familles :
+                    <itemizedlist>
+                        <listitem>
+                            Matrices de booléens, nombres décimaux,
+                            nombres complexes, polynômes, fractions rationnelles :
+                            le type de l'objet résultant est le type de l'élément le
+                            plus complexe, des booléens (le moins complexe) aux fractions
+                            rationelles à coefficients complexes
+                            (voir les règles de
+                            <link linkend="brackets_Types_conversions">
+                            <emphasis role="italic">transtypages</emphasis></link>).
+                        </listitem>
+                        <listitem>Matrices d'entiers encodés de type entier
+                            <link linkend="inttype">inttype</link> quelconque.
+                            <warning>Des entiers de types différents ne peuvent
+                            pas être concaténés entre eux.
+                            </warning>
+                        </listitem>
+                        <listitem>Tableaux de structures ayant les mêmes champs.
+                            Les champs peuvent être dans des ordres différents
+                            d'un tableau à l'autre.
+                        </listitem>
+                        <listitem>
+                            Listes de type <link linkend="syslin">syslin</link>
+                        </listitem>
+                    </itemizedlist>
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>s1,s2,...  </term>
+                <term>M, Mh, Mv</term>
                 <listitem>
-                    <para>noms de variables
+                    <para>
+                        Matrices ayant le type des éléments <varname>m##</varname>
+                        (s'ils ont tous le même type).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>e1, e2,..  </term>
+                <listitem>
+                    <para>Objets d'entrée (litéraux tels que <literal>-1.23</literal>
+                    ou <literal>"abcd"</literal>, variables, ou expressions telles
+                    que <literal>a+%pi</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>mylist</term>
+                <listitem>
+                    <para>Liste simple du type list(..)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>S.field</term>
+                <listitem>
+                    <para>
+                        Tableau de structures ayant un champ nommé <literal>field</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>i1, i2, ..</term>
+                <listitem>
+                    <para>
+                        Indices des éléments de <varname>S</varname> sélectionnés.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>r1, r2,...  </term>
+                <listitem>
+                    <para>Récipients = variables de sortie</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection role="description">
+        <title>Description</title>
+        <variablelist>
+            <varlistentry>
+                <term>[] (figurant à droite) : crochets concaténateurs</term>
+                <listitem>
+                    <para>[..] assemble les objets de types simples et compatibles
+                        pour former un vecteur, une matrice ou une hypermatrice
+                        homogène.
+                    </para>
+                    <note>La concaténation horizontale ou verticale de N éléments
+                        est un opérateur binaire itératif : la concaténation
+                        est réalisée de proche en proche entre 2 élements consécutifs,
+                        de la gauche vers la droite, et de haut en bas. Ainsi,
+                        <literal>[1 3 5 7]</literal> est effectuée par
+                        <literal>[[[1 3] 5] 7]</literal>.
+                    </note>
+                    <para>Dans les crochets,
+                        <itemizedlist>
+                            <listitem>les espaces (blancs ou tabulations) ou
+                                les virgules servent de séparateurs.
+                                <note>Il est préférable d'utiliser des virgules,
+                                en particulier lorsque des nombres complexes
+                                ou des polynômes sont fournis en expressions
+                                litérales. Par exemple, <literal>[2 1 +%i]</literal>
+                                sera interprété comme <literal>[2, 1, %i]</literal>,
+                                alors que <literal>[2 1 + %i]</literal> sera
+                                compris comme <literal>[2, 1+%i]</literal>.
+                                </note>
+                            </listitem>
+                            <listitem>les points-virgules ou les changements de
+                            lignes sont utilisés comme séparateurs de lignes.
+                            Pour peu que la ligne courante soit complète, le
+                            passage à la ligne ne pré-requiert pas les points de
+                            poursuite-à-la-ligne <literal>..</literal>.
+                            </listitem>
+                        </itemizedlist>
+                    </para>
+                    <refsect3 id="brackets_Types_conversions">
+                        <title>Transtypages</title>
+                        <para>
+                            Avec quelques restrictions, les crochets peuvent être
+                            utilisés sur une série de valeurs ayant des types distincts
+                            mais compatibles. Des valeurs sont alors converties
+                            de proche en proche dans le type de données dominant.
+                            Les principales règles de conversion implicite sont
+                            les suivantes :
+                            <orderedlist>
+                                <listitem>booléen &lt; nombre décimal &lt; nombre complexe
+                                </listitem>
+                                <listitem>décimal &lt; polynôme &lt; fraction rationelle
+                                    <warning>Les booléens et les polynômes ne sont pas
+                                        compatibles entre eux :
+                                        <itemizedlist>
+                                            <listitem>
+                                                <literal>[%t 2. %z]</literal> est accepté, car :
+                                                <literal>[%t 2.]</literal> est d'abord
+                                                converti en
+                                                <literal>[1. 2.]</literal>, puis
+                                                <literal>[[1. 2.] %z]</literal> est
+                                                accepté.
+                                            </listitem>
+                                            <listitem>
+                                                <literal>[%z %t 2.]</literal> est
+                                                refusé et produit une erreur.
+                                                En effet, <literal>[%z %t]</literal>
+                                                n'est pas permis et bloque la suite.
+                                            </listitem>
+                                        </itemizedlist>
+                                    </warning>
+                                </listitem>
+                                <listitem>
+                                    Le résultat est encodé en valeurs complexes (avec
+                                    parties imaginaires éventuellement nulles) dés qu'un
+                                    élément -- valeur, polynôme, ou fraction rationnelle --
+                                    à valeur complexe est rencontré.
+                                    <para>De même, le résultat est encodé sous forme
+                                    creuse
+                                    dés qu'un élément encodé creux est rencontré.
+                                    </para>
+                                </listitem>
+                                <listitem>
+                                    Des polynômes ou des fractions rationnelles
+                                    de différentes variables peuvent
+                                    être concaténés entre eux. Le premier polynôme
+                                    ou fraction rationnelle listé donne alors le
+                                    nom de sa variable au résultat de la concaténation :
+                                    <literal>[%z, 1+%s, 1-%i*%s]
+                                        // => [z, 1+z, 1-iz]
+                                    </literal>.
+                                </listitem>
+                                <listitem>
+                                    Tout entier encodé peut être concaténé uniquement
+                                    avec d'autres entiers du même type entier
+                                    (<link linkend="inttype">inttype</link>). Ainsi,
+                                    les expressions
+                                    <literal>[%t int8(2)]</literal>,
+                                    <literal>[int8(2) uint8(7)]</literal>,
+                                    <literal>[int8(2) int16(7)]</literal>,
+                                    <literal>[int8(2) 1.]</literal> produiront
+                                    toutes une erreur.
+                                </listitem>
+                                <listitem>Les éléments de texte (type "string") peuvent
+                                être concaténés (au sens ensembliste, avec les crochets)
+                                uniquement entre eux ou avec la matrice vide
+                                <literal>[]</literal>.
+                                </listitem>
+                            </orderedlist>
+                        </para>
+                    </refsect3>
+                    <refsect3 id="brackets_overloading">
+                        <title>Surcharge</title>
+                        <para>
+                            <itemizedlist>
+                                <listitem>[,]: concaténation horizontale :
+                                    cet opérateur n-aire (pouvant être appliqué à un
+                                    nombre arbitraire n de données) est en fait un
+                                    opérateur binaire automatiquement itéré de la
+                                    gauche vers la droite. Son code de surcharge est
+                                    <literal>"c"</literal>.
+                                </listitem>
+                                <listitem>[;]: la concaténation verticale est
+                                    également un opérateur binaire, itéré du haut
+                                    vers le bas. Son code de surcharge est
+                                    <literal>"f"</literal>.
+                                </listitem>
+                            </itemizedlist>
+                        </para>
+                    </refsect3>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>[] figurant à gauche d'une affectation <literal>"="</literal></term>
+                <listitem>
+                    <para>
+                    Dans ce cas, les crochets ne désignent en rien une concaténation.
+                    Ils délimitent une série de variables servant de récipients.
+                    </para>
+                    <para>
+                        <itemizedlist>
+                            <listitem>Les termes entre crochets doivent alors
+                                impérativement être des variables. Les expressions
+                                litérales ou symboliques sont rejetées.
+                            </listitem>
+                            <listitem>Les variables sont séparées par des virgules
+                              ou des espaces. Lorsqu'il s'agit de la liste des
+                              arguments de sortie d'une function, les virgules
+                              sont obligatoires.
+                            </listitem>
+                            <listitem>Dans une affectation distributive, il doit
+                                y avoir <emphasis role="italic">au plus</emphasis>
+                                autant de récipients que de sources de données
+                                provenant du terme de droite, pas plus. S'il y
+                                moins de récipients à gauche que de sources à droite,
+                                les sources non collectées sont ignorées. Exemples :
+                                <simplelist>
+                                    <member><literal>[a,b] = (%pi,"Hi", %z)</literal>
+                                        est correct, mais <literal>%z</literal>
+                                        sera ignoré.
+                                    </member>
+                                    <member><literal>[a,b,c] = (%pi,"Hi")</literal>
+                                        produit une erreur, car <literal>c</literal>
+                                        attend du contenu.
+                                    </member>
+                                </simplelist>                            </listitem>
+                            <listitem>La même variable peut être utilisée plusieurs
+                                fois dans la liste de gauche entre crochets.
+                                Le cas échéant, les affectations successives sont réalisées
+                              <emphasis role="italic">de droite à gauche (!)</emphasis> dans la liste,
+                               et écrasent les contenus pré-existants. Exemple :
+                                <literal>[a,b,a] = (%pi, %z, "Allo")</literal>
+                                est équivalent à <literal>a = %pi, b = %z</literal>.
+                            </listitem>
+                        </itemizedlist>
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>
-            Les crochets droit et gauche sont utilisés pour effectuer une concaténation de matrices. Ces symboles sont aussi utilisés quand on effectue un appel à une fonction renvoyant plusieurs arguments.
-        </para>
-        <para>
-            A l'intérieur d'une paire de crochets spécifiant une concaténation, un espace ou une virgule signifient une concaténation de colonnes, alors qu'un point-virgule ou un passage à la ligne signifient une concaténation de lignes.
-        </para>
-        <para>
-            Note : pour éviter les confusions il est plus sûr d'utiliser des virgules pour concaténer des colonnes.
-        </para>
-        <para>
-            Pour des crochets entourant une liste d'arguments de sortie d'une fonction,
-            les noms de variables doivent être séparés par des virgules.
-        </para>
-    </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Exemples</title>
         <programlisting role="example"><![CDATA[
-[6.9,9.64; sqrt(-1) 0]
-[1 +%i  2 -%i  3]
-[]
-['ceci est';'un vecteur';'de chaines de caracteres']
-s=poly(0,'s');[1/s,2/s]
+// Concaténation horizontale
+a = [ %pi 4 -1 ]
+b1 = grand(3,4,"uin",0,10)
+b2 = grand(3,2,"uin",0,10)
+b = [b1 b2]  // b1, b2.. doivent avoir le même nombre de lignes
+
+// Concaténation verticale
+a = [-2 ; 10 ; 7]
+
+b1 = grand(2,4,"uin",0,10)
+b2 = grand(3,4,"uin",0,10)
+b = [b1 ; b2] // // b1, b2.. doivent avoir le même nombre de colonnes
+
+// Double concaténation horizontale et verticale
+a = [ 3 7 ; 6, 5 ]
+b = [ 1:3 ; 7:3:13]
+c = [ a b ; a b]
+
+d = [ 3 5
+      1 4
+    ]
+e = [ d d d
+      d d d
+    ]
+// Concaténation de types d'objets variés :
+['this is' ; 'a column' ; 'of texts']
+
+s = poly(0,'s');[1/s,2/s]
 [tf2ss(1/s),tf2ss(2/s)]
 
-[u,s]=schur(rand(3,3))
+[%t %f %f %T %F]
+
+// Concaténation d'objets de types compatibles différents, avec transtypages automatiques
+[%T %pi %f 2]
+[%pi, 2+%i, %F]
+v = [%pi+0*%i, %F, %z, (1-%z)^2 ]; typeof(v), isreal(v)
+v = [10 1/%z], typeof(v)
+
+// Concaténations hétérogènes d'objets de types incompatibles => ERREURS
+[%F %z]
+[%F int8(5)]
+[int8(%pi) uint8(%e)]
+[int8(%pi) int16(%e)]
  ]]></programlisting>
+
+        <para>
+            <emphasis role="bold">Affectations distributives :</emphasis>
+        </para>
+        <programlisting role="example"><![CDATA[
+// Variables des réponses d'une function.
+// Elles sont le plus souvent optionnelles, l'une après l'autre
+M = rand(3,3);
+[u, s] = schur(M) // Nous attendons et utilisons à la fois u et s
+u = schur(M)      // Nous attendons et stockons uniquement u
+
+// Liste directe (implicite) d'objets à affecter
+[a, b, c] = (%pi, %t, "test")
+[a, b] = (%e, %f, "Hello")
+[a, b, a] = (%pi, %t, "test");
+
+// Liste explicite d'objets à affecter
+L = list(%z, %i, %t, %pi, "Text");
+[a, b, c] = L(:)
+
+// Tableau de structures :
+// Sélection de certaines cellules et affectation de leurs contenus
+s(2,3).r = %pi; s(2,1).r = %i; s(2,2) = %e;
+s(2,:).r
+s.r([2 4 6])
+[a, b, c] = s.r([2 4 6])
+
+// Expressions gauches interdites et rejetées (=> erreur)
+[m, n, m+n] = myfun(a,b) // "m+n" est une expression, non un nom de variable.
+[p, 4.5, q] = myfun(a,b) // "4.5 est une valeur littérale, non un nom de variable.
+[r, s+3 ] = myfun(a,b)   // "s+3" est une expression mixte, non un nom de variable
+ ]]></programlisting>
+        <screen><![CDATA[--> [a, b, c] = (%pi, %t, "test")
+ c  =
+ test
+
+ b  =
+  T
+
+ a  =
+   3.1415927
+
+--> [a, b] = (%e, %f, "Hello")
+ b  =
+  F
+
+ a  =
+   2.7182818
+
+--> [a, b, a] = (%pi, %t, "test"); a
+ a  =
+   3.1415927
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>
         <simplelist type="inline">
             <member>
+                <link linkend="empty">empty</link>
+            </member>
+            <member>
                 <link linkend="parentheses">parentheses</link>
+            </member>
+            <member>
+                <link linkend="lstcat">lstcat</link>
             </member>
             <member>
                 <link linkend="comma">comma</link>
@@ -71,6 +419,21 @@ s=poly(0,'s');[1/s,2/s]
             <member>
                 <link linkend="semicolon">semicolon</link>
             </member>
+            <member>
+                <link linkend="overloading">overloading</link>
+            </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    Crochets <literal>[..]</literal> et accolades
+                    <literal>{..}</literal> ont désormais des fonctions distinctes.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

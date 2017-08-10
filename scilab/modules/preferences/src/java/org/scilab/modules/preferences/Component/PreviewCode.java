@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - Pierre GRADIT
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -62,14 +65,14 @@ public class PreviewCode extends Panel implements XComponent, XChooser {
         previewEditorPane.setEditorKit(kit);
         previewEditorPane.setFont(kit.getStylePreferences().tokenFonts[0]);
         String codeSample = "// A comment with whites    and tabulations \t\t\n"
-                            + "// Email: <support@scilab-enterprises.com>\n"
-                            + "// Scilab editor: http://www.scilab-enterprises.com/\n"
+                            + "// Email: <support@@scilab-enterprises.com>\n"
+                            + "// Scilab editor: http://www.scilab.io\n"
                             + "//\n"
                             + "// LaTeX $$\\sum_{n=1}^{+\\infty}\\frac1{n^2}=\\frac{\\pi^2}6$$\n"
                             + "// TODO: blah blah\n"
                             + "function [a, b] = myfunction(d, e, f)\n"
                             + "\ta = 2.71828 + %pi + f($, :);\n"
-                            + "\tb = cos(a) + cosh(a) + \"$\\frac12$\";\n"
+                            + "\tb = cos(a) + sind(a) + \"$\\frac12$\";\n"
                             + "\tif d == e then\n"
                             + "\t\tb = 10 - e.field;\n"
                             + "\telse\n"

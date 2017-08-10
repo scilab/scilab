@@ -11,10 +11,10 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
-            [D, Z, RESID, V, IPARAM, IPNTR, WORKD, WORKL, INFO] = dseupd(RVEC, HOWMANY, SELECT, D, Z, SIGMA, BMAT, N, WHICH,
-            NEV, TOL, RESID, NCV, V, IPARAM, IPNTR, WORKD, WORKL, INFO)
+            [D, Z, RESID, V, IPARAM, IPNTR, WORKD, WORKL, INFO] = dseupd(RVEC, HOWMANY, SELECT, D, Z, ...
+                    .. SIGMA, BMAT, N, WHICH, NEV, TOL, RESID, NCV, V, IPARAM, IPNTR, WORKD, WORKL, INFO)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -324,7 +324,7 @@
     <refsection>
         <title>Example</title>
         <programlisting role="example">
-            <![CDATA[ 
+            <![CDATA[
 // The following sets dimensions for this problem.
 nx    = 10;
 nev   = 3;
@@ -337,9 +337,9 @@ ipntr   = zeros(14, 1);
 _select = zeros(ncv, 1);
 d       = zeros(nev, 1);
 z       = zeros(nx, nev);
-resid   = zeros(nx, 1); 
+resid   = zeros(nx, 1);
 v       = zeros(nx, ncv);
-workd   = zeros(3 * nx, 1); 
+workd   = zeros(3 * nx, 1);
 workl   = zeros(ncv * ncv + 8 * ncv, 1);
 // Build the symmetric test matrix
 A            = diag(10 * ones(nx,1));
@@ -365,7 +365,7 @@ while(ido <> 99)
     printf('Check the documentation of dsaupd\n\n');
   end
   if(ido == -1 | ido == 1)
-    // Perform matrix vector multiplication 
+    // Perform matrix vector multiplication
     workd(ipntr(2):ipntr(2) + nx - 1) = A * workd(ipntr(1):ipntr(1) + nx - 1);
   end
 end
@@ -394,7 +394,7 @@ printf('The convergence criterion is %d\n', tol);
         </programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="dsaupd">dsaupd</link>

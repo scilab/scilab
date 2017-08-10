@@ -1,13 +1,17 @@
 /*
-*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-*  Copyright (C) 2011 - DIGITEO - Antoine ELIAS
-*  Copyright (C) 2015 - Scilab Enterprises - Sylvain GENIN
-*
-*  This file must be used under the terms of the CeCILL.
-*  This source file is licensed as described in the file COPYING, which
-*  you should have received as part of this distribution.  The terms
-*  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ *  Copyright (C) 2011 - DIGITEO - Antoine ELIAS
+ *  Copyright (C) 2015 - Scilab Enterprises - Sylvain GENIN
+ *  Copyright (C) 2016 - Scilab Enterprises - Pierre-Aimé AGNEL
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
@@ -26,6 +30,7 @@
 #include "macrofile.hxx"
 #include "overload.hxx"
 #include "user.hxx"
+#include "opexp.hxx"
 
 using namespace types;
 
@@ -2250,13 +2255,26 @@ InternalType* compnoequal_M_IC(T *_pL, U *_pR)
 template<class T, class U, class O>
 InternalType* compnoequal_M_E(T *_pL, U *_pR)
 {
-    return new Bool(true);
+    // Try to find an overload and call it if exists
+    types::typed_list tmp;
+    tmp.push_back(_pL);
+    tmp.push_back(_pR);
+    std::wstring overloadName(Overload::buildOverloadName(Overload::getNameFromOper(ast::OpExp::ne), tmp, 1, true));
+    types::InternalType* pIT = symbol::Context::getInstance()->get(symbol::Symbol(overloadName));
+    if (pIT)
+    {
+        return NULL;
+    }
+    else
+    {
+        return new Bool(true);
+    }
 }
 
 template<class T, class U, class O>
 InternalType* compnoequal_E_M(T *_pL, U *_pR)
 {
-    return new Bool(true);
+    return compnoequal_M_E<U, T, O>(_pR, _pL);
 }
 
 template<class T, class U, class O>
@@ -2733,7 +2751,7 @@ InternalType* compnoequal_M_SP(T* _pL, U* _pR)
             std::complex<double> stComplex((double)_pL->get(0), (double)_pL->getImg(0));
             for (int i = 0; i < iSizeOut; i++)
             {
-                pspConvert->set(i, stComplex);
+                pspConvert->set(i, stComplex, false);
             }
         }
         else
@@ -2741,7 +2759,7 @@ InternalType* compnoequal_M_SP(T* _pL, U* _pR)
             pspConvert = new Sparse(_pR->getRows(), _pR->getCols(), _pR->isComplex());
             for (int i = 0; i < iSizeOut; i++)
             {
-                pspConvert->set(i, (double)_pL->get(0));
+                pspConvert->set(i, (double)_pL->get(0), false);
             }
         }
     }
@@ -2761,7 +2779,7 @@ InternalType* compnoequal_M_SP(T* _pL, U* _pR)
             for (int i = 0; i < iSizeOut; i++)
             {
                 std::complex<double> stComplex((double)_pL->get(i), (double)_pL->getImg(i));
-                pspConvert->set(i, stComplex);
+                pspConvert->set(i, stComplex, false);
             }
         }
         else
@@ -2769,11 +2787,12 @@ InternalType* compnoequal_M_SP(T* _pL, U* _pR)
             pspConvert = new Sparse(_pR->getRows(), _pR->getCols(), _pR->isComplex());
             for (int i = 0; i < iSizeOut; i++)
             {
-                pspConvert->set(i, (double)_pL->get(i));
+                pspConvert->set(i, (double)_pL->get(i), false);
             }
         }
     }
 
+    pspConvert->finalize();
     pOut = _pR->newNotEqualTo(*pspConvert);
     delete pspConvert;
     return pOut;
@@ -2797,7 +2816,7 @@ InternalType* compnoequal_SP_M(T* _pL, U* _pR)
             std::complex<double> stComplex((double)_pR->get(0), (double)_pR->getImg(0));
             for (int i = 0; i < iSizeOut; i++)
             {
-                pspConvert->set(i, stComplex);
+                pspConvert->set(i, stComplex, false);
             }
         }
         else
@@ -2805,7 +2824,7 @@ InternalType* compnoequal_SP_M(T* _pL, U* _pR)
             pspConvert = new Sparse(_pL->getRows(), _pL->getCols(), _pL->isComplex());
             for (int i = 0; i < iSizeOut; i++)
             {
-                pspConvert->set(i, (double)_pR->get(0));
+                pspConvert->set(i, (double)_pR->get(0), false);
             }
         }
     }
@@ -2825,7 +2844,7 @@ InternalType* compnoequal_SP_M(T* _pL, U* _pR)
             for (int i = 0; i < iSizeOut; i++)
             {
                 std::complex<double> stComplex((double)_pR->get(i), (double)_pR->getImg(i));
-                pspConvert->set(i, stComplex);
+                pspConvert->set(i, stComplex, false);
             }
         }
         else
@@ -2833,11 +2852,12 @@ InternalType* compnoequal_SP_M(T* _pL, U* _pR)
             pspConvert = new Sparse(_pL->getRows(), _pL->getCols(), _pL->isComplex());
             for (int i = 0; i < iSizeOut; i++)
             {
-                pspConvert->set(i, (double)_pR->get(i));
+                pspConvert->set(i, (double)_pR->get(i), false);
             }
         }
     }
 
+    pspConvert->finalize();
     pOut = _pL->newNotEqualTo(*pspConvert);
     delete pspConvert;
     return pOut;
@@ -2862,7 +2882,7 @@ InternalType* compnoequal_M_M<Bool, SparseBool, SparseBool>(Bool* _pL, SparseBoo
         pspConvert = new SparseBool(_pR->getRows(), _pR->getCols());
         for (int i = 0; i < iSizeOut; i++)
         {
-            pspConvert->set(i, _pL->get(0) == 1);
+            pspConvert->set(i, _pL->get(0) == 1, false);
         }
 
     }
@@ -2879,10 +2899,11 @@ InternalType* compnoequal_M_M<Bool, SparseBool, SparseBool>(Bool* _pL, SparseBoo
         pspConvert = new SparseBool(_pR->getRows(), _pR->getCols());
         for (int i = 0; i < iSizeOut; i++)
         {
-            pspConvert->set(i, _pL->get(i) == 1);
+            pspConvert->set(i, _pL->get(i) == 1, false);
         }
     }
 
+    pspConvert->finalize();
     pOut = _pR->newNotEqualTo(*pspConvert);
     delete pspConvert;
     return pOut;
@@ -2903,7 +2924,7 @@ InternalType* compnoequal_M_M<SparseBool, Bool, SparseBool>(SparseBool* _pL, Boo
         pspConvert = new SparseBool(_pL->getRows(), _pL->getCols());
         for (int i = 0; i < iSizeOut; i++)
         {
-            pspConvert->set(i, _pR->get(0) == 1);
+            pspConvert->set(i, _pR->get(0) == 1, false);
         }
     }
     else
@@ -2919,10 +2940,11 @@ InternalType* compnoequal_M_M<SparseBool, Bool, SparseBool>(SparseBool* _pL, Boo
         pspConvert = new SparseBool(_pL->getRows(), _pL->getCols());
         for (int i = 0; i < iSizeOut; i++)
         {
-            pspConvert->set(i, _pR->get(i) == 1);
+            pspConvert->set(i, _pR->get(i) == 1, false);
         }
     }
 
+    pspConvert->finalize();
     pOut = _pL->newNotEqualTo(*pspConvert);
     delete pspConvert;
     return pOut;
@@ -3703,7 +3725,7 @@ types::InternalType* compnoequal_M_M<GraphicHandle, GraphicHandle, Bool>(Graphic
     /* check dimension*/
     if (_pL->getDims() != _pR->getDims())
     {
-        throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+        throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
     }
 
     int* piDimsL = _pL->getDimsArray();
@@ -3713,7 +3735,7 @@ types::InternalType* compnoequal_M_M<GraphicHandle, GraphicHandle, Bool>(Graphic
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
         }
     }
 

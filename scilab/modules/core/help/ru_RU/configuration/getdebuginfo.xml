@@ -5,7 +5,7 @@
         <refpurpose>получение информации о Scilab'e для отладки</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             getdebuginfo()
             dynamic_info = getdebuginfo();

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <category enable="true" name="Config">
     <node xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="Category" enable="true" name="Palettes">
-        <node xsi:type="PreLoaded" enable="true" name="Commonly Used Blocks">
+        <node xsi:type="PreLoaded" enable="true" name="Recently Used Blocks">
             <block name="ANDBLK">
                 <icon variable="SCI" path="/modules/xcos/images/palettes/ANDBLK.png"/>
             </block>
@@ -10,6 +10,9 @@
             </block>
             <block name="CMSCOPE">
                 <icon variable="SCI" path="/modules/xcos/images/palettes/CMSCOPE.png"/>
+            </block>
+            <block name="SCALE_CMSCOPE">
+                <icon variable="SCI" path="/modules/xcos/images/palettes/SCALE_CMSCOPE.png"/>
             </block>
             <block name="CONST_m">
                 <icon variable="SCI" path="/modules/xcos/images/palettes/CONST_m.png"/>
@@ -246,7 +249,7 @@
         </node>
         <node xsi:type="PreLoaded" enable="true" name="Mathematical Operations">
             <block name="ABS_VALUE">
-                <icon variable="SCI" path="/modules/xcos/images/palettes/ABS_VALUE.png"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/ABS_VALUE.svg"/>
             </block>
             <block name="BIGSOM_f">
                 <icon variable="SCI" path="/modules/xcos/images/palettes/BIGSOM_f.png"/>
@@ -319,6 +322,9 @@
             </block>
             <block name="TrigFun">
                 <icon variable="SCI" path="/modules/xcos/images/palettes/TrigFun.png"/>
+            </block>
+            <block name="RELATIONALOP">
+                <icon variable="SCI" path="/modules/xcos/images/palettes/RELATIONALOP.png"/>
             </block>
         </node>
         <node xsi:type="PreLoaded" enable="true" name="Matrix">
@@ -506,6 +512,9 @@
             <block name="SRFLIPFLOP">
                 <icon variable="SCI" path="/modules/xcos/images/palettes/SRFLIPFLOP.png"/>
             </block>
+            <block name="LOGICAL_OP">
+                <icon variable="SCI" path="/modules/xcos/images/palettes/LOGICAL_OP.png"/>
+            </block>
         </node>
         <node xsi:type="PreLoaded" enable="true" name="Port &amp; Subsystem">
             <block name="CLKINV_f">
@@ -528,7 +537,7 @@
             </block>
             <block name="SUPER_f">
                 <icon variable="SCI" path="/modules/xcos/images/palettes/SUPER_f.png"/>
-                
+
             </block>
         </node>
         <node xsi:type="PreLoaded" enable="true" name="Zero crossing detection">
@@ -665,8 +674,14 @@
             <block name="CMSCOPE">
                 <icon variable="SCI" path="/modules/xcos/images/palettes/CMSCOPE.png"/>
             </block>
+            <block name="SCALE_CMSCOPE">
+                <icon variable="SCI" path="/modules/xcos/images/palettes/SCALE_CMSCOPE.png"/>
+            </block>
             <block name="CSCOPE">
                 <icon variable="SCI" path="/modules/xcos/images/palettes/CSCOPE.png"/>
+            </block>
+            <block name="SCALE_CSCOPE">
+                <icon variable="SCI" path="/modules/xcos/images/palettes/SCALE_CSCOPE.png"/>
             </block>
             <block name="CSCOPXY">
                 <icon variable="SCI" path="/modules/xcos/images/palettes/CSCOPXY.png"/>

@@ -8,7 +8,7 @@
         <title>Séquence d'appel</title>
         <synopsis>contourf(x,y,z,nz,[style,strf,leg,rect,nax])</synopsis>
     </refsynopsisdiv>
-    <refsection>
+    <refsection role="parameters">
         <title>Paramètres</title>
         <variablelist>
             <varlistentry>
@@ -38,7 +38,7 @@
                                     définit le nombre de courbes de niveaux espacées régulièrement
                                     entre zmin et zmax :
                                 </para>
-                                <programlisting role=""><![CDATA[ 
+                                <programlisting role=""><![CDATA[
 z= zmin + (1:nz)*(zmax-zmin)/(nz+1)
  ]]></programlisting>
                                 <para>
@@ -47,8 +47,8 @@ z= zmin + (1:nz)*(zmax-zmin)/(nz+1)
                                     ils sont réduits à des points) mais peuvent être ajoutés
                                     avec
                                 </para>
-                                <programlisting role=""><![CDATA[ 
-[im,jm] = find(z == zmin);     // ou zmax 
+                                <programlisting role=""><![CDATA[
+[im,jm] = find(z == zmin);     // ou zmax
 plot2d(x(im)',y(jm)',-9,"000")
  ]]></programlisting>
                             </listitem>
@@ -84,7 +84,7 @@ plot2d(x(im)',y(jm)',-9,"000")
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Description</title>
         <para>
             <literal>contourf</literal> remplit l'espace entre deux courbes de
@@ -104,37 +104,39 @@ plot2d(x(im)',y(jm)',-9,"000")
             la fonction.
         </para>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 contourf(1:10,1:10,rand(10,10),5,1:5,"011"," ",[0,0,11,11])
  ]]></programlisting>
         <scilab:image>
             contourf(1:10,1:10,rand(10,10),5,1:5,"011"," ",[0,0,11,11])
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 function z=peaks(x,y)
-x1=x(:).*.ones(1,size(y,'*'));
-y1=y(:)'.*.ones(size(x,'*'),1);
-z =  (3*(1-x1).^2).*exp(-(x1.^2) - (y1+1).^2) ... 
-   - 10*(x1/5 - x1.^3 - y1.^5).*exp(-x1.^2-y1.^2) ... 
-   - 1/3*exp(-(x1+1).^2 - y1.^2) 
+x1 = x(:).*.ones(1,size(y,'*'));
+y1 = y(:)'.*.ones(size(x,'*'),1);
+z =  (3*(1-x1).^2).*exp(-(x1.^2) - (y1+1).^2) ...
+   - 10*(x1/5 - x1.^3 - y1.^5).*exp(-x1.^2-y1.^2) ...
+   - 1/3*exp(-(x1+1).^2 - y1.^2)
 endfunction
 
-function z=peakit()
-x=-4:0.1:4;y=x;z=peaks(x,y);
+function z = peakit()
+    x = -4:0.1:4
+    y = x
+    z = peaks(x,y)
 endfunction
 
-z=peakit();
+z = peakit();
 
-levels=[-6:-1,-logspace(-5,0,10),logspace(-5,0,10),1:8];
-m=size(levels,'*');
+levels = [-6:-1,-logspace(-5,0,10),logspace(-5,0,10),1:8];
+m = size(levels,'*');
 n = fix(3/8*m);
 r = [(1:n)'/n; ones(m-n,1)];
 g = [zeros(n,1); (1:n)'/n; ones(m-2*n,1)];
 b = [zeros(2*n,1); (1:m-2*n)'/(m-2*n)];
 h = [r g b];
-xset('colormap',h);
+gcf().color_map = h;
 xset('fpf',' ');
 clf();
 contourf([],[],z,[-6:-1,-logspace(-5,0,10),logspace(-5,0,10),1:8],0*ones(1,m))
@@ -147,17 +149,17 @@ contourf([],[],z,[-6:-1,-logspace(-5,0,10),logspace(-5,0,10),1:8]);
             function z=peaks(x,y)
             x1=x(:).*.ones(1,size(y,'*'));
             y1=y(:)'.*.ones(size(x,'*'),1);
-            z =  (3*(1-x1).^2).*exp(-(x1.^2) - (y1+1).^2) ... 
-            - 10*(x1/5 - x1.^3 - y1.^5).*exp(-x1.^2-y1.^2) ... 
-            - 1/3*exp(-(x1+1).^2 - y1.^2) 
+            z =  (3*(1-x1).^2).*exp(-(x1.^2) - (y1+1).^2) ...
+            - 10*(x1/5 - x1.^3 - y1.^5).*exp(-x1.^2-y1.^2) ...
+            - 1/3*exp(-(x1+1).^2 - y1.^2)
             endfunction
-            
+
             function z=peakit()
             x=-4:0.1:4;y=x;z=peaks(x,y);
             endfunction
-            
+
             z=peakit();
-            
+
             levels=[-6:-1,-logspace(-5,0,10),logspace(-5,0,10),1:8];
             m=size(levels,'*');
             n = fix(3/8*m);
@@ -165,7 +167,7 @@ contourf([],[],z,[-6:-1,-logspace(-5,0,10),logspace(-5,0,10),1:8]);
             g = [zeros(n,1); (1:n)'/n; ones(m-2*n,1)];
             b = [zeros(2*n,1); (1:m-2*n)'/(m-2*n)];
             h = [r g b];
-            xset('colormap',h);
+            gcf().color_map = h;
             xset('fpf',' ');
             clf();
             contourf([],[],z,[-6:-1,-logspace(-5,0,10),logspace(-5,0,10),1:8],0*ones(1,m))
@@ -176,12 +178,6 @@ contourf([],[],z,[-6:-1,-logspace(-5,0,10),logspace(-5,0,10),1:8]);
         <simplelist type="inline">
             <member>
                 <link linkend="contour">contour</link>
-            </member>
-            <member>
-                <link linkend="fcontour">fcontour</link>
-            </member>
-            <member>
-                <link linkend="fcontour2d">fcontour2d</link>
             </member>
             <member>
                 <link linkend="contour2di">contour2di</link>

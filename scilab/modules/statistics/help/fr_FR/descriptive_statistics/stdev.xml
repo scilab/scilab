@@ -3,11 +3,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2000 - INRIA
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="stdev">
@@ -16,7 +19,7 @@
         <refpurpose>écart-type des termes d'une matrice</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Séquence d'appel</title>
+        <title>Syntaxe</title>
         <synopsis>
             y = stdev(x)
             y = stdev(x, '*')
@@ -46,7 +49,9 @@
                 <term>orien</term>
                 <listitem>
                     <para>
-                        caractère, peut valoir <literal>"*"</literal>, <literal>"r"</literal> ou <literal>"c"</literal>
+                        <literal>"*"</literal> (par défaut), <literal>"r"</literal> ou 1,
+                        <literal>"c"</literal> ou 2, ou un entier &lt;= ndims(x): direction selon
+                        laquelle l'écart-type est calculé.
                     </para>
                 </listitem>
             </varlistentry>
@@ -77,9 +82,12 @@
             <literal>y=stdev(x,'c')</literal> (ou <literal>y=stdev(x,2)</literal>) est l'écart-type selon l'indice de colonne. Chaque composante du vecteur colonne <literal>y</literal> contient l'écart-type de chaque ligne de <literal>x</literal>.
         </para>
         <para>
-            Par extension, <literal>y=stdev(x,n)</literal> avec <literal>n</literal> un entier positif retourne la déviation
-            suivant la <literal>n</literal>-ème dimension, et si <literal>n>ndims(x)</literal>, alors <literal>stdev(x,n)</literal> retourne <literal>zeros(x)</literal>.
+            Par extension, <literal>y=stdev(x,n)</literal> avec <literal>n</literal> un entier positif
+            retourne la déviation suivant la <literal>n</literal>-ème dimension.
         </para>
+        <note>
+            <literal>stdev()</literal> peut être étendue par surdéfinition.
+        </note>
     </refsection>
     <refsection>
         <title>Exemples</title>
@@ -88,7 +96,19 @@ A = [1 2 10; 7 7.1 7.01];
 stdev(A)
 stdev(A, 'r')
 stdev(A, 'c')
-stdev(A, 'c', mean(x,'c'))
+stdev(A,  2 )
+
+// Ecart-type par rapport à une moyenne théorique connue a priori (par construction) :
+A = grand(10, 10, "nor", 7.5, 3);
+stdev(A) / 3             // Moyenne inconnue => estimée d'après A avant d'y référer l'écart-type
+stdev(A, '*', 7.5) / 3   // Utilisation de la moyenne consignée pour le tirage aléatoire avec grand()
+
+// Avec une hypermatrice :
+A = grand(3, 5, 30, "nor", 4.1, 1.5);
+stdev(A) / 1.5
+sd = stdev(A, 3, 4.1) / 1.5
+mean(sd)
+
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -118,6 +138,18 @@ stdev(A, 'c', mean(x,'c'))
                 <revnumber>5.5.0</revnumber>
                 <revdescription>
                     Peut désormais calculer l'écart-type moyen quadratique en utilisant la moyenne a priori définie par <varname>m</varname>
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revdescription>
+                    stdev(x, orien>ndims(x)) ne donne plus zeros(x) mais produit une erreur.
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.0.1</revnumber>
+                <revdescription>
+                    stdev() peut désormais être étendue par surdéfinition.
                 </revdescription>
             </revision>
         </revhistory>

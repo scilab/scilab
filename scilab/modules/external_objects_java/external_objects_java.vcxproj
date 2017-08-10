@@ -206,7 +206,6 @@
     <ClCompile Include="sci_gateway\cpp\sci_jautoUnwrap.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_jcast.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_jcompile.cpp" />
-    <ClCompile Include="sci_gateway\cpp\sci_jconvMatrixMethod.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_jcreatejar.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_jdeff.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_jdisableTrace.cpp" />

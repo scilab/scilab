@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -29,7 +32,6 @@ public :
 
     static void pushControlStatus(Parser::ControlStatus control_status)
     {
-        //std::cout << "Push front : " << control_status << std::endl;
         _control_status.push_front(control_status);
     }
 
@@ -37,8 +39,6 @@ public :
     {
         if (!_control_status.empty())
         {
-            //std::cout << "Pop front" << std::endl;
-            //std::cout << "size = " << _control_status.size() << std::endl;
             _control_status.pop_front();
         }
     }
@@ -127,7 +127,7 @@ public :
     */
     static const std::wstring getProgName(void)
     {
-        return L"Scilab6";
+        return L"Scilab";
     }
     static void setProgName(const std::wstring& progName)
     {
@@ -138,12 +138,13 @@ public :
     ** Error Message management
     */
     static std::wstring& getErrorMessage(void);
-    static void appendErrorMessage(std::wstring ostr);
+    static void appendErrorMessage(const std::wstring& ostr);
     static void resetErrorMessage(void)
     {
         _error_message.clear();
     }
 
+    static void releaseTmpFile();
     /*
     ** \brief This funnction returns the parsed code written
     ** at the given line.
@@ -153,7 +154,7 @@ public :
     */
     static char* getCodeLine(int line, char **codeLine);
 
-    static void PrintError(std::wstring msg);
+    static void PrintError(const std::wstring& msg);
 
 private :
     static std::wstring _file_name;

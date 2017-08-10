@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="part" xml:lang="ja">
@@ -64,7 +67,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // 位置 8 から 11 の文字を返します
 part("How to use ""part"" ?", 8:11)
 // 各要素の位置2から4の文字を返します
@@ -76,21 +79,21 @@ c = part(['abcdefg', 'hijklmn', 'opqrstu'], [1, 4:7]);
 c = part(['abcdefg', 'hijklmn', 'opqrstu'], [4, 1:7, 4]);
 // 位置1の文字に位置1の文字を再度追加,位置2の文字を追加して返す
 c=part(['a', 'abc', 'abcd'], [1, 1, 2])
-part(['a', 'abc', 'abcd'], [1])		// =>  ['a' 'a' 'a']
-part(['a', 'abc', 'abcd'], [1, 1])		// =>  ['aa' 'aa' 'aa']
-part(['a', 'abc', 'abcd'], [1, 1, 2])	// =>  ['aa' 'aab' 'aab']
+part(['a', 'abc', 'abcd'], [1])         // =>  ['a' 'a' 'a']
+part(['a', 'abc', 'abcd'], [1 1])       // =>  ['aa' 'aa' 'aa']
+part(['a', 'abc', 'abcd'], [1 1 2])     // =>  ['aa ' 'aab' 'aab']
 // 文字をN回反復
-N = 10; part('-', ones(1:N))  		// => '----------'
+N = 10; part('-', ones(1:N))            // => '----------'
 // パターンをN回反復:
-N = 6; pat = '- '; 
-part(pat, ones(1:N).*.(1:length(pat))) // => '- - - - - - '
-// $ = 暗黙的な文字列長 を使用: 
+N = 6; pat = '- ';
+part(pat, ones(1:N).*.(1:length(pat)))  // => '- - - - - - '
+// $ = 暗黙的な文字列長 を使用:
 // 1)
 part(['a string' 'another longer one'], $-2:$ ) // => [ 'ing' 'one']
 // 2) strrev()の別の実装:
-part('Hello world', $:-1:1)		  // => 'dlrow olleH'
+part('Hello world', $:-1:1)       // => 'dlrow olleH'
 // 3) 範囲を示さない$を使用:
-part('Hello world', [ $ 4:5 ])	  // => 'dlo'
+part('Hello world', [ $ 4:5 ])    // => 'dlo'
 // 4) 範囲を示す$が使用できない状況でスカラーと範囲ではない$を混用:
 part("Hello", [ 1 $-1:$ $ ])      // =>  エラー
  ]]></programlisting>

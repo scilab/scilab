@@ -5,7 +5,7 @@
         <refpurpose>2-quadrant and 4-quadrant inverse tangent</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>phi = atan(x)
             phi = atan(y, x)
         </synopsis>
@@ -86,7 +86,7 @@ atan(-%i)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="tan">tan</link>

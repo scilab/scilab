@@ -83,7 +83,7 @@
     <refsection id="Description_VirtualCLK0">
         <title>Description</title>
         <para>
-            This block is considered a virtual block by the compilor. It is used in a SuperBlock (subsystem) to trigger the always active blocks (ex: the sine generator) in the SuperBlock and in the level below. The blocks will be virtually connected to the input of the VirtualCLK0.
+            This block is considered a virtual block by the compiler. It is used in a SuperBlock (subsystem) to trigger the always active blocks (ex: the sine generator) in the SuperBlock and in the level below. The blocks will be virtually connected to the input of the VirtualCLK0.
         </para>
         <para>
         </para>

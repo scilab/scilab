@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="fft2">
+    <refnamediv>
+        <refname>fft2</refname>
+        <refpurpose>two-dimension fast Fourier
+            transform
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>y=fft2(x)
+            y=fft2(x,n,m)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>a vector/matrix/array (Real or Complex)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>a vector/matrix/array (Real or Complex)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>m</term>
+                <listitem>
+                    <para>integer, number of rows.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>integer, number of columns.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <programlisting role=""><![CDATA[
+This functions performs the two-dimension discrete Fourier transform.
+ ]]></programlisting>
+        <para>
+            <literal>y=fft2(x)</literal>y and x have the same size
+        </para>
+        <para>
+            <literal>y=fft2(x,m,n):</literal> If <literal>m</literal> (respectively
+            <literal>n</literal>) is less than the rows number (respectively columns) of
+            <literal>x</literal> then the <literal>x</literal> rows number (resp. columns) is
+            truncated, else if m (resp. <literal>n</literal>) is more than the rows number
+            (resp. columns) of <literal>x</literal> then <literal>x</literal> rows are completed
+            by zero (resp. columns) .
+        </para>
+        <para>
+            if <literal>x</literal> is a matrix then <literal>y</literal> is a matrix, if
+            <literal>x</literal> is a hypermatrix then <literal>y</literal> is a hypermatrix, with
+            the size of the first dimension of <literal>y</literal> is equal to
+            <literal>m</literal>, the size of the second dimension of <literal>y</literal> is
+            equal to <literal>n</literal>, the size of the ith dimension of <literal>y</literal>
+            (for i&gt;2, case hypermatrix) equal to the size of the ith dimension of
+            <literal>x</literal>. (i.e size(y,1)=m, size(y,2)=n and size(y,i)=size(x,i) for
+            i&gt;2)
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+//Comparison with explicit formula
+a=[1 2 3 ;4 5 6 ;7 8 9 ;10 11 12]
+m=size(a,1)
+n=size(a,2)
+
+// fourier transform along the rows
+for i=1:n
+a1(:,i)=exp(-2*%i*%pi*(0:m-1)'.*.(0:m-1)/m)*a(:,i)
+end
+
+// fourier transform along the columns
+for j=1:m
+a2temp=exp(-2*%i*%pi*(0:n-1)'.*.(0:n-1)/n)*(a1(j,:)).'
+a2(j,:)=a2temp.'
+end
+norm(a2-fft2(a))
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="fft">fft</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

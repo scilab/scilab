@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part Scilab
+Copyright (C) 2012 - INRIA - Serge Steer
+Copyright (C) 2012 - 2016 - Scilab Enterprises
+
+This file is hereby licensed under the terms of the GNU GPL v2.0,
+pursuant to article 5.3.4 of the CeCILL v.2.1.
+This file was originally licensed under the terms of the CeCILL v2.1,
+and continues to be available under such terms.
+For more information, see the COPYING file which you should have received
+along with this program.
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xcorr" xml:lang="en">
+    <refnamediv>
+        <refname>xcorr</refname>
+        <refpurpose>Computes discrete auto or cross correlation</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[c [,lagindex]] = xcorr(x [,maxlags [,scaling]])
+            [c [,lagindex]] = xcorr(x,y [,maxlags [,scaling]])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parameters</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>a vector of real or complex floating point numbers.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>a vector of real or complex floating point numbers. The
+                        default value is <literal>x</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>maxlags</term>
+                <listitem>
+                    <para>a scalar with integer value greater than 1. The default value
+                        is <literal>n</literal>. Where <literal>n</literal> is the maximum
+                        of the <literal>x</literal> and <literal>y</literal> vector
+                        length.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>scaling</term>
+                <listitem>
+                    <para>a character string with possible value:
+                        <literal>"biased"</literal>, <literal>"unbiased"</literal>,
+                        <literal>"coeff"</literal>, <literal>"none"</literal>. The default
+                        value is <literal>"none"</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>c</term>
+                <listitem>
+                    <para>a vector of real or complex floating point numbers with same
+                        orientation as <literal>x</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>lagindex</term>
+                <listitem>
+                    <para>a row vector, containing the lags index corresponding to the
+                        <literal>c</literal> values.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <itemizedlist>
+            <listitem>
+                <literal>c=xcorr(x)</literal>
+
+                computes the un-normalized discrete auto correlation:
+
+                <latex>{\begin{matrix}C_k = \sum_{i=1}^{n-k}
+                    {x_{i+k}*x^{*}_i}, k \geq 0 \\ C_k = C^{*}_{-k}, k \leq
+                    -1\end{matrix}.$
+                </latex>
+
+                and return in
+
+                <literal>c</literal>
+
+                the sequence of auto correlation lags
+
+                <latex>$C_k,k=-n:n$</latex>
+
+                with
+
+                <literal>n</literal>
+
+                is the length of
+
+                <literal>x</literal>
+
+
+            </listitem>
+            <listitem>
+                <literal>xcorr(x,y)</literal>
+
+                computes the un-normalized discrete cross correlation:
+
+                <latex>{\begin{matrix}C_k = \sum_{i=1}^{n-k}
+                    {x_{i+k}*y^{*}_i}, k \geq 0 \\ C_k = C^{*}_{-k}, k \leq
+                    -1\end{matrix}}.$
+                </latex>
+
+                and return in
+
+                <literal>c</literal>
+
+                the sequence of auto correlation lags
+
+                <latex>$C_k,k=-n:n$</latex>
+
+                with
+
+                <literal>n</literal>
+
+                is the maximum of
+
+                <literal>x</literal>
+
+                and
+
+                <literal>y</literal>
+
+                length's.
+            </listitem>
+        </itemizedlist>
+        <para>
+            If the <literal>maxlags</literal> argument is given
+            <literal>xcorr</literal> returns in <literal>c</literal> the sequence of
+            auto correlation lags <latex>$C_k,k=-maxlags:maxlags$</latex>. If
+            <literal>maxlags</literal> is greater than <literal>length(x)</literal>,
+            the first and last values of <literal>c</literal> are zero.
+        </para>
+        <para>
+            The <literal>scaling</literal> argument describes how
+            <latex>C(k)</latex> is normalized before being returned in
+            <literal>c</literal>:
+            <itemizedlist>
+                <listitem>
+                    <term>"biased"</term>:<literal>c=</literal><latex>$C$</latex><literal>/n</literal>.
+                </listitem>
+                <listitem>
+                    <term>"unbiased"</term>:<literal>c=</literal><latex>$C$</latex><literal>./(n-(-maxlags:maxlags))</literal>.
+                </listitem>
+                <listitem>
+                    <term>"coeff"</term>:<literal>c=</literal><latex>$C$</latex><literal>/(norm(x)*norm(y))</literal>.
+                </listitem>
+            </itemizedlist>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Remark</title>
+
+        The
+
+        <link linkend="corr">corr</link>
+
+        function computes the "biased" covariance of
+
+        <literal>x</literal>
+
+        and
+
+        <literal>y</literal>
+
+        and only return in
+
+        <literal>c</literal>
+
+        the sequence of auto correlation lags
+
+        <latex>$C_k,k \geq 0$</latex>
+
+        .
+    </refsection>
+    <refsection>
+        <refsection>
+            <title>Method</title> This function computes
+            <latex>$C$</latex> using
+            <literal>ifft(fft(x).*conj(fft(y)))</literal>.
+        </refsection>
+        <refsection>
+            <title>Examples</title>
+            <programlisting role="example">t = linspace(0, 100, 2000);
+                y = 0.8 * sin(t) + 0.8 * sin(2 * t);
+                [c, ind] = xcorr(y, "biased");
+                plot(ind, c)
+            </programlisting>
+            <scilab:image>
+                t = linspace(0, 100, 2000);
+                y = 0.8 * sin(t) + 0.8 * sin(2 * t);
+                [c, ind] = xcorr(y, "biased");
+                plot(ind, c)
+            </scilab:image>
+        </refsection>
+        <refsection>
+            <title>See also</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="xcov">xcov</link>
+                </member>
+                <member>
+                    <link linkend="corr">corr</link>
+                </member>
+                <member>
+                    <link linkend="fft">fft</link>
+                </member>
+            </simplelist>
+        </refsection>
+        <refsection>
+            <title>Authors</title>
+            <simplelist type="vert">
+                <member>Serge Steer, INRIA</member>
+            </simplelist>
+        </refsection>
+        <title>Used Functions</title>
+        <para>
+            <link linkend="fft">fft</link>
+        </para>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>xcorr added.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

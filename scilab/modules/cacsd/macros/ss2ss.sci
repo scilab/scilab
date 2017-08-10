@@ -1,11 +1,14 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function [Sl1,right,left]=ss2ss(Sl,T,F,G,flag)
     // State-space to state-space conversion
@@ -28,23 +31,24 @@ function [Sl1,right,left]=ss2ss(Sl,T,F,G,flag)
     [LHS,RHS]=argn(0);
     select RHS
     case 2 then
-        Sl1=syslin(Sl(7),inv(T)*A*T,inv(T)*B,C*T,D);
+        Ti=inv(T)
+        Sl1=syslin(Sl.dt,Ti*A*T,Ti*B,C*T,D,Ti*Sl.X0);
         right=eye(A);left=right;
     case 3 then
         A1=A+B*F;C1=C+D*F;
         A1=inv(T)*A1*T;B1=inv(T)*B;C1=C1*T;D1=D
-        Sl1=syslin(Sl(7),A1,B1,C1,D1);
-        right=syslin(Sl(7),A+B*F,B,F,eye(F*B));
+        Sl1=syslin(Sl.dt,A1,B1,C1,D1,Sl.X0);
+        right=syslin(Sl.dt,A+B*F,B,F,eye(F*B));
         left=eye(size(C,1),size(C,1));
     case 4 then
         A1=A+B*F+G*C+G*D*F;C1=C+D*F;B1=B+G*D
         A1=inv(T)*A1*T;B1=inv(T)*B1;C1=C1*T;D1=D
-        Sl1=syslin(Sl(7),A1,B1,C1,D1);
-        right=syslin(Sl(7),A+B*F,B,F,eye(F*B));
+        Sl1=syslin(Sl.dt,A1,B1,C1,D1,Sl.X0);
+        right=syslin(Sl.dt,A+B*F,B,F,eye(F*B));
         // Warning left is computed as [ At + G*Ct,G;Ct,I]
         // where [At Bt; Ct Dt] is Sl1*right
         At=A+B*F; Ct=C+D*F
-        left=syslin(Sl(7),At+G*Ct,G,Ct,eye(Ct*G));
+        left=syslin(Sl.dt,At+G*Ct,G,Ct,eye(Ct*G));
     case 5 then
         if flag==1 then
             // x in R^n , y in R^p, u in R^m
@@ -65,11 +69,11 @@ function [Sl1,right,left]=ss2ss(Sl,T,F,G,flag)
             A1=A+G*C+[B+G*D,-G]*F;B1=[B+G*D,-G];C1=C+[D,zeros(p,p)]*F;
             D1=[D,zeros(p,p)];
             A1=inv(T)*A1*T;B1=inv(T)*B1;C1=C1*T;D1=D1
-            Sl1=syslin(Sl(7),A1,B1,C1,D1);
-            left=syslin(Sl(7),A+G*C,[G,-G],C,[eye(p,p),zeros(p,p)]);
+            Sl1=syslin(Sl.dt,A1,B1,C1,D1,Sl.X0);
+            left=syslin(Sl.dt,A+G*C,[G,-G],C,[eye(p,p),zeros(p,p)]);
             // Now we compute the right associated to left*Sl1
             A1=A+G*C;B1=[B+G*D,-G];C1=C;D1=[D,zeros(p,p)];
-            right=syslin(Sl(7),A1+B1*F,B1,F,eye(F*B1));
+            right=syslin(Sl.dt,A1+B1*F,B1,F,eye(F*B1));
             return
         end
         if flag==2 then
@@ -84,18 +88,19 @@ function [Sl1,right,left]=ss2ss(Sl,T,F,G,flag)
             // We have then the following property
             // Sl1 equiv left*sysdiag(sys*right,eye(p,p)))
             //
+            p = size(C,"r");
             A1=A+B*F+G*C+G*D*F;
+            B1=[B+G*D,-G];
             C1=C+ D*F;
             D1=[D,zeros(p,p)];
-            B1=[B+G*D,-G];
             A1=inv(T)*A1*T;B1=inv(T)*B1;C1=C1*T;D1=D1
-            Sl1=syslin(Sl(7),A1,B1,C1,D1);
-            right=syslin(Sl(7),A+B*F,B,F,eye(F*B));
+            Sl1=syslin(Sl.dt,A1,B1,C1,D1,Sl.X0);
+            right=syslin(Sl.dt,A+B*F,B,F,eye(F*B));
             // Warning left is computed as [ At + G*Ct,(G,-G);
             //                             [    Ct    ,(I, 0)]
             // where [At Bt; Ct Dt] is Sl1*right
             At=A+B*F; Ct=C+D*F
-            left=syslin(Sl(7),At+G*Ct,[G,-G],Ct,[eye(Ct*G),zeros(Ct*G)]);
+            left=syslin(Sl.dt,At+G*Ct,[G,-G],Ct,[eye(Ct*G),zeros(Ct*G)]);
         end
     end
 endfunction

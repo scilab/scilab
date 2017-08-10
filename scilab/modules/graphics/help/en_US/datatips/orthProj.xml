@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Copyright (C) INRIA -  Serge Steer Serge.Steer@inria.fr
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en_US" xml:id="orthProj">
     <refnamediv>
@@ -14,10 +17,10 @@
         <refpurpose>Computes the orthogonal projection of a point to a polyline in the plane. </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[d,ptp,ind,c] = orthProj(data,pt)</synopsis>
     </refsynopsisdiv>
-    <refsection>
+    <refsection role="parameters">
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
@@ -25,7 +28,7 @@
                 <listitem>
                     <para>
                         a n by 2 array. The first column contains the X
-                        coordinates of the poyline, while the second one contains
+                        coordinates of the polyline, while the second one contains
                         the Y coordinates.
                     </para>
                 </listitem>
@@ -66,24 +69,24 @@
                 <term>c</term>
                 <listitem>
                     <para>
-                        The interpolation coefficient of the orthonal projection.
+                        The interpolation coefficient of the orthogonal projection.
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Description</title>
         <para>
             Computes the orthogonal projection of a point to a polyline in the plane.
         </para>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
     x=linspace(0,1,30)';
     y=sin(4*x.^3)/2;
-    clf();a=gca();a.isoview='on';
+    clf(), isoview()
     plot(x,y)
     pt=[0.7 0.3];
     plot(pt(1),pt(2),'xb')
@@ -98,12 +101,11 @@
     plot(x(ind:ind+1),y(ind:ind+1),'+r')
     xpoly([pt(1);ptp(1)],[pt(2);ptp(2)])
     e=gce();e.polyline_style=4;e.arrow_size_factor = 1.5;
-
     ]]></programlisting>
         <scilab:image>
             x=linspace(0,1,30)';
             y=sin(4*x.^3)/2;
-            clf();a=gca();a.isoview='on';
+            clf(), isoview()
             plot(x,y)
             pt=[0.7 0.3];
             plot(pt(1),pt(2),'xb')
@@ -111,14 +113,13 @@
             plot(x(ind:ind+1),y(ind:ind+1),'+r')
             xpoly([pt(1);ptp(1)],[pt(2);ptp(2)])
             e=gce();e.polyline_style=4;e.arrow_size_factor = 1.5;
-            
+
             pt=[0.75 -0.3];
             plot(pt(1),pt(2),'xb')
             [d,ptp,ind,c]=orthProj([x y],pt);
             plot(x(ind:ind+1),y(ind:ind+1),'+r')
             xpoly([pt(1);ptp(1)],[pt(2);ptp(2)])
             e=gce();e.polyline_style=4;e.arrow_size_factor = 1.5;
-            
         </scilab:image>
     </refsection>
 </refentry>

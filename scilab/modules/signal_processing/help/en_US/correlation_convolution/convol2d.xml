@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Add some comments about XML file
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en_US" xml:id="convol2d">
+    <refnamediv>
+        <refname>convol2d</refname>
+        <refpurpose>discrete 2-D convolution, using fft. </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>C = convol2d(A,B)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parameters</title>
+        <variablelist>
+            <varlistentry>
+                <term>A</term>
+                <listitem>
+                    <para>
+                        a real or complex 2-D array.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>B</term>
+                <listitem>
+                    <para>
+                        a real or complex 2-D array.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>C</term>
+                <listitem>
+                    <para>
+                        a real or complex 2-D array.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>convol2d</literal> uses fft to compute the full
+            two-dimensional discrete convolution. The
+            dimensions of the result<literal>C</literal> are given by
+            <literal>size(A)+size(B)+1</literal>. The indices of the
+            center element of <literal>B</literal> are defined as
+            <literal>floor((size(B)+1)/2)</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+    s = [1 2 1; 0 0 0; -1 -2 -1];//Sobel horizontal edge kernel
+    A = zeros(10,10);A(3:7,3:7) = 1;
+    convol2d(s,A);
+    ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="conv2">conv2</link>
+            </member>
+            <member>
+                <link linkend="convol">convol</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>Used Functions</title>
+        <para>
+            The  <literal>convol2d</literal> function is based on the <link linkend="fft">fft</link> builtin.
+        </para>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>Function convol2d introduced.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

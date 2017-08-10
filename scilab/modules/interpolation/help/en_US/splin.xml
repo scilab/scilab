@@ -5,7 +5,7 @@
         <refpurpose>cubic spline interpolation</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>d = splin(x, y [,spline_type [, der]])</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -198,7 +198,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // example 1
 deff("y=runge(x)","y=1 ./(1 + x.^2)")
 a = -5; b = 5; n = 11; m = 400;
@@ -227,7 +227,7 @@ xtitle("interpolation of the Runge function")
             plot2d(x, y, -9)
             xtitle("interpolation of the Runge function")
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // example 2 : show behavior of different splines on random data
 a = 0; b = 1;        // interval of interpolation
 n = 10;              // nb of interpolation  points
@@ -264,7 +264,7 @@ show_window()
         </scilab:image>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="interp">interp</link>

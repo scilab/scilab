@@ -22,7 +22,6 @@ function demo_wheel2()
 
     mode(0);
     wheel_build_and_load();
-    wheelg = wheelgf;
     tmin   = 0.0;
     tmax   = 15;
     nn     = 300;

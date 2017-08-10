@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="dtsi">
+    <refnamediv>
+        <refname>dtsi</refname>
+        <refpurpose>
+            連続時間動的システムの安定な非安定分解
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[Ga,Gs,Gi]=dtsi(G,[tol])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>G</term>
+                <listitem>
+                    <para>
+                        連続時間線形システム.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Ga</term>
+                <listitem>
+                    <para>
+                        連続時間線形システム,非安定で厳密にプロパー
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Gs</term>
+                <listitem>
+                    <para>
+                        連続時間線形システム,安定で厳密にプロパー
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Gi</term>
+                <listitem>
+                    <para>実数行列 (またはプロパーでないシステムの多項式行列)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>tol</term>
+                <listitem>
+                    <para>安定な極を検出するためのオプションのパラメータ.
+                        デフォルト値: <literal>100*%eps</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            次のような<literal>G</literal>の安定な非安定分解を返します:
+        </para>
+        <para>
+            <literal>G= Ga + Gs + Gi</literal>,  <literal>(Gi = G(oo))</literal>
+        </para>
+        <para>
+            <literal>G</literal> は状態空間形式または伝達関数形式とすることができます.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="syslin">syslin</link>
+            </member>
+            <member>
+                <link linkend="pbig">pbig</link>
+            </member>
+            <member>
+                <link linkend="psmall">psmall</link>
+            </member>
+            <member>
+                <link linkend="pfss">pfss</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+a=0.5;
+b=1;
+c=2;
+sl=syslin('c',a,b,c);
+dtsi(sl)
+ ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>
+                    <literal>Sl</literal>は,連続時間線形システムとして確認されます.
+                    この修正は, <ulink url="http://gitweb.scilab.org/?p=scilab.git;a=commit;h=3d7083daae3339813ba747c8adcda1f9599bb80d">コミット</ulink> により導入されました.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

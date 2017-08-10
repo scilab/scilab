@@ -116,12 +116,12 @@
     <ClCompile Include="..\cpp\os_wtoi.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="os_wcstod.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="core_import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
-    <None Include="localization_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="..\..\Makefile.am" />
@@ -243,6 +243,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\os_wtoi.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\os_wcstod.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

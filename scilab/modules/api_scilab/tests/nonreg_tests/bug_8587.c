@@ -43,6 +43,7 @@ int sci_readDoubles(char *fname, void* pvApiCtx)
         printError(&sciErr, 0);
     }
 
+    FREE(matrixOfDouble);
     LhsVar(1) = Rhs + 1;
     return 0;
 }

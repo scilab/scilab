@@ -7,7 +7,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             [sm [,cwp]]=pspect(sec_step,sec_leng,wtype,x [,y] [,wpar])
             [sm [,cwp]]=pspect(sec_step,sec_leng,wtype,nx [,ny] [,wpar])
@@ -289,7 +289,7 @@
             </inlinemediaobject>
         </para>
         <para>The modified periodogram method of spectral estimation repeatedly
-            calculates the periodogram of windowed sub-sections of the data containes
+            calculates the periodogram of windowed sub-sections of the data contained
             in <literal>x</literal> and <literal>y</literal> . These periodograms are
             then averaged together and normalized by an appropriate constant to obtain
             the final spectral estimate. It is the averaging process which reduces the
@@ -299,7 +299,7 @@
             For batch processing, the <literal>x</literal> and
             <literal>y</literal> data may be read segment by segment using the
             <literal>getx </literal>and <literal>gety</literal> user defined
-            functions. These functions have the following calling sequence:
+            functions. These functions have the following syntax:
         </para>
         <para>
             <literal>xk=getx(ns,offset)</literal> and
@@ -316,7 +316,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 rand('normal');rand('seed',0);
 x=rand(1:1024-33+1);
 
@@ -324,7 +324,7 @@ x=rand(1:1024-33+1);
 nf=33;bedge=[0 .1;.125 .5];des=[1 0];wate=[1 1];
 h=eqfir(nf,bedge,des,wate);
 
-//filter white data to obtain colored data 
+//filter white data to obtain colored data
 h1=[h 0*ones(1:max(size(x))-1)];
 x1=[x 0*ones(1:max(size(h))-1)];
 hf=fft(h1,-1); xf=fft(x1,-1);y=real(fft(hf.*xf,1));
@@ -340,7 +340,7 @@ rand('unif');
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="cspect">cspect</link>

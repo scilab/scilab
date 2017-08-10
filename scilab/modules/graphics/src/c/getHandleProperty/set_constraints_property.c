@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -76,6 +79,7 @@ int set_constraints_property(void* _pvCtx, int iObjUID, void* _pvData, int value
         //depend of kind of tlist
         if (strcmp(pstType, "NoLayoutConstraint") == 0)
         {
+            freeAllocatedMatrixOfString(iRows, iCols, pstField);
             return clearConstraints(iObjUID);
         }
         else if (strcmp(pstType, "BorderConstraint") == 0)
@@ -93,6 +97,7 @@ int set_constraints_property(void* _pvCtx, int iObjUID, void* _pvData, int value
             double* pdblPreferredSize = NULL;
             int piPreferredSize[2];
 
+            freeAllocatedMatrixOfString(iRows, iCols, pstField);
             sciErr = getListItemAddress(_pvCtx, piAddrList, 2, &piAddr2);
             if (sciErr.iErr)
             {
@@ -132,6 +137,8 @@ int set_constraints_property(void* _pvCtx, int iObjUID, void* _pvData, int value
                 return SET_PROPERTY_ERROR;
             }
 
+            freeAllocatedSingleString(pstPos);
+
             sciErr = getListItemAddress(_pvCtx, piAddrList, 3, &piAddr3);
             if (sciErr.iErr)
             {
@@ -148,12 +155,12 @@ int set_constraints_property(void* _pvCtx, int iObjUID, void* _pvData, int value
             piPreferredSize[0] = (int)pdblPreferredSize[0];
             piPreferredSize[1] = (int)pdblPreferredSize[1];
 
-            freeAllocatedSingleString(pstPos);
-            setGraphicObjectProperty(iObjUID, __GO_UI_BORDER_POSITION__, &iPos, jni_int, 1);
             setGraphicObjectProperty(iObjUID, __GO_UI_BORDER_PREFERREDSIZE__, piPreferredSize, jni_int_vector, 2);
+            setGraphicObjectProperty(iObjUID, __GO_UI_BORDER_POSITION__, &iPos, jni_int, 1);
         }
         else if (strcmp(pstType, "GridConstraints") == 0)
         {
+            freeAllocatedMatrixOfString(iRows, iCols, pstField);
             return clearConstraints(iObjUID);
         }
         else if (strcmp(pstType, "GridBagConstraints") == 0)
@@ -196,6 +203,7 @@ int set_constraints_property(void* _pvCtx, int iObjUID, void* _pvData, int value
             double* pdblPreferredSize = NULL;
             int piPreferredSize[2];
 
+            freeAllocatedMatrixOfString(iRows, iCols, pstField);
             sciErr = getListItemAddress(_pvCtx, piAddrList, 2, &piAddr2);
             if (sciErr.iErr)
             {
@@ -350,20 +358,18 @@ int set_constraints_property(void* _pvCtx, int iObjUID, void* _pvData, int value
             piPreferredSize[0] = (int)pdblPreferredSize[0];
             piPreferredSize[1] = (int)pdblPreferredSize[1];
 
-            setGraphicObjectProperty(iObjUID, __GO_UI_GRIDBAG_GRID__, piGrid, jni_int_vector, 4);
-            setGraphicObjectProperty(iObjUID, __GO_UI_GRIDBAG_WEIGHT__, pdblWeight, jni_double_vector, 2);
-            setGraphicObjectProperty(iObjUID, __GO_UI_GRIDBAG_FILL__, &iFill, jni_int, 1);
-            setGraphicObjectProperty(iObjUID, __GO_UI_GRIDBAG_ANCHOR__, &iAnchor, jni_int, 1);
-            setGraphicObjectProperty(iObjUID, __GO_UI_GRIDBAG_PADDING__, piPadding, jni_int_vector, 2);
             setGraphicObjectProperty(iObjUID, __GO_UI_GRIDBAG_PREFERREDSIZE__, piPreferredSize, jni_int_vector, 2);
+            setGraphicObjectProperty(iObjUID, __GO_UI_GRIDBAG_PADDING__, piPadding, jni_int_vector, 2);
+            setGraphicObjectProperty(iObjUID, __GO_UI_GRIDBAG_ANCHOR__, &iAnchor, jni_int, 1);
+            setGraphicObjectProperty(iObjUID, __GO_UI_GRIDBAG_FILL__, &iFill, jni_int, 1);
+            setGraphicObjectProperty(iObjUID, __GO_UI_GRIDBAG_WEIGHT__, pdblWeight, jni_double_vector, 2);
+            setGraphicObjectProperty(iObjUID, __GO_UI_GRIDBAG_GRID__, piGrid, jni_int_vector, 4);
         }
         else
         {
             freeAllocatedMatrixOfString(iRows, iCols, pstField);
             return SET_PROPERTY_ERROR;
         }
-
-        freeAllocatedMatrixOfString(iRows, iCols, pstField);
     }
 
     return SET_PROPERTY_SUCCEED;
@@ -382,42 +388,42 @@ int clearConstraints(int iObjUID)
     status = setGraphicObjectProperty(iObjUID, __GO_UI_BORDER_POSITION__, &iPos, jni_int, 1);
     if (status != TRUE)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "contraints");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "constraints");
         return SET_PROPERTY_ERROR;
     }
 
     status = setGraphicObjectProperty(iObjUID, __GO_UI_GRIDBAG_GRID__, pi, jni_int_vector, 4);
     if (status != TRUE)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "contraints");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "constraints");
         return SET_PROPERTY_ERROR;
     }
 
     status = setGraphicObjectProperty(iObjUID, __GO_UI_GRIDBAG_WEIGHT__, pdbl, jni_double_vector, 2);
     if (status != TRUE)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "contraints");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "constraints");
         return SET_PROPERTY_ERROR;
     }
 
     status = setGraphicObjectProperty(iObjUID, __GO_UI_GRIDBAG_FILL__, &iFill, jni_int, 1);
     if (status != TRUE)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "contraints");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "constraints");
         return SET_PROPERTY_ERROR;
     }
 
     status = setGraphicObjectProperty(iObjUID, __GO_UI_GRIDBAG_ANCHOR__, &iAnchor, jni_int, 1);
     if (status != TRUE)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "contraints");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "constraints");
         return SET_PROPERTY_ERROR;
     }
 
     status = setGraphicObjectProperty(iObjUID, __GO_UI_GRIDBAG_PADDING__, pi, jni_int_vector, 2);
     if (status != TRUE)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "contraints");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "constraints");
         return SET_PROPERTY_ERROR;
     }
 

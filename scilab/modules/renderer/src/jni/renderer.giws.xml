@@ -4,17 +4,17 @@
         <method name="startInteractiveZoom" returnType="void" modifier="static">
             <parameter name="id" type="int"/>
         </method>
-        
+
         <method name="clickRubberBox" returnType="double[]" modifier="static">
             <parameter name="id" type="int"/>
             <parameter name="startRectangle" type="double[]"/>
         </method>
-        
+
         <method name="dragRubberBox" returnType="double[]" modifier="static">
             <parameter name="id" type="int"/>
         </method>
-        
-        
+
+
         <method name="updateTextBounds" returnType="void" modifier="static">
             <parameter name="id" type="int"/>
         </method>

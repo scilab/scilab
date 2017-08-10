@@ -3,11 +3,14 @@
  * Copyright (C) 2010-2010 - DIGITEO - Clement DAVID <clement.david@scilab.org>
  * Copyright (C) 2011-2011 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -17,7 +20,6 @@ import static org.scilab.modules.xcos.modelica.TerminalAccessor.FIXED;
 import static org.scilab.modules.xcos.modelica.TerminalAccessor.WEIGHT;
 import static org.scilab.modules.xcos.modelica.TerminalAccessor.getData;
 
-import java.awt.CardLayout;
 import java.awt.GridLayout;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
@@ -27,7 +29,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import javax.lang.model.element.Element;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.event.ChangeEvent;
@@ -150,6 +151,7 @@ public final class MainPanel extends JPanel {
     private TreeModel createTreeModel() {
         final DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode(
         controller.getRoot()) {
+            @Override
             public String toString() {
                 return ((Model) getUserObject()).getName();
             };
@@ -172,6 +174,7 @@ public final class MainPanel extends JPanel {
      */
     private MutableTreeNode createNodes(Struct struct) {
         DefaultMutableTreeNode structNode = new DefaultMutableTreeNode(struct) {
+            @Override
             public String toString() {
                 return ((Struct) getUserObject()).getName();
             };

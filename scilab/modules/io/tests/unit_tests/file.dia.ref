@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010 - DIGITEO - Allan CORNET
@@ -23,7 +24,7 @@ if a <> [] then bugmes();quit;end;
 if b <> [] then bugmes();quit;end;
 if c <> [] then bugmes();quit;end;
 if d <> [] then bugmes();quit;end;
-clear a b c d 
+clear a b c d
 // =============================================================================
 [a,b,c] = file(500);
 if a <> [] then bugmes();quit;end;

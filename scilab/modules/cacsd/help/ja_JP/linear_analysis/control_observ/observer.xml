@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - F. Delebecque
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="observer">
+    <refnamediv>
+        <refname>observer</refname>
+        <refpurpose>オブザーバの設計</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>Obs=observer(Sys,J)
+            [Obs,U,m]=observer(Sys [,flag,alfa])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>Sys</term>
+                <listitem>
+                    <para>
+                        <literal>syslin</literal> リスト (線形システム)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>J</term>
+                <listitem>
+                    <para>nx x ny 定数行列 (出力注入行列)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flag</term>
+                <listitem>
+                    <para>
+                        文字列 (<literal>'pp'</literal> または <literal>'st'</literal> (デフォルト))
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>alfa</term>
+                <listitem>
+                    <para>閉ループ極の位置 (オプションのパラメータ, デフォルト=-1)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Obs</term>
+                <listitem>
+                    <para>
+                        線形システム (<literal>syslin</literal> リスト), オブザーバ
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>U</term>
+                <listitem>
+                    <para>
+                        直交行列 ( <literal>dt_ility</literal>参照)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>m</term>
+                <listitem>
+                    <para>
+                        整数 (不安定/不可観測(<literal>st</literal>)または
+                        不可観測(<literal>pp</literal>)部分空間の次元)
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>Obs=observer(Sys,J)</literal> は,
+            <literal>J</literal>出力注入により<literal>Sys</literal>から得られた
+            オブザーバ
+            <literal>Obs=syslin(td,A+J*C,[B+J*D,-J],eye(A))</literal> を返します
+            (td は<literal>Sys</literal>の時間領域).
+            より一般的に,<literal>observer</literal>は,
+            線形システム<literal>Sys</literal>,つまり,
+            <literal>syslin</literal>リストにより表された
+            <literal>dotx=A x + Bu, y=Cx + Du</literal>,
+            の可観測な部分に関するオブザーバ
+            <literal>Obs</literal> を返します.
+            <literal>Sys</literal> は <literal>nx</literal> 個の状態変数,
+            <literal>nu</literal> 個の入力および <literal>ny</literal> 個の出力を有します.
+            <literal>Obs</literal> は,
+            行列 <literal>[Ao,Bo,Identity]</literal>を有する線形システムです.
+            ただし,
+            <literal>Ao</literal> は <literal>no x no</literal>, <literal>Bo</literal> は
+            <literal>no x (nu+ny)</literal>, <literal> Co</literal> は
+            <literal>no x no</literal> および <literal>no=nx-m</literal>です.
+        </para>
+        <para>
+            <literal>Obs</literal>への入力は
+            <literal>[u,y]</literal> そして <literal>Obs</literal> の出力は以下のようになります:
+        </para>
+        <para>
+            xhat=不可観測な部分空間の x modulo の推定値 (<literal>flag='pp'</literal>の場合)
+        </para>
+        <para>
+            または,
+            xhat=不安定で不可観測な部分空間のx modulo の推定値 (<literal>flag='st'</literal>の場合)
+        </para>
+        <para>
+            <literal>flag='st'</literal>の場合:
+            <literal>H*U(:,1:m)=0</literal>の場合に限り
+            z=H*x は安定なオブザーバにより推定することができ,
+            オブザーバで配置可能な極は<literal>alfa(1),alfa(2),...</literal>に
+            設定されます.
+        </para>
+        <para>
+            <literal>flag='pp'</literal>の場合:
+            <literal>H*U(:,1:m)=0</literal>の場合に限り
+            z=H*x は指定した誤差スペクトルで推定することができ,
+            全てのオブザーバの極は配置され,<literal>alfa(1),alfa(2),...</literal>に
+            設定されます.
+        </para>
+        <para>
+            H が以下の拘束条件を満たす場合: <literal>H*U(:,1:m)=0</literal>  (ker(H) は
+            Sysの不可観測な部分空間を含みます)
+            H*U=[0,H2]となり, z=H*x のオブザーバはH2*Obs (ただし,H2=H*U(:,m+1:nx)) となります.
+            すなわち,
+            H*x のオブザーバの C行列である Co は Co=H2となります.
+        </para>
+        <para>
+            <literal>Sys</literal>の対<literal>(A,C)</literal>が可観測となる
+            場合,<literal>m=0</literal>となり,
+            線形システム <literal>U*Obs</literal> (または<literal>H*U*Obs</literal>)
+            は<literal>x</literal>(または <literal>Hx</literal>)のオブザーバとなります.
+            誤差スペクトルは,
+            <literal>alpha(1),alpha(2),...,alpha(nx)</literal>です.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+nx=5;nu=1;ny=1;un=3;us=2;Sys=ssrand(ny,nu,nx,list('dt',us,us,un));
+//nx=5 states, nu=1 input, ny=1 output,
+//un=3 unobservable states, us=2 of them unstable.
+[Obs,U,m]=observer(Sys);  //Stable observer (default)
+W=U';H=W(m+1:nx,:);[A,B,C,D]=abcd(Sys);  //H*U=[0,eye(no,no)];
+Sys2=ss2tf(syslin('c',A,B,H))  //Transfer u-->z
+Idu=eye(nu,nu);Sys3=ss2tf(H*U(:,m+1:$)*Obs*[Idu;Sys])
+//Transfer u-->[u;y=Sys*u]-->Obs-->xhat-->HUxhat=zhat  i.e. u-->output of Obs
+//this transfer must equal Sys2, the u-->z transfer  (H2=eye).
+//Assume a Kalman model
+//dotx = A x + B u + G w
+// y   = C x + D u + H w + v
+//with Eww' = QN, Evv' = RN, Ewv' = NN
+//To build a Kalman observer:
+//1-Form BigR = [G*QN*G'         G*QN*H'+G*NN;
+//               H*QN*G'+NN*G'   H*QN*H'+RN];
+//the covariance matrix of the noise vector [Gw;Hw+v]
+//2-Build the plant P21 : dotx = A x + B1 e ; y = C2 x + D21 e
+//with e a unit white noise.
+// [W,Wt]=fullrf(BigR);
+//B1=W(1:size(G,1),:);D21=W(($+1-size(C,1)):$,:);
+//C2=C;
+//P21=syslin('c',A,B1,C2,D21);
+//3-Compute the Kalman gain
+//L = lqe(P21);
+//4- Build an observer for the plant [A,B,C,D];
+//Plant = syslin('c',A,B,C,D);
+//Obs = observer(Plant,L);
+//Test example:
+A=-diag(1:4);
+B=ones(4,1);
+C=B'; D= 0; G=2*B; H=-3; QN=2;
+RN=5; NN=0;
+BigR = [G*QN*G'         G*QN*H'+G*NN;
+        H*QN*G'+NN*G'   H*QN*H'+RN];
+[W,Wt]=fullrf(BigR);
+B1=W(1:size(G,1),:);D21=W(($+1-size(C,1)):$,:);
+C2=C;
+P21=syslin('c',A,B1,C2,D21);
+L = lqe(P21);
+Plant = syslin('c',A,B,C,D);
+Obs = observer(Plant,L);
+spec(Obs.A)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="dt_ility">dt_ility</link>
+            </member>
+            <member>
+                <link linkend="unobs">unobs</link>
+            </member>
+            <member>
+                <link linkend="stabil">stabil</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

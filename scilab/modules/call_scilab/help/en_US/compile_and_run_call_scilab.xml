@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Allan CORNET
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="compile_and_run_call_scilab" xml:lang="en">
@@ -85,9 +88,9 @@
             </listitem>
         </itemizedlist>
         <para>The following example is a Makefile to build against Scilab binary</para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 # A sample Makefile building a C code using Call Scilab using Scilab binary
-PATH_SCILAB = /path/to/scilab/ 
+PATH_SCILAB = /path/to/scilab/
 # Note that PATH_SCILAB can be /usr/ is using a packaged version of Scilab.
 SCILAB_CFLAGS = -I$(PATH_SCILAB)/include/scilab/
 SCILAB_LDFLAGS = -lscilab
@@ -99,7 +102,7 @@ all: simple_call_scilab.c
 	gcc -o myExample $(SCILAB_LDFLAGS) -L$(PATH_TO_LIB_SCILAB) -L$(PATH_TO_LIB_CALL_SCILAB) $(SCILAB_CFLAGS) simple_call_scilab.c
  ]]></programlisting>
         <para>The following example is a Makefile to build against Scilab source tree</para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 # A sample Makefile building a C code using Call Scilab using Scilab built in it source tree.
 PATH_SCILAB = /path/to/scilab/sources/
 SCILAB_CFLAGS = -I$(PATH_SCILAB)/modules/core/includes/ -I$(PATH_SCILAB)/modules/call_scilab/includes/
@@ -193,7 +196,7 @@ all: simple_call_scilab.c
                 </itemizedlist>
             </listitem>
         </itemizedlist>
-        <para>Note that two environnement variables are taken in account for
+        <para>Note that two environment variables are taken in account for
             specific needs:
         </para>
         <itemizedlist>
@@ -213,7 +216,7 @@ all: simple_call_scilab.c
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 # Serie of declarations to execute my binary.
 
 # With a Scilab source tree:
@@ -232,16 +235,13 @@ $ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$JAVA_HOME/jre/lib/i386/native_threads
 $ export SCI=/path/to/scilab/
 $ ./myExample
 !sample  for the help  !
- 
-  - 42.    42.  
+
+  - 42.    42.
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
-            <member>
-                <link linkend="api_scilab">api Scilab</link>
-            </member>
             <member>
                 <link linkend="call_scilab">call_scilab</link>
             </member>

@@ -46,7 +46,7 @@ refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set 
 assert_checkerror("cumsum(i,""orient"", ""t"")", refMsg);
 
 assert_checkfalse(execstr("cumsum(i,1,1)"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"), "cumsum", 3);
+refMsg = msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"), "cumsum", 3);
 assert_checkerror("cumsum(i,1,1)", refMsg);
 
 //==============================================================================
@@ -57,7 +57,7 @@ refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set 
 assert_checkerror("cumsum(d, ""orient"")", refMsg);
 
 assert_checkfalse(execstr("cumsum(d, [""r"", ""c""])"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"),"cumsum",2);
+refMsg = msprintf(_("%s: Wrong size for input argument #%d: string expected.\n"),"cumsum",2);
 assert_checkerror("cumsum(d, [""r"", ""c""])", refMsg);
 
 //==============================================================================
@@ -85,7 +85,7 @@ refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set 
 assert_checkerror("cumsum(d,""orient"", ""t"")", refMsg);
 
 assert_checkfalse(execstr("cumsum(d,1,1)"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"),"cumsum",3);
+refMsg = msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"),"cumsum",3);
 assert_checkerror("cumsum(d,1,1)", refMsg);
 
 //==============================================================================
@@ -97,7 +97,7 @@ refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set 
 assert_checkerror("cumsum(d, ""orient"")", refMsg);
 
 assert_checkfalse(execstr("cumsum(d, [""r"", ""c""])"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"),"cumsum",2);
+refMsg = msprintf(_("%s: Wrong size for input argument #%d: string expected.\n"),"cumsum",2);
 assert_checkerror("cumsum(d, [""r"", ""c""])", refMsg);
 
 assert_checkfalse(execstr("cumsum(d,""r"", ""nat"")"   ,"errcatch") == 0);
@@ -105,7 +105,7 @@ refMsg = msprintf(_("%s: Wrong value for input argument #%d: ""%s"" or ""%s"" ex
 assert_checkerror("cumsum(d,""r"", ""nat"")", refMsg);
 
 assert_checkfalse(execstr("cumsum(d,""r"", [""nat"" ""dble""])"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"),"cumsum",3);
+refMsg = msprintf(_("%s: Wrong size for input argument #%d: string expected.\n"),"cumsum",3);
 assert_checkerror("cumsum(d,""r"", [""nat"" ""dble""])", refMsg);
 
 assert_checkfalse(execstr("cumsum(d,""orient"", ""t"")"   ,"errcatch") == 0);
@@ -114,7 +114,7 @@ refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set 
 assert_checkerror("cumsum(d,""orient"", ""t"")", refMsg);
 
 assert_checkfalse(execstr("cumsum(d,1,1)"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"),"cumsum",3);
+refMsg = msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"),"cumsum",3);
 assert_checkerror("cumsum(d,1,1)", refMsg);
 
 //==============================================================================
@@ -150,7 +150,7 @@ refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set 
 assert_checkerror("cumsum(d, ""orient"")", refMsg);
 
 assert_checkfalse(execstr("cumsum(d, [""r"", ""c""])"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"),"cumsum",2);
+refMsg = msprintf(_("%s: Wrong size for input argument #%d: string expected.\n"),"cumsum",2);
 assert_checkerror("cumsum(d, [""r"", ""c""])", refMsg);
 
 //empty matrices
@@ -181,11 +181,11 @@ end
 d=[1 10;254 9];d(1,1,2)=1;
 T=list(list(),list("native"),list("double"));
 for typ=T
-    assert_checkequal(cumsum(d,typ(:)), hypermat([2,2,2],[1;255;265;274;275;275;275;275]));
-    assert_checkequal(cumsum(d,"*",typ(:)), hypermat([2,2,2],[1;255;265;274;275;275;275;275]));
-    assert_checkequal(cumsum(d,1,typ(:)), hypermat([2,2,2],[1;255;10;19;1;1;0;0]));
-    assert_checkequal(cumsum(d,2,typ(:)), hypermat([2,2,2],[1;254;11;263;1;0;1;0]));
-    assert_checkequal(cumsum(d,3,typ(:)), hypermat([2,2,2],[1;254;10;9;2;254;10;9]));
+    assert_checkequal(cumsum(d,typ(:)), matrix([1;255;265;274;275;275;275;275], [2,2,2]));
+    assert_checkequal(cumsum(d,"*",typ(:)), matrix([1;255;265;274;275;275;275;275], [2,2,2]));
+    assert_checkequal(cumsum(d,1,typ(:)), matrix([1;255;10;19;1;1;0;0], [2,2,2]));
+    assert_checkequal(cumsum(d,2,typ(:)), matrix([1;254;11;263;1;0;1;0], [2,2,2]));
+    assert_checkequal(cumsum(d,3,typ(:)), matrix([1;254;10;9;2;254;10;9], [2,2,2]));
     assert_checkequal(cumsum(d,5,typ(:)), d);
 end
 
@@ -209,20 +209,19 @@ assert_checkequal(cumsum(i,3,"double"), double(i));
 //with hypermatrices
 i=uint8([1 10;254 9]);i(1,1,2)=uint8(1);
 for typ=list(list(),list("native"));
-    assert_checkequal(cumsum(i,typ(:)), hypermat([2,2,2],uint8([1;255;9;18;19;19;19;19])));
-    assert_checkequal(cumsum(i,"*",typ(:)), hypermat([2,2,2],uint8([1;255;9;18;19;19;19;19])));
-    assert_checkequal(cumsum(i,1,typ(:)), hypermat([2,2,2],uint8([1;255;10;19;1;1;0;0])));
-    assert_checkequal(cumsum(i,2,typ(:)), hypermat([2,2,2],uint8([1;254;11;7;1;0;1;0])));
-    assert_checkequal(cumsum(i,3,typ(:)), hypermat([2,2,2],uint8([1;254;10;9;2;254;10;9])));
+    assert_checkequal(cumsum(i,typ(:)), matrix(uint8([1;255;9;18;19;19;19;19]), [2,2,2]));
+    assert_checkequal(cumsum(i,"*",typ(:)), matrix(uint8([1;255;9;18;19;19;19;19]), [2,2,2]));
+    assert_checkequal(cumsum(i,1,typ(:)), matrix(uint8([1;255;10;19;1;1;0;0]), [2,2,2]));
+    assert_checkequal(cumsum(i,2,typ(:)), matrix(uint8([1;254;11;7;1;0;1;0]), [2,2,2]));
+    assert_checkequal(cumsum(i,3,typ(:)), matrix(uint8([1;254;10;9;2;254;10;9]), [2,2,2]));
     assert_checkequal(cumsum(i,5,typ(:)), double(i));
 end
 
-
-assert_checkequal(cumsum(i,"double"), hypermat([2,2,2],[1;255;265;274;275;275;275;275]));
-assert_checkequal(cumsum(i,"*","double"), hypermat([2,2,2],[1;255;265;274;275;275;275;275]));
-assert_checkequal(cumsum(i,1,"double"), hypermat([2,2,2],[1;255;10;19;1;1;0;0]));
-assert_checkequal(cumsum(i,2,"double"), hypermat([2,2,2],[1;254;11;263;1;0;1;0]));
-assert_checkequal(cumsum(i,3,"double"), hypermat([2,2,2],[1;254;10;9;2;254;10;9]));
+assert_checkequal(cumsum(i,"double"), matrix([1;255;265;274;275;275;275;275], [2,2,2]));
+assert_checkequal(cumsum(i,"*","double"), matrix([1;255;265;274;275;275;275;275], [2,2,2]));
+assert_checkequal(cumsum(i,1,"double"), matrix([1;255;10;19;1;1;0;0], [2,2,2]));
+assert_checkequal(cumsum(i,2,"double"), matrix([1;254;11;263;1;0;1;0], [2,2,2]));
+assert_checkequal(cumsum(i,3,"double"), matrix([1;254;10;9;2;254;10;9], [2,2,2]));
 assert_checkequal(cumsum(i,5,"double"), double(i));
 
 //=======================================================================
@@ -241,11 +240,11 @@ end
 s=%s;p=[s s+1;s^2 0];p(1,1,2)=-1;
 T=list(list(),list("native"),list("double"));
 for typ=T
-    assert_checkequal(cumsum(p,typ(:)), hypermat([2,2,2],[s;s+s^2;1+2*s+s^2;1+2*s+s^2;2*s+s^2;2*s+s^2;2*s+s^2;2*s+s^2]));
-    assert_checkequal(cumsum(p,"*",typ(:)), hypermat([2,2,2],[s;s+s^2;1+2*s+s^2;1+2*s+s^2;2*s+s^2;2*s+s^2;2*s+s^2;2*s+s^2]));
-    assert_checkequal(cumsum(p,1,typ(:)), hypermat([2,2,2],[s;s+s^2;1+s;1+s;-1;-1;0*s;0*s]));
-    assert_checkequal(cumsum(p,2,typ(:)), hypermat([2,2,2],[s;s^2;1+2*s;s^2;-1;0*s;-1;0*s]));
-    assert_checkequal(cumsum(p,3,typ(:)), hypermat([2,2,2],[s;s^2;1+s;0*s;-1+s;s^2;1+s;0*s]));
+    assert_checkequal(cumsum(p,typ(:)), matrix([s;s+s^2;1+2*s+s^2;1+2*s+s^2;2*s+s^2;2*s+s^2;2*s+s^2;2*s+s^2], [2,2,2]));
+    assert_checkequal(cumsum(p,"*",typ(:)), matrix([s;s+s^2;1+2*s+s^2;1+2*s+s^2;2*s+s^2;2*s+s^2;2*s+s^2;2*s+s^2], [2,2,2]));
+    assert_checkequal(cumsum(p,1,typ(:)), matrix([s;s+s^2;1+s;1+s;-1;-1;0*s;0*s], [2,2,2]));
+    assert_checkequal(cumsum(p,2,typ(:)), matrix([s;s^2;1+2*s;s^2;-1;0*s;-1;0*s], [2,2,2]));
+    assert_checkequal(cumsum(p,3,typ(:)), matrix([s;s^2;1+s;0*s;-1+s;s^2;1+s;0*s], [2,2,2]));
     assert_checkequal(cumsum(p,5,typ(:)), p);
 end
 
@@ -281,19 +280,19 @@ assert_checkequal(cumsum(b,3,"native"), b);
 //with hypermatrices
 b=[%t %t;%f %t];b(1,1,2)=%f;
 for typ=list(list(),list("double"));
-    assert_checkequal(cumsum(b,typ(:)), hypermat([2,2,2],[1;1;2;3;3;3;3;3]));
-    assert_checkequal(cumsum(b,"*",typ(:)), hypermat([2,2,2],[1;1;2;3;3;3;3;3]));
-    assert_checkequal(cumsum(b,1,typ(:)), hypermat([2,2,2],[1;1;1;2;0;0;0;0]));
-    assert_checkequal(cumsum(b,2,typ(:)), hypermat([2,2,2],[1;0;2;1;0;0;0;0]));
-    assert_checkequal(cumsum(b,3,typ(:)), hypermat([2,2,2],[1;0;1;1;1;0;1;1]));
+    assert_checkequal(cumsum(b,typ(:)), matrix([1;1;2;3;3;3;3;3], [2,2,2]));
+    assert_checkequal(cumsum(b,"*",typ(:)), matrix([1;1;2;3;3;3;3;3], [2,2,2]));
+    assert_checkequal(cumsum(b,1,typ(:)), matrix([1;1;1;2;0;0;0;0], [2,2,2]));
+    assert_checkequal(cumsum(b,2,typ(:)), matrix([1;0;2;1;0;0;0;0], [2,2,2]));
+    assert_checkequal(cumsum(b,3,typ(:)), matrix([1;0;1;1;1;0;1;1], [2,2,2]));
     assert_checkequal(cumsum(b,5,typ(:)), double(b));
 end
 
-assert_checkequal(cumsum(b,"native"), hypermat([2,2,2],[%t;%t;%t;%t;%t;%t;%t;%t]));
-assert_checkequal(cumsum(b,"*","native"), hypermat([2,2,2],[%t;%t;%t;%t;%t;%t;%t;%t]));
-assert_checkequal(cumsum(b,1,"native"), hypermat([2,2,2],[%t;%t;%t;%t;%f;%f;%f;%f]));
-assert_checkequal(cumsum(b,2,"native"), hypermat([2,2,2],[%t;%f;%t;%t;%f;%f;%f;%f]));
-assert_checkequal(cumsum(b,3,"native"), hypermat([2,2,2],[%t;%f;%t;%t;%t;%f;%t;%t]));
+assert_checkequal(cumsum(b,"native"), matrix([%t;%t;%t;%t;%t;%t;%t;%t], [2,2,2]));
+assert_checkequal(cumsum(b,"*","native"), matrix([%t;%t;%t;%t;%t;%t;%t;%t], [2,2,2]));
+assert_checkequal(cumsum(b,1,"native"), matrix([%t;%t;%t;%t;%f;%f;%f;%f], [2,2,2]));
+assert_checkequal(cumsum(b,2,"native"), matrix([%t;%f;%t;%t;%f;%f;%f;%f], [2,2,2]));
+assert_checkequal(cumsum(b,3,"native"), matrix([%t;%f;%t;%t;%t;%f;%t;%t], [2,2,2]));
 assert_checkequal(cumsum(b,5,"native"), b);
 
 //=======================================================================

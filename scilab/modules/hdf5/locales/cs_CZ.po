@@ -6,57 +6,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-09-24 19:22+0000\n"
-"Last-Translator: Zbyněk Schwarz <Unknown>\n"
+"PO-Revision-Date: 2017-01-27 12:24+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
+"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
-msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: Očekávána definovaná proměnná.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: \"%s\" is a directory"
-msgstr "%s: Špatná hodnota vstupního argumentu #%d: \"%s\" je adresář"
-
-#, c-format
-msgid "%s: Cannot open file %s.\n"
-msgstr "%s: Nelze otevřít soubor %s.\n"
-
-#, c-format
-msgid "%s: Wrong SOD file format version. Expected: %d Found: %d\n"
-msgstr "%s: Špatná verze formátu souboru SOD. Očekáváno: %d Nalezeno: %d\n"
-
-#, c-format
-msgid "%s: Unable to delete existing variable \"%s\"."
-msgstr "%s: Nelze smazat existující proměnnou \"%s\"."
-
-#, c-format
-msgid ""
-"%s: Variable '%s' already exists in file '%s'\n"
-"Use -append option to replace existing variable\n"
-"."
-msgstr ""
-"%s: Proměnná '%s' již existuje v souboru '%s'\n"
-"Použijte volbu -append pro nahrazení existující proměnné"
-
-#, c-format
-msgid "%s: Unable to update Scilab version in \"%s\"."
-msgstr "%s: Nelze aktualizovat verzi Scilab v \"%s\"."
-
-#, c-format
-msgid "%s: Unable to update HDF5 format version in \"%s\"."
-msgstr "%s: Nelze aktualizovat verzi formátu HDF5 v \"%s\"."
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
+"X-Generator: Launchpad (build 18315)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -67,8 +26,7 @@ msgid "%s: Invalid H5Object.\n"
 msgstr "%s: Neplatný H5Object.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A string or a H5Object expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or H5Object expected.\n"
 msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec nebo H5Object.\n"
 
@@ -77,7 +35,11 @@ msgid "%s: No more memory.\n"
 msgstr "%s: Není více paměti.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n"
 
 #, c-format
@@ -124,7 +86,7 @@ msgid "%s: Wrong type for input argument #%d: a H5Object expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván H5Objekt.\n"
 
 #, c-format
-msgid "%s: Wrong size for argument #%d: A string expected.\n"
+msgid "%s: Wrong size for argument #%d: string expected.\n"
 msgstr "%s: Špatná velikost argumentu #%d: Očekáván řetězec.\n"
 
 #, c-format
@@ -156,8 +118,7 @@ msgstr ""
 "řádkový vektor.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Row array of strings expected.\n"
+msgid "%s: Wrong type for input argument #%d: Row array of strings expected.\n"
 msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Očekáváno pole řádku řetězců.\n"
 
@@ -173,8 +134,7 @@ msgid "%s: Can not use H5Object: invalid object.\n"
 msgstr "%s: Nelze použít objekt H5Object: Neplatný objekt.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A string or a boolean expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or boolean expected.\n"
 msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Očekáván boolean nebo řetězec.\n"
 
@@ -226,25 +186,97 @@ msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: Špatný počet vstupních argumentů: Očekáváno %d.\n"
 
 #, c-format
+msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Unable to open file: %s\n"
 msgstr "%s: Nelze otevřít soubor: %s\n"
 
 #, c-format
 msgid "%s: Wrong SOD file format version. Max Expected: %d Found: %d\n"
-msgstr ""
-"%s: Špatná verze formátu souboru SOD. Očekáváno max: %d Nalezeno: %d\n"
+msgstr "%s: Špatná verze formátu souboru SOD. Očekáváno max: %d Nalezeno: %d\n"
 
 #, c-format
 msgid "%s: Invalid HDF5 Scilab format.\n"
 msgstr "%s: Neplatný Scilab formát HDF5.\n"
 
 #, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Unable to open file: '%s'.\n"
+msgstr ""
+
+msgid "Redefining permanent variable.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: %s is not a valid lib file.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Unable to load '%s'\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong SOD file format version. Expected: %d Found: %d\n"
+msgstr "%s: Špatná verze formátu souboru SOD. Očekáváno: %d Nalezeno: %d\n"
+
+#, c-format
+msgid "%s: Unable to load '%s'.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A String expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: Očekávána definovaná proměnná.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: \"%s\" is a directory"
+msgstr "%s: Špatná hodnota vstupního argumentu #%d: \"%s\" je adresář"
+
+#, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr "%s: Nelze otevřít soubor %s.\n"
+
+#, c-format
+msgid "%s: Unable to delete existing variable \"%s\".\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Variable '%s' already exists in file '%s'\n"
+"Use -append option to replace existing variable.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Unable to export variable '%s' in file '%s'.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Unable to update Scilab version in \"%s\"."
+msgstr "%s: Nelze aktualizovat verzi Scilab v \"%s\"."
+
+#, c-format
+msgid "%s: Unable to update HDF5 format version in \"%s\"."
+msgstr "%s: Nelze aktualizovat verzi formátu HDF5 v \"%s\"."
+
+#, c-format
 msgid "%s: Wrong number of input arguments: More than %d expected.\n"
 msgstr "%s: Špatný počet vstupních argumentů: Očekáváno více než %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A string or a double expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or double expected.\n"
 msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec nebo číslo s "
 "dvojitou přesností.\n"
@@ -269,8 +301,8 @@ msgstr "%s: Není složený objekt H5.\n"
 msgid "%s: Can not print H5Object.\n"
 msgstr "%s: Nelze vypsat H5Object.\n"
 
-msgid "Invalid index."
-msgstr "Neplatný index."
+msgid "Invalid index.\n"
+msgstr "Neplatný index.\n"
 
 msgid "Dimensions"
 msgstr "Rozměry"
@@ -723,14 +755,6 @@ msgstr "Nelze odpojit soubor v umístění: %s"
 #, c-format
 msgid "Can not read input argument #%d."
 msgstr "Nelze přečíst vstupní argumentu #%d."
-
-#, c-format
-msgid "Can not get the type of input argument #%d."
-msgstr "Nelze získat typ vstupního argumentu #%d."
-
-#, c-format
-msgid "%s: Can not read input argument #%d."
-msgstr "%s: Nelze přečíst vstupní argument #%d."
 
 #, c-format
 msgid "%s: Datatype not handled for now."

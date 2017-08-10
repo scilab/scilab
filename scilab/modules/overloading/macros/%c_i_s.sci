@@ -1,11 +1,14 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function M=%c_i_s(varargin)
     [lhs,rhs]=argn(0)
@@ -22,7 +25,7 @@ function M=%c_i_s(varargin)
             if index=="entries" then //M.entries=N
                 // change struct to cell
                 f=getfield(1,M);f(1)="ce"
-                setfield(1,f,M)
+                M=setfield(1,f,M)
             end
             return
         elseif type(index)==15 then
@@ -34,7 +37,7 @@ function M=%c_i_s(varargin)
                 if type(index(1))<>10 & index(2)=="entries" then
                     // change struct to cell
                     f=getfield(1,M);f(1)="ce"
-                    setfield(1,f,M)
+                    M=setfield(1,f,M)
                 end
             else
                 M(index(:))=N
@@ -43,9 +46,6 @@ function M=%c_i_s(varargin)
         end
 
     elseif rhs>4 then //more than 2 indices: insertion of a string in an empty matrix
-        M=varargin($)
-        M=mlist(["hm","dims","entries"],int32(size(M)),M(:))
-        varargin($)=M;
         M=generic_i_hm("",varargin(:))
     else //should not occur (hard coded case)
         M=var

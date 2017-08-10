@@ -41,6 +41,7 @@ Building sources...
    Creating JAR archive TMPDIR/toolbox_skeleton/jar/org.scilab.contrib.toolboxskeleton.jar
    Create loader script for Java loader.sce
    Create cleaner script for Java cleaner.sce
+Generating cleaner_src.sce...
 Building gateway...
    Generate a gateway file
    Generate a loader file
@@ -50,10 +51,15 @@ Building gateway...
    ilib_gen_Make: Copy libskeleton_c.h to TMPDIR
    ilib_gen_Make: Copy libskeleton_c.hxx to TMPDIR
    ilib_gen_Make: Copy sci_cerror.c to TMPDIR
+   ilib_gen_Make: Copy sci_cerror6.c to TMPDIR
    ilib_gen_Make: Copy sci_csub.c to TMPDIR
+   ilib_gen_Make: Copy sci_csub6.c to TMPDIR
    ilib_gen_Make: Copy sci_csum.c to TMPDIR
+   ilib_gen_Make: Copy sci_csum6.c to TMPDIR
    ilib_gen_Make: Copy sci_foo.c to TMPDIR
+   ilib_gen_Make: Copy sci_foo6.c to TMPDIR
    ilib_gen_Make: Copy sci_multiplybypi.c to TMPDIR
+   ilib_gen_Make: Copy sci_multiplybypi6.c to TMPDIR
    ilib_gen_Make: configure : Generate Makefile.
    ilib_gen_Make: Modification of the Makefile in TMPDIR.
    Running the makefile
@@ -113,7 +119,7 @@ Start Toolbox Skeleton
 	Load help
 	Load demos
 test_run("TMPDIR/toolbox_skeleton/", [], "short_summary");
-   001/001 - [TMPDIR/toolbox_skeleton/] : 
+ Module  001/001 - [TMPDIR/toolbox_skeleton/] : 
    001/004 - [TMPDIR/toolbox_skeleton/] c_sum...................passed
    002/004 - [TMPDIR/toolbox_skeleton/] fortran_sum.............passed
    003/004 - [TMPDIR/toolbox_skeleton/] java_sum................passed

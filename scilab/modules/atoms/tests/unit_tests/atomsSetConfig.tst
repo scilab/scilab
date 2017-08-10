@@ -7,6 +7,8 @@
 
 // <-- ENGLISH IMPOSED -->
 
+// <-- CLI SHELL MODE -->
+
 load("SCI/modules/atoms/macros/atoms_internals/lib");
 
 // If previous test did not end properly, restore, else backup config file

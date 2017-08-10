@@ -5,7 +5,7 @@
         <refpurpose>multiplication by i the imaginary unitary</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>y = imult(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -36,7 +36,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 z1 = imult(%inf)
 z2 = %i * %inf
  ]]></programlisting>

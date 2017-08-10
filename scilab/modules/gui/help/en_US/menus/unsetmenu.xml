@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="unsetmenu">
+    <refnamediv>
+        <refname>unsetmenu</refname>
+        <refpurpose>interactive button or menu or submenu de-activation</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>unsetmenu(button,[nsub])
+            unsetmenu(gwin,button,[nsub])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>button</term>
+                <listitem>
+                    <para>a character string. The button name</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>gwin</term>
+                <listitem>
+                    <para>integer. The number of graphic window where the button is installed</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>nsub</term>
+                <listitem>
+                    <para>
+                        integer. The number of submenu to de-activate (if any). If button has no sub-menu, <literal>nsub</literal> is ignored
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            The function allows the user to deactivate  buttons or menus created by
+            <literal>addmenu</literal> in the main or graphics windows command panels.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+addmenu('foo')
+unsetmenu('foo')
+unsetmenu(gettext("File"), 3)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="delmenu">delmenu</link>
+            </member>
+            <member>
+                <link linkend="setmenu">setmenu</link>
+            </member>
+            <member>
+                <link linkend="addmenu">addmenu</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

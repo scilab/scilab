@@ -28,12 +28,10 @@ matrix_error_msg = msprintf(...
 assert_checkerror(...
     "ilib_include_flag([''a'', ''b''; ''c'', ''d''])", matrix_error_msg)
  ans  =
- 
-  T  
+  T
 //Testing row vector and column vector give the same answer
 assert_checkequal(...
     ilib_include_flag(['a', 'b', 'c', 'd']), ...
     ilib_include_flag(['a'; 'b'; 'c'; 'd']))
  ans  =
- 
-  T  
+  T

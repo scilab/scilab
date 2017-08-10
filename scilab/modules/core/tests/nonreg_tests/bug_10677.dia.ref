@@ -29,6 +29,5 @@ function M=%to_e(varargin)
   end
 endfunction
 %to_6=%to_e
- %to_6  =
- 
+ %to_6  = 
 [M]=%to_6(varargin)

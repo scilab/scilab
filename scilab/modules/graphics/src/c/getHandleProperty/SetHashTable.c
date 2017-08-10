@@ -3,11 +3,14 @@
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2007 - INRIA - Vincent Couvert
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -60,6 +63,7 @@ static setHashTableCouple propertySetTable[] =
     {"axes_size", set_axes_size_property},
     {"figure_size", set_figure_size_property},
     {"figure_name", set_figure_name_property},
+    {"name", set_figure_name_property},
     {"figure_id", set_figure_id_property},
     {"rotation_style", set_rotation_style_property},
     {"immediate_drawing", set_immediate_drawing_property},
@@ -215,12 +219,15 @@ static setHashTableCouple propertySetTable[] =
     {"tooltipstring", SetUicontrolTooltipString},
     {"closerequestfcn", set_figure_closerequestfcn_property},
     {"orientation", set_tip_orientation_property},
-    {"z_component", set_tip_3component_property},
+    {"z_component", set_tip_z_component_property},
+    {"display_components", set_tip_display_components_property},
+    {"datatip_display_mode", set_datatip_display_mode_property},
     {"auto_orientation", set_tip_auto_orientation_property},
     {"interp_mode", set_tip_interp_mode_property},
     {"box_mode", set_tip_box_mode_property},
     {"label_mode", set_tip_label_mode_property},
     {"display_function", set_tip_disp_function_property},
+    {"detached_position", set_tip_detached_property},
     {"ambient_color", set_ambient_color_property},
     {"diffuse_color", set_diffuse_color_property},
     {"specular_color", set_specular_color_property},
@@ -291,7 +298,7 @@ SetPropertyHashTable *createScilabSetHashTable(void)
 /*--------------------------------------------------------------------------*/
 int callSetProperty(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol, const char *propertyName)
 {
-    setPropertyFunc accessor = searchSetHashtable(setHashTable, propertyName);
+    setPropertyFunc accessor = searchSetHashtable(setHashTable, (char*)propertyName);
 
     if (accessor == NULL)
     {

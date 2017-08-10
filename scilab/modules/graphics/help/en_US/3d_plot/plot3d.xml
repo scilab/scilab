@@ -3,11 +3,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="plot3d" xml:lang="en">
@@ -16,16 +19,16 @@
         <refpurpose>3D plot of a surface</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>plot3d(x,y,z,[theta,alpha,leg,flag,ebox])
             plot3d(x,y,z,&lt;opt_args&gt;)
-            
+
             plot3d(xf,yf,zf,[theta,alpha,leg,flag,ebox])
             plot3d(xf,yf,zf,&lt;opt_args&gt;)
-            
+
             plot3d(xf,yf,list(zf,colors),[theta,alpha,leg,flag,ebox])
             plot3d(xf,yf,list(zf,colors),&lt;opt_args&gt;)
-            
+
             plot3d(z)
         </synopsis>
     </refsynopsisdiv>
@@ -134,7 +137,7 @@
                                                 <literal>"-mode"</literal> ; the boundary of the facet
                                                 is not drawn.
                                             </para>
-                                            <para>Note that the surface color treatement can be done
+                                            <para>Note that the surface color treatment can be done
                                                 using <literal>color_mode</literal> and
                                                 <literal>color_flag</literal> options through the
                                                 surface entity properties (see <link linkend="surface_properties">surface_properties</link>).
@@ -274,7 +277,7 @@
                         <literal>flag</literal> : if it is set to <literal>1</literal>,
                         <literal>3</literal> or <literal>5</literal> (see above to see the
                         corresponding behaviour). If <literal>flag</literal> is missing,
-                        <literal>ebox</literal> is not taken into acoount (by default <varname>ebox</varname> is missing).
+                        <literal>ebox</literal> is not taken into account (by default <varname>ebox</varname> is missing).
                     </para>
                     <para>
                         Note that, when specified, the <literal>ebox</literal>
@@ -356,13 +359,13 @@ t=[0:0.3:2*%pi]';
 z=sin(t)*cos(t');
 plot3d(t,t,z)
  ]]></programlisting>
-        
+
         <scilab:image>
             t=[0:0.3:2*%pi]';
             z=sin(t)*cos(t');
             plot3d(t,t,z)
         </scilab:image>
-        
+
         <programlisting role="example"><![CDATA[
 t=[0:0.3:2*%pi]';
 z=sin(t)*cos(t');
@@ -370,7 +373,7 @@ z=sin(t)*cos(t');
 [xx,yy,zz]=genfac3d(t,t,z);
 plot3d(xx,yy,zz)
  ]]></programlisting>
-        
+
         <scilab:image>
             t=[0:0.3:2*%pi]';
             z=sin(t)*cos(t');
@@ -378,7 +381,7 @@ plot3d(xx,yy,zz)
             [xx,yy,zz]=genfac3d(t,t,z);
             plot3d(xx,yy,zz)
         </scilab:image>
-        
+
         <programlisting role="example"><![CDATA[
 // multiple plots
 t=[0:0.3:2*%pi]';
@@ -387,7 +390,7 @@ z=sin(t)*cos(t');
 [xx,yy,zz]=genfac3d(t,t,z);
 plot3d([xx xx],[yy yy],[zz 4+zz])
  ]]></programlisting>
-        
+
         <scilab:image>
             // multiple plots
             t=[0:0.3:2*%pi]';
@@ -396,7 +399,7 @@ plot3d([xx xx],[yy yy],[zz 4+zz])
             [xx,yy,zz]=genfac3d(t,t,z);
             plot3d([xx xx],[yy yy],[zz 4+zz])
         </scilab:image>
-        
+
         <programlisting role="example"><![CDATA[
 // multiple plots using colors
 t=[0:0.3:2*%pi]';
@@ -405,7 +408,7 @@ z=sin(t)*cos(t');
 [xx,yy,zz]=genfac3d(t,t,z);
 plot3d([xx xx],[yy yy],list([zz zz+4],[4*ones(1,400) 5*ones(1,400)]))
  ]]></programlisting>
-        
+
         <scilab:image>
             t=[0:0.3:2*%pi]';
             z=sin(t)*cos(t');
@@ -413,12 +416,12 @@ plot3d([xx xx],[yy yy],list([zz zz+4],[4*ones(1,400) 5*ones(1,400)]))
             [xx,yy,zz]=genfac3d(t,t,z);
             plot3d([xx xx],[yy yy],list([zz zz+4],[4*ones(1,400) 5*ones(1,400)]))
         </scilab:image>
-        
+
         <programlisting role="example"><![CDATA[
 // simple plot with viewpoint and captions
 plot3d(1:10,1:20,10*rand(10,20),alpha=35,theta=45,flag=[2,2,3])
  ]]></programlisting>
-        
+
         <scilab:image>
             plot3d(1:10,1:20,10*rand(10,20),alpha=35,theta=45,flag=[2,2,3])
         </scilab:image>
@@ -431,7 +434,7 @@ r=1; orig=[0 0 0];
 [xx,yy,zz]=eval3dp(sph,linspace(-%pi/2,%pi/2,40),linspace(0,%pi*2,20));
 clf();plot3d(xx,yy,zz)
  ]]></programlisting>
-        
+
         <scilab:image>
             deff("[x,y,z]=sph(alp,tet)",["x=r*cos(alp).*cos(tet)+orig(1)*ones(tet)";..
             "y=r*cos(alp).*sin(tet)+orig(2)*ones(tet)";..
@@ -440,7 +443,7 @@ clf();plot3d(xx,yy,zz)
             [xx,yy,zz]=eval3dp(sph,linspace(-%pi/2,%pi/2,40),linspace(0,%pi*2,20));
             clf();plot3d(xx,yy,zz)
         </scilab:image>
-        
+
         <programlisting role="example"><![CDATA[
 f=gcf();
 f.color_map = hotcolormap(128);
@@ -453,7 +456,7 @@ deff("[x,y,z]=sph(alp,tet)",["x=r*cos(alp).*cos(tet)+orig(1)*ones(tet)";..
 cc=(xx+zz+2)*32;cc1=(xx1-orig(1)+zz1/r+2)*32;
 clf();plot3d1([xx xx1],[yy yy1],list([zz,zz1],[cc cc1]),theta=70,alpha=80,flag=[5,6,3])
  ]]></programlisting>
-        
+
         <scilab:image>
             f=gcf();
             f.color_map = hotcolormap(128);
@@ -466,7 +469,7 @@ clf();plot3d1([xx xx1],[yy yy1],list([zz,zz1],[cc cc1]),theta=70,alpha=80,flag=[
             cc=(xx+zz+2)*32;cc1=(xx1-orig(1)+zz1/r+2)*32;
             clf();plot3d1([xx xx1],[yy yy1],list([zz,zz1],[cc cc1]),theta=70,alpha=80,flag=[5,6,3])
         </scilab:image>
-        
+
         <programlisting role="example"><![CDATA[
 t=[0:0.3:2*%pi]'; z=sin(t)*cos(t');
 [xx,yy,zz]=genfac3d(t,t,z);
@@ -504,7 +507,7 @@ TL.color = [c;c+1;c+2;c+3];
 h.data = TL;
 h.color_flag=3; // interpolated shading mode
  ]]></programlisting>
-        
+
         <scilab:image>
             t=[0:0.3:2*%pi]'; z=sin(t)*cos(t');
             [xx,yy,zz]=genfac3d(t,t,z);
@@ -659,103 +662,103 @@ h = gcf();
 h.children(1).background = 1;
 xtitle('A standard rabbit set of patches');
  ]]></programlisting>
-        
+
         <scilab:image>
-            
+
             x = [0 0;
             0 1;
             1 1];
-            
+
             y = [1 1;
             2 2;
             2 1];
-            
+
             z = [1 1;
             1 1;
             1 1];
-            
+
             tcolor = [2 3]';
-            
+
             subplot(2,2,1);
             plot3d(x,y,list(z,tcolor));
             xtitle('A triangle set of patches');
             // Example 2: a mixture of triangular and quadrangular patches
-            
+
             xquad = [5, 0;
             10,0;
             15,5;
             10,5];
-            
+
             yquad = [15,0;
             20,10;
             15,15;
             10,5];
-            
+
             zquad = ones(4,2);
-            
+
             xtri = [ 0,10,10, 5, 0;
             10,20,20, 5, 0;
             20,20,15,10,10];
-            
+
             ytri = [ 0,10,20, 5,10;
             10,20,20,15,20;
             0, 0,15,10,20];
-            
+
             ztri = zeros(3,5);
-            
+
             subplot(2,2,3);
             plot3d(xquad,yquad,zquad);
             plot3d(xtri,ytri,ztri);
             xtitle('Mixing triangle and quadrangle set of patches');
-            
+
             // Example 3: some rabbits
-            
+
             rabxtri = [ 5,  5, 2.5,  7.5, 10;
             5, 15, 5,   10,   10;
             15, 15, 5,   10,   15];
-            
+
             rabytri = [10, 10, 9.5,  2.5, 0;
             20, 10, 12,   5,   5;
             10   0   7    0    0];
             rabztri = [0,0,0,0,0;
             0,0,0,0,0;
             0,0,0,0,0];
-            
+
             rabtricolor_byface = [2 2 2 2 2];
-            
+
             rabtricolor = [2,2,2,2,2;
             3,3,3,3,3;
             4,4,4,4,4];
-            
+
             rabxquad = [0, 1;
             0, 6;
             5,11;
             5, 6];
-            
+
             rabyquad = [18,23;
             23,28;
             23,28;
             18,23];
-            
+
             rabzquad = [1,1;
             1,1;
             1,1;
             1,1];
-            
+
             rabquadcolor_byface = [2 2];
-            
+
             rabquadcolor = [2,2;
             3,3;
             4,4;
             5,5];
-            
+
             subplot(2,2,2);
             plot3d(rabxtri, rabytri, list(rabztri,rabtricolor));
             plot3d(rabxquad,rabyquad,list(rabzquad,rabquadcolor));
             h = gcf();
             h.children(1).background = 1;
             xtitle('A psychedelic rabbit set of patches');
-            
+
             subplot(2,2,4);
             plot3d(rabxtri, rabytri, list(rabztri,rabtricolor_byface));
             plot3d(rabxquad,rabyquad,list(rabzquad,rabquadcolor_byface));
@@ -763,7 +766,7 @@ xtitle('A standard rabbit set of patches');
             h.children(1).background = 1;
             xtitle('A standard rabbit set of patches');
         </scilab:image>
-        
+
         <para>We can also use the plot3d function to plot a set of patches using
             vertex and faces.
         </para>
@@ -826,53 +829,53 @@ a = gca();
 a.view = '2d';
  ]]></programlisting>
         <scilab:image>
-            
+
             vertex = [0 1 1;
             0 2 2;
             1 2 3;
             1 1 4];
-            
+
             // The face list indicates which points are composing the patch.
             face = [1 2 3;
             1 3 4];
-            
+
             tcolor = [2 3]';
-            
+
             // The formula used to translate the vertex / face representation into x, y, z lists
-            
+
             xvf = matrix(vertex(face,1),size(face,1),length(vertex(face,1))/size(face,1))';
             yvf = matrix(vertex(face,2),size(face,1),length(vertex(face,1))/size(face,1))';
             zvf = matrix(vertex(face,3),size(face,1),length(vertex(face,1))/size(face,1))';
-            
+
             scf();
             subplot(2,1,1);
             plot3d(xvf,yvf,list(zvf,tcolor));
             xtitle('A triangle set of patches - vertex / face mode - 3d');
-            
+
             // 2D test
             // We use the 3D representation with a 0 Z values and then switch to 2D representation
-            
+
             // Vertex / Faces example: 3D example
-            
+
             // The vertex list contains the list of unique points composing each patch
             // The points common to 2 patches are not repeated in the vertex list
-            
+
             vertex = [0 1;
             0 2;
             1 2;
             1 1];
-            
+
             // The face list indicates which points are composing the patch.
             face = [1 2 3;
             1 3 4];
-            
+
             // The formula used to translate the vertex / face representation into x, y, z lists
-            
+
             xvf = matrix(vertex(face,1),size(face,1),length(vertex(face,1))/size(face,1))';
             yvf = matrix(vertex(face,2),size(face,1),length(vertex(face,1))/size(face,1))';
             zvf = matrix(zeros(vertex(face,2)),size(face,1),length(vertex(face,1))/size(face,1))';
             tcolor = [2 3]';
-            
+
             subplot(2,1,2);
             plot3d(xvf,yvf,list(zvf,tcolor));
             xtitle('A triangle set of patches - vertex / face mode - 2D');
@@ -894,11 +897,11 @@ h.z_ticks = tlist(['ticks','locations','labels'],[-1,0,1],['Point 1','Point 2','
             h.y_ticks = tlist(['ticks','locations','labels'],[-4,-3,-2,-1,0,1,2,3,4],['-4','-3','-2','-1','0','1','2','3','4']);
             h.z_ticks = tlist(['ticks','locations','labels'],[-1,0,1],['Point 1','Point 2','Point 3']);
         </scilab:image>
-        
+
         <para/>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="eval3dp">eval3dp</link>

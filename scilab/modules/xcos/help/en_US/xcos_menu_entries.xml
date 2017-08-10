@@ -79,7 +79,7 @@
                     </listitem>
                     <listitem>
                         <para>
-                            <xref linkend="Seealso_Menu_entries">See Also</xref>
+                            <xref linkend="Seealso_Menu_entries">See also</xref>
                         </para>
                     </listitem>
                 </itemizedlist>
@@ -563,7 +563,7 @@
                 </itemizedlist>
                 <para>
                     For more information on the solver look at the <xref linkend="Seealso_Menu_entries">
-                        See Also
+                        See also
                     </xref>
                     section.
                 </para>
@@ -800,6 +800,38 @@
             </listitem>
             <listitem>
                 <para>
+                    <emphasis role="bold">Format:Auto-Position</emphasis>
+                </para>
+                <para/>
+                <mediaobject>
+                    <imageobject>
+                        <imagedata align="center" fileref="../gui/xcos_menu_entries/en_US/xcos_menu_format_auto_position.png"/>
+                    </imageobject>
+                </mediaobject>
+                <para/>
+                <para>
+                    This menu allows to change the position of the block.
+                </para>
+                <para>
+                    First select the block(s) and select the appropriate menu item or use the shortcuts
+                    (<emphasis>P</emphasis>).
+                    The following list shows the results obtained.
+                </para>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            Split Block (<emphasis>P</emphasis>)
+                        </para>
+                        <mediaobject>
+                            <imageobject>
+                                <imagedata fileref="../images/xcos_menu_entries/en_US/xcos_auto_position_split_block_en_US.png"/>
+                            </imageobject>
+                        </mediaobject>
+                    </listitem>
+                </itemizedlist>
+            </listitem>
+            <listitem>
+                <para>
                     <emphasis role="bold">Format:Link Style</emphasis>
                 </para>
                 <para/>
@@ -814,7 +846,7 @@
                 </para>
                 <para>
                     First select the link and select the appropriate menu item or use the shortcuts
-                    (<emphasis>H</emphasis>), <emphasis>S</emphasis>, <emphasis>V</emphasis>).
+                    (<emphasis>H</emphasis>), (<emphasis>S</emphasis>), (<emphasis>V</emphasis>), (<emphasis>O</emphasis>).
                     The following list shows the results obtained.
                 </para>
                 <itemizedlist>
@@ -845,6 +877,16 @@
                         <mediaobject>
                             <imageobject>
                                 <imagedata fileref="../images/xcos_menu_entries/en_US/xcos_link_vertical_en_US.png"/>
+                            </imageobject>
+                        </mediaobject>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            Optimal (<emphasis>O</emphasis>)
+                        </para>
+                        <mediaobject>
+                            <imageobject>
+                                <imagedata fileref="../images/xcos_menu_entries/en_US/xcos_link_optimal_en_US.png"/>
                             </imageobject>
                         </mediaobject>
                     </listitem>
@@ -958,7 +1000,7 @@
         </itemizedlist>
     </refsection>
     <refsection role="see also" id="Seealso_Menu_entries">
-        <title>See Also</title>
+        <title>See also</title>
         <itemizedlist>
             <listitem>
                 <link linkend="scicos_debug">scicos_debug</link>

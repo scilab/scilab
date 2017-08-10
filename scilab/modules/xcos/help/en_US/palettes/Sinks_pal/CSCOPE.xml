@@ -101,7 +101,7 @@
             The Scope block displays its input with respect to simulation
             time. Both axes have a common range.  The Scope allows you to adjust
             the amount of time and the range of input values displayed.
-            
+
         </para>
     </refsection>
     <refsection id="Dialogbox_CSCOPE">
@@ -114,7 +114,7 @@
             </inlinemediaobject>
         </para>
         <para>
-            
+
         </para>
         <itemizedlist>
             <listitem>
@@ -296,6 +296,11 @@
     <refsection id="Seealso_CSCOPE">
         <title>See also</title>
         <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="SCALE_CSCOPE">SCALE_CSCOPE - Single Display Scope with autoscale feature of graph</link>
+                </para>
+            </listitem>
             <listitem>
                 <para>
                     <link linkend="CMSCOPE">CMSCOPE - Multi display scope</link>

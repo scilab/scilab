@@ -1,0 +1,527 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2015  - Scilab Enterprises - Antoine ELIAS
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="api_common" xml:lang="en">
+    <refnamediv>
+        <refname>API common functions</refname>
+        <para>This page lists all the functions to get information about Scilab native objects.</para>
+    </refnamediv>
+    <refsection id="api_common_scilab_getVar">
+        <literal>
+            <link linkend="api_types_scilabVar">
+                <command>scilabVar</command>
+            </link>
+            <varname>scilab_getVar</varname>(const wchar_t* name)
+        </literal>
+        <para>
+            Return variable called <varname>name</varname>, NULL if variable does not exist.
+        </para>
+    </refsection>
+    <refsection id="api_common_scilab_getClone">
+        <literal>
+            <link linkend="api_types_scilabVar">
+                <command>scilabVar</command>
+            </link>
+            <varname>scilab_getClone</varname>(
+            <link linkend="api_types_scilabEnv">
+                <command>scilabEnv</command>
+            </link>
+            env,
+            <link linkend="api_types_scilabVar">
+                <command>scilabVar</command>
+            </link>
+            var)
+        </literal>
+        <para>
+            Return a copie of <varname>var</varname>.
+        </para>
+    </refsection>
+    <refsection id="api_common_scilab_getType">
+        <literal>
+            int <varname>scilab_getType</varname>(
+            <link linkend="api_types_scilabEnv">
+                <command>scilabEnv</command>
+            </link>
+            env,
+            <link linkend="api_types_scilabVar">
+                <command>scilabVar</command>
+            </link>
+            var)
+        </literal>
+        <para>
+            Get type of <varname>var</varname>. see
+            <link linkend="sci_types">
+                <command>types</command>
+            </link>
+            help page.
+        </para>
+    </refsection>
+    <refsection>
+        <literallayout>
+            int <varname>scilab_isDouble</varname>(
+            <link linkend="api_types_scilabEnv">
+                <command>scilabEnv</command>
+            </link>
+            env,
+            <link linkend="api_types_scilabVar">
+                <command>scilabVar</command>
+            </link>
+            var)
+            int <varname>scilab_isBoolean</varname>(
+            <link linkend="api_types_scilabEnv">
+                <command>scilabEnv</command>
+            </link>
+            env,
+            <link linkend="api_types_scilabVar">
+                <command>scilabVar</command>
+            </link>
+            var)
+            int <varname>scilab_isString</varname>(
+            <link linkend="api_types_scilabEnv">
+                <command>scilabEnv</command>
+            </link>
+            env,
+            <link linkend="api_types_scilabVar">
+                <command>scilabVar</command>
+            </link>
+            var)
+            int <varname>scilab_isInt</varname>(
+            <link linkend="api_types_scilabEnv">
+                <command>scilabEnv</command>
+            </link>
+            env,
+            <link linkend="api_types_scilabVar">
+                <command>scilabVar</command>
+            </link>
+            var)
+            int <varname>scilab_isPoly</varname>(
+            <link linkend="api_types_scilabEnv">
+                <command>scilabEnv</command>
+            </link>
+            env,
+            <link linkend="api_types_scilabVar">
+                <command>scilabVar</command>
+            </link>
+            var)
+            int <varname>scilab_isList</varname>(
+            <link linkend="api_types_scilabEnv">
+                <command>scilabEnv</command>
+            </link>
+            env,
+            <link linkend="api_types_scilabVar">
+                <command>scilabVar</command>
+            </link>
+            var)
+            int <varname>scilab_isTList</varname>(
+            <link linkend="api_types_scilabEnv">
+                <command>scilabEnv</command>
+            </link>
+            env,
+            <link linkend="api_types_scilabVar">
+                <command>scilabVar</command>
+            </link>
+            var)
+            int <varname>scilab_isMList</varname>(
+            <link linkend="api_types_scilabEnv">
+                <command>scilabEnv</command>
+            </link>
+            env,
+            <link linkend="api_types_scilabVar">
+                <command>scilabVar</command>
+            </link>
+            var)
+            int <varname>scilab_isHandle</varname>(
+            <link linkend="api_types_scilabEnv">
+                <command>scilabEnv</command>
+            </link>
+            env,
+            <link linkend="api_types_scilabVar">
+                <command>scilabVar</command>
+            </link>
+            var)
+            int <varname>scilab_isStruct</varname>(
+            <link linkend="api_types_scilabEnv">
+                <command>scilabEnv</command>
+            </link>
+            env,
+            <link linkend="api_types_scilabVar">
+                <command>scilabVar</command>
+            </link>
+            var)
+            int <varname>scilab_isCell</varname>(
+            <link linkend="api_types_scilabEnv">
+                <command>scilabEnv</command>
+            </link>
+            env,
+            <link linkend="api_types_scilabVar">
+                <command>scilabVar</command>
+            </link>
+            var)
+            int <varname>scilab_isPointer</varname>(
+            <link linkend="api_types_scilabEnv">
+                <command>scilabEnv</command>
+            </link>
+            env,
+            <link linkend="api_types_scilabVar">
+                <command>scilabVar</command>
+            </link>
+            var)
+        </literallayout>
+        <para>
+            Return 1 if variable <varname>var</varname> has the right type.
+        </para>
+    </refsection>
+    <refsection id="api_common_scilab_isComplex">
+        <literal>
+            int <varname>scilab_isComplex</varname>(
+            <link linkend="api_types_scilabEnv">
+                <command>scilabEnv</command>
+            </link>
+            env,
+            <link linkend="api_types_scilabVar">
+                <command>scilabVar</command>
+            </link>
+            var)
+        </literal>
+        <para>
+            Return 1 if variable <varname>var</varname> is complex.
+        </para>
+    </refsection>
+    <refsection id="api_common_scilab_getDim">
+        <literal>
+            int <varname>scilab_getDim</varname>(
+            <link linkend="api_types_scilabEnv">
+                <command>scilabEnv</command>
+            </link>
+            env,
+            <link linkend="api_types_scilabVar">
+                <command>scilabVar</command>
+            </link>
+            var)
+        </literal>
+        <para>
+            Return the number of dimension of <varname>var</varname>. Note that scalar variables are 2d matrix of dimension (1, 1)
+        </para>
+    </refsection>
+    <refsection id="api_common_scilab_getDim2d">
+        <literal>
+            int <varname>scilab_getDim2d</varname>(
+            <link linkend="api_types_scilabEnv">
+                <command>scilabEnv</command>
+            </link>
+            env,
+            <link linkend="api_types_scilabVar">
+                <command>scilabVar</command>
+            </link>
+            var, int* row, int* col)
+        </literal>
+        <para>
+            Return dimensions of a 2d variable <varname>var</varname> in <varname>row</varname> and <varname>col</varname>.
+        </para>
+    </refsection>
+    <refsection id="api_common_scilab_getDimArray">
+        <literal>
+            int <varname>scilab_getDimArray</varname>(
+            <link linkend="api_types_scilabEnv">
+                <command>scilabEnv</command>
+            </link>
+            env,
+            <link linkend="api_types_scilabVar">
+                <command>scilabVar</command>
+            </link>
+            var, const int** dims)
+        </literal>
+        <para>
+            Return pointer on array of dimensions of a variable <varname>var</varname> in <varname>dims</varname>.
+        </para>
+    </refsection>
+    <refsection id="api_common_scilab_getSize">
+        <literal>
+            int <varname>scilab_getSize</varname>(
+            <link linkend="api_types_scilabEnv">
+                <command>scilabEnv</command>
+            </link>
+            env,
+            <link linkend="api_types_scilabVar">
+                <command>scilabVar</command>
+            </link>
+            var)
+        </literal>
+        <para>
+            Return size of variable <varname>var</varname>.
+        </para>
+        <para>For matrix type is the result of product of dimension and for others like list is the item count.</para>
+    </refsection>
+    <refsection id="api_common_scilab_isEmpty">
+        <literal>
+            int <varname>scilab_isEmpty</varname>(
+            <link linkend="api_types_scilabEnv">
+                <command>scilabEnv</command>
+            </link>
+            env,
+            <link linkend="api_types_scilabVar">
+                <command>scilabVar</command>
+            </link>
+            var)
+        </literal>
+        <para>Return 1 for empty matrix and empty list.</para>
+    </refsection>
+    <refsection id="api_common_scilab_isMatrix2d">
+        <literal>
+            int <varname>scilab_isMatrix2d</varname>(
+            <link linkend="api_types_scilabEnv">
+                <command>scilabEnv</command>
+            </link>
+            env,
+            <link linkend="api_types_scilabVar">
+                <command>scilabVar</command>
+            </link>
+            var)
+        </literal>
+        <para>Return 1 for matrix with 2 dimensions and scalar.</para>
+    </refsection>
+    <refsection id="api_common_scilab_isScalar">
+        <literal>
+            int <varname>scilab_isScalar</varname>(
+            <link linkend="api_types_scilabEnv">
+                <command>scilabEnv</command>
+            </link>
+            env,
+            <link linkend="api_types_scilabVar">
+                <command>scilabVar</command>
+            </link>
+            var)
+        </literal>
+        <para>Return 1 for scalar value.</para>
+    </refsection>
+    <refsection id="api_common_scilab_isSquare">
+        <literal>
+            int <varname>scilab_isSquare</varname>(
+            <link linkend="api_types_scilabEnv">
+                <command>scilabEnv</command>
+            </link>
+            env,
+            <link linkend="api_types_scilabVar">
+                <command>scilabVar</command>
+            </link>
+            var)
+        </literal>
+        <para>Return 1 for matrix with 2 dimensions and dimensions have the same size.</para>
+    </refsection>
+    <refsection id="api_common_scilab_isVector">
+        <literallayout>
+            int <varname>scilab_isVector</varname>(
+            <link linkend="api_types_scilabEnv">
+                <command>scilabEnv</command>
+            </link>
+            env,
+            <link linkend="api_types_scilabVar">
+                <command>scilabVar</command>
+            </link>
+            var)
+            int <varname>scilab_isNVector</varname>(
+            <link linkend="api_types_scilabEnv">
+                <command>scilabEnv</command>
+            </link>
+            env,
+            <link linkend="api_types_scilabVar">
+                <command>scilabVar</command>
+            </link>
+            var, int n)
+            int <varname>scilab_isRowVector</varname>(
+            <link linkend="api_types_scilabEnv">
+                <command>scilabEnv</command>
+            </link>
+            env,
+            <link linkend="api_types_scilabVar">
+                <command>scilabVar</command>
+            </link>
+            var)
+            int <varname>scilab_isColVector</varname>(
+            <link linkend="api_types_scilabEnv">
+                <command>scilabEnv</command>
+            </link>
+            env,
+            <link linkend="api_types_scilabVar">
+                <command>scilabVar</command>
+            </link>
+            var)
+        </literallayout>
+        <para>
+            Use to check if variable <varname>var</varname> is a vector. <varname>n</varname> is the dimension to check, <code>scilab_isRowVector</code> is equivalente to <code>scilab_isNVector(env, var, 1)</code>
+        </para>
+    </refsection>
+    <refsection id="api_common_scilab_isHypermat">
+        <literal>
+            int <varname>scilab_isHypermat</varname>(
+            <link linkend="api_types_scilabEnv">
+                <command>scilabEnv</command>
+            </link>
+            env,
+            <link linkend="api_types_scilabVar">
+                <command>scilabVar</command>
+            </link>
+            var)
+        </literal>
+        <para>Return 1 for matrix with dimensions count is up to 2.</para>
+    </refsection>
+    <refsection id="api_common_scilab_overload">
+        <literal>
+            int <varname>scilab_overload</varname>(
+            <link linkend="api_types_scilabEnv">
+                <command>scilabEnv</command>
+            </link>
+            env,
+            <link linkend="api_types_scilabVar">
+                <command>scilabVar</command>
+            </link>
+            var, int nin,
+            <link linkend="api_types_scilabVar">
+                <command>scilabVar</command>
+            </link>
+            *in, int nout,
+            <link linkend="api_types_scilabVar">
+                <command>scilabVar</command>
+            </link>
+            *out)
+        </literal>
+        <para>
+            Call an overload function following type of <varname>var</varname>.
+        </para>
+        <para>
+            <varname>nin</varname>, <varname>in</varname>, <varname>nout</varname>, <varname>out</varname> must be used like in gateway prototype.
+        </para>
+    </refsection>
+    <refsection id="api_common_scilab_call">
+        <literal>
+            int <varname>scilab_call</varname>(
+            <link linkend="api_types_scilabEnv">
+                <command>scilabEnv</command>
+            </link>
+            env, const wchar_t* name, int nin,
+            <link linkend="api_types_scilabVar">
+                <command>scilabVar</command>
+            </link>
+            *in, int nout,
+            <link linkend="api_types_scilabVar">
+                <command>scilabVar</command>
+            </link>
+            *out)
+        </literal>
+        <para>
+            Call function <varname>name</varname>.
+        </para>
+        <para>
+            <varname>nin</varname>, <varname>in</varname>, <varname>nout</varname>, <varname>out</varname> must be used like in gateway prototype.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="code_gateway">
+            <![CDATA[
+#include "api_scilab.h"
+#include "Scierror.h"
+#include "localization.h"
+
+const char fname[] = "overload_test";
+
+int sci_overload_test(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt opt, int nout, scilabVar* out)
+{
+    if (nin < 1 || nin > 2)
+    {
+        Scierror(999, _("%s: Wrong number of input arguments: %d to %d expected.\n"), fname, 1, 2);
+        return STATUS_ERROR;
+    }
+
+    //call overload function
+    if (nin == 1)
+    {
+        return scilab_overload(env, in[0], nin, in, nout, out);
+    }
+    else // call function in[0] with in[1] as argument
+    {
+        wchar_t* name = NULL;
+        if (scilab_isString(env, in[0]) == 0 || scilab_isVector(env, in[0]) == 0)
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
+            return STATUS_ERROR;
+        }
+
+        scilab_getString(env, in[0], &name);
+
+        return scilab_call(env, name, nin - 1, in + 1, nout, out);
+    }
+    return STATUS_OK;
+}
+            ]]>
+        </programlisting>
+    </refsection>
+    <refsection>
+        <title>Scilab test script</title>
+        <programlisting role="code_scilab">
+            <![CDATA[
+mkdir(pathconvert(TMPDIR+"/api_c/"));
+cd(pathconvert(TMPDIR+"/api_c/"));
+copyfile(SCI+"/modules/api_scilab/tests/unit_tests/api_c/overload_test.c",pathconvert(TMPDIR+"/api_c/overload_test.c",%F));
+
+ilib_build("liboverload",["overload_test","sci_overload_test", "csci6"],"overload_test.c",[],"","","");
+exec("loader.sce");
+
+a = rand(10, 10);
+x = overload_test("cos", a);
+assert_checkequal(x, cos(a));
+
+function x = %s_overload_test(a)
+    x = cos(a);
+endfunction
+
+x = overload_test(a);
+assert_checkequal(x, cos(a));
+            ]]>
+        </programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="api_double">API double</link>
+            </member>
+            <member>
+                <link linkend="api_string">API string</link>
+            </member>
+            <member>
+                <link linkend="api_string">API boolean</link>
+            </member>
+            <member>
+                <link linkend="api_string">API int</link>
+            </member>
+            <member>
+                <link linkend="api_string">API poly</link>
+            </member>
+            <member>
+                <link linkend="api_string">API handle</link>
+            </member>
+            <member>
+                <link linkend="api_string">API list</link>
+            </member>
+            <member>
+                <link linkend="api_string">API struct</link>
+            </member>
+            <member>
+                <link linkend="api_string">API cell</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

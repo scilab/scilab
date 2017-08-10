@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2011-2012 - DIGITEO - Manuel Juliachs
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -14,101 +17,145 @@
 
 #include <math.h>
 
-void Triangulator::determineSmallestAxis(void)
-{
-    double minval = 0.;
-
-    Vector3d min = inputPoints[0];
-    Vector3d max = min;
-
-    for (int i = 1 ; i < numPoints; i++)
-    {
-        if (inputPoints[i].x < min.x)
-        {
-            min.x = inputPoints[i].x;
-        }
-        if (inputPoints[i].y < min.y)
-        {
-            min.y = inputPoints[i].y;
-        }
-        if (inputPoints[i].z < min.z)
-        {
-            min.z = inputPoints[i].z;
-        }
-
-        if (inputPoints[i].x > max.x)
-        {
-            max.x = inputPoints[i].x;
-        }
-        if (inputPoints[i].y > max.y)
-        {
-            max.y = inputPoints[i].y;
-        }
-        if (inputPoints[i].z > max.z)
-        {
-            max.z = inputPoints[i].z;
-        }
-    }
-
-    max = minus(max, min);
-
-    if (max.x < max.y)
-    {
-        minval = max.x;
-        smallestAxis = 0;
-        largestAxes[0] = 1;
-        largestAxes[1] = 2;
-    }
-    else
-    {
-        minval = max.y;
-        smallestAxis = 1;
-        largestAxes[0] = 0;
-        largestAxes[1] = 2;
-    }
-
-    if (max.z < minval)
-    {
-        smallestAxis = 2;
-        largestAxes[0] = 0;
-        largestAxes[1] = 1;
-    }
-}
 
 void Triangulator::fillPoints(void)
 {
-    Vector3d point;
+    points.resize(numPoints, Vector3d(0., 0., 0.));
 
-    for (int i = 0; i < numPoints; i++)
+    //If any coordinate is constant project on the corresponding plane
+    if (xmin == xmax)
     {
-        if (smallestAxis == 0)
+        for (int i = 0; i < numPoints; i++)
         {
-            /* Smallest axis: X */
-            point.x = inputPoints[i].y;
-            point.y = inputPoints[i].z;
+            points[i].x = inputPoints[i].z;
+            points[i].y = inputPoints[i].y;
         }
-        else if (smallestAxis == 1)
+    }
+    else if (ymin == ymax)
+    {
+        for (int i = 0; i < numPoints; i++)
         {
-            /* Smallest axis: Y */
-            point.x = inputPoints[i].x;
-            point.y = inputPoints[i].z;
+            points[i].x = inputPoints[i].x;
+            points[i].y = inputPoints[i].z;
         }
-        else
+    }
+    else if (zmin == zmax)
+    {
+        for (int i = 0; i < numPoints; i++)
         {
-            /* Smallest axis: Z (2) */
-            point.x = inputPoints[i].x;
-            point.y = inputPoints[i].y;
+            points[i].x = inputPoints[i].x;
+            points[i].y = inputPoints[i].y;
+        }
+    }
+    //Otherwise, find the plane that best fit the data and rotate it to the xy plane
+    else
+    {
+        //m covariance matrix
+        //q autovector matrix
+        //d diagonal matrix
+        double m[3][3] = {{0., 0., 0.}, {0., 0., 0.}, {0., 0., 0.}};
+        //'q' and 'd' are not needed to be initialized
+        // since they are output paraments, but zero-initialize
+        // to follow coverity
+        double q[3][3] = {{0., 0., 0.}, {0., 0., 0.}, {0., 0., 0.}};
+        double d[3][3] = {{0., 0., 0.}, {0., 0., 0.}, {0., 0., 0.}};
+        Vector3d middle(0., 0., 0.);
+        Vector3d approxNormal(0., 0., 0.);
+
+        for (int i = 0; i < numPoints; i++)
+        {
+            middle.x += inputPoints[i].x;
+            middle.y += inputPoints[i].y;
+            middle.z += inputPoints[i].z;
+            Vector3d tmp = cross(minus(inputPoints[(i + 1) % numPoints], inputPoints[i]), minus(inputPoints[(i + 1) % numPoints], inputPoints[(i + 2) % numPoints]));
+            approxNormal = plus(approxNormal, tmp);
         }
 
-        point.z = 0.0;
+        double den = sqrt(approxNormal.x * approxNormal.x + approxNormal.y * approxNormal.y + approxNormal.z * approxNormal.z);
 
-        points.push_back(point);
+        approxNormal.x /= den;
+        approxNormal.y /= den;
+        approxNormal.z /= den;
+
+        middle.x /= numPoints;
+        middle.y /= numPoints;
+        middle.z /= numPoints;
+
+        for (int i = 0; i < numPoints; ++i)
+        {
+            points[i].x = inputPoints[i].x - middle.x;
+            points[i].y = inputPoints[i].y - middle.y;
+            points[i].z = inputPoints[i].z - middle.z;
+
+            m[0][0] += points[i].x * points[i].x;
+            m[0][1] += points[i].x * points[i].y;
+            m[0][2] += points[i].x * points[i].z;
+            m[1][1] += points[i].y * points[i].y;
+            m[1][2] += points[i].y * points[i].z;
+            m[2][2] += points[i].z * points[i].z;
+        }
+
+
+        m[1][0] = m[0][1];
+        m[2][0] = m[0][2];
+        m[2][1] = m[1][2];
+
+        diagonalize(m, q, d);
+
+        int col = d[0][0] < d[1][1] ? (d[0][0] < d[2][2] ? 0 : 2) : (d[1][1] < d[2][2] ? 1 : 2);
+
+        Vector3d normal(q[0][col], q[1][col], q[2][col]);
+
+        // if the angle between approxNomal and normal is
+        // larger than +/- pi/2, we invert the normal and keep the
+        // triangle orientation correct
+        double sign = dot(approxNormal, normal) < 0. ? -1. : 1.;
+
+        normal.x *= sign;
+        normal.y *= sign;
+        normal.z *= sign;
+
+        double c, s;
+
+        c = normal.y / sqrt(normal.x * normal.x + normal.y * normal.y);
+        s = sqrt(1. - c * c);
+        s = normal.x < 0. ? -s : s;
+
+        double rotz[3][3] = {{c, -s, 0.}, {s, c, 0.}, {0., 0., 1.}};
+
+        matrixVectorMul(rotz, normal);
+
+        c = normal.z / sqrt(normal.y * normal.y + normal.z * normal.z);
+        s = sqrt(1. - c * c);
+        s = normal.y < 0. ? s : -s;
+
+        double rotx[3][3] = {{1., 0., 0.}, {0., c, s}, {0., -s, c}};
+        double composedRot[3][3] = {{0., 0., 0.}, {0., 0., 0.}, {0., 0., 0.}};
+        matrixMatrixMul(rotx, rotz, composedRot);
+
+        xmin = ymin = zmin = std::numeric_limits<double>::max();
+        xmax = ymax = zmax = std::numeric_limits<double>::lowest();
+
+        for (int i = 0; i < numPoints; ++i)
+        {
+            matrixVectorMul(composedRot, inputPoints[i], points[i]);
+
+            xmin = xmin < points[i].x ? xmin : points[i].x;
+            ymin = ymin < points[i].y ? ymin : points[i].y;
+            zmin = zmin < points[i].z ? zmin : points[i].z;
+
+            xmax = xmax > points[i].x ? xmax : points[i].x;
+            ymax = ymax > points[i].y ? ymax : points[i].y;
+            zmax = zmax > points[i].z ? zmax : points[i].z;
+
+            points[i].z = 0.;
+        }
     }
 }
 
 double Triangulator::computeArea(void)
 {
-    double area = 0.0;
+    double area = 0.;
 
     for (int i = 0; i < numPoints; i++)
     {
@@ -346,14 +393,14 @@ void Triangulator::getAdjacentVertices(std::list<int>::iterator vi, std::list<in
 
 bool Triangulator::isConvex(std::list<int>::iterator vertex)
 {
-    double dp = 0.0;
+    double dp = 0.;
     std::list<int>::iterator pred, succ;
 
     getAdjacentVertices(vertex, pred, succ);
 
     dp = computeDotProduct(*pred, *vertex, *succ);
 
-    if (dp >= 0.0)
+    if (dp >= 0.)
     {
         return true;
     }
@@ -539,7 +586,7 @@ Vector3d Triangulator::normalize(Vector3d v)
 
     if (n < EPSILON)
     {
-        n = 1.0;
+        n = 1.;
     }
 
     v.x /= n;
@@ -553,7 +600,7 @@ Vector3d Triangulator::perpendicularVector(Vector3d v)
     Vector3d perp;
     perp.x = -v.y;
     perp.y = v.x;
-    perp.z = 0.0;
+    perp.z = 0.;
 
     return perp;
 }
@@ -600,7 +647,7 @@ Triangulator::Triangulator(void)
     numColinearVertices = 0;
 
     xmin = ymin = zmin = std::numeric_limits<double>::max();
-    xmax = ymax = zmax = std::numeric_limits<double>::min();
+    xmax = ymax = zmax = std::numeric_limits<double>::lowest();
 
     inputPoints.clear();
     points.clear();
@@ -615,47 +662,15 @@ Triangulator::Triangulator(void)
 
 void Triangulator::initialize(void)
 {
-    const double xscale = xmax - xmin;
-    const double yscale = ymax - ymin;
-    const double zscale = zmax - zmin;
-    // we scale-translate the point in the cube [0,1]^3 to avoid error with floating point operations
-    for (std::vector<Vector3d>::iterator i = inputPoints.begin(), e = inputPoints.end(); i != e; ++i)
-    {
-        if (xscale)
-        {
-            i->x = (i->x - xmin) / xscale;
-        }
-        else
-        {
-            i->x = 1;
-        }
-        if (yscale)
-        {
-            i->y = (i->y - ymin) / yscale;
-        }
-        else
-        {
-            i->y = 1;
-        }
-        if (zscale)
-        {
-            i->z = (i->z - zmin) / zscale;
-        }
-        else
-        {
-            i->z = 1;
-        }
-    }
-
     double area = 0.;
 
     numPoints = (int)inputPoints.size();
 
-    determineSmallestAxis();
     fillPoints();
+    normalizePoints();
     area = computeArea();
 
-    if (area < 0.0)
+    if (area < 0.)
     {
         flipped = true;
     }
@@ -713,10 +728,6 @@ void Triangulator::addPoint(double x, double y, double z)
     {
         zmax = z;
     }
-
-    /*point.x = x;
-    point.y = y;
-    point.z = z;*/
 
     inputPoints.push_back(point);
 }
@@ -781,7 +792,7 @@ int Triangulator::getNumberTriangles(void)
 
 int* Triangulator::getIndices(void)
 {
-    return &triangleIndices[0];
+    return triangleIndices.data();
 }
 
 int Triangulator::getNumberSteps(void)
@@ -816,3 +827,149 @@ void Triangulator::clear(void)
     numColinearVertices = 0;
 }
 
+void Triangulator::matrixMatrixMul(double(&a)[3][3], double(&b)[3][3], double(&out)[3][3])
+{
+    for (int i = 0; i < 3; ++i)
+    {
+        for (int j = 0; j < 3; ++j)
+        {
+            out[i][j] = 0.;
+            for (int k = 0; k < 3; ++k)
+            {
+                out[i][j] += a[i][k] * b[k][j];
+            }
+        }
+    }
+}
+
+void Triangulator::matrixVectorMul(double(&m)[3][3], Vector3d & pin, Vector3d & pout)
+{
+    pout.x = pin.x * m[0][0] + pin.y * m[0][1] + pin.z * m[0][2];
+    pout.y = pin.x * m[1][0] + pin.y * m[1][1] + pin.z * m[1][2];
+    pout.z = pin.x * m[2][0] + pin.y * m[2][1] + pin.z * m[2][2];
+}
+
+void Triangulator::matrixVectorMul(double(&m)[3][3], Vector3d & pinOut)
+{
+    Vector3d copy(pinOut.x, pinOut.y, pinOut.z);
+    pinOut.x = copy.x * m[0][0] + copy.y * m[0][1] + copy.z * m[0][2];
+    pinOut.y = copy.x * m[1][0] + copy.y * m[1][1] + copy.z * m[1][2];
+    pinOut.z = copy.x * m[2][0] + copy.y * m[2][1] + copy.z * m[2][2];
+}
+
+void Triangulator::normalizePoints()
+{
+    double xscale = xmax == xmin ? 1. : 1. / (xmax - xmin);
+    double yscale = ymax == ymin ? 1. : 1. / (ymax - ymin);
+    double zscale = zmax == zmin ? 1. : 1. / (zmax - zmin);
+    for (int i = 0; i < numPoints; ++i)
+    {
+        points[i].x = (points[i].x - xmin) * xscale;
+        points[i].y = (points[i].y - ymin) * yscale;
+        points[i].z = (points[i].z - zmin) * zscale;
+    }
+}
+
+Vector3d Triangulator::cross(Vector3d a, Vector3d b)
+{
+    return Vector3d(
+               a.y * b.z - b.y * a.z,
+               a.z * b.x - a.x * b.z,
+               a.x * b.y - a.y * b.x
+           );
+}
+
+Vector3d Triangulator::plus(Vector3d v0, Vector3d v1)
+{
+    return Vector3d(v0.x + v1.x, v0.y + v1.y, v0.z + v1.z);
+}
+
+void Triangulator::diagonalize(const double (&A)[3][3], double (&Q)[3][3], double (&D)[3][3])
+{
+    // A must be a symmetric matrix.
+    // returns Q and D such that
+    // Diagonal matrix D = QT * A * Q;  and  A = Q*D*QT
+    const int maxsteps = 24;  // certainly wont need that many.
+    double q[4] = {0., 0., 0., 1.};
+    for (int i = 0; i < maxsteps; ++i)
+    {
+        // quat to matrix
+        double sqx = q[0] * q[0];
+        double sqy = q[1] * q[1];
+        double sqz = q[2] * q[2];
+        double sqw = q[3] * q[3];
+        Q[0][0] = (sqx - sqy - sqz + sqw);
+        Q[1][1] = (-sqx + sqy - sqz + sqw);
+        Q[2][2] = (-sqx - sqy + sqz + sqw);
+        double tmp1 = q[0] * q[1];
+        double tmp2 = q[2] * q[3];
+        Q[1][0] = 2. * (tmp1 + tmp2);
+        Q[0][1] = 2. * (tmp1 - tmp2);
+        tmp1 = q[0] * q[2];
+        tmp2 = q[1] * q[3];
+        Q[2][0] = 2. * (tmp1 - tmp2);
+        Q[0][2] = 2. * (tmp1 + tmp2);
+        tmp1 = q[1] * q[2];
+        tmp2 = q[0] * q[3];
+        Q[2][1] = 2. * (tmp1 + tmp2);
+        Q[1][2] = 2. * (tmp1 - tmp2);
+
+        double AQ[3][3];
+        // AQ = A * Q
+        AQ[0][0] = Q[0][0] * A[0][0] + Q[1][0] * A[0][1] + Q[2][0] * A[0][2];
+        AQ[0][1] = Q[0][1] * A[0][0] + Q[1][1] * A[0][1] + Q[2][1] * A[0][2];
+        AQ[0][2] = Q[0][2] * A[0][0] + Q[1][2] * A[0][1] + Q[2][2] * A[0][2];
+        AQ[1][0] = Q[0][0] * A[0][1] + Q[1][0] * A[1][1] + Q[2][0] * A[1][2];
+        AQ[1][1] = Q[0][1] * A[0][1] + Q[1][1] * A[1][1] + Q[2][1] * A[1][2];
+        AQ[1][2] = Q[0][2] * A[0][1] + Q[1][2] * A[1][1] + Q[2][2] * A[1][2];
+        AQ[2][0] = Q[0][0] * A[0][2] + Q[1][0] * A[1][2] + Q[2][0] * A[2][2];
+        AQ[2][1] = Q[0][1] * A[0][2] + Q[1][1] * A[1][2] + Q[2][1] * A[2][2];
+        AQ[2][2] = Q[0][2] * A[0][2] + Q[1][2] * A[1][2] + Q[2][2] * A[2][2];
+        // D = Qt * AQ
+        D[0][0] = AQ[0][0] * Q[0][0] + AQ[1][0] * Q[1][0] + AQ[2][0] * Q[2][0];
+        D[0][1] = AQ[0][0] * Q[0][1] + AQ[1][0] * Q[1][1] + AQ[2][0] * Q[2][1];
+        D[0][2] = AQ[0][0] * Q[0][2] + AQ[1][0] * Q[1][2] + AQ[2][0] * Q[2][2];
+        D[1][0] = AQ[0][1] * Q[0][0] + AQ[1][1] * Q[1][0] + AQ[2][1] * Q[2][0];
+        D[1][1] = AQ[0][1] * Q[0][1] + AQ[1][1] * Q[1][1] + AQ[2][1] * Q[2][1];
+        D[1][2] = AQ[0][1] * Q[0][2] + AQ[1][1] * Q[1][2] + AQ[2][1] * Q[2][2];
+        D[2][0] = AQ[0][2] * Q[0][0] + AQ[1][2] * Q[1][0] + AQ[2][2] * Q[2][0];
+        D[2][1] = AQ[0][2] * Q[0][1] + AQ[1][2] * Q[1][1] + AQ[2][2] * Q[2][1];
+        D[2][2] = AQ[0][2] * Q[0][2] + AQ[1][2] * Q[1][2] + AQ[2][2] * Q[2][2];
+        double o[3] = {D[1][2], D[0][2], D[0][1]};
+        double m[3] = {fabs(o[0]), fabs(o[1]), fabs(o[2])};
+
+        int k0 = (m[0] > m[1] && m[0] > m[2]) ? 0 : (m[1] > m[2]) ? 1 : 2; // index of largest element of offdiag
+        int k1 = (k0 + 1) % 3;
+        int k2 = (k0 + 2) % 3;
+        if (o[k0] == 0.)
+        {
+            break;  // diagonal already
+        }
+        double thet = (D[k2][k2] - D[k1][k1]) / (2. * o[k0]);
+        double sgn = (thet > 0.) ? 1. : -1.;
+        thet *= sgn; // make it positive
+        double t = sgn / (thet + ((thet < 1.E6) ? sqrt(thet * thet + 1.) : thet)); // sign(T)/(|T|+sqrt(T^2+1))
+        double c = 1. / sqrt(t * t + 1.); //  c= 1/(t^2+1) , t=s/c
+        if (c == 1.)
+        {
+            break;  // no room for improvement - reached machine precision.
+        }
+        double jr[4] = {0., 0., 0., 0.};
+        jr[k0] = sgn * sqrt((1. - c) / 2.); // using 1/2 angle identity sin(a/2) = sqrt((1-cos(a))/2)
+        jr[k0] *= -1.; // since our quat-to-matrix convention was for v*M instead of M*v
+        jr[3] = sqrt(1.f - jr[k0] * jr[k0]);
+        if (jr[3] == 1.)
+        {
+            break; // reached limits of floating point precision
+        }
+        q[0] = (q[3] * jr[0] + q[0] * jr[3] + q[1] * jr[2] - q[2] * jr[1]);
+        q[1] = (q[3] * jr[1] - q[0] * jr[2] + q[1] * jr[3] + q[2] * jr[0]);
+        q[2] = (q[3] * jr[2] + q[0] * jr[1] - q[1] * jr[0] + q[2] * jr[3]);
+        q[3] = (q[3] * jr[3] - q[0] * jr[0] - q[1] * jr[1] - q[2] * jr[2]);
+        double mq = sqrt(q[0] * q[0] + q[1] * q[1] + q[2] * q[2] + q[3] * q[3]);
+        q[0] /= mq;
+        q[1] /= mq;
+        q[2] /= mq;
+        q[3] /= mq;
+    }
+}

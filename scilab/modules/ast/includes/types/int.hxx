@@ -3,11 +3,14 @@
  *  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
  *  Copyright (C) 2014 - Scilab Enterprises - Calixte DENIZET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -39,8 +42,8 @@ public :
 
     Int(int _iRows, int _iCols)
     {
-        int piDims[2]   = {_iRows, _iCols};
-        T * pInt     = NULL;
+        int piDims[2] = {_iRows, _iCols};
+        T * pInt = NULL;
         this->create(piDims, 2, &pInt, NULL);
 #ifndef NDEBUG
         //Inspector::addItem(this);
@@ -50,7 +53,7 @@ public :
     Int(T _val)
     {
         int piDims[2]   = {1, 1};
-        T * pInt     = NULL;
+        T * pInt = NULL;
         this->create(piDims, 2, &pInt, NULL);
         pInt[0] = _val;
 #ifndef NDEBUG
@@ -60,16 +63,16 @@ public :
 
     Int(int _iRows, int _iCols, T** _pData)
     {
-        int piDims[2] = {_iRows, _iCols};
+        const int piDims[2] = {_iRows, _iCols};
         this->create(piDims, 2, _pData, NULL);
 #ifndef NDEBUG
         //Inspector::addItem(this);
 #endif
     }
 
-    Int(int _iDims, int* _piDims)
+    Int(int _iDims, const int* _piDims)
     {
-        T * pInt     = NULL;
+        T * pInt = NULL;
         this->create(_piDims, _iDims, &pInt, NULL);
 #ifndef NDEBUG
         //Inspector::addItem(this);
@@ -87,7 +90,7 @@ public :
 #endif
     }
 
-    InternalType* clone()
+    Int<T>* clone()
     {
         Int<T> *pbClone = new Int<T>(GenericType::getDims(), GenericType::getDimsArray());
         pbClone->set(ArrayOf<T>::get());
@@ -150,12 +153,23 @@ public :
     }
 
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring        getTypeStr();
+    virtual std::wstring        getTypeStr() const;
 
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring        getShortTypeStr()
+    virtual std::wstring        getShortTypeStr() const
     {
         return L"i";
+    }
+
+    virtual bool isNativeType() override
+    {
+        return true;
+    }
+
+    virtual void fillDefaultValues() override
+    {
+        int size = GenericType::getSize();
+        memset(this->m_pRealData, 0x00, sizeof(T) * size);
     }
 
 protected :
@@ -163,7 +177,7 @@ protected :
     inline InternalType::ScilabId   getId(void);
 
 private :
-    virtual bool subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_iDims*/)
+    virtual bool subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_iDims*/) override
     {
         int iCurrentLine = 0;
         int iLineLen = ConfigVariable::getConsoleWidth();
@@ -225,7 +239,7 @@ private :
                 {
                     getUnsignedIntFormat(ArrayOf<T>::get(iPos), &iWidth);
                 }
-                iWidthMax = std::max(iWidthMax, iWidth);
+                iWidthMax = (std::max)(iWidthMax, iWidth);
             }
 
             for (int i = this->m_iRows1PrintState ; i < this->getRows() ; i++)
@@ -338,7 +352,7 @@ private :
                     {
                         getUnsignedIntFormat(ArrayOf<T>::get(iPos), &iWidth);
                     }
-                    piSize[iCols1] = std::max(piSize[iCols1], iWidth);
+                    piSize[iCols1] = (std::max)(piSize[iCols1], iWidth);
                 }
 
                 if (iLen + piSize[iCols1] > iLineLen && iCols1 != iLastCol)
@@ -483,6 +497,7 @@ private :
         const static bool value = true;
     };
 
+public:
     bool isInt8()
     {
         return is_same_int<T, char>::value;
@@ -562,74 +577,74 @@ template<> inline InternalType::ScilabType Int<unsigned long long>::getType()
 
 template<> inline InternalType::ScilabId Int<char>::getId()
 {
-    return isScalar() ? IdScalarInt8 : IdInt8;
+    return GenericType::isScalar() ? IdScalarInt8 : IdInt8;
 }
 template<> inline InternalType::ScilabId Int<unsigned char>::getId()
 {
-    return isScalar() ? IdScalarUInt8 : IdUInt8;
+    return GenericType::isScalar() ? IdScalarUInt8 : IdUInt8;
 }
 template<> inline InternalType::ScilabId Int<short>::getId()
 {
-    return isScalar() ? IdScalarInt16 : IdInt16;
+    return GenericType::isScalar() ? IdScalarInt16 : IdInt16;
 }
 template<> inline InternalType::ScilabId Int<unsigned short>::getId()
 {
-    return isScalar() ? IdScalarUInt16 : IdUInt16;
+    return GenericType::isScalar() ? IdScalarUInt16 : IdUInt16;
 }
 template<> inline InternalType::ScilabId Int<int>::getId()
 {
-    return isScalar() ? IdScalarInt32 : IdInt32;
+    return GenericType::isScalar() ? IdScalarInt32 : IdInt32;
 }
 template<> inline InternalType::ScilabId Int<unsigned int>::getId()
 {
-    return isScalar() ? IdScalarUInt32 : IdUInt32;
+    return GenericType::isScalar() ? IdScalarUInt32 : IdUInt32;
 }
 template<> inline InternalType::ScilabId Int<long long>::getId()
 {
-    return isScalar() ? IdScalarInt64 : IdInt64;
+    return GenericType::isScalar() ? IdScalarInt64 : IdInt64;
 }
 template<> inline InternalType::ScilabId Int<unsigned long long>::getId()
 {
-    return isScalar() ? IdScalarUInt64 : IdUInt64;
+    return GenericType::isScalar() ? IdScalarUInt64 : IdUInt64;
 }
 
 // Specializations
-template<> inline std::wstring Int<char>::getTypeStr()
+template<> inline std::wstring Int<char>::getTypeStr() const
 {
     return L"int8";
 }
 
-template<> inline std::wstring Int<short>::getTypeStr()
+template<> inline std::wstring Int<short>::getTypeStr() const
 {
     return L"int16";
 }
 
-template<> inline std::wstring Int<int>::getTypeStr()
+template<> inline std::wstring Int<int>::getTypeStr() const
 {
     return L"int32";
 }
 
-template<> inline std::wstring Int<long long>::getTypeStr()
+template<> inline std::wstring Int<long long>::getTypeStr() const
 {
     return L"int64";
 }
 
-template<> inline std::wstring Int<unsigned char>::getTypeStr()
+template<> inline std::wstring Int<unsigned char>::getTypeStr() const
 {
     return L"uint8";
 }
 
-template<> inline std::wstring Int<unsigned short>::getTypeStr()
+template<> inline std::wstring Int<unsigned short>::getTypeStr() const
 {
     return L"uint16";
 }
 
-template<> inline std::wstring Int<unsigned int>::getTypeStr()
+template<> inline std::wstring Int<unsigned int>::getTypeStr() const
 {
     return L"uint32";
 }
 
-template<> inline std::wstring Int<unsigned long long>::getTypeStr()
+template<> inline std::wstring Int<unsigned long long>::getTypeStr() const
 {
     return L"uint64";
 }

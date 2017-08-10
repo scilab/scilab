@@ -28,7 +28,7 @@
  *     -->y=ode([1;0;0],0,[0.4,4],list('ext10c',param))
  *     param is retrieved in ext6 by:
  *     param[0]=y[ *n ] , param[1]=y[ *n + 1] etc
- *     with this calling sequence y is a n+np vector
+ *     with this syntax y is a n+np vector
  *     where np=dimension of scilab variable param
  *********************************************/
 
@@ -41,6 +41,6 @@ int ext10c(int *n, double *t, double *y, double *ydot)
     ydot[0] = -param[0] * y[0] + param[1] * y[1] * y[2];
     ydot[2] = param[2] * y[1] * y[1];
     ydot[1] = -ydot[0] - ydot[2];
-    return(0);
+    return (0);
 }
 

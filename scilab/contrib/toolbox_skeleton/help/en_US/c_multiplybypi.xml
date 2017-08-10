@@ -9,7 +9,7 @@
         <refpurpose>multiply by %pi a number</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>a = multiplybypi(b)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -42,7 +42,7 @@
         <programlisting role="example">c_multiplybypi(3)</programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="c_sum">c_sum</link>

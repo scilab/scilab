@@ -5,11 +5,14 @@
  * Copyright (C) 2010 - DIGITEO - Vincent COUVERT
  * Copyright (C) 2015 - Scilab Enterprises - Sylvain GENIN
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -33,7 +36,7 @@ matvar_t *GetCharVariable(void *pvApiCtx, int iVar, const char *name, int * pare
 
     if (in[iVar - 1]->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for first input argument: String matrix expected.\n"), "GetCharVariable");
+        Scierror(999, _("%s: Wrong type for first input argument: string expected.\n"), "GetCharVariable");
         return NULL;
     }
 
@@ -99,6 +102,7 @@ matvar_t* GetCharMatVar(types::String* pStr, const char* name)
         char** ppcName = (char**)MALLOC(sizeof(char*) * pDims[0] * pDims[1]);
         if (ppcName == NULL)
         {
+            FREE(psize_t);
             Scierror(999, _("%s: No more memory.\n"), "GetCharMatVar");
             return NULL;
         }
@@ -107,6 +111,7 @@ matvar_t* GetCharMatVar(types::String* pStr, const char* name)
         if (pstMatData == NULL)
         {
             FREE(ppcName);
+            FREE(psize_t);
             Scierror(999, _("%s: No more memory.\n"), "GetCharMatVar");
             return NULL;
         }
@@ -114,7 +119,7 @@ matvar_t* GetCharMatVar(types::String* pStr, const char* name)
         for (int i = 0; i < pDims[0]; ++i)
         {
             ppcName[i] = wide_string_to_UTF8(pStr->get(i));
-            if (pstMatData == NULL)
+            if (ppcName[i] == NULL)
             {
                 for (int idelete = 0; idelete < i; ++idelete)
                 {
@@ -122,11 +127,11 @@ matvar_t* GetCharMatVar(types::String* pStr, const char* name)
                 }
                 FREE(ppcName);
                 FREE(pstMatData);
+                FREE(psize_t);
                 Scierror(999, _("%s: No more memory.\n"), "GetCharMatVar");
                 return NULL;
             }
         }
-
 
         for (int i = 0; i < pDims[0]; ++i)
         {

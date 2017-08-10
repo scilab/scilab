@@ -2,14 +2,18 @@
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2009-2009 - DIGITEO - Bruno JOFRET
 *
-*  This file must be used under the terms of the CeCILL.
-*  This source file is licensed as described in the file COPYING, which
-*  you should have received as part of this distribution.  The terms
-*  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
+#include <memory>
 #include <sstream>
 #include <cstdio>
 
@@ -18,9 +22,7 @@
 #include "context.hxx"
 #include "symbol.hxx"
 #include "scilabWrite.hxx"
-#include "scilabexception.hxx"
 #include "configvariable.hxx"
-#include "mutevisitor.hxx"
 #include "serializervisitor.hxx"
 
 extern "C"
@@ -90,7 +92,7 @@ void Macro::cleanCall(symbol::Context * pContext, int oldPromptMode)
     ConfigVariable::macroFirstLine_end();
 }
 
-InternalType* Macro::clone()
+Macro* Macro::clone()
 {
     IncreaseRef();
     return this;
@@ -109,9 +111,17 @@ ast::SeqExp* Macro::getBody(void)
 bool Macro::toString(std::wostringstream& ostr)
 {
     // get macro name
-    wchar_t* wcsVarName = os_wcsdup(ostr.str().c_str());
-    ostr.str(L"");
+    wchar_t* wcsVarName = NULL;
+    if (ostr.str() == SPACES_LIST)
+    {
+        wcsVarName = os_wcsdup(getName().c_str());
+    }
+    else
+    {
+        wcsVarName = os_wcsdup(ostr.str().c_str());
+    }
 
+    ostr.str(L"");
     ostr << L"[";
 
     // output arguments [a,b,c] = ....
@@ -159,7 +169,7 @@ bool Macro::toString(std::wostringstream& ostr)
     return true;
 }
 
-Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc)
+Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out)
 {
     bool bVarargout = false;
     ReturnValue RetVal = Callable::OK;
@@ -225,7 +235,7 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
         }
         else
         {
-            Scierror(999, _("Wrong number of input arguments."));
+            Scierror(999, _("Wrong number of input arguments.\n"));
         }
 
         pContext->scope_end();
@@ -301,23 +311,20 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
 
     //save current prompt mode
     int oldVal = ConfigVariable::getPromptMode();
+    std::unique_ptr<ast::ConstVisitor> exec (ConfigVariable::getDefaultVisitor());
     try
     {
-        //m_body->mute();
-        //MuteVisitor mute;
-        //m_body->accept(mute);
-
         ConfigVariable::setPromptMode(-1);
-        m_body->accept(*execFunc);
+        m_body->accept(*exec);
         //restore previous prompt mode
         ConfigVariable::setPromptMode(oldVal);
     }
-    catch (ast::ScilabMessage & sm)
+    catch (const ast::InternalError& ie)
     {
         cleanCall(pContext, oldVal);
-        throw sm;
+        throw ie;
     }
-    catch (ast::InternalAbort & ia)
+    catch (const ast::InternalAbort& ia)
     {
         cleanCall(pContext, oldVal);
         throw ia;
@@ -387,9 +394,11 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
                 out.clear();
                 cleanCall(pContext, oldVal);
 
-                char* pst = wide_string_to_UTF8((*i)->getSymbol().getName().c_str());
-                Scierror(999, _("Undefined variable %s.\n"), pst);
-                FREE(pst);
+                char* pstArgName = wide_string_to_UTF8((*i)->getSymbol().getName().c_str());
+                char* pstMacroName = wide_string_to_UTF8(getName().c_str());
+                Scierror(999, _("Undefined variable '%s' in function '%s'.\n"), pstArgName, pstMacroName);
+                FREE(pstArgName);
+                FREE(pstMacroName);
                 return Callable::Error;
             }
         }

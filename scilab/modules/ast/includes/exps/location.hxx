@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2007-2008 - DIGITEO - Bruno JOFRET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -31,8 +34,8 @@ public:
     /** \brief Construct a Location. */
     Location (void)
     {
-        first_line = last_line = 1;
-        first_column = last_column = 1;
+        first_line = last_line = 0;
+        first_column = last_column = 0;
     }
     /** \} */
 
@@ -76,6 +79,21 @@ public:
         last_line += count;
     }
     /** \} */
+
+    inline bool operator<(const Location & loc) const
+    {
+        return first_line < loc.first_line || (first_line == loc.first_line && first_column < loc.first_column);
+    }
+
+    inline bool operator==(const Location & loc) const
+    {
+        return first_line == loc.first_line && first_column == loc.first_column && last_line == loc.last_line && last_column == loc.last_column;
+    }
+
+    inline bool operator!=(const Location & loc) const
+    {
+        return !(*this == loc);
+    }
 
     std::wstring getLocationString() const
     {

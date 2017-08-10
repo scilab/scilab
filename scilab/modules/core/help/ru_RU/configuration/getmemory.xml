@@ -5,7 +5,7 @@
         <refpurpose>возвращает свободную и общую память системы</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>[free, total]=getmemory()</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -1,13 +1,16 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) 1987 - INRIA - Claude LEMARECHAL
 c 
-c This file must be used under the terms of the CeCILL.
-c This source file is licensed as described in the file COPYING, which
-c you should have received as part of this distribution.  The terms
-c are also available at    
-c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+c Copyright (C) 2012 - 2016 - Scilab Enterprises
 c
-      subroutine n1gc2 (simul,prosca,n,x,f,g,dxmin,df1,epsrel,imp,io,
+c This file is hereby licensed under the terms of the GNU GPL v2.0,
+c pursuant to article 5.3.4 of the CeCILL v.2.1.
+c This file was originally licensed under the terms of the CeCILL v2.1,
+c and continues to be available under such terms.
+c For more information, see the COPYING file which you should have received
+c along with this program.
+c
+      subroutine n1gc2 (simul,prosca,n,x,f,g,dxmin,df1,epsrel,iprint,io,
      /                  mode,niter,nsim,rz,nrz,izs,rzs,dzs)
       implicit double precision (a-h,o-z)
 c!but
@@ -31,18 +34,18 @@ c declaration des tableaux
       integer izs(*)
 c declaration des scalaires
       double precision   f, epsrel, dxmin, df1
-      integer   n, nrz, imp, nsim, mode
+      integer   n, nrz, iprint, nsim, mode
       integer    id, ix, ig, iaux, ih, memh
       character bufstr*(4096)
 c
       external    simul, prosca
 c
-      if (imp .gt. 0) then
+      if (iprint .gt. 0) then
       
       write(bufstr,1) n
       call basout(io_out ,io ,bufstr(1:lnblnk(bufstr))) 
       
-      write(bufstr,11) nrz,niter,nsim,imp
+      write(bufstr,11) nrz,niter,nsim,iprint
       call basout(io_out ,io ,bufstr(1:lnblnk(bufstr))) 
       
       write(bufstr,12) epsrel,df1,dxmin
@@ -56,7 +59,7 @@ c
      / dxmin.le.zero .or. df1.le.zero
      / .or. epsrel.le.zero .or. epsrel.gt.un ) then
       mode=2
-      if (imp .gt. 0) then
+      if (iprint .gt. 0) then
         write(bufstr,3)
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
       endif
@@ -81,11 +84,11 @@ c
       endif
 c
 c appel du sous-programme n1gc2a qui effectue la reelle optimisation
-      call n1gc2a(simul,prosca,n,x,f,g,dxmin,df1,epsrel,imp,io,
+      call n1gc2a(simul,prosca,n,x,f,g,dxmin,df1,epsrel,iprint,io,
      /            niter,nsim,mode,memh,rz(id),rz(ix),rz(ig),
      /            rz(iaux),rz(ih),izs,rzs,dzs)
 c
-100   if (imp .gt. 0) then
+100   if (iprint .gt. 0) then
       if (mode .eq. 3) then
       write(bufstr,2)
       call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))

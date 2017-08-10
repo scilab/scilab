@@ -5,7 +5,7 @@
         <refpurpose>cascade realization of filter from coefficients</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[cels]=casc(x,z)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -40,7 +40,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 x=[1,2,3;4,5,6;7,8,9;10,11,12]
 cels=casc(x,'z')
  ]]></programlisting>

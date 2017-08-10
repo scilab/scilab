@@ -1,15 +1,18 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
-function [p,err]=datafit(imp,G,varargin)
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
+//
+function [p,err]=datafit(iprint,G,varargin)
     //
-    //         [p,err]=datafit([imp,] G [,DG],Z [,W],...)
+    //         [p,err]=datafit([iprint,] G [,DG],Z [,W],...)
     //
     //         Function used for fitting data to a model.
     // For a given function G(p,z), this function finds the best vector
@@ -31,7 +34,7 @@ function [p,err]=datafit(imp,G,varargin)
     //Z=[Y;X];
     //deff('e=G(p,z)','a=p(1),b=p(2),c=p(3),y=z(1),x=z(2),e=y-FF(x)')
     //[p,err]=datafit(G,Z,[3;5;10])
-    //xset('window',0)
+    //scf(0)
     //clf();
     //plot2d(X',Y',-1)
     //plot2d(X',FF(X)',5,'002')
@@ -40,7 +43,7 @@ function [p,err]=datafit(imp,G,varargin)
     //a=34;b=12;c=14;
     //deff('s=DG(p,z)','y=z(1),x=z(2),s=-[x-p(2),-p(1),x*x]')
     //[p,err]=datafit(G,DG,Z,[3;5;10])
-    //xset('window',1)
+    //scf(1)
     //clf();
     //plot2d(X',Y',-1)
     //plot2d(X',FF(X)',5,'002')
@@ -49,10 +52,13 @@ function [p,err]=datafit(imp,G,varargin)
 
     [lhs,rhs]=argn(0)
 
-    if type(imp)<>1 then
+    if type(iprint)<>1 then
+        wflag=warning("query") // Disable warnings as the following lines may produce some
+        warning("off")
         varargin(0)=G
-        G=imp
-        imp=0
+        G=iprint
+        iprint=0
+        warning(wflag)
     end
 
     if type(G)==15 then
@@ -64,7 +70,7 @@ function [p,err]=datafit(imp,G,varargin)
 
 
     DG=varargin(1)
-    if type(DG)==10|type(DG)==11|type(DG)==13 then
+    if type(DG)==10|type(DG)==13 then
         GR=%t  //Jacobian provided
         varargin(1)=null()
     elseif type(DG)==15 then
@@ -180,7 +186,7 @@ function [p,err]=datafit(imp,G,varargin)
     " g=0*p;"
     "end"])
 
-    [err,p]=optim(costf,varargin(:),imp=imp)
+    [err,p]=optim(costf,varargin(:),iprint=iprint)
 
 
 endfunction

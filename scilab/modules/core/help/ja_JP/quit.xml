@@ -41,7 +41,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Scilabを終了
 function foo(x),if x then quit,end,endfunction
 foo(%t) //scilabを終了
@@ -56,7 +56,7 @@ function foo1(x),
   if x then pause, mprintf('P2\n'),end,
   mprintf('P3\n')
 endfunction
-     
+
 foo1(%t) //以下のプロンプトでquitを入力してください
  ]]></programlisting>
     </refsection>

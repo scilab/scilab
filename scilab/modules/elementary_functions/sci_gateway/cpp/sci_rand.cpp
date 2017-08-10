@@ -3,18 +3,20 @@
  * Copyright (C) 2011 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2014 - Scilab Enterprises - Anais Aubert
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 /*--------------------------------------------------------------------------*/
 #include "elem_func_gw.hxx"
 #include "function.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 #include "double.hxx"
 #include "string.hxx"
 
@@ -61,7 +63,7 @@ types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, typ
         types::String* pS = in[0]->getAs<types::String>();
         if (pS->getSize() != 1)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), "rand", 1);
+            Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), "rand", 1);
             return types::Function::Error;
         }
 
@@ -124,7 +126,7 @@ types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, typ
             types::String* pS = in[iSizeIn - 1]->getAs<types::String>();
             if (pS->getSize() != 1)
             {
-                Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), "rand", iSizeIn);
+                Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), "rand", iSizeIn);
                 return types::Function::Error;
             }
 
@@ -134,7 +136,7 @@ types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, typ
             iSizeIn--;
         }
 
-        typed_list args;
+        types::typed_list args;
         std::copy(in.begin(), in.begin() + iSizeIn, back_inserter(args));
 
         int iDims = 0;
@@ -152,8 +154,7 @@ types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, typ
                 case 1:
                 {
                     //call overload
-                    ast::ExecVisitor exec;
-                    return Overload::generateNameAndCall(L"rand", in, _iRetCount, out, &exec);
+                    return Overload::generateNameAndCall(L"rand", in, _iRetCount, out);
                 }
             }
 
@@ -164,10 +165,10 @@ types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, typ
         bool complex = false;
         if (in.size() == 1 && in[0]->isGenericType())
         {
-            complex = in[0]->getAs<GenericType>()->isComplex();
+            complex = in[0]->getAs<types::GenericType>()->isComplex();
         }
 
-        pOut = new Double(iDims, piDims, complex);
+        pOut = new types::Double(iDims, piDims, complex);
         if (alloc)
         {
             delete[] piDims;

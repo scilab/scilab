@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Serge STEER
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="sub2ind" xml:lang="pt">
+    <refnamediv>
+        <refname>sub2ind</refname>
+        <refpurpose>converte matriz de valores subescrtos para índice
+            linear
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>I = sub2ind(dims,i1,i2,...)
+            J = sub2ind(dims,Mi)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>dims</term>
+                <listitem>
+                    <para>vetor, as dimensões da matriz </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>i1,i2,...</term>
+                <listitem>
+                    <para>os arrays de valores subescritos (de mesma forma que a matriz
+                        <literal>I</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Mi</term>
+                <listitem>
+                    <para>matriz cujas colunas contém os valores subescritos. </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>I</term>
+                <listitem>
+                    <para>o array de índice linear</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>
+            <literal>sub2ind</literal> é usado para determinar o índice único
+            equivalente que corresponde ao dado conjunto de valores subescritos.
+            <literal>I = sub2ind(dims,i1,i2,..)</literal> retorna o índice linear
+            equivalente aos subescritos das linha, coluna, ... nos arrays
+            <literal>i1</literal>, <literal>i2</literal>,.. para uma matriz de tamanho
+            <literal>dims</literal>. Neste caso, <literal>i1</literal>,
+            <literal>i2</literal>,.. devem ter o mesmo formato e o resultado
+            <literal>I</literal> tem a mesma forma da matriz. <literal>I =
+                sub2ind(dims,Mi)
+            </literal>
+            retorna o índice linear equivalente aos
+            subescritos nas colunas da matriz <literal>Mi</literal> para uma matriz
+            com tamanho <literal>dims</literal>. Neste caso <literal>I</literal> é um
+            vetor coluna.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[
+i=[1 2 1 1 2 1 1];
+j=[1 2 3 1 2 3 3];
+k=[1 2 1 2 1 2 1];
+sub2ind([2,3,2],i,j,k)
+
+sub2ind([2,3,2],[i',j',k'])
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Ver Também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="ind2sub">ind2sub</link>
+            </member>
+            <member>
+                <link linkend="extraction">extraction</link>
+            </member>
+            <member>
+                <link linkend="insertion">insertion</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2013 - Scilab Enterprises - Cedric Delamarre
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -31,5 +34,10 @@ int SparseModule::Load()
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"luget", &sci_luget, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"ludel", &sci_ludel, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"spchol", &sci_spchol, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"sfinit", &sci_sfinit, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"symfcti", &sci_symfcti, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"bfinit", &sci_bfinit, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"inpnvi", &sci_inpnv, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"blkfc1i", &sci_blkfc1i, MODULE_NAME));
     return 1;
 }

@@ -9,31 +9,14 @@ This is generated code.
 This software is a computer program whose purpose is to hide the complexity
 of accessing Java objects/methods from C++ code.
 
-This software is governed by the CeCILL-B license under French law and
-abiding by the rules of distribution of free software.  You can  use,
-modify and/ or redistribute the software under the terms of the CeCILL-B
-license as circulated by CEA, CNRS and INRIA at the following URL
-"http://www.cecill.info".
+Copyright (C) 2012 - 2016 - Scilab Enterprises
 
-As a counterpart to the access to the source code and  rights to copy,
-modify and redistribute granted by the license, users are provided only
-with a limited warranty  and the software's author,  the holder of the
-economic rights,  and the successive licensors  have only  limited
-liability.
-
-In this respect, the user's attention is drawn to the risks associated
-with loading,  using,  modifying and/or developing or reproducing the
-software by the user in light of its specific status of free software,
-that may mean  that it is complicated to manipulate,  and  that  also
-therefore means  that it is reserved for developers  and  experienced
-professionals having in-depth computer knowledge. Users are therefore
-encouraged to load and test the software's suitability as regards their
-requirements in conditions enabling the security of their systems and/or
-data to be ensured and,  more generally, to use and operate it in the
-same conditions as regards security.
-
-The fact that you are presently reading this means that you have had
-knowledge of the CeCILL-B license and that you accept its terms.
+This file is hereby licensed under the terms of the GNU GPL v2.0,
+pursuant to article 5.3.4 of the CeCILL v.2.1.
+This file was originally licensed under the terms of the CeCILL v2.1,
+and continues to be available under such terms.
+For more information, see the COPYING file which you should have received
+along with this program.
 */
 
 namespace org_scilab_modules_xcos {
@@ -103,14 +86,11 @@ throw GiwsException::JniObjectCreationException(curEnv, this->className());
 curEnv->DeleteLocalRef(localInstance);
 
                 /* Methods ID set to NULL */
-voidxcosjstringjava_lang_Stringjstringjava_lang_StringID=NULL;
+voidxcosjstringjava_lang_StringjlonglongID=NULL;
+voidxcosDiagramToScilabjstringjava_lang_StringjlonglongjbooleanbooleanID=NULL;
 voidwarnCellByUIDjobjectArray_java_lang_Stringjava_lang_Stringjstringjava_lang_StringID=NULL;
 voidcloseXcosFromScilabID=NULL;
-jintxcosDiagramToScilabjstringjava_lang_StringID=NULL;
-voidxcosDiagramOpenjobjectArray_java_lang_Stringjava_lang_StringID=NULL;
-voidxcosDiagramClosejobjectArray_java_lang_Stringjava_lang_StringID=NULL;
 voidaddToolsMenujstringjava_lang_Stringjstringjava_lang_StringID=NULL;
-voidupdateBlockjstringjava_lang_StringID=NULL;
 voidxcosSimulationStartedID=NULL;
 
 
@@ -134,14 +114,11 @@ throw GiwsException::JniObjectCreationException(curEnv, this->className());
 throw GiwsException::JniObjectCreationException(curEnv, this->className());
         }
         /* Methods ID set to NULL */
-        voidxcosjstringjava_lang_Stringjstringjava_lang_StringID=NULL;
+        voidxcosjstringjava_lang_StringjlonglongID=NULL;
+voidxcosDiagramToScilabjstringjava_lang_StringjlonglongjbooleanbooleanID=NULL;
 voidwarnCellByUIDjobjectArray_java_lang_Stringjava_lang_Stringjstringjava_lang_StringID=NULL;
 voidcloseXcosFromScilabID=NULL;
-jintxcosDiagramToScilabjstringjava_lang_StringID=NULL;
-voidxcosDiagramOpenjobjectArray_java_lang_Stringjava_lang_StringID=NULL;
-voidxcosDiagramClosejobjectArray_java_lang_Stringjava_lang_StringID=NULL;
 voidaddToolsMenujstringjava_lang_Stringjstringjava_lang_StringID=NULL;
-voidupdateBlockjstringjava_lang_StringID=NULL;
 voidxcosSimulationStartedID=NULL;
 
 
@@ -162,7 +139,7 @@ throw GiwsException::JniMonitorException(getCurrentEnv(), "Xcos");
 }
 // Method(s)
 
-void Xcos::xcos (JavaVM * jvm_, char const* file, char const* variable){
+void Xcos::xcos (JavaVM * jvm_, char const* file, long long diagramId){
 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
@@ -171,8 +148,8 @@ if ( cls == NULL) {
 throw GiwsException::JniCallMethodException(curEnv);
 }
 
-static jmethodID voidxcosjstringjava_lang_Stringjstringjava_lang_StringID = curEnv->GetStaticMethodID(cls, "xcos", "(Ljava/lang/String;Ljava/lang/String;)V" ) ;
-if (voidxcosjstringjava_lang_Stringjstringjava_lang_StringID == NULL) {
+static jmethodID voidxcosjstringjava_lang_StringjlonglongID = curEnv->GetStaticMethodID(cls, "xcos", "(Ljava/lang/String;J)V" ) ;
+if (voidxcosjstringjava_lang_StringjlonglongID == NULL) {
 throw GiwsException::JniMethodNotFoundException(curEnv, "xcos");
 }
 
@@ -183,16 +160,38 @@ throw GiwsException::JniBadAllocException(curEnv);
 }
 
 
-jstring variable_ = curEnv->NewStringUTF( variable );
-if (variable != NULL && variable_ == NULL)
+                         curEnv->CallStaticVoidMethod(cls, voidxcosjstringjava_lang_StringjlonglongID ,file_, diagramId);
+                        curEnv->DeleteLocalRef(file_);
+if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+void Xcos::xcosDiagramToScilab (JavaVM * jvm_, char const* file, long long diagramId, bool exported){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+
+static jmethodID voidxcosDiagramToScilabjstringjava_lang_StringjlonglongjbooleanbooleanID = curEnv->GetStaticMethodID(cls, "xcosDiagramToScilab", "(Ljava/lang/String;JZ)V" ) ;
+if (voidxcosDiagramToScilabjstringjava_lang_StringjlonglongjbooleanbooleanID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "xcosDiagramToScilab");
+}
+
+jstring file_ = curEnv->NewStringUTF( file );
+if (file != NULL && file_ == NULL)
 {
 throw GiwsException::JniBadAllocException(curEnv);
 }
 
 
-                         curEnv->CallStaticVoidMethod(cls, voidxcosjstringjava_lang_Stringjstringjava_lang_StringID ,file_, variable_);
+jboolean exported_ = (static_cast<bool>(exported) ? JNI_TRUE : JNI_FALSE);
+
+                         curEnv->CallStaticVoidMethod(cls, voidxcosDiagramToScilabjstringjava_lang_StringjlonglongjbooleanbooleanID ,file_, diagramId, exported_);
                         curEnv->DeleteLocalRef(file_);
-curEnv->DeleteLocalRef(variable_);
 if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }
@@ -270,124 +269,6 @@ throw GiwsException::JniCallMethodException(curEnv);
 }
 }
 
-int Xcos::xcosDiagramToScilab (JavaVM * jvm_, char const* xcosFile){
-
-JNIEnv * curEnv = NULL;
-jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-jclass cls = initClass(curEnv);
-if ( cls == NULL) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-
-static jmethodID jintxcosDiagramToScilabjstringjava_lang_StringID = curEnv->GetStaticMethodID(cls, "xcosDiagramToScilab", "(Ljava/lang/String;)I" ) ;
-if (jintxcosDiagramToScilabjstringjava_lang_StringID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "xcosDiagramToScilab");
-}
-
-jstring xcosFile_ = curEnv->NewStringUTF( xcosFile );
-if (xcosFile != NULL && xcosFile_ == NULL)
-{
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-
-                        jint res =  static_cast<jint>( curEnv->CallStaticIntMethod(cls, jintxcosDiagramToScilabjstringjava_lang_StringID ,xcosFile_));
-                        curEnv->DeleteLocalRef(xcosFile_);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-return res;
-
-}
-
-void Xcos::xcosDiagramOpen (JavaVM * jvm_, char const* const* UID, int UIDSize){
-
-JNIEnv * curEnv = NULL;
-jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-jclass cls = initClass(curEnv);
-if ( cls == NULL) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-
-static jmethodID voidxcosDiagramOpenjobjectArray_java_lang_Stringjava_lang_StringID = curEnv->GetStaticMethodID(cls, "xcosDiagramOpen", "([Ljava/lang/String;)V" ) ;
-if (voidxcosDiagramOpenjobjectArray_java_lang_Stringjava_lang_StringID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "xcosDiagramOpen");
-}
-jclass stringArrayClass = curEnv->FindClass("java/lang/String");
-
-// create java array of strings.
-jobjectArray UID_ = curEnv->NewObjectArray( UIDSize, stringArrayClass, NULL);
-if (UID_ == NULL)
-{
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-// convert each char * to java strings and fill the java array.
-for ( int i = 0; i < UIDSize; i++)
-{
-jstring TempString = curEnv->NewStringUTF( UID[i] );
-if (TempString == NULL)
-{
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-curEnv->SetObjectArrayElement( UID_, i, TempString);
-
-// avoid keeping reference on too many strings
-curEnv->DeleteLocalRef(TempString);
-}
-                         curEnv->CallStaticVoidMethod(cls, voidxcosDiagramOpenjobjectArray_java_lang_Stringjava_lang_StringID ,UID_);
-                        curEnv->DeleteLocalRef(stringArrayClass);
-curEnv->DeleteLocalRef(UID_);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-}
-
-void Xcos::xcosDiagramClose (JavaVM * jvm_, char const* const* UID, int UIDSize){
-
-JNIEnv * curEnv = NULL;
-jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-jclass cls = initClass(curEnv);
-if ( cls == NULL) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-
-static jmethodID voidxcosDiagramClosejobjectArray_java_lang_Stringjava_lang_StringID = curEnv->GetStaticMethodID(cls, "xcosDiagramClose", "([Ljava/lang/String;)V" ) ;
-if (voidxcosDiagramClosejobjectArray_java_lang_Stringjava_lang_StringID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "xcosDiagramClose");
-}
-jclass stringArrayClass = curEnv->FindClass("java/lang/String");
-
-// create java array of strings.
-jobjectArray UID_ = curEnv->NewObjectArray( UIDSize, stringArrayClass, NULL);
-if (UID_ == NULL)
-{
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-// convert each char * to java strings and fill the java array.
-for ( int i = 0; i < UIDSize; i++)
-{
-jstring TempString = curEnv->NewStringUTF( UID[i] );
-if (TempString == NULL)
-{
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-curEnv->SetObjectArrayElement( UID_, i, TempString);
-
-// avoid keeping reference on too many strings
-curEnv->DeleteLocalRef(TempString);
-}
-                         curEnv->CallStaticVoidMethod(cls, voidxcosDiagramClosejobjectArray_java_lang_Stringjava_lang_StringID ,UID_);
-                        curEnv->DeleteLocalRef(stringArrayClass);
-curEnv->DeleteLocalRef(UID_);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-}
-
 void Xcos::addToolsMenu (JavaVM * jvm_, char const* label, char const* command){
 
 JNIEnv * curEnv = NULL;
@@ -419,34 +300,6 @@ throw GiwsException::JniBadAllocException(curEnv);
                          curEnv->CallStaticVoidMethod(cls, voidaddToolsMenujstringjava_lang_Stringjstringjava_lang_StringID ,label_, command_);
                         curEnv->DeleteLocalRef(label_);
 curEnv->DeleteLocalRef(command_);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-}
-
-void Xcos::updateBlock (JavaVM * jvm_, char const* h5File){
-
-JNIEnv * curEnv = NULL;
-jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-jclass cls = initClass(curEnv);
-if ( cls == NULL) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-
-static jmethodID voidupdateBlockjstringjava_lang_StringID = curEnv->GetStaticMethodID(cls, "updateBlock", "(Ljava/lang/String;)V" ) ;
-if (voidupdateBlockjstringjava_lang_StringID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "updateBlock");
-}
-
-jstring h5File_ = curEnv->NewStringUTF( h5File );
-if (h5File != NULL && h5File_ == NULL)
-{
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-
-                         curEnv->CallStaticVoidMethod(cls, voidupdateBlockjstringjava_lang_StringID ,h5File_);
-                        curEnv->DeleteLocalRef(h5File_);
 if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }

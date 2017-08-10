@@ -46,7 +46,7 @@
         <para>
             Pour correspondre au domaine temporel d'un système linéaire, <varname>dom</varname> doit être égale à
             <literal>'c'</literal>,<literal>'d'</literal>, <literal>[]</literal> ou à un scalaire.
-            D'une part, par analogie à des fonctions comme <link linkend="syslin">syslin</link>, 
+            D'une part, par analogie à des fonctions comme <link linkend="syslin">syslin</link>,
             et d'autre part, pour être compatible avec des fonctions comme <link linkend="tf2ss">tf2ss</link>,
             il est nécessaire que <varname>dom</varname> soit égale à ces valeurs.
         </para>

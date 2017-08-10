@@ -1,14 +1,17 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) 1987 - INRIA - Claude LEMARECHAL
 c 
-c This file must be used under the terms of the CeCILL.
-c This source file is licensed as described in the file COPYING, which
-c you should have received as part of this distribution.  The terms
-c are also available at    
-c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+c Copyright (C) 2012 - 2016 - Scilab Enterprises
+c
+c This file is hereby licensed under the terms of the GNU GPL v2.0,
+c pursuant to article 5.3.4 of the CeCILL v.2.1.
+c This file was originally licensed under the terms of the CeCILL v2.1,
+c and continues to be available under such terms.
+c For more information, see the COPYING file which you should have received
+c along with this program.
 c
       subroutine n1qn1 (simul,n,x,f,g,var,eps,
-     1     mode,niter,nsim,imp,lp,zm,izs,rzs,dzs)
+     1     mode,niter,nsim,iprint,lp,zm,izs,rzs,dzs)
 c
 c!but
 c     minimisation d une fonction reguliere sans contraintes
@@ -48,7 +51,7 @@ c     niter (e-s)  : en entree nombre maximal d'iterations : en sortie nombre
 c                    d'iterations reellement effectuees.
 c     nsim (e-s)  : en entree nombre maximal d'appels a simul (c'est a dire
 c         avec indic = 4). en sortie le nombre de tels appels reellement faits.
-c      imp (e)   : contro^le les messages d'impression :
+c      iprint (e)   : contro^le les messages d'impression :
 c                  0 rien n'est imprime
 c                  = 1 impressions initiales et finales
 c                  = 2 une impression par iteration (nombre d'iterations,
@@ -57,7 +60,7 @@ c                  >=3 informations supplementaires sur les recherches
 c                      lineaires ;
 c                      tres utile pour detecter les erreurs dans le gradient.
 c      lp (e)    : le numero du canal de sortie, i.e. les impressions
-c                  commandees par imp sont faites par write (lp, format).
+c                  commandees par iprint sont faites par write (lp, format).
 c     zm     : memoire de travail pour n1qn1 de   dimension n*(n+13)/2.
 c     izs,rzs,dzs memoires reservees au simulateur (cf doc)
 c
@@ -67,16 +70,16 @@ c!
       real rzs(*)
       character bufstr*(4096)
       external simul
-      if (imp.gt.0) then
+      if (iprint.gt.0) then
          call basout(io, lp, '')
          call basout(io, lp, 
      $    '***** enters -qn code- (without bound cstr)')
 
-         write(bufstr,750)n,eps,imp
+         write(bufstr,750)n,eps,iprint
          call basout(io ,lp ,bufstr(1:lnblnk(bufstr)))
 
 750   	 format('dimension=',i10,', epsq=',e24.16,
-     $ ', verbosity level: imp=',i10)
+     $ ', verbosity level: iprint=',i10)
 
 
          
@@ -99,9 +102,9 @@ c!
       nxb=nga+n
       ngb=nxb+n
       call n1qn1a (simul,n,x,f,g,var,eps,mode,
-     1 niter,nsim,imp,lp,zm,zm(nd),zm(nw),zm(nxa),zm(nga),
+     1 niter,nsim,iprint,lp,zm,zm(nd),zm(nw),zm(nxa),zm(nga),
      2 zm(nxb),zm(ngb),izs,rzs,dzs)
-      if (imp.gt.0) then
+      if (iprint.gt.0) then
        write(bufstr,753) sqrt(eps)
        call basout(io ,lp ,bufstr(1:lnblnk(bufstr)))
 753    format('***** leaves -qn code-, gradient norm=',e24.16)

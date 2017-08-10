@@ -2,12 +2,16 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) DIGITEO - 2009-2010 - Allan CORNET <allan.cornet@scilab.org>
 # Copyright (C) DIGITEO - 2010-2010 - Clément DAVID <clement.david@scilab.org>
+# Copyright (C) 2012-2016 - Scilab Enterprises - Clément DAVID
 #
-# This file must be used under the terms of the CeCILL.
-# This source file is licensed as described in the file COPYING, which
-# you should have received as part of this distribution.  The terms
-# are also available at
-# http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+# Copyright (C) 2012 - 2016 - Scilab Enterprises
+#
+# This file is hereby licensed under the terms of the GNU GPL v2.0,
+# pursuant to article 5.3.4 of the CeCILL v.2.1.
+# This file was originally licensed under the terms of the CeCILL v2.1,
+# and continues to be available under such terms.
+# For more information, see the COPYING file which you should have received
+# along with this program.
 #
 
 #### Target ######
@@ -37,21 +41,26 @@ libscixcos_la_etc_DATA = \
 XCOS_CXX_SOURCES =	\
     src/jni/Xcos.cpp \
     src/jni/Xcos.hxx \
+    src/jni/XcosCellFactory.cpp \
+    src/jni/XcosCellFactory.hxx \
     src/jni/Palette.cpp \
     src/jni/Palette.hxx \
     src/jni/Modelica.cpp \
     src/jni/Modelica.hxx \
     src/jni/JavaController_wrap.cxx \
     src/cpp/xcosUtilities.cpp \
-    src/cpp/loadStatus.cpp
-
+    src/cpp/loadStatus.cpp \
+    src/jni/JavaXMIResource_wrap.cxx
 
 GIWS_WRAPPERS = \
     src/jni/Xcos.giws.xml \
+    src/jni/XcosCellFactory.giws.xml \
     src/jni/Palette.giws.xml \
     src/jni/Modelica.giws.xml
 SWIG_WRAPPERS = \
-    src/jni/JavaController.i
+    src/jni/JavaController.i \
+    src/jni/JavaXMIResource.i
+
 # FORCE directors due to a bug into swig
 SWIG_OPTIONS=-c++ -directors
 BUILT_SOURCES=
@@ -69,6 +78,8 @@ GATEWAY_CXX_SOURCES = \
 	sci_gateway/cpp/sci_Xcos.cpp \
 	sci_gateway/cpp/sci_warnBlockByUID.cpp \
 	sci_gateway/cpp/sci_closeXcosFromScilab.cpp \
+	sci_gateway/cpp/sci_xcosCellCreated.cpp \
+	sci_gateway/cpp/sci_xcosUpdateBlock.cpp \
 	sci_gateway/cpp/sci_xcosDiagramToScilab.cpp \
 	sci_gateway/cpp/sci_xcosPalLoad.cpp \
 	sci_gateway/cpp/sci_xcosPalCategoryAdd.cpp \
@@ -80,7 +91,6 @@ GATEWAY_CXX_SOURCES = \
 	sci_gateway/cpp/sci_xcosPalGet.cpp \
 	sci_gateway/cpp/sci_xcosConfigureXmlFile.cpp \
 	sci_gateway/cpp/sci_xcosAddToolsMenu.cpp \
-	sci_gateway/cpp/sci_xcosUpdateBlock.cpp \
 	sci_gateway/cpp/sci_loadXcos.cpp \
 	sci_gateway/cpp/sci_xcosSimulationStarted.cpp
 
@@ -90,6 +100,10 @@ libscixcos_la_CPPFLAGS = \
     -I$(srcdir)/src/cpp/ \
     -I$(srcdir)/src/c/ \
     -I$(top_srcdir)/modules/scicos/includes/ \
+    -I$(top_srcdir)/modules/scicos_blocks/includes/ \
+    -I$(top_srcdir)/modules/scicos_blocks/src/jni/ \
+    -I$(top_srcdir)/modules/dynamic_link/includes/ \
+    -I$(top_srcdir)/modules/string/includes/ \
     -I$(top_srcdir)/modules/ast/includes/ast/ \
     -I$(top_srcdir)/modules/ast/includes/exps/ \
     -I$(top_srcdir)/modules/ast/includes/operations/ \
@@ -98,13 +112,15 @@ libscixcos_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/ast/includes/system_env/ \
     -I$(top_srcdir)/modules/ast/includes/types/ \
     -I$(top_srcdir)/modules/ast/includes/analysis/ \
+    -I$(top_srcdir)/modules/threads/includes/ \
+    -I$(top_srcdir)/modules/console/includes/ \
     -I$(top_srcdir)/modules/jvm/includes/ \
     -I$(top_srcdir)/modules/output_stream/includes/ \
     -I$(top_srcdir)/modules/commons/src/jni/ \
     -I$(top_srcdir)/modules/localization/includes/ \
     -I$(top_srcdir)/modules/fileio/includes/ \
-    -I$(top_srcdir)/modules/scicos_blocks/src/jni/ \
     -I$(top_srcdir)/modules/api_scilab/includes/ \
+    $(XML_FLAGS) \
     $(JAVA_JNI_INCLUDE) \
     $(AM_CPPFLAGS)
 
@@ -120,6 +136,7 @@ libscixcos_disable_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/ast/includes/types/ \
     -I$(top_srcdir)/modules/localization/includes/ \
     -I$(top_srcdir)/modules/output_stream/includes \
+    $(XML_FLAGS) \
     $(AM_CPPFLAGS)
 
 XCOS_DISABLE_C_SOURCES = src/noxcos/noxcos.c
@@ -148,7 +165,8 @@ INCLUDE_FLAGS = $(libscixcos_la_CPPFLAGS)
 libscixcos_la_LIBADD = libscixcos-algo.la \
 		$(top_builddir)/modules/scicos/libsciscicos.la \
 		$(top_builddir)/modules/commons/libscicommons.la \
-		$(top_builddir)/modules/jvm/libscijvm.la
+		$(top_builddir)/modules/jvm/libscijvm.la \
+		$(LIBXML_LIBS)
 
 #### xcos : gateway declaration ####
 libscixcos_la_sci_gatewaydir = $(mydatadir)/sci_gateway
@@ -263,6 +281,7 @@ images/palettes/CLSS.png \
 images/palettes/CMAT3D.png \
 images/palettes/CMATVIEW.png \
 images/palettes/CMSCOPE.png \
+images/palettes/SCALE_CMSCOPE.png \
 images/palettes/ConstantVoltage.png \
 images/palettes/CONST_f.png \
 images/palettes/CONST_m.png \
@@ -273,6 +292,7 @@ images/palettes/CONVERT.png \
 images/palettes/COSBLK_f.png \
 images/palettes/Counter.png \
 images/palettes/CSCOPE.png \
+images/palettes/SCALE_CSCOPE.png \
 images/palettes/CSCOPXY3D.png \
 images/palettes/CSCOPXY.png \
 images/palettes/CUMSUM.png \
@@ -417,8 +437,6 @@ images/palettes/SAWTOOTH_f.png \
 images/palettes/SCALAR2VECTOR.png \
 images/palettes/scifunc_block_m.png \
 images/palettes/SELECT_m.png \
-images/palettes/SELF_SWITCH_off.png \
-images/palettes/SELF_SWITCH_on.png \
 images/palettes/SELF_SWITCH.png \
 images/palettes/SHIFT.png \
 images/palettes/Sigbuilder.png \
@@ -453,7 +471,6 @@ images/palettes/VirtualCLK0.png \
 images/palettes/VoltageSensor.png \
 images/palettes/VsourceAC.png \
 images/palettes/VVsourceAC.png \
-images/palettes/WFILE_f.png \
 images/palettes/WRITEAU_f.png \
 images/palettes/WRITEC_f.png \
 images/palettes/ZCROSS_f.png

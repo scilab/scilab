@@ -15,7 +15,7 @@ function f1=%r_m_s(f1,n2)
 
     [n1,d1]=f1(["num","den"]),
     sz1=size(n1);sz2=size(n2);
-    if prod(sz1)==0|prod(sz2)==0 then return,end
+    if prod(sz1)==0|prod(sz2)==0 then f1=[];return,end
 
 
     indef=%f

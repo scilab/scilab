@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="frep2tf">
+    <refnamediv>
+        <refname>frep2tf</refname>
+        <refpurpose>
+            周波数応答から伝達関数実現を得る
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[h [,err]]=frep2tf(frq,repf,dg [,dom,tols,weight])</synopsis>
+    </refsynopsisdiv>
+    <refsection role="parameters">
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>frq</term>
+                <listitem>
+                    <para>周波数ベクトル (単位: Hz).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>repf</term>
+                <listitem>
+                    <para>周波数応答ベクトル</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>dg</term>
+                <listitem>
+                    <para>線形システムの次数</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>dom</term>
+                <listitem>
+                    <para>
+                        時間領域 (<literal>'c'</literal> または <literal>'d'</literal> または <literal>dt</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>tols</term>
+                <listitem>
+                    <para>
+                        長さ3のベクトルで,
+                        相対および絶対許容誤差,
+                        最大反復回数を指定します(デフォルト値: <literal>rtol=1.e-2; atol=1.e-4, N=10</literal>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>weight</term>
+                <listitem>
+                    <para>周波数の重みベクトル</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>h</term>
+                <listitem>
+                    <para>SISO 伝達関数</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>err</term>
+                <listitem>
+                    <para>
+                        誤差 (例えば <literal>dom='c'</literal>の場合, <literal>sum(abs(h(2i*pi*frq) - rep)^2)/size(frq,*)</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection role="description">
+        <title>説明</title>
+        <para>
+            周波数応答を伝達関数に変換します.
+            <literal>h</literal>の次数は,必須の引数
+            <literal>dg</literal>で事前に指定されます.
+            以下の線形システムが最小二乗解として解かれます.
+        </para>
+        <programlisting role=""><![CDATA[
+ weight(k)*(n( phi_k) - d(phi_k)*rep_k)=0, k=1,..,n
+ ]]></programlisting>
+        <para>
+            ただし,<literal>dom='c'</literal>の場合は
+            <literal>phi_k= 2*%i*%pi*frq</literal>,
+            そうでない場合は <literal>phi_k=exp(2*%i*%pi*dom*frq</literal>.
+            <literal>weight</literal> ベクトルが指定されない場合,
+            デフォルトの重み付けが使用されます(<literal>dom='c'</literal>の場合).
+        </para>
+        <para>
+            安定で最小位相のシステムが<literal>factors</literal>関数により
+            得られます.
+        </para>
+    </refsection>
+    <refsection role="examples">
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+s=poly(0,'s');
+h=syslin('c',(s-1)/(s^3+5*s+20))
+frq=0:0.05:3;repf=repfreq(h,frq);
+clean(frep2tf(frq,repf,3))
+Sys=ssrand(1,1,10);
+frq=logspace(-3,2,200);
+[frq,rep]=repfreq(Sys,frq);  //Sysの周波数応答
+[Sys2,err]=frep2tf(frq,rep,10);Sys2=clean(Sys2)//Sysの周波数応答からSys2を得る
+[frq,rep2]=repfreq(Sys2,frq); //Sys2の周波数応答
+clf();bode(frq,[rep;rep2])   //Sys と Sys2の応答
+[gsort(spec(Sys('A'))),gsort(roots(Sys2('den')))] //極
+dom=1/1000; // サンプリング時間
+z=poly(0,'z');
+h=syslin(dom,(z^2+0.5)/(z^3+0.1*z^2-0.5*z+0.08))
+frq=(0:0.01:0.5)/dom;repf=repfreq(h,frq);
+[Sys2,err]=frep2tf(frq,repf,3,dom);
+[frq,rep2]=repfreq(Sys2,frq); //Sys2の周波数応答
+clf()
+plot2d(frq, abs([repf;rep2])')
+]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="imrep2ss">imrep2ss</link>
+            </member>
+            <member>
+                <link linkend="arl2">arl2</link>
+            </member>
+            <member>
+                <link linkend="time_id">time_id</link>
+            </member>
+            <member>
+                <link linkend="armax">armax</link>
+            </member>
+            <member>
+                <link linkend="frfit">frfit</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

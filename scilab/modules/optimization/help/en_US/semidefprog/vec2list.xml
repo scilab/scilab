@@ -5,7 +5,7 @@
         <refpurpose>Inverse function of list2vec.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>li=vec2list(bigVector,varsizes,ind)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -32,7 +32,7 @@
                 <term>ind</term>
                 <listitem>
                     <para>a list with n entries. Each entry is a vector of
-                        positive integers which gives the hierchical path where the
+                        positive integers which gives the hierarchical path where the
                         corresponding matrix has to be put.
                     </para>
                 </listitem>
@@ -68,14 +68,14 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 vec2list(1:4,ones(4,2))
 vec2list(1:4,[2 1;1 2])
 vec2list(1:4,ones(4,2),list(1,2,[3,1],[3,2,1]))
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="list2vec">list2vec</link>

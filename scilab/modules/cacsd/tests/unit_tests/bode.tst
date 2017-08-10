@@ -9,7 +9,7 @@
 //
 // <-- ENGLISH IMPOSED -->
 //
-
+old=driver("null");
 function r=checkbode(h,leg)
     fig=gcf();
     r=%t;
@@ -41,6 +41,7 @@ s=poly(0,"s");
 n=1+s;d=1+2*s;
 h=syslin("c",n,d);
 sl=tf2ss(h);
+
 sld=dscr(sl,0.01);
 hd=ss2tf(sld);
 
@@ -48,73 +49,81 @@ hd=ss2tf(sld);
 
 // Continuous time
 clf();bode(h);
-if ~checkbode(h) then pause,end
+assert_checktrue(checkbode(h));
+
 clf();bode(h,"h");
-if ~checkbode(h,"h") then pause,end
+assert_checktrue(checkbode(h,"h"));
 
 clf();bode(h,0.01,100);
-if ~checkbode(h) then pause,end
+assert_checktrue(checkbode(h));
 clf();bode(h,0.01,100,"h");
-if ~checkbode(h,"h") then pause,end
+assert_checktrue(checkbode(h,"h"));
 
 clf();bode(h,0.01,100,0.01);
-if ~checkbode(h) then pause,end
+assert_checktrue(checkbode(h));
 clf();bode(sl,0.01,100);
-if ~checkbode(sl) then pause,end
+assert_checktrue(checkbode(sl));
 clf();bode(sl,0.01,100,0.01);
 
 // Continuous time SIMO
 h=[h;h+1];sl=[sl;sl+1];
 clf();bode(h);
-if ~checkbode(h) then pause,end
+assert_checktrue(checkbode(h));
+clf();bode(zpk(h));
+assert_checktrue(checkbode(zpk(h)));
+
 clf();bode(h,["h";"h+1"]);
-if ~checkbode(h,["h";"h+1"]) then pause,end
+assert_checktrue(checkbode(h,["h";"h+1"]));
+clf();bode(zpk(h),["h";"h+1"]);
+assert_checktrue(checkbode(zpk(h),["h";"h+1"]));
 
 clf();bode(h,0.01,100);
-if ~checkbode(h) then pause,end
+assert_checktrue(checkbode(h));
 clf();bode(h,0.01,100,["h";"h+1"]);
-if ~checkbode(h,["h";"h+1"]) then pause,end
+assert_checktrue(checkbode(h,["h";"h+1"]));
 
 clf();bode(h,0.01,100,0.01);
-if ~checkbode(h) then pause,end
+assert_checktrue(checkbode(h));
 clf();bode(sl,0.01,100);
-if ~checkbode(sl) then pause,end
+assert_checktrue(checkbode(sl));
 clf();bode(sl,0.01,100,0.01);
 
 
 // Discrete case
 clf();bode(hd);
-if ~checkbode(hd) then pause,end
+assert_checktrue(checkbode(hd));
 clf();bode(hd,"h");
-if ~checkbode(hd,"h") then pause,end
+assert_checktrue(checkbode(hd,"h"));
 
 clf();bode(hd,0.01,100);
-if ~checkbode(hd) then pause,end
+assert_checktrue(checkbode(hd));
 clf();bode(hd,0.01,100,"h");
-if ~checkbode(hd,"h") then pause,end
+assert_checktrue(checkbode(hd,"h"));
 
 clf();bode(hd,0.01,100,0.01);
-if ~checkbode(hd) then pause,end
+assert_checktrue(checkbode(hd));
 clf();bode(sld,0.01,100);
-if ~checkbode(sld) then pause,end
+assert_checktrue(checkbode(sld));
 clf();bode(sl,0.01,100,0.01);
 
 // Discrete case SIMO
 hd=[hd;hd+1];sld=[sld;sld+1];
 clf();bode(hd);
-if ~checkbode(hd) then pause,end
+assert_checktrue(checkbode(hd));
 clf();bode(hd,["h";"h+1"]);
-if ~checkbode(hd,["h";"h+1"]) then pause,end
+assert_checktrue(checkbode(hd,["h";"h+1"]));
+clf();bode(zpk(hd),["h";"h+1"]);
+assert_checktrue(checkbode(zpk(hd),["h";"h+1"]));
 
 clf();bode(hd,0.01,100);
-if ~checkbode(hd) then pause,end
+assert_checktrue(checkbode(hd));
 clf();bode(hd,0.01,100,["h";"h+1"]);
-if ~checkbode(hd,["h";"h+1"]) then pause,end
+assert_checktrue(checkbode(hd,["h";"h+1"]));
 
 clf();bode(hd,0.01,100,0.01);
-if ~checkbode(hd) then pause,end
+assert_checktrue(checkbode(hd));
 clf();bode(sld,0.01,100);
-if ~checkbode(sld) then pause,end
+assert_checktrue(checkbode(sld));
 clf();bode(sl,0.01,100,0.01);
 
 // bode given by precomputed frequency response
@@ -142,4 +151,9 @@ sys = syslin("c", G); // A continuous-time linear system in transfer matrix repr
 f_min = .0001; f_max = 1600; // Frequencies in Hz
 
 clf(); bode(sys, f_min, f_max, "rad"); // The optional argument "rad" converts Hz to rad/s
+
 bode_asymp(sys, 10, 1000); // Plots asymptotes in the given range of frequency (in rad/s).
+
+clf(); bode(zpk(sys), f_min, f_max, "rad"); // The optional argument "rad" converts Hz to rad/s
+bode_asymp(zpk(sys), 10, 1000); // Plots asymptotes in the given range of frequency (in rad/s).
+driver(old);

@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Allan CORNET
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="movefile" xml:lang="ru">
@@ -16,7 +19,7 @@
         <refpurpose>перемещает файл или директорию</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>movefile(source, destination)
             [status, message] = movefile(source, destination)
         </synopsis>
@@ -58,28 +61,28 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    
+
     <refsection>
         <title>Описание</title>
         <para>
-            Инструкция <code>movefile(source, destination)</code> перемещает файл 
-            или директорию <varname>source</varname> (и поддиректории) в файл или 
+            Инструкция <code>movefile(source, destination)</code> перемещает файл
+            или директорию <varname>source</varname> (и поддиректории) в файл или
             директорию <varname>destination</varname>.
         </para>
         <para>
-            Если <varname>source</varname> является директорией, то 
+            Если <varname>source</varname> является директорией, то
             <varname>destination</varname> не может быть файлом.
             <warning>
                 Функция <function>movefile</function> заменяет существующие файлы без предупреждения.
             </warning>
         </para>
         <para>
-            Инструкция <code>[status, message] = movefile(source, destination)</code> перемещает источник <varname>source</varname> в 
-            назначение <varname>destination</varname>, возвращая статус 
-            <varname>status</varname> и сообщение <varname>message</varname>. 
+            Инструкция <code>[status, message] = movefile(source, destination)</code> перемещает источник <varname>source</varname> в
+            назначение <varname>destination</varname>, возвращая статус
+            <varname>status</varname> и сообщение <varname>message</varname>.
         </para>
         <para>
-            Для любой операционной системы если перемещение удалось, то статус 
+            Для любой операционной системы если перемещение удалось, то статус
             <varname>status</varname> будет равен 1, а сообщение <varname>message</varname> будет пустым; если же перемещение не удалось, то статус <varname>status</varname> будет равен 0, а сообщение <varname>message</varname> не будет пустым.
         </para>
     </refsection>

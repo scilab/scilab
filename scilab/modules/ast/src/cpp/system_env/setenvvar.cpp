@@ -2,11 +2,14 @@
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
 *
-*  This file must be used under the terms of the CeCILL.
-*  This source file is licensed as described in the file COPYING, which
-*  you should have received as part of this distribution.  The terms
-*  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
@@ -49,7 +52,6 @@ extern "C"
 #include "getshortpathname.h"
 }
 
-using namespace std;
 
 
 /*--------------------------------------------------------------------------*/
@@ -69,6 +71,12 @@ void SetScilabEnvironment(void)
     //windows check
     SciEnvForWindows();
 #endif
+
+    SetScilabVariables();
+}
+
+void SetScilabVariables(void)
+{
     //create SCI
     defineSCI();
     //create SCIHOME
@@ -88,7 +96,7 @@ void SciEnvForWindows(void)
     {
         if ( (!Set_Shell()) || (!IsTheGoodShell()))
         {
-            cout << "Please modify ""ComSpec"" environment variable." << endl << "cmd.exe on W2K and more." << endl;
+            std::cout << "Please modify ""ComSpec"" environment variable." << std::endl << "cmd.exe on W2K and more." << std::endl;
         }
     }
 
@@ -144,11 +152,6 @@ bool Set_Shell(void)
         bOK = true;
     }
 
-    if (WINDIRPATH)
-    {
-        delete[] WINDIRPATH;
-        WINDIRPATH = NULL;
-    }
     return bOK;
 }
 

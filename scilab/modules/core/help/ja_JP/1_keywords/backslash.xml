@@ -24,7 +24,7 @@
         
         <para>
             
-            バックスラッシュは左行列除算を定義します. 
+            バックスラッシュは左行列除算を定義します.
             
             <literal>X=A\B</literal> は <literal>A*X=B</literal>の解です.
             
@@ -34,7 +34,7 @@
             
             <literal>A</literal> が正方で非特異の場合,
             
-            <literal>X=A\B</literal> は <literal>X=inv(A)*B</literal> 
+            <literal>X=A\B</literal> は <literal>X=inv(A)*B</literal>
             
             と等価です.しかし,計算はより正確で浮動小数点演算の負荷は小さくなります.
             
@@ -66,11 +66,11 @@
             
         </para>
         
-        <para>	    
+        <para>
             
             <literal>A</literal> が正方でない場合, <literal>X</literal> は最小二乗解となります.
             
-            すなわち, <code>norm(A*X-B)</code> は,最小値 (ユークリッドノルム)となります. 
+            すなわち, <code>norm(A*X-B)</code> は,最小値 (ユークリッドノルム)となります.
             
             <literal>A</literal> が列フルランクの場合,最小二乗解, <literal>X=A\B</literal>, は
             
@@ -157,7 +157,7 @@ A*x-b, A*y-b
 // 複数の線形ソルバのベンチマーク
 
 [A,descr,ref,mtype] = ReadHBSparse(SCI+..
-   "/modules/umfpack/examples/bcsstk24.rsa");
+   "/modules/umfpack/demos/bcsstk24.rsa");
 
 b = zeros(size(A,1),1);
 

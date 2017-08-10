@@ -3,11 +3,14 @@
  * Copyright (C) 2007 - INRIA - Allan CORNET
  * ...
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 /*--------------------------------------------------------------------------*/
@@ -62,7 +65,7 @@ types::Function::ReturnValue sci_findfiles(types::typed_list &in, int _iRetCount
         //user path
         if (in[0]->isString() == false || in[0]->getAs<types::String>()->getSize() != 1)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "findfiles", 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "findfiles", 1);
             return types::Function::Error;
         }
 
@@ -73,7 +76,8 @@ types::Function::ReturnValue sci_findfiles(types::typed_list &in, int _iRetCount
             //user file spec
             if (in[1]->isString() == false || in[1]->getAs<types::String>()->getSize() != 1)
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "findfiles", 2);
+                Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "findfiles", 2);
+                FREE(pwstPath);
                 return types::Function::Error;
             }
 

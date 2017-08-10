@@ -5,7 +5,7 @@
         <refpurpose>проверяет существование переменной</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>ve = exists(name [,where])</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -16,7 +16,7 @@
                 <listitem>
                     <para>
                         результат с возможными значениями:
-                        <literal>1</literal>, если "истина"; 
+                        <literal>1</literal>, если "истина";
                     </para>
                     <para>
                         <literal>0</literal>, если "ложь";
@@ -45,11 +45,11 @@
         <title>Описание</title>
         <para>
             <literal>exists(name)</literal> возвращает <literal>1</literal>, если
-            переменная с именем <literal>name</literal> существует, в противном 
+            переменная с именем <literal>name</literal> существует, в противном
             случае -- <literal>0</literal>.
         </para>
         <para>
-            Предостережение: функция, которая использует <literal>exists</literal> 
+            Предостережение: функция, которая использует <literal>exists</literal>
             может вернуть результат, зависящий от окружения!
         </para>
         <para>
@@ -60,28 +60,28 @@
         <para>
             <literal>exists(name,'n')</literal> возвращает
             <literal>1</literal>, если переменная с именем <literal>name</literal> существует на
-            любом уровне вызывающего окружения (включая главный уровень командной строки Scilab'а) 
+            любом уровне вызывающего окружения (включая главный уровень командной строки Scilab'а)
             текущей функции, в противном случае -- <literal>0</literal>.
         </para>
         <para>
-            Внимание: функция <literal>exists</literal> не проверяет существование 
+            Внимание: функция <literal>exists</literal> не проверяет существование
             переменной в пространстве имён глобальных переменных (<link linkend="global">global</link>).
         </para>
     </refsection>
     <refsection>
         <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 exists("myNotLikelyToExistVariable")
 myNotLikelyToExistVariable = 1;
 exists("myNotLikelyToExistVariable")
  ]]></programlisting>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 deff('foo(x)',..
 ['disp([exists(''a12''),exists(''a12'',''l'')])'
  'disp([exists(''x''),exists(''x'',''l'')])'])
 foo(1)
 a12=[];foo(1)
- 
+
 function level1()
   function level2()
     disp(exists("a","a"));

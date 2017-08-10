@@ -38,14 +38,13 @@ function [alreadyran,%cpr] = do_terminate(scs_m,%cpr)
         alreadyran = %f ;
         state=%cpr.state;
 
-        //** win = xget('window');
+        //** win = gcf().figure_id;
         gh_win = gcf();
 
         //** run scicosim via 'finish' flag
         ierr = execstr("[state,t]=scicosim(%cpr.state,par.tf,par.tf,%cpr.sim,"+..
         "''finish'',par.tol)","errcatch")
 
-        //** xset('window',win)
         scf(gh_win);
 
         %cpr ; //get write access at the variable
@@ -97,7 +96,6 @@ function [alreadyran,%cpr] = do_terminate(scs_m,%cpr)
         end
         //**---------------------------------
 
-        //** xset('window',curwin)
         scf(curwin);
 
     end

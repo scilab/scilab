@@ -5,7 +5,7 @@
         <refpurpose>opens in scilab editor the source of the last recorded error</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>answ = edit_error(clearerror)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -42,19 +42,19 @@
             retains only the path to libraries and not to individual function sources.
         </para>
         <para>
-            Correspondance between the function name foo and function filename foo.sci
+            Correspondence between the function name foo and function filename foo.sci
             is tacitly assumed.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 acosh abc
 edit_error
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="lasterror">lasterror</link>

@@ -29,7 +29,7 @@
 Tref=['xxxx';'yyy';'z'];
 mputl(Tref,TMPDIR+'/bug1023.txt');
 u=mopen(TMPDIR+'/bug1023.txt','r');
-[n,a] = mfscanf(-1,u,"%s"); 
+[n,a] = mfscanf(-1,u,"%s");
 [m,b] = mfscanf(-1,u,"%s");
 if n<>1        then bugmes();quit;end
 if or(a<>Tref) then bugmes();quit;end

@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // <-- Non-regression test for bug 2344 -->
 //
 // <-- Bugzilla URL -->
@@ -6,7 +7,7 @@
 // <-- Short Description -->
 //    dassl interface bug with the info parameter
 //
-//    Whenever a non default info parameter is given to dassl, a wrong error
+//    Whenever a non default info parameter is given to dassl, a wrong error 
 //    pops up.
 //
 //    This has been reported first in the Scilab newsgroup:

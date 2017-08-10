@@ -1,11 +1,14 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2011 - INRIA - Serge Steer <serge.steer@inria.fr>
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at;
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function comet(varargin)
     //Comet-like trajectory.
@@ -52,7 +55,7 @@ function comet(varargin)
     if type(x)<>1|~isreal(x) then
         error(msprintf(_("%s: Wrong type for argument #%d: Real vector expected.\n"),"comet",1))
     end
-    if or(type(y)==[11 13]) then //a function
+    if type(y)==13 then //a function
         prot=funcprot();funcprot(0)
         y=feval(x,y)
         funcprot(prot)

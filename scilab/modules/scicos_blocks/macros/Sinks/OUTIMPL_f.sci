@@ -71,7 +71,7 @@ function [x,y,typ]=OUTIMPL_f(job,arg1,arg2)
         exprs="1"
         gr_i=[]
         x=standard_define([1 1],model,exprs,gr_i)
-        //  x.graphics.flip=%f //flip it
+        //  x.graphics.style="flip=0;" //flip it
         x.graphics.in_implicit=["I"]
     end
 endfunction

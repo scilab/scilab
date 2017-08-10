@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+
+ *
+
+
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+
+ *
+
+ -->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ja" xml:id="xgrid">
+
+    <refnamediv>
+
+        <refname>xgrid</refname>
+
+        <refpurpose>2次元または3次元プロットにグリッドを追加</refpurpose>
+
+    </refnamediv>
+
+    <refsynopsisdiv>
+
+        <title>呼び出し手順</title>
+
+        <synopsis>xgrid([color] [, thickness] [, style])</synopsis>
+
+    </refsynopsisdiv>
+
+    <refsection>
+
+        <title>引数</title>
+
+        <variablelist>
+
+            <varlistentry>
+
+                <term>color</term>
+
+                <listitem>
+
+                    <para>整数または行行列.</para>
+
+                </listitem>
+
+            </varlistentry>
+
+            <varlistentry>
+
+                <term>thickness</term>
+
+                <listitem>
+
+                    <para>実数または行行列.</para>
+
+                </listitem>
+
+            </varlistentry>
+
+            <varlistentry>
+
+                <term>style</term>
+
+                <listitem>
+
+                    <para>整数または行行列.</para>
+
+                </listitem>
+
+            </varlistentry>
+
+        </variablelist>
+
+    </refsection>
+
+    <refsection>
+
+        <title>説明</title>
+
+        <para>
+
+            <literal>xgrid</literal>は2次元または3次元プロットにグリッドを追加します.
+
+        </para>
+
+        <para>
+
+            <literal>color</literal> はグリッドのプロットで使用されるカラーIDです
+
+            (<literal>color</literal>がスカラーの場合,同じ色が各軸で使用されます).
+
+        </para>
+
+        <para>
+
+            <literal>thickness</literal> はグリッドのプロットで使用される太さです
+
+            (<literal>thickness</literal>がスカラーの場合,同じ太さが各軸で使用されます).
+
+        </para>
+
+        <para>
+
+            <literal>style</literal>はグリッドのプロットで使用されるスタイルです
+
+            (<literal>style</literal>がスカラーの場合,同じスタイルが各軸で使用されます).
+
+            利用可能なスタイルは<literal>line_style</literal>プロパティと同じです
+
+            (<link linkend="axes_properties">axes_properties</link>参照).
+
+        </para>
+
+    </refsection>
+
+    <refsection>
+
+        <title>例</title>
+
+        <programlisting role="example"><![CDATA[
+
+x=[0:0.1:2*%pi]';
+
+plot2d(sin(x))
+
+xgrid(5, 1, 7)
+
+ ]]></programlisting>
+
+        <scilab:image>
+
+            x=[0:0.1:2*%pi]';
+
+            plot2d(sin(x))
+
+            xgrid(5, 1, 7)
+
+        </scilab:image>
+
+    </refsection>
+
+    <refsection>
+
+        <title>参考</title>
+
+        <simplelist type="inline">
+
+            <member>
+
+                <link linkend="axes_properties">axes_properties</link>
+
+            </member>
+
+            <member>
+
+                <link linkend="plot2d">plot2d</link>
+
+            </member>
+
+        </simplelist>
+
+    </refsection>
+
+    <refsection>
+
+        <title>履歴</title>
+
+        <revhistory>
+
+            <revision>
+
+                <revnumber>5.5.0</revnumber>
+
+                <revremark>
+
+                    引数 <literal>thickness</literal> および <literal>style</literal>
+
+                    が導入されました.
+
+                </revremark>
+
+            </revision>
+
+        </revhistory>
+
+    </refsection>
+
+</refentry>
+
+
+

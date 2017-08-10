@@ -1,12 +1,15 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2014-2014 - Scilab Enterprises - Clement DAVID
+ *  Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -28,17 +31,13 @@ namespace model
 class Annotation: public BaseObject
 {
 public:
-    Annotation(): BaseObject(ANNOTATION), m_parentDiagram(0), m_parentBlock(0),
-        m_description(std::string("Text")), m_font(std::string("2")), m_font_size(std::string("1")), m_relatedTo(0)
+    Annotation(): BaseObject(ANNOTATION), m_parentDiagram(ScicosID()), m_parentBlock(ScicosID()),
+        m_description("Text"), m_font("2"), m_font_size("1"), m_style(""), m_relatedTo(ScicosID()), m_uid()
     {
-        std::vector<double> geom (4, 0);
-        geom[2] = 2;
-        geom[3] = 1;
-        m_geometry = Geometry(geom);
+        m_geometry = {0, 0, 2, 1};
     };
     Annotation(const Annotation& o) : BaseObject(ANNOTATION), m_parentDiagram(o.m_parentDiagram), m_parentBlock(o.m_parentBlock), m_geometry(o.m_geometry),
-        m_description(o.m_description), m_font(o.m_font), m_font_size(o.m_font_size), m_relatedTo(o.m_relatedTo) {};
-    ~Annotation() = default;
+        m_description(o.m_description), m_font(o.m_font), m_font_size(o.m_font_size), m_style(o.m_style), m_relatedTo(o.m_relatedTo), m_uid(o.m_uid) {};
 
 private:
     friend class ::org_scilab_modules_scicos::Model;
@@ -88,6 +87,22 @@ private:
         }
 
         m_font_size = data;
+        return SUCCESS;
+    }
+
+    void getStyle(std::string& data) const
+    {
+        data = m_style;
+    }
+
+    update_status_t setStyle(const std::string& data)
+    {
+        if (data == m_style)
+        {
+            return NO_CHANGES;
+        }
+
+        m_style = data;
         return SUCCESS;
     }
 
@@ -161,6 +176,22 @@ private:
         return SUCCESS;
     }
 
+    void getUID(std::string& data) const
+    {
+        data = m_uid;
+    }
+
+    update_status_t setUID(const std::string& data)
+    {
+        if (data == m_uid)
+        {
+            return NO_CHANGES;
+        }
+
+        m_uid = data;
+        return SUCCESS;
+    }
+
 private:
     ScicosID m_parentDiagram;
     ScicosID m_parentBlock;
@@ -169,7 +200,9 @@ private:
     std::string m_description;
     std::string m_font;
     std::string m_font_size;
+    std::string m_style;
     ScicosID m_relatedTo;
+    std::string m_uid;
 };
 
 } /* namespace model */

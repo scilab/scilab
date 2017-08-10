@@ -10,7 +10,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>y = acsc(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -32,7 +32,7 @@
     </refsection>
     <refsection>
         <title>Description</title>
-        <para>Computes the element-wise inverse cotsecant of the argument. For
+        <para>Computes the element-wise inverse cosecant of the argument. For
             real argument with absolute value greater than 1 the result is
             real.
         </para>
@@ -52,14 +52,14 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 x=linspace(1,20,200);
 x=[-x($:-1:1) %nan x];
 plot(x,acsc(x))
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="csc">csc</link>

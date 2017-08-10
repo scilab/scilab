@@ -5,7 +5,7 @@
         <refpurpose>переключение на операции в стиле Matlab'а</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             mmode = mtlb_mode()
             mtlb_mode(mmode)

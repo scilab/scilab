@@ -2,21 +2,27 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Cedric DELAMARRE
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 /*--------------------------------------------------------------------------*/
+
+#include <algorithm>
+
 #include "elem_func_gw.hxx"
 #include "function.hxx"
 #include "double.hxx"
 #include "string.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 #include "int.hxx"
+#include "polynom.hxx"
 
 extern "C"
 {
@@ -45,16 +51,14 @@ types::Function::ReturnValue sci_tril(types::typed_list &in, int _iRetCount, typ
 
     if (in[0]->isGenericType() == false)
     {
-        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_tril";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
     if (in[0]->getAs<types::GenericType>()->getDims() > 2)
     {
-        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_tril";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
     // get offset
@@ -125,7 +129,7 @@ types::Function::ReturnValue sci_tril(types::typed_list &in, int _iRetCount, typ
         {
             for (int i = 0; i < iCols; i++)
             {
-                int iSize = min(max(i - iOffset, 0), iRows);
+                int iSize = std::min(std::max(i - iOffset, 0), iRows);
                 for (int j = 0; j < iSize; j++)
                 {
                     types::SinglePoly* pSP = new types::SinglePoly();
@@ -139,7 +143,7 @@ types::Function::ReturnValue sci_tril(types::typed_list &in, int _iRetCount, typ
         {
             for (int i = 0; i < iCols; i++)
             {
-                int iSize = min(max(i - iOffset, 0), iRows);
+                int iSize = std::min(std::max(i - iOffset, 0), iRows);
                 for (int j = 0; j < iSize; j++)
                 {
                     types::SinglePoly* pSP = new types::SinglePoly();
@@ -153,9 +157,8 @@ types::Function::ReturnValue sci_tril(types::typed_list &in, int _iRetCount, typ
     }
     else
     {
-        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_tril";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
     return types::Function::OK;
@@ -174,7 +177,7 @@ template<class T> types::InternalType* tril_const(T* _pL, int iOffset)
         typename T::type* pOutImg = pOut->getImg();
         for (int i = 0; i < iCols; i++)
         {
-            int iSize = min(max(i - iOffset, 0), iRows);
+            int iSize = std::min(std::max(i - iOffset, 0), iRows);
             memset(&pOutReal[i * iRows], 0x00, iSize * sizeof(typename T::type));
             memset(&pOutImg[i * iRows], 0x00, iSize * sizeof(typename T::type));
         }
@@ -183,7 +186,7 @@ template<class T> types::InternalType* tril_const(T* _pL, int iOffset)
     {
         for (int i = 0; i < iCols; i++)
         {
-            int iSize = min(max(i - iOffset, 0), iRows);
+            int iSize = std::min(std::max(i - iOffset, 0), iRows);
             memset(&pOutReal[i * iRows], 0x00, iSize * sizeof(typename T::type));
         }
     }

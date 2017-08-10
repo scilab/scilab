@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2010 - DIGITEO - Antoine ELIAS
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -20,10 +23,8 @@
 #include <sstream>
 #include <cstdio>
 #include "types.hxx"
-#include "types_tools.hxx"
 #include "scilabexception.hxx"
 #include "inspector.hxx"
-#include "scilabWrite.hxx"
 
 extern "C"
 {
@@ -34,20 +35,6 @@ extern "C"
 
 namespace types
 {
-
-//commom function
-EXTERN_AST int computeTuples(int* _piCountDim, int _iDims, int _iCurrentDim, int* _piIndex);
-EXTERN_AST InternalType* createEmptyDouble();
-EXTERN_AST InternalType* createDoubleVector(int _iSize);
-EXTERN_AST int getIntValueFromDouble(InternalType* _pIT, int _iPos);
-EXTERN_AST double* getDoubleArrayFromDouble(InternalType* _pIT);
-EXTERN_AST bool checkArgValidity(typed_list& _pArg);
-
-static int get_max_size(int* _piDims, int _iDims);
-
-/*    template<typename T>
-    inline bool _neg_(InternalType * in, InternalType *& out);
-*/
 
 template <typename T>
 class ArrayOf : public GenericType
@@ -69,7 +56,7 @@ protected :
 
 
     /*internal constructor*/
-    void create(int* _piDims, int _iDims, T** _pRealData, T** _pImgData)
+    void create(const int* _piDims, int _iDims, T** _pRealData, T** _pImgData)
     {
         m_iSize     = 1;
         m_iDims     = _iDims;
@@ -124,7 +111,7 @@ protected :
                 {
                     char message[bsiz];
                     os_sprintf(message, _("Can not allocate %.2f MB memory.\n"),  (double) ((double) m_iSize * (double) m_piDims[i] * sizeof(T)) / 1.e6);
-                    throw (ast::ScilabError(message));
+                    throw ast::InternalError(message);
                 }
 
                 m_iSize = iTmpSize;
@@ -136,9 +123,7 @@ protected :
                 m_pImgData = NULL;
                 char message[bsiz];
                 os_sprintf(message, _("Can not allocate negative size (%d).\n"), m_iSize);
-                ast::ScilabError se(message);
-                se.SetErrorNumber(999);
-                throw (se);
+                throw ast::InternalError(message);
             }
 
         }
@@ -170,9 +155,7 @@ protected :
         {
             char message[bsiz];
             os_sprintf(message, _("Can not allocate %.2f MB memory.\n"), (double)(m_iSize * sizeof(T)) / 1.e6);
-            ast::ScilabError se(message);
-            se.SetErrorNumber(999);
-            throw (se);
+            throw ast::InternalError(message);
         }
 
         m_iSizeMax = m_iSize;
@@ -182,10 +165,7 @@ protected :
 
     virtual T               getNullValue() = 0;
     virtual ArrayOf<T>*     createEmpty(int _iDims, int* _piDims, bool _bComplex = false) = 0;
-    virtual InternalType*   createEmpty()
-    {
-        return createEmptyDouble();
-    }
+    virtual GenericType*    createEmpty();
 
     virtual T               copyValue(T _data) = 0;
     virtual T*              allocData(int _iSize) = 0;
@@ -230,8 +210,44 @@ public :
         return m_pImgData != NULL;
     }
 
-    virtual void setComplex(bool _bComplex)
+    //type does not need to delete or clone ( int, double, ... )
+    virtual bool isNativeType()
     {
+        return false;
+    }
+
+    virtual void fillDefaultValues()
+    {
+        int size = getSize();
+        T tNullVal = getNullValue();
+        if (isComplex())
+        {
+            for (int i = 0; i < size; ++i)
+            {
+                set(i, tNullVal);
+                setImg(i, tNullVal);
+            }
+        }
+        else
+        {
+            for (int i = 0; i < size; ++i)
+            {
+                set(i, tNullVal);
+            }
+        }
+
+        deleteData(tNullVal);
+    }
+
+    virtual ArrayOf<T>* setComplex(bool _bComplex)
+    {
+        typedef ArrayOf<T>* (ArrayOf<T>::*setcplx_t)(bool);
+        ArrayOf<T>* pIT = checkRef(this, (setcplx_t)&ArrayOf<T>::setComplex, _bComplex);
+        if (pIT != this)
+        {
+            return pIT;
+        }
+
         if (_bComplex == false)
         {
             if (m_pImgData != NULL)
@@ -247,21 +263,30 @@ public :
                 memset(m_pImgData, 0x00, sizeof(T) * m_iSize);
             }
         }
+
+        return this;
     }
 
-    virtual bool set(int _iPos, T _data)
+    virtual ArrayOf<T>* set(int _iPos, const T _data)
     {
         if (m_pRealData == NULL || _iPos >= m_iSize)
         {
-            return false;
+            return NULL;
+        }
+
+        typedef ArrayOf<T>* (ArrayOf<T>::*set_t)(int, T);
+        ArrayOf<T>* pIT = checkRef(this, (set_t)&ArrayOf<T>::set, _iPos, _data);
+        if (pIT != this)
+        {
+            return pIT;
         }
 
         deleteData(m_pRealData[_iPos]);
         m_pRealData[_iPos] = copyValue(_data);
-        return true;
+        return this;
     }
 
-    virtual bool set(int _iRows, int _iCols, T _data)
+    virtual ArrayOf<T>* set(int _iRows, int _iCols, const T _data)
     {
         //            int piIndexes[2];
         //            piIndexes[0] = _iRows;
@@ -270,11 +295,18 @@ public :
         return set(_iCols * getRows() + _iRows, _data);
     }
 
-    virtual bool set(T* _pdata)
+    virtual ArrayOf<T>* set(T* _pdata)
     {
         if (m_pRealData == NULL)
         {
-            return false;
+            return NULL;
+        }
+
+        typedef ArrayOf<T>* (ArrayOf<T>::*set_t)(T*);
+        ArrayOf<T>* pIT = checkRef(this, (set_t)&ArrayOf<T>::set, _pdata);
+        if (pIT != this)
+        {
+            return pIT;
         }
 
         for (int i = 0 ; i < m_iSize ; i++)
@@ -282,14 +314,21 @@ public :
             deleteData(m_pRealData[i]);
             m_pRealData[i] = copyValue(_pdata[i]);
         }
-        return true;
+        return this;
     }
 
-    virtual bool set(const T* _pdata)
+    virtual ArrayOf<T>* set(const T* _pdata)
     {
         if (m_pRealData == NULL)
         {
-            return false;
+            return NULL;
+        }
+
+        typedef ArrayOf<T>* (ArrayOf<T>::*set_t)(const T*);
+        ArrayOf<T>* pIT = checkRef(this, (set_t)&ArrayOf<T>::set, _pdata);
+        if (pIT != this)
+        {
+            return pIT;
         }
 
         for (int i = 0 ; i < m_iSize ; i++)
@@ -297,7 +336,8 @@ public :
             deleteData(m_pRealData[i]);
             m_pRealData[i] = copyValue(_pdata[i]);
         }
-        return true;
+
+        return this;
     }
 
     inline T* get() const
@@ -321,50 +361,74 @@ public :
     }
 
     /*internal function to manage img part*/
-    bool setImg(int _iPos, T _data)
+    ArrayOf<T>* setImg(int _iPos, T _data)
     {
         if (m_pImgData == NULL || _iPos >= m_iSize)
         {
-            return false;
+            return NULL;
         }
+
+        typedef ArrayOf<T>* (ArrayOf<T>::*setimg_t)(int, T);
+        ArrayOf<T>* pIT = checkRef(this, (setimg_t)&ArrayOf<T>::setImg, _iPos, _data);
+        if (pIT != this)
+        {
+            return pIT;
+        }
+
         m_pImgData[_iPos] = copyValue(_data);
-        return true;
+        return this;
     }
 
 
-    bool setImg(int _iRows, int _iCols, T _data)
+    ArrayOf<T>* setImg(int _iRows, int _iCols, T _data)
     {
         int piIndexes[2] = {_iRows, _iCols};
         return setImg(getIndex(piIndexes), copyValue(_data));
     }
 
-    bool setImg(T* _pdata)
+    ArrayOf<T>* setImg(T* _pdata)
     {
         if (m_pImgData == NULL)
         {
-            return false;
+            return NULL;
+        }
+
+        typedef ArrayOf<T>* (ArrayOf<T>::*setimg_t)(T*);
+        ArrayOf<T>* pIT = checkRef(this, (setimg_t)&ArrayOf<T>::setImg, _pdata);
+        if (pIT != this)
+        {
+            return pIT;
         }
 
         for (int i = 0 ; i < m_iSize ; i++)
         {
             m_pImgData[i] = copyValue(_pdata[i]);
         }
-        return true;
+
+        return this;
     }
 
 
-    bool setImg(const T* _pdata)
+    ArrayOf<T>* setImg(const T* _pdata)
     {
         if (m_pImgData == NULL)
         {
-            return false;
+            return NULL;
+        }
+
+        typedef ArrayOf<T>* (ArrayOf<T>::*setimg_t)(const T*);
+        ArrayOf<T>* pIT = checkRef(this, (setimg_t)&ArrayOf<T>::setImg, _pdata);
+        if (pIT != this)
+        {
+            return pIT;
         }
 
         for (int i = 0 ; i < m_iSize ; i++)
         {
             m_pImgData[i] = copyValue(_pdata[i]);
         }
-        return true;
+
+        return this;
     }
 
     inline T* getImg() const
@@ -387,101 +451,31 @@ public :
         return getImg(getIndex(piIndexes));
     }
 
-    InternalType* insert(typed_list* _pArgs, InternalType* _pSource);
-    static InternalType* insertNew(typed_list* _pArgs, InternalType* _pSource);
-    virtual bool append(int _iRows, int _iCols, InternalType* _poSource);
-    InternalType* remove(typed_list* _pArgs);
-    InternalType* extract(typed_list* _pArgs);
-    bool resize(int* _piDims, int _iDims);
+    virtual ArrayOf<T>* insert(typed_list* _pArgs, InternalType* _pSource);
+    virtual ArrayOf<T>* append(int _iRows, int _iCols, InternalType* _poSource);
+    virtual ArrayOf<T>* resize(int* _piDims, int _iDims);
 
-    virtual bool invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetCount*/, typed_list & out, ast::ConstVisitor & /*execFunc*/, const ast::Exp & e)
-    {
-        if (in.size() == 0)
-        {
-            out.push_back(this);
-        }
-        else
-        {
-            InternalType * _out = extract(&in);
-            if (!_out)
-            {
-                std::wostringstream os;
-                os << _W("Invalid index.\n");
-                throw ast::ScilabError(os.str(), 999, e.getLocation());
-            }
-            out.push_back(_out);
-        }
+    // return a GenericType because of [] wich is a types::Double (can't be a ArrayOf<char>)
+    virtual GenericType* remove(typed_list* _pArgs);
+    virtual GenericType* extract(typed_list* _pArgs);
+    virtual GenericType* insertNew(typed_list* _pArgs);
 
-        return true;
-    }
+    virtual bool invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetCount*/, typed_list & out, const ast::Exp & e) override;
+    virtual bool isInvokable() const;
+    virtual bool hasInvokeOption() const;
+    virtual int getInvokeNbIn();
+    virtual int getInvokeNbOut();
 
-    virtual bool isInvokable() const
-    {
-        return true;
-    }
-
-    virtual bool hasInvokeOption() const
-    {
-        return false;
-    }
-
-    virtual int getInvokeNbIn()
-    {
-        return -1;
-    }
-
-    virtual int getInvokeNbOut()
-    {
-        return 1;
-    }
-
-    bool reshape(int _iNewRows, int _iNewCols)
+    virtual ArrayOf<T>* reshape(int _iNewRows, int _iNewCols)
     {
         int piDims[2] = {_iNewRows, _iNewCols};
         return reshape(piDims, 2);
     }
 
-    bool reshape(int* _piDims, int _iDims)
-    {
-        int iNewSize = get_max_size(_piDims, _iDims);
-        if (iNewSize != m_iSize)
-        {
-            return false;
-        }
+    virtual ArrayOf<T>* reshape(int* _piDims, int _iDims);
 
-        for (int i = 0 ; i < _iDims ; i++)
-        {
-            m_piDims[i] = _piDims[i];
-        }
 
-        if (_iDims == 1)
-        {
-            m_piDims[1] = 1;
-            _iDims++;
-        }
-
-        int iDims = _iDims;
-        for (int i = iDims - 1; i >= 2; --i)
-        {
-            if (m_piDims[i] == 1)
-            {
-                _iDims--;
-            }
-            else
-            {
-                break;
-            }
-        }
-
-        m_iRows = m_piDims[0];
-        m_iCols = m_piDims[1];
-        m_iSize = iNewSize;
-        m_iDims = _iDims;
-
-        return true;
-    }
-
-    bool resize(int _iNewRows, int _iNewCols)
+    virtual ArrayOf<T>* resize(int _iNewRows, int _iNewCols)
     {
         int piDims[2] = {_iNewRows, _iNewCols};
         return resize(piDims, 2);
@@ -492,7 +486,7 @@ public :
     }
 
     /*dimensions functions*/
-    int getIndex(int* _piIndexes)
+    int getIndex(const int* _piIndexes)
     {
         int idx = 0;
         int iMult = 1;
@@ -504,10 +498,7 @@ public :
         return idx;
     }
 
-    void getIndexes(int _iIndex, int* _piIndexes)
-    {
-        getIndexesWithDims(_iIndex, _piIndexes, m_piDims, m_iDims);
-    }
+    void getIndexes(int _iIndex, int* _piIndexes);
 
     ArrayOf<T>* getColumnValues(int _iPos)
     {
@@ -619,20 +610,6 @@ public :
     }
 };
 
-static int get_max_size(int* _piDims, int _iDims)
-{
-    if (_iDims == 0)
-    {
-        return 0;
-    }
-
-    int iMax = 1;
-    for (int i = 0 ; i < _iDims ; i++)
-    {
-        iMax *= _piDims[i];
-    }
-    return iMax;
-}
 }
 
 #endif /* !__ARRAYOF_HXX__ */

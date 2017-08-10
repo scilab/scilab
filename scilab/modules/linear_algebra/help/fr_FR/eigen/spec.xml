@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="spec">
@@ -17,17 +20,16 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>evals=spec(A)
-            [X,diagevals]=spec(A)
-            
-            evals=spec(A,E)
-            [al,be]=spec(A,E)
-            [al,be,Z]=spec(A,E)
-            [al,be]=spec(A,E)
-            [al,be,Q,Z]=spec(A,E)
+        <synopsis>
+            evals = spec(A)
+            [X,diagevals] = spec(A)
+            evals = spec(A,E)
+            [al,be] = spec(A,E)
+            [al,be,Z] = spec(A,E)
+            [al,be,Q,Z] = spec(A,E)
         </synopsis>
     </refsynopsisdiv>
-    <refsection>
+    <refsection role="parameters">
         <title>Paramètres</title>
         <variablelist>
             <varlistentry>
@@ -100,7 +102,7 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Description</title>
         <variablelist>
             <varlistentry>
@@ -150,27 +152,37 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // MATRIX EIGENVALUES
-A=diag([1,2,3]);X=rand(3,3);A=inv(X)*A*X;
+A = diag([1,2,3]);
+X = rand(3,3);
+A = inv(X)*A*X;
 spec(A)
 
-x=poly(0,'x');
-pol=det(x*eye()-A)
+x = poly(0,'x');
+pol = det(x*eye(3,3)-A)
 roots(pol)
 
-[S,X]=bdiag(A);
+[S,X] = bdiag(A);
 clean(inv(X)*A*X)
 
 // PENCIL EIGENVALUES
-A=rand(3,3);
+A = rand(3,3);
 [al,be,Z] = spec(A,eye(A));al./be
 clean(inv(Z)*A*Z)  //displaying the eigenvalues (generic matrix)
-A=A+%i*rand(A);E=rand(A);
+A = A+%i*rand(A);
+E = rand(A);
 roots(det(%s*E-A))   //complex case
  ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>Fonctions utilisées</title>
+        <para>
+            Le calcul des valeurs propres des matrices est basé sur les
+            routines Lapack DGEEV and ZGEEV.
+        </para>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>
@@ -180,9 +192,6 @@ roots(det(%s*E-A))   //complex case
             </member>
             <member>
                 <link linkend="det">det</link>
-            </member>
-            <member>
-                <link linkend="gspec">gspec</link>
             </member>
             <member>
                 <link linkend="schur">schur</link>
@@ -200,12 +209,5 @@ roots(det(%s*E-A))   //complex case
                 <link linkend="dnaupd">dnaupd</link>
             </member>
         </simplelist>
-    </refsection>
-    <refsection>
-        <title>Fonctions Utilisées</title>
-        <para>
-            Le calcul des valeurs propres des matrices est basé sur les
-            routines Lapack DGEEV and ZGEEV.
-        </para>
     </refsection>
 </refentry>

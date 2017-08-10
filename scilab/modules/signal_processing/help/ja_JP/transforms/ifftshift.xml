@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2013 - Scilab Enterprises - Paul Bignier
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="ifftshift">
+    <refnamediv>
+        <refname>ifftshift</refname>
+        <refpurpose>fftshiftを反転する</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>y=ifftshift(x)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>x, y</term>
+                <listitem>
+                    <para>実数または複素数のベクトルまたは行列.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>ifftshift(x)</literal> は,ベクトル<literal>x</literal>の
+            左半分と右半分を交換します.
+        </para>
+        <para>
+            行列の場合, <literal>ifftshift(x)</literal> は
+            最初の4分の1を3番目の4分の1,2番目の4分の1を4番目の4分の1と交換します.
+        </para>
+        <para>
+            <literal>x</literal> が多次元配列の場合,
+            <literal>ifftshift(x)</literal> は各次元で<literal>x</literal>の
+            "半分の空間"を交換します.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <para>
+            例 #1:
+        </para>
+        <programlisting role="example"><![CDATA[
+// 信号を生成
+t = 0:0.1:1000;
+x = 3*sin(t)+8*sin(3*t)+0.5*sin(5*t)+3*rand(t);
+// fftを計算
+y = fft(x, -1);
+// 結果を反転
+shift = fftshift(y);
+// 反転結果を反転
+invShift = ifftshift(shift);
+// 元の結果を再成したどうかを確認
+and(y == invShift)
+ ]]></programlisting>
+        <para>
+            例 #2:
+        </para>
+        <programlisting role="example"><![CDATA[
+// 2次元画像を生成
+t = 0:0.1:30;
+x = 3*sin(t')*cos(2*t)+8*sin(3*t')*sin(5*t)+..
+  0.5*sin(5*t')*sin(5*t)+3*rand(t')*rand(t);
+// fftを計算
+y = fft(x,-1);
+// 結果を反転
+shift = fftshift(y);
+// 反転結果を反転
+invShift = ifftshift(shift);
+// 元の結果を再成したどうかを確認
+and(y == invShift)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="fftshift">fftshift</link>
+            </member>
+            <member>
+                <link linkend="fft">fft</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

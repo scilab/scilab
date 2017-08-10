@@ -7,33 +7,33 @@
     <refsynopsisdiv>
         <title>呼出し手順</title>
         <synopsis>
-	  OS=getos()
-          [OS,Version]=getos()
+            OS=getos()
+            [OS,Version]=getos()
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>説明</title>
         <para>
-          <literal>[OS,Version]=getos()</literal>は, 
-	  オペレーティングシステムの名前とバージョンを返します.
+            <literal>[OS,Version]=getos()</literal>は,
+            オペレーティングシステムの名前とバージョンを返します.
         </para>
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 OS=getos()
 [OS,version] = getos()
-if (getos() == "Windows") then 
-   disp("Scilab on Windows"); 
+if (getos() == "Windows") then
+   disp("Scilab on Windows");
 end
-if (getos() == "Linux") then 
-   disp("Scilab on Linux"); 
+if (getos() == "Linux") then
+   disp("Scilab on Linux");
 end
-if (getos() == "SunOS") then 
-   disp("Scilab on Solaris"); 
+if (getos() == "SunOS") then
+   disp("Scilab on Solaris");
 end
-if (getos() == "Darwin") then 
-   disp("Scilab on MacOs"); 
+if (getos() == "Darwin") then
+   disp("Scilab on MacOs");
 end
 
  ]]></programlisting>

@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -44,6 +47,7 @@ import javax.swing.border.AbstractBorder;
 import javax.swing.border.Border;
 import javax.swing.plaf.basic.BasicTreeUI;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.SwingWorker;
 import javax.swing.tree.TreePath;
 
 import org.scilab.modules.commons.gui.FindIconHelper;
@@ -84,6 +88,9 @@ public class SwingScilabTreeTable extends JTable {
             return INSETS;
         }
     };
+
+    private SwingWorker dirRefresher;
+    private ScilabFileBrowserModel model;
 
     private Method isLocationInExpandControl;
 
@@ -295,12 +302,22 @@ public class SwingScilabTreeTable extends JTable {
      * @param baseDir the base directory
      * @param addInHistory if true the dir is add in the history
      */
-    public void setBaseDir(String baseDir, boolean addInHistory) {
-        ScilabFileBrowserModel model = (ScilabFileBrowserModel) tree.getModel();
+    public synchronized void setBaseDir(String baseDir, boolean addInHistory) {
+        boolean cancelled = false;
+        ScilabFileBrowserModel model;
+        if (dirRefresher != null) {
+            dirRefresher.cancel(true);
+            dirRefresher = null;
+            model = this.model;
+            this.model = null;
+            cancelled = true;
+        } else {
+            model = (ScilabFileBrowserModel) tree.getModel();
+        }
         combobox.setBaseDir(baseDir);
         if (model != null) {
             File f = new File(baseDir);
-            if (!baseDir.equals(model.getBaseDir()) && f.exists() && f.isDirectory() && f.canRead()) {
+            if (cancelled || (!baseDir.equals(model.getBaseDir()) && f.exists() && f.isDirectory() && f.canRead())) {
                 tree.setModel(null);
                 if (addInHistory) {
                     history.addPathInHistory(baseDir);
@@ -442,6 +459,12 @@ public class SwingScilabTreeTable extends JTable {
         popup.pack();
 
         return popup;
+    }
+
+
+    public synchronized void setDirRefresher(SwingWorker refresher, ScilabFileBrowserModel model) {
+        dirRefresher = refresher;
+        this.model = model;
     }
 
     /**

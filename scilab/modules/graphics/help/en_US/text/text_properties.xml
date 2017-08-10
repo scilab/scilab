@@ -4,11 +4,14 @@
  * Copyright (C) INRIA - Djalel Abdemouche
  * Copyright (C) INRIA - Jean-Baptiste silvy
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="text_properties">
@@ -261,7 +264,7 @@
                 <term>user_data: </term>
                 <listitem>
                     <para>This field can be use to store any scilab variable in the text
-                        data structure, and to retreive it.
+                        data structure, and to retrieve it.
                     </para>
                 </listitem>
             </varlistentry>
@@ -269,7 +272,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 a=get("current_axes");
 a.data_bounds=[0,0;1,1];
 a.axes_visible = 'on' ;
@@ -292,7 +295,7 @@ t.box = 'on' ; // draw a box around the text
 
 // Only valid from Scilab 5.2
 mathml="<mrow>      <mfrac>        <mrow>          <mi>d</mi>          <mi>y</mi>        </mrow>        <mrow>          <mi>d</mi>          <mi>x</mi>        </mrow>      </mfrac>      <mo>=</mo>      <mfrac>        <mn>1</mn>        <msup>          <mi>y</mi>          <mn>2</mn>        </msup>      </mfrac>    </mrow>";
-t.text=["SCILAB","can write LaTeX :","$\frac{abc}{xyz}$";"or","MathML :",mathml] ; 
+t.text=["SCILAB","can write LaTeX :","$\frac{abc}{xyz}$";"or","MathML :",mathml] ;
 
 
  ]]></programlisting>
@@ -300,18 +303,18 @@ t.text=["SCILAB","can write LaTeX :","$\frac{abc}{xyz}$";"or","MathML :",mathml]
             a=get("current_axes");
             a.data_bounds=[0,0;1,1];
             a.axes_visible = 'on' ;
-            
+
             xstring(0,0,"Scilab is not esilaB",0,0)
-            
-            t=get("hdl") 
-            
-            t.font_foreground=6; 
+
+            t=get("hdl")
+
+            t.font_foreground=6;
             t.font_size=5;
             t.font_style=5;
         </scilab:image>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="set">set</link>

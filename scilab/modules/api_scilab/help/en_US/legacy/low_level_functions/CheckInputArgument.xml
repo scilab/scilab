@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="CheckInputArgument" xml:lang="en">
+    <refnamediv>
+        <refname>CheckInputArgument</refname>
+        <refpurpose>
+            C function which checks the number of input arguments present in
+            the calling Scilab function.
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>CheckInputArgument(void* pvCtx, int iMin, int iMax)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>pvApiCtx</term>
+                <listitem>
+                    <para>
+                        Scilab environment pointer, pass in "pvApiCtx" provided by api_scilab.h
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>iMin</term>
+                <listitem>
+                    <para>
+                        the minimum number of input arguments which must be present
+                        in the calling Scilab function
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>iMax</term>
+                <listitem>
+                    <para>
+                        the maximum number of input arguments which must be present
+                        in the calling Scilab function
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            C function which checks the number of input arguments present in the
+            calling Scilab function. You must include api_scilab.h to benefit from this
+            function.
+        </para>
+        <para>
+            If the number of arguments is not between _iMin and
+            _iMax, we quit the C interface (<literal>return 0;</literal>) and
+            an error is returned in the Scilab console.
+        </para>
+        <para>
+            Since <literal>CheckInputArgument</literal> is doing a <literal>
+                return
+                0;
+            </literal>
+            within the gateway function, it is important to call this
+            function before any memory allocation in order to avoid any memory
+            leak.
+        </para>
+        <para>
+            This function replaces the deprecated <literal>CheckLhs</literal> function
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <para>
+            In this example, the C gateway function checks for a number of
+            input arguments which must be between 2 and 3.
+        </para>
+        <programlisting role="example"><![CDATA[
+#include <api_scilab.h>
+
+int sci_mycheckrhs(char * fname)
+{
+  CheckInputArgument(pvApiCtx, 2, 3);
+
+  // Read input argument
+
+  // Perform some operations
+
+  // Return output argument
+
+  return 0;
+}
+ ]]></programlisting>
+        <para>Now, some functions testing this interface:</para>
+        <programlisting role="example"><![CDATA[
+mycheckrhs(A,B); // OK, 2 input arguments
+mycheckrhs(A,B,C); // OK, 3 input arguments
+mycheckrhs(A); // ERROR, 1 input argument
+mycheckrhs(A,B,C,D); // ERROR, 4 input arguments]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="CheckOutputArgument">CheckOutputArgument</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

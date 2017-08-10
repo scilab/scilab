@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009-2012 - DIGITEO - Pierre Lando
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  */
 
 package org.scilab.modules.renderer.JoGLView;
@@ -67,7 +70,7 @@ public class AxisDrawer {
         Double[] yTicksValues;
         double[] xMinAndMax;
         double[] yMinAndMax;
-        double[][] factors = axes.getScaleTranslateFactors();
+        double[][] factors = calcCorrectedFactors(axes, axis);
 
         if (axis.getXTicksCoords().length == 1) {
             xTicksValues = axis.getXTicksCoords();
@@ -113,6 +116,67 @@ public class AxisDrawer {
 
         axis.getFormatn();
         rulerDrawer.disposeResources();
+    }
+
+    /**
+     * Calculates corrected axes factors when zoom is enabled
+     * @param axes the given axes
+     * @param axis the given axis
+     * @return corrected factors
+     */
+    private double[][] calcCorrectedFactors(Axes axes, Axis axis) {
+        Double [] bounds = axes.getDisplayedBounds();
+
+        double[][] zoomFactors = new double[2][];
+        zoomFactors[0] = new double[] { 2 / (bounds[1] - bounds[0]),
+                                        2 / (bounds[3] - bounds[2]),
+                                        2 / (bounds[5] - bounds[4])
+                                      };
+        zoomFactors[1] = new double[] { -(bounds[1] + bounds[0]) / (bounds[1] - bounds[0]),
+                                        -(bounds[3] + bounds[2]) / (bounds[3] - bounds[2]),
+                                        -(bounds[5] + bounds[4]) / (bounds[5] - bounds[4])
+                                      };
+        double[][] factors = axes.getScaleTranslateFactors();
+        //Z coordinate
+        double scale = factors[0][2] / (zoomFactors[0][2] == 0.0 ? 1.0 : zoomFactors[0][2]);
+        double invScale = zoomFactors[0][2] / (factors[0][2] == 0.0 ? 1.0 : factors[0][2]);
+        factors[0][2] *= scale;
+        factors[1][2] = scale * (factors[1][2] + (invScale * factors[1][2] - zoomFactors[1][2]));
+
+
+
+        if (axis.getYNumberTicks() == 1 || isConst(axis.getYTicksCoords())) {
+            scale = factors[0][1] / (zoomFactors[0][1] == 0.0 ? 1.0 : zoomFactors[0][1]);
+            invScale = zoomFactors[0][1] / (factors[0][1] == 0.0 ? 1.0 : factors[0][1]);
+            factors[0][1] *= scale;
+            factors[1][1] = scale * (factors[1][1] + (invScale * factors[1][1] - zoomFactors[1][1]));
+        }
+
+        if (axis.getXNumberTicks() == 1 || isConst(axis.getXTicksCoords())) {
+            scale = factors[0][0] / (zoomFactors[0][0] == 0.0 ? 1.0 : zoomFactors[0][0]);
+            invScale = zoomFactors[0][0] / (factors[0][0] == 0.0 ? 1.0 : factors[0][0]);
+            factors[0][0] *= scale;
+            factors[1][0] = scale * (factors[1][0] + (invScale * factors[1][0] - zoomFactors[1][0]));
+        }
+
+        return factors;
+    }
+
+    /**
+     * Checks if the given array have all its values equal(constant)
+     * @param data the given array
+     * @return true if it is constant, false otherwise
+     */
+    private boolean isConst(Double[] data) {
+        if (data.length > 0) {
+            double d = data[0];
+            for (int i = 0; i < data.length; i++) {
+                if (data[i] != d) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     /**
