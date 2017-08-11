@@ -700,9 +700,14 @@ InternalType* ImplicitList::extract(typed_list* _pArgs)
     return pOut;
 }
 
-ast::Exp * ImplicitList::getExp(const Location & loc)
+ast::Exp* ImplicitList::getExp(const Location & loc)
 {
-    return new ast::DoubleExp(loc, this);
+    if (isComputable()) 
+    {
+        return new ast::DoubleExp(loc, extractFullMatrix());
+    }
+
+    return nullptr;
 }
 
 bool ImplicitList::isTrue()
