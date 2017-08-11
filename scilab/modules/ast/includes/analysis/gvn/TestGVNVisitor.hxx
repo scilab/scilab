@@ -64,9 +64,9 @@ public:
         _result = val;
     }
 
-    inline const GVN::Value & getResult()
+    inline const GVN::Value* getResult()
     {
-        return *_result;
+        return _result;
     }
 
     inline std::map<std::wstring, uint64_t> getSymMap() const
@@ -81,17 +81,17 @@ private:
         setResult(gvn.getValue(e.getSymbol()));
     }
 
-    void visit(ast::DollarVar & e)
+    void visit(ast::DollarVar & /*e*/)
     {
         // nothing to do
     }
 
-    void visit(ast::ColonVar & e)
+    void visit(ast::ColonVar & /*e*/)
     {
         // nothing to do
     }
 
-    void visit(ast::ArrayListVar & e)
+    void visit(ast::ArrayListVar & /*e*/)
     {
     }
 
@@ -100,70 +100,70 @@ private:
         setResult(gvn.getValue(e.getValue()));
     }
 
-    void visit(ast::BoolExp & e)
+    void visit(ast::BoolExp & /*e*/)
     {
     }
 
-    void visit(ast::StringExp & e)
+    void visit(ast::StringExp & /*e*/)
     {
     }
 
-    void visit(ast::CommentExp & e)
+    void visit(ast::CommentExp & /*e*/)
     {
         // ignored
     }
 
-    void visit(ast::NilExp & e)
+    void visit(ast::NilExp & /*e*/)
     {
         // nothing to do
     }
 
-    void visit(ast::CallExp & e)
+    void visit(ast::CallExp & /*e*/)
     {
     }
 
-    void visit(ast::CellCallExp & e)
+    void visit(ast::CellCallExp & /*e*/)
     {
     }
 
     void visit(ast::OpExp & e)
     {
         e.getLeft().accept(*this);
-        const GVN::Value & LV = getResult();
+        const GVN::Value* LV = getResult();
         e.getRight().accept(*this);
-        const GVN::Value & RV = getResult();
+        const GVN::Value* RV = getResult();
 
         switch (e.getOper())
         {
             case ast::OpExp::plus:
-                setResult(gvn.getValue(OpValue::PLUS, LV, RV));
+                setResult(gvn.getValue(OpValue::PLUS, *LV, *RV));
                 break;
             case ast::OpExp::minus:
-                setResult(gvn.getValue(OpValue::MINUS, LV, RV));
+                setResult(gvn.getValue(OpValue::MINUS, *LV, *RV));
                 break;
             case ast::OpExp::unaryMinus:
-                setResult(gvn.getValue(OpValue::UNARYMINUS, RV));
+                setResult(gvn.getValue(OpValue::UNARYMINUS, *RV));
                 break;
             case ast::OpExp::rdivide:
-                setResult(gvn.getValue(OpValue::RDIV, LV, RV));
+                setResult(gvn.getValue(OpValue::RDIV, *LV, *RV));
                 break;
             case ast::OpExp::dotrdivide:
-                setResult(gvn.getValue(OpValue::DOTRDIV, LV, RV));
+                setResult(gvn.getValue(OpValue::DOTRDIV, *LV, *RV));
                 break;
             case ast::OpExp::times:
-                setResult(gvn.getValue(OpValue::TIMES, LV, RV));
+                setResult(gvn.getValue(OpValue::TIMES, *LV, *RV));
                 break;
             case ast::OpExp::dottimes:
-                setResult(gvn.getValue(OpValue::DOTTIMES, LV, RV));
+                setResult(gvn.getValue(OpValue::DOTTIMES, *LV, *RV));
                 break;
             case ast::OpExp::power:
-                setResult(gvn.getValue(OpValue::POWER, LV, RV));
+                setResult(gvn.getValue(OpValue::POWER, *LV, *RV));
                 break;
             case ast::OpExp::dotpower:
-                setResult(gvn.getValue(OpValue::DOTPOWER, LV, RV));
+                setResult(gvn.getValue(OpValue::DOTPOWER, *LV, *RV));
                 break;
             case ast::OpExp::eq:
-                if (LV.value == RV.value)
+                if (LV->value == RV->value)
                 {
                     setResult(gvn.getValue(int64_t(1)));
                 }
@@ -173,7 +173,7 @@ private:
                 }
                 break;
             case ast::OpExp::ne:
-                if (LV.value != RV.value)
+                if (LV->value != RV->value)
                 {
                     setResult(gvn.getValue(int64_t(1)));
                 }
@@ -203,7 +203,7 @@ private:
         }
     }
 
-    void visit(ast::LogicalOpExp & e)
+    void visit(ast::LogicalOpExp & /*e*/)
     {
     }
 
@@ -226,7 +226,7 @@ private:
                         ast::AssignExp & ae = static_cast<ast::AssignExp &>(*arg);
                         const symbol::Symbol & _Lsym = static_cast<ast::SimpleVar &>(ae.getLeftExp()).getSymbol();
                         ae.getRightExp().accept(*this);
-                        args[gvn.getValue(_Lsym)->value] = getResult().poly;
+                        args[gvn.getValue(_Lsym)->value] = getResult()->poly;
                     }
                 }
                 const GVN::Value * callee = gvn.getValue(sym);
@@ -234,71 +234,76 @@ private:
             }
             else
             {
+                setResult(nullptr);
                 e.getRightExp().accept(*this);
-                gvn.setValue(Lsym, getResult());
+                const GVN::Value* LV = getResult();
+                if(LV)
+                {
+                    gvn.setValue(Lsym, *LV);
+                }
             }
         }
     }
 
-    void visit(ast::IfExp & e)
+    void visit(ast::IfExp & /*e*/)
     {
     }
 
-    void visit(ast::WhileExp & e)
+    void visit(ast::WhileExp & /*e*/)
     {
     }
 
-    void visit(ast::ForExp & e)
+    void visit(ast::ForExp & /*e*/)
     {
     }
 
-    void visit(ast::BreakExp & e)
-    {
-        // nothing to do
-    }
-
-    void visit(ast::ContinueExp & e)
+    void visit(ast::BreakExp & /*e*/)
     {
         // nothing to do
     }
 
-    void visit(ast::TryCatchExp & e)
+    void visit(ast::ContinueExp & /*e*/)
+    {
+        // nothing to do
+    }
+
+    void visit(ast::TryCatchExp & /*e*/)
     {
     }
 
-    void visit(ast::SelectExp & e)
+    void visit(ast::SelectExp & /*e*/)
     {
     }
 
-    void visit(ast::CaseExp & e)
+    void visit(ast::CaseExp & /*e*/)
     {
     }
 
-    void visit(ast::ReturnExp & e)
+    void visit(ast::ReturnExp & /*e*/)
     {
     }
 
-    void visit(ast::FieldExp & e)
+    void visit(ast::FieldExp & /*e*/)
     {
     }
 
-    void visit(ast::NotExp & e)
+    void visit(ast::NotExp & /*e*/)
     {
     }
 
-    void visit(ast::TransposeExp & e)
+    void visit(ast::TransposeExp & /*e*/)
     {
     }
 
-    void visit(ast::MatrixExp & e)
+    void visit(ast::MatrixExp & /*e*/)
     {
     }
 
-    void visit(ast::MatrixLineExp & e)
+    void visit(ast::MatrixLineExp & /*e*/)
     {
     }
 
-    void visit(ast::CellExp & e)
+    void visit(ast::CellExp & /*e*/)
     {
     }
 
@@ -310,43 +315,43 @@ private:
         }
     }
 
-    void visit(ast::ArrayListExp & e)
+    void visit(ast::ArrayListExp & /*e*/)
     {
     }
 
-    void visit(ast::AssignListExp & e)
+    void visit(ast::AssignListExp & /*e*/)
     {
     }
 
-    void visit(ast::VarDec & e)
+    void visit(ast::VarDec & /*e*/)
     {
     }
 
-    void visit(ast::FunctionDec & e)
+    void visit(ast::FunctionDec & /*e*/)
     {
     }
 
-    void visit(ast::ListExp & e)
+    void visit(ast::ListExp & /*e*/)
     {
     }
 
-    void visit(ast::OptimizedExp & e)
+    void visit(ast::OptimizedExp & /*e*/)
     {
     }
 
-    void visit(ast::MemfillExp & e)
+    void visit(ast::MemfillExp & /*e*/)
     {
     }
 
-    void visit(ast::DAXPYExp & e)
+    void visit(ast::DAXPYExp & /*e*/)
     {
     }
 
-    void visit(ast::IntSelectExp & e)
+    void visit(ast::IntSelectExp & /*e*/)
     {
     }
 
-    void visit(ast::StringSelectExp & e)
+    void visit(ast::StringSelectExp & /*e*/)
     {
     }
 };
