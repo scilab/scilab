@@ -427,8 +427,7 @@ private:
         logger.log(L"ReturnExp", e.getLocation());
         getDM().getCurrent()->setReturn(true);
         // Bug with return;
-        //e.exp_get().accept(*this);
-
+        e.getExp().accept(*this);
     }
 
     void visit(ast::FieldExp & e)
