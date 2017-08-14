@@ -68,7 +68,7 @@ types::Function::ReturnValue sci_testAnalysis(types::typed_list &in, int _iRetCo
     ast::SimpleVar * var = new ast::SimpleVar(loc, sym);
     ast::CallExp ce(loc, *var, *args);
 
-    analysis::AnalysisVisitor analysis;
+    analysis::AnalysisVisitor& analysis = analysis::AnalysisVisitor::getInstance();
     ce.accept(analysis);
 
     //analysis.print_info();

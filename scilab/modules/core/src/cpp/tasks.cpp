@@ -186,9 +186,10 @@ void execAstTask(ast::Exp* tree, bool serialize, bool timed, bool ASTtimed, bool
         //call analyzer visitor before exec visitor
         if (ConfigVariable::getAnalyzerOptions() == 1)
         {
-            FBlockListener fb;
-            analysis::AnalysisVisitor analysis;
-            analysis.registerFBlockEmittedListener(&fb);
+            FBlockListener listener;
+            analysis::AnalysisVisitor& analysis = analysis::AnalysisVisitor::getInstance();
+            analysis.reset();
+            analysis.registerFBlockEmittedListener(&listener);
             newTree->accept(analysis);
         }
 
@@ -273,6 +274,9 @@ int execScilabQuitTask(bool _bSerialize)
     Parser parse;
     std::wstring stSCI = ConfigVariable::getSCIPath();
     stSCI += SCILAB_QUIT;
+
+    //delete analysisVisitor
+    analysis::AnalysisVisitor::deleteInstance();
 
     ThreadManagement::LockParser();
     try

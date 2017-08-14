@@ -321,9 +321,14 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
         //use version from analyze
         if (m_functionId != -1) 
         {
+            std::wcerr << "macro functionId: " << m_functionId << std::endl;
             ast::Exp* exp = FBlockListener::getExp(m_functionId);
             if (exp)
             {
+                ast::PrettyPrintVisitor dv(std::wcerr, true, true);
+                //m_body->accept(dv);
+                exp->accept(dv);
+
                 //std::wcerr << "exec new exp" << std::endl;
                 exp->accept(*exec);
             }

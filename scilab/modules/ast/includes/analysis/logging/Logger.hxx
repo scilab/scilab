@@ -36,19 +36,19 @@ public:
     Logger(const std::string & file) : out(new std::wofstream(file, std::ofstream::out | std::ofstream::trunc)) { }
 
     template<typename T>
-    inline void log(const T & x)
+    inline void log(const T & /*x*/)
     {
         //*out << x << std::endl;
     }
 
     template<typename T>
-    inline void log(const unsigned int line, const char * file, const T & x)
+    inline void log(const unsigned int /*line*/, const char * /*file*/, const T & /*x*/)
     {
         //*out << file << L"@" << line << L": " << x << std::endl;
     }
 
     template<typename T, typename... Args>
-    inline void log(const T & x, Args... args)
+    inline void log(const T & /*x*/, Args... args)
     {
         //*out << x << L" ";
         log(args...);

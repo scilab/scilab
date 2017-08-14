@@ -35,7 +35,27 @@
 
 namespace analysis
 {
+AnalysisVisitor* AnalysisVisitor::m_instance = nullptr;
 AnalysisVisitor::MapSymCall AnalysisVisitor::symscall = AnalysisVisitor::initCalls();//a=1:3;b=2;c=3;testAnalysis("repmat","a","b","c")
+
+AnalysisVisitor& AnalysisVisitor::getInstance()
+{
+    if (m_instance == nullptr)
+    {
+        m_instance = new AnalysisVisitor();
+    }
+
+    return *m_instance;
+}
+
+void AnalysisVisitor::deleteInstance()
+{
+    if (m_instance) 
+    {
+        delete m_instance;
+        m_instance = nullptr;
+    }
+}
 
 AnalysisVisitor::MapSymCall AnalysisVisitor::initCalls()
 {
@@ -87,6 +107,8 @@ void AnalysisVisitor::reset()
     {
         loops.pop();
     }
+
+    fblockListeners.clear();
     start_chrono();
 }
 

@@ -73,16 +73,20 @@ private:
     static MapSymCall symscall;
     static MapSymCall initCalls();
 
+    static AnalysisVisitor* m_instance;
+    AnalysisVisitor();
+    ~AnalysisVisitor();
+
 public:
+
+    static AnalysisVisitor& getInstance();
+    static void deleteInstance();
 
     static bool asDouble(ast::Exp & e, double & out);
     static bool asDouble(types::InternalType * pIT, double & out);
     static bool isDoubleConstant(const ast::Exp & e);
     static bool asDoubleMatrix(ast::Exp & e, types::Double *& data);
     static void analyze(ast::SelectExp & e);
-
-    AnalysisVisitor();
-    virtual ~AnalysisVisitor();
 
     virtual AnalysisVisitor* clone()
     {
@@ -356,18 +360,18 @@ private:
     void visit(ast::DollarVar & e);
     void visit(ast::VarDec & e);
 
-    void visit(ast::MatrixLineExp & e)
+    void visit(ast::MatrixLineExp & /*e*/)
     {
         /* treated in MatrixExp */
     }
-    void visit(ast::OptimizedExp & e) { }
-    void visit(ast::MemfillExp & e) { }
-    void visit(ast::DAXPYExp & e) { }
-    void visit(ast::IntSelectExp & e) { }
-    void visit(ast::StringSelectExp & e) { }
-    void visit(ast::CommentExp & e) { }
-    void visit(ast::NilExp & e) { }
-    void visit(ast::ColonVar & e) { }
+    void visit(ast::OptimizedExp & /*e*/) { }
+    void visit(ast::MemfillExp & /*e*/) { }
+    void visit(ast::DAXPYExp & /*e*/) { }
+    void visit(ast::IntSelectExp & /*e*/) { }
+    void visit(ast::StringSelectExp & /*e*/) { }
+    void visit(ast::CommentExp & /*e*/) { }
+    void visit(ast::NilExp & /*e*/) { }
+    void visit(ast::ColonVar & /*e*/) { }
     void visit(ast::WhileExp & e);
 
     void visit(ast::ArrayListVar & e)
