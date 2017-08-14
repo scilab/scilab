@@ -282,17 +282,22 @@ _d
 about
 abs
 acos
+acosh
+addcolor
 addModulePreferences
 addhistory
 addinter
 addlocalizationdomain
+adj2sp
 amell
 and
 argn
 arl2_ius
 ascii
 asin
+asinh
 atan
+atanh
 balanc
 banner
 base2dec
@@ -330,6 +335,7 @@ cdfnbn
 cdfnor
 cdfpoi
 cdft
+cell
 ceil
 champ
 champ1
@@ -342,6 +348,7 @@ closeEditor
 closeEditvar
 closeXcos
 coeff
+color
 conj
 contour2di
 contr
@@ -351,6 +358,7 @@ copy
 copyfile
 corr
 cos
+cosh
 coserror
 createdir
 cshep2d
@@ -376,14 +384,12 @@ datatipMove
 datatipRemove
 datatipSetDisplay
 datatipSetInterp
-datatipSetOrientation
 datatipSetStyle
 datatipToggle
 dawson
 dct
 debug
 dec2base
-deff
 definedfields
 degree
 delete
@@ -437,6 +443,7 @@ fftw
 fftw_flags
 fftw_forget_wisdom
 fftwlibraryisloaded
+fieldnames
 figure
 file
 filebrowser
@@ -463,6 +470,7 @@ funcprot
 funptr
 gamma
 gammaln
+genlib
 geom3d
 get
 getURL
@@ -567,11 +575,14 @@ isdef
 isdigit
 isdir
 isequal
+isfield
 isfile
 isglobal
 isletter
 isnum
 isreal
+issquare
+isvector
 iswaitingforinput
 jallowClassReloading
 jarray
@@ -614,6 +625,7 @@ lines
 link
 linmeq
 list
+listvarinfile
 load
 loadGui
 loadScicos
@@ -621,6 +633,7 @@ loadXcos
 loadfftwlibrary
 loadhistory
 log
+log10
 log1p
 lsq
 lsq_splin
@@ -635,6 +648,8 @@ lufact
 luget
 lusolve
 macr2tree
+macrovar
+makecell
 matfile_close
 matfile_listvar
 matfile_open
@@ -666,6 +681,7 @@ mscanf
 mseek
 msscanf
 mtell
+name2rgb
 nearfloat
 newaxes
 newest
@@ -673,6 +689,7 @@ newfun
 nnz
 norm
 notify
+null
 number_properties
 ode
 odedc
@@ -770,9 +787,11 @@ sign
 simp
 simp_mode
 sin
+sinh
 size
 sleep
 sorder
+sp2adj
 sparse
 spchol
 spec
@@ -782,6 +801,7 @@ splin2d
 splin3d
 splitURL
 spones
+spzeros
 sqrt
 strcat
 strchr
@@ -800,6 +820,7 @@ strstr
 strsubst
 strtod
 strtok
+struct
 sum
 svd
 swap_handles
@@ -808,6 +829,7 @@ syredi
 system_getproperty
 system_setproperty
 tan
+tanh
 taucs_chdel
 taucs_chfact
 taucs_chget
@@ -815,8 +837,10 @@ taucs_chinfo
 taucs_chsolve
 tempname
 testmatrix
+tic
 timer
 tlist
+toc
 tohome
 tokens
 toolbar
@@ -825,6 +849,7 @@ tril
 triu
 type
 typename
+typeof
 uiDisplayTree
 uicontextmenu
 uicontrol
@@ -937,6 +962,7 @@ xrect
 xrects
 xs2bmp
 xs2eps
+xs2emf
 xs2gif
 xs2jpg
 xs2pdf
