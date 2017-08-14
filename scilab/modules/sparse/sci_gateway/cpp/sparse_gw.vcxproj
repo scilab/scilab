@@ -197,6 +197,7 @@
     <ClCompile Include="sci_adj2sp.cpp" />
     <ClCompile Include="sci_bfinit.cpp" />
     <ClCompile Include="sci_blkfc1i.cpp" />
+    <ClCompile Include="sci_blkslvi.cpp" />
     <ClCompile Include="sci_full.cpp" />
     <ClCompile Include="sci_inpnv.cpp" />
     <ClCompile Include="sci_ludel.cpp" />

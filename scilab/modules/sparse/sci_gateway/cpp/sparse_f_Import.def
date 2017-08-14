@@ -4,6 +4,7 @@ LIBRARY    sparse_f.dll
 EXPORTS
 bfinit_
 blkfc1_
+blkslv_
 blkfct_
 inpnv_
 ordmmd_

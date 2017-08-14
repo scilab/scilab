@@ -55,5 +55,6 @@ CPP_GATEWAY_PROTOTYPE(sci_symfcti);
 CPP_GATEWAY_PROTOTYPE(sci_bfinit);
 CPP_GATEWAY_PROTOTYPE(sci_inpnv);
 CPP_GATEWAY_PROTOTYPE(sci_blkfc1i);
+CPP_GATEWAY_PROTOTYPE(sci_blkslvi);
 
 #endif /* !__SPARSE_GW_HXX__ */

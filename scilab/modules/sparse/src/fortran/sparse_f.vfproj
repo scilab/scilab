@@ -55,6 +55,7 @@
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
 		<File RelativePath=".\blkfc1.f"/>
 		<File RelativePath=".\blkfct.f"/>
+		<File RelativePath=".\blkslv.f"/>
 		<File RelativePath=".\inpnv.f"/>
 		<File RelativePath="isort1.f"/>
 		<File RelativePath=".\ordmmd.f"/>

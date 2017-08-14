@@ -80,6 +80,9 @@
     <ClCompile Include="sci_blkfc1i.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="sci_blkslvi.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\sparse_gw.hxx">

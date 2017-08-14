@@ -458,6 +458,8 @@ erfinv
 %bicgstab
 %cgs
 %pcg
+adj2sp
+blkslv
 chfact
 chsolve
 conjgrad

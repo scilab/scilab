@@ -10,7 +10,7 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function spcho=chfact(A)
+function spcho = chfact(A)
     //cholesky factors, returned in a tlist
     //spcho  = {xlnz, nnzl, xsuper, xlindx, lindx, snode,
     //          split, tmpsiz, perm, invp, lnz}.
@@ -37,6 +37,7 @@ function spcho=chfact(A)
 endfunction
 
 function [spcho]= blkfc1(spcho,level)
+    // Private utility called only by chfact()
     //retrieves Fortran variables (see sfinit.f,bfinit.f,symfct.f )
     //[xlnz,nnzl,xsuper,xlindx,lindx,snode,split,tmpsiz,perm,invp,lnz]=spcho(2:12);
     xsuper=spcho("xsuper");
@@ -69,18 +70,8 @@ function [spcho]= blkfc1(spcho,level)
     spcho("lnz")=lnz;
 endfunction
 
-function rhs=blkslv(spcho,rhs)
-    //
-    //[xlnz,nnzl,xsuper,xlindx,lindx,snode,split,tmpsiz,perm,invp,lnz]=spcho(2:12);
-    xsuper=spcho("xsuper");
-    nsuper=size(xsuper,1)-1;
-    neqns =size(rhs,1);
-    rhs=blkslvi(nsuper,xsuper,spcho("xlindx"),spcho("lindx"),spcho("xlnz"),...
-    spcho("lnz"),rhs);
-endfunction
-
 function [spcho]=inpnv(xadjf,adjf,anzf,spcho)
-    //
+    // Private utility called only by chfact()
     //[xlnz,nnzl,xsuper,xlindx,lindx,snode,split,tmpsiz,perm,invp,lnz]=spcho(2:12);
     //
     xsuper=spcho("xsuper");
@@ -97,7 +88,7 @@ function [spcho]=inpnv(xadjf,adjf,anzf,spcho)
 endfunction
 
 function [spcho] = symfct(xadj,adjncy,perm,invp,cachsz,neqns)
-    //
+    // Private utility called only by chfact()
     // sfinit - input
     //
     nnza=size(adjncy,1);
