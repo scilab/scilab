@@ -17,6 +17,7 @@
 #include <sstream>
 #include <cstdio>
 
+#include "AnalysisVisitor.hxx"
 #include "macro.hxx"
 #include "list.hxx"
 #include "context.hxx"
@@ -24,6 +25,7 @@
 #include "scilabWrite.hxx"
 #include "configvariable.hxx"
 #include "serializervisitor.hxx"
+#include "FBlockListener.hxx"
 
 extern "C"
 {
@@ -315,7 +317,26 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
     try
     {
         ConfigVariable::setPromptMode(-1);
-        m_body->accept(*exec);
+
+        //use version from analyze
+        if (m_functionId != -1) 
+        {
+            ast::Exp* exp = FBlockListener::getExp(m_functionId);
+            if (exp)
+            {
+                //std::wcerr << "exec new exp" << std::endl;
+                exp->accept(*exec);
+            }
+            else
+            {
+                m_body->accept(*exec);
+            }
+        }
+        else 
+        {
+            m_body->accept(*exec);
+        }
+
         //restore previous prompt mode
         ConfigVariable::setPromptMode(oldVal);
     }

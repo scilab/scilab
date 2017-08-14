@@ -14,6 +14,7 @@
 */
 
 #include "AnalysisVisitor.hxx"
+#include "FBlockListener.hxx"
 #include "tasks.hxx"
 #include "timer.hxx"
 #include "context.hxx"
@@ -185,7 +186,9 @@ void execAstTask(ast::Exp* tree, bool serialize, bool timed, bool ASTtimed, bool
         //call analyzer visitor before exec visitor
         if (ConfigVariable::getAnalyzerOptions() == 1)
         {
+            FBlockListener fb;
             analysis::AnalysisVisitor analysis;
+            analysis.registerFBlockEmittedListener(&fb);
             newTree->accept(analysis);
         }
 

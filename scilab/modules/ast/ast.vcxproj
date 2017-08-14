@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -344,6 +344,7 @@ lib /DEF:"$(ProjectDir)functions_manager_import.def" /SUBSYSTEM:WINDOWS /MACHINE
     <ClInclude Include="includes\ast\dynlib_ast.h" />
     <ClInclude Include="includes\ast\execvisitor.hxx" />
     <ClInclude Include="includes\ast\expHistory.hxx" />
+    <ClInclude Include="includes\ast\FBlockListener.hxx" />
     <ClInclude Include="includes\ast\prettyprintvisitor.hxx" />
     <ClInclude Include="includes\ast\treevisitor.hxx" />
     <ClInclude Include="includes\ast\macrovarvisitor.hxx" />
@@ -660,6 +661,7 @@ lib /DEF:"$(ProjectDir)functions_manager_import.def" /SUBSYSTEM:WINDOWS /MACHINE
     <ClCompile Include="src\cpp\ast\debuggervisitor.cpp" />
     <ClCompile Include="src\cpp\ast\debugmanager.cpp" />
     <ClCompile Include="src\cpp\ast\expHistory.cpp" />
+    <ClCompile Include="src\cpp\ast\FBlockListener.cpp" />
     <ClCompile Include="src\cpp\ast\prettyprintvisitor.cpp" />
     <ClCompile Include="src\cpp\ast\treevisitor.cpp" />
     <ClCompile Include="src\cpp\ast\macrovarvisitor.cpp" />

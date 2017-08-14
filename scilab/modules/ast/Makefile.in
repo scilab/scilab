@@ -201,6 +201,7 @@ am__libsciast_la_SOURCES_DIST = src/c/operations/doublecomplex.c \
 	src/cpp/ast/treevisitor.cpp src/cpp/ast/visitor_common.cpp \
 	src/cpp/ast/consoledebugger.cpp \
 	src/cpp/ast/debuggervisitor.cpp src/cpp/ast/debugmanager.cpp \
+	src/cpp/ast/FBlockListener.cpp \
 	src/cpp/ast/prettyprintvisitor.cpp \
 	src/cpp/operations/interface_addition.cpp \
 	src/cpp/operations/operations.cpp \
@@ -402,6 +403,7 @@ am_libsciast_la_OBJECTS =  \
 	src/cpp/ast/libsciast_la-consoledebugger.lo \
 	src/cpp/ast/libsciast_la-debuggervisitor.lo \
 	src/cpp/ast/libsciast_la-debugmanager.lo \
+	src/cpp/ast/libsciast_la-FBlockListener.lo \
 	src/cpp/ast/libsciast_la-prettyprintvisitor.lo \
 	src/cpp/operations/libsciast_la-interface_addition.lo \
 	src/cpp/operations/libsciast_la-operations.lo \
@@ -1019,6 +1021,7 @@ libsciast_la_SOURCES = src/c/operations/doublecomplex.c \
 	src/cpp/ast/treevisitor.cpp src/cpp/ast/visitor_common.cpp \
 	src/cpp/ast/consoledebugger.cpp \
 	src/cpp/ast/debuggervisitor.cpp src/cpp/ast/debugmanager.cpp \
+	src/cpp/ast/FBlockListener.cpp \
 	src/cpp/ast/prettyprintvisitor.cpp \
 	src/cpp/operations/interface_addition.cpp \
 	src/cpp/operations/operations.cpp \
@@ -1659,6 +1662,9 @@ src/cpp/ast/libsciast_la-debuggervisitor.lo:  \
 	src/cpp/ast/$(am__dirstamp) \
 	src/cpp/ast/$(DEPDIR)/$(am__dirstamp)
 src/cpp/ast/libsciast_la-debugmanager.lo: src/cpp/ast/$(am__dirstamp) \
+	src/cpp/ast/$(DEPDIR)/$(am__dirstamp)
+src/cpp/ast/libsciast_la-FBlockListener.lo:  \
+	src/cpp/ast/$(am__dirstamp) \
 	src/cpp/ast/$(DEPDIR)/$(am__dirstamp)
 src/cpp/ast/libsciast_la-prettyprintvisitor.lo:  \
 	src/cpp/ast/$(am__dirstamp) \
@@ -2495,6 +2501,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-check_uint64.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-check_uint8.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-check_zeros.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/ast/$(DEPDIR)/libsciast_la-FBlockListener.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/ast/$(DEPDIR)/libsciast_la-consoledebugger.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/ast/$(DEPDIR)/libsciast_la-debuggervisitor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/ast/$(DEPDIR)/libsciast_la-debugmanager.Plo@am__quote@
@@ -2770,6 +2777,13 @@ src/cpp/ast/libsciast_la-debugmanager.lo: src/cpp/ast/debugmanager.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/ast/debugmanager.cpp' object='src/cpp/ast/libsciast_la-debugmanager.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/ast/libsciast_la-debugmanager.lo `test -f 'src/cpp/ast/debugmanager.cpp' || echo '$(srcdir)/'`src/cpp/ast/debugmanager.cpp
+
+src/cpp/ast/libsciast_la-FBlockListener.lo: src/cpp/ast/FBlockListener.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/ast/libsciast_la-FBlockListener.lo -MD -MP -MF src/cpp/ast/$(DEPDIR)/libsciast_la-FBlockListener.Tpo -c -o src/cpp/ast/libsciast_la-FBlockListener.lo `test -f 'src/cpp/ast/FBlockListener.cpp' || echo '$(srcdir)/'`src/cpp/ast/FBlockListener.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/ast/$(DEPDIR)/libsciast_la-FBlockListener.Tpo src/cpp/ast/$(DEPDIR)/libsciast_la-FBlockListener.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/ast/FBlockListener.cpp' object='src/cpp/ast/libsciast_la-FBlockListener.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/ast/libsciast_la-FBlockListener.lo `test -f 'src/cpp/ast/FBlockListener.cpp' || echo '$(srcdir)/'`src/cpp/ast/FBlockListener.cpp
 
 src/cpp/ast/libsciast_la-prettyprintvisitor.lo: src/cpp/ast/prettyprintvisitor.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/ast/libsciast_la-prettyprintvisitor.lo -MD -MP -MF src/cpp/ast/$(DEPDIR)/libsciast_la-prettyprintvisitor.Tpo -c -o src/cpp/ast/libsciast_la-prettyprintvisitor.lo `test -f 'src/cpp/ast/prettyprintvisitor.cpp' || echo '$(srcdir)/'`src/cpp/ast/prettyprintvisitor.cpp

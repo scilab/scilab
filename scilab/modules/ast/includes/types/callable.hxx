@@ -17,6 +17,7 @@
 #ifndef __CALLABLE_HXX__
 #define __CALLABLE_HXX__
 
+#include <stdint.h>
 #include <string>
 #include "internal.hxx"
 
@@ -39,11 +40,8 @@ public :
         Error
     };
 
-    Callable(): InternalType()
-    {
-        m_iFirstLine = 0;
-        m_iLastLine = 0;
-    }
+    Callable() : InternalType(), m_iFirstLine(0), m_iLastLine(0), m_functionId(-1) {}
+
     virtual             ~Callable() {}
 
     bool                isCallable()
@@ -138,6 +136,7 @@ protected :
     std::wstring            m_wstModule;
     int                     m_iFirstLine;
     int                     m_iLastLine;
+    uint64_t                m_functionId;
 };
 }
 

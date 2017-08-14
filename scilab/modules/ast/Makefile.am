@@ -37,6 +37,7 @@ src/cpp/ast/visitor_common.cpp \
 src/cpp/ast/consoledebugger.cpp \
 src/cpp/ast/debuggervisitor.cpp \
 src/cpp/ast/debugmanager.cpp \
+src/cpp/ast/FBlockListener.cpp \
 src/cpp/ast/prettyprintvisitor.cpp \
 src/cpp/operations/interface_addition.cpp \
 src/cpp/operations/operations.cpp \

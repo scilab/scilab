@@ -19,6 +19,7 @@
 #include "configvariable.hxx"
 #include "exp.hxx"
 #include "scilabexception.hxx"
+#include "FBlockListener.hxx"
 
 namespace types
 {
@@ -39,6 +40,11 @@ bool Callable::invoke(typed_list & in, optional_list & opt, int _iRetCount, type
 
         try
         {
+            if (ConfigVariable::getAnalyzerOptions() == 1)
+            {
+                m_functionId = e.getDecorator().res.getFunctionId();
+            }
+
             Ret = call(in, opt, _iRetCount, out);
             ConfigVariable::where_end();
             ConfigVariable::decreaseRecursion();
