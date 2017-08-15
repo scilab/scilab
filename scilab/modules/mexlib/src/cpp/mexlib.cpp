@@ -1595,8 +1595,22 @@ void mxSetCell(mxArray *array_ptr, int lindex, mxArray *value)
 
 int mxGetNzmax(const mxArray *ptr)
 {
-    // TODO
-    return 0;
+    if (mxIsSparse(ptr) == 0)
+    {
+        return 0;
+    }
+
+    types::InternalType *pIT = (types::InternalType *)ptr->ptr;
+    if (pIT == NULL || pIT->isGenericType() == false)
+    {
+        return 0;
+    }
+    
+    types::GenericType *pGT = pIT->getAs<types::GenericType>();
+
+    int nzmax = ((types::Sparse *)pGT)->nonZeros();
+    
+    return nzmax;
 }
 
 void mxSetNzmax(mxArray *array_ptr, int nzmax)

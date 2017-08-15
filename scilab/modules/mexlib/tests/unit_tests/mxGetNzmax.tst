@@ -1,0 +1,36 @@
+// ============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2017-2017 - Gsoc 2017 - Siddhartha Gairola
+//
+//  This file is distributed under the same license as the Scilab package.
+// ============================================================================
+
+// <-- CLI SHELL MODE -->
+// ============================================================================
+// Unitary tests for mxGetNzmax mex function
+// ============================================================================
+
+cd(TMPDIR);
+ilib_verbose(0);
+mputl([ "#include ""mex.h""";
+"void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])";
+"{";
+"   int nonzeros = 0;";
+"   mxArray* pOut = NULL;";
+"   nonzeros = mxGetNzmax(prhs[0]);";
+"   pOut = mxCreateDoubleScalar((double)nonzeros);";
+"   plhs[0] = pOut;";
+"}"],"mexGetNzmax.c");
+ilib_mex_build("libmextest",["getNz","mexGetNzmax","cmex"], "mexGetNzmax.c",[]);
+exec("loader.sce");
+
+sp = sparse([1 2 3]);
+sp2 = sparse([1 2 3; 4 5 6]);
+not_sp = [1 2 3];
+res1 = getNz(sp);
+res2 = getNz(not_sp);
+res3 = getNz(sp2);
+
+assert_checkequal(res1, 3);
+assert_checkequal(res2, 0);
+assert_checkequal(res3, 6);
