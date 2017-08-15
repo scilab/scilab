@@ -74,6 +74,8 @@ Callable::ReturnValue MacroFile::call(typed_list &in, optional_list &opt, int _i
     parse();
     if (m_pMacro)
     {
+        //forward functionId to internal macro
+        m_pMacro->setFunctionId(m_functionId);
         return m_pMacro->call(in, opt, _iRetCount, out);
     }
     else

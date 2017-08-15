@@ -319,7 +319,7 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
         ConfigVariable::setPromptMode(-1);
 
         //use version from analyze
-        if (m_functionId != -1) 
+        if (m_functionId != (uint64_t)-1) 
         {
             //std::wcerr << "macro functionId: " << m_functionId << std::endl;
             ast::Exp* exp = FBlockListener::getExp(m_functionId);

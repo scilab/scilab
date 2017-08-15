@@ -130,6 +130,16 @@ public :
         m_iLastLine  = _iLastLine;
     }
 
+    virtual void setFunctionId(uint64_t fId)
+    {
+        m_functionId = fId;
+    }
+
+    virtual uint64_t getFunctionId()
+    {
+        return m_functionId;
+    }
+
 protected :
     std::wstring            m_wstName;
     std::string             m_stName;
