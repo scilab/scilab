@@ -1578,5 +1578,8 @@
     <ClCompile Include="src\cpp\ast\FBlockListener.cpp">
       <Filter>Source Files\ast</Filter>
     </ClCompile>
+    <ClCompile Include="src\cpp\analysis\MacroSignature.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

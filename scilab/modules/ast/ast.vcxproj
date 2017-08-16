@@ -626,6 +626,7 @@ lib /DEF:"$(ProjectDir)functions_manager_import.def" /SUBSYSTEM:WINDOWS /MACHINE
     <ClCompile Include="src\cpp\analysis\LengthAnalyzer.cpp" />
     <ClCompile Include="src\cpp\analysis\LoopBlock.cpp" />
     <ClCompile Include="src\cpp\analysis\MacroDef.cpp" />
+    <ClCompile Include="src\cpp\analysis\MacroSignature.cpp" />
     <ClCompile Include="src\cpp\analysis\MatrixAnalyzer.cpp" />
     <ClCompile Include="src\cpp\analysis\MemInitAnalyzer.cpp" />
     <ClCompile Include="src\cpp\analysis\MultivariateMonomial.cpp" />

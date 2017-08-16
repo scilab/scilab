@@ -96,6 +96,11 @@ struct EXTERN_AST Variable
         }
     }
 
+    inline int count() const
+    {
+        return (int)stack.size();
+    }
+
     inline Symbol getSymbol() const
     {
         return name;

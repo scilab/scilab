@@ -39,8 +39,9 @@ struct MacroSignature
     const std::wstring name;
     const unsigned int lhs;
     TITypeSignatureTuple tuple;
+    std::size_t exp_hash;
 
-    MacroSignature(MacroDef & macrodef, const unsigned int _lhs, const std::vector<TIType> & in) : name(macrodef.getName()), lhs(_lhs), tuple(in) { }
+    MacroSignature(MacroDef & macrodef, const unsigned int _lhs, const std::vector<TIType> & in);
 
     friend std::wostream & operator<<(std::wostream & out, const MacroSignature & signature)
     {
@@ -73,7 +74,7 @@ struct MacroSignature
     {
         inline bool operator()(const MacroSignature & L, const MacroSignature & R) const
         {
-            return L.lhs == R.lhs && L.name == R.name && L.tuple == R.tuple;
+            return L.lhs == R.lhs && L.name == R.name && L.tuple == R.tuple && L.exp_hash == R.exp_hash;
         }
     };
 };

@@ -172,6 +172,7 @@ src/cpp/analysis/VisitSimpleVar.cpp \
 src/cpp/analysis/VisitDollarVar.cpp \
 src/cpp/analysis/VisitVarDec.cpp \
 src/cpp/analysis/XBlock.cpp \
+src/cpp/analysis/MacroSignature.cpp \
 src/cpp/analysis/check_____dotpower____.cpp \
 src/cpp/analysis/check_rand.cpp \
 src/cpp/analysis/check_____ge____.cpp \

@@ -141,11 +141,32 @@ public:
     bool isValidVariableName(const wchar_t*);
     bool isValidVariableName(const char*);
 
-    inline bool isOriginalSymbol(const symbol::Symbol & sym) const
+    inline bool isOriginalSymbol(const symbol::Symbol & sym)
     {
-        return getLevel(sym) == 0;
-    }
+        //builtin
+        if (getLevel(sym) == 0)
+        {
+            return true;
+        }
 
+        Variable* var = getOrCreate(sym);
+        if (var->empty())
+        {
+            //check libraries
+
+            //if sym exists, it is obviously the original
+            if (libraries.get(sym, SCOPE_ALL) != nullptr)
+            {
+                return true;
+            }
+        }
+        else
+        {
+            return var->count() == 1;
+        }
+
+        return false;
+    }
 private:
 
     types::InternalType* get(const Symbol& key, int _iLevel);

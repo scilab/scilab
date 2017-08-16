@@ -306,6 +306,7 @@ am__libsciast_la_SOURCES_DIST = src/c/operations/doublecomplex.c \
 	src/cpp/analysis/VisitSimpleVar.cpp \
 	src/cpp/analysis/VisitDollarVar.cpp \
 	src/cpp/analysis/VisitVarDec.cpp src/cpp/analysis/XBlock.cpp \
+	src/cpp/analysis/MacroSignature.cpp \
 	src/cpp/analysis/check_____dotpower____.cpp \
 	src/cpp/analysis/check_rand.cpp \
 	src/cpp/analysis/check_____ge____.cpp \
@@ -538,6 +539,7 @@ am_libsciast_la_OBJECTS =  \
 	src/cpp/analysis/libsciast_la-VisitDollarVar.lo \
 	src/cpp/analysis/libsciast_la-VisitVarDec.lo \
 	src/cpp/analysis/libsciast_la-XBlock.lo \
+	src/cpp/analysis/libsciast_la-MacroSignature.lo \
 	src/cpp/analysis/libsciast_la-check_____dotpower____.lo \
 	src/cpp/analysis/libsciast_la-check_rand.lo \
 	src/cpp/analysis/libsciast_la-check_____ge____.lo \
@@ -1126,6 +1128,7 @@ libsciast_la_SOURCES = src/c/operations/doublecomplex.c \
 	src/cpp/analysis/VisitSimpleVar.cpp \
 	src/cpp/analysis/VisitDollarVar.cpp \
 	src/cpp/analysis/VisitVarDec.cpp src/cpp/analysis/XBlock.cpp \
+	src/cpp/analysis/MacroSignature.cpp \
 	src/cpp/analysis/check_____dotpower____.cpp \
 	src/cpp/analysis/check_rand.cpp \
 	src/cpp/analysis/check_____ge____.cpp \
@@ -2080,6 +2083,9 @@ src/cpp/analysis/libsciast_la-VisitVarDec.lo:  \
 src/cpp/analysis/libsciast_la-XBlock.lo:  \
 	src/cpp/analysis/$(am__dirstamp) \
 	src/cpp/analysis/$(DEPDIR)/$(am__dirstamp)
+src/cpp/analysis/libsciast_la-MacroSignature.lo:  \
+	src/cpp/analysis/$(am__dirstamp) \
+	src/cpp/analysis/$(DEPDIR)/$(am__dirstamp)
 src/cpp/analysis/libsciast_la-check_____dotpower____.lo:  \
 	src/cpp/analysis/$(am__dirstamp) \
 	src/cpp/analysis/$(DEPDIR)/$(am__dirstamp)
@@ -2389,6 +2395,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-LengthAnalyzer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-LoopBlock.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-MacroDef.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-MacroSignature.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-MatrixAnalyzer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-MemInitAnalyzer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-MultivariateMonomial.Plo@am__quote@
@@ -3722,6 +3729,13 @@ src/cpp/analysis/libsciast_la-XBlock.lo: src/cpp/analysis/XBlock.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/analysis/XBlock.cpp' object='src/cpp/analysis/libsciast_la-XBlock.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/analysis/libsciast_la-XBlock.lo `test -f 'src/cpp/analysis/XBlock.cpp' || echo '$(srcdir)/'`src/cpp/analysis/XBlock.cpp
+
+src/cpp/analysis/libsciast_la-MacroSignature.lo: src/cpp/analysis/MacroSignature.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/analysis/libsciast_la-MacroSignature.lo -MD -MP -MF src/cpp/analysis/$(DEPDIR)/libsciast_la-MacroSignature.Tpo -c -o src/cpp/analysis/libsciast_la-MacroSignature.lo `test -f 'src/cpp/analysis/MacroSignature.cpp' || echo '$(srcdir)/'`src/cpp/analysis/MacroSignature.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/analysis/$(DEPDIR)/libsciast_la-MacroSignature.Tpo src/cpp/analysis/$(DEPDIR)/libsciast_la-MacroSignature.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/analysis/MacroSignature.cpp' object='src/cpp/analysis/libsciast_la-MacroSignature.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/analysis/libsciast_la-MacroSignature.lo `test -f 'src/cpp/analysis/MacroSignature.cpp' || echo '$(srcdir)/'`src/cpp/analysis/MacroSignature.cpp
 
 src/cpp/analysis/libsciast_la-check_____dotpower____.lo: src/cpp/analysis/check_____dotpower____.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/analysis/libsciast_la-check_____dotpower____.lo -MD -MP -MF src/cpp/analysis/$(DEPDIR)/libsciast_la-check_____dotpower____.Tpo -c -o src/cpp/analysis/libsciast_la-check_____dotpower____.lo `test -f 'src/cpp/analysis/check_____dotpower____.cpp' || echo '$(srcdir)/'`src/cpp/analysis/check_____dotpower____.cpp
