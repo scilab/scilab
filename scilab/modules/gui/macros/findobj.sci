@@ -10,24 +10,23 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
+
 function h =  findobj(propertyName, propertyValue)
 
     rhs = argn(2);
     if rhs<> [1 2] then
-        error(msprintf(gettext("%s: Wrong number of input arguments: %d or %d expected.\n"), "findobj", 1, 2));
+        msg = gettext("%s: Wrong number of input arguments: %d or %d expected.\n");
+        error(msprintf(msg, "findobj", 1, 2));
         return;
     end
 
     if rhs == 1 then
         h = get(propertyName);
-        if h <> [] then
-            return;
-        end
-    elseif strcmp(propertyName, "tag", "i") == 0 then
+        return
+    end
+    if strcmp(propertyName, "tag", "i") == 0 then
         h = get(propertyValue);
-        if h <> [] then
-            return;
-        end
+        return
     end
 
     // Return value
