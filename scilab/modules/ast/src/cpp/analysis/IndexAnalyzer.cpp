@@ -43,16 +43,26 @@ bool AnalysisVisitor::analyzeIndices(TIType & type, ast::CallExp & ce)
     argIndices.emplace(static_cast<ast::SimpleVar &>(ce.getName()), size, 1);
     if (size == 1)
     {
-        // when there is one argument, a(?) is equivalent to A(?,1)
-        // where A = matrix(a, r_a * c_a, 1)
-
-        SymbolicDimension rows(type.rows);
-        second = SymbolicDimension(getGVN(), 1);
-        if (type.cols != 1)
+        // row vector case
+        if (type.rows == 1 && type.cols != 1)
         {
-            rows *= type.cols;
+            SymbolicDimension cols(type.cols);
+            first = SymbolicDimension(getGVN(), 1);
+            ret = getDimension(cols, *args.front(), safe, second);
         }
-        ret = getDimension(rows, *args.front(), safe, first);
+        else // scalar, col vector and matrix case
+        {
+            // when there is one argument, a(?) is equivalent to A(?,1)
+            // where A = matrix(a, r_a * c_a, 1)
+
+            SymbolicDimension rows(type.rows);
+            second = SymbolicDimension(getGVN(), 1);
+            if (type.cols != 1)
+            {
+                rows *= type.cols;
+            }
+            ret = getDimension(rows, *args.front(), safe, first);
+        }
     }
     else
     {
