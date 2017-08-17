@@ -1637,8 +1637,24 @@ void mxSetIr(mxArray *array_ptr, int *ir_data)
 
 int *mxGetJc(const mxArray *ptr)
 {
-    // TODO
-    return NULL;
+    if (mxIsSparse(ptr) == 0)
+    {
+        return NULL;
+    }
+
+    types::InternalType *pIT = (types::InternalType *)ptr->ptr;
+    if (pIT == NULL || pIT->isGenericType() == false)
+    {
+        return NULL;
+    }
+                    
+    types::GenericType *pGT = pIT->getAs<types::GenericType>();
+
+    int nzmax = ((types::Sparse *)pGT)->nonZeros();
+    int *colPos = new int[nzmax];
+    ((types::Sparse *)pGT)->getColPos(colPos);
+
+    return colPos;
 }
 
 void mxSetJc(mxArray *array_ptr, int *jc_data)
