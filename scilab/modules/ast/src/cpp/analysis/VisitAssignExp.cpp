@@ -48,14 +48,7 @@ void AnalysisVisitor::visit(ast::AssignExp & e)
 
             if (e.getRightExp().isCallExp()) // A = foo(...)
             {
-                if (e.getRightExp().isCallExp())
-                {
-                    visit(static_cast<ast::CallExp &>(e.getRightExp()), /* LHS */ 1);
-                }
-                else
-                {
-                    e.getRightExp().accept(*this);
-                }
+                visit(static_cast<ast::CallExp &>(e.getRightExp()), /* LHS */ 1);
             }
             else // A = 1 + 2
             {
@@ -100,6 +93,11 @@ void AnalysisVisitor::visit(ast::AssignExp & e)
         if (e.getRightExp().isCallExp())
         {
             const ast::exps_t & exps = ale.getExps();
+
+            // apply the ConstantVisitor
+            cv.setLHS(exps.size());
+            e.getRightExp().accept(cv);
+
             visit(static_cast<ast::CallExp &>(e.getRightExp()), /* LHS */ exps.size());
             std::vector<Result>::iterator j = multipleLHS.begin();
             for (const auto exp : exps)

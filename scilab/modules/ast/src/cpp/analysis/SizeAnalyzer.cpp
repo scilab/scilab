@@ -29,10 +29,8 @@ bool SizeAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, as
     }
 
     const ast::exps_t args = e.getArgs();
-    enum Kind
-    {
-        ROWS, COLS, ROWSTIMESCOLS, ROWSCOLS, ONE, BOTH, DUNNO
-    } kind = DUNNO;
+    SizeCall::Kind kind = SizeCall::DUNNO;
+
     const std::size_t size = args.size();
     if (size == 0 || size >= 3)
     {
@@ -57,11 +55,11 @@ bool SizeAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, as
         case 1:
             if (lhs == 1)
             {
-                kind = BOTH;
+                kind = SizeCall::BOTH;
             }
             else if (lhs == 2)
             {
-                kind = ROWSCOLS;
+                kind = SizeCall::R_C;
             }
             break;
         case 2:
@@ -74,15 +72,15 @@ bool SizeAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, as
                     const std::wstring & arg2 = static_cast<ast::StringExp *>(second)->getValue();
                     if (arg2 == L"r")
                     {
-                        kind = ROWS;
+                        kind = SizeCall::R;
                     }
                     else if (arg2 == L"c")
                     {
-                        kind = COLS;
+                        kind = SizeCall::C;
                     }
                     else if (arg2 == L"*")
                     {
-                        kind = ROWSTIMESCOLS;
+                        kind = SizeCall::RC;
                     }
                     else
                     {
@@ -95,16 +93,16 @@ bool SizeAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, as
                     const double arg2 = static_cast<ast::DoubleExp *>(second)->getValue();
                     if (arg2 == 1)
                     {
-                        kind = ROWS;
+                        kind = SizeCall::R;
                     }
                     else if (arg2 == 2)
                     {
-                        kind = COLS;
+                        kind = SizeCall::C;
                     }
                     else if (arg2 >= 3)
                     {
                         // TODO: we should handle hypermatrix
-                        kind = ONE;
+                        kind = SizeCall::ONE;
                     }
                     else
                     {
@@ -129,7 +127,7 @@ bool SizeAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, as
 
     switch (kind)
     {
-        case ROWS:
+        case SizeCall::R:
         {
             SymbolicDimension & rows = res.getType().rows;
             Result & _res = e.getDecorator().setResult(type);
@@ -138,7 +136,7 @@ bool SizeAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, as
             visitor.setResult(_res);
             break;
         }
-        case COLS:
+        case SizeCall::C:
         {
             SymbolicDimension & cols = res.getType().cols;
             Result & _res = e.getDecorator().setResult(type);
@@ -147,19 +145,27 @@ bool SizeAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, as
             visitor.setResult(_res);
             break;
         }
-        case ROWSTIMESCOLS:
+        case SizeCall::RC:
         {
             SymbolicDimension & rows = res.getType().rows;
             SymbolicDimension & cols = res.getType().cols;
             SymbolicDimension prod = rows * cols;
+
             Result & _res = e.getDecorator().setResult(type);
             _res.getConstant() = prod.getValue();
             e.getDecorator().setCall(new SizeCall(SizeCall::RC));
             visitor.setResult(_res);
             break;
         }
-        case ROWSCOLS:
+        case SizeCall::R_C:
+        case SizeCall::BOTH:
         {
+            if (kind == SizeCall::BOTH)
+            {
+                TIType _type(visitor.getGVN(), TIType::DOUBLE, 1, 2);
+                Result & _res = e.getDecorator().setResult(_type);
+            }
+
             SymbolicDimension & rows = res.getType().rows;
             SymbolicDimension & cols = res.getType().cols;
             std::vector<Result> & mlhs = visitor.getLHSContainer();
@@ -170,22 +176,14 @@ bool SizeAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, as
             mlhs.emplace_back(type);
             mlhs.back().getConstant() = cols.getValue();
 
-            e.getDecorator().setCall(new SizeCall(SizeCall::R_C));
+            e.getDecorator().setCall(new SizeCall(kind));
             break;
         }
-        case ONE:
+        case SizeCall::ONE:
         {
             Result & _res = e.getDecorator().setResult(type);
             _res.getConstant() = new types::Double(1);
             e.getDecorator().setCall(new SizeCall(SizeCall::ONE));
-            visitor.setResult(_res);
-            break;
-        }
-        case BOTH:
-        {
-            TIType _type(visitor.getGVN(), TIType::DOUBLE, 1, 2);
-            Result & _res = e.getDecorator().setResult(_type);
-            e.getDecorator().setCall(new SizeCall(SizeCall::BOTH));
             visitor.setResult(_res);
             break;
         }

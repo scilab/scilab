@@ -15,6 +15,7 @@
 
 #include "AnalysisVisitor.hxx"
 #include "ConstantVisitor.hxx"
+#include "double.hxx"
 
 namespace analysis
 {
@@ -256,6 +257,59 @@ void ConstantVisitor::visit(ast::CallExp & e)
                         bool val;
                         parent->getResult().getConstant().getBoolValue(val);
                         e.replace(new ast::BoolExp(e.getLocation(), val));
+                        isConstant = true;
+                    }
+                }
+                else if (name == L"size")
+                {
+                    if (parent->getAnalyzer(sym)->analyze(*parent, lhs, e))
+                    {
+                        switch (lhs)
+                        {
+                            case 1: // a = size(x)
+                            {
+                                std::vector<Result> & res = parent->getLHSContainer();
+                                double row;
+                                res.front().getConstant().getDblValue(row);
+
+                                double col;
+                                res.back().getConstant().getDblValue(col);
+
+                                types::Double* pIT = new types::Double(1, 2);
+                                pIT->get()[0] = row;
+                                pIT->get()[1] = col;
+                                e.replace(new ast::DoubleExp(e.getLocation(), pIT));
+                                isConstant = true;
+                                break;
+                            }
+                            case 2: // [a, b] = size(x)
+                            {
+                                double val;
+                                ast::exps_t * exps = new ast::exps_t();
+                                exps->reserve(2);
+                                std::vector<Result> & res = parent->getLHSContainer();
+                                res.front().getConstant().getDblValue(val);
+                                exps->push_back(new ast::DoubleExp(e.getLocation(), val));
+                                res.back().getConstant().getDblValue(val);
+                                exps->push_back(new ast::DoubleExp(e.getLocation(), val));
+                                e.replace(new ast::ArrayListExp(e.getLocation(), *exps));
+                                isConstant = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            else if (parent && args.size() == 2)
+            {
+                if (name == L"size")
+                {
+                    if (parent->getAnalyzer(sym)->analyze(*parent, lhs, e))
+                    {
+                        //a = size(x, "dims") or a = size(x, dim)
+                        double val;
+                        parent->getResult().getConstant().getDblValue(val);
+                        e.replace(new ast::DoubleExp(e.getLocation(), val));
                         isConstant = true;
                     }
                 }
