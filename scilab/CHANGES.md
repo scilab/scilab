@@ -442,6 +442,7 @@ Known issues
 * [#14531](http://bugzilla.scilab.org/show_bug.cgi?id=14531): It was not possible to specify SCIHOME as a start-up option.
 * [#14532](http://bugzilla.scilab.org/show_bug.cgi?id=14532): `test_run` failed for toolboxes that are not autoloaded.
 * [#14544](http://bugzilla.scilab.org/show_bug.cgi?id=14544): `scatter` and `scatter3` canceled any upstream `drawlater` instruction.
+* [#14551](http://bugzilla.scilab.org/show_bug.cgi?id=14551): In the icon of the Xcos CLR and DLR blocks, multichar exponents were badly rendered.
 * [#14573](http://bugzilla.scilab.org/show_bug.cgi?id=14573): `varargout` misworked when it was used in addition to fixed output arguments.
 * [#14588](http://bugzilla.scilab.org/show_bug.cgi?id=14588): Some cross usages of launching options `-nw` and `-nwni` with Wscilex.exe and Scilex.exe binaries were inconsistent.
 * [#14584](http://bugzilla.scilab.org/show_bug.cgi?id=14584): The example of demo_choose help page was broken because of a wrong file path.

@@ -1,6 +1,7 @@
 //  Scicos
 //
-//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) 2018 - Samuel GOUGEON
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -26,7 +27,8 @@ function [x,y,typ]=CLR(job,arg1,arg2)
     select job
     case "set" then
         x=arg1;
-        graphics=arg1.graphics;exprs=graphics.exprs
+        graphics=arg1.graphics;
+        exprs=graphics.exprs
         model=arg1.model;
         x0=model.state
         rpar=model.rpar
@@ -73,9 +75,33 @@ function [x,y,typ]=CLR(job,arg1,arg2)
                 model.rpar=rpar
                 x.graphics=graphics;
                 x.model=model
+
+                // Protecting ^{.} groups for LaTeX after num and den have been generated:
+                //  http://bugzilla.scilab.org/14551
+                // Groups replacement impossible with strsubst(): http://bugzilla.scilab.org/9123
+                content = exprs;
+                if content~=[]
+                    for i = 1:2
+                        txt = content(i);
+                        [s,e,m] = regexp(txt, "/\^\s*\-{0,1}[0-9]+\.{0,1}[0-9]*/")
+                        m = strsubst(m," ","");
+                        if s~=[]
+                            for s = m'
+                                txt = strsubst(txt, s, "^{"+part(s,2:$)+"}");
+                            end
+                        end
+                        txt = strsubst(txt,"*","\,")
+                        txt = strsubst(txt,"+","\!+\!")
+                        txt = strsubst(txt,"-","\!-\!")
+                        content(i) = txt;
+                    end
+                end
+                lab = "CLR;displayedLabel=$\small\mathsf\frac{"+content(1)+"}{"+content(2)+"}$"
+                x.graphics.style = lab;
                 break
             end
         end
+
     case "define" then
         x0=0;
         A=-1;
@@ -94,6 +120,6 @@ function [x,y,typ]=CLR(job,arg1,arg2)
 
         gr_i=[]
 
-        x=standard_define([3 2],model,exprs,gr_i)
+        x=standard_define([3 3],model,exprs,gr_i)
     end
 endfunction
