@@ -35,6 +35,10 @@ function [x,y,typ]=EXPRESSION(job,arg1,arg2)
         end
         ieee(2)
         while %t do
+            // http://bugzilla.scilab.org/14680: converting "&lt;" to "<" to make the expression editable:
+            exprs(2) = strsubst(exprs(2),"&lt;","<");
+
+            // Prompting the user to edit parameters:
             [ok,%nin,%exx,%usenz,exprs]=scicos_getvalue(..
             ["Give a scalar scilab expression using inputs u1, u2,...";
             "If only one input, input is vector [u1,u2,...] (max 8)";
@@ -42,6 +46,9 @@ function [x,y,typ]=EXPRESSION(job,arg1,arg2)
             "Note that here dd must be defined in context"],..
             ["number of inputs";"scilab expression";"use zero-crossing (0: no, 1 yes)"],..
             list("vec",1,"vec",1,"vec",1),exprs)
+            // %nin: number of input
+            // %usenz: flag 0|1 for use zero-crossing
+            // exprs(2): expression with u1, etc.
             ieee(0)
             clear %scicos_context
 
@@ -51,8 +58,10 @@ function [x,y,typ]=EXPRESSION(job,arg1,arg2)
             %exx=strsubst(exprs(2)," ","")
             if %exx==emptystr() then
                 %exx="0",
-            end  //avoid empty
-            //expression
+            end  // Avoid empty expression
+
+            // http://bugzilla.scilab.org/14680: converting "<" back to "&lt;" for proper display
+            exprs(2) = strsubst(exprs(2),"<","&lt;");
 
             if %nin==1 then
                 %nini=8,
