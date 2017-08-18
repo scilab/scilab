@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="Integer_pal" xml:lang="fr_FR" xml.mml="http://www.w3.org/1998/Math/MathML">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="Integer_pal" xml:lang="fr_FR" xml.mml="http://www.w3.org/1998/Math/MathML">
     <refnamediv>
         <refname>Integer_pal</refname>
         <refpurpose>Palette Entier</refpurpose>
@@ -21,61 +24,105 @@
     <refsection>
         <title>Aperçu</title>
         <para>
+            <link linkend="BITCLEAR">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="BITCLEAR" fileref="../../../../images/palettes/BITCLEAR.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="BITCLEAR" fileref="../../../../images/palettes/BITCLEAR.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="BITSET">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="BITSET" fileref="../../../../images/palettes/BITSET.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="BITSET" fileref="../../../../images/palettes/BITSET.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="CONVERT">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="CONVERT" fileref="../../../../images/palettes/CONVERT.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="CONVERT" fileref="../../../../images/palettes/CONVERT.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="DFLIPFLOP">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="DFLIPFLOP" fileref="../../../../images/palettes/DFLIPFLOP.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="DFLIPFLOP" fileref="../../../../images/palettes/DFLIPFLOP.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="DLATCH">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="DLATCH" fileref="../../../../images/palettes/DLATCH.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="DLATCH" fileref="../../../../images/palettes/DLATCH.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="EXTRACTBITS">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="EXTRACTBITS" fileref="../../../../images/palettes/EXTRACTBITS.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="EXTRACTBITS" fileref="../../../../images/palettes/EXTRACTBITS.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="INTMUL">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="INTMUL" fileref="../../../../images/palettes/INTMUL.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="INTMUL" fileref="../../../../images/palettes/INTMUL.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="JKFLIPFLOP">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="JKFLIPFLOP" fileref="../../../../images/palettes/JKFLIPFLOP.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="JKFLIPFLOP" fileref="../../../../images/palettes/JKFLIPFLOP.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="LOGIC">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="LOGIC" fileref="../../../../images/palettes/LOGIC.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="LOGIC" fileref="../../../../images/palettes/LOGIC.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="SHIFT">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="SHIFT" fileref="../../../../images/palettes/SHIFT.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="SHIFT" fileref="../../../../images/palettes/SHIFT.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="SRFLIPFLOP">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="SRFLIPFLOP" fileref="../../../../images/palettes/SRFLIPFLOP.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="SRFLIPFLOP" fileref="../../../../images/palettes/SRFLIPFLOP.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
         </para>
     </refsection>
     <refsection id="Module_Integer_pal">

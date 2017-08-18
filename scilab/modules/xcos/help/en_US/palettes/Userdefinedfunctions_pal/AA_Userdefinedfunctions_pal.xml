@@ -21,7 +21,10 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="Userdefinedfunctions_pal">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="Userdefinedfunctions_pal" xml:lang="en_US">
     <refnamediv>
         <refname>Userdefinedfunctions_pal</refname>
         <refpurpose>User defined functions palette</refpurpose>
@@ -29,56 +32,96 @@
     <refsection>
         <title>Block Screenshot</title>
         <para>
+            <link linkend="CBLOCK">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="CBLOCK" fileref="../../../../../../modules/xcos/images/palettes/CBLOCK.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="CBLOCK" fileref="../../../../images/palettes/CBLOCK.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="DEBUG">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="DEBUG" fileref="../../../../../../modules/xcos/images/palettes/DEBUG.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="DEBUG" fileref="../../../../images/palettes/DEBUG.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="EXPRESSION">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="EXPRESSION" fileref="../../../../../../modules/xcos/images/palettes/EXPRESSION.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="EXPRESSION" fileref="../../../../images/palettes/EXPRESSION.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="MBLOCK">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="MBLOCK" fileref="../../../../../../modules/xcos/images/palettes/MBLOCK.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="MBLOCK" fileref="../../../../images/palettes/MBLOCK.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="PDE">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="PDE" fileref="../../../../../../modules/xcos/images/palettes/PDE.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="PDE" fileref="../../../../images/palettes/PDE.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="SUPER_f">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="SUPER_f" fileref="../../../../../../modules/xcos/images/palettes/SUPER_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="SUPER_f" fileref="../../../../images/palettes/SUPER_f.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="c_block">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="c_block" fileref="../../../../../../modules/xcos/images/palettes/c_block.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="c_block" fileref="../../../../images/palettes/c_block.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="fortran_block">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="fortran_block" fileref="../../../../../../modules/xcos/images/palettes/fortran_block.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="fortran_block" fileref="../../../../images/palettes/fortran_block.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="generic_block3">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="generic_block3" fileref="../../../../../../modules/xcos/images/palettes/generic_block3.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="generic_block3" fileref="../../../../images/palettes/generic_block3.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="scifunc_block_m">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="scifunc_block_m" fileref="../../../../../../modules/xcos/images/palettes/scifunc_block_m.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="scifunc_block_m" fileref="../../../../images/palettes/scifunc_block_m.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
         </para>
     </refsection>
     <refsection id="Module_Userdefinedfunctions_pal">

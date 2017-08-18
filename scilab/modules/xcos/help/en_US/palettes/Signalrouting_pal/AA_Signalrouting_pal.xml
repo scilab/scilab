@@ -21,7 +21,10 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="Signalrouting_pal">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="Signalrouting_pal" xml:lang="en_US">
     <refnamediv>
         <refname>Signalrouting_pal</refname>
         <refpurpose>Signal routing palette</refpurpose>
@@ -29,96 +32,168 @@
     <refsection>
         <title>Block Screenshot</title>
         <para>
+            <link linkend="DEMUX">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="DEMUX" fileref="../../../../../../modules/xcos/images/palettes/DEMUX.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="DEMUX" fileref="../../../../images/palettes/DEMUX.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="EXTRACTOR">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="EXTRACTOR" fileref="../../../../../../modules/xcos/images/palettes/EXTRACTOR.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="EXTRACTOR" fileref="../../../../images/palettes/EXTRACTOR.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="FROM">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="FROM" fileref="../../../../../../modules/xcos/images/palettes/FROM.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="FROM" fileref="../../../../images/palettes/FROM.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="FROMMO">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="FROMMO" fileref="../../../../../../modules/xcos/images/palettes/FROMMO.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="FROMMO" fileref="../../../../images/palettes/FROMMO.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="GOTO">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="GOTO" fileref="../../../../../../modules/xcos/images/palettes/GOTO.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="GOTO" fileref="../../../../images/palettes/GOTO.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="GOTOMO">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="GOTOMO" fileref="../../../../../../modules/xcos/images/palettes/GOTOMO.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="GOTOMO" fileref="../../../../images/palettes/GOTOMO.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="CLKFROM">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="CLKFROM" fileref="../../../../../../modules/xcos/images/palettes/CLKFROM.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="CLKFROM" fileref="../../../../images/palettes/CLKFROM.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="CLKGOTO">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="CLKGOTO" fileref="../../../../../../modules/xcos/images/palettes/CLKGOTO.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="CLKGOTO" fileref="../../../../images/palettes/CLKGOTO.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="GotoTagVisibility">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="GotoTagVisibility" fileref="../../../../../../modules/xcos/images/palettes/GotoTagVisibility.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="GotoTagVisibility" fileref="../../../../images/palettes/GotoTagVisibility.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="GotoTagVisibilityMO">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="GotoTagVisibilityMO" fileref="../../../../../../modules/xcos/images/palettes/GotoTagVisibilityMO.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="GotoTagVisibilityMO" fileref="../../../../images/palettes/GotoTagVisibilityMO.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="ISELECT_m">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="ISELECT_m" fileref="../../../../../../modules/xcos/images/palettes/ISELECT_m.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="ISELECT_m" fileref="../../../../images/palettes/ISELECT_m.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="MUX">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="MUX" fileref="../../../../../../modules/xcos/images/palettes/MUX.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="MUX" fileref="../../../../images/palettes/MUX.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="M_SWITCH">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="M_SWITCH" fileref="../../../../../../modules/xcos/images/palettes/M_SWITCH.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="M_SWITCH" fileref="../../../../images/palettes/M_SWITCH.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="NRMSOM_f">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="NRMSOM_f" fileref="../../../../../../modules/xcos/images/palettes/NRMSOM_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="NRMSOM_f" fileref="../../../../images/palettes/NRMSOM_f.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="RELAY_f">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="RELAY_f" fileref="../../../../../../modules/xcos/images/palettes/RELAY_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="RELAY_f" fileref="../../../../images/palettes/RELAY_f.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="SELECT_m">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="SELECT_m" fileref="../../../../../../modules/xcos/images/palettes/SELECT_m.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="SELECT_m" fileref="../../../../images/palettes/SELECT_m.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="SWITCH2_m">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="SWITCH2_m" fileref="../../../../../../modules/xcos/images/palettes/SWITCH2_m.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="SWITCH2_m" fileref="../../../../images/palettes/SWITCH2_m.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="SWITCH_f">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="SWITCH_f" fileref="../../../../../../modules/xcos/images/palettes/SWITCH_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="SWITCH_f" fileref="../../../../images/palettes/SWITCH_f.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
         </para>
     </refsection>
     <refsection id="Module_Signalrouting_pal">

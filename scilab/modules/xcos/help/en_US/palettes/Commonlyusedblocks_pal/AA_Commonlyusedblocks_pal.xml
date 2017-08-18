@@ -21,7 +21,10 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="Commonlyusedblocks_pal">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+    xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+    xmlns:scilab="http://www.scilab.org" xml:id="Commonlyusedblocks_pal" xml:lang="en_US">
     <refnamediv>
         <refname>Commonlyusedblocks_pal</refname>
         <refpurpose>Commonly used blocks palette</refpurpose>
@@ -29,101 +32,196 @@
     <refsection>
         <title>Block Screenshot</title>
         <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata linkend="ANDBLK" fileref="../../../../../../modules/xcos/images/palettes/ANDBLK.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata linkend="BIGSOM_f" fileref="../../../../../../modules/xcos/images/palettes/BIGSOM_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata linkend="CMSCOPE" fileref="../../../../../../modules/xcos/images/palettes/CMSCOPE.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata linkend="CONST_m" fileref="../../../../../../modules/xcos/images/palettes/CONST_m.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata linkend="CONVERT" fileref="../../../../../../modules/xcos/images/palettes/CONVERT.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata linkend="CSCOPXY" fileref="../../../../../../modules/xcos/images/palettes/CSCOPXY.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata linkend="DEMUX" fileref="../../../../../../modules/xcos/images/palettes/DEMUX.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata linkend="DOLLAR_f" fileref="../../../../../../modules/xcos/images/palettes/DOLLAR_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata linkend="INTEGRAL_f" fileref="../../../../../../modules/xcos/images/palettes/INTEGRAL_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata linkend="IN_f" fileref="../../../../../../modules/xcos/images/palettes/IN_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata linkend="LOGICAL_OP" fileref="../../../../../../modules/xcos/images/palettes/LOGICAL_OP.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata linkend="MUX" fileref="../../../../../../modules/xcos/images/palettes/MUX.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata linkend="NRMSOM_f" fileref="../../../../../../modules/xcos/images/palettes/NRMSOM_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata linkend="OUT_f" fileref="../../../../../../modules/xcos/images/palettes/OUT_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata linkend="PRODUCT" fileref="../../../../../../modules/xcos/images/palettes/PRODUCT.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata linkend="RELATIONALOP" fileref="../../../../../../modules/xcos/images/palettes/RELATIONALOP.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata linkend="SATURATION" fileref="../../../../../../modules/xcos/images/palettes/SATURATION.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata linkend="SWITCH2_m" fileref="../../../../../../modules/xcos/images/palettes/SWITCH2_m.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata linkend="TEXT_f" fileref="../../../../../../modules/xcos/images/palettes/TEXT_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
+            <link linkend="ANDBLK">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata linkend="ANDBLK" fileref="../../../../images/palettes/ANDBLK.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+            .
+            
+            <link linkend="BIGSOM_f">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata linkend="BIGSOM_f" fileref="../../../../images/palettes/BIGSOM_f.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+            .
+            
+            <link linkend="CMSCOPE">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata linkend="CMSCOPE" fileref="../../../../images/palettes/CMSCOPE.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+            .
+            
+            <link linkend="CONST_m">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata linkend="CONST_m" fileref="../../../../images/palettes/CONST_m.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+            .
+            
+            <link linkend="CONVERT">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata linkend="CONVERT" fileref="../../../../images/palettes/CONVERT.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+            .
+            
+            <link linkend="CSCOPXY">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata linkend="CSCOPXY" fileref="../../../../images/palettes/CSCOPXY.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+            .
+            
+            <link linkend="DEMUX">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata linkend="DEMUX" fileref="../../../../images/palettes/DEMUX.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+            .
+            
+            <link linkend="DOLLAR_f">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata linkend="DOLLAR_f" fileref="../../../../images/palettes/DOLLAR_f.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+            .
+            
+            <link linkend="INTEGRAL_f">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata linkend="INTEGRAL_f" fileref="../../../../images/palettes/INTEGRAL_f.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+            .
+            
+            <link linkend="IN_f">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata linkend="IN_f" fileref="../../../../images/palettes/IN_f.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+            .
+            
+            <link linkend="LOGICAL_OP">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata linkend="LOGICAL_OP" fileref="../../../../images/palettes/LOGICAL_OP.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+            .
+            
+            <link linkend="MUX">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata linkend="MUX" fileref="../../../../images/palettes/MUX.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+            .
+            
+            <link linkend="NRMSOM_f">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata linkend="NRMSOM_f" fileref="../../../../images/palettes/NRMSOM_f.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+            .
+            
+            <link linkend="OUT_f">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata linkend="OUT_f" fileref="../../../../images/palettes/OUT_f.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+            .
+            
+            <link linkend="PRODUCT">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata linkend="PRODUCT" fileref="../../../../images/palettes/PRODUCT.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+            .
+            
+            <link linkend="RELATIONALOP">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata linkend="RELATIONALOP" fileref="../../../../images/palettes/RELATIONALOP.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+            .
+            
+            <link linkend="SATURATION">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata linkend="SATURATION" fileref="../../../../images/palettes/SATURATION.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+            .
+            
+            <link linkend="SWITCH2_m">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata linkend="SWITCH2_m" fileref="../../../../images/palettes/SWITCH2_m.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+            .
+            
+            <link linkend="TEXT_f">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata linkend="TEXT_f" fileref="../../../../images/palettes/TEXT_f.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+            .
+            
         </para>
     </refsection>
     <refsection id="Module_Commonlyusedblocks_pal">
