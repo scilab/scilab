@@ -196,6 +196,11 @@ public:
         }
     }
 
+    inline void resetFBlockEmittedListener()
+    {
+        fblockListeners.clear();
+    }
+
     inline void emitFunctionBlock(FunctionBlock & fblock)
     {
         for (auto listener : fblockListeners)

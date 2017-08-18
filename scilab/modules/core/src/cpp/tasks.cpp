@@ -188,9 +188,12 @@ void execAstTask(ast::Exp* tree, bool serialize, bool timed, bool ASTtimed, bool
         {
             FBlockListener listener;
             analysis::AnalysisVisitor& analysis = analysis::AnalysisVisitor::getInstance();
-            analysis.reset();
+            analysis.resetFBlockEmittedListener();
             analysis.registerFBlockEmittedListener(&listener);
             newTree->accept(analysis);
+
+            ast::PrettyPrintVisitor dv(std::wcerr, true, true);
+            newTree->accept(dv);
         }
 
         exec = (ast::RunVisitor*)ConfigVariable::getDefaultVisitor();
