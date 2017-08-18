@@ -350,8 +350,8 @@
     <add as="PROD_f" extend="blockWithLabel">
         <add as="shape" value="ellipse"/>
         <remove as="image"/>
-        <add as="fontSize" value="20"/>
-        <add as="displayedLabel" value="×"/>
+        <add as="fontSize" value="18"/>
+        <add as="displayedLabel" value="X"/>
     </add>
     <add as="MATZREIM" extend="blockWithLabel">
         <add as="displayedLabel" value="Re &amp; Im"/>

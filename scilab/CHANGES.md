@@ -440,6 +440,7 @@ the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 * [#14573](http://bugzilla.scilab.org/show_bug.cgi?id=14573): `varargout` misworked when it was used in addition to fixed output arguments.
 * [#14584](http://bugzilla.scilab.org/show_bug.cgi?id=14584): The example of demo_choose help page was broken because of a wrong file path.
 * [#14598](http://bugzilla.scilab.org/show_bug.cgi?id=14598): `fort` wasn't properly removed.
+* [#14603](http://bugzilla.scilab.org/show_bug.cgi?id=14603): The icon of the PROD_f Xcos block was puzzled
 * [#14623](http://bugzilla.scilab.org/show_bug.cgi?id=14623): Bad lhs in MList extraction overload.
 * [#14629](http://bugzilla.scilab.org/show_bug.cgi?id=14629): In the Xcos EXPRESSION block, `<` could truncate the rendering of the expression in the icon.
 * [#14636](http://bugzilla.scilab.org/show_bug.cgi?id=14636): Xcos model with modelica electrical blocks (created in 5.5.2) crashed Scilab 6.
