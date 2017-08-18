@@ -45,6 +45,10 @@ function [x,y,typ]=EXPBLK_m(job,arg1,arg2)
                 model.rpar=a;
                 x.graphics=graphics;
                 x.model=model
+                // Updating the label ("%" like in "%e" must be protected):
+                lab = "EXPBLK_m;displayedLabel=" + ..
+                "$\mathsf{{"+strsubst(exprs,"%","{\scriptsize \%\normal }")+"}^{\,\large u}}$"
+                x.graphics.style = lab;
                 break
             end
         end
@@ -63,8 +67,8 @@ function [x,y,typ]=EXPBLK_m(job,arg1,arg2)
         model.blocktype="c"
         model.dep_ut=[%t %f]
 
-        exprs=["%e"]
+        exprs = ["%e"]
         gr_i=[]
-        x=standard_define([2 2],model,exprs,gr_i)
+        x=standard_define([2 2], model, exprs, gr_i)
     end
 endfunction

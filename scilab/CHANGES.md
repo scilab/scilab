@@ -278,6 +278,7 @@ Scilab 5.5.2 is able to open the newly saved files, but the ports have to be rep
 Added to the CVode package, it also benefits from the CVode root finding feature.
 * Added a new link style (`Optimal`) for automatically finding the optimal route.
 * Automatically reposition split blocks for better-looking layout.
+* `EXPBLK_m (a^u)` and `POWBLK_f (u^a)` icons now show the value of the `a` parameter. The `AUTOMAT` icon now shows `Nmodes` and `Nstates` values. The `SineVoltage` icon now shows the frequency value.
 * Block modifications:
   - `INVBLK`: add a divide by zero parameter to ignore the error
   - `PRODUCT`: add a divide by zero parameter to ignore the error
@@ -290,7 +291,7 @@ Added to the CVode package, it also benefits from the CVode root finding feature
   - dynamic palette with the last used blocks
   - zoom using CTRL(+), CTRL(-) and CTRL(mouse wheel)
   - load SVG icons
-* Deleted obsolete WFILE_f block, please use WRITEC_f instead.
+* Deleted obsolete `WFILE_f` block, please use `WRITEC_f` instead.
 
 
 API modification
@@ -427,6 +428,7 @@ Known issues
 * [#14656](http://bugzilla.scilab.org/show_bug.cgi?id=14656): The `matrix` page missed a synopsis for hypermatrix and deserved some improvements.
 * [#14680](http://bugzilla.scilab.org/show_bug.cgi?id=14680): The `<` char in expression was not rendered in the icon of Xcos EXPRESSION block.
 * [#14703](http://bugzilla.scilab.org/show_bug.cgi?id=14703): `clear linspace, type(linspace)` returned 11 instead of 13.
+* [#14749](http://bugzilla.scilab.org/show_bug.cgi?id=14749): The icon of the Xcos `POWBLK_f` and `EXPBLK_m` blocks displayed "u^a" and "a^u" instead of the actual a value.
 * [#14883](http://bugzilla.scilab.org/show_bug.cgi?id=14883): `whereis` did not support builtin functions.
 * [#14886](http://bugzilla.scilab.org/show_bug.cgi?id=14886): `Matplot` save/load failed.
 * [#14896](http://bugzilla.scilab.org/show_bug.cgi?id=14896): Using `set` with multiple properties, only the first one was set.

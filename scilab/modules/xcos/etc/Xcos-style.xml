@@ -208,6 +208,7 @@
     <add as="FROMWSB" extend="blockWithLabel">
         <!-- FIXME: update label from parameters (not as exprs) -->
         <add as="displayedLabel" value="From workspace"/>
+        <!--<add as="displayedLabel" value="$\mathsf{\substack{From workspace\\ \Large %s}}$"/> -->
     </add>
     <!-- CONTINUOUS -->
     <add as="DERIV" extend="blockWithLabel">
@@ -216,9 +217,11 @@
     <add as="INTEGRAL_m" extend="Icon">
         <add as="image" value="$SCILAB/modules/xcos/images/blocks/INTEGRAL.svg"/>
         <!--
-			<add as="displayedLabel" value="&lt;FONT SIZE=&quot;6&quot;&gt;
-			&#8747; &lt;/FONT&gt;"/>
-		-->
+        <add as="INTEGRAL_m" extend="blockWithLabel">
+            <add as="displayedLabel" value="$%s$"/>
+            <add as="displayedLabel" value="&lt;FONT SIZE=&quot;6&quot;&gt;
+            &#8747; &lt;/FONT&gt;"/>
+        -->
     </add>
     <add as="INTEGRAL" extend="INTEGRAL_m"/>
     <add as="CLSS" extend="blockWithLabel">
@@ -326,7 +329,7 @@
 		-->
     </add>
     <add as="POWBLK_f" extend="blockWithLabel">
-        <add as="displayedLabel" value="u^a"/>
+        <add as="displayedLabel" value="$\mathsf{u^{%s}}$"/>
     </add>
     <add as="INVBLK" extend="blockWithLabel">
         <add as="displayedLabel" value="1/u"/>
@@ -345,7 +348,7 @@
         <add as="displayedLabel" value="A / B"/>
     </add>
     <add as="EXPBLK_m" extend="blockWithLabel">
-        <add as="displayedLabel" value="a^u"/>
+        <add as="displayedLabel" value="$\mathsf{{{\scriptsize \%\normal}e}^{\large\,u}}$"/>
     </add>
     <add as="PROD_f" extend="blockWithLabel">
         <add as="shape" value="ellipse"/>
@@ -391,6 +394,7 @@
     </add>
     <add as="MAXMIN" extend="blockWithLabel">
         <add as="displayedLabel" value="MIN / MAX"/>
+        
     </add>
     <add as="ABS_VALUE" extend="blockWithLabel">
         <add as="displayedLabel" value="ABS"/>
@@ -651,7 +655,7 @@
     </add>
     <add as="M_freq" extend="blockWithLabel">
         <add as="displayedLabel" value="Multiple&lt;BR&gt;         frequency"/>
-
+        
     </add>
     <add as="ANDBLK" extend="Icon">
         <add as="image" value="$SCILAB/modules/xcos/images/blocks/ANDBLK.svg"/>
@@ -766,7 +770,7 @@
         <add as="displayedLabel" value="%s"/>
     </add>
     <add as="RELATIONALOP" extend="blockWithLabel">
-        <add as="displayedLabel" value="Relational&lt;BR&gt;         op : &amp;&lt;"/>
+        <add as="displayedLabel" value="$\Large\lt$"/>
         <!-- new value for the label defined in the interface function of block -->
     </add>
     <add as="TEXT_f" extend="Label">
@@ -856,7 +860,7 @@
     <add as="SineVoltage" extend="blockWithLabel">
         <add as="shape" value="ellipse"/>
         <add as="perimeter" value="ellipsePerimeter"/>
-        <add as="displayedLabel" value="%s V&lt;br/&gt;~"/>
+        <add as="displayedLabel" value="$\mathsf{\substack{%s\,V\vphantom{%s}\\ \sim\,%s}}$"/>
     </add>
     <add as="Switch" extend="Icon">
         <add as="image" value="$SCILAB/modules/xcos/images/blocks/SWITCH.svg"/>
@@ -917,10 +921,10 @@
     </add>
     <add as="BPLATFORM" extend="Icon">
         <add as="image" value="$SCILAB/modules/xcos/images/blocks/BPLATFORM.svg"/>
+        
     </add>
     <add as="AUTOMAT" extend="blockWithLabel">
-        <!-- FIXME : Show parameters over block  -->
-        <add as="displayedLabel" value="Automaton&lt;BR&gt;         nM=2, nX=1"/>
+        <add as="displayedLabel" value="$\mathsf{\substack{\large Automaton\\%s\ modes\ |\ \vphantom{%s}%s\ states}}$"/>
     </add>
     <!-- GENERATED BLOCKS -->
     <add as="SPLIT_f" extend="Split"/>
