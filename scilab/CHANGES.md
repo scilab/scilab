@@ -234,6 +234,8 @@ bounds selected out of the axes areas is now restored, after the Scilab 5.4 regr
 Help pages:
 -----------
 
+* Support to `id`, `width`, `height`, `align` and `style` attributes added for the `<imagedata>` tag.
+* Support to `id` attribute added for the `<tr>` tag.
 * fixed / improved:  `members`, `part`, `ode`, `ode_optional_output`, `ode_roots`, `plot2d`, `roots`,
   `printf`, `sprintf`, `iconvert`, `stdev`, `xlabel`, `and_op`, `or_op`, `permute`, `tree2code`, `%helps`,
   `scilab|scilex`, `flipdim`, `Matplot_properties`, `meshgrid`, `ismatrix`, `xget`, `xset`, `ieee`, `evstr`,
@@ -447,6 +449,7 @@ the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 * [#14922](http://bugzilla.scilab.org/show_bug.cgi?id=14922): The `%onprompt()` special function was not documented.
 * [#14925](http://bugzilla.scilab.org/show_bug.cgi?id=14925): `jdeff`: `invoke_lu()` deleted/corrupted the called java method after an error occured.
 * [#14981](http://bugzilla.scilab.org/show_bug.cgi?id=14981): Some vertical concatenations of cells and further cells extractions crash Scilab.
+* [#14984](http://bugzilla.scilab.org/show_bug.cgi?id=14984): Blocks screenshots could not be scaled nor aligned in palettes pages.
 * [#15006](http://bugzilla.scilab.org/show_bug.cgi?id=15006): `ode` help page still contained 'root' which has been replaced by 'roots'.
 * [#15008](http://bugzilla.scilab.org/show_bug.cgi?id=15008): scilab crashed when using operator AND (&, &&) or OR (| ||) with a string.
 * [#15010](http://bugzilla.scilab.org/show_bug.cgi?id=15010): Coselica did not simulate on Scilab 6.

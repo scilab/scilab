@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - Calixte DENIZET
+ * Copyright (C) 2016, 2017 - Samuel GOUGEON
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -668,15 +669,37 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
 
     @Override
     public String generateImageCode(String fileName, Map<String, String> attrs) {
-        String alignAttr = attrs.get("align");
+        String idAttr    = attrs.get("id");
+        String alignAttr = attrs.get("align");   // mixes align and valign imagedata attributes
+        String widthAttr = attrs.get("width");
+        String heightAttr= attrs.get("height"); // officially named "depth" as imagedata attribute
+        String styleAttr = attrs.get("style");
         boolean addDiv = getGenerationType() != Backend.JAVAHELP || !isLinkedImage();
         final StringBuilder buffer = new StringBuilder(128);
         if (addDiv && alignAttr != null) {
-            buffer.append("<div style=\'text-align:").append(alignAttr).append("\'>");
+            buffer.append("<div style=\'text-align:").append(alignAttr).append("\'>\n");
         }
-        buffer.append("<img src=\'").append(fileName).append("\'/>");
+        buffer.append("<img src=\'").append(fileName).append("\' ");
+        if (!addDiv && alignAttr != null) {
+            buffer.append("align=\'").append(alignAttr).append("\' ");
+        }
+        if (idAttr != null){
+            buffer.append("id=\'").append(idAttr).append("\' ");
+        }
+        if (widthAttr != null){   // To avoid misshaping: setting width priority > setting height
+            buffer.append("width=\'").append(widthAttr).append("\' ");
+        }
+        else {
+            if (heightAttr != null) {
+                buffer.append("height=\'").append(heightAttr).append("\' ");
+            }
+        }
+        if (styleAttr != null) {
+            buffer.append("style=\'").append(styleAttr).append("\'");
+        }
+        buffer.append("/>\n");
         if (addDiv && alignAttr != null) {
-            buffer.append("</div>");
+            buffer.append("</div>\n");
         }
 
         return buffer.toString();
@@ -1510,8 +1533,9 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
     public String handleTr(final Map<String, String> attributes, final String contents) throws SAXException {
         String bgcolor = attributes.get("bgcolor");
         String valign = attributes.get("valign");
+        String id = attributes.get("id");
 
-        return encloseContents("tr", new String[] {"bgcolor", bgcolor, "valign", valign}, contents);
+        return encloseContents("tr", new String[] {"id", id, "bgcolor", bgcolor, "valign", valign}, contents);
     }
 
     /**
@@ -1908,7 +1932,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @throws SAXEception if an error is encountered
      */
     public String handleRevision(final Map<String, String> attributes, final String contents) throws SAXException {
-        return encloseContents("tr", contents);
+        return encloseContents("tr", new String[] {"valign", "top"}, contents);
     }
 
     /**
