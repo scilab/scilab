@@ -36,9 +36,6 @@ function [x,y,typ]=EXPRESSION(job,arg1,arg2)
         old_ieee = ieee();
         ieee(2)
         while %t do
-            // http://bugzilla.scilab.org/14680: converting "&lt;" to "<" to make the expression editable:
-            exprs(2) = strsubst(exprs(2),"&lt;","<");
-
             // Prompting the user to edit parameters:
             [ok,%nin,%exx,%usenz,exprs]=scicos_getvalue(..
             ["Give a scalar scilab expression using inputs u1, u2,...";
@@ -59,10 +56,7 @@ function [x,y,typ]=EXPRESSION(job,arg1,arg2)
             %exx=strsubst(exprs(2)," ","")
             if %exx==emptystr() then
                 %exx="0",
-            end  // Avoid empty expression
-
-            // http://bugzilla.scilab.org/14680: converting "<" back to "&lt;" for proper display
-            exprs(2) = strsubst(exprs(2),"<","&lt;");
+            end  //avoid empty expression
 
             if %nin==1 then
                 %nini=8,
@@ -102,8 +96,23 @@ function [x,y,typ]=EXPRESSION(job,arg1,arg2)
                                 model.nzcross=0
                                 model.nmode=0
                             end
-                            graphics.exprs=exprs
-                            x.graphics=graphics
+                            graphics.exprs=exprs;
+                            // Updating the protected label: http://bugzilla.scilab.org/14680
+                            // "<" can't be replaced with "&lt;" because ";" is
+                            //  used as subfield separator in the graphics.style field...
+                            // => using a LaTeX expression instead
+                            lab = strsubst(exprs(2), "%", "\%");
+                            tmp = [
+                                "$\mathsf\scalebox{0.8}{"
+                                "\begin{array}{c}"
+                                    "\mbox{Expression:}\\"
+                                    "\scalebox{0.9}{"+lab+"}"
+                                "\end{array}"
+                                "}$"
+                                ];
+                            lab = "EXPRESSION;displayedLabel="+strcat(tmp);
+                            graphics.style = lab;
+                            x.graphics=graphics;
                             x.model=model
                             break
                         end
