@@ -33,6 +33,7 @@ function [x,y,typ]=EXPRESSION(job,arg1,arg2)
         for ii=1:8,
             execstr("%scicos_context.u"+string(ii)+"=0"),
         end
+        old_ieee = ieee();
         ieee(2)
         while %t do
             // http://bugzilla.scilab.org/14680: converting "&lt;" to "<" to make the expression editable:
@@ -110,6 +111,8 @@ function [x,y,typ]=EXPRESSION(job,arg1,arg2)
                 end
             end
         end
+        ieee(old_ieee);
+
     case "define" then
         in=[1;1]
         out=1
