@@ -152,7 +152,7 @@ int FunctionsModule::Load()
 
     for (int i = 0 ; i < (int)vect.size() ; i++)
     {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
+        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstPath));
     }
 
     FREE(pwstLibName);
@@ -173,7 +173,7 @@ int StatisticsModule::Load()
 
     for (int i = 0 ; i < (int)vect.size() ; i++)
     {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
+        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstPath));
     }
 
     FREE(pwstLibName);
@@ -194,7 +194,7 @@ int SignalProcessingModule::Load()
 
     for (int i = 0 ; i < (int)vect.size() ; i++)
     {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
+        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstPath));
     }
 
     FREE(pwstLibName);
@@ -247,7 +247,7 @@ int MatioModule::Load()
 
     for (int i = 0 ; i < (int)vect.size() ; i++)
     {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
+        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstPath));
     }
 
     FREE(pwstLibName);
@@ -287,7 +287,7 @@ int ActionBindingModule::Load()
 
     for (int i = 0 ; i < (int)vect.size() ; i++)
     {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
+        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstPath));
     }
 
     FREE(pwstLibName);
