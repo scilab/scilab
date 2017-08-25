@@ -1833,12 +1833,12 @@ void mexUnlock(void)
 
 void mexMakeArrayPersistent(void *ptr)
 {
-    //TODO
+    //Dummy Function as in Scilab6 Memory is not tracked.
 }
 
 void mexMakeMemoryPersistent(void *ptr)
 {
-    //TODO
+    //Dummy Function as in Scilab6 Memory is not tracked.
 }
 
 double mxGetInf(void)
