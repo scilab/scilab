@@ -309,10 +309,10 @@
         </para>
         <programlisting role="example"><![CDATA[
 // x and y initialisation
-x = linspace(0,2,200)
-y = exp(-x).*cos(10*x) + 0.2*rand(1,length(x))
+x = linspace(0,2,200);
+y = exp(-x).*cos(10*x) + 0.2*rand(1,length(x));
 // create 2D scatter plot
-scatter(x,y)
+scatter(x,y);
  ]]></programlisting>
         <scilab:image>
             x = linspace(0,2,200)
@@ -324,12 +324,12 @@ scatter(x,y)
         </para>
         <programlisting role="example"><![CDATA[
 // x and y initialisation
-x = linspace(0,2,200)
-y = exp(-x).*cos(10*x) + 0.2*rand(1,length(x))
+x = linspace(0,2,200);
+y = exp(-x).*cos(10*x) + 0.2*rand(1,length(x));
 // specify different sizes
-s = linspace(1,30,length(x))
+s = linspace(1,30,length(x));
 // create 2D scatter plot
-scatter(x, y, s)
+scatter(x, y, s);
  ]]></programlisting>
         <scilab:image>
             x = linspace(0,2,200)
@@ -342,16 +342,16 @@ scatter(x, y, s)
         </para>
         <programlisting role="example"><![CDATA[
 // x and y initialisation
-x = linspace(0, 2, 200)
-y = exp(-x).*cos(10*x) + 0.2*rand(1,length(x))
+x = linspace(0, 2, 200);
+y = exp(-x).*cos(10*x) + 0.2*rand(1,length(x));
 // specify different sizes
-s = linspace(1, 30, length(x))
+s = linspace(1, 30, length(x));
 // set color map
 gcf().color_map = coolcolormap(64);
 // colors according to x values
-c = x
+c = x;
 // create 2D scatter plot
-scatter(x,y,s,c)
+scatter(x,y,s,c);
  ]]></programlisting>
         <scilab:image>
             x = linspace(0,2,200)
@@ -366,16 +366,16 @@ scatter(x,y,s,c)
         </para>
         <programlisting role="example"><![CDATA[
 // x and y initialisation
-x = linspace(0, 2, 200)
-y = exp(-x).*cos(10*x) + 0.2*rand(1,length(x))
+x = linspace(0, 2, 200);
+y = exp(-x).*cos(10*x) + 0.2*rand(1,length(x));
 // specify different sizes
-s = linspace(1, 30, length(x))
+s = linspace(1, 30, length(x));
 // set color map
 gcf().color_map = coolcolormap(64);
 // colors according to y values
-c = y
+c = y;
 // create 2D scatter plot
-scatter(x, y, s, c, "fill")
+scatter(x, y, s, c, "fill");
  ]]></programlisting>
         <scilab:image>
             x = linspace(0,2,200)
@@ -390,10 +390,10 @@ scatter(x, y, s, c, "fill")
         </para>
         <programlisting role="example"><![CDATA[
 // x and y initialisation
-x = rand(1, 200)
-y = rand(1, 200)
+x = rand(1, 200);
+y = rand(1, 200);
 // create 2D scatter plot
-scatter(x, y, "d")
+scatter(x, y, "d");
  ]]></programlisting>
         <scilab:image>
             x = rand(1,200)
@@ -405,12 +405,12 @@ scatter(x, y, "d")
         </para>
         <programlisting role="example"><![CDATA[
 // x and y initialisation
-x = rand(1, 200)
-y = rand(1, 200)
+x = rand(1, 200);
+y = rand(1, 200);
 // create 2D scatter plot
 scatter(x, y, "markerEdgeColor",[0 .4 .4],...
               "markerFaceColor",[0 .8 .8],...
-              "linewidth",1.5)
+              "linewidth",1.5);
  ]]></programlisting>
         <scilab:image>
             x = rand(1,200)
@@ -424,14 +424,14 @@ scatter(x, y, "markerEdgeColor",[0 .4 .4],...
         </para>
         <programlisting role="example"><![CDATA[
 // x and y initialisation
-x = linspace(0, 2, 100)
-y = exp(-x).*cos(10*x) + 0.2*rand(1,length(x))
+x = linspace(0, 2, 100);
+y = exp(-x).*cos(10*x) + 0.2*rand(1,length(x));
 // create 2D scatter subplot
 subplot(2, 1, 1)
-scatter(gca(), x, y)
+scatter(gca(), x, y);
 // create 2D scatter subplot
 subplot(2, 1, 2)
-scatter(gca(), x, y, "fill", "s")
+scatter(gca(), x, y, "fill", "s");
  ]]></programlisting>
         <scilab:image>
             x = linspace(0,2,100)
@@ -446,11 +446,11 @@ scatter(gca(), x, y, "fill", "s")
         </para>
         <programlisting role="example"><![CDATA[
 // x and y initialisation
-t = linspace(0,1,200)
-x = t .* cos(10*%pi*t)
-y = t .* sin(10*%pi*t)
+t = linspace(0,1,200);
+x = t .* cos(10*%pi*t);
+y = t .* sin(10*%pi*t);
 // create 2D scatter plot
-p = scatter(x, y)
+p = scatter(x, y);
  ]]></programlisting>
         <scilab:image>
             t = linspace(0,25,200)
@@ -460,9 +460,9 @@ p = scatter(x, y)
         </scilab:image>
         <programlisting role="example"><![CDATA[
 // modify polyline
-p.thickness = 0.5
-p.mark_foreground = color("darkblue")
-p.mark_background = color("darkcyan")
+p.thickness = 0.5;
+p.mark_foreground = color("darkblue");
+p.mark_background = color("darkcyan");
  ]]></programlisting>
         <scilab:image>
             t = linspace(0,25,200)
