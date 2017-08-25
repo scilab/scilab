@@ -880,11 +880,11 @@ mwSize *mxGetDimensions(const mxArray *ptr)
             return piDims;
         }
         default:
-        {   
+        {
             if(pIT->isGenericType() == false)
             {
                return NULL;
-            } 
+            }
             types::GenericType *pGT = pIT->getAs<types::GenericType>();
 
             return pGT->getDimsArray();
@@ -1446,13 +1446,13 @@ const char *mxGetClassName(const mxArray *ptr)
 
 mxArray *mxGetProperty(const mxArray *pa, mwIndex index, const char *propname)
 {
-    //TODO
+    //TODO : Dummy function as it requires objects which are Matlab class instances and there are no classes in Scilab.
     return NULL;
 }
 
 void mxSetProperty(mxArray *pa, mwIndex index, const char *propname, const mxArray *value)
 {
-    //TODO
+    //TODO : Dummy function as it requires objects which are Matlab class instances and there are no classes in Scilab.
 }
 
 mxArray *mxGetField(const mxArray *ptr, int lindex, const char *string)
@@ -1672,13 +1672,13 @@ mxArray *mexEvalStringWithTrap(const char *command)
 
 const mxArray *mexGet(double handle, const char *property)
 {
-    //TODO
+    //TODO : Dummy function as it requires objects which are Matlab class instances and there are no classes in Scilab.
     return NULL;
 }
 
 int mexSet(double handle, const char *property, mxArray *value)
 {
-    //TODO
+    //TODO : Dummy function as it requires objects which are Matlab class instances and there are no classes in Scilab.
     return 0;
 }
 
