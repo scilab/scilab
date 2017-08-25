@@ -1793,12 +1793,14 @@ void mexSetTrapFlag(int trapflag)
 
 void mexErrMsgIdAndTxt(const char *errorid, const char *errormsg, ...)
 {
-    //TODO
+    //TODO: Have to handle errorid.
+    mexErrMsgTxt(errormsg);
 }
 
 void mexWarnMsgIdAndTxt(const char *warningid, const char *warningmsg, ...)
 {
-    //TODO
+    //TODO: Have to handle warningid.
+    mexWarnMsgTxt(warningmsg);
 }
 
 void mexErrMsgTxt(const char *error_msg)
