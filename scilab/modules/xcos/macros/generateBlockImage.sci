@@ -112,6 +112,7 @@ function status = generateBlockImage(block, path, filename, imageType, withPort)
     o = block;
     ierr = execstr("block  = " + o.gui + "(""plot"",o)", "errcatch");
     if (ierr <> 0) then
+        driver(previous_driver);
         return;
     end
 
