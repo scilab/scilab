@@ -12,9 +12,44 @@
 function main_menubar_cb(key)
     // Private internal function
     // * initially called by scilab.start
-    // * afterwards called by the menu(File).callback
+    // * afterwards called by the menu(File).callback set according to
+    //   SCI/modules/gui/etc/main_menubar.xml
 
-    if  key=="setFavoriteDirs"
+    if key=="openFile"
+        msg = gettext("Select a file to open");
+        ext = [ "*.sce|*.sci"       _("Scilab scripts")
+                "*.xcos|*.zcos"     _("Xcos diagrams")
+                "*.tst|*.dia.ref"   _("Scilab Tests")
+                "*.scg"             _("Scilab Graphics")
+                "lib"               _("Scilab Library")
+                "*.sc*|*.*cos|*.tst|*.dia.ref|lib" _("All Scilab files")
+                ];
+        %fileToOpen = uigetfile(ext, pwd(), msg);
+        if %fileToOpen ~= "" then
+            ext = convstr(fileparts(%fileToOpen, "extension"));
+            if or(ext==[".xcos" ".zcos"])
+                xcos(%fileToOpen);
+            elseif or(ext==[".sce" ".sci" ".tst" ".ref"])
+                editor(%fileToOpen);
+            elseif ext==".scg"
+                load(%fileToOpen);
+            elseif basename(%fileToOpen)=="lib"
+                libname = getPreferencesValue("/scilablib","name",%fileToOpen);
+                load(%fileToOpen);
+                mprintf(libname+" loaded.\n");
+                execstr(libname+"=return("+libname+")");
+            else
+                if getos()=="Windows"
+                    winopen(%fileToOpen)
+                elseif getos()=="Linux"
+                    host("xdg-open "+%fileToOpen+" &")
+                else
+                    host("open "+%fileToOpen+" &")
+                end
+            end
+        end
+
+    elseif  key=="setFavoriteDirs"
         // Setting the list of directories of interest
         // = major directories + Scinotes favorites
         //

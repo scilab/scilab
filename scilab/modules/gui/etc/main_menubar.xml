@@ -10,7 +10,7 @@
         </submenu>
         <separator/>
         <submenu label="&amp;Open a file..." accelerator="OSSCKEY O" icon="document-open-sci">
-            <callback instruction="%fileToOpen = uigetfile(&quot;*.sc*&quot;, &quot;&quot;, gettext(&quot;Select a file to open with SciNotes&quot;)); if ~(%fileToOpen == &quot;&quot;) then editor(%fileToOpen); end; clear(&quot;%fileToOpen&quot;);" type="0"/>
+            <callback instruction="main_menubar_cb(&quot;openFile&quot;);" type="0"/>
         </submenu>
         <submenu label="&amp;Load environment..." accelerator="OSSCKEY L" icon="document-open">
             <callback instruction="%fileToLoad = uigetfile([&quot;*.sav&quot;;&quot;*.sod&quot;], &quot;&quot;, gettext(&quot;Select a file to load&quot;)); if ~(%fileToLoad == &quot;&quot;) then load(%fileToLoad); updatebrowsevar(); disp(msprintf(gettext(&quot;Environment loaded.\n&quot;))); end; clear(&quot;%fileToLoad&quot;);" type="0"/>

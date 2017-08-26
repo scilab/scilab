@@ -210,6 +210,9 @@ bounds selected out of the axes areas is now restored, after the Scilab 5.4 regr
 * `lqi` function added to compute "linear quadratic integral compensator".
 * A new console `File => Go to Favorite directory` menu allows to go to a favorite directory selected
   in a dynamical list set from Scinotes favorite and most recent directories.
+* The console `File => Open a file` menu allows now to open *.xcos *.zcos *.scg or lib files with
+   the proper Scilab component, and other files with the proper OS application.
+   All files were formerly opened in Scinotes.
 * `size` can now be overloadable for tlist lists, as it already could for mlist lists.
 * `gcd` now accepts `int64` and `uint64` integers. The input can now be any array instead of a row.
 * `cat` has been rewritten. It is now fast and can process heavy arrays at high dimensions.
@@ -353,6 +356,7 @@ the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 * [#4276](http://bugzilla.scilab.org/show_bug.cgi?id=4276): `strsubst` replaced the first occurence in regex mode.
 * [#5278](http://bugzilla.scilab.org/show_bug.cgi?id=5278): obsolete `xset()` was still used in scripts, macros, tests and help pages.
 * [#8297](http://bugzilla.scilab.org/show_bug.cgi?id=8297): `cat` slowness was exponential, crippling, and made it useless.
+* [#9519](http://bugzilla.scilab.org/show_bug.cgi?id=9519): The console menu `File -> Open a file` opened any file in Scinotes. Binary files like .zcos blocked Scinotes.
 * [#11756](http://bugzilla.scilab.org/show_bug.cgi?id=11756): In the categories of the ATOMS GUI, actually available modules might be not listed.
 * [#12195](http://bugzilla.scilab.org/show_bug.cgi?id=12195): `generateBlockImage` sometimes changed the current graphic driver.
 * [#12771](http://bugzilla.scilab.org/show_bug.cgi?id=12771): xcosPalGenerateAllIcons help example was broken.
