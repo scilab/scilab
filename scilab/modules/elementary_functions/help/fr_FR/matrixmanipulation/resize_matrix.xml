@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Jean-Baptiste SILVY
- * Copyright (C) 2013, 2016 - Samuel GOUGEON
+ * Copyright (C) 2013, 2016, 2017 - Samuel GOUGEON
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -44,7 +44,8 @@
             <varlistentry>
                 <term>mat</term>
                 <listitem>
-                    <para>Matrice à retailler, de type booléens, entiers encodés, décimaux (réels ou complexes), polynômes, ou texte
+                    <para>Matrice à retailler, de type booléens, entiers encodés, décimaux (réels
+                    ou complexes), polynômes, ou texte
                     </para>
                 </listitem>
             </varlistentry>
@@ -77,10 +78,19 @@
                         Pour conserver une taille à la taille actuelle, indiquer -1.
                     </para>
                     <para>
-                        S'il est plus court que <literal>size(mat)</literal>, il est complété avec des 1. Exemple: si <varname>mat</varname> telle que <literal>size(mat)==[ 4 3 3 2]</literal> est fournie, et <literal>newSizes=[6 2]</literal> est spécifié, <literal>newSizes = [6 2 1 1]</literal> sera utilisé.
+                        S'il est plus court que <literal>size(mat)</literal>, il est complété avec
+                        des 1. Exemple: si <varname>mat</varname> telle que
+                        <literal>size(mat)==[ 4 3 3 2]</literal> est fournie, et
+                        <literal>newSizes=[6 2]</literal> est spécifié,
+                        <literal>newSizes = [6 2 1 1]</literal> sera utilisé.
                     </para>
                     <para>
-                        Si <varname>newSizes</varname> est plus long que <literal>size(mat)</literal> avec <literal>newSizes($)>1</literal>, une ou plusieurs dimensions sont ajoutées à <varname>mat</varname>. Exemple: si <varname>mat</varname> telle que <literal>size(mat)==[ 4 3 ]</literal> est fournie avec <literal>newSizes=[6 2 2]</literal>, le résultat sera une hypermatrice de 2 pages, la seconde étant complètement initialisée.
+                        Si <varname>newSizes</varname> est plus long que <literal>size(mat)</literal>
+                        avec <literal>newSizes($)>1</literal>, une ou plusieurs dimensions sont
+                        ajoutées à <varname>mat</varname>. Exemple: si <varname>mat</varname> telle
+                        que <literal>size(mat)==[ 4 3 ]</literal> est fournie avec
+                        <literal>newSizes=[6 2 2]</literal>, le résultat sera une hypermatrice de
+                        2 pages, la seconde étant complètement initialisée.
                     </para>
                     <para>
                         <literal>newSizes = [nbRows, nbCols]</literal> peut être utilisé pour une matrice.
@@ -90,21 +100,34 @@
             <varlistentry>
                 <term>resType</term>
                 <listitem>
-                    <para>option indiquant le type en lequel la matrice/hypermatrice retaillée doit être convertie. resType peut être "boolean", "constant", "string", "int8", "uint8", "int16", "uint16", "int32", and "uint32".</para>
-                    <para>Aucune conversion n'est admise pour une matrice ou hypermatrice de polynômes, ni pour une hypermatrice de texte.</para>
+                    <para>
+                    option indiquant le type en lequel la matrice/hypermatrice retaillée doit
+                    être convertie. resType peut être "boolean", "constant", "string", "int8",
+                    "uint8", "int16", "uint16", "int32", "uint32", "int64", ou "uint64".
+                    </para>
+                    <para>
+                        Aucune conversion n'est admise pour une matrice ou hypermatrice de polynômes,
+                        ni pour une hypermatrice de texte.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>padding</term>
                 <listitem>
                     <para>
-                        option de même type que <varname>mat</varname>, spécifiant le contenu scalaire à affecter aux éléments ajoutés à <varname>mat</varname> lorsque sa taille selon une dimension est augmentée. La valeur utilisée par défaut est <literal>0</literal> (réels, complexes, entiers encodés, polynômes), ou <literal>""</literal> (texte), ou <literal>%F</literal> (booléens).
+                        option de même type que <varname>mat</varname>, spécifiant le contenu
+                        scalaire à affecter aux éléments ajoutés à <varname>mat</varname> lorsque sa
+                        taille selon une dimension est augmentée. La valeur utilisée par défaut est
+                        <literal>0</literal> (réels, complexes, entiers encodés, polynômes),
+                        ou <literal>""</literal> (texte), ou <literal>%F</literal> (booléens).
                     </para>
                     <para>
-                        Lorsque les types de <varname>mat</varname> et <varname>padding</varname> sont distincts, Scilab tente de convertir le type de <varname>padding</varname>.
+                        Lorsque les types de <varname>mat</varname> et <varname>padding</varname>
+                        sont distincts, Scilab tente de convertir le type de <varname>padding</varname>.
                     </para>
                     <para>
-                        Pour les polynômes, le nom de l'inconnue du polynôme <varname>padding</varname> est forcé à celui de <varname>mat</varname>.
+                        Pour les polynômes, le nom de l'inconnue du polynôme <varname>padding</varname>
+                        est forcé à celui de <varname>mat</varname>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -119,8 +142,11 @@
     <refsection role="description">
         <title>Description</title>
         <para>
-            Crée une matrice de taille <literal>[nbRows, nbCols]</literal> ou <literal>newSizes</literal>, ou une hypermatrice de taille <literal>newSizes</literal>.
-            Si, pour une certaine dimension, la nouvelle taille est plus petite que l'initiale, la matrice est élaguée. Si la taille est agrandie, alors de nouveaux éléments valant <literal>padding</literal> sont ajoutés à la matrice/hypermatrice.
+            Crée une matrice de taille <literal>[nbRows, nbCols]</literal> ou
+            <literal>newSizes</literal>, ou une hypermatrice de taille <literal>newSizes</literal>.
+            Si, pour une certaine dimension, la nouvelle taille est plus petite que l'initiale, la
+            matrice est élaguée. Si la taille est agrandie, alors de nouveaux éléments valant
+            <literal>padding</literal> sont ajoutés à la matrice/hypermatrice.
             Le nombre de dimensions peut être augmenté.
         </para>
         <para>
@@ -221,10 +247,28 @@ resize_matrix(P, [3 3 2], "", %z)
         <revhistory>
             <revision>
                 <revnumber>5.5.0</revnumber>
-                <revremark>Les polynômes et les hypermatrices sont désormais acceptés.
-                    La valeur affectée aux éléments d'extension peut être spécifiée.
-                    Les nouvelles tailles peuvent être spécifiées dans un vecteur.
-                    resize_matrix appelée sans paramètres affiche des exemples de démonstration.
+                <revremark>
+                    <itemizedlist>
+                        <listitem>
+                            Les polynômes et les hypermatrices sont désormais acceptés.
+                        </listitem>
+                        <listitem>
+                            La valeur affectée aux éléments d'extension peut être spécifiée.
+                        </listitem>
+                        <listitem>
+                            Les nouvelles tailles peuvent être spécifiées dans un vecteur.
+                        </listitem>
+                        <listitem>
+                            resize_matrix() appelée sans paramètres affiche des exemples de démonstration.
+                        </listitem>
+                    </itemizedlist>
+                </revremark>
+            </revision>
+            <revision>
+                <revnumber>6.0.1</revnumber>
+                <revremark>
+                    L'option <literal>resType</literal> est étendue aux nouveaux types entiers
+                    <literal>int64</literal> et <literal>uint64</literal>.
                 </revremark>
             </revision>
         </revhistory>

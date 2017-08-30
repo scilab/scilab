@@ -1,5 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2013, 2016 - Samuel GOUGEON
+// Copyright (C) 2013, 2016, 2017 - Samuel GOUGEON
 //
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
@@ -262,7 +262,7 @@ function mat = resize_matrix(mat, varargin)
             error(msprintf(msg, "resize_matrix"))
         elseif resType=="string"
             mat = string(mat)
-        elseif or(resType==["int8" "int16" "int32" "uint8" "uint16" "uint32"])
+        elseif or(resType==["int8" "int16" "int32" "int64" "uint8" "uint16" "uint32" "uint64"])
             if type_0=="string"
                 mat = strtod(mat)       // strings => decimals
             end

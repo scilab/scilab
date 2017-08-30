@@ -193,6 +193,7 @@ input and output arguments.
    - results with decimal-encoded integers > 2^32 are now correct.
    - decimal-encoded integers > 2^52 are now supported up to the biggest 1.80D+308.
    - `bitxor` is now vectorized and fast.
+* `resize_matrix`: Its conversion option is extended to the new `int64` and `uint64` integer types.
 * Interactively setting a common zoom box on multiple neighbouring or overlaying axes, and with
 bounds selected out of the axes areas is now restored, after the Scilab 5.4 regression.
 * Scroll to zoom:
@@ -420,6 +421,7 @@ the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 * [#15266](http://bugzilla.scilab.org/show_bug.cgi?id=15266): Wrong default out_mode in `linear_interpn`.
 * [#15273](http://bugzilla.scilab.org/show_bug.cgi?id=15273): The documented order of `eval_cshep2d` second derivatives was wrong.
 * [#15282](http://bugzilla.scilab.org/show_bug.cgi?id=15282): `help_from_sci` could set an xml:id starting with the forbidden `%` character.
+* [#15285](http://bugzilla.scilab.org/show_bug.cgi?id=15285): `resize_matrix` did not manage convertion into int64 and uint64.
 
 ### Bugs fixed in 6.0.0:
 * [#592](http://bugzilla.scilab.org/show_bug.cgi?id=592): `linspace(a, b, n<=0)` returned `b` instead of `[]`
