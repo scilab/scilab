@@ -12,7 +12,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="evstr" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="evstr" xml:lang="en">
     <refnamediv>
         <refname>evstr</refname>
         <refpurpose>evaluation of expressions</refpurpose>
@@ -96,27 +99,27 @@
         <para>
             <literal>Inf</literal> will be interpreted as <constant>%inf</constant>.
         </para>
-        <note>
-            Note that <varname>Z</varname> should not be composed of continuation marks (..).
-        </note>
+        <warning>
+            <varname>Z</varname> should not include any continuation marks (..).
+        </warning>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example">
-            a = 1; b = 2;
-            Z = ['a', 'b'] ;
-            evstr(Z)
+        <programlisting role="example"><![CDATA[
+a = 1; b = 2;
+Z = ['a', 'b'] ;
+evstr(Z)
 
-            Z = list(['%(1)','%(1)-%(2)'],['a+1','b+1']);
-            evstr(Z)
+Z = list(['%(1)','%(1)-%(2)'],['a+1','b+1']);
+evstr(Z)
 
-            evstr('NaN'), evstr('Inf')
+evstr('NaN'), evstr('Inf')
 
-            //The two return values version
-            [H, ierr] = evstr(Z) // no error
-            Z = ['a', 'b', 'c'] ;// the variable c is undefined
-            [H, ierr] = evstr(Z) // error 4: Undefined variable: c
-        </programlisting>
+//The two return values version
+[H, ierr] = evstr(Z) // no error
+Z = ['a', 'b', 'c'] ;// the variable c is undefined
+[H, ierr] = evstr(Z) // error 4: Undefined variable: c
+]]>    </programlisting>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
