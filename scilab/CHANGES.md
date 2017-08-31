@@ -406,6 +406,7 @@ the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 * [#15205](http://bugzilla.scilab.org/show_bug.cgi?id=15205): `get_scicos_version` returned the previous version.
 * [#15207](http://bugzilla.scilab.org/show_bug.cgi?id=15207): `xcos(scs_m)` did not work for sub-systems.
 * [#15236](http://bugzilla.scilab.org/show_bug.cgi?id=15236): The `isglobal` help page was inaccurate. Examples were erroneous.
+* [#15260](http://bugzilla.scilab.org/show_bug.cgi?id=15260): `sci2exp` was broken for cells, structures, and all types of hypermatrix.
 * [#15266](http://bugzilla.scilab.org/show_bug.cgi?id=15266): Wrong default out_mode in `linear_interpn`.
 
 ### Bugs fixed in 6.0.0:
