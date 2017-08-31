@@ -60,6 +60,10 @@
             Длина списка - это количество элементов в списке (также получается с помощью функции <function>size</function>).
         </para>
         <para>
+            Длина cell-массива или массива структур <literal>M</literal> - это количество элементов массива.
+            Это эквиваалентно <literal>size(M, "*")</literal>.
+        </para>
+        <para>
             Длина матричноориентированного списка (mlist) равна по умолчанию
             количеству элементов в этом списке, но вы можете перегрузить <function>length</function> (см. пример).
         </para>
@@ -114,6 +118,25 @@ length(a)
                 <revnumber>5.4.0</revnumber>
                 <revremark>
                     Эта функция позволяет перегрузку для типа mlist.
+                </revremark>
+            </revision>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revremark>
+                    <itemizedlist>
+                        <listitem>
+                            Функция <literal>length()</literal> для любого cell-массива <literal>C</literal>
+                            ранее всегда была равна 3, каким бы ни было количество размерностей и размеры массива.
+                            Теперь это количество элементов массива нулевой глубины (не считая рекурсии),
+                            эквивалентно инструкции <literal>size(C, "*")</literal>.
+                        </listitem>
+                        <listitem>
+                            Функция <literal>length()</literal> для любого массива структур <literal>S</literal> 
+                            ранее была эквивалентна количеству её полей плюс 2, каким бы ни было количество
+                            размерностей и размеры массива. Теперь это количество элементов массива нулевой
+                            глубины, эквивалентно инструкции <literal>size(S, "*")</literal>.
+                        </listitem>
+                    </itemizedlist>
                 </revremark>
             </revision>
         </revhistory>

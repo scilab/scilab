@@ -217,6 +217,7 @@ bounds selected out of the axes areas is now restored, after the Scilab 5.4 regr
    the proper Scilab component, and other files with the proper OS application.
    All files were formerly opened in Scinotes and could make it frozen.
 * `size` can now be overloadable for tlist lists, as it already could for mlist lists.
+* For arrays of cells or structures, `length` now returns their number of elements.
 * `gcd` now accepts `int64` and `uint64` integers. The input can now be any array instead of a row.
 * `gcd` and `lcm` of integers now return always a positive result.
 * `cat` has been rewritten. It is now fast and can process heavy arrays at high dimensions.
@@ -260,8 +261,14 @@ Data Structures
 * cells:
   - insertion and extraction must be done via `()` or `{}.`
   - `.dims` and `.entries` fields have been removed, please use `size` and `()` instead.
+  - `length()` of a cells array is now the number of its primary components (without recursive
+     counting). It is equivalent to `size( ,"*")`. It was formerly always equal to 3. It is now
+	 consistent with the definition for all types of Scilab arrays.
 * struct
-  - `.dims` field has been removed, please use `size` instead.
+  - `.dims` field has been removed, please use size instead.
+  - `length()` of a structures array is now the number of its primary components (without recursive
+     counting). It is equivalent to `size( ,"*")`. It was formerly equal to its number of
+	 fields + 2. It is now consistent with the definition for all types of Scilab arrays.
 * hypermatrix:
   - hypermatrices are natively managed (without `mlist` overloading).
   - `typeof` now returns the actual data type like `constant`, `string`, ... instead of `hypermat`
