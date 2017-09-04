@@ -40,7 +40,7 @@ types::Function::ReturnValue sci_linear_interpn(types::typed_list &in, int _iRet
     types::Double* pDblVp  = NULL;
 
     int n           = 0;
-    int iType       = 0;
+    int iType       = 8; //default C0
 
     // *** check the minimal number of input args. ***
     if (in.size() < 3)

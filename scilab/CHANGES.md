@@ -398,6 +398,7 @@ the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 * [#15199](http://bugzilla.scilab.org/show_bug.cgi?id=15199): Scilab crash when using fsolve for functions containing other functions.
 * [#15205](http://bugzilla.scilab.org/show_bug.cgi?id=15205): `get_scicos_version` returned the previous version.
 * [#15207](http://bugzilla.scilab.org/show_bug.cgi?id=15207): `xcos(scs_m)` did not work for sub-systems.
+* [#15266](http://bugzilla.scilab.org/show_bug.cgi?id=15266): Wrong default out_mode in `linear_interpn`.
 
 ### Bugs fixed in 6.0.0:
 * [#592](http://bugzilla.scilab.org/show_bug.cgi?id=592): `linspace(a, b, n<=0)` returned `b` instead of `[]`
