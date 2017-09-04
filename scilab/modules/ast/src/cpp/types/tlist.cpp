@@ -180,7 +180,7 @@ bool TList::invoke(typed_list & in, optional_list & /*opt*/, int _iRetCount, typ
             if (stType.size() > 8)
             {
                 std::wcout << (L"%" + stType.substr(0, 8) + L"_e") << std::endl;
-                ret = Overload::call(L"%" + stType.substr(0, 8) + L"_e", in, 1, out);
+                ret = Overload::call(L"%" + stType.substr(0, 8) + L"_e", in, _iRetCount, out);
             }
             else
             {
@@ -189,7 +189,7 @@ bool TList::invoke(typed_list & in, optional_list & /*opt*/, int _iRetCount, typ
         }
         catch (ast::InternalError & /*se*/)
         {
-            ret = Overload::call(L"%l_e", in, 1, out);
+            ret = Overload::call(L"%l_e", in, _iRetCount, out);
         }
     }
 

@@ -360,7 +360,9 @@ the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 * [#14376](http://bugzilla.scilab.org/show_bug.cgi?id=14376): input() is broken: \n introduced before prompting, multiple prompts, missing assignment, "%" "\n" "\t" no longer supported in messages...
 * [#14399](http://bugzilla.scilab.org/show_bug.cgi?id=14399): Whereami : wrong information (line numbers).
 * [#14424](http://bugzilla.scilab.org/show_bug.cgi?id=14424): New problem with the input function.
+* [#14573](http://bugzilla.scilab.org/show_bug.cgi?id=14573): Management of varargout when is not alone.
 * [#14598](http://bugzilla.scilab.org/show_bug.cgi?id=14598): `fort` wasn't properly removed.
+* [#14623](http://bugzilla.scilab.org/show_bug.cgi?id=14623): Bad lhs in MList extraction overload.
 * [#14629](http://bugzilla.scilab.org/show_bug.cgi?id=14629): In the Xcos EXPRESSION block, `<` could truncate the rendering of the expression in the icon.
 * [#14636](http://bugzilla.scilab.org/show_bug.cgi?id=14636): Xcos model with modelica electrical blocks (created in 5.5.2) crashed Scilab 6.
 * [#14637](http://bugzilla.scilab.org/show_bug.cgi?id=14367): Some Scilab 5.5.2 diagrams didn't simulate properly in Xcos.
