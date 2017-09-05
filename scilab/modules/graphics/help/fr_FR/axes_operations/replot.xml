@@ -36,8 +36,12 @@
             <varlistentry>
                 <term>area</term>
                 <listitem>
-                    <para>vecteur [xmin ymin xmax ymax] ou [xmin ymin zmin xmax ymax zmax]:
-                      nouvelles bornes de la zone à réafficher.
+                    <para>
+                        matrice <literal>[xmin xmax ; ymin ymax]</literal> ou
+                        <literal>[xmin xmax ; ymin ymax ; zmin zmax]</literal>, ou vecteur
+                        <literal>[xmin ymin xmax ymax]</literal> ou
+                        <literal>[xmin ymin zmin xmax ymax zmax]</literal>: nouvelles bornes de la
+                        zone à réafficher.
                       <note>
                             <itemizedlist>
                                 <listitem>
@@ -114,9 +118,11 @@
         <para>
             <literal>replot</literal> recadre les repères graphiques spécifiés
             par <literal>idAxes</literal> (ou par défaut le repère graphique actif)
-            en changeant leurs bornes spécifiées sous la forme
-            <literal>area = [xmin, ymin, xmax, ymax]</literal> ou
-            <literal>area = [xmin,ymin,zmin, xmax,ymax,zmax]</literal>.
+            en changeant leurs bornes spécifiées en 2D sous la forme
+            <literal>[xmin xmax ; ymin ymax]</literal> ou
+            <literal>[xmin ymin xmax ymax]</literal>, ou en 3D avec
+            <literal>[xmin xmax ; ymin ymax ; zmin zmax]</literal> ou
+            <literal>[xmin ymin zmin xmax ymax zmax]</literal>.
         </para>
         <para>
             <varname>replot</varname> modifie l'attribut

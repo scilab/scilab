@@ -498,10 +498,10 @@ public final class Xcos {
             /*
              * Allocate and setup a new diagram
              */
-            diag = new XcosDiagram(controller, currentId, Kind.DIAGRAM, "");
+            diag = new XcosDiagram(controller, currentId, controller.getKind(currentId), "");
             diag.installListeners();
 
-            root = new ScicosObjectOwner(controller, diag.getUID(), Kind.DIAGRAM);
+            root = findRoot(controller, diag);
             addDiagram(root, diag);
 
             /*

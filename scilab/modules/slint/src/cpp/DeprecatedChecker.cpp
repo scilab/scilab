@@ -97,6 +97,10 @@ std::unordered_map<std::wstring, std::wstring> DeprecatedChecker::initDep()
     map.emplace(L"hypermat", L"matrix");
     map.emplace(L"square", L"replot");
 
+    // Scilab 6.0.0 => 6.0.1
+    map.emplace(L"nanmin", L"min");
+    map.emplace(L"nanmax", L"max");
+
     // Scilab 5.5.2 => 6.0.0
     map.emplace(L"fort", L"call");
     map.emplace(L"znaupd", L"eigs");

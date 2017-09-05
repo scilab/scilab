@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="debug">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="debug">
     <refnamediv>
         <refname>debug</refname>
         <refpurpose>Debugging environment in Scilab</refpurpose>
@@ -16,19 +19,25 @@
             Use to debug Scilab script.
             After call of <literal>debug()</literal>, you enter in debug mode.
             This mode allows you to manage <literal>breakpoints</literal>,
-            launch execution with stop en error, execute script step by step, ...
+            launch execution with stop on error, execute script step by step, ...
 
-            When debug mode is active, prompt change to <literal>debug> </literal>.
+            In debugging mode, the prompt is <literal>debug> </literal>.
         </para>
         <term>Commands: </term>
         <variablelist>
             <varlistentry>
-                <term>(h)elp: </term>
-                <para>Show help on console</para>
+                <term>h: </term>
+                <para>
+                  Show always the debuger help in the console, whatever is the Scilab
+                  running mode.
+                 </para>
             </varlistentry>
             <varlistentry>
                 <term>help: </term>
-                <para>Show help on help browser when possible otherwise display help in console</para>
+                <para>
+                    In Scilab standard running mode (with GUIs), displays the debug() help page in
+                    the help browser. Otherwise, displays the help in the console (as with "h").
+                </para>
             </varlistentry>
             <varlistentry>
                 <term>(q)uit: </term>
@@ -39,13 +48,11 @@
                 <para>Display callstack.</para>
             </varlistentry>
             <varlistentry>
-                <term>(e)xec: </term>
-                <term>(r)un: </term>
+                <term>(e)xec or (r)un: </term>
                 <para>Execute command.</para>
             </varlistentry>
             <varlistentry>
-                <term>(d)isp var: </term>
-                <term>(p)rint var: </term>
+                <term>(d)isp var, or (p)rint var: </term>
                 <para>
                     Display variable <literal>var</literal>.
                 </para>
@@ -77,7 +84,8 @@
                     Add a breakpoint in a function at line <literal>line</literal>
                 </para>
                 <para>
-                    If a condition is specified, a breakpoint become enable only if condition is <literal>%t</literal>
+                    If a condition is specified, the breakpoint is enabled only if the condition
+                    is <literal>%t</literal>
                 </para>
             </varlistentry>
             <varlistentry>

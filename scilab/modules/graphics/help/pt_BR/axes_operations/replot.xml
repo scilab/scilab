@@ -36,9 +36,12 @@
             <varlistentry>
                 <term>area</term>
                 <listitem>
-                    <para>row vector [xmin ymin xmax ymax] or
-                        [xmin ymin zmin xmax ymax zmax]: new bounds of the area
-                        to be replotted.
+                    <para>
+                        matrix <literal>[xmin xmax ; ymin ymax]</literal> or
+                        <literal>[xmin xmax ; ymin ymax ; zmin zmax]</literal>, or row
+                        <literal>[xmin ymin xmax ymax]</literal> or
+                        <literal>[xmin ymin zmin xmax ymax zmax]</literal>: new bounds of the area
+                        to be reframed.
                         <note>
                             <itemizedlist>
                                 <listitem>
@@ -100,9 +103,12 @@
         <para>
             <literal>replot</literal> is used to reframe the (set of) axes specified
             with <literal>idAxes</literal> -- or by default the current axes --
-            with new boundaries defined by
-            <literal>area = [xmin,ymin, xmax,ymax]</literal> or
-            <literal>area = [xmin,ymin,zmin, xmax,ymax,zmax]</literal>.
+            with new boundaries defined in 2D by
+            <literal>[xmin xmax ; ymin ymax]</literal> or
+            <literal>[xmin xmax ; ymin ymax ; zmin zmax]</literal>,
+            or in 3D by
+            <literal>[xmin ymin xmax ymax]</literal> or
+            <literal>[xmin ymin zmin xmax ymax zmax]</literal>.
         </para>
         <para>
             It changes the <literal>data_bounds</literal> attribute of processed axes.

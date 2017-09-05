@@ -63,7 +63,7 @@ Xcos trace:   propertyUpdated( 2 , BLOCK , IPAR ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 2 , BLOCK , OPAR ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 2 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
 Xcos debug:   propertyUpdated( 2 , BLOCK , SIM_DEP_UT ) : SUCCESS
-Xcos trace:   propertyUpdated( 2 , BLOCK , LABEL ) : NO_CHANGES
+Xcos trace:   propertyUpdated( 2 , BLOCK , DESCRIPTION ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 2 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 2 , BLOCK , NMODE ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 2 , BLOCK , EQUATIONS ) : NO_CHANGES
@@ -115,7 +115,7 @@ Xcos trace:   propertyUpdated( 6 , BLOCK , IPAR ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 6 , BLOCK , OPAR ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 6 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
 Xcos debug:   propertyUpdated( 6 , BLOCK , SIM_DEP_UT ) : SUCCESS
-Xcos trace:   propertyUpdated( 6 , BLOCK , LABEL ) : NO_CHANGES
+Xcos trace:   propertyUpdated( 6 , BLOCK , DESCRIPTION ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 6 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 6 , BLOCK , NMODE ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 6 , BLOCK , EQUATIONS ) : NO_CHANGES
@@ -126,7 +126,7 @@ lnk1 = scicos_link( from=[1 1 0],to=[2 1 1] );
 Xcos info:    objectCreated( 10 , LINK )
 Xcos trace:   propertyUpdated( 10 , LINK , CONTROL_POINTS ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 10 , LINK , CONTROL_POINTS ) : NO_CHANGES
-Xcos trace:   propertyUpdated( 10 , LINK , LABEL ) : NO_CHANGES
+Xcos trace:   propertyUpdated( 10 , LINK , DESCRIPTION ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 10 , LINK , THICK ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 10 , LINK , COLOR ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 10 , LINK , KIND ) : NO_CHANGES
@@ -134,7 +134,7 @@ lnk2 = scicos_link();
 Xcos info:    objectCreated( 11 , LINK )
 Xcos trace:   propertyUpdated( 11 , LINK , CONTROL_POINTS ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 11 , LINK , CONTROL_POINTS ) : NO_CHANGES
-Xcos trace:   propertyUpdated( 11 , LINK , LABEL ) : NO_CHANGES
+Xcos trace:   propertyUpdated( 11 , LINK , DESCRIPTION ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 11 , LINK , THICK ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 11 , LINK , COLOR ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 11 , LINK , KIND ) : NO_CHANGES
@@ -666,7 +666,7 @@ Xcos trace:   propertyUpdated( 53 , BLOCK , IPAR ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 53 , BLOCK , OPAR ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 53 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
 Xcos debug:   propertyUpdated( 53 , BLOCK , SIM_DEP_UT ) : SUCCESS
-Xcos trace:   propertyUpdated( 53 , BLOCK , LABEL ) : NO_CHANGES
+Xcos trace:   propertyUpdated( 53 , BLOCK , DESCRIPTION ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 53 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 53 , BLOCK , NMODE ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 53 , BLOCK , EQUATIONS ) : NO_CHANGES
@@ -718,7 +718,7 @@ Xcos trace:   propertyUpdated( 57 , BLOCK , IPAR ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 57 , BLOCK , OPAR ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 57 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
 Xcos debug:   propertyUpdated( 57 , BLOCK , SIM_DEP_UT ) : SUCCESS
-Xcos trace:   propertyUpdated( 57 , BLOCK , LABEL ) : NO_CHANGES
+Xcos trace:   propertyUpdated( 57 , BLOCK , DESCRIPTION ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 57 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 57 , BLOCK , NMODE ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 57 , BLOCK , EQUATIONS ) : NO_CHANGES
@@ -770,7 +770,7 @@ Xcos trace:   propertyUpdated( 61 , BLOCK , IPAR ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 61 , BLOCK , OPAR ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 61 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
 Xcos debug:   propertyUpdated( 61 , BLOCK , SIM_DEP_UT ) : SUCCESS
-Xcos trace:   propertyUpdated( 61 , BLOCK , LABEL ) : NO_CHANGES
+Xcos trace:   propertyUpdated( 61 , BLOCK , DESCRIPTION ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 61 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 61 , BLOCK , NMODE ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 61 , BLOCK , EQUATIONS ) : NO_CHANGES
@@ -781,7 +781,7 @@ lnk1 = scicos_link( from=[1 1 0],to=[1 1 1] );
 Xcos info:    objectCreated( 65 , LINK )
 Xcos trace:   propertyUpdated( 65 , LINK , CONTROL_POINTS ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 65 , LINK , CONTROL_POINTS ) : NO_CHANGES
-Xcos trace:   propertyUpdated( 65 , LINK , LABEL ) : NO_CHANGES
+Xcos trace:   propertyUpdated( 65 , LINK , DESCRIPTION ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 65 , LINK , THICK ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 65 , LINK , COLOR ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 65 , LINK , KIND ) : NO_CHANGES
@@ -789,7 +789,7 @@ lnk2 = scicos_link( from=[4 1 0],to=[4 1 1] );
 Xcos info:    objectCreated( 66 , LINK )
 Xcos trace:   propertyUpdated( 66 , LINK , CONTROL_POINTS ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 66 , LINK , CONTROL_POINTS ) : NO_CHANGES
-Xcos trace:   propertyUpdated( 66 , LINK , LABEL ) : NO_CHANGES
+Xcos trace:   propertyUpdated( 66 , LINK , DESCRIPTION ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 66 , LINK , THICK ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 66 , LINK , COLOR ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 66 , LINK , KIND ) : NO_CHANGES

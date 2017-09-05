@@ -1,60 +1,158 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="debug">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ru" xml:id="debug">
     <refnamediv>
         <refname>debug</refname>
-        <refpurpose>уровень отладки</refpurpose>
+        <refpurpose>Среда отладки в Scilab</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Синтаксис</title>
         <synopsis>
-            debug(level_int)
-            level_int = debug()
+            debug()
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Аргументы</title>
+        <title>Описание</title>
+        <para>
+            Используйте для отладки Scilab-сценариев.
+            После вызова <code>debug()</code> вы войдёте в режим отладки.
+            Этот режим позволяет вам управлять <literal>точками останова</literal>,
+            запускать исполнение с остановкой на ошибке, исполнять сценарий пошагово, ...
+            В режиме отладки приглашением командной строки является <literal>debug> </literal>.
+        </para>
+        <term>Команды: </term>
         <variablelist>
             <varlistentry>
-                <term>level_int</term>
-                <listitem>
-                    <para>целое число (от -1 до 4)</para>
-                </listitem>
+                <term>h: </term>
+                <para>Показать справку в командном окне</para>
+            </varlistentry>
+            <varlistentry>
+                <term>help: </term>
+                <para>
+                  Показать справку в справочном браузере, если это возможно. В противном
+                  случае отобразить справку в командном окне</para>
+            </varlistentry>
+            <varlistentry>
+                <term>(q)uit: </term>
+                <para>Покинуть режим отладки и вернуться в нормальный режим Scilab'а.</para>
+            </varlistentry>
+            <varlistentry>
+                <term>(w)here или bt: </term>
+                <para>Отобразить стек вызовов.</para>
+            </varlistentry>
+            <varlistentry>
+                <term>(e)xec или (r)un: </term>
+                <para>Выполнить команду.</para>
+            </varlistentry>
+            <varlistentry>
+                <term>(d)isp var, или (p)rint var: </term>
+                <para>
+                    Отобразить переменную <literal>var</literal>.
+                </para>
+            </varlistentry>
+            <varlistentry>
+                <term>(c)ontinue: </term>
+                <para>Продолжить исполнение.</para>
+            </varlistentry>
+            <varlistentry>
+                <term>(a)bort: </term>
+                <para>Прервать исполнение.</para>
+            </varlistentry>
+            <varlistentry>
+                <term>step(n)ext или next: </term>
+                <para>Продолжить исполнение до следующего выражения.</para>
+            </varlistentry>
+            <varlistentry>
+                <term>step(i)n или in: </term>
+                <para>Продолжить исполнение до следующего выражения в подфункции.</para>
+            </varlistentry>
+            <varlistentry>
+                <term>step(o)ut или out: </term>
+                <para>Продолжить исполнение до следующего выражения в предыдущей функции.</para>
+            </varlistentry>
+            <varlistentry>
+                <term>(b)reakpoint или break: </term>
+                <synopsis>breakpoint function [line [condition]]</synopsis>
+                <para>
+                    Добавить точку останова в функцию на строке <literal>line</literal>
+                </para>
+                <para>
+                    Если условие определено, то точка останова срабатывает только если условие равно
+                    <constant>%t</constant>
+                </para>
+            </varlistentry>
+            <varlistentry>
+                <term>(del)ete [n]: </term>
+                <para>Удалить все точки останова.</para>
+                <para>Если <varname>n</varname> определена, то удаляется точка останова №<varname>n</varname></para>
+            </varlistentry>
+            <varlistentry>
+                <term>enable [n]: </term>
+                <para>Включить все точки останова.</para>
+                <para>Если <varname>n</varname> определена, то включается точка останова №<varname>n</varname></para>
+            </varlistentry>
+            <varlistentry>
+                <term>disable [n]: </term>
+                <para>Отключить все точки останова.</para>
+                <para>Если <varname>n</varname> определена, то отключается точка останова №<varname>n</varname></para>
+            </varlistentry>
+            <varlistentry>
+                <term>(s)how [n]: </term>
+                <para>Показать информацию обо всех точках останова.</para>
+                <para>Если <varname>n</varname> определена, то показывается точка останова №<varname>n</varname></para>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Описание</title>
-        <para>
-            Для значений <varname>level_int</varname> 0, 1, 2, 3, 4  <code>debug</code>
-            определяет различные уровни отладки. Это предназначено для анализатора синтаксиса, не для
-            файлов-сценариев Scilab'а, и только для экспертов Scilab'а.
-        </para>
-        <para>
-            <note>
-                Выходное значение этой функции будет изменено в Scilab 6.0.0.
-            </note>
-        </para>
-    </refsection>
-    <refsection>
         <title>Примеры</title>
         <programlisting role="example"><![CDATA[
-debug(3);
-2+2
-//  0.200E+01
-//+
-//  0.200E+01
-// eol
+//функция для перегрузки косинуса на строковом значении
+function v = %c_cos(val)
+    printf("val : %s\n", val);
+    v = cos(evstr(val));
+endfunction
+
+// функция-вызыватель
+function a = test_debug()
+    b = cos("%pi");
+    a = b * 3;
+endfunction
+
+debug
+break test_debug
+exec test_debug
+where
+stepin
+disp val
+continue
+quit
+ ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+function v = compute(val)
+    v = 1;
+    for i=1:val
+        v = v * i;
+    end
+endfunction
+
+debug
+break compute 4 "i == 5"
+exec compute(10)
+disp val
+disp i
+disp v
+continue
+quit
  ]]></programlisting>
     </refsection>
-
     <refsection>
-        <title>History</title>
+        <title>История</title>
         <revhistory>
             <revision>
-                <revnumber>5.4.0</revnumber>
-                <revremark>
-                    Предыдущее значение возвращается в качестве выходного аргумента при установке нового значения.
-                </revremark>
+                <revnumber>6.0.0</revnumber>
+                <revremark>Новая версия: интерфейс командной строки для отладчика Scilab 6.</revremark>
             </revision>
         </revhistory>
     </refsection>

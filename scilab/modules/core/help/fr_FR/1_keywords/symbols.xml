@@ -126,28 +126,20 @@
             </tr>
             <tr>
                 <td>
-                    <literal>^</literal>
+                    <literal>^, .^</literal>
                 </td>
                 <td>
-                    <link linkend="hat">hat</link>
+                    <link linkend="hat">hat</link>, <link linkend="power">power</link>
                 </td>
             </tr>
             <tr>
-                <td>
-                    <literal>.^</literal>
-                </td>
-                <td>
-                    <link linkend="power">power</link>
-                </td>
-            </tr>
-            <tr>
-                <td> |</td>
+                <td> |, ||</td>
                 <td>
                     <link linkend="or_op">or_op</link>
                 </td>
             </tr>
             <tr>
-                <td> &amp;</td>
+                <td> &amp;, &amp;&amp;</td>
                 <td>
                     <link linkend="and_op">and_op</link>
                 </td>
@@ -161,23 +153,22 @@
                 </td>
             </tr>
         </informaltable>
-    </refsection>
-    <refsection>
-        <title>Remarque</title>
-        <para>Pour des raisons historiques,  des symboles différents peuvent représenter le même opérateur:</para>
-        <para>
-            <literal>{</literal> a la même signification que <literal>[</literal>
-        </para>
-        <para>
-            <literal>}</literal> a la même signification que <literal>]</literal>
-        </para>
-        <para>
-            <literal>@</literal> a la même signification que <literal>~</literal>
-        </para>
-        <para>
-            <literal>`</literal> a la même signification que  &lt;
-        </para>
-        <para> Il est fortement déconseillé d'utiliser ces opérateurs alternatifs, car il seront supprimés dans le futur.</para>
+        <warning>
+          <para>
+              Pour des raisons historiques, des symboles différents peuvent représenter le même
+              opérateur:
+          </para>
+          <para>
+              <literal>@</literal> a la même signification que <literal>~</literal>
+          </para>
+          <para>
+              <literal>`</literal> a la même signification que  &lt;
+          </para>
+          <para>
+              Il est fortement déconseillé d'utiliser ces opérateurs alternatifs, car il seront
+              supprimés dans le futur.
+          </para>
+       </warning>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>

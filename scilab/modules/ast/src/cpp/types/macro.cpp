@@ -269,11 +269,10 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
 
     // varargout management
     //rules :
-    // varargout must be alone
     // varargout is a list
     // varargout can containt more items than caller need
     // varargout must containt at leat caller needs
-    if (m_outputArgs->size() == 1 && m_outputArgs->back()->getSymbol().getName() == L"varargout")
+    if (m_outputArgs->size() >= 1 && m_outputArgs->back()->getSymbol().getName() == L"varargout")
     {
         bVarargout = true;
         List* pL = new List();
@@ -329,7 +328,45 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
         cleanCall(pContext, oldVal);
         throw ia;
     }
-    // Normally, seqexp throws only SM so no need to catch SErr
+
+    //nb excepted output without varargout
+    int iRet = std::min((int)m_outputArgs->size() - (bVarargout ? 1 : 0), _iRetCount);
+
+    //normal output management
+    //for (std::list<symbol::Variable*>::iterator i = m_outputArgs->begin(); i != m_outputArgs->end() && _iRetCount; ++i, --_iRetCount)
+    for (auto arg : *m_outputArgs)
+    {
+        iRet--;
+        if (iRet < 0)
+        {
+            break;
+        }
+
+        InternalType * pIT = pContext->get(arg);
+        if (pIT)
+        {
+            out.push_back(pIT);
+            pIT->IncreaseRef();
+        }
+        else
+        {
+            const int size = (const int)out.size();
+            for (int j = 0; j < size; ++j)
+            {
+                out[j]->DecreaseRef();
+                out[j]->killMe();
+            }
+            out.clear();
+            cleanCall(pContext, oldVal);
+
+            char* pstArgName = wide_string_to_UTF8(arg->getSymbol().getName().c_str());
+            char* pstMacroName = wide_string_to_UTF8(getName().c_str());
+            Scierror(999, _("Undefined variable '%s' in function '%s'.\n"), pstArgName, pstMacroName);
+            FREE(pstArgName);
+            FREE(pstMacroName);
+            return Callable::Error;
+        }
+    }
 
     //varargout management
     if (bVarargout)
@@ -372,37 +409,6 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
             out.push_back(pIT);
         }
     }
-    else
-    {
-        //normal output management
-        for (std::list<symbol::Variable*>::iterator i = m_outputArgs->begin(); i != m_outputArgs->end() && _iRetCount; ++i, --_iRetCount)
-        {
-            InternalType * pIT = pContext->get(*i);
-            if (pIT)
-            {
-                out.push_back(pIT);
-                pIT->IncreaseRef();
-            }
-            else
-            {
-                const int size = (const int)out.size();
-                for (int j = 0; j < size; ++j)
-                {
-                    out[j]->DecreaseRef();
-                    out[j]->killMe();
-                }
-                out.clear();
-                cleanCall(pContext, oldVal);
-
-                char* pstArgName = wide_string_to_UTF8((*i)->getSymbol().getName().c_str());
-                char* pstMacroName = wide_string_to_UTF8(getName().c_str());
-                Scierror(999, _("Undefined variable '%s' in function '%s'.\n"), pstArgName, pstMacroName);
-                FREE(pstArgName);
-                FREE(pstMacroName);
-                return Callable::Error;
-            }
-        }
-    }
 
     //close the current scope
     cleanCall(pContext, oldVal);
@@ -432,7 +438,7 @@ int Macro::getNbInputArgument(void)
 
 int Macro::getNbOutputArgument(void)
 {
-    if (m_outputArgs->size() == 1 && m_outputArgs->back()->getSymbol().getName() == L"varargout")
+    if (m_outputArgs->size() >= 1 && m_outputArgs->back()->getSymbol().getName() == L"varargout")
     {
         return -1;
     }

@@ -14,8 +14,8 @@
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
-		  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
-		  xmlns:scilab="http://www.scilab.org" xml:id="format" xml:lang="fr">
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="format" xml:lang="fr">
     <refnamediv>
         <refname>format</refname>
         <refpurpose>configure le format par défaut d'affichage des nombres décimaux</refpurpose>
@@ -27,7 +27,7 @@
             format(width)
             format(mode, width)
             format(wm)
-            v = format()
+            mw = format()
         </synopsis>
     </refsynopsisdiv>
     <refsection role="parameters">
@@ -80,14 +80,14 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>v</term>
+                <term>mw</term>
                 <listitem>
                     <para>vecteur à 2 nombres retournés comme paramètres du format actif :
                         <itemizedlist>
-                          <listitem><literal>v(1)</literal> représente le type du format :
+                          <listitem><literal>mw(1)</literal> représente le type du format :
                             0 pour <literal>'e'</literal> et 1 pour <literal>'v'</literal>
                           </listitem>
-                          <listitem><literal>v(2)</literal> est le nombre de
+                          <listitem><literal>mw(2)</literal> est le nombre de
                             caractères utilisés pour formater chaque nombre.
                           </listitem>
                          </itemizedlist>
@@ -98,11 +98,12 @@
     </refsection>
     <refsection role="description">
         <title>Description</title>
-        <note>Pour les nombres complexes, chaque partie réelle et imaginaire
-        décimale est formatée selon <literal>format(..)</literal>.
-        La largeur totale d'un nombre complexe est par conséquent deux fois
-        celle spécifiée par <literal>format(..)</literal> + 1 caractère
-        (symbole "i").
+        <note>
+            Pour les nombres complexes, chaque partie réelle et imaginaire
+          décimale est formatée selon <literal>format(..)</literal>.
+          La largeur totale d'un nombre complexe est par conséquent deux fois
+          celle spécifiée par <literal>format(..)</literal> + 1 caractère
+          (symbole "i").
         </note>
         <note>
             Les entiers encodés ne sont jamais formatables/formatés selon

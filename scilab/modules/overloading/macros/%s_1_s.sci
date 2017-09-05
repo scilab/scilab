@@ -1,4 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
 // Copyright (C) 2017 - Samuel GOUGEON
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -9,6 +11,7 @@
 // along with this program.
 
 function TF = %s_1_s(A, B)
+    TF=%f
     // Possible case: all components of both A and B have both strictly null
     // imaginary parts
     if isreal(A, 0) & isreal(B,0) then

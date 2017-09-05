@@ -77,9 +77,9 @@
             read character strings (the result is a character string column
             vector). In this case n must be equal to 1.
         </para>
-        <para>
-            <warning>Warning: The character strings are truncated when they are longuer than 4093.</warning>
-        </para>
+        <warning>
+          The character strings are truncated when they are longuer than 4093.
+        </warning>
         <para>
             Examples for <literal>format</literal>:
         </para>
@@ -100,12 +100,9 @@
         <para>
             To read on the keyboard use <literal>read(%io(1),...)</literal>.
         </para>
-    </refsection>
-    <refsection>
-        <title>Remark</title>
-        <para>
+        <note>
             Last line of data files must be terminated by a newline to be taken into account.
-        </para>
+        </note>
     </refsection>
     <refsection>
         <title>Examples</title>

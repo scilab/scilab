@@ -32,7 +32,7 @@ Xcos trace:   propertyUpdated( 1 , BLOCK , IPAR ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 1 , BLOCK , OPAR ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 1 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 1 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
-Xcos trace:   propertyUpdated( 1 , BLOCK , LABEL ) : NO_CHANGES
+Xcos trace:   propertyUpdated( 1 , BLOCK , DESCRIPTION ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 1 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 1 , BLOCK , NMODE ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 1 , BLOCK , EQUATIONS ) : NO_CHANGES
@@ -74,7 +74,7 @@ Xcos trace:   propertyUpdated( 3 , BLOCK , IPAR ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 3 , BLOCK , OPAR ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 3 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 3 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
-Xcos trace:   propertyUpdated( 3 , BLOCK , LABEL ) : NO_CHANGES
+Xcos trace:   propertyUpdated( 3 , BLOCK , DESCRIPTION ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 3 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 3 , BLOCK , NMODE ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 3 , BLOCK , EQUATIONS ) : NO_CHANGES
@@ -115,7 +115,7 @@ Xcos trace:   objectUnreferenced( 4 , BLOCK ) : 0
 Xcos trace:   objectReferenced( 2 , DIAGRAM ) : 1
 Xcos trace:   objectUnreferenced( 2 , DIAGRAM ) : 0
 Xcos trace:   objectReferenced( 1 , BLOCK ) : 3
-Xcos debug:   propertyUpdated( 1 , BLOCK , TITLE ) : FAIL
+Xcos debug:   propertyUpdated( 1 , BLOCK , DESCRIPTION ) : SUCCESS
 Xcos trace:   propertyUpdated( 1 , BLOCK , CONTEXT ) : NO_CHANGES
 Xcos trace:   objectUnreferenced( 1 , BLOCK ) : 2
 Xcos trace:   objectUnreferenced( 1 , BLOCK ) : 1
@@ -123,7 +123,7 @@ Xcos trace:   propertyUpdated( 1 , BLOCK , IPAR ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 1 , BLOCK , OPAR ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 1 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 1 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
-Xcos trace:   propertyUpdated( 1 , BLOCK , LABEL ) : NO_CHANGES
+Xcos debug:   propertyUpdated( 1 , BLOCK , DESCRIPTION ) : SUCCESS
 Xcos trace:   propertyUpdated( 1 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 1 , BLOCK , NMODE ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 1 , BLOCK , EQUATIONS ) : NO_CHANGES
@@ -165,7 +165,7 @@ Xcos trace:   objectUnreferenced( 4 , BLOCK ) : 0
 Xcos trace:   objectReferenced( 2 , DIAGRAM ) : 1
 Xcos trace:   objectUnreferenced( 2 , DIAGRAM ) : 0
 Xcos trace:   objectReferenced( 1 , BLOCK ) : 3
-Xcos debug:   propertyUpdated( 1 , BLOCK , TITLE ) : FAIL
+Xcos debug:   propertyUpdated( 1 , BLOCK , DESCRIPTION ) : SUCCESS
 Xcos trace:   propertyUpdated( 1 , BLOCK , CONTEXT ) : NO_CHANGES
 Xcos trace:   objectUnreferenced( 1 , BLOCK ) : 2
 Xcos trace:   objectUnreferenced( 1 , BLOCK ) : 1
@@ -173,7 +173,7 @@ Xcos trace:   propertyUpdated( 1 , BLOCK , IPAR ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 1 , BLOCK , OPAR ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 1 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 1 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
-Xcos trace:   propertyUpdated( 1 , BLOCK , LABEL ) : NO_CHANGES
+Xcos debug:   propertyUpdated( 1 , BLOCK , DESCRIPTION ) : SUCCESS
 Xcos trace:   propertyUpdated( 1 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 1 , BLOCK , NMODE ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 1 , BLOCK , EQUATIONS ) : NO_CHANGES
@@ -232,7 +232,7 @@ Xcos info:    objectCloned( 6 , 11 , BLOCK )
 Xcos trace:   objectReferenced( 10 , BLOCK ) : 1
 Xcos trace:   objectReferenced( 10 , BLOCK ) : 2
 Xcos debug:   propertyUpdated( 7 , DIAGRAM , CHILDREN ) : SUCCESS
-Xcos debug:   propertyUpdated( 9 , BLOCK , PARENT_BLOCK ) : SUCCESS
+Xcos debug:   propertyUpdated( 8 , BLOCK , CHILDREN ) : SUCCESS
 Xcos info:    objectDeleted( 9 , BLOCK )
 Xcos info:    objectDeleted( 8 , BLOCK )
 Xcos debug:   propertyUpdated( 10 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
@@ -257,11 +257,11 @@ Xcos debug:   propertyUpdated( 4 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 Xcos info:    objectDeleted( 4 , BLOCK )
 Xcos info:    objectDeleted( 2 , DIAGRAM )
 Xcos info:    objectDeleted( 3 , BLOCK )
-Xcos debug:   propertyUpdated( 6 , BLOCK , PARENT_BLOCK ) : SUCCESS
+Xcos debug:   propertyUpdated( 1 , BLOCK , CHILDREN ) : SUCCESS
 Xcos info:    objectDeleted( 6 , BLOCK )
 Xcos info:    objectDeleted( 1 , BLOCK )
 Xcos debug:   propertyUpdated( 10 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
-Xcos debug:   propertyUpdated( 11 , BLOCK , PARENT_BLOCK ) : SUCCESS
+Xcos debug:   propertyUpdated( 10 , BLOCK , CHILDREN ) : SUCCESS
 Xcos info:    objectDeleted( 11 , BLOCK )
 Xcos info:    objectDeleted( 10 , BLOCK )
 Xcos info:    objectDeleted( 7 , DIAGRAM )

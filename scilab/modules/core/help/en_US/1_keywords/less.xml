@@ -5,7 +5,7 @@
         <refpurpose>(&lt;) less than comparison</refpurpose>
     </refnamediv>
     <refnamediv xml:id="greater">
-        <refname>great</refname>
+        <refname>greater</refname>
         <refpurpose>(&gt;) greater than comparison</refpurpose>
     </refnamediv>
     <refsection>

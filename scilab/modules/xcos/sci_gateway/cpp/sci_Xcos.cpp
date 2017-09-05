@@ -103,7 +103,12 @@ types::Function::ReturnValue sci_Xcos(types::typed_list &in, int _iRetCount, typ
     if (in.size() == 1 && in[0]->isUserType())
     {
         const model::BaseObject* o = view_scilab::Adapters::instance().descriptor(in[0]);
-        if (o == nullptr || o->kind() != DIAGRAM)
+        if (o == nullptr)
+        {
+            Scierror(77, _("%s: Wrong type for input argument #%d: ""%s"" expected.\n"), funname, 1, "diagram");
+            return types::Function::Error;
+        }
+        if (o->kind() != DIAGRAM && o->kind() != BLOCK)
         {
             Scierror(77, _("%s: Wrong type for input argument #%d: ""%s"" expected.\n"), funname, 1, "diagram");
             return types::Function::Error;

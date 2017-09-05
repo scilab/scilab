@@ -13,10 +13,15 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="nanmax">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ja" xml:id="nanmax">
     <refnamediv>
         <refname>nanmax</refname>
-        <refpurpose>最大値  (Nanを無視) </refpurpose>
+        <refpurpose>最大値  (Nanを無視) <emphasis role="bold">This function is obsolete</emphasis>,
+          replaced with <link linkend="max">max</link>
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
@@ -38,6 +43,10 @@
     </refsection>
     <refsection>
         <title>説明</title>
+        <warning>
+          This function is obsolete and will  be removed from Scilab 6.1. Please use
+          <code>max()</code> instead.
+        </warning>
         <para>
             この関数は,ある実数または数値行列<literal>x</literal>について,
             最大の要素<literal>m</literal> (NaNは無視)を出力します.
@@ -86,5 +95,17 @@ m=nanmax(x,'c')
         <para>
             Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, fifth edition, J.Wiley &amp; Sons, 1990.
         </para>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.1</revnumber>
+                <revremark>
+                  Function tagged as obsolete, to be removed from Scilab 6.1, replaced with
+                  <link linkend="max">max</link>.
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

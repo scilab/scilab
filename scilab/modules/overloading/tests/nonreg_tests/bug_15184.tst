@@ -1,0 +1,18 @@
+//<-- CLI SHELL MODE -->
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2017 - Scilab Enterprises - Cedric Delamarre
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+//
+// <-- Non-regression test for bug 15184 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=15184
+//
+// <-- Short Description -->
+// comparisons of complex numbers: a = 1 + %i;  a<2  crashes Scilab
+
+a = 1 + %i;
+assert_checkequal(a < 2, %f);

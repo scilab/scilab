@@ -12,7 +12,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="evstr" xml:lang="ru">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="evstr" xml:lang="ru">
     <refnamediv>
         <refname>evstr</refname>
         <refpurpose>вычисление выражений</refpurpose>
@@ -97,22 +100,25 @@
         <para>
             <literal>Inf</literal> будет интерпретироваться как <constant>%inf</constant>.
         </para>
+        <warning>
+            <varname>Z</varname> не должно содержать знаков продолжения (..).
+        </warning>
     </refsection>
     <refsection>
         <title>Примеры</title>
-        <programlisting role="example">
-            a = 1; b = 2;
-            Z = ['a', 'b'] ;
-            evstr(Z)
-            Z = list(['%(1)','%(1)-%(2)'],['a+1','b+1']);
-            evstr(Z)
+        <programlisting role="example"><![CDATA[
+a = 1; b = 2;
+Z = ['a', 'b'] ;
+evstr(Z)
+Z = list(['%(1)','%(1)-%(2)'],['a+1','b+1']);
+evstr(Z)
 
-            evstr('NaN'), evstr('Inf')
-            //Вариант с двумя возвращаемыми значениями
-            [H, ierr] = evstr(Z) // ошибки нет
-            Z = ['a', 'b', 'c'] ;// переменная c не определена
-            [H, ierr] = evstr(Z) // error 4: Неизвестная переменная: c
-        </programlisting>
+evstr('NaN'), evstr('Inf')
+//Вариант с двумя возвращаемыми значениями
+[H, ierr] = evstr(Z) // ошибки нет
+Z = ['a', 'b', 'c'] ;// переменная c не определена
+[H, ierr] = evstr(Z) // error 4: Неизвестная переменная: c
+]]>     </programlisting>
     </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>

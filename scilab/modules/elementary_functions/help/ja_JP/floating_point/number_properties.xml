@@ -104,8 +104,6 @@
 
             以下の値を取得できます:
 
-        </para>
-
         <variablelist>
 
             <varlistentry>
@@ -280,13 +278,8 @@
 
         </variablelist>
 
-    </refsection>
-
-    <refsection>
-
-        <title>注意</title>
-
-        <para>
+      </para>
+      <note>
 
             この関数は機械パラメータを取得するために
 
@@ -296,29 +289,25 @@
 
             対応する Lapack の定義とは異なっています) ;
 
-        </para>
+        </note>
 
-        <para>
+        <warning>
 
-            <warning>
+            機械イプシロンに関して以下のような定義を見ることが
 
-                注意: 機械イプシロンに関して以下のような定義を見ることが
+            あるはずです: <latex>$eps = b^{1-p}$</latex>
 
-                あるはずです: <latex>$eps = b^{1-p}$</latex>
+            しかし, この関数では伝統的な定義 (前記のprop = "eps"を参照)を
 
-                しかし, この関数では伝統的な定義 (前記のprop = "eps"を参照)を
+            使用しており,
 
-                使用しており,
+            このため,通常の丸めが発生する場合に<latex>$eps = \dfrac{b^{1-p}}{2}$</latex>
 
-                このため,通常の丸めが発生する場合に<latex>$eps = \dfrac{b^{1-p}}{2}$</latex>
+            ,そうでない場合に <latex>$eps = b^{1-p}$</latex>
 
-                ,そうでない場合に <latex>$eps = b^{1-p}$</latex>
+            となります.
 
-                となります.
-
-            </warning>
-
-        </para>
+        </warning>
 
     </refsection>
 

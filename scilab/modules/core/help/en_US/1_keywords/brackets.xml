@@ -38,29 +38,28 @@
                 <term>m11, m12,...  </term>
                 <listitem>
                     <para>
-                    Set of objects to be
-                    concatenated (and merged: the former individual containers
-                    are removed).
-                    The following subsets of types of objects can be mixed
+                    Set of objects to be concatenated (and merged: the former individual containers
+                    are removed). The following subsets of types of objects can be mixed
                     in-between, but are mutually exclusive:
                     <itemizedlist>
-                        <listitem>Matrices of booleans, reals, complex numbers,
-                            polynomials, rationals: The data type of the
-                            concatenated result is set by the rules defined below
-                            (see the <link linkend="brackets_Types_conversions">
+                        <listitem>Matrices of booleans, reals, complex numbers,  polynomials,
+                          rationals: The data type of the concatenated result is set by the rules
+                          defined below (see the <link linkend="brackets_Types_conversions">
                             <emphasis role="italic">type conversions</emphasis>
                             </link> rules).
                         </listitem>
                         <listitem>Matrices of encoded integers of any
                             <link linkend="inttype">inttype</link>.
                             <warning>
-                                Encoded integers of different inttypes can't
-                                be concatenated together.
+                                Encoded integers of different inttypes can't be concatenated together.
                             </warning>
                         </listitem>
-                        <listitem>Arrays of structures with same fields.
-                            Fields may be in different orders from an array
-                            to other ones.
+                        <listitem>
+                            Arrays of structures with same fields.  Fields may be in different
+                            orders from an array to other ones.
+                        </listitem>
+                        <listitem>
+                            Arrays of cells.
                         </listitem>
                         <listitem>
                             Typed lists of type <link linkend="syslin">syslin</link>.
@@ -73,7 +72,7 @@
                 <term>M, Mh, Mv</term>
                 <listitem>
                     <para>
-                        Matrices with the type of all <varname>m##</varname>
+                        Matrices or arrays with the type of all <varname>m##</varname>
                         (if they all have the same data type)
                     </para>
                 </listitem>
@@ -126,37 +125,36 @@
                     <para>[..] bundle their contents of simple and compatible
                         types into a homogeneous vector, matrix or hypermatrix.
                     </para>
-                    <note>An horizontal or a vertical concatenation is a
-                        binary iterated operator. It is performed step-by-step
-                        from left-to-right, and from top-to-bottom. Thus,
-                        <literal>[1 3 5 7]</literal> is performed as
+                    <note>
+                        An horizontal or a vertical concatenation is a binary iterated operator.
+                        It is performed step-by-step from left-to-right, and from top-to-bottom.
+                        Thus, <literal>[1 3 5 7]</literal> is performed as
                         <literal>[[[1 3] 5] 7]</literal>.
                     </note>
                     <para>Inside brackets,
                         <itemizedlist>
-                            <listitem>spaces (blanks or tabs) or commas are
-                                used as columns separators.
-                                <note>Using commas instead of spaces is safer.
-                                    For instance, <literal>[2 1 +%i]</literal>
-                                    means <literal>[2, 1, %i]</literal>, while
-                                    <literal>[2 1 + %i]</literal> means
+                            <listitem>
+                                spaces (blanks or tabs) or commas are used as columns separators.
+                                <note>
+                                    Using commas instead of spaces is safer. For instance,
+                                    <literal>[2 1 +%i]</literal> means <literal>[2, 1, %i]</literal>,
+                                    while <literal>[2 1 + %i]</literal> means
                                     <literal>[2, 1+%i]</literal>
                                 </note>
                             </listitem>
-                            <listitem>semi-colons or carriage-return are used
-                                as rows separators. Multiple rows do not need
-                                the continuation dots <literal>..</literal>
+                            <listitem>
+                                semi-colons or carriage-return are used as rows separators.
+                                Multiple rows do not need the continuation dots <literal>..</literal>
                             </listitem>
                         </itemizedlist>
                     </para>
                     <refsect3 id="brackets_Types_conversions">
                         <title>Types conversions</title>
                         <para>
-                            In some limits, brackets may be applied on a set of
-                            data having different but compatible types. In this
-                            case, some data are converted into the dominating type
-                            available in the set. The main conversion rules are the
-                            following:
+                            In some limits, brackets may be applied on a set of data having
+                            different but compatible types. In this case, some data are converted
+                            into the dominating type available in the set. The main conversion
+                            rules are the following:
                             <orderedlist>
                                 <listitem>boolean &lt; decimal number &lt; complex
                                 </listitem>

@@ -33,7 +33,7 @@ Xcos trace:   propertyUpdated( 1 , BLOCK , IPAR ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 1 , BLOCK , OPAR ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 1 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 1 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
-Xcos trace:   propertyUpdated( 1 , BLOCK , LABEL ) : NO_CHANGES
+Xcos trace:   propertyUpdated( 1 , BLOCK , DESCRIPTION ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 1 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 1 , BLOCK , NMODE ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 1 , BLOCK , EQUATIONS ) : NO_CHANGES
@@ -43,7 +43,7 @@ Xcos trace:   propertyUpdated( 1 , BLOCK , INTERFACE_FUNCTION ) : NO_CHANGES
 Xcos info:    objectCreated( 2 , LINK )
 Xcos trace:   propertyUpdated( 2 , LINK , CONTROL_POINTS ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 2 , LINK , CONTROL_POINTS ) : NO_CHANGES
-Xcos trace:   propertyUpdated( 2 , LINK , LABEL ) : NO_CHANGES
+Xcos trace:   propertyUpdated( 2 , LINK , DESCRIPTION ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 2 , LINK , THICK ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 2 , LINK , COLOR ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 2 , LINK , KIND ) : NO_CHANGES

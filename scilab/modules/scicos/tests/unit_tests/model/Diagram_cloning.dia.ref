@@ -63,7 +63,7 @@ Xcos trace:   propertyUpdated( 2 , BLOCK , IPAR ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 2 , BLOCK , OPAR ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 2 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
 Xcos debug:   propertyUpdated( 2 , BLOCK , SIM_DEP_UT ) : SUCCESS
-Xcos trace:   propertyUpdated( 2 , BLOCK , LABEL ) : NO_CHANGES
+Xcos trace:   propertyUpdated( 2 , BLOCK , DESCRIPTION ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 2 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 2 , BLOCK , NMODE ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 2 , BLOCK , EQUATIONS ) : NO_CHANGES
@@ -146,7 +146,7 @@ Xcos trace:   propertyUpdated( 10 , BLOCK , IPAR ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 10 , BLOCK , OPAR ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 10 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
 Xcos debug:   propertyUpdated( 10 , BLOCK , SIM_DEP_UT ) : SUCCESS
-Xcos trace:   propertyUpdated( 10 , BLOCK , LABEL ) : NO_CHANGES
+Xcos trace:   propertyUpdated( 10 , BLOCK , DESCRIPTION ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 10 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 10 , BLOCK , NMODE ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 10 , BLOCK , EQUATIONS ) : NO_CHANGES
@@ -221,7 +221,7 @@ d.objs(3) = scicos_link(from=[2 1 0],to=[2 1 1]);
 Xcos info:    objectCreated( 22 , LINK )
 Xcos trace:   propertyUpdated( 22 , LINK , CONTROL_POINTS ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 22 , LINK , CONTROL_POINTS ) : NO_CHANGES
-Xcos trace:   propertyUpdated( 22 , LINK , LABEL ) : NO_CHANGES
+Xcos trace:   propertyUpdated( 22 , LINK , DESCRIPTION ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 22 , LINK , THICK ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 22 , LINK , COLOR ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 22 , LINK , KIND ) : NO_CHANGES

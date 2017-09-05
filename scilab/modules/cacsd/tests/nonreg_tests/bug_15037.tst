@@ -1,0 +1,21 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2017 - ESI-Group - Cedric Delamarre
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+//
+// <-- CLI SHELL MODE -->
+//
+// <-- Non-regression test for bug 14980 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=15037
+//
+// <-- Short Description -->
+// the residu function may crash Scilab
+
+a=1-%s^2;
+b=1+2*%s+3*%s^2;
+c=1-2*%s+3*%s^2;
+assert_checkequal(residu(a,b,c), 1/3);

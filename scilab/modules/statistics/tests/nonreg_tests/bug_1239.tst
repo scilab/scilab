@@ -6,6 +6,9 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
+
 // <-- Non-regression test for bug 1239 -->
 //
 // <-- Bugzilla URL -->
@@ -25,7 +28,7 @@
 //
 //    -->nanmax([%nan, 1])
 //     ans  = Inf
-//    The same for nanmin. 
+//    The same for nanmin.
 //    ========================================================
 //
 //    Btw, on a scilab cvs I don't see any problem with nanmin.

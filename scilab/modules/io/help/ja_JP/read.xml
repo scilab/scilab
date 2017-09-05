@@ -20,7 +20,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>[x]=read(file-desc,m,n,[format])
+        <synopsis>x = read(file-desc,m,n,[format])
             [x]=read(file-desc,m,n,k,format)
         </synopsis>
     </refsynopsisdiv>
@@ -111,13 +111,9 @@
             キーボードから読み込むには,
             <literal>read(%io(1),...)</literal>を使用してください.
         </para>
-    </refsection>
-    <refsection>
-        <title>注意</title>
-        <para>
-            データファイルの最後の行は,
-            認識されるために,改行で終わる必要があります.
-        </para>
+        <note>
+            データファイルの最後の行は,  認識されるために,改行で終わる必要があります.
+        </note>
     </refsection>
     <refsection>
         <title>例</title>

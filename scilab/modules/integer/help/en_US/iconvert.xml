@@ -28,7 +28,10 @@
             <varlistentry>
                 <term>X</term>
                 <listitem>
-                    <para>a matrix of floats or integers.</para>
+                    <para>
+                      a matrix of decimal numbers or encoded integers.
+                      Complex numbers not supported.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
