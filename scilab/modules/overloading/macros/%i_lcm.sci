@@ -21,7 +21,7 @@ function [q,fact]=%i_lcm(p)
 
     q=p(1);
     for k=2:size(p,"*")
-        q=q/%i_gcd([q,p(k)])*p(k);
+        q=q/gcd([q,p(k)])*p(k);
     end
     fact=q./p
 endfunction
