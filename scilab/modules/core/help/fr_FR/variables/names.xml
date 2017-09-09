@@ -1,25 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="names">
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * Copyright (C) 2017 - Samuel GOUGEON
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:lang="fr" xml:id="names">
     <refnamediv>
-        <refname>names</refname>
-        <refpurpose>syntaxe des noms de variables dans Scilab  </refpurpose>
+        <refname>nommage</refname>
+        <refpurpose>Règles de nommage des variables et fonctions</refpurpose>
     </refnamediv>
     <refsection>
         <title>Description</title>
         <para>
-            Les noms de variables et de fonctions doivent commencer par une lettre de l'alphabet ou l'un des caractères "spéciaux" suivants : '<literal>%</literal>', '<literal>_</literal>', '<literal>#</literal>', '<literal>!</literal>', '<literal>$</literal>', '<literal>?</literal>'.
+            Les noms de variables et de fonctions doivent commencer par une lettre ou l'un des
+            caractères suivants : <literal>% _ # ! ? $</literal>
         </para>
         <para>
+            Les caractères suivants peuvent être des lettres ou des chiffres, ou bien des caractères
+            parmi les suivants: <literal>_ # ! ? $</literal>. <literal>%</literal> est exclu.
         </para>
         <para>
-            Les caractères suivants peuvent être des lettres ou des chiffres, ou bien des caractères spéciaux tels que '<literal>_</literal>', '<literal>#</literal>', '<literal>!</literal>', '<literal>$</literal>', '<literal>?</literal>'.
+            La différence entre minuscules et majuscules est prise en compte.
         </para>
         <para>
+            Les lettres accentuées ou caractères non latins encodés en UTF-8 sont acceptés.
         </para>
         <para>
-            Le nombre de caractères des noms de variables n'est pas limité mais seuls les 24 premiers sont pris en compte. La différence entre minuscules et majuscules est prise en compte.
-        </para>
-        <para>
+            Le nombre de caractères des noms/identifiants n'est pas limité.
         </para>
     </refsection>
     <refsection>
@@ -27,11 +47,40 @@
         <programlisting role="example"><![CDATA[
 // Noms valides
 %eps
-A1=123
-#Color=8
-My_Special_Color_Table=rand(10,3)
+A1 = 123
+#Color = 8
+œuvres_suggérées = ["1984" "1793"];
+
 // Noms invalides
 //1A , b%, .C
+
+// Noms longs
+Le_nom_d_une_variable_n_est_pas_limité_en_longueur = 1
+
+// Un nom kilométrique (1000 caractères) :
+name = strcat(part("a",ones(1,1000)));
+execstr(name+"=%pi; b ="+name);
+b
  ]]></programlisting>
+    </refsection>
+    <refsection role="history">
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>
+                            L'interpréteur de Scilab ne tronque désormais plus les noms de variable
+                            comportant plus de 24 caractères.
+                        </listitem>
+                        <listitem>
+                            Les noms de variables et de champs peuvent maintenant inclure des
+                            caractères étendus (accentués, etc) encodés en UTF-8.
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

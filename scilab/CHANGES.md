@@ -101,6 +101,8 @@ has to be modified in order to work in Scilab 6.0.
 See [the wiki page on porting code from 5.5 to 6.0](https://wiki.scilab.org/FromScilab5ToScilab6)
 for details and examples.
 
+* The parser now fully supports names of variables and functions of any length or/and including
+  some UTF-8 multilingual characters.
 * Declaration of a number on two lines is no longer allowed: `1.. \n 2`.
 * Comment blocks on multiple lines `/* ...\n ... \n ... */` are now possible.
 * `1./M` is now parsed as `1 ./ M` instead of `1. / M`.

@@ -1,5 +1,22 @@
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="names">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+    xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+    xml:lang="ru" xml:id="names">
     <refnamediv>
         <refname>имена</refname>
         <refpurpose>синтаксис имён в Scilab</refpurpose>
@@ -8,21 +25,20 @@
         <title>Описание</title>
         <para>
             Имена переменных и функций должны начинаться с буквы, либо с одного из следующих специальных
-            символов: '<literal>%</literal>', '<literal>_</literal>', '<literal>#</literal>',
-            '<literal>!</literal>', '<literal>$</literal>', '<literal>?</literal>'.
+            символов: <literal>% _ # ! ? $</literal>.
         </para>
         <para>
             Последующие символы имени могут быть буквами, цифрами или любыми другими специальными
-            символами из '<literal>_</literal>', '<literal>#</literal>', '<literal>!</literal>',
-            '<literal>$</literal>', '<literal>?</literal>'.
+            символами из <literal>_ # ! ? $</literal>.
         </para>
         <para>
             Буквы верхнего и нижнего регистра различаются.
         </para>
         <para>
-            Имена могут быть как угодно длинными, но учитываются лишь первые 24 символа. В случае
-            превышения этого предела будет в консоли будет выведено предупреждение. Это ограничение будет
-            исправлено в Scilab версии 6.
+            Принимаются многоязычные кодированные символы UTF-8.
+        </para>
+        <para>
+            Имена могут быть такими длинными, как вам нужно.
         </para>
     </refsection>
     <refsection>
@@ -30,24 +46,38 @@
         <programlisting role="example"><![CDATA[
 // Корректные имена
 %eps
-A1=123
-#Color=8
-My_Special_Color_Table=rand(10,3)
+A1 = 123
+#Color = 8
+общая_длина = 11
+
 // Некорректные имена
-//1A , b%, .C
+//1A , b%, .C,
 
 // Длинные имена
-Try_to_use_a_long_name = 1
-Try_to_use_a_too_long_name = 1
+The_name_of_an_identifier_is_not_length_limited = 1
 
-// давайте введём вторую переменную с похожим длинным именем...
-Try_to_use_a_too_long_name2 = 2
-
-// ... и посмотрим какое значение имеет первая переменная
-disp(Try_to_use_a_too_long_name)
-
-// Ограничение длины имени переменной 24-мя символами
-// будет исправлено в Scilab версии 6.
+// Километровое имя (1000-символьная длина):
+name = strcat(part("a",ones(1,1000)));
+execstr(name+"=%pi; b ="+name);
+b
  ]]></programlisting>
+    </refsection>
+    <refsection role="history">
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>
+                            Анализатор Scilab больше не обрезает имена длиной более 24 символов.
+                        </listitem>
+                        <listitem>
+                            Символы UTF-8 теперь принимаются в именах переменных и полей.
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
