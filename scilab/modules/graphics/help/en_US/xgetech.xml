@@ -16,7 +16,9 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="xgetech">
     <refnamediv>
         <refname>xgetech</refname>
-        <refpurpose>get the current graphics scale</refpurpose>
+        <refpurpose>
+            get the current graphics scale  <emphasis role="bold">(obsolete)</emphasis>
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
@@ -43,6 +45,11 @@
     </refsection>
     <refsection>
         <title>Description</title>
+        <warning>
+          This function is obsolete. It will be removed from Scilab 6.1. Please use
+          <literal>ax=gca(); (ax.axes_bounds, ax.data_bounds(:)', ax.log_flags, ax.margins)</literal>
+          or any combination instead.
+        </warning>
         <para>
             <function>xgetech</function> returns the current graphics scale (of
             the current window). The rectangle <literal>[xmin, ymin, xmax,
@@ -118,5 +125,16 @@ xsetech([0,0.5,1.0,0.5])
                 <link linkend="xsetech">xsetech</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.1</revnumber>
+                <revdescription>
+                    xgetech() is tagged obsolete for removal from Scilab 6.1.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

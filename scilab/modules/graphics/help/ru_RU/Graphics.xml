@@ -741,14 +741,6 @@
             </varlistentry>
             <varlistentry>
                 <term>
-                    <link linkend="xgetech">xgetech</link>
-                </term>
-                <listitem>
-                    <para>Получение масштаба текущего графика</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>
                     <link linkend="xchange">xchange</link>
                 </term>
                 <listitem>

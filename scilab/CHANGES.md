@@ -311,6 +311,7 @@ Obsolete functions or features
 * `square` will be removed from Scilab 6.1. Please use `gcf().axes_size` and `replot` instead.
 * `nanmin` is obsolete and will be removed in Scilab 6.1. Please use `min` instead.
 * `nanmax` is obsolete and will be removed in Scilab 6.1. Please use `max` instead.
+* `xgetech` is obsolete and will be removed in Scilab 6.1. Please use `gca` instead.
 
 
 Removed Functions

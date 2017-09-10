@@ -699,14 +699,6 @@
             </varlistentry>
             <varlistentry>
                 <term>
-                    <link linkend="xgetech">xgetech</link>
-                </term>
-                <listitem>
-                    <para>donne l'échelle graphique courante</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>
                     <link linkend="xchange">xchange</link>
                 </term>
                 <listitem>

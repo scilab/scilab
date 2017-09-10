@@ -6,6 +6,8 @@
 // =============================================================================
 
 // <-- TEST WITH GRAPHIC -->
+// <-- INTERACTIVE TEST -->
+// <-- NO CHECK REF -->
 
 // <-- Non-regression test for bug 2405 -->
 //
@@ -15,15 +17,13 @@
 // <-- Short Description -->
 // xsetech() creates an empty (covering white) axes frame, which shouldn't be, when
 // used in conjunction with subplot().
-// 
+//
 
 clf()
 subplot(121); plot2d();
-e=xgetech(); xsetech(e)
+e = gca().axes_bounds;
+xsetech(e)
 subplot(122); plot2d()
 
 // check that the first plot did not become white
-
-
-
 

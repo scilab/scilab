@@ -92,12 +92,11 @@ std::unordered_map<std::wstring, std::wstring> DeprecatedChecker::initDep()
 {
     // TODO: get this list from a conf file
     std::unordered_map<std::wstring, std::wstring> map;
-    // Scilab 6.0.0 => 6.1.0
-    map.emplace(L"square", L"replot");
-
-    // Scilab 6.0.0 => 6.0.1
+    // Scilab 6.0.x => 6.1.0
     map.emplace(L"nanmin", L"min");
     map.emplace(L"nanmax", L"max");
+    map.emplace(L"square", L"replot");
+    map.emplace(L"xgetech", L"gca");
 
     // Scilab 5.5.2 => 6.0.0
     map.emplace(L"fort", L"call");

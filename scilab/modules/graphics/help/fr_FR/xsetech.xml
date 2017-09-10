@@ -127,7 +127,7 @@ xsetech([0,0,1,1])
 
 // Un dessin avec arect change
 clf('reset')
-xsetech(arect=[0,0,0,0]) 
+xsetech(arect=[0,0,0,0])
 x = 1:0.1:10;
 plot2d(x',sin(x)')
  ]]></programlisting>
@@ -150,9 +150,6 @@ clf('reset')
     <refsection role="see also">
         <title>Voir aussi</title>
         <simplelist type="inline">
-            <member>
-                <link linkend="xgetech">xgetech</link>
-            </member>
             <member>
                 <link linkend="subplot">subplot</link>
             </member>

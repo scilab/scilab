@@ -375,7 +375,8 @@ function [sd1]=fleche(sd,del)
         [oi1,oi2,of1,of2,but]=xgetm(d_arrow);
         if but==2 then sd1=list();return,end
         o1=[oi1;of1],o2=[oi2;of2];
-        [r1,r2]=xgetech()
+        ax = gca();
+        [r1, r2] = (ax.axes_bounds, ax.data_bounds(:)');
         sz=1/(40*min(abs(r2(3)-r2(1)),abs(r2(4)-r2(2))))
         sd1=list("fleche",o1,o2,sz);
         d_arrow(o1,o2,sz);
@@ -623,7 +624,8 @@ function d_arrow(c1,c2,x1,x2)
     if rhs<>4 then
         sz=x1;x1=c1(2);c1=c1(1);x2=c2(2);c2=c2(1);
     else
-        [r1,r2]=xgetech()
+        ax = gca();
+        [r1, r2] = (ax.axes_bounds, ax.data_bounds(:)');
         sz=1/(40*min(abs(r2(3)-r2(1)),abs(r2(4)-r2(2))))
     end
     xarrows([c1;x1],[c2;x2],sz,-1);

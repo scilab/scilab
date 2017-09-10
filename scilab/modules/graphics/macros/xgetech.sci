@@ -13,7 +13,7 @@
 //
 //
 function [wrect, frect, logflag, arect]=xgetech()
-
+    warnobsolete("""a=gca();[a.axes_bounds a.data_bounds a.log_flags a.margins]""", "6.1");
     a = gca();
     wrect = a.axes_bounds;
     frect = matrix(a.data_bounds, 1, 4);

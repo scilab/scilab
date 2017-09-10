@@ -699,14 +699,6 @@
             </varlistentry>
             <varlistentry>
                 <term>
-                    <link linkend="xgetech">xgetech</link>
-                </term>
-                <listitem>
-                    <para>カレントのグラフィックのスケールを取得</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>
                     <link linkend="xchange">xchange</link>
                 </term>
                 <listitem>
