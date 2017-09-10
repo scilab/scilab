@@ -396,11 +396,9 @@ moment
 mvcorrel
 nancumsum
 nand2mean
-nanmax
 nanmean
 nanmeanf
 nanmedian
-nanmin
 nanreglin
 nanstdev
 nansum
