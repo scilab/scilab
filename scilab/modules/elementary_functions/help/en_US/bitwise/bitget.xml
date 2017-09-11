@@ -3,6 +3,7 @@
  *
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Michael Baudin
+ * Copyright (C) 2017 - Samuel GOUGEON
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -14,10 +15,14 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="bitget" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org"
+        xml:id="bitget" xml:lang="en">
     <refnamediv>
         <refname>bitget</refname>
-        <refpurpose>bit at specified position</refpurpose>
+        <refpurpose>Extracts from integers bits of given indices</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
@@ -29,36 +34,100 @@
         <title>Parameters</title>
         <variablelist>
             <varlistentry>
-                <term>x :</term>
+                <term>x</term>
                 <listitem>
                     <para>
-                        a <literal>m</literal>-by-<literal>n</literal> matrix of doubles
-                        or a <literal>m1</literal>-by-<literal>m2</literal>-by-...-by-<literal>mm</literal> hypermatrix of doubles
-                        or a <literal>m</literal>-by-<literal>n</literal> matrix of unsigned integers (<literal>uint8</literal>, <literal>uint16</literal> or <literal>uint32</literal>).
-                        Must contain positive integer values.
+                        Scalar, vector, matrix or hypermatrix of positive decimal or encoded integers.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>pos :</term>
+                <term>pos</term>
                 <listitem>
                     <para>
-                        a <literal>m</literal>-by-<literal>n</literal> matrix of doubles
-                        or a <literal>m1</literal>-by-<literal>m2</literal>-by-...-by-<literal>mm</literal> hypermatrix of doubles
-                        or a <literal>m</literal>-by-<literal>n</literal> matrix of unsigned integers (<literal>uint8</literal>, <literal>uint16</literal> or <literal>uint32</literal>).
-                        The input <varname>pos</varname> must be in the range 1, 2, ..., <literal>bitmax</literal>
-                        where <literal>bitmax</literal> is the maximum number of bits in <varname>x</varname>.
-                        Must contain positive integer values.
+                        Scalar, vector, matrix or hypermatrix of decimal or encoded integers in
+                        <literal>[1, bitmax]</literal> where <literal>bitmax</literal> is the
+                        maximal index of bits for the type of <varname>x</varname>: Indices of bits
+                        to be extracted. The bit #1 is the lightest one (2<superscript>0</superscript>).
+            <table>
+                <tr><th>typeof(x)</th><th>bitmax</th><td>..</td><th>typeof(x)</th><th>bitmax</th></tr>
+                <tr align="center"><td>int8  </td><td>7</td> <td>  </td><td>uint8</td><td>8</td></tr>
+                <tr align="center"><td>int16 </td><td>15</td><td>  </td><td>uint16</td><td>16</td></tr>
+                <tr align="center"><td>int32 </td><td>31</td><td>  </td><td>uint32</td><td>32</td></tr>
+                <tr align="center"><td>int64 </td><td>63</td><td>  </td><td>uint16</td><td>64</td></tr>
+                <tr align="center"><td>decimal</td><td>1024</td><td>  </td><td></td><td></td></tr>
+            </table>
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>y :</term>
+                <term>y</term>
                 <listitem>
                     <para>
-                        a <literal>m</literal>-by-<literal>n</literal> matrix of doubles
-                        or a <literal>m1</literal>-by-<literal>m2</literal>-by-...-by-<literal>mm</literal> hypermatrix of doubles
-                        or a <literal>m</literal>-by-<literal>n</literal> matrix of unsigned integers.
+                        Scalar, vector, matrix or hypermatrix of 0 and 1 of the type of
+                        <varname>x</varname>. The sizes and contents of <varname>y</varname> are
+                        as follows:
+                        <itemizedlist>
+                            <listitem>
+                                <para>
+                                If <varname>x</varname> is a scalar:
+                                <itemizedlist>
+                                    <listitem>
+                                        <varname>y</varname> has the sizes of <varname>pos</varname>
+                                    </listitem>
+                                    <listitem>
+                                        <literal>y(i,j,..)</literal> is the value of bit
+                                        #<literal>pos(i,j,..)</literal> of <varname>x</varname>.
+                                    </listitem>
+                                </itemizedlist>
+                                </para>
+                            </listitem>
+                            <listitem>
+                                <para>
+                                If <varname>pos</varname> is a scalar:
+                                <itemizedlist>
+                                    <listitem>
+                                        <varname>y</varname> has the sizes of <varname>x</varname>
+                                    </listitem>
+                                    <listitem>
+                                        <literal>y(i,j,..)</literal> is the value of the bit
+                                        #<literal>pos</literal> of <literal>x(i,j,..)</literal>.
+                                    </listitem>
+                                </itemizedlist>
+                                </para>
+                            </listitem>
+                            <listitem>
+                                <para>
+                                If <varname>x</varname> and <varname>pos</varname> are arrays with
+                                identical sizes, the processing is element-wise:
+                                <itemizedlist>
+                                    <listitem>
+                                        <varname>y</varname> has the sizes of <varname>x</varname>
+                                        and <varname>pos</varname>
+                                    </listitem>
+                                    <listitem>
+                                        <literal>y(i,j,..)</literal> is the value of the bit
+                                        #<literal>pos(i,j,..)</literal> of <literal>x(i,j,..)</literal>.
+                                    </listitem>
+                                </itemizedlist>
+                                </para>
+                            </listitem>
+                            <listitem>
+                                <para>Otherwise:
+                                <itemizedlist>
+                                    <listitem>
+                                        <varname>y</varname> is a matrix with
+                                        <literal>length(x)</literal> rows and
+                                        <literal>length(pos)</literal> columns.
+                                    </listitem>
+                                    <listitem>
+                                        <literal>y(i,j)</literal> is the value of the bit
+                                        #<literal>pos(j)</literal> of <literal>x(i)</literal>.
+                                    </listitem>
+                                </itemizedlist>
+                                </para>
+                            </listitem>
+                        </itemizedlist>
                     </para>
                 </listitem>
             </varlistentry>
@@ -67,8 +136,19 @@
     <refsection>
         <title>Description</title>
         <para>
-            Given an unsigned integer <varname>x</varname>, this function returns an unsigned integer <varname>y</varname>
-            (<literal>0</literal> or <literal>1</literal>) which is the bit number <varname>pos</varname> from the representation binary of <varname>x</varname>.
+            <literal>bitget()</literal> scans chosen bits of the binary representation of some
+            positive integers <varname>x</varname>. It returns 0 for bits down, and 1 for bits up.
+        </para>
+        <para>
+            The result has the sizes of <varname>x</varname> or of <varname>pos</varname> or
+            of both inputs.
+        </para>
+        <para>
+            However, when both <varname>x</varname> and <varname>pos</varname> are non-scalar and
+            have mismatching sizes, the result <varname>y</varname> is a matrix ignoring the sizes
+            of <varname>x</varname>. Then, after reshaping <varname>y</varname> with
+            <literal>y = matrix(y, [size(x) -1])</literal>, the value of the bit #b of
+            <literal>x(i,..,k)</literal> is in <literal>y(i,..,k,b)</literal>.
         </para>
     </refsection>
     <refsection>
@@ -84,9 +164,105 @@ expected = 1;
 // 13 is (1101)_2
 dec2bin(13)
 bitget(uint8(13),4:-1:1)
-
-// The input x can be a positive double
-bitget(13,4:-1:1)
    ]]></programlisting>
+        <para>
+        <emphasis role="bold">With arrays and encoded integers:</emphasis>:
+        </para>
+        <programlisting role="example"><![CDATA[
+
+   ]]></programlisting>
+        <screen><![CDATA[
+]]></screen>
+        <para>
+        <emphasis role="bold">With big decimal integers > 2<superscript>52</superscript></emphasis>:
+        </para>
+        <programlisting role="example"><![CDATA[
+x = sum(2 .^([7 16 18 19 25 52 70]-1))
+bitget(x,    [7 16 18 19 35 52 70 80])
+   ]]></programlisting>
+        <screen><![CDATA[
+--> x = sum(2 .^([7 16 18 19 25 52 70]-1))
+ x  =
+   5.903D+20
+
+--> bitget(x,    [7 16 18 19 35 52 70 80])
+ ans  =
+   Nan   Nan   1.   1.   0.   1.   1.   0.
+]]></screen>
+        <para>
+        <emphasis role="bold">x and pos are arrays with mismatching sizes:</emphasis>
+        </para>
+        <programlisting role="example"><![CDATA[
+x = [39  8  4  44  52  5  6  14  64 39  12  4  62  29  12  50  39  29];
+x = matrix(x,2,3,3);
+// (:,:,1)
+//   39.   4.    52.
+//   8.    44.   5.
+// (:,:,2)
+//   6.    64.   12.
+//   14.   39.   4.
+// (:,:,3)
+//   62.   12.   39.
+//   29.   50.   29.
+x = sum(2.^(x-1),3);
+bitget(x, [5 8 12 39])
+   ]]></programlisting>
+   <screen><![CDATA[
+--> bitget(x, [5 8 12 39])
+ ans  =
+   Nan   Nan   0.   1.
+   0.    1.    0.   0.
+   Nan   Nan   1.   0.
+   0.    0.    0.   1.
+   0.    0.    1.   1.
+   1.    0.    0.   0.
+]]></screen>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="bitset">bitset</link>
+            </member>
+            <member>
+                <link linkend="bitand">bitand</link>
+            </member>
+            <member>
+                <link linkend="dec2bin">dec2bin</link>
+            </member>
+            <member>
+                <link linkend="and_op">&amp;</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>
+                            Positive unsigned integers are now accepted.
+                        </listitem>
+                        <listitem>
+                            64 bits encoded integers are now accepted.
+                        </listitem>
+                        <listitem>
+                            For decimal integers, bits with index in [53, 1024] can now be retrieved.
+                        </listitem>
+                        <listitem>
+                            For decimal integers > 2<superscript>52</superscript>, querying bits
+                            below the <literal>%eps</literal> relative accuracy now returns
+                            <literal>NaN</literal> instead of 0.
+                        </listitem>
+                        <listitem>
+                            It is now possible to retrieve several bits from each component of
+                            an input array.
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
