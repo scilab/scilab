@@ -464,6 +464,12 @@ int sci_set(char *fname, void *pvApiCtx)
         freeAllocatedSingleString(pstProperty);
     }
 
+    //never occurs, just to break weird optimisation (bug 14896)
+    if (iRhs == 0)
+    {
+        sciprint("%d/%d\n", i, iRhs);
+    }
+
     AssignOutputVariable(pvApiCtx, 1) = 0;
     ReturnArguments(pvApiCtx);
     return 0;
