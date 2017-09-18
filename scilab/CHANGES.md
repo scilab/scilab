@@ -28,6 +28,7 @@ In summary, the main new features are:
   - Support for bigger data sets, thanks to dynamic memory usage. No need for `stacksize` anymore.
   - Better performance for some objects (cells and structs).
   - Clearer, less ambiguous, language syntax.
+  - Executor reuse for specialization and custom engines.
   - Xcos also uses the new re-written Scilab engine.
 * New code productivity features: full-featured debugger, profiler / coverage tool, and "lint"-like commands.
 * Newsfeed, providing a continuous feed of news, tips, and general communication from the community and from Scilab Enterprises.

@@ -207,55 +207,55 @@ private:
         }
     }
 
-    void visit(ast::SimpleVar & e)
+    void visit(ast::SimpleVar & /*e*/)
     {
     }
 
-    void visit(ast::DollarVar & e)
+    void visit(ast::DollarVar & /*e*/)
     {
     }
 
-    void visit(ast::ColonVar & e)
+    void visit(ast::ColonVar & /*e*/)
     {
     }
 
-    void visit(ast::ArrayListVar & e)
+    void visit(ast::ArrayListVar & /*e*/)
     {
     }
 
-    void visit(ast::DoubleExp & e)
+    void visit(ast::DoubleExp & /*e*/)
     {
     }
 
-    void visit(ast::BoolExp & e)
+    void visit(ast::BoolExp & /*e*/)
     {
     }
 
-    void visit(ast::StringExp & e)
+    void visit(ast::StringExp & /*e*/)
     {
     }
 
-    void visit(ast::CommentExp & e)
+    void visit(ast::CommentExp & /*e*/)
     {
     }
 
-    void visit(ast::NilExp & e)
+    void visit(ast::NilExp & /*e*/)
     {
     }
 
-    void visit(ast::CallExp & e)
+    void visit(ast::CallExp & /*e*/)
     {
     }
 
-    void visit(ast::CellCallExp & e)
+    void visit(ast::CellCallExp & /*e*/)
     {
     }
 
-    void visit(ast::OpExp & e)
+    void visit(ast::OpExp & /*e*/)
     {
     }
 
-    void visit(ast::LogicalOpExp & e)
+    void visit(ast::LogicalOpExp & /*e*/)
     {
     }
 
@@ -326,11 +326,11 @@ private:
         pushAssigned();
     }
 
-    void visit(ast::BreakExp & e)
+    void visit(ast::BreakExp & /*e*/)
     {
     }
 
-    void visit(ast::ContinueExp & e)
+    void visit(ast::ContinueExp & /*e*/)
     {
     }
 
@@ -358,31 +358,31 @@ private:
         e.getBody()->accept(*this);
     }
 
-    void visit(ast::ReturnExp & e)
+    void visit(ast::ReturnExp & /*e*/)
     {
     }
 
-    void visit(ast::FieldExp & e)
+    void visit(ast::FieldExp & /*e*/)
     {
     }
 
-    void visit(ast::NotExp & e)
+    void visit(ast::NotExp & /*e*/)
     {
     }
 
-    void visit(ast::TransposeExp & e)
+    void visit(ast::TransposeExp & /*e*/)
     {
     }
 
-    void visit(ast::MatrixExp & e)
+    void visit(ast::MatrixExp & /*e*/)
     {
     }
 
-    void visit(ast::MatrixLineExp & e)
+    void visit(ast::MatrixLineExp & /*e*/)
     {
     }
 
-    void visit(ast::CellExp & e)
+    void visit(ast::CellExp & /*e*/)
     {
     }
 
@@ -407,11 +407,11 @@ private:
         }
     }
 
-    void visit(ast::ArrayListExp & e)
+    void visit(ast::ArrayListExp & /*e*/)
     {
     }
 
-    void visit(ast::AssignListExp & e)
+    void visit(ast::AssignListExp & /*e*/)
     {
     }
 
@@ -420,23 +420,23 @@ private:
         emplaceAssigned(e.getSymbol());
     }
 
-    void visit(ast::FunctionDec & e)
+    void visit(ast::FunctionDec & /*e*/)
     {
     }
 
-    void visit(ast::ListExp & e)
+    void visit(ast::ListExp & /*e*/)
     {
     }
 
-    void visit(ast::OptimizedExp & e)
+    void visit(ast::OptimizedExp & /*e*/)
     {
     }
 
-    void visit(ast::MemfillExp & e)
+    void visit(ast::MemfillExp & /*e*/)
     {
     }
 
-    void visit(ast::DAXPYExp & e)
+    void visit(ast::DAXPYExp & /*e*/)
     {
     }
 

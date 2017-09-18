@@ -96,6 +96,8 @@ public:
     }
 
 public:
+    void getInputs(const CallExp& e, exps_t& args, types::typed_list& inTmp, std::vector<std::wstring>& vectOptName, std::vector<int>& vectNbResult);
+
     int getExpectedSize(void)
     {
         return _expected_result;

@@ -64,27 +64,27 @@ public :
     bool                        isScalar();
 
     /*commun functions*/
-    inline int                  getCols()
+    virtual int                  getCols()
     {
         return m_iCols;
     }
 
-    inline int                  getRows()
+    virtual int                  getRows()
     {
         return m_iRows;
     }
 
-    inline int                  getSize()
+    virtual int                  getSize()
     {
         return m_iSize;
     }
 
-    inline int                  getDims()
+    virtual int                  getDims()
     {
         return m_iDims;
     }
 
-    inline int*                 getDimsArray()
+    virtual int*                 getDimsArray()
     {
         return m_piDims;
     }
