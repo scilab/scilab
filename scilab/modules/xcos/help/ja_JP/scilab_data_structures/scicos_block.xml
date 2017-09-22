@@ -26,16 +26,6 @@
         <refname>scicos_block</refname>
         <refpurpose>ブロック構造を定義</refpurpose>
     </refnamediv>
-    <refsection id="Module_scicos_block">
-        <title>モジュール</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
     <refsection id="block_scicos_block">
         <title>block</title>
         <para>

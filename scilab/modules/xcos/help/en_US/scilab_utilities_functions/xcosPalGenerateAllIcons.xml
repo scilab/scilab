@@ -43,17 +43,6 @@ loadXcosLibs();
 xcosPalGenerateAllIcons(["Palettes" "Recently Used Blocks"]);
    ]]></programlisting>
     </refsection>
-    <refsection>
-        <title>History</title>
-        <revhistory>
-            <revision>
-                <revnumber>5.4.1</revnumber>
-                <revremark>
-                    Function added.
-                </revremark>
-            </revision>
-        </revhistory>
-    </refsection>
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
@@ -64,5 +53,16 @@ xcosPalGenerateAllIcons(["Palettes" "Recently Used Blocks"]);
                 <link linkend="xcosPalAddBlock">xcosPalAddBlock</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.1</revnumber>
+                <revremark>
+                    Function added.
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

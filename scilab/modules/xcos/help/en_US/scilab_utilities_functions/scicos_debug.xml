@@ -32,32 +32,6 @@
             level = scicos_debug()
         </synopsis>
     </refsynopsisdiv>
-    <refsection id="Module_scicos_debug">
-        <title>Module</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Description_scicos_debug">
-        <title>Description</title>
-        <para>
-            This Scilab function is used to set the debug level of a Scicos simulation.
-        </para>
-        <para>
-            One can used it in the "Calc" mode of the Scicos editor or as an instruction in a Scilab block or in an interfacing function.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[
-scicos_debug(level)
-level=scicos_debug()
- ]]></programlisting>
-    </refsection>
     <refsection id="Parameters_scicos_debug">
         <title>Arguments</title>
         <itemizedlist>
@@ -93,5 +67,21 @@ level=scicos_debug()
                 </itemizedlist>
             </listitem>
         </itemizedlist>
+    </refsection>
+    <refsection id="Description_scicos_debug">
+        <title>Description</title>
+        <para>
+            This Scilab function is used to set the debug level of a Scicos simulation.
+        </para>
+        <para>
+            One can used it in the "Calc" mode of the Scicos editor or as an instruction in a Scilab block or in an interfacing function.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+scicos_debug(level)
+level=scicos_debug()
+ ]]></programlisting>
     </refsection>
 </refentry>

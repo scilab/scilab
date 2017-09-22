@@ -20,22 +20,14 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>scs_m = xcosDiagramToScilab(filename)</synopsis>
-        <synopsis>[scs_m1, scs_m2, ...] = xcosDiagramToScilab([filename1, filename2, ...])</synopsis>
-        <synopsis/>
-        <synopsis>xcosDiagramToScilab(filename, scs_m)</synopsis>
-        <synopsis>xcosDiagramToScilab([filename1, filename2, ...], scs_m1, scs_m2)</synopsis>
+        <synopsis>
+          scs_m = xcosDiagramToScilab(filename)
+          [scs_m1, scs_m2, ...] = xcosDiagramToScilab([filename1, filename2, ...])
+
+          xcosDiagramToScilab(filename, scs_m)
+          xcosDiagramToScilab([filename1, filename2, ...], scs_m1, scs_m2)
+        </synopsis>
     </refsynopsisdiv>
-    <refsection id="Module_xcosDiagramToScilab">
-        <title>Module</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
     <refsection id="Parameters_xcosDiagramToScilab">
         <title>Arguments</title>
         <itemizedlist>
@@ -70,17 +62,17 @@
         </programlisting>
     </refsection>
     <refsection id="SeeAlso_xcosDiagramToScilab">
-        <title role="see also">See also</title>
-        <itemizedlist>
-            <listitem>
-                <link linkend="scicos_diagram">scicos_diagram</link>
-            </listitem>
-            <listitem>
+        <title role="see also">See Also</title>
+        <simplelist type="inline">
+            <member>
                 <link linkend="xcos">xcos</link>
-            </listitem>
-            <listitem>
+            </member>
+            <member>
+                <link linkend="scicos_diagram">scicos_diagram</link>
+            </member>
+            <member>
                 <link linkend="importXcosDiagram">importXcosDiagram</link>
-            </listitem>
-        </itemizedlist>
+            </member>
+        </simplelist>
     </refsection>
 </refentry>

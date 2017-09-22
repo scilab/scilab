@@ -51,107 +51,87 @@
         </para>
 
         <itemizedlist>
+          <listitem>
 
-            <listitem>
+            <para>
 
-                <para>
+              <xref linkend="Filemenu_Menu_entries">Fileメニュー</xref>
 
-                    <link linkend="xcos_menu_entries">Xcosエディタメニューエントリ</link>
+            </para>
 
-                </para>
+          </listitem>
 
-            </listitem>
+          <listitem>
 
-            <listitem>
+            <para>
 
-                <itemizedlist>
+              <xref linkend="Editmenu_Menu_entries">Editメニュー</xref>
 
-                    <listitem>
+            </para>
 
-                        <para>
+          </listitem>
 
-                            <xref linkend="Filemenu_Menu_entries">Fileメニュー</xref>
+          <listitem>
 
-                        </para>
+            <para>
 
-                    </listitem>
+              <xref linkend="Viewmenu_Menu_entries">Viewメニュー</xref>
 
-                    <listitem>
+            </para>
 
-                        <para>
+          </listitem>
 
-                            <xref linkend="Editmenu_Menu_entries">Editメニュー</xref>
+          <listitem>
 
-                        </para>
+            <para>
 
-                    </listitem>
+              <xref linkend="Simulatemenu_Menu_entries">Simulateメニュー</xref>
 
-                    <listitem>
+            </para>
 
-                        <para>
+          </listitem>
 
-                            <xref linkend="Viewmenu_Menu_entries">Viewメニュー</xref>
+          <listitem>
 
-                        </para>
+            <para>
 
-                    </listitem>
+              <xref linkend="Formatmenu_Menu_entries">Formatメニュー</xref>
 
-                    <listitem>
+            </para>
 
-                        <para>
+          </listitem>
 
-                            <xref linkend="Simulatemenu_Menu_entries">Simulateメニュー</xref>
+          <listitem>
 
-                        </para>
+            <para>
 
-                    </listitem>
+              <xref linkend="Toolsmenu_Menu_entries">Toolsメニュー</xref>
 
-                    <listitem>
+            </para>
 
-                        <para>
+          </listitem>
 
-                            <xref linkend="Formatmenu_Menu_entries">Formatメニュー</xref>
+          <listitem>
 
-                        </para>
+            <para>
 
-                    </listitem>
+              <xref linkend="Helpmenu_Menu_entries">?メニュー</xref>
 
-                    <listitem>
+            </para>
 
-                        <para>
+          </listitem>
 
-                            <xref linkend="Toolsmenu_Menu_entries">Toolsメニュー</xref>
+          <listitem>
 
-                        </para>
+            <para>
 
-                    </listitem>
+              <xref linkend="Seealso_Menu_entries">参照</xref>
 
-                    <listitem>
+            </para>
 
-                        <para>
+          </listitem>
 
-                            <xref linkend="Helpmenu_Menu_entries">?メニュー</xref>
-
-                        </para>
-
-                    </listitem>
-
-                    <listitem>
-
-                        <para>
-
-                            <xref linkend="Seealso_Menu_entries">参照</xref>
-
-                        </para>
-
-                    </listitem>
-
-                </itemizedlist>
-
-            </listitem>
-
-        </itemizedlist>
-
+      </itemizedlist>
     </refsection>
 
     <refsection id="Filemenu_Menu_entries">

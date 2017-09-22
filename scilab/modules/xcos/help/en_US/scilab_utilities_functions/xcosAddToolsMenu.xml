@@ -22,16 +22,6 @@
         <title>Syntax</title>
         <synopsis>xcosAddToolsMenu(label, command)</synopsis>
     </refsynopsisdiv>
-    <refsection id="Module_xcosAddToolsMenu">
-        <title>Module</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
     <refsection id="Description_xcosAddToolsMenu">
         <title>Description</title>
         <para>Add a menu into Xcos with a scilab command. The scilab command can assume that there is two variable on the current scilab context :</para>
@@ -64,29 +54,21 @@ xcosAddToolsMenu("update block", "myUpdateFunction(blk, scs_m)");
         </para>
     </refsection>
     <refsection id="SeeAlso_xcosAddToolsMenu">
-        <title>See also</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <link linkend="xcosUpdateBlock">xcosUpdateBlock - Update a block instance</link>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <link linkend="scicos_block">scicos_block.</link>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <link linkend="scicos_diagram">scicos_diagram</link>
-                </para>
-            </listitem>
-        </itemizedlist>
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="xcos">xcos</link>
+            </member>
+            <member>
+                <link linkend="xcosUpdateBlock">xcosUpdateBlock</link>
+            </member>
+            <member>
+                <link linkend="scicos_block">scicos_block</link>
+            </member>
+            <member>
+                <link linkend="scicos_diagram">scicos_diagram</link>
+            </member>
+        </simplelist>
     </refsection>
     <refsection id="Authors_xcosAddToolsMenu">
         <title>Authors</title>

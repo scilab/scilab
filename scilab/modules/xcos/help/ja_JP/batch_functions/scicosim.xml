@@ -30,16 +30,6 @@
         <title>呼び出し手順</title>
         <synopsis>[state,t] = scicosim(state,tcur,tf,sim,str,tol)</synopsis>
     </refsynopsisdiv>
-    <refsection id="Module_scicosim">
-        <title>モジュール</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
     <refsection id="Description_scicosim">
         <title>説明</title>
         <para>
@@ -126,23 +116,15 @@
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="SeeAlso_scicosim">
+    <refsection id="SeeAlso_scicosim" role="see also">
         <title>参照</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="scicos_simulate">scicos_simulate -
-                        xcosシミュレーションをバッチモードで実行する関数 (Scilab 関数)
-                    </link>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos -
-                        ハイブリッドシミュレータ用のブロックダイアグラムエディタおよびGUI (Scilab関数)
-                    </link>
-                </para>
-            </listitem>
-        </itemizedlist>
+        <simplelist type="inline">
+            <member>
+                <link linkend="scicos_simulate">scicos_simulate</link>
+            </member>
+            <member>
+                <link linkend="xcos">xcos</link>
+            </member>
+        </simplelist>
     </refsection>
 </refentry>

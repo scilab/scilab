@@ -26,16 +26,6 @@
         <refname>scicos_model</refname>
         <refpurpose>Define a model structure</refpurpose>
     </refnamediv>
-    <refsection id="Module_scicos_model">
-        <title>Module</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
     <refsect1 id="model_scicos_model">
         <title>model</title>
         <para>

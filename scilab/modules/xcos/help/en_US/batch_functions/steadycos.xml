@@ -30,16 +30,6 @@
         <title>Syntax</title>
         <synopsis>[X,U,Y,XP]=steadycos(scs_m,X,U,Y,Indx,Indu,Indy [,Indxp [,param ] ])</synopsis>
     </refsynopsisdiv>
-    <refsection id="Module_steadycos">
-        <title>Module</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
     <refsection id="Description_steadycos">
         <title>Description</title>
         <para>
@@ -151,24 +141,18 @@ end
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="SeeAlso_steadycos">
+    <refsection id="SeeAlso_steadycos" role="see also">
         <title>See also</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="lincos">lincos - Constructs by linearization a linear state-space model from a general dynamical system described by a xcos diagram (Scilab Function)</link>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <link linkend="scicos_simulate">scicos_simulate - Function for running xcos simulation in batch mode (Scilab Function)</link>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos - Block diagram editor and GUI for the hybrid simulator (Scilab Function)</link>
-                </para>
-            </listitem>
-        </itemizedlist>
+        <simplelist type="inline">
+            <member>
+                <link linkend="lincos">lincos></link>
+            </member>
+            <member>
+                <link linkend="scicos_simulate">scicos_simulate</link>
+            </member>
+            <member>
+                <link linkend="xcos">xcos</link>
+            </member>
+        </simplelist>
     </refsection>
 </refentry>

@@ -26,16 +26,6 @@
         <refname>scicos_cpr</refname>
         <refpurpose>コンパイル済みのScicos構造体</refpurpose>
     </refnamediv>
-    <refsection id="Module_scicos_cpr">
-        <title>モジュール</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
     <refsection id="cpr_scicos_cpr">
         <title>cpr</title>
         <para>

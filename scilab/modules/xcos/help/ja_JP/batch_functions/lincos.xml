@@ -47,26 +47,6 @@
 
     </refsynopsisdiv>
 
-    <refsection id="Module_lincos">
-
-        <title>モジュール</title>
-
-        <itemizedlist>
-
-            <listitem>
-
-                <para>
-
-                    <link linkend="xcos">xcos</link>
-
-                </para>
-
-            </listitem>
-
-        </itemizedlist>
-
-    </refsection>
-
     <refsection id="Description_lincos">
 
         <title>説明</title>
@@ -202,43 +182,17 @@ bode(sys);
 
     </refsection>
 
-    <refsection id="SeeAlso_lincos">
+    <refsection id="SeeAlso_lincos" role="see also">
 
         <title>参照</title>
-
-        <itemizedlist>
-
-            <listitem>
-
-                <para>
-
-                    <link linkend="steadycos">steadycos -
-
-                        xcosダイアグラムで記述された一般の動的システムの状態変数の定常値を見つけます
-
-                        (Scilab関数)
-
-                    </link>
-
-                </para>
-
-            </listitem>
-
-            <listitem>
-
-                <para>
-
-                    <link linkend="scicos_simulate">scicos_simulate -
-
-                        xcosシミュレーションをバッチモードで実行する関数 (Scilab 関数)
-
-                    </link>
-
-                </para>
-
-            </listitem>
-
-        </itemizedlist>
+        <simplelist type="inline">
+            <member>
+                <link linkend="steadycos">steadycos</link>
+            </member>
+            <member>
+                <link linkend="scicos_simulate">scicos_simulate</link>
+            </member>
+        </simplelist>
 
     </refsection>
 

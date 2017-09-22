@@ -28,18 +28,11 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>[myvar]=getscicosvars(str) [myvar]=getscicosvars([str1;str2;...])</synopsis>
+        <synopsis>
+          myvar = getscicosvars(str)
+          myvar =getscicosvars([str1;str2;...])
+        </synopsis>
     </refsynopsisdiv>
-    <refsection id="Module_getscicosvars">
-        <title>Module</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
     <refsection id="Description_getscicosvars">
         <title>Description</title>
         <para>That utility function is used to retrieve working arrays of Scicos
@@ -51,8 +44,8 @@
         </para>
         <para/>
         <programlisting role="example">
-            [myvar]=getscicosvars(str)
-            [myvar]=getscicosvars([str1;str2;...])
+            myvar = getscicosvars(str)
+            myvar = getscicosvars([str1;str2;...])
         </programlisting>
     </refsection>
     <refsection id="Parameters_getscicosvars">
@@ -213,16 +206,12 @@
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="SeeAlso_getscicosvars">
+    <refsection id="SeeAlso_getscicosvars" role="see also">
         <title>See also</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="scicos_debug">DEBUG - Debug block (Scicos
-                        Block)
-                    </link>
-                </para>
-            </listitem>
-        </itemizedlist>
+        <simplelist type="inline">
+            <member>
+                <link linkend="scicos_debug">scicos_debug</link>
+            </member>
+        </simplelist>
     </refsection>
 </refentry>

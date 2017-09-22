@@ -30,27 +30,6 @@
         <title>Syntax</title>
         <synopsis>set_blockerror(n)</synopsis>
     </refsynopsisdiv>
-    <refsection id="Module_set_blockerror">
-        <title>Module</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Description_set_blockerror">
-        <title>Description</title>
-        <para>
-            Function to set a specific error during the simulation for the current block. If it is used, then after the execution of the computational function of the block, the simulator will end and will return an error message associated to the number given in argument.
-        </para>
-        <para>
-        </para>
-        <programlisting role="example"><![CDATA[
-set_blockerror(n)
- ]]></programlisting>
-    </refsection>
     <refsection id="Parameters_set_blockerror">
         <title>Arguments</title>
         <itemizedlist>
@@ -89,11 +68,23 @@ set_blockerror(n)
                         </para>
                         <para>
                             cannot allocate memory in block
-
                         </para>
                     </listitem>
                 </itemizedlist>
             </listitem>
         </itemizedlist>
+    </refsection>
+    <refsection id="Description_set_blockerror">
+        <title>Description</title>
+        <para>
+            Function to set a specific error during the simulation for the current block. If it is
+            used, then after the execution of the computational function of the block, the simulator
+            will end and will return an error message associated to the number given in argument.
+        </para>
+        <para>
+        <programlisting role="example"><![CDATA[
+set_blockerror(n)
+ ]]></programlisting>
+        </para>
     </refsection>
 </refentry>

@@ -29,61 +29,52 @@
             bloc, une liaison ou dans la fenêtre principale de <emphasis>Xcos</emphasis> window.
         </para>
         <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos_menu_entries">Entrées de menu de l'éditeur Xcos</link>
-                </para>
-            </listitem>
-            <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Filemenu_Menu_entries">Menu Fichier</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Editmenu_Menu_entries">Menu Édition</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Viewmenu_Menu_entries">Menu Affichage</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Simulatemenu_Menu_entries">Menu Simulation</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Formatmenu_Menu_entries">Menu Format</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Toolsmenu_Menu_entries">Menu Outils</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Helpmenu_Menu_entries">Menu ?</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_Menu_entries">Voir aussi </xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Authors_Menu_entries">Auteurs</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
-            </listitem>
-        </itemizedlist>
+          <listitem>
+            <para>
+              <xref linkend="Filemenu_Menu_entries">Menu Fichier</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Editmenu_Menu_entries">Menu Édition</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Viewmenu_Menu_entries">Menu Affichage</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Simulatemenu_Menu_entries">Menu Simulation</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Formatmenu_Menu_entries">Menu Format</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Toolsmenu_Menu_entries">Menu Outils</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Helpmenu_Menu_entries">Menu ?</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Seealso_Menu_entries">Voir aussi </xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Authors_Menu_entries">Auteurs</xref>
+            </para>
+          </listitem>
+      </itemizedlist>
     </refsection>
     <refsection id="Filemenu_Menu_entries">
         <title>Menu Fichier</title>

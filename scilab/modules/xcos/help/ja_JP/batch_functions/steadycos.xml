@@ -47,26 +47,6 @@
 
     </refsynopsisdiv>
 
-    <refsection id="Module_steadycos">
-
-        <title>モジュール</title>
-
-        <itemizedlist>
-
-            <listitem>
-
-                <para>
-
-                    <link linkend="xcos">xcos</link>
-
-                </para>
-
-            </listitem>
-
-        </itemizedlist>
-
-    </refsection>
-
     <refsection id="Description_steadycos">
 
         <title>説明</title>
@@ -296,44 +276,20 @@ end
 
     </refsection>
 
-    <refsection id="SeeAlso_steadycos">
+    <refsection id="SeeAlso_steadycos" role="see also">
 
         <title>参照</title>
-
-        <itemizedlist>
-
-            <listitem>
-
-                <para>
-
-                    <link linkend="lincos">lincos - xcosダイアグラムで記述された一般の動的システムから線形化により線形状態空間モデルを構築する (Scilab 関数)</link>
-
-                </para>
-
-            </listitem>
-
-            <listitem>
-
-                <para>
-
-                    <link linkend="scicos_simulate">scicos_simulate - xcosシミュレーションをバッチモードで実行する関数 (Scilab 関数)</link>
-
-                </para>
-
-            </listitem>
-
-            <listitem>
-
-                <para>
-
-                    <link linkend="xcos">xcos - ブロックダイアグラムエディタおよびハイブリッドシミュレータのGUI (Scilab 関数)</link>
-
-                </para>
-
-            </listitem>
-
-        </itemizedlist>
-
+        <simplelist type="inline">
+            <member>
+                <link linkend="lincos">lincos</link>
+            </member>
+            <member>
+                <link linkend="scicos_simulate">scicos_simulate</link>
+            </member>
+            <member>
+                <link linkend="xcos">xcos</link>
+            </member>
+        </simplelist>
     </refsection>
 
 </refentry>

@@ -26,16 +26,6 @@
         <refname>scicos_diagram</refname>
         <refpurpose>Define a scs_m structure</refpurpose>
     </refnamediv>
-    <refsection id="Module_scicos_diagram">
-        <title>Module</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
     <refsection id="diagram_scicos_diagram">
         <title>diagram</title>
         <para>

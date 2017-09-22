@@ -26,16 +26,6 @@
         <refname>scicos_cpr</refname>
         <refpurpose>Compiled Scicos structure</refpurpose>
     </refnamediv>
-    <refsection id="Module_scicos_cpr">
-        <title>Module</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
     <refsection id="cpr_scicos_cpr">
         <title>cpr</title>
         <para>

@@ -25,16 +25,6 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection id="Module_xcos_simulate">
-        <title>Module</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
     <refsection id="Description_xcos_simulate">
         <title>Description</title>
         This function is used to simulate xcos diagrams in batch
@@ -257,7 +247,7 @@ xcos_simulate(scs_m, 4);
       ]]></programlisting>
         </para>
     </refsection>
-    <refsection id="SeeAlso_xcos_simulate">
+    <refsection id="SeeAlso_xcos_simulate" role="see also">
         <title>See also</title>
         <simplelist type="inline">
             <member>

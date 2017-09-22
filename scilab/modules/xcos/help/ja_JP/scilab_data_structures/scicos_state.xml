@@ -26,16 +26,6 @@
         <refname>scicos_state</refname>
         <refpurpose>state構造体の定義</refpurpose>
     </refnamediv>
-    <refsection id="Module_scicos_state">
-        <title>モジュール</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
     <refsection id="state_scicos_state">
         <title>state</title>
         <para>

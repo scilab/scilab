@@ -22,16 +22,6 @@
         <title>Syntax</title>
         <synopsis>[result]=importXcosDiagram(filename)</synopsis>
     </refsynopsisdiv>
-    <refsection id="Module_importXcosDiagram">
-        <title>Module</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
     <refsection id="Description_importXcosDiagram">
         <title>Description</title>
         <para>Import a Xcos file into Scilab.</para>

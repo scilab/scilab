@@ -31,16 +31,6 @@
         <title>Syntax</title>
         <synopsis>var = vec2var(vec)</synopsis>
     </refsynopsisdiv>
-    <refsection id="Module_vec2var">
-        <title>Module</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
     <refsection id="Parameters_vec2var">
         <title>Arguments</title>
         <itemizedlist>

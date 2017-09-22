@@ -22,16 +22,6 @@
         <title>Séquence d'appel</title>
         <synopsis>xcosAddToolsMenu(label, command)</synopsis>
     </refsynopsisdiv>
-    <refsection id="Module_xcosAddToolsMenu">
-        <title>Module</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
     <refsection id="Description_xcosAddToolsMenu">
         <title>Description</title>
         <para>Ajoute un menu à Xcos qui exécute une commande scilab. La commande scilab peut utiliser deux variables définies dans le contexte scilab :</para>
@@ -65,23 +55,20 @@ xcosAddToolsMenu("met à jour le block", "myUpdateFunction(blk, scs_m)");
     </refsection>
     <refsection id="SeeAlso_xcosAddToolsMenu">
         <title>Voir aussi</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos - Editeur de schéma-bloc et IHM pour le simulateur hybride</link>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <link linkend="scicos_block">scicos_block - Block type.</link>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <link linkend="scicos_diagram">scicos_diagram - Diagram type.</link>
-                </para>
-            </listitem>
-        </itemizedlist>
+        <simplelist type="inline">
+            <member>
+                <link linkend="xcos">xcos</link>
+            </member>
+            <member>
+                <link linkend="xcosUpdateBlock">xcosUpdateBlock</link>
+            </member>
+            <member>
+                <link linkend="scicos_block">scicos_block</link>
+            </member>
+            <member>
+                <link linkend="scicos_diagram">scicos_diagram</link>
+            </member>
+        </simplelist>
     </refsection>
     <refsection id="Authors_xcosAddToolsMenu">
         <title>Authors</title>

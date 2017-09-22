@@ -46,26 +46,6 @@
 
     </refsynopsisdiv>
 
-    <refsection id="Module_xcos">
-
-        <title>モジュール</title>
-
-        <itemizedlist>
-
-            <listitem>
-
-                <para>
-
-                    <link linkend="xcos">xcos</link>
-
-                </para>
-
-            </listitem>
-
-        </itemizedlist>
-
-    </refsection>
-
     <refsection id="Parameters_xcos">
 
         <title>引数</title>

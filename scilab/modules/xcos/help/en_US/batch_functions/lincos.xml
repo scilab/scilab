@@ -30,16 +30,6 @@
         <title>Syntax</title>
         <synopsis>sys = lincos(scs_m [,x0,u0 [,param] ])</synopsis>
     </refsynopsisdiv>
-    <refsection id="Module_lincos">
-        <title>Module</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
     <refsection id="Description_lincos">
         <title>Description</title>
         <para>
@@ -110,19 +100,15 @@ bode(sys);
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="SeeAlso_lincos">
-        <title>See also</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="steadycos">steadycos - Finds an equilibrium state of a general dynamical system described by a xcos diagram (Scilab Function)</link>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <link linkend="scicos_simulate">scicos_simulate - Function for running xcos simulation in batch mode (Scilab Function)</link>
-                </para>
-            </listitem>
-        </itemizedlist>
+    <refsection id="SeeAlso_lincos" role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="steadycos">steadycos</link>
+            </member>
+            <member>
+                <link linkend="scicos_simulate">scicos_simulate</link>
+            </member>
+        </simplelist>
     </refsection>
 </refentry>

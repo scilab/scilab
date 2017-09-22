@@ -22,16 +22,6 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection id="Module_xcos_simulate">
-        <title>モジュール</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
     <refsection id="Description_xcos_simulate">
         <title>説明</title>
         この関数は,xcosダイアグラムをバッチモードでシミュレートする際に
@@ -228,7 +218,7 @@ xcos_simulate(scs_m, 4);
       ]]></programlisting>
         </para>
     </refsection>
-    <refsection id="SeeAlso_xcos_simulate">
+    <refsection id="SeeAlso_xcos_simulate" role="see also">
         <title>参照</title>
         <simplelist type="inline">
             <member>

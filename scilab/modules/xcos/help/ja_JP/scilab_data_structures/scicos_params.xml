@@ -26,16 +26,6 @@
         <refname>scicos_params</refname>
         <refpurpose>param構造体の定義</refpurpose>
     </refnamediv>
-    <refsection id="Module_scicos_params">
-        <title>モジュール</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
     <refsection id="params_scicos_params">
         <title>params</title>
         <para>

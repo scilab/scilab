@@ -26,19 +26,12 @@
         <refname>getblocklabel</refname>
         <refpurpose>Get the label of a scicos block</refpurpose>
     </refnamediv>
-    <refsection id="Module_getblocklabel">
-        <title>Module</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-        <programlisting role="example"><![CDATA[
-[label]=getblocklabel(blk)
- ]]></programlisting>
-    </refsection>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>
+          label = getblocklabel(blk)
+        </synopsis>
+    </refsynopsisdiv>
     <refsection id="Parameters_getblocklabel">
         <title>Arguments</title>
         <itemizedlist>

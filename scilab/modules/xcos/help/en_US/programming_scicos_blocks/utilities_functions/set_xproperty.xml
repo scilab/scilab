@@ -30,27 +30,6 @@
         <title>Syntax</title>
         <synopsis>set_xproperty(xprop)</synopsis>
     </refsynopsisdiv>
-    <refsection id="Module_set_xproperty">
-        <title>Module</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Description_set_xproperty">
-        <title>Description</title>
-        <para>
-            This function set a vector to inform the type (algebraic or differential) of the continuous state variables of a block.
-        </para>
-        <para>
-        </para>
-        <programlisting role="example"><![CDATA[
-set_xproperty(xprop)
- ]]></programlisting>
-    </refsection>
     <refsection id="Parameters_set_xproperty">
         <title>Arguments</title>
         <itemizedlist>
@@ -73,14 +52,23 @@ set_xproperty(xprop)
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="SeeAlso_set_xproperty">
+    <refsection id="Description_set_xproperty">
+        <title>Description</title>
+        <para>
+            This function set a vector to inform the type (algebraic or differential) of the continuous state variables of a block.
+        </para>
+        <para>
+        <programlisting role="example"><![CDATA[
+set_xproperty(xprop)
+ ]]></programlisting>
+        </para>
+    </refsection>
+    <refsection id="SeeAlso_set_xproperty" role="see also">
         <title>See also</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="pointer_xproperty">pointer_xproperty - Get the type of a continuous time state variable (Scilab Function)</link>
-                </para>
-            </listitem>
-        </itemizedlist>
+        <simplelist type="inline">
+            <member>
+                <link linkend="pointer_xproperty">pointer_xproperty</link>
+            </member>
+        </simplelist>
     </refsection>
 </refentry>

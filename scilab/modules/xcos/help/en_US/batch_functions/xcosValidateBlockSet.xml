@@ -17,16 +17,6 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection id="Module_xcosValidateBlockSet">
-        <title>Module</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
     <refsection id="Description_xcosValidateBlockSet">
         <title>Description</title>
         This function is used to test if a Block interface function will not
@@ -57,7 +47,7 @@
       ]]></programlisting>
         </para>
     </refsection>
-    <refsection id="SeeAlso_xcosValidateBlockSet">
+    <refsection id="SeeAlso_xcosValidateBlockSet" role="see also">
         <title>See also</title>
         <simplelist type="inline">
             <member>
