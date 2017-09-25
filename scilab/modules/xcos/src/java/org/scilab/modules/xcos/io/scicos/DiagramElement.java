@@ -248,7 +248,7 @@ public final class DiagramElement extends AbstractElement<XcosDiagram> {
         /*
          * Decode links
          */
-        for (int i = 0; i < nbOfObjs; i++) {
+        for (int i = nbOfObjs - 1; i >= 0; i--) {
             final ScilabMList data = (ScilabMList) ((ScilabList) base.get(OBJS_INDEX)).get(i);
             Object cell = null;
 
