@@ -111,8 +111,8 @@ public :
     Struct*                     removeField(const std::wstring& _sKey);
     bool                        toString(std::wostringstream& ostr);
     List*                       extractFieldWithoutClone(const std::wstring& _wstField);
-    std::vector<InternalType*>  extractFields(std::vector<std::wstring> _wstFields);
-    std::vector<InternalType*>  extractFields(typed_list* _pArgs);
+    typed_list                  extractFields(std::vector<std::wstring> _wstFields);
+    typed_list                  extractFields(typed_list* _pArgs);
     InternalType *              extractField(const std::wstring& wstField);
 
     Struct*                     resize(int* _piDims, int _iDims);

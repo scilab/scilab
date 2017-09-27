@@ -50,7 +50,7 @@ types::Function::ReturnValue sci_MinMax(types::typed_list &in, int _iRetCount, t
     types::Double* pDblIndex    = NULL;
     types::Double* pDblOut      = NULL;
 
-    std::vector<types::InternalType*> inputs;
+    types::typed_list inputs;
     std::vector<types::Double*> vectDouble;
 
     void (*pFuncMinMax)(std::vector<types::Double*> vectIn, int iOrientation, types::Double * pDblIndex, types::Double * pOut);

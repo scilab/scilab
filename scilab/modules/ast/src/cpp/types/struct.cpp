@@ -164,7 +164,7 @@ bool Struct::invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_
     else if (in.size() == 1)
     {
         InternalType * arg = in[0];
-        std::vector<InternalType *> _out;
+        typed_list _out;
         if (arg->isString())
         {
             std::vector<std::wstring> wstFields;
@@ -550,9 +550,9 @@ List* Struct::extractFieldWithoutClone(const std::wstring& _wstField)
     return pL;
 }
 
-std::vector<InternalType*> Struct::extractFields(std::vector<std::wstring> _wstFields)
+typed_list Struct::extractFields(std::vector<std::wstring> _wstFields)
 {
-    std::vector<InternalType*> ResultList;
+    typed_list ResultList;
 
     for (int i = 0 ; i < (int)_wstFields.size() ; i++)
     {
@@ -593,9 +593,9 @@ InternalType * Struct::extractField(const std::wstring & wstField)
     }
 }
 
-std::vector<InternalType*> Struct::extractFields(typed_list* _pArgs)
+typed_list Struct::extractFields(typed_list* _pArgs)
 {
-    std::vector<InternalType*> ResultList;
+    typed_list ResultList;
 
     int iDims           = (int)_pArgs->size();
     typed_list pArg;

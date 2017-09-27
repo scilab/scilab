@@ -205,7 +205,7 @@ static types::Function::ReturnValue sci_getfieldStruct(types::typed_list &in, in
 {
     types::InternalType* pIndex = in[0];
     types::Struct* pSt = in[1]->getAs<types::Struct>();
-    std::vector<types::InternalType*> vectResult;
+    types::typed_list vectResult;
 
     if (pIndex->isString())
     {
