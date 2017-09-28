@@ -13,6 +13,7 @@
  *
  */
 
+#include <iterator>
 #include "prettyprintvisitor.hxx"
 #include "printvisitor.hxx"
 

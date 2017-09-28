@@ -44,10 +44,6 @@ static void updatel(TokenDef* token);
 
 wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput, types::typed_list &in, int* _piOutputRows, int* _piNewLine)
 {
-    /* Force Windows display to have two-digit exponent. */
-#ifdef _MSC_VER
-    _set_output_format(_TWO_DIGIT_EXPONENT);
-#endif
     wchar_t** pwstOutput = nullptr;
     int rhs = in.size();
     wchar_t* pwstFirstOutput = nullptr;

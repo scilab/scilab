@@ -273,17 +273,10 @@ types::InternalType* cached_ports_get(std::map<ScicosID, std::vector<int> >& cac
     double* data;
     types::Double* ret = new types::Double(static_cast<int>(ports.size()), 1, &data);
 
-#ifdef _MSC_VER
-    std::transform(ports.begin(), ports.end(), stdext::checked_array_iterator<double*>(data, ports.size()), [](int p)
-    {
-        return p;
-    });
-#else
     std::transform(ports.begin(), ports.end(), data, [](int p)
     {
         return p;
     });
-#endif
 
     return ret;
 }

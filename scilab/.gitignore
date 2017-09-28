@@ -66,12 +66,15 @@ contrib/external_modules.iss
 #
 # VS solution files (windows)
 #
+.vs/
 Scilab.sln_old
 *.aps
 *.lib
 *.exp
 *.vcdef
 *.pdb
+*.ipdb
+*.iobj
 Scilab.suo
 Scilab.ncb
 Release

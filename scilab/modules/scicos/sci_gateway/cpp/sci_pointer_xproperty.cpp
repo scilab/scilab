@@ -72,12 +72,7 @@ types::Function::ReturnValue sci_pointer_xproperty(types::typed_list &in, int _i
 
     double* data;
     types::Double* ret = new types::Double(npointer_xproperty, 1, &data);
-#ifdef _MSC_VER
-    std::transform(pointer_xproperty, pointer_xproperty + npointer_xproperty, stdext::checked_array_iterator<double*>(data, npointer_xproperty), toDouble);
-#else
     std::transform(pointer_xproperty, pointer_xproperty + npointer_xproperty, data, toDouble);
-#endif
-
     out.push_back(ret);
     return types::Function::OK;
 }

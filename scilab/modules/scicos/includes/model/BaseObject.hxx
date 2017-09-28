@@ -47,6 +47,8 @@ public:
     {
     }
 
+    BaseObject& operator=(const BaseObject&) = default;
+
     inline BaseObject& operator=(BaseObject&& o)
     {
         m_id = o.m_id;

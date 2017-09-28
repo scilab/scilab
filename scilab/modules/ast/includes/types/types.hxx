@@ -34,7 +34,6 @@ namespace types
 */
 class EXTERN_AST GenericType : public InternalType
 {
-
 protected :
     int                         m_iRows;
     int                         m_iCols;
