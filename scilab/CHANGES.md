@@ -434,6 +434,7 @@ the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 * [#15228](http://bugzilla.scilab.org/show_bug.cgi?id=15228): `get` error message fixed
 * [#15239](http://bugzilla.scilab.org/show_bug.cgi?id=15239): The console's properties .tag and .userdata were not displayed nor documented.
 * [#15236](http://bugzilla.scilab.org/show_bug.cgi?id=15236): The `isglobal` help page was inaccurate. Examples were erroneous.
+* [#15243](http://bugzilla.scilab.org/show_bug.cgi?id=15243): `grand(nr, nc, "uin", vmin)` crashed Scilab.
 * [#15249](http://bugzilla.scilab.org/show_bug.cgi?id=15249): `findobj("toto")` yielded an error instead of returning [].
 * [#15260](http://bugzilla.scilab.org/show_bug.cgi?id=15260): `sci2exp` was broken for cells, structures, and all types of hypermatrix.
 * [#15266](http://bugzilla.scilab.org/show_bug.cgi?id=15266): Wrong default out_mode in `linear_interpn`.
