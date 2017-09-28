@@ -226,7 +226,7 @@ bounds selected out of the axes areas is now restored, after the Scilab 5.4 regr
   - For unregistered user-defined macros, `"script"` is now returned instead of `[]`.
 * `evstr` now support inputs including `ascii(10)`, `ascii(13)`, only a comment or/and
    spaces or/and `"[]"`, only spaces, being `""`, or instructions returning nothing.
-
+* `mgetl` speed have been improved for files with a lot of lines.
 
 Help pages:
 -----------
