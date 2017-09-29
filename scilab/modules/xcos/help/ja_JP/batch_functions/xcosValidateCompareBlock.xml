@@ -19,16 +19,6 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection id="Module_xcosValidateCompareBlock">
-        <title>モジュール</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
     <refsection id="Description_xcosValidateCompareBlock">
         <title>説明</title>
         この関数は2つのブロックを比較する際に使用されます.
@@ -59,7 +49,7 @@
       ]]></programlisting>
         </para>
     </refsection>
-    <refsection id="SeeAlso_xcosValidateCompareBlock">
+    <refsection id="SeeAlso_xcosValidateCompareBlock" role="see also">
         <title>参照</title>
         <simplelist type="inline">
             <member>

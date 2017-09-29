@@ -22,16 +22,6 @@
         <title>Syntax</title>
         <synopsis>xcosUpdateBlock(blk)</synopsis>
     </refsynopsisdiv>
-    <refsection id="Module_xcosUpdateBlock">
-        <title>Module</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
     <refsection id="Description_xcosUpdateBlock">
         <title>Description</title>
         <para>Update a block on a currently opened diagram.</para>

@@ -71,7 +71,7 @@ types::Function::ReturnValue sci_get(types::typed_list &in, int _iRetCount, type
         types::Double* pDbll1 = p1->getAs<types::Double>();
         if (pDbll1->isScalar() == false)
         {
-            Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), "get", 1);
+            Scierror(202, _("%s: Wrong size for argument #%d: A real scalar expected.\n"), "get", 1);
             return types::Function::Error;
         }
 
@@ -105,7 +105,7 @@ types::Function::ReturnValue sci_get(types::typed_list &in, int _iRetCount, type
         types::String* pStr = in[1]->getAs<types::String>();
         if (pStr->isScalar() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "get", 2);
+            Scierror(999, _("%s: Wrong size for input argument #%d: scalar string expected.\n"), "get", 2);
             return types::Function::Error;
         }
 
@@ -159,7 +159,7 @@ types::Function::ReturnValue sci_get(types::typed_list &in, int _iRetCount, type
 
         if (pS->isScalar() == false)
         {
-            Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), "get", 2);
+            Scierror(202, _("%s: Wrong size for argument #%d: scalar string expected.\n"), "get", 2);
             return types::Function::Error;
         }
 
@@ -176,7 +176,7 @@ types::Function::ReturnValue sci_get(types::typed_list &in, int _iRetCount, type
         pS = in[0]->getAs<types::String>();
         if (pS->isScalar() == false)
         {
-            Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), "get", 1);
+            Scierror(202, _("%s: Wrong size for argument #%d: scalar string expected.\n"), "get", 1);
             return types::Function::Error;
         }
 
@@ -212,7 +212,7 @@ types::Function::ReturnValue sci_get(types::typed_list &in, int _iRetCount, type
                 pS = in[1]->getAs<types::String>();
                 if (pS->isScalar() == false)
                 {
-                    Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), "get", 2);
+                    Scierror(202, _("%s: Wrong size for argument #%d: scalar string expected.\n"), "get", 2);
                     return types::Function::Error;
                 }
             }

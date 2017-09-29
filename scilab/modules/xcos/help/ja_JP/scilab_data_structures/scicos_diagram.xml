@@ -26,16 +26,6 @@
         <refname>scicos_diagram</refname>
         <refpurpose>scs_m構造体の定義</refpurpose>
     </refnamediv>
-    <refsection id="Module_scicos_diagram">
-        <title>モジュール</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
     <refsection id="diagram_scicos_diagram">
         <title>diagram</title>
         <para>

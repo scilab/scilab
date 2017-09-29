@@ -19,16 +19,6 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection id="Module_xcosValidateCompareBlock">
-        <title>Module</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
     <refsection id="Description_xcosValidateCompareBlock">
         <title>Description</title>
         This function is used to compare two Blocks.
@@ -61,7 +51,7 @@
       ]]></programlisting>
         </para>
     </refsection>
-    <refsection id="SeeAlso_xcosValidateCompareBlock">
+    <refsection id="SeeAlso_xcosValidateCompareBlock" role="see also">
         <title>See also</title>
         <simplelist type="inline">
             <member>

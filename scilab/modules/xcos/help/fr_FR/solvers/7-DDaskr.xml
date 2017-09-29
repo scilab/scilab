@@ -207,7 +207,7 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
                 <link linkend="CRANI">Crank-Nicolson 2(3)</link>
             </member>
             <member>
-                <link linkend="Comparaisons">Comparaisons</link>
+                <link linkend="Comparisons">Comparaisons</link>
             </member>
             <member>
                 <link linkend="daskr">daskr</link>

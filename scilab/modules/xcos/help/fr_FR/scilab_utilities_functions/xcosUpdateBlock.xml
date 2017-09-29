@@ -22,16 +22,6 @@
         <title>Séquence d'appel</title>
         <synopsis>xcosUpdateBlock(blk)</synopsis>
     </refsynopsisdiv>
-    <refsection id="Module_xcosUpdateBlock">
-        <title>Module</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
     <refsection id="Description_xcosUpdateBlock">
         <title>Description</title>
         <para>Met à jour un bloc dans un diagram ouvert</para>

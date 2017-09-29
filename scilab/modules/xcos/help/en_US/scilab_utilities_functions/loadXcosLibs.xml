@@ -22,16 +22,6 @@
         <title>Syntax</title>
         <synopsis>loadXcosLibs()</synopsis>
     </refsynopsisdiv>
-    <refsection id="Module_loadXcosLibs">
-        <title>Module</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
     <refsection id="Description_loadXcosLibs">
         <title>Description</title>
         <para>Import some useful Xcos macros into Scilab.</para>
@@ -46,26 +36,17 @@ exists("SUM_f")
 typeof(SUM_f)
 ]]></programlisting>
     </refsection>
-    <refsection id="SeeAlso_loadXcos">
-        <title>See also</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">
-                        <programlisting>xcos</programlisting> - Hybrid dynamic systems modeler and simulator.
-                    </link>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <link linkend="loadScicos">
-                        <programlisting>loadScicos</programlisting> - Load the simulation native libraries.
-                    </link>
-                </para>
-            </listitem>
-        </itemizedlist>
+    <refsection id="SeeAlso_loadXcosLibs">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="xcos">xcos</link>
+            </member>
+            <member>
+                <link linkend="loadScicos">loadScicos</link>
+            </member>
+        </simplelist>
     </refsection>
-
     <refsection>
         <title>History</title>
         <revhistory>

@@ -26,22 +26,6 @@
         <refname>scicos_time</refname>
         <refpurpose>Returns the current time during simulation</refpurpose>
     </refnamediv>
-    <refsection id="Module_scicos_time">
-        <title>Module</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[
-t=scicos_time()
- ]]></programlisting>
-    </refsection>
     <refsection id="Parameters_scicos_time">
         <title>Arguments</title>
         <itemizedlist>
@@ -51,5 +35,11 @@ t=scicos_time()
                 </para>
             </listitem>
         </itemizedlist>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+t=scicos_time()
+ ]]></programlisting>
     </refsection>
 </refentry>

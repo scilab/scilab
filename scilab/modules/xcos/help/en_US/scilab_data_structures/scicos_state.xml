@@ -26,16 +26,6 @@
         <refname>scicos_state</refname>
         <refpurpose>Define a state structure</refpurpose>
     </refnamediv>
-    <refsection id="Module_scicos_state">
-        <title>Module</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
     <refsection id="state_scicos_state">
         <title>state</title>
         <para>

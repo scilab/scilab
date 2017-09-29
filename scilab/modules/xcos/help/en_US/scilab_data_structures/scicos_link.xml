@@ -26,16 +26,6 @@
         <refname>scicos_link</refname>
         <refpurpose>Define a link structure</refpurpose>
     </refnamediv>
-    <refsection id="Module_scicos_link">
-        <title>Module</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
     <refsect1 id="link_scicos_link">
         <title>link</title>
         <para>Basic  structure that define a xcos link.</para>

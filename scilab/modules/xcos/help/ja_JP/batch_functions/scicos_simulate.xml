@@ -37,16 +37,13 @@
 
         <title>呼び出し手順</title>
 
-        <synopsis>Info=scicos_simulate(scs_m)</synopsis>
-
-        <synopsis>Info=scicos_simulate(scs_m,Info)</synopsis>
-
-        <synopsis>Info=scicos_simulate(scs_m,context)</synopsis>
-
-        <synopsis>Info=scicos_simulate(scs_m,flag)</synopsis>
-
-        <synopsis>Info=scicos_simulate(scs_m ,Info [, context] [,flag])</synopsis>
-
+        <synopsis>
+          Info=scicos_simulate(scs_m)
+          Info=scicos_simulate(scs_m,Info)
+          Info=scicos_simulate(scs_m,context)
+          Info=scicos_simulate(scs_m,flag)
+          Info=scicos_simulate(scs_m ,Info [, context] [,flag])
+        </synopsis>
     </refsynopsisdiv>
 
     <refsection id="Parameters_scicos_simulate">
@@ -102,26 +99,6 @@
             </varlistentry>
 
         </variablelist>
-
-    </refsection>
-
-    <refsection id="Module_scicos_simulate">
-
-        <title>モジュール</title>
-
-        <itemizedlist>
-
-            <listitem>
-
-                <para>
-
-                    <link linkend="xcos">xcos</link>
-
-                </para>
-
-            </listitem>
-
-        </itemizedlist>
 
     </refsection>
 
@@ -250,7 +227,7 @@ counter
 
     </refsection>
 
-    <refsection id="SeeAlso_scicos_simulate">
+    <refsection id="SeeAlso_scicos_simulate" role="see also">
 
         <title>参照</title>
 

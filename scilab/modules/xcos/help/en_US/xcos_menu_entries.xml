@@ -35,56 +35,47 @@
             <emphasis>Xcos</emphasis> window.
         </para>
         <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos_menu_entries">Xcos editor menu entries</link>
-                </para>
-            </listitem>
-            <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Filemenu_Menu_entries">File menu</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Editmenu_Menu_entries">Edit menu</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Viewmenu_Menu_entries">View menu</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Simulatemenu_Menu_entries">Simulate menu</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Formatmenu_Menu_entries">Format menu</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Toolsmenu_Menu_entries">Tools menu</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Helpmenu_Menu_entries">? menu</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_Menu_entries">See also</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
-            </listitem>
-        </itemizedlist>
+          <listitem>
+            <para>
+              <xref linkend="Filemenu_Menu_entries">File menu</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Editmenu_Menu_entries">Edit menu</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Viewmenu_Menu_entries">View menu</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Simulatemenu_Menu_entries">Simulate menu</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Formatmenu_Menu_entries">Format menu</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Toolsmenu_Menu_entries">Tools menu</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Helpmenu_Menu_entries">? menu</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Seealso_Menu_entries">See also</xref>
+            </para>
+          </listitem>
+      </itemizedlist>
     </refsection>
     <refsection id="Filemenu_Menu_entries">
         <title>File menu</title>

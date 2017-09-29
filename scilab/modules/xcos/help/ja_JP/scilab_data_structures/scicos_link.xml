@@ -26,16 +26,6 @@
         <refname>scicos_link</refname>
         <refpurpose>link構造体の定義</refpurpose>
     </refnamediv>
-    <refsection id="Module_scicos_link">
-        <title>モジュール</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
     <refsection id="link_scicos_link">
         <title>link</title>
         <para>

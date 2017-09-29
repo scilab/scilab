@@ -26,72 +26,45 @@
         <refname>C_struct</refname>
         <refpurpose>C Block structure of a computational function</refpurpose>
     </refnamediv>
-    <refsynopsisdiv>
-        <title>Description</title>
-    </refsynopsisdiv>
     <refsection id="Contents_C_struct">
         <title>Contents</title>
         <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="C_struct">C_struct - C Block structure of a computational function</link>
-                </para>
-            </listitem>
-            <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Module_C_struct">Module</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_C_struct">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Inputsoutputs_C_struct">Inputs/outputs</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Events_C_struct">Events</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Parameters_C_struct">Parameters</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Statesandwork_C_struct">States and work</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Zerocrossingsurfacesandmodes_C_struct">Zero crossing surfaces and modes</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Miscallaneous_C_struct">Miscallaneous</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Module_C_struct">
-        <title>Module</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
+          <listitem>
+            <para>
+              <xref linkend="Description_C_struct">Description</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Inputsoutputs_C_struct">Inputs/outputs</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Events_C_struct">Events</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Parameters_C_struct">Parameters</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Statesandwork_C_struct">States and work</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Zerocrossingsurfacesandmodes_C_struct">Zero crossing surfaces and modes</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Miscellaneous_C_struct">Miscellaneous</xref>
+            </para>
+          </listitem>
+      </itemizedlist>
     </refsection>
     <refsection id="Description_C_struct">
         <title>Description</title>
@@ -1563,8 +1536,8 @@ void mycomputfunc(scicos_block *block,int flag)
         <para>
         </para>
     </refsection>
-    <refsection id="Miscallaneous_C_struct">
-        <title>Miscallaneous</title>
+    <refsection id="Miscellaneous_C_struct">
+        <title>Miscellaneous</title>
         <itemizedlist>
             <listitem>
                 <para>

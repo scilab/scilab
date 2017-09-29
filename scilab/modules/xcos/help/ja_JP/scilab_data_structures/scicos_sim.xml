@@ -26,16 +26,6 @@
         <refname>scicos_sim</refname>
         <refpurpose>sim構造体の定義</refpurpose>
     </refnamediv>
-    <refsection id="Module_scicos_sim">
-        <title>モジュール</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
     <refsection id="sim_scicos_sim">
         <title>sim</title>
         <para>

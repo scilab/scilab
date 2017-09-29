@@ -30,16 +30,6 @@
         <title>Syntax</title>
         <synopsis>[outtb]=buildouttb(lnksz,lnktyp)</synopsis>
     </refsynopsisdiv>
-    <refsection id="Module_buildouttb">
-        <title>Module</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
     <refsection id="Description_buildouttb">
         <title>Description</title>
         <para>

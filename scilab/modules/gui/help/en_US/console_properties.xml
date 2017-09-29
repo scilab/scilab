@@ -21,50 +21,58 @@
     <refsection>
         <title>Description</title>
         <para>
-            This object is returned when calling <literal>get(0)</literal> and allows to modify some parameters for handles and uicontrols.
+            This object is returned when calling <literal>get(0)</literal> and allows to modify
+            some parameters for handles and uicontrols. Consoles's properties are the following:
         </para>
         <variablelist>
             <varlistentry>
-                <term>Console properties</term>
+                <term>ShowHiddenHandles</term>
                 <listitem>
-                    <variablelist>
-                        <varlistentry>
-                            <term>ShowHiddenHandles:</term>
-                            <listitem>
-                                <para>A boolean or a string</para>
-                                <para>Manages the display of all children handles in figures including default menus ones.</para>
-                                <para>
-                                    Default value is <literal>"off"</literal>.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>UseDeprecatedSkin:</term>
-                            <listitem>
-                                <para>A boolean or a string</para>
-                                <para>Manages the rendering of uicontrols.</para>
-                                <para>
-                                    Default value is <literal>"off"</literal> and uicontrols look and feel is managed by operating system.
-                                </para>
-                                <para>
-                                    Setting this value to <literal>"on"</literal> or <literal>%T</literal> will make the uicontrols have an old TK look and feel.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>ShowHiddenProperties:</term>
-                            <listitem>
-                                <para>A boolean or a string</para>
-                                <para>Manages the display of uicontrols properties.</para>
-                                <para>
-                                    Default value is <literal>"off"</literal> and only the uicontrols properties used on the Java side are displayed.
-                                </para>
-                                <para>
-                                    Setting this value to <literal>"on"</literal> or <literal>%T</literal> will make all available properties displayed (for example a <literal>ListboxTop</literal> property will be displayed for <literal>pushbutton</literal> uicontrols.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                    </variablelist>
+                    <para>A boolean or a string</para>
+                    <para>Manages the display of all children handles in figures including default menus ones.</para>
+                    <para>
+                        Default value is <literal>"off"</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>UseDeprecatedSkin</term>
+                <listitem>
+                    <para>A boolean or a string</para>
+                    <para>Manages the rendering of uicontrols.</para>
+                    <para>
+                        Default value is <literal>"off"</literal> and uicontrols look and feel is managed by operating system.
+                    </para>
+                    <para>
+                        Setting this value to <literal>"on"</literal> or <literal>%T</literal> will make the uicontrols have an old TK look and feel.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ShowHiddenProperties</term>
+                <listitem>
+                    <para>A boolean or a string</para>
+                    <para>Manages the display of uicontrols properties.</para>
+                    <para>
+                        Default value is <literal>"off"</literal> and only the uicontrols properties used on the Java side are displayed.
+                    </para>
+                    <para>
+                        Setting this value to <literal>"on"</literal> or <literal>%T</literal> will make all available properties displayed (for example a <literal>ListboxTop</literal> property will be displayed for <literal>pushbutton</literal> uicontrols.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Userdata</term>
+                <listitem>
+                    <para>
+                        Any data of any type, that you want to ascribe to the console.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Tag</term>
+                <listitem>
+                    <para>Single string, that can be used as a console custom text id.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -89,6 +97,12 @@ h=uicontrol() // Full display of properties
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="root_properties">root_properties</link>
+            </member>
+            <member>
+                <link linkend="get">get</link>
+            </member>
             <member>
                 <link linkend="uicontrol">uicontrol</link>
             </member>

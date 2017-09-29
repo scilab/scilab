@@ -26,16 +26,6 @@
         <refname>scicos_params</refname>
         <refpurpose>Define a param structure</refpurpose>
     </refnamediv>
-    <refsection id="Module_scicos_params">
-        <title>Module</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
     <refsect1 id="params_scicos_params">
         <title>params</title>
         <para>Diagram configuration values. Some of the value are graphical information, others directly configure the simulator.</para>

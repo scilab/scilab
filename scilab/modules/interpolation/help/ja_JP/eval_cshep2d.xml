@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="eval_cshep2d" xml:lang="ja">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="eval_cshep2d" xml:lang="ja">
     <refnamediv>
         <refname>eval_cshep2d</refname>
         <refpurpose>2次元の3次シェパード補間の評価</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>[zp [,dzpdx, dzpdy [,d2zpdxx,d2zpdxy,d2zpdyy]]] = eval_cshep2d(xp, yp, tl_coef)</synopsis>
+        <synopsis>
+        zp                                            = eval_cshep2d(xp, yp, tl_coef)
+        [zp, dzpdx, dzpdy]                            = eval_cshep2d(xp, yp, tl_coef)
+        [zp, dzpdx, dzpdy, d2zpdxx, d2zpdyy, d2zpdxy] = eval_cshep2d(xp, yp, tl_coef)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>引数</title>

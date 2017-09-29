@@ -185,7 +185,7 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
                 <link linkend="DDaskr">DDaskr</link>
             </member>
             <member>
-                <link linkend="Comparaisons">Comparaisons</link>
+                <link linkend="Comparisons">Comparaisons</link>
             </member>
             <member>
                 <link linkend="ode">ode</link>

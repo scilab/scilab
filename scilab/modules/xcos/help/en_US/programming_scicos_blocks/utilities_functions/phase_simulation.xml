@@ -28,29 +28,8 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>[psim]=phase_simulation()</synopsis>
+        <synopsis>psim = phase_simulation()</synopsis>
     </refsynopsisdiv>
-    <refsection id="Module_phase_simulation">
-        <title>Module</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Description_phase_simulation">
-        <title>Description</title>
-        <para>
-            That function says if the Scicos simulator is realizing the time domain integration.
-        </para>
-        <para>
-        </para>
-        <programlisting role="example"><![CDATA[
-[psim]=phase_simulation()
- ]]></programlisting>
-    </refsection>
     <refsection id="Parameters_phase_simulation">
         <title>Arguments</title>
         <itemizedlist>
@@ -74,5 +53,16 @@
                 </itemizedlist>
             </listitem>
         </itemizedlist>
+    </refsection>
+    <refsection id="Description_phase_simulation">
+        <title>Description</title>
+        <para>
+            That function says if the Scicos simulator is realizing the time domain integration.
+        </para>
+        <para>
+        <programlisting role="example"><![CDATA[
+psim = phase_simulation()
+ ]]></programlisting>
+        </para>
     </refsection>
 </refentry>

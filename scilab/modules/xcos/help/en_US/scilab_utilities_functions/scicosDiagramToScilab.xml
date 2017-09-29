@@ -20,22 +20,14 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>scs_m = scicosDiagramToScilab(filename)</synopsis>
-        <synopsis>[scs_m1, scs_m2, ...] = scicosDiagramToScilab([filename1, filename2, ...])</synopsis>
-        <synopsis/>
-        <synopsis>scicosDiagramToScilab(filename, scs_m)</synopsis>
-        <synopsis>scicosDiagramToScilab([filename1, filename2, ...], scs_m1, scs_m2)</synopsis>
+        <synopsis>
+          scs_m = scicosDiagramToScilab(filename)
+          [scs_m1, scs_m2, ...] = scicosDiagramToScilab([filename1, filename2, ...])
+
+          scicosDiagramToScilab(filename, scs_m)
+          scicosDiagramToScilab([filename1, filename2, ...], scs_m1, scs_m2)
+        </synopsis>
     </refsynopsisdiv>
-    <refsection id="Module_scicosDiagramToScilab">
-        <title>Module</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
     <refsection id="Parameters_scicosDiagramToScilab">
         <title>Arguments</title>
         <itemizedlist>

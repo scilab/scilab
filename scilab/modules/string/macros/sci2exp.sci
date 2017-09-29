@@ -1,8 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
-// Copyright (C) 2016 - Samuel GOUGEON
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2016, 2017 - Samuel GOUGEON
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -51,7 +50,14 @@ function t=sci2exp(a,nom,lmax)
             [lmax,nom]=(nom,lmax)
         end
     end
+    // For an hypermatrix, we concatenate all components in a single row:
+    hyperMat = or(type(a)==[1 2 4 8 10]) & ndims(a)>2;
+    if hyperMat
+        s = size(a);
+        a = matrix(a,1,-1);
+    end
     dots="..";
+
     select type(a)
     case 1 then
         t=mat2exp(a,lmax)
@@ -84,23 +90,49 @@ function t=sci2exp(a,nom,lmax)
         strfun(1)=str;
         strfun($)=[];
         t=strfun;
-        t(1)=part(t(1),10:length(t(1)))
-        t($)=[]
-        t=sci2exp(t,lmax)
-        t(1)="createfun("+t(1)
-        t($)=t($)+")"
+        t(1) = part(t(1),10:length(t(1)))
+        t($) = [];
+        t = sci2exp(t, lmax);
+        t(1) = "createfun(" + t(1);
+        t($) = t($) + ")";
     case 15 then
-        t=list2exp(a,lmax)
+        t = list2exp(a, lmax);
     case 16 then
-        t=tlist2exp(a,lmax)
-    case 17 then
-        t=mlist2exp(a,lmax)
+        t = tlist2exp(a, lmax);
+    case 17 then            // cells, struct, mlists
+        if typeof(a)=="st" & length(a)==1
+            t = scalarstruct2exp(a, lmax);
+        else
+            t = mlist2exp(a, lmax);
+        end
+    case 128 then
+        t = mlist2exp(user2mlist(a), lmax);
     case 129 then
-        t=imp2exp(a,lmax)
+        t = imp2exp(a, lmax);
     else
         //  execstr('t='+typeof(a)+'2exp(a,lmax)')
-        error(msprintf(gettext("%s: This feature has not been implemented: Variable translation of type %s.\n"),"sci2exp",string(type(a))));
-    end,
+        msg = _("%s: This feature has not been implemented: Variable translation of type %s.\n");
+        error(msprintf(msg, "sci2exp", string(type(a))));
+    end
+    // Post-processing:
+    if hyperMat then
+        s = strcat(msprintf("%d\n",s(:)), ",");  // Literal list of sizes
+        if lmax>0
+            if length(t(1)) > (lmax-8)
+                t = ["matrix(.."; t];
+            else
+                t(1) = "matrix("+t(1);
+            end
+            if length(t($)) > (lmax-length(s)-5)
+                t($) = t($)+",..";
+                t = [t ; "["+s+"])"];
+            else
+                t($) = t($)+", ["+s+"])";
+            end
+        else
+            t = "matrix(" + t + ", ["+s+"])";
+        end
+    end
     if named&and(type(a)<>13) then
         t(1)=nom+" = "+t(1)
     end
@@ -334,12 +366,40 @@ function t=pol2exp(a,lmax)
     end
 endfunction
 
-function t = glist2exp(listType, l,lmax)
+function t = glist2exp(listType, l, lmax)
     [lhs,rhs] = argn(0)
     if rhs<3 then lmax = 0, end
     dots = "."+".";
-    t = listType+"("
-    for k = 1:length(l)
+    isCell = typeof(l)=="ce";
+    if isCell then
+        s = size(l);
+        s = strcat(msprintf("%d\n",s(:)),",");  // Literal list of sizes
+        t = "makecell(";
+        if lmax>0 & (length(t) > (lmax-length(s)-4))
+            t = [t + dots; "["+s+"],.. "];
+        else
+            t = t + "["+s+"], ";
+        end
+        // ND-transposition needed due to makecell() special indexing:
+        if ndims(l)<3
+            l = l'
+        else
+            i = 1:ndims(l);
+            i([1 2]) = [2 1];
+            l = permute(l, i);
+        end
+        //
+        l = l{:};
+        L = length(l);
+    else
+        t = listType + "("
+        if listType=="list" then
+            L = length(l)
+        else
+             L = size(getfield(1,l),"*");
+        end
+    end
+    for k = 1:L
         sep = ",", if k==1 then sep = "", end
         clear lk
         if listType ~= "mlist"
@@ -348,21 +408,9 @@ function t = glist2exp(listType, l,lmax)
             lk = getfield(k,l)
         end
         if ~isdef("lk","local")
-            t1=""
+            t1 = ""
         else
-            if type(lk)==9 then
-                t1 = h2exp(lk,lmax)
-            elseif type(lk)==15 then
-                t1 = list2exp(lk,lmax)
-            elseif type(lk)==16 then
-                t1 = tlist2exp(lk,lmax)
-            elseif type(lk)==17 then
-                t1 = mlist2exp(lk,lmax)
-            elseif type(lk)==128 then
-                t1 = mlist2exp(user2mlist(lk),lmax)
-            else
-                t1 = sci2exp(lk,lmax)
-            end
+            t1 = sci2exp(lk, lmax)
         end
         if size(t1,"*")==1&(lmax==0|max(length(t1))+length(t($))<lmax) then
             t($) = t($)+sep+t1
@@ -382,6 +430,41 @@ function t = tlist2exp(l, lmax)
 endfunction
 function t = mlist2exp(l, lmax)
     t = glist2exp("mlist", l, lmax)
+endfunction
+
+function t = scalarstruct2exp(l, lmax)
+    if argn(2)<2 then lmax = 0, end
+    dots = "."+".";
+    t = "struct(";
+    fields = fieldnames(l);
+    n = size(fields,"*");
+    for i = 1:n
+        if ~lmax | lmax>(12+length(fields(i)))
+            t($) = t($) + """"+fields(i)+""",";
+        else
+            t($) = t($) + " " + dots;
+            t = [t; """"+fields(i)+""","];
+        end
+        clear lk
+        lk = l(fields(i));
+        if ~isdef("lk","local")
+            t1 = "";
+        else
+            t1 = sci2exp(lk, lmax)
+        end
+        if i<n then
+            tmp = ", ";
+        else
+            tmp = "";
+        end
+        if size(t1,"*")==1&(lmax==0|max(length(t1))+length(t($))<lmax) then
+            t($) = t($) + t1 + tmp;
+        else
+            t($) = t($) + " ..";
+            t = [t; t1 + tmp]
+        end
+    end
+    t($) = t($)+")"
 endfunction
 
 function t=log2exp(a,lmax)
@@ -500,7 +583,6 @@ function t=h2exp(a,lmax) //Only for figure and uicontrol
     if rhs<2 then lmax=0
     end
     [lhs,rhs]=argn(0);
-
 
     f1="''parent'', ";
     f2="''children'', ";
@@ -764,18 +846,17 @@ function t=h2exp(a,lmax) //Only for figure and uicontrol
             t(1:$-1)=t(1:$-1)+dots;
         end
     else
-        error(msprintf(gettext("%s: This feature has not been implemented: Variable translation of type %s.\n"),"sci2exp",string(a.type)));
+        msg = _("%s: This feature has not been implemented: Variable translation of type %s.\n")
+        error(msprintf(msg,"sci2exp",string(a.type)));
     end
 
 endfunction
 
 function ml = user2mlist(u)
-
     fn = getfield(1, u);
     ml = mlist(fn);
 
-    for k=1:size(fn,"*")
-        ml(k) = eval("u."+fn(k));
+    for k = 1:size(fn,"*")
+        ml(k) = u(fn(k));
     end
-
 endfunction

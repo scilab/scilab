@@ -35,16 +35,6 @@
             xcos(scs_m_list)
         </synopsis>
     </refsynopsisdiv>
-    <refsection id="Module_xcos">
-        <title>Module</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
     <refsection id="Parameters_xcos">
         <title>Arguments</title>
         <itemizedlist>

@@ -1,20 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="isglobal">
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Samuel GOUGEON
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:lang="en" xml:id="isglobal">
     <refnamediv>
         <refname>isglobal</refname>
-        <refpurpose>check if a variable is global</refpurpose>
+        <refpurpose>checks if a local variable has a global counterpart</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>t = isglobal(x)</synopsis>
+        <synopsis>t = isglobal(varname)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>x</term>
+                <term>varname</term>
                 <listitem>
-                    <para>any variable</para>
+                    <para>
+                        text: name of any single local variable. This is not the variable itself
+                        (that provides its content), but its name.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -28,17 +47,114 @@
     <refsection>
         <title>Description</title>
         <para>
-            <code>isglobal(x)</code> returns <emphasis>true</emphasis> if <varname>x</varname> has been declared to be a global
-            variable and <emphasis>false</emphasis> otherwise.
+            <literal>isglobal("x")</literal> returns <literal>%T</literal> if the variable
+            <varname>x</varname> is defined locally and points to a global counterpart. It returns
+            <literal>%F</literal> otherwise.
         </para>
+        <important>
+            <itemizedlist>
+                <listitem>
+                    If <literal>x</literal> is defined in the global space but not in the local
+                    one, <literal>isglobal("x")</literal> will return <literal>%F</literal>
+                    (as <literal>isdef("x")</literal>).
+                </listitem>
+                <listitem>
+                    If <varname>varname</varname> is a text not corresponding to the name of any
+                    variable, no error occurs and <literal>%F</literal> is returned.
+                </listitem>
+            </itemizedlist>
+        </important>
+        <note>
+            The list of all variables defined in the global space (but not necessarily in the local
+            one) can be retrieved with <literal>who("global")</literal>.
+        </note>
     </refsection>
     <refsection>
         <title>Examples</title>
+        <para>
+            <emphasis role="bold">Example #1</emphasis> with a predefined global variable:
+        </para>
         <programlisting role="example"><![CDATA[
-isglobal(1)
-global a
-isglobal(a)
+mprintf("%s\n", who("global")) // demolist has a global definition...
+isdef("demolist")       // %F: ... but no local one (not yet)
+demolist(1)             // => "Undefined variable"
+isglobal("demolist")    // => %F, since it has no local definition
+
+global demolist         // We define a local demolist and make it pointing to the existing global one
+demolist($,:)           // Here is the last row of the existing global content
+isglobal("demolist")    // => now %T
  ]]></programlisting>
+    <screen><![CDATA[
+--> mprintf("%s\n", who("global")) // demolist has a global definition...
+%helps
+%modalWarning
+%toolboxes
+%toolboxes_dir
+demolist
+
+--> isdef("demolist")     // ... but no local one (not yet)
+ ans  =
+  F
+
+--> demolist(1)           // So: => "Undefined variable"
+Undefined variable: demolist
+
+--> isglobal("demolist")  // => %F, since it has no local definition
+ ans  =
+  F
+
+--> global demolist       // We define a local demolist and make it pointing to the existing global one
+--> demolist($,:)         // Here is the last row of the existing global content
+ ans  =
+!Xcos  SCI\modules\xcos\demos\xcos.dem.gateway.sce  !
+
+--> isglobal("demolist")  // => now %T
+ ans  =
+  T
+ ]]></screen>
+
+    <para>
+        <emphasis role="bold">Example #2</emphasis> with a custom variable:
+    </para>
+    <programlisting role="example"><![CDATA[
+// In the list hereabove, "abc" does not exist. Let's create it locally and globally:
+global abc              // initialized with []
+isdef("abc")            // => %T
+isglobal("abc")         // => %T
+
+abc = %pi;              // Writes simultaneously in the local AND global spaces
+clear abc               // We delete the local definition, but not the global one
+abc                     // => "undefined variable"
+isglobal("abc")         // => %F, since there is no longer any local alias
+
+global abc              // We redefine abc connected to its global counterpart. What is it?
+abc
+ ]]></programlisting>
+    <screen><![CDATA[
+--> // In the list hereabove, "abc" does not exist. Let's create it locally and globally:
+--> global abc              // initialized with []
+--> isdef("abc")
+ ans  =
+  T
+
+--> isglobal("abc")
+ ans  =
+  T
+
+--> abc = %pi;              // Writes simultaneously in the local AND global spaces
+--> clear abc               // We delete the local definition, but not the global one
+--> abc                     // => "undefined variable"
+Undefined variable: abc
+
+--> isglobal("abc")         // => %F, since without local alias
+ ans  =
+  F
+
+--> global abc              // We redefine abc connected to its global counterpart. What is it?
+--> abc
+ abc  =
+   3.1415927
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
@@ -51,6 +167,9 @@ isglobal(a)
             </member>
             <member>
                 <link linkend="who">who</link>
+            </member>
+            <member>
+                <link linkend="isdef">isdef</link>
             </member>
         </simplelist>
     </refsection>

@@ -26,16 +26,6 @@
         <refname>scicos_graphics</refname>
         <refpurpose>Define an Xcos block graphics structure</refpurpose>
     </refnamediv>
-    <refsection id="Module_scicos_graphics">
-        <title>Module</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
     <refsect1 id="graphics_scicos_graphics">
         <title>graphics</title>
         <para>

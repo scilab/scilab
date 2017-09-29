@@ -29,61 +29,37 @@
     <refsection id="Contents_C_macros">
         <title>Contents</title>
         <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="C_macros">C_macros - Utilities C macros</link>
-                </para>
-            </listitem>
-            <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Module_C_macros">Module</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_C_macros">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Inputsoutputs_C_macros">Inputs/outputs</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Events_C_macros">Events</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Parameters_C_macros">Parameters</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Statesandwork_C_macros">States and work</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Zerocrossingsurfacesandmodes_C_macros">Zero crossing surfaces and modes</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Module_C_macros">
-        <title>Module</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
+          <listitem>
+            <para>
+              <xref linkend="Description_C_macros">Description</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Inputsoutputs_C_macros">Inputs/outputs</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Events_C_macros">Events</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Parameters_C_macros">Parameters</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Statesandwork_C_macros">States and work</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Zerocrossingsurfacesandmodes_C_macros">Zero crossing surfaces and modes</xref>
+            </para>
+          </listitem>
+      </itemizedlist>
     </refsection>
     <refsection id="Description_C_macros">
         <title>Description</title>

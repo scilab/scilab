@@ -29,11 +29,13 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>Info=scicos_simulate(scs_m)</synopsis>
-        <synopsis>Info=scicos_simulate(scs_m,Info)</synopsis>
-        <synopsis>Info=scicos_simulate(scs_m,context)</synopsis>
-        <synopsis>Info=scicos_simulate(scs_m,flag)</synopsis>
-        <synopsis>Info=scicos_simulate(scs_m ,Info [, context] [,flag])</synopsis>
+        <synopsis>
+          Info=scicos_simulate(scs_m)
+          Info=scicos_simulate(scs_m,Info)
+          Info=scicos_simulate(scs_m,context)
+          Info=scicos_simulate(scs_m,flag)
+          Info=scicos_simulate(scs_m ,Info [, context] [,flag])
+        </synopsis>
     </refsynopsisdiv>
     <refsection id="Parameters_scicos_simulate">
         <title>Arguments</title>
@@ -63,16 +65,6 @@
                 added.
             </varlistentry>
         </variablelist>
-    </refsection>
-    <refsection id="Module_scicos_simulate">
-        <title>Module</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
     </refsection>
     <refsection id="Description_scicos_simulate">
         <title>Description</title>
@@ -159,7 +151,7 @@ counter
 
     ]]></programlisting>
     </refsection>
-    <refsection id="SeeAlso_scicos_simulate">
+    <refsection id="SeeAlso_scicos_simulate" role="see also">
         <title>See also</title>
         <simplelist type="inline">
             <member>

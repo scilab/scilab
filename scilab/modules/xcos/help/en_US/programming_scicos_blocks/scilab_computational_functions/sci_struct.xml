@@ -29,66 +29,42 @@
     <refsection id="Contents_sci_struct">
         <title>Contents</title>
         <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="sci_struct">sci_struct - Scicos block structure of a scilab computational function</link>
-                </para>
-            </listitem>
-            <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Module_sci_struct">Module</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_sci_struct">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Inputsoutputs_sci_struct">Inputs/outputs</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Events_sci_struct">Events</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Parameters_sci_struct">Parameters</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="States_sci_struct">States</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Zerocrossingsurfacesandmodes_sci_struct">Zero crossing surfaces and modes</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Miscallaneous_sci_struct">Miscallaneous</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Module_sci_struct">
-        <title>Module</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
+          <listitem>
+            <para>
+              <xref linkend="Description_sci_struct">Description</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Inputsoutputs_sci_struct">Inputs/outputs</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Events_sci_struct">Events</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Parameters_sci_struct">Parameters</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="States_sci_struct">States</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Zerocrossingsurfacesandmodes_sci_struct">Zero crossing surfaces and modes</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Miscellaneous_sci_struct">Miscellaneous</xref>
+            </para>
+          </listitem>
+      </itemizedlist>
     </refsection>
     <refsection id="Description_sci_struct">
         <title>Description</title>
@@ -293,15 +269,10 @@
                 </para>
             </listitem>
         </itemizedlist>
-        <para>
-
-        </para>
     </refsection>
     <refsection id="Events_sci_struct">
         <title>Events</title>
         <para>
-
-        </para>
         <itemizedlist>
             <listitem>
                 <para>
@@ -319,15 +290,11 @@
                 </para>
             </listitem>
         </itemizedlist>
-        <para>
-
         </para>
     </refsection>
     <refsection id="Parameters_sci_struct">
         <title>Arguments</title>
         <para>
-
-        </para>
         <itemizedlist>
             <listitem>
                 <para>
@@ -370,15 +337,11 @@
                 </para>
             </listitem>
         </itemizedlist>
-        <para>
-
         </para>
     </refsection>
     <refsection id="States_sci_struct">
         <title>States</title>
         <para>
-
-        </para>
         <itemizedlist>
             <listitem>
                 <para>
@@ -431,8 +394,6 @@
                 </para>
             </listitem>
         </itemizedlist>
-        <para>
-
         </para>
     </refsection>
     <refsection id="Zerocrossingsurfacesandmodes_sci_struct">
@@ -462,15 +423,10 @@
                 </para>
             </listitem>
         </itemizedlist>
-        <para>
-
-        </para>
     </refsection>
-    <refsection id="Miscallaneous_sci_struct">
-        <title>Miscallaneous</title>
+    <refsection id="Miscellaneous_sci_struct">
+        <title>Miscellaneous</title>
         <para>
-
-        </para>
         <itemizedlist>
             <listitem>
                 <para>
@@ -488,8 +444,6 @@
                 </para>
             </listitem>
         </itemizedlist>
-        <para>
-
         </para>
     </refsection>
 </refentry>

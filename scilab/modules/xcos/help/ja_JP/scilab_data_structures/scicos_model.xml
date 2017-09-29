@@ -33,26 +33,6 @@
 
     </refnamediv>
 
-    <refsection id="Module_scicos_model">
-
-        <title>モジュール</title>
-
-        <itemizedlist>
-
-            <listitem>
-
-                <para>
-
-                    <link linkend="xcos">xcos</link>
-
-                </para>
-
-            </listitem>
-
-        </itemizedlist>
-
-    </refsection>
-
     <refsection id="model_scicos_model">
 
         <title>モデル</title>
