@@ -8,7 +8,10 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Синтаксис</title>
-        <synopsis>v = intsplin([x,] s)</synopsis>
+        <synopsis>
+          v = intsplin(y)
+          v = intsplin(x, y)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
@@ -23,7 +26,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>s</term>
+                <term>y</term>
                 <listitem>
                     <para>
                         вектор ординат <literal>y</literal>.
@@ -42,7 +45,7 @@
         <title>Описание</title>
         <para>Вычисляет:</para>
         <para>
-            <literal>s(i)=f(x(i))</literal> и <literal>x0=x(1)</literal>,
+            <literal>y(i)=f(x(i))</literal> и <literal>x0=x(1)</literal>,
             <literal>x1=x(n)</literal>,
         </para>
         <para>
@@ -53,8 +56,17 @@
     <refsection>
         <title>Примеры</title>
         <programlisting role="example"><![CDATA[
-t=0:0.1:%pi
+t = 0:0.1:%pi
 intsplin(t,sin(t))
+
+intsplin(1:5)            // 12
+
+x = 0:0.1:0.4;
+intsplin(x, 1:5)         // 1.2
+
+intsplin((1:5)*%i)       // 12i
+intsplin(x, (1:5)*%i)    // 1.2i
+intsplin(x, x+(1:5)*%i)  // 0.08 + 1.2i
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
