@@ -124,6 +124,11 @@
                 </listitem>
             </itemizedlist>
         </para>
+        <note>
+          The "&amp;" character as well as numerical HTML entities like "&amp;#123;" are supported
+          in the contents. Literal HTML entities like "&amp;acute;" are not accepted. Please use
+          directly the UTF-8 character like "é" instead.
+        </note>
         <para>
         </para>
     </refsection>
@@ -154,5 +159,17 @@
                 <link linkend="head_comments">head_comments</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.1</revnumber>
+                <revdescription>
+                  Numerical HTML entities like <literal>&amp;#969;</literal> are now accepted in
+                  heading comments.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

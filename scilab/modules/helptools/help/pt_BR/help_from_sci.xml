@@ -1,40 +1,43 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  *
  * This help file was generated from help_from_sci.sci using help_from_sci().
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="help_from_sci" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="help_from_sci" xml:lang="pt">
     <refnamediv>
         <refname>help_from_sci</refname>
-        <refpurpose>Geração de arquivos de ajuda e de arquivos de demonstração a
-            partir da seção de comentários de cabeçalho de um arquivo-fonte
+        <refpurpose>GeraÃ§Ã£o de arquivos de ajuda e de arquivos de demonstraÃ§Ã£o a
+            partir da seÃ§Ã£o de comentÃ¡rios de cabeÃ§alho de um arquivo-fonte
             .sci
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>
-            help_from_sci() // gera um modelo de função vazio
+            help_from_sci() // gera um modelo de funÃ§Ã£o vazio
             help_from_sci(funname,helpdir) // gera helpdir/funname.xml a partir de funname.sci
             help_from_sci(dirname,helpdir) // processa dirname/*.sci e cria helpdir/*.xml.
-            help_from_sci(dirname,helpdir,helpdir) // como acima, mas também cria o arquivo de demonstração helpdir/*.dem.sce.
+            help_from_sci(dirname,helpdir,helpdir) // como acima, mas tambÃ©m cria o arquivo de demonstraÃ§Ã£o helpdir/*.dem.sce.
             [helptxt,demotxt]=help_from_sci(funname) // retorna funname.xml e funname.dem.sce como duas matrizes de texto.
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>funname:</term>
                 <listitem>
-                    <para>o nome de um único arquivo .sci a ser processado</para>
+                    <para>o nome de um Ãºnico arquivo .sci a ser processado</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>dirname:</term>
                 <listitem>
-                    <para>nome do diretório onde todos os arquivos .sci serão
+                    <para>nome do diretÃ³rio onde todos os arquivos .sci serÃ£o
                         processados
                     </para>
                 </listitem>
@@ -42,7 +45,7 @@
             <varlistentry>
                 <term>helpdir:</term>
                 <listitem>
-                    <para>endereço opcional onde o arquivo de ajuda .xml será
+                    <para>endereÃ§o opcional onde o arquivo de ajuda .xml serÃ¡
                         criado
                     </para>
                 </listitem>
@@ -50,51 +53,51 @@
             <varlistentry>
                 <term>demodir:</term>
                 <listitem>
-                    <para>endereço opcional onde os arquivos de demonstração .dem.sce
-                        serão criados baseados nos códigos da seção Examples
+                    <para>endereÃ§o opcional onde os arquivos de demonstraÃ§Ã£o .dem.sce
+                        serÃ£o criados baseados nos cÃ³digos da seÃ§Ã£o Examples
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>helptxt:</term>
                 <listitem>
-                    <para>retorna o código da ajuda XML se helpdir for vazio, ou o
-                        endereço para o novo arquivo .xml
+                    <para>retorna o cÃ³digo da ajuda XML se helpdir for vazio, ou o
+                        endereÃ§o para o novo arquivo .xml
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>demotxt:</term>
                 <listitem>
-                    <para>retorna o código de demonstração se demodir for vazio, ou o
-                        endereço para o novo arquivo .dem.sc
+                    <para>retorna o cÃ³digo de demonstraÃ§Ã£o se demodir for vazio, ou o
+                        endereÃ§o para o novo arquivo .dem.sc
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
-        <para>help_from_sci é uma versão revisada da função help_skeleton. Seu
-            objetivo é gerar arquivos de ajuda .xml baseados na seção de comentários
-            de cabeçalho dos arquivos-fontes .sci. Opcionalmente, os arquivos de
-            demonstração .dem.sce podem ser gerados baseados nos códigos da seção
-            Examples na seção de cometários de cabeçalho dos arquivos .sci.
+        <title>DescriÃ§Ã£o</title>
+        <para>help_from_sci Ã© uma versÃ£o revisada da funÃ§Ã£o help_skeleton. Seu
+            objetivo Ã© gerar arquivos de ajuda .xml baseados na seÃ§Ã£o de comentÃ¡rios
+            de cabeÃ§alho dos arquivos-fontes .sci. Opcionalmente, os arquivos de
+            demonstraÃ§Ã£o .dem.sce podem ser gerados baseados nos cÃ³digos da seÃ§Ã£o
+            Examples na seÃ§Ã£o de cometÃ¡rios de cabeÃ§alho dos arquivos .sci.
         </para>
         <para>Para que help_from_sci formate o arquivo .xml propriamente, os a
-            seção de comentários de cabeçalho deve concordar com algumas regras
-            simples de formatação.
+            seÃ§Ã£o de comentÃ¡rios de cabeÃ§alho deve concordar com algumas regras
+            simples de formataÃ§Ã£o.
         </para>
-        <para>A primeira linha de comentário seguinte à definição de função deve
-            conter uma descrição breve da função.
+        <para>A primeira linha de comentÃ¡rio seguinte Ã  definiÃ§Ã£o de funÃ§Ã£o deve
+            conter uma descriÃ§Ã£o breve da funÃ§Ã£o.
         </para>
-        <para>Os comentários restantes são formatados de acordo com os seguintes
-            cabeçalhos (opcionais): "Syntax", "Parameters", "Description",
+        <para>Os comentÃ¡rios restantes sÃ£o formatados de acordo com os seguintes
+            cabeÃ§alhos (opcionais): "Syntax", "Parameters", "Description",
             "Examples", "See also", "Used functions", "Authors" e
             "Bibliography".
         </para>
         <para>As seguintes diretrizes devem ser seguidas ao se escrever os
-            comentários de código fonte:
+            comentÃ¡rios de cÃ³digo fonte:
         </para>
         <itemizedlist>
             <listitem>
@@ -106,59 +109,68 @@
             <listitem>
                 <para>
                     <literal>Parameters</literal>
-                    - separe o nome do parâmetro e a descrição por um ":". Mantenha a descrição de cada parâmetro na mesma linha.
+                    - separe o nome do parÃ¢metro e a descriÃ§Ã£o por um ":". Mantenha a descriÃ§Ã£o de
+                      cada parÃ¢metro na mesma linha.
                 </para>
             </listitem>
             <listitem>
                 <para>
                     <literal>Description</literal>
-                    - a formatação do texto pode ser feita utilizando comandos XML. Adicionar uma linha de comentário vazia na seção Description é interpretado como começo de um novo parágrafo.
+                    - a formataÃ§Ã£o do texto pode ser feita utilizando comandos XML. Adicionar uma
+                      linha de comentÃ¡rio vazia na seÃ§Ã£o Description Ã© interpretado como comeÃ§o de
+                      um novo parÃ¡grafo.
                 </para>
             </listitem>
             <listitem>
                 <para>
                     <literal>See also</literal>
-                    - liste um nome de função por linha.
+                    - liste um nome de funÃ§Ã£o por linha.
                 </para>
             </listitem>
             <listitem>
                 <para>
                     <literal>Authors</literal>
-                    - escreva um autor em cada linha após o cabeçalho Authors. Use ";" para separar os autores de qualquer informação adicional.
+                    - escreva um autor em cada linha apÃ³s o cabeÃ§alho Authors. Use ";" para separar
+                      os autores de qualquer informaÃ§Ã£o adicional.
                 </para>
             </listitem>
             <listitem>
                 <para>
                     <literal>Bibliography</literal>
-                    - escreva uma referência por linha seguindo o cabeçalho References.
+                    - escreva uma referÃªncia por linha seguindo o cabeÃ§alho References.
                 </para>
             </listitem>
         </itemizedlist>
+        <note>
+          The "&amp;" character as well as numerical HTML entities like "&amp;#123;" are supported
+          in the contents. Literal HTML entities like "&amp;acute;" are not accepted. Please use
+          directly the UTF-8 character like "Ã©" instead.
+        </note>
         <para/>
     </refsection>
     <refsection>
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
-help_from_sci()   // abrindo um modelo de código-fonte vazio no editor.
-// salve este modelo como test_fun.sci no diretório corrente antes de executar
-// os próximos comandos do exemplo
+help_from_sci()   // abrindo um modelo de cÃ³digo-fonte vazio no editor.
+// salve este modelo como test_fun.sci no diretÃ³rio corrente antes de executar
+// os prÃ³ximos comandos do exemplo
 
 help_from_sci('test_fun')        // retornando o esqueleto xml como um string de texto.
 
-help_from_sci('test_fun','.')    // criando o arquivo de ajuda xml no diretório corrente.
+help_from_sci('test_fun','.')    // criando o arquivo de ajuda xml no diretÃ³rio corrente.
 
-// criando ambos os arquivos de ajuda e demonstração no diretório corrente.
+// criando ambos os arquivos de ajuda e demonstraÃ§Ã£o no diretÃ³rio corrente.
 help_from_sci('test_fun','.','.')
 
-// de um diretório raiz de um toolbox, uma seqüência de chamamento típica seria:
+// de um diretÃ³rio raiz de um toolbox, uma seqÃ¼Ãªncia de chamamento tÃ­pica seria:
 // help_from_sci('macros','help\pt_BR','demos')
-// este comando processaria todos os arquivos .sci no diretório de macros
-// e utilizaria a seção de comentários de cabeçalho para atualizar as ajudas .xml no
-// diretório help\en_US e reconstruiria os arquivos .dem.sce no diretório demos\.
+// este comando processaria todos os arquivos .sci no diretÃ³rio de macros
+// e utilizaria a seÃ§Ã£o de comentÃ¡rios de cabeÃ§alho para atualizar as ajudas .xml no
+// diretÃ³rio help\en_US e reconstruiria os arquivos .dem.sce no diretÃ³rio demos\.
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="help">help</link>
@@ -170,5 +182,17 @@ help_from_sci('test_fun','.','.')
                 <link linkend="xmltohtml">xmltohtml</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>HistÃ³rico</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.1</revnumber>
+                <revdescription>
+                  Numerical HTML entities like <literal>&amp;#969;</literal> are now accepted in
+                  heading comments.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
