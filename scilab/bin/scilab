@@ -733,6 +733,7 @@ detect_macosx_version()
 set_macox_specific_path()
 {
 
+    PATH_TO_SPECIFIC_10_13=$SCIBINARYBASE/lib/thirdparty/10.13/
     PATH_TO_SPECIFIC_10_12=$SCIBINARYBASE/lib/thirdparty/10.12/
     PATH_TO_SPECIFIC_10_11=$SCIBINARYBASE/lib/thirdparty/10.11/
     PATH_TO_SPECIFIC_10_10=$SCIBINARYBASE/lib/thirdparty/10.10/
@@ -741,13 +742,18 @@ set_macox_specific_path()
     case $macosxMajorVersion in
         10)
             case $macosxMinorVersion in
+                13)
+                    # Specific libBLAS.dylib & libz versions for 10.13
+                    LD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_13${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
+                    DYLD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_13${DYLD_LIBRARY_PATH+:$DYLD_LIBRARY_PATH}
+                    ;;
                 12)
-                    # not used yet
+                    # Specific libBLAS.dylib version for 10.12
                     LD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_12${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
                     DYLD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_12${DYLD_LIBRARY_PATH+:$DYLD_LIBRARY_PATH}
                     ;;
                 11)
-                    # not used yet
+                    # Specific libBLAS.dylib & libLAPACK.dylib version for 10.11
                     LD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_11${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
                     DYLD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_11${DYLD_LIBRARY_PATH+:$DYLD_LIBRARY_PATH}
                     ;;
@@ -760,6 +766,9 @@ set_macox_specific_path()
                     # the iconv lib fails under 10.7, just declare it for 10.6
                     LD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_6${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
                     DYLD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_6${DYLD_LIBRARY_PATH+:$DYLD_LIBRARY_PATH}
+                    ;;
+                *)
+                    fail_macosx_version
                     ;;
             esac
             ;;
@@ -775,9 +784,9 @@ dialog_try_or_exit()
     osascript $BINPATH/checkmacosx.applescript "$1" || exit 128
 }
 
-fail_macosx_too_old()
+fail_macosx_version()
 {
-    dialog_try_or_exit "This version of Scilab will probably fail on this system ($macosxVersion): Scilab requires 10.8.3 (Mountain Lion) or newer system."
+    dialog_try_or_exit "This version of Scilab may fail on this system ($macosxVersion): Scilab is currently supported from 10.8.3 (Mountain Lion) to 10.13 (High Sierra)."
 }
 check_macosx_version()
 {
@@ -788,23 +797,23 @@ check_macosx_version()
                    # We force to install JRE on Mavericks
                    /usr/libexec/java_home --request > /dev/null
                    ;;
-                10|11|12)
-                   # ... but not on Yosemite, El Capitan or Sierra:
+                10|11|12|13)
+                   # ... but not on Yosemite, El Capitan, Sierra or High Sierra:
                    # there will be a (better) error at launch
                    ;;
                 8)
                     if test $macosxBuildVersion -le 3; then
                         # Version <= 10.8.3
-                        fail_macosx_too_old
+                        fail_macosx_version
                     fi
                     ;;
                 *)
-                    fail_macosx_too_old
+                    fail_macosx_version
                     ;;
             esac
             ;;
         *)
-            fail_macosx_too_old
+            fail_macosx_version
             ;;
     esac
 }
