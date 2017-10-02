@@ -412,6 +412,7 @@ the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 * [#15260](http://bugzilla.scilab.org/show_bug.cgi?id=15260): `sci2exp` was broken for cells, structures, and all types of hypermatrix.
 * [#15266](http://bugzilla.scilab.org/show_bug.cgi?id=15266): Wrong default out_mode in `linear_interpn`.
 * [#15273](http://bugzilla.scilab.org/show_bug.cgi?id=15273): The documented order of `eval_cshep2d` second derivatives was wrong.
+* [#15282](http://bugzilla.scilab.org/show_bug.cgi?id=15282): `help_from_sci` could set an xml:id starting with the forbidden `%` character.
 
 ### Bugs fixed in 6.0.0:
 * [#592](http://bugzilla.scilab.org/show_bug.cgi?id=592): `linspace(a, b, n<=0)` returned `b` instead of `[]`

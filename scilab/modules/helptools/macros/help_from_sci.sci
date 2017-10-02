@@ -2,6 +2,7 @@
 // Copyright (C) 2008-2009 - T. Pettersen
 // Copyright (C) 2010 - DIGITEO - Allan CORNET
 // Copyright (C) 2011 - DIGITEO - Michael Baudin
+// Copyright (C) 2017 - Samuel GOUGEON
 //
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
@@ -193,6 +194,7 @@ function [helptxt,demotxt]=help_from_sci(funname,helpdir,demodir)
     out = out($);
     out = tokens(out,".");
     out = out(1);      // remove .sci (...wont work for fil.name.sci)
+    outxml = strsubst(out, "/^%/","percent", "r");
 
     demotxt = ["mode(1)"
     "//"
@@ -211,7 +213,7 @@ function [helptxt,demotxt]=help_from_sci(funname,helpdir,demodir)
     " *"
     " -->"
     ""
-    "<refentry version=""5.0-subset Scilab"" xml:id="""+out+""" xml:lang=""en"""
+    "<refentry version=""5.0-subset Scilab"" xml:id="""+outxml+""" xml:lang=""en"""
     "          xmlns=""http://docbook.org/ns/docbook"""
     "          xmlns:xlink=""http://www.w3.org/1999/xlink"""
     "          xmlns:svg=""http://www.w3.org/2000/svg"""
@@ -345,7 +347,7 @@ function [helptxt,demotxt]=help_from_sci(funname,helpdir,demodir)
     mclose(f);
 
     if ~isempty(helpdir) then
-        fnme = pathconvert(helpdir, %t, %f) + out + ".xml";
+        fnme = pathconvert(helpdir, %t, %f) + outxml + ".xml";
         answ = 1;
         if isfile(fnme) then  // file exists...
             answ = messagebox(fnme + " exists!", "Warning - help_from_sci", "warning", ["Create anyway" "Skip file"], "modal");
@@ -354,7 +356,7 @@ function [helptxt,demotxt]=help_from_sci(funname,helpdir,demodir)
             mputl(helptxt, fnme);
             helptxt = fnme;
         else
-            printf(gettext("%s: File skipped %s."), "help_from_sci", out + ".xml");
+            printf(gettext("%s: File skipped %s."), "help_from_sci", outxml + ".xml");
             helptxt = "";
         end
     end
