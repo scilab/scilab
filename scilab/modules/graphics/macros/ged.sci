@@ -143,10 +143,10 @@ function ged(k,win)
                 warning(_("Entity picker cannot be enabled, user data figure field is already used" ))
                 return
             end
-            fig.event_handler_enable = "off" //to prevent against bug 7855
-            fig.event_handler="ged_eventhandler"
-            fig.event_handler_enable="on"
         end
+        fig.event_handler_enable = "off" //to prevent against bug 7855
+        fig.event_handler="ged_eventhandler"
+        fig.event_handler_enable="on"
         ged_cur_fig_handle.info_message=_("Left click on a graphic entity to open its property editor");
     case 11 then //stop Entity picker
         fig=ged_cur_fig_handle
