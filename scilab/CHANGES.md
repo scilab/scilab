@@ -402,6 +402,7 @@ the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 * [#15019](http://bugzilla.scilab.org/show_bug.cgi?id=15019): Add 'csci6' in the calling of ilib_build in 'Getting started with API_Scilab' help page.
 * [#15023](http://bugzilla.scilab.org/show_bug.cgi?id=15023): `clf()` wrongly reset `figure_id`.
 * [#15024](http://bugzilla.scilab.org/show_bug.cgi?id=15024): Xcos labels were not preserved at diagram compilation.
+* [#15034](http://bugzilla.scilab.org/show_bug.cgi?id=15034): Unable to create a structure using mlist.
 * [#15037](http://bugzilla.scilab.org/show_bug.cgi?id=15037): the residu function may crash Scilab6.
 * [#15039](http://bugzilla.scilab.org/show_bug.cgi?id=15039): Added demos to showcase Xcos' new graphical features
 * [#15046](http://bugzilla.scilab.org/show_bug.cgi?id=15046): `call` couldn't mix inputs and outputs
