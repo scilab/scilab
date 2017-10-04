@@ -227,6 +227,7 @@ bounds selected out of the axes areas is now restored, after the Scilab 5.4 regr
 * `evstr` now support inputs including `ascii(10)`, `ascii(13)`, only a comment or/and
    spaces or/and `"[]"`, only spaces, being `""`, or instructions returning nothing.
 * `mgetl` speed have been improved for files with a lot of lines.
+* `ndgrid(x)` now accepts only one input `x`, with by default `y=x`.
 
 Help pages:
 -----------
@@ -423,6 +424,7 @@ the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 * [#15139](http://bugzilla.scilab.org/show_bug.cgi?id=15139): Fix return in try/catch expression
 * [#15144](http://bugzilla.scilab.org/show_bug.cgi?id=15144): `mean` and `stdev` could not be overloaded.
 * [#15170](http://bugzilla.scilab.org/show_bug.cgi?id=15170): `getd` created and returned a variable `k` that could overwrite a loaded one.
+* [#15183](http://bugzilla.scilab.org/show_bug.cgi?id=15183): `ndgrid(x)` with by default `y=x` was not accepted.
 * [#15184](http://bugzilla.scilab.org/show_bug.cgi?id=15184): error management when calling operator overload fixed.
 * [#15185](http://bugzilla.scilab.org/show_bug.cgi?id=15185): "Region to Superblock" did not restore broken links.
 * [#15188](http://bugzilla.scilab.org/show_bug.cgi?id=15188): Failed to load hdf5_is_file function.

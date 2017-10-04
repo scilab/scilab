@@ -8,6 +8,7 @@
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
+               [X, Y] = ndgrid(x)
                [X, Y] = ndgrid(x,y)
             [X, Y, Z] = ndgrid(x,y,z)
          [X, Y, Z, T] = ndgrid(x,y,z,t)
@@ -20,7 +21,7 @@
             <varlistentry>
                 <term>x, y, z, ...</term>
                 <listitem>
-                    <para>vectors of any data types. They may have distinct data types.</para>
+                    <para>vectors of any data types. They may have distinct data types. By default, <literal>y=x</literal>.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -210,8 +211,17 @@ c1+c2
         <title>History</title>
         <revhistory>
             <revision>
-                <revnumber>6.0</revnumber>
-                <revdescription>Extension to all homogeneous datatypes ([], booleans, encoded integers, polynomials, rationals, strings). Revision of the help page.</revdescription>
+                <revnumber>6.0.0</revnumber>
+                <revdescription>
+                    Extension to all homogeneous datatypes ([], booleans, encoded integers,
+                    polynomials, rationals, strings). Revision of the help page.
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.0.1</revnumber>
+                <revdescription>
+                    <literal>ndgrid(x)</literal> is now accepted: Default <literal>y=x</literal>.
+                </revdescription>
             </revision>
         </revhistory>
     </refsection>

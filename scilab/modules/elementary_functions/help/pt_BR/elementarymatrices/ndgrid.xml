@@ -21,7 +21,7 @@
             <term>x, y, z, ...</term>
             <listitem>
                 <para>vetores de quaisquer tipos de dados.
-                    Eles podem ter tipos de dados distintos.
+                    Eles podem ter tipos de dados distintos. Por padrão, <literal>y=x</literal>.
                 </para>
             </listitem>
         </varlistentry>
@@ -231,9 +231,16 @@ c1+c2
     <title>Histórico</title>
     <revhistory>
         <revision>
-            <revnumber>6.0</revnumber>
-            <revdescription>Extension to all homogeneous datatypes ([], booleans, encoded integers,
-              polynomials, rationals, strings). Revision of the help page.
+            <revnumber>6.0.0</revnumber>
+            <revdescription>
+                Extension to all homogeneous datatypes ([], booleans, encoded integers,
+                polynomials, rationals, strings). Revision of the help page.
+            </revdescription>
+        </revision>
+        <revision>
+            <revnumber>6.0.1</revnumber>
+            <revdescription>
+                <literal>ndgrid(x)</literal> is now accepted: Default <literal>y=x</literal>.
             </revdescription>
         </revision>
     </revhistory>
