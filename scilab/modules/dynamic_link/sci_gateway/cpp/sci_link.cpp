@@ -89,7 +89,7 @@ types::Function::ReturnValue sci_link(types::typed_list &in, int _iRetCount, typ
         }
         else
         {
-            Scierror(999, _("%ls Wrong value for input argument #%d: '%s' or '%s' expected.\n"), "link", 3, "f", "c");
+            Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), "link", 3, "f", "c");
             return types::Function::Error;
         }
 
