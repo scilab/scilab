@@ -434,6 +434,7 @@ the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 * [#15138](http://bugzilla.scilab.org/show_bug.cgi?id=15138): Scilab crashes at start on Windows
 * [#15139](http://bugzilla.scilab.org/show_bug.cgi?id=15139): Fix return in try/catch expression
 * [#15144](http://bugzilla.scilab.org/show_bug.cgi?id=15144): `mean` and `stdev` could not be overloaded.
+* [#15146](http://bugzilla.scilab.org/show_bug.cgi?id=15146): lasterror() crashes Scilab when last error message is empty
 * [#15148](http://bugzilla.scilab.org/show_bug.cgi?id=15148): link() doesn't return any error for a wrong flag argument value
 * [#15170](http://bugzilla.scilab.org/show_bug.cgi?id=15170): `getd` created and returned a variable `k` that could overwrite a loaded one.
 * [#15183](http://bugzilla.scilab.org/show_bug.cgi?id=15183): `ndgrid(x)` with by default `y=x` was not accepted.
