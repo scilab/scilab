@@ -368,6 +368,7 @@ the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 * [#4276](http://bugzilla.scilab.org/show_bug.cgi?id=4276): `strsubst` replaced the first occurence in regex mode.
 * [#5248](http://bugzilla.scilab.org/show_bug.cgi?id=5248): The graphical entity picker was out of work.
 * [#5278](http://bugzilla.scilab.org/show_bug.cgi?id=5278): obsolete `xset()` was still used in scripts, macros, tests and help pages.
+* [#5611](http://bugzilla.scilab.org/show_bug.cgi?id=5611): It was not possible to delete the row or column of a cells array.
 * [#8297](http://bugzilla.scilab.org/show_bug.cgi?id=8297): `cat` slowness was exponential, crippling, and made it useless.
 * [#8842](http://bugzilla.scilab.org/show_bug.cgi?id=8842): Assigning the pointer of a builtin function to a new structure failed.
 * [#9297](http://bugzilla.scilab.org/show_bug.cgi?id=9297): Assigning a mlist to a structure's field failed.
