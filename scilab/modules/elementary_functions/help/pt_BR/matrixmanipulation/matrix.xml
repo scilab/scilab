@@ -1,17 +1,37 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="matrix" xml:lang="pt">
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) - INRIA
+ * Copyright (C) 2017 - Samuel GOUGEON
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="matrix" xml:lang="pt">
     <refnamediv>
         <refname>matrix</refname>
         <refpurpose>Muda a forma de vetores ou matrizes</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
-        <synopsis>y=matrix(v,n,m)
-            y=matrix(v,[sizes])
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
+        <synopsis>
+            y = matrix(v, m, n)
+            y = matrix(v, m1, m2, m3, ..)
+            y = matrix(v, [sizes])
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>v</term>
@@ -20,7 +40,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>n,m</term>
+                <term>n, m, m1, m2, ..</term>
                 <listitem>
                     <para>inteiros </para>
                 </listitem>
@@ -38,9 +58,21 @@
                 </listitem>
             </varlistentry>
         </variablelist>
+        <note>
+            <itemizedlist>
+                <listitem>
+                    <literal>y = v(:)</literal> is equivalent to <literal>matrix(v,-1, 1)</literal>
+                </listitem>
+                <listitem>
+                    <literal>matrix()</literal> can be overloaded for any mlist() type, with a
+                    function named <literal>%&lt;type>_matrix(v,s,..)</literal> with at least 2
+                    input arguments.
+                </listitem>
+            </itemizedlist>
+        </note>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             Para um vetor ou matriz com <literal>n</literal> x
             <literal>m</literal> entradas, o comando
@@ -49,31 +81,136 @@
             <literal>v</literal> em uma matriz <literal>nxm</literal> empilhando as
             entradas coluna a coluna de <literal>v</literal>.
         </para>
-        <para>Se uma das dimensões m ou n é igual a -1, ela é automaticamente
-            atribuída ao quociente de tamanho (v,'*') pela outra dimensão,
+        <para>Se uma das dimensÃµes m ou n Ã© igual a -1, ela Ã© automaticamente
+            atribuÃ­da ao quociente de tamanho (v,'*') pela outra dimensÃ£o,
         </para>
         <para>Para uma hipermatriz tal como
             <literal>prod(size(v))==prod(sizes)</literal>, o comando
             <literal>y=matrix(v,sizes)</literal> (ou equivalentemente
             <literal>y=matrix(v,n1,n2,...nm)</literal>) transforma
             <literal>v</literal> em uma matriz ou hipermatriz empilhando "coluna a
-            coluna" as entradas de <literal>v</literal> (a primeira dimensão variando
+            coluna" as entradas de <literal>v</literal> (a primeira dimensÃ£o variando
             primeiro). <literal>y=matrix(v,sizes)</literal> resulta numa matriz
-            regular se os tamanhos são escalares ou um vetor de duas entradas.
+            regular se os tamanhos sÃ£o escalares ou um vetor de duas entradas.
         </para>
+        <note>
+            <itemizedlist>
+                <listitem>
+                    <literal>y = v(:)</literal> is equivalent to <literal>matrix(v,-1, 1)</literal>
+                </listitem>
+                <listitem>
+                    <literal>matrix()</literal> can be overloaded for any mlist() type, with a
+                    function named <literal>%&lt;type>_matrix(v,s,..)</literal> with at least 2
+                    input arguments.
+                </listitem>
+            </itemizedlist>
+        </note>
     </refsection>
     <refsection>
         <title>Exemplos</title>
+        <para><emphasis role="bold">With a regular matrix of decimal numbers:</emphasis></para>
         <programlisting role="example"><![CDATA[
-a=[1 2 3;4 5 6]
-matrix(a,1,6)
-matrix(a,1,-1)
-matrix(a,3,2)
+a = [1 3 5 7 9 11; 2 4 6 8 10 12]
+matrix(a, 4, 3)
+matrix(a, [3 4])
+matrix(a, 3, -1)
+// into an hypermatrix:
+matrix(a, 3, 2, 2)
  ]]></programlisting>
+    <para>
+        <emphasis role="bold">With texts:</emphasis>
+    </para>
+        <programlisting role="example"><![CDATA[
+t = strsplit("a":"x",1:23)'
+matrix(t,[3,8])
+ ]]></programlisting>
+    <screen><![CDATA[
+--> t = strsplit("a":"x",1:23)'
+ t  =
+!a  b  c  d  e  f  g  h  i  j  k  l  m  n  o  p  q  r  s  t  u  v  w  x  !
+
+--> matrix(t,[3,8])
+ ans  =
+!a  d  g  j  m  p  s  v  !
+!b  e  h  k  n  q  t  w  !
+!c  f  i  l  o  r  u  x  !
+]]></screen>
+    <para>
+        <emphasis role="bold">With a cells hyperarray:</emphasis>
+    </para>
+        <programlisting role="example"><![CDATA[
+c = makecell([2,3,2], %t,%z, %i,"abc", list(%pi,"a"), int8(23),cos,sind,"Ã Ã¨Ã¬Ã²Ã¹",corelib, 0.5, 1/%z^2)
+rc = matrix(c, 3, 4)
+rc(8)==c(8)
+rc{8}.getshell
+ ]]></programlisting>
+    <screen><![CDATA[
+ c  =
+(:,:,1)
+  [1x1 boolean]  [1x1 polynomial]  [1x1 constant]
+  [1x1 string ]  [    list      ]  [1x1 int8    ]
+(:,:,2)
+  [      1 fptr   ]  [      1 function]  [1x1 string]
+  [        library]  [    1x1 constant]  [    r     ]
+
+--> rc = matrix(c, 3, 4)
+ rc  =
+  [1x1 boolean   ]  [    list    ]  [      1 fptr    ]  [1x1 constant]
+  [1x1 string    ]  [1x1 constant]  [        library ]  [1x1 string  ]
+  [1x1 polynomial]  [1x1 int8    ]  [      1 function]  [    r       ]
+
+--> rc(8)==c(8)
+ ans  =
+  T
+
+--> rc{8}.getshell
+ ans  =
+ cmd
+]]></screen>
+    <para>
+        <emphasis role="bold">With a structures array:</emphasis>
+    </para>
+        <programlisting role="example"><![CDATA[
+clear s
+s(3,6).r = %pi
+matrix(s,2,9)
+ ]]></programlisting>
+    <screen><![CDATA[
+--> s(3,6).r = %pi
+ s  =
+  3x6 struct array with fields:
+    r
+
+--> matrix(s,2,9)
+ ans  =
+  2x9 struct array with fields:
+    r
+]]></screen>
     </refsection>
     <refsection>
-        <title> Ver Também</title>
+        <title> Ver TambÃ©m</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="colon">colon (:)</link>
+            </member>
+            <member>
+                <link linkend="resize_matrix">resize_matrix</link>
+            </member>
+            <member>
+                <link linkend="ndims">ndims</link>
+            </member>
+            <member>
+                <link linkend="size">size</link>
+            </member>
+            <member>
+                <link linkend="extraction">extraction</link>
+            </member>
+            <member>
+                <link linkend="quote">transposition</link>
+            </member>
+            <member>
+                <link linkend="brackets">brackets [..]</link>
+            </member>
             <member>
                 <link linkend="matrices">matrices</link>
             </member>
@@ -81,22 +218,13 @@ matrix(a,3,2)
                 <link linkend="hypermatrices">hypermatrices</link>
             </member>
             <member>
-                <link linkend="ones">ones</link>
+                <link linkend="makecell">makecell</link>
             </member>
             <member>
-                <link linkend="zeros">zeros</link>
+                <link linkend="struct">struct</link>
             </member>
             <member>
-                <link linkend="emptystr">emptystr</link>
-            </member>
-            <member>
-                <link linkend="rand">rand</link>
-            </member>
-            <member>
-                <link linkend="poly">poly</link>
-            </member>
-            <member>
-                <link linkend="empty">empty</link>
+                <link linkend="mlist">mlist</link>
             </member>
         </simplelist>
     </refsection>
