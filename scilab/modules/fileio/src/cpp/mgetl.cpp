@@ -190,6 +190,12 @@ int mgetl(int iFileID, int iLineCount, wchar_t ***pwstLines)
                 }
             }
         }
+
+        if (previous.size())
+        {
+            lst.push_back(previous);
+            previous.clear();
+        }
     }
     else
     {
