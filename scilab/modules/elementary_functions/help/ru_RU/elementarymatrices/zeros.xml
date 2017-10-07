@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="zeros" xml:lang="ru">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="zeros" xml:lang="ru">
     <refnamediv>
         <refname>zeros</refname>
         <refpurpose>матрица, составленная из нулей</refpurpose>
@@ -88,8 +91,14 @@
                 </listitem>
             </varlistentry>
         </variablelist>
+        <note>
+           <literal>repmat(0, sizes)</literal> может использоваться для формирования массива из нулей
+           с <literal>sizes=[m1 m2 ..]</literal>, заданным в виде вектора.
+        </note>
         <para>
-            Если <literal>x</literal> является списком <literal>syslin</literal> (линейная система в виде пространства состояний или передаточной форме), то <literal>zeros(x)</literal> так же является корректным и возвращает матрицу нулей.
+            Если <literal>x</literal> является списком <literal>syslin</literal> (линейная система
+            в виде пространства состояний или передаточной форме), то <literal>zeros(x)</literal>
+            так же является корректным и возвращает матрицу нулей.
         </para>
     </refsection>
     <refsection>
@@ -98,6 +107,8 @@
 zeros(3)
 zeros(3,3)
 zeros(2,3,2)
+
+repmat(0, [2 4 2])
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="xstring">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="fr" xml:id="xstring">
     <refnamediv>
         <refname>xstring</refname>
         <refpurpose>dessine des chaînes de caractères  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>xstring(x,y,str,[angle,[box]])</synopsis>
+        <synopsis>
+          xstring(x, y, str)
+          xstring(x, y, str, angle)
+          xstring(x, y, str, angle, box)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Paramètres</title>
@@ -102,19 +109,19 @@ gce().font_size = 24;  // un grand alpha
         <title>Voir aussi</title>
         <simplelist type="inline">
             <member>
-                <link linkend="titlepage">titlepage</link>
+                <link linkend="text_properties">text_properties</link>
             </member>
             <member>
+                <link linkend="math_rendering_features_in_graphic">Math mode in strings</link>
+            </member>
+          <member>
                 <link linkend="xnumb">xnumb</link>
             </member>
             <member>
-                <link linkend="xstringb">xstringb</link>
-            </member>
-            <member>
-                <link linkend="xstringl">xstringl</link>
-            </member>
-            <member>
                 <link linkend="xtitle">xtitle</link>
+            </member>
+            <member>
+                <link linkend="titlepage">titlepage</link>
             </member>
         </simplelist>
     </refsection>

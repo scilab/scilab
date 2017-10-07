@@ -18,7 +18,7 @@
           xml:lang="fr" xml:id="brackets">
     <refnamediv>
         <refname>brackets [,;]</refname>
-        <refpurpose>Concatenation. Récipients d'une affectation. Résultats d'une function</refpurpose>
+        <refpurpose>Concaténation. Récipients d'une affectation. Résultats d'une function</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntaxe</title>
@@ -60,11 +60,11 @@
                             </warning>
                         </listitem>
                         <listitem>
-                            Tableaux de structures ayant les mêmes champs. Les champs peuvent être
-                            dans des ordres différents d'un tableau à l'autre.
+                            Tableaux de cellules.
                         </listitem>
                         <listitem>
-                            Tableaux de cellules.
+                            Tableaux de structures ayant les mêmes champs. Les champs peuvent être
+                            dans des ordres différents d'un tableau à l'autre.
                         </listitem>
                         <listitem>
                             Listes de type <link linkend="syslin">syslin</link>
@@ -77,8 +77,10 @@
                 <term>M, Mh, Mv</term>
                 <listitem>
                     <para>
-                        Matrices ou tableaux ayant le type des éléments <varname>m##</varname>
+                        Matrices ayant le type des éléments <varname>m##</varname>
                         (s'ils ont tous le même type).
+                        Tableaux de cellules (si les <literal>mi</literal> en sont).
+                        Tableaux de structures (si les <literal>mi</literal> en sont).
                     </para>
                 </listitem>
             </varlistentry>
@@ -250,6 +252,22 @@
                             </itemizedlist>
                         </para>
                     </refsect3>
+                    <para/>
+                    <refsect3>
+                        <title>Extensions</title>
+                        <para>
+                          <itemizedlist>
+                            <listitem>
+                              Pour concaténer des listes simples, utiliser <link linkend="lstcat">lstcat</link>.
+                            </listitem>
+                            <listitem>
+                              Pour assembler des vecteurs ou matrices ou hypermatrices ou autres
+                              tableaux selon une dimension > 2 et construire un hypertableau à N
+                              dimensions, utiliser <link linkend="cat">cat</link>.
+                            </listitem>
+                          </itemizedlist>
+                        </para>
+                    </refsect3>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -346,6 +364,11 @@ v = [10 1/%z], typeof(v)
 [%F int8(5)]
 [int8(%pi) uint8(%e)]
 [int8(%pi) int16(%e)]
+
+// Concaténation de tableaux de cellules :
+c1 = {%pi %t};
+c2 = {%z "abc"};
+c = [[{%i} c1] ; [c2, {1/%z^2}]]  // virgule obligatoire sinon c2{1/%z^2} => erreur
  ]]></programlisting>
 
         <para>
@@ -409,6 +432,9 @@ s.r([2 4 6])
             </member>
             <member>
                 <link linkend="parentheses">parentheses</link>
+            </member>
+            <member>
+                <link linkend="cat">cat</link>
             </member>
             <member>
                 <link linkend="lstcat">lstcat</link>

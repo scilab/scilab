@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="brackets">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="brackets">
     <refnamediv>
         <refname>brackets [,;]</refname>
         <refpurpose>Concatenation. Recipients of an assignment. Results of a function</refpurpose>
@@ -55,11 +58,11 @@
                             </warning>
                         </listitem>
                         <listitem>
-                            Arrays of structures with same fields.  Fields may be in different
-                            orders from an array to other ones.
+                            Arrays of cells.
                         </listitem>
                         <listitem>
-                            Arrays of cells.
+                            Arrays of structures with same fields.  Fields may be in different
+                            orders from an array to other ones.
                         </listitem>
                         <listitem>
                             Typed lists of type <link linkend="syslin">syslin</link>.
@@ -72,8 +75,10 @@
                 <term>M, Mh, Mv</term>
                 <listitem>
                     <para>
-                        Matrices or arrays with the type of all <varname>m##</varname>
-                        (if they all have the same data type)
+                        Matrices with the type of all <varname>m##</varname>
+                        (if they all have the same data type).
+                        cells arrays (if <literal>mi</literal> are so).
+                        structures arrays (if <literal>mi</literal> are so).
                     </para>
                 </listitem>
             </varlistentry>
@@ -231,7 +236,23 @@
                             </itemizedlist>
                         </para>
                     </refsect3>
+                    <para/>
+                    <refsect3>
+                        <title>Extensions</title>
+                        <para>
+                          <itemizedlist>
+                            <listitem>
+                              To concatenate simple lists, please use <link linkend="lstcat">lstcat</link>.
+                            </listitem>
+                            <listitem>
+                              To stack vectors or matrices over some dimension > 2 to build a
+                              N-dimensional array, please use <link linkend="cat">cat</link>.
+                            </listitem>
+                          </itemizedlist>
+                        </para>
+                    </refsect3>
                 </listitem>
+                <para/>
             </varlistentry>
             <varlistentry>
                 <term>[] on left-hand side of a <literal>"="</literal> assignment</term>
@@ -323,7 +344,12 @@ v = [10 1/%z], typeof(v)
 [%F int8(5)]
 [int8(%pi) uint8(%e)]
 [int8(%pi) int16(%e)]
- ]]></programlisting>
+
+// Concatenation of cells arrays:
+c1 = {%pi %t};
+c2 = {%z "abc"};
+c = [[{%i} c1] ; [c2, {1/%z^2}]]  // comma mandatory, to not parse c2{1/%z^2}
+]]></programlisting>
 
         <para>
             <emphasis role="bold">Distributive assignments:</emphasis>
@@ -384,6 +410,9 @@ s.r([2 4 6])
             </member>
             <member>
                 <link linkend="parentheses">parentheses</link>
+            </member>
+            <member>
+                <link linkend="cat">cat</link>
             </member>
             <member>
                 <link linkend="lstcat">lstcat</link>

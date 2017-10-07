@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="ones" xml:lang="ru">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="ones" xml:lang="ru">
     <refnamediv>
         <refname>ones</refname>
         <refpurpose>матрица, составленная из единиц</refpurpose>
@@ -75,15 +78,21 @@
                 <term>ones(x)</term>
                 <listitem>
                     <para>
-                        является корректной для <literal>x</literal>, которая является списком           <literal>syslin</literal>.
+                        является корректной для <literal>x</literal>, которая является списком
+                        <literal>syslin</literal>.
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
         <para>
-            Заметьте, что <literal>ones(3)</literal> это <literal>ones(a)</literal>, где <literal>a=3</literal>, т. е. это матрица размером НЕ 3x3!
+            Заметьте, что <literal>ones(3)</literal> это <literal>ones(a)</literal>, где
+            <literal>a=3</literal>, т. е. это матрица размером НЕ 3x3!
         </para>
-        <para>ones() эквивалентно ones(1,1).</para>
+      <para><literal>ones()</literal> эквивалентно <literal>ones(1,1)</literal>.</para>
+        <note>
+           <literal>repmat(1, sizes)</literal> может использоваться для формироваания массива из единиц
+           с <literal>sizes=[m1 m2 ..]</literal>, заданным в виде вектора.
+        </note>
     </refsection>
     <refsection>
         <title>Примеры</title>
@@ -91,6 +100,8 @@
 ones(3)
 ones(3,3)
 ones(2,3,2)
+
+repmat(1, [2 4 2])
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

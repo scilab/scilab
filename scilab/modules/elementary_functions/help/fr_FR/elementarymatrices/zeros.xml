@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="zeros" xml:lang="fr">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="zeros" xml:lang="fr">
     <refnamediv>
         <refname>zeros</refname>
         <refpurpose>matrice nulle</refpurpose>
@@ -67,12 +70,16 @@
                 </listitem>
             </varlistentry>
         </variablelist>
-        <para>
-            Notez que <literal>zeros(3)</literal> est équivalent à
+        <warning>
+            <literal>zeros(3)</literal> est équivalent à
             <literal>zeros(a)</literal> avec <literal>a=3</literal> et donc n'est PAS
             une matrice 3x3 !
-        </para>
+        </warning>
         <para>zeros() est équivalent à zeros(1,1).</para>
+        <note>
+           <literal>repmat(0, sizes)</literal> peut être utilisé pour générer un tableau de zéros
+           dont les dimensions sont données dans un vecteur <literal>sizes=[m1 m2 ..]</literal>.
+        </note>
     </refsection>
     <refsection>
         <title>Exemples</title>
@@ -80,6 +87,8 @@
 zeros(3)
 zeros(3,3)
 zeros(2,3,2)
+
+repmat(0, [2 4 2])
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

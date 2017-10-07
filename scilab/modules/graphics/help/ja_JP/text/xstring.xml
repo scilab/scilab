@@ -22,7 +22,10 @@
 
  -->
 
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ja" xml:id="xstring">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ja" xml:id="xstring">
 
     <refnamediv>
 
@@ -36,7 +39,11 @@
 
         <title>呼び出し手順</title>
 
-        <synopsis>xstring(x,y,str,[angle,[box]])</synopsis>
+        <synopsis>
+          xstring(x, y, str)
+          xstring(x, y, str, angle)
+          xstring(x, y, str, angle, box)
+        </synopsis>
 
     </refsynopsisdiv>
 
@@ -189,47 +196,26 @@
         <title>例</title>
 
         <programlisting role="example"><![CDATA[
-
 plot2d([0;1],[0;1],0)
-
 xstring(0.5,0.5,["$\overbrace{Scilab}$" "n''est ";"pas" "$\underbrace{Matlab}$"])
-
 // LaTeX レンダリング (>= Scilab 5.2)
 
-
-
 //Other example
-
 alphabet=["a" "b" "c" "d" "e" "f" "g" ..
-
           "h" "i" "j" "k" "l" "m" "n" ..
-
           "o" "p" "q" "r" "s" "t" "u" ..
-
           "v" "w" "x" "y" "z"];
-
 clf()
-
 plot2d([0;1],[0;2],0)
-
 xstring(0.1,1.8,alphabet)     // アルファベット
-
 xstring(0.1,1.6,alphabet,0,1) // ボックス内にアルファベット
-
 xstring(0.1,1.4,alphabet,20)  // 角度
-
 set(gca(),"font_style",1,"font_size",1);              // symbolフォントを使用
-
 xstring(0.1,0.1,alphabet)
-
 xstring(0.1,0.3,alphabet)
-
 gce().font_size = 3;         // フォントの大きさを変更
-
 xstring(0.1,0.6,"a") //大きなアルファ
-
 gce().font_size = 24;
-
  ]]></programlisting>
 
         <scilab:image>
@@ -243,44 +229,24 @@ gce().font_size = 24;
     </refsection>
 
     <refsection role="see also">
-
         <title>参照</title>
-
         <simplelist type="inline">
-
             <member>
-
-                <link linkend="titlepage">titlepage</link>
-
+                <link linkend="text_properties">text_properties</link>
             </member>
-
             <member>
-
+                <link linkend="math_rendering_features_in_graphic">Math mode in strings</link>
+            </member>
+          <member>
                 <link linkend="xnumb">xnumb</link>
-
             </member>
-
             <member>
-
-                <link linkend="xstringb">xstringb</link>
-
-            </member>
-
-            <member>
-
-                <link linkend="xstringl">xstringl</link>
-
-            </member>
-
-            <member>
-
                 <link linkend="xtitle">xtitle</link>
-
             </member>
-
+            <member>
+                <link linkend="titlepage">titlepage</link>
+            </member>
         </simplelist>
-
     </refsection>
-
 </refentry>
 

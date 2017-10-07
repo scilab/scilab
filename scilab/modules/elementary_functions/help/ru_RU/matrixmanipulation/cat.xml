@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="cat" xml:lang="ru">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="cat" xml:lang="ru">
     <refnamediv>
         <refname>cat</refname>
         <refpurpose>конкатенация нескольких массивов</refpurpose>
@@ -62,14 +65,15 @@
             Если <literal>dims=1</literal>, то конкатенация проводится по строкам входных аргументов
         </para>
         <para>
-            <literal>A1=[1 2 3 ; 4 5 6]</literal>; <literal>A2=[7 8 9 ; 10 11 12]</literal>; <literal>y=cat(1,A1,A2)</literal>  =&gt; <literal>y=[1 2 3 ; 4 5 6 ;7 8 9; 10 11 12]</literal>.
+            <literal>A1=[1 2 3 ; 4 5 6]</literal>; <literal>A2=[7 8 9 ; 10 11 12]</literal>;
+           <literal>y=cat(1,A1,A2)</literal>  =&gt; <literal>y=[1 2 3 ; 4 5 6 ;7 8 9; 10 11 12]</literal>.
         </para>
         <para>
             Если <literal>dims=2</literal>, то конкатенация проводится по столбцам входных аргументов
         </para>
         <para>
-            <literal>A1=[1 2 3 ; 4 5 6]</literal>; <literal>A2=[7 8 9 ; 10 11 12]</literal>; <literal>y=cat(2,A1,A2)</literal> =&gt; <literal>y=[1 2
-                3 7 8 9 ; 4 5 6 10 11 12]
+            <literal>A1=[1 2 3 ; 4 5 6]</literal>; <literal>A2=[7 8 9 ; 10 11 12]</literal>;
+            <literal>y=cat(2,A1,A2)</literal> =&gt; <literal>y=[1 2 3 7 8 9 ; 4 5 6 10 11 12]
             </literal>
             .
         </para>
@@ -83,13 +87,19 @@ dims=1; A1=[1 2 3]; A2=[4 5 6 ; 7 8 9]; A3=[10 11 12]; y=cat(dims,A1,A2,A3)
 // второй пример: конкатенация по столбцам
 dims=2; A1=[1 2 3]'; A2=[4 5;7 8;9 10]; y=cat(dims,A1,A2)
 
-// третий пример: конкатенация то третьей размерности
+// третий пример: конкатенация по третьей размерности
 dims=3; A1=matrix(1:12,[2,2,3]); A2=[13 14;15 16]; A3=matrix(21:36,[2,2,4]); y=cat(dims,A1,A2,A3)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="brackets">квадратные скобки [..]</link>
+            </member>
+            <member>
+                <link linkend="lstcat">lstcat</link>
+            </member>
             <member>
                 <link linkend="permute">permute</link>
             </member>

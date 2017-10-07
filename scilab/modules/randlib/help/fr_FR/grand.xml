@@ -15,7 +15,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="fr" xml:id="grand">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="fr" xml:id="grand">
     <refnamediv>
         <refname>grand</refname>
         <refpurpose>Générateur de nombres pseudo-aléatoires</refpurpose>
@@ -43,14 +46,14 @@
             Y = grand(m, n, o,..,"..",...)
             Y = grand(X, ...)
         </synopsis>
-
+        <para/>
         <synopsis>
             Y = grand(n, "mn", Mean, Cov)
             Y = grand(n, "markov", P, x0)
             Y = grand(n, "mul", nb, P)
             Y = grand(n, "prm", vect)
         </synopsis>
-
+        <para/>
         <synopsis>
             S = grand("getgen")
             grand("setgen", gen)
@@ -202,7 +205,7 @@
                     <para>
                         <literal>Y = grand(m, n, "bet", A, B)</literal> génère des nombres aléatoires suivant
                         la loi beta de paramètres <literal>A</literal> and <literal>B</literal>.
-                        La densité de cette loi est <latex><![CDATA[(0 < x < 1)]]></latex> :
+                        La densité de cette loi est (0 &lt; x &lt; 1) :
                     </para>
                     <para>
                         <latex>
@@ -210,7 +213,7 @@
                         </latex>
                     </para>
                     <para>
-                        <literal>A</literal> et <literal>B</literal> devant être des réels <latex><![CDATA[>10^{-37}]]></latex>.
+                        <literal>A</literal> et <literal>B</literal> devant être des réels >10<superscript>-37</superscript>.
                         Fonction(s) associée(s) : <link linkend="cdfbet">cdfbet</link>.
                     </para>
                 </listitem>
@@ -341,8 +344,7 @@
                         geométrique de paramètre <literal>p</literal> : nombre
                         d'épreuves de Bernouilli (de probabilité de succès
                         <literal>p</literal>) jusqu'à obtenir un succès
-                        (<literal>p</literal> doit appartenir à l'intervalle
-                        <latex>[p_{min},1]</latex> (avec <latex> p_{min} = 1{,}3\times 10^{-307} </latex>).
+                        (avec <varname>p</varname> dans [1.3e-307, 1]).
                     </para>
                     <para>
                         <literal>Y</literal> contient des nombres réels
@@ -431,10 +433,8 @@
                     <para>
                         <literal>Y = grand(m, n, "uin", Low, High)</literal> génère des entiers aléatoires suivant la loi uniforme
                         sur <literal>[Low, High]</literal>. <literal>High</literal>
-                        et <literal>Low</literal> doivent être des entiers tels que <literal>
-                            (High-Low+1)
-                            &lt; 2147483561
-                        </literal>
+                        et <literal>Low</literal> doivent être des entiers tels que
+                        <literal>(High-Low+1)  &lt; 2147483561</literal>
                         .
                     </para>
                 </listitem>

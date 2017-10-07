@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="uiputfile">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ja" xml:id="uiputfile">
     <refnamediv>
         <refname>uiputfile</refname>
         <refpurpose>ファイル選択/保存用の標準ダイアログボックスを開く.
@@ -7,11 +10,18 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>[FileName[,PathName[,FilterIndex]]]=uiputfile([file_mask[,dir[,boxTitle]]])
-            PathFileName=uiputfile([file_mask[,dir[,boxTitle]]])
+        <synopsis>
+          PathFileName = uiputfile()
+          PathFileName = uiputfile(file_mask)
+          PathFileName = uiputfile(file_mask, dir)
+          PathFileName = uiputfile(file_mask, dir, boxTitle)
+          [PathFileName, Path] = uiputfile(..)
+          [PathFileName, Path, FilterIndex] = uiputfile(..)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
+        <title>設定</title>
+        <refsect3>
         <title>入力パラメータ</title>
         <variablelist>
             <varlistentry>
@@ -26,7 +36,7 @@
                     </para>
                     <para>
                         マスク用の説明を追加することができます.
-                        例えば,["*.x*","X files";"*.bin","BIN files"].
+                        例えば,["*.xcos|*.zcos*","Xcos files"; "*.scg", "Scilab graphics"].
                     </para>
                 </listitem>
             </varlistentry>
@@ -51,28 +61,28 @@
                 </listitem>
             </varlistentry>
         </variablelist>
-    </refsection>
-    <refsection>
+        </refsect3>
+        <refsect3>
         <title>出力パラメータ</title>
         <variablelist>
             <varlistentry>
-                <term>FileName</term>
+                <term>PathFileName</term>
                 <listitem>
                     <para>
-                        ユーザが"Ok"を押した場合は,
+                        ユーザが<literal>"OK"</literal>を押した場合は,
                         ユーザが選択したファイルを指定する文字列
                         (パス + ファイル名) ,または
-                        ユーザが"Cancel"を押した場合は" "文字列.
+                        ユーザが<literal>"Cancel"</literal>を押した場合は" "文字列.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>PathName</term>
+                <term>Path</term>
                 <listitem>
                     <para>
-                        ユーザが"Ok"を押した場合は,
+                        ユーザが<literal>"OK"</literal>を押した場合は,
                         ユーザが選択したファイルパス ,または
-                        ユーザが"Cancel"を押した場合は" "文字列.
+                        ユーザが<literal>"Cancel"</literal>を押した場合は" "文字列.
                     </para>
                 </listitem>
             </varlistentry>
@@ -80,13 +90,14 @@
                 <term>FilterIndex</term>
                 <listitem>
                     <para>
-                        ユーザが"Ok"を押した場合は,
+                        ユーザが<literal>"OK"</literal>を押した場合は,
                         リストボックスでユーザが選択したフィルタ添字,
-                        ユーザが"Cancel"を押した場合は" "文字列.
+                       ユーザが<literal>"Cancel"</literal>を押した場合は" "文字列.
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
+       </refsect3>
     </refsection>
     <refsection>
         <title>説明</title>
@@ -97,11 +108,12 @@
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[
-uiputfile(["*.bin";"*.sce";"*.cos*"])
-uiputfile(["*.sci";"*.bin"],"SCI/modules/gui/macros/")
-uiputfile(["*.sc*";"*.bin"],"SCI/modules/gui/macros/")
-uiputfile(["*.x*","X files";"*.bin","BIN files"],"SCI/modules/gui/macros/")
-uiputfile(["*.sce";"*.bin"],"SCI/modules/gui/macros/", "Choose a file name");
+uiputfile(["*.bin"; "*.sce"; "*.cos*"])
+uiputfile(["*.xcos|*.zcos", "Xcos files"; "*.sce|*.sci", "Scilab scripts"])
+uiputfile(["*.sci"; "*.bin"], "SCI/modules/gui/macros/")
+uiputfile(["*.sc*"; "*.bin"], "SCI/modules/gui/macros/")
+uiputfile(["*.x*","X files"; "*.bin","BIN files"], "SCI/modules/gui/macros/")
+uiputfile(["*.sce"; "*.bin"], "SCI/modules/gui/macros/", "Choose a file name");
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

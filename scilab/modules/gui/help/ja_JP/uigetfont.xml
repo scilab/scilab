@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="uigetfont">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ja" xml:id="uigetfont">
     <refnamediv>
         <refname>uigetfont</refname>
         <refpurpose>フォント選択用のダイアログを開く.</refpurpose>
@@ -7,9 +10,13 @@
     <refsynopsisdiv>
         <title>呼び出し手順</title>
         <synopsis>
-            uigetfont()
-            [fontname [,fontsize [,bold [,italic]]]] = uigetfont([defaultfontname [,defaultfontsize [,defaultbold [,defaultitalic]]]]);
-            [fontname ,fontsize ,bold ,italic] = uigetfont(defaultfontname ,defaultfontsize ,defaultbold ,defaultitalic);
+        <synopsis>
+            [fontname, fontsize, bold, italic] = uigetfont()
+            [fontname, fontsize, bold, italic] = uigetfont(defaultfontname)
+            [fontname, fontsize, bold, italic] = uigetfont(defaultfontname, defaultfontsize)
+            [fontname, fontsize, bold, italic] = uigetfont(defaultfontname, defaultfontsize , defaultbold)
+            [fontname, fontsize, bold, italic] = uigetfont(defaultfontname, defaultfontsize , defaultbold, defaultitalic);
+        </synopsis>
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -101,5 +108,13 @@ uigetfont("arial", 24)
 uigetfont("arial", 24, %T)
 uigetfont("arial", 24, %T, %F)
  ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="xlfont">xlfont</link>
+            </member>
+        </simplelist>
     </refsection>
 </refentry>
