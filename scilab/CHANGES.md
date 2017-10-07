@@ -452,6 +452,7 @@ the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 * [#15243](http://bugzilla.scilab.org/show_bug.cgi?id=15243): `grand(nr, nc, "uin", vmin)` crashed Scilab.
 * [#15249](http://bugzilla.scilab.org/show_bug.cgi?id=15249): `findobj("toto")` yielded an error instead of returning [].
 * [#15260](http://bugzilla.scilab.org/show_bug.cgi?id=15260): `sci2exp` was broken for cells, structures, and all types of hypermatrix.
+* [#15261](http://bugzilla.scilab.org/show_bug.cgi?id=15261): Insertion in struct felt with wrong default value.
 * [#15266](http://bugzilla.scilab.org/show_bug.cgi?id=15266): Wrong default out_mode in `linear_interpn`.
 * [#15273](http://bugzilla.scilab.org/show_bug.cgi?id=15273): The documented order of `eval_cshep2d` second derivatives was wrong.
 * [#15282](http://bugzilla.scilab.org/show_bug.cgi?id=15282): `help_from_sci` could set an xml:id starting with the forbidden `%` character.
