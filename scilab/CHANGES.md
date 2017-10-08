@@ -398,13 +398,14 @@ the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 * [#14623](http://bugzilla.scilab.org/show_bug.cgi?id=14623): Bad lhs in MList extraction overload.
 * [#14629](http://bugzilla.scilab.org/show_bug.cgi?id=14629): In the Xcos EXPRESSION block, `<` could truncate the rendering of the expression in the icon.
 * [#14636](http://bugzilla.scilab.org/show_bug.cgi?id=14636): Xcos model with modelica electrical blocks (created in 5.5.2) crashed Scilab 6.
-* [#14637](http://bugzilla.scilab.org/show_bug.cgi?id=14367): Some Scilab 5.5.2 diagrams didn't simulate properly in Xcos.
+* [#14637](http://bugzilla.scilab.org/show_bug.cgi?id=14367): Some Scilab 5.5.2 diagrams did not simulate properly in Xcos.
 * [#14680](http://bugzilla.scilab.org/show_bug.cgi?id=14680): The `<` char in expression was not rendered in the icon of Xcos EXPRESSION block.
 * [#14883](http://bugzilla.scilab.org/show_bug.cgi?id=14883): `whereis` did not support builtin functions.
 * [#14886](http://bugzilla.scilab.org/show_bug.cgi?id=14886): Matplot save/load failed.
 * [#14896](http://bugzilla.scilab.org/show_bug.cgi?id=15272): Using `set` with multiple properties, only first one was set.
 * [#14910](http://bugzilla.scilab.org/show_bug.cgi?id=14910): The `plot()` example was displayed in overlay to the existing graphics.
-* [#14978](http://bugzilla.scilab.org/show_bug.cgi?id=15006): ode help page still contained 'root' which has been replaced by 'roots'.
+* [#14981](http://bugzilla.scilab.org/show_bug.cgi?id=14981): Some vertical concatenations of cells and further cells extractions crash Scilab.
+* [#15006](http://bugzilla.scilab.org/show_bug.cgi?id=15006): ode help page still contained 'root' which has been replaced by 'roots'.
 * [#15008](http://bugzilla.scilab.org/show_bug.cgi?id=15008): scilab crash in using operator AND (&, &&) or OR (| ||) with a string.
 * [#15010](http://bugzilla.scilab.org/show_bug.cgi?id=15010): Coselica did not simulate on Scilab 6.
 * [#15015](http://bugzilla.scilab.org/show_bug.cgi?id=15015): Xcos blocks using the `ascii` didn't work
