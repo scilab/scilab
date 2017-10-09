@@ -38,6 +38,7 @@
 #include "os_string.h"
 #include "api_scilab.h"
 #include "FigureList.h"
+#include "sciprint.h"
 
 /*--------------------------------------------------------------------------
  * sciset(choice-name,x1,x2,x3,x4,x5)
