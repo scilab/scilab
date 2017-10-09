@@ -409,6 +409,7 @@ the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 * [#14886](http://bugzilla.scilab.org/show_bug.cgi?id=14886): `Matplot` save/load failed.
 * [#14896](http://bugzilla.scilab.org/show_bug.cgi?id=15272): Using `set` with multiple properties, only the first one was set.
 * [#14910](http://bugzilla.scilab.org/show_bug.cgi?id=14910): The `plot()` example was displayed in overlay to the existing graphics.
+* [#14925](http://bugzilla.scilab.org/show_bug.cgi?id=14925): `jdeff`: `invoke_lu()` deleted/corrupted the called java method after an error occured.
 * [#14981](http://bugzilla.scilab.org/show_bug.cgi?id=14981): Some vertical concatenations of cells and further cells extractions crash Scilab.
 * [#15006](http://bugzilla.scilab.org/show_bug.cgi?id=15006): `ode` help page still contained 'root' which has been replaced by 'roots'.
 * [#15008](http://bugzilla.scilab.org/show_bug.cgi?id=15008): scilab crashed when using operator AND (&, &&) or OR (| ||) with a string.
