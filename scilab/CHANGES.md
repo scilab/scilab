@@ -387,8 +387,9 @@ the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 * [#11767](http://bugzilla.scilab.org/show_bug.cgi?id=11767): `execstr("A. 1","errcatch")` failed to catch the error.
 * [#12195](http://bugzilla.scilab.org/show_bug.cgi?id=12195): `generateBlockImage` sometimes changed the current graphic driver.
 * [#12372](http://bugzilla.scilab.org/show_bug.cgi?id=12372): The `mode` function was poorly documented.
-* [#12771](http://bugzilla.scilab.org/show_bug.cgi?id=12771): `xcosPalGenerateAllIcons` help example was broken.
-* [#12862](http://bugzilla.scilab.org/show_bug.cgi?id=12862): `intsplin` no longer integrated the imaginary part of given ordinates.
+* [#12771](http://bugzilla.scilab.org/show_bug.cgi?id=12771): xcosPalGenerateAllIcons help example was broken.
+* [#12792](http://bugzilla.scilab.org/show_bug.cgi?id=12792): `save(filename, "undefinedVariable")` created an empty useless file.
+* [#12862](http://bugzilla.scilab.org/show_bug.cgi?id=12862): `intsplin` no longer integrated the imaginary part of given ordinates. 
 * [#13592](http://bugzilla.scilab.org/show_bug.cgi?id=13592): In an axes in a uicontrol frame, setting a `legend` interactively might not follow the mouse accurately.
 * [#13900](http://bugzilla.scilab.org/show_bug.cgi?id=13900): `nanmin` and `nanmax` were useless duplicates of `min` and `max`
 * [#13979](http://bugzilla.scilab.org/show_bug.cgi?id=13979): A variable whose name is longer than 24 characters could not be cleared.
