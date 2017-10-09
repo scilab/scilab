@@ -384,6 +384,7 @@ the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 * [#11196](http://bugzilla.scilab.org/show_bug.cgi?id=11196): Some recursive extractions from a mlist failed.
 * [#11530](http://bugzilla.scilab.org/show_bug.cgi?id=11530): Raise (help, scinotes, ...) windows when iconified ( recall or startup )
 * [#11756](http://bugzilla.scilab.org/show_bug.cgi?id=11756): In the categories of the ATOMS GUI, actually available modules might be not listed.
+* [#11767](http://bugzilla.scilab.org/show_bug.cgi?id=11767): `execstr("A. 1","errcatch")` failed to catch the error.
 * [#12195](http://bugzilla.scilab.org/show_bug.cgi?id=12195): `generateBlockImage` sometimes changed the current graphic driver.
 * [#12372](http://bugzilla.scilab.org/show_bug.cgi?id=12372): The `mode` function was poorly documented.
 * [#12771](http://bugzilla.scilab.org/show_bug.cgi?id=12771): `xcosPalGenerateAllIcons` help example was broken.
