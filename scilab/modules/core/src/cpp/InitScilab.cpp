@@ -148,6 +148,14 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
     int iMainRet = 0;
     ConfigVariable::setStartProcessing(true);
 
+    // Update scihome from command line
+    if (_pSEI->pstSciHome && strcmp(_pSEI->pstSciHome, "") != 0)
+    {
+        wchar_t* w = to_wide_string(_pSEI->pstSciHome);
+        ConfigVariable::setSCIHOME(w);
+        FREE(w);
+    }
+
     // ignore -e argument if the command is empty
     if (_pSEI->pstExec && strcmp(_pSEI->pstExec, "") == 0)
     {

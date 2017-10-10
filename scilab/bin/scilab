@@ -1015,6 +1015,7 @@ do_help()
     echo     "  -version        : print product version and exit."
     echo     "  -h/--help       : display help about this command."
     echo     "  --texmacs       : reserved for TeXMacs."
+    echo     "  -scihome dir    : Force SCIHOME to given dir."
     echo     " "
 
     echo     "Developer arguments:"
@@ -1120,7 +1121,7 @@ if test "$rest" = "yes"; then
             # Under Mac OS X, .app is adding the arg -psn_0_xxxx
             # (psn = ProcessSerialNumber). It is not used (but could be in the future)
                 ;;
-            -display|-f|-l|-e|-d|--parse-file)
+            -display|-f|-l|-e|-d|--parse-file|-scihome)
                 prevarg=1
                 ;;
             -args) # Accept extra arguments

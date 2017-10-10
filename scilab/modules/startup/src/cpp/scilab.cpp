@@ -83,6 +83,7 @@ static void usage(void)
     std::cerr << "      -nwni            : Enable terminal mode." << std::endl;
     std::cerr << "      -ns              : Don't execute etc/scilab.start." << std::endl;
     std::cerr << "      --help           : Display this help." << std::endl;
+    std::cerr << "      -scihome <dir>   : Force SCIHOME to <dir>." << std::endl;
     std::cerr << "Developer Trace arguments:" << std::endl;
     std::cerr << "      --parse-trace    : Display bison state machine evolution." << std::endl;
     std::cerr << "      --AST-trace      : Display ASCII-art AST to be human readable." << std::endl;
@@ -299,6 +300,14 @@ static int get_option(const int argc, char *argv[], ScilabEngineInfo* _pSEI)
         else if (!strcmp("--webmode", argv[i]))
         {
             _pSEI->iWebMode = 1;
+        }
+        else if (!strcmp("-scihome", argv[i]))
+        {
+            i++;
+            if (argc >= i)
+            {
+                _pSEI->pstSciHome = argv[i];
+            }
         }
     }
 

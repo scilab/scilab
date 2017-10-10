@@ -32,6 +32,10 @@ extern "C"
 #include "getenvc.h"
 #include "setenvvar.h"
 #include "getshortpathname.h"
+#include "sciprint.h"
+#ifndef _MSC_VER
+#include <sys/stat.h>
+#endif
 }
 
 /*--------------------------------------------------------------------------*/
@@ -266,11 +270,65 @@ void putenvSCIHOME(const char* _sci_home)
     delete[] CopyOfDefaultPath;
     FREE(ShortPath);
 }
+/*--------------------------------------------------------------------------*/
+static bool createDirectoryRecursively(std::wstring path)
+{
+#ifdef _MSC_VER
+    size_t pos = 0;
+    do
+    {
+        pos = path.find_first_of(L"\\/", pos + 1);
+        if (CreateDirectoryW(path.substr(0, pos).c_str(), NULL) == FALSE)
+        {
+            DWORD d = GetLastError();
+            if (d == ERROR_PATH_NOT_FOUND)
+            {
+                return false;
+            }
+        }
+    } while (pos != std::string::npos);
 
+#else
+    char* file_path = wide_string_to_UTF8(path.data());
+
+    char* p = NULL;
+    for (p = strchr(file_path + 1, '/'); p; p = strchr(p + 1, '/'))
+    {
+        *p = '\0';
+        if (mkdir(file_path, 777) == -1)
+        {
+            if (errno != EEXIST)
+            {
+                *p = '/';
+                FREE(file_path);
+                return false;
+            }
+        }
+        *p = '/';
+    }
+
+    FREE(file_path);
+#endif
+    return true;
+}
 /*--------------------------------------------------------------------------*/
 void defineSCIHOME()
 {
-    wchar_t* sci_home = computeSCIHOMEW();
+    wchar_t* sci_home = getSCIHOMEW();
+    if (wcscmp(sci_home, L"") == 0)
+    {
+        sci_home = computeSCIHOMEW();
+    }
+    else
+    {
+        if (createDirectoryRecursively(sci_home) == false)
+        {
+            sciprint("Unable to create SCIHOME in `%ls`.\n", sci_home);
+            sciprint("Back to normal behaviour.\n");
+            sci_home = computeSCIHOMEW();
+        }
+    }
+
     setSCIHOMEW(sci_home);
     putenvSCIHOMEW(sci_home);
     FREE(sci_home);
