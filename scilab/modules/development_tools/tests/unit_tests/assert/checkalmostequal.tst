@@ -1,5 +1,6 @@
 // Copyright (C) 2008 - INRIA - Michael Baudin
 // Copyright (C) 2010-2011 - DIGITEO - Michael Baudin
+// Copyright (C) 2017 - Samuel GOUGEON
 //
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
@@ -12,6 +13,7 @@
 
 // <-- CLI SHELL MODE -->
 // <-- ENGLISH IMPOSED -->
+// <-- NO CHECK REF -->
 
 function flag = MY_assert_equal ( computed , expected )
   if computed==expected then
@@ -29,7 +31,7 @@ function checkassert ( flag , errmsg , ctype )
     MY_assert_equal ( (flag==%f) & (errmsg<>""), %t )
   end
 endfunction
-    
+
 
 format("v",10);
 
@@ -167,17 +169,17 @@ checkassert ( flag , errmsg , "failure" );
 // Success: not obvious!
 // The two values are equal, very small, but nonzero.
 // The relative tolerance must be used here.
-// If, instead, a bug in the assert function is so that the 
-// absolute tolerance is used as 10^-16, then the output 
+// If, instead, a bug in the assert function is so that the
+// absolute tolerance is used as 10^-16, then the output
 // of this comparison is wrong.
 [flag,errmsg] = assert_checkalmostequal ( 1.23456789123456789e-30 , 1.23456789123456789e-30 , %eps );
 checkassert ( flag , errmsg , "success" );
 //
 // Failure : not obvious!
-// There is only one significant digit here and we require the 
+// There is only one significant digit here and we require the
 // maximum precision.
 // The test must fail because the relative tolerance must be used here.
-// If, instead, there is a bug in the comparison and 
+// If, instead, there is a bug in the comparison and
 // the absolute tolerance is used and set to
 // 10^-16, the output of this test is wrong.
 [flag,errmsg] = assert_checkalmostequal ( 1.23456789123456789e-30 , 1.3e-30 , %eps );
@@ -223,6 +225,7 @@ checkassert ( flag , errmsg , "success" );
 [flag,errmsg] = assert_checkalmostequal ( [1.2345 %inf -%inf %nan] , [1.2346 %inf -%inf %nan] , 1.e-4 );
 checkassert ( flag , errmsg , "success" );
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Test elementwise algo
 
@@ -261,4 +264,21 @@ checkassert ( flag , errmsg , "failure" );
 [flag,errmsg] = assert_checkalmostequal ( 1+%i , 0 , [], 1.e-3 , "element" );
 checkassert ( flag , errmsg , "failure" );
 //
+///////////////////////////////////////////////////////////////////////////////
+// Tests with polynomials
+//
+assert_checkalmostequal(%z, %z);
+assert_checkalmostequal([%z %z], [%z %z]);
+assert_checkalmostequal([%z %z^2], [%z %z^2]);
 
+assert_checkalmostequal(%z+%eps, %z-%eps, [], 10*%eps);
+assert_checkalmostequal([(1+%eps)*%z %z], [(1-%eps)*%z %z], [], %eps);
+assert_checkalmostequal([%z %z^2]+%eps, [%z %z^2]-%eps, [], 2*%eps);
+
+assert_checkalmostequal(%i+%z, %i+%z);
+assert_checkalmostequal([%i+%z %i*%z], [%i+%z %i*%z]);
+assert_checkalmostequal([1+%i*%z, %i-%z^2], [1+%i*%z, %i-%z^2]);
+
+assert_checkalmostequal(%i+%z+%eps, %i+%z-%eps, [], 2*%eps);
+assert_checkalmostequal([%i+%z %i*%z]+%eps, [%i+%z %i*%z]-%eps, [], 2*%eps);
+assert_checkalmostequal([1+%i*%z, %i-%z^2]-%eps, [1+%i*%z, %i-%z^2]+%eps, [], 2*%eps);

@@ -14,7 +14,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="assert_checkalmostequal" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="assert_checkalmostequal" xml:lang="en">
     <refnamediv>
         <refname>assert_checkalmostequal</refname>
         <refpurpose>Check that computed and expected are numerically close.</refpurpose>
@@ -36,43 +39,61 @@
             <varlistentry>
                 <term>computed:</term>
                 <listitem>
-                    <para> a matrix of doubles, a sparse matrix of doubles, or an hypermatrix of doubles, the computed result</para>
+                    <para>
+                      matrix or hypermatrix or sparse matrix of decimal real or complex numbers;
+                      or matrix or hypermatrix of polynomials with real or complex coefficients:
+                      the computed result.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>expected :</term>
                 <listitem>
-                    <para> a matrix of doubles, a sparse matrix of doubles, or an hypermatrix of doubles, the expected result</para>
+                    <para>
+                      matrix or hypermatrix or sparse matrix of decimal real or complex numbers;
+                      or matrix or hypermatrix of polynomials with real or complex coefficients:
+                      the expected result.
+                    </para>
+                  <para>
+                    If <literal>computed</literal> are polynomials, <literal>expected</literal>
+                    must be polynomials as well.
+                  </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>reltol :</term>
                 <listitem>
-                    <para> a 1-by-1 matrix of doubles, the relative tolerance (default reltol=sqrt(%eps)).</para>
+                    <para>real number: the relative tolerance (default reltol=sqrt(%eps)).</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>abstol :</term>
                 <listitem>
-                    <para> a 1-by-1 matrix of doubles, the absolute tolerance (default abstol=0).</para>
+                    <para>real number: the absolute tolerance (default abstol=0).</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>comptype :</term>
                 <listitem>
-                    <para> a 1-by-1 matrix of strings, "matrix" or "element" (default comptype="element"). The comparison type.</para>
+                  <para>keyword <literal>"matrix"</literal> or <literal>"element"</literal>
+                    (default <literal>"element"</literal>). The comparison type.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>flag :</term>
                 <listitem>
-                    <para> a 1-by-1 matrix of boolean, %t if computed is close to expected, %f if not</para>
+                  <para>
+                    <literal>%t</literal> if computed is close to expected; else <literal>%f</literal>.
+                  </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>errmsg :</term>
                 <listitem>
-                    <para> a 1-by-1 matrix of strings, the error message. If flag==%t, then errormsg=="". If flag==%f, then errmsg contains the error message.</para>
+                    <para>
+                      Unique string: the error message. If flag==%t, then errormsg=="".
+                      If flag==%f, then errmsg contains the error message.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -80,9 +101,13 @@
     <refsection>
         <title>Description</title>
         <para>
-            Performs silently if the two matrices of doubles or complex doubles
-            computed and expected are close.
+            Performs silently if the two arrays of doubles or complex doubles, or the two arrays
+            of real or complex polynomials computed and expected are close.
             The variables computed and expected can be exchanged without changing the result.
+        </para>
+        <para>
+          In case of polynomials, the size of both arrays, the degrees, and finally the
+          matrices of their coefficients are compared within the given or default tolerances.
         </para>
         <para>
             Any optional input argument equal to the empty matrix is replaced by its default value.
@@ -267,7 +292,14 @@ assert_checkalmostequal ( 1+%i , 1+(1+1.e-4)*%i , 1.e-5 , [], "element" );
         <revhistory>
             <revision>
                 <revnumber>5.4.0</revnumber>
-                <revdescription>Function introduced
+                <revdescription>
+                    Function introduced.
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.0.1</revnumber>
+                <revdescription>
+                    Extension to polynomials.
                 </revdescription>
             </revision>
         </revhistory>

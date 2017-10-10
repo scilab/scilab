@@ -181,6 +181,7 @@ input and output arguments.
 * `ode`: `y0` is restricted to a column vector.
 * `pppdiv`: Returns a scalar of type 'constant' when the rank is 0.
 * `pdiv`: Returns a matrix of type 'constant' when all the rank are 0.
+* `assert_checkalmostequal` can now work with polynomials.
 * `test_run` can now take `[]` as argument to be used on console; for instance: `test_run string [] no_check_ref`.
 * `typeof(:)` and `typeof(n:$)` now return `"implicitlist"` instead of respectively `"constant"` and `"size implicit"`.
 * `linspace(a, b, n<=0)` now returns `[]` instead of b.
@@ -460,6 +461,7 @@ the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 * [#15019](http://bugzilla.scilab.org/show_bug.cgi?id=15019): Add 'csci6' in the calling of ilib_build in 'Getting started with API_Scilab' help page.
 * [#15023](http://bugzilla.scilab.org/show_bug.cgi?id=15023): `clf()` wrongly reset `figure_id`.
 * [#15024](http://bugzilla.scilab.org/show_bug.cgi?id=15024): Xcos labels were not preserved at diagram compilation.
+* [#15028](http://bugzilla.scilab.org/show_bug.cgi?id=15028): `assert_checkalmostequal` could not work with polynomials.
 * [#15034](http://bugzilla.scilab.org/show_bug.cgi?id=15034): It was no longer possible to create a structure through a mlist.
 * [#15037](http://bugzilla.scilab.org/show_bug.cgi?id=15037): the `residu` function might crash Scilab.
 * [#15039](http://bugzilla.scilab.org/show_bug.cgi?id=15039): New Xcos graphical features needed some demos.
