@@ -10,10 +10,7 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function [y, z] = filter(b, a, x, z)
-    //Implements a direct form II transposed implementation of the standard
-    //difference equation
-
+function [y, z] = %_filter(b, a, x, z)
     fname = "filter"
     [lhs, rhs] = argn(0)
 
@@ -62,11 +59,11 @@ function [y, z] = filter(b, a, x, z)
         error(msprintf(_("%s: Wrong type for input argument #%d: Real matrix expected.\n"), fname, 4));
     end
 
-    if (size(a, "c") <> 1) & (size(a, "r") <> 1)
+    if (size(b, "c") <> 1) & (size(b, "r") <> 1)
         error(msprintf(_("%s: Wrong size for input argument #%d: Vector expected.\n"), fname, 1));
     end
 
-    if (size(b, "c") <> 1) & (size(b, "r") <> 1)
+    if (size(a, "c") <> 1) & (size(a, "r") <> 1)
         error(msprintf(_("%s: Wrong size for input argument #%d: Vector expected.\n"), fname, 2));
     end
 
@@ -99,53 +96,10 @@ function [y, z] = filter(b, a, x, z)
         a = coeff(a, deg:-1:0);
     end
 
-    ////remove high order coefficients equal to zero
-    //i = 0; while b($ - i) == 0, i = i + 1; end;
-    //b = b(1:$ - i);
-
-    ////remove high order coefficients equal to zero
-    //i = 1; while a(i) == 0, i = i + 1; end
-    //a = a(i:$);
-
-    if a(1) == 0
-        error(msprintf(_("%s: Wrong value for input argument #%d: First element must not be %s.\n"), fname, 2, "0"));
-    end
-
-    //force vector orientation
-    b   = matrix(b, -1, 1);
-    a   = matrix(a, -1, 1);
-    mnx = size(x);
-    x   = matrix(x, 1, -1);
-
-    //normalize
-    b = b / a(1);
-    a = a / a(1);
-
-    n = max(size(b, "*"), size(a, "*"))-1;
-    if n > 0 then
-        if argn(2) < 4 then
-            z = zeros(n, 1);
-        else
-            z = matrix(z, n, 1);
-        end
-
-        //pad the numerator and denominator if necessary
-        a($ + 1:(n + 1)) = 0;
-        b($ + 1:(n + 1)) = 0;
-
-        //form state space representation
-        A     = [-a(2:$), [eye(n - 1, n - 1); zeros(1, n - 1)] ];
-        B     = b(2:$) - a(2:$) * b(1); //C = eye(1, n); D = b(1);
-
-        [z, X] = ltitr(A, B, x, z);
-        y     = X(1, :) + b(1) * x;
-
+    if rhs == 4 then
+        [y, z] = filter(b, a, x, z);
     else
-        y     = b(1) * x;
-        z     = [];
+        [y, z] = filter(b, a, x);
     end
-    //make y orientation similar to the x one
-    y = matrix(y, mnx);
 
 endfunction
-

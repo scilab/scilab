@@ -208,6 +208,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="..\c\sci_remez.c" />
     <ClCompile Include="sci_delip.cpp" />
     <ClCompile Include="sci_fft.cpp" />
+    <ClCompile Include="sci_filter.cpp" />
     <ClCompile Include="sci_rpem.cpp" />
     <ClCompile Include="sci_corr.cpp" />
     <ClCompile Include="sci_syredi.cpp" />
