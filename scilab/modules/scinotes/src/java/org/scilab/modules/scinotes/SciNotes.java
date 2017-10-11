@@ -745,6 +745,14 @@ public class SciNotes extends SwingScilabDockablePanel {
                 SciNotesGUI.init(editor.getParentWindow(), editor, SCINOTES);
                 WindowsConfigurationManager.unregisterEndedRestoration(editor);
             }
+        } else {
+            /* restore if it is iconified */
+            if(editor.getParentWindow() != null) {
+                int state = editor.getParentWindow().getExtendedState();
+                if((state & JFrame.ICONIFIED) == JFrame.ICONIFIED) {
+                    editor.getParentWindow().setExtendedState(state - JFrame.ICONIFIED);
+                }
+            }
         }
 
         if (!editor.restored) {

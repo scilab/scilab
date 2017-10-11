@@ -186,9 +186,7 @@ function atomsGui()
     end //creation
 
     if ~isempty(get("atomsFigure")) then
-        // Get focus on the GUI
-        fig = get("atomsFigure");
-        fig.visible = "on";
+        set("atomsFigure", "visible", "on");
         return;
     end
 

@@ -32,6 +32,7 @@ public class ScilabGUIUtilities {
      * @param window the window to bring to the front
      */
     public static void toFront(final JFrame window) {
+        /*
         WindowFocusListener listener = new WindowFocusListener() {
 
             public void windowGainedFocus(WindowEvent e) {
@@ -43,7 +44,15 @@ public class ScilabGUIUtilities {
                 window.removeWindowFocusListener(this);
             }
         };
-        window.addWindowFocusListener(listener);
+        */
+        
+        int state = window.getExtendedState();
+        if((state & JFrame.ICONIFIED) == JFrame.ICONIFIED) {
+            window.setExtendedState(state - JFrame.ICONIFIED);
+        }
+
+        /* not sure to understand the goal of that Oo*/
+        //window.addWindowFocusListener(listener);
         window.toFront();
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {

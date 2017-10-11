@@ -86,6 +86,14 @@ public final class ScilabVariableBrowser implements VariableBrowser {
                 window.setVisible(true);
                 window.toFront();
             }
+        } else {
+            SwingScilabWindow window = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, browserTab);
+            if(window != null) {
+                int state = window.getExtendedState();
+                if((state & SwingScilabWindow.ICONIFIED) == SwingScilabWindow.ICONIFIED) {
+                    window.setExtendedState(state - SwingScilabWindow.ICONIFIED);
+                }
+            }
         }
         return instance;
     }

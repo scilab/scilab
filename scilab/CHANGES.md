@@ -382,6 +382,7 @@ the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 * [#9519](http://bugzilla.scilab.org/show_bug.cgi?id=9519): The console menu `File -> Open a file` opened any file in Scinotes. Binary files like .zcos blocked Scinotes.
 * [#10270](http://bugzilla.scilab.org/show_bug.cgi?id=10270): `execstr(["%val=[int16(1)";"]"])` needed entering twice <enter> to be actually performed.
 * [#11196](http://bugzilla.scilab.org/show_bug.cgi?id=11196): Some recursive extractions from a mlist failed.
+* [#11530](http://bugzilla.scilab.org/show_bug.cgi?id=11530): Raise (help, scinotes, ...) windows when iconified ( recall or startup )
 * [#11756](http://bugzilla.scilab.org/show_bug.cgi?id=11756): In the categories of the ATOMS GUI, actually available modules might be not listed.
 * [#12195](http://bugzilla.scilab.org/show_bug.cgi?id=12195): `generateBlockImage` sometimes changed the current graphic driver.
 * [#12372](http://bugzilla.scilab.org/show_bug.cgi?id=12372): The `mode` function was poorly documented.

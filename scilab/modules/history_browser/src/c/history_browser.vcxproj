@@ -238,6 +238,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\sci_gateway\c\sci_browsehistory.c" />
     <ClCompile Include="..\jni\CommandHistory.cpp" />
     <ClCompile Include="..\cpp\CommandHistory_Wrap.cpp" />
     <ClCompile Include="DllmainHISTORY_BROWSER.c" />

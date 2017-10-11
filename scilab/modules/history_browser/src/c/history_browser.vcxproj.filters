@@ -26,6 +26,9 @@
     <ClCompile Include="DllmainHISTORY_BROWSER.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\c\sci_browsehistory.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\jni\CommandHistory.hxx">

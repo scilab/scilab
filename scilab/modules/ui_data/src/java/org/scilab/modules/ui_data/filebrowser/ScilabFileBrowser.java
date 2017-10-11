@@ -95,8 +95,12 @@ public final class ScilabFileBrowser {
             }
         } else {
             SwingScilabWindow window = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, instance);
-            window.setVisible(true);
-            window.toFront();
+            if(window != null) {
+                int state = window.getExtendedState();
+                if((state & SwingScilabWindow.ICONIFIED) == SwingScilabWindow.ICONIFIED) {
+                    window.setExtendedState(state - SwingScilabWindow.ICONIFIED);
+                }
+            }
         }
 
         return instance;
