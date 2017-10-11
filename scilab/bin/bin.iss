@@ -67,6 +67,7 @@ Source: bin\lapack.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: bin\Scilex.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\WScilex.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
+Source: bin\WScilex-cli.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 Source: bin\Dumpexts.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\f2c.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
@@ -80,3 +81,4 @@ Source: bin\hdf5_hldll.dll ; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ; batch files
 Source: bin\scinotes.bat; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\xcos.bat; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\scilab.bat; DestDir: {app}\bin; Components: {#COMPN_SCILAB}

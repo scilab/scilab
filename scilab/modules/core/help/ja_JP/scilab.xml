@@ -18,7 +18,7 @@
         <synopsis>
 #      MS Windows          |  # Linux / Unix / Mac OS X
 wscilex     &lt;Options&gt;     |  scilab         &lt;Options&gt;
-wscilex -nw &lt;Options&gt; |  scilab-adv-cli &lt;Options&gt;
+wscilex-cli &lt;Options&gt; |  scilab-adv-cli &lt;Options&gt;
 scilex      &lt;Options&gt;      |  scilab-cli     &lt;Options&gt;
         </synopsis>
     </refsynopsisdiv>

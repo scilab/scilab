@@ -30,6 +30,7 @@ extern "C"
 #include "initMacOSXEnv.h"
 #endif
 #include "InitScilab.h"
+#include "charEncoding.h"
 #include "configvariable_interface.h"
 #include "scilabRead.h"
 #include "ConsoleRead.h"
@@ -44,6 +45,7 @@ extern "C"
 #include "FilesAssociations.h"
 #include "PATH_MAX.h"
     jmp_buf ScilabJmpEnv;
+#include "WindowShow.h"
 #else
 #include "cliDisplayManagement.h"
     extern jmp_buf ScilabJmpEnv;
@@ -72,12 +74,12 @@ extern "C"
 static void usage(void)
 {
     std::cerr << "Usage: Scilab <options>" << std::endl;
-    std::cerr << "      -e Instruction   : execute the scilab instruction given in Instruction argument.";
-    std::cerr << "                         -e and -f arguments are mutually exclusive.";
-    std::cerr << "      -f File          : execute the scilab script given in File argument.";
-    std::cerr << "                         -e and -f arguments are mutually exclusive.";
-    std::cerr << "      -quit            : force scilab exit after execution of script from -e or -f argument.";
-    std::cerr << "                         this flag is ignored if it is not used with -e or -f argument.";
+    std::cerr << "      -e Instruction   : execute the scilab instruction given in Instruction argument." << std::endl;
+    std::cerr << "                         -e and -f arguments are mutually exclusive." << std::endl;
+    std::cerr << "      -f File          : execute the scilab script given in File argument." << std::endl;
+    std::cerr << "                         -e and -f arguments are mutually exclusive." << std::endl;
+    std::cerr << "      -quit            : force scilab exit after execution of script from -e or -f argument." << std::endl;
+    std::cerr << "                         this flag is ignored if it is not used with -e or -f argument." << std::endl;
     std::cerr << "      -l lang          : Change the language of scilab ( default : en_US )." << std::endl;
     std::cerr << "      -nw              : Enable console mode." << std::endl;
     std::cerr << "      -nwni            : Enable terminal mode." << std::endl;
@@ -335,12 +337,24 @@ static void TermPrintf(const char *text)
 /*
 ** -*- MAIN -*-
 */
-//#if defined(_WIN32) && !defined(WITHOUT_GUI)
-//int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR szCmdLine, int iCmdShow)
-//#else
-int main(int argc, char *argv[])
-//#endif
+#if defined(_WIN32) && !defined(WITHOUT_GUI) && defined(WITH_CONSOLE_JAVA)
+int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR szCmdLine, int iCmdShow)
 {
+    LPWSTR *szArglist = NULL;
+    int argc = 0;
+    szArglist = CommandLineToArgvW(GetCommandLineW(), &argc);
+    char** argv = new char*[argc];
+    for (int i = 0; i < argc; ++i)
+    {
+        argv[i] = wide_string_to_UTF8(szArglist[i]);
+    }
+
+    setWindowShowMode(iCmdShow);
+
+#else
+int main(int argc, char *argv[])
+{
+#endif
     int iRet = 0;
 
 #ifdef ENABLE_MPI
@@ -384,6 +398,11 @@ int main(int argc, char *argv[])
     //                      | [-nwni]       -> Terminal IO + StartScilabEngine
     //                      | [-nw]         -> Terminal IO + InitMacOSXEnv
 #ifndef WITHOUT_GUI
+#ifdef WITH_CONSOLE_JAVA
+    //pSEI->iConsoleMode = SCILAB_STD;
+#else
+    pSEI->iConsoleMode = SCILAB_NW;
+#endif
     if (pSEI->iConsoleMode)
     {
         setScilabMode(SCILAB_NW);
@@ -434,7 +453,8 @@ int main(int argc, char *argv[])
 #ifdef _MSC_VER
     /* if file descriptor returned is -2 stdin is not associated with an input stream */
     /* example : echo plot3d | scilex -nw -e */
-    if (!isatty(_fileno(stdin)) && (_fileno(stdin) != -2))
+
+    if (!isatty(_fileno(stdin)) && (_fileno(stdin) != -2) && getScilabMode() != SCILAB_STD)
 #else
     if (!isatty(fileno(stdin)))
 #endif
@@ -468,5 +488,9 @@ int main(int argc, char *argv[])
         std::wcerr << getLastErrorMessage() << std::endl;
         return val;
     }
+
+#if defined(_WIN32) && !defined(WITHOUT_GUI) && defined(WITH_CONSOLE_JAVA)
+    LocalFree(szArglist); 
+#endif
 }
 

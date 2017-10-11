@@ -166,7 +166,7 @@ function myexec()
         if fileinfo(tmpfiles+"dia")<>[] then
             deletefile(tmpfiles+"dia")
         end
-        dos(""""+SCI+"\bin\scilex.exe"+""""+" -nwni -args -nouserstartup -f "+tmpfiles+"tst 1>NUL");
+        dos(""""+SCI+"\bin\scilab"+""""+" -nwni -args -nouserstartup -f "+tmpfiles+"tst 1>NUL");
     else
         if fileinfo(tmpfiles+"dia")<>[] then
             deletefile(tmpfiles+"dia")
