@@ -457,6 +457,7 @@ the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 * [#15273](http://bugzilla.scilab.org/show_bug.cgi?id=15273): The documented order of `eval_cshep2d` second derivatives was wrong.
 * [#15282](http://bugzilla.scilab.org/show_bug.cgi?id=15282): `help_from_sci` could set an xml:id starting with the forbidden `%` character.
 * [#15285](http://bugzilla.scilab.org/show_bug.cgi?id=15285): `resize_matrix` did not manage convertion into int64 and uint64.
+* [#15300](http://bugzilla.scilab.org/show_bug.cgi?id=15300): Crash when the function name is forgotten.
 
 ### Bugs fixed in 6.0.0:
 * [#592](http://bugzilla.scilab.org/show_bug.cgi?id=592): `linspace(a, b, n<=0)` returned `b` instead of `[]`
