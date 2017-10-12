@@ -475,6 +475,7 @@ the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 * [#15282](http://bugzilla.scilab.org/show_bug.cgi?id=15282): `help_from_sci` could set an xml:id starting with the forbidden `%` character.
 * [#15285](http://bugzilla.scilab.org/show_bug.cgi?id=15285): `resize_matrix` did not manage conversion into `int64` and `uint64`.
 * [#15300](http://bugzilla.scilab.org/show_bug.cgi?id=15300): Distributive assignments like `a=(1,2)` crashed Scilab.
+* [#15301](http://bugzilla.scilab.org/show_bug.cgi?id=15301): Sequence constructor `:` failed when a bound was an outputless funtion call.
 * [#15308](http://bugzilla.scilab.org/show_bug.cgi?id=15308): Unlike `evstr(["1 2";"3 4"])`, `evstr(["1;2" "3;4"])` was not accepted.
 
 ### Bugs fixed in 6.0.0:
