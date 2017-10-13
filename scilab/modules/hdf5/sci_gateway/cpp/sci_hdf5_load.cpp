@@ -44,10 +44,19 @@ types::Function::ReturnValue sci_hdf5_load(types::typed_list &in, int _iRetCount
         return types::Function::Error;
     }
 
-    if (in[0]->getId() != types::InternalType::IdScalarString)
+    for (int i = 0; i < in.size(); ++i)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), fname.data(), 1);
-        return types::Function::Error;
+        if (in[i]->isString() == false)
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname.data(), i+1);
+            return types::Function::Error;
+        }
+
+        if (in[i]->getAs<types::String>()->isScalar() == false)
+        {
+            Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), fname.data(), i + 1);
+            return types::Function::Error;
+        }
     }
 
     wchar_t* wcfilename = expandPathVariableW(in[0]->getAs<types::String>()->get()[0]);
@@ -131,7 +140,6 @@ types::Function::ReturnValue sci_hdf5_load(types::typed_list &in, int _iRetCount
 
     if (ret != types::Function::OK)
     {
-        Scierror(999, _("%s: Unable to load '%s'\n"), fname.data(), filename.data());
         return types::Function::Error;
     }
 
