@@ -79,9 +79,9 @@ int sci_call(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt opt, int
     }
 
     int pos = 1;
-    bool hasOutputs = true;
+    bool hasOutputs = false;
     //inputs
-    while (1)
+    while (pos < nin)
     {
         //check "out" to break loop
         if (isOut(env, in[pos]))
@@ -237,6 +237,16 @@ int sci_call(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt opt, int
                     return 1;
                 }
 
+                //need to clone double input data to avoid modification
+                if (params[order - 1].type == L'd')
+                {
+                    int size = params[order - 1].row * params[order - 1].col * sizeof(double);
+                    double* dbls = (double*)malloc(size);
+                    memcpy(dbls, params[order - 1].data, size);
+                    params[order - 1].data = dbls;
+                    params[order - 1].alloc = true;
+                }
+
                 pos += 1;
                 output_order[output_pos] = order - 1;
             }
@@ -281,6 +291,16 @@ int sci_call(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt opt, int
                     {
                         Scierror(999, _("%s: incompatible sizes between input and output variables.\n"), fname);
                         return 1;
+                    }
+
+                    //need to clone double input data to avoid modification
+                    if (p.type == L'd')
+                    {
+                        int size = p.row * p.col * sizeof(double);
+                        double* dbls = (double*)malloc(size);
+                        memcpy(dbls, p.data, size);
+                        p.data = dbls;
+                        p.alloc = true;
                     }
                 }
                 else // Otherwise allocate one
@@ -333,7 +353,7 @@ int sci_call(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt opt, int
                              params[20].data, params[21].data, params[22].data, params[23].data, params[24].data, params[25].data, params[26].data, params[27].data, params[28].data, params[29].data);
 
     //create output variables
-    for (int i = 0; i < nout; ++i)
+    for (int i = 0; i < nout && hasOutputs; ++i)
     {
         Parameter& p = params[output_order[i]];
 
@@ -384,6 +404,8 @@ int sci_call(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt opt, int
             }
         }
     }
+
+    //allocated data will be clean by structure dtor
     return STATUS_OK;
 }
 
