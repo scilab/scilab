@@ -334,5 +334,13 @@ assert_checkequal(sum(bs, 1, "native"), sparse([%t,%t,%t]));
 assert_checkequal(sum(bs, 2, "native"), sparse([%t;%t]));
 assert_checkequal(sum(bs, 3, "native"),bs);
 
-// TODO : test the "m" option
+//=======================================================================
+//"m" option"
+
+d=[1 10;254 9];
+assert_checkequal(sum(d, "m"), sum(d, "r"));
+d=[1 10 254 9];
+assert_checkequal(sum(d, "m"), sum(d, "c"));
+d=d';
+assert_checkequal(sum(d, "m"), sum(d, "r"));
 

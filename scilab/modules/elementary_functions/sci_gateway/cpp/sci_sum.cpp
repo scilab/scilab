@@ -118,24 +118,9 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
             }
             else if (wcscmp(wcsString, L"m") == 0)
             {
-                int iDims = 0;
-                int* piDimsArray = NULL;
-
-                if (pDblIn)
-                {
-                    iDims = pDblIn->getDims();
-                    piDimsArray = pDblIn->getDimsArray();
-                }
-                else if (pIntIn)
-                {
-                    iDims = pIntIn->getDims();
-                    piDimsArray = pIntIn->getDimsArray();
-                }
-                else
-                {
-                    iDims = pPolyIn->getDims();
-                    piDimsArray = pPolyIn->getDimsArray();
-                }
+                types::GenericType* pGT = in[0]->getAs<types::GenericType>();
+                int iDims = pGT->getDims();
+                int* piDimsArray = pGT->getDimsArray();
 
                 // old function was "mtlsel"
                 for (int i = 0; i < iDims; i++)
