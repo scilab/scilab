@@ -23,6 +23,7 @@
     <ProjectGuid>{F1D56B26-F11F-4ECE-AB82-127B5E1C58E0}</ProjectGuid>
     <RootNamespace>BuildJavadoc</RootNamespace>
     <Keyword>MakeFileProj</Keyword>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">

@@ -19,8 +19,8 @@
  ** concurrential access
  **/
 
-#include "GlobalTclInterp.h"
 #include "Thread_Wrapper.h"
+#include "GlobalTclInterp.h"
 
 Tcl_Interp	*__globalTclInterp = NULL;
 __threadLock	singleInterpAccess;
