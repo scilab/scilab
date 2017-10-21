@@ -1,6 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) DIGITEO - 2010 - Allan CORNET
+// Copyright (C) 2016, 2017 - Samuel GOUGEON
 //
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
@@ -16,32 +17,43 @@ function [%val, %ierr] = evstr(%str)
 
     [lhs, rhs] = argn(0);
     %val = [];
+    %ierr =  0;
+
     select type(%str)
 
     case 10 then
         // matrix of character strings
         if isempty(%str) then
             %val = [];
-            %ierr =  0;
             return;
         end
 
         // bug 7003
-        if ~isdef("Nan") then
-            Nan = %nan;
-        end
-        if ~isdef("NaN") then
-            NaN = %nan;
-        end
-
-        if ~isdef("Inf") then
-            Inf = %inf;
+        vars = ["Nan"  "NaN"  "Inf"  "INF"]
+        vals = ["%nan" "%nan" "%inf" "%inf"]
+        tmp = ~isdef(vars)
+        if tmp~=[]
+            execstr(vars(tmp)+"="+vals(tmp))
         end
 
-        if ~isdef("INF") then
-            INF = %inf;
+        // Removing comments:
+        regExp = "_(?<!\:)//[^\""\'']*$_";
+        %str = strsubst(%str, regExp , "", "r");
+        k = grep(%str, "_^[^""'']*?//.*?(\""|\'')_", "r");
+        if k~=[]
+            %str(k) = strsubst(%str(k), "_(?<!\:|"")?//.*$_" , "", "r");
         end
 
+        // Bracketing expressions: http://bugzilla.scilab.org/15308
+        comm = grep(%str, "_(^|[^:])//_", "r");
+        tmp = 1:size(%str,"*");
+        if comm~=[]
+            tmp = setdiff(tmp, comm) // indices of expressions without remaining comments
+        end
+        if tmp~=[]
+            %str(tmp) = "[" + %str(tmp) + "]";
+        end
+        //
         %t1 = strcat(%str, ",", "c")+";"
         %t1(1) = "%val=[" + %t1(1);
         %t1($) = part(%t1($), 1:length(%t1($)) - 1)+";";
@@ -77,7 +89,6 @@ function [%val, %ierr] = evstr(%str)
     case 1 then
         // real or complex constant matrix
         %val = %str;
-        %ierr = 0;
     else
         error(msprintf(gettext("%s: Wrong type for input argument #%d: Real or Complex matrix, Matrix of character strings or list expected.\n"), "evstr", 1));
     end
