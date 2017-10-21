@@ -65,11 +65,7 @@ function [%val, %ierr] = evstr(%str)
             if or(type(%val)==[11 13])
                 return
             end
-            try
-                serialized_input = size(%val,"*")>1
-            catch
-                serialized_input = %f;
-            end
+            serialized_input = size(%val,"*")>1
         end
 
         // input strings with possible "," and ";" separators
