@@ -398,10 +398,10 @@ int main(int argc, char *argv[])
     //                      | [-nwni]       -> Terminal IO + StartScilabEngine
     //                      | [-nw]         -> Terminal IO + InitMacOSXEnv
 #ifndef WITHOUT_GUI
-#ifdef WITH_CONSOLE_JAVA
-    //pSEI->iConsoleMode = SCILAB_STD;
-#else
-    pSEI->iConsoleMode = SCILAB_NW;
+#ifdef _MSC_VER
+    #ifndef WITH_CONSOLE_JAVA
+        pSEI->iConsoleMode = SCILAB_NW;
+    #endif
 #endif
     if (pSEI->iConsoleMode)
     {
@@ -490,7 +490,7 @@ int main(int argc, char *argv[])
     }
 
 #if defined(_WIN32) && !defined(WITHOUT_GUI) && defined(WITH_CONSOLE_JAVA)
-    LocalFree(szArglist); 
+    LocalFree(szArglist);
 #endif
 }
 
