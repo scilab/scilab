@@ -313,7 +313,6 @@ lib /DEF:"$(ProjectDir)Call_scilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\includes\ConvertSlash.h" />
     <ClInclude Include="..\..\includes\dynlib_windows_tools.h" />
     <ClInclude Include="..\..\includes\FocusOnConsole.h" />
     <ClInclude Include="..\..\includes\gw_windows_tools.h" />

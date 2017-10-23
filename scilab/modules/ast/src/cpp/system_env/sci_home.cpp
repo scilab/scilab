@@ -33,6 +33,8 @@ extern "C"
 #include "setenvvar.h"
 #include "getshortpathname.h"
 #include "sciprint.h"
+#include "isdir.h"
+#include "createdirectory.h"
 #ifndef _MSC_VER
 #include <sys/stat.h>
 #endif

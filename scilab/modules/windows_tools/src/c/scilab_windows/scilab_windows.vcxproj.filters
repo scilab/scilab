@@ -26,9 +26,6 @@
     <ClCompile Include="console.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ConvertSlash.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="DllmainScilab_Windows.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -86,18 +83,12 @@
     <ClCompile Include="..\..\cpp\scilab_windows\getScilabDirectory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\cpp\scilab_windows\SetScilabEnvironmentVariables.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="buildMainWindowTitle_Windows.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="console.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\includes\ConvertSlash.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="dynlib_scilab_windows.h">
@@ -158,9 +149,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\cpp\scilab_windows\getScilabDirectory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\cpp\scilab_windows\SetScilabEnvironmentVariables.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

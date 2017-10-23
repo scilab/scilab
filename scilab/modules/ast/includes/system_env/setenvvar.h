@@ -30,18 +30,17 @@
 #define UNIX_SEPATATOR '/'
 #define WINDOWS_SEPATATOR '\\'
 
-EXTERN_AST bool IsTheGoodShell(void);
-EXTERN_AST bool Set_Shell(void);
+EXTERN_AST BOOL IsTheGoodShell(void);
+EXTERN_AST BOOL Set_Shell(void);
 EXTERN_AST void Set_SOME_ENVIRONMENTS_VARIABLES_FOR_SCILAB(void);
-EXTERN_AST void SciEnvForWindows(void);
-EXTERN_AST void SetScilabEnvironmentVariables(char *DefaultSCIPATH);
-EXTERN_AST bool convertSlash(const char *path_in, char *path_out, bool slashToAntislash);
-EXTERN_AST bool AntislashToSlash(const char *pathwindows, char *pathunix);
-EXTERN_AST bool SlashToAntislash(const char *pathwindows, char *pathunix);
-EXTERN_AST bool isdir(const char * path);
-EXTERN_AST bool createdirectory(const char *path);
-EXTERN_AST bool isDrive(const char *strname);
+void SetScilabEnvironmentVariables(char *DefaultSCIPATH);
+BOOL convertSlash(const char *path_in, char *path_out, BOOL slashToAntislash);
+EXTERN_AST BOOL AntislashToSlash(const char *pathwindows, char *pathunix);
+BOOL SlashToAntislash(const char *pathwindows, char *pathunix);
 EXTERN_AST void SetScilabEnvironment(void);
-EXTERN_AST void SetScilabVariables(void);
-EXTERN_AST int SciEnvForOthers(void);
+#ifdef _MSC_VER
+void SciEnvForWindows(void);
+#else
+int SciEnvForOthers(void);
+#endif
 
