@@ -10,48 +10,38 @@
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
         <synopsis>
-            H = evstr(Z)
-            [H,ierr] = evstr(Z)
+            H = evstr(M)
+            H = evstr(list(M, subExpr))
+            [H, ierr] = evstr(..)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parâmetros</title>
         <variablelist>
-            <varlistentry>
-                <term>Z</term>
-                <listitem>
-                    <para>
-                        matriz de strings <literal>M</literal> ou
-                        <literal>list(M,Subexp)</literal>
-                    </para>
-                    <variablelist>
-                        <varlistentry>
-                            <term>M</term>
-                            <listitem>
-                                <para>matriz de strings</para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>Subexp</term>
-                            <listitem>
-                                <para>vetor de strings</para>
-                            </listitem>
-                        </varlistentry>
-                    </variablelist>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>H</term>
-                <listitem>
-                    <para>matriz</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>ierr</term>
-                <listitem>
-                    <para>inteiro, indicador de erro</para>
-                </listitem>
-            </varlistentry>
+          <varlistentry>
+            <term>M</term>
+            <listitem>
+              <para>matriz de strings</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>subExpr</term>
+            <listitem>
+              <para>vetor de strings</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>H</term>
+            <listitem>
+              <para>matriz</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>ierr</term>
+            <listitem>
+              <para>inteiro, indicador de erro</para>
+            </listitem>
+          </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
@@ -68,7 +58,7 @@
             mas retorna o número de erro em <literal>ierr</literal>.
         </para>
         <para>
-            Se <literal>Z</literal> é uma lista, <literal>Subexp </literal> é um
+            Se uma lista for fornecida, <literal>subExpr</literal> é um
             vetor de strings, que define subexpressões que são avaliadas antes da
             avaliação de <literal>M</literal>. Estas subexpressões devem ser referidas
             como <literal>%(k)</literal> em <literal>M</literal>, onde
@@ -76,8 +66,34 @@
             <literal>Subexp</literal>.
         </para>
         <warning>
-            <varname>Z</varname> should not include any continuation marks (..).
+            <itemizedlist>
+                <listitem>
+                    <para>
+                    Assignments like <literal>"a = 1"</literal> are not accepted as expressions,
+                    neither in <varname>M</varname> nor in <varname>subExpr</varname>.
+                    <function>execstr</function> must be used instead to evaluate such expressions.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                    Continuation marks <literal>".."</literal> are forbidden in expressions
+                    in <varname>M</varname> as well as in <varname>subExpr</varname>.
+                    </para>
+                </listitem>
+            </itemizedlist>
         </warning>
+        <note>Special aliases:
+            <itemizedlist>
+                <listitem>
+                        <literal>"Nan"</literal> and <literal>"NaN"</literal> are parsed as
+                        <constant>%nan</constant>.
+                </listitem>
+                <listitem>
+                        <literal>"Inf"</literal> and <literal>"INF"</literal> are parsed as
+                        <constant>%inf</constant>.
+                </listitem>
+            </itemizedlist>
+        </note>
     </refsection>
     <refsection>
         <title>Exemplos</title>
@@ -89,6 +105,11 @@ a = 1; b = 2; Z = list(['%(1)','%(1)-%(2)'],['a+1','b+1']);
 evstr(Z)
 
 evstr('NaN'), evstr('Inf')
+
+//The two return values version
+[H, ierr] = evstr(Z) // no error
+Z = ['a', 'b', 'c'] ;// the variable c is undefined
+[H, ierr] = evstr(Z) // error 4: Undefined variable: c
 ]]>     </programlisting>
     </refsection>
     <refsection>
@@ -97,6 +118,34 @@ evstr('NaN'), evstr('Inf')
             <member>
                 <link linkend="execstr">execstr</link>
             </member>
+            <member>
+                <link linkend="sci2exp">sci2exp</link>
+            </member>
+            <member>
+                <link linkend="strtod">strtod</link>
+            </member>
+            <member>
+                <link linkend="brackets">concatenation</link>
+            </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>Histórico</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.3.0</revnumber>
+                <revdescription>
+                <literal>"Nan"</literal> and <literal>"NaN"</literal> are now parsed as <literal>%nan</literal>.
+                <literal>"Inf"</literal> and <literal>"INF"</literal> are now parsed as <literal>%inf</literal>.
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.0.1</revnumber>
+                <revdescription>
+                  Simple comments are now supported in almost all possible input expressions,
+                  whatever is the shape of <literal>M</literal>.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

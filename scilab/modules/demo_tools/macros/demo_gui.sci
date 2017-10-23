@@ -34,7 +34,8 @@ function demo_gui()
     end
 
     if get("scilab_demo_fig") <> [] then
-        delete(get("scilab_demo_fig"));
+        set("scilab_demo_fig", "visible", "on");
+        return;
     end
 
 

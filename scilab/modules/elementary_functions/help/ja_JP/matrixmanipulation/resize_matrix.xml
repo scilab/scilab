@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2008 - INRIA - Jean-Baptiste SILVY 
+ * Copyright (C) 2008 - INRIA - Jean-Baptiste SILVY
+ * Copyright (C) 2013, 2016, 2017 - Samuel GOUGEON
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -13,7 +14,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="resize_matrix" xml:lang="ja">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+    xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+    xmlns:scilab="http://www.scilab.org" xml:id="resize_matrix" xml:lang="ja">
     <refnamediv>
         <refname>resize_matrix</refname>
         <refpurpose>
@@ -120,8 +124,8 @@
                 <listitem>
                     <para>
                         オプションのテキストで大きさが変更された行列が変換されるデータ型を指定します.
-                        "boolean", "constant", "string", "int8", "uint8", "int16", "uint16", "int32", および "uint32"
-                        がサポートされます.
+                        "boolean", "constant", "string", "int8", "uint8", "int16", "uint16", "int32",
+                        "uint32", "int64", および "uint64" がサポートされます.
                     </para>
                     <para>多項式およびテキストのハイパー行列については型変換がサポートされません.</para>
                 </listitem>
@@ -242,10 +246,26 @@ resize_matrix(P, [3 3 2], "", %z)
             <revision>
                 <revnumber>5.5.0</revnumber>
                 <revremark>
-                    多項式とハイパー行列を利用可能になりました.
-                    カスタムパディングを指定可能となりました.
-                    新しい大きさをベクトルとして指定できます.
-                    resize_matrix に引数を付けない場合, 例(デモ)を表示します.
+                    <itemizedlist>
+                        <listitem>
+                            多項式とハイパー行列を利用可能になりました.
+                        </listitem>
+                        <listitem>
+                            カスタムパディングを指定可能となりました.
+                        </listitem>
+                        <listitem>
+                            新しい大きさをベクトルとして指定できます.
+                        </listitem>
+                        <listitem>
+                            resize_matrix() に引数を付けない場合, 例(デモ)を表示します.
+                        </listitem>
+                    </itemizedlist>
+                </revremark>
+            </revision>
+            <revision>
+                <revnumber>6.0.1</revnumber>
+                <revremark>The <literal>resType</literal> option is extended to the new
+                <literal>int64</literal> and <literal>uint64</literal> integer types.
                 </revremark>
             </revision>
         </revhistory>

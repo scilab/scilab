@@ -31,4 +31,5 @@
     <gateway name="sci_remez"   function="remez"    type="0" />
     <gateway name="sci_syredi"  function="syredi"   type="1" />
     <gateway name="sci_conv2"   function="conv2"    type="0" />
+    <gateway name="sci_filter"  function="filter"   type="1" />
 </module>

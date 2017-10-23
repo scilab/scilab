@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2017 - Samuel GOUGEON
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org"
+          xml:lang="en"
+          xml:id="whereis">
+    <refnamediv>
+        <refname>whereis</refname>
+        <refpurpose>Returns the name of the loaded library/module a given function belongs to</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>libmod = whereis(function)</synopsis>
+    </refsynopsisdiv>
+    <refsection role="arguments">
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>function</term>
+                <listitem>
+                    <para>
+                    Name (text) or handle of a Scilab "macro" or builtin function. Both
+                    kinds of input are equivalent.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>libmod</term>
+                <listitem>
+                    <para>If <literal>function</literal> points to
+                        <itemizedlist>
+                            <listitem>
+                                a function written in Scilab language and registered with
+                                <link linkend="genlib">genlib</link> in some loaded library:
+                                <literal>libmod</literal> returns the name of the library.
+                            </listitem>
+                            <listitem>
+                                an unregistered user-defined function written in Scilab language:
+                                <literal>libmod</literal> returns <literal>"script"</literal>.
+                            </listitem>
+                            <listitem>
+                                a builtin function (so-called Scilab primitive): the name of the
+                                module the <literal>function</literal> belongs to is returned.
+                            </listitem>
+                            <listitem>Otherwise: <literal>libmod</literal> returns <literal>[]</literal>.
+                            </listitem>
+                        </itemizedlist>
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>whereis</literal> allows to identify the library of Scilab macros or the
+            module a given function belongs to.
+        </para>
+        <para>
+            When the function is
+            <variablelist>
+                <varlistentry>
+                    <term>a "macro" (written in Scilab language and compiled):</term>
+                    <para>
+                        it may be not loaded (not yet called), but its library must be so.
+                    </para>
+                    <para>
+                        When the same function name is registered in several loaded libraries of
+                        macros, <literal>whereis</literal> returns the name of all of them.
+                    </para>
+                    <para>
+                        <link linkend="libraryinfo">libraryinfo(..)</link> allows to retrieve the
+                        path to definition files of a library.
+                    </para>
+                    <warning>
+                        <itemizedlist>
+                            <listitem>
+                                Since Scilab 6.0: When, in the mymacro.sci file defining a public
+                                macro mymacro() registered in a library, some additional functions
+                                are defined after mymacro(), these additional functions are NOT
+                                registered in the library.
+                                So, <literal>whereis</literal> ignores them and will return
+                                <literal>[]</literal> for them. See the Examples section.
+                            </listitem>
+                            <listitem>
+                                When a module like <literal>xcos</literal> has sublibraries,
+                                these ones are often loaded in Scilab only after the first call
+                                to the main function (like <literal>xcos()</literal>).
+                                As a consequence,
+                                <literal>whereis(..)</literal> querried for a function of such a
+                                sublibrary will return <literal>[]</literal>, until the main
+                                function -- like <literal>xcos()</literal> -- is called a first time.
+                                See the Examples section.
+                            </listitem>
+                        </itemizedlist>
+                    </warning>
+                    <para></para>
+                </varlistentry>
+                <varlistentry>
+                    <term>a user-defined function registered in no library</term>
+                    <para>
+                        but defined
+                        <itemizedlist>
+                            <listitem>
+                                directly in the console by <literal>deff(..)</literal> or by
+                                <literal>function ... endfunction</literal>, or
+                            </listitem>
+                            <listitem>
+                                in a file loaded in the Scilab session with <literal>exec(functionfile.sci)</literal>
+                                or with <literal>getd(..)</literal>,
+                            </listitem>
+                        </itemizedlist>
+                    </para>
+                    <para>
+                        <literal>whereis</literal> returns <literal>"script"</literal>.
+                        When this function is defined in a file, there is no way to retrieve the file
+                        path and name.
+                    </para>
+                </varlistentry>
+                <varlistentry>
+                    <term>a builtin written and compiled in an external language (C, C++..):</term>
+                    <para>
+                        <literal>whereis</literal> returns the name of the module the function
+                        belongs to. More precisely, the name of the "gateway" is returned.
+                        It matches the module's name for all cases except for
+                        <literal>action_binding_gw, functions_gw, matio_gw, signal_processing_gw,
+                        statistics_gw</literal>, for which <literal>"_gw"</literal>
+                        is appended to the module name.
+                    </para>
+                    <para>
+                        The gateway file is located at
+                        <literal>SCI/modules/moduleName/gateway/moduleName_gateway.xml</literal>,
+                        where <literal>moduleName</literal> must be replaced with the actual module name.
+                    </para>
+                </varlistentry>
+            </variablelist>
+        </para>
+        <warning>
+            In the case that the function name is simultaneously defined as a unregistered function
+            ("script"), and as a registered one in a library and as a builtin,
+            <literal>whereis</literal> returns only one kind of answer with the likely priorities:
+            <literal>builtin's module > macro's library > "script" for unregistered macro</literal>.
+            However, the actual result may vary (and be []).
+        </warning>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+// Case of an unregistered macro:
+function myTest(), disp("Unregistered function"), endfunction
+whereis("myTest")               // => "script"
+
+// Case of a registered macro:
+r = whereis("ls")               // => "fileiolib"
+[?,path]= libraryinfo(r); path  // => "SCI\modules\fileio\macros\"
+
+// Let's define another ls() in another library:
+path = TMPDIR+"/myls";
+mkdir(path);
+mputl("function ls(), disp(""my other ls() in lslib""), endfunction", path+"/ls.sci");
+genlib("lslib", path);
+whereis ls                      // => ["fileiolib"; "lslib"]
+
+// Case of a builtin function
+whereis sin                     // => "elementary_functions"
+whereis conv2                   // => "signal_processing_gw"
+
+// Case of an unregistered macro defined/loaded after a registered one:
+clear ls lslib
+whereis ls                      // "fileiolib" : OK
+function ls(),  disp("my local ls()"), endfunction
+ls                              // => "my local ls()"
+whereis ls                      // => "fileiolib", still
+clear ls                        // (cleaning up)
+
+// Dependencies are ignored:
+// chfact() has some private dependency functions blkfc1(), inpnv(), etc:
+edit chfact
+// chfact() is registered:
+whereis chfact                  // => "sparselib"
+// .. but not its dependencies:
+whereis blkfc1                  // => []
+
+// Sublibraries may be loaded only after the first call to a main driving function:
+// CLR() is a public function related to the CLR Xcos block belonging to the
+//  Linear palette and declared in the Linearlib library.
+// But this sublibrary is loaded only after a first call to xcos():
+whereis xcos         // => "xcoslib"
+whereis CLR          // => [], if you never called xcos() in the session yet.
+xcos()               // => loads all its sublibraries. Please ignore the interfaces.
+                     //    You may even close them.
+whereis CLR          // => "Linearlib" non-empty answer, now
+ ]]></programlisting>
+    </refsection>
+
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="genlib">genlib</link>
+            </member>
+            <member>
+                <link linkend="libraryinfo">libraryinfo</link>
+            </member>
+            <member>
+                <link linkend="lib">lib</link>
+            </member>
+            <member>
+                <link linkend="getmodules">getmodules</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>
+                            <literal>whereis</literal> now supports builtin functions.
+                        </listitem>
+                        <listitem>
+                            When the same function name is registered in several libraries,
+                            <literal>whereis</literal> now returns all of them instead of only the
+                            last loaded one.
+                        </listitem>
+                        <listitem>
+                            For unregistered user-defined macros, <literal>whereis</literal>
+                            now returns <literal>"script"</literal> instead of <literal>[]</literal>.
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

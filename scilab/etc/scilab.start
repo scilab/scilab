@@ -158,4 +158,4 @@ if getscilabmode() == "STD" then
   main_menubar_cb("setFavoriteDirs");
 end
 // ====================================================================
-clear ans
+clear ans main_menubar_cb  getPreferencesValue

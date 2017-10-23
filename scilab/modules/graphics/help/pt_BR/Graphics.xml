@@ -413,12 +413,6 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>xgetech</term>
-                <listitem>
-                    <para>retorna a escala de gráficos corrente</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
                 <term>xchange</term>
                 <listitem>
                     <para>conversão de coordenadas reais para coordenadas pixeis</para>

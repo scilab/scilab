@@ -8,6 +8,7 @@
 // <-- unit tests for function filter  -->
 //
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 //==============================================================================
 // Error handling tests
@@ -64,12 +65,12 @@ assert_checkerror(func_call, err_msg);
 // Check vector values
 A = [A; A];
 z = 0;
-err_msg = msprintf(_("%s: Wrong size for input argument #%d: Vector expected.\n"), fname, 1);
+err_msg = msprintf(_("%s: Wrong size for input argument #%d: Vector expected.\n"), fname, 2);
 assert_checkerror(func_call, err_msg);
 
 A = A(1, :);
 B = [B; B];
-err_msg = msprintf(_("%s: Wrong size for input argument #%d: Vector expected.\n"), fname, 2);
+err_msg = msprintf(_("%s: Wrong size for input argument #%d: Vector expected.\n"), fname, 1);
 assert_checkerror(func_call, err_msg);
 
 B = B(1, :);

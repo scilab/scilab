@@ -16,7 +16,9 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xgetech" xml:lang="pt">
     <refnamediv>
         <refname>xgetech</refname>
-        <refpurpose>retorna a escala de gráficos corrente</refpurpose>
+        <refpurpose>
+          retorna a escala de gráficos corrente  <emphasis role="bold">(obsolete)</emphasis>
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
@@ -41,6 +43,11 @@
     </refsection>
     <refsection>
         <title>Descrição</title>
+        <warning>
+          This function is obsolete. It will be removed from Scilab 6.1. Please use
+          <literal>ax=gca(); (ax.axes_bounds, ax.data_bounds(:)', ax.log_flags, ax.margins)</literal>
+          or any combination instead.
+        </warning>
         <para>
             <literal>xgetech</literal> retorna a escala de gráficos corrente (da
             janela corrente). O retângulo [xmin,ymin,xmax,ymax] dado por
@@ -102,5 +109,16 @@ clf reset;
                 <link linkend="xsetech">xsetech</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>Histórico</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.1</revnumber>
+                <revdescription>
+                    xgetech() is tagged obsolete for removal from Scilab 6.1.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

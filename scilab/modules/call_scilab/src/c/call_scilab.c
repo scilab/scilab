@@ -39,7 +39,7 @@
 #include "scilabWrite.hxx"
 
 #ifdef _MSC_VER
-#include "SetScilabEnvironmentVariables.h"
+#include "setenvvar.h"
 #include "getScilabDirectory.h"
 #include <Windows.h>
 #endif

@@ -24,7 +24,7 @@
 #include "setenvtcl.h"
 #include "GlobalTclInterp.h"
 #include "localization.h"
-#include "ConvertSlash.h"
+#include "setenvvar.h"
 #include "configvariable_interface.h"
 /*--------------------------------------------------------------------------*/
 extern void	TclSetLibraryPath(Tcl_Obj * pathPtr);

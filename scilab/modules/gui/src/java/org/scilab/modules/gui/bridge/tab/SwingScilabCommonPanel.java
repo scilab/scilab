@@ -190,6 +190,14 @@ public class SwingScilabCommonPanel {
                 if (component.getParentWindow().getNbDockedObjects() == 1) {
                     component.getParentWindow().setVisible((Boolean) value);
                 }
+
+                //de-iconify windows
+                if((Boolean)value == true) {
+                    int state = component.getParentWindow().getExtendedState();
+                    if((state & SwingScilabWindow.ICONIFIED) == SwingScilabWindow.ICONIFIED) {
+                        component.getParentWindow().setExtendedState(state - SwingScilabWindow.ICONIFIED);
+                    } 
+                }
                 break;
             case __GO_INFOBAR_VISIBLE__: {
                 component.disableResizeEvent();

@@ -441,8 +441,14 @@ public class WindowsConfigurationManager implements XConfigurationListener {
         }
 
         window.setSize(((Integer) attrs.get("width")).intValue(), ((Integer) attrs.get("height")).intValue());
-        window.setExtendedState(((Integer) attrs.get("state")).intValue());
+        
+        /* remove ICONIFIED at restoration */
+        int state = ((Integer)attrs.get("state")).intValue();
+        if((state & SwingScilabWindow.ICONIFIED) == SwingScilabWindow.ICONIFIED) {
+            state -= SwingScilabWindow.ICONIFIED;
+        }
 
+        window.setExtendedState(state);
         return window;
     }
 

@@ -164,6 +164,11 @@ public final class ScilabVariableEditor extends SwingScilabDockingWindow impleme
                         table.setRowSelectionInterval(r, r);
                         table.setColumnSelectionInterval(c, c);
                     }
+                    
+                    int state = window.getExtendedState();
+                    if((state & SwingScilabWindow.ICONIFIED) == SwingScilabWindow.ICONIFIED) {
+                        window.setExtendedState(state - SwingScilabWindow.ICONIFIED);
+                    }                    
                 }
             });
         }

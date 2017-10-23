@@ -7,30 +7,57 @@
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
-ilib_verbose(0);
+copyfile(fullfile(SCI, "modules/dynamic_link/tests/unit_tests", "call_tests.c"), fullfile(TMPDIR, "call_tests.c"));
+old = pwd();
+cd(TMPDIR);
 
-//================================================
-// test call
-//================================================
-foo=['void foo(double *a,double *b,double *c)';
-     '{ *c = *a + *b; }'  ];
+intef = ["call_0_0" "call_i1_0" "call_d1_0" "call_0_i1" "call_0_d1" "call_i1_i1" "call_d1_d1" "call_i1_i1_bis" "call_d1_d1_bis" "call_i1_d1"];
 
-// we use TMPDIR for compilation 
-	
-if ~c_link('foo') then
-  curPath = pwd(); 
-  chdir(TMPDIR); 
-  mputl(foo,'foo.c');
-  
-  ilib_for_link(['foo'],'foo.c',[],"c");
+ilib_for_link(intef, "call_tests.c", [], "c");
+exec loader.sce;
 
-  // load the shared library 
-  exec loader.sce ;
-  chdir(curPath) ;
-end	
+//no args
+call("call_0_0");
 
-//5+7 by C function
-v = call('foo',5,1,'d',7,2,'d','out',[1,1],3,'d');
-if v <> 12 then pause,end
-//================================================
+//1 out int
+v = call("call_i1_0", "out", [1 1], 1, "i");
+assert_checkequal(v, 42);
+
+//1 out double
+v = call("call_d1_0", "out", [1 1], 1, "d");
+assert_checkequal(v, %pi);
+
+//1 in int
+call("call_0_i1", 42, 1, "i");
+
+//1 in double
+call("call_0_d1", %pi, 1, "d");
+
+//1 in int, 1 out int
+v = call("call_i1_i1", 21, 1, "i", "out", [1 1], 1, "i");
+assert_checkequal(v, 42);
+v = call("call_i1_i1", 21, 1, "i", "out", 1);
+assert_checkequal(v, 42);
+
+//1 in double, 1 out double
+v = call("call_d1_d1", %pi, 1, "d", "out", [1 1], 1, "d");
+assert_checkequal(v, 2*%pi);
+v = call("call_d1_d1", %pi, 1, "d", "out", 1);
+assert_checkequal(v, 2*%pi);
+
+//1 in int, 1 out int
+v = call("call_i1_i1_bis", 21, 1, "i", "out", [1 1], 2, "i");
+assert_checkequal(v, 42);
+
+//1 in double, 1 out double
+v = call("call_d1_d1_bis", %pi, 1, "d", "out", [1 1], 2, "d");
+assert_checkequal(v, 2*%pi);
+
+//1 in int, 1 out double
+v = call("call_i1_d1", 21, 1, "i", "out", [1 1], 2, "d");
+assert_checkequal(v, 21*%pi);
+
+ulink();
+cd(old);

@@ -458,6 +458,8 @@ erfinv
 %bicgstab
 %cgs
 %pcg
+adj2sp
+blkslv
 chfact
 chsolve
 conjgrad
@@ -1351,6 +1353,10 @@ smooth
 %s_r_i
 %s_s_i
 %s_x_i
+%s_1_s
+%s_2_s
+%s_3_s
+%s_4_s
 G_make
 configure_msifort
 configure_msvc

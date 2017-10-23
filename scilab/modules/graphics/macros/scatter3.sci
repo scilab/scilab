@@ -1,6 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) Scilab Enterprises - 2015 - 2012 - Juergen Koch <juergen.koch@hs-esslingen.de>
-// 
+//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -60,7 +60,7 @@ function polyLine = scatter3(varargin)
         // nothing has to be done
         return;
     end
-    
+
     if ( isempty(Z) ) then
         if (~isvector(X) | ~isvector(Y) | size(X) ~= size(Y)) then
             warning("X and Y must be vectors of the same length.")
@@ -72,16 +72,18 @@ function polyLine = scatter3(varargin)
             return;
         end
     end
-        
+
     n = length(X);
     [S,C,thickness,markStyle,markFg,markBg,fill,scanFailed] = scatterScanVargin(varargin,nextArgin,n);
     if (scanFailed) then
         return;
     end
-    
-    drawlater();
 
-    if isempty(Z) then 
+    f = gcf();
+    old_drawing_mode = f.immediate_drawing;
+    f.immediate_drawing = "off";
+
+    if isempty(Z) then
         if isempty(axesHandle) then
             plot(X,Y);
         else
@@ -98,27 +100,25 @@ function polyLine = scatter3(varargin)
         end
         polyLine = gce();
     end
-    
+
     if polyLine.Type <> "Polyline" then
         warning("Handle should be a Polyline handle.");
-        return;
+    else
+        scatterSetPolyline(polyLine,S,C,thickness,markStyle,markFg,markBg,fill);
+
+        if ~isempty(Z) then
+            set(gca(),"cube_scaling","on");
+            set(gca(),"grid",[1 1 1]);
+        end
     end
 
-    scatterSetPolyline(polyLine,S,C,thickness,markStyle,markFg,markBg,fill);
-    
-    if ~isempty(Z) then
-        set(gca(),"cube_scaling","on");
-        set(gca(),"grid",[1 1 1]);
-    end
-    
-    drawnow();
-
+    f.immediate_drawing = old_drawing_mode;
 endfunction
 
 function [S,C,thickness,markStyle,markFg,markBg,fill,scanFailed] = scatterScanVargin(argins,nextArgin,n)
 
     scanFailed = %F;
-    
+
     // check for size argument
     S = [];
     if  size(argins) >= nextArgin then
@@ -154,7 +154,7 @@ function [S,C,thickness,markStyle,markFg,markBg,fill,scanFailed] = scatterScanVa
                     C = scatterLinearColorMap(argins(nextArgin));
                     nextArgin = nextArgin + 1;
                 elseif n1 == n & n2 == 3 then
-                    C = addcolor(argins(nextArgin));            
+                    C = addcolor(argins(nextArgin));
                     nextArgin = nextArgin + 1;
                 else
                     warning("C must be a vector or a matrix of the same length as X.");
@@ -171,7 +171,7 @@ function [S,C,thickness,markStyle,markFg,markBg,fill,scanFailed] = scatterScanVa
                     if ~isempty(colorRGB) then
                         C = addcolor(colorRGB/255);
                         nextArgin = nextArgin + 1;
-                    end        
+                    end
                 elseif (n1 == n & n2 == 1) | (n1 == 1 & n2 == n) then
                     C = addcolor(name2rgb(argins(nextArgin))/255);
                     if isempty(C) then
@@ -271,7 +271,7 @@ function [S,C,thickness,markStyle,markFg,markBg,fill,scanFailed] = scatterScanVa
                     warning(strcat([argins(nextArgin+1) " is not a valid value for property linewidth."]));
                     scanFailed = %T;
                     return;
-                end 
+                end
             case "thickness"
                 if type(argins(nextArgin+1)) == 1 then
                     thickness = argins(nextArgin+1);
@@ -301,7 +301,7 @@ function colorInd = colorIndex(colorSpec)
         end
     elseif type(colorSpec) == 1 & (size(colorSpec) == [1 3] | size(colorSpec) == [3 1]) then
         colorInd = addcolor(colorSpec);
-        return; 
+        return;
     end
     warning("Specified string is an invalid color value.");
 endfunction
@@ -406,7 +406,7 @@ function scatterSetPolyline(polyLine,S,C,thickness,markStyle,markFg,markBg,fill)
         end
      else
         if size(C) == [1 1] then
-            polyLine.mark_foreground = C; 
+            polyLine.mark_foreground = C;
             if fill == %T then
                 polyLine.mark_background = C;
             else

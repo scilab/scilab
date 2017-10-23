@@ -91,9 +91,6 @@
     <ClInclude Include="..\..\includes\FocusOnConsole.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\ConvertSlash.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\includes\dynlib_windows_tools.h">
       <Filter>Header Files</Filter>
     </ClInclude>

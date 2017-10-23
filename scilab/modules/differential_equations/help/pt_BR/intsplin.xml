@@ -2,29 +2,32 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="intsplin" xml:lang="pt">
     <refnamediv>
         <refname>intsplin</refname>
-        <refpurpose>integração de dados experimentais por interpolação por
+        <refpurpose>integraÃ§Ã£o de dados experimentais por interpolaÃ§Ã£o por
             spline
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
-        <synopsis>v = intsplin([x,] s)</synopsis>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
+        <synopsis>
+          v = intsplin(y)
+          v = intsplin(x, y)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>x</term>
                 <listitem>
                     <para>
                         vetor de dados de coordenadas <literal>x</literal> crescentes.
-                        O valor padrão é
+                        O valor padrÃ£o Ã©
                         <literal>1:size(y,'*')</literal>
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>s</term>
+                <term>y</term>
                 <listitem>
                     <para>
                         vetor de dados de coordenadas <literal>y</literal>
@@ -40,29 +43,38 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>Computa :</para>
         <para>
-            Onde <literal>f</literal> é uma função descrita por um conjunto de valores
+            Onde <literal>f</literal> Ã© uma funÃ§Ã£o descrita por um conjunto de valores
             experimentais:
         </para>
         <para>
-            <literal>s(i)=f(x(i))</literal> e <literal>x0=x(1)</literal>,
+            <literal>y(i)=f(x(i))</literal> e <literal>x0=x(1)</literal>,
             <literal>x1=x(n)</literal>
         </para>
-        <para>Entre os pontos da malha a função é interpolada usando-se
+        <para>Entre os pontos da malha a funÃ§Ã£o Ã© interpolada usando-se
             splines.
         </para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
-t=0:0.1:%pi
+t = 0:0.1:%pi
 intsplin(t,sin(t))
+
+intsplin(1:5)            // 12
+
+x = 0:0.1:0.4;
+intsplin(x, 1:5)         // 1.2
+
+intsplin((1:5)*%i)       // 12i
+intsplin(x, (1:5)*%i)    // 1.2i
+intsplin(x, x+(1:5)*%i)  // 0.08 + 1.2i
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="intg">intg</link>

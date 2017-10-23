@@ -1,6 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) Bruno Pincon
-// Copyright (C) 2015 - Samuel GOUGEON
+// Copyright (C) 2015, 2017 - Samuel GOUGEON
+//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -12,9 +13,13 @@
 
 function [varargout] = ndgrid(varargin)
     nbdim = length(varargin)
-    if nbdim < 2 then
+    if nbdim < 1 then
         msg = _("%s: Wrong number of input arguments: At least %d expected.\n")
-        error(msprintf(msg, "ndgrid", 2))
+        error(msprintf(msg, "ndgrid", 1))
+    end
+    if nbdim==1 then
+        varargin(2) = varargin(1)
+        nbdim = 2
     end
 
     dim = zeros(1,nbdim)
@@ -42,7 +47,7 @@ function [varargout] = ndgrid(varargin)
     for k = 1:nbdim
         tmp = varargin(k)
         ind = ones(1,prod(dim(k+1:$))) .*. (1:size(tmp,"*")) ..
-        .*. ones(1,prod(dim(1:k-1)))
+                .*. ones(1,prod(dim(1:k-1)))
         if typeof(tmp)~="rational"
             varargout(k) = matrix( tmp(ind) , dim )
         else

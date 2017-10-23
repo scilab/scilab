@@ -8,3 +8,6 @@ getlongpathname
 FileExistW
 getfile_filename
 get_full_pathW
+isdir
+isDrive
+createdirectory

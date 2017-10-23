@@ -25,6 +25,7 @@ typedef struct
     char* pstFile;
     char* pstExec;
     char* pstLang;
+    char* pstSciHome;
     void* pExpTree;
     int iParseTrace;
     int iPrintAst;

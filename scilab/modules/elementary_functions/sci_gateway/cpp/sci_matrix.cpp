@@ -18,6 +18,8 @@
 #include "function.hxx"
 #include "double.hxx"
 #include "string.hxx"
+#include "struct.hxx"
+#include "cell.hxx"
 #include "overload.hxx"
 
 extern "C"
@@ -60,7 +62,19 @@ types::Function::ReturnValue sci_matrix(types::typed_list &in, int _iRetCount, t
     pGTIn = in[0]->getAs<types::GenericType>();
     if (pGTIn->getSize() == 0)
     {
-        out.push_back(types::Double::Empty());
+        if (pGTIn->isStruct())
+        {
+            out.push_back(new types::Struct());
+        }
+        else if (pGTIn->isCell())
+        {
+            out.push_back(new types::Cell());
+        }
+        else
+        {
+            out.push_back(types::Double::Empty());
+        }
+
         return types::Function::OK;
     }
 

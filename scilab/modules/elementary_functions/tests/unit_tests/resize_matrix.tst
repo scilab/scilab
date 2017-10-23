@@ -1,11 +1,12 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2012 - Scilab Enterprises - Sylvestre Ledru
-// Copyright (C) 2016 - Samuel GOUGEON
+// Copyright (C) 2016, 2017 - Samuel GOUGEON
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 // When one or several new sizes are 0, [] is returned:
 m = grand(3,4,"uin",0,100);
@@ -63,13 +64,22 @@ assert_checkequal(size(myMat), size(refMat));
 
 assert_checkequal(myMat, refMat);
 
-refMat=int32([0,4,3,0;
-1,2,4,0;
-4,4,0,0;
-0,0,0,0]);
+// With encoded integers:
+itypes = [1 2 4 8 11 12 14 18];
+refMat=[
+0, 4, 3, 0
+1, 2, 4, 0
+4, 4, 0, 0
+0, 0, 0, 0];
+for i = itypes
+    ref = iconvert(refMat,i);
+    stype = typeof(ref);
+    myMatInteger = resize_matrix( myMat, 4, 4, stype ); // create an integer matrix
+    assert_checkequal(myMatInteger, ref);
+end
 
-myMatInteger = resize_matrix( myMat, 4, 4, "int32" ); // create an integer matrix
-assert_checkequal(myMatInteger, refMat);
+// With booleans:
+refMat = int32(refMat);
 booleanMat=resize_matrix( refMat, 3, 5 , "boolean");
 assert_checkequal(booleanMat, [%f %t %t %f %f; %t %t %t %f %f; %t %t %f %f %f]);
 

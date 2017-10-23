@@ -314,12 +314,12 @@
         </para>
         <programlisting role="example"><![CDATA[
 // x, y and z initialisation
-t = 1:200
-x = t .* cos(t) .* sin(t)
-y = t .* sin(t) .* sin(t)
-z = t .* cos(t)
+t = 1:200;
+x = t .* cos(t) .* sin(t);
+y = t .* sin(t) .* sin(t);
+z = t .* cos(t);
 // create 3D scatter plot
-scatter3(x, y, z)
+scatter3(x, y, z);
 // modify rotation angles
 gca().rotation_angles = [60, 45];
  ]]></programlisting>
@@ -336,14 +336,14 @@ gca().rotation_angles = [60, 45];
         </para>
         <programlisting role="example"><![CDATA[
 // x, y and z initialisation
-t = 1:200
-x = t .* cos(t) .* sin(t)
-y = t .* sin(t) .* sin(t)
-z = t .* cos(t)
+t = 1:200;
+x = t .* cos(t) .* sin(t);
+y = t .* sin(t) .* sin(t);
+z = t .* cos(t);
 // size according to radius
-s = linspace(50, 1, length(t))
+s = linspace(50, 1, length(t));
 // create 3D scatter plot
-scatter3(x, y, z, s)
+scatter3(x, y, z, s);
 // modify rotation angles
 gca().rotation_angles = [60, 45];
  ]]></programlisting>
@@ -361,18 +361,18 @@ gca().rotation_angles = [60, 45];
         </para>
         <programlisting role="example"><![CDATA[
 // x, y and z initialisation
-t = 1:200
-x = t .* cos(t) .* sin(t)
-y = t .* sin(t) .* sin(t)
-z = t .* cos(t)
+t = 1:200;
+x = t .* cos(t) .* sin(t);
+y = t .* sin(t) .* sin(t);
+z = t .* cos(t);
 // size according to radius
-s = linspace(50, 1, length(t))
+s = linspace(50, 1, length(t));
 // set color map
 gcf().color_map = coolcolormap(64);
 // color according to radius
-c = t
+c = t;
 // create 3D scatter plot
-scatter3(x, y, z, s, c)
+scatter3(x, y, z, s, c);
 // modify rotation angles
 gca().rotation_angles = [60, 45];
  ]]></programlisting>
@@ -392,11 +392,11 @@ gca().rotation_angles = [60, 45];
         </para>
         <programlisting role="example"><![CDATA[
 // x, y and z initialisation
-z = linspace(0, 25, 200)
-x = z .* cos(z)
-y = z .* sin(z)
+z = linspace(0, 25, 200);
+x = z .* cos(z);
+y = z .* sin(z);
 // create 3D scatter plot
-scatter3(x, y, z, "fill")
+scatter3(x, y, z, "fill");
 // modify rotation angles
 gca().rotation_angles = [60, 45];
  ]]></programlisting>
@@ -412,11 +412,11 @@ gca().rotation_angles = [60, 45];
         </para>
         <programlisting role="example"><![CDATA[
 // x, y and z initialisation
-z = linspace(0, 25, 200)
-x = z .* cos(z)
-y = z .* sin(z)
+z = linspace(0, 25, 200);
+x = z .* cos(z);
+y = z .* sin(z);
 // create 3D scatter plot
-scatter3(x, y, z, "*")
+scatter3(x, y, z, "*");
 // modify rotation angles
 gca().rotation_angles = [60, 45];
  ]]></programlisting>
@@ -432,13 +432,13 @@ gca().rotation_angles = [60, 45];
         </para>
         <programlisting role="example"><![CDATA[
 // x, y and z initialisation
-z = linspace(0, 25, 200)
-x = z .* cos(z)
-y = z .* sin(z)
+z = linspace(0, 25, 200);
+x = z .* cos(z);
+y = z .* sin(z);
 // create 3D scatter plot
 scatter3(x, y, z,...
         "markerEdgeColor", "black",...
-        "markerFaceColor", [0 .8 .8])
+        "markerFaceColor", [0 .8 .8]);
 // modify rotation angles
 gca().rotation_angles = [60, 45];
  ]]></programlisting>
@@ -456,17 +456,17 @@ gca().rotation_angles = [60, 45];
         </para>
         <programlisting role="example"><![CDATA[
 // x, y and z initialisation
-n = 20
-[x, y] = meshgrid(linspace(-2, 2, n))
-z = exp(-x.^2 - y.^2)
+n = 20;
+[x, y] = meshgrid(linspace(-2, 2, n));
+z = exp(-x.^2 - y.^2);
 // create 3D scatter subplot
 subplot(2,1,1)
-scatter3(gca(), x(:), y(:), z(:))
+scatter3(gca(), x(:), y(:), z(:));
 // modify rotation angles
 gca().rotation_angles = [60,45];
 // create 3D scatter subplot
 subplot(2,1,2)
-scatter3(gca(), x(:), y(:), z(:), "markerFaceColor", [0 .8 .8])
+scatter3(gca(), x(:), y(:), z(:), "markerFaceColor", [0 .8 .8]);
 // modify rotation angles
 gca().rotation_angles = [60,45];
  ]]></programlisting>
@@ -486,14 +486,14 @@ gca().rotation_angles = [60,45];
         </para>
         <programlisting role="example"><![CDATA[
 // x, y and z initialisation
-t = 1:200
-x = t .* cos(t) .* sin(t)
-y = t .* sin(t) .* sin(t)
-z = t .* cos(t)
+t = 1:200;
+x = t .* cos(t) .* sin(t);
+y = t .* sin(t) .* sin(t);
+z = t .* cos(t);
 // size according to radius
-s = linspace(50, 1, length(t))
+s = linspace(50, 1, length(t));
 // create 3D scatter plot
-scatter3(x, y, z, s)
+scatter3(x, y, z, s);
 // modify rotation angles
 gca().rotation_angles = [60,45];
  ]]></programlisting>
@@ -508,8 +508,8 @@ gca().rotation_angles = [60,45];
         </scilab:image>
         <programlisting role="example"><![CDATA[
 // modify polyline
-p.mark_foreground = color(0.5, 0, 0)
-p.mark_background = color(0.5, 0.5, 0)
+p.mark_foreground = color(0.5, 0, 0);
+p.mark_background = color(0.5, 0.5, 0);
  ]]></programlisting>
         <scilab:image>
             t = 1:200

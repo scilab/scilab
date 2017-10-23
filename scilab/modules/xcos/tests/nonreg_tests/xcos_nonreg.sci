@@ -305,7 +305,7 @@ function status = launch_nonreg(baseDir, testName)
     end
     // Launch previous script inside a NW Scilab and redirect both standard and error output to files
     if getos() == "Windows" then
-        cmd = "(""" + SCI_BIN + "\bin\scilex.exe"" -nw -nb -args -nouserstartup -f """ + testFilename + """ > """ + logFilename + """) 2> """ + errFilename + """"
+        cmd = "(""" + SCI_BIN + "\bin\scilab"" -nw -nb -args -nouserstartup -f """ + testFilename + """ > """ + logFilename + """) 2> """ + errFilename + """"
     else
         cmd = "(''" + SCI_BIN + "/bin/scilab'' -nw -nb -args -nouserstartup -f ''" + testFilename + "'' > ''" + logFilename + "'') 2> ''" + errFilename + "''"
     end

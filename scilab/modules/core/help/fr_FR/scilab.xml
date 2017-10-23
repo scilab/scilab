@@ -17,7 +17,7 @@
         <synopsis>
 #      MS Windows          |  # Linux / Unix / Mac OS X
 wscilex     &lt;Options&gt;     |  scilab         &lt;Options&gt;
-wscilex -nw &lt;Options&gt; |  scilab-adv-cli &lt;Options&gt;
+wscilex-cli &lt;Options&gt; |  scilab-adv-cli &lt;Options&gt;
 scilex      &lt;Options&gt;      |  scilab-cli     &lt;Options&gt;
         </synopsis>
     </refsynopsisdiv>
@@ -287,6 +287,14 @@ evstr(a(i+2))*2
                 </listitem>
             </varlistentry>
             <varlistentry>
+                <term>-scihome dir</term>
+                <listitem>
+                    <para>Affecte à SCIHOME le chemin spécifié par <literal>dir</literal> (entre
+                      guillemets s'il inclut des espaces)(pas entre apostrophes !).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>--texmacs</term>
                 <listitem>
                     <para>Cette option est réservée au module externe TeXMacs.</para>
@@ -520,6 +528,12 @@ echo $? ]]></screen>
                 <revnumber>6.0.0</revnumber>
                 <revremark>
                     Option <literal>-quit</literal> ajoutée. Option <literal>-mem</literal> supprimée.
+                </revremark>
+            </revision>
+            <revision>
+                <revnumber>6.0.1</revnumber>
+                <revremark>
+                    Option <literal>-scihome</literal> ajoutée.
                 </revremark>
             </revision>
         </revhistory>

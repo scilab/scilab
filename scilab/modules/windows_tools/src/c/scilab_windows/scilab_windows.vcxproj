@@ -235,10 +235,8 @@ lib /DEF:"$(ProjectDir)Gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\cpp\scilab_windows\getScilabDirectory.cpp" />
-    <ClCompile Include="..\..\cpp\scilab_windows\SetScilabEnvironmentVariables.cpp" />
     <ClCompile Include="buildMainWindowTitle_Windows.c" />
     <ClCompile Include="console.c" />
-    <ClCompile Include="ConvertSlash.c" />
     <ClCompile Include="DllmainScilab_Windows.c" />
     <ClCompile Include="FilesAssociations.c" />
     <ClCompile Include="FindScilab.c" />
@@ -259,10 +257,8 @@ lib /DEF:"$(ProjectDir)Gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\cpp\scilab_windows\getScilabDirectory.h" />
-    <ClInclude Include="..\..\cpp\scilab_windows\SetScilabEnvironmentVariables.h" />
     <ClInclude Include="buildMainWindowTitle_Windows.h" />
     <ClInclude Include="console.h" />
-    <ClInclude Include="..\..\..\includes\ConvertSlash.h" />
     <ClInclude Include="dynlib_scilab_windows.h" />
     <ClInclude Include="FilesAssociations.h" />
     <ClInclude Include="FindScilab.h" />

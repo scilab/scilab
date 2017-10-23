@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="names">
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * Copyright (C) 2017 - Samuel GOUGEON
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:lang="ja" xml:id="names">
     <refnamediv>
         <refname>names</refname>
         <refpurpose>Scilab 名前の構文</refpurpose>
@@ -8,42 +26,61 @@
         <title>説明</title>
         <para>
             変数および関数の名前は文字または以下の特殊文字のとれかから始まる必要があります:
-            '<literal>%</literal>', '<literal>_</literal>', '<literal>#</literal>', '<literal>!</literal>',
-            '<literal>$</literal>', '<literal>?</literal>'.
+            <literal>% _ # ! ? $</literal>
         </para>
         <para>
             以下に続く文字は,文字,数字,
-            '<literal>_</literal>', '<literal>#</literal>', '<literal>!</literal>', '<literal>$</literal>', '<literal>?</literal>'
+            <literal>_ # ! ? $</literal>
             を含む任意の特殊文字とすることができます.
         </para>
         <para>
             大文字小文字は区別されます.
         </para>
         <para>
-            名前は任意の長さとすることができますが,最初の24文字のみが認識されます.
-            大文字と小文字は区別されます.
-            この制限を超えた場合,警告が発生します.
-            この制限はScilab 6のリリースでも変わらないことに注意してください.
+            Multilingual UTF-8 characters are accepted.
+        </para>
+        <para>
+            Names may be as long as you want.
         </para>
     </refsection>
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[
-//有効な名前
+// 有効な名前
 %eps
-A1=123
-#Color=8
-My_Special_Color_Table=rand(10,3)
-//無効な名前
+A1 = 123
+#Color = 8
+長さ = 2
+My_Special_Color_Table = rand(10,3)
+
+// 無効な名前
 //1A , b%, .C
+
 //長い名前
-Try_to_use_a_long_name = 1 // 長いが長すぎない
-Try_to_use_a_too_long_name = 1 // 長すぎる
-// 同様な長い名前を有する2番目の変数を挿入してみましょう
-Try_to_use_a_too_long_name2 = 2
-// ... 最初の変数の値を見てみましょう
-disp(Try_to_use_a_too_long_name)
-// この制限は Scilab 6のリリースでも変わらないことに注意してください.
+The_name_of_an_identifier_is_not_length_limited = 1
+
+// A kilometric name (1000-char long) :
+name = strcat(part("a",ones(1,1000)));
+execstr(name+"=%pi; b ="+name);
+b
  ]]></programlisting>
+    </refsection>
+    <refsection role="history">
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>
+                            Scilab's parser no longer truncates names longer than 24 characters.
+                        </listitem>
+                        <listitem>
+                            UTF-8 characters are now accepted in names of variables and fields.
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

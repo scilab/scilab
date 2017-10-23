@@ -42,6 +42,8 @@ Compilation
    - autoconf 2.69
    - libtool 2.4.6 (patched for Mac Os X)
 
+* Migration to Microsoft Visual Studio 2017 and Intel Composer 2018
+
 
 Dependencies
 ------------
@@ -52,6 +54,7 @@ Packaging & Supported Operating Systems
 
 * Scilab embedded JVM is Java 8. To run or compile Scilab you need at least:
   - Windows:
+     - Windows 10 (Desktop)
      - Windows 8 (Desktop)
      - Windows 7
      - Windows Vista SP2
@@ -67,7 +70,7 @@ Packaging & Supported Operating Systems
 
     For more information, please consult: [What are the system requirements for Java?](http://java.com/en/download/help/sysreq.xml)
 
-* [SSE2](https://en.wikipedia.org/wiki/SSE2), Streaming SIMD Extensions 2 support is mandatory.
+* [SSE2](https://en.wikipedia.org/wiki/SSE2), Streaming SIMD Extensions 2 support is now mandatory to run Scilab on Linux i686.
 
 
 Feature changes and additions
@@ -80,7 +83,7 @@ Feature changes and additions
   - PVS-Studio inspections blog report
   - Coverity scan weekly source analysis
 
-
+  
 Help pages:
 -----------
 
@@ -93,9 +96,6 @@ Data Structures
 
 Xcos
 ----
-
-* scicos_log() support options parameters to retrieve model statistics.
-* Added two new blocks `SCALE_CSCOPE` & `SCALE_CMSCOPE` which are `CSCOPE` & `CMSCOPE` blocks (resp) with additional feature of autoscaling of graph. It takes a parameter (1 for Yes or 0 for No) for scaling or no-scaling.
 
 
 API modification

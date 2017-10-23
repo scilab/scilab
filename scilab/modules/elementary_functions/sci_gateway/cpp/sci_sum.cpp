@@ -118,28 +118,9 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
             }
             else if (wcscmp(wcsString, L"m") == 0)
             {
-                int iDims = 0;
-                int* piDimsArray = NULL;
-
-                if (in[0]->isDouble())
-                {
-                    pDblIn = in[0]->getAs<types::Double>();
-                    iDims = pDblIn->getDims();
-                    piDimsArray = pDblIn->getDimsArray();
-                }
-                else if (in[0]->getType() == types::InternalType::ScilabPolynom)
-                {
-                    pPolyIn = in[0]->getAs<types::Polynom>();
-                    iDims = pPolyIn->getDims();
-                    piDimsArray = pPolyIn->getDimsArray();
-                }
-                else if (in[0]->isGenericType())
-                {
-                    pIntIn = in[0]->getAs<types::GenericType>();
-                    iDims = pIntIn->getDims();
-                    piDimsArray = pIntIn->getDimsArray();
-                }
-
+                types::GenericType* pGT = in[0]->getAs<types::GenericType>();
+                int iDims = pGT->getDims();
+                int* piDimsArray = pGT->getDimsArray();
 
                 // old function was "mtlsel"
                 for (int i = 0; i < iDims; i++)

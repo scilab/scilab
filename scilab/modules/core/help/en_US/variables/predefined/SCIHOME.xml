@@ -14,7 +14,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="SCIHOME" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="SCIHOME" xml:lang="en">
     <refnamediv>
         <refname>SCIHOME</refname>
         <refpurpose>contains the path to preferences, history files of your Scilab
@@ -48,6 +51,10 @@
         <para>
             &lt;Scilab-Version&gt; is current version of Scilab used.
         </para>
+        <note>
+           The default path assigned to <literal>SCIHOME</literal> may be replaced with a given path
+           specified with the <literal>-scihome</literal> option when launching Scilab.
+        </note>
     </refsection>
     <refsection>
         <title>Examples</title>
@@ -66,6 +73,11 @@ isdir(SCIHOME)
         <simplelist type="inline">
             <member>
                 <link linkend="TMPDIR">TMPDIR</link>
+            </member>
+        </simplelist>
+        <simplelist type="inline">
+            <member>
+                <link linkend="scilab">Scilab startup</link>
             </member>
         </simplelist>
     </refsection>

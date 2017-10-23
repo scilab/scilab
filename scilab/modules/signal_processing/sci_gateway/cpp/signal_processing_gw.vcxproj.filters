@@ -56,6 +56,9 @@
     <ClCompile Include="..\c\sci_conv2.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="sci_filter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\..\..\bin\libintl.lib" />

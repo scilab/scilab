@@ -38,6 +38,10 @@
         </para>
         <para>&lt;User&gt; はカレントのログイン名です</para>
         <para>&lt;Scilab-Version&gt; は使用するScilabのバージョンです.</para>
+        <note>
+           The default path assigned to <literal>SCIHOME</literal> may be replaced with a given path
+           specified with the <literal>-scihome</literal> option when launching Scilab.
+        </note>
     </refsection>
     <refsection role="see also">
         <title>参照</title>
@@ -49,6 +53,11 @@
         <simplelist type="inline">
             <member>
                 <link linkend="TMPDIR">TMPDIR</link>
+            </member>
+        </simplelist>
+        <simplelist type="inline">
+            <member>
+                <link linkend="scilab">Scilab startup</link>
             </member>
         </simplelist>
     </refsection>

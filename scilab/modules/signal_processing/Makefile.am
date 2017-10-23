@@ -75,7 +75,8 @@ GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sci_corr.cpp \
     sci_gateway/cpp/sci_delip.cpp \
     sci_gateway/cpp/sci_fft.cpp \
-    sci_gateway/cpp/sci_syredi.cpp
+    sci_gateway/cpp/sci_syredi.cpp \
+    sci_gateway/cpp/sci_filter.cpp
 
 GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_remez.c \

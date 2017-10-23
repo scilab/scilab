@@ -26,12 +26,12 @@ xmlns:scilab="http://www.scilab.org" xml:id="resize_matrix" xml:lang="en">
         <title>Syntax</title>
         <synopsis>
             resize_matrix   // demo
-            
+
             resMat = resize_matrix(mat, nbRows, nbCols)
             resMat = resize_matrix(mat, nbRows, nbCols, resType)
             resMat = resize_matrix(mat, nbRows, nbCols, resType, padding)
             resMat = resize_matrix(mat, nbRows, nbCols,    ""  , padding)
-            
+
             resMat = resize_matrix(mat, newSizes)
             resMat = resize_matrix(mat, newSizes, resType)
             resMat = resize_matrix(mat, newSizes, resType, padding)
@@ -104,21 +104,33 @@ xmlns:scilab="http://www.scilab.org" xml:id="resize_matrix" xml:lang="en">
                 <term>padding</term>
                 <listitem>
                     <para>
-                        optional scalar of same type as <varname>mat</varname>, specifying the content to set in elements created when the size along a dimension is increased. The default padding is done with <literal>0</literal> (real or complex decimals, encoded integers, polynomials), or <literal>""</literal> (text), or <literal>%F</literal> (booleans).
+                        optional scalar of same type as <varname>mat</varname>, specifying the
+                        content to set in elements created when the size along a dimension is
+                        increased. The default padding is done with <literal>0</literal> (real or
+                        complex decimals, encoded integers, polynomials), or <literal>""</literal>
+                        (text), or <literal>%F</literal> (booleans).
                     </para>
                     <para>
-                        When <varname>mat</varname> and <varname>padding</varname> types do not match, scilab tries to convert the <varname>padding</varname>'s one
+                        When <varname>mat</varname> and <varname>padding</varname> types do not
+                        match, scilab tries to convert the <varname>padding</varname>'s one
                     </para>
                     <para>
-                        For polynomials, the varname of the padding is forced to the <varname>mat</varname>'s one.
+                        For polynomials, the varname of the padding is forced to the
+                        <varname>mat</varname>'s one.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>resType</term>
                 <listitem>
-                    <para>optional text word specifying the data type into which the resized matrix must be converted. "boolean", "constant", "string", "int8", "uint8", "int16", "uint16", "int32", and "uint32" are supported.</para>
-                    <para>Type conversion is supported neither for Polynomials nor for hypermatrix of text.</para>
+                    <para>
+                        optional text word specifying the data type into which the resized matrix
+                        must be converted. "boolean", "constant", "string", "int8", "uint8", "int16",
+                        "uint16", "int32", "uint32", "int64", and "uint64" are supported.</para>
+                    <para>
+                        Type conversion is supported neither for Polynomials nor for hypermatrix
+                        of text.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -132,12 +144,16 @@ xmlns:scilab="http://www.scilab.org" xml:id="resize_matrix" xml:lang="en">
     <refsection role="description">
         <title>Description</title>
         <para>
-            Creates a matrix of sizes <literal>[nbRows, nbCols]</literal> or <literal>newSizes</literal>, or an hypermatrix of sizes <literal>newSizes</literal>.
-            If for a dimension the new size is smaller than the initial one, the matrix is cropped. If the size is increased, the matrix/hypermatrix is padded.
-            The number of dimensions can be increased. Conversely, Scilab automatically squeezes highest dimensions with size kept or set to 1 (singletons).
+            Creates a matrix of sizes <literal>[nbRows, nbCols]</literal> or
+            <literal>newSizes</literal>, or an hypermatrix of sizes <literal>newSizes</literal>.
+            If for a dimension the new size is smaller than the initial one, the matrix is cropped.
+            If the size is increased, the matrix/hypermatrix is padded.
+            The number of dimensions can be increased. Conversely, Scilab automatically squeezes
+            highest dimensions with size kept or set to 1 (singletons).
         </para>
         <para>
-            The type of the result may be changed by specifying the <literal>resType</literal> argument, with restrictions given above.
+            The type of the result may be changed by specifying the <literal>resType</literal>
+            argument, with restrictions given above.
         </para>
     </refsection>
     <refsection role="examples">
@@ -233,10 +249,27 @@ resize_matrix(P, [3 3 2], "", %z)
         <revhistory>
             <revision>
                 <revnumber>5.5.0</revnumber>
-                <revremark>Polynomials and Hypermatrices are now accepted.
-                    Custom padding can now be provided.
-                    New sizes can be specified in a vector.
-                    resize_matrix with no parameters displays examples (demo).
+                <revremark>
+                    <itemizedlist>
+                        <listitem>
+                            Polynomials and Hypermatrices are now accepted.
+                        </listitem>
+                        <listitem>
+                            A custom padding can now be provided.
+                        </listitem>
+                        <listitem>
+                            New sizes can be specified in a vector.
+                        </listitem>
+                        <listitem>
+                            resize_matrix() with no parameters displays examples (demo).
+                        </listitem>
+                    </itemizedlist>
+                </revremark>
+            </revision>
+            <revision>
+                <revnumber>6.0.1</revnumber>
+                <revremark>The <literal>resType</literal> option is extended to the new
+                <literal>int64</literal> and <literal>uint64</literal> integer types.
                 </revremark>
             </revision>
         </revhistory>

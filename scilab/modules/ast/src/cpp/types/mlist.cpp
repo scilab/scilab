@@ -48,13 +48,15 @@ bool MList::invoke(typed_list & in, optional_list & /*opt*/, int _iRetCount, typ
 
             _out = extractStrings(stFields);
 
-            List* pList = _out->getAs<types::List>();
-            for (int i = 0; i < pList->getSize(); i++)
+            if (_out)
             {
-                out.push_back(pList->get(i));
+                List* pList = _out->getAs<types::List>();
+                for (int i = 0; i < pList->getSize(); i++)
+                {
+                    out.push_back(pList->get(i));
+                }
+                delete pList;
             }
-
-            delete pList;
         }
 
         if (!out.empty())

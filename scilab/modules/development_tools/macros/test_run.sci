@@ -331,9 +331,12 @@ function status = test_module(_params)
     if with_module(name(1)) then
         // It's a scilab internal module
         module.path = pathconvert(SCI + "/modules/" + name(1), %F);
-    elseif or(librarieslist() == "atomslib") & atomsIsLoaded(name(1)) then
+    elseif or(librarieslist() == "atomslib") & atomsIsInstalled(name(1)) then
         // It's an ATOMS module
-        module.path = pathconvert(atomsGetLoadedPath(name(1)) , %F, %T);
+        tmp = atomsGetInstalled();
+        tmp = tmp(tmp(:,1)==name(1),:)($,4)
+        module.path = pathconvert(tmp, %F, %T);
+        Autoloaded = or(name(1)==atomsAutoloadList())
     elseif isdir(name(1)) then
         // It's an external module
         module.path = pathconvert(name(1), %F);
@@ -343,7 +346,7 @@ function status = test_module(_params)
     end
 
     //get tests from path
-    my_types = ["unit_tests","nonreg_tests"];
+    my_types = ["unit_tests", "nonreg_tests"];
 
     directories = [];
     for i=1:size(my_types,"*")
@@ -378,6 +381,7 @@ function status = test_module(_params)
             for j = 1:size(directories, "*")
                 currentDir = directories(j);
                 testFile = currentDir + filesep() + _params.tests_mat(i) + ".tst";
+
                 if isfile(testFile) then
                     tests($+1, [1,2]) = [currentDir, _params.tests_mat(i)];
                     bFind = %t;
@@ -431,6 +435,9 @@ function status = test_module(_params)
         return;
     end
 
+    if isdef("Autoloaded", "l") & ~Autoloaded
+        atomsAutoloadAdd(name(1))
+    end
     tic();
     for i = 1:test_count
         printf("   %03d/%03d - ",i, test_count);
@@ -500,6 +507,10 @@ function status = test_module(_params)
     status.totalTime = toc();
 
     testsuite.time=status.totalTime;
+
+    if isdef("Autoloaded", "l") & ~Autoloaded
+        atomsAutoloadDel(name(1))
+    end
 
     clearglobal TICTOC;
     status.test_passed_count  = test_passed_count;
@@ -802,18 +813,15 @@ function status = test_single(_module, _testPath, _testName)
 
     //mode
     valgrind_opt = "";
-    winbin = "wscilex.exe";
     if _module.wanted_mode == "NW" then
         mode_arg = "-nw";
     elseif _module.wanted_mode == "NWNI" then
-        winbin = "scilex.exe";
         mode_arg = "-nwni";
     elseif _module.wanted_mode == ["NWNI" "PROFILING"] && getos() == "Linux" then
         mode_arg = "-nwni -profiling";
         valgrind_opt = "SCILAB_VALGRIND_OPT=""--log-file=" + tmp_prof + " """;
     else
         if execMode == "NWNI" then
-            winbin = "scilex.exe";
             mode_arg = "-nwni";
         elseif execMode == "NW" then
             mode_arg = "-nw";
@@ -846,9 +854,9 @@ function status = test_single(_module, _testPath, _testName)
     // Build final command
     if getos() == "Windows" then
         if (isdir(_module.moduleName) & isfile(loader_path)) // external module not in Scilab
-            test_cmd = "( """ + SCI_BIN + "\bin\" + winbin + """" + " " + mode_arg + " " + language_arg + SCI_ARGS + "-e ""exec(""""" + loader_path + """"");exec(""""" + tmp_tst + """"", -1);"" > """ + tmp_res + """ ) 2> """ + tmp_err + """";
+            test_cmd = "( """ + SCI_BIN + "\bin\scilab"" " + mode_arg + " " + language_arg + SCI_ARGS + "-e ""exec(""""" + loader_path + """"");exec(""""" + tmp_tst + """"", -1);"" > """ + tmp_res + """ ) 2> """ + tmp_err + """";
         else // standard module
-            test_cmd = "( """ + SCI_BIN + "\bin\" + winbin + """" + " " + mode_arg + " " + language_arg + SCI_ARGS + "-e ""exec(""""" + tmp_tst + """"", -1);"" > """ + tmp_res + """ ) 2> """ + tmp_err + """";
+            test_cmd = "( """ + SCI_BIN + "\bin\scilab"" " + mode_arg + " " + language_arg + SCI_ARGS + "-e ""exec(""""" + tmp_tst + """"", -1);"" > """ + tmp_res + """ ) 2> """ + tmp_err + """";
         end
     else
         if (isdir(_module.moduleName) & isfile(loader_path))

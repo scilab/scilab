@@ -30,9 +30,7 @@ extern "C"
 #include "setgetlanguage.h"
 #include "getScilabJavaVM.h"
 #include "sci_malloc.h"
-#ifdef _MSC_VER
-#include "ConvertSlash.h"
-#endif
+#include "setenvvar.h"
     /*--------------------------------------------------------------------------*/
 #define PATHTOCSS "/modules/helptools/css/javahelp.css"
 #define PATHTOBUILDDOC "/modules/helptools/build/doc/scilab_%s_help/"

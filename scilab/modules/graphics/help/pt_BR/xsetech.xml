@@ -141,9 +141,6 @@ clf('reset')
         <title>Ver Também </title>
         <simplelist type="inline">
             <member>
-                <link linkend="xgetech">xgetech</link>
-            </member>
-            <member>
                 <link linkend="subplot">subplot</link>
             </member>
             <member>

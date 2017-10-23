@@ -2,7 +2,9 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="xgetech">
     <refnamediv>
         <refname>xgetech</refname>
-        <refpurpose>récupération de l'échelle graphique courante   </refpurpose>
+        <refpurpose>
+            récupération de l'échelle graphique courante <emphasis role="bold">(obsolète)</emphasis>
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
@@ -29,6 +31,11 @@
     </refsection>
     <refsection>
         <title>Description</title>
+        <warning>
+          Cette fonction est obsolète. Elle sera retirée de Scilab 6.1. SVP utiliser
+          <literal>ax=gca(); (ax.axes_bounds, ax.data_bounds(:)', ax.log_flags, ax.margins)</literal>
+          ou toute combinaison utile à la place.
+        </warning>
         <para>
             <literal>xgetech</literal> renvoie l'échelle graphique de la fenêtre courante.
             Le rectangle [xmin,ymin,xmax,ymax] donné par
@@ -90,5 +97,16 @@ clf();
                 <link linkend="xsetech">xsetech</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.1</revnumber>
+                <revdescription>
+                    xgetech() est étiquetée obsolète pour un retrait de Scilab 6.1.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

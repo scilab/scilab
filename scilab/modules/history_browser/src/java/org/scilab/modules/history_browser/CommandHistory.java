@@ -159,6 +159,7 @@ public final class CommandHistory extends SwingScilabDockablePanel implements Si
             renderer.setOpenIcon(null);
 
             initialized = true;
+        } else {
         }
     }
 
@@ -413,7 +414,16 @@ public final class CommandHistory extends SwingScilabDockablePanel implements Si
                 window.setSize(500, 500);
                 window.setVisible(true);
             }
+        } else {
+            SwingScilabWindow window = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, browserTab);
+            if(window != null) {
+                int state = window.getExtendedState();
+                if((state & SwingScilabWindow.ICONIFIED) == SwingScilabWindow.ICONIFIED) {
+                    window.setExtendedState(state - SwingScilabWindow.ICONIFIED);
+                }
+            }
         }
+        
         browserTab.setVisible(true);
         expandAll();
     }

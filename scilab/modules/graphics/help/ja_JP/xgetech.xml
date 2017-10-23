@@ -28,7 +28,9 @@
 
         <refname>xgetech</refname>
 
-        <refpurpose>カレントのグラフィックスケールを取得</refpurpose>
+        <refpurpose>
+           カレントのグラフィックスケールを取得  <emphasis role="bold">(obsolete)</emphasis>
+        </refpurpose>
 
     </refnamediv>
 
@@ -77,6 +79,11 @@
     <refsection>
 
         <title>説明</title>
+        <warning>
+          This function is obsolete. It will be removed from Scilab 6.1. Please use
+          <literal>ax=gca(); (ax.axes_bounds, ax.data_bounds(:)', ax.log_flags, ax.margins)</literal>
+          or any combination instead.
+        </warning>
 
         <para>
 
@@ -218,6 +225,17 @@ clf('reset');
 
         </simplelist>
 
+    </refsection>
+    <refsection role="history">
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.1</revnumber>
+                <revdescription>
+                    xgetech() is tagged obsolete for removal from Scilab 6.1.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 
 </refentry>

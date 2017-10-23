@@ -2,6 +2,7 @@
 // Copyright (C) 2008-2009 - T. Pettersen
 // Copyright (C) 2010 - DIGITEO - Allan CORNET
 // Copyright (C) 2011 - DIGITEO - Michael Baudin
+// Copyright (C) 2017 - Samuel GOUGEON
 //
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
@@ -193,6 +194,7 @@ function [helptxt,demotxt]=help_from_sci(funname,helpdir,demodir)
     out = out($);
     out = tokens(out,".");
     out = out(1);      // remove .sci (...wont work for fil.name.sci)
+    outxml = strsubst(out, "/^%/","percent", "r");
 
     demotxt = ["mode(1)"
     "//"
@@ -211,7 +213,7 @@ function [helptxt,demotxt]=help_from_sci(funname,helpdir,demodir)
     " *"
     " -->"
     ""
-    "<refentry version=""5.0-subset Scilab"" xml:id="""+out+""" xml:lang=""en"""
+    "<refentry version=""5.0-subset Scilab"" xml:id="""+outxml+""" xml:lang=""en"""
     "          xmlns=""http://docbook.org/ns/docbook"""
     "          xmlns:xlink=""http://www.w3.org/1999/xlink"""
     "          xmlns:svg=""http://www.w3.org/2000/svg"""
@@ -238,6 +240,7 @@ function [helptxt,demotxt]=help_from_sci(funname,helpdir,demodir)
     line = mgetl(f,1);
     line = replaceTabBySpace(line);
     short_descr = stripblanks(strsubst(line, "//", ""), %T);
+    short_descr = helpfromsci_protects_ampersand(short_descr);
     helptxt = [helptxt;
     "  <refnamediv>"
     "    <refname>"+out+"</refname>"
@@ -246,7 +249,7 @@ function [helptxt,demotxt]=help_from_sci(funname,helpdir,demodir)
     ];
 
     cmds = ["SYNTAX", "PARAMETERS", "DESCRIPTION", "EXAMPLES", "SEE ALSO", ..
-    "AUTHORS", "BIBLIOGRAPHY", "USED FUNCTIONS"];
+            "AUTHORS", "BIBLIOGRAPHY", "USED FUNCTIONS" ];
 
     doing = "search";
     i = strindex(line, "//");
@@ -266,7 +269,9 @@ function [helptxt,demotxt]=help_from_sci(funname,helpdir,demodir)
             in = stripblanks(in(2));
             code = in;  // store original line for the demos.
             if (doing ~= "Examples") then // Replacing characters like <, > or & should not be done in the Examples
-                in = strsubst(in, "&", "&amp;"); // remove elements that make xml crash.
+                // Replacing "&" that are not prefixing HTML entities, with "&amp;":
+                in = helpfromsci_protects_ampersand(in);
+                //
                 in = strsubst(in, "< ", "&lt; ");
                 if strindex(in ,"<") then
                     if ~helpfromsci_isxmlstr(in) then
@@ -300,8 +305,12 @@ function [helptxt,demotxt]=help_from_sci(funname,helpdir,demodir)
                         par_name = in;
                         par_descr = " ";
                     end
-                    helptxt = [helptxt; "   <varlistentry><term>" + par_name + "</term>"];
-                    helptxt = [helptxt;"      <listitem><para>" + par_descr + "</para></listitem></varlistentry>"];
+                    helptxt = [helptxt
+                               "        <varlistentry>"
+                               "            <term>" + par_name + "</term>"];
+                    helptxt = [helptxt
+                      "            <listitem><para>" + par_descr + "</para></listitem>"
+                      "        </varlistentry>"];
                 end
             elseif doing == "Description" & in == "new_descr_param" then
                 helptxt = [helptxt;"   </para>";"   <para>"];
@@ -345,7 +354,7 @@ function [helptxt,demotxt]=help_from_sci(funname,helpdir,demodir)
     mclose(f);
 
     if ~isempty(helpdir) then
-        fnme = pathconvert(helpdir, %t, %f) + out + ".xml";
+        fnme = pathconvert(helpdir, %t, %f) + outxml + ".xml";
         answ = 1;
         if isfile(fnme) then  // file exists...
             answ = messagebox(fnme + " exists!", "Warning - help_from_sci", "warning", ["Create anyway" "Skip file"], "modal");
@@ -354,7 +363,7 @@ function [helptxt,demotxt]=help_from_sci(funname,helpdir,demodir)
             mputl(helptxt, fnme);
             helptxt = fnme;
         else
-            printf(gettext("%s: File skipped %s."), "help_from_sci", out + ".xml");
+            printf(gettext("%s: File skipped %s."), "help_from_sci", outxml + ".xml");
             helptxt = "";
         end
     end
@@ -373,6 +382,15 @@ function [helptxt,demotxt]=help_from_sci(funname,helpdir,demodir)
             printf(gettext("%s: File skipped %s."), "help_from_sci", out + ".demo.sce");
             demotxt = "";
         end
+    end
+endfunction
+//==============================================================================
+function str = helpfromsci_protects_ampersand(str)
+    // Replaces "&" that are not prefixing HTML entities, with "&amp;":
+    strPrev = "";
+    while str ~= strPrev
+        strPrev = str;
+        str = strsubst(str, "/&(?!([a-zA-Z]+|#[0-9]+);)/", "&amp;", "r");
     end
 endfunction
 //==============================================================================

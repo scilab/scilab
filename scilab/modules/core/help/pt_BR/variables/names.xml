@@ -1,36 +1,82 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="names" xml:lang="pt">
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * Copyright (C) 2017 - Samuel GOUGEON
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="names" xml:lang="pt">
     <refnamediv>
         <refname>names</refname>
         <refpurpose>scilab names syntax</refpurpose>
     </refnamediv>
     <refsection>
-        <title>Descrição</title>
-        <para>Nomes de variáveis ou funções no Scilab devem começar com uma letra,
-            ou com um dos seguintes caracteres especiais: '<literal>%</literal>',
-            '<literal>_</literal>', '<literal>#</literal>', '<literal>!</literal>',
-            '<literal>$</literal>', '<literal>?</literal>'.
+        <title>DescriÃ§Ã£o</title>
+        <para>Nomes de variÃ¡veis ou funÃ§Ãµes no Scilab devem comeÃ§ar com uma letra,
+            ou com um dos seguintes caracteres especiais: <literal>% _ # ! ? $</literal>
         </para>
-        <para>Os próximos caracteres podem ser letras ou um dos seguintes
-            caracteres especiais: '<literal>_</literal>', '<literal>#</literal>',
-            '<literal>!</literal>', '<literal>$</literal>',
-            '<literal>?</literal>'
+        <para>Os prÃ³ximos caracteres podem ser letras ou um dos seguintes
+            caracteres especiais: <literal>_ # ! ? $</literal>
         </para>
-        <para>Nomes podem ser tão longos quanto se queira, mas apenas os primeiros
-            24 caracteres serão levados em consideração. Letras maiúsculas e
-            minúsculas são diferentes.
+        <para>
+            Letras maiÃºsculas e minÃºsculas sÃ£o diferentes.
+        </para>
+        <para>
+            Multilingual UTF-8 characters are accepted.
+        </para>
+        <para>
+            Names may be as long as you want.
         </para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
-//Nomes válidos
+//Nomes vÃ¡lidos
 %eps
-A1=123
-#Color=8
-My_Special_Color_Table=rand(10,3)
-//Nomes inválidos
+A1 = 123
+#Color = 8
+funÃ§Ã£o = "linspace"
+
+//Nomes invÃ¡lidos
 //1A , b%, .C
+
+// Long names
+The_name_of_an_identifier_is_not_length_limited = 1
+
+// A kilometric name:
+name = strcat(part("a",ones(1,1000))); // 1000-char long
+execstr(name+"=%pi; b ="+name);
+b
  ]]></programlisting>
+    </refsection>
+    <refsection role="history">
+        <title>HistÃ³rico</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>
+                            Scilab's parser no longer truncates names longer than 24 characters.
+                        </listitem>
+                        <listitem>
+                            UTF-8 characters are now accepted in names of variables and fields.
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

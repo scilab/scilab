@@ -185,8 +185,9 @@ am__objects_1 = src/c/libscisparse_algo_la-spUtils.lo \
 am__objects_2 = src/fortran/isort1.lo src/fortran/spt.lo \
 	src/fortran/sz2ptr.lo src/fortran/spreshape.lo \
 	src/fortran/ordmmd.lo src/fortran/blkfc1.lo \
-	src/fortran/blkfct.lo src/fortran/inpnv.lo \
-	src/fortran/symfct.lo
+	src/fortran/blkfct.lo src/fortran/blkslv.lo \
+	src/fortran/inpnv.lo src/fortran/symfct.lo
+
 am_libscisparse_algo_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libscisparse_algo_la_OBJECTS = $(am_libscisparse_algo_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
@@ -216,7 +217,8 @@ am__objects_3 = sci_gateway/cpp/libscisparse_la-sparse_gw.lo \
 	sci_gateway/cpp/libscisparse_la-sci_symfcti.lo \
 	sci_gateway/cpp/libscisparse_la-sci_bfinit.lo \
 	sci_gateway/cpp/libscisparse_la-sci_inpnv.lo \
-	sci_gateway/cpp/libscisparse_la-sci_blkfc1i.lo
+	sci_gateway/cpp/libscisparse_la-sci_blkfc1i.lo \
+	sci_gateway/cpp/libscisparse_la-sci_blkslvi.lo
 am_libscisparse_la_OBJECTS = $(am__objects_3)
 libscisparse_la_OBJECTS = $(am_libscisparse_la_OBJECTS)
 @MAINTAINER_MODE_FALSE@am_libscisparse_la_rpath =
@@ -630,6 +632,7 @@ SPARSE_FORTRAN_SOURCES = \
     src/fortran/ordmmd.f \
 	src/fortran/blkfc1.f \
 	src/fortran/blkfct.f \
+	src/fortran/blkslv.f \
 	src/fortran/inpnv.f \
 	src/fortran/symfct.f
 
@@ -654,7 +657,8 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_symfcti.cpp \
 	sci_gateway/cpp/sci_bfinit.cpp \
 	sci_gateway/cpp/sci_inpnv.cpp \
-	sci_gateway/cpp/sci_blkfc1i.cpp
+	sci_gateway/cpp/sci_blkfc1i.cpp \
+	sci_gateway/cpp/sci_blkslvi.cpp
 
 libscisparse_la_CPPFLAGS = \
     -I$(srcdir)/src/c/ \
@@ -901,6 +905,8 @@ src/fortran/blkfc1.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/blkfct.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/blkslv.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/inpnv.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/symfct.lo: src/fortran/$(am__dirstamp) \
@@ -977,6 +983,9 @@ sci_gateway/cpp/libscisparse_la-sci_inpnv.lo:  \
 sci_gateway/cpp/libscisparse_la-sci_blkfc1i.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscisparse_la-sci_blkslvi.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 
 libscisparse.la: $(libscisparse_la_OBJECTS) $(libscisparse_la_DEPENDENCIES) $(EXTRA_libscisparse_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(CXXLINK) $(am_libscisparse_la_rpath) $(libscisparse_la_OBJECTS) $(libscisparse_la_LIBADD) $(LIBS)
@@ -996,6 +1005,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscisparse_la-sci_adj2sp.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscisparse_la-sci_bfinit.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscisparse_la-sci_blkfc1i.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscisparse_la-sci_blkslvi.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscisparse_la-sci_full.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscisparse_la-sci_inpnv.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscisparse_la-sci_ludel.Plo@am__quote@
@@ -1265,6 +1275,13 @@ sci_gateway/cpp/libscisparse_la-sci_blkfc1i.lo: sci_gateway/cpp/sci_blkfc1i.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_blkfc1i.cpp' object='sci_gateway/cpp/libscisparse_la-sci_blkfc1i.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisparse_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscisparse_la-sci_blkfc1i.lo `test -f 'sci_gateway/cpp/sci_blkfc1i.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_blkfc1i.cpp
+
+sci_gateway/cpp/libscisparse_la-sci_blkslvi.lo: sci_gateway/cpp/sci_blkslvi.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisparse_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscisparse_la-sci_blkslvi.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscisparse_la-sci_blkslvi.Tpo -c -o sci_gateway/cpp/libscisparse_la-sci_blkslvi.lo `test -f 'sci_gateway/cpp/sci_blkslvi.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_blkslvi.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscisparse_la-sci_blkslvi.Tpo sci_gateway/cpp/$(DEPDIR)/libscisparse_la-sci_blkslvi.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_blkslvi.cpp' object='sci_gateway/cpp/libscisparse_la-sci_blkslvi.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisparse_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscisparse_la-sci_blkslvi.lo `test -f 'sci_gateway/cpp/sci_blkslvi.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_blkslvi.cpp
 
 .f.o:
 	$(AM_V_F77)$(F77COMPILE) -c -o $@ $<

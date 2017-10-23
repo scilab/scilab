@@ -52,6 +52,7 @@ extern "C"
 #include "getshortpathname.h"
 }
 
+static void SetScilabVariables(void);
 
 
 /*--------------------------------------------------------------------------*/
@@ -75,7 +76,7 @@ void SetScilabEnvironment(void)
     SetScilabVariables();
 }
 
-void SetScilabVariables(void)
+static void SetScilabVariables(void)
 {
     //create SCI
     defineSCI();
@@ -111,7 +112,7 @@ void SciEnvForWindows(void)
 
 #ifdef _MSC_VER
 /*--------------------------------------------------------------------------*/
-bool IsTheGoodShell(void)
+BOOL IsTheGoodShell(void)
 {
     bool bOK = false;
     char shellCmd[PATH_MAX];
@@ -134,7 +135,7 @@ bool IsTheGoodShell(void)
 }
 
 /*--------------------------------------------------------------------------*/
-bool Set_Shell(void)
+BOOL Set_Shell(void)
 {
     bool bOK = false;
     char env[_MAX_DRIVE + _MAX_DIR + _MAX_FNAME + _MAX_EXT + 10];
@@ -223,19 +224,19 @@ void SetScilabEnvironmentVariables(char *DefaultSCIPATH)
 #endif
 
 /*--------------------------------------------------------------------------*/
-bool AntislashToSlash(const char *pathwindows, char *pathunix)
+BOOL AntislashToSlash(const char *pathwindows, char *pathunix)
 {
-    return convertSlash(pathwindows, pathunix, false);
+    return convertSlash(pathwindows, pathunix, FALSE);
 }
 /*--------------------------------------------------------------------------*/
-bool SlashToAntislash(const char *pathunix, char *pathwindows)
+BOOL SlashToAntislash(const char *pathunix, char *pathwindows)
 {
-    return convertSlash(pathunix, pathwindows, true);
+    return convertSlash(pathunix, pathwindows, TRUE);
 }
 /*--------------------------------------------------------------------------*/
-bool convertSlash(const char *path_in, char *path_out, bool slashToAntislash)
+BOOL convertSlash(const char *path_in, char *path_out, BOOL slashToAntislash)
 {
-    bool bOK = false;
+    BOOL ret = FALSE;
     if ( (path_in) && (path_out) )
     {
         int i = 0;
@@ -247,7 +248,7 @@ bool convertSlash(const char *path_in, char *path_out, bool slashToAntislash)
                 if (path_in[i] == UNIX_SEPATATOR)
                 {
                     path_out[i] = WINDOWS_SEPATATOR;
-                    bOK = true;
+                    ret = TRUE;
                 }
             }
             else
@@ -255,108 +256,11 @@ bool convertSlash(const char *path_in, char *path_out, bool slashToAntislash)
                 if (path_in[i] == WINDOWS_SEPATATOR)
                 {
                     path_out[i] = UNIX_SEPATATOR;
-                    bOK = true;
+                    ret =  TRUE;
                 }
             }
         }
     }
-    else
-    {
-        bOK = false;
-    }
 
-    return bOK;
+    return ret;
 }
-
-/*--------------------------------------------------------------------------*/
-bool isdir(const char * path)
-{
-    bool bOK = false;
-#ifndef _MSC_VER
-    struct stat buf;
-    if (path == NULL)
-    {
-        return false;
-    }
-    if (stat(path, &buf) == 0 && S_ISDIR(buf.st_mode))
-    {
-        bOK = true;
-    }
-#else
-    if (isDrive(path))
-    {
-        return true;
-    }
-    else
-    {
-        char *pathTmp = NULL;
-        pathTmp = new char[strlen(path) + 1];
-        if (pathTmp)
-        {
-            DWORD attr = 0;
-            strcpy(pathTmp, path);
-            if ( (pathTmp[strlen(pathTmp) - 1] == '\\') || (pathTmp[strlen(pathTmp) - 1] == '/') )
-            {
-                pathTmp[strlen(pathTmp) - 1] = '\0';
-            }
-            attr = GetFileAttributesA(pathTmp);
-            delete[] pathTmp;
-            pathTmp = NULL;
-            if (attr == INVALID_FILE_ATTRIBUTES)
-            {
-                return false;
-            }
-            return ((attr & FILE_ATTRIBUTE_DIRECTORY) != 0) ? true : false;
-        }
-    }
-#endif
-    return bOK;
-}
-
-bool createdirectory(const char *path)
-{
-    bool bOK = false;
-#ifndef _MSC_VER
-    if  (!isdir(path))
-    {
-        if (mkdir(path, DIRMODE) == 0)
-        {
-            bOK = true;
-        }
-    }
-#else
-    if (CreateDirectoryA(path, NULL))
-    {
-        bOK = true;
-    }
-#endif
-    return bOK;
-}
-
-bool isDrive(const char *strname)
-{
-    // avoid warning -Werror=unused-parameter
-    (void)strname;
-#ifdef _MSC_VER
-    if (strname)
-    {
-        if ( ((strlen(strname) == 2) || (strlen(strname) == 3)) && (strname[1] == ':') )
-        {
-            if (strlen(strname) == 3)
-            {
-                if ( (strname[2] != '\\') && (strname[2] != '/') )
-                {
-                    return false;
-                }
-            }
-
-            if ( ( strname[0] >= 'A' && strname[0] <= 'Z' ) || ( strname[0] >= 'a' && strname[0] <= 'z' ) )
-            {
-                return true;
-            }
-        }
-    }
-#endif
-    return false;
-}
-

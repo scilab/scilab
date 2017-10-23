@@ -710,14 +710,6 @@
             </varlistentry>
             <varlistentry>
                 <term>
-                    <link linkend="xgetech">xgetech</link>
-                </term>
-                <listitem>
-                    <para>Get the current graphics scale</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>
                     <link linkend="xchange">xchange</link>
                 </term>
                 <listitem>

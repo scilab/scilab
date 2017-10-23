@@ -6,6 +6,7 @@
 // =============================================================================
 //
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 //
 // unit tests for ismatrix function
 // =============================================================================
@@ -129,7 +130,7 @@ assert_checkequal(ismatrix(l), %t); // Column case
 // Error messages
 errmsg1 = msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"),"ismatrix", 1);
 assert_checkerror("ismatrix()", errmsg1);
-errmsg2 = msprintf(_("Wrong number of input arguments."));
+errmsg2 = msprintf(_("Wrong number of input arguments.\n"));
 assert_checkerror("ismatrix(1,2)", errmsg2);
 errmsg3 = msprintf(_("Wrong number of output arguments.\n"));
 assert_checkerror("[r,b]=ismatrix([1 2 3]);", errmsg3);

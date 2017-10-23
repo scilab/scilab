@@ -23,7 +23,7 @@
                     <para>vecteurs de types simples quelconques possiblement
                         distincts (booléens,
                         entiers encodés, décimaux, complexes, polynômes, rationnels,
-                        textes).
+                        textes). Par défaut, <literal>y=x</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -252,8 +252,16 @@ c1+c2
     <title>Historique</title>
     <revhistory>
         <revision>
-            <revnumber>6.0</revnumber>
-            <revdescription>Extension à tous les types de données uniformes ([], booleans, encoded integers, polynomials, rationals, strings). Révision de la page d'aide.
+            <revnumber>6.0.0</revnumber>
+            <revdescription>
+                Extension à tous les types de données uniformes ([], booléens, entiers encodés,
+                polynomes, fractions rationelles, texte). Révision de la page d'aide.
+            </revdescription>
+        </revision>
+        <revision>
+            <revnumber>6.0.1</revnumber>
+            <revdescription>
+                <literal>ndgrid(x)</literal> est désormais accepté (<literal>y=x</literal>).
             </revdescription>
         </revision>
     </revhistory>
