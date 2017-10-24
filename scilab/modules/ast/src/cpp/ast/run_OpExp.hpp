@@ -33,7 +33,17 @@ void RunVisitorT<T>::visitprivate(const OpExp &e)
             //os << ((Location)e.right_get().getLocation()).getLocationString() << std::endl;
             throw ast::InternalError(os.str(), 999, e.getRight().getLocation());
         }
+
         pITL = getResult();
+        if (pITL == nullptr)
+        {
+            clearResult();
+            std::wostringstream os;
+            wchar_t szError[bsiz];
+            os_swprintf(szError, bsiz, _W("Operation '%ls': there is no left operand.\n").c_str(), e.getString().c_str());
+            os << szError;
+            throw ast::InternalError(os.str(), 999, e.getLeft().getLocation());
+        }
 
         /*getting what to assign*/
         e.getRight().accept(*this);
@@ -45,7 +55,17 @@ void RunVisitorT<T>::visitprivate(const OpExp &e)
             //os << ((Location)e.right_get().getLocation()).getLocationString() << std::endl;
             throw ast::InternalError(os.str(), 999, e.getRight().getLocation());
         }
+
         pITR = getResult();
+        if (pITR == nullptr)
+        {
+            clearResult();
+            std::wostringstream os;
+            wchar_t szError[bsiz];
+            os_swprintf(szError, bsiz, _W("Operation '%ls': there is no right operand.\n").c_str(), e.getString().c_str());
+            os << szError;
+            throw ast::InternalError(os.str(), 999, e.getRight().getLocation());
+        }
 
         if (pITL->getType() == types::InternalType::ScilabImplicitList)
         {
