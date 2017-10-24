@@ -92,117 +92,106 @@ int mgetl(int iFileID, int iLineCount, wchar_t ***pwstLines)
     ifs.seekg(orig);
 
     std::list<std::string> lst;
-    std::string str;
 
-    if (1)
+    bool lineReach = false;
+    std::string previous;
+    size_t offset = 0;
+    while (lst.size() < iLineCount && ifs.eof() == false)
     {
-        bool lineReach = false;
-        std::string previous;
-        size_t offset = 0;
-        while (lst.size() < iLineCount && ifs.eof() == false)
-        {
-            int delimiter_size = 1;
-            size_t sp = previous.size();
+        int delimiter_size = 1;
+        size_t sp = previous.size();
 #define MAX_READ_LEN 262144
-            char buf[MAX_READ_LEN + 1] = {0};
-            ifs.read(buf, MAX_READ_LEN);
-            size_t s = strlen(buf);
-            //extract lines
-            char* ptr = buf;
-            for (int i = 0; i < s; ++i)
+        char buf[MAX_READ_LEN + 1] = {0};
+        ifs.read(buf, MAX_READ_LEN);
+        size_t s = strlen(buf);
+        //extract lines
+        char* ptr = buf;
+        for (int i = 0; i < s; ++i)
+        {
+            if (buf[i] == '\n')
             {
-                if (buf[i] == '\n')
+                //delimit line
+                buf[i] = '\0';
+                if(i > 0 && buf[i - 1] == '\r')
                 {
-                    //delimit line
-                    buf[i] = '\0';
-                    if(buf[i - 1] == '\r')
-                    {
-                        buf[i - 1] = '\0';
-                        delimiter_size = 2;
-                    }
-
-                    //add line to list
-                    if (sp)
-                    {
-                        previous += ptr;
-                        lst.push_back(previous);
-#ifdef _MSC_VER
-                        offset += previous.size() + 2;
-#else
-                        offset += previous.size() + delimiter_size;
-#endif
-                        previous.clear();
-                    }
-                    else
-                    {
-                        lst.emplace_back(ptr);
-#ifdef _MSC_VER
-                        offset += strlen(ptr) + 2;
-#else
-                        offset += strlen(ptr) + delimiter_size;
-#endif
-                    }
-
-                    //move ptr to first next line char
-                    ptr = buf + i + 1;
-
-                    if (iLineCount != -1 && lst.size() >= iLineCount)
-                    {
-                        //rewind
-#ifndef _MSC_VER
-                        auto t = ifs.tellg();
-#else
-                        std::fpos_t t = ifs.tellg().seekpos();
-#endif
-                        if (t <= 0)
-                        {
-                            ifs.clear();
-                        }
-
-                        ifs.seekg(orig + offset, std::ios::beg);
-                        lineReach = true;
-                        break;
-                    }
+                    buf[i - 1] = '\0';
+                    delimiter_size = 2;
                 }
-            }
 
-            if (ptr == buf)
-            {
-                //long line
-                previous += buf;
-            }
-            else if (lineReach == false)
-            {
-                int offset = (int)(buf + s - ptr);
-                if (offset)
+                //add line to list
+                if (sp)
                 {
-                    if (!ifs.eof())
+                    previous += ptr;
+                    lst.push_back(previous);
+#ifdef _MSC_VER
+                    offset += previous.size() + 2;
+#else
+                    offset += previous.size() + delimiter_size;
+#endif
+                    previous.clear();
+                }
+                else
+                {
+                    lst.emplace_back(ptr);
+#ifdef _MSC_VER
+                    offset += strlen(ptr) + 2;
+#else
+                    offset += strlen(ptr) + delimiter_size;
+#endif
+                }
+
+                //move ptr to first next line char
+                ptr = buf + i + 1;
+
+                if (iLineCount != -1 && lst.size() >= iLineCount)
+                {
+                    //rewind
+#ifndef _MSC_VER
+                    auto t = ifs.tellg();
+#else
+                    std::fpos_t t = ifs.tellg().seekpos();
+#endif
+                    if (t <= 0)
                     {
-                        //some data stay in buf, rewind file to begin of this data and read it again
-                        ifs.seekg(-offset, std::ios::cur);
+                        ifs.clear();
                     }
-                    else
-                    {
-                        //some data stay in buf but oef is reached, add ptr data in list
-                        std::string str(ptr);
-                        lst.push_back(str);
-                    }
+
+                    ifs.seekg(orig + offset, std::ios::beg);
+                    lineReach = true;
+                    break;
                 }
             }
         }
 
-        if (previous.size())
+        if (ptr == buf)
         {
-            lst.push_back(previous);
-            previous.clear();
+            //long line
+            previous += buf;
+        }
+        else if (lineReach == false)
+        {
+            int offset = (int)(buf + s - ptr);
+            if (offset)
+            {
+                if (!ifs.eof())
+                {
+                    //some data stay in buf, rewind file to begin of this data and read it again
+                    ifs.seekg(-offset, std::ios::cur);
+                }
+                else
+                {
+                    //some data stay in buf but oef is reached, add ptr data in list
+                    std::string str(ptr);
+                    lst.push_back(str);
+                }
+            }
         }
     }
-    else
+
+    if (previous.size())
     {
-        while (lst.size() < iLineCount && std::getline(ifs, str))
-        {
-            lst.push_back(str);
-        }
+        lst.push_back(previous);
+        previous.clear();
     }
 
     int nbLinesOut = (int)lst.size();

@@ -319,6 +319,7 @@ void defineSCIHOME()
     wchar_t* sci_home = getSCIHOMEW();
     if (wcscmp(sci_home, L"") == 0)
     {
+        FREE(sci_home);
         sci_home = computeSCIHOMEW();
     }
     else
@@ -327,6 +328,7 @@ void defineSCIHOME()
         {
             sciprint("Unable to create SCIHOME in `%ls`.\n", sci_home);
             sciprint("Back to normal behaviour.\n");
+            FREE(sci_home);
             sci_home = computeSCIHOMEW();
         }
     }
