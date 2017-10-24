@@ -34,7 +34,7 @@ function [tree]=sci_makecell(tree)
 
         for kr=1:double(tree.rhs(1).dims(1))-1
 
-            for krhs=lstsize(tmprhslist):-1:2
+            for krhs = size(tmprhslist):-1:2
                 tmprhslist(krhs+1)=tmprhslist(krhs)
             end
 
@@ -42,7 +42,7 @@ function [tree]=sci_makecell(tree)
             inrhs=inrhs.operands(1)
         end
 
-        for krhs=lstsize(tmprhslist):-1:2
+        for krhs = size(tmprhslist):-1:2
             tmprhslist(krhs+1)=tmprhslist(krhs)
         end
         tmprhslist(2)=inrhs
@@ -57,11 +57,11 @@ function [tree]=sci_makecell(tree)
 
         tmprhslist(1)=null()
 
-        for ksz=lstsize(tmprhslist):-1:1
+        for ksz = size(tmprhslist):-1:1
             inrhs=tmprhslist(ksz)
             for kr=1:double(tree.rhs(1).dims(2))-1
 
-                for krhs=lstsize(rhslist):-1:2
+                for krhs = size(rhslist):-1:2
                     rhslist(krhs+1)=rhslist(krhs)
                 end
 
@@ -69,7 +69,7 @@ function [tree]=sci_makecell(tree)
                 inrhs=inrhs.operands(1)
             end
 
-            for krhs=lstsize(rhslist):-1:2
+            for krhs = size(rhslist):-1:2
                 rhslist(krhs+1)=rhslist(krhs)
             end
             rhslist(2)=inrhs

@@ -139,21 +139,21 @@ function [%state0,state,sim,ok]=modipar(newparameters,%state0,state,sim,scs_m,co
                     (type(fun)<>15)) then //old sci blocks or odstatek not a list
                     nek=-(ozptr(kc+1)-ozptr(kc))
                 elseif ((fun(2)==5) | (fun(2)==10005)) then // sciblocks type 5 | 10005
-                    if lstsize(odstatek)>0 then
+                    if size(odstatek)>0 then
                         nek=1-(ozptr(kc+1)-ozptr(kc)) //nombre d'états supplémentaires
                     else
                         nek=-(ozptr(kc+1)-ozptr(kc))
                     end
                 elseif ((fun(2)==4) | (fun(2)==10004) | (fun(2)==2004)) then // C blocks type 4 | 10004
-                    nek=lstsize(odstatek)-(ozptr(kc+1)-ozptr(kc))
+                    nek = size(odstatek)-(ozptr(kc+1)-ozptr(kc))
                 else // other C and sci blocks
                     nek=-(ozptr(kc+1)-ozptr(kc))
                 end
                 sel=ozptr(kc+1):ozptr($)-1
 
                 if nek<>0&sel<>[] then
-                    while lstsize(oz)<max(nek+sel), oz($+1)=[], end
-                    while lstsize(oz0)<max(nek+sel), oz0($+1)=[], end
+                    while size(oz)<max(nek+sel), oz($+1)=[], end
+                    while size(oz0)<max(nek+sel), oz0($+1)=[], end
                     if nek>0 then sel=gsort(sel), end
                     for j=sel
                         oz(j+nek)=oz(j)
@@ -164,12 +164,12 @@ function [%state0,state,sim,ok]=modipar(newparameters,%state0,state,sim,scs_m,co
 
                 if ((type(odstatek)==15) & (type(fun)==15)) then
                     if ((fun(2)==5) | (fun(2)==10005)) then // sciblocks
-                        if lstsize(odstatek)>0 then
+                        if size(odstatek)>0 then
                             oz(ozptr(kc))=odstatek;
                             oz0(ozptr(kc))=odstatek;
                         end
                     elseif ((fun(2)==4) | (fun(2)==10004) | (fun(2)==2004)) then  // C blocks
-                        for j=1:lstsize(odstatek)
+                        for j=1:size(odstatek)
                             oz(ozptr(kc)+j-1)=odstatek(j);
                             oz0(ozptr(kc)+j-1)=odstatek(j);
                         end
@@ -221,30 +221,30 @@ function [%state0,state,sim,ok]=modipar(newparameters,%state0,state,sim,scs_m,co
                     (type(fun)<>15)) then //old sci blocks or odstatek not a list
                     nek=-(opptr(kc+1)-opptr(kc))
                 elseif ((fun(2)==5) | (fun(2)==10005)) then // sciblocks
-                    if lstsize(opark)>0 then
+                    if size(opark)>0 then
                         nek=1-(opptr(kc+1)-opptr(kc)) //nombre de paramï¿½tres supplï¿½mentaires
                     else
                         nek=-(opptr(kc+1)-opptr(kc))
                     end
                 elseif ((fun(2)==4) | (fun(2)==10004) | (fun(2)==2004)) then //C blocks
-                    nek=lstsize(opark)-(opptr(kc+1)-opptr(kc))
+                    nek=size(opark)-(opptr(kc+1)-opptr(kc))
                 else // other C and sci blocks
                     nek=-(opptr(kc+1)-opptr(kc))
                 end
                 sel=opptr(kc+1):opptr($)-1
                 if nek<>0&sel<>[] then
-                    while lstsize(opar)<max(nek+sel), opar($+1)=[], end
+                    while size(opar)<max(nek+sel), opar($+1)=[], end
                     if nek>0 then sel=gsort(sel), end
                     for j=sel, opar(j+nek)=opar(j); end
                 end
                 opptr(kc+1:$)=opptr(kc+1:$)+nek;
                 if ((type(opark)==15) & (type(fun)==15)) then
                     if ((fun(2)==5) | (fun(2)==10005)) then // sciblocks
-                        if lstsize(opark)>0 then
+                        if size(opark)>0 then
                             opar(opptr(kc))=opark;
                         end
                     elseif ((fun(2)==4) | (fun(2)==10004) | (fun(2)==2004)) then //C blocks
-                        for j=1:lstsize(opark), opar(opptr(kc)+j-1)=opark(j), end
+                        for j=1:size(opark), opar(opptr(kc)+j-1)=opark(j), end
                     end
                 end
                 //## rebuild opar list if nek < 0

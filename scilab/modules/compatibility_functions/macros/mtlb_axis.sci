@@ -22,11 +22,11 @@ function varargout=mtlb_axis(varargin)
         return
     elseif type(listvar(1))<>9 then
         a=gca();
-        rhs=lstsize(listvar)
+        rhs = size(listvar)
     else
         a=listvar(1)
         listvar(1)=null()
-        rhs=lstsize(listvar)
+        rhs = size(listvar)
         listvar=listvar
     end
 
@@ -133,9 +133,9 @@ function varargout=mtlb_axis(varargin)
                 // axis(axes_handles,...)
             elseif type(listvar(krhs))==9 then
                 // krhs must be one
-                for khandle=1:lstsize(listvar(krhs))
+                for khandle=1:size(listvar(krhs))
                     arglist=list()
-                    for kvararg=1:lstsize(listvar)-1
+                    for kvararg=1:size(listvar)-1
                         arglist($+1)=listvar(kvararg+1)
                     end
                     arglist($+1)=listvar(krhs)(khandle)

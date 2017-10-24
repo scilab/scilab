@@ -40,7 +40,7 @@ function [tree]=sci_hankel(tree)
         end
 
         dim=1
-        for kd=1:lstsize(tree.rhs(1).dims)
+        for kd = 1:size(tree.rhs(1).dims)
             if tree.rhs(1).dims(kd)<>Unknown then
                 dim=dim*tree.rhs(1).dims(kd)
             else
@@ -83,7 +83,7 @@ function [tree]=sci_hankel(tree)
         v=Operation("rc",list(cmatrix_funcall,rmatrix_funcall),list())
 
         dim1=1
-        for kd=1:lstsize(tree.rhs(1).dims)
+        for kd = 1:size(tree.rhs(1).dims)
             if tree.rhs(1).dims(kd)<>Unknown then
                 dim1=dim1*tree.rhs(1).dims(kd)
             else
@@ -92,7 +92,7 @@ function [tree]=sci_hankel(tree)
             end
         end
         dim2=1
-        for kd=1:lstsize(tree.rhs(2).dims)
+        for kd = 1:size(tree.rhs(2).dims)
             if tree.rhs(2).dims(kd)<>Unknown then
                 dim2=dim2*tree.rhs(2).dims(kd)
             else
@@ -101,9 +101,9 @@ function [tree]=sci_hankel(tree)
             end
         end
 
-        tree.lhs(1).dims=list(dim1,dim2)
-        tree.lhs(1).type=tree.rhs(1).type
+        tree.lhs(1).dims = list(dim1,dim2)
+        tree.lhs(1).type = tree.rhs(1).type
 
-        tree.rhs=Rhs_tlist(m,n,v);
+        tree.rhs = Rhs_tlist(m,n,v);
     end
 endfunction

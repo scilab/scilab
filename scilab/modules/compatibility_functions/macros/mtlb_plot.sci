@@ -44,9 +44,9 @@ function h=mtlb_plot(varargin)
     colorIndex=1
 
     // plot(Y)
-    if lstsize(varargin)==1 then
+    if size(varargin)==1 then
         mtlb_plotY(varargin(1))
-    elseif lstsize(varargin)==2 then
+    elseif size(varargin)==2 then
 
         // plot(Y,Linespec)
         if type(varargin(2))==10 then
@@ -78,7 +78,7 @@ function h=mtlb_plot(varargin)
             mtlbColor=mtlbColorOrder(colorIndex,:);
         end
         // plot(X,Y,Linespec)
-    elseif lstsize(varargin)==3 & type(varargin(3))==10 then
+    elseif size(varargin)==3 & type(varargin(3))==10 then
         mtlb_plotXY(varargin(1),varargin(2))
         curh=gce()
         curh=curh.children(1)
@@ -98,8 +98,8 @@ function h=mtlb_plot(varargin)
         mtlbColor=mtlbColorOrder(colorIndex,:);
     else
         k=1
-        while k<=lstsize(varargin)
-            if k<lstsize(varargin) & type(varargin(k))<>10 then
+        while k <= size(varargin)
+            if k < size(varargin) & type(varargin(k))<>10 then
                 mtlb_plotXY(varargin(k),varargin(k+1))
                 set(gca(),"auto_clear","off")
                 X=varargin(k)
@@ -113,7 +113,7 @@ function h=mtlb_plot(varargin)
                     colorIndex=1;
                 end
                 mtlbColor=mtlbColorOrder(colorIndex,:);
-            elseif k<=lstsize(varargin) & type(varargin(k))==10 then
+            elseif k <= size(varargin) & type(varargin(k))==10 then
                 opt=varargin(k)
                 opt=convstr(opt,"l")
                 if ~isempty(strindex("linestyle",opt)) then

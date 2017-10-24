@@ -126,7 +126,7 @@ function [tree]=%i2sci(tree)
         else
             indexisstr=%F
             iscell=%F
-            for k=1:lstsize(ind)
+            for k = 1:size(ind)
                 if type(ind(k))<>15 then
                     if ind(k).vtype==String then
                         if typeof(ind(k))=="cste" & ind(k).value=="entries" then
@@ -159,7 +159,7 @@ function [tree]=%i2sci(tree)
             m2sci_insert(Equal(list(to),Funcall("mtlb_is",1,Rhs_tlist(to,from,tree.operands(2),tree.operands(3)),list(to))),1)
         else
             tree.out(1).dims=list()
-            for k=1:lstsize(tree.operands)-2
+            for k = 1:size(tree.operands)-2
                 tree.out(1).dims(k)=Unknown
             end
             // dim can be infered when index is a constant and when index value is greater than older dim and this dim is not unknown
@@ -176,12 +176,12 @@ function [tree]=%i2sci(tree)
             end
             if is_empty(to) then
                 // a(k,:)=b with a==[] is converted by a(1,1:length(b))=b
-                if lstsize(tree.operands)-2 == 2 & typeof(tree.operands($-1))=="cste" & tree.operands($-1).value==":" then
+                if size(tree.operands)-2 == 2 & typeof(tree.operands($-1))=="cste" & tree.operands($-1).value==":" then
                     length_funcall=Funcall("length",1,Rhs_tlist(tree.operands($)),list())
                     tree.operands($-1)=Operation(":",list(Cste(1),length_funcall),list())
                 end
                 // a(:,k)=b with a==[] is converted by a(1:length(b),1)=b
-                if lstsize(tree.operands)-2 == 2 & typeof(tree.operands($-2))=="cste" & tree.operands($-2).value==":" then
+                if size(tree.operands)-2 == 2 & typeof(tree.operands($-2))=="cste" & tree.operands($-2).value==":" then
                     length_funcall=Funcall("length",1,Rhs_tlist(tree.operands($)),list())
                     tree.operands($-2)=Operation(":",list(Cste(1),length_funcall),list())
                 end

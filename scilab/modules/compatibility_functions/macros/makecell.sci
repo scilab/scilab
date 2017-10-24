@@ -13,14 +13,14 @@
 function s=makecell(varargin)
     // Equivalent for Matlab {}
 
-    if lstsize(varargin)==0 then
+    if size(varargin)==0 then
         dims=[0 0]
         s=mlist(["ce","dims","entries"],int32(dims),list())
         return
     end
 
     dims=varargin(1)
-    if prod(dims)<>lstsize(varargin)-1 then
+    if prod(dims) <> size(varargin)-1 then
         error(msprintf(gettext("%s: Wrong input arguments: Dimensions given as first argument do not match specified cell contents.\n"),"makecell"));
     end
 

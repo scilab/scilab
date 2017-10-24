@@ -13,10 +13,14 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="lstsize" xml:lang="ru">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="lstsize" xml:lang="ru">
     <refnamediv>
         <refname>lstsize</refname>
-        <refpurpose>количество элементов list, tlist, mlist</refpurpose>
+        <refpurpose>количество элементов list, tlist, mlist   <emphasis role="bold">(obsolete)</emphasis>
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Синтаксис</title>
@@ -78,5 +82,17 @@ lstsize(x)
                 <link linkend="mlist">mlist</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.1</revnumber>
+                <revdescription>
+                    <literal>lstsize()</literal> is declared obsolete, to be removed from Scilab 6.1.
+                    Please use <literal>size()</literal> instead.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

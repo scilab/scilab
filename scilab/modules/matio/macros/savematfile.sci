@@ -40,7 +40,7 @@ function savematfile(varargin)
 
     // Sort all inputs (Options/Names/Filename)
     k=1
-    while k<=lstsize(varargin)
+    while k <= size(varargin)
         // All options are converted to lower case
         if part(varargin(k),1)=="-" then
             varargin(k)=convstr(varargin(k));
@@ -62,8 +62,8 @@ function savematfile(varargin)
             stname=varargin(k);
             k=k+1;
             // Verify if one or more field name is/are given
-            if k<=lstsize(varargin) & part(varargin(k),1)<>"-" & mtlb_thefile<>"" then // struct field
-                while k<=lstsize(varargin) & part(varargin(k),1)<>"-"
+            if k <= size(varargin) & part(varargin(k),1)<>"-" & mtlb_thefile<>"" then // struct field
+                while k <= size(varargin) & part(varargin(k),1)<>"-"
                     // Add field to variable names
                     mtlb_names=[mtlb_names;varargin(k)];
                     execstr(varargin(k)+"="+stname+"(mtlb_names($))");
@@ -103,7 +103,7 @@ function savematfile(varargin)
             k=k+1
         case "-regexp"
             warning(msprintf(gettext("Option %s not implemented: IGNORED."),"-regexp"));
-            while k<=lstsize(varargin) & and(varargin(k)<>["-mat","-ascii"])
+            while k <= size(varargin) & and(varargin(k)<>["-mat","-ascii"])
                 k=k+1
             end
         else

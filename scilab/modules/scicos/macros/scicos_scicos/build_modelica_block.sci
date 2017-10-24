@@ -46,7 +46,7 @@ function [model,ok]=build_modelica_block(blklstm,corinvm,cmmat,NiM,NoM,NvM,scs_m
     //## search for
 
     Mblocks = [];
-    for i=1:lstsize(blklstm)
+    for i=1:size(blklstm)
         if type(blklstm(i).sim)==15 then
             if blklstm(i).sim(2)==30004 then
                 o = scs_m(scs_full_path(corinvm(i)))

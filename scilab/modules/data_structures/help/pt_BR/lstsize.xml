@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -13,17 +13,21 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="lstsize" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="lstsize" xml:lang="pt">
     <refnamediv>
         <refname>lstsize</refname>
-        <refpurpose>números de entradas de uma lista, tlist ou mlist</refpurpose>
+        <refpurpose>nÃºmeros de entradas de uma lista, tlist ou mlist   <emphasis role="bold">(obsolete)</emphasis>
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>n=lstsize(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>l</term>
@@ -34,18 +38,18 @@
             <varlistentry>
                 <term>n</term>
                 <listitem>
-                    <para>um inteiro, número de entradas</para>
+                    <para>um inteiro, nÃºmero de entradas</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            <literal>lstsize(x)</literal> retorna o número de entradas de uma
-            lista, tlist ou mlist. Esta função é mais eficiente que a função
+            <literal>lstsize(x)</literal> retorna o nÃºmero de entradas de uma
+            lista, tlist ou mlist. Esta funÃ§Ã£o Ã© mais eficiente que a funÃ§Ã£o
             <literal>size</literal> e opera de modo semelhante para todos os tipos de
-            listas, enquanto a função <literal>size</literal> fica sobrecarregada para
+            listas, enquanto a funÃ§Ã£o <literal>size</literal> fica sobrecarregada para
             <literal>mlist</literal>'s.
         </para>
     </refsection>
@@ -59,7 +63,7 @@ lstsize(x)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="length">length</link>
@@ -77,5 +81,17 @@ lstsize(x)
                 <link linkend="mlist">mlist</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>HistÃ³rico</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.1</revnumber>
+                <revdescription>
+                    <literal>lstsize()</literal> is declared obsolete, to be removed from Scilab 6.1.
+                    Please use <literal>size()</literal> instead.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

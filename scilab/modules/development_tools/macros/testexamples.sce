@@ -243,13 +243,13 @@ function r=%CMP(%A,%B)
     case 14 then //library
         if or(gsort(string(%A))<>gsort(string(%B))) then  r=%t,return,end
     case 15 then //list
-        if or(lstsize(%A)<>lstsize(%B)) then  r=%t,return,end
+        if or(size(%A) <> size(%B)) then  r=%t,return,end
         if or(definedfields(%A)<>definedfields(%B)) then r=%t,return,end
         for k = definedfields(%A)
             if %CMP(%A(k),%B(k)) then r=%t,return,end
         end
     case 16 then //tlist
-        if or(lstsize(%A)<>lstsize(%B)) then  r=%t,return,end
+        if or(size(%A) <> size(%B)) then  r=%t,return,end
         if or(definedfields(%A)<>definedfields(%B)) then r=%t,return,end
         if typeof(%A)=="rational" then
             if or(clean(%A-%B)<>0) then r=%t,end
@@ -259,7 +259,7 @@ function r=%CMP(%A,%B)
             if %CMP(%A(k),%B(k)) then r=%t,return,end
         end
     case 17 then //mlist
-        if or(lstsize(%A)<>lstsize(%B)) then  r=%t,return,end
+        if or(size(%A) <> size(%B)) then  r=%t,return,end
         if or(definedfields(%A)<>definedfields(%B)) then r=%t,return,end
         for k = definedfields(%A)
             if %CMP(getfield(k,%A),getfield(k,%B)) then r=%t,return,end

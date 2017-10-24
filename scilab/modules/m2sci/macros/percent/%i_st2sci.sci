@@ -61,7 +61,7 @@ function [tree]=%i_st2sci(tree)
 
                             // Update contents for an extraction of type: z = X(p)
                             CONT=Contents()
-                            for k=1:lstsize(from.infer.contents.index)
+                            for k = 1:size(from.infer.contents.index)
                                 if type(from.contents.index(k)(1))==15 then
                                     CONT.index($+1)=list(from.contents.index(k)(2))
                                 else
@@ -72,7 +72,7 @@ function [tree]=%i_st2sci(tree)
                             tree.out(1).contents.data($+1)=Infer(list(1,1),Type(Struct,Unknown),CONT)
 
                             // Update contents for extraction of type: z = X(p).f
-                            for k=1:lstsize(from.infer.contents.index)
+                            for k = 1:size(from.infer.contents.index)
                                 if type(from.contents.index(k)(1))==15 then
                                     tree.out(1).contents.index($+1)=list(list(Cste(1),ind),from.contents.index(k)(2))
                                 else
@@ -97,7 +97,7 @@ function [tree]=%i_st2sci(tree)
         else
 
             // Change index value if just one double
-            for k=1:lstsize(ind)
+            for k = 1:size(ind)
                 //ind(k+1) <-> tree.operands(2)(k+1)
                 if typeof(ind(k))=="cste" | (typeof(ind(k))<>"list" & is_a_scalar(ind(k))) then
                     if ind(k).vtype<>String then
@@ -136,12 +136,12 @@ function [tree]=%i_st2sci(tree)
             if typeof(infertree(1))=="list" then
                 possible_dims=infertree(1)
                 infdims=tree.out(1).dims
-                if lstsize(infdims)<lstsize(possible_dims) then
-                    for k=lstsize(infdims)+1:lstsize(possible_dims)
+                if size(infdims) < size(possible_dims) then
+                    for k = size(infdims) + 1:size(possible_dims)
                         infdims(k)=Unknown
                     end
                 end
-                for k=1:lstsize(possible_dims)
+                for k=1:size(possible_dims)
                     if typeof(possible_dims(k))<>"cste" then
                         infdims(k)=Unknown
                     elseif infdims(k)<>Unknown & infdims(k)<possible_dims(k).value then
@@ -164,7 +164,7 @@ function [tree]=%i_st2sci(tree)
         // Two indexes: to(ind1,ind2,...)=from or more
     else
         tree.out(1).dims=list()
-        for k=1:lstsize(tree.operands)-2
+        for k = 1:size(tree.operands)-2
             tree.out(1).dims(k)=Unknown
         end
 

@@ -565,7 +565,7 @@ assert_checkequal(scs_m.objs(4), DeletedObj);
 // Effectively empty the diagram
 for i=3:-1:0
     scs_m.objs($) = null();
-    assert_checkequal(lstsize(scs_m.objs), i);
+    assert_checkequal(size(scs_m.objs), i);
 end
 Xcos debug:   propertyUpdated( 1 , DIAGRAM , CHILDREN ) : SUCCESS
 Xcos debug:   propertyUpdated( 1 , DIAGRAM , CHILDREN ) : SUCCESS
@@ -1389,7 +1389,7 @@ Xcos trace:   propertyUpdated( 117 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 117 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
 Xcos info:    objectDeleted( 120 , PORT )
 Xcos info:    objectDeleted( 117 , BLOCK )
-assert_checkequal(lstsize(scs_m.objs), 4);
+assert_checkequal(size(scs_m.objs), 4);
 Xcos trace:   objectReferenced( 122 , BLOCK ) : 1
 Xcos trace:   objectReferenced( 126 , LINK ) : 1
 Xcos trace:   objectReferenced( 127 , BLOCK ) : 1

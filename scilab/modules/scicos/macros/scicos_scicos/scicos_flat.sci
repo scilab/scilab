@@ -81,7 +81,7 @@ function  [cor,corinv,links_table,cur_fictitious,sco_mat,ok, IN, OUT, EIN, EOUT]
     block_goto=["GOTO","CLKGOTO","GOTOMO"]
     block_from=["FROM","CLKFROM","FROMMO"]
     block_tag=["GotoTagVisibility","CLKGotoTagVisibility","GotoTagVisibilityMO"]
-    n=lstsize(scs_m.objs) //number of "objects" in the data structure
+    n = size(scs_m.objs) //number of "objects" in the data structure
     //-------------- initialize outputs --------------
     nb=0;
     links_table=[]; //

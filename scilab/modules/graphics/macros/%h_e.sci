@@ -15,7 +15,7 @@ function r=%h_e(i,h)
     if type(i)==10 then
         r=get(h,i)
     elseif type(i)==15 then
-        n=lstsize(i)
+        n = size(i)
 
         for k=1:n
             p=i(k)

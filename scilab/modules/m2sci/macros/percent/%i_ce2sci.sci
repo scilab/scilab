@@ -23,7 +23,7 @@ function [tree]=%i_ce2sci(tree)
     if type(inds)<>15 then
         inds=list(inds)
     end
-    for kinds=1:lstsize(inds)
+    for kinds=1:size(inds)
         if typeof(inds(kinds))<>"list" & inds(kinds).vtype==String & typeof(inds(kinds))=="cste" & inds(kinds).value<>":" then
             tree=%i_st2sci(tree)
             return
@@ -61,7 +61,7 @@ function [tree]=%i_ce2sci(tree)
                     tree.out(1).contents.index($+1)=tree.operands(2)
                     tree.out(1).contents.data($+1)=Infer(list(1,1),Type(Cell,Unknown),from.contents)
 
-                    if lstsize(from.contents.data)==1 then
+                    if size(from.contents.data)==1 then
                         tree.out(1).contents.index($+1)=list(tree.operands(2),Cste("entries"))
                         tree.out(1).contents.data($+1)=from.contents.data(1)
                     else
@@ -75,7 +75,7 @@ function [tree]=%i_ce2sci(tree)
             end
         else // --- Insertion with more than one index value (index is a list) ---
             // Cell array of struct A{p,q,...}.name... or recursive index A{p,q,...}(1,2)...
-            for kind=1:lstsize(tree.operands(2))
+            for kind = 1:size(tree.operands(2))
                 if typeof(tree.operands(2)(kind))=="cste" then
                     if tree.operands(2)(kind).vtype<>String then
                         tree.operands(2)(kind)=list(Cste(1),tree.operands(2)(kind))
@@ -85,12 +85,12 @@ function [tree]=%i_ce2sci(tree)
             IND=tree.operands(2)(1)
             // Update cell dims for inference
             if typeof(IND)=="list" then
-                if lstsize(IND)>lstsize(tree.out(1).dims) then
-                    for kd=lstsize(tree.out(1).dims):lstsize(IND)
+                if size(IND) > size(tree.out(1).dims) then
+                    for kd =size(tree.out(1).dims):size(IND)
                         tree.out(1).dims(kd)=Unknown
                     end
                 end
-                for kd=1:lstsize(tree.out(1).dims)
+                for kd=1:size(tree.out(1).dims)
                     if typeof(IND(kd))=="cste" & tree.out(1).dims(kd)<>Unknown & tree.out(1).dims(kd)<IND(kd).value then
                         tree.out(1).dims(kd)=IND(kd).value
                     end
@@ -134,7 +134,7 @@ function [tree]=%i_ce2sci(tree)
         // Two indexes: to(ind1,ind2,...)=from or more
     else
         tree.out(1).dims=list()
-        for k=1:lstsize(tree.operands)-2
+        for k=1:size(tree.operands)-2
             tree.out(1).dims(k)=Unknown
         end
 
@@ -162,10 +162,10 @@ function [tree]=%i_ce2sci(tree)
         tree.out(1).contents.data($+1)=Infer(list(1,1),Type(Cell,Unknown),Contents())
 
         infertree=list(infertree,Cste("entries"))
-        if lstsize(from.contents.index)==1 then
+        if size(from.contents.index)==1 then
             tree.out(1).contents.index($+1)=infertree
             tree.out(1).contents.data($+1)=from.contents.data(1);
-        elseif lstsize(from.contents.index)==0 then
+        elseif size(from.contents.index)==0 then
             tree.out(1).contents=Contents()
         else
             error(gettext("Not yet implemented."))

@@ -22,7 +22,7 @@ function h=%ticks_i_h(i,v,h)
         else
             index=:
         end
-        n=lstsize(i)
+        n = size(i)
         for k=1:n-1
             p=i(k)
             if type(p)==10 then

@@ -46,12 +46,12 @@ function ierr = cos2cosf(u,scs_m,count)
     //scicos_params
     tt=[];
     fields=getfield(1,scs_m.props);
-    for i=1:lstsize(scs_m.props)-1
+    for i=1:size(scs_m.props)-1
         field_nam=fields(i+1);
         if field_nam=="title" then field_nam="Title", end
         tt2=sci2exp(getfield(i+1,scs_m.props),lmax);
         tt2(1)=field_nam+"="+tt2(1);
-        if i<>lstsize(scs_m.props)-1 then
+        if i<>size(scs_m.props)-1 then
             tt2($)=tt2($)+",";
         end
         tt=[tt;tt2];
@@ -83,7 +83,7 @@ function ierr = cos2cosf(u,scs_m,count)
 
     t=[];
 
-    for k=1:lstsize(scs_m.objs)
+    for k=1:size(scs_m.objs)
 
         o=scs_m.objs(k)
         if typeof(o)=="Block" then
@@ -106,11 +106,11 @@ function ierr = cos2cosf(u,scs_m,count)
             //scicos_graphics
             tt=[];
             fields=getfield(1,o.graphics);
-            for i=1:lstsize(o.graphics)-1
+            for i=1:size(o.graphics)-1
                 field_nam=fields(i+1);
                 tt2=sci2exp(getfield(i+1,o.graphics),lmax);
                 tt2(1)=field_nam+"="+tt2(1);
-                if i<>lstsize(o.graphics)-1 then
+                if i<>size(o.graphics)-1 then
                     tt2($)=tt2($)+",";
                 end
                 tt=[tt;tt2];
@@ -128,7 +128,7 @@ function ierr = cos2cosf(u,scs_m,count)
             //scicos_model
             tt=[];
             fields=getfield(1,o.model);
-            for i=1:lstsize(o.model)-1
+            for i = 1:size(o.model)-1
                 field_nam=fields(i+1);
                 if field_nam=="rpar"&(o.model.sim=="super"| o.model.sim=="csuper"| o.model.sim(1)=="asuper") then
                     tt2="scs_m_"+string(count+1);
@@ -136,7 +136,7 @@ function ierr = cos2cosf(u,scs_m,count)
                     tt2=sci2exp(getfield(i+1,o.model),lmax);
                 end
                 tt2(1)=field_nam+"="+tt2(1);
-                if i<>lstsize(o.model)-1 then
+                if i <> size(o.model)-1 then
                     tt2($)=tt2($)+",";
                 end
                 tt=[tt;tt2];
@@ -177,11 +177,11 @@ function ierr = cos2cosf(u,scs_m,count)
                 tt=[];
                 txt=[];
                 fields=getfield(1,o);
-                for i=1:lstsize(o)-1
+                for i = 1:size(o)-1
                     field_nam=fields(i+1);
                     tt2=sci2exp(getfield(i+1,o),lmax);
                     tt2(1)=field_nam+"="+tt2(1);
-                    if i<>lstsize(o)-1 then
+                    if i <> size(o)-1 then
                         tt2($)=tt2($)+",";
                     end
                     tt=[tt;tt2];

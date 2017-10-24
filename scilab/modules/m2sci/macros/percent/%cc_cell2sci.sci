@@ -40,13 +40,13 @@ function tree=%cc_cell2sci(tree)
         // Second operand is a rc or a +
         op=tree.operands(2)
         for kd2=1:dim2-1
-            for ki=lstsize(INFER):-1:1
+            for ki = size(INFER):-1:1
                 INFER(ki+1)=INFER(ki)
             end
             INFER(1)=op.operands(2).infer
             op=op.operands(1)
         end
-        for ki=lstsize(INFER):-1:1
+        for ki = size(INFER):-1:1
             INFER(ki+1)=INFER(ki)
         end
         INFER(1)=op.infer

@@ -15,7 +15,7 @@ function varargout=mtlb_colordef(varargin)
 
     lhs=argn(1);
 
-    if lstsize(varargin)==1 then
+    if size(varargin)==1 then
         color_option=varargin(1)
         fig=[]
 

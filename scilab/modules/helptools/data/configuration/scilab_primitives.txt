@@ -640,7 +640,6 @@ lsq_splin
 lsqrsolve
 lsslist
 lstcat
-lstsize
 ltitr
 lu
 ludel

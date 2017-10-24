@@ -31,7 +31,7 @@ function txt=infer2txt(infer)
         tp="Boolean"
     elseif tp==16 then
         tp="Struct"
-        for k=1:lstsize(infer.contents.index)
+        for k = 1:size(infer.contents.index)
             if typeof(infer.contents.index(k))<>"list" then
                 txt=[txt;expression2code(list(infer.contents.index(k)))+infer2txt(infer.contents.data(k))]
             else
@@ -40,7 +40,7 @@ function txt=infer2txt(infer)
         end
     elseif tp==17 then
         tp="Cell"
-        for k=1:lstsize(infer.contents.index)
+        for k = 1:size(infer.contents.index)
             if typeof(infer.contents.index(k))<>"list" then
                 txt=[txt;expression2code(list(infer.contents.index(k)))+infer2txt(infer.contents.data(k))]
             else

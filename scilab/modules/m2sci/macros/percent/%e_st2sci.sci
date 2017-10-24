@@ -45,7 +45,7 @@ function [tree]=%e_st2sci(tree)
                 infertree($)=null()
             end
             // Change index value if just one double
-            for k=1:lstsize(infertree)
+            for k = 1:size(infertree)
                 if typeof(infertree(k))=="cste" | (typeof(infertree(k))<>"list" & is_a_scalar(infertree(k))) then
                     if infertree(k).vtype<>String then
                         infertree(k)=list(Cste(1),infertree(k))

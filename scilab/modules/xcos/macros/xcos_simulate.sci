@@ -146,14 +146,14 @@ function [%cpr, ok] = xcos_simulate(scs_m, needcompile)
         issequal = %f
     else
         //** test typeof outtb element
-        for i=1:lstsize(%state0_n.outtb)
+        for i = 1:size(%state0_n.outtb)
             if typeof(%state0_n.outtb(i))<>typeof(%state0.outtb(i))
                 issequal = %f
                 break
             end
         end
         //** test typeof oz element
-        for i=1:lstsize(%state0_n.oz)
+        for i = 1:size(%state0_n.oz)
             if typeof(%state0_n.oz(i))<>typeof(%state0.oz(i))
                 issequal = %f
                 break

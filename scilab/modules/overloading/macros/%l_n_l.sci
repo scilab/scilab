@@ -13,11 +13,11 @@
 function r=%l_n_l(l1,l2)
     //%l_n_l(l1,l2)  : l1<>l2
     //!
-    n1=lstsize(l1)
-    r=n1<>lstsize(l2)
+    n1 = size(l1)
+    r =n1 <> size(l2)
 
     if ~r&n1>0 then
-        r=%f(ones(1,n1))
+        r = %f(ones(1,n1))
         sel=%f(ones(1,n1))
         k1=definedfields(l1)
         k2=definedfields(l2)

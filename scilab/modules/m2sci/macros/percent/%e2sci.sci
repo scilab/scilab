@@ -59,7 +59,7 @@ function [tree]=%e2sci(tree)
         ind=tree.operands(2)
         // --- Recursive extraction ---
         if type(ind)==15 then
-            for kind=1:lstsize(ind)
+            for kind = 1:size(ind)
                 if type(ind(kind))<>15 then
                     if ind(kind).vtype==String then
                         if ind(kind).value=="entries" then
@@ -148,7 +148,7 @@ function [tree]=%e2sci(tree)
                 dims(k-1)=1
                 if typeof(tree.operands(k))=="cste" then
                     if tree.operands(k).value==":" then
-                        if k<=lstsize(var.dims)+1 then
+                        if k <= size(var.dims)+1 then
                             dims(k-1)=var.dims(k-1);
                         else
                             dims(k-1)=Unknown;

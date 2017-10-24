@@ -24,7 +24,7 @@ function [tree]=sci_repmat(tree)
         if A.vtype==Unknown then
             tree.name="mtlb_repmat"
             if typeof(m)=="cste" then
-                for kd=1:lstsize(A.dims)
+                for kd = 1:size(A.dims)
                     tree.lhs(1).dims(kd)=A.dims(kd)*m.value
                     if tree.lhs(1).dims(kd)<0 then
                         tree.lhs(1).dims(kd)=Unknown

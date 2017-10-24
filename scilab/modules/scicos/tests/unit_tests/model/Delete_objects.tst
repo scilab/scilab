@@ -48,7 +48,7 @@ assert_checkequal(scs_m.objs(4), DeletedObj);
 // Effectively empty the diagram
 for i=3:-1:0
     scs_m.objs($) = null();
-    assert_checkequal(lstsize(scs_m.objs), i);
+    assert_checkequal(size(scs_m.objs), i);
 end
 
 // Check that all the model items are freed
@@ -78,7 +78,7 @@ assert_checkequal(scs_m.objs(3), DeletedObj);
 
 // Effectively remove the object
 scs_m.objs(3) = null();
-assert_checkequal(lstsize(scs_m.objs), 4);
+assert_checkequal(size(scs_m.objs), 4);
 
 // The remaining diagram is not expected to stay coherent, the user should fix it by hand
 scs_m.objs(4).from = [3 1 0];

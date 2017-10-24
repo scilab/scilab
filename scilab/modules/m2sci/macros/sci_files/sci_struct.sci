@@ -21,7 +21,7 @@ function [tree]=sci_struct(tree)
     // Dims...
     dims=tree.rhs(2).dims
     for k=4:2:rhs
-        for l=1:lstsize(dims)
+        for l = 1:size(dims)
             if tree.rhs(k).dims(l)==Unknown then
                 dims(l)=Unknown
             else

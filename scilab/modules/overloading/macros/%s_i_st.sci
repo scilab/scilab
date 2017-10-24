@@ -85,7 +85,7 @@ function out=%s_i_st(varargin)
             out=out(varargin(1:Ndims))
         end
 
-    elseif lstsize(varargin)==3 & type(varargin(1))==10 then // out.i=in
+    elseif size(varargin)==3 & type(varargin(1))==10 then // out.i=in
         i=varargin(1);
         in=varargin(2);
         out=varargin(3);

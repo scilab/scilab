@@ -322,6 +322,7 @@ Obsolete functions or features
 * `nanmin` is obsolete and will be removed in Scilab 6.1. Please use `min` instead.
 * `nanmax` is obsolete and will be removed in Scilab 6.1. Please use `max` instead.
 * `xgetech` is obsolete and will be removed in Scilab 6.1. Please use `gca` instead.
+* `lstsize` is obsolete and will be removed in Scilab 6.1. Please use `size` instead.
 
 
 Removed Functions

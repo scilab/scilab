@@ -122,7 +122,7 @@ endfunction
 function [Ts,corinv,bllst,indout,ok,scs_m,flgcdgen,freof]=update_diag(scs_m,corinv,Ts,frequ,offset,freqdiv,bllst,den,flg,indout,flgcdgen)
     //modification to support double
     ok=%t
-    n=lstsize(scs_m.objs)
+    n = size(scs_m.objs)
 
     // when the function is called by the code generator we add an input event to the diagram
     // the major clock will be put outside the superblock. it will be explicitly drawn.
@@ -236,7 +236,7 @@ function [Ts,bllst,corinv,indout,ok]=s_clk2(MAT,Ts,bllst,corinv,scs_m,indout)
     [m,den,off,count,m1,fir,frequ,offset,ok]=mfrequ_clk(frequ,offset);
     if ~ok then return;end
     mn=(2**size(m1,"*"))-1;//number of event outputs.
-    n=lstsize(scs_m.objs);
+    n = size(scs_m.objs);
     bllst($+1)=scicos_model(sim=list("m_frequ",4),in=[],in2=[],intyp=1,out=[],out2=[],outtyp=1,..
     evtin=1,evtout=ones(mn,1),state=[],dstate=[],odstate=list(),rpar=[],ipar=[],..
     opar=list(m,double(den),off,count),blocktype="d",firing=fir,dep_ut=[%f,%f],..

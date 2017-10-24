@@ -27,7 +27,6 @@ int sci_scilist(char *fname, unsigned long fname_len);
 int sci_scitlist(char *fname, unsigned long fname_len);
 int sci_lstcat(char *fname, unsigned long fname_len);
 int sci_scimlist(char *fname, unsigned long fname_len);
-int sci_lstsize(char *fname, unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_DATA_STRUCTURES1__ */
 /*--------------------------------------------------------------------------*/

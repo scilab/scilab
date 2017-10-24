@@ -62,7 +62,7 @@ function [model,...
     "vart=1"
     "if type(var#)<>15 then ierr=1, resume, end"
     "if var#<>list() then"
-    "  if lstsize(var#)<>2 then ierr=2, resume, end"
+    "  if size(var#)<>2 then ierr=2, resume, end"
     "  for i=1:2"
     "    if ~(type(var#(i))==1|type(var#(i))==8) then ierr=2+i, resume, end"
     "  end"

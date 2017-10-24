@@ -47,7 +47,7 @@ function  M=createstruct(index,N)
                 elseif type(index(1))==15
                     // X(p,q[,...]).f=z -> index=list(list(p,q[,...]),f)
                     I=index(1)
-                    Ndims=lstsize(I) //the number of dimensions
+                    Ndims = size(I) //the number of dimensions
 
                     //compute the struct dimensions from max indices values
                     Dims=[];for kDims=1:Ndims, Dims=[Dims,max(I(kDims)) ];end

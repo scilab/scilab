@@ -22,7 +22,7 @@
 function scs_m_new = do_purge(scs_m)
 
     // suppress deleted elements in a scicos data structure
-    nx = lstsize(scs_m.objs);
+    nx = size(scs_m.objs);
 
     // get index of deleted blocks
     deleted=[];

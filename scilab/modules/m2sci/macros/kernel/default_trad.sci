@@ -64,7 +64,7 @@ function tree=default_trad(tree)
     elseif isdefinedvar(Variable(tree.name,Infer())) then
         operands=list()
         operands(1)=Variable(tree.name,Infer())
-        for krhs=1:lstsize(tree.rhs)
+        for krhs = 1:size(tree.rhs)
             operands($+1)=tree.rhs(krhs)
         end
         tree=Operation("ext",operands,tree.lhs)
