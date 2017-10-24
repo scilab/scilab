@@ -1330,7 +1330,6 @@ xfpolys_1.png=7d24bee61db482cd4f3a2556ee6cf3e3
 xfpolys_2.png=5618554c0ad9cfea7f921e8747dd8dca
 xfpolys_3.png=e7d0e541d182062f243f90d111f7ecde
 xfrect_1.png=17ac92d176dfc56c91f7321423523ed7
-xgetech_1.png=302937507487b5bbfbe401ff9e5ea2df
 xgrid_1.png=1e49a2c7efa08eeed42aee791c3f1959
 xlabel_1.png=ba2339f34c8dddbba3032c16dd8378b4
 xnumb_1.png=e2966910792ea6c60caf87dc7d25f856

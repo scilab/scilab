@@ -111,6 +111,7 @@ Removed Functions
 
 * `hypermat` was obsolete and has been removed. Please use `matrix` instead.
 * `square` was obsolete and has been removed.
+* `xgetech` was obsolete and has been removed. Please use `gca` instead.
 
 
 Known issues
@@ -126,4 +127,5 @@ Bug Fixes
 * [#14605](http://bugzilla.scilab.org/show_bug.cgi?id=14605): fixed - `bench_run` was too strict about the specification of tests names.
 * [#14812](http://bugzilla.scilab.org/show_bug.cgi?id=14812): Minor typos in messages.
 * [#14982](http://bugzilla.scilab.org/show_bug.cgi?id=14982): `msprintf`segmentation fault was caught due to wrong size
+* [#15269](http://bugzilla.scilab.org/show_bug.cgi?id=15269): `xgetech` was poor and stiff compared to any combination of `gca()` properties `.axes_bounds`, `.data_bounds`, `.log_flags`, and `.margins`. It is removed.
 

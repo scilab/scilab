@@ -45,7 +45,6 @@ GRAPHICS_IMPEXP int sci_xlfont(char *fname, void *pvApiCtx);
 GRAPHICS_IMPEXP int sci_xgrid(char *fname, void *pvApiCtx);
 GRAPHICS_IMPEXP int sci_xgraduate(char *fname, void *pvApiCtx);
 GRAPHICS_IMPEXP int sci_xgetmouse(char *fname, void *pvApiCtx);
-GRAPHICS_IMPEXP int sci_xgetech(char *fname, void *pvApiCtx);
 //GRAPHICS_IMPEXP int sci_xget(char *fname, void *pvApiCtx); => c++
 GRAPHICS_IMPEXP int sci_xfpolys(char *fname, void *pvApiCtx);
 GRAPHICS_IMPEXP int sci_xfpoly(char *fname, void *pvApiCtx);
