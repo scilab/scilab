@@ -37,8 +37,18 @@ extern "C"
 #include "createdirectory.h"
 #ifndef _MSC_VER
 #include <sys/stat.h>
+#else
+#include <Shlwapi.h>
 #endif
 }
+
+static void setSCIHOMEW(const wchar_t* _sci_home);
+static void putenvSCIHOME(const char* _sci_home);
+static char* computeSCIHOME(const char* path = "");
+static wchar_t* computeSCIHOMEW(const wchar_t* path = L"");
+static bool createDirectoryRecursivelyW(const std::wstring& path);
+static bool createDirectoryRecursively(const std::string& path);
+
 
 /*--------------------------------------------------------------------------*/
 wchar_t* getSCIHOMEW(void)
@@ -56,14 +66,14 @@ char* getSCIHOME(void)
     return wide_string_to_UTF8(tmpSCIHOME.c_str());
 }
 /*--------------------------------------------------------------------------*/
-void setSCIHOME(const char* _sci_home)
+static void setSCIHOME(const char* _sci_home)
 {
     wchar_t* pstTemp = to_wide_string(_sci_home);
     setSCIHOMEW(pstTemp);
     FREE(pstTemp);
 }
 /*--------------------------------------------------------------------------*/
-void setSCIHOMEW(const wchar_t* _sci_home)
+static void setSCIHOMEW(const wchar_t* _sci_home)
 {
     //add SCI value in context as variable
     types::String *pS = new types::String(_sci_home);
@@ -74,16 +84,18 @@ void setSCIHOMEW(const wchar_t* _sci_home)
 }
 
 /*--------------------------------------------------------------------------*/
-wchar_t* computeSCIHOMEW(void)
+static wchar_t* computeSCIHOMEW(const wchar_t* path)
 {
-    char* pstTemp = computeSCIHOME();
+    char* pstHome = wide_string_to_UTF8(path);
+    char* pstTemp = computeSCIHOME(pstHome);
     wchar_t* pstReturn = to_wide_string(pstTemp);
     FREE(pstTemp);
+    FREE(pstHome);
     return pstReturn;
 }
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
-char* computeSCIHOME(void)
+static char* computeSCIHOME(const char* path)
 {
 #define BASEDIR "Scilab"
     int ierr = 0;
@@ -151,17 +163,24 @@ char* computeSCIHOME(void)
 
     /* Set SCIHOME environment variable */
     os_sprintf(USERPATHSCILAB, "%s%s%s", USERHOMESYSTEM, DIR_SEPARATOR, BASEDIR);
-    os_sprintf(SCIHOMEPATH, "%s%s%s", USERPATHSCILAB, DIR_SEPARATOR, SCI_VERSION_STRING);
+    if (path && path[0] != '\0')
+    {
+        os_sprintf(SCIHOMEPATH, "%s%s%s", USERPATHSCILAB, DIR_SEPARATOR, path);
+    }
+    else
+    {
+        os_sprintf(SCIHOMEPATH, "%s%s%s", USERPATHSCILAB, DIR_SEPARATOR, SCI_VERSION_STRING);
+    }
 
     /* creates directory if it does not exists */
     if (!isdir(SCIHOMEPATH))
     {
         if (!isdir(USERPATHSCILAB))
         {
-            createdirectory(USERPATHSCILAB);
+            createDirectoryRecursively(USERPATHSCILAB);
         }
 
-        if (createdirectory(SCIHOMEPATH))
+        if (createDirectoryRecursively(SCIHOMEPATH))
         {
 
             return os_strdup(SCIHOMEPATH);
@@ -175,7 +194,7 @@ char* computeSCIHOME(void)
     return NULL;
 }
 #else
-char* computeSCIHOME(void)
+static char* computeSCIHOME(const char* path)
 {
 #define BASEDIR ".Scilab"
     int ierr   = 0;
@@ -194,17 +213,24 @@ char* computeSCIHOME(void)
 
     /* Set SCIHOME environment variable */
     sprintf(USERPATHSCILAB, "%s%s%s", USERHOMESYSTEM, DIR_SEPARATOR, BASEDIR);
-    sprintf(SCIHOMEPATH, "%s%s%s", USERPATHSCILAB, DIR_SEPARATOR, SCI_VERSION_STRING);
+    if (path && path[0] != '\0')
+    {
+        sprintf(SCIHOMEPATH, "%s%s%s", USERPATHSCILAB, DIR_SEPARATOR, path);
+    }
+    else
+    {
+        sprintf(SCIHOMEPATH, "%s%s%s", USERPATHSCILAB, DIR_SEPARATOR, SCI_VERSION_STRING);
+    }
 
     /* creates directory if it does not exists */
     if (!isdir(SCIHOMEPATH))
     {
         if (!isdir(USERPATHSCILAB))
         {
-            createdirectory(USERPATHSCILAB);
+            createDirectoryRecursively(USERPATHSCILAB);
         }
 
-        if (createdirectory(SCIHOMEPATH))
+        if (createDirectoryRecursively(SCIHOMEPATH))
         {
             return os_strdup(SCIHOMEPATH);
         }
@@ -219,7 +245,7 @@ char* computeSCIHOME(void)
 #endif
 
 /*--------------------------------------------------------------------------*/
-char* getenvSCIHOME(void)
+static char* getenvSCIHOME(void)
 {
     int ierr, iflag = 0;
     int lbuf = PATH_MAX;
@@ -238,7 +264,7 @@ char* getenvSCIHOME(void)
     return SciHome;
 }
 /*--------------------------------------------------------------------------*/
-wchar_t* getenvSCIHOMEW(void)
+static wchar_t* getenvSCIHOMEW(void)
 {
     char *SciHome = getenvSCIHOME();
     wchar_t* pstTemp = to_wide_string(SciHome);
@@ -246,7 +272,7 @@ wchar_t* getenvSCIHOMEW(void)
     return pstTemp;
 }
 /*--------------------------------------------------------------------------*/
-void putenvSCIHOMEW(const wchar_t* _sci_home)
+static void putenvSCIHOMEW(const wchar_t* _sci_home)
 {
     char* pstTemp = wide_string_to_UTF8(_sci_home);
     putenvSCIHOME(pstTemp);
@@ -254,7 +280,7 @@ void putenvSCIHOMEW(const wchar_t* _sci_home)
     return;
 }
 
-void putenvSCIHOME(const char* _sci_home)
+static void putenvSCIHOME(const char* _sci_home)
 {
     char *ShortPath = NULL;
     char *CopyOfDefaultPath = NULL;
@@ -273,14 +299,22 @@ void putenvSCIHOME(const char* _sci_home)
     FREE(ShortPath);
 }
 /*--------------------------------------------------------------------------*/
-static bool createDirectoryRecursively(std::wstring path)
+static bool createDirectoryRecursivelyW(const std::wstring& path)
+{
+    char* c = wide_string_to_UTF8(path.data());
+    std::string s(c);
+    FREE(c);
+    return createDirectoryRecursively(s);
+}
+
+static bool createDirectoryRecursively(const std::string& path)
 {
 #ifdef _MSC_VER
     size_t pos = 0;
     do
     {
-        pos = path.find_first_of(L"\\/", pos + 1);
-        if (CreateDirectoryW(path.substr(0, pos).c_str(), NULL) == FALSE)
+        pos = path.find_first_of("\\/", pos + 1);
+        if (CreateDirectoryA(path.substr(0, pos).c_str(), NULL) == FALSE)
         {
             DWORD d = GetLastError();
             if (d == ERROR_PATH_NOT_FOUND)
@@ -290,14 +324,15 @@ static bool createDirectoryRecursively(std::wstring path)
         }
     } while (pos != std::string::npos);
 
+    return true;
 #else
-    char* file_path = wide_string_to_UTF8(path.data());
+    char* file_path = os_strdup(path.data());
 
     char* p = NULL;
     for (p = strchr(file_path + 1, '/'); p; p = strchr(p + 1, '/'))
     {
         *p = '\0';
-        if (mkdir(file_path, 777) == -1)
+        if (mkdir(file_path, 0777) == -1)
         {
             if (errno != EEXIST)
             {
@@ -309,11 +344,38 @@ static bool createDirectoryRecursively(std::wstring path)
         *p = '/';
     }
 
+    //create final folder
+    if (mkdir(path.data(), 0777) == -1)
+    {
+        if (errno != EEXIST)
+        {
+            *p = '/';
+            FREE(file_path);
+            return false;
+        }
+    }
+
     FREE(file_path);
-#endif
     return true;
+#endif
 }
 /*--------------------------------------------------------------------------*/
+static bool isAbsolutePath(const wchar_t* path)
+{
+#ifdef _MSC_VER
+    if(PathIsRelative(path))
+    {
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+#else
+    return path[0] == L'/';
+#endif
+}
+
 void defineSCIHOME()
 {
     wchar_t* sci_home = getSCIHOMEW();
@@ -324,12 +386,21 @@ void defineSCIHOME()
     }
     else
     {
-        if (createDirectoryRecursively(sci_home) == false)
+        if (isAbsolutePath(sci_home))
         {
-            sciprint("Unable to create SCIHOME in `%ls`.\n", sci_home);
-            sciprint("Back to normal behaviour.\n");
+            if (createDirectoryRecursivelyW(sci_home) == false)
+            {
+                sciprint("Unable to create SCIHOME in `%ls`.\n", sci_home);
+                sciprint("Back to normal behaviour.\n");
+                FREE(sci_home);
+                sci_home = computeSCIHOMEW();
+            }
+        }
+        else
+        {
+            std::wstring w(sci_home);
             FREE(sci_home);
-            sci_home = computeSCIHOMEW();
+            sci_home = computeSCIHOMEW(w.data());
         }
     }
 
