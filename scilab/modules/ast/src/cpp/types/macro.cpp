@@ -193,19 +193,30 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
             iVarPos = static_cast<int>(m_inputArgs->size()) - 1;
         }
 
+        int cur = iVarPos;
+        int opt_offset = 0;
         //add all standard variable in function context but not varargin
         std::list<symbol::Variable*>::iterator itName = m_inputArgs->begin();
         typed_list::const_iterator itValue = in.begin();
-        while (iVarPos > 0)
+        while (cur > 0)
         {
-            pContext->put(*itName, *itValue);
-            iVarPos--;
+            if (*itValue)
+            {
+                pContext->put(*itName, *itValue);
+            }
+            else
+            {
+                opt_offset++;
+            }
+
+            cur--;
             ++itName;
             ++itValue;
         }
 
         //create varargin only if previous variable are assigned
         optional_list::const_iterator it = opt.begin();
+        std::advance(it, opt_offset);
         if (in.size() >= m_inputArgs->size() - 1)
         {
             //create and fill varargin
@@ -219,6 +230,7 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
                 else
                 {
                     pL->append(it->second);
+                    opt[it->first] = nullptr;
                     it++;
                 }
 
@@ -256,15 +268,15 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
                 pContext->put(*i, *j);
             }
         }
+    }
 
-        //add optional paramter in current scope
-        optional_list::const_iterator it;
-        for (it = opt.begin() ; it != opt.end() ; it++)
+    //add optional paramter in current scope
+    for (const auto& it : opt)
+    {
+        if (it.second)
         {
-            pContext->put(symbol::Symbol(it->first), it->second);
+            pContext->put(symbol::Symbol(it.first), it.second);
         }
-
-
     }
 
     // varargout management
