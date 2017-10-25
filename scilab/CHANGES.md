@@ -400,6 +400,7 @@ the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 * [#9617](http://bugzilla.scilab.org/show_bug.cgi?id=9617): Xcos run-time version check was too conservative.
 * [#9838](http://bugzilla.scilab.org/show_bug.cgi?id=9838): `evstr` poorly supported simple comments in input expressions.
 * [#10270](http://bugzilla.scilab.org/show_bug.cgi?id=10270): `execstr(["%val=[int16(1)";"]"])` needed entering twice <enter> to be actually performed.
+* [#10467](http://bugzilla.scilab.org/show_bug.cgi?id=10467): `execstr` inside a `try/end` with a `catch` killed the stack.
 * [#11196](http://bugzilla.scilab.org/show_bug.cgi?id=11196): Some recursive extractions from a mlist failed.
 * [#11251](http://bugzilla.scilab.org/show_bug.cgi?id=11251): `execstr` could kill the variables stack.
 * [#11530](http://bugzilla.scilab.org/show_bug.cgi?id=11530): Raise (help, scinotes, ...) windows when iconified ( recall or startup )
