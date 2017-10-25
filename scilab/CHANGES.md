@@ -335,6 +335,7 @@ Obsolete functions or features
 * `nanmax` is obsolete and will be removed in Scilab 6.1. Please use `max` instead.
 * `xgetech` is obsolete and will be removed in Scilab 6.1. Please use `gca` instead.
 * `lstsize` is obsolete and will be removed in Scilab 6.1. Please use `size` instead.
+* `eval` is obsolete and will be removed in Scilab 6.1. Please use `evstr` instead.
 * `dgettext` is obsolete and will be removed in Scilab 6.1. Please use `gettext(domain, text)` instead.
 
 

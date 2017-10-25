@@ -292,9 +292,9 @@ function  [blklst,cmat,ccmat,cor,corinv,ok,scs_m,flgcdgen,freof]=c_pass1(scs_m,f
 
         for i=1:size(sco_mat,1)
 
-            if eval(sco_mat(i,1))<MaxBlock then
+            if evstr(sco_mat(i,1))<MaxBlock then
 
-                sco_mat(i,1)=string(ind(eval(sco_mat(i,1))))
+                sco_mat(i,1)=string(ind(evstr(sco_mat(i,1))))
 
             end
 
@@ -351,7 +351,7 @@ function  [blklst,cmat,ccmat,cor,corinv,ok,scs_m,flgcdgen,freof]=c_pass1(scs_m,f
     tblock=find((sco_mat(:,2)=="-1")&(sco_mat(:,5)=="10"))
     ind=sco_mat(tblock,1);
     if ind<>[] then
-        ind=eval(ind(:))
+        ind = evstr(ind(:))
         //ind=find(tblock)
         //ind=ind(:)
         for k=ind'

@@ -23,6 +23,6 @@ function %graphics_p(graphics)
     fn = getfield(1, graphics);
 
     for k=2:size(fn,"*")
-        mprintf("%s\n", sci2exp(eval("graphics."+fn(k)), fn(k)))
+        mprintf("%s\n", sci2exp(evstr("graphics."+fn(k)), fn(k)))
     end
 endfunction

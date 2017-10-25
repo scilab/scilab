@@ -46,8 +46,8 @@ function demo_sa_1()
 
     //////////////////////////////////////////
 
-    Min = eval("min_bd_"+func+"()");
-    Max = eval("max_bd_"+func+"()");
+    Min = evstr("min_bd_"+func+"()");
+    Max = evstr("max_bd_"+func+"()");
     x0  = (Max - Min).*rand(size(Min,1),size(Min,2)) + Min;
 
     deff("y=f(x)","y="+func+"(x)");

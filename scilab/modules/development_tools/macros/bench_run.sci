@@ -245,7 +245,7 @@ function [modutests_names, elapsed_time, nb_iterations] = bench_run(varargin)
     end
 
     modutests_names = test_list;
-    nb_iterations = eval(nb_iterations);
+    nb_iterations = evstr(nb_iterations);
 
     // XML management
     // ==============

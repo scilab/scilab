@@ -216,7 +216,7 @@ Fs='%s';Fs=strcat(Fs(ones(1,2)),' ');
 Fd='%d';Fd=strcat(Fd(ones(1,n-2)),' ');
 fd=mopen(tmpf,'r');[n,a,b,c,d,e]=mfscanf(-1,fd,Fs+' '+Fd);mclose(fd);
 if n<>5 then bugmes();quit;end
-if norm([eval(a),eval(b),c,d,e]-A) > %eps then bugmes();quit;end
+if norm([evstr(a),evstr(b),c,d,e]-A) > %eps then bugmes();quit;end
 // same example but returned values are compacted in L
 fd=mopen(tmpf,'r');L=mfscanf(-1,fd,Fs+' '+Fd);mclose(fd);
 if length(L)<>3 then bugmes();quit;end

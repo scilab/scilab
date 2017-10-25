@@ -72,15 +72,15 @@ function myNewTree = uiInsertNode(tree, position, node)
 
         // if we have an integer position (ex: 1, 2, 3 ...)
         if nbElement == 1 & myPosition <> "1" then
-            pos = eval(TOKENS(1));
+            pos = evstr(TOKENS(1));
             prevPos = string(pos-1);
         end
 
         // if we have a complexe position (ex: 1.1, 2.4, 3.8 ...)
         if nbElement > 1 then
 
-            first = eval(TOKENS(nbElement-1));
-            second = eval(TOKENS(nbElement));
+            first = evstr(TOKENS(nbElement-1));
+            second = evstr(TOKENS(nbElement));
 
             if (second == 1) then
                 prevPos = TOKENS(1);
@@ -94,7 +94,7 @@ function myNewTree = uiInsertNode(tree, position, node)
                     prevPos = prevPos + "." + TOKENS(index);
                 end
 
-                pos = eval(TOKENS(nbElement));
+                pos = evstr(TOKENS(nbElement));
                 prevPos = prevPos + "." + string(pos-1);
             end
         end

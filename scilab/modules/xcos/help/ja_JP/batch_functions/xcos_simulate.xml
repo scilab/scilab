@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xcos_simulate" xml:lang="ja">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="xcos_simulate" xml:lang="ja">
     <refnamediv>
         <refname>xcos_simulate</refname>
         <refpurpose>xcosシミュレーションをバッチモードで実行する関数</refpurpose>
@@ -163,8 +166,8 @@ function post_xcos_simulate(%cpr, scs_m, needcompile)
     // exprsを取得
     exprs = clrBlock.graphics.exprs;
     s = poly(0,'s');
-    num = eval(exprs(1));
-    den = eval(exprs(2));
+    num = evstr(exprs(1));
+    den = evstr(exprs(2));
     h = syslin('c', num/den);
     // 新たに図をオープンし,ボード線図をプロット
     scf(max(winsid())+1);
@@ -205,8 +208,8 @@ function continueSimulation = pre_xcos_simulate(scs_m, needcompile)
     // exprsを取得
     exprs = clrBlock.graphics.exprs;
     s = poly(0,'s');
-    num = eval(exprs(1));
-    den = eval(exprs(2));
+    num = evstr(exprs(1));
+    den = evstr(exprs(2));
     h = syslin('c', num/den);
     // 新しい図を開き,ボード線図をプロット
     scf(max(winsid())+1);
@@ -225,19 +228,19 @@ xcos_simulate(scs_m, 4);
                 <link linkend="scicos_diagram">scs_m 構造体</link>
             </member>
             <member>
-                <link linkend="importXcosDiagram"> importXcosDiagram</link>
+                <link linkend="importXcosDiagram">importXcosDiagram</link>
             </member>
             <member>
-                <link linkend="scicosim">scicosim: xcos バッチシミュレーション関数</link>
+                <link linkend="scicosim">scicosim</link>
             </member>
             <member>
-                <link linkend="xcos">xcos: ハイブリッドシミュレータ用のブロックダイアグラムエディタ及びGUI</link>
+                <link linkend="xcos">xcos</link>
             </member>
             <member>
-                <link linkend="steadycos">steadycos: xcosダイアグラムの定常状態を見つける</link>
+                <link linkend="steadycos">steadycos</link>
             </member>
             <member>
-                <link linkend="lincos">lincos: xcosダイアグラムから線形化により線形状態空間モデルを構築する</link>
+                <link linkend="lincos">lincos</link>
             </member>
         </simplelist>
     </refsection>
