@@ -263,6 +263,7 @@ wchar_t *wcssub_reg(const wchar_t* _pwstInput, const wchar_t* _pwstSearch, const
     int iJump = 0;
 
     wchar_t* pwstOutput = NULL;
+    wchar_t* result = NULL;
 
     if (_pwstInput == NULL)
     {
@@ -305,7 +306,7 @@ wchar_t *wcssub_reg(const wchar_t* _pwstInput, const wchar_t* _pwstSearch, const
         int i = 0;
         int replaceLen = (int)wcslen(_pwstReplace);
         int finalSize = len;
-        wchar_t* result = NULL;
+
         //compute final size
         for (i = 0; i < iOccurs; ++i)
         {
@@ -334,15 +335,17 @@ wchar_t *wcssub_reg(const wchar_t* _pwstInput, const wchar_t* _pwstSearch, const
         wcscat(result, _pwstReplace);
         //copy part after last occurence
         wcscat(result, _pwstInput + arriEnd[iOccurs - 1]);
-        return result;
     }
     else
     {
         *_piErr = iPcreStatus;
-        return os_wcsdup(_pwstInput);
+        result = os_wcsdup(_pwstInput);
     }
 
-    return NULL;
+    FREE(arriStart);
+    FREE(arriEnd);
+
+    return result;
 }
 /*-------------------------------------------------------------------------------------*/
 wchar_t **wcssubst_reg(const wchar_t** _pwstInput, int _iInputSize, const wchar_t* _pwstSearch, const wchar_t* _pwstReplace, int* _piErr)
