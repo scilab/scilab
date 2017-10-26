@@ -762,6 +762,9 @@ set_macox_specific_path()
                     LD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_10${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
                     DYLD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_10${DYLD_LIBRARY_PATH+:$DYLD_LIBRARY_PATH}
                     ;;
+                7|8|9)
+                    # Run normally on 10.7, 10.8 & 10.9
+                    ;;
                 6)
                     # the iconv lib fails under 10.7, just declare it for 10.6
                     LD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_6${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
