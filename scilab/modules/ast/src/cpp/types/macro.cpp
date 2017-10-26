@@ -19,6 +19,8 @@
 
 #include "macro.hxx"
 #include "list.hxx"
+#include "listinsert.hxx"
+#include "string.hxx"
 #include "context.hxx"
 #include "symbol.hxx"
 #include "scilabWrite.hxx"
@@ -171,6 +173,7 @@ bool Macro::toString(std::wostringstream& ostr)
 
 Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out)
 {
+    int rhs = (int)in.size();
     bool bVarargout = false;
     ReturnValue RetVal = Callable::OK;
     symbol::Context *pContext = symbol::Context::getInstance();
@@ -187,59 +190,55 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
     // varargin management
     if (m_inputArgs->size() > 0 && m_inputArgs->back()->getSymbol().getName() == L"varargin")
     {
-        int iVarPos = static_cast<int>(in.size());
+        List* pL = nullptr;;
+        int iVarPos = rhs;
         if (iVarPos > static_cast<int>(m_inputArgs->size()) - 1)
         {
             iVarPos = static_cast<int>(m_inputArgs->size()) - 1;
+            pL = new List();
         }
 
-        int cur = iVarPos;
-        int opt_offset = 0;
-        //add all standard variable in function context but not varargin
+        //add variables in context or varargin list
         std::list<symbol::Variable*>::iterator itName = m_inputArgs->begin();
-        typed_list::const_iterator itValue = in.begin();
-        while (cur > 0)
+        for (int i = 0; i < rhs; ++i)
         {
-            if (*itValue)
+            if (in[i]->isListInsert())
             {
-                pContext->put(*itName, *itValue);
-            }
-            else
-            {
-                opt_offset++;
-            }
-
-            cur--;
-            ++itName;
-            ++itValue;
-        }
-
-        //create varargin only if previous variable are assigned
-        optional_list::const_iterator it = opt.begin();
-        std::advance(it, opt_offset);
-        if (in.size() >= m_inputArgs->size() - 1)
-        {
-            //create and fill varargin
-            List* pL = new List();
-            while (itValue != in.end())
-            {
-                if (*itValue != NULL)
+                //named
+                std::wstring var(in[i]->getAs<ListInsert>()->getInsert()->getAs<String>()->get()[0]);
+                if (i < iVarPos)
                 {
-                    pL->append(*itValue);
+                    pContext->put(symbol::Symbol(var), opt[var]);
+                    ++itName;
                 }
                 else
                 {
-                    pL->append(it->second);
-                    opt[it->first] = nullptr;
-                    it++;
+                    //varargin
+                    pL->append(opt[var]);
                 }
-
-                itValue++;
             }
+            else
+            {
+                //context
+                if (i < iVarPos)
+                {
+                    pContext->put(*itName, in[i]);
+                    ++itName;
+                }
+                else
+                {
+                    //varargin
+                    pL->append(in[i]);
+                }
+            }
+        }
+
+        if (pL)
+        {
             pContext->put(m_Varargin, pL);
         }
     }
-    else if (in.size() > m_inputArgs->size())
+    else if (rhs > m_inputArgs->size())
     {
         if (m_inputArgs->size() == 0)
         {
@@ -268,14 +267,14 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
                 pContext->put(*i, *j);
             }
         }
-    }
 
-    //add optional paramter in current scope
-    for (const auto& it : opt)
-    {
-        if (it.second)
+        //add optional parameters in current scope
+        for (const auto& it : opt)
         {
-            pContext->put(symbol::Symbol(it.first), it.second);
+            if (it.second)
+            {
+                pContext->put(symbol::Symbol(it.first), it.second);
+            }
         }
     }
 
@@ -297,15 +296,15 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
     if (m_pDblArgIn->getRef() > 1)
     {
         m_pDblArgIn->DecreaseRef();
-        m_pDblArgIn = (Double*)m_pDblArgIn->clone();
+        m_pDblArgIn = m_pDblArgIn->clone();
         m_pDblArgIn->IncreaseRef();
     }
-    m_pDblArgIn->set(0, static_cast<double>(in.size()));
+    m_pDblArgIn->set(0, static_cast<double>(rhs));
 
     if (m_pDblArgOut->getRef() > 1)
     {
         m_pDblArgOut->DecreaseRef();
-        m_pDblArgOut = (Double*)m_pDblArgOut->clone();
+        m_pDblArgOut = m_pDblArgOut->clone();
         m_pDblArgOut->IncreaseRef();
     }
     m_pDblArgOut->set(0, _iRetCount);

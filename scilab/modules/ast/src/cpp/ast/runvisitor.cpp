@@ -41,6 +41,7 @@
 #include "macrofile.hxx"
 #include "macro.hxx"
 #include "cell.hxx"
+#include "listinsert.hxx"
 #include "filemanager_interface.h"
 
 #include "runner.hxx"
