@@ -294,7 +294,11 @@ void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
                 if (pResult && e.getOper() == LogicalOpExp::logicalShortCutAnd)
                 {
                     types::InternalType* pResult2 = GenericShortcutAnd(pResult);
-                    pResult->killMe();
+                    if(pResult != pITL && pResult != pITR)
+                    {
+                        pResult->killMe();
+                    }
+
                     if (pResult2)
                     {
                         pResult = pResult2;
@@ -341,7 +345,11 @@ void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
                 if (pResult && e.getOper() == LogicalOpExp::logicalShortCutOr)
                 {
                     types::InternalType* pResult2 = GenericShortcutOr(pResult);
-                    pResult->killMe();
+                    if(pResult != pITL && pResult != pITR)
+                    {
+                        pResult->killMe();
+                    }
+
                     if (pResult2)
                     {
                         pResult = pResult2;
