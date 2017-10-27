@@ -287,10 +287,23 @@ int sci_call(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt opt, int
                         Scierror(999, _("%s: incompatible type between input and output variables.\n"), fname);
                         return 1;
                     }
-                    if (p.row != dims[0] || p.col != dims[1])
+
+                    if (p.type == 'c')
                     {
-                        Scierror(999, _("%s: incompatible sizes between input and output variables.\n"), fname);
-                        return 1;
+                        
+                        if (strlen((char*)p.data) != dims[0] * dims[1])
+                        {
+                            Scierror(999, _("%s: incompatible sizes between input and output variables.\n"), fname);
+                            return 1;
+                        }
+                    }
+                    else
+                    {
+                        if (p.row != dims[0] || p.col != dims[1])
+                        {
+                            Scierror(999, _("%s: incompatible sizes between input and output variables.\n"), fname);
+                            return 1;
+                        }
                     }
 
                     //need to clone double input data to avoid modification
