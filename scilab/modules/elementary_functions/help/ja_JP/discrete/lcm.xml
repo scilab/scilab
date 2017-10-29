@@ -15,7 +15,10 @@
  *
  -->
 
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="lcm">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ja" xml:id="lcm">
 
     <refnamediv>
 
@@ -29,7 +32,10 @@
 
         <title>呼び出し手順</title>
 
-        <synopsis>[pp, fact] = lcm(p)</synopsis>
+        <synopsis>
+           pp = lcm(p)
+          [pp, fact] = lcm(p)
+        </synopsis>
 
     </refsynopsisdiv>
 
@@ -101,24 +107,20 @@
 
             <code>[pp, fact] = lcm(p)</code> は,これに加えて以下のような
 
-            ベクトル<varname>fact</varname>を計算します:
-
+            ベクトル<varname>fact</varname>を計算します <literal>p .* fact = pp * ones(p)</literal>
         </para>
-
         <para>
-
-            <code>p.*fact = pp*ones(p)</code>
-
+          If <literal>p</literal> is a set of integers with some negative ones, the returned value
+          <literal>pp</literal> of their LCM is always positive.
         </para>
-
         <para>
-
+            If <literal>p</literal> is an array of decimal integers, they are priorly converted
+            into <literal>int32</literal> before processing.
+        </para>
+        <para>
             実数の配列<literal>p</literal>の最小公倍数は,
-
             <literal>lcm</literal>をコールする前に<code>p = inv_coeff(p, 0)</code>により
-
             多項式に変換することにより得られます.
-
         </para>
 
     </refsection>
@@ -160,6 +162,17 @@ lcm(V)
 
         </simplelist>
 
+    </refsection>
+    <refsection role="history">
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.1</revnumber>
+                <revdescription>
+                   For input integers possibly negative, the returned LCM is now always positive.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 
 </refentry>

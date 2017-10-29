@@ -218,6 +218,7 @@ bounds selected out of the axes areas is now restored, after the Scilab 5.4 regr
    All files were formerly opened in Scinotes and could make it frozen.
 * `size` can now be overloadable for tlist lists, as it already could for mlist lists.
 * `gcd` now accepts `int64` and `uint64` integers. The input can now be any array instead of a row.
+* `gcd` and `lcm` of integers now return always a positive result.
 * `cat` has been rewritten. It is now fast and can process heavy arrays at high dimensions.
 * `fplot3d1` remove warning messages when it was called without option.
 * `whereis` has been upgraded:
@@ -434,6 +435,7 @@ the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 * [#15053](http://bugzilla.scilab.org/show_bug.cgi?id=15053): `_str2code` was removed with no proper equivalence and made `mfile2sci` failing.
 * [#15054](http://bugzilla.scilab.org/show_bug.cgi?id=15054): The callbacks of `wfir_gui()` were not prioritary.
 * [#15057](http://bugzilla.scilab.org/show_bug.cgi?id=15057): `Matplot` `.data` assignation did not take care of >2 dimension
+* [#15058](http://bugzilla.scilab.org/show_bug.cgi?id=15058): With integers, `gcd` and `lcm` could return a negative result, depending on the order of negative components.
 * [#15060](http://bugzilla.scilab.org/show_bug.cgi?id=15060): `fplot3d` did not draw because of an addition with an empty matrix which now returns an empty matrix.
 * [#15063](http://bugzilla.scilab.org/show_bug.cgi?id=15063): `fort` wasn't properly removed.
 * [#15070](http://bugzilla.scilab.org/show_bug.cgi?id=15070): `bitset` failed when the bit position is specified as encoded integer.

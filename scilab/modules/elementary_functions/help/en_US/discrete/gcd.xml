@@ -19,7 +19,7 @@
         xml:lang="en" xml:id="gcd">
     <refnamediv>
         <refname>gcd</refname>
-        <refpurpose>Greatest Common Divisor</refpurpose>
+        <refpurpose>Greatest (positive) Common Divisor</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
@@ -76,6 +76,9 @@
             If <varname>P</varname> has an unsigned inttype <literal>uint8</literal>,
             <literal>uint16</literal>, <literal>uint32</literal> or <literal>uint64</literal>,
             <varname>U</varname> gets the corresponding signed inttype.
+        </para>
+        <para>
+            When <literal>P</literal> are integers, the returned GCD is always positive.
         </para>
         <para>
             When a second output is expected, an unimodular matrix <literal>U</literal> of the
@@ -166,6 +169,10 @@ gcd([0 0])
                         </listitem>
                         <listitem>
                             The input <literal>P</literal> may be any array instead of a row vector.
+                        </listitem>
+                        <listitem>
+                            For input integers possibly negative, the returned GCD is now always
+                            positive.
                         </listitem>
                     </itemizedlist>
                 </revdescription>
