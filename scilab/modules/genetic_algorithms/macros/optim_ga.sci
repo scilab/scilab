@@ -145,7 +145,7 @@ function [pop_opt, fobj_pop_opt, pop_init, fobj_pop_init] = optim_ga(ga_f, pop_s
         //
         // Recombination
         //
-        [Pop, FObj_Pop] = selection_func(Pop, Indiv1, Indiv2, FObj_Pop, FObj_Indiv1, FObj_Indiv2, [], [], [], param);
+        [Pop, FObj_Pop, Efficiency] = selection_func(Pop, Indiv1, Indiv2, FObj_Pop, FObj_Indiv1, FObj_Indiv2, [], [], [], param);
 
         // Callback for plotting / printing intermediate results or stopping the algorithm
         if (Log) then
