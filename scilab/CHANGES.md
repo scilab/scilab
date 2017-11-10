@@ -406,6 +406,7 @@ the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 * [#14376](http://bugzilla.scilab.org/show_bug.cgi?id=14376): `input()` was broken: \n was introduced before prompting; multiple prompts occurred; the output value could be missing; "%" "\n" "\t" were no longer supported in messages...
 * [#14399](http://bugzilla.scilab.org/show_bug.cgi?id=14399): `whereami`: wrong information (line numbers).
 * [#14424](http://bugzilla.scilab.org/show_bug.cgi?id=14424): There were some troubles with `input`.
+* [#14490](http://bugzilla.scilab.org/show_bug.cgi?id=14490): `plot2d` crashed when leg parameter was a vector. 
 * [#14531](http://bugzilla.scilab.org/show_bug.cgi?id=14531): It was not possible to specify SCIHOME as a start-up option.
 * [#14532](http://bugzilla.scilab.org/show_bug.cgi?id=14532): `test_run` failed for toolboxes that are not autoloaded.
 * [#14544](http://bugzilla.scilab.org/show_bug.cgi?id=14544): `scatter` and `scatter3` canceled any upstream `drawlater` instruction.

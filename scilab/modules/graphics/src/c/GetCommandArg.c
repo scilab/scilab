@@ -287,6 +287,11 @@ int get_legend_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], char ** 
 
         if (iType)
         {
+            if (isScalar(_pvCtx, piAddr) == 0 || iType != 10)
+            {
+                Scierror(999, _("%s: Wrong type for input argument #%d: A single string expected.\n"), fname, pos);
+                return 0;
+            }
             if (getAllocatedSingleString(_pvCtx, piAddr, &pstData))
             {
                 return 0;
@@ -301,6 +306,14 @@ int get_legend_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], char ** 
     else if ((kopt = FindOpt(_pvCtx, "leg", opts)) >= 0)
     {
         char* pstData = NULL;
+        int iType = 0;
+        getVarType(_pvCtx, opts[kopt].piAddr, &iType);
+
+        if (isScalar(_pvCtx, opts[kopt].piAddr) == 0 || iType != 10)
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d: A single string expected.\n"), fname, kopt);
+            return 0;
+        }
         if (getAllocatedSingleString(_pvCtx, opts[kopt].piAddr, &pstData))
         {
             return 0;
