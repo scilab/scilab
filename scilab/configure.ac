@@ -239,6 +239,7 @@ fi
 ######## fortran ########
 
 if test "$with_gfortran" = yes; then
+   : ${FFLAGS=""}
    AC_PROG_F77(gfortran)
    if test -z "$F77"; then
      AC_MSG_ERROR([You asked me to use gfortran but i haven't been able to find it])
@@ -246,6 +247,7 @@ if test "$with_gfortran" = yes; then
 fi
 
 if test "$with_intelcompilers" = yes; then
+   : ${FFLAGS=""}
    AC_PROG_F77(ifc ifort)
    if test -z "$F77"; then
      AC_MSG_ERROR([You asked me to use ifc (intel fortran compiler) but i haven't been able to find it])
@@ -254,9 +256,11 @@ fi
 
 if test -z "$F77"; then
 ## No Fortran compiler specified... Prefer gfortran and intel compilers
+   : ${FFLAGS=""}
    AC_PROG_F77([gfortran ifc ifort])
    if test -z "$F77"; then
         # Best effort to find a compiler (might be g77)
+   : ${FFLAGS=""}
     AC_PROG_F77
    fi
 fi
@@ -298,6 +302,7 @@ AC_LANG_POP([Fortran 77])
 
 
 if test "$with_gcc" = yes; then
+   : ${CFLAGS=""}
    AC_PROG_CC(gcc)
    if test -z "$CC"; then
      AC_MSG_ERROR([You asked me to use gcc but i haven't been able to find it])
@@ -305,6 +310,7 @@ if test "$with_gcc" = yes; then
 fi
 
 if test "$with_intelcompilers" = yes; then
+   : ${CFLAGS=""}
    AC_PROG_CC(icc ecc)
    if test -z "$CC"; then
      AC_MSG_ERROR([You asked me to use icc (intel C compiler) but I haven't been able to find it])
@@ -313,6 +319,7 @@ fi
 
 if test -z "$CC"; then
 # No C compiler specified... We rely on Autoconf to find the best
+   : ${CFLAGS=""}
    AC_PROG_CC
 fi
 
@@ -324,6 +331,7 @@ AC_CHECK_SIZEOF([int])
 AC_CHECK_SIZEOF([long])
 
 ### C++ ###
+: ${CXXFLAGS=""}
 AC_PROG_CXX
 # we can't just do something like
 # AC_CHECK_PROG(cxx_present, $CXX, "yes", "no")
@@ -443,7 +451,7 @@ if test -n "$F77"; then
     done
     AC_LANG_POP([Fortran 77])
    else
-      DEBUG_FFLAGS="-DNDEBUG"
+      DEBUG_FFLAGS="-DNDEBUG -g1 -O2"
    fi
       case "$host" in
          x86_64-*-linux*)
@@ -544,7 +552,7 @@ case "$CXX" in
                 ;;
             esac
         else
-            DEBUG_CXXFLAGS="-DNDEBUG"
+            DEBUG_CXXFLAGS="-DNDEBUG -g1 -O2"
         fi
     ;;
 
@@ -582,7 +590,7 @@ case "$CC" in
           ;;
           esac
    else
-      DEBUG_CFLAGS="-DNDEBUG"
+      DEBUG_CFLAGS="-DNDEBUG -g1 -O2"
    fi
 
    COMPILER_CFLAGS="$COMPILER_CFLAGS -fno-stack-protector " # bug 3131
