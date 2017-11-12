@@ -101,7 +101,7 @@ function elements = atomsGetLeftListboxElts(category)
 
         else
             categories = [];
-            parent     = part(category,1:index_start-1);
+            parent     = part(category,1:index_start(1)-1);
             top_str    = parent;
             top_mat    = ["category" parent];
 
