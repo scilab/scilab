@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Allan CORNET
@@ -15,110 +14,72 @@
  * along with this program.
  *
  -->
-
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="dgettext">
-
     <refnamediv>
-
         <refname>dgettext</refname>
-
         <refpurpose>
-
-            カレントのロケールおよび指定したドメインに翻訳されたテキストを取得
-
+            カレントのロケールおよび指定したドメインに翻訳されたテキストを取得 <emphasis role="bold">(obsolete)</emphasis>
         </refpurpose>
-
     </refnamediv>
-
     <refsynopsisdiv>
-
         <title>呼び出し手順</title>
-
         <synopsis>msg=dgettext(domain, myString)</synopsis>
-
     </refsynopsisdiv>
-
     <refsection>
-
         <title>引数</title>
-
         <variablelist>
-
             <varlistentry>
-
                 <term>domain</term>
-
                 <listitem>
-
                     <para>文字列, メッセージドメインの名前</para>
-
                 </listitem>
-
             </varlistentry>
-
             <varlistentry>
-
                 <term>myString</term>
-
                 <listitem>
-
                     <para>文字列, 翻訳するメッセージ</para>
-
                 </listitem>
-
             </varlistentry>
-
         </variablelist>
-
     </refsection>
-
     <refsection>
-
         <title>説明</title>
-
+        <warning>
+            This function is obsolete and will be removed from Scilab 6.1.
+            Please use <literal>gettext(domain, string)</literal> instead.
+        </warning>
         <para>
-
             <literal>dgettext</literal> は文字列 <literal>myString</literal>を
-
             指定したメッセージドメイン<literal>domain</literal>の
-
             カレントのロケールへの翻訳したものを取得します.
-
         </para>
-
     </refsection>
-
     <refsection>
-
         <title>例</title>
-
         <programlisting role="example"><![CDATA[
 dgettext('scilab','Startup execution:')
  ]]></programlisting>
-
     </refsection>
-
     <refsection role="see also">
-
         <title>参照</title>
-
         <simplelist type="inline">
-
             <member>
-
                 <link linkend="gettext">gettext</link>
-
             </member>
-
             <member>
-
                 <link linkend="_">_</link>
-
             </member>
-
         </simplelist>
-
     </refsection>
-
+    <refsection role="history">
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.1</revnumber>
+                <revdescription>
+                    dgettext() is declared obsolete, for removal from Scilab 6.1.
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>
-

@@ -55,9 +55,6 @@ _('Startup execution:')
             <member>
                 <link linkend="gettext">gettext</link>
             </member>
-            <member>
-                <link linkend="dgettext">dgettext</link>
-            </member>
         </simplelist>
     </refsection>
 </refentry>

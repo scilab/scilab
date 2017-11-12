@@ -17,7 +17,10 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="dgettext">
     <refnamediv>
         <refname>dgettext</refname>
-        <refpurpose>получение текста, переведённого на язык текущей локали и определённого региона использования</refpurpose>
+        <refpurpose>
+            получение текста, переведённого на язык текущей локали и определённого региона
+            использования <emphasis role="bold">(устарело)</emphasis>
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Синтаксис</title>
@@ -42,6 +45,10 @@
     </refsection>
     <refsection>
         <title>Описание</title>
+        <warning>
+            This function is obsolete and will be removed from Scilab 6.1.
+            Please use <literal>gettext(domain, string)</literal> instead.
+        </warning>
         <para>
             <literal>dgettext(domain, myString)</literal> получает перевод строки
             <literal>myString</literal> в определённой области использования <literal>domain</literal>.
@@ -63,5 +70,16 @@ dgettext('scilab','Startup execution:')
                 <link linkend="_">_</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.1</revnumber>
+                <revdescription>
+                    dgettext() is declared obsolete, for removal from Scilab 6.1.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
