@@ -83,6 +83,17 @@ GRAPHICS_IMPEXP int getOrCreateDefaultSubwin(void)
         // the current figure,
         iSubWinUID = getCurrentSubWin();
     }
+    else
+    {
+        // If a current figure has no axes
+        int iChildrenCount = 0;
+        int *piChildrenCount = &iChildrenCount;
+        getGraphicObjectProperty(iSubWinUID, __GO_CHILDREN_COUNT__, jni_int, (void **)&piChildrenCount);
+        if (iChildrenCount == 0)
+        {
+            iSubWinUID = createSubWin(getCurrentFigure());
+        }
+    }
 
     return iSubWinUID;
 }

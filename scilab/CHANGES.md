@@ -435,6 +435,7 @@ the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 * [#14886](http://bugzilla.scilab.org/show_bug.cgi?id=14886): `Matplot` save/load failed.
 * [#14896](http://bugzilla.scilab.org/show_bug.cgi?id=15272): Using `set` with multiple properties, only the first one was set.
 * [#14901](http://bugzilla.scilab.org/show_bug.cgi?id=14901): WScilex.exe was stopped immediately when launched from Java.
+* [#14903](http://bugzilla.scilab.org/show_bug.cgi?id=14903): `plot2d` crashed if a current figure has no axes.
 * [#14910](http://bugzilla.scilab.org/show_bug.cgi?id=14910): The `plot()` example was displayed in overlay to the existing graphics.
 * [#14922](http://bugzilla.scilab.org/show_bug.cgi?id=14922): The `%onprompt()` special function was not documented.
 * [#14925](http://bugzilla.scilab.org/show_bug.cgi?id=14925): `jdeff`: `invoke_lu()` deleted/corrupted the called java method after an error occured.
