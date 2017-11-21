@@ -499,6 +499,7 @@ the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 * [#15300](http://bugzilla.scilab.org/show_bug.cgi?id=15300): Distributive assignments like `a=(1,2)` crashed Scilab.
 * [#15301](http://bugzilla.scilab.org/show_bug.cgi?id=15301): Sequence constructor `:` failed when a bound was an outputless funtion call.
 * [#15302](http://bugzilla.scilab.org/show_bug.cgi?id=15302): `load` crashed when inputs arguments are not strings.
+* [#15303](http://bugzilla.scilab.org/show_bug.cgi?id=15303): Some properties written in capital letter in set function crashed Scilab.
 * [#15306](http://bugzilla.scilab.org/show_bug.cgi?id=15306): After the behavior of `||` was changed, its help page was not up to date.
 * [#15308](http://bugzilla.scilab.org/show_bug.cgi?id=15308): Unlike `evstr(["1 2";"3 4"])`, `evstr(["1;2" "3;4"])` was not accepted.
 * [#15328](http://bugzilla.scilab.org/show_bug.cgi?id=15328): OpenJDK 9 was not supported for custom builds.
