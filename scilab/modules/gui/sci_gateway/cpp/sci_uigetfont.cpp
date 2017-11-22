@@ -250,6 +250,8 @@ int sci_uigetfont(char *fname, void* pvApiCtx)
                 Scierror(999, _("%s: Memory allocation error.\n"), fname);
                 return 1;
             }
+
+            AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
         }
 
         delete[] selectedFontName;
@@ -265,6 +267,7 @@ int sci_uigetfont(char *fname, void* pvApiCtx)
             }
 
             *fontSizeAdr = selectedFontSize;
+            AssignOutputVariable(pvApiCtx, 2) = nbInputArgument(pvApiCtx) + 2;
         }
 
         if (nbOutputArgument(pvApiCtx) >= 3)
@@ -278,6 +281,7 @@ int sci_uigetfont(char *fname, void* pvApiCtx)
             }
 
             *boldAdr = selectedBold;
+            AssignOutputVariable(pvApiCtx, 3) = nbInputArgument(pvApiCtx) + 3;
         }
 
         if (nbOutputArgument(pvApiCtx) >= 4)
@@ -291,6 +295,7 @@ int sci_uigetfont(char *fname, void* pvApiCtx)
             }
 
             *italicAdr = selectedItalic;
+            AssignOutputVariable(pvApiCtx, 4) = nbInputArgument(pvApiCtx) + 4;
         }
     }
     else /* The user canceled */
@@ -301,12 +306,14 @@ int sci_uigetfont(char *fname, void* pvApiCtx)
         if (nbOutputArgument(pvApiCtx) >= 1)
         {
             /* Return "" as font name */
-            char* fontNameEmpty = NULL;
-            if (allocSingleString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, nbRow * nbCol, (const char**) &fontNameEmpty))
+            const char * fontNameEmpty = "";
+            sciErr = createMatrixOfString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, 1, 1, &fontNameEmpty);
+            if (sciErr.iErr)
             {
                 Scierror(999, _("%s: Memory allocation error.\n"), fname);
                 return 1;
             }
+            AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
         }
 
         if (nbOutputArgument(pvApiCtx) >= 2)
@@ -319,6 +326,7 @@ int sci_uigetfont(char *fname, void* pvApiCtx)
                 Scierror(999, _("%s: Memory allocation error.\n"), fname);
                 return 1;
             }
+            AssignOutputVariable(pvApiCtx, 2) = nbInputArgument(pvApiCtx) + 2;
         }
 
         if (nbOutputArgument(pvApiCtx) >= 3)
@@ -331,6 +339,7 @@ int sci_uigetfont(char *fname, void* pvApiCtx)
                 Scierror(999, _("%s: Memory allocation error.\n"), fname);
                 return 1;
             }
+            AssignOutputVariable(pvApiCtx, 3) = nbInputArgument(pvApiCtx) + 3;
         }
 
         if (nbOutputArgument(pvApiCtx) >= 4)
@@ -343,13 +352,9 @@ int sci_uigetfont(char *fname, void* pvApiCtx)
                 Scierror(999, _("%s: Memory allocation error.\n"), fname);
                 return 1;
             }
+            AssignOutputVariable(pvApiCtx, 4) = nbInputArgument(pvApiCtx) + 4;
         }
     }
-
-    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
-    AssignOutputVariable(pvApiCtx, 2) = nbInputArgument(pvApiCtx) + 2;
-    AssignOutputVariable(pvApiCtx, 3) = nbInputArgument(pvApiCtx) + 3;
-    AssignOutputVariable(pvApiCtx, 4) = nbInputArgument(pvApiCtx) + 4;
 
     if (fontNameSize)
     {
