@@ -22,7 +22,7 @@ function v=mtlb_get(H,property)
         case "backingstore" then
         case "color" then
         case "colormap" then
-            v = H.color_map
+            v = get(gcf(), "color_map");
         case "currentaxes" then
             error(msprintf(gettext("%s: No equivalent for ''%s'' property.\n"), "mtlb_get", property));
         case "currentcharacter" then
@@ -42,7 +42,7 @@ function v=mtlb_get(H,property)
         case "menubar" then
             error(msprintf(gettext("%s: No equivalent for ''%s'' property.\n"), "mtlb_get", property));
         case "mincolormap" then
-            v = H.color_map
+            v = get(gcf(), "color_map");
             v=size(v,1)
         case "name" then
             error(msprintf(gettext("%s: No equivalent for ''%s'' property.\n"), "mtlb_get", property));
@@ -63,8 +63,8 @@ function v=mtlb_get(H,property)
         case "pointer" then
             v="arrow"
         case "position" then
-            o = H.figure_position
-            sz= H.figure_size
+            o = get(gcf(), "figure_position");
+            sz= get(gcf(), "figure_size");
             v=[o(:);sz(:)]'
         case "resize" then
             v="on"
