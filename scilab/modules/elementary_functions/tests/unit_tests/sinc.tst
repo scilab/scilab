@@ -27,7 +27,7 @@ x2=sparse(x);
 assert_checkalmostequal(sinc(x2),full(sin(x2)./x2), [], 1e-12);
 
 // Error messages
-error_msg = msprintf(gettext("Wrong number of input arguments."));
+error_msg = msprintf(gettext("Wrong number of input arguments.\n"));
 assert_checkerror("sinc(1,2,3)",error_msg,999);
 error_msg=msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"sinc", 1);
 assert_checkerror("sinc()",error_msg);
