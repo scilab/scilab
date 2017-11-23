@@ -190,12 +190,11 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
     // varargin management
     if (m_inputArgs->size() > 0 && m_inputArgs->back()->getSymbol().getName() == L"varargin")
     {
-        List* pL = nullptr;;
+        List* pL = new List();;
         int iVarPos = rhs;
         if (iVarPos > static_cast<int>(m_inputArgs->size()) - 1)
         {
             iVarPos = static_cast<int>(m_inputArgs->size()) - 1;
-            pL = new List();
         }
 
         //add variables in context or varargin list
@@ -233,10 +232,8 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
             }
         }
 
-        if (pL)
-        {
-            pContext->put(m_Varargin, pL);
-        }
+        //add varargin to macro scope 
+        pContext->put(m_Varargin, pL);
     }
     else if (rhs > m_inputArgs->size())
     {
