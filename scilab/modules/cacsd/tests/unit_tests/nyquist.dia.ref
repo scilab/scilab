@@ -164,5 +164,5 @@ F2=syslin("c",(0.88*2.5*0.8)/((0.25*%s+1)*(0.8*%s+1)));
 F3=syslin("c",(100*2.5*0.8)/((0.25*%s+1)*(0.8*%s+1)));
 nyquist ([F1;F2;F3],0.0 ,1000,["F1(Kr=1)";"F2(Kr=0,88)";"F3(Kr=10)"],%f)
 a=gca();
-assert_checkequal(a.children(1).links.foreground, [3, 2, 1]); // [green blue black]
+assert_checkequal(a.children(1).links.foreground, [3, 2, 1]'); // [green blue black]
 driver(old);
