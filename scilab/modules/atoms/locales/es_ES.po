@@ -206,7 +206,7 @@ msgid "%s: Wrong value for input argument #%d.\n"
 msgstr "%s: Valor errónea para el argumento de entrada #%d.\n"
 
 #, c-format
-msgid "%s: The config file ('%s') is not well formated at line %d\n"
+msgid "%s: The config file ('%s') is not well formatted at line %d\n"
 msgstr ""
 "%s: El archivo de configuración ('%s') no tiene el formato correcto en la "
 "línea %d\n"
@@ -769,7 +769,7 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: The file %s is not well formated, the toolbox %s - %s does not contain "
+"%s: The file %s is not well formatted, the toolbox %s - %s does not contain "
 "the %s field\n"
 msgstr ""
 
@@ -778,7 +778,7 @@ msgid "%s: name and version are not both defined\n"
 msgstr "%s: El nombre y la versión no están definidos\n"
 
 #, c-format
-msgid "%s: The file '%s' is not well formated at line %d\n"
+msgid "%s: The file '%s' is not well formatted at line %d\n"
 msgstr "%s: El archivo '%s' no está bien formateado en la linea %d\n"
 
 #, c-format
@@ -1089,7 +1089,7 @@ msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba una mlist.\n"
 
 #, c-format
-msgid "%s: The description is not well formated at line %d\n"
+msgid "%s: The description is not well formatted at line %d\n"
 msgstr "%s: La descripción no tiene un formato adecuado en la línea %d\n"
 
 #, c-format

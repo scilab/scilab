@@ -121,7 +121,7 @@ void VariablesChecker::preCheckNode(const ast::Exp & e, SLintContext & context, 
                                     std::wstring fname;
                                     if (context.isExternPrivateFunction(sym, fname))
                                     {
-                                        result.report(context, e.getLocation(), *this, 3, _("Use of a private macro \'%s\' defined in an other file %s."), name, fname);
+                                        result.report(context, e.getLocation(), *this, 3, _("Use of a private macro \'%s\' defined in another file %s."), name, fname);
                                     }
                                     else if (!context.getPublicFunction(sym.getName()))
                                     {

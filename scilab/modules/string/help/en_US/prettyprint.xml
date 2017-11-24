@@ -73,7 +73,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            Taking a variable, the prettyprint function will provide a formated representation of it.
+            Taking a variable, the prettyprint function will provide a formatted representation of it.
             Formats can be TeX, LaTeX or MathML.
             They can be used in third party applications but also within Scilab with the most of the
             <link linkend="math_rendering_features_in_graphic">Scilab graphic features</link>.

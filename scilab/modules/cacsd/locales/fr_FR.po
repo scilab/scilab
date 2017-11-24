@@ -573,7 +573,7 @@ msgid "%s: Uncontrollable system.\n"
 msgstr "%s : Système incontrôlable.\n"
 
 #, c-format
-msgid "%s: An error occured in '%s'.\n"
+msgid "%s: An error occurred in '%s'.\n"
 msgstr "%s : Une erreur s'est produite dans '%s'.\n"
 
 #, c-format

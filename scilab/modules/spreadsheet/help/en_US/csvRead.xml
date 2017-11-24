@@ -101,7 +101,7 @@
                         data to be read and (R2,C2) is the lower right corner.
                     </para>
                     <para>
-                        <note>Note that the file has to be correctly formated. The range will be done in the memory on the parsed elements.</note>
+                        <note>Note that the file has to be correctly formatted. The range will be done in the memory on the parsed elements.</note>
                     </para>
                 </listitem>
             </varlistentry>

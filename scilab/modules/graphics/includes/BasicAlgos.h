@@ -51,17 +51,17 @@ GRAPHICS_IMPEXP BOOL containsOneFiniteElement(const double vector[], int nbEleme
 
 /*--------------------------------------------------------------------------*/
 /**
- * copy an array into an other
+ * copy an array into another
  */
 GRAPHICS_IMPEXP void doubleArrayCopy(double dest[], const double src[], int nbElement);
 
 /**
- * copy an int array into an other
+ * copy an int array into another
  */
 GRAPHICS_IMPEXP void intArrayCopy(int dest[], const int src[], int nbElement);
 
 /**
- * copy a char * array into an other
+ * copy a char * array into another
  */
 GRAPHICS_IMPEXP BOOL stringArrayCopy(char * dest[], char * src[], int nbElement);
 

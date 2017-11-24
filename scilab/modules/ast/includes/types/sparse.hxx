@@ -210,12 +210,12 @@ struct EXTERN_AST Sparse : GenericType
     void opposite();
 
     /*
-      compares with an other value for equality (same nb of elts, with same values)
+      compares with another value for equality (same nb of elts, with same values)
       TODO: should it handle other types ?
      */
     bool operator==(const InternalType& it) SPARSE_CONST;
     /*
-      compares with an other value for inequality (same nb of elts, with same values)
+      compares with another value for inequality (same nb of elts, with same values)
       TODO: should it handle other types ?
      */
     bool operator!=(const InternalType& it) SPARSE_CONST
@@ -340,7 +340,7 @@ struct EXTERN_AST Sparse : GenericType
      */
     void toComplex();
 
-    /* coefficient wise relational operator < between *this sparse matrix and an other.
+    /* coefficient wise relational operator < between *this sparse matrix and another.
        Matrices must have the same dimensions except if one of them is of size (1,1)
        (i.e. a scalar) : it is then treated as a constant matrix of thre required dimensions.
 
@@ -351,7 +351,7 @@ struct EXTERN_AST Sparse : GenericType
      */
     SparseBool* newLessThan(Sparse &o);
 
-    /* coefficient wise relational operator != between *this sparse matrix and an other.
+    /* coefficient wise relational operator != between *this sparse matrix and another.
        Matrices must have the same dimensions except if one of them is of size (1,1)
        (i.e. a scalar) : it is then treated as a constant matrix of thre required dimensions.
 
@@ -362,7 +362,7 @@ struct EXTERN_AST Sparse : GenericType
      */
     SparseBool* newNotEqualTo(Sparse const&o) const;
 
-    /* coefficient wise relational operator <= between *this sparse matrix and an other.
+    /* coefficient wise relational operator <= between *this sparse matrix and another.
        Matrices must have the same dimensions except if one of them is of size (1,1)
        (i.e. a scalar) : it is then treated as a constant matrix of thre required dimensions.
 
@@ -377,7 +377,7 @@ struct EXTERN_AST Sparse : GenericType
      */
     SparseBool* newLessOrEqual(Sparse &o);
 
-    /* coefficient wise relational operator == between *this sparse matrix and an other.
+    /* coefficient wise relational operator == between *this sparse matrix and another.
        Matrices must have the same dimensions except if one of them is of size (1,1)
        (i.e. a scalar) : it is then treated as a constant matrix of thre required dimensions.
 

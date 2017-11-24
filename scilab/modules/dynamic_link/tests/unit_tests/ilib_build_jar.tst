@@ -72,7 +72,7 @@ endfunction
 
 // Checks the specified JAR build command provokes an error
 function checkCompileError(buildJarCmd)
-    compileError = msprintf(_('jcompile: An error occured: Cannot compile the code'));
+    compileError = msprintf(_('jcompile: An error occurred: Cannot compile the code'));
     execstr(buildJarCmd, 'errcatch');
     errMsg = lasterror();
     assert_checktrue(errMsg <> []);

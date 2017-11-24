@@ -194,7 +194,7 @@ GRAPHICS_IMPEXP void mat4DMult(const double mat4D[4][4], const double vect3D[3],
 #define SAFE_EQUAL2(x,y,acc) (Abs((x) - (y)) / Max(Abs((x) + (y)), EPSILON) < (acc))
 
 #define SAFE_EQUAL(x,y,acc) ((x) == (y)) || (Abs((x) - (y)) < (acc) * Max(Abs((x)), Abs((y))))
-/* test if a value if lesser than an other or just sligthy greater */
+/* test if a value if lesser than another or just sligthy greater */
 #define SAFE_LT(x,y,acc) ((x) == (y) || ((x) - (y)) < (acc) * Max(Abs((x)), Abs((y))))
 #define SAFE_GT(x,y,acc) ((x) == (y) || ((y) - (x)) < (acc) * Max(Abs((x)), Abs((y))))
 /*----------------------------------------------------------------------------*/

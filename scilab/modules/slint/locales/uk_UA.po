@@ -346,7 +346,7 @@ msgstr ""
 "наслідків."
 
 #, c-format
-msgid "Use of a private macro '%s' defined in an other file %s."
+msgid "Use of a private macro '%s' defined in another file %s."
 msgstr "Використання приватного макросу «%s», визначеного у іншому файлі, %s."
 
 #, c-format

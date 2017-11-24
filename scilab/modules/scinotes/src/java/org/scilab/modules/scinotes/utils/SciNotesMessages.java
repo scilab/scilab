@@ -36,7 +36,7 @@ public class SciNotesMessages {
 
     public static final String INVALID_FILE = Messages.gettext("File not found: %s");
     public static final String IO_EXCEPTION = Messages.gettext("I/O error: %s");
-    public static final String ASK_TO_RELOAD = Messages.gettext("The file %s has been modified by an other program. Reload it ?");
+    public static final String ASK_TO_RELOAD = Messages.gettext("The file %s has been modified by another program. Reload it ?");
 
     /** FILE MENU */
     public static final String FILE = Messages.gettext("File");

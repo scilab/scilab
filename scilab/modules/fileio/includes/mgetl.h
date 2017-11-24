@@ -29,7 +29,7 @@
  * @param [in]  iLineCount  the number of lines to read.
  * @param [out] pwstLines   a wide string array containing the lines
  *
- * @return the number of lines read, -1 if an error occured
+ * @return the number of lines read, -1 if an error occurred
 **/
 FILEIO_IMPEXP int mgetl(int iFileID, int iLineCount, wchar_t ***pwstLines);
 

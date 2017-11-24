@@ -536,7 +536,7 @@ msgstr "Лише значення з подвійною точністю, вик
 msgid "Verbose mode:"
 msgstr "Докладний режим:"
 
-msgid "Generate formated code:"
+msgid "Generate formatted code:"
 msgstr "Форматувати код:"
 
 msgid "M-file reading..."

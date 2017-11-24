@@ -533,7 +533,7 @@ msgstr "Только числовые значения использованы 
 msgid "Verbose mode:"
 msgstr "Режим расширенного вывода:"
 
-msgid "Generate formated code:"
+msgid "Generate formatted code:"
 msgstr "Форматировать код программы:"
 
 msgid "M-file reading..."

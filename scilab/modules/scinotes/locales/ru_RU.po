@@ -70,7 +70,7 @@ msgid "I/O error: %s"
 msgstr "ошибка ввода/вывода: %s"
 
 #, c-format
-msgid "The file %s has been modified by an other program. Reload it ?"
+msgid "The file %s has been modified by another program. Reload it ?"
 msgstr "Файл %s был изменён другой программой. Перезагрузить его?"
 
 msgid "File"

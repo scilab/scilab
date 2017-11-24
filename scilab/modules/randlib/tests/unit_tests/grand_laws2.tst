@@ -73,7 +73,7 @@ for i=floor(linspace(50,70,10))
     RdevS=gsort(Rdev,"g","i")';
     PS=(1:N)'/N;
     [P]=cdfpoi("PQ",RdevS,A*ones(RdevS));
-    // Need an other test P is piecewize linear and PS
+    // Need another test P is piecewize linear and PS
     // linear
     //if norm(P-PS) > prec then pause,end
 end
@@ -124,7 +124,7 @@ Rdev=grand(1,N,"uin",A,B);
 RdevS=gsort(Rdev,"g","i")';
 PS=(1:N)'/N;
 [P]=RdevS-A;
-//TODO need an other test
+//TODO need another test
 //if norm(P-PS) > prec then pause,end
 
 // test for lgi
@@ -135,7 +135,7 @@ Rdev=grand(1,N,"lgi");
 RdevS=gsort(Rdev,"g","i")';
 PS=(1:N)'/N;
 [P]=RdevS-A;
-//TODO need an other test
+//TODO need another test
 //if norm(P-PS) > prec then pause,end
 
 
@@ -147,7 +147,7 @@ Rdev=grand(1,N,"nbn",A,B);
 RdevS=gsort(Rdev,"g","i")';
 PS=(1:N)'/N;
 [P]=cdfnbn("PQ",RdevS,A*ones(RdevS),B*ones(RdevS),(1-B)*ones(RdevS));
-//TODO need an other test
+//TODO need another test
 //if norm(P-PS) > prec then pause,end
 
 

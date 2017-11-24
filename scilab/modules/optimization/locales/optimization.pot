@@ -741,7 +741,7 @@ msgstr ""
 # File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 216
 # File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 245
 #, c-format
-msgid "User function '%s' have not been setted.\n"
+msgid "User function '%s' have not been set.\n"
 msgstr ""
 
 #

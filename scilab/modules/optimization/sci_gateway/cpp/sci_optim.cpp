@@ -772,7 +772,7 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
 
         /*** perform operations ***/
         // n1qn1 : Quasi-Newton without constraints
-        if (iContr == 1 && iAlgo == 1) // bounds not setted && algo qn
+        if (iContr == 1 && iAlgo == 1) // bounds not set && algo qn
         {
             pdblVar = new double[iSizeX0];
             for (int i = 0; i < iSizeX0; i++)
@@ -810,7 +810,7 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
             }
         }
         // algorithme n1qn3 : Gradient Conjugate without constraints
-        else if (iContr == 1 && iAlgo == 2) // bounds not setted && algo gc
+        else if (iContr == 1 && iAlgo == 2) // bounds not set && algo gc
         {
             double dxmin = dEpsg;
             double dZng = 0;
@@ -891,7 +891,7 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
 
         }
         // optimiseur n1fc1 : non smooth without constraints
-        else if (iContr == 1 && iAlgo == 10) // bounds not setted && algo nd
+        else if (iContr == 1 && iAlgo == 10) // bounds not set && algo nd
         {
             if (bMem == false)
             {
@@ -947,7 +947,7 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
             }
         }
         // optimiseur qnbd : quasi-newton with bound constraints
-        else if (iContr == 2 && iAlgo == 1) // bounds setted && algo qn
+        else if (iContr == 2 && iAlgo == 1) // bounds set && algo qn
         {
             int iNfac = 0;
             if (iEpsx == 1)
@@ -967,7 +967,7 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
             }
         }
         // optimiseur gcbd : Gradient Conjugate with bound constraints
-        else if (iContr == 2 && iAlgo == 2) // bounds setted && algo gc
+        else if (iContr == 2 && iAlgo == 2) // bounds set && algo gc
         {
             int iNfac = 0;
             int nt = 2;

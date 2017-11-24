@@ -544,7 +544,7 @@ msgstr "Nello M-file sono usati solo valori double:"
 msgid "Verbose mode:"
 msgstr "Modalità prolissa:"
 
-msgid "Generate formated code:"
+msgid "Generate formatted code:"
 msgstr "Genera codice formattato:"
 
 msgid "M-file reading..."

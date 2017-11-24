@@ -52,7 +52,7 @@ function [m,den,off,count,m1,fir,frequ,offset,ok]=mfrequ_clk(frequ,offset)
         end
         [n,k]=gsort(mat(:,1),"g","i");
         mat=mat(k,:);  // sorting the mat matrix (increasingly).
-        // if two outputs are called at the same time they are replaced by an other output; the intersection of the two.
+        // if two outputs are called at the same time they are replaced by another output; the intersection of the two.
         if size(mat,1)>10000 then
             num=messagebox(["Warning: Your system is too hard to synchronize it will take some time";
             " A Scilab crash may occur";

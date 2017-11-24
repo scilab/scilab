@@ -127,7 +127,7 @@ msgid "%s: Wrong type for input argument #%d: A function expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: An error occured in '%s' subroutine.\n"
+msgid "%s: An error occurred in '%s' subroutine.\n"
 msgstr ""
 
 #, c-format
@@ -228,7 +228,7 @@ msgid "%s: %s return with state %d.\n"
 msgstr ""
 
 #, c-format
-msgid "%ls: An error occured in '%ls' subroutine.\n"
+msgid "%ls: An error occurred in '%ls' subroutine.\n"
 msgstr ""
 
 #, c-format
@@ -656,7 +656,7 @@ msgid "Undefined function '%ls'.\n"
 msgstr ""
 
 #, c-format
-msgid "User function '%s' have not been setted.\n"
+msgid "User function '%s' have not been set.\n"
 msgstr ""
 
 #, c-format

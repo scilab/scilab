@@ -45,7 +45,7 @@ public class LabelHandler {
      * @param axes The axes that will recieve the label.
      * @param text An array of text to set.
      * @param axis The axis to set x, y or z.
-     * @return The Label that was setted
+     * @return The Label that was set
      */
 
     public static Integer setLabel(Integer axes, String[] text, AxesHandler.axisTo axis) {

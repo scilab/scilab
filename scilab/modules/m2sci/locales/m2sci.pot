@@ -820,7 +820,7 @@ msgstr ""
 
 #
 # File: modules/m2sci/macros/mfile2sci.sci, line: 132
-msgid "Generate formated code:"
+msgid "Generate formatted code:"
 msgstr ""
 
 #

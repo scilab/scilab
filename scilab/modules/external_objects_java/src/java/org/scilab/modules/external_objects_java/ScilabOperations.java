@@ -20,7 +20,7 @@ import java.util.Arrays;
 public final class ScilabOperations {
 
     /**
-     * Add a string and an other object
+     * Add a string and another object
      * @param idA the id of the first object
      * @param idB the id of the second object
      * @return the id of the concatened Strings

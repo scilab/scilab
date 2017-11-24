@@ -18,7 +18,7 @@
 // * O.S : example on Windows , we cannot open more
 // than 80 dlls simultanously with LoadLibrary
 // numbers of files already openend
-// scilab minimun 3 LoadLibrary (libscilab.dll,
+// scilab minimum 3 LoadLibrary (libscilab.dll,
 // jvm.dll,fftw.dll)
 lines(0);
 //================================================

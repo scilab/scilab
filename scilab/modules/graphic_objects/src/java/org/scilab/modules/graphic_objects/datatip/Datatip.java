@@ -399,9 +399,9 @@ public class Datatip extends Text {
     }
 
     /**
-     * Get tip formated text for the given index
+     * Get tip formatted text for the given index
      * @param index the component index
-     * @return the formated string
+     * @return the formatted string
      */
     private String getComponentFormatedText(int index) {
         switch (displayComponents.charAt(index)) {

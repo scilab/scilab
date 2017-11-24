@@ -13,12 +13,12 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=7149
 //
 // <-- Short Description -->
-// For a wrong formated toolbox list ATOMS doesn't report the error and crashes.
+// For a wrong formatted toolbox list ATOMS doesn't report the error and crashes.
 // Please change line 169 of the file modules\atoms\macros\atoms_internalsatomsDESCRIPTIONread.sci from:
-// error(msprintf(gettext("%s: The file ""%s"" is not well formated at line %d\n"),"atomsDESCRIPTIONread",filein,i));
+// error(msprintf(gettext("%s: The file ""%s"" is not well formatted at line %d\n"),"atomsDESCRIPTIONread",filein,i));
 // to:
-// error(msprintf(gettext("%s: The file ""%s"" is not well formated at line %d\n"),"atomsDESCRIPTIONread",file_in,i));
+// error(msprintf(gettext("%s: The file ""%s"" is not well formatted at line %d\n"),"atomsDESCRIPTIONread",file_in,i));
 load(SCI+"/modules/atoms/macros/atoms_internals/lib");
 mputl("abcdef",TMPDIR+"/DESCRIPTION");
 execstr("atomsDESCRIPTIONread(TMPDIR+""/DESCRIPTION"");","errcatch");
-if lasterror() <> msprintf(gettext("%s: The file ''%s'' is not well formated at line %d\n"),"atomsDESCRIPTIONread",TMPDIR+"/DESCRIPTION",1) then bugmes();quit;end
+if lasterror() <> msprintf(gettext("%s: The file ''%s'' is not well formatted at line %d\n"),"atomsDESCRIPTIONread",TMPDIR+"/DESCRIPTION",1) then bugmes();quit;end

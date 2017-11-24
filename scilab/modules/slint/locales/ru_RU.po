@@ -341,7 +341,7 @@ msgstr ""
 "побочные эффекты."
 
 #, c-format
-msgid "Use of a private macro '%s' defined in an other file %s."
+msgid "Use of a private macro '%s' defined in another file %s."
 msgstr ""
 "Использование приватного сценария '%s', определённого в другом файле %s."
 

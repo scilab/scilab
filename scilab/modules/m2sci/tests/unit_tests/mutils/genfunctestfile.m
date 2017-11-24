@@ -18,7 +18,7 @@ function []=genfunctestfile(funnames,datacell)
 
 % funnames = cell containing : 
 %    - the name of the function to test
-%    - an other optional function name which is used to modify
+%    - another optional function name which is used to modify
 %      Scilab result (e.g. : abs...)
 
 % datacell = cell which contain data used to test the function

@@ -377,7 +377,7 @@ void ThreadManagement::WaitForCommandStoredSignal(void)
 
     This signal can be sent without any threads are waiting for,
     so we have to perform the Wait for each call to WaitForRunMeSignal.
-    (This can happends when an execution is interrupted by an other one.
+    (This can happends when an execution is interrupted by another one.
      This signal is sent but the main thread is not waiting for.)
 
     The loop while is used to avoid spurious wakeup of __Wait.

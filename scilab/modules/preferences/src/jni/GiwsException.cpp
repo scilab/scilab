@@ -27,7 +27,7 @@ namespace GiwsException
 /**
 * Each subclass of JniExcpetion should call the super constructor
 * and the setErrorMessage function to set the message.
-* @param curEnv java envirnonment where the exception occured.
+* @param curEnv java envirnonment where the exception occurred.
 */
 JniException::JniException(JNIEnv * curEnv) throw() : exception()
 {
@@ -67,7 +67,7 @@ std::string JniException::getJavaDescription(void) const throw()
 }
 
 /**
-* @return Java stack trace where the exception occured.
+* @return Java stack trace where the exception occurred.
 */
 std::string JniException::getJavaStackTrace(void) const throw()
 {
@@ -129,7 +129,7 @@ std::string JniException::retrieveExceptionMessage(JNIEnv * curEnv)
 }
 
 /**
- * @return full stack trace when the exception occured.
+ * @return full stack trace when the exception occurred.
  */
 std::string JniException::retrieveStackTrace(JNIEnv * curEnv)
 {
@@ -277,7 +277,7 @@ JniBadAllocException::~JniBadAllocException(void) throw() {}
 */
 
 /**
-* @param curEnv java environment where the exception occured.
+* @param curEnv java environment where the exception occurred.
 */
 JniCallMethodException::JniCallMethodException(JNIEnv * curEnv) throw() : JniException(curEnv)
 {
@@ -311,7 +311,7 @@ JniMethodNotFoundException::JniMethodNotFoundException(JNIEnv * curEnv, const st
 JniMethodNotFoundException::~JniMethodNotFoundException(void) throw() {}
 
 /**
- * @param curEnv java envirnonment where the exception occured.
+ * @param curEnv java envirnonment where the exception occurred.
  */
 JniObjectCreationException::JniObjectCreationException(JNIEnv * curEnv, const std::string & className) throw() : JniException(curEnv)
 {
@@ -322,7 +322,7 @@ JniObjectCreationException::JniObjectCreationException(JNIEnv * curEnv, const st
 JniObjectCreationException::~JniObjectCreationException(void) throw() {}
 
 /**
- * @param curEnv java envirnonment where the exception occured.
+ * @param curEnv java envirnonment where the exception occurred.
  */
 JniMonitorException::JniMonitorException(JNIEnv * curEnv, const std::string & className) throw() : JniException(curEnv)
 {

@@ -73,7 +73,7 @@ msgid "I/O error: %s"
 msgstr "Помилка введення-виведення: %s"
 
 #, c-format
-msgid "The file %s has been modified by an other program. Reload it ?"
+msgid "The file %s has been modified by another program. Reload it ?"
 msgstr ""
 "До файла %s внесено зміни сторонньою програмою. Перезавантажити його вміст?"
 

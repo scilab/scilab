@@ -76,7 +76,7 @@ public class SciDockingListener implements DockingListener {
         } else { /* Docking port created by Flexdock itself */
             /* Retrieve the ID of the parent window */
             Set<Dockable> allDockables = e.getNewDockingPort().getDockables();
-            /* Have to find an other dockable than the one we just docked */
+            /* Have to find another dockable than the one we just docked */
             Iterator<Dockable> it =  allDockables.iterator();
             Dockable dock = it.next();
 

@@ -538,7 +538,7 @@ msgstr "Només valors double al fitxer M:"
 msgid "Verbose mode:"
 msgstr "Mode detallat:"
 
-msgid "Generate formated code:"
+msgid "Generate formatted code:"
 msgstr "Genera codi formatat:"
 
 msgid "M-file reading..."

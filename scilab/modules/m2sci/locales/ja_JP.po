@@ -700,7 +700,7 @@ msgstr "冗長モード:"
 
 #
 # File: macros/mfile2sci.sci, line: 129
-msgid "Generate formated code:"
+msgid "Generate formatted code:"
 msgstr "フォーマットされたコードを生成:"
 
 #

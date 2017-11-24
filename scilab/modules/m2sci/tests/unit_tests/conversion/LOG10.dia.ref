@@ -16,7 +16,7 @@ if ~m2sciTestConversion("LOG10") then bugmes();quit;end
   Recursive mode: OFF
   Only double values used in M-file: NO
   Verbose mode: -1
-  Generate formated code: YES
+  Generate formatted code: YES
   M-file reading...
   M-file reading: Done
   Syntax modification...

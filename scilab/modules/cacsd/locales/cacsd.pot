@@ -988,7 +988,7 @@ msgstr ""
 # File: modules/cacsd/sci_gateway/cpp/sci_residu.cpp, line: 155
 # File: modules/cacsd/sci_gateway/cpp/sci_residu.cpp, line: 198
 #, c-format
-msgid "%s: An error occured in '%s'.\n"
+msgid "%s: An error occurred in '%s'.\n"
 msgstr ""
 
 #

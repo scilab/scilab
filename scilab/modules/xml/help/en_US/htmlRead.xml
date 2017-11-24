@@ -50,7 +50,7 @@
     <refsection>
         <title>Description</title>
         <para>Read and parse a HTML file. The returned document allows to access to the DOM tree which is kept in memory.</para>
-        <para>In general, a HTML file cannot be read with a XML parser because a HTML is rarely well-formated, so a HTML parser is required and it is more compliant.</para>
+        <para>In general, a HTML file cannot be read with a XML parser because a HTML is rarely well-formatted, so a HTML parser is required and it is more compliant.</para>
         <para>Once the HTML file is parsed, it can be seen as a XML file in memory, so usual operations can be done.</para>
         <para>The encoding argument is used to precise the file encoding.</para>
         <para>

@@ -18,4 +18,4 @@
 
 // In SciNotes, open two files, select the first and open a find/replace window (ctrl+F)
 // and repeat the process in the second file, the first find/replace window should closed 
-// and an other on should be opened.
+// and another on should be opened.

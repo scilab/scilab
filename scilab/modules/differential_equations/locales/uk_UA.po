@@ -161,7 +161,7 @@ msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати функцію.\n"
 
 #, c-format
-msgid "%s: An error occured in '%s' subroutine.\n"
+msgid "%s: An error occurred in '%s' subroutine.\n"
 msgstr "%s: сталася помилка у підпрограмі «%s».\n"
 
 #, c-format
@@ -289,7 +289,7 @@ msgid "%s: %s return with state %d.\n"
 msgstr "%s: %s завершила роботу із станом %d.\n"
 
 #, c-format
-msgid "%ls: An error occured in '%ls' subroutine.\n"
+msgid "%ls: An error occurred in '%ls' subroutine.\n"
 msgstr "%ls: сталася помилка у підпрограмі «%ls».\n"
 
 #, c-format
@@ -825,7 +825,7 @@ msgid "Undefined function '%ls'.\n"
 msgstr "Невизначене функція «%ls».\n"
 
 #, c-format
-msgid "User function '%s' have not been setted.\n"
+msgid "User function '%s' have not been set.\n"
 msgstr "Функцію користувача «%s» не встановлено.\n"
 
 #, c-format

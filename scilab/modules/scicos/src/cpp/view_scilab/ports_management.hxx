@@ -283,7 +283,7 @@ types::InternalType* get_ports_property(const Adaptor& adaptor, const object_pro
 /*
  * Set a Scilab encoded values as a property.
  *
- * \note this method will ignore or return false if one of the ports does not exist, depending on the property setted.
+ * \note this method will ignore or return false if one of the ports does not exist, depending on the property set.
  */
 template<typename Adaptor, object_properties_t p>
 bool set_ports_property(const Adaptor& adaptor, const object_properties_t port_kind, Controller& controller, types::InternalType* v)

@@ -582,7 +582,7 @@ msgid "%s: Uncontrollable system.\n"
 msgstr "%s: некерована система.\n"
 
 #, c-format
-msgid "%s: An error occured in '%s'.\n"
+msgid "%s: An error occurred in '%s'.\n"
 msgstr "%s: сталася помилка у «%s».\n"
 
 #, c-format

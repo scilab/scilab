@@ -258,7 +258,7 @@ types::Function::ReturnValue sci_int2d(types::typed_list &in, int _iRetCount, ty
     if (bCatch)
     {
         wchar_t szError[bsiz];
-        os_swprintf(szError, bsiz, _W("%s: An error occured in '%s' subroutine.\n").c_str(), "int2d", "twodq");
+        os_swprintf(szError, bsiz, _W("%s: An error occurred in '%s' subroutine.\n").c_str(), "int2d", "twodq");
         os << szError;
         throw ast::InternalError(os.str());
     }

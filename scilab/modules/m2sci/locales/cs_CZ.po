@@ -523,7 +523,7 @@ msgstr "V M-souboru jsou použity pouze hodnoty s dvojitou přesností:"
 msgid "Verbose mode:"
 msgstr "Režim výpisu:"
 
-msgid "Generate formated code:"
+msgid "Generate formatted code:"
 msgstr "Vytvořit formátovaný kód:"
 
 msgid "M-file reading..."

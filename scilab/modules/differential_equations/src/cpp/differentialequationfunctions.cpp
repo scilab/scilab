@@ -230,7 +230,7 @@ void DifferentialEquationFunctions::execDasrtG(int* ny, double* t, double* y, in
     }
     else
     {
-        sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "g");
+        sprintf(errorMsg, _("User function '%s' have not been set.\n"), "g");
         throw ast::InternalError(errorMsg);
     }
 }
@@ -258,7 +258,7 @@ void DifferentialEquationFunctions::execDasslF(double* t, double* y, double* ydo
     }
     else
     {
-        sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "f");
+        sprintf(errorMsg, _("User function '%s' have not been set.\n"), "f");
         throw ast::InternalError(errorMsg);
     }
 }
@@ -286,7 +286,7 @@ void DifferentialEquationFunctions::execDasslJac(double* t, double* y, double* y
     }
     else
     {
-        sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "jacobian");
+        sprintf(errorMsg, _("User function '%s' have not been set.\n"), "jacobian");
         throw ast::InternalError(errorMsg);
     }
 }
@@ -319,7 +319,7 @@ void DifferentialEquationFunctions::execDaskrPjac(double* res, int* ires, int* n
     }
     else
     {
-        sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "pjac");
+        sprintf(errorMsg, _("User function '%s' have not been set.\n"), "pjac");
         throw ast::InternalError(errorMsg);
     }
 }
@@ -352,7 +352,7 @@ void DifferentialEquationFunctions::execDaskrPsol(int* neq, double* t, double* y
     }
     else
     {
-        sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "psol");
+        sprintf(errorMsg, _("User function '%s' have not been set.\n"), "psol");
         throw ast::InternalError(errorMsg);
     }
 }
@@ -380,7 +380,7 @@ void DifferentialEquationFunctions::execImplF(int* neq, double* t, double* y, do
     }
     else
     {
-        sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "f");
+        sprintf(errorMsg, _("User function '%s' have not been set.\n"), "f");
         throw ast::InternalError(errorMsg);
     }
 }
@@ -408,7 +408,7 @@ void DifferentialEquationFunctions::execImplG(int* neq, double* t, double* y, do
     }
     else
     {
-        sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "g");
+        sprintf(errorMsg, _("User function '%s' have not been set.\n"), "g");
         throw ast::InternalError(errorMsg);
     }
 }
@@ -436,7 +436,7 @@ void DifferentialEquationFunctions::execImplJac(int* neq, double* t, double* y, 
     }
     else
     {
-        sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "jacobian");
+        sprintf(errorMsg, _("User function '%s' have not been set.\n"), "jacobian");
         throw ast::InternalError(errorMsg);
     }
 }
@@ -464,7 +464,7 @@ void DifferentialEquationFunctions::execBvodeGuess(double *x, double *z, double 
     }
     else
     {
-        sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "guess");
+        sprintf(errorMsg, _("User function '%s' have not been set.\n"), "guess");
         throw ast::InternalError(errorMsg);
     }
 }
@@ -492,7 +492,7 @@ void DifferentialEquationFunctions::execBvodeDfsub(double *x, double *z, double 
     }
     else
     {
-        sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "fsub");
+        sprintf(errorMsg, _("User function '%s' have not been set.\n"), "fsub");
         throw ast::InternalError(errorMsg);
     }
 }
@@ -520,7 +520,7 @@ void DifferentialEquationFunctions::execBvodeFsub(double *x, double *z, double *
     }
     else
     {
-        sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "fsub");
+        sprintf(errorMsg, _("User function '%s' have not been set.\n"), "fsub");
         throw ast::InternalError(errorMsg);
     }
 }
@@ -548,7 +548,7 @@ void DifferentialEquationFunctions::execBvodeDgsub(int *i, double *z, double *g)
     }
     else
     {
-        sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "gsub");
+        sprintf(errorMsg, _("User function '%s' have not been set.\n"), "gsub");
         throw ast::InternalError(errorMsg);
     }
 }
@@ -576,7 +576,7 @@ void DifferentialEquationFunctions::execBvodeGsub(int *i, double *z, double *g)
     }
     else
     {
-        sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "gsub");
+        sprintf(errorMsg, _("User function '%s' have not been set.\n"), "gsub");
         throw ast::InternalError(errorMsg);
     }
 }
@@ -605,7 +605,7 @@ void DifferentialEquationFunctions::execFevalF(int *nn, double *x1, double *x2, 
     }
     else
     {
-        sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "f");
+        sprintf(errorMsg, _("User function '%s' have not been set.\n"), "f");
         throw ast::InternalError(errorMsg);
     }
 }
@@ -633,7 +633,7 @@ void DifferentialEquationFunctions::execInt3dF(double* x, int* numfun, double* f
     }
     else
     {
-        sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "f");
+        sprintf(errorMsg, _("User function '%s' have not been set.\n"), "f");
         throw ast::InternalError(errorMsg);
     }
 }
@@ -661,7 +661,7 @@ double DifferentialEquationFunctions::execInt2dF(double* x, double* y)
     }
     else
     {
-        sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "f");
+        sprintf(errorMsg, _("User function '%s' have not been set.\n"), "f");
         throw ast::InternalError(errorMsg);
     }
 }
@@ -689,7 +689,7 @@ double DifferentialEquationFunctions::execIntgF(double* x)
     }
     else
     {
-        sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "f");
+        sprintf(errorMsg, _("User function '%s' have not been set.\n"), "f");
         throw ast::InternalError(errorMsg);
     }
 }
@@ -732,7 +732,7 @@ void DifferentialEquationFunctions::execOdeF(int* n, double* t, double* y, doubl
     }
     else
     {
-        sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "f");
+        sprintf(errorMsg, _("User function '%s' have not been set.\n"), "f");
         throw ast::InternalError(errorMsg);
     }
 }
@@ -760,7 +760,7 @@ void DifferentialEquationFunctions::execFunctionJac(int *n, double *t, double *y
     }
     else
     {
-        sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "jacobian");
+        sprintf(errorMsg, _("User function '%s' have not been set.\n"), "jacobian");
         throw ast::InternalError(errorMsg);
     }
 }
@@ -788,7 +788,7 @@ void DifferentialEquationFunctions::execFunctionG(int* n, double* t, double* y, 
     }
     else
     {
-        sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "g");
+        sprintf(errorMsg, _("User function '%s' have not been set.\n"), "g");
         throw ast::InternalError(errorMsg);
     }
 }

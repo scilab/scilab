@@ -66,7 +66,7 @@ msgid "I/O error: %s"
 msgstr "I/O错误：%s"
 
 #, c-format
-msgid "The file %s has been modified by an other program. Reload it ?"
+msgid "The file %s has been modified by another program. Reload it ?"
 msgstr "文件%s已被另一程序修改，重新载入？"
 
 msgid "File"

@@ -104,7 +104,7 @@ int StoreConsoleCommand(const char *command, int iWaitFor)
     if (iWaitFor)
     {
         // make this wait before unlock the Store Command will prevent
-        // dead lock in case where an other thread get this command
+        // dead lock in case where another thread get this command
         // and execute it before this thread is waiting for.
         ThreadManagement::WaitForConsoleExecDoneSignal();
     }

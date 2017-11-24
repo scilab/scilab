@@ -90,7 +90,7 @@ void Signalprocessingfunctions::execFunctionDgetx(double* x, int* siz, int* iss)
     }
     else
     {
-        sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "g");
+        sprintf(errorMsg, _("User function '%s' have not been set.\n"), "g");
         throw ast::InternalError(errorMsg);
     }
 }
@@ -151,7 +151,7 @@ void Signalprocessingfunctions::execFunctionDgety(double* y, int* siz, int* iss)
     }
     else
     {
-        sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "g");
+        sprintf(errorMsg, _("User function '%s' have not been set.\n"), "g");
         throw ast::InternalError(errorMsg);
     }
 }

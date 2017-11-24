@@ -306,7 +306,7 @@ types::Polynom* prod(types::Polynom* pIn, int iOrientation)
                 //convert indexes for result
                 if (piIndex[iOrientation - 1] == 0)
                 {
-                    // first element of lead dimension is already setted.
+                    // first element of lead dimension is already set.
                     continue;
                 }
 
@@ -339,7 +339,7 @@ types::Polynom* prod(types::Polynom* pIn, int iOrientation)
                 //convert indexes for result
                 if (piIndex[iOrientation - 1] == 0)
                 {
-                    // first element of lead dimension is already setted.
+                    // first element of lead dimension is already set.
                     continue;
                 }
 

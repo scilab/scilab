@@ -74,7 +74,7 @@ msgid "I/O error: %s"
 msgstr "Erreur E/S : %s"
 
 #, c-format
-msgid "The file %s has been modified by an other program. Reload it ?"
+msgid "The file %s has been modified by another program. Reload it ?"
 msgstr "Le fichier %s a été modifié par un autre programme. Le recharger ?"
 
 msgid "File"

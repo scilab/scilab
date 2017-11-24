@@ -17,7 +17,7 @@
     <refnamediv>
         <refname>strindex</refname>
         <refpurpose>
-            search position of a character string in an other string
+            search position of a character string in another string
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>

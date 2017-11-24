@@ -141,7 +141,7 @@ function description_out = atomsDESCRIPTIONread(file_in,additional)
                     missingfield = atomsCheckFields( current_toolbox );
                     if ~ isempty(missingfield) then
                         atomsCloseProgressBar(winId);
-                        error(msprintf(gettext("%s: The file ""%s"" is not well formated, the toolbox ""%s - %s"" does not contain the %s field\n"), ..
+                        error(msprintf(gettext("%s: The file ""%s"" is not well formatted, the toolbox ""%s - %s"" does not contain the %s field\n"), ..
                         "atomsDESCRIPTIONread",..
                         file_in,current_toolbox("Toolbox"),..
                         current_toolbox("Version"),..
@@ -244,7 +244,7 @@ function description_out = atomsDESCRIPTIONread(file_in,additional)
 
         // Else Error
         atomsCloseProgressBar(winId);
-        error(msprintf(gettext("%s: The file ''%s'' is not well formated at line %d\n"),"atomsDESCRIPTIONread",file_in,i));
+        error(msprintf(gettext("%s: The file ''%s'' is not well formatted at line %d\n"),"atomsDESCRIPTIONread",file_in,i));
 
     end
 

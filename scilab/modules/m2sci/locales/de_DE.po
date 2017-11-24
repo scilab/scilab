@@ -538,7 +538,7 @@ msgstr "Nur doppelte Werte in der M-Datei verwenden:"
 msgid "Verbose mode:"
 msgstr "Wortreicher Modus:"
 
-msgid "Generate formated code:"
+msgid "Generate formatted code:"
 msgstr "formatierten Code erzeugen"
 
 msgid "M-file reading..."

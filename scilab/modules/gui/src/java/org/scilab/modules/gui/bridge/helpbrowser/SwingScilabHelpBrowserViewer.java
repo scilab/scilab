@@ -466,7 +466,7 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
             });
 
             // The previous workaround hides the component accessibleHtml
-            // and consequently the focus is given to an other component.
+            // and consequently the focus is given to another component.
             // So we force the accessibleHtml to keep the focus.
             accessibleHtml.setFocusTraversalPolicy(new DefaultFocusTraversalPolicy() {
                 @Override

@@ -149,7 +149,7 @@ msgid "Undefined function '%ls'.\n"
 msgstr ""
 
 #, c-format
-msgid "User function '%s' have not been setted.\n"
+msgid "User function '%s' have not been set.\n"
 msgstr ""
 
 msgid "An error occurred while getting Signalprocessingfunctions object.\n"

@@ -210,7 +210,7 @@ msgid "%s: Wrong value for input argument #%d.\n"
 msgstr "%s: помилкове значення вхідного параметра №%d.\n"
 
 #, c-format
-msgid "%s: The config file ('%s') is not well formated at line %d\n"
+msgid "%s: The config file ('%s') is not well formatted at line %d\n"
 msgstr "%s: помилка у файлі налаштування («%s»), рядок %d\n"
 
 #, c-format
@@ -780,7 +780,7 @@ msgstr "Оновлюємо базу даних модулів Atoms…"
 
 #, c-format
 msgid ""
-"%s: The file %s is not well formated, the toolbox %s - %s does not contain "
+"%s: The file %s is not well formatted, the toolbox %s - %s does not contain "
 "the %s field\n"
 msgstr ""
 "%s: помилкове форматування файла %s, у наборі інструментів %s - %s не "
@@ -791,7 +791,7 @@ msgid "%s: name and version are not both defined\n"
 msgstr "%s: одночасно не вказано назву і версію\n"
 
 #, c-format
-msgid "%s: The file '%s' is not well formated at line %d\n"
+msgid "%s: The file '%s' is not well formatted at line %d\n"
 msgstr "%s: помилкове форматування файла «%s», рядок %d\n"
 
 #, c-format
@@ -1110,7 +1110,7 @@ msgstr ""
 "«mlist».\n"
 
 #, c-format
-msgid "%s: The description is not well formated at line %d\n"
+msgid "%s: The description is not well formatted at line %d\n"
 msgstr "%s:помилка у описі, рядок %d\n"
 
 #, c-format

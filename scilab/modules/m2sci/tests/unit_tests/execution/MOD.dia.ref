@@ -16,7 +16,7 @@ if ~m2sciTestExecution("MOD") then bugmes();quit;end
   Recursive mode: OFF
   Only double values used in M-file: NO
   Verbose mode: 0
-  Generate formated code: YES
+  Generate formatted code: YES
   M-file reading...
   M-file reading: Done
   Syntax modification...

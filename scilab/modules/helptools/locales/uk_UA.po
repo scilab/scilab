@@ -309,7 +309,7 @@ msgstr ""
 "назву існуючого файла.\n"
 
 #, c-format
-msgid "%s: The CHAPTER file is not well formated at line %d\n"
+msgid "%s: The CHAPTER file is not well formatted at line %d\n"
 msgstr "%s: помилка у форматуванні файла CHAPTER, рядок %d\n"
 
 #, c-format
@@ -321,7 +321,7 @@ msgstr ""
 "який завершується підрядком «.last_successful_build».\n"
 
 #, c-format
-msgid "%s: The last_successful_build file is not well formated at line %d\n"
+msgid "%s: The last_successful_build file is not well formatted at line %d\n"
 msgstr "%s: помилка у форматуванні файла last_successful_build, рядок %d\n"
 
 #, c-format

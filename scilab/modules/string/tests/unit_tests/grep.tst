@@ -13,7 +13,7 @@ lf = ascii(10);
 // unit tests grep
 //===============================
 txt=["find matches of a string in a vector of strings"
-"search position of a character string in an other string"
+"search position of a character string in another string"
 "Compare Strings"];
 //===============================
 if grep(txt,"vide")<>[] then pause,end

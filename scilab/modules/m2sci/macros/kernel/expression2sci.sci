@@ -17,7 +17,7 @@ function [sci_expr]=expression2sci(mtlb_expr,lhslist)
     global("varslist")
 
     // When lhslist is given, then expression2sci is called from equal2sci
-    // else it is called from an other function (clause2sci for example)
+    // else it is called from another function (clause2sci for example)
     rhs=argn(2);
     // If not given, lhslist is initialized with no name lhs
     if rhs==1 then

@@ -614,7 +614,7 @@ int DotPowerPolyByDouble(Polynom* _pPoly, Double* _pDouble, InternalType** _pOut
         SinglePoly** pSPTempOut = pITTempOut->getAs<Polynom>()->get();
         pSPOut[i] = pSPTempOut[0];
         // increase ref to avoid the delete of pSPTempOut[0]
-        // which are setted in pSPOut without copy.
+        // which are set in pSPOut without copy.
         pSPOut[i]->IncreaseRef();
         delete pITTempOut;
         pSPOut[i]->DecreaseRef();
@@ -629,7 +629,7 @@ int DotPowerPolyByDouble(Polynom* _pPoly, Double* _pDouble, InternalType** _pOut
     delete[] pDblPower;
 
     // delete temporary polynom
-    // do not delete the last SinglePoly of _pPoly setted without copy in pPolyTemp
+    // do not delete the last SinglePoly of _pPoly set without copy in pPolyTemp
     pSPTemp[0]->IncreaseRef();
     delete pPolyTemp;
     pSP[iSize - 1]->DecreaseRef();

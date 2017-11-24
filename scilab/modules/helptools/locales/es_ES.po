@@ -301,7 +301,7 @@ msgstr ""
 "existente válido.\n"
 
 #, c-format
-msgid "%s: The CHAPTER file is not well formated at line %d\n"
+msgid "%s: The CHAPTER file is not well formatted at line %d\n"
 msgstr "%s: El archivo CHAPTER no tiene formato correcto en la línea %d\n"
 
 #, c-format
@@ -313,7 +313,7 @@ msgstr ""
 "termine con .last_successful_build.\n"
 
 #, c-format
-msgid "%s: The last_successful_build file is not well formated at line %d\n"
+msgid "%s: The last_successful_build file is not well formatted at line %d\n"
 msgstr ""
 "%s: El archivo last_successful_build no tiene formato correcto en la línea "
 "%d\n"

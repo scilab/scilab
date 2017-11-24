@@ -113,7 +113,7 @@ msgstr ""
 #
 # File: modules/scinotes/src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 39
 #, c-format
-msgid "The file %s has been modified by an other program. Reload it ?"
+msgid "The file %s has been modified by another program. Reload it ?"
 msgstr ""
 
 #

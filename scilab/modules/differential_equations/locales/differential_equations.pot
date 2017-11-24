@@ -326,7 +326,7 @@ msgstr ""
 # File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 1452
 # File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 1506
 #, c-format
-msgid "%s: An error occured in '%s' subroutine.\n"
+msgid "%s: An error occurred in '%s' subroutine.\n"
 msgstr ""
 
 #
@@ -547,7 +547,7 @@ msgstr ""
 # File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 1145
 # File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 1369
 #, c-format
-msgid "%ls: An error occured in '%ls' subroutine.\n"
+msgid "%ls: An error occurred in '%ls' subroutine.\n"
 msgstr ""
 
 #
@@ -1249,7 +1249,7 @@ msgstr ""
 # File: modules/differential_equations/src/cpp/differentialequationfunctions.cpp, line: 763
 # File: modules/differential_equations/src/cpp/differentialequationfunctions.cpp, line: 791
 #, c-format
-msgid "User function '%s' have not been setted.\n"
+msgid "User function '%s' have not been set.\n"
 msgstr ""
 
 #

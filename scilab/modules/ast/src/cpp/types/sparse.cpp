@@ -2403,7 +2403,7 @@ int Sparse::newCholLLT(Sparse** _SpPermut, Sparse** _SpFactor) const
     }
 
     // Get the lower matrix of factorization.
-    // The new RealSparse_t will be setted in Sparse without copy.
+    // The new RealSparse_t will be set in Sparse without copy.
     *_SpFactor = new Sparse(new RealSparse_t(pLLT.matrixL()), NULL);
 
     // Get the permutation matrix.

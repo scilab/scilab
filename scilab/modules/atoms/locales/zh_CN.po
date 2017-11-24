@@ -170,7 +170,7 @@ msgid "%s: Wrong value for input argument #%d.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: The config file ('%s') is not well formated at line %d\n"
+msgid "%s: The config file ('%s') is not well formatted at line %d\n"
 msgstr "%s：配置文件 （“%s”） 在第 %d 行不能很好地格式化\n"
 
 #, c-format
@@ -658,7 +658,7 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: The file %s is not well formated, the toolbox %s - %s does not contain "
+"%s: The file %s is not well formatted, the toolbox %s - %s does not contain "
 "the %s field\n"
 msgstr ""
 
@@ -667,7 +667,7 @@ msgid "%s: name and version are not both defined\n"
 msgstr ""
 
 #, c-format
-msgid "%s: The file '%s' is not well formated at line %d\n"
+msgid "%s: The file '%s' is not well formatted at line %d\n"
 msgstr ""
 
 #, c-format
@@ -946,7 +946,7 @@ msgid "%s: Wrong type for input argument #%d: mlist expected.\n"
 msgstr "%s：输入参数 #%d 的类型出错：应该为 mlist。\n"
 
 #, c-format
-msgid "%s: The description is not well formated at line %d\n"
+msgid "%s: The description is not well formatted at line %d\n"
 msgstr "%s：description 在第 %d 行不能很好地被格式化\n"
 
 #, c-format

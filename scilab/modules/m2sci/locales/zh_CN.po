@@ -494,7 +494,7 @@ msgstr ""
 msgid "Verbose mode:"
 msgstr ""
 
-msgid "Generate formated code:"
+msgid "Generate formatted code:"
 msgstr ""
 
 msgid "M-file reading..."

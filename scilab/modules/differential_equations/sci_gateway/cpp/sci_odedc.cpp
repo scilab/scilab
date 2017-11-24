@@ -1137,7 +1137,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
                     }
 
                     wchar_t szError[bsiz];
-                    os_swprintf(szError, bsiz, _W("%s: An error occured in '%s' subroutine.\n").c_str(), "odedc", "tright");
+                    os_swprintf(szError, bsiz, _W("%s: An error occurred in '%s' subroutine.\n").c_str(), "odedc", "tright");
                     os << szError;
                     throw ast::InternalError(os.str());
                 }
@@ -1254,7 +1254,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
                     if (bCatch)
                     {
                         wchar_t szError[bsiz];
-                        os_swprintf(szError, bsiz, _W("%s: An error occured in '%s' subroutine.\n").c_str(), "odedc", strMeth.c_str());
+                        os_swprintf(szError, bsiz, _W("%s: An error occurred in '%s' subroutine.\n").c_str(), "odedc", strMeth.c_str());
                         os << szError;
                         throw ast::InternalError(os.str());
                     }
@@ -1449,7 +1449,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
                 if (bCatch)
                 {
                     wchar_t szError[bsiz];
-                    os_swprintf(szError, bsiz, _W("%s: An error occured in '%s' subroutine.\n").c_str(), "odedc", strMeth.c_str());
+                    os_swprintf(szError, bsiz, _W("%s: An error occurred in '%s' subroutine.\n").c_str(), "odedc", strMeth.c_str());
                     os << szError;
                     throw ast::InternalError(os.str());
                 }
@@ -1503,7 +1503,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
                     }
 
                     wchar_t szError[bsiz];
-                    os_swprintf(szError, bsiz, _W("%s: An error occured in '%s' subroutine.\n").c_str(), "odedc", tright);
+                    os_swprintf(szError, bsiz, _W("%s: An error occurred in '%s' subroutine.\n").c_str(), "odedc", tright);
                     os << szError;
                     throw ast::InternalError(os.str());
                 }

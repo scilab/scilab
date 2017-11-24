@@ -15,7 +15,7 @@ function [X,dim,Y]=im_inv(A,B,tol)
     //[X,dim]=im_inv(A,B [,tol]) computes (A^-1)(B) i.e vectors whose
     // image through A are in range(B).
     // The dim first columns de X span (A^-1) (B)
-    // tol is a threshold to test if a  subspace is included in an other
+    // tol is a threshold to test if a  subspace is included in another
     // default value tol = 100*%eps;
 
     [lhs,rhs]=argn(0);

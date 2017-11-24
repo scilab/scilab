@@ -544,7 +544,7 @@ msgid "%s: Uncontrollable system.\n"
 msgstr "%s: 不可制御システム.\n"
 
 #, c-format
-msgid "%s: An error occured in '%s'.\n"
+msgid "%s: An error occurred in '%s'.\n"
 msgstr "%s: '%s' でエラー発生.\n"
 
 #, c-format

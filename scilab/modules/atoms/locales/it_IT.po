@@ -212,7 +212,7 @@ msgid "%s: Wrong value for input argument #%d.\n"
 msgstr "%s: L'argomento in ingresso #%d ha un valore sbagliato.\n"
 
 #, c-format
-msgid "%s: The config file ('%s') is not well formated at line %d\n"
+msgid "%s: The config file ('%s') is not well formatted at line %d\n"
 msgstr "%s: Il file config ('%s') non è formattato bene alla riga %d\n"
 
 #, c-format
@@ -783,7 +783,7 @@ msgstr "Aggiornamento del database dei moduli di Atoms ..."
 
 #, c-format
 msgid ""
-"%s: The file %s is not well formated, the toolbox %s - %s does not contain "
+"%s: The file %s is not well formatted, the toolbox %s - %s does not contain "
 "the %s field\n"
 msgstr ""
 "%s: Il file %s non è formattato bene, il toolbox %s - %s non contiene il "
@@ -794,7 +794,7 @@ msgid "%s: name and version are not both defined\n"
 msgstr "%s: Nome e versione non sono entrambi definiti\n"
 
 #, c-format
-msgid "%s: The file '%s' is not well formated at line %d\n"
+msgid "%s: The file '%s' is not well formatted at line %d\n"
 msgstr "%s: Il file '%s' non è ben formattato alla riga %d\n"
 
 #, c-format
@@ -1106,7 +1106,7 @@ msgid "%s: Wrong type for input argument #%d: mlist expected.\n"
 msgstr "%s: L'argomento #%d è di tipo sbagliato: era attesa una mlist.\n"
 
 #, c-format
-msgid "%s: The description is not well formated at line %d\n"
+msgid "%s: The description is not well formatted at line %d\n"
 msgstr "%s: La descrizione non è formattata bene alla riga %d\n"
 
 #, c-format

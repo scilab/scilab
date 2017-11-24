@@ -30,7 +30,7 @@ int sci_check_properties_1(char * fname)
     CheckRow(2, m2, n2); // Checks that second argument is a row vector
     // CheckColumn can also be used
 
-    CheckDimProp(1, 2, m1 * n1 != n2); // Check compatibility beetween arg 1 and arg 2. We want m1*n1 == n2
+    CheckDimProp(1, 2, m1 * n1 != n2); // Check compatibility between arg 1 and arg 2. We want m1*n1 == n2
 
     ////////////////////////////
     // Getting third argument //

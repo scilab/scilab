@@ -74,7 +74,7 @@ public final class FunctionArguments {
             }
         });
 
-        // Converter to convert a double[] to a Double[] (or an other primitive type)
+        // Converter to convert a double[] to a Double[] (or another primitive type)
         registerConverter(new Converter() {
             @Override
             public Object convert(Object original, Class<?> to) {
@@ -92,7 +92,7 @@ public final class FunctionArguments {
             }
         });
 
-        // Converter to convert a double[] to a ArrayList<Double> (or an other primitive type)
+        // Converter to convert a double[] to a ArrayList<Double> (or another primitive type)
         registerConverter(new Converter() {
             @Override
             public Object convert(Object original, Class<?> to) {

@@ -297,7 +297,7 @@ msgstr ""
 "existeixi.\n"
 
 #, c-format
-msgid "%s: The CHAPTER file is not well formated at line %d\n"
+msgid "%s: The CHAPTER file is not well formatted at line %d\n"
 msgstr "%s: El fitxer de CHAPTER té un format incorrecte a la línia %d\n"
 
 #, c-format
@@ -309,7 +309,7 @@ msgstr ""
 "caràcters que acabi amb .last_successful_build.\n"
 
 #, c-format
-msgid "%s: The last_successful_build file is not well formated at line %d\n"
+msgid "%s: The last_successful_build file is not well formatted at line %d\n"
 msgstr ""
 "%s: El fitxer de last_successful_build té un format incorrecte a la línia "
 "%d\n"

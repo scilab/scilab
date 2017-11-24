@@ -181,7 +181,7 @@ function merge_pot() {
 
     MSGCOUNT=$(msgcat $LOCALIZATION_FILE_US |grep msgid |wc -l)
     if test $? -ne 0; then
-        echo "Badly formated localization files"
+        echo "Badly formatted localization files"
         cd -
         exit 32
     fi

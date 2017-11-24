@@ -31,7 +31,7 @@ mfile2sci(MFILE,TMPDIR);
   Recursive mode: OFF
   Only double values used in M-file: YES
   Verbose mode: 3
-  Generate formated code: NO
+  Generate formatted code: NO
   M-file reading...
   M-file reading: Done
   Syntax modification...

@@ -46,7 +46,7 @@ function cmd=get_errorcmd(path,scs_m_in,title_err,mess_err)
     //**          mess_err : the message of the error box message
     //**                      (if any)
     //**
-    //** nb : the string message will be formated as this :
+    //** nb : the string message will be formatted as this :
     //**      str_err=[title;
     //**               specific message for type of block;
     //**               mess_err]

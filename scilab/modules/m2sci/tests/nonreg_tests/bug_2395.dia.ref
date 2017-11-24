@@ -21,7 +21,7 @@ ierr = execstr("mfile2sci(""SCI/modules/m2sci/tests/nonreg_tests/bug_2395.m"", T
   Recursive mode: ON
   Only double values used in M-file: YES
   Verbose mode: 3
-  Generate formated code: YES
+  Generate formatted code: YES
   M-file reading...
   M-file reading: Done
   Syntax modification...

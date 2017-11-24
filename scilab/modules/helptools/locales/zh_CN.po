@@ -277,7 +277,7 @@ msgid ""
 msgstr "%s：第%d输入参数的值错误：应该为一个正确的已存在的文件。\n"
 
 #, c-format
-msgid "%s: The CHAPTER file is not well formated at line %d\n"
+msgid "%s: The CHAPTER file is not well formatted at line %d\n"
 msgstr "%s：这个CHAPTER文件的第%d行的格式不正确。\n"
 
 #, c-format
@@ -288,7 +288,7 @@ msgstr ""
 "%s：输入参数#%d的值错误：应该为一个以 .last_successful_build 结尾的字符串。\n"
 
 #, c-format
-msgid "%s: The last_successful_build file is not well formated at line %d\n"
+msgid "%s: The last_successful_build file is not well formatted at line %d\n"
 msgstr "%s：last_successful_build文件的第%d行格式不正确。\n"
 
 #, c-format

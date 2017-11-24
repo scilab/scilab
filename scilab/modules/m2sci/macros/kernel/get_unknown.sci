@@ -14,7 +14,7 @@ function [sci_equiv]=get_unknown(varname,lhslist)
     // Handle cases where varname appear in an expression while it is not known.
 
     // nam may be:
-    // - a variable created in an other clause part
+    // - a variable created in another clause part
     // - a M-file called without args
     // - a variable created by an eval
 

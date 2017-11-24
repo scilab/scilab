@@ -101,7 +101,7 @@ int SendScilabJob(char *job)
 
         if ((m != 1) && (n != 1))
         {
-            fprintf(stderr, "Error: SendScilabJob (3) call_scilab detected a badly formated 'Err_Job' variable. Size [1,1] expected.\n");
+            fprintf(stderr, "Error: SendScilabJob (3) call_scilab detected a badly formatted 'Err_Job' variable. Size [1,1] expected.\n");
             retCode = -3;
 
             if (command)

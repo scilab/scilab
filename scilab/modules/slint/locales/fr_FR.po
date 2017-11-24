@@ -336,7 +336,7 @@ msgid "Use of non-initialized variable '%s' may have any side-effects."
 msgstr ""
 
 #, c-format
-msgid "Use of a private macro '%s' defined in an other file %s."
+msgid "Use of a private macro '%s' defined in another file %s."
 msgstr ""
 
 #, c-format

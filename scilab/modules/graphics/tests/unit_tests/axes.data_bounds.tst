@@ -8,7 +8,7 @@
 // <-- TEST WITH GRAPHIC -->
 
 // gca function set the firstPlot flag to false
-// then plot2d merge the data bounds setted and computed.
+// then plot2d merge the data bounds set and computed.
 
 t=linspace(0,%pi,20);
 a=gca();a.data_bounds=[t(1) -1.8;t($) 1.8];

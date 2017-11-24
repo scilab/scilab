@@ -301,7 +301,7 @@ msgstr ""
 "attendu.\n"
 
 #, c-format
-msgid "%s: The CHAPTER file is not well formated at line %d\n"
+msgid "%s: The CHAPTER file is not well formatted at line %d\n"
 msgstr "%s : Le fichier CHAPTER n'est pas bien formaté à la ligne %d\n"
 
 #, c-format
@@ -313,7 +313,7 @@ msgstr ""
 "terminant par .last_successful_build attendue.\n"
 
 #, c-format
-msgid "%s: The last_successful_build file is not well formated at line %d\n"
+msgid "%s: The last_successful_build file is not well formatted at line %d\n"
 msgstr ""
 "%s : Le fichier last_successful_build n'est pas bien formaté à la ligne %d\n"
 

@@ -365,7 +365,7 @@ msgid ""
 msgstr "%s: 入力引数 #%d で不正な値: 適当な既に在るファイルを想定します。\n"
 
 #, c-format
-msgid "%s: The CHAPTER file is not well formated at line %d\n"
+msgid "%s: The CHAPTER file is not well formatted at line %d\n"
 msgstr "%s: CHAPTER ファイルは 行 %d で満足にフォーマットされません\n"
 
 #
@@ -379,7 +379,7 @@ msgstr ""
 "す。\n"
 
 #, c-format
-msgid "%s: The last_successful_build file is not well formated at line %d\n"
+msgid "%s: The last_successful_build file is not well formatted at line %d\n"
 msgstr ""
 "%s: last_successful_build ファイルは 行 %d で満足にフォーマットされません\n"
 

@@ -291,7 +291,7 @@ msgstr ""
 "soubor.\n"
 
 #, c-format
-msgid "%s: The CHAPTER file is not well formated at line %d\n"
+msgid "%s: The CHAPTER file is not well formatted at line %d\n"
 msgstr "%s: Soubor KAPITOLA není na řádku %d dobře formátován\n"
 
 #, c-format
@@ -303,7 +303,7 @@ msgstr ""
 "last_successful_build.\n"
 
 #, c-format
-msgid "%s: The last_successful_build file is not well formated at line %d\n"
+msgid "%s: The last_successful_build file is not well formatted at line %d\n"
 msgstr "%s: Soubor last_successful_build není na řádku %d dobře formátován.\n"
 
 #, c-format

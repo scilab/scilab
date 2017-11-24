@@ -15,7 +15,7 @@ function  C=instruction2code(I, bprettyprintformat)
     // Translate an instruction tlist to Scilab code (called by tree2code)
     // Input:
     // - I: instruction 'tree'
-    // - bprettyprintformat: boolean value, if FALSE (default value), generated code is not formated else it is
+    // - bprettyprintformat: boolean value, if FALSE (default value), generated code is not formatted else it is
     // Output:
     // - C: Scilab code corresponding to I
 

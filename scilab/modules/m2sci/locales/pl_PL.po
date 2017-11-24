@@ -531,7 +531,7 @@ msgstr "W M-pliku użyte tylko wartości rzeczywiste (typ double);"
 msgid "Verbose mode:"
 msgstr "Tryb wyściowy rozszerzony:"
 
-msgid "Generate formated code:"
+msgid "Generate formatted code:"
 msgstr "Generowanie sformatowanego kodu:"
 
 msgid "M-file reading..."

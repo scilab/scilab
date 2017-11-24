@@ -149,7 +149,7 @@ types::Function::ReturnValue sci_residu(types::typed_list &in, int _iRetCount, t
                             pdblInR[2][i], piRank[2]+i, &v, &dblEps, &iErr);
                 if (iErr)
                 {
-                    Scierror(78, _("%s: An error occured in '%s'.\n"), "residu", "residu");
+                    Scierror(78, _("%s: An error occurred in '%s'.\n"), "residu", "residu");
                     throw iErr;
                 }
 
@@ -192,7 +192,7 @@ types::Function::ReturnValue sci_residu(types::typed_list &in, int _iRetCount, t
 
                 if (iErr)
                 {
-                    Scierror(78, _("%s: An error occured in '%s'.\n"), "residu", "wesidu");
+                    Scierror(78, _("%s: An error occurred in '%s'.\n"), "residu", "wesidu");
                     throw iErr;
                 }
 

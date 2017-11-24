@@ -129,7 +129,7 @@ function res=mfile2sci(fil,res_path,Recmode,only_double,verbose_mode,prettyprint
     gettext("Recursive mode:")+" "+rec;
     gettext("Only double values used in M-file:")+" "+dble;
     gettext("Verbose mode:")+" "+string(verbose_mode);
-    gettext("Generate formated code:")+" "+pretty]
+    gettext("Generate formatted code:")+" "+pretty]
     m2sci_info(mss,-1);
 
     // Read in the file as text

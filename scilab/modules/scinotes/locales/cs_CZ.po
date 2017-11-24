@@ -69,7 +69,7 @@ msgid "I/O error: %s"
 msgstr "Chyba I/O: %s"
 
 #, c-format
-msgid "The file %s has been modified by an other program. Reload it ?"
+msgid "The file %s has been modified by another program. Reload it ?"
 msgstr "Soubor %s byl změněn jiným programem. Chcete ho znovu načíst ?"
 
 msgid "File"

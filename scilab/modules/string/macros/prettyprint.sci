@@ -30,7 +30,7 @@ function str = prettyprint(a, exportFormat, delimiter, processByElement, isWrapp
     //If the type of a is not handled, then an error is returned. If a user wants to handle the type foo when exporting with latex, he must define the function foo2latex.
     //
     // Description
-    // Taking a variable, the prettyprint function will provide a formated representation of it.
+    // Taking a variable, the prettyprint function will provide a formatted representation of it.
     // Formats can be TeX, LaTeX or MathML.
     // They can be used in third party applications but also within Scilab with the most of the
     // <link linkend="math_rendering_features_in_graphic">Scilab graphic features</link>.

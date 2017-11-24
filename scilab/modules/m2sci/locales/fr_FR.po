@@ -539,7 +539,7 @@ msgstr "Seules des valeurs de type double sont utilisées dans le M-file :"
 msgid "Verbose mode:"
 msgstr "Mode verbeux :"
 
-msgid "Generate formated code:"
+msgid "Generate formatted code:"
 msgstr "Génère du code formaté :"
 
 msgid "M-file reading..."

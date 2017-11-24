@@ -532,7 +532,7 @@ msgstr "Solo se usan valores de doble precisión en archivos M:"
 msgid "Verbose mode:"
 msgstr "Modo de texto completo (verbose):"
 
-msgid "Generate formated code:"
+msgid "Generate formatted code:"
 msgstr "Generar código con formato:"
 
 msgid "M-file reading..."

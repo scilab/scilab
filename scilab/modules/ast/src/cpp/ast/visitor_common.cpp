@@ -1596,7 +1596,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
 
             types::typed_list* pArgs = pEH->getArgs();
 
-            // should never occured
+            // should never occurred
             if (pArgs == NULL || pArgs->size() == 0)
             {
                 std::wostringstream os;

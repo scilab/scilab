@@ -194,7 +194,7 @@ msgid "%s: Wrong value for input argument #%d.\n"
 msgstr "%s: Špatná hodnota vstupního argumentu #%d.\n"
 
 #, c-format
-msgid "%s: The config file ('%s') is not well formated at line %d\n"
+msgid "%s: The config file ('%s') is not well formatted at line %d\n"
 msgstr "%s: Soubor s nastavením ('%s') není na řádku %d dobře formátován\n"
 
 #, c-format
@@ -736,7 +736,7 @@ msgstr "Aktualizace databáze modulů ATOMS..."
 
 #, c-format
 msgid ""
-"%s: The file %s is not well formated, the toolbox %s - %s does not contain "
+"%s: The file %s is not well formatted, the toolbox %s - %s does not contain "
 "the %s field\n"
 msgstr ""
 
@@ -745,7 +745,7 @@ msgid "%s: name and version are not both defined\n"
 msgstr "%s: jméno a verze nejsou určeny\n"
 
 #, c-format
-msgid "%s: The file '%s' is not well formated at line %d\n"
+msgid "%s: The file '%s' is not well formatted at line %d\n"
 msgstr "%s: Soubor '%s' není na řádku %d dobře zformátován\n"
 
 #, c-format
@@ -1050,7 +1050,7 @@ msgid "%s: Wrong type for input argument #%d: mlist expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván mlist.\n"
 
 #, c-format
-msgid "%s: The description is not well formated at line %d\n"
+msgid "%s: The description is not well formatted at line %d\n"
 msgstr "%s: Popis není na řádku %d dobře formátován\n"
 
 #, c-format

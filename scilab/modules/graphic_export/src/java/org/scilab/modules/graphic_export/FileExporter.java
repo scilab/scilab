@@ -58,7 +58,7 @@ public class FileExporter {
             case Export.UNKNOWN_ERROR :
                 return Messages.gettext("Unable to create export file, please fill a bug report at http://bugzilla.scilab.org.");
             case Export.FILENOTFOUND_ERROR :
-                return Messages.gettext("Unable to create export file, the file cannot be created or is locked by an other process.");
+                return Messages.gettext("Unable to create export file, the file cannot be created or is locked by another process.");
             default :
                 return "";
         }
