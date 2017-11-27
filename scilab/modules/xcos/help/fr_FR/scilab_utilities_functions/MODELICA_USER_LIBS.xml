@@ -64,7 +64,7 @@
         <itemizedlist>
             <listitem>
                 <para>
-                    <link linkend="getModelicaPath">getModelicaPath</link>: obtenir le chemin du dossier Modelica requis par les diargamme Xcos contenant des blocs Modelica
+                    <link linkend="getModelicaPath">getModelicaPath</link>: obtenir le chemin du dossier Modelica requis par les diagrammes Xcos contenant des blocs Modelica
                 </para>
             </listitem>
         </itemizedlist>
