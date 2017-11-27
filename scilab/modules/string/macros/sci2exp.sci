@@ -51,11 +51,12 @@ function t=sci2exp(a,nom,lmax)
         end
     end
     // For an hypermatrix, we concatenate all components in a single row:
-    hyperMat = or(type(a)==[1 2 4 8 10]) & ndims(a)>2;
-    if hyperMat
+    hyperMat = or(type(a)==[1 2 4 8 10]) && ndims(a) > 2;
+    if hyperMat then
         s = size(a);
         a = matrix(a,1,-1);
     end
+
     dots="..";
 
     select type(a)
@@ -393,7 +394,7 @@ function t = glist2exp(listType, l, lmax)
         L = length(l);
     else
         t = listType + "("
-        if listType=="list" then
+        if or(listType==["list", "mlist", "tlist"]) then
             L = length(l)
         else
              L = size(getfield(1,l),"*");
