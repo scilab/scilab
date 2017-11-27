@@ -91,19 +91,26 @@ public class TemplateHandler {
     }
 
     private void parseFile(File f) {
+        BufferedReader reader = null;
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(f));
+            reader = new BufferedReader(new FileReader(f));
             String line = null;
             StringBuilder stringBuilder = new StringBuilder();
             while ((line = reader.readLine()) != null ) {
                 stringBuilder.append(line);
                 stringBuilder.append("\n");
             }
-            reader.close();
 
             array = stringBuilder.toString().split("(<!--<)|(>-->)");
         } catch (IOException e) {
             e.printStackTrace();
+        }
+        if (reader != null) {
+           try {
+               reader.close();
+           } catch (IOException e) {
+               e.printStackTrace();
+           }
         }
     }
 }
