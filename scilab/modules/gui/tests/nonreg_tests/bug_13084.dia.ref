@@ -12,24 +12,23 @@
 // http://bugzilla.scilab.org/13084
 //
 // <-- Short Description -->
-// ATOMS GUI is not showing any list module.
+// Interp_mode could not be set on all datatips of the same polyline
 x=-5.001:0.1:5;
 y=sin(x)./x;
 plot2d(x,y);
 e=gce();
 e=e.children(1);
 b=%f
- b  =
- 
-  F  
+ b  = 
+  F
 for i=1:10:100
-  d=datatipCreate(e,i);
-  datatipSetInterp(d,b);
-  b=~b;
+    d=datatipCreate(e,i);
+    datatipSetInterp(d,b);
+    b=~b;
 end
 d=e.datatips;
-assert_checkequal(d.interp_mode, ["on" "off" "on" "off" "on" "off" "on" "off" "on" "off"]);
+assert_checkequal(d.interp_mode, ["on" "off" "on" "off" "on" "off" "on" "off" "on" "off"]');
 datatipSetInterp(e,%t);
-assert_checkequal(d.interp_mode, ["on" "on" "on" "on" "on" "on" "on" "on" "on" "on"]);
+assert_checkequal(d.interp_mode, ["on" "on" "on" "on" "on" "on" "on" "on" "on" "on"]');
 datatipSetInterp(e,%f);
-assert_checkequal(d.interp_mode, ["off" "off" "off" "off" "off" "off" "off" "off" "off" "off"]);
+assert_checkequal(d.interp_mode, ["off" "off" "off" "off" "off" "off" "off" "off" "off" "off"]');
