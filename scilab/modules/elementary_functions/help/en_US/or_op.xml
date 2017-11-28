@@ -165,7 +165,14 @@
                         For any boolean or numerical operands <varname>U</varname> and
                         <varname>V</varname>,
                         <literal>G = U || V</literal> is equivalent to
-                        <literal>if or(U), G = %T, else G = or(V), end</literal>.
+                        <screen><![CDATA[
+if and(U) // none of U components is null or false
+    G = %t
+    // V is not assessed
+else
+    G = and(V)
+end
+]]></screen>
                         <itemizedlist>
                             <listitem>
                                 <varname>U</varname> and <varname>V</varname> may have distinct sizes
@@ -175,13 +182,17 @@
                                 The result is always a single boolean.
                             </listitem>
                             <listitem>
-                                <literal>or(V)</literal>  is evaluated only if <literal>or(U)</literal>
+                                <literal>and(V)</literal>  is evaluated only if <literal>and(U)</literal>
                                 is false. This mainly avoids yielding errors when further operations
                                 with <varname>V</varname> are meaningless or prone to error when
-                                <varname>U</varname> is true. See examples.
+                                <varname>and(U)</varname> is true. See examples.
                             </listitem>
                         </itemizedlist>
                     </para>
+                    <note><literal>||</literal> is useful mainly out of <literal>if ..</literal>
+                    and <literal>while ..</literal> conditions. Otherwise, it is just equivalent to
+                    the simple <literal>|</literal>.
+                    </note>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -191,41 +202,40 @@
                         When the <literal>|</literal> operator is used inside a logical condition
                         tested by a <function>while</function> or by an <function>if</function>
                         control structure, it is equivalent to the <literal>||</literal> operator
-                        (see above).
+                        (see above): <literal>U|V</literal> is equivalent to
+                        <literal>and(U)|and(V)</literal>, without assessing <literal>V</literal>
+                        if <literal>and(U)</literal> is true.
                     </para>
                     <para>Otherwise, <literal>|</literal> has two different actions:
                         <orderedlist>
                             <listitem>
                                 When both operands are encoded integers,
-                                <literal>intA | intB</literal> is processed element-wise and yields
-                                an array of integers resulting from the bitwise
-                                <literal>AND</literal> between corresponding components.
+                                <para>
+                                    <literal>intA | intB</literal> is processed element-wise and
+                                    yields an array of integers resulting from the bitwise
+                                    <literal>AND</literal> between corresponding components.
+                                </para>
+                                <note>
+                                    Comparison with <literal>bitor()</literal> :
+                                    <literal>intA | intB</literal> accepts negative integers, while
+                                    <literal>bitor(intA, intB)</literal> does not.
+                                    <literal>bitor(A,B)</literal> works bitwise with decimal-encoded
+                                    integers.
+                                </note>
                             </listitem>
                             <listitem>
-                                Otherwise, when operands are arrays of numbers or/and booleans,
-                                they are still processed element-wise. Provided that null numbers
-                                are equivalent to false booleans, the result is an array of booleans.
+                                Otherwise,
+                                <para>
+                                when operands are arrays of numbers or/and booleans,
+                                they are still processed element-wise. Null numbers being considered
+                                as booleans false, the result is an array of booleans.
+                                </para>
                             </listitem>
                         </orderedlist>
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
-        <para>
-            <emphasis role="bold">Comparing <literal>|</literal> and <literal>||</literal> with
-            <literal>bitor()</literal> and <literal>or()</literal></emphasis> :
-            <itemizedlist>
-                <listitem>
-                    <literal>or(A)</literal> is equivalent to <literal>A || %F</literal>, whereas
-                    <literal>or(A, side)</literal> has no equivalence with <literal>||</literal>.
-                </listitem>
-                <listitem>
-                    <literal>intA | intB</literal> accepts negative integers, while
-                    <literal>bitor(intA, intB)</literal> does not. <literal>bitor(A,B)</literal>
-                    works bitwise with decimal-encoded integers.
-                </listitem>
-            </itemizedlist>
-        </para>
         <note>
             The <link linkend="overloading">overloading</link> code for <literal>|</literal> and
             <literal>||</literal> operators is <emphasis role="bold">g</emphasis>.
@@ -257,14 +267,10 @@ iB = int8(B);
 cA = A + 0*%i;
 cB = B + 0*%i;
 
-// | as logical operation
-A | B
-A | spB    // Result is sparse encoded
-iA | spB   // Result is sparse encoded
-cA | iB
-A | %nan   // %nan is %t
+// | as bitwise (and elementwise) operation
+// ----------------------------------------
+// Both operands and the result are arrays of encoded integers
 
-// | as bitwise operation
 iA | iB
 
 Ai8 = int8([ -1, 1; 127, -128]);
@@ -285,8 +291,20 @@ Bui32 = uint32(Bi8);
 
 r = Ai16 | Bui32, typeof(r)
 
-// Shorted | or ||:
-// ----------------
+// | as logical elementwise operation
+// ----------------------------------
+// Operands are arrays of booleans or of numbers. The result is an array of booleans
+
+A | B
+A | spB    // Result is sparse encoded
+iA | spB   // Result is sparse encoded
+cA | iB
+A | %nan   // %nan is %t
+
+// Shorted and scalared  | or ||:
+// -----------------------------
+// Operands are arrays of booleans or of numbers. The result is a single boolean
+
 function res = foo()
     error("foo() shall not be called")
 endfunction
@@ -296,9 +314,11 @@ if  %T | foo() then
     // foo() is not called and this is not executed
 end
 
-A  || foo()   // A, iA and cA have at least one non-zero element.
-iA || foo()   // Therefore, foo() is not called
-cA || foo()
+// || is scalared and shorted in any boolean expression, even out of if or while ones:
+T = [-2 1];
+T  || foo()        // T has only true (non zero) components, and so is "true as a whole".
+int8(T) || foo()   // Therefore, foo() as right operand is not assessed / called.
+T+0*%i || foo()
  ]]></programlisting>
 
     <para>
