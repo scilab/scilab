@@ -16,15 +16,14 @@
 // Wrong error message when ticks locations and labels have not the same sizes
 
 clf(); plot2d(); a=gca();
-errmsg1=msprintf(_("%s: Incompatible sizes for properties ''%s'' and ''%s'': Same sizes expected.\n"), "generic_i_h", "x_ticks.locations", "x_ticks.labels");
+errmsg=msprintf(_("Ticks location and label vectors must have the same size.\n"));
 execstr("a.x_ticks.locations=0:2:6","errcatch"); //assert_checkerror does not catch the error here
-assert_checkequal(lasterror(), errmsg1);
+assert_checkequal(lasterror(), errmsg);
 execstr("a.x_ticks.labels=string([0:2:6])", "errcatch");
-assert_checkequal(lasterror(), errmsg1);
+assert_checkequal(lasterror(), errmsg);
 
-errmsg2=msprintf(_("%s: Incompatible sizes for properties ''%s'' and ''%s'': Same sizes expected.\n"), "generic_i_h", "y_ticks.locations", "y_ticks.labels");
 execstr("a.y_ticks.locations=-2:1:2", "errcatch");
-assert_checkequal(lasterror(), errmsg2);
+assert_checkequal(lasterror(), errmsg);
 execstr("a.y_ticks.labels=string([-2:1:2])", "errcatch");
-assert_checkequal(lasterror(), errmsg2);
+assert_checkequal(lasterror(), errmsg);
 close
