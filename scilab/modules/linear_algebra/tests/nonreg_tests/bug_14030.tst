@@ -24,8 +24,8 @@ H=[1.    1.    1.    0.;
 ww=spec(H)
 
 function [flg]=sel(x,y)
-   flg=%f
-   if abs(x/y-ww(3))<0.0001|abs(x/y-ww(4))<0.00001 then flg=%t,end
+    flg=%f
+    if abs(x/y-ww(3))<0.0001|abs(x/y-ww(4))<0.00001 then flg=%t,end
 endfunction
 
 [X,d]=schur(H,eye(H),sel);
@@ -33,10 +33,11 @@ assert_checkfalse(norm(X*X'-eye(X), 1)> 200*%eps);
 assert_checkequal(d, 2);
 
 // check error
+clear sel
 function [flg]=sel(x,y)
 endfunction
 assert_checkfalse(execstr("[X,d]=schur(H,eye(H),sel)"   ,"errcatch") == 0);
-refMsg = msprintf(_("Undefined variable ''%s'' in function ''%s''."), "flg", "sel");
+refMsg = msprintf(_("Undefined variable ''%s'' in function ''%s''.\n"), "flg", "sel");
 assert_checkerror("[X,d]=schur(H,eye(H),sel)", refMsg);
 
 e = [0 1 0 0]';
