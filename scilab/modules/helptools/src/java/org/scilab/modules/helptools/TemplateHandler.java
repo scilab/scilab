@@ -41,9 +41,11 @@ public class TemplateHandler {
     }
 
     public void generateFileFromTemplate(String fileName, String id, String contents) {
+        OutputStream out = null;
+        OutputStreamWriter writer = null;
         try {
-            OutputStream out = new FileOutputStream(fileName);
-            OutputStreamWriter writer = new OutputStreamWriter(out, Charset.forName("UTF-8"));
+            out = new FileOutputStream(fileName);
+            writer = new OutputStreamWriter(out, Charset.forName("UTF-8"));
 
             for (int i = 0; i < array.length; i += 2) {
                 writer.append(array[i]);
@@ -82,11 +84,20 @@ public class TemplateHandler {
             }
 
             writer.flush();
-            writer.close();
             out.flush();
-            out.close();
         } catch (IOException e) {
             System.err.println(e);
+        } finally {
+            try {
+                if(out != null) {
+                  out.close();
+                }
+                if(writer != null) {
+                  writer.close();
+                }
+            } catch (IOException e) {
+                System.err.println(e);
+            }
         }
     }
 
