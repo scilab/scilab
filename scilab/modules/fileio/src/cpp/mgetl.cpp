@@ -112,7 +112,7 @@ int mgetl(int iFileID, int iLineCount, wchar_t ***pwstLines)
             {
                 //delimit line
                 buf[i] = '\0';
-                if(i > 0 && buf[i - 1] == '\r')
+                if (i > 0 && buf[i - 1] == '\r')
                 {
                     buf[i - 1] = '\0';
                     delimiter_size = 2;
@@ -215,7 +215,14 @@ int mgetl(int iFileID, int iLineCount, wchar_t ***pwstLines)
 
 #ifndef _MSC_VER
     auto pos = ifs.tellg();
-    fseek(fd, pos, SEEK_SET);
+    if (pos == -1)
+    {
+        fseek(fd, 0, SEEK_END);
+    }
+    else
+    {
+        fseek(fd, pos, SEEK_SET);
+    }
     ifs.close();
 #endif
 

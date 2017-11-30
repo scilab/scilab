@@ -8,6 +8,7 @@
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 function sortedRoots=sortRoots(rootsToSort)
     //Sort roots using rounded values to avoid rounding errors
@@ -100,7 +101,7 @@ P(3)=1320;
 P(4)=-18150;
 P(5)=157773;
 P(6)=-902055;
-P(7) = 3416930;
+P(7)=3416930;
 P(8)=-8409500;
 P(9)=12753576;
 P(10)=-10628640;
@@ -111,7 +112,7 @@ E = (1:10)';
 R = roots(P);
 E = sortRoots(E);
 R = sortRoots(R);
-assert_checkalmostequal(R, E, 1.e-10);
+assert_checkalmostequal(R, E, 1e-9);
 // EXAMPLE 2. ZEROS ON IMAGINARY AXIS DEGREE 3.
 // x^3-10001.0001*i*x^2-10001.0001*x+i
 P = [];
