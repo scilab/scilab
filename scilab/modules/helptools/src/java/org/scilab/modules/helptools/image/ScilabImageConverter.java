@@ -54,20 +54,27 @@ public class ScilabImageConverter implements ExternalImageConverter {
 
     public String getFileWithScilabCode() {
         if (buffer.length() != 0) {
+            FileOutputStream fos = null;
+            Writer out = null;
             try {
                 File f = File.createTempFile("help-", ".sce", new File(ScilabCommons.getTMPDIR()));
-                FileOutputStream fos = new FileOutputStream(f);
-                Writer out = new BufferedWriter(new OutputStreamWriter(fos, "UTF-8"));
+                fos = new FileOutputStream(f);
+                out = new BufferedWriter(new OutputStreamWriter(fos, "UTF-8"));
                 fos.write(BOM);
                 out.write(buffer.toString());
                 out.flush();
 
-                out.close();
-                fos.close();
 
                 return f.getAbsolutePath();
             } catch (Exception e) {
                 System.err.println("Cannot generate the file with Scilab code to execute:\n" + e);
+            } finally {
+                if (out != null) {
+                    out.close();
+                }
+                if (fos != null) {
+                    fos.close();
+                }
             }
         }
 
