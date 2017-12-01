@@ -77,7 +77,7 @@ public class ScilabImageConverter implements ExternalImageConverter {
                 }
             }
         }
-
+        
         return null;
     }
 
@@ -92,8 +92,9 @@ public class ScilabImageConverter implements ExternalImageConverter {
      * {@inheritDoc}
      */
     public String convertToImage(File code, Map<String, String> attributes, File imageFile, String imageName) {
+        BufferedReader in = null;
         try {
-            BufferedReader in = new BufferedReader(new FileReader(code));
+            in = new BufferedReader(new FileReader(code));
             StringBuilder buffer = new StringBuilder(8192);
             String line;
 
@@ -101,11 +102,14 @@ public class ScilabImageConverter implements ExternalImageConverter {
                 buffer.append(line).append("\n");
             }
 
-            in.close();
 
             return convertToPNG(code.getName(), buffer.toString(), attributes, imageFile, imageName);
         } catch (Exception e) {
             System.err.println("Problem when exporting Scilab code to " + imageFile + "!\n" + e.toString());
+        } finally {
+            if (in != null) {
+                in.close();
+            }
         }
 
         return null;
