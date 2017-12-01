@@ -238,7 +238,7 @@ Help pages:
 
 * Support to `id`, `width`, `height`, `align` and `style` attributes added for the `<imagedata>` tag.
 * Support to `id` attribute added for the `<tr>` tag.
-* fixed / improved:  `members`, `part`, `ode`, `ode_optional_output`, `ode_roots`, `plot2d`, `roots`,
+* fixed / improved:  `members`, `part`, `ode`, `ode_optional_output`, `ode_root`, `plot2d`, `roots`,
   `printf`, `sprintf`, `iconvert`, `stdev`, `xlabel`, `and_op`, `or_op`, `permute`, `tree2code`, `%helps`,
   `scilab|scilex`, `flipdim`, `Matplot_properties`, `meshgrid`, `ismatrix`, `xget`, `xset`, `ieee`, `evstr`,
   `uigetfont`, `uigetdir`, `uigetfile`, `uiputfile`, `cat`, `makecell`, `xstring`, `norm`, `barhomogenize`,

@@ -27,7 +27,7 @@
         <synopsis>
             y = ode(y0, t0, t, f)
             [y, w, iw] = ode([type,]y0, t0, t [,rtol [,atol]],f [,jac] [,w, iw])
-            [y, rd, w, iw] = ode("roots", y0, t0, t [,rtol [,atol]], f [,jac], ng, g [, w, iw])
+            [y, rd, w, iw] = ode("root", y0, t0, t [,rtol [,atol]], f [,jac], ng, g [, w, iw])
             y = ode("discrete", y0, k0, kvect, f)
         </synopsis>
     </refsynopsisdiv>
@@ -75,7 +75,7 @@
                         программ решения:   <literal>"adams"</literal>,
                         <literal>"stiff"</literal>, <literal>"rk"</literal>,
                         <literal>"rkf"</literal>, <literal>"fix"</literal>,
-                        <literal>"discrete"</literal>, <literal>"roots"</literal>.
+                        <literal>"discrete"</literal>, <literal>"root"</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -412,14 +412,14 @@ void fex(int *n,double *t,double *y,int *ml,int *mu,double *J,int *nrpd,)
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>"roots":</term>
+                <term>"root":</term>
                 <listitem>
                     <para>
                         Программа решения ОДУ с возможностью нахождения корней.
                         Используется программа решения <literal>lsodar</literal> из пакета
                         ODEPACK. Она является вариантом программы
                         решения <literal>lsoda</literal>, где она ищет корни заданной
-                        векторной функции. См. справку по <link linkend="ode_roots">ode_roots</link>.
+                        векторной функции. См. справку по <link linkend="ode_root">ode_root</link>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -566,7 +566,7 @@ y = ode(y0,t0,t,'myode');
                 <link linkend="ode_optional_output">ode_optional_output</link>
             </member>
             <member>
-                <link linkend="ode_roots">ode_roots</link>
+                <link linkend="ode_root">ode_root</link>
             </member>
             <member>
                 <link linkend="ode_discrete">ode_discrete</link>

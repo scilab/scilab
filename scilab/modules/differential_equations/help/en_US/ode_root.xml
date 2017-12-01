@@ -15,16 +15,16 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="ode_roots" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="ode_root" xml:lang="en">
     <refnamediv>
-        <refname>ode_roots</refname>
+        <refname>ode_root</refname>
         <refpurpose>ordinary differential equation solver with roots
             finding
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>[y, rd, w, iw] = ode("roots", y0, t0, t [,rtol [,atol]], f [,jac], ng, g [,w,iw])</synopsis>
+        <synopsis>[y, rd, w, iw] = ode("root", y0, t0, t [,rtol [,atol]], f [,jac], ng, g [,w,iw])</synopsis>
     </refsynopsisdiv>
     <refsection role="parameters">
         <title>Arguments</title>
@@ -104,7 +104,7 @@
     <refsection role="description">
         <title>Description</title>
         <para>
-            With this syntax (first argument equal to <literal>"roots"</literal>)
+            With this syntax (first argument equal to <literal>"root"</literal>)
             <literal>ode</literal> computes the solution of the differential equation
             <literal>dy/dt=f(t,y)</literal> until the state <literal>y(t)</literal>
             crosses the surface <literal>g(t,y)=0</literal>.
@@ -154,10 +154,10 @@ z = g(t,y)
 deff("[ydot]=f(t,y)","ydot=y")
 deff("[z]=g(t,y)","z=y-2")
 y0=1;ng=1;
-[y,rd]=ode("roots",y0,0,2,f,ng,g)
+[y,rd]=ode("root",y0,0,2,f,ng,g)
 
 deff("[z]=g(t,y)","z=y-[2;2;33]")
-[y,rd]=ode("roots",1,0,2,f,3,g)
+[y,rd]=ode("root",1,0,2,f,3,g)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
