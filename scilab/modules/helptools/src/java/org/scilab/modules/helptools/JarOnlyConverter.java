@@ -117,9 +117,10 @@ public class JarOnlyConverter extends ContainerConverter {
 
         File[] allFiles = new File(outImages).listFiles();
         for (int i = 0; i < allFiles.length; i++) {
+            FileInputStream fileInputStream = null;
             try {
                 File workingFile = allFiles[i];
-                FileInputStream fileInputStream = new FileInputStream(workingFile);
+                fileInputStream = new FileInputStream(workingFile);
 
                 int length = (int) workingFile.length();
                 byte[] buffer = new byte[length];
@@ -131,9 +132,12 @@ public class JarOnlyConverter extends ContainerConverter {
                 ZipEntry zipEntry = new ZipEntry(workingFile.getName());
                 jarFile.putNextEntry(zipEntry);
                 jarFile.write(buffer, 0, length);
-                fileInputStream.close();
             } catch (java.io.IOException e) {
                 System.err.println("buildDoc: An error occurs while building the JavaHelp ( " + e.getLocalizedMessage() + RIGHT_PAR);
+            } finally {
+                if (fileInputStream != null) {
+                    fileInputStream.close();
+                }
             }
 
         }
