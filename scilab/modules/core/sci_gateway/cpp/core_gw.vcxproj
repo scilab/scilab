@@ -177,6 +177,7 @@
   <ItemGroup>
     <ClCompile Include="sci_analyzeroptions.cpp" />
     <ClCompile Include="sci_cell.cpp" />
+    <ClCompile Include="sci_checkNamedArguments.cpp" />
     <ClCompile Include="sci_clearfun.cpp" />
     <ClCompile Include="sci_errclear.cpp" />
     <ClCompile Include="sci_fieldnames.cpp" />

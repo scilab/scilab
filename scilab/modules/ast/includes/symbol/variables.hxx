@@ -162,6 +162,7 @@ struct Variables
     int getFunctionList(std::list<Symbol>& lst, std::wstring _stModuleName, int _iLevel);
     int getFunctionList(std::list<types::Callable *>& lst, std::wstring _stModuleName, int _iLevel);
     int getVarsToVariableBrowser(std::list<Variable*>& lst);
+    int getCurrentScope(std::list<std::wstring>& lst, int level, bool sorted);
     bool putInPreviousScope(Variable* _var, types::InternalType* _pIT, int _iLevel);
 
     //globals

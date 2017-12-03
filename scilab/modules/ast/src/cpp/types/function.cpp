@@ -41,7 +41,7 @@ extern "C"
 // dummy function definition for non nwni compatible modules
 static void dummy()
 {
-    char* fname = wide_string_to_UTF8(ConfigVariable::getWhere().back().m_name.c_str());
+    char* fname = wide_string_to_UTF8(ConfigVariable::getWhere().back().call->getName().c_str());
     Scierror(999, _("Scilab '%s' function disabled in -nogui or -nwni mode.\n"), fname);
     FREE(fname);
 }

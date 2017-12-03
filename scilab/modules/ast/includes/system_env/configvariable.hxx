@@ -417,12 +417,12 @@ public :
     {
         int m_line;
         int m_absolute_line;
-        int m_macro_first_line;
-        std::wstring m_name;
+        types::Callable* call;
         std::wstring m_file_name;
-        WhereEntry(int line, int absolute_line, const std::wstring& name, int first_line, const std::wstring& file_name) :
-            m_line(line), m_absolute_line(absolute_line), m_macro_first_line(first_line), m_name(name), m_file_name(file_name) {}
+        WhereEntry(int line, int absolute_line, types::Callable* pCall, const std::wstring& file_name) :
+            m_line(line), m_absolute_line(absolute_line), call(pCall), m_file_name(file_name) {}
     };
+
     typedef std::vector<WhereEntry> WhereVector;
 
     static void where_begin(int _iLineNum, int _iLineLocation, types::Callable* _pCall);

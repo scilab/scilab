@@ -1185,7 +1185,7 @@ void ConfigVariable::where_begin(int _iLineNum, int _iLineLocation, types::Calla
         wstrFileName = pM->getFileName();
     }
 
-    m_Where.emplace_back(_iLineNum, _iLineLocation, pCall->getName(), pCall->getFirstLine(), wstrFileName);
+    m_Where.emplace_back(_iLineNum, _iLineLocation, pCall, wstrFileName);
 }
 
 void ConfigVariable::where_end()
@@ -1231,18 +1231,18 @@ void ConfigVariable::whereErrorToString(std::wostringstream &ostr)
     // get max length of functions name and check if exec or execstr have been called.
     for (auto & where : m_WhereError)
     {
-        if (isExecstr == false && where.m_name == L"execstr")
+        if (isExecstr == false && where.call->getName() == L"execstr")
         {
             isExecstr = true;
             continue;
         }
-        else if (isExecfile == false && where.m_name == L"exec")
+        else if (isExecfile == false && where.call->getName() == L"exec")
         {
             isExecfile = true;
             continue;
         }
 
-        iLenName = std::max((int)where.m_name.length(), iLenName);
+        iLenName = std::max((int)where.call->getName().length(), iLenName);
 
         // in case of bin file, the file path and line is displayed only if the associated .sci file exists
         if (where.m_file_name != L"" && where.m_file_name.find(L".bin") != std::wstring::npos)
@@ -1290,7 +1290,7 @@ void ConfigVariable::whereErrorToString(std::wostringstream &ostr)
         }
         else
         {
-            if (where.m_name == L"execstr")
+            if (where.call->getName() == L"execstr")
             {
                 isExecstr = true;
                 wchar_t wcsTmp[bsiz];
@@ -1298,7 +1298,7 @@ void ConfigVariable::whereErrorToString(std::wostringstream &ostr)
                 ostr << wcsTmp << std::endl;
                 continue;
             }
-            else if (where.m_name == L"exec")
+            else if (where.call->getName() == L"exec")
             {
                 wchar_t wcsTmp[bsiz];
                 os_swprintf(wcsTmp, bsiz, wstrExecFile.c_str(), where.m_line);
@@ -1314,12 +1314,12 @@ void ConfigVariable::whereErrorToString(std::wostringstream &ostr)
         }
 
         ostr.width(iLenName);
-        ostr << where.m_name;
+        ostr << where.call->getName();
 
         if (where.m_file_name != L"")
         {
             // -1 because the first line of a function dec is : "function myfunc()"
-            ostr << L"( " << where.m_file_name << L" " << _W("line") << L" " << where.m_macro_first_line + where.m_line - 1 << L" )";
+            ostr << L"( " << where.m_file_name << L" " << _W("line") << L" " << where.call->getFirstLine() + where.m_line - 1 << L" )";
         }
 
         ostr << std::endl;
@@ -1342,7 +1342,7 @@ void ConfigVariable::fillWhereError(int _iErrorLine)
         m_WhereError.reserve(m_Where.size());
         for (auto where = m_Where.rbegin(); where != m_Where.rend(); ++where)
         {
-            m_WhereError.emplace_back(iTmp, (*where).m_absolute_line, (*where).m_name, (*where).m_macro_first_line, (*where).m_file_name);
+            m_WhereError.emplace_back(iTmp, (*where).m_absolute_line, (*where).call, (*where).m_file_name);
             iTmp = (*where).m_line;
         }
     }

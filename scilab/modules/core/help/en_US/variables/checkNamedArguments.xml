@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="checkNamedArguments">
+    <refnamediv>
+        <refname>checkNamedArguments</refname>
+        <refpurpose>Return list of unexpected named arguments</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>names = checkNamedArguments()</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>names</term>
+                <listitem>
+                    <para>a vector of string with names of variables</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+			Returns names of named variables passed to current function but that are not in the function prototype.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+function foo(a,b)
+    x = checkNamedArguments();
+	disp(x, "Named Variable:");
+endfunction
+
+//No additional named variable
+foo(1);
+foo(1, 2);
+foo(a = 1, b = 2);
+foo(b = 2, a = 2);
+
+//With additional named variables
+foo(a = 1, c = 2);
+foo(c = 2, b = 2); ]]>
+		</programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="who">who</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

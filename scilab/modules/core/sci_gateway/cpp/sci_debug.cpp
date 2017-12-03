@@ -490,12 +490,12 @@ types::Function::ReturnValue sci_debug(types::typed_list &in, int _iRetCount, ty
             auto it1 = where.rbegin();
             auto it2 = ++where.rbegin();
 
-            sciprint(_(BT_PRINT), 1, it2->m_name.data(), curLine);
+            sciprint(_(BT_PRINT), 1, it2->call->getName().data(), curLine);
             ++it1;
             ++it2;
             for (int j = 2; it2 != where.rend(); it1++, it2++, j++)
             {
-                sciprint(_(BT_PRINT), j, it2->m_name.data(), it1->m_line);
+                sciprint(_(BT_PRINT), j, it2->call->getName().data(), it1->m_line);
             }
 
             return types::Function::OK;

@@ -443,6 +443,28 @@ int Variables::getVarsToVariableBrowser(std::list<Variable*>& lst)
     return static_cast<int>(lst.size());
 }
 
+int Variables::getCurrentScope(std::list<std::wstring>& lst, int level, bool sorted)
+{
+    for (auto var : vars)
+    {
+        if (var.second->empty() == false)
+        {
+            if (var.second->top()->m_iLevel == level)
+            {
+                types::InternalType* pIT = var.second->top()->m_pIT;
+                lst.push_back(var.first.getName());
+            }
+        }
+    }
+
+    if (sorted)
+    {
+        lst.sort();
+    }
+
+    return static_cast<int>(lst.size());
+}
+
 bool Variables::putInPreviousScope(Variable* _var, types::InternalType* _pIT, int _iLevel)
 {
     if (_var->empty())

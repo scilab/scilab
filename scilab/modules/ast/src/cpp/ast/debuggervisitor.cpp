@@ -89,7 +89,7 @@ void DebuggerVisitor::visit(const SeqExp  &e)
                 if (lWhereAmI.size() != 0 && manager->getBreakPointCount() != 0)
                 {
                     debugger::Breakpoints bps = manager->getAllBreakPoint();
-                    std::wstring functionName = lWhereAmI.back().m_name;
+                    std::wstring functionName = lWhereAmI.back().call->getName();
                     int i = -1;
                     for (const auto & bp : bps)
                     {
@@ -288,7 +288,7 @@ void DebuggerVisitor::visit(const SeqExp  &e)
                 if (filename.empty())
                 {
                     //error in a console script
-                    std::wstring functionName = lWhereAmI.back().m_name;
+                    std::wstring functionName = lWhereAmI.back().call->getName();
                     manager->errorInScript(functionName, exp);
                 }
                 else

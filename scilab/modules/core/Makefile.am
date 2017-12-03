@@ -124,7 +124,8 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_mlist.cpp \
 	sci_gateway/cpp/sci_isfield.cpp \
 	sci_gateway/cpp/sci_oldEmptyBehaviour.cpp \
-	sci_gateway/cpp/sci_fieldnames.cpp
+	sci_gateway/cpp/sci_fieldnames.cpp \
+	sci_gateway/cpp/sci_checkNamedArguments.cpp
 
 if ENABLE_DEBUG
 GATEWAY_CPP_SOURCES += \

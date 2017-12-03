@@ -58,10 +58,10 @@ types::Function::ReturnValue sci_where(types::typed_list &in, int _iRetCount, ty
     for (int i = 0; it != where.rend(); it++, i++)
     {
         pDblLines->set(i + 1, it->m_line);
-        pStrNames->set(i, it->m_name.c_str());
+        pStrNames->set(i, it->call->getName().c_str());
     }
 
-    pStrNames->set(static_cast<int>(where.size()) - 1, where.back().m_name.c_str());
+    pStrNames->set(static_cast<int>(where.size()) - 1, where.back().call->getName().c_str());
 
     out.push_back(pDblLines);
     out.push_back(pStrNames);

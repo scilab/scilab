@@ -631,6 +631,11 @@ int Context::getVarsToVariableBrowser(std::list<Variable*>& lst)
     return static_cast<int>(lst.size());
 }
 
+int Context::getCurrentScope(std::list<std::wstring>& lst, bool sorted)
+{
+    return variables.getCurrentScope(lst, m_iLevel, sorted);
+}
+
 void Context::updateProtection(bool protect)
 {
     if (varStack.empty() == false)

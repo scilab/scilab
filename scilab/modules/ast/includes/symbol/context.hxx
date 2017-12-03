@@ -87,6 +87,7 @@ public:
     int getFunctionsName(std::list<std::wstring>& lst);
     int getVarsNameForWho(std::list<std::wstring>& lst, bool sorted);
     int getGlobalNameForWho(std::list<std::wstring>& lst, bool sorted);
+    int getCurrentScope(std::list<std::wstring>& lst, bool sorted);
     int getWhereIs(std::list<std::wstring>& lst, const std::wstring& _str);
     int getLibrariesList(std::list<std::wstring>& lst);
     int getVarsToVariableBrowser(std::list<Variable*>& lst);
