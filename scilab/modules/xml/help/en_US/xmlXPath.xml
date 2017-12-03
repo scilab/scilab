@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -11,9 +11,12 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
+ *
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xmlXPath" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="xmlXPath" xml:lang="en">
     <refnamediv>
         <refname>xmlXPath</refname>
         <refpurpose>Make a XPath query on a XML document</refpurpose>
@@ -21,7 +24,8 @@
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-            result = xmlXPath(xmlObj, queryStr [, namespaces])
+            result = xmlXPath(xmlObj, queryStr)
+            result = xmlXPath(xmlObj, queryStr, namespaces)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -55,9 +59,14 @@
     </refsection>
     <refsection>
         <title>Description</title>
-        <para>Make a XPath query on a document or in starting on an element. If you need to use namespaces, then you must define them in using the optional argument. XML namespaces are defined in the first tag with the keyword "xmlns".</para>
         <para>
-            For more information about XPath, you can read the <ulink url="http://www.w3.org/TR/1999/REC-xpath-19991116/">W3C recommandation</ulink>.
+            Make a XPath query on a document or in starting on an element. If you need to use
+            namespaces, then you must define them in using the optional argument. XML namespaces are
+            defined in the first tag with the keyword "xmlns".
+        </para>
+        <para>
+            For more information about XPath, you can read the
+            <ulink url="http://www.w3.org/TR/1999/REC-xpath-19991116/">W3C recommandation</ulink>.
         </para>
     </refsection>
     <refsection>
@@ -127,6 +136,23 @@
 
     xmlDelete(doc);
     ]]></programlisting>
+    <para>
+        <emphasis role="bold">Getting the XML comments:</emphasis>
+    </para>
+    <programlisting ole="example"><![CDATA[
+    doc = xmlRead(SCI+"/modules/ui_data/etc/newsfeed.xml");
+    c = xmlXPath(doc, "//comment()");   // do not forget the trailing ()
+    c.content'
+
+    xmlDelete(doc);
+    ]]></programlisting>
+    <screen><![CDATA[
+--> c.content'
+ ans  =
+! RSS Feed URL                                                        !
+! automatic news change interval time (in ms), set to -1 to disable   !
+! periodic feed update interval time (in ms), set to -1 to disable    !
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
