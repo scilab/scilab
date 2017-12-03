@@ -108,6 +108,10 @@ types::Function::ReturnValue sci_who(types::typed_list& in, int _iRetCount, type
     {
         size = symbol::Context::getInstance()->getVarsNameForWho(lstVar, bSorted);
     }
+    else if (wcsWhat == L"scope" || wcsWhat == L"current")
+    {
+        size = symbol::Context::getInstance()->getCurrentScope(lstVar, bSorted);
+    }
     else if (wcsWhat == L"global")
     {
         size = symbol::Context::getInstance()->getGlobalNameForWho(lstVar, bSorted);

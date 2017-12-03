@@ -8,38 +8,68 @@
         <title>Séquence d'appel</title>
         <synopsis>who
             who()
-            names=who('local')
-            [names,mem]=who('local')
-            names=who('global')
-            [names,mem]=who('global')
-            who('sorted')
-            names=who('local','sorted')
-            [names,mem]=who('local','sorted')
-            names=who('global','sorted')
-            [names,mem]=who('global','sorted')
+            [names, mem] = who([mode], [sorted])
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Description</title>
-        <para>
-            <literal>who</literal> affiche les noms des variables courantes.
-        </para>
-        <para>
-            <literal>who('local')</literal> ou <literal>who('get')</literal>
-            renvoie les noms des variables courantes et l'occupation mémoire en
-            nombre de flottants double précision.
-        </para>
-        <para>
-            <literal>who('global')</literal> renvoie les noms des variables
-            <literal>globales</literal> courantes et l'occupation mémoire en nombre
-            de flottants double précision.
-        </para>
-        <para>
-            <literal>who('sorted')</literal> affiche les noms des variables courantes triees par ordre alphabetique.
-        </para>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>mode</term>
+                <listitem>
+                    <para>
+                        <literal>local</literal>/<literal>get</literal>: liste les variables visibles (pas seulement dans la fonction courrante).
+                    </para>
+                    <para>
+                        <literal>scope</literal>/<literal>current</literal>: liste les variables dans la fonction courrante.
+                    </para>
+                    <para>
+                        <literal>global</literal>: liste les variables globales.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sorted</term>
+                <listitem>
+                    <para>
+                        Valeur booléenne pour spécifier si la sortie doit être triée par ordre alphabétique.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>names</term>
+                <listitem>
+                    <para>Matrices de chaînes de caractères avec le noms de variables.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>mem</term>
+                <listitem>
+                    <para>Matrice réelle avec l'occupation mémoire des variables en nombre de doubles.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+a=1;
+b=2;
+[name, mem]=who("local");
+position=find(name=="a")
+mem(position) // Size used by a
+position=find(name=="d") // []
+
+function foo(a,b)
+    disp(who("scope", "sorted"))
+endfunction
+
+foo(1,2);
+
+ ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Voir aussi</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="whos">whos</link>
@@ -48,5 +78,16 @@
                 <link linkend="who_user">who_user</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.1</revnumber>
+                <revdescription>
+                    Add scope/current option.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
