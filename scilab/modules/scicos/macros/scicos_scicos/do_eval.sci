@@ -89,7 +89,7 @@ function [scs_m,cpr,needcompile,ok]=do_eval(scs_m,cpr,%scicos_context)
     "if funam1 <> [] then, "+..
     "    mputl(tt, funam1); "+..
     "end");
-    %nx=lstsize(scs_m.objs)
+    %nx = size(scs_m.objs)
     %x=scs_m.objs;
     funcprot(%mprt)
     for %kk=1:%nx

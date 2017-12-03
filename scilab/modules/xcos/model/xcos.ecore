@@ -9,7 +9,7 @@
       <details key="documentation" value=" Encoded Scilab values"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="base64" unique="false"
-        eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString">
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value=" RFC 2045 Base64 encoded double[] values (space separated)"/>
       </eAnnotations>
@@ -19,12 +19,12 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value=" A point is a position on the diagram"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="x" unique="false" eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EDouble">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="x" unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value=" X coordinate"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="y" unique="false" eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EDouble">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="y" unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value=" Y coordinate"/>
       </eAnnotations>
@@ -34,23 +34,23 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value=" Rectangular coordinates of the object"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="x" unique="false" eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EDouble">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="x" unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value=" X coordinate"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="y" unique="false" eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EDouble">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="y" unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value=" Y coordinate"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="height" unique="false"
-        eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EDouble">
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value=" Height of the object"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="width" unique="false" eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EDouble">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="width" unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value=" Width of the object"/>
       </eAnnotations>
@@ -70,7 +70,7 @@
       <details key="documentation" value=" Shared definition for both a Diagram and a SuperBlock (eg. a Block)"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="context" unique="false"
-        upperBound="-1" eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString">
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value=" Scilab scripts added at current layer"/>
       </eAnnotations>
@@ -86,7 +86,7 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value=" Shared definition for an object contained in a Layer"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="uid" unique="false" eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="uid" unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         iD="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value=" Unique IDentifier : usually on the universally unique identifier (UUID) form"/>
@@ -104,17 +104,19 @@
         <details key="documentation" value=" parent Layer to navigate back"/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="geometry" lowerBound="1"
+        eType="#//Geometry" containment="true" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Diagram" eSuperTypes="#//Layer">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value=" A diagram is the top-level object of a model. It contains simulation parameters and the hierarchical data-flow and event-flow graphs."/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="title" unique="false" eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="title" unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value=" title of a diagram"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="path" unique="false" eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="path" unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value=" Latest saved path"/>
       </eAnnotations>
@@ -126,13 +128,13 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="debugLevel" unique="false"
-        eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EInt">
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value=" Simulation debug level"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="version" unique="false"
-        eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString">
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value=" Version of the diagram"/>
       </eAnnotations>
@@ -143,57 +145,55 @@
       <details key="documentation" value=" Simulation settings"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="finalTime" unique="false"
-        eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EDouble">
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value=" Simulation final time (starting at 0)"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="absoluteTime" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="absoluteTolerance" unique="false"
-        eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EDouble"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="relativeTolerance" unique="false"
-        eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EDouble"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="timeTolerance" unique="false"
-        eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EDouble"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="deltaT" unique="false"
-        eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EDouble"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="realtimeScale" unique="false"
-        eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EDouble"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="solver" unique="false"
-        eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EDouble"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="deltaH" unique="false"
-        eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EDouble"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Block" eSuperTypes="#//BaseObject #//Layer">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="geometry" eType="#//Geometry"
-        containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" unique="false"
-        eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="label" eType="#//Annotation"
-        containment="true" resolveProxies="false"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="style" unique="false" eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+        resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="style" unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="interfaceFunction" unique="false"
-        eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="expression" unique="false"
-        upperBound="-1" eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="exprs" eType="#//Binary"
         containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nzcross" unique="false"
-        upperBound="-1" eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nmode" unique="false" upperBound="-1"
-        eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="equations" eType="#//Binary"
         containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="functionName" unique="false"
-        eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="functionAPI" unique="false"
-        eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dependsOnU" unique="false"
-        eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dependsOnT" unique="false"
-        eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="blocktype" unique="false"
-        eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EChar"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EChar"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="in" upperBound="-1" eType="#//Port"
         containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="out" upperBound="-1" eType="#//Port"
@@ -203,59 +203,55 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="eout" upperBound="-1" eType="#//Port"
         containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="rpar" unique="false" upperBound="-1"
-        eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EDouble"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="ipar" unique="false" upperBound="-1"
-        eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="opar" eType="#//Binary"
         containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="state" unique="false" upperBound="-1"
-        eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EDouble"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dstate" unique="false"
-        upperBound="-1" eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EDouble"/>
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="odstate" eType="#//Binary"
         containment="true" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Port">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="uid" unique="false" eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="uid" unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         iD="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="firing" unique="false"
-        eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EDouble"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="datatype" eType="#//Datatype"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="sourceBlock" eType="#//Block"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" unique="false" eType="#//PortKind"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="implicit" unique="false"
-        eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="connectedSignal" eType="#//Link"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="style" unique="false" eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" unique="false" eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="style" unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Link" eSuperTypes="#//BaseObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="sourcePort" eType="#//Port"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="destinationPort" eType="#//Port"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="geometry" eType="#//Geometry"
-        containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="controlPoint" upperBound="-1"
         eType="#//Point" containment="true" resolveProxies="false"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="style" unique="false" eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="style" unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="label" eType="#//Annotation"
-        containment="true" resolveProxies="false"/>
+        resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" unique="false"
-        eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="lineWidth" unique="false"
-        eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EDouble"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="lineHeight" unique="false"
-        eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EDouble"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="color" unique="false" eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="color" unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Annotation" eSuperTypes="#//BaseObject">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="geometry" eType="#//Geometry"
-        containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" unique="false"
-        eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="font" unique="false" eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="font" unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="fontSize" unique="false"
-        eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="style" unique="false" eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="style" unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CompiledRepresentation">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

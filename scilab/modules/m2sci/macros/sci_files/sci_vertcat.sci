@@ -29,11 +29,11 @@ function [tree]=sci_vertcat(tree)
 
     // Dimensions
     outdims=allargs(1).dims
-    for k=1:lstsize(outdims)
+    for k = 1:size(outdims)
         outdims(k)=Unknown
     end
     for k=1:rhs
-        for l=1:lstsize(allargs(k).dims)
+        for l = 1:size(allargs(k).dims)
             if l<>1 & allargs(k).dims(l)<>Unknown then
                 outdims(l)=allargs(k).dims(l)
             end

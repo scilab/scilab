@@ -74,6 +74,28 @@ v = [d*2*25*31 ; d*29*37];  //    1.031D+13 ; 7.135D+12
 assert_checkequal(g, d);
 assert_checkequal(v'*f, [0 g]);
 
+
+// With negative numbers
+// ---------------------
+// http://bugzilla.scilab.org/15058
+v = v(:)';
+v(1) = -v(1);
+[g, f] = gcd(v);
+assert_checktrue(g>0);
+assert_checkequal(g, d);
+assert_checkequal(v*f, [0 g]);
+v = -v;
+[g, f] = gcd(v);
+assert_checktrue(g>0);
+assert_checkequal(g, d);
+assert_checkequal(v*f, [0 g]);
+v = -abs(v);
+[g, f] = gcd(v);
+assert_checktrue(g>0);
+assert_checkequal(g, d);
+assert_checkequal(v*f, [0 g]);
+
+
 // With polynomials
 // ----------------
 d = (1-%z)*(2+%z)*(5*%z -4);

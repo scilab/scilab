@@ -15,7 +15,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ru" xml:id="grand">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ru" xml:id="grand">
     <refnamediv>
         <refname>grand</refname>
         <refpurpose>Случайные числа</refpurpose>
@@ -43,14 +46,14 @@
             Y = grand(m, n, o,..,"..",...)
             Y = grand(X, ...)
         </synopsis>
-
+        <para/>
         <synopsis>
             Y = grand(n, "mn", Mean, Cov)
             Y = grand(n, "markov", P, x0)
             Y = grand(n, "mul", nb, P)
             Y = grand(n, "prm", vect)
         </synopsis>
-
+        <para/>
         <synopsis>
             S = grand("getgen")
             grand("setgen", gen)
@@ -138,7 +141,9 @@
             формируют матрицу размером <varname>m</varname> на <varname>n</varname>,
             элементы которой являются случайными числами.
 
-            Все эти последовательности вызова могут быть расширены для создания гиперматрицы случайных чисел, у которой более двух размерностей, определённых в виде целых чисел, перечисленных перед типом статистического распределения:
+            Все эти последовательности вызова могут быть расширены для создания гиперматрицы случайных чисел,
+            у которой более двух размерностей, определённых в виде целых чисел, перечисленных перед типом
+            статистического распределения:
         </para>
         <para>
             <programlisting role="no-scilab-exec"><![CDATA[
@@ -206,7 +211,8 @@
                     <para>
                         <code>Y = grand(m, n, "bet", A, B)</code> формирует случайные
                         реализации по бета-распределению с параметрами
-                        <varname>A</varname> и <varname>B</varname>.  Плотность бета-распределения лежит на интервале <latex><![CDATA[(0 < x < 1)]]></latex>:
+                        <varname>A</varname> и <varname>B</varname>.  Плотность бета-распределения лежит
+                        на интервале (0 &lt; x &lt; 1):
                     </para>
                     <para>
                         <latex>
@@ -214,7 +220,8 @@
                         </latex>
                     </para>
                     <para>
-                        <varname>A</varname> и <varname>B</varname> должны быть вещественными числами <latex><![CDATA[>10^{-37}]]></latex>. С этой функцией связана
+                        <varname>A</varname> и <varname>B</varname> должны быть вещественными числами
+                        >10<superscript>-37</superscript>. С этой функцией связана
                         функция <link linkend="cdfbet">cdfbet</link>.
                     </para>
                 </listitem>
@@ -397,8 +404,9 @@
                 <term>случайные перестановки</term>
                 <listitem>
                     <para>
-                        <code>Y = grand(n, "prm", vect)</code> формирует <varname>n</varname> случайных перестановок                     <varname>vect</varname>.
-                        <varname>vect</varname> может быть вектор-столбцов вещественных чисел или вектором, матрицей или гиперматрицей комплексных, целых, логических, полиномиальных или строковых значений; полной или разрежённой.
+                        <code>Y = grand(n, "prm", vect)</code> формирует <varname>n</varname> случайных перестановок <varname>vect</varname>.
+                        <varname>vect</varname> может быть вектор-столбцов вещественных чисел или вектором, матрицей или гиперматрицей
+                        комплексных, целых, логических, полиномиальных или строковых значений; полной или разрежённой.
                         Из-за стековой структуры, <varname>vect</varname> не должен и не может быть вектор-строкой.
                         Эта возможность перекрывает Matlab'овскую функцию <code>randperm()</code> поскольку
                         <code>randperm(n)</code> эквивалентно <code>grand(1,'prm',(1:n)')</code>,
@@ -431,7 +439,7 @@
                     <para>
                         <code>Y = grand(m, n, "uin", Low, High)</code> формирует случайные целые числа, равномерно распределённые между значениями
                         <varname>Low</varname> и <varname>High</varname> (включительно). <varname>High</varname> и <varname>Low</varname> должны быть
-                        такими целыми числами, что <latex><![CDATA[(\textrm{High}-\textrm{Low}+1) < 2\,147\,483\,561]]></latex>.
+                        такими целыми числами, что <literal>(High-Low+1) &lt; 2.147483561e9</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -897,7 +905,8 @@ grand(10,1,"uin",1,365)
 grand(12,"prm",(1:7)')
  ]]></programlisting>
         <para>
-            В следующем примере мы формируем гиперматрицу случайных чисел с "нормальным" распределением размерами <varname>10</varname> на <varname>10</varname> на <varname>10</varname> и строим гистограммы. Показываются первый и последний слои.
+            В следующем примере мы формируем гиперматрицу случайных чисел с "нормальным" распределением размерами <varname>10</varname>
+            на <varname>10</varname> на <varname>10</varname> и строим гистограммы. Показываются первый и последний слои.
         </para>
         <programlisting role="example"><![CDATA[
 // Возвращает гиперматрицу случайных чисел с нормальным

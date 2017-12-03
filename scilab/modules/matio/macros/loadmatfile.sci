@@ -45,7 +45,7 @@ function loadmatfile(varargin)
         // or the second parameter: loadmatfile(filetype,filename[,opts]) with filetype equal to -ascii or -mat
         // filetype can also be included in opts
         k=1
-        while k<=lstsize(varargin)
+        while k <= size(varargin)
             select varargin(k)
             case "-mat"
                 bin=%T
@@ -55,7 +55,7 @@ function loadmatfile(varargin)
                 k=k+1
             case "-regexp"
                 warning(msprintf(gettext("%s: This feature has not been implemented: %s."),"loadmatfile","-regexp"));
-                while k<=lstsize(varargin) & and(varargin(k)<>["-mat","-ascii"])
+                while k <= size(varargin) & and(varargin(k)<>["-mat","-ascii"])
                     k=k+1
                 end
             else

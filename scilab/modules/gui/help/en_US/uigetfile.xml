@@ -1,18 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="uigetfile" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="uigetfile" xml:lang="en">
     <refnamediv>
         <refname>uigetfile</refname>
-        <refpurpose>dialog window to get a file(s) name(s), path and filter
-            index
+        <refpurpose>dialog window to get a file(s) name(s), path and filter index
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>[FileName[,PathName[,FilterIndex]]]=uigetfile([file_mask[,dir[,boxTitle[,multipleSelection]]]])
-            PathFileName=uigetfile([file_mask[,dir[,boxTitle[,multiple]]]])
+        <synopsis>
+          PathFileName = uigetfile()
+          PathFileName = uigetfile(file_mask)
+          PathFileName = uigetfile(file_mask, dir)
+          PathFileName = uigetfile(file_mask, dir, boxTitle)
+          PathFileName = uigetfile(file_mask, dir, boxTitle, multipleSelection)
+          [PathFileName, Path] = uigetfile(..)
+          [PathFileName, Path, FilterIndex] = uigetfile(..)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
+        <title>Arguments</title>
+        <refsect3>
         <title>Input parameters</title>
         <variablelist>
             <varlistentry>
@@ -20,10 +30,10 @@
                 <listitem>
                     <para>a string matrix which gives the file masks to use for file
                         selection. <literal>file_mask</literal> is written with Unix
-                        convention. The default value is '*'.
+                        conventions. The default value is <literal>"*"</literal>.
                     </para>
-                    <para>we can also add descriptions for masks, for example ["*.x*","X
-                        files";"*.bin","BIN files"].
+                    <para>A description of each mask may be provided in column#2, for example
+                      <literal>["*.xcos|*.zcos", "Xcos files"; "*.bin","BIN files"]</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -54,36 +64,39 @@
                 </listitem>
             </varlistentry>
         </variablelist>
-    </refsection>
-    <refsection>
+      </refsect3>
+      <refsect3>
         <title>Output parameters</title>
         <variablelist>
             <varlistentry>
-                <term>FileName</term>
+                <term>PathFileName</term>
                 <listitem>
-                    <para>matrix of string which give the user selected file(s) (path +
-                        file(s) name(s)) if user answers "Ok" or the " " string if user
-                        answers "Cancel".
+                    <para>matrix of strings which give the user selected file(s) (path +
+                      file(s) name(s)) if user answers <literal>"OK"</literal> or
+                      <literal>" "</literal> if the user answers <literal>"Cancel"</literal>.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>PathName</term>
+                <term>Path</term>
                 <listitem>
-                    <para>is the user selected file(s) path if user answers "Ok" or the
-                        " " string if user answers "Cancel".
+                    <para>is the user selected file(s) path if the user answers <literal>"Ok"</literal>
+                      or <literal>" "</literal> if the user answers <literal>"Cancel"</literal>.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>FilterIndex</term>
                 <listitem>
-                    <para>is the user selected filter index on the list box if user
-                        answers "Ok" or '0' string if user answers "Cancel"
+                    <para>
+                      Selected filter index on the list box if the user answers
+                      <literal>"OK"</literal>, or <literal>"0"</literal> if the user answers
+                      <literal>"Cancel"</literal>.
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
+      </refsect3>
     </refsection>
     <refsection>
         <title>Description</title>
@@ -106,12 +119,13 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example">
-            uigetfile(["*.bin";"*.sce";"*.cos*"])
-            uigetfile(["*.sci";"*.bin"],"SCI/modules/gui/macros/")
-            uigetfile(["*.sc*";"*.bin"],"SCI/modules/gui/macros/")
-            uigetfile(["*.x*","X files";"*.bin","BIN files"],"SCI/modules/gui/macros/")
-            uigetfile(["*.sce";"*.bin"],"SCI/modules/gui/macros/", "Choose a file name", %t);
-            uigetfile(["*.sce";"*.bin"],"SCI/modules/gui/macros/", "Choose a file name", %f);
+            uigetfile(["*.bin"; "*.sce"; "*.cos*"])
+            uigetfile(["*.tst|*.dia.ref","Tests files"])
+            uigetfile(["*.sci"; "*.bin"], "SCI/modules/gui/macros/")
+            uigetfile(["*.sc*"; "*.bin"], "SCI/modules/gui/macros/")
+            uigetfile(["*.xcos|*.zcos","Xcos files"; "*.bin","BIN files"], "SCI/modules/gui/macros/")
+            uigetfile(["*.sce"; "*.bin"], "SCI/modules/gui/macros/", "Choose a file name", %t);
+            uigetfile(["*.sce"; "*.bin"], "SCI/modules/gui/macros/", "Choose a file name", %f);
         </programlisting>
     </refsection>
     <refsection role="see also">

@@ -66,6 +66,8 @@ std::string adapterName(const object_properties_t /*port_kind*/)
         case DATATYPE_TYPE:
         case FIRING:
             return "model";
+        default:
+            return "";
     }
 }
 
@@ -143,11 +145,11 @@ std::string adapterFieldName(const object_properties_t port_kind)
 template<typename Adaptor, object_properties_t p>
 types::InternalType* get_ports_property(const Adaptor& adaptor, const object_properties_t port_kind, const Controller& controller)
 {
-    ScicosID adaptee = adaptor.getAdaptee()->id();
+    model::Block* adaptee = adaptor.getAdaptee();
 
     // Retrieve the identifiers
     std::vector<ScicosID> ids;
-    controller.getObjectProperty(adaptee, BLOCK, port_kind, ids);
+    controller.getObjectProperty(adaptee, port_kind, ids);
 
     // Translate identifiers: shared variables
     int i = 0;
@@ -230,12 +232,12 @@ types::InternalType* get_ports_property(const Adaptor& adaptor, const object_pro
             std::vector<ScicosID> children;
 
             ScicosID parentBlock;
-            controller.getObjectProperty(adaptee, BLOCK, PARENT_BLOCK, parentBlock);
+            controller.getObjectProperty(adaptee, PARENT_BLOCK, parentBlock);
             if (parentBlock == ScicosID())
             {
                 // Adding to a diagram
                 ScicosID parentDiagram;
-                controller.getObjectProperty(adaptee, BLOCK, PARENT_DIAGRAM, parentDiagram);
+                controller.getObjectProperty(adaptee, PARENT_DIAGRAM, parentDiagram);
 
                 controller.getObjectProperty(parentDiagram, DIAGRAM, CHILDREN, children);
             }
@@ -286,11 +288,11 @@ types::InternalType* get_ports_property(const Adaptor& adaptor, const object_pro
 template<typename Adaptor, object_properties_t p>
 bool set_ports_property(const Adaptor& adaptor, const object_properties_t port_kind, Controller& controller, types::InternalType* v)
 {
-    ScicosID adaptee = adaptor.getAdaptee()->id();
+    model::Block* adaptee = adaptor.getAdaptee();
 
     // Retrieve the ports identifiers
     std::vector<ScicosID> ids;
-    controller.getObjectProperty(adaptee, BLOCK, port_kind, ids);
+    controller.getObjectProperty(adaptee, port_kind, ids);
 
     if (v->getType() == types::InternalType::ScilabString)
     {
@@ -489,12 +491,12 @@ inline void fillNewPorts(std::deque<int>& newPorts, const double* d)
 /**
  * Set the port value
  *
- * \param oldPort the old port object ID
+ * \param oldPortObject the old port object
  * \param controller current transaction instance
  * \param children all object in the current layer (diagram or superblock)
  */
 template<object_properties_t p>
-inline bool updateNewPort(const ScicosID oldPort, int newPort, Controller& controller)
+inline bool updateNewPort(model::Port* oldPortObject, int newPort, Controller& controller)
 {
     // update the p property, using newPort as a value
     int datatypeIndex = -1;
@@ -510,25 +512,25 @@ inline bool updateNewPort(const ScicosID oldPort, int newPort, Controller& contr
         {
             datatypeIndex++;
             std::vector<int> datatype;
-            controller.getObjectProperty(oldPort, PORT, DATATYPE, datatype);
+            controller.getObjectProperty(oldPortObject, DATATYPE, datatype);
             datatype[datatypeIndex] = newPort;
-            return controller.setObjectProperty(oldPort, PORT, DATATYPE, datatype) != FAIL;
+            return controller.setObjectProperty(oldPortObject, DATATYPE, datatype) != FAIL;
         }
         default:
-            return controller.setObjectProperty(oldPort, PORT, p, newPort) != FAIL;
+            return controller.setObjectProperty(oldPortObject, p, newPort) != FAIL;
     }
 }
 
 /**
  * Add a new port
  *
- * \param newPortID the old port object ID
+ * \param newPortObject the old port object
  * \param newPort new port children's index or value
  * \param controller current transaction instance
  * \return true on success, false otherwise
  */
 template<object_properties_t p>
-inline bool addNewPort(const ScicosID newPortID, int newPort, Controller& controller)
+inline bool addNewPort(model::Port* newPortObject, int newPort, Controller& controller)
 {
     // set the requested property, using newPort as a value
     int datatypeIndex = -1;
@@ -544,12 +546,12 @@ inline bool addNewPort(const ScicosID newPortID, int newPort, Controller& contro
         {
             datatypeIndex++;
             std::vector<int> datatype;
-            controller.getObjectProperty(newPortID, PORT, DATATYPE, datatype);
+            controller.getObjectProperty(newPortObject, DATATYPE, datatype);
             datatype[datatypeIndex] = newPort;
-            return controller.setObjectProperty(newPortID, PORT, DATATYPE, datatype) != FAIL;
+            return controller.setObjectProperty(newPortObject, DATATYPE, datatype) != FAIL;
         }
         default:
-            return controller.setObjectProperty(newPortID, PORT, p, newPort) != FAIL;
+            return controller.setObjectProperty(newPortObject, p, newPort) != FAIL;
     }
 }
 
@@ -561,7 +563,7 @@ inline bool addNewPort(const ScicosID newPortID, int newPort, Controller& contro
 template<typename Adaptor, object_properties_t p>
 bool update_ports_property(const Adaptor& adaptor, const object_properties_t port_kind, Controller& controller, types::InternalType* v)
 {
-    ScicosID adaptee = adaptor.getAdaptee()->id();
+    model::Block* adaptee = adaptor.getAdaptee();
 
     if (v->getType() != types::InternalType::ScilabDouble)
     {
@@ -573,9 +575,9 @@ bool update_ports_property(const Adaptor& adaptor, const object_properties_t por
     types::Double* value = v->getAs<types::Double>();
 
     ScicosID parentBlock;
-    controller.getObjectProperty(adaptee, BLOCK, PARENT_BLOCK, parentBlock);
+    controller.getObjectProperty(adaptee, PARENT_BLOCK, parentBlock);
     ScicosID parentDiagram;
-    controller.getObjectProperty(adaptee, BLOCK, PARENT_DIAGRAM, parentDiagram);
+    controller.getObjectProperty(adaptee, PARENT_DIAGRAM, parentDiagram);
 
     std::vector<ScicosID> children;
     if (parentBlock != ScicosID())
@@ -593,18 +595,22 @@ bool update_ports_property(const Adaptor& adaptor, const object_properties_t por
 
     // retrieve old data
     std::vector<ScicosID> previousPorts;
-    controller.getObjectProperty(adaptee, BLOCK, port_kind, previousPorts);
-    std::deque<ScicosID> oldPorts(previousPorts.begin(), previousPorts.end());
+    controller.getObjectProperty(adaptee, port_kind, previousPorts);
+    std::deque<model::Port*> oldPorts;
+    for (ScicosID pre : previousPorts)
+    {
+        oldPorts.emplace_back(controller.getBaseObject<model::Port>(pre));
+    }
 
     double* d = value->getReal();
     fillNewPorts(newPorts, d);
 
-    std::vector<ScicosID> deletedObjects;
+    std::vector<model::BaseObject*> deletedObjects;
 
     // updated ports
     while (!oldPorts.empty() && !newPorts.empty())
     {
-        ScicosID oldPort = oldPorts.front();
+        model::Port* oldPort = oldPorts.front();
         oldPorts.pop_front();
         int newPort = newPorts.front();
         newPorts.pop_front();
@@ -625,21 +631,23 @@ bool update_ports_property(const Adaptor& adaptor, const object_properties_t por
 
         while (!oldPorts.empty())
         {
-            ScicosID oldPort = oldPorts.front();
+            model::Port* oldPort = oldPorts.front();
             oldPorts.pop_front();
 
             ScicosID signal;
-            controller.getObjectProperty(oldPort, PORT, CONNECTED_SIGNALS, signal);
+            controller.getObjectProperty(oldPort, CONNECTED_SIGNALS, signal);
             if (signal != ScicosID())
             {
+                model::Link* signalObject = controller.getBaseObject<model::Link>(signal);
+
                 // the link is connected, disconnect the other side
                 ScicosID oldSignalSrc;
-                controller.getObjectProperty(signal, LINK, SOURCE_PORT, oldSignalSrc);
+                controller.getObjectProperty(signalObject, SOURCE_PORT, oldSignalSrc);
                 ScicosID oldSignalDst;
-                controller.getObjectProperty(signal, LINK, DESTINATION_PORT, oldSignalDst);
+                controller.getObjectProperty(signalObject, DESTINATION_PORT, oldSignalDst);
 
                 ScicosID unconnected = 0;
-                if (oldSignalSrc == oldPort)
+                if (oldSignalSrc == oldPort->id())
                 {
                     controller.setObjectProperty(oldSignalDst, PORT, CONNECTED_SIGNALS, unconnected);
                 }
@@ -648,14 +656,14 @@ bool update_ports_property(const Adaptor& adaptor, const object_properties_t por
                     controller.setObjectProperty(oldSignalSrc, PORT, CONNECTED_SIGNALS, unconnected);
                 }
 
-                children.erase(std::find(children.begin(), children.end(), signal));
-                deletedObjects.push_back(signal);
+                children.erase(std::find(children.begin(), children.end(), signalObject->id()));
+                deletedObjects.push_back(signalObject);
             }
 
             deletedObjects.push_back(oldPort);
         }
 
-        controller.setObjectProperty(adaptee, BLOCK, port_kind, previousPorts);
+        controller.setObjectProperty(adaptee, port_kind, previousPorts);
     }
 
     // added ports
@@ -666,38 +674,38 @@ bool update_ports_property(const Adaptor& adaptor, const object_properties_t por
             int newPort = newPorts.front();
             newPorts.pop_front();
 
-            ScicosID id = controller.createObject(PORT);
-            controller.setObjectProperty(id, PORT, SOURCE_BLOCK, adaptee);
+            model::Port* createdPort = controller.createBaseObject<model::Port>(PORT);
+            controller.setObjectProperty(createdPort, SOURCE_BLOCK, adaptee->id());
             switch (port_kind)
             {
                 case INPUTS:
-                    controller.setObjectProperty(id, PORT, PORT_KIND, static_cast<int>(PORT_IN));
+                    controller.setObjectProperty(createdPort, PORT_KIND, static_cast<int>(PORT_IN));
                     break;
                 case OUTPUTS:
-                    controller.setObjectProperty(id, PORT, PORT_KIND, static_cast<int>(PORT_OUT));
+                    controller.setObjectProperty(createdPort, PORT_KIND, static_cast<int>(PORT_OUT));
                     break;
                 case EVENT_INPUTS:
-                    controller.setObjectProperty(id, PORT, PORT_KIND, static_cast<int>(PORT_EIN));
+                    controller.setObjectProperty(createdPort, PORT_KIND, static_cast<int>(PORT_EIN));
                     break;
                 case EVENT_OUTPUTS:
-                    controller.setObjectProperty(id, PORT, PORT_KIND, static_cast<int>(PORT_EOUT));
+                    controller.setObjectProperty(createdPort, PORT_KIND, static_cast<int>(PORT_EOUT));
                     break;
                 default:
                     // should never happen
                     assert(!"Not managed kind of port");
                     return false;
             }
-            addNewPort<p>(id, newPort, controller);
-            previousPorts.push_back(id);
+            addNewPort<p>(createdPort, newPort, controller);
+            previousPorts.push_back(createdPort->id());
         }
 
-        controller.setObjectProperty(adaptee, BLOCK, port_kind, previousPorts);
+        controller.setObjectProperty(adaptee, port_kind, previousPorts);
     }
 
     // remove objects from the model after de-association
-    for (std::vector<ScicosID>::iterator it = deletedObjects.begin(); it != deletedObjects.end(); ++it)
+    for (auto o : deletedObjects)
     {
-        controller.deleteObject(*it);
+        controller.deleteBaseObject(o);
     }
 
     return true;

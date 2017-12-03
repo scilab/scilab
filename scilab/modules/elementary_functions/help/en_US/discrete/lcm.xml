@@ -13,14 +13,20 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="lcm">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="lcm">
     <refnamediv>
         <refname>lcm</refname>
-        <refpurpose>least common multiple</refpurpose>
+        <refpurpose>least common (positive) multiple of integers or of polynomials</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>[pp, fact] = lcm(p)</synopsis>
+        <synopsis>
+           pp = lcm(p)
+          [pp, fact] = lcm(p)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -54,17 +60,21 @@
             <code>pp = lcm(p)</code> computes the lcm <varname>pp</varname> of polynomial vector <varname>p</varname>.
         </para>
         <para>
-            <code>[pp, fact] = lcm(p)</code> computes in addition the vector <varname>fact</varname> such that:
+            <code>[pp, fact] = lcm(p)</code> computes in addition the vector <varname>fact</varname>
+            such that <literal>p.*fact = pp*ones(p)</literal>.
         </para>
         <para>
-            <code>p.*fact = pp*ones(p)</code>.
+          If <literal>p</literal> is a set of integers with some negative ones, the returned value
+          <literal>pp</literal> of their LCM is always positive.
         </para>
         <para>
-            The least common multiple of an array <literal>p</literal> of real numbers can be obtained by
-            converting it to a polynomial before calling <literal>lcm</literal>, through <code>p = inv_coeff(p, 0)</code>.
+            If <literal>p</literal> is an array of decimal integers, they are priorly converted
+            into <literal>int32</literal> before processing.
         </para>
         <para>
-            If <literal>p</literal> is given as an integer double (type 1), then it is treated as an <literal>int32</literal>.
+            The least common multiple of an array <literal>p</literal> of real numbers can be
+            obtained by converting it to a polynomial before calling <literal>lcm</literal>,
+            through <code>p = inv_coeff(p, 0)</code>.
         </para>
     </refsection>
     <refsection>
@@ -95,5 +105,16 @@ lcm(V)
                 <link linkend="bezout">bezout</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.1</revnumber>
+                <revdescription>
+                   For input integers possibly negative, the returned LCM is now always positive.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

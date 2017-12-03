@@ -6,8 +6,10 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>directory = uigetdir()
-            directory = uigetdir(start_path [,title])
+        <synopsis>
+            directory = uigetdir()
+            directory = uigetdir(start_path)
+            directory = uigetdir(start_path, title)
         </synopsis>
     </refsynopsisdiv>
     <refsection>

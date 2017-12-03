@@ -68,7 +68,7 @@ function scs_m_new = update_scs_m(scs_m,version)
             //******************** objs *******************//
         case "objs" then
 
-            for j=1:lstsize(scs_m.objs) //loop on objects
+            for j = 1:size(scs_m.objs) //loop on objects
 
                 o=scs_m.objs(j);
 

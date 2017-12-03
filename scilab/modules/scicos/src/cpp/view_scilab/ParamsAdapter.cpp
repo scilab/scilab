@@ -28,6 +28,8 @@
 #include "Controller.hxx"
 #include "controller_helpers.hxx"
 #include "ParamsAdapter.hxx"
+#include "model/Block.hxx"
+#include "model/Diagram.hxx"
 
 extern "C" {
 #include "sci_malloc.h"
@@ -92,18 +94,18 @@ struct title
 
     static types::InternalType* get(const ParamsAdapter& adaptor, const Controller& controller)
     {
-        ScicosID adaptee = adaptor.getAdaptee()->id();
+        model::BaseObject* adaptee = adaptor.getAdaptee();
 
         std::string title;
         std::string path;
-        if (adaptor.getAdaptee()->kind() == DIAGRAM)
+        if (adaptee->kind() == DIAGRAM)
         {
-            controller.getObjectProperty(adaptee, DIAGRAM, TITLE, title);
-            controller.getObjectProperty(adaptee, DIAGRAM, PATH, path);
+            controller.getObjectProperty(adaptee, TITLE, title);
+            controller.getObjectProperty(adaptee, PATH, path);
         }
         else
         {
-            controller.getObjectProperty(adaptee, BLOCK, DESCRIPTION, title);
+            controller.getObjectProperty(adaptee, DESCRIPTION, title);
         }
 
         types::String* o = new types::String(2, 1);
@@ -121,7 +123,7 @@ struct title
             return false;
         }
 
-        ScicosID adaptee = adaptor.getAdaptee()->id();
+        model::BaseObject* adaptee = adaptor.getAdaptee();
 
         std::string path;
         std::string title;
@@ -147,14 +149,14 @@ struct title
         FREE(Title);
 
 
-        if (adaptor.getAdaptee()->kind() == DIAGRAM)
+        if (adaptee->kind() == DIAGRAM)
         {
-            controller.setObjectProperty(adaptee, DIAGRAM, TITLE, title);
-            controller.setObjectProperty(adaptee, DIAGRAM, PATH, path);
+            controller.setObjectProperty(adaptee, TITLE, title);
+            controller.setObjectProperty(adaptee, PATH, path);
         }
         else
         {
-            controller.setObjectProperty(adaptee, BLOCK, DESCRIPTION, title);
+            controller.setObjectProperty(adaptee, DESCRIPTION, title);
         }
         return true;
     }
@@ -165,13 +167,18 @@ struct tol
 
     static types::InternalType* get(const ParamsAdapter& adaptor, const Controller& controller)
     {
-        ScicosID adaptee = adaptor.getAdaptee()->id();
-        if (adaptor.getAdaptee()->kind() == BLOCK)
+        model::BaseObject* adaptee = adaptor.getAdaptee();
+        if (adaptee->kind() == BLOCK)
         {
-            controller.getObjectProperty(adaptee, BLOCK, PARENT_DIAGRAM, adaptee);
-            if (adaptee == ScicosID())
+            ScicosID parent;
+            controller.getObjectProperty(adaptee, PARENT_DIAGRAM, parent);
+            if (parent == ScicosID())
             {
                 return types::Double::Empty();
+            }
+            else
+            {
+                adaptee = controller.getBaseObject(parent);
             }
         }
 
@@ -179,7 +186,7 @@ struct tol
         types::Double* o = new types::Double(1, 7, &data);
 
         std::vector<double> tol;
-        controller.getObjectProperty(adaptee, DIAGRAM, PROPERTIES, tol);
+        controller.getObjectProperty(adaptee, PROPERTIES, tol);
         std::copy(tol.begin() + 1, tol.end(), data);
 
         return o;
@@ -211,10 +218,10 @@ struct tol
             return false;
         }
 
-        ScicosID adaptee = adaptor.getAdaptee()->id();
+        model::Diagram* adaptee = static_cast<model::Diagram*>(adaptor.getAdaptee());
 
         std::vector<double> tol;
-        controller.getObjectProperty(adaptee, DIAGRAM, PROPERTIES, tol);
+        controller.getObjectProperty(adaptee, PROPERTIES, tol);
 
         std::copy(current->getReal(), current->getReal() + current->getSize(), tol.begin() + 1);
 
@@ -224,7 +231,7 @@ struct tol
             tol[7] = 0;
         }
 
-        controller.setObjectProperty(adaptee, DIAGRAM, PROPERTIES, tol);
+        controller.setObjectProperty(adaptee, PROPERTIES, tol);
         return true;
     }
 };
@@ -234,18 +241,23 @@ struct tf
 
     static types::InternalType* get(const ParamsAdapter& adaptor, const Controller& controller)
     {
-        ScicosID adaptee = adaptor.getAdaptee()->id();
-        if (adaptor.getAdaptee()->kind() == BLOCK)
+        model::BaseObject* adaptee = adaptor.getAdaptee();
+        if (adaptee->kind() == BLOCK)
         {
-            controller.getObjectProperty(adaptee, BLOCK, PARENT_DIAGRAM, adaptee);
-            if (adaptee == ScicosID())
+            ScicosID parent;
+            controller.getObjectProperty(adaptee, PARENT_DIAGRAM, parent);
+            if (parent == ScicosID())
             {
                 return types::Double::Empty();
+            }
+            else
+            {
+                adaptee = controller.getBaseObject(parent);
             }
         }
 
         std::vector<double> tf;
-        controller.getObjectProperty(adaptee, DIAGRAM, PROPERTIES, tf);
+        controller.getObjectProperty(adaptee, PROPERTIES, tf);
 
         return new types::Double(tf[0]);
     }
@@ -271,14 +283,14 @@ struct tf
             return false;
         }
 
-        ScicosID adaptee = adaptor.getAdaptee()->id();
+        model::Diagram* adaptee = static_cast<model::Diagram*>(adaptor.getAdaptee());
 
         std::vector<double> tol;
-        controller.getObjectProperty(adaptee, DIAGRAM, PROPERTIES, tol);
+        controller.getObjectProperty(adaptee, PROPERTIES, tol);
 
         tol[0] = current->get(0);
 
-        controller.setObjectProperty(adaptee, DIAGRAM, PROPERTIES, tol);
+        controller.setObjectProperty(adaptee, PROPERTIES, tol);
         return true;
     }
 };
@@ -288,10 +300,10 @@ struct context
 
     static types::InternalType* get(const ParamsAdapter& adaptor, const Controller& controller)
     {
-        ScicosID adaptee = adaptor.getAdaptee()->id();
+        model::BaseObject* adaptee = adaptor.getAdaptee();
 
         std::vector<std::string> context;
-        controller.getObjectProperty(adaptee, adaptor.getAdaptee()->kind(), DIAGRAM_CONTEXT, context);
+        controller.getObjectProperty(adaptee, DIAGRAM_CONTEXT, context);
 
         if (context.size() == 0)
         {
@@ -320,7 +332,7 @@ struct context
                 return false;
             }
 
-            ScicosID adaptee = adaptor.getAdaptee()->id();
+            model::BaseObject* adaptee = adaptor.getAdaptee();
 
             std::vector<std::string> context (current->getSize());
             for (int i = 0; i < (int)context.size(); ++i)
@@ -330,7 +342,7 @@ struct context
                 FREE(c_str);
             }
 
-            controller.setObjectProperty(adaptee, adaptor.getAdaptee()->kind(), DIAGRAM_CONTEXT, context);
+            controller.setObjectProperty(adaptee, DIAGRAM_CONTEXT, context);
             return true;
         }
         else if (v->getType() == types::InternalType::ScilabDouble)
@@ -342,10 +354,10 @@ struct context
                 return false;
             }
 
-            ScicosID adaptee = adaptor.getAdaptee()->id();
+            model::BaseObject* adaptee = adaptor.getAdaptee();
 
             std::vector<std::string> context;
-            controller.setObjectProperty(adaptee, adaptor.getAdaptee()->kind(), DIAGRAM_CONTEXT, context);
+            controller.setObjectProperty(adaptee, DIAGRAM_CONTEXT, context);
             return true;
         }
 
@@ -442,7 +454,7 @@ static void initialize_fields()
 {
     if (property<ParamsAdapter>::properties_have_not_been_set())
     {
-        property<ParamsAdapter>::fields.reserve(10);
+        property<ParamsAdapter>::reserve_properties(10);
         property<ParamsAdapter>::add_property(L"wpar", &wpar::get, &wpar::set);
         property<ParamsAdapter>::add_property(L"title", &title::get, &title::set);
         property<ParamsAdapter>::add_property(L"tol", &tol::get, &tol::set);
@@ -453,6 +465,7 @@ static void initialize_fields()
         property<ParamsAdapter>::add_property(L"void2", &dummy_property::get, &dummy_property::set);
         property<ParamsAdapter>::add_property(L"void3", &dummy_property::get, &dummy_property::set);
         property<ParamsAdapter>::add_property(L"doc", &doc::get, &doc::set);
+        property<ParamsAdapter>::shrink_to_fit();
     }
 }
 

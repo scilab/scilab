@@ -280,14 +280,14 @@ function [x,y,typ]=MBLOCK(job,arg1,arg2)
                 Tparam_sz=size(Tparam_lab,"*") //numbers of labels
 
                 //adjust size of lab_2 according to size of Tparam
-                if Tparam_sz>lstsize(lab_2) then
-                    for i=1:(Tparam_sz-lstsize(lab_2))
+                if Tparam_sz > size(lab_2) then
+                    for i=1:(Tparam_sz - size(lab_2))
                         lab_2($+1)="0"
                     end
-                elseif Tparam_sz<lstsize(lab_2) then
+                elseif Tparam_sz < size(lab_2) then
                     lab_2_tmp=list()
                     if Tparam_sz<>0 then //if param
-                        for i=1:(lstsize(lab_2)-Tparam_sz)
+                        for i=1:(size(lab_2)-Tparam_sz)
                             lab_2_tmp(i)=lab_2(i)
                         end
                     end
@@ -374,7 +374,7 @@ function [x,y,typ]=MBLOCK(job,arg1,arg2)
                 //------------------
                 //model.rpar=paramv;
                 model.rpar=[]
-                for i=1:lstsize(paramv)
+                for i=1:size(paramv)
                     model.rpar=[model.rpar;
                     paramv(i)(:)]//value
                 end
@@ -388,7 +388,7 @@ function [x,y,typ]=MBLOCK(job,arg1,arg2)
                 exprs.paramv=list();
                 if Tparam_sz<>0 then //if param
                     if type(lab_2)==15 then //for eval
-                        for i=1:lstsize(lab_2)
+                        for i=1:size(lab_2)
                             exprs.paramv(i)=lab_2(i);//string
                         end
                     else
@@ -444,7 +444,7 @@ function [x,y,typ]=MBLOCK(job,arg1,arg2)
         model.dep_ut=[%f %t]
         //model.rpar=paramv;
         model.rpar=[]
-        for i=1:lstsize(paramv)
+        for i=1:size(paramv)
             model.rpar=[model.rpar;
             paramv(i)(:)]
         end

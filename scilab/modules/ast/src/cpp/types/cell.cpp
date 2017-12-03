@@ -54,6 +54,11 @@ void Cell::createCell(int _iDims, const int* _piDims, InternalType** data)
 {
     InternalType** pIT = NULL;
     create(_piDims, _iDims, &pIT, NULL);
+    if( m_iSizeMax == 0)
+    {
+        return;
+    }
+
     if (data == nullptr)
     {
         types::Double* pDbl = Double::Empty();

@@ -131,6 +131,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
     }
     catch (ScilabException &)
     {
+        cleanIn(inTmp, outTmp);
         CoverageInstance::stopChrono((void*)&e);
         throw;
     }
@@ -142,6 +143,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
     if(pIT == NULL)
     {
         clearResult();
+        cleanIn(inTmp, outTmp);
         std::wostringstream os;
         os << _W("Cannot extract from nothing.") << std::endl;
         CoverageInstance::stopChrono((void*)&e);
@@ -156,6 +158,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
     if (pIT->getInvokeNbOut() != -1 && pIT->getInvokeNbOut() < iRetCount)
     {
         clearResult();
+        cleanIn(inTmp, outTmp);
         std::wostringstream os;
         os << _W("Wrong number of output arguments.\n") << std::endl;
         CoverageInstance::stopChrono((void*)&e);
@@ -203,14 +206,17 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
         {
             if (pIT->hasInvokeOption())
             {
-                opt[vectOptName[iterOptName++]] = inTmp[iterIn++];
+                opt[vectOptName[iterOptName]] = inTmp[iterIn];
 
                 //in case of macro/macrofile, we have to shift input param
                 //so add NULL item in in list to keep initial order
                 if (pIT->isMacro() || pIT->isMacroFile())
                 {
-                    in.push_back(NULL);
+                    in.push_back(new types::ListInsert(new types::String(vectOptName[iterOptName].data())));
                 }
+
+                iterOptName++;
+                iterIn++;
             }
             else
             {

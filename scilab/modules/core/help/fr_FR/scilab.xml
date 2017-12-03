@@ -291,6 +291,9 @@ evstr(a(i+2))*2
                 <listitem>
                     <para>Affecte à SCIHOME le chemin spécifié par <literal>dir</literal> (entre
                       guillemets s'il inclut des espaces)(pas entre apostrophes !).
+                      Si <literal>dir</literal> est un chemin relatif il est ajouté au répertoire parent de SCIHOME.
+                      Sous Windows: %USERPROFILE%\AppData\Roaming\Scilab\<literal>dir</literal>
+                      Sous Linux/MacOS: ~/.Scilab/<literal>dir</literal>
                     </para>
                 </listitem>
             </varlistentry>

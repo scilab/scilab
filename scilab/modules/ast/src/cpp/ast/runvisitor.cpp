@@ -41,6 +41,7 @@
 #include "macrofile.hxx"
 #include "macro.hxx"
 #include "cell.hxx"
+#include "listinsert.hxx"
 #include "filemanager_interface.h"
 
 #include "runner.hxx"
@@ -1464,11 +1465,17 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
         CoverageInstance::stopChrono((void*)&e);
         throw;
     }
+
     types::GenericType* pITStart = static_cast<types::GenericType*>(getResult());
-    if ((pITStart->getSize() != 1 || (pITStart->isDouble() && pITStart->getAs<types::Double>()->isComplex())) &&
-            pITStart->isList() == false) // list case => call overload
+    if (pITStart == NULL ||
+            ((pITStart->getSize() != 1 || (pITStart->isDouble() && pITStart->getAs<types::Double>()->isComplex())) &&
+             pITStart->isList() == false)) // list case => call overload
     {
-        pITStart->killMe();
+        if (pITStart)
+        {
+            pITStart->killMe();
+        }
+
         setResult(NULL);
         wchar_t szError[bsiz];
         os_swprintf(szError, bsiz, _W("%ls: Wrong type for argument %d: Real scalar expected.\n").c_str(), L"':'", 1);
@@ -1488,11 +1495,16 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
     }
     types::GenericType* pITStep = static_cast<types::GenericType*>(getResult());
     setResult(NULL);
-    if ((pITStep->getSize() != 1 || (pITStep->isDouble() && pITStep->getAs<types::Double>()->isComplex())) &&
-            pITStep->isList() == false) // list case => call overload
+    if (pITStep == NULL ||
+            ((pITStep->getSize() != 1 || (pITStep->isDouble() && pITStep->getAs<types::Double>()->isComplex())) &&
+             pITStep->isList() == false)) // list case => call overload
     {
         pITStart->killMe();
-        pITStep->killMe();
+        if (pITStep)
+        {
+            pITStep->killMe();
+        }
+
         setResult(NULL);
         wchar_t szError[bsiz];
         os_swprintf(szError, bsiz, _W("%ls: Wrong type for argument %d: Real scalar expected.\n").c_str(), L"':'", 2);
@@ -1513,12 +1525,17 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
 
     types::GenericType* pITEnd = static_cast<types::GenericType*>(getResult());
     setResult(NULL);
-    if ((pITEnd->getSize() != 1 || (pITEnd->isDouble() && pITEnd->getAs<types::Double>()->isComplex())) &&
-            pITEnd->isList() == false) // list case => call overload
+    if (pITEnd == NULL ||
+            ((pITEnd->getSize() != 1 || (pITEnd->isDouble() && pITEnd->getAs<types::Double>()->isComplex())) &&
+             pITEnd->isList() == false)) // list case => call overload
     {
         pITStart->killMe();
         pITStep->killMe();
-        pITEnd->killMe();
+        if (pITEnd)
+        {
+            pITEnd->killMe();
+        }
+
         setResult(NULL);
         wchar_t szError[bsiz];
         os_swprintf(szError, bsiz, _W("%ls: Wrong type for argument %d: Real scalar expected.\n").c_str(), L"':'", 3);

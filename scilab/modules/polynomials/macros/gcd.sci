@@ -2,6 +2,7 @@
 // Copyright (C) ????-2008 - INRIA
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 // Copyright (C) 2017 - Samuel GOUGEON : http://bugzilla.scilab.org/15017
+//                                       http://bugzilla.scilab.org/15058
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -79,6 +80,10 @@ function [x, uu] = gcd(p)
                 end
             end
         end
+    end
+    if type(p)~=2 & x~=[] & x<0 then
+        x = -x;
+        uu(:,$) = -uu(:,$);
     end
     if type(p)==8
         x  = iconvert(x, intype)

@@ -43,9 +43,9 @@ public:
     std::wstring getShortTypeStr() const;
 
     // move (if possible) the partial informatios to the model
-    static void relink(Controller& controller, model::BaseObject* adaptee, const std::vector<ScicosID>& children);
+    static void relink(Controller& controller, model::Link* adaptee, const std::vector<ScicosID>& children);
     // manage partial information after a model clone
-    static void add_partial_links_information(Controller& controller, model::BaseObject* original, model::BaseObject* cloned);
+	static void add_partial_links_information(Controller& controller, model::BaseObject* original, model::BaseObject* cloned);
 
 };
 

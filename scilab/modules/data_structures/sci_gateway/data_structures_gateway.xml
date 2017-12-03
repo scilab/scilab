@@ -44,7 +44,6 @@
     <PRIMITIVE gatewayId="17" primitiveId="6" primitiveName="lstcat" />
     <PRIMITIVE gatewayId="17" primitiveId="7" primitiveName="mlist" />
     <PRIMITIVE gatewayId="17" primitiveId="8" primitiveName="definedfields" />
-    <PRIMITIVE gatewayId="17" primitiveId="9" primitiveName="lstsize" />
     <PRIMITIVE gatewayId="41" primitiveId="1" primitiveName="getfield" />
     <PRIMITIVE gatewayId="41" primitiveId="2" primitiveName="setfield" />
 </GATEWAY>

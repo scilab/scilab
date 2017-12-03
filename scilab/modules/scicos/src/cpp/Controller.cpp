@@ -50,9 +50,9 @@ Controller::SharedData::SharedData() :
 Controller::SharedData::~SharedData()
 {
     lock(&onViewsStructuralModification);
-    for (view_set_t::iterator iter = allViews.begin(); iter != allViews.end(); ++iter)
+    for (auto v : m_instance.allViews)
     {
-        delete *iter;
+        delete v;
     }
     unlock(&onViewsStructuralModification);
 }
@@ -61,12 +61,15 @@ Controller::SharedData Controller::m_instance;
 
 View* Controller::register_view(const std::string& name, View* v)
 {
-    lock(&m_instance.onViewsStructuralModification);
+    if (v != nullptr)
+    {
+        lock(&m_instance.onViewsStructuralModification);
 
-    m_instance.allNamedViews.push_back(name);
-    m_instance.allViews.push_back(v);
+        m_instance.allNamedViews.push_back(name);
+        m_instance.allViews.push_back(v);
 
-    unlock(&m_instance.onViewsStructuralModification);
+        unlock(&m_instance.onViewsStructuralModification);
+    }
     return v;
 }
 
@@ -125,7 +128,7 @@ void Controller::end_simulation()
     end_scicos_sim();
 }
 
-Controller::Controller()
+Controller::Controller() : _strShared(), _vecDblShared(), _vecIntShared(), _vecStrShared(), _vecIDShared()
 {
 }
 
@@ -133,29 +136,28 @@ Controller::~Controller()
 {
 }
 
-ScicosID Controller::createObject(kind_t k)
+model::BaseObject* Controller::createBaseObject(kind_t k)
 {
     lock(&m_instance.onModelStructuralModification);
-    ScicosID uid = m_instance.model.createObject(k);
+    model::BaseObject* object = m_instance.model.createObject(k);
     unlock(&m_instance.onModelStructuralModification);
 
     lock(&m_instance.onViewsStructuralModification);
-    for (view_set_t::iterator iter = m_instance.allViews.begin(); iter != m_instance.allViews.end(); ++iter)
+    for (auto v : m_instance.allViews)
     {
-        (*iter)->objectCreated(uid, k);
+        v->objectCreated(object->id(), object->kind());
     }
     unlock(&m_instance.onViewsStructuralModification);
 
-    return uid;
+    return object;
 }
 
-unsigned Controller::referenceObject(const ScicosID uid) const
+model::BaseObject* Controller::referenceBaseObject(model::BaseObject* o) const
 {
     lock(&m_instance.onModelStructuralModification);
 
-    unsigned refCount = m_instance.model.referenceObject(uid);
+    unsigned refCount = m_instance.model.referenceObject(o);
 
-    auto o = m_instance.model.getObject(uid);
     unlock(&m_instance.onModelStructuralModification);
     if (o == nullptr)
     {
@@ -164,26 +166,25 @@ unsigned Controller::referenceObject(const ScicosID uid) const
     }
 
     lock(&m_instance.onViewsStructuralModification);
-    for (view_set_t::iterator iter = m_instance.allViews.begin(); iter != m_instance.allViews.end(); ++iter)
+    for (auto v : m_instance.allViews)
     {
-        (*iter)->objectReferenced(uid, o->kind(), refCount);
+        v->objectReferenced(o->id(), o->kind(), refCount);
     }
     unlock(&m_instance.onViewsStructuralModification);
 
-    return refCount;
+    return o;
 }
 
-void Controller::deleteObject(ScicosID uid)
+void Controller::deleteBaseObject(model::BaseObject* initial)
 {
     // if this object is the empty uid, ignore it : is is not stored in the model
-    if (uid == ScicosID())
+    if (initial == nullptr || initial->id() == ScicosID())
     {
         return;
     }
 
     lock(&m_instance.onModelStructuralModification);
 
-    auto initial = m_instance.model.getObject(uid);
     if (initial == nullptr)
     {
         // defensive programming
@@ -193,16 +194,16 @@ void Controller::deleteObject(ScicosID uid)
     const kind_t k = initial->kind();
 
     // if this object has been referenced somewhere else do not delete it but decrement the reference counter
-    unsigned& refCount = m_instance.model.referenceCount(uid);
+    unsigned& refCount = m_instance.model.referenceCount(initial);
     unlock(&m_instance.onModelStructuralModification);
     if (refCount > 0)
     {
         --refCount;
 
         lock(&m_instance.onViewsStructuralModification);
-        for (view_set_t::iterator iter = m_instance.allViews.begin(); iter != m_instance.allViews.end(); ++iter)
+        for (auto v : m_instance.allViews)
         {
-            (*iter)->objectUnreferenced(uid, k, refCount);
+            v->objectUnreferenced(initial->id(), initial->kind(), refCount);
         }
         unlock(&m_instance.onViewsStructuralModification);
         return;
@@ -260,13 +261,13 @@ void Controller::deleteObject(ScicosID uid)
 
     // delete the object
     lock(&m_instance.onModelStructuralModification);
-    m_instance.model.deleteObject(uid);
+    m_instance.model.deleteObject(initial);
     unlock(&m_instance.onModelStructuralModification);
 
     lock(&m_instance.onViewsStructuralModification);
-    for (view_set_t::iterator iter = m_instance.allViews.begin(); iter != m_instance.allViews.end(); ++iter)
+    for (auto v : m_instance.allViews)
     {
-        (*iter)->objectDeleted(uid, k);
+        v->objectDeleted(initial->id(), k);
     }
     unlock(&m_instance.onViewsStructuralModification);
 }
@@ -274,17 +275,17 @@ void Controller::deleteObject(ScicosID uid)
 void Controller::unlinkVector(model::BaseObject* initial, object_properties_t uid_prop, object_properties_t ref_prop)
 {
     ScicosID v;
-    getObjectProperty(initial->id(), initial->kind(), uid_prop, v);
+    getObjectProperty(initial, uid_prop, v);
     if (v != ScicosID())
     {
-        auto o = getObject(v);
+        auto o = getBaseObject(v);
         if (o == nullptr)
         {
             return;
         }
 
-        std::vector<ScicosID> children;
-        getObjectProperty(o->id(), o->kind(), ref_prop, children);
+        std::vector<ScicosID>& children = _vecIDShared;
+        getObjectProperty(o, ref_prop, children);
 
         std::vector<ScicosID>::iterator it = std::find(children.begin(), children.end(), initial->id());
         if (it != children.end())
@@ -292,19 +293,19 @@ void Controller::unlinkVector(model::BaseObject* initial, object_properties_t ui
             children.erase(it);
         }
 
-        setObjectProperty(o->id(), o->kind(), ref_prop, children);
+        setObjectProperty(o, ref_prop, children);
     }
 }
 
 void Controller::unlink(model::BaseObject* initial, object_properties_t uid_prop, object_properties_t ref_prop)
 {
     std::vector<ScicosID> v;
-    getObjectProperty(initial->id(), initial->kind(), uid_prop, v);
+    getObjectProperty(initial, uid_prop, v);
     for (const ScicosID id : v)
     {
         if (id != ScicosID())
         {
-            auto o = getObject(id);
+            auto o = getBaseObject(id);
             if (o == nullptr)
             {
                 continue;
@@ -315,7 +316,7 @@ void Controller::unlink(model::BaseObject* initial, object_properties_t uid_prop
             getObjectProperty(o->id(), o->kind(), ref_prop, oppositeRef);
             if (oppositeRef == initial->id())
             {
-                setObjectProperty(o->id(), o->kind(), ref_prop, ScicosID());
+                setObjectProperty(o, ref_prop, ScicosID());
             }
         }
     }
@@ -324,7 +325,7 @@ void Controller::unlink(model::BaseObject* initial, object_properties_t uid_prop
 void Controller::deleteVector(model::BaseObject* initial, object_properties_t uid_prop)
 {
     std::vector<ScicosID> children;
-    getObjectProperty(initial->id(), initial->kind(), uid_prop, children);
+    getObjectProperty(initial, uid_prop, children);
 
     for (ScicosID id : children)
     {
@@ -335,7 +336,7 @@ void Controller::deleteVector(model::BaseObject* initial, object_properties_t ui
 void Controller::deleteOwnedReference(model::BaseObject* o, object_properties_t uid_prop)
 {
     ScicosID ref;
-    getObjectProperty(o->id(), o->kind(), uid_prop, ref);
+    getObjectProperty(o, uid_prop, ref);
 
     deleteObject(ref);
 }
@@ -356,17 +357,33 @@ void Controller::cloneProperties(model::BaseObject* initial, model::BaseObject* 
     }
 }
 
-model::BaseObject* Controller::cloneObject(std::map<model::BaseObject*, model::BaseObject*>& mapped, model::BaseObject* initial, bool cloneChildren, bool clonePorts)
+template<typename T>
+void Controller::cloneProperties(model::BaseObject* initial, model::BaseObject* clone, T& temporary)
+{
+    for (int i = 0; i < MAX_OBJECT_PROPERTIES; ++i)
+    {
+        enum object_properties_t p = static_cast<enum object_properties_t>(i);
+
+        temporary.clear();
+        bool status = getObjectProperty(initial, p, temporary);
+        if (status)
+        {
+            setObjectProperty(clone, p, temporary);
+        }
+    }
+}
+
+model::BaseObject* Controller::cloneBaseObject(std::unordered_map<model::BaseObject*, model::BaseObject*>& mapped, model::BaseObject* initial, bool cloneChildren, bool clonePorts)
 {
     const kind_t k = initial->kind();
     ScicosID o = createObject(k);
-    model::BaseObject* cloned = getObject(o);
+    model::BaseObject* cloned = getBaseObject(o);
     mapped.insert(std::make_pair(initial, cloned));
 
     lock(&m_instance.onViewsStructuralModification);
-    for (view_set_t::iterator iter = m_instance.allViews.begin(); iter != m_instance.allViews.end(); ++iter)
+    for (auto v : m_instance.allViews)
     {
-        (*iter)->objectCloned(initial->id(), o, k);
+        v->objectCloned(initial->id(), o, k);
     }
     unlock(&m_instance.onViewsStructuralModification);
 
@@ -374,10 +391,10 @@ model::BaseObject* Controller::cloneObject(std::map<model::BaseObject*, model::B
     cloneProperties<double>(initial, cloned);
     cloneProperties<int>(initial, cloned);
     cloneProperties<bool>(initial, cloned);
-    cloneProperties<std::string>(initial, cloned);
-    cloneProperties<std::vector<double> >(initial, cloned);
-    cloneProperties<std::vector<int> >(initial, cloned);
-    cloneProperties<std::vector<std::string> >(initial, cloned);
+    cloneProperties<std::string>(initial, cloned, _strShared);
+    cloneProperties<std::vector<double> >(initial, cloned, _vecDblShared);
+    cloneProperties<std::vector<int> >(initial, cloned, _vecIntShared);
+    cloneProperties<std::vector<std::string> >(initial, cloned, _vecStrShared);
 
     // deep copy children, manage ScicosID and std::vector<ScicosID>
     if (k == ANNOTATION)
@@ -427,15 +444,15 @@ model::BaseObject* Controller::cloneObject(std::map<model::BaseObject*, model::B
     return cloned;
 }
 
-void Controller::deepClone(std::map<model::BaseObject*, model::BaseObject*>& mapped, model::BaseObject* initial, model::BaseObject* clone, object_properties_t p, bool cloneIfNotFound)
+void Controller::deepClone(std::unordered_map<model::BaseObject*, model::BaseObject*>& mapped, model::BaseObject* initial, model::BaseObject* clone, object_properties_t p, bool cloneIfNotFound)
 {
     ScicosID v;
     getObjectProperty(initial, p, v);
 
-    model::BaseObject* opposite = getObject(v);
+    model::BaseObject* opposite = getBaseObject(v);
     model::BaseObject* cloned;
 
-    std::map<model::BaseObject*, model::BaseObject*>::iterator it = mapped.find(opposite);
+    std::unordered_map<model::BaseObject*, model::BaseObject*>::iterator it = mapped.find(opposite);
     if (it != mapped.end())
     {
         cloned = it->second;
@@ -446,7 +463,7 @@ void Controller::deepClone(std::map<model::BaseObject*, model::BaseObject*>& map
         {
             if (v != ScicosID())
             {
-                cloned = cloneObject(mapped, opposite, true, true);
+                cloned = cloneBaseObject(mapped, opposite, true, true);
             }
             else
             {
@@ -469,7 +486,7 @@ void Controller::deepClone(std::map<model::BaseObject*, model::BaseObject*>& map
     }
 }
 
-void Controller::deepCloneVector(std::map<model::BaseObject*, model::BaseObject*>& mapped, model::BaseObject* initial, model::BaseObject* clone, object_properties_t p, bool cloneIfNotFound)
+void Controller::deepCloneVector(std::unordered_map<model::BaseObject*, model::BaseObject*>& mapped, model::BaseObject* initial, model::BaseObject* clone, object_properties_t p, bool cloneIfNotFound)
 {
     std::vector<ScicosID> v;
     getObjectProperty(initial, p, v);
@@ -486,8 +503,8 @@ void Controller::deepCloneVector(std::map<model::BaseObject*, model::BaseObject*
             continue;
         }
 
-        model::BaseObject* opposite = getObject(id);
-        std::map<model::BaseObject*, model::BaseObject*>::iterator it = mapped.find(opposite);
+        model::BaseObject* opposite = getBaseObject(id);
+        std::unordered_map<model::BaseObject*, model::BaseObject*>::iterator it = mapped.find(opposite);
         if (it != mapped.end())
         {
             cloned.push_back(it->second);
@@ -498,7 +515,7 @@ void Controller::deepCloneVector(std::map<model::BaseObject*, model::BaseObject*
             {
                 if (id != ScicosID())
                 {
-                    model::BaseObject* clone = cloneObject(mapped, opposite, true, true);
+                    model::BaseObject* clone = cloneBaseObject(mapped, opposite, true, true);
                     cloned.push_back(clone);
                 }
                 else
@@ -516,24 +533,7 @@ void Controller::deepCloneVector(std::map<model::BaseObject*, model::BaseObject*
     // update the ScicosID related properties after cloning all the objects
     if (p == CHILDREN)
     {
-        for (auto const & it : mapped)
-        {
-            model::BaseObject* initial = it.first;
-            model::BaseObject* cloned = it.second;
-
-            switch (initial->kind())
-            {
-                case PORT:
-                    deepCloneVector(mapped, initial, cloned, CONNECTED_SIGNALS, false);
-                    break;
-                case LINK:
-                    deepClone(mapped, initial, cloned, SOURCE_PORT, false);
-                    deepClone(mapped, initial, cloned, DESTINATION_PORT, false);
-                    break;
-                default:
-                    break;
-            }
-        }
+        updateChildrenRelatedPropertiesAfterClone(mapped);
     }
 
     // set the main object vector property
@@ -553,10 +553,32 @@ void Controller::deepCloneVector(std::map<model::BaseObject*, model::BaseObject*
     setObjectProperty(clone, p, clonedUIDs);
 }
 
+void Controller::updateChildrenRelatedPropertiesAfterClone(std::unordered_map<model::BaseObject*, model::BaseObject*>& mapped)
+{
+    for (auto const & it : mapped)
+    {
+        model::BaseObject* initial = it.first;
+        model::BaseObject* cloned = it.second;
+
+        switch (initial->kind())
+        {
+            case PORT:
+                deepCloneVector(mapped, initial, cloned, CONNECTED_SIGNALS, false);
+                break;
+            case LINK:
+                deepClone(mapped, initial, cloned, SOURCE_PORT, false);
+                deepClone(mapped, initial, cloned, DESTINATION_PORT, false);
+                break;
+            default:
+                break;
+        }
+    }
+}
+
 ScicosID Controller::cloneObject(ScicosID uid, bool cloneChildren, bool clonePorts)
 {
-    std::map<model::BaseObject*, model::BaseObject*> mapped;
-    model::BaseObject* clone = cloneObject(mapped, getObject(uid), cloneChildren, clonePorts);
+    std::unordered_map<model::BaseObject*, model::BaseObject*> mapped;
+    model::BaseObject* clone = cloneBaseObject(mapped, getBaseObject(uid), cloneChildren, clonePorts);
 
     return clone->id();
 }
@@ -575,10 +597,16 @@ std::vector<ScicosID> Controller::getAll(kind_t k) const
 {
     lock(&m_instance.onModelStructuralModification);
 
-    auto vec = m_instance.model.getAll(k);
+    std::vector<model::BaseObject*> vec = m_instance.model.getAll(k);
+    std::vector<ScicosID> ret;
+    ret.reserve(vec.size());
+    for (model::BaseObject* o : vec)
+    {
+        ret.push_back(o->id());
+    }
 
     unlock(&m_instance.onModelStructuralModification);
-    return vec;
+    return ret;
 }
 
 void Controller::sortAndFillKind(std::vector<ScicosID>& uids, std::vector<int>& kinds)
@@ -620,10 +648,7 @@ void Controller::sortAndFillKind(std::vector<ScicosID>& uids, std::vector<int>& 
 template<typename T>
 bool Controller::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, T& v) const
 {
-    lock(&m_instance.onModelStructuralModification);
-    bool ret = m_instance.model.getObjectProperty(uid, k, p, v);
-    unlock(&m_instance.onModelStructuralModification);
-    return ret;
+    return getObjectProperty(getBaseObject(uid), p, v);
 }
 
 bool Controller::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, double& v) const
@@ -670,17 +695,7 @@ bool Controller::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p
 template<typename T>
 update_status_t Controller::setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, T v)
 {
-    lock(&m_instance.onModelStructuralModification);
-    update_status_t status = m_instance.model.setObjectProperty(uid, k, p, v);
-    unlock(&m_instance.onModelStructuralModification);
-
-    lock(&m_instance.onViewsStructuralModification);
-    for (view_set_t::iterator iter = m_instance.allViews.begin(); iter != m_instance.allViews.end(); ++iter)
-    {
-        (*iter)->propertyUpdated(uid, k, p, status);
-    }
-    unlock(&m_instance.onViewsStructuralModification);
-    return status;
+    return setObjectProperty(getBaseObject(uid), p, v);
 }
 
 update_status_t Controller::setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, double v)
@@ -724,7 +739,7 @@ update_status_t Controller::setObjectProperty(ScicosID uid, kind_t k, object_pro
     return setObjectProperty<>(uid, k, p, v);
 }
 
-model::BaseObject* Controller::getObject(ScicosID uid) const
+model::BaseObject* Controller::getBaseObject(ScicosID uid) const
 {
     lock(&m_instance.onModelStructuralModification);
     model::BaseObject* o = m_instance.model.getObject(uid);

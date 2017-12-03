@@ -110,6 +110,8 @@ types::Function::ReturnValue sci_hdf5_load_v3(types::typed_list &in, int _iRetCo
     int iVersion = getSODFormatAttribute(iFile);
     if (iVersion != SOD_FILE_VERSION)
     {
+        //close the file
+        closeHDF5File(iFile);
         //can't read file with version newer that me !
         Scierror(999, _("%s: Wrong SOD file format version. Expected: %d Found: %d\n"), fname.data(), SOD_FILE_VERSION, iVersion);
         return types::Function::Error;
@@ -126,6 +128,8 @@ types::Function::ReturnValue sci_hdf5_load_v3(types::typed_list &in, int _iRetCo
 
             if (import_variable(iFile, var) == false)
             {
+                //close the file
+                closeHDF5File(iFile);
                 Scierror(999, _("%s: Unable to load \'%s\'.\n"), fname.data(), var.data());
                 return types::Function::Error;
             }
@@ -146,6 +150,8 @@ types::Function::ReturnValue sci_hdf5_load_v3(types::typed_list &in, int _iRetCo
                 FREE(var);
                 if (import_variable(iFile, s) == false)
                 {
+                    //close the file
+                    closeHDF5File(iFile);
                     Scierror(999, _("%s: Unable to load \'%s\'.\n"), fname.data(), s.data());
                     return types::Function::Error;
                 }

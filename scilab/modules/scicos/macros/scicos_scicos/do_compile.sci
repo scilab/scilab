@@ -39,7 +39,7 @@ function  [%cpr,ok] = do_compile(scs_m)
     timer() ; //** profiling timer
 
     IN=[];OUT=[];
-    for i=1:lstsize(scs_m.objs)
+    for i = 1:size(scs_m.objs)
         if typeof(scs_m.objs(i))=="Block" then
             if scs_m.objs(i).gui=="IN_f" then
                 scs_m.objs(i).gui="INPUTPORT";

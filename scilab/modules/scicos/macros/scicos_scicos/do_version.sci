@@ -1033,7 +1033,7 @@ endfunction
 function scs_m_new=do_version272(scs_m)
 
     scs_m_new=scs_m
-    for i=1:lstsize(scs_m.objs)
+    for i=1:size(scs_m.objs)
 
         if typeof(scs_m.objs(i))=="Block" then
             grphic=scs_m.objs(i).graphics
@@ -2116,7 +2116,7 @@ function scs_m_new=do_version27(scs_m)
     if typeof(scs_m)=="diagram" then
         //following code reported into do_version273
         //     scs_m_new=scs_m,
-        //     nlstsize=lstsize(scs_m_new.objs)
+        //     nlstsize= size(scs_m_new.objs)
         //     for k=1:nlstsize
         //       if typeof(scs_m_new.objs(k))=='Link' then
         //  o=scs_m_new.objs(k)
@@ -2148,7 +2148,7 @@ function scs_m_new=do_version27(scs_m)
     end
 
     scs_m_new.objs(1)=mlist("Deleted") // not to change the internal numbering
-    n=lstsize(scs_m)
+    n = size(scs_m)
     back_col=8   //white background
 
     mprintf(".")
@@ -2330,7 +2330,7 @@ function scs_m_new=do_versionxx(scs_m)
     scs_m_new=scicos_diagram()
     scs_m_new.props=scs_m(1)
     scs_m_new.objs(1)=mlist("Deleted") // not to change the internal numbering
-    n=lstsize(scs_m)
+    n = size(scs_m)
     for i=2:n //loop on objects
         o=scs_m(i)
         scs_m_new.objs(i)=o

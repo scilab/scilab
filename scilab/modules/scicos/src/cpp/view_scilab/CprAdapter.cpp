@@ -52,11 +52,12 @@ static void initialize_fields()
 {
     if (property<CprAdapter>::properties_have_not_been_set())
     {
-        property<CprAdapter>::fields.reserve(4);
+        property<CprAdapter>::reserve_properties(4);
         property<CprAdapter>::add_property(L"state", &dummy_property::get, &dummy_property::set);
         property<CprAdapter>::add_property(L"sim", &dummy_property::get, &dummy_property::set);
         property<CprAdapter>::add_property(L"cor", &dummy_property::get, &dummy_property::set);
         property<CprAdapter>::add_property(L"corinv", &dummy_property::get, &dummy_property::set);
+        property<CprAdapter>::shrink_to_fit();
     }
 }
 

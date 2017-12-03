@@ -281,13 +281,13 @@ function [scitree,trad,txt,crp]=m2sci(mtlbtree,nam,Recmode,prettyprintoutput)
                 ]
             else
                 trad=[trad;
-                "for k=1:min(lstsize(dims),lhs)"
+                "for k=1:min(size(dims),lhs)"
                 "  tree.lhs(k).dims=dims(k)"
                 "  tree.lhs(k).vtype=vtype(k)"
                 "  tree.lhs(k).property=prop(k)"
                 "end"
                 gettext("// Inference for varargout")
-                "for k=min(lstsize(dims),lhs)+1:lhs"
+                "for k=min(size(dims),lhs)+1:lhs"
                 "  tree.lhs(k).dims=list(Unknown,Unknown)"
                 "  tree.lhs(k).vtype=Unknown"
                 "  tree.lhs(k).property=Unknown"

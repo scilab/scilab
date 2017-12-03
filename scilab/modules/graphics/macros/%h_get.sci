@@ -12,14 +12,14 @@
 
 function out_vect = %h_get(varargin)
     out_vect = [];
-    if (lstsize(varargin) == 2)
+    if (size(varargin) == 2)
         hdl = varargin(1)
         str = varargin(2)
         for i=1:size(hdl,"*")
             out_vect = [out_vect ; get(hdl(i),str)]
         end
 
-    elseif (lstsize(varargin) == 1)
+    elseif (size(varargin) == 1)
         str = varargin(1)
         out_vect = get(str)
     end

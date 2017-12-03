@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
@@ -13,50 +13,61 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="lcm" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="lcm" xml:lang="pt">
     <refnamediv>
         <refname>lcm</refname>
-        <refpurpose>mínimo múltiplo comum</refpurpose>
+        <refpurpose>mÃ­nimo mÃºltiplo comum</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title> Seqüência de Chamamento </title>
-        <synopsis>[pp,fact]=lcm(p)</synopsis>
+        <title> SeqÃ¼Ãªncia de Chamamento </title>
+        <synopsis>
+             pp = lcm(p)
+            [pp, fact] = lcm(p)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>p</term>
                 <listitem>
-                    <para>vetor de polinômios </para>
+                    <para>vetor de polinÃ´mios </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>fact</term>
                 <listitem>
-                    <para>vetor de polinômios ou inteiros (tipo igual a 8)</para>
+                    <para>vetor de polinÃ´mios ou inteiros (tipo igual a 8)</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>pp</term>
                 <listitem>
-                    <para>polinômio ou inteiro</para>
+                    <para>polinÃ´mio ou inteiro</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             <literal>pp=lcm(p)</literal> computa o MMC <literal>pp</literal> do
-            vetor de polinômios <literal>p</literal>.
+            vetor de polinÃ´mios <literal>p</literal>.
         </para>
         <para>
             <literal>[pp,fact]=lcm(p)</literal> computa, ainda, o vetor
-            <literal>fact</literal> tal que:
+            <literal>fact</literal> tal que <literal>p.*fact=pp*ones(p)</literal>
         </para>
         <para>
-            <literal>p.*fact=pp*ones(p)</literal>
+          If <literal>p</literal> is a set of integers with some negative ones, the returned value
+          <literal>pp</literal> of their LCM is always positive.
+        </para>
+        <para>
+            If <literal>p</literal> is an array of decimal integers, they are priorly converted
+            into <literal>int32</literal> before processing.
         </para>
     </refsection>
     <refsection>
@@ -74,7 +85,7 @@ lcm(V)
  ]]></programlisting>
     </refsection>
     <refsection>
-        <title> Ver Também </title>
+        <title> Ver TambÃ©m </title>
         <simplelist type="inline">
             <member>
                 <link linkend="gcd">gcd</link>
@@ -83,5 +94,16 @@ lcm(V)
                 <link linkend="bezout">bezout</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>HistÃ³rico</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.1</revnumber>
+                <revdescription>
+                    For input integers possibly negative, the returned LCM is now always positive.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

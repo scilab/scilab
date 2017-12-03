@@ -13,17 +13,21 @@
  * along with this program.
     *
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="makecell">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ja" xml:id="makecell">
     <refnamediv>
         <refname>makecell</refname>
         <refpurpose>セル配列を作成. </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>s = makecell(dims,a1,a2,...an)</synopsis>
+        <synopsis>s = makecell(dims, a1,a2,...an)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>引数</title>
+        <para>All output arguments are optional, provided that their order is kept.</para>
         <variablelist>
             <varlistentry>
                 <term>dims</term>
@@ -72,6 +76,18 @@ makecell([2,3],1,2,3,'x','y','z')
         <simplelist type="inline">
             <member>
                 <link linkend="cell">cell</link>
+            </member>
+            <member>
+                <link linkend="matrix">matrix</link>
+            </member>
+            <member>
+                <link linkend="size">size</link>
+            </member>
+            <member>
+                <link linkend="brackets">brackets [..]</link>
+            </member>
+            <member>
+                <link linkend="cat">cat</link>
             </member>
         </simplelist>
     </refsection>

@@ -40,68 +40,111 @@ namespace org_scilab_modules_scicos
 class SCICOS_IMPEXP Controller
 {
 public:
+#if !defined SWIG
     static View* register_view(const std::string& name, View* v);
     static void unregister_view(View* v);
     static View* unregister_view(const std::string& name);
     static View* look_for_view(const std::string& name);
+#endif /* !defined SWIG */
+
+    /*
+     * SWIG mapped API
+     */
 
     static void end_simulation();
 
     Controller();
     ~Controller();
 
-    ScicosID createObject(kind_t k);
-    unsigned referenceObject(const ScicosID uid) const;
-    template<typename T>
-    T* referenceObject(T* o) const
+    ScicosID createObject(kind_t k)
     {
-        referenceObject(o->id());
-        return o;
+        return createBaseObject(k)->id();
     }
-    template<typename T>
-    T* referenceObject(model::BaseObject* o) const
+
+    unsigned referenceObject(const ScicosID uid) const
     {
-        referenceObject(o->id());
-        return static_cast<T*>(o);
+        return referenceBaseObject(getBaseObject(uid))->refCount();
     }
-    void deleteObject(ScicosID uid);
+
+    void deleteObject(ScicosID uid)
+    {
+        deleteBaseObject(getBaseObject(uid));
+    }
+
     ScicosID cloneObject(ScicosID uid, bool cloneChildren, bool clonePorts);
-    model::BaseObject* cloneObject(std::map<model::BaseObject*, model::BaseObject*>& mapped, model::BaseObject* initial, bool cloneChildren, bool clonePorts);
 
     kind_t getKind(ScicosID uid) const;
     std::vector<ScicosID> getAll(kind_t k) const;
     void sortAndFillKind(std::vector<ScicosID>& uids, std::vector<int>& kind);
-    model::BaseObject* getObject(ScicosID uid) const;
-    template<typename T>
-    T* getObject(ScicosID uid) const
-    {
-        return static_cast<T*>(getObject(uid));
-    }
 
     /*
      * C++ API
      */
-
+#if !defined SWIG
+    model::BaseObject* createBaseObject(kind_t k);
     template<typename T>
-    bool getObjectProperty(model::BaseObject* object, object_properties_t p, T& v) const
+    T* createBaseObject(kind_t k)
     {
+        return static_cast<T*>(createBaseObject(k));
+    }
+    model::BaseObject* referenceBaseObject(model::BaseObject* o) const;
+    template<typename T>
+    T* referenceBaseObject(T* o) const
+    {
+        referenceBaseObject(static_cast<model::BaseObject*>(o));
+        return o;
+    }
+    template<typename T>
+    T* referenceBaseObject(model::BaseObject* o) const
+    {
+        referenceBaseObject(o);
+        return static_cast<T*>(o);
+    }
+    void deleteBaseObject(model::BaseObject* o);
+
+    model::BaseObject* getBaseObject(ScicosID uid) const;
+    template<typename T>
+    T* getBaseObject(ScicosID uid) const
+    {
+        return static_cast<T*>(getBaseObject(uid));
+    }
+    model::BaseObject* cloneBaseObject(std::unordered_map<model::BaseObject*, model::BaseObject*>& mapped, model::BaseObject* initial, bool cloneChildren, bool clonePorts);
+#endif /* !defined SWIG */
+
+    /*
+     * C++ API: getters and setters
+     */
+    template<typename K, typename T>
+    bool getObjectProperty(K* object, object_properties_t p, T& v) const
+    {
+        static_assert(std::is_base_of<model::BaseObject, K>::value, "object should be an MVC object");
+
         lock(&m_instance.onModelStructuralModification);
         bool ret = m_instance.model.getObjectProperty(object, p, v);
         unlock(&m_instance.onModelStructuralModification);
         return ret;
-    }
+    };
 
-    template<typename T>
-    update_status_t setObjectProperty(model::BaseObject* object, object_properties_t p, const T& v)
+    template<typename K, typename T>
+    update_status_t setObjectProperty(K* object, object_properties_t p, T const& v)
     {
+        static_assert(std::is_base_of<model::BaseObject, K>::value, "object should be an MVC object");
+
         lock(&m_instance.onModelStructuralModification);
-        update_status_t ret = m_instance.model.setObjectProperty(object, p, v);
+        update_status_t status = m_instance.model.setObjectProperty(object, p, v);
         unlock(&m_instance.onModelStructuralModification);
-        return ret;
-    }
+
+        lock(&m_instance.onViewsStructuralModification);
+        for (view_set_t::iterator iter = m_instance.allViews.begin(); iter != m_instance.allViews.end(); ++iter)
+        {
+            (*iter)->propertyUpdated(object->id(), object->kind(), p, status);
+        }
+        unlock(&m_instance.onViewsStructuralModification);
+        return status;
+    };
 
     /*
-     * C / Java API
+     * SWIG mapped API: getters and setters
      */
 
     bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, double& v) const;
@@ -127,7 +170,6 @@ public:
     update_status_t setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, const std::vector<ScicosID>& v);
 
 private:
-
     typedef std::vector<View*> view_set_t;
     typedef std::vector<std::string> view_name_set_t;
 
@@ -146,6 +188,10 @@ private:
         SharedData();
         ~SharedData();
     };
+
+    /*
+     * Helpers
+     */
 
     static inline void lock(std::atomic_flag* m)
     {
@@ -166,14 +212,25 @@ private:
     static SharedData m_instance;
 
     /*
+     * per instance data, for performance reasons
+     */
+    std::string _strShared;
+    std::vector<double> _vecDblShared;
+    std::vector<int> _vecIntShared;
+    std::vector<std::string> _vecStrShared;
+    std::vector<ScicosID> _vecIDShared;
+
+    /*
      * Methods
      */
 
     template<typename T> void cloneProperties(model::BaseObject* initial, model::BaseObject* clone);
+    template<typename T> void cloneProperties(model::BaseObject* initial, model::BaseObject* clone, T& temporary);
     template<typename T> bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, T& v) const;
     template<typename T> update_status_t setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, T v);
-    void deepClone(std::map<model::BaseObject*, model::BaseObject*>& mapped, model::BaseObject* initial, model::BaseObject* clone, object_properties_t p, bool cloneIfNotFound);
-    void deepCloneVector(std::map<model::BaseObject*, model::BaseObject*>& mapped, model::BaseObject* initial, model::BaseObject* clone, object_properties_t p, bool cloneIfNotFound);
+    void deepClone(std::unordered_map<model::BaseObject*, model::BaseObject*>& mapped, model::BaseObject* initial, model::BaseObject* clone, object_properties_t p, bool cloneIfNotFound);
+    void deepCloneVector(std::unordered_map<model::BaseObject*, model::BaseObject*>& mapped, model::BaseObject* initial, model::BaseObject* clone, object_properties_t p, bool cloneIfNotFound);
+    void updateChildrenRelatedPropertiesAfterClone(std::unordered_map<model::BaseObject*, model::BaseObject*>& mapped);
     void unlinkVector(model::BaseObject* o, object_properties_t uid_prop, object_properties_t ref_prop);
     void unlink(model::BaseObject* o, object_properties_t uid_prop, object_properties_t ref_prop);
     void deleteVector(model::BaseObject* o, object_properties_t uid_prop);

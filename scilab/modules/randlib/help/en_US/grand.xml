@@ -15,7 +15,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="grand">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="grand">
     <refnamediv>
         <refname>grand</refname>
         <refpurpose>Random numbers</refpurpose>
@@ -43,14 +46,14 @@
             Y = grand(m, n, o,..,"..",...)
             Y = grand(X, ...)
         </synopsis>
-
+        <para/>
         <synopsis>
             Y = grand(n, "mn", Mean, Cov)
             Y = grand(n, "markov", P, x0)
             Y = grand(n, "mul", nb, P)
             Y = grand(n, "prm", vect)
         </synopsis>
-
+        <para/>
         <synopsis>
             S = grand("getgen")
             grand("setgen", gen)
@@ -205,7 +208,7 @@
                         <code>Y = grand(m, n, "bet", A, B)</code> generates
                         random variates from the beta distribution with parameters
                         <varname>A</varname> and <varname>B</varname>.  The density
-                        of the beta distribution is <latex><![CDATA[(0 < x < 1)]]></latex>:
+                        of the beta distribution is (0 &lt; x &lt; 1):
                     </para>
                     <para>
                         <latex>
@@ -214,7 +217,8 @@
                     </para>
                     <para>
                         <varname>A</varname> and <varname>B</varname> must be
-                        reals <latex><![CDATA[>10^{-37}]]></latex>.  Related function: <link linkend="cdfbet">cdfbet</link>.
+                        reals >10<superscript>-37</superscript>.
+                        Related function: <link linkend="cdfbet">cdfbet</link>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -360,8 +364,7 @@
                         random variates from the geometric distribution with
                         parameter <varname>p</varname> : number of Bernouilli trials
                         (with probability success of <varname>p</varname>) until a
-                        success is met. <varname>p</varname> must be in
-                        <latex>[p_{min},1]</latex> (with <latex> p_{min} = 1{,}3\times 10^{-307} </latex>).
+                        success is met. <varname>p</varname> must be in [1.3e-307, 1].
                     </para>
                     <para>
                         <varname>Y</varname> contains positive real numbers
@@ -377,10 +380,12 @@
                         <code>Y = grand(n, "markov", P, x0)</code> generate
                         <varname>n</varname> successive states of a Markov chain
                         described by the transition matrix
-                        <varname>P</varname>. A sum of each the rows in <varname>P</varname> is <literal>1</literal>. Initial state is given by <varname>x0</varname>. If <varname>x0</varname> is a
-                        matrix of size <code>m=size(x0,"*")</code> then
-                        <varname>Y</varname> is a matrix of size <varname>m</varname>-by-<varname>n</varname>.  <code>Y(i,:)</code> code the sample path
-                        obtained from initial state <code>x0(i)</code>.
+                        <varname>P</varname>. A sum of each the rows in <varname>P</varname> is
+                        <literal>1</literal>. Initial state is given by <varname>x0</varname>.
+                        If <varname>x0</varname> is a  matrix of size <code>m=size(x0,"*")</code> then
+                        <varname>Y</varname> is a matrix of size <varname>m</varname>-by-<varname>n</varname>.
+                        <code>Y(i,:)</code> code the sample path  obtained from initial state
+                        <code>x0(i)</code>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -395,8 +400,8 @@
                         "balls" in <literal>m</literal>
                         "boxes"). <literal>P(i)</literal> is the probability that
                         an event will be classified into category
-                        <literal>i</literal>. The column vector of probabilities <varname>P</varname> is of
-                        size <literal>m-1</literal> (the probability of category
+                        <literal>i</literal>. The column vector of probabilities <varname>P</varname>
+                        is of size <literal>m-1</literal> (the probability of category
                         <literal>m</literal> is <literal>1-sum(P)</literal>).
                         <varname>Y</varname> is of size <literal>m</literal>-by-<varname>n</varname>.
                         Each column <literal>Y(:,j)</literal> is an observation
@@ -413,8 +418,8 @@
                     <para>
                         <code>Y = grand(m, n, "poi", mu)</code> generates
                         random variates from the Poisson distribution with mean
-                        <varname>mu</varname> (<literal>real</literal> &gt;= <literal>0.0</literal>). Related function:
-                        <link linkend="cdfpoi">cdfpoi</link>.
+                        <varname>mu</varname> (<literal>real</literal> &gt;= <literal>0.0</literal>).
+                        Related function:  <link linkend="cdfpoi">cdfpoi</link>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -574,7 +579,8 @@
                     <para>
                         <code>S = grand("getgen")</code> returns the current base generator.
                         In this case <varname>S</varname> is
-                        a string among <literal>"mt"</literal>, <literal>"kiss"</literal>, <literal>"clcg2"</literal>, <literal>"clcg4"</literal>, <literal>"urand"</literal>.
+                        a string among <literal>"mt"</literal>, <literal>"kiss"</literal>,
+                        <literal>"clcg2"</literal>, <literal>"clcg4"</literal>, <literal>"urand"</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -583,7 +589,8 @@
                 <listitem>
                     <para>
                         <code>grand("setgen",gen)</code> sets the current base generator to be <varname>gen</varname>
-                        a string among <literal>"mt"</literal>, <literal>"kiss"</literal>, <literal>"clcg2"</literal>, <literal>"clcg4"</literal>, <literal>"urand"</literal>.
+                        a string among <literal>"mt"</literal>, <literal>"kiss"</literal>,
+                        <literal>"clcg2"</literal>, <literal>"clcg4"</literal>, <literal>"urand"</literal>.
                         Notice that this call returns the new current generator, i.e. <varname>gen</varname>.
                     </para>
                 </listitem>
@@ -592,12 +599,13 @@
                 <term>action = "getsd"</term>
                 <listitem>
                     <para>
-                        <code>S = grand("getsd")</code> gets the current state (the current seeds) of the current base
-                        generator ; <varname>S</varname> is given as a column vector (of integers) of dimension <literal>625</literal>
-                        for mt (the first being an index in <literal>[1,624]</literal>), <literal>4</literal> for kiss, <literal>2</literal>
-                        for clcg2,  <literal>4</literal> for clcg4
-                        (for this last one you get the current state of the current virtual generator) and <literal>1</literal>
-                        for urand.
+                        <code>S = grand("getsd")</code> gets the current state (the current seeds) of
+                        the current base generator ; <varname>S</varname> is given as a column vector
+                        (of integers) of dimension <literal>625</literal> for mt (the first being
+                        an index in <literal>[1,624]</literal>), <literal>4</literal> for kiss,
+                        <literal>2</literal> for clcg2,  <literal>4</literal> for clcg4 (for this
+                        last one you get the current state of the current virtual generator) and
+                        <literal>1</literal> for urand.
                     </para>
                 </listitem>
             </varlistentry>
@@ -605,8 +613,8 @@
                 <term>action = "setsd"</term>
                 <listitem>
                     <para>
-                        <code>grand("setsd", S)</code> and <code>grand("setsd", s1[, s2, s3, s4])</code> set the state of the current
-                        base generator (the new seeds) :
+                        <code>grand("setsd", S)</code> and <code>grand("setsd", s1[, s2, s3, s4])</code>
+                        set the state of the current  base generator (the new seeds) :
                     </para>
                     <variablelist>
                         <varlistentry>
@@ -624,7 +632,9 @@
                             <term>for kiss</term>
                             <listitem>
                                 <para>
-                                    four integers <varname>s1</varname>, <varname>s2</varname>, <varname>s3</varname>, <varname>s4</varname> in <literal>[0,2^32[</literal> must be provided ;
+                                    four integers <varname>s1</varname>, <varname>s2</varname>,
+                                    <varname>s3</varname>, <varname>s4</varname> in
+                                    <literal>[0,2^32[</literal> must be provided ;
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -647,7 +657,7 @@
                                 </para>
                                 <para>
                                     <caution>
-                                        CAUTION : with clcg4 you set the seeds of the current virtual
+                                        With clcg4 you set the seeds of the current virtual
                                         generator but you may lost the synchronization between this one
                                         and the others virtual generators (i.e. the sequence generated
                                         is not warranty to be non-overlapping with a sequence generated

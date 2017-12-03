@@ -91,7 +91,7 @@ types::Function::ReturnValue sci_strcat(types::typed_list &in, int _iRetCount, t
                 iMode = 2;
                 break;
             default :
-                Scierror(999, _("%s: Wrong type for input argument #%d: ''%s'' or ''%s'' expected.\n"), "strcat", 3, "c", "r");
+                Scierror(999, _("%s: Wrong type for input argument #%d: '%s' or '%s' expected.\n"), "strcat", 3, "c", "r");
                 return types::Function::Error;
         }
     }
@@ -115,28 +115,46 @@ types::Function::ReturnValue sci_strcat(types::typed_list &in, int _iRetCount, t
         case 0 : //"*"
         {
             pOut = new types::String(1, 1);
+
+            int size = pS->getSize();
+            wchar_t** s = pS->get();
+
+            int insertLen = 0;
+            if (pwstToInsert)
+            {
+                insertLen = (int)wcslen(pwstToInsert);
+            }
+
             /*compute final size*/
             int iLen = 1; //L'\0'
-            for (int i = 0 ; i < pS->getSize() ; i++)
+            for (int i = 0 ; i < size ; i++)
             {
-                iLen += (int)wcslen(pS->get(i));
+                iLen += (int)wcslen(s[i]);
             }
 
             if (pwstToInsert != NULL)
             {
-                iLen += (int)wcslen(pwstToInsert) * (pS->getSize() - 1);
+                iLen += insertLen * (size - 1);
             }
 
             wchar_t* pwstOut = (wchar_t*)MALLOC(sizeof(wchar_t) * iLen);
             pwstOut[0] = L'\0';
-            for (int i = 0 ; i < pS->getSize() ; i++)
+
+            wcscpy(pwstOut, s[0]);
+            if (pwstToInsert)
             {
-                size_t iOffset = wcslen(pwstOut);
-                if (iOffset != 0 && pwstToInsert != NULL)
+                for (int i = 1; i < size; ++i)
                 {
-                    wcscat(pwstOut + iOffset, pwstToInsert);
+                    wcscat(pwstOut, pwstToInsert);
+                    wcscat(pwstOut, s[i]);
                 }
-                wcscat(pwstOut + iOffset, pS->get(i));
+            }
+            else
+            {
+                for (int i = 1; i < size; ++i)
+                {
+                    wcscat(pwstOut, s[i]);
+                }
             }
 
             pOut->set(0, pwstOut);
@@ -145,33 +163,52 @@ types::Function::ReturnValue sci_strcat(types::typed_list &in, int _iRetCount, t
         break;
         case 1 : //"r"
         {
-            pOut = new types::String(1, pS->getCols());
+            wchar_t** s = pS->get();
+            int cols = pS->getCols();
+            int rows = pS->getRows();
+
+            pOut = new types::String(1, cols);
+
+            int insertLen = 0;
+            if (pwstToInsert)
+            {
+                insertLen = (int)wcslen(pwstToInsert);
+            }
+            
             /*compute final size*/
-            for (int i = 0 ; i < pS->getCols() ; i++)
+            for (int i = 0 ; i < cols ; ++i)
             {
                 int iLen = 1; //L'\0'
-                for (int j = 0 ; j < pS->getRows() ; j++)
+                for (int j = 0 ; j < rows; ++j)
                 {
-                    iLen += (int)wcslen(pS->get(j, i));
+                    iLen += (int)wcslen(s[i * rows + j]);
                 }
 
                 if (pwstToInsert != NULL)
                 {
-                    iLen += (int)wcslen(pwstToInsert) * (pS->getRows() - 1);
+                    iLen += insertLen * (rows - 1);
                 }
 
                 wchar_t* pwstOut = (wchar_t*)MALLOC(sizeof(wchar_t) * iLen);
                 pwstOut[0] = L'\0';
 
-                for (int j = 0 ; j < pS->getRows() ; j++)
+                wcscpy(pwstOut, s[i * rows]);
+                if (pwstToInsert)
                 {
-                    size_t iOffset = wcslen(pwstOut);
-                    if (iOffset != 0 && pwstToInsert != NULL)
+                    for (int j = 1; j < rows; ++j)
                     {
-                        wcscat(pwstOut + iOffset, pwstToInsert);
+                        wcscat(pwstOut, pwstToInsert);
+                        wcscat(pwstOut, s[i * rows + j]);
                     }
-                    wcscat(pwstOut + iOffset, pS->get(j, i));
                 }
+                else
+                {
+                    for (int j = 1; j < rows; ++j)
+                    {
+                        wcscat(pwstOut, s[i * rows + j]);
+                    }
+                }
+
                 pOut->set(0, i, pwstOut);
                 FREE(pwstOut);
             }
@@ -179,33 +216,52 @@ types::Function::ReturnValue sci_strcat(types::typed_list &in, int _iRetCount, t
         }
         case 2 : //"c"
         {
-            pOut = new types::String(pS->getRows(), 1);
+            wchar_t** s = pS->get();
+            int cols = pS->getCols();
+            int rows = pS->getRows();
+
+            pOut = new types::String(rows, 1);
+
+            int insertLen = 0;
+            if (pwstToInsert)
+            {
+                insertLen = (int)wcslen(pwstToInsert);
+            }
+
             /*compute final size*/
-            for (int i = 0 ; i < pS->getRows() ; i++)
+            for (int i = 0 ; i < rows ; ++i)
             {
                 int iLen = 1; //L'\0'
-                for (int j = 0 ; j < pS->getCols() ; j++)
+                for (int j = 0 ; j < cols ; ++j)
                 {
-                    iLen += (int)wcslen(pS->get(i, j));
+                    iLen += (int)wcslen(s[j * rows + i]);
                 }
 
                 if (pwstToInsert != NULL)
                 {
-                    iLen += (int)wcslen(pwstToInsert) * (pS->getCols() - 1);
+                    iLen += insertLen * (cols - 1);
                 }
 
                 wchar_t* pwstOut = (wchar_t*)MALLOC(sizeof(wchar_t) * iLen);
                 pwstOut[0] = L'\0';
 
-                for (int j = 0 ; j < pS->getCols() ; j++)
+                wcscpy(pwstOut, s[i]);
+                if (pwstToInsert)
                 {
-                    size_t iOffset = wcslen(pwstOut);
-                    if (iOffset != 0 && pwstToInsert != NULL)
+                    for (int j = 1; j < cols; ++j)
                     {
-                        wcscat(pwstOut + iOffset, pwstToInsert);
+                        wcscat(pwstOut, pwstToInsert);
+                        wcscat(pwstOut, s[j * rows + i]);
                     }
-                    wcscat(pwstOut + iOffset, pS->get(i, j));
                 }
+                else
+                {
+                    for (int j = 1; j < cols; ++j)
+                    {
+                        wcscat(pwstOut, s[j * rows + i]);
+                    }
+                }
+
                 pOut->set(i, 0, pwstOut);
                 FREE(pwstOut);
             }

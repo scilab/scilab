@@ -265,14 +265,14 @@ function [sci_clause,nblines]=clause2sci(mtlb_clause,nblines,leveltemp)
                     [instr,nblines]=instruction2sci(mtlb_clause.statements(k).sup_instr(i),nblines)
                     // If inserted instruction is an initialisation, it has to be done just one time and before loop
                     l=1;
-                    while l<=lstsize(m2sci_to_insert_b)
+                    while l <= size(m2sci_to_insert_b)
                         if typeof(m2sci_to_insert_b(l))=="equal" & ..
                             (and(m2sci_to_insert_b(l).expression==Cste([])) | ..
                             and(m2sci_to_insert_b(l).expression==Funcall("struct",1,list(),list())) | ..
                             and(m2sci_to_insert_b(l).expression==Funcall("cell",1,list(),list())) ) then
                             to_insert($+1)=m2sci_to_insert_b(l)
                             m2sci_to_insert_b(l)=null()
-                            if lstsize(m2sci_to_insert_b)>=l & m2sci_to_insert_b(l)==list("EOL") then
+                            if size(m2sci_to_insert_b)>=l & m2sci_to_insert_b(l)==list("EOL") then
                                 to_insert($+1)=m2sci_to_insert_b(l)
                                 m2sci_to_insert_b(l)=null()
                             end
@@ -287,14 +287,14 @@ function [sci_clause,nblines]=clause2sci(mtlb_clause,nblines,leveltemp)
                 [instr,nblines]=instruction2sci(mtlb_clause.statements(k),nblines)
                 // If inserted instruction is an initialisation, it has to be done just one time and before loop
                 l=1;
-                while l<=lstsize(m2sci_to_insert_b)
+                while l <= size(m2sci_to_insert_b)
                     if typeof(m2sci_to_insert_b(l))=="equal" & ..
                         (and(m2sci_to_insert_b(l).expression==Cste([])) | ..
                         and(m2sci_to_insert_b(l).expression==Funcall("struct",1,list(),list())) | ..
                         and(m2sci_to_insert_b(l).expression==Funcall("cell",1,list(),list())) ) then
                         to_insert($+1)=m2sci_to_insert_b(l)
                         m2sci_to_insert_b(l)=null()
-                        if lstsize(m2sci_to_insert_b)>=l & m2sci_to_insert_b(l)==list("EOL") then
+                        if size(m2sci_to_insert_b)>=l & m2sci_to_insert_b(l)==list("EOL") then
                             to_insert($+1)=m2sci_to_insert_b(l)
                             m2sci_to_insert_b(l)=null()
                         end
@@ -336,14 +336,14 @@ function [sci_clause,nblines]=clause2sci(mtlb_clause,nblines,leveltemp)
                     [instr,nblines]=instruction2sci(mtlb_clause.statements(k).sup_instr(i),nblines)
                     // If inserted instruction is an initialisation, it has to be done just one time and before loop
                     l=1;
-                    while l<=lstsize(m2sci_to_insert_b)
+                    while l <= size(m2sci_to_insert_b)
                         if typeof(m2sci_to_insert_b(l))=="equal" & ..
                             (and(m2sci_to_insert_b(l).expression==Cste([])) | ..
                             and(m2sci_to_insert_b(l).expression==Funcall("struct",1,list(),list())) | ..
                             and(m2sci_to_insert_b(l).expression==Funcall("cell",1,list(),list())) ) then
                             to_insert($+1)=m2sci_to_insert_b(l)
                             m2sci_to_insert_b(l)=null()
-                            if lstsize(m2sci_to_insert_b)>=l & m2sci_to_insert_b(l)==list("EOL") then
+                            if size(m2sci_to_insert_b)>=l & m2sci_to_insert_b(l)==list("EOL") then
                                 to_insert($+1)=m2sci_to_insert_b(l)
                                 m2sci_to_insert_b(l)=null()
                             end
@@ -358,14 +358,14 @@ function [sci_clause,nblines]=clause2sci(mtlb_clause,nblines,leveltemp)
                 [instr,nblines]=instruction2sci(mtlb_clause.statements(k),nblines)
                 // If inserted instruction is an initialisation, it has to be done just one time and before loop
                 l=1;
-                while l<=lstsize(m2sci_to_insert_b)
+                while l <= size(m2sci_to_insert_b)
                     if typeof(m2sci_to_insert_b(l))=="equal" & ..
                         (and(m2sci_to_insert_b(l).expression==Cste([])) | ..
                         and(m2sci_to_insert_b(l).expression==Funcall("struct",1,list(),list())) | ..
                         and(m2sci_to_insert_b(l).expression==Funcall("cell",1,list(),list())) ) then
                         to_insert($+1)=m2sci_to_insert_b(l)
                         m2sci_to_insert_b(l)=null()
-                        if lstsize(m2sci_to_insert_b)>=l & m2sci_to_insert_b(l)==list("EOL") then
+                        if size(m2sci_to_insert_b)>=l & m2sci_to_insert_b(l)==list("EOL") then
                             to_insert($+1)=m2sci_to_insert_b(l)
                             m2sci_to_insert_b(l)=null()
                         end

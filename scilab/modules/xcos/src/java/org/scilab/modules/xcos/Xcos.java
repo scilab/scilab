@@ -173,7 +173,6 @@ public final class Xcos {
         diagrams = new HashMap<>();
 
         view = new XcosView();
-        JavaController.register_view(Xcos.class.getName(), view);
         // allocate and install the browser view on demand to avoid any cost
         browser = null;
 

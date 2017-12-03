@@ -133,6 +133,7 @@
                         When this function is defined in a file, there is no way to retrieve the file
                         path and name.
                     </para>
+                    <para/>
                 </varlistentry>
                 <varlistentry>
                     <term>a builtin written and compiled in an external language (C, C++..):</term>

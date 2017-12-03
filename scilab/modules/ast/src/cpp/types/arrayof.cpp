@@ -758,6 +758,7 @@ ArrayOf<T>* ArrayOf<T>::append(int _iRows, int _iCols, InternalType* _poSource)
         return pIT;
     }
 
+    _poSource->IncreaseRef();
     ArrayOf * pGT = _poSource->getAs<ArrayOf>();
     int iRows = pGT->getRows();
     int iCols = pGT->getCols();
@@ -775,7 +776,7 @@ ArrayOf<T>* ArrayOf<T>::append(int _iRows, int _iCols, InternalType* _poSource)
     }
     else if (isComplex())
     {
-        pGT->setComplex(true);
+        pGT = pGT->setComplex(true);
     }
 
     if (pGT->isComplex())
@@ -799,6 +800,9 @@ ArrayOf<T>* ArrayOf<T>::append(int _iRows, int _iCols, InternalType* _poSource)
             }
         }
     }
+
+    pGT->killMe();
+    _poSource->DecreaseRef();
 
     return this;
 }

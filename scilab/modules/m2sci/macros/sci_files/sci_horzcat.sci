@@ -20,7 +20,7 @@ function [tree]=sci_horzcat(tree)
     out=tree.lhs
 
     op="rc"
-    for k=1:lstsize(allargs)
+    for k = 1:size(allargs)
         if allargs(k).vtype==String then
             op="+"
             break
@@ -37,11 +37,11 @@ function [tree]=sci_horzcat(tree)
 
     // Dimensions
     outdims=allargs(1).dims
-    for k=1:lstsize(outdims)
+    for k = 1:size(outdims)
         outdims(k)=Unknown
     end
     for k=1:rhs
-        for l=1:lstsize(allargs(k).dims)
+        for l = 1:size(allargs(k).dims)
             if l<>2 & allargs(k).dims(l)<>Unknown then
                 outdims(l)=allargs(k).dims(l)
             end

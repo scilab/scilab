@@ -220,6 +220,9 @@ evstr(a(i+2))*2
                     <para>Forces SCIHOME to the <literal>dir</literal> directory. If the path
                       includes some white space, it must be specified between double-quotes (no
                       single quotes!).
+                      if <literal>dir</literal> is a relative path, <literal>dir</literal> is add to parent standard SCIHOME folder.
+                      On Windows: %USERPROFILE%\AppData\Roaming\Scilab\<literal>dir</literal>
+                      On Linux/MacOS: ~/.Scilab/<literal>dir</literal>
                     </para>
                 </listitem>
             </varlistentry>

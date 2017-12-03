@@ -68,13 +68,13 @@ struct props
 
     static types::InternalType* get(const DiagramAdapter& adaptor, const Controller& controller)
     {
-        ParamsAdapter localAdaptor(controller, controller.referenceObject(adaptor.getAdaptee()));
+        ParamsAdapter localAdaptor(controller, controller.referenceBaseObject<model::BaseObject>(adaptor.getAdaptee()));
         return localAdaptor.getAsTList(new types::TList(), controller);
     }
 
     static bool set(DiagramAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        ParamsAdapter localAdaptor(controller, controller.referenceObject(adaptor.getAdaptee()));
+        ParamsAdapter localAdaptor(controller, controller.referenceBaseObject<model::BaseObject>(adaptor.getAdaptee()));
         return localAdaptor.setAsTList(v, controller);
     }
 };
@@ -86,7 +86,7 @@ struct objs
         model::BaseObject* adaptee = adaptor.getAdaptee();
 
         std::vector<ScicosID> children;
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), CHILDREN, children);
+        controller.getObjectProperty(adaptee, CHILDREN, children);
         types::List* ret = new types::List();
         // TODO: ret.reserve(children.size());
         for (int i = 0; i < static_cast<int>(children.size()); ++i)
@@ -100,18 +100,18 @@ struct objs
                 continue;
             }
 
-            model::BaseObject* o = controller.getObject(children[i]);
+            model::BaseObject* o = controller.getBaseObject(children[i]);
             switch (o->kind())
             {
                 case ANNOTATION :
-                    ret->append(new TextAdapter(controller, controller.referenceObject<model::Annotation>(o)));
+                    ret->append(new TextAdapter(controller, controller.referenceBaseObject<model::Annotation>(o)));
                     break;
                 case BLOCK :
-                    ret->append(new BlockAdapter(controller, controller.referenceObject<model::Block>(o)));
+                    ret->append(new BlockAdapter(controller, controller.referenceBaseObject<model::Block>(o)));
                     break;
                 case LINK :
                 {
-                    ret->append(new LinkAdapter(controller, controller.referenceObject<model::Link>(o)));
+                    ret->append(new LinkAdapter(controller, controller.referenceBaseObject<model::Link>(o)));
                     break;
                 }
                 default:
@@ -131,7 +131,7 @@ struct objs
     static Adapter* allocAndSet(types::MList* modelElement, Controller& controller)
     {
         ScicosID id = controller.createObject(kind);
-        Adaptee* localAdaptee = controller.getObject<Adaptee>(id);
+        Adaptee* localAdaptee = controller.getBaseObject<Adaptee>(id);
 
         Adapter* localAdaptor = new Adapter(controller, localAdaptee);
         localAdaptor->setAsTList(modelElement, controller);
@@ -206,7 +206,7 @@ struct objs
             {
                 if (u.adaptee != nullptr)
                 {
-                    controller.referenceObject(u.adaptee->id());
+                    controller.referenceBaseObject(u.adaptee);
                 }
             });
         }
@@ -240,7 +240,7 @@ struct objs
 
         // retrieve the current children to update
         std::vector<ScicosID> children;
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), CHILDREN, children);
+        controller.getObjectProperty(adaptee, CHILDREN, children);
 
         // A boolean to know if we are removing an object
         bool deletion = children.size() > static_cast<size_t>(argumentList->getSize());
@@ -324,7 +324,7 @@ struct objs
 
         // Process the children / parent relationship
         ScicosID parentDiagram;
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), PARENT_DIAGRAM, parentDiagram);
+        controller.getObjectProperty(adaptee, PARENT_DIAGRAM, parentDiagram);
         int offset = 0;
         for (const auto & update : childrenToUpdate)
         {
@@ -335,7 +335,7 @@ struct objs
             }
             else
             {
-                controller.referenceObject(update.adaptee->id());
+                controller.referenceBaseObject(update.adaptee);
                 if (deletion && children[update.index] == ScicosID())
                 {
                     // This object is the one being deleted in the diagram:
@@ -359,13 +359,13 @@ struct objs
 
                 if (adaptee->kind() == BLOCK)
                 {
-                    controller.setObjectProperty(update.adaptee->id(), update.adaptee->kind(), PARENT_DIAGRAM, parentDiagram);
-                    controller.setObjectProperty(update.adaptee->id(), update.adaptee->kind(), PARENT_BLOCK, adaptee->id());
+                    controller.setObjectProperty(update.adaptee, PARENT_DIAGRAM, parentDiagram);
+                    controller.setObjectProperty(update.adaptee, PARENT_BLOCK, adaptee->id());
                 }
                 else
                 {
-                    controller.setObjectProperty(update.adaptee->id(), update.adaptee->kind(), PARENT_DIAGRAM, adaptee->id());
-                    controller.setObjectProperty(update.adaptee->id(), update.adaptee->kind(), PARENT_BLOCK, ScicosID());
+                    controller.setObjectProperty(update.adaptee, PARENT_DIAGRAM, adaptee->id());
+                    controller.setObjectProperty(update.adaptee, PARENT_BLOCK, ScicosID());
                 }
             }
         }
@@ -383,14 +383,14 @@ struct objs
         {
             if (update.adaptee != nullptr && update.adaptee->kind() == LINK)
             {
-                LinkAdapter::relink(controller, update.adaptee, children);
+                LinkAdapter::relink(controller, static_cast<model::Link*>(update.adaptee), children);
             }
         }
         for (const auto & update : childrenToUpdate)
         {
             if (update.adaptee != nullptr && update.adaptee->kind() == BLOCK)
             {
-                GraphicsAdapter::relink(controller, update.adaptee, children);
+                GraphicsAdapter::relink(controller, static_cast<model::Block*>(update.adaptee), children);
             }
         }
 
@@ -405,7 +405,7 @@ struct objs
         }
 
         // set the children after update
-        controller.setObjectProperty(adaptee->id(), adaptee->kind(), CHILDREN, children);
+        controller.setObjectProperty(adaptee, CHILDREN, children);
 
         return true;
     }
@@ -422,13 +422,13 @@ struct version
             model::Block* adaptee = static_cast<model::Block*>(adaptor.getAdaptee());
 
             ScicosID parentDiagram;
-            controller.getObjectProperty(adaptee->id(), adaptee->kind(), PARENT_DIAGRAM, parentDiagram);
+            controller.getObjectProperty(adaptee, PARENT_DIAGRAM, parentDiagram);
             controller.getObjectProperty(parentDiagram, DIAGRAM, VERSION_NUMBER, version);
         }
         else
         {
             model::Diagram* adaptee = static_cast<model::Diagram*>(adaptor.getAdaptee());
-            controller.getObjectProperty(adaptee->id(), adaptee->kind(), VERSION_NUMBER, version);
+            controller.getObjectProperty(adaptee, VERSION_NUMBER, version);
         }
 
         return new types::String(version.data());
@@ -456,7 +456,7 @@ struct version
             std::string version (c_str);
             FREE(c_str);
 
-            controller.setObjectProperty(adaptee->id(), adaptee->kind(), VERSION_NUMBER, version);
+            controller.setObjectProperty(adaptee, VERSION_NUMBER, version);
             return true;
         }
         else if (v->getType() == types::InternalType::ScilabDouble)
@@ -476,7 +476,7 @@ struct version
             model::Diagram* adaptee = static_cast<model::Diagram*>(adaptor.getAdaptee());
 
             std::string version;
-            controller.setObjectProperty(adaptee->id(), adaptee->kind(), VERSION_NUMBER, version);
+            controller.setObjectProperty(adaptee, VERSION_NUMBER, version);
             return true;
         }
 
@@ -510,11 +510,12 @@ DiagramAdapter::DiagramAdapter(const Controller& c, org_scilab_modules_scicos::m
 {
     if (property<DiagramAdapter>::properties_have_not_been_set())
     {
-        property<DiagramAdapter>::fields.reserve(4);
+        property<DiagramAdapter>::reserve_properties(4);
         property<DiagramAdapter>::add_property(L"props", &props::get, &props::set);
         property<DiagramAdapter>::add_property(L"objs", &objs::get, &objs::set);
         property<DiagramAdapter>::add_property(L"version", &version::get, &version::set);
         property<DiagramAdapter>::add_property(L"contrib", &contrib::get, &contrib::set);
+        property<DiagramAdapter>::shrink_to_fit();
     }
 }
 

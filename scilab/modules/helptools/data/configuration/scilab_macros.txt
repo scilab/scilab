@@ -687,14 +687,12 @@ systmat
 %i_d_i
 %i_dsearch
 %i_e
-%i_gcd
 %i_i_ce
 %i_i_h
 %i_i_hm
 %i_i_i
 %i_i_s
 %i_i_st
-%i_lcm
 %i_length
 %i_m_i
 %i_or

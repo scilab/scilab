@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="lstsize" xml:lang="fr">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="lstsize" xml:lang="fr">
     <refnamediv>
         <refname>lstsize</refname>
-        <refpurpose>nombre d'éléments des objets list, tlist et mlist</refpurpose>
+        <refpurpose>nombre d'éléments des objets list, tlist et mlist   <emphasis role="bold">(obsolète)</emphasis>
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
@@ -63,5 +67,17 @@ lstsize(x)
                 <link linkend="mlist">mlist</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.1</revnumber>
+                <revdescription>
+                    <literal>lstsize()</literal> est déclarée obsolète, pour un retrait de Scilab 6.1.
+                    Elle est remplacée par <literal>size()</literal>.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

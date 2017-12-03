@@ -54,7 +54,7 @@ function [txt,rpar,ipar] = create_modelica(blklst,corinvm,cmat,NvM,name,scs_m)
         //** mo.parameters have size=2
         //** it only contains parameters
         if np<>0 then
-            if lstsize(mo.parameters)==2 then
+            if size(mo.parameters)==2 then
                 mo.parameters(3)=zeros(1,np)
             end
         end

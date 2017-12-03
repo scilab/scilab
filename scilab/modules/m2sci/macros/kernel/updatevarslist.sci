@@ -137,7 +137,7 @@ function []=updatevarslist(instr_lhs)
         ierr=execstr("zz=instr_lhs(k).contents.index","errcatch")
         if ierr<>0 then pause;end
         // Remove multiple entries from contents
-        for kcont=lstsize(instr_lhs(k).contents.index):-1:1
+        for kcont = size(instr_lhs(k).contents.index):-1:1
             [infertlist,pos]=get_contents_infer(instr_lhs(k),instr_lhs(k).contents.index(kcont))
             if pos<>0 & pos<>kcont then
                 instr_lhs(k).contents.index(pos)=null()
@@ -219,7 +219,7 @@ function []=merge_vars(oldvarindex,newvar)
     end
 
     // Verify contents
-    for k=1:lstsize(newvar.contents.index)
+    for k = 1:size(newvar.contents.index)
         olddata=get_contents_infer(oldvar,newvar.contents.index(k))
         newdata=newvar.contents.data(k)
 

@@ -3,6 +3,7 @@
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
  * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2017 - ESI Group - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -44,6 +45,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 
 import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.buildCall;
 import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.asynchronousScilabExec;
+import org.scilab.modules.xcos.io.HandledElement;
 
 /**
  * Open dialog to set block parameters
@@ -134,6 +136,7 @@ public class BlockParametersAction extends VertexSelectionDependantAction {
 
                 graph.setCellsLocked(true);
                 graph.getAsComponent().getGraphControl().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                JavaController.register_view(Xcos.class.getName(), Xcos.getInstance().getXcosView());
 
                 try {
 
@@ -160,6 +163,7 @@ public class BlockParametersAction extends VertexSelectionDependantAction {
 
                                 graph.getAsComponent().getGraphControl().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
                                 graph.setCellsLocked(false);
+                                JavaController.unregister_view(Xcos.getInstance().getXcosView());
                             }
                         }
                     };

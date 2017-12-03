@@ -1478,7 +1478,7 @@ function  [ok,XX,alreadyran,flgcdgen,szclkINTemp,freof] = do_compile_superblock4
     funs_save=cpr.sim.funs;
     funtyp_save=cpr.sim.funtyp;
     with_work = zeros(cpr.sim.nblk,1)
-    for i=1:lstsize(cpr.sim.funs)
+    for i=1:size(cpr.sim.funs)
         if part(cpr.sim.funs(i),1:10)=="actionneur" then
             cpr.sim.funs(i) ="bidon"
             cpr.sim.funtyp(i) = 1
@@ -1692,7 +1692,7 @@ function  [ok,XX,alreadyran,flgcdgen,szclkINTemp,freof] = do_compile_superblock4
     maxnin=max(inpptr(2:$)-inpptr(1:$-1))
     maxnout=max(outptr(2:$)-outptr(1:$-1))
     maxdim=[];
-    for i=1:lstsize(cpr.state.outtb)
+    for i=1:size(cpr.state.outtb)
         maxdim=max(size(cpr.state.outtb(i)))
     end
     maxtotal=max([maxnrpar;maxnipar;maxnx;maxnz;maxnin;maxnout;maxdim]);
@@ -2233,8 +2233,8 @@ function make_computational42(filename)
     Indent2=Indent+Indent;
     BigIndent="          ";
 
-    nZ=size(z,"*"); //** index of work in z
-    nO=lstsize(oz); //** index of outtb in oz
+    nZ = size(z,"*"); //** index of work in z
+    nO = size(oz); //** index of outtb in oz
 
     stalone=%f
 
@@ -3382,7 +3382,7 @@ function make_standalone42(filename)
     BigIndent="          ";
 
     work=zeros(nblk,1)
-    Z=[z;zeros(lstsize(outtb),1);work]';
+    Z=[z;zeros(size(outtb),1);work]';
     nX=size(x,"*");
     nztotal=size(z,1);
 
@@ -3574,7 +3574,7 @@ function make_standalone42(filename)
     cformatline("     z_initial_condition={"+...
     strcat(string(z),",")+"};",70)
     cformatline("     outtbptr={"+...
-    strcat(string(zeros(lstsize(outtb),1)),"," )+"};",70)
+    strcat(string(zeros(size(outtb),1)),"," )+"};",70)
     cformatline("     work= {"+...
     strcat(string(work),"," )+"};",70)
     "  */"
@@ -3625,7 +3625,7 @@ function make_standalone42(filename)
 
     //** declaration of oz
     Code_oz = [];
-    for i=1:lstsize(oz)
+    for i=1:size(oz)
         if mat2scs_c_nb(oz(i)) <> 11 then
             Code_oz=[Code_oz;
             cformatline("  "+mat2c_typ(oz(i))+...
@@ -3647,7 +3647,7 @@ function make_standalone42(filename)
 
     //** declaration of outtb
     Code_outtb = [];
-    for i=1:lstsize(outtb)
+    for i=1:size(outtb)
         if mat2scs_c_nb(outtb(i)) <> 11 then
             Code_outtb=[Code_outtb;
             cformatline("  "+mat2c_typ(outtb(i))+...
@@ -3670,7 +3670,7 @@ function make_standalone42(filename)
     end
 
     Code_outtbptr=[];
-    for i=1:lstsize(outtb)
+    for i=1:size(outtb)
         Code_outtbptr=[Code_outtbptr;
         "  "+rdnom+"_block_outtbptr["+...
         string(i-1)+"] = (void *) outtb_"+string(i)+";"];
@@ -3682,7 +3682,7 @@ function make_standalone42(filename)
     ""
     //## affectation of work
     "  /* Get work ptr of blocks */"
-    "  work = (void **)(z+"+string(size(z,"*")+lstsize(outtb))+");"
+    "  work = (void **)(z+"+string(size(z,"*")+size(outtb))+");"
     ""], fd);
 
     //## affection of outtbptr
@@ -4509,7 +4509,7 @@ function txt=make_static_standalone42()
 
     //Alan added opar (27/06/07)
     //*** Object parameters ***//
-    if lstsize(opar)<>0 then
+    if size(opar)<>0 then
         txt=[txt;
         "/* def object parameters */"]
         for i=1:(length(opptr)-1)

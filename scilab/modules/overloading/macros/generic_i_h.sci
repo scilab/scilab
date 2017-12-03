@@ -20,9 +20,9 @@ function h=generic_i_h(i,v,h)
         i($+1)=:
     end
 
-    n=lstsize(i)
+    n = size(i)
     hdl=h;hind=[]
-    for k=1:lstsize(i)// walk down in the handle tree
+    for k=1:size(i)// walk down in the handle tree
         p=i(k)
         lasthandle=hdl,
         if type(p)==10 then

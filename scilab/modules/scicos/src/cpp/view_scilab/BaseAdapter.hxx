@@ -1,6 +1,7 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2017 - ESI Group - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -19,8 +20,10 @@
 #include <cstring>
 
 #include <algorithm>
+#include <functional>
 #include <string>
 #include <vector>
+#include <unordered_map>
 #include <sstream>
 
 #include "bool.hxx"
@@ -65,6 +68,10 @@ public:
     typedef std::vector< property<Adaptor> > props_t;
     typedef typename props_t::iterator props_t_it;
 
+    /*
+     * Static properties accessors
+     */
+    static props_t fields;
 
     property(const std::wstring& prop, getter_t g, setter_t s) : original_index(fields.size()), name(prop), get(g), set(s) {};
     property(const property& p) :
@@ -94,20 +101,7 @@ public:
     getter_t get;
     setter_t set;
 
-    bool operator< (const std::wstring& v) const
-    {
-        return name < v;
-    }
-
-    static bool original_index_cmp(property<Adaptor> p1, property<Adaptor> p2)
-    {
-        return p1.original_index < p2.original_index;
-    }
-
-    /*
-     * Static properties accessors
-     */
-    static props_t fields;
+public:
 
     /**
      * @return true if the properties have already been setup, false otherwise.
@@ -117,15 +111,67 @@ public:
         return fields.empty();
     }
 
-    /**
-     * Add a property to an Adaptor
-     */
+    /** reserve an amount of property */
+    static void reserve_properties(size_t count)
+    {
+        fields.reserve(count);
+    }
+
+    /** compact the properties and setup for a fast lookup */
+    static void shrink_to_fit()
+    {
+        fields.shrink_to_fit();
+        std::sort(fields.begin(), fields.end());
+    }
+
+    /** add a property to an Adaptor */
     static void add_property(const std::wstring& name, getter_t g, setter_t s)
     {
-        property<Adaptor>::props_t_it pos = std::lower_bound(fields.begin(), fields.end(), name);
-        fields.insert(pos, property(name, g, s));
+        fields.emplace_back(property(name, g, s));
+    }
+
+    /** lookup for a name */
+    static props_t_it find(const std::wstring& name)
+    {
+        props_t_it found = std::lower_bound(fields.begin(), fields.end(), name);
+        if (found != fields.end() && *found == name)
+        {
+            return found;
+        }
+        else
+        {
+            return fields.end();
+        }
     }
 };
+
+template<typename Adaptor>
+inline bool
+operator<(const property<Adaptor>& x, const property<Adaptor>& y)
+{
+    return x.name < y.name;
+}
+
+template<typename Adaptor>
+inline bool
+operator<(const property<Adaptor>& x, const std::wstring& y)
+{
+    return x.name < y;
+}
+
+template<typename Adaptor>
+inline bool
+operator==(const property<Adaptor>& x, const property<Adaptor>& y)
+{
+    return x.name == y.name;
+}
+
+template<typename Adaptor>
+inline bool
+operator==(const property<Adaptor>& x, const std::wstring& y)
+{
+    return x.name == y;
+}
 
 /**
  * Base definition of the adapter pattern, implement the get / set dispatch.
@@ -135,6 +181,7 @@ public:
 template<typename Adaptor, typename Adaptee>
 class BaseAdapter : public types::UserType
 {
+private:
     using BaseObject = org_scilab_modules_scicos::model::BaseObject;
 
 public:
@@ -147,8 +194,8 @@ public:
         {
             Controller controller;
 
-            std::map<BaseObject*, BaseObject*> mapped;
-            BaseObject* clone = controller.cloneObject(mapped, adapter.getAdaptee(), cloneChildren, true);
+            std::unordered_map<BaseObject*, BaseObject*> mapped;
+            BaseObject* clone = controller.cloneBaseObject(mapped, adapter.getAdaptee(), cloneChildren, true);
             m_adaptee = static_cast<Adaptee*>(clone);
         }
     };
@@ -168,24 +215,24 @@ public:
 
     bool hasProperty(const std::wstring& _sKey) const
     {
-        typename property<Adaptor>::props_t_it found = std::lower_bound(property<Adaptor>::fields.begin(), property<Adaptor>::fields.end(), _sKey);
-        return found != property<Adaptor>::fields.end() && !(_sKey < found->name);
+        typename property<Adaptor>::props_t_it found = property<Adaptor>::find(_sKey);
+        return found != property<Adaptor>::fields.end();
     }
 
     types::InternalType* getProperty(const std::wstring& _sKey, Controller controller = Controller()) const
     {
-        typename property<Adaptor>::props_t_it found = std::lower_bound(property<Adaptor>::fields.begin(), property<Adaptor>::fields.end(), _sKey);
-        if (found != property<Adaptor>::fields.end() && !(_sKey < found->name))
+        typename property<Adaptor>::props_t_it found = property<Adaptor>::find(_sKey);
+        if (found != property<Adaptor>::fields.end())
         {
             return found->get(*static_cast<Adaptor*>(this), controller);
         }
-        return 0;
+        return nullptr;
     }
 
     bool setProperty(const std::wstring& _sKey, types::InternalType* v, Controller controller = Controller())
     {
-        typename property<Adaptor>::props_t_it found = std::lower_bound(property<Adaptor>::fields.begin(), property<Adaptor>::fields.end(), _sKey);
-        if (found != property<Adaptor>::fields.end() && !(_sKey < found->name))
+        typename property<Adaptor>::props_t_it found = property<Adaptor>::find(_sKey);
+        if (found != property<Adaptor>::fields.end())
         {
             return found->set(*static_cast<Adaptor*>(this), v, controller);
         }
@@ -208,29 +255,24 @@ public:
 
     types::InternalType* getAsTList(types::TList* tlist, const Controller& controller)
     {
-        typename property<Adaptor>::props_t properties = property<Adaptor>::fields;
-        std::sort(properties.begin(), properties.end(), property<Adaptor>::original_index_cmp);
+        const typename property<Adaptor>::props_t& properties = property<Adaptor>::fields;
 
         // create the header
         types::String* header = new types::String(1, 1 + (int)properties.size());
         header->set(0, Adaptor::getSharedTypeStr().c_str());
-        int index = 1;
-        for (typename property<Adaptor>::props_t_it it = properties.begin(); it != properties.end(); ++it, ++index)
+        for (const auto& p : properties)
         {
-            header->set(index, it->name.c_str());
-        }
-        tlist->append(header);
+            header->set(1 + p.original_index, p.name.c_str());
 
-        // set the tlist field value
-        for (typename property<Adaptor>::props_t_it it = properties.begin(); it != properties.end(); ++it)
-        {
-            types::InternalType* field = it->get(*static_cast<Adaptor*>(this), controller);
-            tlist->append(field);
+            types::InternalType* field = p.get(*static_cast<Adaptor*>(this), controller);
+            tlist->set(1 + p.original_index, field);
             if (field->isList())
             {
                 field->killMe();
             }
+
         }
+        tlist->set(0, header);
 
         return tlist;
     }
@@ -239,14 +281,14 @@ public:
     {
         if (v->getType() != types::InternalType::ScilabTList && v->getType() != types::InternalType::ScilabMList)
         {
-            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s: Tlist or Mlist expected.\n"), Adaptor::getSharedTypeStr().c_str());
+            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %ls: Tlist or Mlist expected.\n"), Adaptor::getSharedTypeStr().c_str());
             return false;
         }
         types::TList* current = v->getAs<types::TList>();
         // The input TList cannot be empty
         if (current->getSize() < 1)
         {
-            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong length for field %s: at least %d element expected.\n"), Adaptor::getSharedTypeStr().c_str(), 1);
+            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong length for field %ls: at least %d element expected.\n"), Adaptor::getSharedTypeStr().c_str(), 1);
             return false;
         }
 
@@ -254,24 +296,25 @@ public:
         types::String* header = current->getFieldNames();
         if (header->getSize() < 1)
         {
-            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong length for header of field %s: at least %d element expected.\n"), Adaptor::getSharedTypeStr().c_str(), 1);
+            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong length for header of field \"%ls\": at least %d element expected.\n"), Adaptor::getSharedTypeStr().c_str(), 1);
             return false;
         }
         // Make sure it is the same type as the Adapter
         if (header->get(0) != Adaptor::getSharedTypeStr())
         {
-            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong value for header of field %s: %s expected.\n"), Adaptor::getSharedTypeStr().c_str(), Adaptor::getSharedTypeStr().c_str());
+            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong value for header of field \"%ls\": \"%ls\" expected.\n"), Adaptor::getSharedTypeStr().c_str(), Adaptor::getSharedTypeStr().c_str());
             return false;
         }
 
         // Retrieve the Adapter's properties
-        typename property<Adaptor>::props_t properties = property<Adaptor>::fields;
+        const typename property<Adaptor>::props_t& properties = property<Adaptor>::fields;
 
         // For each input property, if it corresponds to an Adapter's property, set it.
         for (int index = 1; index < header->getSize(); ++index)
         {
-            typename property<Adaptor>::props_t_it found = std::lower_bound(properties.begin(), properties.end(), header->get(index));
-            if (found != properties.end() && !(header->get(index) < found->name))
+            std::wstring name(header->get(index));
+            typename property<Adaptor>::props_t_it found = property<Adaptor>::find(name);
+            if (found != properties.end())
             {
                 bool status = found->set(*static_cast<Adaptor*>(this), current->get(index), controller);
                 if (!status)
@@ -302,15 +345,14 @@ public:
             return false;
         }
 
-        typename property<Adaptor>::props_t properties = property<Adaptor>::fields;
-        std::sort(properties.begin(), properties.end(), property<Adaptor>::original_index_cmp);
+        const typename property<Adaptor>::props_t& properties = property<Adaptor>::fields;
 
-        bool internal_equal = true;
+        bool internal_equal;
         Controller controller;
-        for (typename property<Adaptor>::props_t_it it = properties.begin(); it != properties.end() && internal_equal; ++it)
+        for (const auto& p : properties)
         {
-            types::InternalType* ith_prop1 = it->get(*static_cast<const Adaptor*>(this), controller);
-            types::InternalType* ith_prop2 = it->get(*static_cast<const Adaptor*>(&o), controller);
+            types::InternalType* ith_prop1 = p.get(*static_cast<const Adaptor*>(this), controller);
+            types::InternalType* ith_prop2 = p.get(*static_cast<const Adaptor*>(&o), controller);
 
             // loop while the inner types are equals
             internal_equal = *ith_prop1 == *ith_prop2;
@@ -318,9 +360,14 @@ public:
             // Getting a property allocates data, so free it
             ith_prop1->killMe();
             ith_prop2->killMe();
+
+            if (!internal_equal)
+            {
+                return false;
+            }
         }
 
-        return internal_equal;
+        return true;
     }
 
     types::Bool* equal(types::UserType*& ut) override final
@@ -336,21 +383,19 @@ public:
             return new types::Bool(false);
         }
 
-        typename property<Adaptor>::props_t properties = property<Adaptor>::fields;
-        std::sort(properties.begin(), properties.end(), property<Adaptor>::original_index_cmp);
+        const typename property<Adaptor>::props_t& properties = property<Adaptor>::fields;
 
         types::Bool* ret = new types::Bool(1, 1 + (int)properties.size());
         ret->set(0, true); // First field is just the Adapter's name, which has been checked by the above conditions
 
         Controller controller;
-        int index = 1;
-        for (typename property<Adaptor>::props_t_it it = properties.begin(); it != properties.end(); ++it, ++index)
+        for (const auto& p : properties)
         {
-            types::InternalType* ith_prop1 = it->get(*static_cast<Adaptor*>(this), controller);
-            types::InternalType* ith_prop2 = it->get(*static_cast<Adaptor*>(ut), controller);
-            ret->set(index, *ith_prop1 == *ith_prop2);
+            types::InternalType* ith_prop1 = p.get(*static_cast<Adaptor*>(this), controller);
+            types::InternalType* ith_prop2 = p.get(*static_cast<Adaptor*>(ut), controller);
+            ret->set(p.original_index, *ith_prop1 == *ith_prop2);
 
-            // Getting a property allocates data, so free it
+            // Getting a property allocates data, so free them
             ith_prop1->killMe();
             ith_prop2->killMe();
         }
@@ -418,8 +463,8 @@ private:
 
     bool extract(const std::wstring & name, types::InternalType *& out) override final
     {
-        typename property<Adaptor>::props_t_it found = std::lower_bound(property<Adaptor>::fields.begin(), property<Adaptor>::fields.end(), name);
-        if (found != property<Adaptor>::fields.end() && !(name < found->name))
+        typename property<Adaptor>::props_t_it found = property<Adaptor>::find(name);
+        if (found != property<Adaptor>::fields.end())
         {
             Controller controller;
             types::InternalType* value = found->get(*static_cast<Adaptor*>(this), controller);
@@ -467,17 +512,14 @@ private:
                 {
                     // When _pArgs is '1', return the list of the property names of the Adaptor
 
-                    // Sort the properties before extracting them
-                    typename property<Adaptor>::props_t properties = property<Adaptor>::fields;
-                    std::sort(properties.begin(), properties.end(), property<Adaptor>::original_index_cmp);
+                    const typename property<Adaptor>::props_t& properties = property<Adaptor>::fields;
 
                     // Allocate the return
                     types::String* pOut = new types::String(1, static_cast<int>(properties.size()));
 
-                    int i = 0;
-                    for (typename property<Adaptor>::props_t_it it = properties.begin(); it != properties.end(); ++it, ++i)
+                    for (const auto& p : properties)
                     {
-                        pOut->set(i, it->name.data());
+                        pOut->set(p.original_index, p.name.data());
                     }
                     return pOut;
                 }
@@ -500,7 +542,6 @@ private:
                 Controller controller;
 
                 types::String* pStr = (*_pArgs)[i]->getAs<types::String>();
-                std::wstring name = pStr->get(0);
 
                 Adaptor* work;
                 if (getAdaptee()->refCount() > 0)
@@ -513,8 +554,8 @@ private:
                     work = static_cast<Adaptor*>(this);
                 }
 
-                typename property<Adaptor>::props_t_it found = std::lower_bound(property<Adaptor>::fields.begin(), property<Adaptor>::fields.end(), name);
-                if (found != property<Adaptor>::fields.end() && !(name < found->name))
+                typename property<Adaptor>::props_t_it found = property<Adaptor>::find(std::wstring(pStr->get(0)));
+                if (found != property<Adaptor>::fields.end())
                 {
                     found->set(*work, _pSource, controller);
                 }
@@ -545,13 +586,12 @@ private:
     bool toString(std::wostringstream& ostr) override final
     {
         // Deprecated, use the overload instead
-        typename property<Adaptor>::props_t properties = property<Adaptor>::fields;
-        std::sort(properties.begin(), properties.end(), property<Adaptor>::original_index_cmp);
+        const typename property<Adaptor>::props_t& properties = property<Adaptor>::fields;
 
         ostr << L"scicos_" <<  getTypeStr() << L" type :" << '\n';
-        for (typename property<Adaptor>::props_t_it it = properties.begin(); it != properties.end(); ++it)
+        for (const auto& p : properties)
         {
-            ostr << L"  " << it->name << '\n';
+            ostr << L"  " << p.name << '\n';
         }
         return true;
     }

@@ -42,4 +42,4 @@ rem echo.%START_CALL%"%PARENT%%BIN%"%ArgsExceptFirst%
 %START_CALL%"%PARENT%%BIN%"%ArgsExceptFirst%
 
 :quit
-EXIT /B
+EXIT /B %ERRORLEVEL%

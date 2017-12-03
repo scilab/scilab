@@ -22,7 +22,10 @@
 
  -->
 
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ja" xml:id="polyline_properties">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ja" xml:id="polyline_properties">
 
     <refnamediv>
 
@@ -865,6 +868,28 @@
             </varlistentry>
 
             <varlistentry>
+                <term>datatip_display_mode: </term>
+                <listitem>
+                    <para>
+                        The value can be one of the following:
+                        <itemizedlist>
+                          <listitem>
+                            <literal>"always"</literal>: the datatip is always displayed (default mode).
+                          </listitem>
+                          <listitem>
+                            <literal>"mouseclick"</literal>: clicking on the anchor of the datatip
+                             on the line toogles its display. The anchor is always displayed.
+                          </listitem>
+                          <listitem>
+                            <literal>"mouseover"</literal>: setting the mouse pointer over the
+                            datatip anchor on the line displays the datatip. When going away, the
+                            datatip is masked. Its anchor remains displayed.
+                          </listitem>
+                        </itemizedlist>
+                    </para>
+                </listitem>
+            </varlistentry>
+          <varlistentry>
 
                 <term>display_function: </term>
 
@@ -1130,10 +1155,15 @@ f.children.y_label.font_size = 3;
                 </revremark>
 
             </revision>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revremark>
+                  <para>New property <literal>.datatip_display_mode</literal> introduced.</para>
+                </revremark>
+            </revision>
 
         </revhistory>
 
     </refsection>
 
 </refentry>
-

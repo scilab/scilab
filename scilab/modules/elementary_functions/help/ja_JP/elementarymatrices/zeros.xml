@@ -15,7 +15,10 @@
  *
  -->
 
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="zeros" xml:lang="ja">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="zeros" xml:lang="ja">
 
     <refnamediv>
 
@@ -164,6 +167,10 @@
             </varlistentry>
 
         </variablelist>
+        <note>
+           <literal>repmat(0, sizes)</literal> can be used to generate an array of zeros with
+           <literal>sizes=[m1 m2 ..]</literal> given as a vector.
+        </note>
 
         <para>
 
@@ -185,6 +192,8 @@
 zeros(3)
 zeros(3,3)
 zeros(2,3,2)
+
+repmat(0, [2 4 2])
  ]]></programlisting>
 
     </refsection>

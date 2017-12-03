@@ -312,7 +312,7 @@ function C=expression2code(e)
     case "list"
         // Recursive extraction
         C=""
-        for k=1:lstsize(e)
+        for k=1:size(e)
             ind=expression2code(e(k))
             if type(e(k))==15 then // Recursive extraction in recursive extraction
                 ind=strsubst(ind,")(",",")

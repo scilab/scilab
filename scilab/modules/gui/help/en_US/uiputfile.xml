@@ -1,52 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="uiputfile">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="uiputfile">
     <refnamediv>
         <refname>uiputfile</refname>
         <refpurpose>Open standard dialog box for selecting and saving file.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>[FileName[,PathName[,FilterIndex]]]=uiputfile([file_mask[,dir[,boxTitle]]])
-            PathFileName=uiputfile([file_mask[,dir[,boxTitle]]])
+        <synopsis>
+          PathFileName = uiputfile()
+          PathFileName = uiputfile(file_mask)
+          PathFileName = uiputfile(file_mask, dir)
+          PathFileName = uiputfile(file_mask, dir, boxTitle)
+          [PathFileName, Path] = uiputfile(..)
+          [PathFileName, Path, FilterIndex] = uiputfile(..)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Input parameters</title>
-        <variablelist>
-            <varlistentry>
-                <term>file_mask</term>
-                <listitem>
-                    <para>
-                        a string matrix which gives the file masks to use for file selection. <literal>file_mask</literal> is written with Unix convention. The default value is '*'.
-                    </para>
-                    <para>we can also add descriptions for masks, for example ["*.x*","X files";"*.bin","BIN files"].</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>dir</term>
-                <listitem>
-                    <para>a character string which gives the initial directory used for file search. By default uiputfile uses the previously selected directory.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>boxTitle</term>
-                <listitem>
-                    <para>a character string which gives the title of the uiputfile window. By default uiputfile's title is 'uiputfile'.</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
+        <title>Arguments</title>
+        <refsect3>
+          <title>Input parameters</title>
+          <variablelist>
+              <varlistentry>
+                  <term>file_mask</term>
+                  <listitem>
+                      <para>
+                          Matrix of strings providing the file masks to use for file selection.
+                          <literal>file_mask</literal> is written with Unix conventions.
+                          The default value is '*'.
+                      </para>
+                      <para>
+                        A description of each mask may be provided in column#2 and displayed,
+                        for example ["*.xcos|*.zcos*","Xcos files"; "*.scg", "Scilab graphics"].
+                      </para>
+                  </listitem>
+              </varlistentry>
+              <varlistentry>
+                  <term>dir</term>
+                  <listitem>
+                      <para>
+                        a character string which gives the initial directory used for file search.
+                        By default uiputfile uses the previously selected directory.
+                      </para>
+                  </listitem>
+              </varlistentry>
+              <varlistentry>
+                  <term>boxTitle</term>
+                  <listitem>
+                      <para>
+                        a character string which gives the title of the uiputfile window.
+                        By default uiputfile's title is 'uiputfile'.
+                      </para>
+                  </listitem>
+              </varlistentry>
+          </variablelist>
+      </refsect3>
+      <refsect3>
         <title>Output parameters</title>
         <variablelist>
             <varlistentry>
-                <term>FileName</term>
+                <term>PathFileName</term>
                 <listitem>
-                    <para>string which give the user selected file (path + file name) if user answers "Ok" or the " " string if user answers "Cancel".</para>
+                    <para>
+                      String which gives the user selected file (path + file name) if the user
+                      quits with <literal>"OK"</literal>, or <literal>" "</literal> if the user quits
+                      with <literal>"Cancel"</literal>.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>PathName</term>
+                <term>Path</term>
                 <listitem>
                     <para>is the user selected file path if user answers "Ok" or the " " string if user answers "Cancel".</para>
                 </listitem>
@@ -54,10 +79,14 @@
             <varlistentry>
                 <term>FilterIndex</term>
                 <listitem>
-                    <para>is the user selected filter index on the list box if user answers "Ok" or '0' string if user answers "Cancel"</para>
+                    <para>is the user selected filter index on the list box if the user quits with
+                      <literal>"OK"</literal>, or <literal>"0"</literal> if the user quits with
+                      <literal>"Cancel"</literal>.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
+      </refsect3>
     </refsection>
     <refsection>
         <title>Description</title>
@@ -68,11 +97,12 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-uiputfile(["*.bin";"*.sce";"*.cos*"])
-uiputfile(["*.sci";"*.bin"],"SCI/modules/gui/macros/")
-uiputfile(["*.sc*";"*.bin"],"SCI/modules/gui/macros/")
-uiputfile(["*.x*","X files";"*.bin","BIN files"],"SCI/modules/gui/macros/")
-uiputfile(["*.sce";"*.bin"],"SCI/modules/gui/macros/", "Choose a file name");
+uiputfile(["*.bin"; "*.sce"; "*.cos*"])
+uiputfile(["*.xcos|*.zcos", "Xcos files"; "*.sce|*.sci", "Scilab scripts"])
+uiputfile(["*.sci"; "*.bin"], "SCI/modules/gui/macros/")
+uiputfile(["*.sc*"; "*.bin"], "SCI/modules/gui/macros/")
+uiputfile(["*.x*","X files"; "*.bin","BIN files"], "SCI/modules/gui/macros/")
+uiputfile(["*.sce"; "*.bin"], "SCI/modules/gui/macros/", "Choose a file name");
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

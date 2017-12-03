@@ -46,7 +46,7 @@ function [tree]=%e_ce2sci(tree)
             end
 
             // Change index value if just one double
-            for k=1:lstsize(infertree)
+            for k = 1:size(infertree)
                 if typeof(infertree(k))=="cste" | (typeof(infertree(k))<>"list" & is_a_scalar(infertree(k))) then
                     if infertree(k).vtype<>String then
                         infertree(k)=list(Cste(1),infertree(k))
@@ -77,7 +77,7 @@ function [tree]=%e_ce2sci(tree)
                 if typeof(infertree)<>"list" then
                     infertree=list(infertree);
                 end
-                for k=1:lstsize(infertree)
+                for k = 1:size(infertree)
                     oplist($+1)=infertree(k)
                 end
                 newop=Operation("ext",oplist,tree.out)
@@ -118,7 +118,7 @@ function [tree]=%e_ce2sci(tree)
                     tree.out(1).dims=ind.dims
                 else
                     dprod=1
-                    for kd=1:lstsize(var.dims)
+                    for kd = 1:size(var.dims)
                         dprod=dprod*var.dims(kd)
                         if dprod<0 then
                             break

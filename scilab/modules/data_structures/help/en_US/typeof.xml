@@ -2,7 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * Copyright (C) 2015 - 2016 - Samuel GOUGEON
+ * Copyright (C) 2015 - 2017 - Samuel GOUGEON
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -13,7 +14,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="typeof" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="typeof" xml:lang="en">
     <refnamediv>
         <refname>typeof</refname>
         <refpurpose>explicit type or overloading code of an object</refpurpose>
@@ -360,6 +364,105 @@
                     <varname>object</varname> is a tree, a branch or a leaf as created with  a
                     uitree feature. See for instance <link linkend="uiCreateNode">uiCreateNode</link>.
                 </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                  <emphasis role="bold italic">Reserved T-list types used in Xcos</emphasis> :
+                </td>
+            </tr>
+            <tr>
+                <td>
+                  <link linkend="scicos_block"><emphasis role="bold">Block</emphasis></link>
+                </td>
+                <td><varname>object</varname> is a Xcos block.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <link linkend="scicos_cpr"><emphasis role="bold">cpr</emphasis></link>
+              </td>
+              <td>
+                <varname>object</varname> is a tlist containing the compilation results of a Xcos diagram.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <link linkend="scicos_diagram"><emphasis role="bold">diagram</emphasis></link>
+              </td>
+              <td>
+                <varname>object</varname> is a tlist defining a Xcos diagram: initial parameters,
+                set of blocks, of links between blocks, and of Text labels belonging to the diagram.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <link linkend="scicos_graphics"><emphasis role="bold">graphics</emphasis></link>
+              </td>
+              <td>
+                <varname>object</varname> is a tlist assigned to the <literal>.graphics</literal>
+                field of a block.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <link linkend="scicos_link"><emphasis role="bold">Link</emphasis></link>
+              </td>
+              <td>
+                <varname>object</varname> is a tlist defining and configuring a link between 2 blocks.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <link linkend="scicos_model"><emphasis role="bold">model</emphasis></link>
+              </td>
+              <td>
+                <varname>object</varname> is a tlist assigned to the <literal>.model</literal> field
+                of a block.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <link linkend="scicos_params"><emphasis role="bold">params</emphasis></link>
+              </td>
+              <td>
+                <varname>object</varname> is a tlist containing some configuration parameters of a
+                Xcos diagram.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <emphasis role="bold">scsopt</emphasis>
+              </td>
+              <td>
+                <varname>object</varname> is a tlist containing the graphical options of the Xcos
+                diagram editor.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <link linkend="scicos_sim"><emphasis role="bold">scs</emphasis></link>
+              </td>
+              <td>
+                <varname>object</varname> is a tlist containing static results of the compilation of
+                a Xcos diagram.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <link linkend="scicos_state"><emphasis role="bold">xcs</emphasis></link>
+              </td>
+              <td>
+                <varname>object</varname> is a tlist containing dynamical results during a Xcos
+                simulation.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <emphasis role="bold">Text</emphasis>
+              </td>
+              <td>
+                <varname>object</varname> is a tlist defining a text label in a Xcos diagram.
+              </td>
             </tr>
         </table>
     </refsection>

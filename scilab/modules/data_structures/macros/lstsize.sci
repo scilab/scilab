@@ -12,6 +12,7 @@
 
 
 function l=lstsize(varargin)
+    warnobsolete("size()","6.1");
     [lhs, rhs] = argn(0);
     if lhs <> 1 then
         error(999, msprintf(_("%s: Wrong number of output arguments: %d expected.\n"), "lstsize", 1));

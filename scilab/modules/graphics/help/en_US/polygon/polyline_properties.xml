@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="polyline_properties">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="polyline_properties">
     <refnamediv>
         <refname>polyline properties</refname>
         <refpurpose>description of the Polyline
@@ -235,8 +238,11 @@
                         type of mark to use when <literal>mark_mode</literal> property is
                         <literal>"on"</literal>. The value should be an integer in [0 14] which
                         stands for: dot, plus, cross, star, filled diamond, diamond, triangle
-                        up, triangle down, diamond plus, circle, asterisk, square, triangle
-                        right, triangle left and pentagram. The figure below shows the aspects of the marks depending on the <literal>mark_style</literal> and the <literal>mark_foreground</literal> and <literal>mark_background</literal> properties.
+                        up, triangle down, diamond plus, circle, asterisk, square, triangle right,
+                        triangle left and pentagram. The figure below shows the aspects of the marks
+                        depending on the <literal>mark_style</literal> and the
+                        <literal>mark_foreground</literal> and <literal>mark_background</literal>
+                        properties.
                     </para>
                     <para>
                         <inlinemediaobject>
@@ -420,8 +426,21 @@
                 <term>datatip_display_mode: </term>
                 <listitem>
                     <para>
-                        This field determines how the datatips are displayed. Its value can be <literal>always</literal>, 
-                        <literal>mouseclick</literal> or <literal>mouseover</literal>.
+                        The value can be one of the following:
+                        <itemizedlist>
+                          <listitem>
+                            <literal>"always"</literal>: the datatip is always displayed (default mode).
+                          </listitem>
+                          <listitem>
+                            <literal>"mouseclick"</literal>: clicking on the anchor of the datatip
+                             on the line toogles its display. The anchor is always displayed.
+                          </listitem>
+                          <listitem>
+                            <literal>"mouseover"</literal>: setting the mouse pointer over the
+                            datatip anchor on the line displays the datatip. When going away, the
+                            datatip is masked. Its anchor remains displayed.
+                          </listitem>
+                        </itemizedlist>
                     </para>
                 </listitem>
             </varlistentry>
@@ -548,7 +567,15 @@ f.children.y_label.font_size = 3;
         <revhistory>
             <revision>
                 <revnumber>5.4.0</revnumber>
-                <revremark>line_style value 0 is obsolete, use 1 instead (both are equivalent for SOLID). Using value 0 will produce an error in Scilab 5.4.1.</revremark>
+                <revremark>
+                  line_style value 0 is obsolete, use 1 instead (both are equivalent for  SOLID).
+                  Using value 0 will produce an error in Scilab 5.4.1.</revremark>
+            </revision>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revremark>
+                  <para>New property <literal>.datatip_display_mode</literal> introduced.</para>
+                </revremark>
             </revision>
         </revhistory>
     </refsection>

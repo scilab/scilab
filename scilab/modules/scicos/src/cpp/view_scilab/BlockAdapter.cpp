@@ -1,6 +1,7 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
+ *  Copyright (C) 2017 - ESI Group - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -27,6 +28,7 @@
 #include "utilities.hxx"
 #include "adapters_utilities.hxx"
 #include "Controller.hxx"
+#include "model/BaseObject.hxx"
 #include "model/Block.hxx"
 #include "BlockAdapter.hxx"
 #include "DiagramAdapter.hxx"
@@ -51,13 +53,13 @@ struct graphics
 {
     static types::InternalType* get(const BlockAdapter& adaptor, const Controller& controller)
     {
-        GraphicsAdapter localAdaptor(controller, controller.referenceObject(adaptor.getAdaptee()));
+        GraphicsAdapter localAdaptor(controller, controller.referenceBaseObject(adaptor.getAdaptee()));
         return localAdaptor.getAsTList(new types::MList(), controller);
     }
 
     static bool set(BlockAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        GraphicsAdapter localAdaptor(controller, controller.referenceObject(adaptor.getAdaptee()));
+        GraphicsAdapter localAdaptor(controller, controller.referenceBaseObject(adaptor.getAdaptee()));
         return localAdaptor.setAsTList(v, controller);
     }
 };
@@ -66,13 +68,13 @@ struct model
 {
     static types::InternalType* get(const BlockAdapter& adaptor, const Controller& controller)
     {
-        ModelAdapter localAdaptor(controller, controller.referenceObject(adaptor.getAdaptee()));
+        ModelAdapter localAdaptor(controller, controller.referenceBaseObject(adaptor.getAdaptee()));
         return localAdaptor.getAsTList(new types::MList(), controller);
     }
 
     static bool set(BlockAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        ModelAdapter localAdaptor(controller, controller.referenceObject(adaptor.getAdaptee()));
+        ModelAdapter localAdaptor(controller, controller.referenceBaseObject(adaptor.getAdaptee()));
         return localAdaptor.setAsTList(v, controller);
     }
 };
@@ -82,8 +84,7 @@ struct gui
     static types::InternalType* get(const BlockAdapter& adaptor, const Controller& controller)
     {
         std::string Interface;
-        ScicosID adaptee = adaptor.getAdaptee()->id();
-        controller.getObjectProperty(adaptee, BLOCK, INTERFACE_FUNCTION, Interface);
+        controller.getObjectProperty(adaptor.getAdaptee(), INTERFACE_FUNCTION, Interface);
 
         return new types::String(Interface.data());
     }
@@ -106,8 +107,7 @@ struct gui
         std::string stName(name);
         FREE(name);
 
-        ScicosID adaptee = adaptor.getAdaptee()->id();
-        controller.setObjectProperty(adaptee, BLOCK, INTERFACE_FUNCTION, stName);
+        controller.setObjectProperty(adaptor.getAdaptee(), INTERFACE_FUNCTION, stName);
         return true;
     }
 };
@@ -130,11 +130,11 @@ link_indices_t getPortEnd(const Controller& controller, org_scilab_modules_scico
 {
     ScicosID parent;
     kind_t parentKind = BLOCK;
-    controller.getObjectProperty(adaptee->id(), adaptee->kind(), PARENT_BLOCK, parent);
+    controller.getObjectProperty(adaptee, PARENT_BLOCK, parent);
     if (parent == ScicosID())
     {
         parentKind = DIAGRAM;
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), PARENT_DIAGRAM, parent);
+        controller.getObjectProperty(adaptee, PARENT_DIAGRAM, parent);
     }
 
     // early return if this block is out of a hierarchy
@@ -143,11 +143,13 @@ link_indices_t getPortEnd(const Controller& controller, org_scilab_modules_scico
         return link_indices_t();
     }
 
+    org_scilab_modules_scicos::model::BaseObject* parentObject = controller.getBaseObject(parent);
+
     std::vector<ScicosID> children;
-    controller.getObjectProperty(parent, parentKind, CHILDREN, children);
+    controller.getObjectProperty(parentObject, CHILDREN, children);
 
     std::vector<ScicosID> ports;
-    controller.getObjectProperty(parent, parentKind, property_from_port(port), children);
+    controller.getObjectProperty(parentObject, property_from_port(port), children);
 
     // store the index of the connected signal, 0 if absent
     link_indices_t portIndices(ports.size());
@@ -179,11 +181,12 @@ BlockAdapter::BlockAdapter(const Controller& c, org_scilab_modules_scicos::model
 {
     if (property<BlockAdapter>::properties_have_not_been_set())
     {
-        property<BlockAdapter>::fields.reserve(4);
+        property<BlockAdapter>::reserve_properties(4);
         property<BlockAdapter>::add_property(L"graphics", &graphics::get, &graphics::set);
         property<BlockAdapter>::add_property(L"model", &model::get, &model::set);
         property<BlockAdapter>::add_property(L"gui", &gui::get, &gui::set);
         property<BlockAdapter>::add_property(L"doc", &doc::get, &doc::set);
+        property<BlockAdapter>::shrink_to_fit();
     }
 }
 

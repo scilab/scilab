@@ -61,5 +61,34 @@ void call_i1_d1(int* i1, double* o2)
     *o2 = *i1 * M_PI;
 }
 
+void call_0_s1(char* s1)
+{
+    printf("call_0_s1: %s\n", s1);
+}
 
+void call_s1_0(char* s1)
+{
+    int size = 10;
+    int i = 0;
+    for (i = 0; i < size; ++i)
+    {
+        s1[i] = 'a' + i;
+    }
+
+    s1[size] = '\0';
+    
+    printf("call_s1_0: %s\n", s1);
+}
+
+void call_s1_s1(char* s1)
+{
+    printf("call_s1_s1: %s -> ", s1);
+    int i = 0;
+    for(i = 0; i < 10; ++i)
+    {
+        s1[i] += 1;
+    }
+
+    printf("%s\n", s1);
+}
 

@@ -103,7 +103,7 @@ types::Function::ReturnValue sci_scicos_log(types::typed_list &in, int _iRetCoun
 
         for (int i = 0; i < objects.size(); ++i)
         {
-            model::BaseObject* o = controller.getObject(objects[i]);
+            model::BaseObject* o = controller.getBaseObject(objects[i]);
 
             refCounts->set(i, 0, o->id());
             refCounts->set(i, 1, o->kind());

@@ -22,15 +22,15 @@ function [infertlist,pos]=get_contents_infer(from,index)
     pos=0;
     infertlist=Infer();
 
-    for k=1:lstsize(from.contents.index)
+    for k = 1:size(from.contents.index)
         allequal=[]
-        if lstsize(index)==lstsize(from.contents.index(k)) then // Indexes must have the same size
-            for ki=1:lstsize(index)
+        if size(index)==size(from.contents.index(k)) then // Indexes must have the same size
+            for ki = 1:size(index)
                 if typeof(index(ki))==typeof(from.contents.index(k)(ki)) then // Index elements must have the same type
                     if typeof(index(ki))<>"list" then
                         allequal=allequal & ( and(index(ki)==from.contents.index(k)(ki)) | and(from.contents.index(k)(ki)==Cste("*")) )
                     elseif typeof(index(ki))=="list" then
-                        for kii=1:lstsize(index(ki))
+                        for kii = 1:size(index(ki))
                             allequal=allequal & ( and(index(ki)(kii)==from.contents.index(k)(ki)(kii)) | and(from.contents.index(k)(ki)(kii)==Cste("*")) )
                         end
                     end

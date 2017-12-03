@@ -93,7 +93,7 @@ function [sci_expr]=expression2sci(mtlb_expr,lhslist)
         end
         // --- operand is a list (only for operations) ---
     case "list"
-        if lstsize(mtlb_expr)==1 & mtlb_expr==list("EOL") then
+        if size(mtlb_expr)==1 & mtlb_expr==list("EOL") then
             sci_expr=mtlb_expr
             return
         end

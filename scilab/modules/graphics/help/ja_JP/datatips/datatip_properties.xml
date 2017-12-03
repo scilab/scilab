@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ja" xml:id="datatip_properties">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ja" xml:id="datatip_properties">
 
     <refnamediv>
 
@@ -114,6 +117,26 @@
 
             <varlistentry>
 
+                <term>interp_mode: </term>
+
+                <listitem>
+
+                    <para>
+
+                        このフィールドはtipの位置の補間モードを指定します.
+
+                        この値は <literal>"on" </literal> (格子点間で補間を行う)または
+
+                        <literal>"off" </literal> (tipsは格子点にのみ配置可能)とします.
+
+                    </para>
+
+                </listitem>
+
+            </varlistentry>
+
+            <varlistentry>
+
                 <term>box_mode: </term>
 
                 <listitem>
@@ -160,6 +183,48 @@
 
             <varlistentry>
 
+                <term>display_components: </term>
+
+                <listitem>
+                    <para>
+                        This field controls which components are displayed. Its default value is
+                        <literal>"xy"</literal>for 2D views and <literal>"xyz"</literal> for 3D views.
+                        Possible values are any combination of <literal>"x"</literal>,
+                        <literal>"y"</literal> and <literal>"z"</literal>, like
+                        <literal>"zy"</literal>, <literal>"xzy"</literal>, <literal>"xz"</literal>,
+                        <literal>"y"</literal>, etc.
+                    </para>
+                    <para>
+                      The components are drawn in the order they are found in the string.
+                    </para>
+                </listitem>
+
+            </varlistentry>
+
+            <varlistentry>
+
+                <term>display_function: </term>
+
+                <listitem>
+
+                    <para>
+
+                        <literal>
+
+                            <link linkend="polyline_properties">polyline_properties</link>
+
+                        </literal>
+
+                        のヘルプページを参照.
+
+                    </para>
+
+                </listitem>
+
+            </varlistentry>
+
+           <varlistentry>
+
                 <term>orientation: </term>
 
                 <listitem>
@@ -169,24 +234,6 @@
                         このフィールドは,ポリラインの点に関するテキストボックスの位置を指定します.
 
                         指定可能な値は 0, 1, 2 または 3 です.
-
-                    </para>
-
-                </listitem>
-
-            </varlistentry>
-
-            <varlistentry>
-
-                <term>display_components: </term>
-
-                <listitem>
-
-                    <para>
-
-                        このフィールドに指定できる値
-
-                        <literal>"xyz"</literal>.
 
                     </para>
 
@@ -221,45 +268,19 @@
             </varlistentry>
 
             <varlistentry>
-
-                <term>interp_mode: </term>
-
+                <term>detached_position: </term>
                 <listitem>
-
                     <para>
-
-                        このフィールドはtipの位置の補間モードを指定します.
-
-                        この値は <literal>"on" </literal> (格子点間で補間を行う)または
-
-                        <literal>"off" </literal> (tipsは格子点にのみ配置可能)とします.
-
+                      This field sets the position <literal>[x y z]</literal> of the bottom left
+                      corner of the datatip text box, even when the link to the polyline starts
+                      from another corner.  When its value  is <literal>[]</literal>,
+                      the datatip text box is drawn attached to its anchor point in the polyline.
                     </para>
-
-                </listitem>
-
-            </varlistentry>
-
-            <varlistentry>
-
-                <term>display_function: </term>
-
-                <listitem>
-
                     <para>
-
-                        <literal>
-
-                            <link linkend="polyline_properties">polyline_properties</link>
-
-                        </literal>
-
-                        のヘルプページを参照.
-
+                      In detached mode, it is not possible to force the starting point of the link
+                      on the box frame. It is autoset.
                     </para>
-
                 </listitem>
-
             </varlistentry>
 
             <varlistentry>
@@ -533,6 +554,34 @@
         </simplelist>
 
     </refsection>
-
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.2</revnumber>
+                <revremark>
+                    <para>
+                        New "orientation" values available: "left", "right", "upper", "lower".
+                    </para>
+                </revremark>
+            </revision>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revremark>
+                   <itemizedlist>
+                     <listitem>
+                       <para><literal>.z_component</literal> is removed.</para>
+                     </listitem>
+                     <listitem>
+                       <para>New <literal>.display_components</literal> property.</para>
+                     </listitem>
+                       <para>New <literal>.detached_position</literal> property.</para>
+                     <listitem>
+                     </listitem>
+                   </itemizedlist>
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>
 
