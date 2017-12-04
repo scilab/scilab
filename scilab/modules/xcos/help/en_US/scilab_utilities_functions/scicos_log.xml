@@ -43,7 +43,7 @@
             This function implements a logger for <literal>scicos</literal> operation. This function lets the user choose the right level of information to print while loading a model, compiling and simulating it.
         </para>
         <para>
-            It is also used to produce statistics or global analysis for specific flags. For exemple, passing <pre>"refCounters"</pre> will return uid, kind and reference count of all objects.
+            It is also used to produce statistics or global analysis for specific flags. For exemple, passing <literal>"refCounters"</literal> will return uid, kind and reference count of all objects.
         </para>
     </refsection>
     <refsection>
