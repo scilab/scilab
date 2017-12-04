@@ -20,9 +20,12 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.scilab.modules.commons.ScilabCommons;
 import org.scilab.modules.helptools.DocbookTagConverter;
@@ -54,30 +57,28 @@ public class ScilabImageConverter implements ExternalImageConverter {
 
     public String getFileWithScilabCode() {
         if (buffer.length() != 0) {
-            FileOutputStream fos = null;
-            Writer out = null;
+            File f;
             try {
-                File f = File.createTempFile("help-", ".sce", new File(ScilabCommons.getTMPDIR()));
-                fos = new FileOutputStream(f);
-                out = new BufferedWriter(new OutputStreamWriter(fos, "UTF-8"));
+                f = File.createTempFile("help-", ".sce", new File(ScilabCommons.getTMPDIR()));
+            } catch (IOException e) {
+                System.err.println("Cannot generate the file with Scilab code to execute:\n" + e);
+                return null;
+            }
+
+            try (
+                    FileOutputStream fos = new FileOutputStream(f);
+                    BufferedWriter out = new BufferedWriter(new OutputStreamWriter(fos, "UTF-8"))) {
                 fos.write(BOM);
                 out.write(buffer.toString());
                 out.flush();
 
-
                 return f.getAbsolutePath();
             } catch (Exception e) {
                 System.err.println("Cannot generate the file with Scilab code to execute:\n" + e);
-            } finally {
-                if (out != null) {
-                    out.close();
-                }
-                if (fos != null) {
-                    fos.close();
-                }
+                return null;
             }
         }
-        
+
         return null;
     }
 
@@ -92,9 +93,7 @@ public class ScilabImageConverter implements ExternalImageConverter {
      * {@inheritDoc}
      */
     public String convertToImage(File code, Map<String, String> attributes, File imageFile, String imageName) {
-        BufferedReader in = null;
-        try {
-            in = new BufferedReader(new FileReader(code));
+        try (BufferedReader in = new BufferedReader(new FileReader(code))) {
             StringBuilder buffer = new StringBuilder(8192);
             String line;
 
@@ -106,10 +105,6 @@ public class ScilabImageConverter implements ExternalImageConverter {
             return convertToPNG(code.getName(), buffer.toString(), attributes, imageFile, imageName);
         } catch (Exception e) {
             System.err.println("Problem when exporting Scilab code to " + imageFile + "!\n" + e.toString());
-        } finally {
-            if (in != null) {
-                in.close();
-            }
         }
 
         return null;

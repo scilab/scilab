@@ -26,6 +26,7 @@ import java.util.zip.ZipEntry;
 import org.scilab.modules.commons.ScilabConstants;
 
 import com.sun.java.help.search.Indexer;
+import java.io.FileNotFoundException;
 
 public class JarOnlyConverter extends ContainerConverter {
 
@@ -117,27 +118,19 @@ public class JarOnlyConverter extends ContainerConverter {
 
         File[] allFiles = new File(outImages).listFiles();
         for (int i = 0; i < allFiles.length; i++) {
-            FileInputStream fileInputStream = null;
-            try {
-                File workingFile = allFiles[i];
-                fileInputStream = new FileInputStream(workingFile);
-
+            File workingFile = allFiles[i];
+            try (FileInputStream fileInputStream = new FileInputStream(workingFile)) {
                 int length = (int) workingFile.length();
                 byte[] buffer = new byte[length];
-                try {
-                    fileInputStream.read(buffer, 0, length);
-                } catch (java.io.IOException e) {
-                    System.err.println(COULD_NOT_FIND + workingFile + LEFT_PAR + e.getLocalizedMessage() + RIGHT_PAR);
-                }
+                fileInputStream.read(buffer, 0, length);
+
                 ZipEntry zipEntry = new ZipEntry(workingFile.getName());
                 jarFile.putNextEntry(zipEntry);
                 jarFile.write(buffer, 0, length);
+            } catch (java.io.FileNotFoundException e) {
+                System.err.println(COULD_NOT_FIND + workingFile + LEFT_PAR + e.getLocalizedMessage() + RIGHT_PAR);
             } catch (java.io.IOException e) {
                 System.err.println("buildDoc: An error occurs while building the JavaHelp ( " + e.getLocalizedMessage() + RIGHT_PAR);
-            } finally {
-                if (fileInputStream != null) {
-                    fileInputStream.close();
-                }
             }
 
         }
@@ -204,18 +197,13 @@ public class JarOnlyConverter extends ContainerConverter {
 
         File[] allFiles = fileList.toArray(new File [fileList.size()]);
         for (int i = 0; i < allFiles.length; i++) {
-            FileInputStream fileInputStream = null;
-            try {
-                File workingFile = allFiles[i];
-                fileInputStream = new FileInputStream(workingFile);
+            File workingFile = allFiles[i];
 
+            try (FileInputStream fileInputStream = new FileInputStream(workingFile)) {
                 int length = (int) workingFile.length();
                 byte[] buffer = new byte[length];
-                try {
-                    fileInputStream.read(buffer, 0, length);
-                } catch (java.io.IOException e) {
-                    System.err.println(COULD_NOT_FIND + workingFile + LEFT_PAR + e.getLocalizedMessage() + RIGHT_PAR);
-                }
+                fileInputStream.read(buffer, 0, length);
+
                 String relativeFileName = null;
                 if (workingFile.getPath().indexOf("JavaHelpSearch") == -1) {
                     relativeFileName = baseName + SLASH + workingFile.getName();
@@ -227,12 +215,10 @@ public class JarOnlyConverter extends ContainerConverter {
 
                 jarFile.write(buffer, 0, length);
 
+            } catch (FileNotFoundException e) {
+                System.err.println(COULD_NOT_FIND + workingFile + LEFT_PAR + e.getLocalizedMessage() + RIGHT_PAR);
             } catch (java.io.IOException e) {
                 System.err.println("buildDoc: An error occurs while building the JavaHelp ( " + e.getLocalizedMessage() + RIGHT_PAR);
-            } finally {
-                if (fileInputStream != null) {
-                    fileInputStream.close();
-                }
             }
 
         }
