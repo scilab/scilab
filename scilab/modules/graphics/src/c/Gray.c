@@ -337,6 +337,11 @@ int C2F(implot)(unsigned char *z, int *n1, int *n2, char *strflag, double *brect
 
     if (flagNax == TRUE)
     {
+        getGraphicObjectProperty(iSubwinUID, __GO_X_AXIS_LOG_FLAG__, jni_bool, (void **)&piTmp);
+        logFlags[0] = iTmp;
+        getGraphicObjectProperty(iSubwinUID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, (void **)&piTmp);
+        logFlags[1] = iTmp;
+
         if (logFlags[0] == 0 && logFlags[1] == 0)
         {
             int autoTicks;
