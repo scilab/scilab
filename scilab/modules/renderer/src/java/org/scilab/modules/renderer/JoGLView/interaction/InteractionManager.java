@@ -46,7 +46,7 @@ public class InteractionManager implements RubberBoxListener {
      * Finalize method.
      * @exception Throwable the <code>Exception</code> raised by this method
      */
-    public void finalize() throws Throwable {
+    protected void finalize() throws Throwable {
         if (rubberBox != null) {
             rubberBox.removeListener(this);
         }
