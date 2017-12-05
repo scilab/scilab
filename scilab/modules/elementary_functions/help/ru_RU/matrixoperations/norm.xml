@@ -13,14 +13,20 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="norm" xml:lang="ru">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="norm" xml:lang="ru">
     <refnamediv>
         <refname>norm</refname>
-        <refpurpose>норма матрицы</refpurpose>
+        <refpurpose>нормы вектора или матрицы</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Синтаксис</title>
-        <synopsis>[y]=norm(x [,flag])</synopsis>
+        <synopsis>
+        y = norm(x)
+        y = norm(x, normType)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
@@ -29,15 +35,35 @@
                 <term>x</term>
                 <listitem>
                     <para>
-                        вещественный или комплексный вектор/матрица (полной или разрежённой
-                        формы)
+                        вещественный или комплексный вектор/матрица (полной или разрежённой формы)
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>flag</term>
+                <term>normType</term>
+                    <para>
+                        <itemizedlist>
+                            <listitem>
+                                For a matrix <literal>x</literal>: a number among
+                                <literal>1, 2, %inf, -%inf</literal>, or a word among
+                                <literal>"inf"</literal> (or <literal>"i"</literal>) or
+                                <literal>"fro"</literal> (or <literal>"f"</literal>).
+                            </listitem>
+                            <listitem>
+                                For a vector <literal>x</literal>: any number or <literal>%inf</literal>,
+                                <literal>-%inf</literal>; or a word <literal>"inf"</literal>
+                                (<literal>"i"</literal>), <literal>"fro"</literal> (<literal>"f"</literal>).
+                            </listitem>
+                        </itemizedlist>
+                    </para>
+                    Default value = 2.
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
                 <listitem>
-                    <para>строка (тип нормы) (значение по умолчанию 2)</para>
+                    <para>
+                        norm: single positive real number.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -88,7 +114,7 @@
                 <term>norm(v,p)</term>
                 <listitem>
                     <para>
-                        l_p-норма  (<literal>sum(v(i)^p))^(1/p)</literal> .
+                        l_p-норма  <literal>sum(abs(v(i))^p)^(1/p)</literal> .
                     </para>
                 </listitem>
             </varlistentry>
@@ -113,11 +139,11 @@
     <refsection>
         <title>Примеры</title>
         <programlisting role="example"><![CDATA[
-A=[1,2,3];
+A = [1,2,3];
 norm(A,1)
 norm(A,'inf')
-A=[1,2;3,4]
-max(svd(A))-norm(A)
+A = [1,2;3,4]
+max(svd(A)) - norm(A)
 
 A=sparse([1 0 0 33 -1])
 norm(A)

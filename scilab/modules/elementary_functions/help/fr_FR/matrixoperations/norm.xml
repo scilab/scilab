@@ -1,12 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="norm" xml:lang="fr">
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="norm" xml:lang="fr">
     <refnamediv>
         <refname>norm</refname>
-        <refpurpose>normes matricielles</refpurpose>
+        <refpurpose>normes d'un vecteur ou d'une matrice</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>[y]=norm(x [,flag])</synopsis>
+        <synopsis>
+        y = norm(x)
+        y = norm(x, normType)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Paramètres</title>
@@ -14,15 +34,39 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>vecteur ou matrice (réelle ou complexe, pleine ou
-                        creuse)
+                    <para>vecteur ou matrice (réelle ou complexe, pleine ou creuse)
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>flag</term>
+                <term>normType</term>
                 <listitem>
-                    <para>chaîne de caractères (type de la norme, 2 par défaut)</para>
+                    <para>
+                        <itemizedlist>
+                            <listitem>
+                                Matrice <literal>x</literal>: un nombre parmi
+                                <literal>1, 2, %inf, -%inf</literal>, ou un mot parmi
+                                <literal>"inf"</literal> (ou <literal>"i"</literal>) ou
+                                <literal>"fro"</literal> (ou <literal>"f"</literal>).
+                            </listitem>
+                            <listitem>
+                                Vecteur <literal>x</literal>: un nombre réel quelconque ou
+                                <literal>%inf</literal>,
+                                <literal>-%inf</literal>; ou mot <literal>"inf"</literal>
+                                (<literal>"i"</literal>), <literal>"fro"</literal>
+                                (<literal>"f"</literal>).
+                            </listitem>
+                        </itemizedlist>
+                    </para>
+                    Valeur par défaut : 2.
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>
+                        norme : nombre réel positif unique.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -77,7 +121,7 @@
                 <term>norm(v,p)</term>
                 <listitem>
                     <para>
-                        norme l_p (<literal>sum(v(i)^p))^(1/p)</literal> .
+                        norme l_p <literal>sum(abs(v(i))^p)^(1/p)</literal> .
                     </para>
                 </listitem>
             </varlistentry>
@@ -102,13 +146,13 @@
     <refsection>
         <title>Exemples</title>
         <programlisting role="example"><![CDATA[
-A=[1,2,3];
+A = [1,2,3];
 norm(A,1)
 norm(A,'inf')
-A=[1,2;3,4]
-max(svd(A))-norm(A)
+A = [1,2;3,4]
+max(svd(A)) - norm(A)
 
-A=sparse([1 0 0 33 -1])
+A = sparse([1 0 0 33 -1])
 norm(A)
  ]]></programlisting>
     </refsection>

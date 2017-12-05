@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -13,17 +13,23 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="norm" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="norm" xml:lang="pt">
     <refnamediv>
         <refname>norm</refname>
-        <refpurpose>norma de matrizes</refpurpose>
+        <refpurpose>normas de um vetor ou uma matriz</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
-        <synopsis>[y]=norm(x [,flag])</synopsis>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
+        <synopsis>
+        y = norm(x)
+        y = norm(x, normType)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>x</term>
@@ -34,22 +40,43 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>flag</term>
+                <term>normType</term>
+                    <para>
+                        <itemizedlist>
+                            <listitem>
+                                For a matrix <literal>x</literal>: a number among
+                                <literal>1, 2, %inf, -%inf</literal>, or a word among
+                                <literal>"inf"</literal> (or <literal>"i"</literal>) or
+                                <literal>"fro"</literal> (or <literal>"f"</literal>).
+                            </listitem>
+                            <listitem>
+                                For a vector <literal>x</literal>: any number or <literal>%inf</literal>,
+                                <literal>-%inf</literal>; or a word <literal>"inf"</literal>
+                                (<literal>"i"</literal>), <literal>"fro"</literal> (<literal>"f"</literal>).
+                            </listitem>
+                        </itemizedlist>
+                    </para>
+                    Default value = 2.
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
                 <listitem>
-                    <para>string (tipo da norma) (valor padrão = 2)</para>
+                    <para>
+                        norm: single positive real number.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>For matrices</para>
         <variablelist>
             <varlistentry>
                 <term>norm(x)</term>
                 <listitem>
                     <para>
-                        ou <literal>norm(x,2)</literal> é o maior valor singular de
+                        ou <literal>norm(x,2)</literal> Ã© o maior valor singular de
                         <literal>x</literal> (<literal>max(svd(x))</literal>).
                     </para>
                 </listitem>
@@ -87,7 +114,7 @@
                 <term>norm(v,p)</term>
                 <listitem>
                     <para>
-                        norma l_p (<literal>sum(v(i)^p))^(1/p)</literal> .
+                        norma l_p <literal>sum(abs(v(i))^p)^(1/p)</literal> .
                     </para>
                 </listitem>
             </varlistentry>
@@ -116,14 +143,14 @@ A=[1,2,3];
 norm(A,1)
 norm(A,'inf')
 A=[1,2;3,4]
-max(svd(A))-norm(A)
+max(svd(A)) - norm(A)
 
 A=sparse([1 0 0 33 -1])
 norm(A)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="h_norm">h_norm</link>
