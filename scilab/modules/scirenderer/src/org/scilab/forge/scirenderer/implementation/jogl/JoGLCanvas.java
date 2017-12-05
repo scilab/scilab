@@ -394,7 +394,7 @@ public final class JoGLCanvas implements Canvas, GLEventListener {
         }
 
         @Override
-        public void finalize() throws Throwable {
+        protected void finalize() throws Throwable {
             running = false;
             // we increment the semaphore to allow run() to unlock it and to be sure
             // to go out.
