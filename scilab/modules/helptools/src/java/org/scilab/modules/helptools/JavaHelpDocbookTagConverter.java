@@ -100,52 +100,54 @@ public class JavaHelpDocbookTagConverter extends HTMLDocbookTagConverter {
      * {@inheritDoc}
      */
     public void endDocument() throws SAXException {
-        try {
-            FileOutputStream outToc = new FileOutputStream("jhelptoc.xml");
-            FileOutputStream outMap = new FileOutputStream("jhelpmap.jhm");
-            FileOutputStream outSet = new FileOutputStream("jhelpset.hs");
-            FileOutputStream outIndex = new FileOutputStream("jhelpidx.xml");
-            OutputStreamWriter writerIndex = new OutputStreamWriter(outIndex, Charset.forName("UTF-8"));
-            OutputStreamWriter writerSet = new OutputStreamWriter(outSet, Charset.forName("UTF-8"));
-            OutputStreamWriter writerMap = new OutputStreamWriter(outMap, Charset.forName("UTF-8"));
-            OutputStreamWriter writerToc = new OutputStreamWriter(outToc, Charset.forName("UTF-8"));
+                
+        try ( FileOutputStream outToc = new FileOutputStream("jhelptoc.xml");
+              FileOutputStream outMap = new FileOutputStream("jhelpmap.jhm");
+              FileOutputStream outSet = new FileOutputStream("jhelpset.hs");
+              FileOutputStream outIndex = new FileOutputStream("jhelpidx.xml");
+              OutputStreamWriter writerIndex = new OutputStreamWriter(outIndex, Charset.forName("UTF-8"));
+              OutputStreamWriter writerSet = new OutputStreamWriter(outSet, Charset.forName("UTF-8"));
+              OutputStreamWriter writerMap = new OutputStreamWriter(outMap, Charset.forName("UTF-8"));
+              OutputStreamWriter writerToc = new OutputStreamWriter(outToc, Charset.forName("UTF-8")))
+            {
+                                  
             writerMap.append(XMLSTRING);
             writerMap.append("<!DOCTYPE map PUBLIC \"-//Sun Microsystems Inc.//DTD JavaHelp Map Version 1.0//EN\" \"http://java.sun.com/products/javahelp/map_1_0.dtd\">\n");
             writerMap.append(convertMapId());
             writerMap.flush();
-            writerMap.close();
+            
             outMap.flush();
-            outMap.close();
+            
 
             writerToc.append(XMLSTRING);
             writerToc.append("<!DOCTYPE toc PUBLIC \"-//Sun Microsystems Inc.//DTD JavaHelp TOC Version 1.0//EN\" \"http://java.sun.com/products/javahelp/toc_1_0.dtd\">\n");
             writerToc.append(convertTocItem());
             writerToc.flush();
-            writerToc.close();
+            
             outToc.flush();
-            outToc.close();
+            
 
             writerSet.append(XMLSTRING);
             String str = "<!DOCTYPE helpset\n  PUBLIC \"-//Sun Microsystems Inc.//DTD JavaHelp HelpSet Version 1.0//EN\" \"http://java.sun.com/products/javahelp/helpset_1_0.dtd\">\n<helpset version=\"1.0\">\n<title>TITLE</title>\n<maps>\n<homeID>top</homeID>\n<mapref location=\"jhelpmap.jhm\"/>\n</maps>\n<view>\n<name>TOC</name>\n<label>Table Of Contents</label>\n<type>javax.help.TOCView</type>\n<data>jhelptoc.xml</data>\n</view>\n<view>\n<name>Index</name>\n<label>Index</label>\n<type>javax.help.IndexView</type>\n<data>jhelpidx.xml</data>\n</view>\n<view>\n<name>Search</name>\n<label>Search</label>\n<type>javax.help.SearchView</type>\n<data engine=\"com.sun.java.help.search.DefaultSearchEngine\">JavaHelpSearch</data>\n</view>\n</helpset>".replaceFirst("TITLE", bookTitle);
             writerSet.append(str);
             writerSet.flush();
-            writerSet.close();
+            
             outSet.flush();
-            outSet.close();
+            
 
             writerIndex.append(XMLSTRING);
             writerIndex.append("<!DOCTYPE index PUBLIC \"-//Sun Microsystems Inc.//DTD JavaHelp Index Version 1.0//EN\" \"http://java.sun.com/products/javahelp/index_1_0.dtd\">\n<index version=\"1.0\"/>");
             writerIndex.flush();
-            writerIndex.close();
+            
             outIndex.flush();
-            outIndex.close();
+            
 
             if (!isToolbox) {
                 getImageConverter().saveMD5s(ScilabConstants.SCI.getPath() + "/modules/helptools/etc");
             }
         } catch (IOException e) {
             fatalExceptionOccurred(e);
-        }
+        }       
     }
 
     /**
