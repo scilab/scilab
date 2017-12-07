@@ -106,11 +106,10 @@ public final class FileUtils {
      */
     public static boolean isBinaryFile(File f) {
         if (f.isFile() && f.canRead()) {
-            try {
-                BufferedReader reader = new BufferedReader(new FileReader(f));
+            try (BufferedReader reader = new BufferedReader(new FileReader(f)))
+                {                
                 char[] buffer = new char[CHARTOREAD];
                 int len = reader.read(buffer, 0, CHARTOREAD);
-                reader.close();
                 int i = 0;
                 if (len != -1) {
                     for (; i < len && buffer[i] != '\0'; i++) {
