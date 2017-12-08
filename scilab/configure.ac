@@ -856,6 +856,8 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 
      AC_JAVA_DETECT_JVM
      case "$ac_java_jvm_version" in
+        1.9)
+        ;;
         1.8)
         ;;
         *)
