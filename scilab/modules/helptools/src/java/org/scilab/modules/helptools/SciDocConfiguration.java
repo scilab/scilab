@@ -147,10 +147,8 @@ public class SciDocConfiguration {
     private static String getVersion(String ver) {
         String ret = "";
         if (ver == null || ver.isEmpty()) {
-            try {
-                BufferedReader reader = new BufferedReader(new FileReader(VERSION));
-                ret = reader.readLine().split("=")[1];
-                reader.close();
+          try (BufferedReader reader = new BufferedReader(new FileReader(VERSION))) {
+               ret = reader.readLine().split("=")[1];
             } catch (IOException e) {
                 System.err.println(e);
             }
