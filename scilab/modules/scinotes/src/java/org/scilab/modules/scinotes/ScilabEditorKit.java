@@ -153,18 +153,18 @@ public class ScilabEditorKit extends DefaultEditorKit {
     public static boolean tryToGuessEncoding(File file, Charset charset) throws IOException {
         char[] cbuf = new char[BUFFERCAPACITY];
         CharsetDecoder decoder = charset.newDecoder().onMalformedInput(CodingErrorAction.REPORT).onUnmappableCharacter(CodingErrorAction.REPORT);
-        FileInputStream fis = new FileInputStream(file);
-        InputStreamReader inReader = new InputStreamReader(fis, decoder);
-        BufferedReader bufReader = new BufferedReader(inReader);
-        try {
+
+        try ( FileInputStream fis = new FileInputStream(file);
+              InputStreamReader inReader = new InputStreamReader(fis, decoder);
+              BufferedReader bufReader = new BufferedReader(inReader) ) {
+
             while (bufReader.read(cbuf) != -1) {
                 ;
             }
-            fis.close();
-            inReader.close();
-            bufReader.close();
             return true;
-        } catch (Exception e) { }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         return false;
     }
