@@ -153,22 +153,18 @@ public class CHMDocbookTagConverter extends HTMLDocbookTagConverter {
      * {@inheritDoc}
      */
     public void endDocument() throws SAXException {
-        try {
-            FileOutputStream outToc = new FileOutputStream("toc.hhc");
-            FileOutputStream outFiles = new FileOutputStream("htmlhelp.hhp");
-            OutputStreamWriter writerFiles = new OutputStreamWriter(outFiles, Charset.forName("UTF-8"));
-            OutputStreamWriter writerToc = new OutputStreamWriter(outToc, Charset.forName("UTF-8"));
-            convertTree(writerToc);
-            writerToc.flush();
-            writerToc.close();
-            outToc.flush();
-            outToc.close();
+        try ( FileOutputStream outToc = new FileOutputStream("toc.hhc");
+              FileOutputStream outFiles = new FileOutputStream("htmlhelp.hhp");
+              OutputStreamWriter writerFiles = new OutputStreamWriter(outFiles, Charset.forName("UTF-8"));
+              OutputStreamWriter writerToc = new OutputStreamWriter(outToc, Charset.forName("UTF-8")) ) {
 
-            convertFileList(writerFiles);
-            writerFiles.flush();
-            writerFiles.close();
-            outFiles.flush();
-            outFiles.close();
+             convertTree(writerToc);
+             writerToc.flush();
+             outToc.flush();
+
+             convertFileList(writerFiles);
+             writerFiles.flush();
+             outFiles.flush();
         } catch (IOException e) {
             fatalExceptionOccurred(e);
         }
