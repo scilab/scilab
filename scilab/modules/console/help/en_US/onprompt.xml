@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2017 - Samuel GOUGEON
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en"
+        xml:id="percentonprompt">
+    <refnamediv>
+        <refname>%onprompt</refname>
+        <refpurpose>special custom function called after each line execution in console</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            If it is defined, the function <literal>%onprompt()</literal>
+            <itemizedlist>
+                <listitem>
+                    must be written in Scilab language.
+                </listitem>
+                <listitem>
+                    expects no explicit input argument.
+                </listitem>
+                <listitem>
+                    assigns to <literal>ans</literal> its first explicit output argument (if any).
+                </listitem>
+            </itemizedlist>
+        </para>
+        <para>
+            Then, <literal>%onprompt()</literal> is automatically executed after the historization
+            and the execution of each row of instructions entered in the console (even if it is
+            only a comment).
+        </para>
+        <para>
+            If an output argument is defined, <literal>ans</literal> is displayed even if a
+            semi-colon is appended to the row of instructions.
+            Other explicit output arguments (if any) are ignored.
+        </para>
+        <note>
+            <itemizedlist>
+                <listitem>
+                    <literal>%onprompt()</literal> may be (re)defined at any execution level.
+                </listitem>
+                <listitem>
+                    If some diaries are open and <literal>%onprompt()</literal> displays some
+                    contents in the console, these ones are recorded in the diaries with all other
+                    console outputs.
+                </listitem>
+            </itemizedlist>
+        </note>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example">
+            <![CDATA[
+// Redisplaying the last line of instructions after its execution:
+function %onprompt()
+    mprintf("%s\n", gethistory()($));
+endfunction
+a = grand(3,5,"uin",-9,9), b = %pi;
+// This is a comment
+ ]]>
+        </programlisting>
+        <screen><![CDATA[
+--> a = grand(3,5,"uin",-9,9), b = %pi
+ a  =
+   0.  -5.  -9.   5.   3.
+  -9.   5.  -9.  -4.   8.
+   2.  -5.  -6.   6.   0.
+
+ b  =
+   3.1415927
+
+a = grand(3,5,"uin",-9,9), b = %pi
+
+--> // This is a comment
+// This is a comment
+
+--> ]]></screen>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="prompt">prompt</link>
+            </member>
+            <member>
+                <link linkend="ans">ans</link>
+            </member>
+            <member>
+                <link linkend="gethistory">gethistory</link>
+            </member>
+            <member>
+                <link linkend="startup">startup files</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

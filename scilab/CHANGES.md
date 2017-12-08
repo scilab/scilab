@@ -240,7 +240,8 @@ Help pages:
   `uigetfont`, `uigetdir`, `uigetfile`, `uiputfile`, `cat`, `makecell`, `xstring`, `norm`, `barhomogenize`
 * rewritten: `consolebox`, `double`, `isoview`, `pixel_drawing_mode`, `householder`, `or`, `|,||`,
  `and`, `&,&&`, `format`, `typeof`, `brackets`, `setlanguage`, `sleep`, `isinf`, `unique`,
- `bitor`, `bitxor`, `bitand`, `macr2tree`, `geomean`, `clf`, `getPreferencesValue`, `gcd`, `isglobal`, `whereis`, `mode`
+ `bitor`, `bitxor`, `bitand`, `macr2tree`, `geomean`, `clf`, `getPreferencesValue`, `gcd`, `isglobal`,
+ `whereis`, `mode`, `%onprompt`
 * reorganized:
   - `else`, `elseif`, `end`, `try`, `sciargs`, `global`, `halt`, `empty`, `power`, `numderivative`
   - `pixel_drawing_mode`, `show_window`, `twinkle`, `uigetcolor`, `winsid`, `xdel`, `xgrid`, `xname`, `xnumb`
@@ -377,6 +378,7 @@ the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 
 
 ### Bugs fixed in 6.0.1:
+* [#2441](http://bugzilla.scilab.org/show_bug.cgi?id=2441): `%onprompt()` could be defined only at the top execution level.
 * [#4276](http://bugzilla.scilab.org/show_bug.cgi?id=4276): `strsubst` replaced the first occurence in regex mode.
 * [#5248](http://bugzilla.scilab.org/show_bug.cgi?id=5248): The graphical entity picker was out of work.
 * [#5278](http://bugzilla.scilab.org/show_bug.cgi?id=5278): obsolete `xset()` was still used in scripts, macros, tests and help pages.
@@ -413,7 +415,6 @@ the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 * [#13592](http://bugzilla.scilab.org/show_bug.cgi?id=13592): In an axes in a uicontrol frame, setting a `legend` interactively might not follow the mouse accurately.
 * [#13900](http://bugzilla.scilab.org/show_bug.cgi?id=13900): `nanmin` and `nanmax` were useless duplicates of `min` and `max`
 * [#13979](http://bugzilla.scilab.org/show_bug.cgi?id=13979): A variable whose name is longer than 24 characters could not be cleared.
-* [#14901](http://bugzilla.scilab.org/show_bug.cgi?id=14901): WScilex.exe was stopped immediately when launched from Java.
 * [#14254](http://bugzilla.scilab.org/show_bug.cgi?id=14254): When installing an ATOMS module that is not locally registered and available, the error message was unclear.
 * [#14376](http://bugzilla.scilab.org/show_bug.cgi?id=14376): `input()` was broken: \n was introduced before prompting; multiple prompts occurred; the output value could be missing; "%" "\n" "\t" were no longer supported in messages...
 * [#14399](http://bugzilla.scilab.org/show_bug.cgi?id=14399): `whereami`: wrong information (line numbers).
@@ -433,7 +434,9 @@ the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 * [#14883](http://bugzilla.scilab.org/show_bug.cgi?id=14883): `whereis` did not support builtin functions.
 * [#14886](http://bugzilla.scilab.org/show_bug.cgi?id=14886): `Matplot` save/load failed.
 * [#14896](http://bugzilla.scilab.org/show_bug.cgi?id=15272): Using `set` with multiple properties, only the first one was set.
+* [#14901](http://bugzilla.scilab.org/show_bug.cgi?id=14901): WScilex.exe was stopped immediately when launched from Java.
 * [#14910](http://bugzilla.scilab.org/show_bug.cgi?id=14910): The `plot()` example was displayed in overlay to the existing graphics.
+* [#14922](http://bugzilla.scilab.org/show_bug.cgi?id=14922): The `%onprompt()` special function was not documented.
 * [#14925](http://bugzilla.scilab.org/show_bug.cgi?id=14925): `jdeff`: `invoke_lu()` deleted/corrupted the called java method after an error occured.
 * [#14981](http://bugzilla.scilab.org/show_bug.cgi?id=14981): Some vertical concatenations of cells and further cells extractions crash Scilab.
 * [#15006](http://bugzilla.scilab.org/show_bug.cgi?id=15006): `ode` help page still contained 'root' which has been replaced by 'roots'.

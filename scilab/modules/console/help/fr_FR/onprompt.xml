@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2017 - Samuel GOUGEON
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr"
+        xml:id="percentonprompt">
+    <refnamediv>
+        <refname>%onprompt</refname>
+        <refpurpose>fonction spéciale appelée après chaque ligne d'instructions en console</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Si elle est définie, la fonction <literal>%onprompt()</literal>
+            <itemizedlist>
+                <listitem>
+                    peut être écrite en langage Scilab
+                </listitem>
+                <listitem>
+                    attend aucun argument d'entrée explicite
+                </listitem>
+                <listitem>
+                    affecte à <literal>ans</literal> le contenu de son 1er argument de sortie
+                    (s'il y en un au moins un).
+                </listitem>
+            </itemizedlist>
+        </para>
+        <para>
+            <literal>%onprompt()</literal> est alors automatiquement exécutée après l'historisation
+            et l'éxécution de chaque ligne d'instructions entrée en console (même s'il s'agit
+            uniquement d'un commentaire).
+        </para>
+        <para>
+            Si un argument de sortie est défini, <literal>ans</literal> est affichée, même si un
+            point-virgule suit la dernière instruction (il neutralise l'affichage du résultat
+            de celle-ci, non de celui de <literal>%onprompt()</literal>). Tout autre éventuel
+            argument de sortie supplémentaire est ignoré.
+        </para>
+        <note>
+            <itemizedlist>
+                <listitem>
+                    <literal>%onprompt()</literal> peut être (re)définie à chaque niveau d'exécution.
+                </listitem>
+                <listitem>
+                    Si un journal est ouvert (avec <literal>diary()</literal>), tout affichage
+                    réalisé par <literal>%onprompt()</literal> en console est enregistré avec tous
+                    les autres contenus affichés.
+                </listitem>
+            </itemizedlist>
+        </note>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example">
+            <![CDATA[
+// Reaffichage de la dernière ligne d'instruction après son exécution :
+function %onprompt()
+    mprintf("%s\n", gethistory()($));
+endfunction
+a = grand(3,5,"uin",-9,9), b = %pi;
+// Ceci est un commentaire
+ ]]>
+        </programlisting>
+        <screen><![CDATA[
+--> a = grand(3,5,"uin",-9,9), b = %pi
+ a  =
+   0.  -5.  -9.   5.   3.
+  -9.   5.  -9.  -4.   8.
+   2.  -5.  -6.   6.   0.
+
+ b  =
+   3.1415927
+
+a = grand(3,5,"uin",-9,9), b = %pi
+
+--> // Ceci est un commentaire
+// Ceci est un commentaire
+
+--> ]]></screen>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="prompt">prompt</link>
+            </member>
+            <member>
+                <link linkend="ans">ans</link>
+            </member>
+            <member>
+                <link linkend="gethistory">gethistory</link>
+            </member>
+            <member>
+                <link linkend="startup">startup files</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>
