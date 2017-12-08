@@ -58,10 +58,15 @@ public class ScilabSourceBrowser extends HTMLScilabCodeHandler {
     public void generateSource() {
         new FirstPass().getMacroUsage();
         for (String file : files) {
+            File f;
             try {
-                File f = new File(file);
-                System.out.println(f);
-                Reader input = new BufferedReader(new FileReader(f));
+                f = new File(file);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            System.out.println(f);
+            try ( Reader input = new BufferedReader(new FileReader(f)) ) {
+
                 currentCommand = f.getName().split("\\.")[0];
                 buffer = new FileWriter(outputDirectory + File.separator + currentCommand + ".html");
                 buffer.append(entete);
@@ -70,7 +75,7 @@ public class ScilabSourceBrowser extends HTMLScilabCodeHandler {
                 buffer.append("</pre></div>\n</body>\n</html>");
                 ((Writer) buffer).flush();
                 ((Writer) buffer).close();
-                input.close();
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
