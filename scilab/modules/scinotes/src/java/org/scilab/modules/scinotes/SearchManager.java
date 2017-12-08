@@ -402,11 +402,10 @@ public class SearchManager {
      * @return true if it is a binary file
      */
     public static boolean isBinaryFile(File f) {
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(f));
+        try ( BufferedReader reader = new BufferedReader(new FileReader(f)) ) {
             char[] buffer = new char[8192];
             int len = reader.read(buffer, 0, 8192);
-            reader.close();
+
             int i = 0;
             if (len != -1) {
                 for (; i < len && buffer[i] != '\0'; i++) {
