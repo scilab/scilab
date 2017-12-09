@@ -165,7 +165,7 @@
                     <para>
                         For any boolean or numerical operands <varname>U</varname> and
                         <varname>V</varname>, <code>G = U &amp;&amp; V</code> is equivalent to
-                        <code>if ~and(U), G = %F, else G = and(V), end</code>.
+                        <literal>if ~and(U), G = %F, else G = and(V), end</literal>.
                         <itemizedlist>
                             <listitem>
                               <varname>U</varname> and <varname>V</varname> may have distinct sizes
@@ -352,7 +352,7 @@ det: Wrong type for input argument #1: Square matrix expected.
     <programlisting role="example"><![CDATA[
 p = 1 + 0*%z
 typeof(p)
-p &amp; 1
+p & 1
  ]]></programlisting>
     <screen><![CDATA[
 --> p = 1 + 0*%z
@@ -363,7 +363,7 @@ p &amp; 1
  ans  =
  polynomial
 
---> p &amp; 1
+--> p & 1
 Undefined operation for the given operands.
 check or define function %p_h_s for overloading.
 ]]></screen>

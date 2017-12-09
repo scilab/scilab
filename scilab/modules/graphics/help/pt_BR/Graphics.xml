@@ -379,8 +379,7 @@
             <varlistentry>
                 <term>isoview</term>
                 <listitem>
-                    <para>ajusta escalas para esboço isométrico (não muda o tamanho da
-                        janela)
+                    <para>ajusta escalas para esboço isométrico
                     </para>
                 </listitem>
             </varlistentry>

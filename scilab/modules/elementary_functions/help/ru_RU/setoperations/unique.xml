@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
+ * Copyright (C) 2017 - Samuel GOUGEON
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -13,7 +14,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="unique" xml:lang="ru">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="unique" xml:lang="ru">
     <refnamediv>
         <refname>unique</refname>
         <refpurpose>удалить все повторяющиеся компоненты из вектора или матрицы</refpurpose>
@@ -43,13 +47,28 @@
             <varlistentry>
                 <term>N</term>
                 <listitem>
-                    <para>вектор или матрица чисел или строк</para>
+                    <para>
+                      <itemizedlist>
+                        <listitem>
+                          Если <varname>orient</varname> не используется: вектор извлечённых
+                          <varname>M</varname> компонентов, сортированных в полядке возрастания.
+                        </listitem>
+                        <listitem>
+                          Если <varname>orient</varname> используется: матрица извлечённых
+                          <varname>M</varname> строк или столбцов, сортированных в лексикографическом порядке возрастания.
+                        </listitem>
+                      </itemizedlist>
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>k</term>
                 <listitem>
-                    <para>вектор целых чисел</para>
+                    <para>
+                      Вектор индексов первых встреченных значений, таких что
+                      <literal>N(i) = M(k(i))</literal> или <literal>N(i,:) = M(k(i),:)</literal>
+                      или <literal>N(:,i) = M(:,k(i))</literal>.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -68,9 +87,15 @@
             <literal>unique(M,"c")</literal> или <literal>unique(M,2)</literal> возвращает
             уникальные столбцы <literal>M</literal> в лексикографическом порядке возрастания.
         </para>
-        <para>
-            Если нужно, выходной аргумент <literal>k</literal> содержит положение первых из насчитанных уникальных элементов.
-        </para>
+        <note>
+          Извлечённые компоненты, строки или столбцы могут быть пересортированны в их исходном порядке через
+          сортировку с помощью <varname>k</varname>:
+          <programlisting role="no-example"><![CDATA[
+              [N, k] = unique(M);      k = gsort(k,"g",i); N = N(k)
+              [N, k] = unique(M, "c"); k = gsort(k,"g",i); N = N(:, k)
+              [N, k] = unique(M, "r"); k = gsort(k,"g",i); N = N(k, :)
+          ]]></programlisting>
+        </note>
     </refsection>
     <refsection role="examples">
         <title>Примеры</title>
@@ -107,6 +132,12 @@ unique(A,'c')
             </member>
             <member>
                 <link linkend="gsort">gsort</link>
+            </member>
+            <member>
+                <link linkend="vectorfind">vectorfind</link>
+            </member>
+            <member>
+                <link linkend="grep">grep</link>
             </member>
             <member>
                 <link linkend="union">union</link>

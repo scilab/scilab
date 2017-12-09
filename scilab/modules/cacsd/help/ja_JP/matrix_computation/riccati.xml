@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="riccati">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ja" xml:id="riccati">
     <refnamediv>
         <refname>riccati</refname>
         <refpurpose>リカッチ方程式</refpurpose>
@@ -89,6 +92,12 @@ A'*X*A-(A'*X*B1/(B2+B1'*X*B1))*(B1'*X*A)+C-X
             </member>
             <member>
                 <link linkend="ric_desc">ric_desc</link>
+            </member>
+            <member>
+                <link linkend="srfaur">srfaur</link>
+            </member>
+            <member>
+                <link linkend="lindquist">lindquist</link>
             </member>
         </simplelist>
     </refsection>
