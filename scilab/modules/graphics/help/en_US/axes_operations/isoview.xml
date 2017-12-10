@@ -25,11 +25,12 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>isoview
+        <synopsis>
+            isoview
             isoview on
             isoview off
-            isoview(idGraphics [,"on"|"off"])
-            isoview(xmin, xmax, ymin, ymax)    // DEPRECATED. use replot()
+            isoview(idGraphics)
+            isoview(idGraphics,"on"|"off")
         </synopsis>
     </refsynopsisdiv>
     <refsection role="arguments">
@@ -47,17 +48,6 @@
                 <listitem>
                     Vector of graphic handles. All the related axes are processed.
                     By default, the current axes is processed.
-                    <para/>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>xmin, xmax, ymin, ymax</term>
-                <listitem>
-                    Four decimal numbers: new axes bounds.
-                    <warning>These parameters will be removed from Scilab 6.1.
-                        Please use <link linkend="replot">replot</link>
-                        after <function>isoview</function> instead.
-                    </warning>
                     <para/>
                 </listitem>
             </varlistentry>
@@ -101,15 +91,6 @@
                     its hosting axes is considered.
                 </listitem>
             </itemizedlist>
-        </para>
-        <para>
-            <literal>isoview(xmin, xmax, ymin, ymax)</literal> sets the current
-            axes in isometric mode, and then sets its bounds to the given values.
-            <warning>
-                This usage is deprecated and will be removed from Scilab 6.1 onwards. Please use
-                <link linkend="replot">replot</link> after
-                <function>isoview</function> instead.
-            </warning>
         </para>
         <note>
             The current axes graphical entity is still the same after calling <literal>isoview(..)</literal>.
@@ -281,7 +262,6 @@ xtitle("with frameflag=4")
             </member>
         </simplelist>
     </refsection>
-
     <refsection role="history">
         <title>History</title>
         <revhistory>
@@ -302,6 +282,12 @@ xtitle("with frameflag=4")
                 <revdescription>
                     "isoview on" now forces .cube_scaling="off", and
                     "isoview off" forces .cube_scaling="on".
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.1</revnumber>
+                <revdescription>
+                    The syntax <literal>isoview(xmin, xmax, ymin, ymax)</literal> is no longer available.
                 </revdescription>
             </revision>
         </revhistory>
