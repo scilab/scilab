@@ -227,7 +227,7 @@ Help pages:
 * Support to `id` attribute added for the `<tr>` tag.
 * fixed / improved:  `members`, `part`, `ode`, `ode_optional_output`, `ode_root`, `plot2d`, `roots`,
   `printf`, `sprintf`, `iconvert`, `stdev`, `xlabel`, `and_op`, `or_op`, `permute`, `tree2code`, `%helps`,
-  `scilab|scilex`, `flipdim`, `Matplot_properties`, `meshgrid`, `ismatrix`, `xget`, `xset`, `ieee`, `evstr`,
+  `scilab|scilex`, `flipdim`, `Matplot_properties`, `text_properties`, `meshgrid`, `ismatrix`, `xget`, `xset`, `ieee`, `evstr`,
   `uigetfont`, `uigetdir`, `uigetfile`, `uiputfile`, `cat`, `makecell`, `xstring`, `norm`, `barhomogenize`,
   `colordef`, `matrix`, `coffg`, `diag`, `speye`, `sparse`
 * rewritten: `consolebox`, `double`, `isoview`, `pixel_drawing_mode`, `householder`, `or`, `|,||`,
