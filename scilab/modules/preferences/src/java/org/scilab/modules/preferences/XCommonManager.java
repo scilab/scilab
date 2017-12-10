@@ -870,17 +870,14 @@ public abstract class XCommonManager {
      * @throws FileNotFoundException
      */
     protected static void copyFile(final File in, final File out) throws IOException {
-        FileInputStream fis = new FileInputStream(in);
-        FileOutputStream fos = new FileOutputStream(out);
 
         byte[] buf = new byte[BUFSIZE];
         int i = 0;
-        try {
+        try ( FileInputStream fis = new FileInputStream(in);
+              FileOutputStream fos = new FileOutputStream(out) ) {
             while ((i = fis.read(buf)) != -1) {
                 fos.write(buf, 0, i);
             }
-            fis.close();
-            fos.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
