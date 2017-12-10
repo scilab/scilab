@@ -744,11 +744,13 @@ public class Export {
                 g2d.finish();
             }
             if (buffer != null && file != null) {
-                FileOutputStream fos = new FileOutputStream(file);
-                buffer.writeTo(fos);
-                buffer.close();
-                fos.flush();
-                fos.close();
+                try ( FileOutputStream fos = new FileOutputStream(file) ) {
+                    buffer.writeTo(fos);
+                    buffer.close();
+                    fos.flush();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
             if (out != null) {
                 out.close();
@@ -917,11 +919,15 @@ public class Export {
                 g2d.finish();
             }
             if (buffer != null && file != null) {
-                FileOutputStream fos = new FileOutputStream(file);
-                buffer.writeTo(fos);
-                buffer.close();
-                fos.flush();
-                fos.close();
+                try ( FileOutputStream fos = new FileOutputStream(file) ) {
+
+                    buffer.writeTo(fos);
+                    buffer.close();
+                    fos.flush();
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
             if (out != null) {
                 out.close();
@@ -1170,11 +1176,15 @@ public class Export {
                 }
             }
             if (buffer != null && file != null) {
-                FileOutputStream fos = new FileOutputStream(file);
-                buffer.writeTo(fos);
-                buffer.close();
-                fos.flush();
-                fos.close();
+                try ( FileOutputStream fos = new FileOutputStream(file) ) {
+
+                     buffer.writeTo(fos);
+                     buffer.close();
+                     fos.flush();
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
             if (out != null) {
                 out.close();
