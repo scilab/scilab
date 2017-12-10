@@ -212,9 +212,9 @@ public class SearchFile extends SwingScilabDockablePanel {
 
     private void saveSearchFile() {
         if (mySearch != null) {
-            try {
-                FileWriter fwriter = new FileWriter(ScilabConstants.SCIHOME.toString() + File.separator + getPersistentId() + ".xml");
-                BufferedWriter buffer = new BufferedWriter(fwriter);
+            try ( FileWriter fwriter = new FileWriter(ScilabConstants.SCIHOME.toString() + File.separator + getPersistentId() + ".xml");
+                  BufferedWriter buffer = new BufferedWriter(fwriter) ) {
+
                 buffer.append("<SearchResults editor=\"" + editor.getUUID() + "\"");
                 buffer.append(" base=\"" + mySearch.base + "\"");
                 buffer.append(" recursive=\"" + mySearch.recursive + "\"");
@@ -230,7 +230,7 @@ public class SearchFile extends SwingScilabDockablePanel {
                 buffer.append(">\n");
                 mySearch.getResults().toXML(buffer, 1);
                 buffer.append("</SearchResults>");
-                buffer.close();
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
