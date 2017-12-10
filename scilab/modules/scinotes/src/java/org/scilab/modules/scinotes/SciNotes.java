@@ -2588,26 +2588,30 @@ public class SciNotes extends SwingScilabDockablePanel {
         } catch (CharacterCodingException e) {
             throw new IOException(SciNotesMessages.CANNOT_GUESS_ENCODING + ": " + fileName);
         }
-        FileInputStream fis = new FileInputStream(fileName);
-        InputStreamReader isr = new InputStreamReader(fis, charset);
-        BufferedReader reader = new BufferedReader(isr);
-        ScilabDocument doc = new ScilabDocument();
-        ScilabEditorKit kit = new ScilabEditorKit();
-        try {
-            kit.read(reader, doc, 0);
-        } catch (BadLocationException e) {
-            System.err.println(e);
-        }
+        try ( FileInputStream fis = new FileInputStream(fileName);
+              InputStreamReader isr = new InputStreamReader(fis, charset);
+              BufferedReader reader = new BufferedReader(isr) ) {
 
+
+            ScilabDocument doc = new ScilabDocument();
+            ScilabEditorKit kit = new ScilabEditorKit();
+            try {
+                kit.read(reader, doc, 0);
+            } catch (BadLocationException e) {
+                System.err.println(e);
+            }
+        } catch (IOExceptiom ioe) {
+            System.err.println(ioe);
+        }
         doc.addDocumentListener(doc);
         if (!doc.getBinary()) {
             action.actionOn(doc);
         }
 
-        reader.close();
         if (doc.isContentModified()) {
             SaveFile.doSave(doc, new File(fileName), kit);
         }
+
     }
 
     /**
