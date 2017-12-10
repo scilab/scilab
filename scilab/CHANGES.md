@@ -502,6 +502,7 @@ the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 * [#15337](http://bugzilla.scilab.org/show_bug.cgi?id=15337): There was a mistake in the definition of the l_p norm of a vector in the `norm` page.
 * [#15339](http://bugzilla.scilab.org/show_bug.cgi?id=15339): `uigetfont()` returned garbage on user cancellation.
 * [#15340](http://bugzilla.scilab.org/show_bug.cgi?id=15340): Scilab did not build against lucene 6.1.0.
+* [#15342](http://bugzilla.scilab.org/show_bug.cgi?id=15342): `replot()` and `Reframe to contents` failed on graphics with xstring objects.
 
 
 ### Bugs fixed in 6.0.0:

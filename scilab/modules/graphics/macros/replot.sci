@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
-// Copyright (C) 2013, 2016 - Samuel GOUGEON
 // Copyright (C) 2016 - Clément DAVID - Scilab Enterprises
+// Copyright (C) 2013, 2016, 2017 - Samuel GOUGEON
 //
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
@@ -259,18 +259,24 @@ function bounds = buildEnclosingBounds(e,bounds)
         // ---------------------------------------------------------
         case "Matplot"
             data = e.rect
-            bounds(1,1) = min([data(1) ; bounds(1,1)]);
-            bounds(2,1) = max([data(3) ; bounds(2,1)]);
-            bounds(1,2) = min([data(2) ; bounds(1,2)]);
-            bounds(2,2) = max([data(4) ; bounds(2,2)]);
+            bounds(1,1) = min([data(1) ; bounds(1,1)]); // xmin
+            bounds(2,1) = max([data(3) ; bounds(2,1)]); // xmax
+            bounds(1,2) = min([data(2) ; bounds(1,2)]); // ymin
+            bounds(2,2) = max([data(4) ; bounds(2,2)]); // ymax
 
         // ---------------------------------------------------------
         case "Text"
-            data = e.data
-            bounds(1,1) = min([data(1) ; bounds(1,1)]);
-            bounds(1,2) = min([data(2) ; bounds(1,2)]);
+            bb = stringbox(e.text, e.data(1), e.data(2), e.font_angle, e.font_style, e.font_size)
+            data = e.data;
+            bounds(1,1) = min(bounds(1,1), min(bb(1,:)));
+            bounds(1,2) = min(bounds(1,2), min(bb(2,:)));
             if (size(data,"c") > 2) then
                 bounds(1,3) = min([data(3) ; bounds(1,3)]);
+            end
+            bounds(2,1) = max(bounds(2,1), max(bb(1,:)));
+            bounds(2,2) = max(bounds(2,2), max(bb(2,:)));
+            if (size(data,"c") > 2) then
+                bounds(2,3) = max([data(3) ; bounds(2,3)]);
             end
         // ---------------------------------------------------------
         case "Legend"
