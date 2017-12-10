@@ -366,8 +366,8 @@ public class ScilabJavaCompiler {
         }
 
         public CharSequence getCharContent(boolean ignoreEncodingErrors) {
-            try {
-                FileReader reader = new FileReader(f);
+            try ( FileReader reader = new FileReader(f) ) {
+
                 char[] buffer = new char[1024];
                 StringBuffer sb = new StringBuffer();
                 int r;
@@ -375,8 +375,6 @@ public class ScilabJavaCompiler {
                 while ((r = reader.read(buffer, 0, 1024)) != -1) {
                     sb.append(buffer, 0, r);
                 }
-
-                reader.close();
 
                 return sb;
             } catch (Exception e) {
