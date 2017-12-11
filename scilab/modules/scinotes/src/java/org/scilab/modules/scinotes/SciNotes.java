@@ -747,9 +747,9 @@ public class SciNotes extends SwingScilabDockablePanel {
             }
         } else {
             /* restore if it is iconified */
-            if(editor.getParentWindow() != null) {
+            if (editor.getParentWindow() != null) {
                 int state = editor.getParentWindow().getExtendedState();
-                if((state & JFrame.ICONIFIED) == JFrame.ICONIFIED) {
+                if ((state & JFrame.ICONIFIED) == JFrame.ICONIFIED) {
                     editor.getParentWindow().setExtendedState(state - JFrame.ICONIFIED);
                 }
             }
@@ -2588,21 +2588,22 @@ public class SciNotes extends SwingScilabDockablePanel {
         } catch (CharacterCodingException e) {
             throw new IOException(SciNotesMessages.CANNOT_GUESS_ENCODING + ": " + fileName);
         }
+
+        ScilabDocument doc = new ScilabDocument();
+        ScilabEditorKit kit = new ScilabEditorKit();
+
         try ( FileInputStream fis = new FileInputStream(fileName);
-              InputStreamReader isr = new InputStreamReader(fis, charset);
-              BufferedReader reader = new BufferedReader(isr) ) {
+                    InputStreamReader isr = new InputStreamReader(fis, charset);
+                    BufferedReader reader = new BufferedReader(isr) ) {
 
+            kit.read(reader, doc, 0);
 
-            ScilabDocument doc = new ScilabDocument();
-            ScilabEditorKit kit = new ScilabEditorKit();
-            try {
-                kit.read(reader, doc, 0);
-            } catch (BadLocationException e) {
-                System.err.println(e);
-            }
-        } catch (IOExceptiom ioe) {
+        } catch (BadLocationException e) {
+            System.err.println(e);
+        } catch (IOException ioe) {
             System.err.println(ioe);
         }
+
         doc.addDocumentListener(doc);
         if (!doc.getBinary()) {
             action.actionOn(doc);
