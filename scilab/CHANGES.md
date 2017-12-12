@@ -1,7 +1,7 @@
-Welcome to Scilab 6.0.0
+Welcome to Scilab 6.0.1
 =======================
 
-This file details the changes between Scilab 6.0.0 (this release), and the previous release 5.5.2.
+This file details the changes between Scilab 6.0.1 (this release), 6.0.0 (the previous) and the old stable release 5.5.2.
 For changelogs of earlier releases, please see [Scilab 5.5.2](https://www.scilab.org/en/content/download/3332/24658/file/Scilab5.5.2_ReleaseNotes.pdf).
 
 This file is intended for the specific needs of advanced users, and describes:
@@ -19,18 +19,16 @@ This file is intended for the specific needs of advanced users, and describes:
 Main new features
 -----------------
 
-For high-level description of the main new features of this release, please
-consult the [embedded help](modules/helptools/data/pages/homepage-en_US.html). It is also available
-as the "What's new" page of the help, by simply typing `help` in Scilab console.
+For a high-level description of the main new features of this release, please consult the [embedded help](modules/helptools/data/pages/homepage-en_US.html). It is also available as the "What's new" page of the help, by simply typing `help` in Scilab console.
 
 In summary, the main new features are:
 * New language parser and interpreter, ensuring:
   - Support for bigger data sets, thanks to dynamic memory usage. No need for `stacksize` anymore.
   - Better performance for some objects (cells and structs).
   - Clearer, less ambiguous, language syntax.
-  - Executor reuse for specialization and custom engines.
+  - Executor reuse of specialization and custom engines.
   - Xcos also uses the new re-written Scilab engine.
-* New code productivity features: full-featured debugger, profiler / coverage tool, and "lint"-like commands.
+* New code productivity features: full-featured debugger, profiler/coverage tool, and "lint"-like commands.
 * Newsfeed, providing a continuous feed of news, tips, and general communication from the community and from Scilab Enterprises.
 * Licensing change: Scilab is now released under the terms of the GNU General Public License (GPL) v2.0
 It is still also available under the terms of the CeCILL v2.1.
@@ -72,7 +70,7 @@ Dependencies
 Packaging & Supported Operating Systems
 ---------------------------------------
 
-* Scilab embedded JVM has been upgraded to Java 1.8. To run or compile Scilab 6.0.0 you need at least:
+* Scilab embedded JVM has been upgraded to Java 1.8. To run or compile Scilab you need at least:
   - Windows:
      - Windows 8 (Desktop)
      - Windows 7
@@ -95,15 +93,11 @@ Packaging & Supported Operating Systems
 Language changes
 ----------------
 
-Some small changes have been done to the language syntax, aiming at more clarity and less
-ambiguity. Some changes are not compatible with 5.5; code written for Scilab 5.x
-has to be modified in order to work in Scilab 6.0.
+Some small changes have been done to the language syntax, aiming at more clarity and less ambiguity. Some changes are not compatible with 5.5; code written for Scilab 5.x has to be modified in order to work in Scilab 6.0.
 
-See [the wiki page on porting code from 5.5 to 6.0](https://wiki.scilab.org/FromScilab5ToScilab6)
-for details and examples.
+See [the wiki page on porting code from 5.5 to 6.0](https://wiki.scilab.org/FromScilab5ToScilab6) for details and examples.
 
-* The parser now fully supports names of variables and functions of any length or/and including
-  some UTF-8 multilingual characters.
+* The parser now fully supports names of variables and functions of any length or/and including some UTF-8 multilingual characters.
 * Declaration of a number on two lines is no longer allowed: `1.. \n 2`.
 * Declaration of an unclosed string on two lines is no longer allowed: `"abc..\ndef"` now yields an error.
 * Comment blocks on multiple lines `/* ...\n ... \n ... */` are now possible.
@@ -111,10 +105,9 @@ for details and examples.
 * Declaring strings using non-homogenous delimiters ("string' or 'string") is no longer allowed.
 * `(a=b)` executed as `a == b` is now deprecated and returns an error.
 * Function definitions can finish with `end` instead of `endfunction`.
-* `{}` and `[]` are now distinct operators. Matrices can no longer be defined usind `{}` operators.
+* `{}` and `[]` are now distinct operators. Matrices can no longer be defined using `{}` operators.
 These are reserved for cell definition.
-* New `&&` and `||` boolean AND and OR operators are introduced. They are shortcut in expressions
-even out of conditional tests, like `A = [1 %pi] || det([1 2])`
+* New `&&` and `||` boolean AND and OR operators are introduced. They are shortcut in expressions even out of conditional tests, like `A = [1 %pi] || det([1 2])`
 * Syntax `%i:10` is now deprecated (only real scalars can be used).
 * `else` is no longer supported in a `while ... end` control instruction.
 * Transposed matrix can now use the extraction operator directly `A'(1, 2)`.
@@ -142,15 +135,15 @@ Feature changes and additions
   - `replot` can now be used to reframe axes to all their contents,
   - option `tigh_limits` added,
   - Any handle having some Axes as direct children -- as uicontrol-frame -- is now supported.
-* `householder` can now return the reflection matrix, and has a demo.
-* `ndgrid` can now works with any types of homogeneous data
+* `householder` can now return the reflection matrix and has a demo.
+* `ndgrid` can now work with any types of homogeneous data
 * `permute` now supports arrays of rationals.
 * `bench_run` can now return its results and/or record them in a file
 * `typeof(.., "overload")` allows now to get the overloading type-code of an object
 * `sign` can now handle a sparse matrix.
 * `sleep(..,'s')` allows now to specify the duration in seconds.
 * `real`, `imag`, `conj` and `isreal` now accept rational fractions.
-* A call stack limit has been introduced. Default maximum depth is setup to `1000`
+* A call stack limit has been introduced. Default maximum depth is set up to `1000`
 and can be changed by `recursionlimit` or through the Preferences interface.
 * The floating point exception mode `ieee` is now set to `2` by default: floating
 point exceptions now produce `Inf` or `Nan`, and do not cause any error.
@@ -159,10 +152,8 @@ The previous behavior can be recalled by simply calling: `ieee(0)`.
   - The property `z_component = 'on|off'` is renamed to `display_components = 'xyz'`.
   It is now possible to choose which components to display, and in which order.
   The `.z_component` property will be ignored in former `*.scg` files.
-  - A new `detached_position` property is available to display the datatip away from but linked to
-  its anchor on the curve.
-  - A new `Polyline.datatip_display_mode` property now allows to display each datatip of the curve
-  only on `mouseover` its anchor or only on `mouseclick`.
+  - A new `detached_position` property is available to display the datatip away from but linked to its anchor on the curve.
+  - A new `Polyline.datatip_display_mode` property now allows to display each datatip of the curve only on `mouseover` its anchor or only on `mouseclick`.
 * Valgrind error detection added to `test_run` (on Linux only).
 * `amell` now:
   - checks if its parameters are real numbers,
@@ -176,11 +167,11 @@ input arguments (more values that format needs).
 * `deletefile` can delete multiple files at once.
 * `exec` of macro executes the body in the current scope, but the prototype must have zero
 input and output arguments.
-* `error`: an error number in input is deprecated.
+* `error`: an error number in the input is deprecated.
 * `impl`: Recall `impl` with the same parameters as in its previous stop is now available.
 * `ode`: `y0` is restricted to a column vector.
 * `pppdiv`: Returns a scalar of type 'constant' when the rank is 0.
-* `pdiv`: Returns a matrix of type 'constant' when all the rank are 0.
+* `pdiv`: Returns a matrix of type 'constant' when all the rank is 0.
 * `assert_checkalmostequal` can now work with polynomials.
 * `test_run` can now take `[]` as argument to be used on console; for instance: `test_run string [] no_check_ref`.
 * `type(:)` now returns `129` instead of `1`.
@@ -193,14 +184,13 @@ input and output arguments.
 * `bitor`, `bitxor` and `bitand` are upgraded:
    - positive signed encoded integers are now accepted.
    - inputs with new `int64` or `uint64` encodings are now accepted.
-   - operands with mixed types or/and inttypes are now accepted.
+   - operands with mixed types or/and integer types are now accepted.
    - distributive input scalars as in `bit###(scalar, array)` or `bit###(array, scalar)` are now accepted.
    - results with decimal-encoded integers > 2^32 are now correct.
    - decimal-encoded integers > 2^52 are now supported up to the biggest 1.80D+308.
    - `bitxor` is now vectorized and fast.
 * `resize_matrix`: Its conversion option is extended to the new `int64` and `uint64` integer types.
-* Interactively setting a common zoom box on multiple neighbouring or overlaying axes, and with
-bounds selected out of the axes areas is now restored, after the Scilab 5.4 regression.
+* Interactively setting a common zoom box on multiple neighboring or overlaying axes, and with bounds selected out of the axes areas is now restored, after the Scilab 5.4 regression.
 * Scroll to zoom:
   - Scrolling over overlaying axes now zooms all of them together.
   - Pressing CTRL while scrolling now zooms all axes in the current figure.
@@ -210,26 +200,23 @@ bounds selected out of the axes areas is now restored, after the Scilab 5.4 regr
 * When `Axes.view=="2d"`, the rotation is now impossible.
 * The zero-pole-gain (zpk) representation is now available for linear dynamical systems.
 * On a figure, the contextual menu now proposes an entry `Label -> Title` to interactively set the title of any axes.
-* `getPreferencesValue` can now read a tag having multiple occurrences, and accepts the path to a preferences file instead of its XML handle.
+* `getPreferencesValue` can now read a tag having multiple occurrences, and accepts the path to a preference file instead of its XML handle.
 * The function `stripblanks` now supports an option to remove trailing or leading spaces or both.
 * `atomsSetConfig` does not update cache.
 * `lqi` function added to compute "linear quadratic integral compensator".
-* A new console `File => Go to Favorite directory` menu allows to go to a favorite directory selected
-  in a dynamical list set from Scinotes favorite and most recent directories.
-* The console `File => Open a file` menu allows now to open *.xcos *.zcos *.scg or lib files with
-   the proper Scilab component, and other files with the proper OS application.
-   All files were formerly opened in Scinotes and could make it frozen.
-* `size` can now be overloadable for tlist lists, as it already could for mlist lists.
+* A new console `File => Go to Favorite directory` menu allows to go to a favorite directory selected in a dynamical list set from Scinotes favorite and most recent directories.
+* The console `File => Open a file` menu allows now to open *.xcos *.zcos *.scg or lib files with the proper Scilab component, and other files with the proper OS application. All files were opened in Scinotes and could freeze it.
+* `size` is now overloadable for `tlist` lists, as it already could for `mlist` lists.
 * For arrays of cells or structures, `length` now returns their number of elements.
-* `gcd` now accepts `int64` and `uint64` integers. The input can now be any array instead of a row.
-* `gcd` and `lcm` of integers now return always a positive result.
+* `gcd` now accepts `int64` and `uint64` integers. The input can now be an array instead of a row vector.
+* `gcd` and `lcm` of integers now always return a positive result.
 * `cat` has been rewritten. It is now fast and can process heavy arrays at high dimensions.
-* `fplot3d1` remove warning messages when it was called without option.
+* Warnings from `fplot3d1` called without an option were removed.
 * `whereis` has been upgraded:
-  - It can now be used for builtin functions.
+  - It can now be used for built-in functions.
   - When the same function name is registered in several libraries, `whereis` now returns all of them instead of only the last loaded one.
   - For unregistered user-defined macros, `"script"` is now returned instead of `[]`.
-* `mgetl` speed have been improved for files with a lot of lines.
+* `mgetl` speed has been improved for files with a lot of lines.
 * `ndgrid(x)` now accepts only one input `x`, with by default `y=x`.
 
 
@@ -269,13 +256,10 @@ Data Structures
   - insertion and extraction must be done via `()` or `{}.`
   - `.dims` and `.entries` fields have been removed, please use `size` and `()` instead.
   - `length()` of a cells array is now the number of its primary components (without recursive
-     counting). It is equivalent to `size( ,"*")`. It was formerly always equal to 3. It is now
-	 consistent with the definition for all types of Scilab arrays.
+     counting). It is equivalent to `size( ,"*")`. It was formerly always equal to 3. It is now consistent with the definition for all types of Scilab arrays.
 * struct
-  - `.dims` field has been removed, please use size instead.
-  - `length()` of a structures array is now the number of its primary components (without recursive
-     counting). It is equivalent to `size( ,"*")`. It was formerly equal to its number of
-	 fields + 2. It is now consistent with the definition for all types of Scilab arrays.
+  - the `.dims` field has been removed, please use `size()` instead.
+  - `length()` of a structures array is now the number of its primary components (without recursive counting). It is equivalent to `size( ,"*")`. It was formerly equal to its number of fields + 2. It is now consistent with the definition for all types of Scilab arrays.
 * hypermatrix:
   - hypermatrices are natively managed (without `mlist` overloading).
   - `typeof` now returns the actual data type like `constant`, `string`, ... instead of `hypermat`
@@ -291,7 +275,7 @@ The memory usage on diagram edition is also slightly reduced.
 * ZCOS and XCOS file formats have evolved to reduce the duplicated information.
 Scilab 5.5.2 is able to open the newly saved files, but the ports have to be repositioned manually.
 * Implicit fixed-size step ODE solver added: Crank-Nicolson 2(3).
-Added to the CVode package, it also benefits from the CVode rootfinding feature.
+Added to the CVode package, it also benefits from the CVode root finding feature.
 * Added a new link style (`Optimal`) for automatically finding the optimal route.
 * Automatically reposition split blocks for better-looking layout.
 * Block modifications:
@@ -304,7 +288,7 @@ Added to the CVode package, it also benefits from the CVode rootfinding feature.
   - navigate using the keyboard arrows
   - add blocks to the most recent diagram by using the ENTER key
   - dynamic palette with the last used blocks
-  - zoom using CTRL(+), CTRL(-) and CTRL(mousewheel)
+  - zoom using CTRL(+), CTRL(-) and CTRL(mouse wheel)
   - load SVG icons
 * Deleted obsolete WFILE_f block, please use WRITEC_f instead.
 
@@ -313,17 +297,9 @@ API modification
 ----------------
 
 A new set of C APIs to write C or C++ extensions (toolboxes) to Scilab.
-It allows defining native functions (commonly called "gateways"), getting input parameters
-for such functions, setting return parameters, accessing local variables, using common helper
-functions for accessing environment information (such as warning level), generate errors...
-
-It also includes ways to overload existing Scilab functions to support additional parameter
-types (see `help scilab_overload`). Finally, you can call back Scilab functions
-(macros and built-in functions) from your gateway (see `help scilab_call`).
-
-User-defined functions written in C or C++ (gateways) must now use a `void* pvApiCtx` name
-as a second parameter instead of any `unsigned long l`. This is now required for some macros, such as `Rhs`, to work.
-
+It allows defining native functions (commonly called "gateways"), getting input parameters for such functions, setting return parameters, accessing local variables, using common helper functions for accessing environment information (such as warning level), generate errors...
+It also includes ways to overload existing Scilab functions to support additional parameter types (see `help scilab_overload`). Finally, you can call back Scilab functions (macros and built-in functions) from your gateway (see `help scilab_call`).
+User-defined functions written in C or C++ (gateways) must now use a `void* pvApiCtx` name as a second parameter instead of any `unsigned long l`. This is now required for some macros, such as `Rhs`, to work.
 For example: use `int sci_Levkov(char *fname, void* pvApiCtx)` instead of `int sci_Levkov(char *fname)` or `int sci_Levkov(char *fname, unsigned long l)`.
 
 
@@ -377,10 +353,8 @@ Removed Functions
 Known issues
 ------------
 
-* Scilab 6.0.0 is the first release of a completly rewritten interpreter engine. If you discover
-strange behaviors or unexpected results do not hesitate to [report](https://bugzilla.scilab.org) them.
-* Toolboxes rebuild is in progress. Do not hesitate to submit patch or feature upgrade to
-the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
+* This is one of the first releases of a completely rewritten interpreter engine. If you discover strange behaviors or unexpected results do not hesitate to [report](https://bugzilla.scilab.org) them.
+* Toolboxes rebuild is in progress. Do not hesitate to submit patch or feature upgrade to the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 
 
 ### Bugs fixed in 6.0.1:
