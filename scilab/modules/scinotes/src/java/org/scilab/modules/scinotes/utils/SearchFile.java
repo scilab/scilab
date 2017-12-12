@@ -73,6 +73,7 @@ import org.scilab.modules.scinotes.tabfactory.SearchInFilesTabFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
+import java.io.IOException;
 
 /**
  * Class SearchFile: open a window with a JTree to show the results of a search in files.
@@ -231,7 +232,7 @@ public class SearchFile extends SwingScilabDockablePanel {
                 mySearch.getResults().toXML(buffer, 1);
                 buffer.append("</SearchResults>");
 
-            } catch (Exception e) {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
