@@ -262,6 +262,7 @@ cd ..
   <ItemGroup>
     <f2c_rule Include="blkfc1.f" />
     <f2c_rule Include="blkfct.f" />
+    <f2c_rule Include="blkslv.f" />
     <f2c_rule Include="inpnv.f" />
     <f2c_rule Include="isort1.f" />
     <f2c_rule Include="ordmmd.f" />
@@ -273,6 +274,7 @@ cd ..
   <ItemGroup>
     <ClCompile Include="blkfc1.c" />
     <ClCompile Include="blkfct.c" />
+    <ClCompile Include="blkslv.c" />
     <ClCompile Include="inpnv.c" />
     <ClCompile Include="isort1.c" />
     <ClCompile Include="ordmmd.c" />
