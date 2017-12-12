@@ -188,13 +188,16 @@ public class ScilabEditorKit extends DefaultEditorKit {
         }
         ((ScilabDocument) doc).setEncoding(charset.toString());
         EncodingAction.updateEncodingMenu((ScilabDocument) doc);
-        FileInputStream fis = new FileInputStream(file);
-        InputStreamReader isr = new InputStreamReader(fis, charset);
-        BufferedReader br = new BufferedReader(isr);
-        read(br, doc, pos);
-        try {
-            br.close();
-        } catch (IOException e) { }
+
+        try ( FileInputStream fis = new FileInputStream(file);
+              InputStreamReader isr = new InputStreamReader(fis, charset);
+              BufferedReader br = new BufferedReader(isr) ) {
+
+              read(br, doc, pos);
+
+        } catch (IOException e) {
+                 e.printStackTrace();
+        }
     }
 
     /**
