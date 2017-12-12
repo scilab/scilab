@@ -23,7 +23,7 @@
     <ProjectGuid>{13082624-97F9-47DB-A9A1-AD7D6BF3856A}</ProjectGuid>
     <RootNamespace>sparse_f2c</RootNamespace>
     <Keyword>Win32Proj</Keyword>
-    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -263,6 +263,7 @@ cd ..
   <ItemGroup>
     <f2c_rule Include="blkfc1.f" />
     <f2c_rule Include="blkfct.f" />
+    <f2c_rule Include="blkslv.f" />
     <f2c_rule Include="inpnv.f" />
     <f2c_rule Include="isort1.f" />
     <f2c_rule Include="ordmmd.f" />
@@ -274,6 +275,7 @@ cd ..
   <ItemGroup>
     <ClCompile Include="blkfc1.c" />
     <ClCompile Include="blkfct.c" />
+    <ClCompile Include="blkslv.c" />
     <ClCompile Include="inpnv.c" />
     <ClCompile Include="isort1.c" />
     <ClCompile Include="ordmmd.c" />

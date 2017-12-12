@@ -23,7 +23,7 @@
     <ProjectGuid>{3E0FF981-B5FB-4FC2-B6D8-8C1091FBB23A}</ProjectGuid>
     <RootNamespace>scicos_blocks-cli_f2c</RootNamespace>
     <Keyword>Win32Proj</Keyword>
-    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
