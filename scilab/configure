@@ -3274,7 +3274,7 @@ fi
 
 SCILAB_VERSION_MAJOR=6
 SCILAB_VERSION_MINOR=0
-SCILAB_VERSION_MAINTENANCE=0
+SCILAB_VERSION_MAINTENANCE=1
 
 
 
@@ -12186,7 +12186,7 @@ EOF
             fi
 
 
-    # The class java.lang.ProcessHandle  is new to 1.9
+    # The class java.lang.ProcessHandle is new to 1.9
 
     cat << \EOF > conftest.java
 // #line 12192 "configure"
