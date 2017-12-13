@@ -259,7 +259,7 @@ public class FileNode {
      * @return the number of files in the directory representated by this file
      */
     public int getChildrenCount() {
-        if (children == null && !isEmpty) {
+        if (!isEmpty) {
             synchronized (file) {
                 if (children == null) {
                     children = listFiles();
