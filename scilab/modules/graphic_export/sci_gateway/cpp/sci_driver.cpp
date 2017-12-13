@@ -49,7 +49,7 @@ int sci_driver(char * fname, void *pvApiCtx)
     // Get current driver
     previous_driver = org_scilab_modules_graphic_export::Driver::getDriver(getScilabJavaVM());
     createSingleString(pvApiCtx, Rhs + 1, previous_driver);
-    freeAllocatedSingleString(previous_driver);
+    delete[] previous_driver;
 
     if (Rhs == 1) // Change driver if applicable
     {
