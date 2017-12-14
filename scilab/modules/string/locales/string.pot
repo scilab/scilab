@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2017-02-08 09:22+0100\n"
+"Revision-Date: 2017-12-14 15:55+0100\n"
 
 # File: modules/string/sci_gateway/cpp/sci_ascii.cpp, line: 69
 # File: modules/string/sci_gateway/cpp/sci_isletter.cpp, line: 45
@@ -137,34 +137,6 @@ msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
 msgstr ""
 
 #
-# File: modules/string/sci_gateway/cpp/sci_grep.cpp, line: 83
-# File: modules/string/sci_gateway/cpp/sci_grep.cpp, line: 102
-# File: modules/string/sci_gateway/cpp/sci_grep.cpp, line: 108
-# File: modules/string/sci_gateway/cpp/sci_isletter.cpp, line: 55
-# File: modules/string/sci_gateway/cpp/sci_isnum.cpp, line: 55
-# File: modules/string/sci_gateway/cpp/sci_strcat.cpp, line: 78
-# File: modules/string/sci_gateway/cpp/sci_strcat.cpp, line: 103
-# File: modules/string/sci_gateway/cpp/sci_strchr.cpp, line: 51
-# File: modules/string/sci_gateway/cpp/sci_strchr.cpp, line: 56
-# File: modules/string/sci_gateway/cpp/sci_strcmp.cpp, line: 56
-# File: modules/string/sci_gateway/cpp/sci_strcmp.cpp, line: 61
-# File: modules/string/sci_gateway/cpp/sci_strcspn.cpp, line: 50
-# File: modules/string/sci_gateway/cpp/sci_strcspn.cpp, line: 55
-# File: modules/string/sci_gateway/cpp/sci_strrchr.cpp, line: 51
-# File: modules/string/sci_gateway/cpp/sci_strrchr.cpp, line: 56
-# File: modules/string/sci_gateway/cpp/sci_strspn.cpp, line: 50
-# File: modules/string/sci_gateway/cpp/sci_strspn.cpp, line: 55
-# File: modules/string/sci_gateway/cpp/sci_strstr.cpp, line: 51
-# File: modules/string/sci_gateway/cpp/sci_strstr.cpp, line: 56
-# File: modules/string/sci_gateway/cpp/sci_strtok.cpp, line: 57
-# File: modules/string/sci_gateway/cpp/sci_strtok.cpp, line: 63
-# File: modules/string/sci_gateway/cpp/sci_tokens.cpp, line: 64
-# File: modules/string/sci_gateway/cpp/sci_tokens.cpp, line: 85
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
-
-#
 # File: modules/string/sci_gateway/cpp/sci_grep.cpp, line: 120
 #, c-format
 msgid "%s: Wrong values for input argument #%d: Non-empty strings expected.\n"
@@ -253,7 +225,7 @@ msgstr ""
 #
 # File: modules/string/sci_gateway/cpp/sci_strcat.cpp, line: 94
 #, c-format
-msgid "%s: Wrong type for input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgid "%s: Wrong type for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
 
 #
@@ -590,7 +562,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/string/macros/evstr.sci, line: 82
+# File: modules/string/macros/evstr.sci, line: 93
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real or Complex matrix, Matrix of "
@@ -598,7 +570,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/string/macros/evstr.sci, line: 85
+# File: modules/string/macros/evstr.sci, line: 96
 #, c-format
 msgid "%s: Given expression has no value.\n"
 msgstr ""
@@ -616,8 +588,50 @@ msgid "%s: Wrong value for input argument #%d: %s, %s or %s expected.\n"
 msgstr ""
 
 #
-# File: modules/string/macros/sci2exp.sci, line: 105
-# File: modules/string/macros/sci2exp.sci, line: 776
+# File: modules/string/macros/prettyprint.sci, line: 77
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected."
+msgstr ""
+
+#
+# File: modules/string/macros/prettyprint.sci, line: 95
+# File: modules/string/macros/prettyprint.sci, line: 104
+# File: modules/string/macros/prettyprint.sci, line: 115
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
+msgstr ""
+
+#
+# File: modules/string/macros/prettyprint.sci, line: 107
+# File: modules/string/macros/prettyprint.sci, line: 118
+# File: modules/string/macros/prettyprint.sci, line: 121
+#, c-format
+msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
+msgstr ""
+
+#
+# File: modules/string/macros/prettyprint.sci, line: 124
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected"
+msgstr ""
+
+#
+# File: modules/string/macros/prettyprint.sci, line: 129
+#, c-format
+msgid "%s: Wrong export format: %s"
+msgstr ""
+
+#
+# File: modules/string/macros/prettyprint.sci, line: 597
+#, c-format
+msgid "%s: Type %s is not handled : Define the function %s2%s."
+msgstr ""
+
+#
+# File: modules/string/macros/sci2exp.sci, line: 115
+# File: modules/string/macros/sci2exp.sci, line: 850
 #, c-format
 msgid ""
 "%s: This feature has not been implemented: Variable translation of type %s.\n"

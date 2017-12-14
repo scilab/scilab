@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2017-02-01 14:30+0100\n"
+"Revision-Date: 2017-12-14 15:55+0100\n"
 
 # File: modules/m2sci/macros/cb_m2sci_gui.sci, line: 34
 # File: modules/m2sci/macros/m2sci_gui.sci, line: 282
@@ -462,7 +462,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/m2sci/macros/kernel/m2sci_syntax.sci, line: 228
+# File: modules/m2sci/macros/kernel/m2sci_syntax.sci, line: 217
 msgid "m2sciassume is obsolete, used m2scideclare instead."
 msgstr ""
 

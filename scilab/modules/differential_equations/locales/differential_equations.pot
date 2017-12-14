@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2017-02-08 09:22+0100\n"
+"Revision-Date: 2017-12-14 15:55+0100\n"
 
 # File: modules/differential_equations/sci_gateway/cpp/sci_bvode.cpp, line: 63
 # File: modules/differential_equations/sci_gateway/cpp/sci_daskr.cpp, line: 263
@@ -32,12 +32,12 @@ msgstr ""
 # File: modules/differential_equations/sci_gateway/cpp/sci_impl.cpp, line: 487
 # File: modules/differential_equations/sci_gateway/cpp/sci_impl.cpp, line: 496
 # File: modules/differential_equations/sci_gateway/cpp/sci_intg.cpp, line: 58
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 98
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 257
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 325
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 562
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 570
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 578
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 99
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 264
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 332
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 569
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 577
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 585
 # File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 98
 # File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 290
 # File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 358
@@ -54,7 +54,7 @@ msgstr ""
 # File: modules/differential_equations/sci_gateway/cpp/sci_int2d.cpp, line: 70
 # File: modules/differential_equations/sci_gateway/cpp/sci_int3d.cpp, line: 69
 # File: modules/differential_equations/sci_gateway/cpp/sci_intg.cpp, line: 65
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 168
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 175
 # File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 168
 # File: modules/differential_equations/src/cpp/differentialequationfunctions.cpp, line: 1239
 # File: modules/differential_equations/src/cpp/differentialequationfunctions.cpp, line: 1376
@@ -108,12 +108,12 @@ msgstr ""
 # File: modules/differential_equations/sci_gateway/cpp/sci_intg.cpp, line: 96
 # File: modules/differential_equations/sci_gateway/cpp/sci_intg.cpp, line: 187
 # File: modules/differential_equations/sci_gateway/cpp/sci_intg.cpp, line: 208
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 212
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 236
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 312
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 361
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 390
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 423
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 219
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 243
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 319
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 368
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 397
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 430
 # File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 260
 # File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 345
 # File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 394
@@ -134,8 +134,8 @@ msgstr ""
 # File: modules/differential_equations/sci_gateway/cpp/sci_dasrt.cpp, line: 126
 # File: modules/differential_equations/sci_gateway/cpp/sci_dassl.cpp, line: 125
 # File: modules/differential_equations/sci_gateway/cpp/sci_impl.cpp, line: 173
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 220
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 228
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 227
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 235
 # File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 244
 # File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 252
 #, c-format
@@ -260,7 +260,7 @@ msgstr ""
 # File: modules/differential_equations/sci_gateway/cpp/sci_int2d.cpp, line: 149
 # File: modules/differential_equations/sci_gateway/cpp/sci_int3d.cpp, line: 161
 # File: modules/differential_equations/sci_gateway/cpp/sci_intg.cpp, line: 144
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 400
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 407
 # File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 433
 #, c-format
 msgid "%s: Subroutine not found: %s\n"
@@ -279,8 +279,8 @@ msgstr ""
 # File: modules/differential_equations/sci_gateway/cpp/sci_int2d.cpp, line: 161
 # File: modules/differential_equations/sci_gateway/cpp/sci_int3d.cpp, line: 173
 # File: modules/differential_equations/sci_gateway/cpp/sci_intg.cpp, line: 156
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 414
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 463
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 421
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 470
 # File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 447
 # File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 496
 #, c-format
@@ -296,23 +296,6 @@ msgstr ""
 msgid ""
 "%s: Wrong type for input argument #%d: The first argument in the list must "
 "be a Scilab function.\n"
-msgstr ""
-
-#
-# File: modules/differential_equations/sci_gateway/cpp/sci_bvode.cpp, line: 542
-# File: modules/differential_equations/sci_gateway/cpp/sci_daskr.cpp, line: 273
-# File: modules/differential_equations/sci_gateway/cpp/sci_dasrt.cpp, line: 235
-# File: modules/differential_equations/sci_gateway/cpp/sci_dassl.cpp, line: 220
-# File: modules/differential_equations/sci_gateway/cpp/sci_impl.cpp, line: 260
-# File: modules/differential_equations/sci_gateway/cpp/sci_int2d.cpp, line: 183
-# File: modules/differential_equations/sci_gateway/cpp/sci_int3d.cpp, line: 195
-# File: modules/differential_equations/sci_gateway/cpp/sci_intg.cpp, line: 178
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 266
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 334
-# File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 299
-# File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 367
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A function expected.\n"
 msgstr ""
 
 #
@@ -386,7 +369,7 @@ msgstr ""
 # File: modules/differential_equations/sci_gateway/cpp/sci_int3d.cpp, line: 212
 # File: modules/differential_equations/sci_gateway/cpp/sci_int3d.cpp, line: 238
 # File: modules/differential_equations/sci_gateway/cpp/sci_int3d.cpp, line: 246
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 180
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 187
 # File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 180
 # File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 222
 #, c-format
@@ -455,7 +438,7 @@ msgstr ""
 # File: modules/differential_equations/sci_gateway/cpp/sci_dasrt.cpp, line: 390
 # File: modules/differential_equations/sci_gateway/cpp/sci_dassl.cpp, line: 356
 # File: modules/differential_equations/sci_gateway/cpp/sci_impl.cpp, line: 408
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 482
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 489
 # File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 516
 #, c-format
 msgid ""
@@ -516,7 +499,7 @@ msgstr ""
 # File: modules/differential_equations/sci_gateway/cpp/sci_dasrt.cpp, line: 543
 # File: modules/differential_equations/sci_gateway/cpp/sci_dassl.cpp, line: 500
 # File: modules/differential_equations/sci_gateway/cpp/sci_impl.cpp, line: 477
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 551
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 558
 # File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 585
 #, c-format
 msgid ""
@@ -544,8 +527,8 @@ msgstr ""
 # File: modules/differential_equations/sci_gateway/cpp/sci_dasrt.cpp, line: 790
 # File: modules/differential_equations/sci_gateway/cpp/sci_dassl.cpp, line: 724
 # File: modules/differential_equations/sci_gateway/cpp/sci_intg.cpp, line: 257
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 1145
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 1369
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 1152
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 1376
 #, c-format
 msgid "%ls: An error occured in '%ls' subroutine.\n"
 msgstr ""
@@ -597,8 +580,8 @@ msgstr ""
 #
 # File: modules/differential_equations/sci_gateway/cpp/sci_impl.cpp, line: 213
 # File: modules/differential_equations/sci_gateway/cpp/sci_impl.cpp, line: 225
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 283
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 295
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 290
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 302
 # File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 316
 # File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 328
 #, c-format
@@ -607,7 +590,7 @@ msgstr ""
 
 #
 # File: modules/differential_equations/sci_gateway/cpp/sci_impl.cpp, line: 468
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 542
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 549
 # File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 576
 #, c-format
 msgid ""
@@ -617,7 +600,7 @@ msgstr ""
 
 #
 # File: modules/differential_equations/sci_gateway/cpp/sci_impl.cpp, line: 598
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 896
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 903
 # File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 946
 #, c-format
 msgid "%s: Wrong size for w and iw: w = %d and iw = %d expected.\n"
@@ -633,8 +616,8 @@ msgstr ""
 #
 # File: modules/differential_equations/sci_gateway/cpp/sci_impl.cpp, line: 652
 # File: modules/differential_equations/sci_gateway/cpp/sci_impl.cpp, line: 659
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 1102
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 1325
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 1109
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 1332
 # File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 1218
 # File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 1413
 #, c-format
@@ -850,7 +833,25 @@ msgid "%s: Convergence problem...\n"
 msgstr ""
 
 #
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 142
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 127
+#, c-format
+msgid "%s: Feature %s is obsolete.\n"
+msgstr ""
+
+#
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 127
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 128
+msgid "Warning"
+msgstr ""
+
+#
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 128
+#, c-format
+msgid "%s: Please use %s instead.\n"
+msgstr ""
+
+#
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 149
 # File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 142
 #, c-format
 msgid ""
@@ -859,14 +860,14 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 160
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 167
 # File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 160
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d, %d or %d expected.\n"
 msgstr ""
 
 #
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 636
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 643
 # File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 687
 #, c-format
 msgid ""
@@ -874,7 +875,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 645
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 652
 # File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 696
 #, c-format
 msgid ""
@@ -882,14 +883,14 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 659
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 666
 # File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 710
 #, c-format
 msgid "%s: Warning: Jacobian is given, but not used.\n"
 msgstr ""
 
 #
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 666
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 673
 # File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 717
 msgid ""
 "%s: Warning: No Jacobian external given, but one is required by "
@@ -897,7 +898,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 749
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 756
 # File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 802
 #, c-format
 msgid ""
@@ -907,20 +908,20 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 983
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 990
 #, c-format
 msgid "itask = %d\tmeth = %d\tjactyp = %d\tml = %d\tmu = %d\tiopt = %d\n"
 msgstr ""
 
 #
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 984
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 991
 # File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 1010
 #, c-format
 msgid "tcrit = %lf\th0 = %lf\thmax = %lf\thmin = %lf\n"
 msgstr ""
 
 #
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 1033
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 1040
 # File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 1075
 #, c-format
 msgid ""
@@ -929,8 +930,8 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 1161
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 1399
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 1168
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 1406
 # File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 1269
 # File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 1531
 #, c-format
@@ -938,8 +939,8 @@ msgid "Integration was stopped at t = %lf.\n"
 msgstr ""
 
 #
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 1173
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 1421
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 1180
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 1428
 # File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 1285
 # File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 1550
 #, c-format
@@ -1577,6 +1578,109 @@ msgstr ""
 # File: modules/differential_equations/macros/inttrap.sci, line: 26
 #, c-format
 msgid "%s: Wrong size for input arguments: Same size expected.\n"
+msgstr ""
+
+#
+# File: modules/differential_equations/macros/intsplin.sci, line: 38
+#, c-format
+msgid "%s: Argument #%d: Real number(s) expected.\n"
+msgstr ""
+
+#
+# File: modules/differential_equations/macros/numderivative.sci, line: 21
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+
+#
+# File: modules/differential_equations/macros/numderivative.sci, line: 24
+#, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr ""
+
+#
+# File: modules/differential_equations/macros/numderivative.sci, line: 31
+#, c-format
+msgid "%s: Wrong type for argument #%d: Function or list expected.\n"
+msgstr ""
+
+#
+# File: modules/differential_equations/macros/numderivative.sci, line: 37
+#, c-format
+msgid ""
+"%s: Wrong type for argument #%d: Function expected in first element of "
+"list.\n"
+msgstr ""
+
+#
+# File: modules/differential_equations/macros/numderivative.sci, line: 40
+#, c-format
+msgid ""
+"%s: Wrong number of elements in input argument #%d: At least %d elements "
+"expected, but current number is %d.\n"
+msgstr ""
+
+#
+# File: modules/differential_equations/macros/numderivative.sci, line: 48
+# File: modules/differential_equations/macros/numderivative.sci, line: 65
+# File: modules/differential_equations/macros/numderivative.sci, line: 90
+# File: modules/differential_equations/macros/numderivative.sci, line: 120
+#, c-format
+msgid "%s: Wrong type for argument #%d: Matrix expected.\n"
+msgstr ""
+
+#
+# File: modules/differential_equations/macros/numderivative.sci, line: 52
+# File: modules/differential_equations/macros/numderivative.sci, line: 71
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
+msgstr ""
+
+#
+# File: modules/differential_equations/macros/numderivative.sci, line: 77
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
+
+#
+# File: modules/differential_equations/macros/numderivative.sci, line: 81
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
+msgstr ""
+
+#
+# File: modules/differential_equations/macros/numderivative.sci, line: 93
+# File: modules/differential_equations/macros/numderivative.sci, line: 107
+# File: modules/differential_equations/macros/numderivative.sci, line: 123
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
+msgstr ""
+
+#
+# File: modules/differential_equations/macros/numderivative.sci, line: 96
+# File: modules/differential_equations/macros/numderivative.sci, line: 110
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set  {%s}.\n"
+msgstr ""
+
+#
+# File: modules/differential_equations/macros/numderivative.sci, line: 104
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgstr ""
+
+#
+# File: modules/differential_equations/macros/numderivative.sci, line: 126
+#, c-format
+msgid "%s: Q must be orthogonal.\n"
+msgstr ""
+
+#
+# File: modules/differential_equations/macros/numderivative.sci, line: 201
+# File: modules/differential_equations/macros/numderivative.sci, line: 214
+# File: modules/differential_equations/macros/numderivative.sci, line: 218
+#, c-format
+msgid "%s: Unknown value %s for option %s.\n"
 msgstr ""
 
 #

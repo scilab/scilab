@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18511)\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -75,13 +75,26 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr ""
 
+#
+# File: modules/dynamic_link/sci_gateway/cpp/sci_call.cpp, line: 287
+#, c-format
+msgid "%s: incompatible type between input and output variables.\n"
+msgstr ""
+
+#
+# File: modules/dynamic_link/sci_gateway/cpp/sci_call.cpp, line: 296
+# File: modules/dynamic_link/sci_gateway/cpp/sci_call.cpp, line: 304
+#, c-format
+msgid "%s: incompatible sizes between input and output variables.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A int expected.\n"
 msgstr "%s: Špatná hodnota vstupního argumentu #%d: Očekáváno celé číslo.\n"
 
-#, c-format
-msgid "%ls Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr "%s: Špatná hodnota vstupního argumentu #%d: nebo očekáváno [].\n"
 
 #, c-format
 msgid ""
@@ -267,13 +280,6 @@ msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána matice řetězců.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A matrix of strings < 999 expected.\n"
-msgstr ""
-"%s: Špatná velikost vstupního argumentu #%d: očekávána matice řetězců < "
-"999.\n"
 
 #, c-format
 msgid "%s: A managed file extension for input argument #%d expected."
@@ -563,3 +569,10 @@ msgstr "nenalezeno."
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected."
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec."
+
+#~ msgid ""
+#~ "%s: Wrong size for input argument #%d: A matrix of strings < 999 "
+#~ "expected.\n"
+#~ msgstr ""
+#~ "%s: Špatná velikost vstupního argumentu #%d: očekávána matice řetězců < "
+#~ "999.\n"

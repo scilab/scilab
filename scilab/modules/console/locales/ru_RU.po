@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18511)\n"
 
 #, c-format
 msgid "%s: This feature has not been implemented in this mode.\n"
@@ -62,13 +62,6 @@ msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A Single string of size %d expected.\n"
-msgstr ""
-"%s: Неверный размер входного аргумента №%d: ожидалась одиночная строка "
-"размером %d.\n"
-
-#, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr "%s: Неверное количество входных аргументов: Ожидалось %d.\n"
 
@@ -108,14 +101,6 @@ msgid "[Continue display? n (no) to stop, any other key to continue]"
 msgstr ""
 "[Продолжить отображение? n (no) - остановить, любая другая клавиша - "
 "продолжить]"
-
-#, c-format
-msgid ""
-"Type '%s' or '%s' to return to standard level prompt.\n"
-"\n"
-msgstr ""
-"Введите «%s» или «%s» для возврата на стандартный уровень командной строки.\n"
-"\n"
 
 msgid "Console"
 msgstr "Командное окно"
@@ -801,6 +786,14 @@ msgstr "Название действия"
 msgid "Key binding"
 msgstr "Привязка клавиш"
 
+#, c-format
+msgid ""
+"Type '%s' or '%s' to return to standard level prompt.\n"
+"\n"
+msgstr ""
+"Введите «%s» или «%s» для возврата на стандартный уровень командной строки.\n"
+"\n"
+
 msgid "Field"
 msgstr "Поле"
 
@@ -815,3 +808,10 @@ msgstr "Не удалось изменить шрифт в командном о
 
 msgid "Could not change the Console Foreground."
 msgstr "Не удалось изменить цвет фона в командном окне"
+
+#~ msgid ""
+#~ "%s: Wrong size for input argument #%d: A Single string of size %d "
+#~ "expected.\n"
+#~ msgstr ""
+#~ "%s: Неверный размер входного аргумента №%d: ожидалась одиночная строка "
+#~ "размером %d.\n"

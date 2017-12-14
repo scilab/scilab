@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-12-07 22:15+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2017-05-02 07:30+0000\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18511)\n"
 "X-Poedit-Country: JAPAN\n"
 "X-Poedit-Language: Japanese\n"
 
@@ -375,7 +375,7 @@ msgstr "%s: 入力引数 #%d の型が間違っています: ハンドルを指�
 
 #, c-format
 msgid "%s: Invalid value for datatip index %d.\n"
-msgstr ""
+msgstr "%s: datatip インデックス %d の値が間違っています.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
@@ -384,27 +384,32 @@ msgstr ""
 
 #, c-format
 msgid "%s:  Wrong number of output argument(s): %d to %d expected."
-msgstr ""
+msgstr "%s: 出力引数の数が間違っています: %dから%d個を指定してください."
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A list expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: リストを指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d : At least %d elements expected.\n"
 msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: %d個以上の要素を指定してくださ"
+"い.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for element #%d of input argument #%d : string expected.\n"
 msgstr ""
+"%s: 要素 #%d (入力引数#%d)の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for element #%d of input argument #%d : At least %d element "
 "expected.\n"
 msgstr ""
+"%s: 要素 #%d (入力引数#%d)の型が間違っています: %d 以上の要素を指定してくださ"
+"い.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A Tree expected.\n"
@@ -414,24 +419,31 @@ msgstr "%s: 入力引数 #%d の型が間違っています:  Tree を指定し�
 msgid ""
 "%s: Wrong type for element #%d of input argument #%d : A struct expected.\n"
 msgstr ""
+"%s: 要素 #%d (入力引数#%d)の型が間違っています: 構造体を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong fields for element #%d of input argument #%d : \"%s\" and \"%s\" "
 "expected.\n"
 msgstr ""
+"%s: 要素 #%d (入力引数#%d)のフィールドが間違っています: \"%s\"および\"%s\"を"
+"指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for element #%d of element #%d of input argument #%d : string "
 "expected.\n"
 msgstr ""
+"%s: 要素 #%d (入力引数#%d)の要素#%dの型が間違っています: 文字列を指定してくだ"
+"さい.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for element #%d of element #%d of input argument #%d : A "
 "single string expected.\n"
 msgstr ""
+"%s: 要素 #%d (入力引数#%d)の要素#%dの大きさが間違っています: 文字列を指定して"
+"ください.\n"
 
 #, c-format
 msgid "%s: Error in the tree parsing.\n"
@@ -442,6 +454,8 @@ msgid ""
 "%s: A Java exception has arisen:\n"
 "%s"
 msgstr ""
+"%s: Java例外が発生しました:\n"
+"%s"
 
 #, c-format
 msgid "%s: An error occurred: %s.\n"
@@ -454,15 +468,15 @@ msgstr "現在のルックアンドフィールを取得できません"
 
 #, c-format
 msgid "%s:  Wrong type for input argument #%d: A boolean expected."
-msgstr ""
+msgstr "%s: 入力引数#%dの型が間違っています: 論理値を指定してください."
 
 #, c-format
 msgid "%s:  Wrong type for input argument #%d: string expected."
-msgstr ""
+msgstr "%s: 入力引数#%dの型が間違っています: 文字列を指定してください."
 
 #, c-format
 msgid "%s:  Wrong number of input argument(s): %d to %d expected."
-msgstr ""
+msgstr "%s: 入力引数の数が間違っています: %dから%dを指定してください."
 
 #, c-format
 msgid "%s: This file %s does not exist.\n"
@@ -576,27 +590,17 @@ msgstr ""
 msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
 msgstr "%s: 引数 #%d の型が間違っています: 論理値行列を指定してください.\n"
 
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 実数または複素ベクトルを指定してくださ"
-"い.\n"
+msgid "Scilab Input Value Request"
+msgstr "Scilab値入力リクエスト"
 
-msgid "Scilab Choices Request"
-msgstr "Scilab選択リクエスト"
+msgid "Scilab Multiple Values Request"
+msgstr "Scilab複数値リクエスト"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の大きさが間違っています: 文字列のベクトルを指定してくださ"
 "い.\n"
-
-msgid "Scilab Input Value Request"
-msgstr "Scilab値入力リクエスト"
-
-msgid "Scilab Multiple Values Request"
-msgstr "Scilab複数値リクエスト"
 
 #, c-format
 msgid ""
@@ -617,6 +621,16 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 実数または複素ベクトルを指定してくださ"
+"い.\n"
+
+msgid "Scilab Choices Request"
+msgstr "Scilab選択リクエスト"
 
 #, c-format
 msgid "'%s' property does not exist for this handle.\n"
@@ -826,7 +840,7 @@ msgstr ""
 "警告: '%s' 'Value' プロパティは整数である必要があり, 値は丸められます.\n"
 
 msgid "(Max - Min) must be greater than 1 to allow the multiple selection.\n"
-msgstr ""
+msgstr "複数を選択するために(最大 - 最小)は1より大きい必要があります.\n"
 
 #, c-format
 msgid "'%s' value must be between 0 and %d.\n"
@@ -913,7 +927,7 @@ msgid "&Original View"
 msgstr "オリジナルビュー (&O)"
 
 msgid "Reframe to contents"
-msgstr ""
+msgstr "内容に合わせてフレームを調整"
 
 msgid "2D/3D &Rotation"
 msgstr "2D/3D回転(&R)"
@@ -1026,47 +1040,27 @@ msgstr "環境をロード(&L)..."
 msgid "&Save environment..."
 msgstr "環境を保存(&S)..."
 
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 94
-# File: modules/gui/src/gui_fake_xml.c, line: 148
-msgid "&Current Working Directory (CWD):"
-msgstr ""
+#, fuzzy
+msgid "&Current Working Directory"
+msgstr "カレントの作業ディレクトリ(&C) (CWD)"
 
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 95
-# File: modules/gui/src/gui_fake_xml.c, line: 149
 msgid "    &Browse for new"
-msgstr ""
+msgstr "    新規ブラウズ(&B)"
 
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 96
-# File: modules/gui/src/gui_fake_xml.c, line: 150
 msgid "    Go to &Favorite"
-msgstr ""
+msgstr "    お気に入りに移動(&F)"
 
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 97
-# File: modules/gui/src/gui_fake_xml.c, line: 151
 msgid "TMPDIR"
-msgstr ""
+msgstr "TMPDIR"
 
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 98
-# File: modules/gui/src/gui_fake_xml.c, line: 152
 msgid "SCIHOME"
-msgstr ""
+msgstr "SCIHOME"
 
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 99
-# File: modules/gui/src/gui_fake_xml.c, line: 153
 msgid "SCI"
-msgstr ""
+msgstr "SCI"
 
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 100
-# File: modules/gui/src/gui_fake_xml.c, line: 154
 msgid "User's home ~"
-msgstr ""
+msgstr "ユーザのホーム ~"
 
 #
 # File: scilab_fake_localization_file.c, line: 50
@@ -1158,7 +1152,7 @@ msgid "Scilab &Demonstrations"
 msgstr "Scilab デモ(&D)"
 
 msgid "&News feed"
-msgstr ""
+msgstr "ニュースフィード(&N)"
 
 #
 # File: scilab_fake_localization_file.c, line: 76
@@ -1681,9 +1675,8 @@ msgstr "クリップボードへコピー"
 msgid "Copy figure to system clipboard"
 msgstr "図をシステムクリップボードにコピー"
 
-#, fuzzy
 msgid "Insert a title"
-msgstr "新しい点を挿入"
+msgstr "タイトルを挿入"
 
 msgid "Label X"
 msgstr "ラベルX"
@@ -2073,7 +2066,7 @@ msgid "Mark Style"
 msgstr "マークのスタイル"
 
 msgid "Components display"
-msgstr ""
+msgstr "要素を表示"
 
 msgid "Data Properties"
 msgstr "データプロパティ"
@@ -2369,9 +2362,6 @@ msgstr "Scilab SCE ファイル"
 msgid "Scilab binary files"
 msgstr "Scilabライブラリファイル"
 
-msgid "All Scilab files"
-msgstr "全てのScilabファイル"
-
 msgid "Xcos files"
 msgstr "Xcosファイル"
 
@@ -2406,7 +2396,7 @@ msgid "All RTF (Rich Text Format) files"
 msgstr "RTF (Rich Text Format)ファイル"
 
 msgid "All HTML files"
-msgstr ""
+msgstr "全てのHTMLファイル"
 
 #, c-format
 msgid "All %s files"
@@ -2444,250 +2434,250 @@ msgid "Error. A signal has been caught.\n"
 msgstr "エラー. シグナルを検知しました.\n"
 
 msgid "Control Plot3d"
-msgstr ""
+msgstr "Plot3dを制御"
 
 msgid "Control Panel"
-msgstr ""
+msgstr "コントロール パネル"
 
 msgid "Rotation angle"
-msgstr ""
+msgstr "回転角"
 
 msgid "Colormap"
-msgstr ""
+msgstr "カラーマップ"
 
 msgid "Show / Hide"
-msgstr ""
+msgstr "表示/隠す"
 
 msgid "messagebox"
-msgstr ""
+msgstr "メッセージボックス"
 
 msgid "x_choose"
-msgstr ""
+msgstr "x_choose"
 
 msgid "x_dialog"
-msgstr ""
+msgstr "x_dialog"
 
 msgid "x_mdialog"
-msgstr ""
+msgstr "x_mdialog"
 
 msgid "Simple example of message"
-msgstr ""
+msgstr "メッセージの例"
 
 msgid "Button 1Button 2"
-msgstr ""
+msgstr "ボタン 1 ボタン 2"
 
 msgid "Button 1 clicked."
-msgstr ""
+msgstr "ボタン 1がクリックされました"
 
 msgid "Button 2 clicked"
-msgstr ""
+msgstr "ボタン 2がクリックされました"
 
 msgid ""
 "Message: Selection (double-click on an item --> returns the item number)"
-msgstr ""
+msgstr "メッセージ: 選択 (要素をダブルクリック -> 要素番号を返す)"
 
 msgid "Item selected: "
-msgstr ""
+msgstr "選択された要素: "
 
 msgid "Message: enter a value"
-msgstr ""
+msgstr "メッセージ: 値を入力"
 
 msgid "Value entered: "
-msgstr ""
+msgstr "入力された値: "
 
 msgid "Message"
-msgstr ""
+msgstr "メッセージ"
 
 msgid "first row"
-msgstr ""
+msgstr "最初の行"
 
 msgid "Values entered: "
-msgstr ""
+msgstr "入力値: "
 
 msgid "row"
-msgstr ""
+msgstr "行"
 
 msgid "col"
-msgstr ""
+msgstr "列"
 
 msgid "Matrix to edit"
-msgstr ""
+msgstr "編集する行列"
 
 msgid "Matrix entered: "
-msgstr ""
+msgstr "入力された行列: "
 
 msgid "GUI"
-msgstr ""
+msgstr "GUI"
 
 msgid "Dialogs"
-msgstr ""
+msgstr "ダイアログ"
 
 msgid "Uicontrols 1"
-msgstr ""
+msgstr "UIコントロール 1"
 
 msgid "Uicontrols 2"
-msgstr ""
+msgstr "UIコントロール 2"
 
 msgid "Uicontrols with LaTeX/MathML"
-msgstr ""
+msgstr "LaTeX/MathMLを使用可能なUIコントロール"
 
 msgid "Show images with uicontrols "
-msgstr ""
+msgstr "UIコントロールで画像を表示 "
 
 msgid "Listboxes and Popupmenus"
-msgstr ""
+msgstr "リストボックスとポップアップメニュー"
 
 msgid "Uicontrols rendering"
-msgstr ""
+msgstr "UIコントロールの描画"
 
 msgid "Uicontrols layout"
-msgstr ""
+msgstr "UIコントロールの配置"
 
 msgid "Uicontrols messagebox-like"
-msgstr ""
+msgstr "メッセージボックスに似たUIコントロール"
 
 msgid "<Enter color name here>"
-msgstr ""
+msgstr "<色名を入力してください>"
 
 msgid "Error"
-msgstr ""
+msgstr "エラー"
 
 msgid "Please enter a color name first."
-msgstr ""
+msgstr "色名をまず入力してください."
 
 msgid "Unknown color."
-msgstr ""
+msgstr "未知の色."
 
 msgid "No color selected."
-msgstr ""
+msgstr "色が選択されていません."
 
 msgid "Color selection"
-msgstr ""
+msgstr "色の選択"
 
 #, c-format
 msgid "Selected colors are: %s."
-msgstr ""
+msgstr "選択された色: %s."
 
 #, c-format
 msgid "Deleted colors are: %s."
-msgstr ""
+msgstr "削除された色: %s."
 
 #, c-format
 msgid "You clicked on menu '%s'."
-msgstr ""
+msgstr "メニューで '%s'をクリックしました."
 
 msgid "Selected menu"
-msgstr ""
+msgstr "選択されたメニュー"
 
 msgid "checked"
-msgstr ""
+msgstr "チェック済み"
 
 msgid "unchecked"
-msgstr ""
+msgstr "チェックなし"
 
 #, c-format
 msgid "Menu '%s' is %s."
-msgstr ""
+msgstr "メニュー '%s' は %sです."
 
 msgid "Menu status"
-msgstr ""
+msgstr "メニューステータス"
 
 msgid "Slider value: "
-msgstr ""
+msgstr "スライダー値: "
 
 #, c-format
 msgid "You selected '%s'."
-msgstr ""
+msgstr "'%s'を選択しました."
 
 msgid "Popupmenu selection"
-msgstr ""
+msgstr "ポップアップメニューの選択"
 
 msgid "Do you really want to quit Scilab?"
-msgstr ""
+msgstr "本当にScilabを終了しますか?"
 
 msgid "Quit Scilab"
-msgstr ""
+msgstr "Scilabを終了"
 
 msgid "Uicontrols demo"
-msgstr ""
+msgstr "UIコントロールのデモ"
 
 msgid "Application"
-msgstr ""
+msgstr "アプリケーション"
 
 msgid "Close figure"
-msgstr ""
+msgstr "図を閉じる"
 
 msgid "Scilab Graphics"
-msgstr ""
+msgstr "Scilabグラフィックス"
 
 msgid "Launch plot3d"
-msgstr ""
+msgstr "plot3dを起動"
 
 msgid "Launch plot2d"
-msgstr ""
+msgstr "plot2dを起動"
 
 msgid "Menu"
-msgstr ""
+msgstr "メニュー"
 
 msgid "Sub-menu 1"
-msgstr ""
+msgstr "サブメニュー1"
 
 msgid "Sub-menu 2"
-msgstr ""
+msgstr "サブメニュー2"
 
 msgid "Sub-menu 2-1"
-msgstr ""
+msgstr "サブメニュー2-1"
 
 msgid "Sub-menu 2-2"
-msgstr ""
+msgstr "サブメニュー2-2"
 
 msgid "item1|item2|item3|item4"
-msgstr ""
+msgstr "item1|item2|item3|item4"
 
 msgid "Pop-up menu"
-msgstr ""
+msgstr "ポップアップメニュー"
 
 msgid "Slider demo"
-msgstr ""
+msgstr "スライダーデモ"
 
 msgid "Colors list edition"
-msgstr ""
+msgstr "色リスト編集"
 
 msgid "Add color in listbox"
-msgstr ""
+msgstr "リストボックスに色を追加"
 
 msgid "Delete color in listbox"
-msgstr ""
+msgstr "リストボックスの色を削除"
 
 msgid "blue"
-msgstr ""
+msgstr "青"
 
 msgid "green"
-msgstr ""
+msgstr "緑"
 
 msgid "red"
-msgstr ""
+msgstr "赤"
 
 msgid "yellow"
-msgstr ""
+msgstr "黄"
 
 msgid "Display selection"
-msgstr ""
+msgstr "選択範囲を表示"
 
 msgid "Delete selection"
-msgstr ""
+msgstr "選択範囲を削除"
 
 msgid "Default"
-msgstr ""
+msgstr "デフォルト"
 
 msgid "Quit demonstration"
-msgstr ""
+msgstr "デモを終了"
 
 msgid "Uicontrols demo with LaTeX"
-msgstr ""
+msgstr "LaTeXを指定するUIコントロールのデモ"
 
 msgid "Please fill the table"
-msgstr ""
+msgstr "表を埋めてください"
 
 #, c-format
 msgid "%s: can not add a menu in this mode: %s.\n"
@@ -2826,6 +2816,29 @@ msgstr ""
 "%s に指定された回答は\n"
 "間違っています: %s.\n"
 
+#
+# File: etc/graphics_menubar.xml, line: 12
+# File: etc/main_menubar.xml, line: 33
+#, fuzzy
+msgid "Select a file to open"
+msgstr "ファイルを選択してロード"
+
+#, fuzzy
+msgid "Scilab scripts"
+msgstr "Scilabグラフィックス"
+
+#, fuzzy
+msgid "Xcos diagrams"
+msgstr "Xcosファイル"
+
+#, fuzzy
+msgid "Scilab Tests"
+msgstr "Scilab メッセージ"
+
+#, fuzzy
+msgid "Scilab Library"
+msgstr "Scilabライブラリファイル"
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: uitree expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: uitreeを指定してください.\n"
@@ -2924,12 +2937,5 @@ msgstr "%s: %s の型が間違っています: 実数を指定してください
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s: %sの大きさが間違っています: 実数を指定してください.\n"
 
-#
-# File: scilab_fake_localization_file.c, line: 46
-#~ msgid "&Change current directory..."
-#~ msgstr "現在のディレクトリを変更(&C)..."
-
-#
-# File: scilab_fake_localization_file.c, line: 47
-#~ msgid "&Display current directory"
-#~ msgstr "現在のディレクトリを表示(&D)"
+#~ msgid "All Scilab files"
+#~ msgstr "全てのScilabファイル"

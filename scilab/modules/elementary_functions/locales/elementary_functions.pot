@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2017-02-01 14:29+0100\n"
+"Revision-Date: 2017-12-14 15:55+0100\n"
 
 # File: modules/elementary_functions/sci_gateway/c/sci_base2dec.c, line: 45
 # File: modules/elementary_functions/sci_gateway/c/sci_base2dec.c, line: 58
@@ -199,8 +199,8 @@ msgstr ""
 
 #
 # File: modules/elementary_functions/sci_gateway/cpp/sci_atan.cpp, line: 122
-# File: modules/elementary_functions/sci_gateway/cpp/sci_matrix.cpp, line: 73
-# File: modules/elementary_functions/sci_gateway/cpp/sci_matrix.cpp, line: 82
+# File: modules/elementary_functions/sci_gateway/cpp/sci_matrix.cpp, line: 87
+# File: modules/elementary_functions/sci_gateway/cpp/sci_matrix.cpp, line: 96
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A real matrix expected.\n"
 msgstr ""
@@ -218,8 +218,8 @@ msgstr ""
 # File: modules/elementary_functions/sci_gateway/cpp/sci_clean.cpp, line: 168
 # File: modules/elementary_functions/sci_gateway/cpp/sci_diag.cpp, line: 67
 # File: modules/elementary_functions/sci_gateway/cpp/sci_diag.cpp, line: 75
-# File: modules/elementary_functions/sci_gateway/cpp/sci_matrix.cpp, line: 128
-# File: modules/elementary_functions/sci_gateway/cpp/sci_matrix.cpp, line: 138
+# File: modules/elementary_functions/sci_gateway/cpp/sci_matrix.cpp, line: 142
+# File: modules/elementary_functions/sci_gateway/cpp/sci_matrix.cpp, line: 152
 # File: modules/elementary_functions/sci_gateway/cpp/sci_tril.cpp, line: 69
 # File: modules/elementary_functions/sci_gateway/cpp/sci_tril.cpp, line: 77
 # File: modules/elementary_functions/sci_gateway/cpp/sci_triu.cpp, line: 70
@@ -249,7 +249,7 @@ msgstr ""
 # File: modules/elementary_functions/sci_gateway/cpp/sci_prod.cpp, line: 172
 # File: modules/elementary_functions/sci_gateway/cpp/sci_prod.cpp, line: 279
 # File: modules/elementary_functions/sci_gateway/cpp/sci_sum.cpp, line: 101
-# File: modules/elementary_functions/sci_gateway/cpp/sci_sum.cpp, line: 193
+# File: modules/elementary_functions/sci_gateway/cpp/sci_sum.cpp, line: 178
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar string expected.\n"
 msgstr ""
@@ -258,7 +258,7 @@ msgstr ""
 # File: modules/elementary_functions/sci_gateway/cpp/sci_cumprod.cpp, line: 230
 # File: modules/elementary_functions/sci_gateway/cpp/sci_cumsum.cpp, line: 230
 # File: modules/elementary_functions/sci_gateway/cpp/sci_prod.cpp, line: 252
-# File: modules/elementary_functions/sci_gateway/cpp/sci_sum.cpp, line: 176
+# File: modules/elementary_functions/sci_gateway/cpp/sci_sum.cpp, line: 161
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A real matrix or a string expected.\n"
@@ -362,22 +362,22 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/elementary_functions/sci_gateway/cpp/sci_matrix.cpp, line: 101
-# File: modules/elementary_functions/sci_gateway/cpp/sci_matrix.cpp, line: 153
+# File: modules/elementary_functions/sci_gateway/cpp/sci_matrix.cpp, line: 115
+# File: modules/elementary_functions/sci_gateway/cpp/sci_matrix.cpp, line: 167
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d : Only one value can be equal to %d.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/sci_gateway/cpp/sci_matrix.cpp, line: 109
-# File: modules/elementary_functions/sci_gateway/cpp/sci_matrix.cpp, line: 161
+# File: modules/elementary_functions/sci_gateway/cpp/sci_matrix.cpp, line: 123
+# File: modules/elementary_functions/sci_gateway/cpp/sci_matrix.cpp, line: 175
 #, c-format
 msgid "%s: Wrong value for input argument #%d : At most %d expected.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/sci_gateway/cpp/sci_matrix.cpp, line: 180
+# File: modules/elementary_functions/sci_gateway/cpp/sci_matrix.cpp, line: 194
 #, c-format
 msgid ""
 "%s: Wrong value for input argument(s) : Sparse matrix cannot be reshaped "
@@ -385,7 +385,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/elementary_functions/sci_gateway/cpp/sci_matrix.cpp, line: 191
+# File: modules/elementary_functions/sci_gateway/cpp/sci_matrix.cpp, line: 205
 #, c-format
 msgid "%s: Input and output matrices must have the same number of elements.\n"
 msgstr ""
@@ -702,7 +702,7 @@ msgstr ""
 #
 # File: modules/elementary_functions/macros/bitcmp.sci, line: 78
 # File: modules/elementary_functions/macros/bitget.sci, line: 86
-# File: modules/elementary_functions/macros/bitset.sci, line: 77
+# File: modules/elementary_functions/macros/bitset.sci, line: 83
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
 msgstr ""
@@ -710,30 +710,31 @@ msgstr ""
 #
 # File: modules/elementary_functions/macros/bitget.sci, line: 47
 # File: modules/elementary_functions/macros/bitget.sci, line: 57
-# File: modules/elementary_functions/macros/cat.sci, line: 76
+# File: modules/elementary_functions/macros/cat.sci, line: 62
 # File: modules/elementary_functions/macros/modulo.sci, line: 55
 # File: modules/elementary_functions/macros/pmodulo.sci, line: 61
+# File: modules/elementary_functions/tests/nonreg_tests/bug_8297_cat_old.sci, line: 75
 #, c-format
 msgid "%s: Wrong size for input arguments: Same size expected.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/macros/bitset.sci, line: 34
-# File: modules/elementary_functions/macros/bitset.sci, line: 50
+# File: modules/elementary_functions/macros/bitset.sci, line: 35
+# File: modules/elementary_functions/macros/bitset.sci, line: 53
 # File: modules/elementary_functions/macros/cross.sci, line: 27
 #, c-format
 msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/macros/bitset.sci, line: 43
+# File: modules/elementary_functions/macros/bitset.sci, line: 45
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 0 or 1 expected.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/macros/bitset.sci, line: 58
-# File: modules/elementary_functions/macros/bitset.sci, line: 65
+# File: modules/elementary_functions/macros/bitset.sci, line: 62
+# File: modules/elementary_functions/macros/bitset.sci, line: 70
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Scalar/matrix/hypermatrix of unsigned "
@@ -741,13 +742,15 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/elementary_functions/macros/cat.sci, line: 35
+# File: modules/elementary_functions/macros/cat.sci, line: 29
+# File: modules/elementary_functions/tests/nonreg_tests/bug_8297_cat_old.sci, line: 34
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A positive real expected.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/macros/cat.sci, line: 93
+# File: modules/elementary_functions/macros/cat.sci, line: 71
+# File: modules/elementary_functions/tests/nonreg_tests/bug_8297_cat_old.sci, line: 92
 #, c-format
 msgid "%s: Wrong type for input arguments: Same types expected.\n"
 msgstr ""
@@ -1041,7 +1044,7 @@ msgid "%s: Incompatible input arguments #%d and #%d: Same types expected.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/macros/ndgrid.sci, line: 23
+# File: modules/elementary_functions/macros/ndgrid.sci, line: 28
 #, c-format
 msgid ""
 "%s: Wrong type for argument #%d: Booleans, Integers, Decimals, Complexes, "

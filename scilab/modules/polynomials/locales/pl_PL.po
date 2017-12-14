@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18511)\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
@@ -205,10 +205,20 @@ msgstr ""
 "%s: Nieprawidłowy typ argumentu wejściowego nr %d: Oczekiwano liniowego "
 "układu dynamicznego lub tablicy wielomianów.\n"
 
-#, c-format
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: Nieprawidłowy typ argumentu #%d: Oczekiwano wielomianu.\n"
+
+#, fuzzy, c-format
 msgid ""
-"%s: Wrong type for argument #%d: Integer array or Polynomial expected.\n"
+"%s: Wrong type for argument #%d: Decimal or encoded integers or Polynomial "
+"expected.\n"
+msgstr "%s: Nieprawidłowy typ argumentu #%d: Oczekiwano wielomianu.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong values for argument #%d: Integer values expected.\n"
 msgstr ""
+"%s: Zły rozmiar parametru wejściowego nr %d: oczekiwany wektor wierszowy.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument: Polynomial array expected.\n"
@@ -234,6 +244,11 @@ msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr ""
 "%s: Nieprawidłowa wartość parametru wejściowego nr %d: Musi być ze zbioru "
 "{%s}.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for argument #%d: Integer array or Polynomial expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real Matrix of Polynomials expected.\n"

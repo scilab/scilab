@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-01-26 04:12+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2017-11-02 15:01+0000\n"
+"Last-Translator: Webish <Unknown>\n"
 "Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
-"Language: \n"
+"X-Generator: Launchpad (build 18511)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -31,65 +31,67 @@ msgstr "%s：内存不足。\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数的数目错误，应该为%d个。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type of input arguments: integer, boolean or double expected.\n"
-msgstr ""
+msgstr "%s：输入参数的类型错误：应该为整数、布尔值、或双精度浮点数。\n"
 
 msgid "Never occur"
-msgstr ""
+msgstr "从未发生"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数的数目错误：应该为%d个。\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s：输出参数的数目错误：应该为%d个。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s, %s or %s expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的类型错误：应该为%s、%s或%s。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : int or double expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的类型错误：应该为整型或双精度浮点型。\n"
 
 #, c-format
 msgid "%s: '%s' already defined by the '%s' argument."
-msgstr ""
+msgstr "%s：‘%s’已被参数‘%s’定义。"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument: '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
-msgstr ""
+msgstr "%s：输入参数的值错误：‘%s’、‘%s’、‘%s’、‘%s’或‘%s。\n"
 
 msgid ""
 "Warning: Syntax vector ^ scalar is obsolete. It will be removed in Scilab "
 "6.0.\n"
 "  Use vector .^ scalar instead.\n"
 msgstr ""
+"警告： Scilab 6.0会移除废弃语法“vector^scalar”，请使用“vector.^scalar”语"
+"法。\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数的数目错误：应该为%d到%d个。\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: string expected.\n"
-msgstr ""
+msgstr "%s：第%d个参数的类型错误：应该为字符串。\n"
 
 #, c-format
 msgid "%s: Wrong size for argument #%d: A single string expected.\n"
-msgstr ""
+msgstr "%s：第%d个参数的维度错误：应该为字符串。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for argument #%d: A single string of size %d to %d expected.\n"
-msgstr ""
+msgstr "%s：第%d个参数的维度错误：应该为%d~%d元素字符串。\n"
 
 #, c-format
 msgid "%s: Incorrect integer type: %s .\n"
-msgstr ""
+msgstr "%s：错误的整数类型：%s 。\n"

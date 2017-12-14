@@ -15,9 +15,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2017-02-01 14:29+0100\n"
+"Revision-Date: 2017-12-14 15:55+0100\n"
 
-# File: modules/development_tools/macros/assert/assert_checkalmostequal.sci, line: 95
+# File: modules/development_tools/macros/assert/assert_checkalmostequal.sci, line: 98
 # File: modules/development_tools/macros/assert/assert_checkfilesequal.sci, line: 18
 # File: modules/development_tools/macros/assert/assert_comparecomplex.sci, line: 75
 # File: modules/development_tools/macros/assert/assert_cond2reltol.sci, line: 118
@@ -28,10 +28,10 @@ msgid "%s: Wrong number of input arguments: %d to %d expected."
 msgstr ""
 
 #
-# File: modules/development_tools/macros/assert/assert_checkalmostequal.sci, line: 108
-# File: modules/development_tools/macros/assert/assert_checkalmostequal.sci, line: 112
-# File: modules/development_tools/macros/assert/assert_checkalmostequal.sci, line: 116
-# File: modules/development_tools/macros/assert/assert_checkalmostequal.sci, line: 120
+# File: modules/development_tools/macros/assert/assert_checkalmostequal.sci, line: 111
+# File: modules/development_tools/macros/assert/assert_checkalmostequal.sci, line: 115
+# File: modules/development_tools/macros/assert/assert_checkalmostequal.sci, line: 123
+# File: modules/development_tools/macros/assert/assert_checkalmostequal.sci, line: 127
 # File: modules/development_tools/macros/assert/assert_checkerror.sci, line: 53
 # File: modules/development_tools/macros/assert/assert_comparecomplex.sci, line: 87
 # File: modules/development_tools/macros/assert/assert_comparecomplex.sci, line: 91
@@ -50,7 +50,13 @@ msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/development_tools/macros/assert/assert_checkalmostequal.sci, line: 124
+# File: modules/development_tools/macros/assert/assert_checkalmostequal.sci, line: 119
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Polynomial expected.\n"
+msgstr ""
+
+#
+# File: modules/development_tools/macros/assert/assert_checkalmostequal.sci, line: 131
 # File: modules/development_tools/macros/assert/assert_checkerror.sci, line: 43
 # File: modules/development_tools/macros/assert/assert_checkerror.sci, line: 48
 # File: modules/development_tools/macros/assert/assert_checkfilesequal.sci, line: 33
@@ -61,9 +67,9 @@ msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
 
 #
-# File: modules/development_tools/macros/assert/assert_checkalmostequal.sci, line: 130
-# File: modules/development_tools/macros/assert/assert_checkalmostequal.sci, line: 134
-# File: modules/development_tools/macros/assert/assert_checkalmostequal.sci, line: 138
+# File: modules/development_tools/macros/assert/assert_checkalmostequal.sci, line: 137
+# File: modules/development_tools/macros/assert/assert_checkalmostequal.sci, line: 141
+# File: modules/development_tools/macros/assert/assert_checkalmostequal.sci, line: 145
 # File: modules/development_tools/macros/assert/assert_checkerror.sci, line: 59
 # File: modules/development_tools/macros/assert/assert_checkerror.sci, line: 70
 # File: modules/development_tools/macros/assert/assert_checkfilesequal.sci, line: 49
@@ -81,8 +87,8 @@ msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/development_tools/macros/assert/assert_checkalmostequal.sci, line: 144
-# File: modules/development_tools/macros/assert/assert_checkalmostequal.sci, line: 148
+# File: modules/development_tools/macros/assert/assert_checkalmostequal.sci, line: 151
+# File: modules/development_tools/macros/assert/assert_checkalmostequal.sci, line: 155
 # File: modules/development_tools/macros/assert/assert_comparecomplex.sci, line: 123
 # File: modules/development_tools/macros/assert/assert_comparecomplex.sci, line: 127
 # File: modules/development_tools/macros/assert/assert_cond2reltol.sci, line: 141
@@ -93,13 +99,13 @@ msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
 msgstr ""
 
 #
-# File: modules/development_tools/macros/assert/assert_checkalmostequal.sci, line: 152
+# File: modules/development_tools/macros/assert/assert_checkalmostequal.sci, line: 159
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set  {%s}.\n"
 msgstr ""
 
 #
-# File: modules/development_tools/macros/assert/assert_checkalmostequal.sci, line: 160
+# File: modules/development_tools/macros/assert/assert_checkalmostequal.sci, line: 167
 # File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 84
 # File: modules/development_tools/macros/assert/assert_computedigits.sci, line: 92
 #, c-format
@@ -107,7 +113,13 @@ msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 
 #
-# File: modules/development_tools/macros/assert/assert_checkalmostequal.sci, line: 189
+# File: modules/development_tools/macros/assert/assert_checkalmostequal.sci, line: 172
+#, c-format
+msgid "%s: Arguments #%d and #%d: Same degrees expected.\n"
+msgstr ""
+
+#
+# File: modules/development_tools/macros/assert/assert_checkalmostequal.sci, line: 210
 # File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 158
 #, c-format
 msgid "%s: Assertion failed: expected = %s while computed = %s"
@@ -425,7 +437,7 @@ msgstr ""
 
 #
 # File: modules/development_tools/macros/test_clean.sci, line: 138
-# File: modules/development_tools/macros/test_run.sci, line: 388
+# File: modules/development_tools/macros/test_run.sci, line: 392
 #, c-format
 msgid "The test %s is not available from the %s module"
 msgstr ""
@@ -438,25 +450,25 @@ msgid "%s: Wrong number of input arguments."
 msgstr ""
 
 #
-# File: modules/development_tools/macros/test_run.sci, line: 342
+# File: modules/development_tools/macros/test_run.sci, line: 345
 #, c-format
 msgid "%s is not an installed module or toolbox"
 msgstr ""
 
 #
-# File: modules/development_tools/macros/test_run.sci, line: 655
+# File: modules/development_tools/macros/test_run.sci, line: 666
 msgid ""
 "option JVM NOT MANDATORY is deprecated, please use CLI SHELL MODE instead"
 msgstr ""
 
 #
-# File: modules/development_tools/macros/test_run.sci, line: 1177
+# File: modules/development_tools/macros/test_run.sci, line: 1185
 #, c-format
 msgid "The ref file (%s) doesn't exist"
 msgstr ""
 
 #
-# File: modules/development_tools/macros/test_run.sci, line: 1324
+# File: modules/development_tools/macros/test_run.sci, line: 1332
 #, c-format
 msgid ""
 "The file '%s' is not following the XUnit XML format. Root tag expected "

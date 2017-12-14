@@ -8,59 +8,59 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-10-10 13:17+0000\n"
+"PO-Revision-Date: 2017-11-02 12:35+0000\n"
 "Last-Translator: Webish <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18511)\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数的数目错误：应该为%d到%d个。\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr ""
+msgstr "%s：输出参数的数目错误：应该为%d个。\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Real vector expected.\n"
-msgstr ""
+msgstr "%s：参数%d的类型错误：应该为实数向量。\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Matrix expected.\n"
-msgstr ""
+msgstr "%s：参数%d的类型错误：应该为矩阵。\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments %d: A vector of size %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数%d的维度错误：应该为%d元素向量。\n"
 
 #, c-format
 msgid "%s: Incompatible input argument.\n"
-msgstr ""
+msgstr "%s:：输入参数不兼容。\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数的数目错误：应该为%d个。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A matrix of integer value expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的类型错误：应该为矩阵或整数。\n"
 
 #, c-format
 msgid "%s: insufficient working storage"
-msgstr ""
+msgstr "%s：工作存储容量不足"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d  expected.\n"
-msgstr ""
+msgstr "%s：输入参数的数目错误：应该为%d个。\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s：输出参数的数目错误：应该为%d个。\n"
 
 #, c-format
 msgid ""
@@ -73,15 +73,15 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): At most %d expected.\n"
-msgstr ""
+msgstr "%s：输出参数的数目错误：最多为%d个。\n"
 
 #, c-format
 msgid "%s: Wrong number of dimensions for input argument #%d.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的维数错误。\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
-msgstr ""
+msgstr "%s：参数%d的类型错误：应该为实数矩阵。\n"
 
 #, c-format
 msgid "%s not yet implemented for full input parameter.\n"
@@ -89,15 +89,15 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Incompatible dimensions.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的维度错误：不兼容的维数。\n"
 
 #, c-format
 msgid "%s: Wrong type argument %d: Sparse or matrix expected.\n"
-msgstr ""
+msgstr "%s：参数%d的类型错误：应该为稀疏矩阵或普通矩阵。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的类型错误：应该为整数。\n"
 
 msgid ""
 " The provided \"n\" does not correspond to the matrix defined by xadj and "
@@ -106,11 +106,11 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: sparse matrix expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的类型错误：应该为稀疏矩阵。\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
-msgstr "%s：输出参数的数目错误：应该为%d与%d个。\n"
+msgstr "%s：输出参数的数目错误：应该为%d到%d个。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
@@ -118,33 +118,33 @@ msgstr "%s：第%d个输入参数的类型有误：应该为矩阵。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A m-by-n matrix expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的维度错误：应该为m×n矩阵\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real or Complex matrix expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的类型错误：应该为实数或矩阵或复数矩阵。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A matrix of size %d x %d expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的维度错误：应该为%dx%d矩阵。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A matrix of size %d expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的维度错误：应该为%d维矩阵。\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Sparse matrix expected.\n"
-msgstr ""
+msgstr "%s：第%d个参数的类型错误：应该为稀疏矩阵。\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
-msgstr ""
+msgstr "%s：第%d个参数的类型错误：应该为实数矩阵。\n"
 
 #, c-format
 msgid "%s: Wrong size for argument #%d: Square sparse matrix expected.\n"
-msgstr ""
+msgstr "%s：第%d个参数的维度错误：应该为稀疏方阵。\n"
 
 #, c-format
 msgid "%s: The provided data did not satisfy the prerequisites.\n"
@@ -159,18 +159,20 @@ msgid ""
 "%s: The inputs are invalid, or the algorithm has been improperly called.\n"
 "When assertions are enabled, such errors trigger an assert.\n"
 msgstr ""
+"%s：输入无效，或者算法调用失误。\n"
+"当启用声明，上述错误会触发声明。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real vector expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的类型错误：应该为实数向量。\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Sparse matrix expected.\n"
-msgstr ""
+msgstr "%s：输入参数%d的类型错误：应该为稀疏矩阵。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的类型错误：应该为标量。\n"
 
 #, c-format
 msgid "%s: A zero was encountered on the diagonal the matrix.\n"
@@ -198,11 +200,11 @@ msgstr ""
 
 #, c-format
 msgid "Size of matrix = %1u x %1u.\n"
-msgstr "矩阵大小= %1u x %1u。\n"
+msgstr "矩阵维度 = %1u x %1u。\n"
 
 #, c-format
 msgid "Matrix has been reordered.\n"
-msgstr "矩阵被重新排序。\n"
+msgstr "矩阵已重新排序。\n"
 
 #, c-format
 msgid "Matrix after factorization:\n"
@@ -234,11 +236,11 @@ msgid ""
 "Largest diagonal element = %-1.4lg.\n"
 msgstr ""
 "\n"
-"最大对角线元素 = %-1.4lg。\n"
+"对角线最大元素 = %-1.4lg。\n"
 
 #, c-format
 msgid "Smallest diagonal element = %-1.4lg.\n"
-msgstr "最小对角线元素 = %-1.4lg。\n"
+msgstr "对角线最小元素 = %-1.4lg。\n"
 
 #, c-format
 msgid ""
@@ -270,7 +272,7 @@ msgstr "警告：以下矩阵分解到LU形式。\n"
 
 #, c-format
 msgid "Matrix has not been factored.\n"
-msgstr "矩阵并没有被分解。\n"
+msgstr "矩阵未被分解。\n"
 
 #, c-format
 msgid "|||  Starting new matrix  |||\n"
@@ -286,11 +288,11 @@ msgstr "矩阵是实数矩阵。\n"
 
 #, c-format
 msgid "     Initial number of elements = %d\n"
-msgstr "     初等数字元素= %d\n"
+msgstr "     元素初始数目=%d\n"
 
 #, c-format
 msgid "     Initial average number of elements per row = %lf\n"
-msgstr ""
+msgstr "     每行元素初始平均数目=%lf\n"
 
 #, c-format
 msgid "     Fill-ins = %d\n"
@@ -302,11 +304,11 @@ msgstr "     每行平均填充项= %lf%%\n"
 
 #, c-format
 msgid "     Total number of elements = %d\n"
-msgstr "     元素总量= %d\n"
+msgstr "     元素总数= %d\n"
 
 #, c-format
 msgid "     Average number of elements per row = %lf\n"
-msgstr "     每行平均元素= %lf\n"
+msgstr "     每行元素平均数目= %lf\n"
 
 #, c-format
 msgid "     Density = %lf%%\n"
@@ -375,16 +377,16 @@ msgid "Algorithm pass\n"
 msgstr "算法通过\n"
 
 msgid "  Possible matrix is not positive definite."
-msgstr ""
+msgstr "  可能的矩阵非正定。"
 
 msgid "Non-positive diagonal encountered, matrix is not positive definite."
-msgstr ""
+msgstr "出现非正对角线，矩阵非正定"
 
 msgid "Insufficient working storage in blkfct, temp(*)."
-msgstr ""
+msgstr "blkfct、temp(*)中工作存储容量不足。"
 
 msgid "Insufficient working storage in blkfct, iwork(*)."
-msgstr ""
+msgstr "blkfct、iwork(*)中工作存储容量不足。"
 
 msgid " SYMFCT requires PERM to be neqns x 1"
 msgstr ""
@@ -396,11 +398,11 @@ msgid " SYMFCT requires CACHSZ  to be 1 x 1"
 msgstr ""
 
 msgid " Insufficient working storage in sfinit"
-msgstr ""
+msgstr " sfinit中工作存储容量不足。"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s：输入参数的数目错误：应该为%d到%d个参数。\n"
+msgstr "%s：输入参数的数目错误：应该为%d到%d个。\n"
 
 #, c-format
 msgid "Arguments:\n"
@@ -408,11 +410,11 @@ msgstr "参数：\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
-msgstr "%s：输入参数#%d的类型错误。\n"
+msgstr "%s：第%d个输入参数的类型错误。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Square matrix expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为方阵。\n"
+msgstr "%s：第%d个输入参数的类型错误：应该为方阵。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
@@ -422,50 +424,51 @@ msgstr "%s：第%d个输入参数的类型错误：应该为列向量。\n"
 msgid ""
 "%s: Wrong size for input argument #%d: Same size as input argument #%d "
 "expected.\n"
-msgstr "%s：第%d个输入参数的大小错误：应该与第%d个输入参数的大小相同。\n"
+msgstr "%s：第%d个输入参数的维度错误：应该与第%d个输入参数的维数相同。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Single String expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的类型错误：应该为字符串。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %s, %s, %s or %s expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：应该为%s、%s、%s或%s。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为标量。\n"
+msgstr "%s：第%d个输入参数的类型错误：应该为标量。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Column vector expected.\n"
-msgstr "%s：输入参数#%d的值错误：应该为列向量。\n"
+msgstr "%s：第%d个输入参数的值错误：应该为列向量。\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: At least %d expected.\n"
-msgstr "%s：输入参数的个数错误：应该至少有%d个。\n"
+msgstr "%s：输入参数的数目错误：应该至少为%d个。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Column vector expected.\n"
-msgstr "%s：第%d个输入参数的大小错误：应该为列向量。\n"
+msgstr "%s：第%d个输入参数的维度错误：应该为列向量。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
-msgstr "%s：第%d个输入参数的大小错误：应该为标量。\n"
+msgstr "%s：第%d个输入参数的维度错误：应该为标量。\n"
 
 #, c-format
 msgid "%s: Did not converge.\n"
-msgstr "%s：无法收敛。\n"
+msgstr "%s：不收敛。\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
-msgstr "%s：输入参数的数目错误：至少应该输入%d个。\n"
+msgstr "%s：输入参数的数目错误：应该至少为%d个。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d : A real or complex matrix or a sparse "
 "matrix or a function expected.\n"
 msgstr ""
-"%s：第%d个输入参数的类型错误：应该为实数或复数矩阵，或稀疏矩阵，或函数。\n"
+"%s：第%d个输入参数的类型错误：应该为实数矩阵或复数矩阵，或稀疏矩阵，或函"
+"数。\n"
 
 #, c-format
 msgid ""
@@ -477,7 +480,7 @@ msgstr "%s：第%d个输入参数的值错误：应该为函数%s的转置。\n"
 msgid ""
 "%s: Wrong type for input argument #%d: A transpose of the function %s "
 "expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的类型错误：应该为函数%s的转置。\n"
 
 #, c-format
 msgid ""
@@ -489,13 +492,14 @@ msgstr ""
 msgid ""
 "%s: Wrong type for input argument #%d: A real or complex, full or sparse "
 "column vector expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的类型错误：应该为实数或复数的满秩列或稀疏列向量。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A real or complex, full or sparse, "
 "square matrix or a function expected.\n"
 msgstr ""
+"%s：第%d个输入参数的类型错误：应该为实数或复数的满秩或稀疏矩阵，或者函数。\n"
 
 #, c-format
 msgid ""
@@ -513,7 +517,7 @@ msgstr ""
 msgid ""
 "%s: Wrong prototype of input argument #%d: If M1 is function, use the header "
 "M1(x,t) instead M1(x).\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的原型错误：若M1为函数，则应使用M1(x,t)而非M1(x)。\n"
 
 #, c-format
 msgid ""
@@ -525,11 +529,11 @@ msgstr ""
 msgid ""
 "%s: Wrong prototype of input argument #%d: If M2 is function, use the header "
 "M2(x,t) instead M2(x).\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的原型错误：若M2为函数，则应使用M2(x,t)而非M2(x)。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real scalar expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的类型错误：应该为实数标量。\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"

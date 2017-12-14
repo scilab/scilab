@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-12-08 11:54+0000\n"
+"PO-Revision-Date: 2017-05-01 23:07+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18511)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
@@ -88,15 +88,15 @@ msgstr ""
 "した.\n"
 
 msgid "Parameters"
-msgstr ""
+msgstr "パラメータ"
 
 msgid "plist handling"
-msgstr ""
+msgstr "plist処理"
 
 msgid ""
 "This demo shows examples of plist utilizations: creation, insertion, "
 "removal, ..."
-msgstr ""
+msgstr "このデモはplistの使用例を示します: 作成, 挿入, 削除, ..."
 
 #, c-format
 msgid ""
@@ -104,50 +104,65 @@ msgid ""
 "Create a plist '%s' containing two fields 'min' = [0 0 0] and 'max' = [1 1 "
 "1].\n"
 msgstr ""
+"\n"
+"2つのフィールド'min' = [0 0 0] および 'max' = [1 1 1]を有する plist '%s' を作"
+"成します.\n"
 
 #, c-format
 msgid ""
 "\n"
 "Check fields: \n"
 msgstr ""
+"\n"
+"フィールドを確認: \n"
 
 #, c-format
 msgid "Set 'min' = [0 0 0] and 'max' = [1 1 1]:\n"
-msgstr ""
+msgstr "min' = [0 0 0] および 'max' = [1 1 1]を設定:\n"
 
 #, c-format
 msgid "Check values: \n"
-msgstr ""
+msgstr "値を確認: \n"
 
 #, c-format
 msgid ""
 "\n"
 "Remove the parameter 'min' from %s.\n"
 msgstr ""
+"\n"
+"パラメータ 'min' を %s から削除.\n"
 
 #, c-format
 msgid ""
 "\n"
 "Before remove_param: \n"
 msgstr ""
+"\n"
+"remove_paramの前: \n"
 
 #, c-format
 msgid ""
 "\n"
 "After remove_param: \n"
 msgstr ""
+"\n"
+"remove_paramの後: \n"
 
 #, c-format
 msgid ""
 "\n"
 "Check removal: \n"
 msgstr ""
+"\n"
+"削除を確認: \n"
 
 #, c-format
 msgid ""
 "\n"
 "Check type: \n"
 msgstr ""
+"\n"
+"型を確認: \n"
 
 #, c-format
 msgid "Second output argument of %s is obsolete.\n"

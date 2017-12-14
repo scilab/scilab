@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-07-01 17:29+0000\n"
+"PO-Revision-Date: 2017-04-16 14:06+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18511)\n"
 
 #, c-format
 msgid "%s: Answer appears to be lower than lowest search bound %g\n"
@@ -164,6 +164,7 @@ msgstr ""
 #, c-format
 msgid "%s: Argument #%d: Decimal or complex number(s) expected.\n"
 msgstr ""
+"%s: Аргумент №%d: ожидалось десятичное или комплексное число (числа).\n"
 
 #, c-format
 msgid "%s: Argument #%d: Must be in the set {%s}.\n"
@@ -234,12 +235,14 @@ msgstr ""
 msgid "%s: Wrong number of input argument: %d to %d expected.\n"
 msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d.\n"
 
+#
+# File: modules/statistics/macros/mean.sci, line: 39
+# File: modules/statistics/macros/stdev.sci, line: 59
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: Real vector or matrix expected.\n"
+"%s: Function not defined for given argument #%d type.\n"
+"Check arguments or define function %s for overloading.\n"
 msgstr ""
-"%s: Неверный тип входного параметра №%d: ожидался вектор или матрица "
-"вещественных чисел.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar or vector expected.\n"
@@ -390,6 +393,11 @@ msgstr "Корреляцонный Круг"
 msgid "Eigenvalues"
 msgstr "Собственные значения"
 
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Array of real numbers expected.\n"
+msgstr ""
+"%s: Аргумент №%d: ожидалось десятичное или комплексное число (числа).\n"
+
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
 msgstr "%s: Неверный размер входного аргумента №%d.\n"
@@ -464,3 +472,9 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
 msgstr "%s: Неверное значение входного параметра №%d: должно быть > %d.\n"
+
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Real vector or matrix expected.\n"
+#~ msgstr ""
+#~ "%s: Неверный тип входного параметра №%d: ожидался вектор или матрица "
+#~ "вещественных чисел.\n"

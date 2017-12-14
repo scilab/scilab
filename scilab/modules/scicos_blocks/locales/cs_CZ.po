@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18511)\n"
 
 msgid "overflow error"
 msgstr "chyba přetečení"
@@ -494,70 +494,8 @@ msgstr "Impicitní výstupní port"
 msgid "Regular output port"
 msgstr "Normální výstupní port"
 
-#, c-format
-msgid "Feature %s is obsolete."
-msgstr "Funkce %s je zastaralá."
-
-#, c-format
-msgid "Please use %s instead."
-msgstr "Použijte místo toho %s prosím."
-
-msgid "Write to output file"
-msgstr "Zapsat do výstupního souboru"
-
-msgid "&nbsp; - A binary file if no format given"
-msgstr "&nbsp; - Binární soubor, pokud formát není zadán"
-
-msgid "Write is done on:"
-msgstr "Zápis je hotov na:"
-
-msgid "&nbsp; - A formatted text file if a  format (Fortran type) is given"
-msgstr ""
-"&nbsp; - Formátovaný textový soubor pokud je zadán formát (Typ Fortran)"
-
-msgid "Input Size"
-msgstr "Vstupní Velikost"
-
-msgid "Output File Name"
-msgstr "Název výstupního souboru"
-
 msgid "Buffer Size"
 msgstr "Velikost Vyrovnávací Paměti"
-
-msgid "Output Format"
-msgstr "Výstupní formát"
-
-msgid "End current simulation first."
-msgstr "Nejdříve ukončit současnou simulaci."
-
-msgid ""
-"Simulation running !!! You cannot switch<br />between formatted and "
-"unformatted when running"
-msgstr ""
-"Simulace běží !!! Nemůžete při běhu přepnout<br />mezi formátovaným a "
-"neformátovaným"
-
-msgid "You cannot modify 'Output File Name' when running."
-msgstr "Nemůžete při běhu změnit 'Název Výstupního Souboru'."
-
-msgid "Wrong value for 'Output File Name' parameter"
-msgstr "Špatná hodnota parametru 'Název Výstupního Souboru'"
-
-msgid "You must provide a filename."
-msgstr "Musíte zadat název souboru."
-
-#, c-format
-msgid "Directory '%s' does not exist"
-msgstr "Adresář '%s' neexistuje"
-
-msgid "Input Format"
-msgstr "Vstupní Formát"
-
-msgid "You must enclose the format's string between parentheses."
-msgstr "Musíte uzavřít řetězec formátu do závorek."
-
-msgid "Must be greater than 1."
-msgstr "Musí být větší než 1"
 
 msgid "Swap Mode (0:No, 1:Yes)"
 msgstr "Režim Výměny (0:Ne, 1:Ano)"
@@ -575,8 +513,20 @@ msgstr "Nejdříve ukončit současnou simulaci"
 msgid "Swap Mode"
 msgstr "Režim Výměny"
 
+msgid "Input Size"
+msgstr "Vstupní Velikost"
+
+msgid "Output File Name"
+msgstr "Název výstupního souboru"
+
 msgid "Write to C binary file"
 msgstr "Zapsat do binárního souboru C"
+
+msgid "Output Format"
+msgstr "Výstupní formát"
+
+msgid "Input Format"
+msgstr "Vstupní Formát"
 
 msgid "Valid formats are: "
 msgstr "Platné formáty jsou: "
@@ -585,8 +535,18 @@ msgstr "Platné formáty jsou: "
 msgid "You cannot modify '%s' when running"
 msgstr "Nemůžete při běhu změnit '%s'"
 
+msgid "End current simulation first."
+msgstr "Nejdříve ukončit současnou simulaci."
+
 msgid "You cannot modify 'Buffer Size' when running."
 msgstr "Nemůžete při běhu změnit 'Velikost vyrovnávací paměti'."
+
+msgid "You must provide a filename."
+msgstr "Musíte zadat název souboru."
+
+#, c-format
+msgid "Directory '%s' does not exist"
+msgstr "Adresář '%s' neexistuje"
 
 msgid "Event input port"
 msgstr "Vstupní port události"
@@ -780,6 +740,9 @@ msgstr "[1, Velikost Záznamu = "
 msgid "Wrong value for indexes in '%s' parameter: %s."
 msgstr "Špatná hodnota pro indexy v parametru '%s': %s."
 
+msgid "&nbsp; - A binary file if no format given"
+msgstr "&nbsp; - Binární soubor, pokud formát není zadán"
+
 msgid "Read from an input file"
 msgstr "Číst ze vstupního souboru"
 
@@ -817,6 +780,9 @@ msgstr "Špatná hodnota pro parametr '%s': %s"
 msgid "Wrong format for '%s' parameter: %s."
 msgstr "Špatný formát pro parametr '%s': %s."
 
+msgid "You must enclose the format's string between parentheses."
+msgstr "Musíte uzavřít řetězec formátu do závorek."
+
 msgid "Buffer size must be at least 2."
 msgstr "Velikost vyrovnávací paměti musí být alespoň 2."
 
@@ -846,3 +812,35 @@ msgstr "Očekávány stejné velikosti"
 #, c-format
 msgid "%s: Wrong number of input arguments: At most %d expected.\n"
 msgstr ""
+
+#~ msgid "Feature %s is obsolete."
+#~ msgstr "Funkce %s je zastaralá."
+
+#~ msgid "Please use %s instead."
+#~ msgstr "Použijte místo toho %s prosím."
+
+#~ msgid "Write to output file"
+#~ msgstr "Zapsat do výstupního souboru"
+
+#~ msgid "Write is done on:"
+#~ msgstr "Zápis je hotov na:"
+
+#~ msgid "&nbsp; - A formatted text file if a  format (Fortran type) is given"
+#~ msgstr ""
+#~ "&nbsp; - Formátovaný textový soubor pokud je zadán formát (Typ Fortran)"
+
+#~ msgid ""
+#~ "Simulation running !!! You cannot switch<br />between formatted and "
+#~ "unformatted when running"
+#~ msgstr ""
+#~ "Simulace běží !!! Nemůžete při běhu přepnout<br />mezi formátovaným a "
+#~ "neformátovaným"
+
+#~ msgid "You cannot modify 'Output File Name' when running."
+#~ msgstr "Nemůžete při běhu změnit 'Název Výstupního Souboru'."
+
+#~ msgid "Wrong value for 'Output File Name' parameter"
+#~ msgstr "Špatná hodnota parametru 'Název Výstupního Souboru'"
+
+#~ msgid "Must be greater than 1."
+#~ msgstr "Musí být větší než 1"

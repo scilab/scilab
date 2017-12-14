@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-10-10 13:02+0000\n"
+"PO-Revision-Date: 2017-11-02 14:53+0000\n"
 "Last-Translator: Webish <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18511)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -35,12 +35,12 @@ msgstr "%s：第%d个参数的类型错误：应该为实矩阵或‘只读’�
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
-msgstr "%s：第%d个参数的类型错误：应该为实矩阵。\n"
+msgstr "%s：第%d个参数的类型错误：应该为实数矩阵。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input arguments #%d and #%d: Same dimensions expected.\n"
-msgstr "%s：输入参数#%d和#%d的大小错误：应该为同样的维数。\n"
+msgstr "%s：第%d个输入参数和第%d个输入参数的维度错误：应该为相同维数。\n"
 
 msgid "Graphics handle field"
 msgstr "图形句柄域"
@@ -271,7 +271,7 @@ msgid "Enable Auto Reformat"
 msgstr "启用自动重新格式化"
 
 msgid "Line Endings"
-msgstr "行结束符"
+msgstr "换行符"
 
 msgid "Auto (Default)"
 msgstr "自动（默认）"
@@ -498,14 +498,14 @@ msgstr "显示宏定义 "
 
 #, c-format
 msgid "Line %s, Column %s. Function '%s' at Line %s."
-msgstr "行%s，列%s。行%s处函数‘%s’。"
+msgstr "第%s行，第%s列。函数‘%s’在第%s行。"
 
 msgid "Unknown function"
 msgstr "未知函数"
 
 #, c-format
 msgid "Line %s, Column %s."
-msgstr "行%s，列%s。"
+msgstr "第%s行，第%s列。"
 
 msgid "Copyright (c)"
 msgstr "版权所有 (c)"
@@ -553,13 +553,13 @@ msgstr "将所选内容复制到新标签页"
 #, c-format
 msgid ""
 "The file encoding is actually %s and it will be saved in using %s. Continue ?"
-msgstr "文件编码实际是%s，并会已%s编码保存。继续？"
+msgstr "文件实际编码是%s，但会以%s编码保存，继续？"
 
 msgid "Encoding problems"
 msgstr "编码问题"
 
 msgid "Cannot guess the file encoding."
-msgstr "不能猜出文件编码"
+msgstr "无法推测文件编码"
 
 #, c-format
 msgid "Cannot save the file %s... stop the backup process"
@@ -574,22 +574,22 @@ msgstr "目录%s不存在，是否创建？"
 
 #, c-format
 msgid "The directory %s cannot be created. Please check your access rights."
-msgstr ""
+msgstr "无法创建%s文件夹，请检查你的访问权限。"
 
 #, c-format
 msgid "Impossible to write a file in %s. Please check your access rights."
-msgstr ""
+msgstr "无法在%s文件夹中创建文件，请检查你的访问权限。"
 
 #, c-format
 msgid "Invalid directory name: %s."
-msgstr ""
+msgstr "无效文件夹名称：%s。"
 
 msgid "SciNotes autosave"
 msgstr "SciNotes自动保存"
 
 #, c-format
 msgid "%s occurences found."
-msgstr ""
+msgstr "找到%s项"
 
 msgid "Change Colors"
 msgstr "更改颜色"
@@ -867,7 +867,7 @@ msgid "Single to double quote strings"
 msgstr "字符串单引号转为双引号"
 
 msgid "Current file encoding"
-msgstr "当前文件编码"
+msgstr "文件编码"
 
 msgid "Preferences"
 msgstr "首选项"
@@ -879,7 +879,7 @@ msgid "Set colors"
 msgstr "设置颜色"
 
 msgid "Scinotes General settings"
-msgstr "Scinotes一般设置"
+msgstr "一般设置"
 
 msgid "Auto-completion on"
 msgstr "自动补全开"
@@ -891,7 +891,7 @@ msgid "if, function, ..."
 msgstr "if, function, ..."
 
 msgid "Line numbering;Off;Normal;Local numbering"
-msgstr ""
+msgstr "显示行号：关；普通；局部编号"
 
 msgid "Suppress comments when executing selection"
 msgstr "执行所选内容时不显示注释"
@@ -906,7 +906,7 @@ msgid "Detach tab in new window"
 msgstr "将标签页分离到新窗口"
 
 msgid "Split View;Off;Split in two columns;Split in two rows"
-msgstr ""
+msgstr "分割视图：关；分割成两列；分割成两行"
 
 msgid "... file with no echo"
 msgstr "....文件带回显"
@@ -966,16 +966,16 @@ msgid "Number of recently opened files to display: "
 msgstr "显示最近打开文件数目: "
 
 msgid "Default file encoding: "
-msgstr "默认文件编码: "
+msgstr "文件默认编码： "
 
 msgid "Default End-Of-Line: "
-msgstr "默认行结束符 "
+msgstr "默认行换行符： "
 
 msgid "Completion"
 msgstr "补全"
 
 msgid "Auto-complete brackets when cursor is at the end of a line"
-msgstr ""
+msgstr "光标在行尾时自动补全括号"
 
 msgid "General display options"
 msgstr "一般显示选项"
@@ -987,7 +987,7 @@ msgid "Show line numbers: "
 msgstr "显示行号: "
 
 msgid "Local numbering"
-msgstr ""
+msgstr "局部编号"
 
 msgid "Normal"
 msgstr "普通"
@@ -1111,13 +1111,13 @@ msgid " on line "
 msgstr ""
 
 msgid "Opening file "
-msgstr ""
+msgstr "正在打开文件 "
 
 msgid " of the source file of the function "
 msgstr ""
 
 msgid "The source file of the function "
-msgstr ""
+msgstr "函数源文件 "
 
 msgid " was not found in any library path"
 msgstr ""

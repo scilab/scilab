@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 22:09+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2017-02-05 11:31+0000\n"
+"Last-Translator: Paul Bignier <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18511)\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
@@ -206,15 +206,17 @@ msgstr "%s : Erreur.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s : Nombre erroné d'argument(s) de sortie : %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : string expected.\n"
 msgstr ""
+"%s : Type erroné pour l'argument d'entrée n°%d : une chaîne de caractères "
+"attendue.\n"
 
 #, c-format
 msgid "The file %s does not exist.\n"
@@ -222,11 +224,11 @@ msgstr "Le fichier %s n'existe pas.\n"
 
 #, c-format
 msgid "%s: Cannot read file name.\n"
-msgstr ""
+msgstr "%s : Nom de fichier illisible.\n"
 
 #, c-format
 msgid "%s: The file %s does not exist.\n"
-msgstr ""
+msgstr "%s : Le fichier %s n'existe pas.\n"
 
 #, c-format
 msgid "%s: File %s is not an ole2 file.\n"
@@ -238,15 +240,15 @@ msgstr "%s : Impossible d'ouvrir le fichier %s.\n"
 
 #, c-format
 msgid "There is no xls stream in the ole2 file %ls.\n"
-msgstr ""
+msgstr "Pas de stream xls dans le fichier ole2 %ls.\n"
 
 #, c-format
 msgid "%s: invalid filename.\n"
-msgstr ""
+msgstr "%s : Nom de fichier invalide.\n"
 
 #, c-format
 msgid "%s: invalid status.\n"
-msgstr ""
+msgstr "%s : Statut invalide.\n"
 
 #, c-format
 msgid "%s: Not an ole2 file.\n"
@@ -271,6 +273,7 @@ msgstr "%s : Seul le format de fichier BIFF8 est pris en charge.\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A scalar expected.\n"
 msgstr ""
+"%s : Type erroné pour l'argument d'entrée n°%d : un scalaire attendu.\n"
 
 #, c-format
 msgid "%s: Failed to read expected data, may be invalid xls file.\n"
@@ -473,7 +476,7 @@ msgid "Scilab spreadsheet module not installed.\n"
 msgstr "Le module spreadsheet de Scilab n'est pas installé.\n"
 
 msgid "Spreadsheet"
-msgstr ""
+msgstr "Tableur"
 
 msgid "Read a xls file"
-msgstr ""
+msgstr "Lecture d'un fichier xls"

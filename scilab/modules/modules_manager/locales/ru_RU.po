@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-12-06 16:46+0000\n"
+"PO-Revision-Date: 2017-03-01 14:53+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18511)\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
@@ -126,9 +126,8 @@ msgstr "Формирование локализации\n"
 msgid "%s: Wrong type for input argument #%d: A string array expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидался массив строк.\n"
 
-#, fuzzy
 msgid "Generating cleaner_src.sce...\n"
-msgstr "Формирование cleaner.sce...\n"
+msgstr "Формирование cleaner_src.sce...\n"
 
 #, c-format
 msgid "%s: The file '%s' doesn't exist or is not read accessible.\n"
@@ -147,7 +146,7 @@ msgstr "Сборка файлов-шлюзов...\n"
 
 #, c-format
 msgid "Could not use the default compilation of gateways in %s."
-msgstr ""
+msgstr "Не удалось использовать компиляцию шлюза в %s по умолчанию."
 
 #, c-format
 msgid "No builder script found in %s."
@@ -179,8 +178,14 @@ msgstr "Сборочный файл не найден, нечего делать
 msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
 msgstr "%s: Аргумент №%d: ожидался скаляр (1 элемент).\n"
 
-#, c-format
-msgid "%s: Yeah! %d is a good number of arguments but I prefer fail, sorry.\n"
+#
+# File: modules/modules_manager/tests/tbx/testbox/macros/scilab_error.sci, line: 13
+# File: modules/modules_manager/tests/tbx/testbox/macros/scilab_error.sci, line: 17
+msgid "toolbox_skeleton"
 msgstr ""
-"%s: Мда! %d является хорошим количеством аргументов, но, простите, я "
-"предпочту рухнуть.\n"
+
+#~ msgid ""
+#~ "%s: Yeah! %d is a good number of arguments but I prefer fail, sorry.\n"
+#~ msgstr ""
+#~ "%s: Мда! %d является хорошим количеством аргументов, но, простите, я "
+#~ "предпочту рухнуть.\n"

@@ -8,51 +8,58 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-12-07 22:11+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2017-05-02 11:09+0000\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18511)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong method for input argument #%d: %s unknown.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の手法が間違っています: %s が未知.\n"
 
 #, c-format
 msgid "%s: Wrong position for input argument #%d : Must be in position %d.\n"
 msgstr ""
+"%s: 入力引数 #%d の位置が間違っています: 位置 %d にある必要があります.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A matrix expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: 行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A scalar expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: スカラーを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : string expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d : Only one string expected.\n"
 msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: 文字列を一つだけ指定してくださ"
+"い.\n"
 
 msgid "Missing vect for random permutation\n"
 msgstr "ランダム置換でvectが指定されていません\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Positive scalar expected.\n"
@@ -62,103 +69,123 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d : At least %lf expected.\n"
 msgstr ""
+"%s: 入力引数 #%d の値が間違っています: %lf 以上の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d : Positive integer expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の値が間違っています: 正の整数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d : A value expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の値が間違っています: 値を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d : Positive no null value expected.\n"
 msgstr ""
+"%s: 入力引数 #%d の値が間違っています: 正のヌルでない値を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d : value > 1.0 expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の値が間違っています: 値 > 1.0 を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d : Positive value expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の値が間違っています: 正の値を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d : Positive non null value expected.\n"
 msgstr ""
+"%s: 入力引数 #%d の値が間違っています: 正のヌルでない値を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d : A matrix of size m x 1 expected.(m > "
 "0)\n"
 msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: 大きさ m x 1 の行列を指定してくだ"
+"さい(m>0).\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input arguments #%d and #%d: Mean and Cov have "
 "incompatible dimensions.\n"
 msgstr ""
+"%s: 入力引数 #%d および #%d の大きさが間違っています: 平均と共分散の次元が互"
+"換性を有する必要があります.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d : A square symmetric positive definite "
 "matrix expected.\n"
 msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: 正方対称正定行列を指定してくださ"
+"い.\n"
 
 #, c-format
 msgid "%s: setgmn return with state %d.\n"
-msgstr ""
+msgstr "%s: setgmn は状態 %d を返します.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d : Must be between %lf and %d.\n"
 msgstr ""
+"%s: 入力引数 #%d の値が間違っています: %lf および %d の間としてください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d : A square matrix or a row vector "
 "expected.\n"
 msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: 正方行列または行ベクトルを指定して"
+"ください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: No empty matrix expected.\n"
 msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: 空でない行列を指定してください.\n"
 
 #, c-format
 msgid "%s: X0(%d) must be in the range [1,%d[.\n"
-msgstr ""
+msgstr "%s: X0(%d) は範囲 [1,%d[とする必要があります.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: P(%d,%d) must be in the range [0 "
 "1].\n"
 msgstr ""
+"%s: 入力引数 #%d の値が間違っています:  P(%d,%d) は範囲[0 1]とする必要があり"
+"ます.\n"
 
 #, c-format
 msgid "%s: Sum of P(%d,1:%d)=%lf ~= 1.\n"
-msgstr ""
+msgstr "%s: P(%d,1:%d)=%lf ~= 1 の合計.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: スカラーを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A positive scalar expected.\n"
 msgstr ""
+"%s: 入力引数 #%d の値が間違っています:  正のスカラーを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
 msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: 列ベクトルを指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: P(%d) must be in the range [0 1].\n"
 msgstr ""
+"%s: 入力引数 #%d の値が間違っています:  P(%d) は範囲[0 1]とする必要がありま"
+"す.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Sum of P(i) > 1.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の値が間違っています:  P(i)の合計 > 1 .\n"
 
 #, c-format
 msgid ""
@@ -171,12 +198,16 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input arguments #%d and #%d: Low < High expected.\n"
 msgstr ""
+"%s: 入力引数 #%dと #%d の値が間違っています:  Low < High となるように指定して"
+"ください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input arguments #%d and #%d: Low and High must be "
 "integers and (high - low + 1) <=  2147483561.\n"
 msgstr ""
+"%s: 入力引数 #%dと #%d の値が間違っています:  Low および High は整数値で "
+"(high - low + 1) <= 2147483561である必要があります.\n"
 
 #, c-format
 msgid ""
@@ -191,14 +222,16 @@ msgid ""
 "%s: Wrong size for input argument #%d : A scalar or a vector of size %d "
 "expected.\n"
 msgstr ""
+"%s: 入力引数 #%dの大きさが間違っています:  スカラーまたは大きさ%dのベクトルを"
+"指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for the last %d input argument(s).\n"
-msgstr ""
+msgstr "%s: 後ろから %d 個の入力引数の値が間違っています.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : One string expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
 msgid "The %s option affects only the %s generator\n"
@@ -207,15 +240,19 @@ msgstr "オプション %s は, %s 生成器専用です\n"
 #, c-format
 msgid "%s: Wrong value for input argument #%d : Must be between %d and %d.\n"
 msgstr ""
+"%s: 入力引数 #%d の値が間違っています:  %d および %d の間の値を指定してくださ"
+"い.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d : Must be between %d, %d or %d.\n"
 msgstr ""
+"%s: 入力引数 #%d の値が間違っています:  %d および %d の間または%dの値を指定し"
+"てください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d : Must be > %d.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の値が間違っています:  > %d としてください.\n"
 
 msgid ""
 "\n"
@@ -273,70 +310,70 @@ msgid "Scilab randlib interface not installed.\n"
 msgstr "Scilab randlibインターフェースがインストールされていません.\n"
 
 msgid "Simulation of a binomial random variable"
-msgstr ""
+msgstr "二項乱数のシミュレーション"
 
 msgid "Simulation"
-msgstr ""
+msgstr "シミュレーション"
 
 msgid "Theory"
-msgstr ""
+msgstr "理論"
 
 msgid "Simulation of a discrete random variable"
-msgstr ""
+msgstr "離散乱数のシミュレーション"
 
 msgid "Simulation of a discrete uniform random variable"
-msgstr ""
+msgstr "離散一様乱数のシミュレーション"
 
 msgid "Simulation of a Erlang random variable"
-msgstr ""
+msgstr "Erlang乱数のシミュレーション"
 
 msgid "Simulation of an exponential random variable"
-msgstr ""
+msgstr "指数乱数のシミュレーション"
 
 msgid "Classes"
-msgstr ""
+msgstr "クラス"
 
 msgid "p must be < 1"
-msgstr ""
+msgstr "p  < 1とする必要があります"
 
 msgid "Simulation of a geometric random variable"
-msgstr ""
+msgstr "幾何学乱数のシミュレーション"
 
 msgid "Simulation of a hyper geometric random variable"
-msgstr ""
+msgstr "ハイパー幾何学乱数のシミュレーション"
 
 msgid "Simulation of a Poisson random variable"
-msgstr ""
+msgstr "ポワソン乱数のシミュレーション"
 
 msgid "Random"
-msgstr ""
+msgstr "ランダム"
 
 msgid "binomial random variable"
-msgstr ""
+msgstr "二項乱数"
 
 msgid "discrete random variable"
-msgstr ""
+msgstr "離散乱数"
 
 msgid "discrete uniform random variable"
-msgstr ""
+msgstr "離散一様乱数"
 
 msgid "geometric random variable"
-msgstr ""
+msgstr "幾何学乱数"
 
 msgid "Poisson random variable"
-msgstr ""
+msgstr "ポワソン乱数"
 
 msgid "Exponential random variable"
-msgstr ""
+msgstr "指数乱数"
 
 msgid "Weibull random variable"
-msgstr ""
+msgstr "ワイブル乱数"
 
 msgid "Hyper geometric random variable"
-msgstr ""
+msgstr "ハイパー幾何学乱数"
 
 msgid "Erlang random variable"
-msgstr ""
+msgstr "アーラン乱数"
 
 msgid "Simulation of a Weibull random variable"
-msgstr ""
+msgstr "ワイブル乱数のシミュレーション"

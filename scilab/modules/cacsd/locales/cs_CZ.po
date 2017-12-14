@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18511)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -1033,8 +1033,6 @@ msgstr "Hz"
 msgid "dB"
 msgstr "dB"
 
-#
-# File: modules/cacsd/macros/formatEvansTip.sci, line: 18
 #, c-format
 msgid ""
 "Pole: %.4g %+.4g i\n"
@@ -1244,30 +1242,26 @@ msgstr "%s: Špatné předurčení.\n"
 msgid "%s: %s non symmetric.\n"
 msgstr "%s: %s nesymetrické.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input argument: At least %d expected.\n"
-msgstr "%s: Špatný počet vstupních argumentů: Očekávány alespoň %d.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for argument %d: Real vector expected.\n"
-msgstr "%s: Špatný typ argumentu %d: Očekáván reálný vektor.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A %d elements array expected.\n"
 msgstr ""
-"%s: Špatná velikost vstupního argumentu #%d: Očekávány nejvýše 3 prvky.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: incompatible input arguments %d and %d\n"
 msgstr ""
-"%s: Nekompatibilní vstupní argumenty #%d a #%d: Očekávány stejné velikosti.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: Must be %s.\n"
-msgstr "%s: Špatná hodnota pro vstupní argument #%d: Musí být v [%d %d].\n"
+msgstr ""
 
-#
-# File: modules/cacsd/macros/lft.sci, line: 104
 #, c-format
 msgid "%s: incompatible time domains\n"
 msgstr ""
@@ -1414,9 +1408,9 @@ msgstr "Póly"
 msgid "Transmission zeros and poles"
 msgstr "Nuly a póly přenosu"
 
-#, c-format
+#, fuzzy, c-format
 msgid "%s: Wrong type for input argument #%d: real matix expected.\n"
-msgstr ""
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána reálná matice.\n"
 
 #, c-format
 msgid "%s: Arguments %d and %d must have equal dimensions.\n"

@@ -8,18 +8,20 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-10-02 14:18+0000\n"
+"PO-Revision-Date: 2017-05-01 15:18+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18511)\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%s: An MPI communicator expected.\n"
 msgstr ""
+"%s: 入力引数 #%s の型が間違っています: MPI コミュニケータを指定してくださ"
+"い.\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -100,12 +102,12 @@ msgstr "%s: %d を待つ間に MPI_Wait が失敗しました: %s\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s: 入力引数の数に誤りがあります: %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A Matrix expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: 行列を指定してください.\n"

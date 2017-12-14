@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18511)\n"
 
 #, c-format
 msgid "%s: Invalid index.\n"
@@ -85,10 +85,6 @@ msgstr "%s: Neplatná cesta.\n"
 msgid ""
 "%s: Input argument #%d and input argument #%d have incompatible dimensions.\n"
 msgstr "%s: Vstupní argument #%d a #%d nají nekompatibilní rozměry.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván skalár.\n"
 
 #, c-format
 msgid ""
@@ -208,6 +204,38 @@ msgstr ""
 msgid "Invalid Exponent"
 msgstr ""
 
+#
+# File: modules/overloading/macros/%s_1_s.sci, line: 22
+#, c-format
+msgid ""
+"Complex comparison not supported. Please define %s_1_s_custom() or check "
+"your code."
+msgstr ""
+
+#
+# File: modules/overloading/macros/%s_2_s.sci, line: 22
+#, c-format
+msgid ""
+"Complex comparison not supported. Please define %s_2_s_custom() or check "
+"your code."
+msgstr ""
+
+#
+# File: modules/overloading/macros/%s_3_s.sci, line: 22
+#, c-format
+msgid ""
+"Complex comparison not supported. Please define %s_3_s_custom() or check "
+"your code."
+msgstr ""
+
+#
+# File: modules/overloading/macros/%s_4_s.sci, line: 22
+#, c-format
+msgid ""
+"Complex comparison not supported. Please define %s_4_s_custom() or check "
+"your code."
+msgstr ""
+
 #, c-format
 msgid ""
 "%s: Wrong type for input arguments #%d and #%d: Integer values expected.\n"
@@ -297,32 +325,5 @@ msgstr "Neplatný index.\n"
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: Špatný počet vstupních argumentů: Očekáváno %d.\n"
 
-#~ msgid "%s: Wrong size for input argument(s): integer scalars expected.\n"
-#~ msgstr ""
-#~ "%s: Špatná velikost vstupních argumentů: Očekávány celočíselné skaláry.\n"
-
-#~ msgid "%s: Only one -1 value admitted.\n"
-#~ msgstr "%s: Přijata pouze jedna hodnota -1.\n"
-
-#~ msgid "%s: Input and output matrices  must have the same number of elements"
-#~ msgstr "%s: Vstupní a výstupní matice musí mít stejný počet prvků"
-
-#~ msgid ""
-#~ "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
-#~ msgstr ""
-#~ "%s: Špatná hodnota vstupního argumentu #%d: Očekáváno '%s', '%s' nebo "
-#~ "'%s'.\n"
-
-#~ msgid ""
-#~ "%s: Wrong value for input argument #%d: Scalar positive integer "
-#~ "expected.\n"
-#~ msgstr ""
-#~ "%s: Špatná hodnota vstupního argumentu #%d: Očekáván celočíselný kladný "
-#~ "skalár.\n"
-
-#~ msgid ""
-#~ "%s: Wrong value for input argument #%d: Scalar positive integer or "
-#~ "character string expected.\n"
-#~ msgstr ""
-#~ "%s: Špatná hodnota vstupního argumentu #%d: Očekáván kladné skalární celé "
-#~ "číslo nebo řetězec znaku.\n"
+#~ msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+#~ msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván skalár.\n"

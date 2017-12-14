@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-12-06 17:07+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2017-05-01 12:56+0000\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18511)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
@@ -574,7 +574,7 @@ msgid "%s: ierr %d from qitz (eispack).\n"
 msgstr "%s: qitz (eispack) からの ierr %d.\n"
 
 msgid "Control Systems - CACSD"
-msgstr ""
+msgstr "制御系 - CACSD"
 
 msgid "LQG"
 msgstr "LQG"
@@ -1018,6 +1018,8 @@ msgid ""
 "%s: Wrong type for input argument #%d: Array of floats, Polynomial or linear "
 "dynamical system expected.\n"
 msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 浮動小数点数, 多項式または線形動的シス"
+"テムの配列を指定してください.\n"
 
 #, c-format
 msgid "%s: Input argument #%d ignored.\n"
@@ -1128,12 +1130,14 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Cell expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: セルを指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: cell entries must have the same type\n"
 msgstr ""
+"%s: 入力引数 #%d の型が間違っています: セルのエントリは同じ型である必要があり"
+"ます\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: At least %d expected.\n"
@@ -1159,13 +1163,13 @@ msgstr "Hzhelp hall"
 msgid "dB"
 msgstr "dB"
 
-#
-# File: modules/cacsd/macros/formatEvansTip.sci, line: 18
 #, c-format
 msgid ""
 "Pole: %.4g %+.4g i\n"
 "Loop gain: %.4g"
 msgstr ""
+"極: %.4g %+.4g i\n"
+"ループゲイン: %.4g"
 
 msgid "rad/sec"
 msgstr "rad/sec"
@@ -1290,6 +1294,8 @@ msgid ""
 "%s: An eigenvalue of %s (observer) is close to Imaginary axis.\n"
 "The distance to the imaginary axis is less than %g "
 msgstr ""
+"%s: %s (オブザーバ)の固有値が虚軸に近づいています.\n"
+"虚軸への距離が %g より小さくなっています "
 
 #
 # File: macros/h_inf.sci, line: 403
@@ -1385,32 +1391,31 @@ msgstr "%s: 悪条件です.\n"
 msgid "%s: %s non symmetric.\n"
 msgstr "%s: %s は非対称です。\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input argument: At least %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が正しくありません: %d 個以上の引数を指定してください.\n"
+msgstr "%s: 入力引数の数が間違っています: %d 個以上の引数を指定してください.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for argument %d: Real vector expected.\n"
-msgstr "%s: 引数 %d の型が間違っています:実数ベクトルを指定してください.\n"
+msgstr "%s: 引数 %d の型が間違っています: 実数ベクトルを指定してください.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A %d elements array expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています:  要素数は 3以下としてください.\n"
+"%s: 入力引数 #%d の大きさが間違っています: %d 個の要素を有する配列を指定して"
+"ください.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: incompatible input arguments %d and %d\n"
-msgstr "%s: 入力引数に互換性がありません.\n"
+msgstr "%s: 入力引数 %d と %d で互換性がありません。\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: Must be %s.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: [%d %d] の範囲で指定してください.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: %s としてください.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: incompatible time domains\n"
-msgstr "%s: 入力引数に互換性がありません.\n"
+msgstr "%s: 時間領域に互換性がありません\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Linear state space  expected.\n"
@@ -1446,10 +1451,12 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
 msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: %d 行 %d 列の行列を指定してくださ"
+"い.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be symmetric.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の値が間違っています: 対称である必要があります.\n"
 
 #
 # File: macros/lqg.sci, line: 24
@@ -1460,12 +1467,13 @@ msgstr "%s: %s はゼロではありません!(ゼロに設定)"
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected."
 msgstr ""
+"%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください."
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Must be a symmetric non negative "
 "matrix.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の値が間違っています: 対象非負定行列としてください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: c or d expected.\n"
@@ -1481,12 +1489,16 @@ msgid ""
 "%s: Incompatible input arguments #%d and #%d: Number of rows of #%d are "
 "incompatible with #%d argument.\n"
 msgstr ""
+"%s: 入力引数 #%d と #%d に互換性がありません: #%d の行数が #%d 引数と互換性が"
+"ありません.\n"
 
 #, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: Number of columns of #%d are "
 "incompatible with #%d argument.\n"
 msgstr ""
+"%s: 入力引数 #%d と #%d に互換性がありません: #%dの列数が #%d 引数と互換性が"
+"ありません.\n"
 
 msgid "Amplitude and phase contours of y/(1+y)"
 msgstr "y/(1+y)の振幅と位相の等高線"
@@ -1564,13 +1576,13 @@ msgstr "極"
 msgid "Transmission zeros and poles"
 msgstr "伝送ゼロと極"
 
-#, c-format
+#, fuzzy, c-format
 msgid "%s: Wrong type for input argument #%d: real matix expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: 実数行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Arguments %d and %d must have equal dimensions.\n"
-msgstr ""
+msgstr "%s: 引数 %d と %d の次元が等しい必要があります.\n"
 
 #, c-format
 msgid "%s: Stationary Riccati solver failed.\n"
@@ -1582,7 +1594,7 @@ msgstr "%s: 安定な部分空間の次元 (%d)が不正です: %d としてく�
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A positive real expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: 正の実数を指定してください.\n"
 
 #, c-format
 msgid ""
@@ -1608,15 +1620,17 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument: at most %d expected.\n"
-msgstr ""
+msgstr "%s: 入力引数の数が間違っています: 最大でも%d の引数としてください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A scalar (>= 0) expected.\n"
 msgstr ""
+"%s: 入力引数 #%d の値が間違っています : スカラー (>= 0) を指定してください.\n"
 
 #, c-format
 msgid "Wrong type for input argument %d: Real or complex array expected.\n"
 msgstr ""
+"入力引数 %d の型が間違っています: 実数または複素数の配列を指定してください.\n"
 
 #, c-format
 msgid "%s: Cannot find the state dimension.\n"
@@ -1632,6 +1646,7 @@ msgstr ""
 msgid ""
 "%s: Wrong type for input argument #%d: a single input system expected.\n"
 msgstr ""
+"%s: 入力引数 #%d の型が間違っています:  入力システムを一つ指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d: you must choose rk<nout.\n"
@@ -1709,12 +1724,16 @@ msgid ""
 "%s: Incompatible input arguments #%d and #%d: number of elements of #%d must "
 "match the column dimension of #%d\n"
 msgstr ""
+"%s: 入力引数 #%d および #%d に互換性がありません: #%d の要素数が #%d の列の次"
+"元と一致する必要があります\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: state space or a descriptor "
 "representation expected.\n"
 msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 状態空間またはデスクリプタ表現を指定し"
+"てください.\n"
 
 #
 # File: macros/trfmod.sci, line: 97
@@ -1752,12 +1771,16 @@ msgid ""
 "%s: Incompatible input arguments #%d and #%d: state dimension of #%d must be "
 "equal to the column dimension of #%d.\n"
 msgstr ""
+"%s: 入力引数 #%d と #%d に互換性がありません: #%d の状態量の次元が #%d の列の"
+"次元に一致する必要があります.\n"
 
 #, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: input dimension of #%d must be "
 "equal to the column dimension of #%d.\n"
 msgstr ""
+"%s: 入力引数 #%d と #%d に互換性がありません: 入力 #%d の次元は列 #%d の次元"
+"と等しい必要があります.\n"
 
 #, c-format
 msgid "%s: Residual norm = %g\n"
@@ -1787,64 +1810,83 @@ msgstr "虚軸"
 msgid ""
 "%s: Wrong type for input argument #%d: Real or complex array expected.\n"
 msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 実数または複素数の配列を指定してくださ"
+"い.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: complex zeros  must appear in "
 "complex conjugate pairs.\n"
 msgstr ""
+"%s: 入力引数 #%d の値が間違っています: 複素数のゼロは複素共役対である必要があ"
+"ります.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
 msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 実数または複素ベクトルを指定してくださ"
+"い.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: complex poles  must appear in "
 "complex conjugate pairs.\n"
 msgstr ""
+"%s: 入力引数 #%d の値が間違っています: 複素極は複素共役対である必要がありま"
+"す.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real vector expected.\n"
 msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 実数ベクトルを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
 msgstr ""
+"%s: 入力引数 #%d の型が間違っています: スカラーまたは文字列を指定してくださ"
+"い.\n"
 
 #, c-format
 msgid ""
 "Wrong type for argument %d: A system in state space or transfer matrix form "
 "expected.\n"
 msgstr ""
+"引数 %d の型が間違っています: 状態空間または伝達行列形式のシステムを指定して"
+"ください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument  #%d: Cell expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: セルを指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument  #%d: Cell elements must be numerical "
 "arrays.\n"
 msgstr ""
+"%s: 入力引数 #%d の型が間違っています: セル要素は数値行列である必要がありま"
+"す.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A vector expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: ベクトルを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real scalar expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: 実スカラーを指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A vector or a cell of vectors "
 "expected.\n"
 msgstr ""
+"%s: 入力引数 #%d の型が間違っています: ベクトルまたはセルベクトルを指定してく"
+"ださい.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: zero-pole-gain representation "
 "expected.\n"
 msgstr ""
+"%s: 入力引数 #%d の型が間違っています: ゼロ-極-ゲイン表現で指定してくださ"
+"い.\n"

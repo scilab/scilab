@@ -10,14 +10,14 @@ msgstr ""
 "Project-Id-Version: gui-ru\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-12-07 22:13+0000\n"
+"PO-Revision-Date: 2017-05-20 04:49+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18511)\n"
 
 #, c-format
 msgid "%s: Figure number must be given when not in '%s' mode.\n"
@@ -576,25 +576,15 @@ msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
 msgstr ""
 "%s: Неверный тип аргумента №%d: ожидалась матрица логических значений.\n"
 
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
-msgstr ""
-"%s: Неверный тип входного параметра №%d: ожидался вектор вещественных или "
-"комплексных чисел.\n"
-
-msgid "Scilab Choices Request"
-msgstr "Выбор значений"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
-msgstr "%s: Неверный размер входного параметра №%d: ожидался вектор строк.\n"
-
 msgid "Scilab Input Value Request"
 msgstr "Ввод значения"
 
 msgid "Scilab Multiple Values Request"
 msgstr "Ввод значений"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
+msgstr "%s: Неверный размер входного параметра №%d: ожидался вектор строк.\n"
 
 #, c-format
 msgid ""
@@ -614,6 +604,16 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидалась матрица строк.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидался вектор вещественных или "
+"комплексных чисел.\n"
+
+msgid "Scilab Choices Request"
+msgstr "Выбор значений"
 
 #, c-format
 msgid "'%s' property does not exist for this handle.\n"
@@ -960,47 +960,27 @@ msgstr "&Загрузить окружение..."
 msgid "&Save environment..."
 msgstr "&Сохранить окружение..."
 
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 94
-# File: modules/gui/src/gui_fake_xml.c, line: 148
-msgid "&Current Working Directory (CWD):"
-msgstr ""
+#, fuzzy
+msgid "&Current Working Directory"
+msgstr "&Текущая рабочая директория (ТРД):"
 
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 95
-# File: modules/gui/src/gui_fake_xml.c, line: 149
 msgid "    &Browse for new"
 msgstr ""
 
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 96
-# File: modules/gui/src/gui_fake_xml.c, line: 150
 msgid "    Go to &Favorite"
-msgstr ""
+msgstr "    Перейти к &любимым"
 
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 97
-# File: modules/gui/src/gui_fake_xml.c, line: 151
 msgid "TMPDIR"
-msgstr ""
+msgstr "TMPDIR"
 
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 98
-# File: modules/gui/src/gui_fake_xml.c, line: 152
 msgid "SCIHOME"
-msgstr ""
+msgstr "SCIHOME"
 
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 99
-# File: modules/gui/src/gui_fake_xml.c, line: 153
 msgid "SCI"
-msgstr ""
+msgstr "SCI"
 
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 100
-# File: modules/gui/src/gui_fake_xml.c, line: 154
 msgid "User's home ~"
-msgstr ""
+msgstr "Пользовательская домашняя папка ~"
 
 msgid "&Quit"
 msgstr "В&ыход"
@@ -1502,7 +1482,7 @@ msgid "Delete the last datatip"
 msgstr "Удалить последний ярлык"
 
 msgid "Edit curve datatip display function"
-msgstr ""
+msgstr "Править функцию отображения данных кривой"
 
 msgid "Enable interpolation"
 msgstr "Включить интерполяцию"
@@ -1576,9 +1556,8 @@ msgstr "Скопировать в буфер обмена"
 msgid "Copy figure to system clipboard"
 msgstr "Скопировать графическое окно в буфер обмена системы"
 
-#, fuzzy
 msgid "Insert a title"
-msgstr "Вставить здесь новую точку"
+msgstr "Вставить название"
 
 msgid "Label X"
 msgstr "Подпись X"
@@ -1876,7 +1855,7 @@ msgid "longdash dot"
 msgstr "пунктирная с длинными штрихами"
 
 msgid "bigdash dot"
-msgstr ""
+msgstr "штрихпунктирная с длинными штихами"
 
 msgid "bigdash longdash"
 msgstr "штрихпунктирная с широкими элементами"
@@ -1885,7 +1864,7 @@ msgid "dot"
 msgstr "пунктирная"
 
 msgid "double dot"
-msgstr ""
+msgstr "Пунктирная с двумя точками"
 
 msgid "Polyline Style"
 msgstr "Стиль ломаной линии"
@@ -1894,13 +1873,13 @@ msgid "interpolated"
 msgstr "интерполированная"
 
 msgid "staircase"
-msgstr ""
+msgstr "Ступенчатая"
 
 msgid "barplot"
 msgstr "столбчатая диаграмма"
 
 msgid "bar"
-msgstr ""
+msgstr "столбчатая"
 
 msgid "arrowed"
 msgstr "стрелочная"
@@ -1930,7 +1909,7 @@ msgid "Rotation Style"
 msgstr "Стиль поворота"
 
 msgid "unary"
-msgstr ""
+msgstr "унарная"
 
 msgid "multiple"
 msgstr "несколько"
@@ -1945,7 +1924,7 @@ msgid "Color Mode"
 msgstr "Режим цвета"
 
 msgid "Color Flag"
-msgstr ""
+msgstr "Признак цвета"
 
 msgid "Hidden Color"
 msgstr "Цвет скрытого элемента"
@@ -1969,13 +1948,13 @@ msgid "Mark Style"
 msgstr "Стиль метки"
 
 msgid "Components display"
-msgstr ""
+msgstr "Отобразить составляющие"
 
 msgid "Data Properties"
 msgstr "Свойства данных"
 
 msgid "Data Mapping"
-msgstr ""
+msgstr "Карта данных"
 
 msgid "Direct"
 msgstr "Прямой"
@@ -1993,7 +1972,7 @@ msgid "Clip State"
 msgstr ""
 
 msgid "clipgrf"
-msgstr ""
+msgstr "clipgrf"
 
 msgid "Data"
 msgstr "Данные"
@@ -2065,10 +2044,10 @@ msgid "Axes Size"
 msgstr "Размер осей"
 
 msgid "CloseRequestFcn"
-msgstr ""
+msgstr "CloseRequestFcn"
 
 msgid "ResizeFcn"
-msgstr ""
+msgstr "ResizeFcn"
 
 msgid "Figure Position"
 msgstr "Положение графического окна"
@@ -2095,16 +2074,16 @@ msgid "Y Up"
 msgstr "Y вверх"
 
 msgid "Log Flags"
-msgstr ""
+msgstr "Признаки логарифмического масштаба"
 
 msgid "X Tight Limits"
-msgstr ""
+msgstr "Пределы оси X"
 
 msgid "Y Tight Limits"
-msgstr ""
+msgstr "Пределы оси Y"
 
 msgid "Z Tight Limits"
-msgstr ""
+msgstr "Пределы оси Z"
 
 msgid "Enter a x position."
 msgstr "Введите положение по x."
@@ -2173,7 +2152,7 @@ msgid "Font Style"
 msgstr "Стиль шрифта"
 
 msgid "Fractional Font"
-msgstr ""
+msgstr "Рубленный шрифт"
 
 msgid "Sub Ticks"
 msgstr "Дробные риски"
@@ -2264,9 +2243,6 @@ msgstr "SCE-файлы Scilab"
 msgid "Scilab binary files"
 msgstr "Бинарные файлы Scilab"
 
-msgid "All Scilab files"
-msgstr "Все файлы Scilab"
-
 msgid "Xcos files"
 msgstr "Файлы Xcos"
 
@@ -2337,7 +2313,7 @@ msgid "Error. A signal has been caught.\n"
 msgstr "Ошибка. Был получен сигнал.\n"
 
 msgid "Control Plot3d"
-msgstr ""
+msgstr "Управление Plot3d"
 
 msgid "Control Panel"
 msgstr "Панель управления"
@@ -2417,28 +2393,28 @@ msgid "Dialogs"
 msgstr "Диалоговые окна"
 
 msgid "Uicontrols 1"
-msgstr ""
+msgstr "Uicontrols 1"
 
 msgid "Uicontrols 2"
-msgstr ""
+msgstr "Uicontrols 2"
 
 msgid "Uicontrols with LaTeX/MathML"
-msgstr ""
+msgstr "Элементы графического интерфейса с LaTeX/MathML"
 
 msgid "Show images with uicontrols "
-msgstr ""
+msgstr "Показать изображения с элементами графического интерфейса "
 
 msgid "Listboxes and Popupmenus"
-msgstr ""
+msgstr "Списки и выпадающие списки"
 
 msgid "Uicontrols rendering"
-msgstr ""
+msgstr "Прорисовка элементов графического интерфейса"
 
 msgid "Uicontrols layout"
-msgstr ""
+msgstr "Слой элементов графического интерфейса"
 
 msgid "Uicontrols messagebox-like"
-msgstr ""
+msgstr "Элементы графического интерфейса подобные информационным окнам"
 
 msgid "<Enter color name here>"
 msgstr "<Введите здесь название цвета>"
@@ -2484,7 +2460,7 @@ msgid "Menu '%s' is %s."
 msgstr "Меню '%s' является %s."
 
 msgid "Menu status"
-msgstr ""
+msgstr "Состояние меню"
 
 msgid "Slider value: "
 msgstr "Значение ползунка: "
@@ -2494,7 +2470,7 @@ msgid "You selected '%s'."
 msgstr "Вы выбрали '%s'."
 
 msgid "Popupmenu selection"
-msgstr ""
+msgstr "Выбор в выпадающем списке"
 
 msgid "Do you really want to quit Scilab?"
 msgstr "Вы действительно хотите выйти из Scilab?"
@@ -2503,7 +2479,7 @@ msgid "Quit Scilab"
 msgstr "Выйти из Scilab"
 
 msgid "Uicontrols demo"
-msgstr ""
+msgstr "Демонстрация элементов графического интерфейса"
 
 msgid "Application"
 msgstr "Приложение"
@@ -2512,7 +2488,7 @@ msgid "Close figure"
 msgstr "Закрыть фигуру"
 
 msgid "Scilab Graphics"
-msgstr ""
+msgstr "График Scilab"
 
 msgid "Launch plot3d"
 msgstr "Запустить plot3d"
@@ -2578,10 +2554,10 @@ msgid "Quit demonstration"
 msgstr "Выйти из демонстрации"
 
 msgid "Uicontrols demo with LaTeX"
-msgstr ""
+msgstr "Демонстрация элементов графического интерфейса с LaTeX"
 
 msgid "Please fill the table"
-msgstr ""
+msgstr "Заполните таблицу"
 
 #, c-format
 msgid "%s: can not add a menu in this mode: %s.\n"
@@ -2717,6 +2693,26 @@ msgstr ""
 "Ответ, данный для %s, \n"
 " неверен: %s.\n"
 
+#, fuzzy
+msgid "Select a file to open"
+msgstr "Выберите файл для загрузки"
+
+#, fuzzy
+msgid "Scilab scripts"
+msgstr "График Scilab"
+
+#, fuzzy
+msgid "Xcos diagrams"
+msgstr "Файлы Xcos"
+
+#, fuzzy
+msgid "Scilab Tests"
+msgstr "Сообщение"
+
+#, fuzzy
+msgid "Scilab Library"
+msgstr "Бинарные файлы Scilab"
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: uitree expected.\n"
 msgstr "%s: Неверный тип входного аргумента №%d: ожидался uitree.\n"
@@ -2812,8 +2808,5 @@ msgstr "%s: Неверный тип %s: ожидалось вещественн�
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s: Неверный размер %s: ожидалось вещественное число.\n"
 
-#~ msgid "&Change current directory..."
-#~ msgstr "С&менить текущий каталог..."
-
-#~ msgid "&Display current directory"
-#~ msgstr "О&тобразить текущий каталог"
+#~ msgid "All Scilab files"
+#~ msgstr "Все файлы Scilab"

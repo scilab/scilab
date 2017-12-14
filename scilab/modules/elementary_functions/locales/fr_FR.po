@@ -9,14 +9,14 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2017-01-10 16:40+0000\n"
+"PO-Revision-Date: 2017-06-03 10:15+0000\n"
 "Last-Translator: Paul Bignier <Unknown>\n"
 "Language-Team: Scilab Localization <localization@scilab.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18511)\n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
 #, c-format
@@ -796,13 +796,13 @@ msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
 msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : Un vecteur attendu.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Must be a valid permutation of [1..n>"
 "%d] integers.\n"
 msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : Doit être un vecteur de "
-"permutation valide.\n"
+"%s : Valeur erronée de l'argument d'entrée #%d : permutation entière de [1.."
+"n>%d] attendue.\n"
 
 #, c-format
 msgid "%s: Incompatible input arguments: Same types expected.\n"
@@ -967,35 +967,3 @@ msgstr ""
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr ""
 "%s : Dimension erronée des arguments d'entrée : Dimensions incompatibles.\n"
-
-#~ msgid "%s: Wrong type for input argument #%d: Cell expected.\n"
-#~ msgstr "%s : Type erroné de l'argument d'entrée n°%d : Une cell attendue.\n"
-
-#~ msgid ""
-#~ "%s: Wrong type for input argument #%d: Same type expected for all cell "
-#~ "contents"
-#~ msgstr ""
-#~ "%s : Type erroné de l'argument d'entrée n°%d : Le même type pour le "
-#~ "contenu de chaque cell attendu."
-
-#~ msgid "%s: Wrong size for input argument #%d: Must be <= %d.\n"
-#~ msgstr ""
-#~ "%s : Dimension erronée de l'argument d'entrée n°%d : Doit être <= %d.\n"
-
-#~ msgid "%s: Wrong type for input argument #%d: Matrix of string expected.\n"
-#~ msgstr ""
-#~ "%s : Type erroné de l'argument d'entrée n°%d : Une matrice de chaîne de "
-#~ "caractères attendue.\n"
-
-#~ msgid "%s: Wrong argument #%d: Positive integer expected.\n"
-#~ msgstr "%s : Argument n°%d faux : Un entier positif attendu.\n"
-
-#~ msgid "%s: Wrong size for argument #%d: Vector expected.\n"
-#~ msgstr "%s : Dimension erronée de l'argument n°%d : Un vecteur attendu.\n"
-
-#~ msgid ""
-#~ "%s: Wrong size for input argument #%d: At least the size of input "
-#~ "argument #%d expected.\n"
-#~ msgstr ""
-#~ "%s : Dimension erronée de l'argument d'entrée n°%d : Au moins la "
-#~ "dimension de l'argument d'entrée n°%d attendue.\n"

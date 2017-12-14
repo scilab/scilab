@@ -16,7 +16,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18511)\n"
 
 msgid "Warning :\n"
 msgstr "Попередження:\n"
@@ -345,12 +345,12 @@ msgid "Wrong number of input arguments.\n"
 msgstr "Помилкова кількість параметрів.\n"
 
 #, c-format
-msgid "List element number %d is Undefined.\n"
-msgstr "Елемент списку із номером %d є невизначеним.\n"
-
-#, c-format
 msgid "Undefined variable '%s' in function '%s'.\n"
 msgstr "Невизначена змінна «%s» у функції «%s».\n"
+
+#, c-format
+msgid "List element number %d is Undefined.\n"
+msgstr "Елемент списку із номером %d є невизначеним.\n"
 
 #, c-format
 msgid "Unable to open : %s.\n"

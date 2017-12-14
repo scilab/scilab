@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18511)\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -121,47 +121,41 @@ msgstr ""
 msgid "%s: Wrong number of input arguments: at least %d expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
-msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n"
+msgstr ""
 
-#
-# File: modules/output_stream/sci_gateway/cpp/sci_print.cpp, line: 64
 #, c-format
 msgid "%s: Too many files opened!\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Cannot open file %s.\n"
-msgstr "%s: Nelze přečíst vstupní argument #%d.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s: Není více paměti.\n"
 
-#
-# File: modules/output_stream/sci_gateway/cpp/sci_print.cpp, line: 73
 #, c-format
 msgid "%s: invalid filename %s.\n"
 msgstr ""
 
-#
-# File: modules/output_stream/sci_gateway/cpp/sci_print.cpp, line: 76
 #, c-format
 msgid "%s: invalid status.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván skalár.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong file descriptor: %d.\n"
-msgstr "%s: Špatná velikost vstupního argumentu #%d.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A real or String expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
+msgstr ""
 
 #, c-format
 msgid "  (cont'd) %s\n"
@@ -185,38 +179,6 @@ msgid "%s: Wrong type of input arguments #%d: A real scalar expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected."
-msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d až %d."
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
-"expected.\n"
-msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: očekáváno '%s', '%s', '%s', "
-"'%s', '%s' nebo '%s'.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
-msgstr "%s: Špatný typ argumentu #%d: Očekáván boolean.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected"
-msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d až %d."
-
-#, c-format
-msgid "%s: Wrong export format: %s"
-msgstr "%s: Špatný formát exportu: %s"
-
-#, c-format
-msgid "%s: Type %s is not handled : Define the function %s2%s."
-msgstr "%s: Typ %s nelze obsloužit : Určete funkci %s2%s."
-
-#, c-format
 msgid "%s: Wrong number of input argument(s).\n"
 msgstr "%s: Špatný počet vstupních argumentů.\n"
 
@@ -235,3 +197,28 @@ msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván stavový model.\n
 #, c-format
 msgid "%s: system cannot be displayed in this page.\n"
 msgstr "%s: systém nemůže být na této stránce zobrazen.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d to %d expected."
+#~ msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d až %d."
+
+#~ msgid "%s: Wrong type for input argument #%d: String expected.\n"
+#~ msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
+
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or "
+#~ "'%s' expected.\n"
+#~ msgstr ""
+#~ "%s: Špatná hodnota vstupního argumentu #%d: očekáváno '%s', '%s', '%s', "
+#~ "'%s', '%s' nebo '%s'.\n"
+
+#~ msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
+#~ msgstr "%s: Špatný typ argumentu #%d: Očekáván boolean.\n"
+
+#~ msgid "%s: Wrong number of input arguments: %d to %d expected"
+#~ msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d až %d."
+
+#~ msgid "%s: Wrong export format: %s"
+#~ msgstr "%s: Špatný formát exportu: %s"
+
+#~ msgid "%s: Type %s is not handled : Define the function %s2%s."
+#~ msgstr "%s: Typ %s nelze obsloužit : Určete funkci %s2%s."

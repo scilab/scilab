@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-06-04 01:38+0000\n"
+"PO-Revision-Date: 2017-04-16 13:59+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18511)\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -150,10 +150,6 @@ msgstr ""
 "быть функцией Scilab.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A function expected.\n"
-msgstr "%s: Неверный тип входного параметра №%d: ожидалась функция.\n"
-
-#, c-format
 msgid "%s: An error occured in '%s' subroutine.\n"
 msgstr "%s: В подпрограмме '%s' произошла ошибка.\n"
 
@@ -278,7 +274,7 @@ msgstr "%s: %s возвращено с состоянием %d.\n"
 
 #, c-format
 msgid "%ls: An error occured in '%ls' subroutine.\n"
-msgstr ""
+msgstr "%ls: В подфункции '%ls' произошла ошибка.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A real matrix expected.\n"
@@ -469,7 +465,7 @@ msgstr "%s: Объём одного из исходно заданных чет�
 
 #, c-format
 msgid "%s: dcutet return with error %d.\n"
-msgstr ""
+msgstr "%s: dcutet завершила работу с ошибкой %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Must not contain NaN or Inf.\n"
@@ -522,6 +518,24 @@ msgstr ""
 #, c-format
 msgid "%s: Convergence problem...\n"
 msgstr "%s: Проблема сходимости...\n"
+
+#
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 127
+#, c-format
+msgid "%s: Feature %s is obsolete.\n"
+msgstr ""
+
+#
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 127
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 128
+msgid "Warning"
+msgstr ""
+
+#
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 128
+#, c-format
+msgid "%s: Please use %s instead.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -655,13 +669,14 @@ msgid "integ. from tleft= %lf to hf= %lf\n"
 msgstr "integ. от tleft= %lf до hf= %lf\n"
 
 msgid "Insufficient Work space to finish (see messages).\n"
-msgstr ""
+msgstr "Недостаточно рабочего места для завершения (смотрите сообщения).\n"
 
 msgid "Excessive work done on this call (perhaps wrong jacobian type).\n"
 msgstr ""
+"Выполнена избыточная работа в этом вызове (возможно неверный тип якобиана).\n"
 
 msgid "Excesive accuracy requested (tolerances too small).\n"
-msgstr ""
+msgstr "Затребована избыточная точность (слишком малые допуски).\n"
 
 msgid "Illegal input detected (see printed message).\n"
 msgstr "обнаружен недопустимый вход (см. распечатываемое сообщение).\n"
@@ -740,7 +755,7 @@ msgstr ""
 "одношагового интегратора.\n"
 
 msgid "Invalid input parameters : atol and rtol must be greater than 0.\n"
-msgstr ""
+msgstr "Недопустимые входные параметры:: atol и rtol должны быть больше 0.\n"
 
 msgid "Inappropriate error tolerance.\n"
 msgstr "Некорректны допуск ошибки.\n"
@@ -749,6 +764,9 @@ msgid ""
 "Too many steps necessary to reach next required time discretization point. "
 "Change discretisation of time vector t or decrease accuracy.\n"
 msgstr ""
+"Слишком много шагов необходимо сделать для достижения следующей требуемой "
+"временной точки дискретизации. Измените дискретизацию времени вектора t или "
+"уменьшите точность.\n"
 
 msgid "The error tolerances are too stringent.\n"
 msgstr "Допуски на ошибку слишком ограничены.\n"
@@ -773,13 +791,11 @@ msgid "Either ill-posed problem or discontinuity or singularity encountered.\n"
 msgstr ""
 "Обнаружена некорректно поставленная задача или разрыв или вырожденность.\n"
 
-#, fuzzy
 msgid "External 'res' return many times with ires=-1.\n"
-msgstr "Внешняя функция ''res'' много раз вернула ires=-1.\n"
+msgstr "Внешний 'res' многократно вернул ires=-1.\n"
 
-#, fuzzy
 msgid "Error in external 'res'.\n"
-msgstr "Ошибка во внешней функции ''res''.\n"
+msgstr "Ошибка во внешней 'res'.\n"
 
 msgid "failed to compute the initial Ydot.\n"
 msgstr "не удалось вычислить исходное значение Ydot.\n"
@@ -868,7 +884,7 @@ msgid "Simulation"
 msgstr "Моделирование"
 
 msgid "n-pendulum"
-msgstr ""
+msgstr "n-маятник"
 
 msgid "Wheel simulation"
 msgstr "Моделирование колеса"
@@ -877,16 +893,16 @@ msgid "Bike simulation"
 msgstr "Моделирование велосипеда"
 
 msgid "ODE'S"
-msgstr ""
+msgstr "ОДУ"
 
 msgid "DAE'S"
-msgstr ""
+msgstr "ДАУ"
 
 msgid "Flow simulation"
 msgstr "Моделирование потока"
 
 msgid "Levitron"
-msgstr ""
+msgstr "Левитрон"
 
 msgid "Blackhole"
 msgstr "Чёрная дыра"
@@ -901,19 +917,19 @@ msgid "Sphere"
 msgstr "Сфера"
 
 msgid "ODE 1D vector field"
-msgstr ""
+msgstr "Векторное поле ОДУ 1-го порядка"
 
 msgid "chemical process (implicit)"
-msgstr ""
+msgstr "химический процесс (неявный)"
 
 msgid "Lorenz differential equation"
 msgstr "Дифференциальное уравнение Лоренца"
 
 msgid "Lotka-Volterra vector field"
-msgstr ""
+msgstr "Векторное поле Лотки-Вольтерра"
 
 msgid "Van der Pol vector field"
-msgstr ""
+msgstr "Векторное поле Ван дер Поля"
 
 msgid "Reading a precomputed trajectory"
 msgstr "Чтение предварительно рассчитанной траектории"
@@ -982,6 +998,81 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input arguments: Same size expected.\n"
 msgstr "%s: Неверный размер входных параметров: ожидался одинаковый размер.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Real number(s) expected.\n"
+msgstr ""
+"%s: Неверный тип выходного аргумента №%d: ожидалась вещественная матрица.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s: Неверное количество входных параметров: ожидалось %d или %d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr "%s: Неверное количество выходных аргументов: ожидалось от %d до %d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for argument #%d: Function or list expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалась функция.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for argument #%d: Function expected in first element of "
+"list.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалась функция.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong number of elements in input argument #%d: At least %d elements "
+"expected, but current number is %d.\n"
+msgstr "%s: Неверное количество входных параметров: ожидалось не менее %d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for argument #%d: Matrix expected.\n"
+msgstr "%s: Неверный размер выходного аргумента №%d: ожидалась матрица.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
+msgstr "%s: Неверный размер входного аргумента №%d: ожидался размер %d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
+msgstr "%s: Неверный размер входных параметров: ожидался одинаковый размер.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d: ожидалось вещественное число.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента №%d: ожидалась матрица 3 на N.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set  {%s}.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d: ожидалось вещественное число.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидалось вещественное число.\n"
+
+#
+# File: modules/differential_equations/macros/numderivative.sci, line: 126
+#, c-format
+msgid "%s: Q must be orthogonal.\n"
+msgstr ""
+
+#
+# File: modules/differential_equations/macros/numderivative.sci, line: 201
+# File: modules/differential_equations/macros/numderivative.sci, line: 214
+# File: modules/differential_equations/macros/numderivative.sci, line: 218
+#, c-format
+msgid "%s: Unknown value %s for option %s.\n"
+msgstr ""
 
 msgid "Defining %ODEOPTIONS variable"
 msgstr "Определение переменной %ODEOPTIONS"

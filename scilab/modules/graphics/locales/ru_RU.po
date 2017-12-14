@@ -10,14 +10,14 @@ msgstr ""
 "Project-Id-Version: graphics-ru\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-12-07 22:09+0000\n"
+"PO-Revision-Date: 2017-03-01 14:51+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18511)\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -222,6 +222,8 @@ msgstr "%s: Неверный тип входного параметра №%d: �
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix of string expected.\n"
 msgstr ""
+"%s: Неверный тип входного аргумента №%d: Ожидалась матрица строковых "
+"значений.\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -601,9 +603,22 @@ msgstr "%s: Недопустимый индекс вершины.\n"
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
 msgstr "%s: Неверное количество выходных аргументов: ожидалось %d.\n"
 
+#, fuzzy, c-format
+msgid "%s: Wrong size for argument #%d: A real scalar expected.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента №%d: ожидается вещественный скаляр.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: scalar string expected.\n"
+msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
+
 #, c-format
 msgid "%s: Could not read property '%s' for root object.\n"
 msgstr "%s: Не удалось прочитать свойство '%s' корневого объекта.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for argument #%d: scalar string expected.\n"
+msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real or integer expected.\n"
@@ -627,6 +642,107 @@ msgstr "%s: Неверный размер входного аргумента �
 msgid "%s: Unrecognized input argument: '%s'.\n"
 msgstr "%s: Нераспознанный входной параметр: «%s».\n"
 
+#
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 125
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 142
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 154
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 173
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 181
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 188
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 200
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 219
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 230
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 242
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 250
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 263
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 271
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 286
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 301
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 316
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 325
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 332
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 345
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 357
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 371
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 385
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 398
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 146
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 178
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 213
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 228
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 246
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 268
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 281
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 385
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 394
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 403
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 417
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 435
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 464
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 478
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 492
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 505
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 519
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 533
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 547
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 566
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 598
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 616
+#, c-format
+msgid ""
+"%s: This feature will be permanently removed in Scilab %s\n"
+"\n"
+msgstr ""
+
+#
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 125
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 142
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 154
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 173
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 181
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 188
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 200
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 219
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 230
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 242
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 250
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 263
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 271
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 286
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 301
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 316
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 325
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 332
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 345
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 357
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 371
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 385
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 398
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 146
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 178
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 213
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 228
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 246
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 268
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 281
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 385
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 394
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 403
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 417
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 435
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 464
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 478
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 492
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 505
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 519
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 533
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 547
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 566
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 598
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 616
+msgid "Warning"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A %d-element vector expected.\n"
 msgstr ""
@@ -643,17 +759,18 @@ msgstr "%s: размеры окна были установлены меньше
 msgid "The parent has to be a SUBWIN\n"
 msgstr "Предок должен быть «Subwin»\n"
 
-#, c-format
+#, fuzzy, c-format
 msgid "%s: Could not retrive bounding box.\n"
-msgstr ""
+msgstr "%s: Не удалось получить рамку ограничений.\n"
 
 #, c-format
 msgid "%s is only made to compute level curves and not display them.\n"
 msgstr ""
 "%s создано только для вычисления кривых уровня, а не для их изображения.\n"
 
+#, fuzzy
 msgid "Could not retrive bounds.\n"
-msgstr ""
+msgstr "Не удалось получить границы.\n"
 
 msgid "Warning: Can't use Log on X-axis xmin is negative.\n"
 msgstr ""
@@ -688,7 +805,7 @@ msgstr "%s: Неверный тип параметра %s.\n"
 
 #, c-format
 msgid "%s: Cannot get coordinates.\n"
-msgstr ""
+msgstr "%s: Не могу получить координаты.\n"
 
 #, c-format
 msgid "Warning: %s must be changed, %s is '%s' and %s dimension is not %d.\n"
@@ -970,6 +1087,8 @@ msgstr "Неверный размер свойства «%s»: должно бы
 msgid ""
 "Inavlid value for '%s' property, use 'always', 'mouseclick' or 'mouseover'.\n"
 msgstr ""
+"Недопустимое значение для свойства '%s', используйте 'always', 'mouseclick' "
+"или 'mouseover'.\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: Non-empty string expected.\n"
@@ -1016,7 +1135,7 @@ msgstr "Неверный тип свойства '%s': ожидалась мат
 
 #, c-format
 msgid "Wrong size for '%s' property: Matrix with length 3 or [] expected.\n"
-msgstr ""
+msgstr "Неверный размер у свойства '%s': ожидалась матрица длиной 3 или [].\n"
 
 msgid "Datatips property can not be modified directly.\n"
 msgstr "Нельзя напрямую менять свойство datatips.\n"
@@ -1036,7 +1155,7 @@ msgstr ""
 "Неверное значение свойства «%s»: ожидалось целое число между %d и %d.\n"
 
 msgid "Could not retrieve format.\n"
-msgstr ""
+msgstr "Не удалось получить формат.\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: Must be -1 or a valid color index.\n"
@@ -1183,6 +1302,8 @@ msgid ""
 "Error: Values must be strictly positive when logarithmic mode on %s axis is "
 "active.\n"
 msgstr ""
+"Ошибка: значения должны быть строго положительными, если включён "
+"логарифмический режим на оси %s.\n"
 
 msgid "Wrong type for input argument: A tlist expected.\n"
 msgstr "Неверный тип входного аргумента: ожидался tlist.\n"
@@ -1355,6 +1476,9 @@ msgstr "Неверное определение f(z)"
 msgid "Radius should be real and finite"
 msgstr "Радиус должен быть вещественным и конечным"
 
+msgid "Misc"
+msgstr "Разное"
+
 msgid "datatips on 2D curves"
 msgstr "Всплывающие  данные на двумерных кривых"
 
@@ -1362,7 +1486,7 @@ msgid "datatips on 3D curves"
 msgstr "Всплывающие данные на трёхмерных кривых"
 
 msgid "Datatips detached from curve"
-msgstr ""
+msgstr "Ярлыки данных отсоединён от кривой"
 
 msgid "2D curves"
 msgstr "Двумерные кривые"
@@ -1371,7 +1495,7 @@ msgid "3D curve"
 msgstr "Трёхмерная кривая"
 
 msgid "Detach"
-msgstr ""
+msgstr "Отсоединить"
 
 msgid "Graphics"
 msgstr "Графики"
@@ -1408,9 +1532,6 @@ msgstr "LaTeX/MathML"
 
 msgid "Lighting"
 msgstr "Освещение"
-
-msgid "Misc"
-msgstr "Разное"
 
 msgid "Colormap"
 msgstr "Цветовая карта"
@@ -1993,12 +2114,6 @@ msgstr "ОК"
 msgid "Cancel"
 msgstr "Отменить"
 
-msgid "Color number"
-msgstr "Номер цвета"
-
-msgid "Name"
-msgstr "Название"
-
 msgid "April"
 msgstr "Апрель"
 
@@ -2159,22 +2274,24 @@ msgstr "%s: '%s' нельзя использовать с '%s'.\n"
 #, c-format
 msgid "%s: Argument #%d is badly placed. Please check available syntaxes.\n"
 msgstr ""
+"%s: Аргумент №%d плохо размещён. Пожалуйста, проверьте имеющийся синтаксис.\n"
 
 #, c-format
 msgid "%s: Argument #%d: Wrong type. Please check available syntaxes.\n"
 msgstr ""
+"%s: Аргумент №%d: неверный тип. Пожалуйста, проверьте имеющийся синтаксис.\n"
 
 #, c-format
 msgid "%s: Argument #%d: Matrix with 4 or 6 columns expected.\n"
-msgstr ""
+msgstr "%s: Аргумент №%d: ожидалась матрица с 4 или 6 столбцами.\n"
 
 #, c-format
 msgid "%s: Argument #%d: tight or on or off values expected.\n"
-msgstr ""
+msgstr "%s: Аргумент №%d: ожидались значения 'tight' или 'on' или 'off'.\n"
 
 #, c-format
 msgid "%s: Handle of unsupported type '%s' as Argument #%d\n"
-msgstr ""
+msgstr "%s: Указатель неподдерживаемого типа '%s' в качестве аргумента №%d\n"
 
 #, c-format
 msgid ""
@@ -2354,3 +2471,9 @@ msgstr "%s: Неверный размер входных аргументов: �
 #, c-format
 msgid "%s: Wrong value given for %s."
 msgstr "%s: Для %s дано неверное значение."
+
+#~ msgid "Color number"
+#~ msgstr "Номер цвета"
+
+#~ msgid "Name"
+#~ msgstr "Название"

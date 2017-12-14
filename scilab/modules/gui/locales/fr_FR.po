@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2017-01-13 18:29+0000\n"
-"Last-Translator: Paul Bignier <Unknown>\n"
+"PO-Revision-Date: 2017-02-09 21:23+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18511)\n"
 
 #, c-format
 msgid "%s: Figure number must be given when not in '%s' mode.\n"
@@ -609,27 +609,17 @@ msgstr ""
 msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
 msgstr "%s : Type erroné de l'argument %d : Une matrice booléenne attendue.\n"
 
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Un vecteur réel ou complexe "
-"attendu.\n"
+msgid "Scilab Input Value Request"
+msgstr "Requête de valeur d'entrée Scilab"
 
-msgid "Scilab Choices Request"
-msgstr "Demande de choix Scilab"
+msgid "Scilab Multiple Values Request"
+msgstr "Demande de plusieurs valeurs Scilab"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
 msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : Un vecteur de chaîne de "
 "caractères attendu.\n"
-
-msgid "Scilab Input Value Request"
-msgstr "Requête de valeur d'entrée Scilab"
-
-msgid "Scilab Multiple Values Request"
-msgstr "Demande de plusieurs valeurs Scilab"
 
 #, c-format
 msgid ""
@@ -651,6 +641,16 @@ msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une matrice de chaîne de "
 "caractères attendue.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Un vecteur réel ou complexe "
+"attendu.\n"
+
+msgid "Scilab Choices Request"
+msgstr "Demande de choix Scilab"
 
 #, c-format
 msgid "'%s' property does not exist for this handle.\n"
@@ -1009,43 +1009,25 @@ msgstr "&Archiver la session"
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 94
-# File: modules/gui/src/gui_fake_xml.c, line: 148
-msgid "&Current Working Directory (CWD):"
+# File: modules/gui/src/gui_fake_xml.c, line: 147
+msgid "&Current Working Directory"
 msgstr ""
 
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 95
-# File: modules/gui/src/gui_fake_xml.c, line: 149
 msgid "    &Browse for new"
 msgstr ""
 
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 96
-# File: modules/gui/src/gui_fake_xml.c, line: 150
 msgid "    Go to &Favorite"
 msgstr ""
 
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 97
-# File: modules/gui/src/gui_fake_xml.c, line: 151
 msgid "TMPDIR"
 msgstr ""
 
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 98
-# File: modules/gui/src/gui_fake_xml.c, line: 152
 msgid "SCIHOME"
 msgstr ""
 
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 99
-# File: modules/gui/src/gui_fake_xml.c, line: 153
 msgid "SCI"
 msgstr ""
 
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 100
-# File: modules/gui/src/gui_fake_xml.c, line: 154
 msgid "User's home ~"
 msgstr ""
 
@@ -1625,9 +1607,8 @@ msgstr "Copier dans le presse-papier"
 msgid "Copy figure to system clipboard"
 msgstr "Copier la figure dans le presse-papier du système"
 
-#, fuzzy
 msgid "Insert a title"
-msgstr "Insérer un nouveau point ici"
+msgstr ""
 
 msgid "Label X"
 msgstr "Label X"
@@ -2313,9 +2294,6 @@ msgstr ".sce fichiers Scilab"
 msgid "Scilab binary files"
 msgstr "Fichiers binaires Scilab"
 
-msgid "All Scilab files"
-msgstr "Tous les fichiers Scilab"
-
 msgid "Xcos files"
 msgstr "Fichiers Xcos"
 
@@ -2774,6 +2752,26 @@ msgstr ""
 "La solution donnée pour %s \n"
 " est erronée : %s.\n"
 
+#, fuzzy
+msgid "Select a file to open"
+msgstr "Sélectionner un fichier à charger"
+
+#, fuzzy
+msgid "Scilab scripts"
+msgstr "Graphiques de Scilab"
+
+#, fuzzy
+msgid "Xcos diagrams"
+msgstr "Fichiers Xcos"
+
+#, fuzzy
+msgid "Scilab Tests"
+msgstr "Message Scilab"
+
+#, fuzzy
+msgid "Scilab Library"
+msgstr "Fichiers binaires Scilab"
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: uitree expected.\n"
 msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un uitree attendu.\n"
@@ -2875,8 +2873,5 @@ msgstr "%s : Type erroné de %s : Un réel attendu.\n"
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s : Dimension erronée de %s : Un réel attendu.\n"
 
-#~ msgid "&Change current directory..."
-#~ msgstr "&Changer le dossier de travail"
-
-#~ msgid "&Display current directory"
-#~ msgstr "Afficher le &dossier de travail"
+#~ msgid "All Scilab files"
+#~ msgstr "Tous les fichiers Scilab"

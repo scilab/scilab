@@ -16,7 +16,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18511)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -248,10 +248,6 @@ msgstr "Повторне визначення незмінної змінної.
 #, c-format
 msgid "%s: %s is not a valid lib file.\n"
 msgstr "%s: %s не є коректним файлом бібліотеки.\n"
-
-#, c-format
-msgid "%s: Unable to load '%s'\n"
-msgstr "%s: не вдалося завантажити «%s»\n"
 
 #, c-format
 msgid "%s: Wrong SOD file format version. Expected: %d Found: %d\n"
@@ -841,3 +837,6 @@ msgstr "Проникність"
 
 msgid "Ring Resonator"
 msgstr "Кільцевий резонатор"
+
+#~ msgid "%s: Unable to load '%s'\n"
+#~ msgstr "%s: не вдалося завантажити «%s»\n"

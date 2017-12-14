@@ -16,7 +16,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18511)\n"
 
 #, c-format
 msgid "%s: Invalid index.\n"
@@ -95,12 +95,6 @@ msgstr "%s: некоректний шлях.\n"
 msgid ""
 "%s: Input argument #%d and input argument #%d have incompatible dimensions.\n"
 msgstr "%s: розмірності вхідних параметрів №%d і №%d несумісні.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати скалярний "
-"тип.\n"
 
 #, c-format
 msgid ""
@@ -247,6 +241,38 @@ msgstr "Ділення на нуль"
 msgid "Invalid Exponent"
 msgstr "Некоректний степінь"
 
+#
+# File: modules/overloading/macros/%s_1_s.sci, line: 22
+#, c-format
+msgid ""
+"Complex comparison not supported. Please define %s_1_s_custom() or check "
+"your code."
+msgstr ""
+
+#
+# File: modules/overloading/macros/%s_2_s.sci, line: 22
+#, c-format
+msgid ""
+"Complex comparison not supported. Please define %s_2_s_custom() or check "
+"your code."
+msgstr ""
+
+#
+# File: modules/overloading/macros/%s_3_s.sci, line: 22
+#, c-format
+msgid ""
+"Complex comparison not supported. Please define %s_3_s_custom() or check "
+"your code."
+msgstr ""
+
+#
+# File: modules/overloading/macros/%s_4_s.sci, line: 22
+#, c-format
+msgid ""
+"Complex comparison not supported. Please define %s_4_s_custom() or check "
+"your code."
+msgstr ""
+
 #, c-format
 msgid ""
 "%s: Wrong type for input arguments #%d and #%d: Integer values expected.\n"
@@ -352,65 +378,7 @@ msgstr "Некоректний індекс.\n"
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
 
-#~ msgid "%s: Wrong type for input argument #%d: string expected.\n"
+#~ msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 #~ msgstr ""
-#~ "%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
-#~ "«string».\n"
-
-#~ msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
-#~ msgstr ""
-#~ "%s: помилкове значення вхідного параметра №%d: слід використовувати %s "
-#~ "або %s.\n"
-
-#~ msgid "%s: Wrong number of input argument: %d to %d expected.\n"
-#~ msgstr ""
-#~ "%s: помилкова кількість вхідних параметрів: слід використовувати від %d "
-#~ "до %d параметрів.\n"
-
-#~ msgid "%s: Wrong type for input argument #%d: Hypermatrix expected.\n"
-#~ msgstr ""
-#~ "%s: помилковий тип вхідного параметра №%d: мало бути використано "
-#~ "гіперматрицю.\n"
-
-#~ msgid ""
-#~ "%s: Wrong values for input argument #%d: Elements must be non-negative "
-#~ "integers.\n"
-#~ msgstr ""
-#~ "%s: помилкові значення для вхідного параметра №%d: елементами мають бути "
-#~ "невід’ємні цілі значення.\n"
-
-#~ msgid "%s: Wrong size for input argument(s): integer scalars expected.\n"
-#~ msgstr ""
-#~ "%s: помилкова розмірність вхідних параметрів: мало бути вказано цілі "
-#~ "числа.\n"
-
-#~ msgid "%s: Only one -1 value admitted.\n"
-#~ msgstr "%s: приймається лише одне значення -1.\n"
-
-#~ msgid "%s: Input and output matrices  must have the same number of elements"
-#~ msgstr ""
-#~ "%s: матриці вхідних і вихідних даних повинні складатися з однакової "
-#~ "кількості елементів"
-
-#~ msgid "%s: Arguments #%d and #%d must have compatible sizes\n"
-#~ msgstr "%s: аргументи №%d і №%d повинні мати сумісні розмірності\n"
-
-#~ msgid ""
-#~ "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
-#~ msgstr ""
-#~ "%s: помилкове значення вхідного параметра №%d: слід використовувати «%s», "
-#~ "«%s» або «%s».\n"
-
-#~ msgid ""
-#~ "%s: Wrong value for input argument #%d: Scalar positive integer "
-#~ "expected.\n"
-#~ msgstr ""
-#~ "%s: помилкове значення вхідного параметра №%d: слід використовувати "
-#~ "додатне ціле значення.\n"
-
-#~ msgid ""
-#~ "%s: Wrong value for input argument #%d: Scalar positive integer or "
-#~ "character string expected.\n"
-#~ msgstr ""
-#~ "%s: помилкове значення вхідного параметра №%d: мало бути вказано додатне "
-#~ "число або рядок з символів.\n"
+#~ "%s: помилковий тип вхідного параметра №%d: слід використовувати скалярний "
+#~ "тип.\n"

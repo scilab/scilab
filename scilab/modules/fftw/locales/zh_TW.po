@@ -3,14 +3,14 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 22:09+0000\n"
-"Last-Translator: tim loo <timloo0710@gmail.com>\n"
+"PO-Revision-Date: 2017-02-19 14:29+0000\n"
+"Last-Translator: TzuYuan Lin <Unknown>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18511)\n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
 #, c-format
@@ -19,7 +19,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A int32 expected.\n"
-msgstr ""
+msgstr "%s:輸入參數的資料型態錯誤 #%d: 必須是 int32 .\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -39,7 +39,7 @@ msgstr "%s: 第 %d 個輸入參數型態錯誤.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
-msgstr ""
+msgstr "%s: 輸入參數的資料長度不正確 #%d: 必須是 %d 對 %d.\n"
 
 #
 # File: sci_gateway/c/sci_get_fftw_wisdom.c, line: 59
@@ -66,7 +66,7 @@ msgstr "%s: 記憶體耗盡.\n"
 
 #, c-format
 msgid "%s: Failed to generate the planner name.\n"
-msgstr ""
+msgstr "%s: 規劃器的名稱產生失敗.\n"
 
 #, c-format
 msgid "%s: MKL fftw library does not implement wisdom functions yet.\n"

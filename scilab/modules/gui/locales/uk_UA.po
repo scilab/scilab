@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-12-07 22:10+0000\n"
+"PO-Revision-Date: 2017-02-09 21:20+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18511)\n"
 
 #, c-format
 msgid "%s: Figure number must be given when not in '%s' mode.\n"
@@ -636,27 +636,17 @@ msgstr ""
 "%s: помилковий тип параметра %d: слід використовувати матрицю булівських "
 "значень.\n"
 
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати вектор "
-"дійсних або комплексних значень.\n"
+msgid "Scilab Input Value Request"
+msgstr "Запит Scilab на вхідне значення"
 
-msgid "Scilab Choices Request"
-msgstr "Запит щодо вибору Scilab"
+msgid "Scilab Multiple Values Request"
+msgstr "Запит Scilab на декілька значень"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
 msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати вектор з "
 "рядків.\n"
-
-msgid "Scilab Input Value Request"
-msgstr "Запит Scilab на вхідне значення"
-
-msgid "Scilab Multiple Values Request"
-msgstr "Запит Scilab на декілька значень"
 
 #, c-format
 msgid ""
@@ -678,6 +668,16 @@ msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати матрицю з "
 "рядків.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати вектор "
+"дійсних або комплексних значень.\n"
+
+msgid "Scilab Choices Request"
+msgstr "Запит щодо вибору Scilab"
 
 #, c-format
 msgid "'%s' property does not exist for this handle.\n"
@@ -1054,47 +1054,27 @@ msgstr "&Завантажити середовище..."
 msgid "&Save environment..."
 msgstr "З&берегти середовище…"
 
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 94
-# File: modules/gui/src/gui_fake_xml.c, line: 148
-msgid "&Current Working Directory (CWD):"
-msgstr ""
+#, fuzzy
+msgid "&Current Working Directory"
+msgstr "&Поточний робочий каталог (CWD):"
 
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 95
-# File: modules/gui/src/gui_fake_xml.c, line: 149
 msgid "    &Browse for new"
-msgstr ""
+msgstr "    &Вказати новий"
 
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 96
-# File: modules/gui/src/gui_fake_xml.c, line: 150
 msgid "    Go to &Favorite"
-msgstr ""
+msgstr "    Перейти до ви&браного"
 
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 97
-# File: modules/gui/src/gui_fake_xml.c, line: 151
 msgid "TMPDIR"
-msgstr ""
+msgstr "TMPDIR"
 
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 98
-# File: modules/gui/src/gui_fake_xml.c, line: 152
 msgid "SCIHOME"
-msgstr ""
+msgstr "SCIHOME"
 
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 99
-# File: modules/gui/src/gui_fake_xml.c, line: 153
 msgid "SCI"
-msgstr ""
+msgstr "SCI"
 
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 100
-# File: modules/gui/src/gui_fake_xml.c, line: 154
 msgid "User's home ~"
-msgstr ""
+msgstr "Домашній користувача, ~"
 
 msgid "&Quit"
 msgstr "Ви&йти"
@@ -1670,9 +1650,8 @@ msgstr "Скопіювати до буфера обміну"
 msgid "Copy figure to system clipboard"
 msgstr "Копіювати рисунок до буфера обміну даними системи"
 
-#, fuzzy
 msgid "Insert a title"
-msgstr "Вставити у цій позиції нову точку"
+msgstr "Вкажіть заголовок"
 
 msgid "Label X"
 msgstr "Мітка X"
@@ -2358,9 +2337,6 @@ msgstr "Файли SCE Scilab"
 msgid "Scilab binary files"
 msgstr "Бінарні файли Scilab"
 
-msgid "All Scilab files"
-msgstr "Всі файли Scilab"
-
 msgid "Xcos files"
 msgstr "Файли Xcos"
 
@@ -2831,6 +2807,26 @@ msgstr ""
 "Відповідь, вказана для %s \n"
 " є помилковою: %s.\n"
 
+#, fuzzy
+msgid "Select a file to open"
+msgstr "Вкажіть файл для завантаження"
+
+#, fuzzy
+msgid "Scilab scripts"
+msgstr "Графіка Scilab"
+
+#, fuzzy
+msgid "Xcos diagrams"
+msgstr "Файли Xcos"
+
+#, fuzzy
+msgid "Scilab Tests"
+msgstr "Повідомлення Scilab"
+
+#, fuzzy
+msgid "Scilab Library"
+msgstr "Бінарні файли Scilab"
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: uitree expected.\n"
 msgstr ""
@@ -2937,8 +2933,5 @@ msgstr "%s: помилковий тип для %s: слід використов
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s: помилковий розмір для %s: слід використовувати дійсне число.\n"
 
-#~ msgid "&Change current directory..."
-#~ msgstr "З&мінити поточний каталог…"
-
-#~ msgid "&Display current directory"
-#~ msgstr "П&оказати поточний каталог"
+#~ msgid "All Scilab files"
+#~ msgstr "Всі файли Scilab"

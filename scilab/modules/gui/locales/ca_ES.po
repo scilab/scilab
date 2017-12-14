@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18511)\n"
 
 #, c-format
 msgid "%s: Figure number must be given when not in '%s' mode.\n"
@@ -553,27 +553,17 @@ msgstr ""
 msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
 msgstr ""
 
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un vector "
-"de nombres reals o complexos.\n"
+msgid "Scilab Input Value Request"
+msgstr "Petició d'entrada de valors d'Scilab"
 
-msgid "Scilab Choices Request"
-msgstr "Petició d'opcions d'Scilab"
+msgid "Scilab Multiple Values Request"
+msgstr "Petició de valors múltiples d'Scilab"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un vector de "
 "cadenes de text.\n"
-
-msgid "Scilab Input Value Request"
-msgstr "Petició d'entrada de valors d'Scilab"
-
-msgid "Scilab Multiple Values Request"
-msgstr "Petició de valors múltiples d'Scilab"
 
 #, c-format
 msgid ""
@@ -593,6 +583,16 @@ msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una matriu "
 "de cadenes de text.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un vector "
+"de nombres reals o complexos.\n"
+
+msgid "Scilab Choices Request"
+msgstr "Petició d'opcions d'Scilab"
 
 #, c-format
 msgid "'%s' property does not exist for this handle.\n"
@@ -951,43 +951,25 @@ msgstr "&Desa l'entorn..."
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 94
-# File: modules/gui/src/gui_fake_xml.c, line: 148
-msgid "&Current Working Directory (CWD):"
+# File: modules/gui/src/gui_fake_xml.c, line: 147
+msgid "&Current Working Directory"
 msgstr ""
 
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 95
-# File: modules/gui/src/gui_fake_xml.c, line: 149
 msgid "    &Browse for new"
 msgstr ""
 
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 96
-# File: modules/gui/src/gui_fake_xml.c, line: 150
 msgid "    Go to &Favorite"
 msgstr ""
 
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 97
-# File: modules/gui/src/gui_fake_xml.c, line: 151
 msgid "TMPDIR"
 msgstr ""
 
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 98
-# File: modules/gui/src/gui_fake_xml.c, line: 152
 msgid "SCIHOME"
 msgstr ""
 
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 99
-# File: modules/gui/src/gui_fake_xml.c, line: 153
 msgid "SCI"
 msgstr ""
 
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 100
-# File: modules/gui/src/gui_fake_xml.c, line: 154
 msgid "User's home ~"
 msgstr ""
 
@@ -1552,8 +1534,6 @@ msgstr ""
 msgid "Copy figure to system clipboard"
 msgstr ""
 
-#
-# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 316
 msgid "Insert a title"
 msgstr ""
 
@@ -2236,9 +2216,6 @@ msgstr "Fitsers SCE d'Scilab"
 msgid "Scilab binary files"
 msgstr "Fitxers binaris d'Scilab"
 
-msgid "All Scilab files"
-msgstr "Tots els fitxers d'Scilab"
-
 msgid "Xcos files"
 msgstr "Fitxers d'Xcos"
 
@@ -2683,6 +2660,26 @@ msgid ""
 " is incorrect: %s.\n"
 msgstr ""
 
+#, fuzzy
+msgid "Select a file to open"
+msgstr "Seleccioneu un fitxer a carregar"
+
+#, fuzzy
+msgid "Scilab scripts"
+msgstr "Missatge del Scilab"
+
+#, fuzzy
+msgid "Xcos diagrams"
+msgstr "Fitxers d'Xcos"
+
+#, fuzzy
+msgid "Scilab Tests"
+msgstr "Missatge del Scilab"
+
+#, fuzzy
+msgid "Scilab Library"
+msgstr "Fitxers binaris d'Scilab"
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: uitree expected.\n"
 msgstr ""
@@ -2784,8 +2781,5 @@ msgstr "%s: El tipus de %s és incorrecte: Ha de ser un nombre real.\n"
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s: La mida de %s és incorrecta: Ha de ser un nombre real.\n"
 
-#~ msgid "&Change current directory..."
-#~ msgstr "C&anvia el directori actual..."
-
-#~ msgid "&Display current directory"
-#~ msgstr "Mostra el &directori actual"
+#~ msgid "All Scilab files"
+#~ msgstr "Tots els fitxers d'Scilab"

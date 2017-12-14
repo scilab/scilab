@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18511)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -688,11 +688,11 @@ msgstr "%s: Pokud je x záporné, pak n musí obsahovat pouze lichá celá čís
 msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
 msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván vektor.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Must be a valid permutation of [1..n>"
 "%d] integers.\n"
-msgstr "%s: Špatná hodnota vstupního argumentu #%d: Musí být mezi %d a %d.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Incompatible input arguments: Same types expected.\n"
@@ -829,32 +829,3 @@ msgstr "%s: Nekompatibilní vstupní argumenty #%d a #%d: Očekáván stejný ty
 #, c-format
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr "%s: Špatná velikost vstupních argumentů: Nekompatibilní velikosti.\n"
-
-#~ msgid "%s: Wrong type for input argument #%d: Cell expected.\n"
-#~ msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána buňka.\n"
-
-#~ msgid ""
-#~ "%s: Wrong type for input argument #%d: Same type expected for all cell "
-#~ "contents"
-#~ msgstr ""
-#~ "%s: Špatný typ vstupního argumentu #%d: Očekávány stejné velikosti pro "
-#~ "všechen obsah buňky"
-
-#~ msgid "%s: Wrong size for input argument #%d: Must be <= %d.\n"
-#~ msgstr "%s: Špatná velikost vstupního argumentu #%d: Musí být <= %d.\n"
-
-#~ msgid "%s: Wrong type for input argument #%d: Matrix of string expected.\n"
-#~ msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána matice řetězce.\n"
-
-#~ msgid "%s: Wrong argument #%d: Positive integer expected.\n"
-#~ msgstr "%s: Špatný argument #%d: Očekáváno kladné celé číslo.\n"
-
-#~ msgid "%s: Wrong size for argument #%d: Vector expected.\n"
-#~ msgstr "%s: Špatná velikost argumentu #%d: Očekáván vektor.\n"
-
-#~ msgid ""
-#~ "%s: Wrong size for input argument #%d: At least the size of input "
-#~ "argument #%d expected.\n"
-#~ msgstr ""
-#~ "%s: Špatná velikost vstupního argumentu #%d: Očekávána alespoň velikost "
-#~ "vstupního argumentu #%d.\n"

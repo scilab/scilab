@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18511)\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -76,14 +76,28 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr ""
 
+#
+# File: modules/dynamic_link/sci_gateway/cpp/sci_call.cpp, line: 287
+#, c-format
+msgid "%s: incompatible type between input and output variables.\n"
+msgstr ""
+
+#
+# File: modules/dynamic_link/sci_gateway/cpp/sci_call.cpp, line: 296
+# File: modules/dynamic_link/sci_gateway/cpp/sci_call.cpp, line: 304
+#, c-format
+msgid "%s: incompatible sizes between input and output variables.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A int expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso un int.\n"
 
-#, c-format
-msgid "%ls Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
+"%s: L'argomento in ingresso #%d ha valore sbagliato: era atteso or [].\n"
 
 #, c-format
 msgid ""
@@ -275,13 +289,6 @@ msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una matrice "
 "di stringhe.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A matrix of strings < 999 expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
-"matrice di stringhe < 999.\n"
 
 #, c-format
 msgid "%s: A managed file extension for input argument #%d expected."
@@ -596,3 +603,10 @@ msgstr "non trovato."
 msgid "%s: Wrong type for input argument #%d: String expected."
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una stringa."
+
+#~ msgid ""
+#~ "%s: Wrong size for input argument #%d: A matrix of strings < 999 "
+#~ "expected.\n"
+#~ msgstr ""
+#~ "%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa "
+#~ "una matrice di stringhe < 999.\n"

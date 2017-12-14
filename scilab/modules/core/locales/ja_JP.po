@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-10-19 12:58+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2017-05-01 13:16+0000\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18511)\n"
 "X-Poedit-Country: JAPAN\n"
 "X-Poedit-Language: Japanese\n"
 
@@ -241,7 +241,7 @@ msgid "%s: Wrong input argument %d.\n"
 msgstr "%s: 入力引数 %d が間違っています.\n"
 
 msgid "Could not retrieve sub-type.\n"
-msgstr ""
+msgstr "サブタイプを取得できません.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
@@ -276,6 +276,7 @@ msgstr "%s: 出力引数の数が間違っています: %d個の引数を指定�
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 0, 1 or 2 expected.\n"
 msgstr ""
+"%s: 入力引数 #%d の値が間違っています: 0, 1 または 2を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type of input argument #%d: String expected.\n"
@@ -375,11 +376,12 @@ msgstr "%s: 関数名が間違っています.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {#%s}.\n"
 msgstr ""
+"%s: 入力引数 #%d の値が間違っています: 集合 {#%s}に含まれる必要があります.\n"
 
 #, c-format
 msgid "%s: function is disabled in debug mode.\n"
@@ -423,7 +425,7 @@ msgstr "%s: 引数はスカラーまたは同じ次元とする必要があり�
 
 #, c-format
 msgid "%s: Can not create a %s with input argument #%d.\n"
-msgstr ""
+msgstr "%s: %s を入力引数 #%d を指定して作成できません.\n"
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d: '%s' expected .\n"
@@ -435,23 +437,27 @@ msgstr "警告: %ls\n"
 
 #, c-format
 msgid "%s:\n"
-msgstr ""
+msgstr "%s:\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 'sorted' expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の値が間違っています: 'sorted' を指定ください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: 'local', 'get' or 'global' "
 "expected.\n"
 msgstr ""
+"%s: 入力引数 #%d の値が間違っています: 'local', 'get' または 'global' を指定"
+"してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: 'local', 'get', 'global' or 'sorted' "
 "expected.\n"
 msgstr ""
+"%s: 入力引数 #%d の値が間違っています: 'local', 'get' または 'sorted' を指定"
+"してください.\n"
 
 msgid "The SCI environment variable is not set.\n"
 msgstr "環境変数 SCI を設定できません.\n"
@@ -517,22 +523,14 @@ msgid ""
 " * the following information:\n"
 "%s %s\n"
 msgstr ""
-
-#, c-format
-msgid ""
-"%s: Please install texmacs ATOMS module: atomsInstall('texmacs')\n"
-"\n"
-msgstr ""
-"%s: texmacs ATOMS モジュールをインストールしてください:  "
-"atomsInstall('texmacs')\n"
-"\n"
-
-#
-# File: src/c/inisci-c.c, line: 82
-# File: src/c/inisci-c.c, line: 135
-# File: src/c/inisci-c.c, line: 165
-msgid "Warning"
-msgstr "警告"
+"致命的なエラーがScilabにより検出されました.\n"
+"ユーザ定義関数 (または外部モジュール)がスタックトレースに現れている必要があり"
+"ます.\n"
+"もしくは以下を指定してバグ %s をレポートしてください:\n"
+" * 問題を再現するサンプルコード\n"
+" * [a,b] = getdebuginfo() の結果\n"
+" * 以下の情報:\n"
+"%s %s\n"
 
 #
 # File: src/c/version.c, line: 24
@@ -557,10 +555,10 @@ msgid "Scilab Version Info."
 msgstr "Scilabバージョン情報."
 
 msgid "Debugger is on a breakpoint\n"
-msgstr ""
+msgstr "デバッガがブレークポイント上にあります\n"
 
 msgid "(c)ontinue or (a)bort current execution before execute a new command\n"
-msgstr ""
+msgstr "新規コマンドを実行する前に (c)ontinue または (a)bort current を実行\n"
 
 msgid ""
 "\n"
@@ -577,20 +575,20 @@ msgstr ""
 "\n"
 
 msgid "Scilab Enterprises\n"
-msgstr ""
+msgstr "Scilab Enterprises\n"
 
 msgid "Copyright (c) 2011-2017 (Scilab Enterprises)\n"
-msgstr ""
+msgstr "Copyright (c) 2011-2017 (Scilab Enterprises)\n"
 
 msgid "Copyright (c) 1989-2012 (INRIA)\n"
-msgstr ""
+msgstr "Copyright (c) 1989-2012 (INRIA)\n"
 
 msgid "Copyright (c) 1989-2007 (ENPC)\n"
-msgstr ""
+msgstr "Copyright (c) 1989-2007 (ENPC)\n"
 
 #, c-format
 msgid "Recursion limit reached (%d).\n"
-msgstr ""
+msgstr "再帰制限に達しました (%d).\n"
 
 msgid ""
 "No available console !\n"
@@ -661,28 +659,28 @@ msgid "&Toolboxes"
 msgstr "ツールボックス(&T)"
 
 msgid "Introduction: Getting started with Scilab"
-msgstr ""
+msgstr "導入: Scilab入門"
 
 msgid "Scilab objects"
-msgstr ""
+msgstr "Scilabオブジェクト"
 
 msgid "Operations and numerical primitives"
-msgstr ""
+msgstr "演算と数値プリミティブ"
 
 msgid "Online definition of function"
-msgstr ""
+msgstr "オンライン関数の定義"
 
 msgid "Optimization and simulation"
-msgstr ""
+msgstr "最適化およびシミュレーション"
 
 msgid "Systems: definition and analysis"
-msgstr ""
+msgstr "システム: 定義と解析"
 
 msgid "Linear algebra"
-msgstr ""
+msgstr "線形代数"
 
 msgid "Call an external routine"
-msgstr ""
+msgstr "外部ルーチンをコール"
 
 #, c-format
 msgid "%s: Could not find '%s': Please check that macros have been built.\n"
@@ -719,7 +717,7 @@ msgstr "%s: %s は編集不可のハードコードされた関数です.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument.\n"
-msgstr ""
+msgstr "%s: 入力引数の数が間違っています.\n"
 
 #, c-format
 msgid "%s: Unable to find Perl file: %s"
@@ -790,7 +788,7 @@ msgstr "ユーザー変数:"
 
 #, c-format
 msgid "Using %s elements"
-msgstr ""
+msgstr "%s 個の要素を使用"
 
 msgid " by "
 msgstr " by "
@@ -806,3 +804,18 @@ msgstr "サイズ"
 
 msgid "Bytes"
 msgstr "バイト"
+
+#~ msgid ""
+#~ "%s: Please install texmacs ATOMS module: atomsInstall('texmacs')\n"
+#~ "\n"
+#~ msgstr ""
+#~ "%s: texmacs ATOMS モジュールをインストールしてください:  "
+#~ "atomsInstall('texmacs')\n"
+#~ "\n"
+
+#
+# File: src/c/inisci-c.c, line: 82
+# File: src/c/inisci-c.c, line: 135
+# File: src/c/inisci-c.c, line: 165
+#~ msgid "Warning"
+#~ msgstr "警告"

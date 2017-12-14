@@ -16,7 +16,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18511)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -575,17 +575,6 @@ msgstr ""
 "%s %s\n"
 
 #, c-format
-msgid ""
-"%s: Please install texmacs ATOMS module: atomsInstall('texmacs')\n"
-"\n"
-msgstr ""
-"%s: будь ласка, встановіть модуль ATOMS texmacs: atomsInstall('texmacs')\n"
-"\n"
-
-msgid "Warning"
-msgstr "Попередження"
-
-#, c-format
 msgid "Scilab version \"%d.%d.%d.%d\"\n"
 msgstr "Версія Scilab «%d.%d.%d.%d»\n"
 
@@ -825,3 +814,13 @@ msgstr "Розмір"
 
 msgid "Bytes"
 msgstr "Байти"
+
+#~ msgid ""
+#~ "%s: Please install texmacs ATOMS module: atomsInstall('texmacs')\n"
+#~ "\n"
+#~ msgstr ""
+#~ "%s: будь ласка, встановіть модуль ATOMS texmacs: atomsInstall('texmacs')\n"
+#~ "\n"
+
+#~ msgid "Warning"
+#~ msgstr "Попередження"

@@ -17,7 +17,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18511)\n"
 
 #, c-format
 msgid "%s: Figure number must be given when not in '%s' mode.\n"
@@ -568,27 +568,17 @@ msgstr ""
 msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
 msgstr ""
 
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
-msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um vetor de "
-"números reais ou complexos.\n"
+msgid "Scilab Input Value Request"
+msgstr "Solicitação de valor de entrada do Scilab"
 
-msgid "Scilab Choices Request"
-msgstr "Solicitação de escolhas do Scilab"
+msgid "Scilab Multiple Values Request"
+msgstr "Solicitação de múltiplos valores do Scilab"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
 msgstr ""
 "%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um vetor "
 "de textos.\n"
-
-msgid "Scilab Input Value Request"
-msgstr "Solicitação de valor de entrada do Scilab"
-
-msgid "Scilab Multiple Values Request"
-msgstr "Solicitação de múltiplos valores do Scilab"
 
 #, c-format
 msgid ""
@@ -608,6 +598,16 @@ msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
 "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma matriz "
 "de textos.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um vetor de "
+"números reais ou complexos.\n"
+
+msgid "Scilab Choices Request"
+msgstr "Solicitação de escolhas do Scilab"
 
 #, c-format
 msgid "'%s' property does not exist for this handle.\n"
@@ -965,43 +965,25 @@ msgstr "&Salvar ambiente..."
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 94
-# File: modules/gui/src/gui_fake_xml.c, line: 148
-msgid "&Current Working Directory (CWD):"
+# File: modules/gui/src/gui_fake_xml.c, line: 147
+msgid "&Current Working Directory"
 msgstr ""
 
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 95
-# File: modules/gui/src/gui_fake_xml.c, line: 149
 msgid "    &Browse for new"
 msgstr ""
 
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 96
-# File: modules/gui/src/gui_fake_xml.c, line: 150
 msgid "    Go to &Favorite"
 msgstr ""
 
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 97
-# File: modules/gui/src/gui_fake_xml.c, line: 151
 msgid "TMPDIR"
 msgstr ""
 
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 98
-# File: modules/gui/src/gui_fake_xml.c, line: 152
 msgid "SCIHOME"
 msgstr ""
 
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 99
-# File: modules/gui/src/gui_fake_xml.c, line: 153
 msgid "SCI"
 msgstr ""
 
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 100
-# File: modules/gui/src/gui_fake_xml.c, line: 154
 msgid "User's home ~"
 msgstr ""
 
@@ -1575,8 +1557,6 @@ msgstr ""
 msgid "Copy figure to system clipboard"
 msgstr ""
 
-#
-# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 316
 msgid "Insert a title"
 msgstr ""
 
@@ -2261,9 +2241,6 @@ msgstr "Arquivos SCE do Scilab"
 msgid "Scilab binary files"
 msgstr "Arquivos binários do Scilab"
 
-msgid "All Scilab files"
-msgstr "Todos os arquivos Scilab"
-
 msgid "Xcos files"
 msgstr "Arquivos Xcos"
 
@@ -2708,6 +2685,26 @@ msgstr ""
 "A resposta dada para %s \n"
 " está incorreta: %s.\n"
 
+#, fuzzy
+msgid "Select a file to open"
+msgstr "Selecionar um arquivo para carregamento"
+
+#, fuzzy
+msgid "Scilab scripts"
+msgstr "Arquivos de saída do Scilab"
+
+#, fuzzy
+msgid "Xcos diagrams"
+msgstr "Arquivos Xcos"
+
+#, fuzzy
+msgid "Scilab Tests"
+msgstr "Mensagem do Scilab"
+
+#, fuzzy
+msgid "Scilab Library"
+msgstr "Arquivos binários do Scilab"
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: uitree expected.\n"
 msgstr ""
@@ -2809,8 +2806,5 @@ msgstr "%s: Tipo incorreto para %s: esperava-se um número real.\n"
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s: Tamanho incorreto para %s: esperava-se um número real.\n"
 
-#~ msgid "&Change current directory..."
-#~ msgstr "&Alterar o diretório atual..."
-
-#~ msgid "&Display current directory"
-#~ msgstr "&Exibir o diretório atual"
+#~ msgid "All Scilab files"
+#~ msgstr "Todos os arquivos Scilab"

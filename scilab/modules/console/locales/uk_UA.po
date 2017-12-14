@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18511)\n"
 
 #, c-format
 msgid "%s: This feature has not been implemented in this mode.\n"
@@ -70,13 +70,6 @@ msgstr ""
 "«string».\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A Single string of size %d expected.\n"
-msgstr ""
-"%s: помилкова розмірність вхідного параметра №%d: мало бути використано "
-"одинарний рядок розміру %d.\n"
-
-#, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
 
@@ -116,15 +109,6 @@ msgid "[Continue display? n (no) to stop, any other key to continue]"
 msgstr ""
 "[Продовжити показ? Натисніть клавішу «n» (ні), щоб зупинити показ, або будь-"
 "яку іншу клавішу, щоб його продовжити]"
-
-#, c-format
-msgid ""
-"Type '%s' or '%s' to return to standard level prompt.\n"
-"\n"
-msgstr ""
-"Введіть «%s» або «%s», щоб повернутися на стандартний рівень запиту "
-"командного рядка.\n"
-"\n"
 
 msgid "Console"
 msgstr "Консоль"
@@ -810,6 +794,15 @@ msgstr "Назва дії"
 msgid "Key binding"
 msgstr "Прив’язка клавіш"
 
+#, c-format
+msgid ""
+"Type '%s' or '%s' to return to standard level prompt.\n"
+"\n"
+msgstr ""
+"Введіть «%s» або «%s», щоб повернутися на стандартний рівень запиту "
+"командного рядка.\n"
+"\n"
+
 msgid "Field"
 msgstr "Поле"
 
@@ -824,3 +817,10 @@ msgstr "Не вдалося змінити шрифт консолі."
 
 msgid "Could not change the Console Foreground."
 msgstr "Не вдалося змінити параметри тексту у консолі."
+
+#~ msgid ""
+#~ "%s: Wrong size for input argument #%d: A Single string of size %d "
+#~ "expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова розмірність вхідного параметра №%d: мало бути використано "
+#~ "одинарний рядок розміру %d.\n"

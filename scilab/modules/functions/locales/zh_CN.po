@@ -8,18 +8,18 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-10-10 13:13+0000\n"
+"PO-Revision-Date: 2017-11-02 15:26+0000\n"
 "Last-Translator: Webish <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18511)\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数的数目错误：应该为%d到%d个。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 'errcatch' expected.\n"
@@ -27,49 +27,49 @@ msgstr "%s：输入参数#%d的值错误：应该为 'errcatch'。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A integer expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的类型错误：应该为整数。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A integer or string expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的类型错误：应该为整数或字符串。\n"
 
 #, c-format
 msgid "%s: Cannot open file %s.\n"
-msgstr ""
+msgstr "%s：无法打开文件%s。\n"
 
 #, c-format
 msgid "%s: Unable to parse macro '%s'"
-msgstr ""
+msgstr "%s：无法解析宏‘%s’"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A macro without varargin and "
 "varargout expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的类型错误：应该为不含varargin和varargout的宏。\n"
 
 #, c-format
 msgid "Recursion limit reached (%d).\n"
-msgstr ""
+msgstr "达到迭代限制次数（%d）。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：应该为‘%s’或‘%s’。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Vector of strings expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的类型错误：应该为字符串向量。\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s：输出参数的数目错误：应该为%d个。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A String expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的类型错误：应该为字符串。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A String expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的维度错误：应该为字符串。\n"
 
 #, c-format
 msgid "%s: Invalid library %s.\n"
@@ -77,15 +77,15 @@ msgstr "%s：不正确的库%s。\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr ""
+msgstr "%s：输出参数的数目错误：应该为%d个。\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments: macro expected.\n"
-msgstr ""
+msgstr "%s：输入参数的类型错误：应该为宏。\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: at least %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数的数目错误：应该至少%d个。\n"
 
 #, c-format
 msgid "Checking: %s.\n"
@@ -101,7 +101,7 @@ msgstr "%s：文件 %s 不存在。\n"
 
 #, c-format
 msgid "%s: This feature has not been implemented: %s.\n"
-msgstr ""
+msgstr "%s：该功能尚未实现：%s。\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
@@ -137,11 +137,11 @@ msgid ""
 msgstr "%s：输入参数#%d的值错误：应该为一个Scilab函数名。\n"
 
 msgid "No comment available."
-msgstr ""
+msgstr "没有有效注释。"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: '%s' expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的类型错误：应该为‘%s’。\n"
 
 #, c-format
 msgid "%s: Private function: cannot access to this function directly.\n"

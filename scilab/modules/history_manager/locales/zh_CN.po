@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2012-03-06 11:31+0000\n"
+"PO-Revision-Date: 2017-11-02 15:19+0000\n"
 "Last-Translator: Webish <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
-"Language: \n"
+"X-Generator: Launchpad (build 18511)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -43,23 +43,23 @@ msgstr "%s：第%d个输入参数的类型错误。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix of string expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的类型错误：应该为字符串矩阵。\n"
 
 #, c-format
 msgid "%s: Append lines in Scilab history failed.\n"
-msgstr ""
+msgstr "%s：向历史记录中添加行失败。\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数的数目错误：应该为%d个。\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数的数目错误：应该为%d到%d个。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A double expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的类型错误：应该为双精度浮点数。\n"
 
 #, c-format
 msgid "%s: An error occurred: Get line %d failed.\n"
@@ -74,7 +74,7 @@ msgstr "文件名filename未定义。"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的类型错误：应该为字符串。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be '%s' or '%s'.\n"
@@ -82,19 +82,19 @@ msgstr "%s：输入参数#%d的值错误：必须为'%s'或'%s'。\n"
 
 #, c-format
 msgid "%s: loadScilabHistoryFromFile failed.\n"
-msgstr ""
+msgstr "%s：loadScilabHistoryFromFile失败。\n"
 
 #, c-format
 msgid "%s: getFilenameScilabHistory failed.\n"
-msgstr ""
+msgstr "%s：getFilenameScilabHistory失败。\n"
 
 #, c-format
 msgid "%s: Load Scilab history from file failed.\n"
-msgstr ""
+msgstr "%s：加载历史记录文件失败。\n"
 
 #, c-format
 msgid "%s: expandPathVariableW failed.\n"
-msgstr ""
+msgstr "%s：expandPathVariableW失败。\n"
 
 #, c-format
 msgid ""
@@ -103,7 +103,7 @@ msgstr "%s：输入参数#%d的值错误：必须位于[%d, %d]区间中。\n"
 
 #, c-format
 msgid "%s: Reset history failed.\n"
-msgstr ""
+msgstr "%s：重置历史记录失败。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
@@ -171,22 +171,22 @@ msgstr "12月"
 
 #, c-format
 msgid "%d : %s\n"
-msgstr ""
+msgstr "%d : %s\n"
 
 msgid "Command history"
-msgstr ""
+msgstr "控制台历史记录"
 
 msgid "History Management Settings"
-msgstr ""
+msgstr "历史记录管理器设置"
 
 msgid "Enable history management"
-msgstr ""
+msgstr "启用历史记录管理器"
 
 msgid "History file: "
-msgstr ""
+msgstr "历史记录文件： "
 
 msgid "History files"
-msgstr ""
+msgstr "历史记录文件："
 
 msgid "History lines: "
 msgstr ""

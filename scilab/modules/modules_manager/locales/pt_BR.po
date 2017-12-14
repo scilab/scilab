@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18511)\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
@@ -141,9 +141,8 @@ msgstr ""
 "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma matriz "
 "de textos.\n"
 
-#, fuzzy
 msgid "Generating cleaner_src.sce...\n"
-msgstr "Gerando cleaner.sce...\n"
+msgstr ""
 
 #, c-format
 msgid "%s: The file '%s' doesn't exist or is not read accessible.\n"
@@ -194,6 +193,8 @@ msgstr ""
 msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Yeah! %d is a good number of arguments but I prefer fail, sorry.\n"
+#
+# File: modules/modules_manager/tests/tbx/testbox/macros/scilab_error.sci, line: 13
+# File: modules/modules_manager/tests/tbx/testbox/macros/scilab_error.sci, line: 17
+msgid "toolbox_skeleton"
 msgstr ""

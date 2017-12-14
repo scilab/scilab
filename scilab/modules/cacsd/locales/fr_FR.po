@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2017-01-09 20:05+0000\n"
-"Last-Translator: Paul Bignier <Unknown>\n"
+"PO-Revision-Date: 2017-02-28 22:46+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18511)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -1149,13 +1149,13 @@ msgstr "Hz"
 msgid "dB"
 msgstr "dB"
 
-#
-# File: modules/cacsd/macros/formatEvansTip.sci, line: 18
 #, c-format
 msgid ""
 "Pole: %.4g %+.4g i\n"
 "Loop gain: %.4g"
 msgstr ""
+"Pôle : %.4g %+.4g i\n"
+"Gain du retour : %.4g"
 
 msgid "rad/sec"
 msgstr "rad/sec"
@@ -1379,33 +1379,32 @@ msgstr "%s : Mauvais conditionnement.\n"
 msgid "%s: %s non symmetric.\n"
 msgstr "%s : %s non symétrique.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input argument: At least %d expected.\n"
-msgstr "%s : Nombre erroné d'arguments d'entrée : %d au moins attendus.\n"
+msgstr "%s : Nombre erroné d'arguments d'entrée : au moins %d attendus.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for argument %d: Real vector expected.\n"
-msgstr "%s : Type erroné de l'argument %d : Un vecteur réel attendu.\n"
+msgstr ""
+"%s : Type erroné pour l'argument d'entrée #%d : vecteur réel attendu.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A %d elements array expected.\n"
 msgstr ""
-"%s : Dimension erronée de l'argument d'entrée n°%d : 3 éléments maximum "
-"attendus.\n"
+"%s : Dimension erronée de l'argument d'entrée n°%d : un vecteur de %d "
+"éléments attendu.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: incompatible input arguments %d and %d\n"
-msgstr "%s : Argument d'entrée incompatible.\n"
+msgstr "%s : Les arguments d'entrée n°%d et n°%d sont incompatibles.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: Must be %s.\n"
-msgstr ""
-"%s : Valeur erronée pour l'argument d'entrée n°%d : Il doit être "
-"symétrique.\n"
+msgstr "%s : Valeur erronéee pour l'argument d'entrée n°%d : doit être %s.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: incompatible time domains\n"
-msgstr "%s : Argument d'entrée incompatible.\n"
+msgstr "%s : Domaines temporels incompatibles.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Linear state space  expected.\n"
@@ -1566,7 +1565,7 @@ msgstr "Pôles"
 msgid "Transmission zeros and poles"
 msgstr "Zéros et pôles de transmission"
 
-#, c-format
+#, fuzzy, c-format
 msgid "%s: Wrong type for input argument #%d: real matix expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée #%d : matrice réelle attendue.\n"
@@ -1845,6 +1844,8 @@ msgid ""
 "Wrong type for argument %d: A system in state space or transfer matrix form "
 "expected.\n"
 msgstr ""
+"Type erroné de l'argument n°%d : un système de forme espace d'état ou "
+"matrice de transfert attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument  #%d: Cell expected.\n"
@@ -1880,3 +1881,5 @@ msgid ""
 "%s: Wrong type for input argument #%d: zero-pole-gain representation "
 "expected.\n"
 msgstr ""
+"%s : Type erroné de l'argument d'entrée #%d : représentation \"pôle de gain "
+"nul\" attendue.\n"

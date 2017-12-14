@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18511)\n"
 
 msgid "overflow error"
 msgstr "erreur de dépassement"
@@ -501,73 +501,8 @@ msgstr "Port de sortie implicite"
 msgid "Regular output port"
 msgstr "Port ordinaire de sortie"
 
-#, c-format
-msgid "Feature %s is obsolete."
-msgstr "La fonctionnalité %s est obsolète."
-
-#, c-format
-msgid "Please use %s instead."
-msgstr "Veuillez utiliser %s à la place."
-
-msgid "Write to output file"
-msgstr "Écrire vers un fichier de sortie"
-
-msgid "&nbsp; - A binary file if no format given"
-msgstr "&nbsp; - Un fichier binaire si aucun format n'est donné"
-
-msgid "Write is done on:"
-msgstr "L''écriture a été effectuée sur :"
-
-msgid "&nbsp; - A formatted text file if a  format (Fortran type) is given"
-msgstr ""
-"&nbsp; - Un fichier texte formaté si un format (de type Fortran) est donné"
-
-msgid "Input Size"
-msgstr "Dimension d'entrée"
-
-msgid "Output File Name"
-msgstr "Nom de fichier de sortie"
-
 msgid "Buffer Size"
 msgstr "Taille de la mémoire tampon"
-
-msgid "Output Format"
-msgstr "Format de sortie"
-
-msgid "End current simulation first."
-msgstr "Arrêter la simulation en cours en premier."
-
-msgid ""
-"Simulation running !!! You cannot switch<br />between formatted and "
-"unformatted when running"
-msgstr ""
-"Simulation en cours d'exécution ! Vous ne pouvez pas basculer <br /> entre "
-"formaté et non formaté pendant ce temps."
-
-msgid "You cannot modify 'Output File Name' when running."
-msgstr ""
-"Impossible de modifier le nom de fichier de sortie en cours d'exécution."
-
-msgid "Wrong value for 'Output File Name' parameter"
-msgstr "Valeur erronée du paramètre 'Nom de fichier de sortie'"
-
-msgid "You must provide a filename."
-msgstr "Vous devez renseigner un nom de fichier."
-
-#, c-format
-msgid "Directory '%s' does not exist"
-msgstr "Le répertoire '%s' n'existe pas"
-
-msgid "Input Format"
-msgstr "Format d'entrée"
-
-msgid "You must enclose the format's string between parentheses."
-msgstr ""
-"Vous devez renseigner le format de la chaîne de caractères entre des "
-"parenthèses."
-
-msgid "Must be greater than 1."
-msgstr "Plus grand que 1."
 
 msgid "Swap Mode (0:No, 1:Yes)"
 msgstr "Mode Swap (0:No, 1:Yes)"
@@ -585,8 +520,20 @@ msgstr "Arrêter la simulation en cours en premier."
 msgid "Swap Mode"
 msgstr "Mode Swap"
 
+msgid "Input Size"
+msgstr "Dimension d'entrée"
+
+msgid "Output File Name"
+msgstr "Nom de fichier de sortie"
+
 msgid "Write to C binary file"
 msgstr "Écrire vers un fichier binaire C"
+
+msgid "Output Format"
+msgstr "Format de sortie"
+
+msgid "Input Format"
+msgstr "Format d'entrée"
 
 msgid "Valid formats are: "
 msgstr "Les formats valides sont : "
@@ -595,8 +542,18 @@ msgstr "Les formats valides sont : "
 msgid "You cannot modify '%s' when running"
 msgstr "Impossible de modifier '%s' en cours d'exécution"
 
+msgid "End current simulation first."
+msgstr "Arrêter la simulation en cours en premier."
+
 msgid "You cannot modify 'Buffer Size' when running."
 msgstr "Impossible de modifier la mémoire tampon en cours d'exécution."
+
+msgid "You must provide a filename."
+msgstr "Vous devez renseigner un nom de fichier."
+
+#, c-format
+msgid "Directory '%s' does not exist"
+msgstr "Le répertoire '%s' n'existe pas"
 
 msgid "Event input port"
 msgstr "Port d'entrée de l'évènement"
@@ -794,6 +751,9 @@ msgstr "[1, Taille d'enregistrement = "
 msgid "Wrong value for indexes in '%s' parameter: %s."
 msgstr "Valeur erronée des index du paramètre '%s' : %s"
 
+msgid "&nbsp; - A binary file if no format given"
+msgstr "&nbsp; - Un fichier binaire si aucun format n'est donné"
+
 msgid "Read from an input file"
 msgstr "Lire depuis un fichier d'entrée"
 
@@ -835,6 +795,11 @@ msgstr "Valeur erronée du paramètre '%s' : %s"
 msgid "Wrong format for '%s' parameter: %s."
 msgstr "Format erroné du paramètre  '%s' : %s"
 
+msgid "You must enclose the format's string between parentheses."
+msgstr ""
+"Vous devez renseigner le format de la chaîne de caractères entre des "
+"parenthèses."
+
 msgid "Buffer size must be at least 2."
 msgstr "La taille de la mémoire tampon doit être au moins de 2."
 
@@ -864,3 +829,36 @@ msgstr "Mêmes dimensions attendues."
 #, c-format
 msgid "%s: Wrong number of input arguments: At most %d expected.\n"
 msgstr "%s : Nombre erroné d'arguments d'entrée : Au plus %d attendu(s).\n"
+
+#~ msgid "Feature %s is obsolete."
+#~ msgstr "La fonctionnalité %s est obsolète."
+
+#~ msgid "Please use %s instead."
+#~ msgstr "Veuillez utiliser %s à la place."
+
+#~ msgid "Write to output file"
+#~ msgstr "Écrire vers un fichier de sortie"
+
+#~ msgid "Write is done on:"
+#~ msgstr "L''écriture a été effectuée sur :"
+
+#~ msgid "&nbsp; - A formatted text file if a  format (Fortran type) is given"
+#~ msgstr ""
+#~ "&nbsp; - Un fichier texte formaté si un format (de type Fortran) est donné"
+
+#~ msgid ""
+#~ "Simulation running !!! You cannot switch<br />between formatted and "
+#~ "unformatted when running"
+#~ msgstr ""
+#~ "Simulation en cours d'exécution ! Vous ne pouvez pas basculer <br /> "
+#~ "entre formaté et non formaté pendant ce temps."
+
+#~ msgid "You cannot modify 'Output File Name' when running."
+#~ msgstr ""
+#~ "Impossible de modifier le nom de fichier de sortie en cours d'exécution."
+
+#~ msgid "Wrong value for 'Output File Name' parameter"
+#~ msgstr "Valeur erronée du paramètre 'Nom de fichier de sortie'"
+
+#~ msgid "Must be greater than 1."
+#~ msgstr "Plus grand que 1."

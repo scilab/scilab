@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18511)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -1065,8 +1065,6 @@ msgstr "Hz"
 msgid "dB"
 msgstr "dB"
 
-#
-# File: modules/cacsd/macros/formatEvansTip.sci, line: 18
 #, c-format
 msgid ""
 "Pole: %.4g %+.4g i\n"
@@ -1291,38 +1289,26 @@ msgstr "%s: Mau condicionamento.\n"
 msgid "%s: %s non symmetric.\n"
 msgstr "%s: %s não é simétrico.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input argument: At least %d expected.\n"
 msgstr ""
-"%s: Quantidade incorreta de argumentos de entrada: esperava-se pelo menos "
-"%d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for argument %d: Real vector expected.\n"
 msgstr ""
-"%s: Tipo incorreto para o argumento %d: esperava-se um vetor de números "
-"reais.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A %d elements array expected.\n"
 msgstr ""
-"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se uma "
-"matriz vazia.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: incompatible input arguments %d and %d\n"
 msgstr ""
-"%s: Argumentos de entrada incompatíveis #%d e #%d: esperava-se as mesmas "
-"dimensões.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: Must be %s.\n"
 msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: deve estar entre [%d "
-"%d].\n"
 
-#
-# File: modules/cacsd/macros/lft.sci, line: 104
 #, c-format
 msgid "%s: incompatible time domains\n"
 msgstr ""
@@ -1475,9 +1461,10 @@ msgstr "Pólos"
 msgid "Transmission zeros and poles"
 msgstr "Pólos e zeros de transmissão"
 
-#, c-format
+#, fuzzy, c-format
 msgid "%s: Wrong type for input argument #%d: real matix expected.\n"
 msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma lista.\n"
 
 #, c-format
 msgid "%s: Arguments %d and %d must have equal dimensions.\n"

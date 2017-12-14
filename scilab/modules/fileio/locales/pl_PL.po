@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18511)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -342,9 +342,9 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A Strings expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: An error occurred: Not enough entries.\n"
-msgstr "%s: Wystąpił błąd.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Error while opening, reading or writing.\n"
@@ -523,15 +523,13 @@ msgstr ""
 "%s: Nieprawidłowy wartość parametru wejściowego nr %d ('%s'): nie rozpoznano "
 "formatu.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: No output file.\n"
-msgstr "%s: Nie można otworzyć pliku %s.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: %s format not recognized.\n"
 msgstr ""
-"%s: Nieprawidłowa wartość parametru wejściowego nr %d: nie rozpoznano "
-"formatu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: a string expected.\n"

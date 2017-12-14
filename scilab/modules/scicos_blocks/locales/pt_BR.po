@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18511)\n"
 
 msgid "overflow error"
 msgstr "erro de overflow"
@@ -498,71 +498,8 @@ msgstr "Porta de saída implícita"
 msgid "Regular output port"
 msgstr "Porta de saída regular"
 
-#, c-format
-msgid "Feature %s is obsolete."
-msgstr ""
-
-#, c-format
-msgid "Please use %s instead."
-msgstr ""
-
-msgid "Write to output file"
-msgstr "Escrita para arquivo de saída"
-
-msgid "&nbsp; - A binary file if no format given"
-msgstr "&nbsp; - Um arquivo binário se nenhum formato for dado"
-
-msgid "Write is done on:"
-msgstr "Escrita feita em:"
-
-msgid "&nbsp; - A formatted text file if a  format (Fortran type) is given"
-msgstr ""
-"&nbsp; - Um arquivo de texto formatado se um formato (tipo Fortran) for dado"
-
-msgid "Input Size"
-msgstr "Tamanho de entrada"
-
-msgid "Output File Name"
-msgstr "Nome do arquivo de saída"
-
 msgid "Buffer Size"
 msgstr "Tamanho do buffer"
-
-msgid "Output Format"
-msgstr "Formato de saída"
-
-msgid "End current simulation first."
-msgstr "Termine a simulação atual primeiro."
-
-msgid ""
-"Simulation running !!! You cannot switch<br />between formatted and "
-"unformatted when running"
-msgstr ""
-"Simulação sendo executada !!! Você não pode alternar <br /> entre "
-"'formatado' e 'não formatado' enquanto executando"
-
-msgid "You cannot modify 'Output File Name' when running."
-msgstr ""
-"Você não pode modificar 'Nome do arquivo de saída' enquanto executando."
-
-msgid "Wrong value for 'Output File Name' parameter"
-msgstr "Valor incorreto para o parâmetro 'Nome do arquivo de saída'"
-
-msgid "You must provide a filename."
-msgstr "Você deve fornecer um nome de arquivo."
-
-#, c-format
-msgid "Directory '%s' does not exist"
-msgstr "Diretório '%s' não existe"
-
-msgid "Input Format"
-msgstr "Formato de entrada"
-
-msgid "You must enclose the format's string between parentheses."
-msgstr "Você deve manter entre parênteses o formato de texto."
-
-msgid "Must be greater than 1."
-msgstr "Deve ser maior que 1"
 
 msgid "Swap Mode (0:No, 1:Yes)"
 msgstr "Modo de troca (0:No, 1:Sim)"
@@ -580,8 +517,20 @@ msgstr "Termine a simulação atual primeiro"
 msgid "Swap Mode"
 msgstr "Modo de troca"
 
+msgid "Input Size"
+msgstr "Tamanho de entrada"
+
+msgid "Output File Name"
+msgstr "Nome do arquivo de saída"
+
 msgid "Write to C binary file"
 msgstr "Escreve para um arquivo binário em C"
+
+msgid "Output Format"
+msgstr "Formato de saída"
+
+msgid "Input Format"
+msgstr "Formato de entrada"
 
 msgid "Valid formats are: "
 msgstr "Formatos válidos são: "
@@ -590,8 +539,18 @@ msgstr "Formatos válidos são: "
 msgid "You cannot modify '%s' when running"
 msgstr "Você não pode modificar '%s' enquanto executando"
 
+msgid "End current simulation first."
+msgstr "Termine a simulação atual primeiro."
+
 msgid "You cannot modify 'Buffer Size' when running."
 msgstr "Você não pode modificar 'Tamanho do buffer' enquanto executando."
+
+msgid "You must provide a filename."
+msgstr "Você deve fornecer um nome de arquivo."
+
+#, c-format
+msgid "Directory '%s' does not exist"
+msgstr "Diretório '%s' não existe"
 
 msgid "Event input port"
 msgstr "Porta de entrada de evento"
@@ -786,6 +745,9 @@ msgstr "[1, Tamanho da gravação = "
 msgid "Wrong value for indexes in '%s' parameter: %s."
 msgstr "Valor incorreto para parâmetros de índice em '%s': %s."
 
+msgid "&nbsp; - A binary file if no format given"
+msgstr "&nbsp; - Um arquivo binário se nenhum formato for dado"
+
 msgid "Read from an input file"
 msgstr ""
 
@@ -821,6 +783,9 @@ msgstr ""
 msgid "Wrong format for '%s' parameter: %s."
 msgstr ""
 
+msgid "You must enclose the format's string between parentheses."
+msgstr "Você deve manter entre parênteses o formato de texto."
+
 msgid "Buffer size must be at least 2."
 msgstr ""
 
@@ -849,3 +814,31 @@ msgstr "Esperava-se o mesmo tamanho."
 #, c-format
 msgid "%s: Wrong number of input arguments: At most %d expected.\n"
 msgstr ""
+
+#~ msgid "Write to output file"
+#~ msgstr "Escrita para arquivo de saída"
+
+#~ msgid "Write is done on:"
+#~ msgstr "Escrita feita em:"
+
+#~ msgid "&nbsp; - A formatted text file if a  format (Fortran type) is given"
+#~ msgstr ""
+#~ "&nbsp; - Um arquivo de texto formatado se um formato (tipo Fortran) for "
+#~ "dado"
+
+#~ msgid ""
+#~ "Simulation running !!! You cannot switch<br />between formatted and "
+#~ "unformatted when running"
+#~ msgstr ""
+#~ "Simulação sendo executada !!! Você não pode alternar <br /> entre "
+#~ "'formatado' e 'não formatado' enquanto executando"
+
+#~ msgid "You cannot modify 'Output File Name' when running."
+#~ msgstr ""
+#~ "Você não pode modificar 'Nome do arquivo de saída' enquanto executando."
+
+#~ msgid "Wrong value for 'Output File Name' parameter"
+#~ msgstr "Valor incorreto para o parâmetro 'Nome do arquivo de saída'"
+
+#~ msgid "Must be greater than 1."
+#~ msgstr "Deve ser maior que 1"

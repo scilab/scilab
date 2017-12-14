@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18511)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -1050,8 +1050,6 @@ msgstr "Hz"
 msgid "dB"
 msgstr "dB"
 
-#
-# File: modules/cacsd/macros/formatEvansTip.sci, line: 18
 #, c-format
 msgid ""
 "Pole: %.4g %+.4g i\n"
@@ -1265,38 +1263,26 @@ msgstr "%s: Condició incorrecta.\n"
 msgid "%s: %s non symmetric.\n"
 msgstr "%s: %s no és simètric.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input argument: At least %d expected.\n"
 msgstr ""
-"%s: El nombre d'arguments d'entrada és incorrecte: Han de ser com a mínim "
-"%d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for argument %d: Real vector expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una "
-"llista.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A %d elements array expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una matriu "
-"buida.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: incompatible input arguments %d and %d\n"
 msgstr ""
-"%s: Els arguments d'entrada #%d i #%d són incompatibles: Han de tenir la "
-"mateixa mida.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: Must be %s.\n"
 msgstr ""
-"%s: L'arguments d'entrada #%d té un valor incorrecte: Ha de ser un "
-"d'aquests: [%d %d].\n"
 
-#
-# File: modules/cacsd/macros/lft.sci, line: 104
 #, c-format
 msgid "%s: incompatible time domains\n"
 msgstr ""
@@ -1442,9 +1428,11 @@ msgstr "Pols"
 msgid "Transmission zeros and poles"
 msgstr "Zeros i pols de transmissió"
 
-#, c-format
+#, fuzzy, c-format
 msgid "%s: Wrong type for input argument #%d: real matix expected.\n"
 msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una "
+"llista.\n"
 
 #, c-format
 msgid "%s: Arguments %d and %d must have equal dimensions.\n"

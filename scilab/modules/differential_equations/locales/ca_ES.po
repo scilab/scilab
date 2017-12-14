@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18511)\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -120,10 +120,6 @@ msgstr ""
 msgid ""
 "%s: Wrong type for input argument #%d: The first argument in the list must "
 "be a Scilab function.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A function expected.\n"
 msgstr ""
 
 #, c-format
@@ -423,6 +419,24 @@ msgstr ""
 
 #, c-format
 msgid "%s: Convergence problem...\n"
+msgstr ""
+
+#
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 127
+#, c-format
+msgid "%s: Feature %s is obsolete.\n"
+msgstr ""
+
+#
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 127
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 128
+msgid "Warning"
+msgstr ""
+
+#
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 128
+#, c-format
+msgid "%s: Please use %s instead.\n"
 msgstr ""
 
 #, c-format
@@ -829,6 +843,95 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Same size expected.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Real number(s) expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un nombre "
+"real.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s: Nombre d'arguments d'entrada incorrecte: Hi ha d'haver %d o %d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr "%s: Nombre d'arguments d'entrada incorrecte: Hi ha d'haver %d o %d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for argument #%d: Function or list expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte. Ha de ser un nombre "
+"real.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for argument #%d: Function expected in first element of "
+"list.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte. Ha de ser un nombre "
+"real.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong number of elements in input argument #%d: At least %d elements "
+"expected, but current number is %d.\n"
+msgstr ""
+"%s: Nombre d'arguments d'entrada incorrecte: Són necessaris %d com a mínim.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for argument #%d: Matrix expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte. Ha de ser un nombre "
+"real.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un nombre "
+"real.\n"
+
+#, fuzzy, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
+msgstr "%s: Nombre d'arguments d'entrada incorrecte: Hi ha d'haver %d o %d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un nombre "
+"real.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un nombre "
+"real.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set  {%s}.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: l'expressió donada té "
+"un error de sintaxi\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte. Ha de ser un nombre "
+"real.\n"
+
+#
+# File: modules/differential_equations/macros/numderivative.sci, line: 126
+#, c-format
+msgid "%s: Q must be orthogonal.\n"
+msgstr ""
+
+#
+# File: modules/differential_equations/macros/numderivative.sci, line: 201
+# File: modules/differential_equations/macros/numderivative.sci, line: 214
+# File: modules/differential_equations/macros/numderivative.sci, line: 218
+#, c-format
+msgid "%s: Unknown value %s for option %s.\n"
 msgstr ""
 
 msgid "Defining %ODEOPTIONS variable"

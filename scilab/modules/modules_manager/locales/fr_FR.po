@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18511)\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
@@ -137,9 +137,8 @@ msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Un tableau de chaîne de "
 "caractères attendu.\n"
 
-#, fuzzy
 msgid "Generating cleaner_src.sce...\n"
-msgstr "Génération de cleaner.sce...\n"
+msgstr ""
 
 #, c-format
 msgid "%s: The file '%s' doesn't exist or is not read accessible.\n"
@@ -193,8 +192,14 @@ msgstr "Pas de script de compilation trouvé, rien à faire."
 msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
 msgstr "%s : Argument #%d : scalaire attendu.\n"
 
-#, c-format
-msgid "%s: Yeah! %d is a good number of arguments but I prefer fail, sorry.\n"
+#
+# File: modules/modules_manager/tests/tbx/testbox/macros/scilab_error.sci, line: 13
+# File: modules/modules_manager/tests/tbx/testbox/macros/scilab_error.sci, line: 17
+msgid "toolbox_skeleton"
 msgstr ""
-"%s : %d est un bon nombre d'arguments mais je préfère produire une erreur, "
-"désolé.\n"
+
+#~ msgid ""
+#~ "%s: Yeah! %d is a good number of arguments but I prefer fail, sorry.\n"
+#~ msgstr ""
+#~ "%s : %d est un bon nombre d'arguments mais je préfère produire une "
+#~ "erreur, désolé.\n"

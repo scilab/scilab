@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 22:04+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2017-05-01 15:32+0000\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18511)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
@@ -193,15 +193,15 @@ msgstr "%s: エラー.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s: 入力引数の数に誤りがあります: %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : string expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
 #
 # File: sci_gateway/c/sci_xls_open.c, line: 81
@@ -211,11 +211,11 @@ msgstr "ファイル %s は存在しません。\n"
 
 #, c-format
 msgid "%s: Cannot read file name.\n"
-msgstr ""
+msgstr "%s: ファイル名を読み込めません.\n"
 
 #, c-format
 msgid "%s: The file %s does not exist.\n"
-msgstr ""
+msgstr "%s: ファイル %s は存在しません。\n"
 
 #, c-format
 msgid "%s: File %s is not an ole2 file.\n"
@@ -229,15 +229,15 @@ msgstr "%s: ファイル %s を開けません。\n"
 
 #, c-format
 msgid "There is no xls stream in the ole2 file %ls.\n"
-msgstr ""
+msgstr "ole2ファイル %ls にxlsストリームがありません.\n"
 
 #, c-format
 msgid "%s: invalid filename.\n"
-msgstr ""
+msgstr "%s: ファイル名が無効です.\n"
 
 #, c-format
 msgid "%s: invalid status.\n"
-msgstr ""
+msgstr "%s: ステータスが無効です.\n"
 
 #
 # File: sci_gateway/c/sci_xls_open.c, line: 124
@@ -263,7 +263,7 @@ msgstr "%s: 処理できるのは,BIFF8ファイル形式のみです.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A scalar expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: スカラーを指定してください.\n"
 
 #
 # File: sci_gateway/c/sci_xls_read.c, line: 66
@@ -507,7 +507,7 @@ msgid "Scilab spreadsheet module not installed.\n"
 msgstr "Scilab スプレッドシート・モジュールはインストールされていません。\n"
 
 msgid "Spreadsheet"
-msgstr ""
+msgstr "表計算"
 
 msgid "Read a xls file"
-msgstr ""
+msgstr "xlsファイルを読み込む"

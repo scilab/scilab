@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2012-07-16 15:52+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2017-11-02 13:37+0000\n"
+"Last-Translator: Webish <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18511)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -35,19 +35,19 @@ msgstr "%s：不能添加路径到java.library.path：%s。\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数的数目错误，应该为%d个。\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr ""
+msgstr "%s：输出参数的数目错误：应该为%d个。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A String expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的类型错误：应该为字符串。\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: at %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数的数目错误：应该为%d个。\n"
 
 #, c-format
 msgid ""
@@ -125,22 +125,26 @@ msgid ""
 "If you are using a binary version of Scilab, please report a bug http://"
 "bugzilla.scilab.org/.\n"
 msgstr ""
+"如果你使用的是Scilab二进制包，请提交缺陷报告到http://bugzilla.scilab.org/。\n"
 
 #, c-format
 msgid ""
 "If you are using a self-built version of Scilab, update the script bin/"
 "scilab to provide the path to the JVM.\n"
 msgstr ""
+"如果你使用的是自行编译的Scilab, 请更新bin/scilab脚本，以向JVM提供脚本路径。\n"
 
 #, c-format
 msgid "The problem might be related to SELinux. Try to deactivate it.\n"
-msgstr ""
+msgstr "问题与SELinux有关，试试禁用SELinux。\n"
 
 #, c-format
 msgid ""
 "Please also check that you are not trying to run Scilab 64 bits on a 32 bits "
 "system (or vice versa).\n"
 msgstr ""
+"请检查你是否尝试在32位系统上运行64位的Scilab，或者64位系统上运行32位的"
+"Scilab。\n"
 
 #, c-format
 msgid ""
@@ -209,10 +213,10 @@ msgid "Cannot execute final hooks. Error:\n"
 msgstr ""
 
 msgid "Error with Scilab.canClose():\n"
-msgstr ""
+msgstr "Scilab.canClose()出错：\n"
 
 msgid "Error with Scilab.forceClose():\n"
-msgstr ""
+msgstr "Scilab.forceClose()出错：\n"
 
 #, c-format
 msgid "Error: Could not parse file %s.\n"

@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2017-02-01 14:29+0100\n"
+"Revision-Date: 2017-12-14 15:55+0100\n"
 
 # File: modules/graphics/sci_gateway/c/sci_Legend.c, line: 83
 # File: modules/graphics/sci_gateway/c/sci_Legend.c, line: 221
@@ -129,11 +129,8 @@ msgstr ""
 # File: modules/graphics/sci_gateway/c/sci_xstringb.c, line: 213
 # File: modules/graphics/sci_gateway/c/sci_xtitle.c, line: 149
 # File: modules/graphics/sci_gateway/cpp/sci_get.cpp, line: 154
-# File: modules/graphics/sci_gateway/cpp/sci_get.cpp, line: 162
 # File: modules/graphics/sci_gateway/cpp/sci_get.cpp, line: 172
-# File: modules/graphics/sci_gateway/cpp/sci_get.cpp, line: 179
 # File: modules/graphics/sci_gateway/cpp/sci_get.cpp, line: 208
-# File: modules/graphics/sci_gateway/cpp/sci_get.cpp, line: 215
 #, c-format
 msgid "%s: Wrong type for argument #%d: string expected.\n"
 msgstr ""
@@ -150,7 +147,7 @@ msgstr ""
 # File: modules/graphics/sci_gateway/c/sci_newaxes.c, line: 132
 # File: modules/graphics/sci_gateway/c/sci_unzoom.c, line: 89
 # File: modules/graphics/sci_gateway/cpp/sci_winsid.cpp, line: 51
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 297
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 312
 # File: modules/graphics/src/c/Champ.c, line: 101
 # File: modules/graphics/src/c/Champ.c, line: 126
 # File: modules/graphics/src/c/Contour.c, line: 452
@@ -348,9 +345,8 @@ msgstr ""
 # File: modules/graphics/sci_gateway/cpp/sci_contour2dm.cpp, line: 145
 # File: modules/graphics/sci_gateway/cpp/sci_contour2dm.cpp, line: 160
 # File: modules/graphics/sci_gateway/cpp/sci_contour2dm.cpp, line: 168
-# File: modules/graphics/sci_gateway/cpp/sci_get.cpp, line: 74
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 99
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 112
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 100
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 113
 #, c-format
 msgid "%s: Wrong type for argument #%d: A real expected.\n"
 msgstr ""
@@ -469,14 +465,16 @@ msgstr ""
 #
 # File: modules/graphics/sci_gateway/c/sci_color.c, line: 62
 # File: modules/graphics/sci_gateway/c/sci_name2rgb.c, line: 56
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 73
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 81
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 80
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 88
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 129
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 136
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 153
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 160
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 74
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 82
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 81
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 89
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 130
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 137
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 156
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 163
+# File: modules/graphics/src/c/GetCommandArg.c, line: 292
+# File: modules/graphics/src/c/GetCommandArg.c, line: 314
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
 msgstr ""
@@ -520,7 +518,7 @@ msgstr ""
 
 #
 # File: modules/graphics/sci_gateway/c/sci_contour2di.c, line: 127
-# File: modules/graphics/sci_gateway/c/sci_set.c, line: 154
+# File: modules/graphics/sci_gateway/c/sci_set.c, line: 155
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
 msgstr ""
@@ -532,10 +530,10 @@ msgstr ""
 # File: modules/graphics/sci_gateway/c/sci_glue.c, line: 125
 # File: modules/graphics/sci_gateway/c/sci_move.c, line: 105
 # File: modules/graphics/sci_gateway/c/sci_rotate_axes.c, line: 102
-# File: modules/graphics/sci_gateway/c/sci_set.c, line: 303
+# File: modules/graphics/sci_gateway/c/sci_set.c, line: 304
 # File: modules/graphics/sci_gateway/c/sci_unglue.c, line: 84
 # File: modules/graphics/sci_gateway/cpp/sci_get.cpp, line: 240
-# File: modules/graphics/src/c/BuildObjects.c, line: 832
+# File: modules/graphics/src/c/BuildObjects.c, line: 843
 #, c-format
 msgid "%s: The handle is not or no more valid.\n"
 msgstr ""
@@ -604,7 +602,7 @@ msgstr ""
 # File: modules/graphics/sci_gateway/c/sci_xstringb.c, line: 159
 # File: modules/graphics/sci_gateway/c/sci_xstringb.c, line: 186
 # File: modules/graphics/sci_gateway/c/sci_xtitle.c, line: 107
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 108
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 109
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real scalar expected.\n"
 msgstr ""
@@ -650,7 +648,7 @@ msgstr ""
 #
 # File: modules/graphics/sci_gateway/c/sci_is_handle_valid.c, line: 51
 # File: modules/graphics/sci_gateway/c/sci_is_handle_valid.c, line: 67
-# File: modules/graphics/sci_gateway/c/sci_set.c, line: 164
+# File: modules/graphics/sci_gateway/c/sci_set.c, line: 165
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of handle expected.\n"
 msgstr ""
@@ -676,15 +674,15 @@ msgstr ""
 
 #
 # File: modules/graphics/sci_gateway/c/sci_newaxes.c, line: 90
-# File: modules/graphics/sci_gateway/c/sci_set.c, line: 67
-# File: modules/graphics/sci_gateway/c/sci_set.c, line: 134
-# File: modules/graphics/sci_gateway/c/sci_set.c, line: 142
-# File: modules/graphics/sci_gateway/c/sci_set.c, line: 325
-# File: modules/graphics/sci_gateway/c/sci_set.c, line: 344
-# File: modules/graphics/sci_gateway/c/sci_set.c, line: 374
-# File: modules/graphics/sci_gateway/c/sci_set.c, line: 405
-# File: modules/graphics/sci_gateway/c/sci_set.c, line: 418
-# File: modules/graphics/sci_gateway/c/sci_set.c, line: 436
+# File: modules/graphics/sci_gateway/c/sci_set.c, line: 68
+# File: modules/graphics/sci_gateway/c/sci_set.c, line: 135
+# File: modules/graphics/sci_gateway/c/sci_set.c, line: 143
+# File: modules/graphics/sci_gateway/c/sci_set.c, line: 326
+# File: modules/graphics/sci_gateway/c/sci_set.c, line: 345
+# File: modules/graphics/sci_gateway/c/sci_set.c, line: 375
+# File: modules/graphics/sci_gateway/c/sci_set.c, line: 406
+# File: modules/graphics/sci_gateway/c/sci_set.c, line: 419
+# File: modules/graphics/sci_gateway/c/sci_set.c, line: 437
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
@@ -883,48 +881,48 @@ msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/c/sci_set.c, line: 120
-# File: modules/graphics/sci_gateway/c/sci_set.c, line: 126
-# File: modules/graphics/sci_gateway/c/sci_set.c, line: 186
-# File: modules/graphics/sci_gateway/c/sci_set.c, line: 270
-# File: modules/graphics/sci_gateway/c/sci_set.c, line: 337
-# File: modules/graphics/sci_gateway/c/sci_set.c, line: 398
+# File: modules/graphics/sci_gateway/c/sci_set.c, line: 121
+# File: modules/graphics/sci_gateway/c/sci_set.c, line: 127
+# File: modules/graphics/sci_gateway/c/sci_set.c, line: 187
+# File: modules/graphics/sci_gateway/c/sci_set.c, line: 271
+# File: modules/graphics/sci_gateway/c/sci_set.c, line: 338
+# File: modules/graphics/sci_gateway/c/sci_set.c, line: 399
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/c/sci_set.c, line: 177
+# File: modules/graphics/sci_gateway/c/sci_set.c, line: 178
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A matrix of string expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/c/sci_set.c, line: 226
+# File: modules/graphics/sci_gateway/c/sci_set.c, line: 227
 #, c-format
 msgid "%s: Wrong value for input argument #%d: a valid property expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/c/sci_set.c, line: 249
+# File: modules/graphics/sci_gateway/c/sci_set.c, line: 250
 #, c-format
 msgid "%s: Wrong number of input argument(s) : an odd number is expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/c/sci_set.c, line: 261
+# File: modules/graphics/sci_gateway/c/sci_set.c, line: 262
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A handle or a string expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/c/sci_set.c, line: 277
+# File: modules/graphics/sci_gateway/c/sci_set.c, line: 278
 #, c-format
 msgid "%s: Unable to find handle for path %s.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/c/sci_set.c, line: 294
+# File: modules/graphics/sci_gateway/c/sci_set.c, line: 295
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A single handle expected.\n"
 msgstr ""
@@ -1149,16 +1147,36 @@ msgstr ""
 
 #
 # File: modules/graphics/sci_gateway/cpp/sci_get.cpp, line: 57
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 67
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 74
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 68
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 75
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr ""
+
+#
+# File: modules/graphics/sci_gateway/cpp/sci_get.cpp, line: 74
+#, c-format
+msgid "%s: Wrong size for argument #%d: A real scalar expected.\n"
+msgstr ""
+
+#
+# File: modules/graphics/sci_gateway/cpp/sci_get.cpp, line: 108
+#, c-format
+msgid "%s: Wrong size for input argument #%d: scalar string expected.\n"
 msgstr ""
 
 #
 # File: modules/graphics/sci_gateway/cpp/sci_get.cpp, line: 117
 #, c-format
 msgid "%s: Could not read property '%s' for root object.\n"
+msgstr ""
+
+#
+# File: modules/graphics/sci_gateway/cpp/sci_get.cpp, line: 162
+# File: modules/graphics/sci_gateway/cpp/sci_get.cpp, line: 179
+# File: modules/graphics/sci_gateway/cpp/sci_get.cpp, line: 215
+#, c-format
+msgid "%s: Wrong size for argument #%d: scalar string expected.\n"
 msgstr ""
 
 #
@@ -1199,39 +1217,140 @@ msgid "%s: Wrong size for input argument #%d: Row vector expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 90
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 372
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 97
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 596
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 91
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 419
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 98
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 641
 #, c-format
 msgid "%s: Unrecognized input argument: '%s'.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 182
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 125
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 142
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 154
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 173
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 181
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 188
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 200
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 219
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 230
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 242
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 250
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 263
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 271
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 286
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 301
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 316
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 325
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 332
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 345
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 357
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 371
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 385
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 398
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 146
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 178
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 213
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 228
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 246
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 268
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 281
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 385
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 394
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 403
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 417
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 435
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 464
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 478
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 492
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 505
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 519
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 533
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 547
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 566
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 598
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 616
+#, c-format
+msgid ""
+"%s: This feature will be permanently removed in Scilab %s\n"
+"\n"
+msgstr ""
+
+#
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 125
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 142
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 154
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 173
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 181
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 188
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 200
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 219
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 230
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 242
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 250
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 263
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 271
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 286
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 301
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 316
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 325
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 332
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 345
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 357
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 371
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 385
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 398
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 146
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 178
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 213
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 228
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 246
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 268
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 281
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 385
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 394
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 403
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 417
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 435
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 464
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 478
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 492
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 505
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 519
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 533
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 547
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 566
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 598
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 616
+msgid "Warning"
+msgstr ""
+
+#
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 187
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A %d-element vector expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 342
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 357
 #, c-format
 msgid "Figure n%d"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 547
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 588
 #, c-format
 msgid "%s: window dimensions have been set less than 2^16.\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/c/BuildObjects.c, line: 110
-# File: modules/graphics/src/c/BuildObjects.c, line: 350
-# File: modules/graphics/src/c/BuildObjects.c, line: 440
-# File: modules/graphics/src/c/BuildObjects.c, line: 548
-# File: modules/graphics/src/c/BuildObjects.c, line: 654
-# File: modules/graphics/src/c/BuildObjects.c, line: 842
+# File: modules/graphics/src/c/BuildObjects.c, line: 121
+# File: modules/graphics/src/c/BuildObjects.c, line: 361
+# File: modules/graphics/src/c/BuildObjects.c, line: 451
+# File: modules/graphics/src/c/BuildObjects.c, line: 559
+# File: modules/graphics/src/c/BuildObjects.c, line: 665
+# File: modules/graphics/src/c/BuildObjects.c, line: 853
 msgid "The parent has to be a SUBWIN\n"
 msgstr ""
 
@@ -2857,49 +2976,54 @@ msgid "Several curves may be plotted at the same time"
 msgstr ""
 
 #
-# File: modules/graphics/demos/cmplxfunc/demo_custom.dem.sce, line: 42
+# File: modules/graphics/demos/cmplxfunc/demo_custom.dem.sce, line: 43
 msgid "Customize your complex function"
 msgstr ""
 
 #
-# File: modules/graphics/demos/cmplxfunc/demo_custom.dem.sce, line: 69
+# File: modules/graphics/demos/cmplxfunc/demo_custom.dem.sce, line: 70
 msgid "Control panel"
 msgstr ""
 
 #
-# File: modules/graphics/demos/cmplxfunc/demo_custom.dem.sce, line: 178
+# File: modules/graphics/demos/cmplxfunc/demo_custom.dem.sce, line: 179
 msgid "Function definition"
 msgstr ""
 
 #
-# File: modules/graphics/demos/cmplxfunc/demo_custom.dem.sce, line: 249
+# File: modules/graphics/demos/cmplxfunc/demo_custom.dem.sce, line: 250
 msgid "Domain type"
 msgstr ""
 
 #
-# File: modules/graphics/demos/cmplxfunc/demo_custom.dem.sce, line: 308
+# File: modules/graphics/demos/cmplxfunc/demo_custom.dem.sce, line: 309
 msgid "Radius of the domain"
 msgstr ""
 
 #
-# File: modules/graphics/demos/cmplxfunc/demo_custom.dem.sce, line: 365
+# File: modules/graphics/demos/cmplxfunc/demo_custom.dem.sce, line: 366
 msgid "Cut on axes"
 msgstr ""
 
 #
-# File: modules/graphics/demos/cmplxfunc/demo_custom.dem.sce, line: 468
+# File: modules/graphics/demos/cmplxfunc/demo_custom.dem.sce, line: 469
 msgid "Function should contain z"
 msgstr ""
 
 #
-# File: modules/graphics/demos/cmplxfunc/demo_custom.dem.sce, line: 478
+# File: modules/graphics/demos/cmplxfunc/demo_custom.dem.sce, line: 479
 msgid "Wrong definition of f(z)"
 msgstr ""
 
 #
-# File: modules/graphics/demos/cmplxfunc/demo_custom.dem.sce, line: 562
-# File: modules/graphics/demos/cmplxfunc/demo_custom.dem.sce, line: 567
+# File: modules/graphics/demos/cmplxfunc/demo_custom.dem.sce, line: 563
+# File: modules/graphics/demos/cmplxfunc/demo_custom.dem.sce, line: 568
 msgid "Radius should be real and finite"
+msgstr ""
+
+#
+# File: modules/graphics/demos/colormap/colormaps.dem.sce, line: 44
+msgid "Misc"
 msgstr ""
 
 #
@@ -2994,17 +3118,11 @@ msgstr ""
 
 #
 # File: modules/graphics/demos/graphics.dem.gateway.sce, line: 25
-# File: modules/graphics/demos/misc/misc.dem.sce, line: 43
-msgid "Misc"
-msgstr ""
-
-#
-# File: modules/graphics/demos/graphics.dem.gateway.sce, line: 26
 msgid "Colormap"
 msgstr ""
 
 #
-# File: modules/graphics/demos/graphics.dem.gateway.sce, line: 27
+# File: modules/graphics/demos/graphics.dem.gateway.sce, line: 26
 msgid "Matplot"
 msgstr ""
 
@@ -3109,12 +3227,12 @@ msgstr ""
 #
 # File: modules/graphics/macros/Sfgrayplot.sci, line: 28
 # File: modules/graphics/macros/bar.sci, line: 65
-# File: modules/graphics/macros/colorbar.sci, line: 45
-# File: modules/graphics/macros/colordef.sci, line: 16
+# File: modules/graphics/macros/colorbar.sci, line: 47
+# File: modules/graphics/macros/colordef.sci, line: 18
 # File: modules/graphics/macros/comet.sci, line: 53
 # File: modules/graphics/macros/fac3d.sci, line: 44
 # File: modules/graphics/macros/fac3d1.sci, line: 46
-# File: modules/graphics/macros/getcolor.sci, line: 41
+# File: modules/graphics/macros/getcolor.sci, line: 49
 # File: modules/graphics/macros/replot.sci, line: 37
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -3389,31 +3507,31 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/graphics/macros/colorbar.sci, line: 52
+# File: modules/graphics/macros/colorbar.sci, line: 54
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/macros/colordef.sci, line: 21
-# File: modules/graphics/macros/colordef.sci, line: 29
+# File: modules/graphics/macros/colordef.sci, line: 24
+# File: modules/graphics/macros/colordef.sci, line: 34
 # File: modules/graphics/macros/legends.sci, line: 28
-# File: modules/graphics/macros/titlepage.sci, line: 24
+# File: modules/graphics/macros/titlepage.sci, line: 25
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String array expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/macros/colordef.sci, line: 36
-# File: modules/graphics/macros/colordef.sci, line: 50
-# File: modules/graphics/macros/colordef.sci, line: 75
+# File: modules/graphics/macros/colordef.sci, line: 42
+# File: modules/graphics/macros/colordef.sci, line: 58
+# File: modules/graphics/macros/colordef.sci, line: 97
 # File: modules/graphics/macros/comet.sci, line: 108
 # File: modules/graphics/macros/comet3d.sci, line: 131
 # File: modules/graphics/macros/createConstraints.sci, line: 103
 # File: modules/graphics/macros/createLayoutOptions.sci, line: 59
 # File: modules/graphics/macros/datatips/datatipSetStyle.sci, line: 50
 # File: modules/graphics/macros/edit_curv.sci, line: 72
-# File: modules/graphics/macros/legend.sci, line: 54
+# File: modules/graphics/macros/legend.sci, line: 55
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr ""
@@ -3480,12 +3598,12 @@ msgstr ""
 # File: modules/graphics/macros/fplot2d.sci, line: 30
 # File: modules/graphics/macros/fplot3d.sci, line: 33
 # File: modules/graphics/macros/fplot3d1.sci, line: 35
-# File: modules/graphics/macros/ged_insert.sci, line: 18
+# File: modules/graphics/macros/ged_insert.sci, line: 17
 # File: modules/graphics/macros/genfac3d.sci, line: 40
 # File: modules/graphics/macros/graduate.sci, line: 45
 # File: modules/graphics/macros/graypolarplot.sci, line: 33
 # File: modules/graphics/macros/histplot.sci, line: 72
-# File: modules/graphics/macros/legend.sci, line: 15
+# File: modules/graphics/macros/legend.sci, line: 16
 # File: modules/graphics/macros/paramfplot2d.sci, line: 40
 # File: modules/graphics/macros/plot3d2.sci, line: 27
 # File: modules/graphics/macros/plot3d3.sci, line: 19
@@ -3543,7 +3661,7 @@ msgid "%s: Wrong size for input argument #%d: Real vector expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/macros/contour2d.sci, line: 166
+# File: modules/graphics/macros/contour2d.sci, line: 163
 #, c-format
 msgid "Error %d : in plot2d called by contour2d"
 msgstr ""
@@ -3557,8 +3675,8 @@ msgstr ""
 #
 # File: modules/graphics/macros/contourf.sci, line: 119
 # File: modules/graphics/macros/contourf.sci, line: 123
-# File: modules/graphics/macros/getcolor.sci, line: 24
-# File: modules/graphics/macros/getcolor.sci, line: 32
+# File: modules/graphics/macros/getcolor.sci, line: 27
+# File: modules/graphics/macros/getcolor.sci, line: 37
 #, c-format
 msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
@@ -3711,25 +3829,25 @@ msgstr ""
 
 #
 # File: modules/graphics/macros/datatips/datatipsGUI.sci, line: 53
-# File: modules/graphics/macros/getcolor.sci, line: 82
+# File: modules/graphics/macros/getcolor.sci, line: 86
 msgid "&File"
 msgstr ""
 
 #
 # File: modules/graphics/macros/datatips/datatipsGUI.sci, line: 54
-# File: modules/graphics/macros/getcolor.sci, line: 83
+# File: modules/graphics/macros/getcolor.sci, line: 87
 msgid "&Tools"
 msgstr ""
 
 #
 # File: modules/graphics/macros/datatips/datatipsGUI.sci, line: 55
-# File: modules/graphics/macros/getcolor.sci, line: 84
+# File: modules/graphics/macros/getcolor.sci, line: 88
 msgid "&Edit"
 msgstr ""
 
 #
 # File: modules/graphics/macros/datatips/datatipsGUI.sci, line: 56
-# File: modules/graphics/macros/getcolor.sci, line: 85
+# File: modules/graphics/macros/getcolor.sci, line: 89
 msgid "&?"
 msgstr ""
 
@@ -3944,31 +4062,21 @@ msgid "%s: Ambiguous surface property: %s.\n"
 msgstr ""
 
 #
-# File: modules/graphics/macros/getcolor.sci, line: 38
+# File: modules/graphics/macros/getcolor.sci, line: 45
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/macros/getcolor.sci, line: 136
-# File: modules/graphics/macros/getcolor.sci, line: 139
+# File: modules/graphics/macros/getcolor.sci, line: 140
+# File: modules/graphics/macros/getcolor.sci, line: 143
 msgid "Ok"
 msgstr ""
 
 #
-# File: modules/graphics/macros/getcolor.sci, line: 137
-# File: modules/graphics/macros/getcolor.sci, line: 140
+# File: modules/graphics/macros/getcolor.sci, line: 141
+# File: modules/graphics/macros/getcolor.sci, line: 144
 msgid "Cancel"
-msgstr ""
-
-#
-# File: modules/graphics/macros/getcolor.sci, line: 169
-msgid "Color number"
-msgstr ""
-
-#
-# File: modules/graphics/macros/getcolor.sci, line: 169
-msgid "Name"
 msgstr ""
 
 #
@@ -4086,13 +4194,13 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/graphics/macros/legend.sci, line: 58
+# File: modules/graphics/macros/legend.sci, line: 59
 #, c-format
 msgid "%s: Wrong size for input argument #%d."
 msgstr ""
 
 #
-# File: modules/graphics/macros/legend.sci, line: 84
+# File: modules/graphics/macros/legend.sci, line: 85
 #, c-format
 msgid "%s: No '%s' handle found.\n"
 msgstr ""
@@ -4150,20 +4258,20 @@ msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/macros/plot.sci, line: 231
+# File: modules/graphics/macros/plot.sci, line: 232
 #, c-format
 msgid "%s: Error : unable to evaluate input function '%s'."
 msgstr ""
 
 #
-# File: modules/graphics/macros/plot.sci, line: 231
-# File: modules/graphics/macros/plot.sci, line: 233
+# File: modules/graphics/macros/plot.sci, line: 232
+# File: modules/graphics/macros/plot.sci, line: 234
 #, c-format
 msgid "Error %d at line %d of the function: '%s"
 msgstr ""
 
 #
-# File: modules/graphics/macros/plot.sci, line: 233
+# File: modules/graphics/macros/plot.sci, line: 234
 #, c-format
 msgid "%s: Error : unable to evaluate input function."
 msgstr ""
@@ -4208,7 +4316,7 @@ msgid "%s: Argument #%d: tight or on or off values expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/macros/replot.sci, line: 290
+# File: modules/graphics/macros/replot.sci, line: 296
 #, c-format
 msgid "%s: Handle of unsupported type '%s' as Argument #%d\n"
 msgstr ""

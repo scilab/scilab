@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18511)\n"
 
 #, c-format
 msgid "%s: Figure number must be given when not in '%s' mode.\n"
@@ -496,23 +496,15 @@ msgstr "%s: 第 %d 個輸入參數的資料長度錯誤: 應該是 字串陣列.
 msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
 msgstr ""
 
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為實數或複數向量.\n"
-
-msgid "Scilab Choices Request"
-msgstr "Scilab 選取選單"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
-msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為一字串向量.\n"
-
 msgid "Scilab Input Value Request"
 msgstr "要求 Scilab 輸入數值"
 
 msgid "Scilab Multiple Values Request"
 msgstr "Scilab 多值選單"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為一字串向量.\n"
 
 #, c-format
 msgid ""
@@ -528,6 +520,14 @@ msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為 %d x %d 字串矩陣d.\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為字串矩陣.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為實數或複數向量.\n"
+
+msgid "Scilab Choices Request"
+msgstr "Scilab 選取選單"
 
 #, c-format
 msgid "'%s' property does not exist for this handle.\n"
@@ -845,43 +845,25 @@ msgstr "將軟體環境存起(&S)...."
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 94
-# File: modules/gui/src/gui_fake_xml.c, line: 148
-msgid "&Current Working Directory (CWD):"
+# File: modules/gui/src/gui_fake_xml.c, line: 147
+msgid "&Current Working Directory"
 msgstr ""
 
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 95
-# File: modules/gui/src/gui_fake_xml.c, line: 149
 msgid "    &Browse for new"
 msgstr ""
 
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 96
-# File: modules/gui/src/gui_fake_xml.c, line: 150
 msgid "    Go to &Favorite"
 msgstr ""
 
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 97
-# File: modules/gui/src/gui_fake_xml.c, line: 151
 msgid "TMPDIR"
 msgstr ""
 
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 98
-# File: modules/gui/src/gui_fake_xml.c, line: 152
 msgid "SCIHOME"
 msgstr ""
 
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 99
-# File: modules/gui/src/gui_fake_xml.c, line: 153
 msgid "SCI"
 msgstr ""
 
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 100
-# File: modules/gui/src/gui_fake_xml.c, line: 154
 msgid "User's home ~"
 msgstr ""
 
@@ -1446,8 +1428,6 @@ msgstr ""
 msgid "Copy figure to system clipboard"
 msgstr ""
 
-#
-# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 316
 msgid "Insert a title"
 msgstr ""
 
@@ -2130,9 +2110,6 @@ msgstr "Scilab SCE 檔案"
 msgid "Scilab binary files"
 msgstr "Scilab 二進位檔案"
 
-msgid "All Scilab files"
-msgstr "所有 Scilab 檔案"
-
 msgid "Xcos files"
 msgstr "Xcos 檔案"
 
@@ -2572,6 +2549,26 @@ msgstr ""
 "求得解 %s \n"
 " 是不正確: %s.\n"
 
+#, fuzzy
+msgid "Select a file to open"
+msgstr "選擇一檔案以載入系統"
+
+#, fuzzy
+msgid "Scilab scripts"
+msgstr "Scilab 訊息"
+
+#, fuzzy
+msgid "Xcos diagrams"
+msgstr "Xcos 檔案"
+
+#, fuzzy
+msgid "Scilab Tests"
+msgstr "Scilab 訊息"
+
+#, fuzzy
+msgid "Scilab Library"
+msgstr "Scilab 二進位檔案"
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: uitree expected.\n"
 msgstr ""
@@ -2662,8 +2659,5 @@ msgstr "%s:  輸入參數 %s 之型態錯誤: 應為一實數.\n"
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s: 參數 %s 長度錯誤: 應為一實數.\n"
 
-#~ msgid "&Change current directory..."
-#~ msgstr "改變目前目錄(&C)"
-
-#~ msgid "&Display current directory"
-#~ msgstr "顯示目前目錄(&D)"
+#~ msgid "All Scilab files"
+#~ msgstr "所有 Scilab 檔案"

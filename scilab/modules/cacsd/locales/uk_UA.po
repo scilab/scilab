@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-12-06 17:55+0000\n"
+"PO-Revision-Date: 2017-02-28 22:21+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18511)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -1171,13 +1171,13 @@ msgstr "Гц"
 msgid "dB"
 msgstr "дБ"
 
-#
-# File: modules/cacsd/macros/formatEvansTip.sci, line: 18
 #, c-format
 msgid ""
 "Pole: %.4g %+.4g i\n"
 "Loop gain: %.4g"
 msgstr ""
+"Полюс: %.4g %+.4g i\n"
+"Коефіцієнт пІдсилення: %.4g"
 
 msgid "rad/sec"
 msgstr "рад/с"
@@ -1398,35 +1398,34 @@ msgstr "%s: погана обумовленість.\n"
 msgid "%s: %s non symmetric.\n"
 msgstr "%s: %s не є симетричною.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input argument: At least %d expected.\n"
 msgstr ""
-"%s: помилкова кількість вхідних параметрів: мало бути не менше за %d.\n"
+"%s: помилкова кількість вхідних параметрів: слід використовувати не менше за "
+"%d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for argument %d: Real vector expected.\n"
 msgstr ""
 "%s: помилковий тип параметра %d: мало бути вказано вектор дійсних значень.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A %d elements array expected.\n"
 msgstr ""
-"%s: помилкова розмірність вхідного параметра №%d: мало бути не більше 3 "
-"елементів.\n"
+"%s: помилкова розмірність вхідного параметра №%d: слід використовувати масив "
+"з %d елементами.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: incompatible input arguments %d and %d\n"
-msgstr "%s: несумісний вхідний параметр.\n"
+msgstr "%s: вхідні параметри %d і %d несумісні\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: Must be %s.\n"
-msgstr ""
-"%s: помилкове значення вхідного параметра №%d: матриця має бути "
-"симетричною.\n"
+msgstr "%s: помилкове значення вхідного параметра №%d: має бути %s.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: incompatible time domains\n"
-msgstr "%s: несумісний вхідний параметр.\n"
+msgstr "%s: несумісні діапазони часу\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Linear state space  expected.\n"
@@ -1587,7 +1586,7 @@ msgstr "Полюси"
 msgid "Transmission zeros and poles"
 msgstr "Перехід нулів і полюсів"
 
-#, c-format
+#, fuzzy, c-format
 msgid "%s: Wrong type for input argument #%d: real matix expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: мала бути матриця із дійсних "

@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18511)\n"
 
 #, c-format
 msgid "%s: This feature has not been implemented in this mode.\n"
@@ -58,11 +58,6 @@ msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A Single string of size %d expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr ""
 
@@ -100,14 +95,6 @@ msgstr ""
 msgid "[Continue display? n (no) to stop, any other key to continue]"
 msgstr ""
 "[Pokračovat v zobrazení? n (ne) pro zastavení, jiné klávesy pro pokračování]"
-
-#, c-format
-msgid ""
-"Type '%s' or '%s' to return to standard level prompt.\n"
-"\n"
-msgstr ""
-"Zadejte '%s' nebo '%s' pro návrat do standardní úrovně výzvy.\n"
-"\n"
 
 msgid "Console"
 msgstr "Konzole"
@@ -792,6 +779,14 @@ msgstr "Název činnosti"
 
 msgid "Key binding"
 msgstr "Přidělení klávesy"
+
+#, c-format
+msgid ""
+"Type '%s' or '%s' to return to standard level prompt.\n"
+"\n"
+msgstr ""
+"Zadejte '%s' nebo '%s' pro návrat do standardní úrovně výzvy.\n"
+"\n"
 
 msgid "Field"
 msgstr "Pole"

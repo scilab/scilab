@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2017-02-08 09:22+0100\n"
+"Revision-Date: 2017-12-14 15:55+0100\n"
 
 # File: modules/core/sci_gateway/c/sci_debug.c, line: 43
 #, c-format
@@ -849,19 +849,6 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/core/src/c/texmacs.c, line: 75
-#, c-format
-msgid ""
-"%s: Please install texmacs ATOMS module: atomsInstall('texmacs')\n"
-"\n"
-msgstr ""
-
-#
-# File: modules/core/src/c/texmacs.c, line: 75
-msgid "Warning"
-msgstr ""
-
-#
 # File: modules/core/src/c/version.c, line: 27
 # File: modules/core/src/c/version.c, line: 39
 #, c-format
@@ -882,12 +869,12 @@ msgid "Scilab Version Info."
 msgstr ""
 
 #
-# File: modules/core/src/cpp/InitScilab.cpp, line: 797
+# File: modules/core/src/cpp/InitScilab.cpp, line: 804
 msgid "Debugger is on a breakpoint\n"
 msgstr ""
 
 #
-# File: modules/core/src/cpp/InitScilab.cpp, line: 798
+# File: modules/core/src/cpp/InitScilab.cpp, line: 805
 msgid "(c)ontinue or (a)bort current execution before execute a new command\n"
 msgstr ""
 

@@ -10,7 +10,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18511)\n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
 #, c-format
@@ -529,18 +529,6 @@ msgid ""
 "%s %s\n"
 msgstr ""
 
-#, c-format
-msgid ""
-"%s: Please install texmacs ATOMS module: atomsInstall('texmacs')\n"
-"\n"
-msgstr ""
-
-#
-# File: src/c/inisci-c.c, line: 150
-# File: src/c/inisci-c.c, line: 178
-msgid "Warning"
-msgstr "警告"
-
 #
 # File: src/c/version.c, line: 17
 # File: src/c/version.c, line: 29
@@ -797,3 +785,9 @@ msgstr "大小"
 
 msgid "Bytes"
 msgstr "位元組"
+
+#
+# File: src/c/inisci-c.c, line: 150
+# File: src/c/inisci-c.c, line: 178
+#~ msgid "Warning"
+#~ msgstr "警告"

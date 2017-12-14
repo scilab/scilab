@@ -8,423 +8,520 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-09-15 05:16+0000\n"
+"PO-Revision-Date: 2017-05-01 15:01+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18511)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s: 入力引数の数に誤りがあります: %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: 行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: スカラーを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Value at most 20 expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の値が間違っています: 20以下の値を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A vector of size %d (N) expected.\n"
 msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: 大きさ %d (N) のベクトルを指定して"
+"ください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Sum of m (%d) must be less than 40.\n"
 msgstr ""
+"%s: 入力引数 #%d の値が間違っています: m (%d) の合計は 40未満である必要があり"
+"ます.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: zeta(j) lower or equal to zeta(j+1) "
 "expected.\n"
 msgstr ""
+"%s: 入力引数 #%d の値が間違っています: zeta(j) は zeta(j+1) の値以下である必"
+"要があります.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A vector of size 11 expected.\n"
 msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: 大きさ 11のベクトルを指定してくだ"
+"さい.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Wrong value for element %s: %d or %d "
 "expected.\n"
 msgstr ""
+"%s: 入力引数 #%d の値が間違っています: 要素 %s の値が間違っています: %d また"
+"は %d を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Wrong value for element %s: %d to %d "
 "expected.\n"
 msgstr ""
+"%s: 入力引数 #%d の値が間違っています: 要素 %s の値が間違っています: %d から "
+"%d までの値を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Wrong value for element %s: %d to "
 "sum of m (=%d) expected.\n"
 msgstr ""
+"%s: 入力引数 #%d の値が間違っています: 要素 %s の値が間違っています: %d から "
+"m(=%dの合計までの値を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Wrong value for element %d.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の値が間違っています: 要素 %d の値が間違っています.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Wrong value for element %d: %d to %d "
 "expected.\n"
 msgstr ""
+"%s: 入力引数 #%d の値が間違っています: 要素 %d の値が間違っています: %d から "
+"%d までの値を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: An array of size %d (ipar(4)) "
 "expected.\n"
 msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: 大きさ %d (ipar(4))の配列を指定し"
+"てください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: %d to sum of m (=%d) expected.\n"
 msgstr ""
+"%s: 入力引数 #%d の値が間違っています: %d から m(=%dの合計までの値を指定して"
+"ください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Bad value for ltol(%d): ltol(1) < "
 "ltol(2) < ... < ltol(NTOL) <= M (sum of m) expected.\n"
 msgstr ""
+"%s: 入力引数 #%d の値が間違っています: ltol(%d)の値が間違っています: ltol(1) "
+"< ltol(2) < ... < ltol(NTOL) <= M (mの合計)を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: An array of size %d (ipar(11)) "
 "expected.\n"
 msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: 大きさ %d (ipar(11))の配列を指定し"
+"てください.\n"
 
 #, c-format
 msgid "%s: Subroutine not found: %s\n"
-msgstr ""
+msgstr "%s: サブルーチンが見つかりません: %s\n"
 
 #, c-format
 msgid "%s: Argument #%d: Subroutine not found in list: %s\n"
-msgstr ""
+msgstr "%s: 引数 #%d: リスト内にサブルーチンが見つかりません: %s\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: The first argument in the list must "
 "be a Scilab function.\n"
 msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A function expected.\n"
-msgstr ""
+"%s: 入力引数 #%d の型が間違っています: リストの最初の引数は Scilab関数である"
+"必要があります.\n"
 
 #, c-format
 msgid "%s: An error occured in '%s' subroutine.\n"
-msgstr ""
+msgstr "%s: サブルーチン'%s'でエラーが発生しました.\n"
 
 #, c-format
 msgid "%s: The collocation matrix is singular.\n"
-msgstr ""
+msgstr "%s: コロケーション行列が特異です.\n"
 
 #, c-format
 msgid "%s: The expected no. of subintervals exceeds storage specifications.\n"
-msgstr ""
+msgstr "%s: 指定されたサブインターバルの数がメモリ制限を超えています.\n"
 
 #, c-format
 msgid "%s: The nonlinear iteration has not converged.\n"
-msgstr ""
+msgstr "%s: 非線形反復が収束しませんでした.\n"
 
 #, c-format
 msgid "%s: There is an input data error.\n"
-msgstr ""
+msgstr "%s: 入力データにエラーがあります.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
 msgstr ""
+"%s: 出力引数の数が間違っています: %d から %d  個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: 実数の行列を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A real matrix with %d to %d column(s) "
 "expected.\n"
 msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: %d から %d 列の実数行列を指定して"
+"ください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: スカラーを指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A scalar or a matrix of size %d "
 "expected.\n"
 msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: スカラーまたは大きさ %dの行列を指"
+"定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Atol and Rtol must have the same "
 "size.\n"
 msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: Atol および Rtol は同じ大きさとし"
+"てください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix or a list expected.\n"
 msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 行列またはリストを指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Argument %d in the list must be a "
 "matrix.\n"
 msgstr ""
+"%s: 入力引数 #%d の型が間違っています: リスト内の引数 %d は行列としてくださ"
+"い.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A list of size %d expected.\n"
 msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: 大きさ %d のリストを指定してくださ"
+"い.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Element %d in the info list must be a "
 "scalar.\n"
 msgstr ""
+"%s: 入力引数 #%d の型が間違っています: infoリストの要素 %d にはスカラーを指定"
+"してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Element %d in the info list must be a "
 "matrix.\n"
 msgstr ""
+"%s: 入力引数 #%d の型が間違っています: infoリストの要素 %d には行列を指定して"
+"ください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Argument %d in the list must be of "
 "size %d.\n"
 msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: リストの引数 %d は大きさ %d として"
+"ください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: The first argument in the list must "
 "be a string, a function or a matrix in case of argument info.\n"
 msgstr ""
+"%s: 入力引数 #%d の型が間違っています: リストの最初の引数には文字列, 関数また"
+"は行列(引数情報の場合)を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A matrix or a function expected.\n"
 msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 行列または関数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument(s) %d: %d expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 %d の大きさが間違っています: %d を指定してください.\n"
 
 #, c-format
 msgid "%s: %s return with state %d.\n"
-msgstr ""
+msgstr "%s: %s は %d 個の状態量を返します.\n"
 
 #, c-format
 msgid "%ls: An error occured in '%ls' subroutine.\n"
-msgstr ""
+msgstr "%ls: サブルーチン'%ls'でエラーが発生しました.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A real matrix expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: 実数行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Argument #%d : Subroutine not found in list: %s\n"
-msgstr ""
+msgstr "%s: 引数 #%d: サブルーチンがリスト内で見つかりません: %s\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d : The first argument in the list must "
 "be a Scilab function.\n"
 msgstr ""
+"%s: 入力引数 #%d の型が間違っています: リストの最初の引数には Scilab関数を指"
+"定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A function expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: 関数を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: It must be one of the following "
 "strings: adams or stiff.\n"
 msgstr ""
+"%s: 入力引数 #%d の値が間違っています: 以下の文字列のどちらかを指定してくださ"
+"い: adams または stiff.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real vector expected.\n"
 msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 実数ベクトルを指定してください.\n"
 
 #, c-format
 msgid "%s: Arg %d and arg %d must have equal dimensions.\n"
-msgstr ""
+msgstr "%s: 引数 %d および引数 %d の次元が等しい必要があります.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: The first argument in the list must "
 "be a string or a function.\n"
 msgstr ""
+"%s: 入力引数 #%d の型が間違っています: リストの最初の引数には文字列または関数"
+"を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for w and iw: w = %d and iw = %d expected.\n"
 msgstr ""
+"%s: wおよびiwの大きさが間違っています: w = %d および iw = %d を指定してくださ"
+"い.\n"
 
 msgid ""
 "The user-supplied subroutine res signalled lsodi to halt the integration and "
 "return (ires=2). Execution of the external function has failed.\n"
 msgstr ""
+"ユーザ定義サブルーチン res が積分を停止するために lsodi をコールし、戻りまし"
+"た(ires=2). 外部関数の実行に失敗しました.\n"
 
 #, c-format
 msgid "%s: %s exit with state %d.\n"
-msgstr ""
+msgstr "%s: %s が状態 %d で終了しました.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A 3 by N matrix expected.\n"
 msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: 3行N列の行列を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Same size of input argument %d "
 "expected.\n"
 msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: 入力引数 %d と同じ大きさで指定して"
+"ください.\n"
 
 #, c-format
 msgid ""
 "%s: Argument #%d: Variable returned by scilab argument function is "
 "incorrect.\n"
-msgstr ""
+msgstr "%s: 引数 #%d: Scilab引数関数から返された変数が間違っています.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の大きさが間違っています: %d を指定してください.\n"
 
 #, c-format
 msgid ""
 "%ls: Warning: Wrong value for the first element of argument #%d: The default "
 "value will be used.\n"
 msgstr ""
+"%ls: 警告: 引数 #%d の最初の要素の値が間違っています: デフォルト値が使用され"
+"ます.\n"
 
 #, c-format
 msgid ""
 "%ls: Warning: Wrong value for the third element of argument #%d: The default "
 "value will be used.\n"
 msgstr ""
+"%ls: 警告: 引数 #%d の3番目の要素の値が間違っています: デフォルト値が使用され"
+"ます.\n"
 
 #, c-format
 msgid ""
 "%ls: Warning: Wrong value for the fourth element of argument #%d: The "
 "default value will be used.\n"
 msgstr ""
+"%ls: 警告: 引数 #%d の4番目の要素の値が間違っています: デフォルト値が使用され"
+"ます.\n"
 
 #, c-format
 msgid "%s: Means termination for lack of space to divide another triangle.\n"
-msgstr ""
+msgstr "%s: 他の三角形を分割するための空間が不足により終了しました.\n"
 
 #, c-format
 msgid "%s: Means termination because of roundoff noise.\n"
-msgstr ""
+msgstr "%s: 丸めノイズにより終了しました.\n"
 
 #, c-format
 msgid "%s: means termination with relative error <= 5.0* machine epsilon.\n"
-msgstr ""
+msgstr "%s: 相対誤差 <= 5.0*機械イプシロン により終了しました.\n"
 
 #, c-format
 msgid ""
 "%s: Means termination because the number of function evaluations has "
 "exceeded MEVALS.\n"
-msgstr ""
+msgstr "%s: 関数の評価回数が MEVALSを超えたことにより終了しました.\n"
 
 #, c-format
 msgid "%s: Means termination because of error in input flag.\n"
-msgstr ""
+msgstr "%s: 入力フラグのエラーにより終了しました.\n"
 
 #, c-format
 msgid "%s: twodq return with state %d.\n"
-msgstr ""
+msgstr "%s: twodq が状態 %d を返しました.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A 4 by N matrix expected.\n"
 msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: 4行N列の行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A positive value expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の値が間違っています: 正の値を指定してください.\n"
 
 #, c-format
 msgid ""
 "%ls: Warning: Wrong value for the element %d of argument #%d: The default "
 "value will be used.\n"
 msgstr ""
+"%ls: 警告: 要素 %d (引数 #%d )の値が間違っています: デフォルト値が使用されま"
+"す.\n"
 
 #, c-format
 msgid ""
 "%ls: Warning: Wrong value for the element %d and %d of argument #%d: The "
 "default value will be used.\n"
 msgstr ""
+"%ls: 警告: 要素 %d および%d (引数 #%d )の値が間違っています: デフォルト値が使"
+"用されます.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: minpts smaller than maxpts "
 "expected.\n"
 msgstr ""
+"%s: 入力引数 #%d の値が間違っています: minpts からmaxpts の範囲の値を指定して"
+"ください.\n"
 
 #, c-format
 msgid "%ls: Warning: maxpts was too small to obtain the required accuracy.\n"
-msgstr ""
+msgstr "%ls: 警告: maxpt は必要な精度を得るために小さすぎます.\n"
 
 #, c-format
 msgid "%s: The volume of one of the initially given tetrahedrons is zero.\n"
-msgstr ""
+msgstr "%s: 最初の指定した四面体の一つの容積がゼロです.\n"
 
 #, c-format
 msgid "%s: dcutet return with error %d.\n"
-msgstr ""
+msgstr "%s: dcutet がエラー %d を返しました.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Must not contain NaN or Inf.\n"
 msgstr ""
+"%s: 入力引数 #%d の型が間違っています: NaN または Inf を含んではいけません.\n"
 
 #, c-format
 msgid ""
 "%s: Maximum number of subdivisions achieved. Splitting the interval might "
 "help.\n"
 msgstr ""
+"%s: 分割の最大数に達しました. 間隔を分割すると改善する可能性があります.\n"
 
 #, c-format
 msgid ""
 "%s: Round-off error detected, the requested tolerance (or default) cannot be "
 "achieved. Try using bigger tolerances.\n"
 msgstr ""
+"%s: 丸め誤差が検出されました, 指定した精度(またはデフォルト値)を達成できませ"
+"ん. 許容誤差を大きくしてください.\n"
 
 #, c-format
 msgid ""
 "%s: Bad integrand behavior occurs at some points of the integration "
 "interval.\n"
-msgstr ""
+msgstr "%s: 積分間隔のどこかの点で積分処理がおかしくなりました.\n"
 
 #, c-format
 msgid ""
 "%s: Convergence problem, round-off error detected. Try using bigger "
 "tolerances.\n"
 msgstr ""
+"%s: 収束に問題があり, 丸め誤差が検出されました. 許容誤差を大きくしてくださ"
+"い.\n"
 
 #, c-format
 msgid "%s: The integral is probably divergent, or slowly convergent.\n"
-msgstr ""
+msgstr "%s: 積分が発散または収束が遅い可能性があります.\n"
 
 #, c-format
 msgid ""
 "%s: Invalid input, absolute tolerance <= 0 and relative tolerance < 2.e-14.\n"
 msgstr ""
+"%s: 入力に誤りがあります. 絶対許容誤差 <= 0 および相対許容誤差 < 2.e-14 で"
+"す.\n"
 
 #, c-format
 msgid "%s: Convergence problem...\n"
+msgstr "%s: 収束の問題があります...\n"
+
+#
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 127
+#, c-format
+msgid "%s: Feature %s is obsolete.\n"
+msgstr ""
+
+#
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 127
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 128
+msgid "Warning"
+msgstr ""
+
+#
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 128
+#, c-format
+msgid "%s: Please use %s instead.\n"
 msgstr ""
 
 #, c-format
@@ -432,29 +529,38 @@ msgid ""
 "%s: Wrong value for input argument #%d: It must be one of the following "
 "strings: adams, stiff, rk, rkf, fix, root or discrete.\n"
 msgstr ""
+"%s: 入力引数 #%d の値が間違っています: 以下の文字列のどれかを指定してくださ"
+"い: adams, stiff, rk, rkf, fix, rootまたはdiscrete.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d, %d or %d expected.\n"
 msgstr ""
+"%s: 出力引数の数が間違っています: %d, %d または %d 個の引数を指定してくださ"
+"い.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value of hmin and hmax: hmin = %d is greater than hmax = %d.\n"
 msgstr ""
+"%s: hminおよびhmaxの値が間違っています: hmin = %d が hmax = %d より大きくなっ"
+"ています.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value of Jacobian type: A number between %d and %d expected.\n"
 msgstr ""
+"%s: ヤコビアン型の値が間違っています: %d から %d の数値を指定してください.\n"
 
 #, c-format
 msgid "%s: Warning: Jacobian is given, but not used.\n"
-msgstr ""
+msgstr "%s: 警告: ヤコビアンが指定されましたが、使用されていません.\n"
 
 msgid ""
 "%s: Warning: No Jacobian external given, but one is required by "
 "%ODEOPTIONS(6) value. Jacobian will be estimated.\n"
 msgstr ""
+"%s: 警告: 外部ヤコビアンが指定されていませんが, %ODEOPTIONS(6)の値により必要"
+"とされています. ヤコビアンを推定する必要があります.\n"
 
 #, c-format
 msgid ""
@@ -462,324 +568,368 @@ msgid ""
 "At most %d for mxordn, %d for mxords and no null value for both expected.\n"
 "Wrong value will be reduced to the default value.\n"
 msgstr ""
+"%s: 警告: 指定可能な stiff/non-stiff 次数の最大値が間違っています:\n"
+" mxordn は %d 以下, mxords は %d 以下で,共にヌル値以外を指定してください.\n"
+"誤った値を指定するとデフォルト値まで縮小されます.\n"
 
 #, c-format
 msgid "itask = %d\tmeth = %d\tjactyp = %d\tml = %d\tmu = %d\tiopt = %d\n"
-msgstr ""
+msgstr "itask = %d\tmeth = %d\tjactyp = %d\tml = %d\tmu = %d\tiopt = %d\n"
 
 #, c-format
 msgid "tcrit = %lf\th0 = %lf\thmax = %lf\thmin = %lf\n"
-msgstr ""
+msgstr "tcrit = %lf\th0 = %lf\thmax = %lf\thmin = %lf\n"
 
 #, c-format
 msgid ""
 "itask = %d: At most one value of t is allowed, the last element of t is "
 "used.\n"
-msgstr ""
+msgstr "itask = %d: tの値以下が指定できます, t の最後の要素が使用されます.\n"
 
 #, c-format
 msgid "Integration was stopped at t = %lf.\n"
-msgstr ""
+msgstr "積分が t = %lf で停止しました.\n"
 
 #, c-format
 msgid "%s: Warning: At t = %lf, y is a root, jroot = "
-msgstr ""
+msgstr "%s: 警告: t = %lf で, y は root, jroot = "
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A real column vector expected (n x "
 "1).\n"
 msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: 実数の列ベクトル (n x 1) を指定し"
+"てください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: 行列を指定してください\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real scalar expected.\n"
 msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 実数スカラーを指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Value must not exceeds dimension of "
 "argument %d.\n"
 msgstr ""
+"%s: 入力引数 #%d の値が間違っています: 値は 引数の次元 %d を以下としてくださ"
+"い.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d or %d values expected.\n"
 msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: %d または %d 個を指定してくださ"
+"い.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Value of nd exceeds dimension of "
 "y0.\n"
 msgstr ""
+"%s: 入力引数 #%d の値が間違っています: ndの値がy0の次元を超えています.\n"
 
 #, c-format
 msgid "%s: Warning: odedc forces itask = %d.\n"
-msgstr ""
+msgstr "%s: 警告: odedc が itask = %d を発生させています.\n"
 
 #, c-format
 msgid "itask = %d\tmeth = %d\tjactyp = %d\tml = %d\tmu = %d\n"
-msgstr ""
+msgstr "itask = %d\tmeth = %d\tjactyp = %d\tml = %d\tmu = %d\n"
 
 #, c-format
 msgid "update at t = %lf\n"
-msgstr ""
+msgstr "t = %lf で更新\n"
 
 #, c-format
 msgid "integ. from tleft= %lf to tf= %lf\n"
-msgstr ""
+msgstr "tleft= %lf から tf= %lf まで積分\n"
 
 #, c-format
 msgid "integ. from tleft= %lf to hf=tf= %lf\n"
-msgstr ""
+msgstr "tleft= %lf から hf=tf= %lf まで積分\n"
 
 #, c-format
 msgid "integ. from tleft= %lf to hf= %lf\n"
-msgstr ""
+msgstr "tleft= %lf から hf= %lf まで積分\n"
 
 msgid "Insufficient Work space to finish (see messages).\n"
-msgstr ""
+msgstr "完了に必要な作業領域が不足しています(メッセージ参照).\n"
 
 msgid "Excessive work done on this call (perhaps wrong jacobian type).\n"
 msgstr ""
+"このコールで過剰な処理が発生しました(ヤコビアンの型が間違っている可能性があり"
+"ます).\n"
 
 msgid "Excesive accuracy requested (tolerances too small).\n"
-msgstr ""
+msgstr "過剰な精度が要求されました(許容誤差が小さすぎます).\n"
 
 msgid "Illegal input detected (see printed message).\n"
-msgstr ""
+msgstr "不正な入力が検出されました(出力されたメッセージを参照).\n"
 
 msgid "Repeated error test failures (check all inputs).\n"
-msgstr ""
+msgstr "反復エラーテストが失敗しました(全ての入力を確認してください).\n"
 
 msgid ""
 "Repeated convergence failures (perhaps bad jacobian supplied or wrong choice "
 "of jacobian type or tolerances).\n"
 msgstr ""
+"反復収束が失敗しました (指定したヤコビアンが悪いまたはヤコビアン型またｈ許容"
+"誤差の選択が悪い).\n"
 
 msgid ""
 "Error weight became zero during problem. (solution component i vanished, and "
 "atol or atol(i) = 0.)\n"
 msgstr ""
+"エラーの重みが処理中にゼロとなりました. (解の要素iが消去, atol または "
+"atol(i) = 0.)\n"
 
 msgid ""
 "The user-supplied subroutine res set its error flag (ires = 3) despite "
 "repeated tries by lsodi to avoid that condition.\n"
 msgstr ""
+"lsodiによる条件の回避を複数回試みましたが,ユーザ定義のサブルーチンresでエラー"
+"フラグ(ires=3)が設定されました.\n"
 
 msgid ""
 "istate was 0 on input but lsodi was unable to compute the initial value of "
 "dy/dt.\n"
 msgstr ""
+"入力のistateが 0 でしたが, lsodi は dy/dtの初期値を計算できませんでした.\n"
 
 msgid ""
 "Integration was not completed because relative error tolerance was too "
 "small. rerr has been increased appropriately for continuing.\n"
 msgstr ""
+"許容誤差が小さすぎたため, 積分が完了しませんでした. 継続するために rerr が適"
+"当な値に増加されました.\n"
 
 msgid ""
 "Integration was not completed because more than 3000 derivative evaluations "
 "were needed. This is approximately 500 steps.\n"
 msgstr ""
+"3000回を超える微分の計算が必要だったため, 積分が完了しませんでした. これは, "
+"約500ステップです.\n"
 
 msgid ""
 "Integration was not completed because solution vanished making a pure "
 "relative error test impossible. Must use non-zero aerr to continue. Using "
 "the one-step integration mode for one step is a good way to proceed.\n"
 msgstr ""
+"消去された解により許容誤差の確認ができなくなったため, 積分が完了しませんでし"
+"た. 続けるには, ゼロでない aerr 使用してください. 1ステップの場合は1ステップ"
+"積分モードを使用すると良いでしょう.\n"
 
 msgid ""
 "Integration was not completed because requested accuracy could not be "
 "achieved using smallest allowable stepsize. User must increase the error "
 "tolerance before continued integration can be attempted.\n"
 msgstr ""
+"指定された精度が使用可能な最小のステップサイズでも達成できなかったため, 積分"
+"が完了しませんでした. 積分を継続する前に許容誤差を大きくする必要があります.\n"
 
 msgid ""
 "It is likely that rkf45 is inefficient for solving this problem. Too much "
 "output is restricting the natural stepsize choice. Use the one-step "
 "integrator mode.\n"
 msgstr ""
+"rkf45 はこの問題を解くには不十分な可能性があります. 出力の数が多すぎると自然"
+"なステップサイズの選択を制限する可能性があります. 1ステップ積分モードを使用し"
+"てください.\n"
 
 msgid "Invalid input parameters : atol and rtol must be greater than 0.\n"
 msgstr ""
+"入力パラメータが間違っています: atol と rtol は0 より大きい必要があります.\n"
 
 msgid "Inappropriate error tolerance.\n"
-msgstr ""
+msgstr "許容誤差が不適切です.\n"
 
 msgid ""
 "Too many steps necessary to reach next required time discretization point. "
 "Change discretisation of time vector t or decrease accuracy.\n"
 msgstr ""
+"次の時間離散点に達するまでに要するステップが多すぎます. 時間ベクトル tの離散"
+"化を変えるか精度を減らしてください.\n"
 
 msgid "The error tolerances are too stringent.\n"
-msgstr ""
+msgstr "許容誤差が厳しすぎます.\n"
 
 msgid "Atol and computed test value are zero.\n"
-msgstr ""
+msgstr "Atol および 計算されたテストの値がゼロです.\n"
 
 msgid "Cannot evaluate the preconditioner.\n"
-msgstr ""
+msgstr "プリコンディショナを評価できません.\n"
 
 msgid "A singularity in the solution may be present.\n"
-msgstr ""
+msgstr "解が特異な状態となっています.\n"
 
 msgid "May be inaccurate or ill-conditioned JACOBIAN.\n"
-msgstr ""
+msgstr "JACOBIANの精度が低いか条件が劣化しています.\n"
 
 msgid "Singular partial derivatives matrix (may be redundant equations).\n"
-msgstr ""
+msgstr "偏微分行列が特異です(方程式が冗長である可能性があります).\n"
 
 msgid "Either ill-posed problem or discontinuity or singularity encountered.\n"
-msgstr ""
+msgstr "悪条件の問題または不連続または特異が発生しました.\n"
 
-#
-# File: modules/differential_equations/src/cpp/checkodeerror.cpp, line: 252
 msgid "External 'res' return many times with ires=-1.\n"
-msgstr ""
+msgstr "外部モジュール 'res' は　ires=-1 を複数回返しました.\n"
 
-#
-# File: modules/differential_equations/src/cpp/checkodeerror.cpp, line: 259
 msgid "Error in external 'res'.\n"
-msgstr ""
+msgstr "外部モジュール'res' でエラーが発生しました.\n"
 
 msgid "failed to compute the initial Ydot.\n"
-msgstr ""
+msgstr "初期値 Ydot を計算できませんでした.\n"
 
 msgid "Error in external psol.\n"
-msgstr ""
+msgstr "外部モジュール psol でエラーが発生しました.\n"
 
 msgid "The Krylov linear system did not converge.\n"
-msgstr ""
+msgstr "Krylov 線形システムが収束しませんでした.\n"
 
 #, c-format
 msgid "%s encountered trouble.\n"
-msgstr ""
+msgstr "%s に問題が発生しました.\n"
 
 #, c-format
 msgid "Undefined function '%ls'.\n"
-msgstr ""
+msgstr "未定義の関数 '%ls'.\n"
 
 #, c-format
 msgid "User function '%s' have not been setted.\n"
-msgstr ""
+msgstr "ユーザ関数'%s' は未設定です.\n"
 
 #, c-format
 msgid "%s: Wrong type for output argument #%d: Real matrix expected.\n"
-msgstr ""
+msgstr "%s: 出力引数 #%d の型が間違っています: 実数行列を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for output argument #%d: A size less or equal than %d "
 "expected.\n"
 msgstr ""
+"%s: 出力引数 #%d の大きさが間違っています: %d 以下の大きさを指定してくださ"
+"い.\n"
 
 #, c-format
 msgid "%s: Wrong size for output argument #%d: A Scalar expected.\n"
 msgstr ""
+"%s: 出力引数 #%d の大きさが間違っています:  スカラーを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for output argument #%d: Matrix of size %d expected.\n"
 msgstr ""
+"%s: 出力引数 #%d の大きさが間違っています:  大きさ %d の行列を指定してくださ"
+"い.\n"
 
 #, c-format
 msgid "%s: Wrong size for output argument #%d: A Matrix of size %d expected.\n"
 msgstr ""
+"%s: 出力引数 #%d の大きさが間違っています:  大きさ %d の行列を指定してくださ"
+"い.\n"
 
 #, c-format
 msgid "%s: Wrong size for output argument #%d: A matrix of size %d expected.\n"
 msgstr ""
+"%s: 出力引数 #%d の大きさが間違っています:  大きさ %d の行列を指定してくださ"
+"い.\n"
 
 #, c-format
 msgid "%s: Wrong type for output argument #%d: Matrix expected.\n"
-msgstr ""
+msgstr "%s: 出力引数 #%d の型が間違っています:  行列を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for output argument #%d: A matrix of size %d x %d expected.\n"
 msgstr ""
+"%s: 出力引数 #%d の大きさが間違っています:  大きさ %d x %d の行列を指定してく"
+"ださい.\n"
 
 msgid "An error occurred while getting DifferentialEquationFunctions object.\n"
 msgstr ""
+"DifferentialEquationFunctions オブジェクトを取得する際にエラーが発生しまし"
+"た.\n"
 
 msgid "Unstable trajectory"
-msgstr ""
+msgstr "不安定な軌道"
 
 msgid "Stable trajectory"
-msgstr ""
+msgstr "安定な軌道"
 
 msgid "bike simulation, stable trajectory"
-msgstr ""
+msgstr "バイクシミュレーション, 安定な軌道"
 
 msgid "bike simulation, unstable trajectory"
-msgstr ""
+msgstr "バイクシミュレーション, 不安定な軌道"
 
 msgid "spherical pendulum simulation"
-msgstr ""
+msgstr "球面振子シミュレーション"
 
 msgid "Simulation"
-msgstr ""
+msgstr "シミュレーション"
 
 msgid "n-pendulum"
-msgstr ""
+msgstr "n-振子"
 
 msgid "Wheel simulation"
-msgstr ""
+msgstr "車輪シミュレーション"
 
 msgid "Bike simulation"
-msgstr ""
+msgstr "バイクシミュレーション"
 
 msgid "ODE'S"
-msgstr ""
+msgstr "常微分方程式"
 
 msgid "DAE'S"
-msgstr ""
+msgstr "代数方程式"
 
 msgid "Flow simulation"
-msgstr ""
+msgstr "流れシミュレーション"
 
 msgid "Levitron"
-msgstr ""
+msgstr "レビトロン"
 
 msgid "Blackhole"
-msgstr ""
+msgstr "ブラックホール"
 
 msgid "Simulation Parameters"
-msgstr ""
+msgstr "シミュレーションパラメータ"
 
 msgid "Cylinder"
-msgstr ""
+msgstr "円筒"
 
 msgid "Sphere"
-msgstr ""
+msgstr "球"
 
 msgid "ODE 1D vector field"
-msgstr ""
+msgstr "1次元ベクトル場の常微分方程式"
 
 msgid "chemical process (implicit)"
-msgstr ""
+msgstr "化学プロセス(陰的)"
 
 msgid "Lorenz differential equation"
-msgstr ""
+msgstr "ローレンツ微分方程式"
 
 msgid "Lotka-Volterra vector field"
-msgstr ""
+msgstr "Lotka-Volterraベクトル場"
 
 msgid "Van der Pol vector field"
-msgstr ""
+msgstr "Van der Polベクトル場"
 
 msgid "Reading a precomputed trajectory"
-msgstr ""
+msgstr "計算済みの軌道を読み込む"
 
 msgid "Simulation with ode (needs a Fortran compiler)"
-msgstr ""
+msgstr "常微分方程式でシミュレーション(Fortranコンパイラが必要)"
 
 msgid "Simulation of mechanical system with holonomic constraints"
-msgstr ""
+msgstr "ホロノミック拘束を有する機械系シミュレーション"
 
 msgid "Differential equations code generated by Maple"
-msgstr ""
+msgstr "Mapleで生成された微分方程式のコード"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
@@ -833,6 +983,79 @@ msgstr "%s: 入力引数 #%d の値が間違っています: 実数を指定し�
 #, c-format
 msgid "%s: Wrong size for input arguments: Same size expected.\n"
 msgstr "%s: 入力引数 の大きさが間違っています: 同じ大きさで指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Real number(s) expected.\n"
+msgstr "%s: 出力引数 #%d の型が間違っています: 実数行列を指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr ""
+"%s: 出力引数の数が間違っています: %d から %d  個の引数を指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for argument #%d: Function or list expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています : 関数を指定してください.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for argument #%d: Function expected in first element of "
+"list.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています : 関数を指定してください.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong number of elements in input argument #%d: At least %d elements "
+"expected, but current number is %d.\n"
+msgstr "%s: 入力引数の数が間違っています: %d 個以上の引数を指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for argument #%d: Matrix expected.\n"
+msgstr "%s: 出力引数 #%d の型が間違っています:  行列を指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: %d を指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
+msgstr "%s: 入力引数 の大きさが間違っています: 同じ大きさで指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 実数を指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: 3行N列の行列を指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set  {%s}.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 実数を指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 実数を指定してください.\n"
+
+#
+# File: modules/differential_equations/macros/numderivative.sci, line: 126
+#, c-format
+msgid "%s: Q must be orthogonal.\n"
+msgstr ""
+
+#
+# File: modules/differential_equations/macros/numderivative.sci, line: 201
+# File: modules/differential_equations/macros/numderivative.sci, line: 214
+# File: modules/differential_equations/macros/numderivative.sci, line: 218
+#, c-format
+msgid "%s: Unknown value %s for option %s.\n"
+msgstr ""
 
 #
 # File: macros/odeoptions.sci, line: 50

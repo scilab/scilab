@@ -8,30 +8,30 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2011-09-02 08:06+0000\n"
-"Last-Translator: Calixte <Unknown>\n"
+"PO-Revision-Date: 2017-07-09 12:54+0000\n"
+"Last-Translator: TzuYuan Lin <Unknown>\n"
 "Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
-"Language: \n"
+"X-Generator: Launchpad (build 18511)\n"
 
 #, c-format
 msgid "%s: Wrong size for first input argument: Single double expected.\n"
-msgstr ""
+msgstr "%s: 給第1個輸入參數的大小錯誤: 應該是雙精度浮點數.\n"
 
 #, c-format
 msgid "%s: Wrong type for first input argument: Double expected.\n"
-msgstr ""
+msgstr "%s: 給第1個輸入參數的類型錯誤: 應該是雙精度浮點數.\n"
 
 #, c-format
 msgid "%s: Invalid file identifier.\n"
-msgstr "%s：無效的檔案辨識符。\n"
+msgstr "%s: 無效的檔案識別器.\n"
 
 #, c-format
 msgid "%s: Could not rewind the file %s.\n"
-msgstr ""
+msgstr "%s: %s檔案無法回轉.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -43,31 +43,31 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for first input argument: string expected.\n"
-msgstr ""
+msgstr "%s: 給第1個輸入參數的大小錯誤: 應該是字串型態.\n"
 
 #, c-format
 msgid "%s: Wrong type for first input argument: string expected.\n"
-msgstr ""
+msgstr "%s: 給第1個輸入參數的型態錯誤: 應該是字串型態.\n"
 
 #, c-format
 msgid "%s: Wrong size for second input argument: string expected.\n"
-msgstr ""
+msgstr "%s: 給第2個輸入參數的大小錯誤: 應該是字串型態.\n"
 
 #, c-format
 msgid "%s: Wrong value for second input argument: 'r' or 'w' expected.\n"
-msgstr ""
+msgstr "%s: 給第2個輸入參數的數值錯誤: 應該是 'r' 或 'w' 字元.\n"
 
 #, c-format
 msgid "%s: Wrong type for second input argument: string expected.\n"
-msgstr ""
+msgstr "%s: 給第2個輸入參數的型態錯誤: 應該是字串型態.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: string expected.\n"
-msgstr ""
+msgstr "%s: 第 %d 個輸入參數的資料長度錯誤: 應該是字串型態.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
-msgstr ""
+msgstr "%s: #%d 的輸入參數型態錯誤: 應該是字串型態.\n"
 
 #, c-format
 msgid "%s: Wrong size for first input argument: An integer value expected.\n"

@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18511)\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: A real expected.\n"
@@ -459,6 +459,12 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for output argument #%d: Real matrix expected.\n"
 msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for output argument #%d: %d element(s) expected.\n"
+msgstr ""
+"%s: Tamaño incorrecto para el argumento de entrada #%d: Se esperaba una "
+"matriz de %d por %d.\n"
 
 #, c-format
 msgid ""
@@ -1431,65 +1437,6 @@ msgstr ""
 "en la ruta."
 
 #, c-format
-msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: Function or list expected.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong type for argument #%d: Function expected in first element of "
-"list.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong number of elements in input argument #%d: At least %d elements "
-"expected, but current number is %d.\n"
-msgstr ""
-"%s: Número incorrecto de elementos en el argumento de entrada #%d: Se "
-"esperaban al menos %d elementos, pero el número actual es %d.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: Matrix expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be in the set  {%s}.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String array expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Q must be orthogonal.\n"
-msgstr "%s: Q debe ser ortogonal.\n"
-
-#, c-format
-msgid "%s: Unknown value %s for option %s.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A function expected.\n"
-msgstr ""
-"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba una función.\n"
-
-#, c-format
 msgid ""
 "%s: The number of variables %d does not match the number of max bounds: %d.\n"
 msgstr ""
@@ -1768,3 +1715,18 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
 msgstr ""
+
+#~ msgid ""
+#~ "%s: Wrong number of elements in input argument #%d: At least %d elements "
+#~ "expected, but current number is %d.\n"
+#~ msgstr ""
+#~ "%s: Número incorrecto de elementos en el argumento de entrada #%d: Se "
+#~ "esperaban al menos %d elementos, pero el número actual es %d.\n"
+
+#~ msgid "%s: Q must be orthogonal.\n"
+#~ msgstr "%s: Q debe ser ortogonal.\n"
+
+#~ msgid "%s: Wrong type for input argument #%d: A function expected.\n"
+#~ msgstr ""
+#~ "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba una "
+#~ "función.\n"

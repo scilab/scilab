@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18511)\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -592,9 +592,27 @@ msgstr ""
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
 msgstr ""
 
+#, fuzzy, c-format
+msgid "%s: Wrong size for argument #%d: A real scalar expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un escalar "
+"real.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: scalar string expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una cadena de "
+"text.\n"
+
 #, c-format
 msgid "%s: Could not read property '%s' for root object.\n"
 msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for argument #%d: scalar string expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una cadena de "
+"text.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real or integer expected.\n"
@@ -616,6 +634,107 @@ msgstr ""
 msgid "%s: Unrecognized input argument: '%s'.\n"
 msgstr "%s: No s'ha reconegut l'argument d'entrada: '%s'.\n"
 
+#
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 125
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 142
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 154
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 173
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 181
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 188
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 200
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 219
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 230
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 242
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 250
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 263
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 271
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 286
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 301
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 316
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 325
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 332
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 345
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 357
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 371
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 385
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 398
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 146
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 178
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 213
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 228
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 246
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 268
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 281
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 385
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 394
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 403
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 417
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 435
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 464
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 478
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 492
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 505
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 519
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 533
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 547
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 566
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 598
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 616
+#, c-format
+msgid ""
+"%s: This feature will be permanently removed in Scilab %s\n"
+"\n"
+msgstr ""
+
+#
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 125
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 142
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 154
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 173
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 181
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 188
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 200
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 219
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 230
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 242
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 250
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 263
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 271
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 286
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 301
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 316
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 325
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 332
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 345
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 357
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 371
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 385
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 398
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 146
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 178
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 213
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 228
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 246
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 268
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 281
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 385
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 394
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 403
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 417
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 435
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 464
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 478
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 492
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 505
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 519
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 533
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 547
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 566
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 598
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 616
+msgid "Warning"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A %d-element vector expected.\n"
 msgstr ""
@@ -631,6 +750,8 @@ msgstr ""
 msgid "The parent has to be a SUBWIN\n"
 msgstr "El pare ha de ser un SUBWIN\n"
 
+#
+# File: modules/graphics/src/c/Champ.c, line: 147
 #, c-format
 msgid "%s: Could not retrive bounding box.\n"
 msgstr ""
@@ -641,6 +762,8 @@ msgstr ""
 "%s només es pot utilitzar per calcular corves de nivell, però no per a "
 "mostrar-les.\n"
 
+#
+# File: modules/graphics/src/c/DrawObjects.c, line: 88
 msgid "Could not retrive bounds.\n"
 msgstr ""
 
@@ -1322,6 +1445,9 @@ msgstr ""
 msgid "Radius should be real and finite"
 msgstr ""
 
+msgid "Misc"
+msgstr ""
+
 msgid "datatips on 2D curves"
 msgstr ""
 
@@ -1374,9 +1500,6 @@ msgid "LaTeX/MathML"
 msgstr ""
 
 msgid "Lighting"
-msgstr ""
-
-msgid "Misc"
 msgstr ""
 
 msgid "Colormap"
@@ -1902,12 +2025,6 @@ msgstr "Accepta"
 msgid "Cancel"
 msgstr "Cancel·la"
 
-msgid "Color number"
-msgstr "Número de color"
-
-msgid "Name"
-msgstr "Nom"
-
 msgid "April"
 msgstr ""
 
@@ -2215,3 +2332,9 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value given for %s."
 msgstr ""
+
+#~ msgid "Color number"
+#~ msgstr "Número de color"
+
+#~ msgid "Name"
+#~ msgstr "Nom"

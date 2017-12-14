@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2015-08-17 11:20+0100\n"
-"PO-Revision-Date: 2016-04-28 14:19+0000\n"
+"PO-Revision-Date: 2017-05-01 12:32+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18511)\n"
 
 msgid "Warning :\n"
 msgstr "警告:\n"
@@ -200,7 +200,7 @@ msgid "Operator \\ : Error %d not yet managed.\n"
 msgstr "\\ 演算子: エラー %d は未管理です.\n"
 
 msgid "Invalid exponent: expected real exponents.\n"
-msgstr ""
+msgstr "指数が誤っています: 実数を指定してください.\n"
 
 msgid "Invalid exponent.\n"
 msgstr "指数が間違っています.\n"
@@ -272,11 +272,11 @@ msgstr "作成できません: %s"
 
 #, c-format
 msgid "Error: Could not resolve symbolic link %s\n"
-msgstr ""
+msgstr "エラー: シンボリックリンク %s を解決できません\n"
 
 #, c-format
 msgid "Error: Could not find %s\n"
-msgstr ""
+msgstr "エラー: %s が見つかりません\n"
 
 #, c-format
 msgid "Error: Could not create %s: %s\n"
@@ -284,7 +284,7 @@ msgstr "エラー: %s を作成できません: %s\n"
 
 #, c-format
 msgid "Scilab '%s' function disabled in -nogui or -nwni mode.\n"
-msgstr ""
+msgstr "Scilab '%s' 関数は -nogui または -nwni モードでは無効となります.\n"
 
 #, c-format
 msgid ""
@@ -322,15 +322,15 @@ msgid "Wrong number of input arguments: This function has no input argument.\n"
 msgstr "入力引数の数が間違っています: この関数は入力引数を有しません.\n"
 
 msgid "Wrong number of input arguments.\n"
-msgstr ""
-
-#, c-format
-msgid "List element number %d is Undefined.\n"
-msgstr "リストの要素数 %d が未定義です.\n"
+msgstr "入力引数の数が間違っています.\n"
 
 #, c-format
 msgid "Undefined variable '%s' in function '%s'.\n"
 msgstr "未定義の変数 '%s' が関数 '%s' にあります.\n"
+
+#, c-format
+msgid "List element number %d is Undefined.\n"
+msgstr "リストの要素数 %d が未定義です.\n"
 
 #, c-format
 msgid "Unable to open : %s.\n"
@@ -395,20 +395,20 @@ msgid "%s: Wrong type for input argument #%d: An integer matrix expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 整数行列を指定してください.\n"
 
 msgid "Invalid exponent: expected real exponents."
-msgstr ""
+msgstr "指数が間違っています: 実数の指数を指定してください."
 
 msgid "Division by zero"
-msgstr ""
+msgstr "ゼロ割"
 
 #, c-format
 msgid "%s: Argument #%d: Square matrix expected.\n"
-msgstr ""
+msgstr "%s: 引数 #%d: 正方行列を指定してください.\n"
 
 msgid "Not implemented"
-msgstr ""
+msgstr "実装されていません"
 
 msgid "Invalid exponent"
-msgstr ""
+msgstr "指数が間違っています"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"

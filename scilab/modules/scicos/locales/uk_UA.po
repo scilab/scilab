@@ -9,14 +9,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-12-07 22:12+0000\n"
+"PO-Revision-Date: 2017-02-28 22:22+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18511)\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -851,20 +851,21 @@ msgid "%s: Wrong value for element #%d of input argument #%d: Unknown type.\n"
 msgstr ""
 "%s: помилкове значення елемента №%d вхідного параметра №%d: невідомий тип.\n"
 
-#, c-format
-msgid "Wrong type for field %s: Tlist or Mlist expected.\n"
+#, fuzzy, c-format
+msgid "Wrong type for field %ls: Tlist or Mlist expected.\n"
 msgstr "Помилковий тип поля %s: мав бути тип Tlist або Mlist.\n"
 
-#, c-format
-msgid "Wrong length for field %s: at least %d element expected.\n"
+#, fuzzy, c-format
+msgid "Wrong length for field %ls: at least %d element expected.\n"
 msgstr "Помилкова довжина поля %s:мало бути принаймні %d елементів.\n"
 
-#, c-format
-msgid "Wrong length for header of field %s: at least %d element expected.\n"
+#, fuzzy, c-format
+msgid ""
+"Wrong length for header of field \"%ls\": at least %d element expected.\n"
 msgstr "Помилкова довжина заголовка %s: мало бути принаймні %d елементів.\n"
 
-#, c-format
-msgid "Wrong value for header of field %s: %s expected.\n"
+#, fuzzy, c-format
+msgid "Wrong value for header of field \"%ls\": \"%ls\" expected.\n"
 msgstr "Помилкове значення заголовка поля %s: мало бути %s.\n"
 
 #, c-format
@@ -1364,7 +1365,7 @@ msgstr ""
 "розмірностями, які не можна визначити з контексту.\n"
 "Якою є розмірність цього зв’язку?"
 
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "the dep_ut size of the %s block is not correct.\n"
 "It should be a colon vector of size %d."
