@@ -113,19 +113,19 @@ int sci_uigetdir(char *fname, void* pvApiCtx)
             /* Initial path is given */
             case 1:
                 CallJuigetfileForDirectoryWithInitialdirectory(expandedpath);
-                FREE(expandedpath);
                 break;
             /* Initial path and title are given */
             case 2:
                 CallJuigetfileForDirectoryWithInitialdirectoryAndTitle(expandedpath, title);
-                FREE(expandedpath);
-                freeAllocatedSingleString(title);
                 break;
             /* Default call with default path and title */
             default:
                 CallJuigetfileForDirectoryWithoutInput();
                 break;
         }
+
+        freeAllocatedSingleString(title);
+        FREE(expandedpath);
 
         /* Read the size of the selection, if 0 then no file selected */
         nbRow = getJuigetfileSelectionSize();
@@ -135,25 +135,16 @@ int sci_uigetdir(char *fname, void* pvApiCtx)
     catch (const GiwsException::JniCallMethodException & exception)
     {
         FREE(expandedpath);
-        FREE(title);
+        freeAllocatedSingleString(title);
         Scierror(999, "%s: %s\n", fname, exception.getJavaDescription().c_str());
         return 1;
     }
     catch (const GiwsException::JniException & e)
     {
         FREE(expandedpath);
-        FREE(title);
+        freeAllocatedSingleString(title);
         Scierror(999, _("%s: A Java exception arisen:\n%s"), fname, e.whatStr().c_str());
         return 1;
-    }
-
-    if (expandedpath)
-    {
-        FREE(expandedpath);
-    }
-    if (title)
-    {
-        FREE(title);
     }
 
     if (nbRow != 0)
