@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -13,30 +13,34 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="speye" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="speye" xml:lang="pt">
     <refnamediv>
         <refname>speye</refname>
         <refpurpose>matriz identidade esparsa</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
-        <synopsis>Isp=speye(nrows,ncols)
-            Isp=speye(A)
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
+        <synopsis>
+            Isp = speye(A)
+            Isp = speye(nrows, ncols)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>nrows</term>
                 <listitem>
-                    <para>inteiro (número de linhas) </para>
+                    <para>inteiro (nÃºmero de linhas) </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>ncols</term>
                 <listitem>
-                    <para>inteiro (número de colunas) </para>
+                    <para>inteiro (nÃºmero de colunas) </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -54,31 +58,32 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             <literal>Isp=speye(nrows,ncols)</literal> retorna uma matriz
             identidade esparsa <literal>Isp</literal> com <literal>nrows</literal>
             linhas e , <literal>ncols</literal> colunas (matrizes identidades
-            não-quadradas têm um número máximo de algarismos 1 na diagonal
+            nÃ£o-quadradas tÃªm um nÃºmero mÃ¡ximo de algarismos 1 na diagonal
             principal).
         </para>
         <para>
             <literal>Isp=speye(A)</literal> retorna uma matriz identidade
-            esparsa com as mesmas dimensões de <literal>A</literal>.
+            esparsa com as mesmas dimensÃµes de <literal>A</literal>.
             Se<literal>[m,n]=size(A)</literal>, <literal>speye(m,n)</literal> e
-            <literal>speye(A)</literal> são equivalentes. Em particular
-            <literal>speye(3)</literal> não é equivalente a
-            <literal>speye(3,3)</literal>.
+            <literal>speye(A)</literal> sÃ£o equivalentes.
+            <warning>
+                Em particular <literal>speye(3)</literal> nÃ£o Ã© equivalente a <literal>speye(3,3)</literal>.
+            </warning>
         </para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
-eye(3,3)-full(speye(3,3))
+eye(3,3) - full(speye(3,3))
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="sparse">sparse</link>
@@ -88,6 +93,12 @@ eye(3,3)-full(speye(3,3))
             </member>
             <member>
                 <link linkend="eye">eye</link>
+            </member>
+            <member>
+                <link linkend="diag">diag</link>
+            </member>
+            <member>
+                <link linkend="toeplitz">toeplitz</link>
             </member>
             <member>
                 <link linkend="spzeros">spzeros</link>

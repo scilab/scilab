@@ -1,13 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="speye" xml:lang="fr">
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="speye" xml:lang="fr">
     <refnamediv>
         <refname>speye</refname>
         <refpurpose>matrice identité creuse</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>Isp=speye(nrows,ncols)
-            Isp=speye(A)
+        <synopsis>
+            Isp = speye(A)
+            Isp = speye(nrows, ncols)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -49,16 +67,18 @@
         <para>
             <literal>Isp=speye(A)</literal> renvoie une matrice identité creuse
             de même taille que <literal>A</literal>. Si
-            <literal>[m,n]=size(A)</literal>, les commandes
-            <literal>speye(m,n)</literal> et <literal>speye(A)</literal> sont
-            équivalentes. En particulier <literal>speye(3)</literal> n'est pas
-            équivalent à <literal>speye(3,3)</literal>.
+            <literal>[m,n]=size(A)</literal>, <literal>speye(A)</literal> et
+            <literal>speye(m,n)</literal> sont équivalentes.
+            <warning>
+                En particulier, <literal>speye(3)</literal> est équivalent à
+                <literal>speye(1,1)</literal>, NON à <literal>speye(3,3)</literal>.
+            </warning>
         </para>
     </refsection>
     <refsection>
         <title>Exemples</title>
         <programlisting role="example"><![CDATA[
-eye(3,3)-full(speye(3,3))
+eye(3,3) - full(speye(3,3))
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -72,6 +92,12 @@ eye(3,3)-full(speye(3,3))
             </member>
             <member>
                 <link linkend="eye">eye</link>
+            </member>
+            <member>
+                <link linkend="diag">diag</link>
+            </member>
+            <member>
+                <link linkend="toeplitz">toeplitz</link>
             </member>
             <member>
                 <link linkend="spzeros">spzeros</link>
