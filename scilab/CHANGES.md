@@ -188,6 +188,7 @@ Feature changes and additions
 * The left .\. and right ./. Kronecker divisions are now implemented, for arrays of decimal or complex numbers.
 * `perms` can now build and return only unique permutations, without duplicates.
 * Most of graphic objects can be moved interactively in opened figures.
+* `circshift` is introduced.
 
 
 Help pages:
@@ -267,6 +268,7 @@ Bug Fixes
 * [#2694](https://bugzilla.scilab.org/2694): `bitget` did not accept positive integers of types int8, int16 or int32.
 * [#5824](https://bugzilla.scilab.org/5824): The `datafit` algorithm was not documented.
 * [#6070](https://bugzilla.scilab.org/6070): How to make multiscaled plots was not documented.
+* [#7293](http://bugzilla.scilab.org/show_bug.cgi?id=7293): There was no function to circularly shift components, rows, columns or subarrays of an array. `circshift` introduced.
 * [#7562](https://bugzilla.scilab.org/7562): `factorial` could use a huge memory amount even for a scalar argument.
 * [#7589](https://bugzilla.scilab.org/7589): There was no function computing the binomial coefficients.
 * [#7657](https://bugzilla.scilab.org/7657): `lstsize` was a duplicate of `size` and should be removed.

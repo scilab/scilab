@@ -212,6 +212,9 @@ y = flipdim(x, 2, 5); // size(X) = [1 12] et blockSize=5 ne divise pas 12.
         <title>Voir aussi</title>
         <simplelist type="inline">
             <member>
+                <link linkend="circshift">circshift</link>
+            </member>
+            <member>
                 <link linkend="fftshift">fftshift</link>
             </member>
             <member>

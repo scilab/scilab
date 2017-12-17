@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2017 - Samuel GOUGEON
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:lang="en" xml:id="circshift">
+    <refnamediv>
+        <refname>circshift</refname>
+        <refpurpose>
+            circularly shifts elements or subarrays of an array (regular, of structures, cells, custom)
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>
+            B = circshift(A, shift)
+            B = circshift(A, shift, 0)
+            B = circshift(A, shifts)
+            B = circshift(A, shifts, dims)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>A, B</term>
+                <listitem>
+                    <para>
+                        row, column, matrix or 2D array, hypermatrix or ND-array of any number of
+                        dimensions and of any sizes. <varname>B</varname> has the shape, sizes and
+                        type of <varname>A</varname>. Custom types are accepted provided that
+                        <literal>size()</literal>, insertion, and extraction operators are
+                        defined for <varname>A</varname>'s type.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>shift</term>
+                <listitem>
+                    <para>
+                        unique positive or negative integer: the shift to apply to indices along
+                        the first non-singleton dimension, or to linear indices of
+                        <varname>A</varname> components if <literal>0</literal> is used as third
+                        input argument.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>shifts</term>
+                <listitem>
+                    <para>
+                        vector of positive or negative integers: shifts to apply on ranges along
+                        directions specified in <varname>dims</varname>
+                        (or <literal>1:length(shifts)</literal> by default).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>dims</term>
+                <listitem>
+                    <para>
+                        Vector of integers in <literal>[1, ndims(A)]</literal>: indices of
+                        <varname>A</varname> dimensions along which the respective
+                        <literal>shifts</literal> must be performed.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>circshift(A, shift)</literal> shifts along the first dimension of
+            <literal>A</literal> of size > 1.
+        </para>
+        <para>
+            <literal>circshift(A, shift, 0)</literal> circularly shifts <literal>A</literal>
+            components by <varname>shift</varname> positions.
+        </para>
+        <para>
+            <literal>circshift(A, shifts)</literal> circularly shifts
+            indices of <literal>A</literal> rows by <literal>shifts(1)</literal>,
+            indices of <literal>A</literal> columns by <literal>shifts(2)</literal>,
+            indices of <literal>A</literal> layers by <literal>shifts(3)</literal>, etc.
+        </para>
+        <para>
+            <literal>circshift(A, shifts, dims)</literal> circularly shifts <literal>A</literal>
+            by <literal>shifts(1)</literal> along its dimension #<literal>dims(1)</literal>,
+            by <literal>shifts(2)</literal> along its dimension #<literal>dims(2)</literal>, etc.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+circshift(1:7, 2)
+circshift(1:7, -1)
+      ]]></programlisting>
+      <screen><![CDATA[
+--> circshift(1:7, 2)
+ ans  =
+   6.   7.   1.   2.   3.   4.   5.
+
+--> circshift(1:7, -1)
+ ans  =
+   2.   3.   4.   5.   6.   7.   1.
+]]></screen>
+        <para/>
+        <programlisting role="example"><![CDATA[
+M = matrix(1:12, 3, 4)
+circshift(M, 1)
+circshift(M, 1, 2)
+circshift(M, [-1 1])
+circshift(M, [-2 1], [2 1])
+      ]]></programlisting>
+      <screen><![CDATA[
+--> M = matrix(1:12, 3, 4)
+ M  =
+   1.   4.   7.   10.
+   2.   5.   8.   11.
+   3.   6.   9.   12.
+
+--> circshift(M, 1)
+ ans  =
+   3.   6.   9.   12.
+   1.   4.   7.   10.
+   2.   5.   8.   11.
+
+--> circshift(M, 1, 2)
+ ans  =
+   10.   1.   4.   7.
+   11.   2.   5.   8.
+   12.   3.   6.   9.
+
+--> circshift(M, [-1 1])
+ ans  =
+   11.   2.   5.   8.
+   12.   3.   6.   9.
+   10.   1.   4.   7.
+
+--> circshift(M, [-2 1], [2 1])
+ ans  =
+   9.   12.   3.   6.
+   7.   10.   1.   4.
+   8.   11.   2.   5.
+]]></screen>
+        <para/>
+        <programlisting role="example"><![CDATA[
+M = matrix(1:12, 3, 4)
+circshift(M, 5, 0)
+      ]]></programlisting>
+      <screen><![CDATA[
+--> circshift(M, 5, 0)
+ ans  =
+   8.    11.   2.   5.
+   9.    12.   3.   6.
+   10.   1.    4.   7.
+]]></screen>
+    <para>
+    <emphasis role="bold">With an hypermatrix of texts:</emphasis>
+    </para>
+        <programlisting role="example"><![CDATA[
+t = matrix([string(1:12) strsplit("a":"l")' strsplit("A":"L")'],3,4,3)
+circshift(t, 1, 0)
+circshift(t, 1)
+circshift(t, 1, 3)
+circshift(t, [1 -1], [2 3])
+      ]]></programlisting>
+      <screen><![CDATA[
+--> t = matrix([string(1:12) strsplit("a":"l")' strsplit("A":"L")'],3,4,3)
+ t  =
+(:,:,1)
+!1  4  7  10  !
+!2  5  8  11  !
+!3  6  9  12  !
+
+(:,:,2)
+!a  d  g  j  !
+!b  e  h  k  !
+!c  f  i  l  !
+
+(:,:,3)
+!A  D  G  J  !
+!B  E  H  K  !
+!C  F  I  L  !
+
+--> circshift(t, 1, 0)
+ ans  =
+(:,:,1)
+!L  3  6  9   !
+!1  4  7  10  !
+!2  5  8  11  !
+
+(:,:,2)
+!12  c  f  i  !
+!a   d  g  j  !
+!b   e  h  k  !
+
+(:,:,3)
+!l  C  F  I  !
+!A  D  G  J  !
+!B  E  H  K  !
+
+--> circshift(t, 1)
+ ans  =
+(:,:,1)
+!3  6  9  12  !
+!1  4  7  10  !
+!2  5  8  11  !
+
+(:,:,2)
+!c  f  i  l  !
+!a  d  g  j  !
+!b  e  h  k  !
+
+(:,:,3)
+!C  F  I  L  !
+!A  D  G  J  !
+!B  E  H  K  !
+
+--> circshift(t, 1, 3)
+ ans  =
+(:,:,1)
+!A  D  G  J  !
+!B  E  H  K  !
+!C  F  I  L  !
+
+(:,:,2)
+!1  4  7  10  !
+!2  5  8  11  !
+!3  6  9  12  !
+
+(:,:,3)
+!a  d  g  j  !
+!b  e  h  k  !
+!c  f  i  l  !
+
+--> circshift(t, [1 -1], [2 3])
+ ans  =
+(:,:,1)
+!j  a  d  g  !
+!k  b  e  h  !
+!l  c  f  i  !
+
+(:,:,2)
+!J  A  D  G  !
+!K  B  E  H  !
+!L  C  F  I  !
+
+(:,:,3)
+!10  1  4  7  !
+!11  2  5  8  !
+!12  3  6  9  !
+]]></screen>
+    <para>
+    <emphasis role="bold">With an array of cells:</emphasis>
+    </para>
+        <programlisting role="example"><![CDATA[
+L = list(1,%t);
+C = {%f "a" %i  %z
+     %t "b" %e  %s
+      0 "c" %pi L }
+circshift(C, 1, 0)
+circshift(C, 1)
+circshift(C, 1, 2)
+circshift(C, [1 -1])
+      ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="flipdim">flipdim</link>
+            </member>
+            <member>
+                <link linkend="fftshift">fftshift</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1</revnumber>
+                <revremark>
+                    <literal>circshift()</literal> introduced.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>
