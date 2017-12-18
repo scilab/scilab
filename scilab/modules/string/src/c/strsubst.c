@@ -267,6 +267,8 @@ wchar_t *wcssub_reg(const wchar_t* _pwstInput, const wchar_t* _pwstSearch, const
 
     if (_pwstInput == NULL)
     {
+        FREE(arriStart);
+        FREE(arriEnd);
         return NULL;
     }
 
