@@ -80,16 +80,17 @@ types::Function::ReturnValue sci_http_get(types::typed_list &in, types::optional
         char* pcFileName = wide_string_to_UTF8(pwcFileName);
 
         fd = fopen(pcFileName, "wb");
+        FREE(pcFileName);
         if(fd == NULL)
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: The given path does not exists.\n"), fname, 2);
+            FREE(pwcFileName);
             return types::Function::Error;
         }
 
         sciCurlObj->getResultAsFile(curl, fd);
 
         pOut = new types::String(pwcFileName);
-        FREE(pcFileName);
         FREE(pwcFileName);
     }
     else
