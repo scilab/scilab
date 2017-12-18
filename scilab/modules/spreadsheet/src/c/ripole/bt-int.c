@@ -62,6 +62,8 @@ int BTI_add( struct bti_node **n, int value )
                 case -1:
                     p->l = leaf;
                     break;
+                default:
+                    FREE(leaf);
             }
         }
         else
