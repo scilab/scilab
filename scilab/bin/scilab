@@ -827,6 +827,9 @@ if test -d $SCI/lib/thirdparty; then
     SCILIB=$SCI/lib/thirdparty:$SCILIB;
 fi
 LD_LIBRARY_PATH=$SCILIB${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
+if test -d $SCI/lib/thirdparty/redist; then
+    LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$SCI/lib/thirdparty/redist;
+fi
 
 case $OS in
     *darwin* | *Darwin*) # MacOS X
