@@ -122,6 +122,8 @@ types::Function::ReturnValue sci_http_upload(types::typed_list &in, types::optio
                      CURLFORM_END);
     }
 
+    FREE(pcVarName);
+
     if(in.size() > 3)
     {
         // get data
@@ -201,7 +203,6 @@ types::Function::ReturnValue sci_http_upload(types::typed_list &in, types::optio
         FREE(f);
     }
 
-    FREE(pcVarName);
     curl_formfree(formpost);
 
     if(res != CURLE_OK)
