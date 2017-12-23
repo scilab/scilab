@@ -608,7 +608,10 @@ struct style
 
 } /* namespace */
 
-template<> property<GraphicsAdapter>::props_t property<GraphicsAdapter>::fields = property<GraphicsAdapter>::props_t();
+#ifndef _MSC_VER
+template<>
+#endif
+property<GraphicsAdapter>::props_t property<GraphicsAdapter>::fields = property<GraphicsAdapter>::props_t();
 static void initialize_fields()
 {
     if (property<GraphicsAdapter>::properties_have_not_been_set())

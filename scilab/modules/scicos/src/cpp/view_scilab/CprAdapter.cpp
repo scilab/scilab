@@ -47,7 +47,10 @@ struct dummy_property
 
 } /* namespace */
 
-template<> property<CprAdapter>::props_t property<CprAdapter>::fields = property<CprAdapter>::props_t();
+#ifndef _MSC_VER
+template<>
+#endif
+property<CprAdapter>::props_t property<CprAdapter>::fields = property<CprAdapter>::props_t();
 static void initialize_fields()
 {
     if (property<CprAdapter>::properties_have_not_been_set())

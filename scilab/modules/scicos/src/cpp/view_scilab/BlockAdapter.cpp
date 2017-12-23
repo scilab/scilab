@@ -173,7 +173,10 @@ link_indices_t getPortEnd(const Controller& controller, org_scilab_modules_scico
 
 } /* namespace */
 
-template<> property<BlockAdapter>::props_t property<BlockAdapter>::fields = property<BlockAdapter>::props_t();
+#ifndef _MSC_VER
+template<>
+#endif
+property<BlockAdapter>::props_t property<BlockAdapter>::fields = property<BlockAdapter>::props_t();
 
 BlockAdapter::BlockAdapter(const Controller& c, org_scilab_modules_scicos::model::Block* adaptee) :
     BaseAdapter<BlockAdapter, org_scilab_modules_scicos::model::Block>(c, adaptee),

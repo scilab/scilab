@@ -502,8 +502,10 @@ struct contrib
 
 } /* namespace */
 
-template<> property<DiagramAdapter>::props_t property<DiagramAdapter>::fields = property<DiagramAdapter>::props_t();
-
+#ifndef _MSC_VER
+template<>
+#endif
+property<DiagramAdapter>::props_t property<DiagramAdapter>::fields = property<DiagramAdapter>::props_t();
 DiagramAdapter::DiagramAdapter(const Controller& c, org_scilab_modules_scicos::model::BaseObject* adaptee) :
     BaseAdapter<DiagramAdapter, org_scilab_modules_scicos::model::BaseObject>(c, adaptee),
     contrib_content(default_value<types::List>())

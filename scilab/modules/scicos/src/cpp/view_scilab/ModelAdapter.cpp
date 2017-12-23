@@ -1370,7 +1370,10 @@ struct uid
 
 } /* namespace */
 
-template<> property<ModelAdapter>::props_t property<ModelAdapter>::fields = property<ModelAdapter>::props_t();
+#ifndef _MSC_VER
+template<>
+#endif
+property<ModelAdapter>::props_t property<ModelAdapter>::fields = property<ModelAdapter>::props_t();
 static void initialize_fields()
 {
     if (property<ModelAdapter>::properties_have_not_been_set())

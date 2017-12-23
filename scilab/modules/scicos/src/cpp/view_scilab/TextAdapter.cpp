@@ -272,8 +272,10 @@ struct gui
 
 } /* namespace */
 
-template<> property<TextAdapter>::props_t property<TextAdapter>::fields = property<TextAdapter>::props_t();
-
+#ifndef _MSC_VER
+template<>
+#endif
+property<TextAdapter>::props_t property<TextAdapter>::fields = property<TextAdapter>::props_t();
 TextAdapter::TextAdapter(const Controller& c, org_scilab_modules_scicos::model::Annotation* adaptee) :
     BaseAdapter<TextAdapter, org_scilab_modules_scicos::model::Annotation>(c, adaptee)
 {

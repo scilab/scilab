@@ -875,8 +875,10 @@ struct to
 
 } /* namespace */
 
-template<> property<LinkAdapter>::props_t property<LinkAdapter>::fields = property<LinkAdapter>::props_t();
-
+#ifndef _MSC_VER
+template<>
+#endif
+property<LinkAdapter>::props_t property<LinkAdapter>::fields = property<LinkAdapter>::props_t();
 LinkAdapter::LinkAdapter(const Controller& c, org_scilab_modules_scicos::model::Link* adaptee) :
     BaseAdapter<LinkAdapter, org_scilab_modules_scicos::model::Link>(c, adaptee)
 {

@@ -47,7 +47,10 @@ struct dummy_property
 
 } /* namespace */
 
-template<> property<StateAdapter>::props_t property<StateAdapter>::fields = property<StateAdapter>::props_t();
+#ifndef _MSC_VER
+template<>
+#endif
+property<StateAdapter>::props_t property<StateAdapter>::fields = property<StateAdapter>::props_t();
 static void initialize_fields()
 {
     if (property<StateAdapter>::properties_have_not_been_set())

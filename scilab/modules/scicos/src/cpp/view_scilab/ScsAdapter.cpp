@@ -32,8 +32,10 @@ namespace
 
 } /* namespace */
 
-template<> property<ScsAdapter>::props_t property<ScsAdapter>::fields = property<ScsAdapter>::props_t();
-
+#ifndef _MSC_VER
+template<>
+#endif
+property<ScsAdapter>::props_t property<ScsAdapter>::fields = property<ScsAdapter>::props_t();
 ScsAdapter::ScsAdapter(const Controller& c, org_scilab_modules_scicos::model::Diagram* adaptee) :
     BaseAdapter<ScsAdapter, org_scilab_modules_scicos::model::Diagram>(c, adaptee)
 {
