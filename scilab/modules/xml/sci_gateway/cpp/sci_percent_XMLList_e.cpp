@@ -128,6 +128,7 @@ int sci_percent_XMLList_e(char *fname, void* pvApiCtx)
             {
                 printError(&err, 0);
                 Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                freeAllocatedSingleString(field);
                 return 0;
             }
 
@@ -145,6 +146,7 @@ int sci_percent_XMLList_e(char *fname, void* pvApiCtx)
             {
                 printError(&err, 0);
                 Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                freeAllocatedSingleString(field);
                 return 0;
             }
 
