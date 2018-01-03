@@ -242,7 +242,7 @@ Help pages:
   `printf`, `sprintf`, `iconvert`, `stdev`, `xlabel`, `and_op`, `or_op`, `permute`, `tree2code`, `%helps`,
   `scilab|scilex`, `flipdim`, `Matplot_properties`, `meshgrid`, `ismatrix`, `xget`, `xset`, `ieee`, `evstr`,
   `uigetfont`, `uigetdir`, `uigetfile`, `uiputfile`, `cat`, `makecell`, `xstring`, `norm`, `barhomogenize`,
-  `colordef`, `matrix`
+  `colordef`, `matrix`, `coffg`
 * rewritten: `consolebox`, `double`, `isoview`, `pixel_drawing_mode`, `householder`, `or`, `|,||`,
  `and`, `&,&&`, `format`, `type`, `typeof`, `brackets`, `setlanguage`, `sleep`, `isinf`, `unique`,
  `bitor`, `bitxor`, `bitand`, `macr2tree`, `geomean`, `clf`, `getPreferencesValue`, `gcd`, `isglobal`,
@@ -449,7 +449,7 @@ the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 * [#14703](http://bugzilla.scilab.org/show_bug.cgi?id=14703): `clear linspace, type(linspace)` returned 11 instead of 13.
 * [#14883](http://bugzilla.scilab.org/show_bug.cgi?id=14883): `whereis` did not support builtin functions.
 * [#14886](http://bugzilla.scilab.org/show_bug.cgi?id=14886): `Matplot` save/load failed.
-* [#14896](http://bugzilla.scilab.org/show_bug.cgi?id=15272): Using `set` with multiple properties, only the first one was set.
+* [#14896](http://bugzilla.scilab.org/show_bug.cgi?id=14896): Using `set` with multiple properties, only the first one was set.
 * [#14901](http://bugzilla.scilab.org/show_bug.cgi?id=14901): WScilex.exe was stopped immediately when launched from Java.
 * [#14903](http://bugzilla.scilab.org/show_bug.cgi?id=14903): `plot2d` crashed if a current figure has no axes.
 * [#14910](http://bugzilla.scilab.org/show_bug.cgi?id=14910): The `plot()` example was displayed in overlay to the existing graphics.
@@ -527,6 +527,7 @@ the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 * [#15339](http://bugzilla.scilab.org/show_bug.cgi?id=15339): `uigetfont()` returned garbage on user cancellation.
 * [#15340](http://bugzilla.scilab.org/show_bug.cgi?id=15340): Scilab did not build against lucene 6.1.0.
 * [#15342](http://bugzilla.scilab.org/show_bug.cgi?id=15342): `replot()` and `Reframe to contents` failed on graphics with xstring objects.
+* [#15354](http://bugzilla.scilab.org/show_bug.cgi?id=15354): `invr(%s^2)` returned 0 instead of `1/%s^2`. For any scalar number, polynomial or rational `a`, `coffg(a)` returned `0` instead of `1`. `coffg([])` yielded an error. `invr` and `coffg` had no unitary tests. The `coffg` help page was inaccurate and unclear.
 
 
 ### Bugs fixed in 6.0.0:
