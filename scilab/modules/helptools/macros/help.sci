@@ -39,7 +39,9 @@ function help(varargin)
             key=stripblanks(key)
 
             global %helps
-            if or(part(key,1)==["(",")","[","]","{","}","%","''","""",":","*","/","\",".","<",">","&","^","|","~","+","-"]) & exists(key)==0 then
+            symbols = strsplit("()[]{}%''"":*/\.<>&^|~+-")';
+            exceptions = ["%t" "%T" "%f" "%F" "%onprompt"]; // http://bugzilla.scilab.org/15356
+            if or(part(key,1)==symbols) & exists(key)==0 & and(key~=exceptions) then
                 key="symbols";
             end
 
