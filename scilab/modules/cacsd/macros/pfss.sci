@@ -1,6 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
-// Copyright (C) - 2014 - Samuel GOUGEON <sgougeon@free.fr>
+// Copyright (C) - 2014, 2018 - Samuel GOUGEON <sgougeon@free.fr>
 //
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
@@ -109,7 +109,11 @@ function elts = pfss(S, rmax, cord)
     if flag ~= "" then
         k = size(elts)
         for kk = 1:k
-            elts(kk) = varn(ss2tf(elts(kk)), flag)
+            tmp = ss2tf(elts(kk));
+            if kk==k & type(tmp)==1
+                tmp = tmp + 0*%s
+            end
+            elts(kk) = varn(tmp, flag)
         end
     end
 endfunction

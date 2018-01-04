@@ -13,17 +13,21 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="pfss">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+    xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+    xml:lang="ja" xml:id="pfss">
     <refnamediv>
         <refname>pfss</refname>
         <refpurpose>部分分数分解</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>elts=pfss(Sl)
-            elts=pfss(Sl,rmax)
-            elts=pfss(Sl,'cord')
-            elts=pfss(Sl,rmax,'cord')
+        <synopsis>
+            elts = pfss(Sl)
+            elts = pfss(Sl,rmax)
+            elts = pfss(Sl,'cord')
+            elts = pfss(Sl, rmax,'cord')
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -33,9 +37,42 @@
                 <term>Sl</term>
                 <listitem>
                     <para>
-                        <literal>syslin</literal> リスト (状態空間または伝達行列システム)
-                        rmax : ブロック対角化座標の条件付けを制御する実数 : 文字列 <literal>'c'</literal>
-                        または <literal>'d'</literal>.
+                        A linear dynamical system in state-space, or a transfer
+                        function representation (see <link linkend="syslin">syslin</link>),
+                        or any rational fraction.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>rmax</term>
+                <listitem>
+                    <para>
+                        A real number controlling the conditioning of block
+                        diagonalization (see  <link linkend="bdiag">bdiag</link>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>cord</term>
+                <listitem>
+                    <para>
+                        A character string with possible values <literal>'c'</literal>
+                        or <literal>'d'</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>elts</term>
+                <listitem>
+                    <para>
+                        List of linear systems, or list of rationals: the components of the
+                        decomposition.
+                    </para>
+                    <para>
+                        If <literal>Sl</literal> is a transfer function or any other rational
+                        and has an integer part (degree(Sl.num)>=degree(Sl.den)),
+                        <literal>elts(1:$-1)</literal> are rational components
+                        and <literal>elts($)</literal> is the integer part (polynomial).
                     </para>
                 </listitem>
             </varlistentry>
@@ -87,11 +124,28 @@
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[
-W=ssrand(1,1,6);
-elts=pfss(W);
-W1=0;for k=1:size(elts), W1=W1+ss2tf(elts(k));end
-clean(ss2tf(W)-W1)
- ]]></programlisting>
+    // With a linear system (state-space):
+    W = ssrand(1,1,6);
+    elts = pfss(W);
+    W1 = 0;
+    for k = 1:size(elts)
+        W1 = W1 + ss2tf(elts(k));
+    end
+    clean(ss2tf(W) - W1)
+    ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+    // With a rational (transfer function or any other one), without integer part:
+    num = 22801+4406.18*%s + 382.37*%s^2 + 21.02*%s^3;
+    den = 22952.25 + 4117.77*%s + 490.63*%s^2 + 33.06*%s^3 + %s^4; // degree(den)>degree(num)
+    h2 = syslin('c',num/den)
+    d = pfss(h2)
+
+    // With a rational with an integer part: degree(num)>=degree(den):
+    num = 22801+4406.18*%s + 382.37*%s^2 + 21.02*%s^3 + %s^5;
+    h2 = syslin('c',num/den)
+    d = pfss(h2)
+    typeof(d($)) // last component = integer part = polynomial
+    ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>参照</title>
