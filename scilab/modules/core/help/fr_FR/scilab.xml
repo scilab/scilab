@@ -23,18 +23,27 @@ scilab &lt;Options&gt;
                     <para>
                         Cette option permet de transmettre des données à la session Scilab à ouvrir :
                         <itemizedlist>
-                            <listitem>Des données consécutives sont séparées par un ou plusieurs espaces.
+                            <listitem>
+                              Des données consécutives sont séparées par un ou plusieurs espaces.
                             </listitem>
-                            <listitem>Une expression entre guillemets <literal>"</literal> constitue une donnée unique.
+                            <listitem>
+                              Une expression entre guillemets <literal>"</literal> constitue une
+                              donnée unique.
                             </listitem>
-                            <listitem>Pour inclure un guillemet dans une donnée, écrire <literal>\"</literal> au lieu de <literal>"</literal>.
+                            <listitem>
+                              Pour inclure un guillemet dans une donnée, écrire <literal>\"</literal>
+                              au lieu de <literal>"</literal>.
                             </listitem>
-                            <listitem>L'apostrophe <literal>'</literal> est un caractère normal. Il n'a pas de signification particulière.
+                            <listitem>
+                              L'apostrophe <literal>'</literal> est un caractère normal. Il n'a pas
+                              de signification particulière.
                             </listitem>
                         </itemizedlist>
                     </para>
                     <para>
-                      Dans la session ouverte, les données <literal>arg#1, arg#2, ..</literal> peuvent être récupérées comme autant d'expressions texte avec <link linkend="sciargs">sciargs()</link>.
+                      Dans la session ouverte, les données <literal>arg#1, arg#2, ..</literal>
+                      peuvent être récupérées comme autant d'expressions texte avec
+                      <link linkend="sciargs">sciargs()</link>.
                      </para>
                      <para>
                       Exemple :
@@ -69,12 +78,13 @@ evstr(a(i+2))*2
 --> "Cette session a été lancée depuis " + a(i+3)
  ans  =
  Cette session a été lancée depuis "C:\Users\Me"
-
--->
 ]]></screen>
                      </para>
                      <para>
-                     <note>Utiliser <literal>-args</literal> comme <emphasis role="italic">dernière</emphasis> option sur la ligne de commande est plus sûr.
+                     <note>
+                       Utiliser <literal>-args</literal> comme
+                       <emphasis role="italic">dernière</emphasis> option sur la ligne de commande
+                       est plus sûr.
                      </note>
                      </para>
                 </listitem>
@@ -99,18 +109,24 @@ evstr(a(i+2))*2
                         À l'issue du démarrage complet de la session, cette option
                         <itemizedlist>
                             <listitem>
-                                <para>fixe le dossier de travail de Scilab au dossier système depuis lequel Scilab a été lancé. Voir l'exemple donné plus bas pour l'option <literal>-f</literal>. Puis,
+                                <para>
+                                    fixe le dossier de travail de Scilab au dossier système depuis
+                                    lequel Scilab a été lancé. Voir l'exemple donné plus bas pour
+                                    l'option <literal>-f</literal>. Puis,
                                 </para>
                             </listitem>
                             <listitem>
-                                <para>éxécute les <literal>Instructions</literal> Scilab indiquées. Exemple :
+                                <para>
+                                  éxécute les <literal>Instructions</literal> Scilab indiquées.
+                                  Exemple :
                                     <screen><![CDATA[ scilab-cli -e  "disp(\"Hello\"); a=%pi+%i; disp(exp(a)); exit;" -nb ]]></screen>
                                 </para>
                             </listitem>
                         </itemizedlist>
                     </para>
                     <warning>
-                        Les options <literal>-e</literal> et <literal>-f</literal> ne peuvent pas être utilisées ensemble.
+                        Les options <literal>-e</literal> et <literal>-f</literal> ne peuvent pas
+                        être utilisées ensemble.
                     </warning>
                 </listitem>
             </varlistentry>
@@ -118,18 +134,26 @@ evstr(a(i+2))*2
                 <term>-f Fichier</term>
                 <listitem>
                     <para>
-                        Si cette option est indiquée, alors au début de la session Scilab, après l'exécution des fichiers de démarrage de Scilab et de l'utilisateur, et après l'activation des Préférences de l'utilisateur -- dont celles concernant le dossier de travail par défaut --,
+                        Si cette option est indiquée, alors au début de la session Scilab, après
+                        l'exécution des fichiers de démarrage de Scilab et de l'utilisateur, et
+                        après l'activation des Préférences de l'utilisateur -- dont celles
+                        concernant le dossier de travail par défaut --,
                         <itemizedlist>
                             <listitem>
                                 <para>
-                                    le dossier de travail de Scilab est fixé au dossier système depuis lequel Scilab a été lancé. Par exemple,
+                                    le dossier de travail de Scilab est fixé au dossier système
+                                    depuis lequel Scilab a été lancé. Par exemple,
                                     <screen><![CDATA[D:\users\me\scilab\dev> C:\scilab-5.5.2\bin\scilex -f ..\test.sce]]></screen>
                                     exécutera <literal>cd("D:\users\me\scilab\dev")</literal>.
                                 </para>
                             </listitem>
                             <listitem>
                                 <para>
-                                    le script Scilab <literal>Fichier</literal> est exécuté. S'il est indiqué avec un chemin relatif (<literal>.\</literal> par défaut, ou tel que <literal>..\</literal> dans l'exemple ci-dessus), celui-ci se réfère au nouveau dossier de travail de Scilab.
+                                    le script Scilab <literal>Fichier</literal> est exécuté. S'il
+                                    est indiqué avec un chemin relatif (<literal>.\</literal> par
+                                    défaut, ou tel que <literal>..\</literal> dans l'exemple
+                                    ci-dessus), celui-ci se réfère au nouveau dossier de travail de
+                                    Scilab.
                                 </para>
                             </listitem>
                         </itemizedlist>
@@ -163,8 +187,8 @@ evstr(a(i+2))*2
                     <para>
                         Les valeurs possible pour sont <literal>-l fr</literal> pour
                         sélectionner le francais et <literal>-l en</literal> pour
-                        sélectionner l'anglais. La langue par défaut est établie à l'anglais dans le fichier
-                        <literal>scilab.start</literal>.
+                        sélectionner l'anglais. La langue par défaut est établie à l'anglais dans
+                        le fichier <literal>scilab.start</literal>.
                     </para>
                     <para>Avec certains systèmes, la compilation des locales peut être
                         nécessaire pour rendre correctement les polices UTF-8.
@@ -230,7 +254,7 @@ evstr(a(i+2))*2
                         <itemizedlist>
                             <listitem>
                                 <para>Les fonctionnalités de pipe sont accessibles pour tous les
-                                    systèmes d'exploitations (voir les examples pour plus de
+                                    systèmes d'exploitation (voir les examples pour plus de
                                     détails)
                                 </para>
                             </listitem>
@@ -270,13 +294,13 @@ evstr(a(i+2))*2
                         <itemizedlist>
                             <listitem>
                                 <para>Les fonctionnalités de pipe sont accessibles pour tous les
-                                    systèmes d'exploitations (voir les exemples pour plus de
+                                    systèmes d'exploitation (voir les exemples pour plus de
                                     détails)
                                 </para>
                             </listitem>
                             <listitem>
                                 <para>La distribution de Scilab fournit aussi un binaire dédié
-                                    faisant la même chose que l'option <emphasis>-nw</emphasis>:
+                                    faisant la même chose que l'option <emphasis>-nwni</emphasis>:
                                     <itemizedlist>
                                         <listitem>
                                             Windows: <literal>Scilex.exe</literal>.
@@ -372,14 +396,20 @@ evstr(a(i+2))*2
             <varlistentry>
                 <term>SCIVERBOSE</term>
                 <listitem>
-                    <para>Si cette variable d'environnement est présente, le script de démarrage de Scilab affichera les informations de debug. Principalement utilisée pour du debug ou le report de bugs.</para>
+                    <para>
+                      Si cette variable d'environnement est présente, le script de démarrage de
+                      Scilab affichera les informations de debug. Principalement utilisée pour du
+                      debug ou le report de bugs.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>JAVA_HOME</term>
                 <listitem>
                     <para>
-                        Indique quelle version de Java utiliser. Par exemple, <literal>JAVA_HOME=/usr/lib/jvm/java-7-openjdk/ scilab</literal> démarrera Scilab avec la version 7 de Java.
+                        Indique quelle version de Java utiliser. Par exemple,
+                        <literal>JAVA_HOME=/usr/lib/jvm/java-7-openjdk/ scilab</literal> démarrera
+                        Scilab avec la version 7 de Java.
                     </para>
                 </listitem>
             </varlistentry>
@@ -401,7 +431,8 @@ evstr(a(i+2))*2
     <refsection role="description">
         <title>Options JVM (Java Virtual Machine)</title>
         <para>
-            Les options décrites ci-dessous sont inutiles et sans effet lorsque l'option <literal>-nwni</literal> est utilisée.
+            Les options décrites ci-dessous sont inutiles et sans effet lorsque l'option
+            <literal>-nwni</literal> est utilisée.
         </para>
         <para>A partir de la version 5.0 de Scilab, l'interface graphique et le
             système de génération de la documentation sont basés sur des
@@ -460,7 +491,9 @@ evstr(a(i+2))*2
             </varlistentry>
         </variablelist>
         <para>
-            De nombreuses options sont disponibles. Elles peuvent améliorer les performances, changer le rendu graphique, la gestion de la mémoire... Voir: <ulink url="http://www.oracle.com/technetwork/java/javase/tech/vmoptions-jsp-140102.html">http://www.oracle.com/technetwork/java/javase/tech/vmoptions-jsp-140102.html</ulink>
+            De nombreuses options sont disponibles. Elles peuvent améliorer les performances,
+            changer le rendu graphique, la gestion de la mémoire...
+            Voir: <ulink url="http://www.oracle.com/technetwork/java/javase/tech/vmoptions-jsp-140102.html">http://www.oracle.com/technetwork/java/javase/tech/vmoptions-jsp-140102.html</ulink>
         </para>
     </refsection>
     <refsection role="examples">
@@ -542,6 +575,11 @@ echo $? ]]></screen>
                 <revnumber>6.0.1</revnumber>
                 <revremark>
                     Option <literal>-scihome</literal> ajoutée.
+                  <para>Sur Windows, un nouveau fichier <literal>scilab.bat</literal> devient
+                    le principal script executable gérant toutes les options de lancement. Il y a
+                    désormais 3 binaires exécutables Wscilex.exe, Wscilex-cli.exe, et Scilex.exe
+                    correspondant à chacun des modes STD|NW|NWNI de lancement de Scilab.
+                  </para>
                 </revremark>
             </revision>
         </revhistory>

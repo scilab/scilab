@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="issquare" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="issquare" xml:lang="en">
     <refnamediv>
         <refname>issquare</refname>
         <refpurpose>check if a variable is a square matrix</refpurpose>
@@ -51,7 +54,12 @@
         </para>
         <para>
             <note>
-                Note that <literal>issquare([])</literal> returns false.
+              <para>
+                <literal>issquare([])</literal> returns <literal>%F</literal> (false).
+              </para>
+              <para>
+                <literal>issquare(eye())</literal> returns <literal>%T</literal> (true).
+              </para>
             </note>
         </para>
     </refsection>

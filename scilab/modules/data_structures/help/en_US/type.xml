@@ -292,7 +292,7 @@ type(r)                     // rational fractions
                 <link linkend="rational">rational</link>
             </member>
             <member>
-                <link linkend="mlist">tlist</link>
+                <link linkend="tlist">tlist</link>
             </member>
             <member>
                 <link linkend="mlist">mlist</link>

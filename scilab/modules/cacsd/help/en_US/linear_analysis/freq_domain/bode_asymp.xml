@@ -14,7 +14,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="bode_asymp" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org"  xml:id="bode_asymp" xml:lang="en">
     <refnamediv>
         <refname>bode_asymp</refname>
         <refpurpose>Bode plot asymptote</refpurpose>
@@ -22,7 +25,8 @@
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-            bode_asymp(sl, [wmin, wmax])
+            bode_asymp(sl)
+            bode_asymp(sl, wmin, wmax)
         </synopsis>
     </refsynopsisdiv>
     <refsection>

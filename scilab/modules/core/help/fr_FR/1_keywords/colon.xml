@@ -1,8 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="colon">
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="fr" xml:id="colon">
     <refnamediv>
-        <refname>colon</refname>
-        <refpurpose>(:) opérateur "deux points"  </refpurpose>
+        <refname>colon (:)</refname>
+        <refpurpose>Générateur de séries. Adresse tous les éléments d'une liste ou d'un tableau</refpurpose>
     </refnamediv>
     <refsection>
         <title>Description</title>
@@ -30,7 +47,7 @@
             </varlistentry>
         </variablelist>
         <para>Cet opérateur peut aussi être utilisé pour sélectionner des lignes
-            ou des colonnes d'une matrice, ou bien des sous-matrices (voir aussi
+            ou des colonnes d'un tableau, ou bien des sous-tableaux (voir aussi
             <link linkend="extraction">extraction</link>,  <link linkend="insertion">insertion</link>) :
         </para>
         <variablelist>
@@ -38,8 +55,8 @@
                 <term>A(:)</term>
                 <listitem>
                     <para>
-                        est le vecteur de tous les éléments de la matrice <literal>A</literal>,
-                        considérée comme un vecteur colonne (les colonnes sont mises bout à
+                        est le vecteur de tous les éléments du tableau <literal>A</literal>,
+                        considéré comme un vecteur colonne (les colonnes sont mises bout à
                         bout);
                     </para>
                 </listitem>
@@ -101,9 +118,10 @@
                 <term>A(:)=w</term>
                 <listitem>
                     <para>
-                        remplit la matrice <literal>A</literal> avec les composantes de
-                        <literal>w</literal> (prises colonne par colonne si <literal>w</literal> est une
-                        matrice). Le nombre de valeurs de <literal>A</literal> doit être égal au nombre de valeurs de <literal>w</literal>.
+                        remplit le tableau <literal>A</literal> avec les composantes de
+                        <literal>w</literal> (prises colonne par colonne si <literal>w</literal> est
+                        un tableau 2D). <literal>A</literal> et <literal>w</literal> doivent avoir
+                        le même nombre d'éléments.
                     </para>
                 </listitem>
             </varlistentry>
@@ -112,6 +130,10 @@
             Merci de noter que même si <literal>i</literal>, <literal>j</literal>,
             <literal>k</literal> ou <literal>d</literal> ont une partie décimale, seule la partie entière sera utilisée.
         </para>
+       <note>
+          <literal>type(:)</literal> est 129.
+          <literal>typeof(:)</literal> est <literal>"implicitlist"</literal>.
+       </note>
     </refsection>
     <refsection>
         <title>Exemples</title>
@@ -140,17 +162,19 @@ A(:) = w
 // Si les indices ne sont pas des valeurs entières
 i = 1:0.4:10; // Indices
 A(i)
-
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>
         <simplelist type="inline">
             <member>
-                <link linkend="matrix">matrix</link>
+                <link linkend="dollar">dollar</link>
             </member>
             <member>
-                <link linkend="for">for</link>
+                <link linkend="extraction">extraction</link>
+            </member>
+            <member>
+                <link linkend="matrix">matrix</link>
             </member>
             <member>
                 <link linkend="linspace">linspace</link>
@@ -159,5 +183,16 @@ A(i)
                 <link linkend="logspace">logspace</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                  <literal>%i:10</literal> produit désormais une erreur.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

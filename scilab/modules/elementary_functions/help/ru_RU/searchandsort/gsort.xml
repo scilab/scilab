@@ -190,10 +190,8 @@
             <member>
                 <link linkend="find">find</link>
             </member>
-        </simplelist>
-        <simplelist type="inline">
             <member>
-                <link linkend="overloading">overloading</link>
+                <link linkend="overloading">перегрузка</link>
             </member>
         </simplelist>
     </refsection>

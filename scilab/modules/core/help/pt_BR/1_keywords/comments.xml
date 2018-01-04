@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="comments" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="comments" xml:lang="pt">
     <refnamediv>
         <refname>comments</refname>
         <refpurpose>(// or /*...*/) comments</refpurpose>
     </refnamediv>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            Uma seqüência de duas barras <literal> // </literal> fora de uma
-            definição de string marca o início de um comentário. As barras, tanto
-            quanto o restante dos caracteres até o fim das linhas não são
+            Uma seqÃ¼Ãªncia de duas barras <literal> // </literal> fora de uma
+            definiÃ§Ã£o de string marca o inÃ­cio de um comentÃ¡rio. As barras, tanto
+            quanto o restante dos caracteres atÃ© o fim das linhas nÃ£o sÃ£o
             interpretados.
         </para>
         <para>
@@ -17,9 +20,9 @@
             and */ at the end. It is more useful than // which must be positioned at the
             beginning of each line to comment.
         </para>
-        <para>Dentro de uma função, as primeiras linhas de comentário até a
-            primeira instrução ou linha vazia podem ser usadas para fornecer o
-            conteúdo padrão para a documentação de ajuda da função ("help" da função).
+        <para>Dentro de uma funÃ§Ã£o, as primeiras linhas de comentÃ¡rio atÃ© a
+            primeira instruÃ§Ã£o ou linha vazia podem ser usadas para fornecer o
+            conteÃºdo padrÃ£o para a documentaÃ§Ã£o de ajuda da funÃ§Ã£o ("help" da funÃ§Ã£o).
         </para>
     </refsection>
     <refsection>
@@ -41,5 +44,30 @@ endfunction
 
 help myfunction
  ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Ver TambÃ©m</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="head_comments">head_comments</link>
+            </member>
+            <member>
+                <link linkend="slash">slash</link>
+            </member>
+            <member>
+                <link linkend="backslash">backslash</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>HistÃ³rico</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    <literal>/* .. */</literal> block comments introduced.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

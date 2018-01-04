@@ -13,17 +13,25 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="bode" xml:lang="ja">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org"  xml:id="bode" xml:lang="ja">
     <refnamediv>
         <refname>bode</refname>
         <refpurpose>ボード線図</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>bode(sl,[fmin,fmax] [,step] [,comments] )
-            bode(sl,frq [,comments] )
-            bode(frq,db,phi [,comments])
-            bode(frq, repf [,comments])
+        <synopsis>
+            bode(sl)
+            bode(sl, fmin, fmax)
+            bode(sl, fmin, fmax, step)
+            bode(sl, frq)
+            bode(frq, db, phi)
+            bode(frq, repf)
+            bode(.., Captions)
+            bode(.., Captions, "rad")
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -47,12 +55,6 @@
                 <term>step</term>
                 <listitem>
                     <para>real (対数単位の増分ステップ.)</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>comments</term>
-                <listitem>
-                    <para>文字列のベクトル (キャプション).</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -87,6 +89,19 @@
                     </para>
                 </listitem>
             </varlistentry>
+            <varlistentry>
+                <term>Captions</term>
+                <listitem>
+                    <para>文字列のベクトル (キャプション).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"rad"</term>
+                <listitem>
+                    <para>converts the frequency from Hz into rad/s (multiplies by 2π)
+                    </para>
+                </listitem>
+            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
@@ -108,9 +123,6 @@
         <para>
             <literal>step</literal> は(指数単位の)離散化増分です.
             (デフォルト値の選定方法については,<literal>calfrq</literal> を参照).
-        </para>
-        <para>
-            <literal>comments</literal> は文字列ベクトル(キャプション)です.
         </para>
         <para>
             <literal>db,phi</literal> はゲイン(単位:dB)及び
@@ -141,9 +153,11 @@
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[
-s=poly(0,'s')
-h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
-clf();bode(h,0.01,100);
+s = poly(0, 's');
+h = syslin('c', (s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01));
+
+clf
+bode(h, 0.01, 100);
  ]]></programlisting>
         <para>
             <scilab:image localized="true">
@@ -153,12 +167,14 @@ clf();bode(h,0.01,100);
             </scilab:image>
         </para>
         <programlisting role="example"><![CDATA[
-s=poly(0,'s')
-h1=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
-num=22801+4406.18*s+382.37*s^2+21.02*s^3+s^4;
-den=22952.25+4117.77*s+490.63*s^2+33.06*s^3+s^4
-h2=syslin('c',num/den);
-clf();bode([h1;h2],0.01,100,['h1';'h2'])
+s = poly(0, 's');
+h1 = syslin('c', (s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01));
+num = 22801+4406.18*s+382.37*s^2+21.02*s^3+s^4;
+den = 22952.25+4117.77*s+490.63*s^2+33.06*s^3+s^4;
+h2 = syslin('c', num/den);
+
+clf
+bode([h1; h2], 0.01, 100, ['h1'; 'h2']);
  ]]></programlisting>
         <para>
             <scilab:image localized="true">
@@ -168,6 +184,24 @@ clf();bode([h1;h2],0.01,100,['h1';'h2'])
                 den=22952.25+4117.77*s+490.63*s^2+33.06*s^3+s^4
                 h2=syslin('c',num/den);
                 clf();bode([h1;h2],0.01,100,['h1';'h2'])
+             </scilab:image>
+        </para>
+        <programlisting role="example"><![CDATA[
+s = %s;
+G = (10*(s+3)) / (s*(s+2)*(s^2+s+2)); // A rational matrix
+sys = syslin('c', G); // A continuous-time linear system in transfer matrix representation.
+f_min = .0001; f_max = 16; // Frequencies in Hz
+
+clf
+bode(sys, f_min, f_max, "rad"); // Converts Hz to rad/s
+ ]]></programlisting>
+        <para>
+            <scilab:image localized="true">
+                s = %s;
+                G = (10*(s+3))/(s*(s+2)*(s^2+s+2)); // A rational matrix
+                sys = syslin('c', G); // A continuous-time linear system in transfer matrix representation.
+                f_min = .0001; f_max = 16; // Frequencies in Hz
+                clf(); bode(sys, f_min, f_max, "rad"); // Converts Hz to rad/s
             </scilab:image>
         </para>
     </refsection>
@@ -202,5 +236,22 @@ clf();bode([h1;h2],0.01,100,['h1';'h2'])
                 <link linkend="datatips">datatips</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revdescription>
+                  <para><literal>"rad"</literal> option added.</para>
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    <para>handling zpk representation</para>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

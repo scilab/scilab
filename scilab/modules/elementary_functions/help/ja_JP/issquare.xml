@@ -15,7 +15,10 @@
  *
  -->
 
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="issquare" xml:lang="ja">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="issquare" xml:lang="ja">
 
     <refnamediv>
 
@@ -88,10 +91,15 @@
             <varname>x</varname> がハイパー行列の場合は要素数が1)
 
             の場合にtrueを返します.
-
-            <literal>issquare([])</literal>はfalseを返すことに注意してください.
-
         </para>
+      <note>
+        <para>
+          <literal>issquare([])</literal>はfalseを返すことに注意してください..
+        </para>
+        <para>
+          <literal>issquare(eye())</literal> returns <literal>%T</literal> (true).
+        </para>
+      </note>
 
     </refsection>
 

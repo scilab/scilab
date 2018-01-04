@@ -63,7 +63,8 @@
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[
-    h=syslin('c',(2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01));
+    s = %s;
+    h = syslin('c', (2*0.9*10*s+100) / (s^2+2*0.3*10.1*s+102.01));
     h2norm(h)
     ]]></programlisting>
     </refsection>

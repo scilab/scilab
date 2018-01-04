@@ -224,6 +224,9 @@ FILES = [SCI;SCIHOME;'несуществующий_файл';TMPDIR]
                 <link linkend="newest">newest</link>
             </member>
             <member>
+                <link linkend="isfile">isfile</link>
+            </member>
+            <member>
                 <link linkend="isdir">isdir</link>
             </member>
         </simplelist>

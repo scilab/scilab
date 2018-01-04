@@ -69,8 +69,6 @@ evstr(a(i+2))*2
 --> "This session has been launched from " + a(i+3)
  ans  =
  This session has been launched from "C:\Users\Me"
-
--->
 ]]></screen>
                      </para>
                      <para>
@@ -529,7 +527,12 @@ echo $? ]]></screen>
             <revision>
                 <revnumber>6.0.1</revnumber>
                 <revremark>
-                    <literal>-scihome</literal> option added.
+                  <para><literal>-scihome</literal> option added.</para>
+                  <para>On Windows, a new <literal>scilab.bat</literal> file becomes the main
+                    executable script managing all launching options. There are now 3 binaries
+                    Wscilex.exe, Wscilex-cli.exe, and Scilex.exe corresponding to each Scilab
+                    running mode (STD, NW, NWNI).
+                  </para>
                 </revremark>
             </revision>
         </revhistory>

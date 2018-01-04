@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="comments">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ru" xml:id="comments">
     <refnamediv>
         <refname>комментарии</refname>
-        <refpurpose>(// or /*...*/) comments</refpurpose>
+        <refpurpose>(// или /*...*/) комментирование</refpurpose>
     </refnamediv>
     <refsection>
         <title>Описание</title>
@@ -12,9 +15,9 @@
             символы вплоть до конца строки, не интерпретируются.
         </para>
         <para>
-            Another way to comment a block of code is to use /* at the beginning
-            and */ at the end. It is more useful than // which must be positioned at the
-            beginning of each line to comment.
+            Другим способом закомментировать блок кода является использование <literal>/*</literal>
+            в начале и <literal>*/</literal> в конце блока. Это полезнее, чем <literal>//</literal>,
+            который должен ставиться в начале каждой строки, чтобы закомментировать.
         </para>
         <para>
             Внутри функции первые строки, вплоть до первой инструкции или пустой строки
@@ -28,9 +31,9 @@ g=9.81// ускорение свободного падения
 
 text='a//b'
 
-/* As this comment is quite long to be on many lines,
-the symbols slash and star to start the comment
-and star and slash to end the comment are used */
+/* Поскольку этот комментарий достаточно длинный, чтобы уместиться на множестве строк,
+то используются символы слеша и звёздочки для начала комментирования и
+звёздочка и слеш для завершения коментирования. */
 
 function y=myfunction(x)
   // myfunction вычисляет y=x^2+1
@@ -45,11 +48,25 @@ help myfunction
         <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
+                <link linkend="head_comments">head_comments</link>
+            </member>
+            <member>
                 <link linkend="slash">слэш</link>
             </member>
             <member>
                 <link linkend="backslash">обратный слэш</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    <literal>/* .. */</literal> вводит блок комментариев.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

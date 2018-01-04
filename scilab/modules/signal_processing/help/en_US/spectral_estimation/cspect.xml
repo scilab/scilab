@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="cspect" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="cspect" xml:lang="en">
     <refnamediv>
         <refname>cspect</refname>
         <refpurpose>two sided cross-spectral estimate between 2 discrete time signals using
@@ -28,7 +31,7 @@
                     <para>
                         vector, the data of the second signal. If <literal>y</literal>
                         is omitted it is supposed to be equal to <literal>x</literal>
-                        (auto-correlation). If it is present, it must have the same numer of
+                        (auto-correlation). If it is present, it must have the same number of
                         element than <literal>x.</literal>
                     </para>
                 </listitem>

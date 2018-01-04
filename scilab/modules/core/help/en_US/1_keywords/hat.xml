@@ -51,7 +51,9 @@
             </para>
             <para>
                 <warning>
-                    Exponentiation is right-associative in Scilab contrarily to Matlab&#174; and Octave. For example 2^3^4 is equal to 2^(3^4) in Scilab but is equal to (2^3)^4 in Matlab&#174; and Octave.
+                    Exponentiation is right-associative in Scilab contrarily to Matlab® and Octave.
+                   For example 2^3^4 is equal to 2^(3^4) in Scilab but is equal to (2^3)^4 in Matlab®
+                   and Octave.
                 </warning>
             </para>
         </refsection>

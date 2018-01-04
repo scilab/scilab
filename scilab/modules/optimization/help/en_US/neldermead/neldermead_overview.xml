@@ -258,45 +258,45 @@ nm = neldermead_destroy(nm);
     </refsection>
     <refsection>
         <title>Bibliography</title>
-        <para>&#8220;Sequential Application of Simplex Designs in Optimisation and
-            Evolutionary Operation&#8221;, Spendley, W. and Hext, G. R. and Himsworth,
+        <para>"Sequential Application of Simplex Designs in Optimisation and
+            Evolutionary Operation", Spendley, W. and Hext, G. R. and Himsworth,
             F. R., American Statistical Association and American Society for Quality,
             1962
         </para>
-        <para>&#8220;A Simplex Method for Function Minimization&#8221;, Nelder, J.
+        <para>"A Simplex Method for Function Minimization", Nelder, J.
             A. and Mead, R., The Computer Journal, 1965
         </para>
         <para>"A New Method of Constrained Optimization and a Comparison With
             Other Methods", M. J. Box, The Computer Journal 1965 8(1):42-52, 1965 by
             British Computer Society
         </para>
-        <para>&#8220;Convergence Properties of the Nelder--Mead Simplex Method in
-            Low Dimensions&#8221;, Jeffrey C. Lagarias and James A. Reeds and Margaret
+        <para>"Convergence Properties of the Nelder--Mead Simplex Method in
+            Low Dimensions", Jeffrey C. Lagarias and James A. Reeds and Margaret
             H. Wright and Paul E. Wright, SIAM Journal on Optimization, 1998
         </para>
-        <para>&#8220;Compact numerical methods for computers : linear algebra and
-            function minimisation&#8221;, Nash, J. C., Hilger, Bristol, 1979
+        <para>"Compact numerical methods for computers : linear algebra and
+            function minimisation", Nash, J. C., Hilger, Bristol, 1979
         </para>
-        <para>&#8220;Iterative Methods for Optimization&#8221;, C. T. Kelley,
+        <para>"Iterative Methods for Optimization", C. T. Kelley,
             1999
         </para>
-        <para>&#8220;Iterative Methods for Optimization: Matlab Codes&#8221;,
+        <para>"Iterative Methods for Optimization: Matlab Codes",
             http://www4.ncsu.edu/~ctk/matlab_darts.html
         </para>
-        <para>&#8220;Sequential Simplex Optimization: A Technique for Improving
+        <para>"Sequential Simplex Optimization: A Technique for Improving
             Quality and Productivity in Research, Development, and
-            Manufacturing&#8221;, Walters, Fred H. and Jr, Lloyd R. and Morgan,
+            Manufacturing", Walters, Fred H. and Jr, Lloyd R. and Morgan,
             Stephen L. and Deming, Stanley N., 1991
         </para>
-        <para>&#8220;Numerical Recipes in C, Second Edition&#8221;, W. H. Press
+        <para>"Numerical Recipes in C, Second Edition", W. H. Press
             and Saul A. Teukolsky and William T. Vetterling and Brian P. Flannery,
             1992
         </para>
-        <para>&#8220;Detection and Remediation of Stagnation in the Nelder--Mead
-            Algorithm Using a Sufficient Decrease Condition&#8221;, SIAM J. on
+        <para>"Detection and Remediation of Stagnation in the Nelder--Mead
+            Algorithm Using a Sufficient Decrease Condition", SIAM J. on
             Optimization, Kelley,, C. T., 1999
         </para>
-        <para>Matlab &#8211; fminsearch ,
+        <para>Matlab ® fminsearch ,
             http://www.mathworks.com/access/helpdesk/help/techdoc/index.html?/access/helpdesk/help/techdoc/ref/fminsearch.html
         </para>
         <para>GAMS, A19A20 - description,
@@ -309,8 +309,8 @@ nm = neldermead_destroy(nm);
             http://www.stat.uconn.edu/~mhchen/survbook/example51/optim1.f
         </para>
         <para>as47,f, http://lib.stat.cmu.edu/apstat/47</para>
-        <para>&#8220;Algorithm AS47 - Function minimization using a simplex
-            procedure, O'Neill, R., 1971, Applied Statistics
+        <para>"Algorithm AS47 - Function minimization using a simplex procedure", O'Neill, R.,
+          1971, Applied Statistics
         </para>
     </refsection>
 </refentry>
