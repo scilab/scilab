@@ -36,6 +36,7 @@ double os_wcstod(wchar_t *_pwstData, wchar_t** _pwstState)
             pwstData[iPos] = L'e';
             val = wcstod(pwstData, &pwstStop);
             *_pwstState = _pwstData + (pwstStop - pwstData);
+            free(pwstData);
         }
     }
 
