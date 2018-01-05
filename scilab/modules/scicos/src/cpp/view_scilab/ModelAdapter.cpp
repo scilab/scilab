@@ -871,6 +871,7 @@ struct rpar
             double *data;
             types::Double* o = new types::Double((int)rpar.size(), 1, &data);
             std::copy(rpar.begin(), rpar.end(), data);
+            return o;
         }
         else // SuperBlock, return the contained diagram (allocating it on demand)
         {
