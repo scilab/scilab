@@ -57,7 +57,7 @@ int sci_toJSON(scilabEnv env, int nin, scilabVar *in, int nopt, scilabOpt opt, i
     int indent = 0;
     std::wstring file;
 
-    if (nin < 1 && nin > 3)
+    if (1 > nin || nin > 3)
     {
         Scierror(999, _("%s: Wrong number of input arguments: %d to %d expected.\n"), name.data(), 1, 3);
         return STATUS_ERROR;
