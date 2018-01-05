@@ -48,7 +48,7 @@ int sci_fromJSON(scilabEnv env, int nin, scilabVar *in, int nopt, scilabOpt opt,
     std::chrono::steady_clock::time_point tinput = std::chrono::steady_clock::now();
 #endif
 
-    if (nin < 1 && nin > 2)
+    if (1 > nin || nin > 2)
     {
         Scierror(999, _("%s: Wrong number of input arguments: %d to %d expected.\n"), name.data(), 1, 2);
         return STATUS_ERROR;
