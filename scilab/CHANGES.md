@@ -144,6 +144,7 @@ Feature changes and additions
 * `factorial(n)` can be used now from n=171 up to n=10^14.
 * `intersect()` now supports complex numbers.
 * `setdiff()` now supports complex numbers.
+* `twinkle` can now blink together several hierarchically independent objects, like a curve and its labels, etc.
 
 
 Help pages:
@@ -265,6 +266,7 @@ Bug Fixes
 * [#15309](http://bugzilla.scilab.org/show_bug.cgi?id=15309): `eval()` was a weak duplicate of `evstr()`. It should be removed.
 * [#15321](http://bugzilla.scilab.org/show_bug.cgi?id=15321): `lu()` was leaking memory.
 * [#15350](http://bugzilla.scilab.org/show_bug.cgi?id=15350): `ric_desc()` should be merged into `riccati()`.
+* [#15359](http://bugzilla.scilab.org/show_bug.cgi?id=15359): `twinkle` was not able to blink several independent objects.
 * [#15360](http://bugzilla.scilab.org/show_bug.cgi?id=15360): `numer()` and `denom()` were poor and duplicates of the `.num` and `.den` fields of rationals. They are removed.
 * [#15368](http://bugzilla.scilab.org/show_bug.cgi?id=15368): `freson()` silently returned frequencies not corresponding to a maximum, or returned [] instead of some still computable maxima frequencies.
 * [#15392](http://bugzilla.scilab.org/show_bug.cgi?id=15392): `comet` and `comet3d` did not allow specifying colors with colors names.

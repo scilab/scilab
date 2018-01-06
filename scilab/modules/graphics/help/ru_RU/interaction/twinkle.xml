@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * Copyright (C) 2015 - 2016 - Samuel GOUGEON
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2015, 2016, 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,14 +13,18 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ru" xml:id="twinkle">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:lang="ru" xml:id="twinkle">
     <refnamediv>
         <refname>twinkle</refname>
-        <refpurpose>используется для мерцания графического объекта</refpurpose>
+        <refpurpose>выделяет один или несколько графических объектов путем их мерцания</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Синтаксис</title>
-        <synopsis>twinkle
+        <synopsis>
+            twinkle
             twinkle(n)
             twinkle(h)
             twinkle(h,n)
@@ -32,15 +36,15 @@
             <varlistentry>
                 <term>h</term>
                 <listitem>
-                    <para>указатель на графический объект. By default, the current graphic entity
-                        handled with <literal>gce()</literal> is considered.
+                    <para>указатель на графический объект. По умолчанию рассматривается текущий
+                       графический объект, управляемый с помощью <literal>gce()</literal>.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>n</term>
                 <listitem>
-                    <para>целое число.</para>
+                    <para>количество мерцаний. По умолчанию n = 5</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -48,12 +52,16 @@
     <refsection role="description">
         <title>Описание</title>
         <para>
-            Функция <function>twinkle</function> заставляет графический объект,
-            указанный по его указателю <varname>h</varname> мерцать. Она может
-            использоваться для того, чтобы найти в графическом окне объект,
-            соответствующий графическому указателю. По умолчанию объект мерцает 5
-            раз, но это можно изменить с помощью необязательного аргумента
-            <varname>n</varname>.
+            <function>twinkle</function> заставляет графические объекты, управляемые с помощью
+            <varname>h</varname>, мерцать <varname>n</varname> раз. Если некоторые из объектов изначально
+            невидимы, то они мерцают с другими объектами и окончательно остаются невидимыми перед
+            возвратом.
+        </para>
+        <para>
+            Если <function>twinkle()</function> запущена тогда, когда нет ни одного графического окна,
+            то она ничего не делает. Если дескриптор <varname>h</varname> имеет некоторые
+            некорректные компоненты (объекты были в это время удалены), то <function>twinkle(h..)</function>
+            возвращает ошибку.
         </para>
     </refsection>
     <refsection role="examples">
@@ -61,8 +69,8 @@
         <programlisting role="example"><![CDATA[
 clf
 plot()
-twinkle     // twinkles the last group of curves plotted in the plot() example
-twinkle(3)  // twinkles it only three times
+twinkle     // мерцает последняя группа кривых, построенных в примере plot()
+twinkle(3)  // мерцает только три раза
 
 x = linspace(-2*%pi,2*%pi,100)';
 plot2d(x,[sin(x),cos(x)]);
@@ -72,6 +80,16 @@ p2 = e.children(2);
 twinkle(p1)     // мерцает график косинуса
 twinkle(p2,10)  // график синуса мерцает 10 раз
 twinkle(gca())  // мерцают оси
+ ]]></programlisting>
+    <para/>
+        <programlisting role="example"><![CDATA[
+// Мерцание подгруппы многих кривых с некоторыми изначально невидимими
+clf
+plot()
+c = gca().children.children(1:10);
+c(1:5).visible = "off";
+sleep(5,'s')
+twinkle(c)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -88,7 +106,13 @@ twinkle(gca())  // мерцают оси
             <revision>
                 <revnumber>6.0</revnumber>
                 <revdescription>
-                    <para>twinkle() and twinkle(n) added.</para>
+                    <para>Добавлены twinkle() и twinkle(n).</para>
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.1</revnumber>
+                <revdescription>
+                    <para>Теперь несколько независимых объектов могут мерцать вместе.</para>
                 </revdescription>
             </revision>
         </revhistory>

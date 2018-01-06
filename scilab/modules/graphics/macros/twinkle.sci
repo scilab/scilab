@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
-// Copyright (C) 2015 - 2016 - Samuel GOUGEON
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2015, 2016, 2018 - Samuel GOUGEON
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -31,7 +31,6 @@ function twinkle(h,n)
                 return
             end
         else
-            h = h(1)
             n = 5
         end
     end
@@ -44,15 +43,10 @@ function twinkle(h,n)
         error(msprintf(msg, "twinkle", min(rhs,2)));
     end
 
-    // BLINKING THE GRAPHICAL COMPONENT
-    f = h;
-    while f.type<>"Figure"
-        f = f.parent;
-    end
+    // BLINKING THE GRAPHICAL COMPONENTS
     realtimeinit(0.2);
     realtime(0);
     k = 0;
-
     v = h.visible;
     for i = 1:n
         k = k+2;
@@ -61,5 +55,9 @@ function twinkle(h,n)
         h.visible = "on";
         realtime(k+1);
     end
-    h.visible = v;
+
+    // Restoring the initial .visible state
+    for i = 1:length(h)
+        h(i).visible = v(i);
+    end
 endfunction

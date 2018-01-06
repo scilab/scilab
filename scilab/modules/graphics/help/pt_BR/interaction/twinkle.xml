@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * Copyright (C) 2015 - 2016 - Samuel GOUGEON
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2015, 2016, 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,17 +13,21 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="twinkle" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="twinkle" xml:lang="pt">
     <refnamediv>
         <refname>twinkle</refname>
         <refpurpose>Faz uma entidade gráfica piscar</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
-        <synopsis>twinkle
-twinkle(n)
-twinkle(h)
-twinkle(h,n)
+        <synopsis>
+            twinkle
+            twinkle(n)
+            twinkle(h)
+            twinkle(h,n)
         </synopsis>
     </refsynopsisdiv>
     <refsection role="arguments">
@@ -32,15 +36,17 @@ twinkle(h,n)
             <varlistentry>
                 <term>h</term>
                 <listitem>
-                    <para>manipulador de uma entidade gráfica. By default, the current graphic
-                      entity handled with <literal>gce()</literal> is considered.
+                    <para>
+                    identificador ou vetor de identificadores de uma ou várias entidades gráficas
+                    para piscar. Por padrão, a entidade gráfica atual apontada por
+                    <literal>gce()</literal> é considerada.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>n</term>
                 <listitem>
-                    <para>inteiro</para>
+                    <para>número de flashes. Por padrão, n = 5</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -48,11 +54,16 @@ twinkle(h,n)
     <refsection role="description">
         <title>Descrição</title>
         <para>
-            <literal>twinkle</literal> faz com que a entidade gráfica dada pelo
-            seu manipulador h pisque. Pode ser usado para encontrar o objeto gráfico
-            correspondente a um manipulador gráfico em uma janela de gráficos. Por
-            padrão, a entidade gráfica pisca 5 vezes, mas você pode mudar este número
-            através do argumento opcional <literal>n</literal>.
+            <function>twinkle</function> pisca <varname>n</varname> times objects
+            gráficos cujos identificadores são especificados em <varname>h</varname>.
+            Se alguns dos objetos são inicialmente invisíveis, eles piscam com o
+            outros, tornam-se invisíveis novamente após o relâmpago.
+        </para>
+        <para>
+            If <function>twinkle()</function> is run while no graphical figure exists,
+            it does nothing and returns. If the handle <varname>h</varname> has some invalid
+            components (the entity has been deleted in the meantime),
+            <function>twinkle(h..)</function> yields an error.
         </para>
     </refsection>
     <refsection role="examples">
@@ -73,6 +84,16 @@ twinkle(p1)     // fazendo piscar o esboço de cos
 twinkle(p2,10)  // fazendo piscar o esboço de sin piscar
 twinkle(gca())  // eixos piscando
  ]]></programlisting>
+    <para/>
+        <programlisting role="example"><![CDATA[
+// Blinking a subset of many curves, with some initially invisible ones
+clf
+plot()
+c = gca().children.children(1:10);
+c(1:5).visible = "off";
+sleep(5,'s')
+twinkle(c)
+ ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>Ver Também</title>
@@ -89,6 +110,12 @@ twinkle(gca())  // eixos piscando
                 <revnumber>6.0</revnumber>
                 <revdescription>
                     <para>twinkle() and twinkle(n) added.</para>
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.1</revnumber>
+                <revdescription>
+                    <para>Several independent objects can now be blinked together.</para>
                 </revdescription>
             </revision>
         </revhistory>
