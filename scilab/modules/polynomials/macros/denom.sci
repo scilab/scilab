@@ -12,13 +12,14 @@
 // along with this program.
 
 
-function den=denom(r)
+function den = denom(r)
     //returns the denominator of a rational matrix
     //%Syntax: den=denom(r)
     //with
     //r: rational function matrix (may be polynomial or scalar matrix)
     //den: polynomial matrix
     //!
+    warnobsolete("the r.den rational attribute","6.1.0")
     select typeof(r)
     case "constant" then
         den=ones(r);

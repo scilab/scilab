@@ -40,13 +40,13 @@ function [K,R]=kpure(sl,eps)
     end
 
     //(1) give K(s)=-D(s)/N(s)
-    s=poly(0,varn(sl.den))
-    K=-sl.den/sl.num;
+    s = poly(0,varn(sl.den))
+    K = -sl.den/sl.num;
     // replace K by the previous value in (2) and find the roots
-    s=roots(numer(horner(sl.den,-s)+K*horner(sl.num,-s)),"e");
+    s = roots((horner(sl.den,-s)+K*horner(sl.num,-s)).num, "e");
     //retain pure imaginary roots
-    s=imag(s(abs(real(s))<eps));
-    R=(s(s>0).'*%i);
+    s = imag(s(abs(real(s))<eps));
+    R = (s(s>0).'*%i);
     //find the K(s) values K(s)=-D(s)/N(s)
-    K=-real(freq(sl.den,sl.num,R))
+    K = -real(freq(sl.den,sl.num,R))
 endfunction

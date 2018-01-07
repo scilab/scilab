@@ -6,6 +6,7 @@
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 //poly (coeff)
 
@@ -564,8 +565,8 @@ p1=1;p2=1;
 
 //sfact
 p=(%s-1/2)*(2-%s);
-w=sfact(p); if norm(coeff(w*numer(horner(w,1/%s))-p))>10*%eps  then pause,end
-w=sfact(p+0);if norm(coeff(w*numer(horner(w,1/%s))-p))>10*%eps  then pause,end
+w=sfact(p); if norm(coeff(w*(horner(w,1/%s)).num-p))>10*%eps  then pause,end
+w=sfact(p+0);if norm(coeff(w*(horner(w,1/%s)).num-p))>10*%eps  then pause,end
 
 
 F1=[%z-1/2,%z+1/2,%z^2+2;1,%z,-%z;%z^3+2*%z,%z,1/2-%z];

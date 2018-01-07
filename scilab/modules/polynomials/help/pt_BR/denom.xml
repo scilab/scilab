@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
@@ -16,19 +16,19 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="denom" xml:lang="pt">
     <refnamediv>
         <refname>denom</refname>
-        <refpurpose>denominador</refpurpose>
+        <refpurpose>denominador <emphasis role="bold">(obsoleto)</emphasis></refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title> Seqüência de Chamamento </title>
+        <title> SeqÃ¼Ãªncia de Chamamento </title>
         <synopsis>den=denom(r)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>r</term>
                 <listitem>
-                    <para>matriz de polinômios, de razões de polinômios ou de
+                    <para>matriz de polinÃ´mios, de razÃµes de polinÃ´mios ou de
                         constantes.
                     </para>
                 </listitem>
@@ -36,29 +36,45 @@
             <varlistentry>
                 <term>den</term>
                 <listitem>
-                    <para>matriz de polinômios</para>
+                    <para>matriz de polinÃ´mios</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
+        <warning>
+            Esta funÃ§Ã£o Ã© obsoleta e serÃ¡ removida do Scilab 6.1.0. Use, em vez disso, o atributo
+            racional <literal>.den</literal>.
+        </warning>
         <para>
             <literal>den=denom(r)</literal> retorna o denominador de uma matriz
-            de razões de polinômios.
+            de razÃµes de polinÃ´mios.
         </para>
-        <para>Desde que razões de polinômios são representadas internamente como
+        <para>Desde que razÃµes de polinÃ´mios sÃ£o representadas internamente como
             <literal>r=list(['r','num','den','dt'],num,den,[])</literal>,
-            <literal>denom(r</literal>) é o mesmo que <literal>r(3)</literal>,
+            <literal>denom(r</literal>) Ã© o mesmo que <literal>r(3)</literal>,
             <literal>r('den')</literal> ou <literal>r.den</literal>
         </para>
     </refsection>
     <refsection>
-        <title> Ver Também </title>
+        <title> Ver TambÃ©m </title>
         <simplelist type="inline">
             <member>
                 <link linkend="numer">numer</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>HistÃ³rico</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revdescription>
+                    <literal>denom()</literal> is declared obsolete. The rational attribute
+                    <literal>.den</literal> must be used instead.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

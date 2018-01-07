@@ -317,6 +317,8 @@ Obsolete functions or features
 * `lstsize` is obsolete and will be removed in Scilab 6.1. Please use `size` instead.
 * `eval` is obsolete and will be removed in Scilab 6.1. Please use `evstr` instead.
 * `dgettext` is obsolete and will be removed in Scilab 6.1. Please use `gettext(domain, text)` instead.
+* `denom` is obsolete and will be removed in Scilab 6.1. Please use the `.den` rational attribute instead.
+* `numer` is obsolete and will be removed in Scilab 6.1. Please use the `.num` rational attribute instead.
 
 
 Removed Functions
@@ -509,6 +511,7 @@ Known issues
 * [#15342](http://bugzilla.scilab.org/show_bug.cgi?id=15342): `replot()` and `Reframe to contents` failed on graphics with xstring objects.
 * [#15347](http://bugzilla.scilab.org/show_bug.cgi?id=15347): `toeplitz` failed with rationals.
 * [#15354](http://bugzilla.scilab.org/show_bug.cgi?id=15354): `invr(%s^2)` returned 0 instead of `1/%s^2`. For any scalar number, polynomial or rational `a`, `coffg(a)` returned `0` instead of `1`. `coffg([])` yielded an error. `invr` and `coffg` had no unitary tests. The `coffg` help page was inaccurate and unclear.
+* [#15360](http://bugzilla.scilab.org/show_bug.cgi?id=15360): `numer()` and `denom()` were almost useless, unused, and with more handy replacements. They are declared obsolete to be removed in Scilab 6.1.0.
 * [#15375](http://bugzilla.scilab.org/show_bug.cgi?id=15375): A .zcos file opened as a palette was greyed out.
 
 

@@ -1,14 +1,16 @@
-//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2016 - INRIA - Serge Steer
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+// <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
+
 function [A11,A12,A21,A22]=split4(A,m,n)
   //m,n:taille du bloc 11
       i1 = 1:m;   j1 = 1:n;
-      i2 = m+1:$; j2 = n+1:$;   
+      i2 = m+1:$; j2 = n+1:$;
       A11=A(i1,j1);A12=A(i1,j2);A21=A(i2,j1);A22=A(i2,j2);
 endfunction
 function S=check(P,p,R)
@@ -75,38 +77,38 @@ s=%s;
 P=[1/s 2;3 4];R=2;
 T=lft(P,R);
 T_ref=(7-12*s)/(7*s);
-assert_checkalmostequal (coeff(numer(T-T_ref)),0);
+assert_checkalmostequal (coeff((T-T_ref).num),0);
 assert_checktrue(T==lft(P,[1 1],R));
 
 P=[1 2;3 4];R=2/s;
 T=lft(P,R);
 T_ref=(4+s)/(-8+s);
-assert_checkalmostequal (coeff(numer(T-T_ref)),0);
+assert_checkalmostequal (coeff((T-T_ref).num),0);
 assert_checktrue(T==lft(P,[1 1],R));
 
 P=[1 2;3/(s+1) 4];R=2/s;
 T=lft(P,R);
 T_ref=(4-7*s+s^2)/(-8-7*s+s^2);
-assert_checkalmostequal (coeff(numer(T-T_ref)),0);
+assert_checkalmostequal (coeff((T-T_ref).num),0);
 assert_checktrue(T==lft(P,[1 1],R));
 
 
 P=[1 2 3; 4 5 6;7/s,8,9];R=[1 0;0 2];
 T=lft(P,R);
 T_ref=-1;
-assert_checkalmostequal (coeff(numer(T-T_ref)),0,1e-10,1e-10);
+assert_checkalmostequal (coeff((T-T_ref).num),0,1e-10,1e-10);
 assert_checktrue(T==lft(P,[2,2],R));
 
 P=[1 2 3; 4 5 6;7,8,9];R=[1 0;0 2]/s;
 T=lft(P,R);
 T_ref=(27*s+s^2)/(-6-23*s+s^2);
-assert_checkalmostequal (coeff(numer(T-T_ref)),0,1e-10,1e-10);
+assert_checkalmostequal (coeff((T-T_ref).num),0,1e-10,1e-10);
 assert_checktrue(T==lft(P,[2,2],R));
 
 P=[1 2 3; 4 5 6;7,8,9]/(s-1);R=[1 0;0 2]/s;
 T=lft(P,R);
 T_ref=(27*s-s^2+s^3)/(-6+23*s-22*s^2-2*s^3+s^4);
-assert_checkalmostequal (coeff(numer(T-T_ref)),[0 0 0],1e-10,1e-10);
+assert_checkalmostequal (coeff((T-T_ref).num),[0 0 0],1e-10,1e-10);
 assert_checktrue(T==lft(P,[2,2],R));
 
 P=[1 2 3; 4 5 6]/(s-1);R=[1 0;0 2]/s;
@@ -116,7 +118,7 @@ assert_checkequal (T ,[]);
 P=[1 2 3; 4 5 6;7/s,8,9];R=[1 0;0 2];
 T=lft(P,[2,2],R);
 T_ref=-1;
-assert_checkalmostequal (coeff(numer(T-T_ref)),0,1e-10,1e-10);
+assert_checkalmostequal (coeff((T-T_ref).num),0,1e-10,1e-10);
 
 
 // with state space
@@ -125,25 +127,25 @@ s=%s;
 P=tf2ss([1/s 2;3 4]);R=2;
 T=lft(P,R);
 T_ref=(7-12*s)/(7*s);
-assert_checkalmostequal (coeff(numer(ss2tf(T)-T_ref)),0);
+assert_checkalmostequal (coeff((ss2tf(T)-T_ref).num),0);
 assert_checktrue(T==lft(P,[1,1],R));
 
 P=[1 2;3 4];R=tf2ss(2/s);
 T=lft(P,R);
 T_ref=(4+s)/(-8+s);
-assert_checkalmostequal (coeff(numer(ss2tf(T)-T_ref)),0);
+assert_checkalmostequal (coeff((ss2tf(T)-T_ref).num),0);
 assert_checktrue(T==lft(P,[1,1],R));
 
 P=tf2ss([1 2;3/(s+1) 4]);R=tf2ss(2/s);
 T=lft(P,R);
 T_ref=(4-7*s+s^2)/(-8-7*s+s^2);
-assert_checktrue (norm(coeff(numer(ss2tf(T)-T_ref)))<1e-10);
+assert_checktrue (norm(coeff((ss2tf(T)-T_ref).num))<1e-10);
 
 
 P=tf2ss([1 2 3; 4 5 6;7,8,9]/(s-1));R=tf2ss([1 0;0 2]/s);
 T=lft(P,R);
 T_ref=(27*s-s^2+s^3)/(-6+23*s-22*s^2-2*s^3+s^4);
-assert_checktrue (norm(coeff(numer(ss2tf(T)-T_ref)))<1e-10);
+assert_checktrue (norm(coeff((ss2tf(T)-T_ref).num))<1e-10);
 assert_checktrue(T==lft(P,[2,2],R));
 
 P=tf2ss([1 2 3; 4 5 6;7,8,9]/(s-1));R=tf2ss([1 0;0 2]/s);

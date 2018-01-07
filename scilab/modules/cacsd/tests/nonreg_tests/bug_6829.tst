@@ -1,4 +1,5 @@
 //<-- CLI SHELL MODE -->
+//<-- NO CHECK REF -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - INRIA - Serge Steer
@@ -9,7 +10,7 @@
 // <-- Non-regression test for bug 6829 -->
 //
 // <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/show_bug.cgi?id=6829
+// http://bugzilla.scilab.org/6829
 //
 // <-- Short Description -->
 //  kpure fails to compute  gains when applied to an high degree system
@@ -22,7 +23,7 @@ h=num/den;
 n=size(K,'*');
 if n<>4 then pause,end
 for i=1:n
-  r=roots(denom(h/.K(i)));
+  r=roots((h/.K(i)).den);
   r=r(abs(real(r))<1e-6);//pure imaginary
   r=r(imag(r)>0); //retains only positive imaginary part
   if r==[] then pause,end

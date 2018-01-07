@@ -1,10 +1,13 @@
-//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+
+// <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
+
 // Unit test for Scilab scalars, vectors and matrix
 
 pi=%pi;
@@ -84,7 +87,7 @@ x1=[1 s+1 s.^3+1];
 assert_checkequal(x1.^2,[1 1+2*s+s.^2  1+2*s.^3+s.^6]);
 assert_checkequal(coeff(x1.^0),[1 1 1]);
 assert_checkequal(x1.^3,[1,1+3*s+3*s^2+s^3,1+3*s^3+3*s^6+s^9]);
-assert_checkequal(coeff(numer((x1.^(-1)-[1 1/(1+s)  1/(1+s.^3)]))),[0 0 0]);
+assert_checkequal(coeff(((x1.^(-1)-[1 1/(1+s)  1/(1+s.^3)])).num),[0 0 0]);
 
 
 x1=[s+1 2*s;3+4*s^2 4];

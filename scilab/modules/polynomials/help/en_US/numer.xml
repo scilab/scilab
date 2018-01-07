@@ -16,7 +16,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="numer">
     <refnamediv>
         <refname>numer</refname>
-        <refpurpose>numerator</refpurpose>
+        <refpurpose>numerator <emphasis role="bold">(obsolete)</emphasis></refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
@@ -41,6 +41,10 @@
     </refsection>
     <refsection>
         <title>Description</title>
+        <warning>
+            This function is obsolete and will be removed from Scilab 6.1.0. Please use the
+            <literal>.num</literal> rational attribute instead.
+        </warning>
         <para>
             Utility function. <literal>num=numer(R)</literal> returns the numerator <literal>num</literal> of a rational
             function matrix <literal>R</literal> (<literal>R</literal> may be also a constant or polynomial matrix).
@@ -67,5 +71,17 @@ numer(p)
                 <link linkend="denom">denom</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revdescription>
+                    <literal>numer()</literal> is declared obsolete. The rational attribute
+                    <literal>.num</literal> must be used instead.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
