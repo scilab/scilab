@@ -135,6 +135,7 @@ int SciCurl::setProxy(CURL* curl)
 
     if(host_len == 0 || port_len == 0 || user_len == 0)
     {
+        freeArrayOfString(values, N);
         return 1;
     }
 
