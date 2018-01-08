@@ -156,6 +156,16 @@ int sci_uigetdir(char *fname, void* pvApiCtx)
         if (sciErr.iErr)
         {
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            for (int i = 0; i < nbRow; i++)
+            {
+                if (userSelection[i])
+                {
+                    delete userSelection[i];
+                    userSelection[i] = NULL;
+                }
+            }
+            delete[]userSelection;
+            userSelection = NULL;
             return 1;
         }
 
@@ -182,6 +192,8 @@ int sci_uigetdir(char *fname, void* pvApiCtx)
         {
             printError(&sciErr, 0);
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            delete[]userSelection;
+            userSelection = NULL;
             return 1;
         }
     }
