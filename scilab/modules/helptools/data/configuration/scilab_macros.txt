@@ -458,7 +458,6 @@ erfinv
 %bicgstab
 %cgs
 %pcg
-adj2sp
 blkslv
 chfact
 chsolve
@@ -491,7 +490,6 @@ ffilt
 fft2
 fftshift
 filt_sinc
-filter
 find_freq
 findm
 frfit
@@ -1768,6 +1766,8 @@ get_file_path
 is_absolute_path
 listfiles
 ls
+lsslist
+lstcat
 mdelete
 mkdir
 rmdir
@@ -1847,6 +1847,7 @@ linspace
 log2
 logm
 logspace
+mgeti
 members
 meshgrid
 modulo
@@ -1905,3 +1906,22 @@ whos
 with_javasci
 with_macros_source
 with_tk
+createBorderFont
+createWindow
+linsolve
+lmisolver
+lqi
+numderivative
+parulacolormap
+powershell
+qpsolve
+scatter
+scatter3
+ss2zp
+tbx_make
+tf2zp
+zp2ss
+zp2tf
+zpk
+zpk2ss
+zpk2tf
