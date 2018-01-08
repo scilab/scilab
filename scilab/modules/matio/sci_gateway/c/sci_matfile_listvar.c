@@ -172,6 +172,9 @@ int sci_matfile_listvar(char *fname, void* pvApiCtx)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            freeArrayOfString(varnames, nbvar);
+            FREE(varclasses);
+            FREE(vartypes);
             return 0;
         }
         LhsVar(1) = Rhs + 1;
@@ -183,6 +186,9 @@ int sci_matfile_listvar(char *fname, void* pvApiCtx)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
+                freeArrayOfString(varnames, nbvar);
+                FREE(varclasses);
+                FREE(vartypes);
                 return 0;
             }
             LhsVar(2) = Rhs + 2;
@@ -195,6 +201,9 @@ int sci_matfile_listvar(char *fname, void* pvApiCtx)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
+                freeArrayOfString(varnames, nbvar);
+                FREE(varclasses);
+                FREE(vartypes);
                 return 0;
             }
             LhsVar(3) = Rhs + 3;
