@@ -3,6 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * Copyright (C) 2011 - DIGITEO - Michael Baudin
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -14,15 +15,17 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="datafit" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="datafit" xml:lang="en">
     <refnamediv>
         <refname>datafit</refname>
-        <refpurpose>Parameter identification based on measured data</refpurpose>
+        <refpurpose>Non linear (constrained) parametric fit of measured (weighted) data</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>[p,err]=datafit([iprint,] G [,DG],Z [,W],[contr],p0,[algo],[df0,[mem]],
-            [work],[stop],['in'])
+        <synopsis>[p, fmin, status] = datafit([iprint,] G [,DG], Data [,Wd] [,Wg][,'b',p_inf,p_sup], p0 [,algo][,stop])
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -31,384 +34,913 @@
             <varlistentry>
                 <term>iprint</term>
                 <listitem>
-                    <para>scalar argument used to set the trace mode.
-                        <literal>iprint=0</literal> nothing (except errors) is reported,
-                        <literal>iprint=1</literal> initial and final reports,
-                        <literal>iprint=2</literal> adds a report per iteration,
-                        <literal>iprint&gt;2</literal> add reports on linear search.
-                    </para>
-                    <para>
+                    <para>scalar used to set the trace mode:
+                        <table>
+                            <tr>
+                                <th>Value</th><th>Action</th>
+                            </tr>
+                            <tr>
+                                <td>0</td><td>nothing (except errors) is reported</td>
+                            </tr>
+                            <tr>
+                                <td>1</td><td>initial and final reports</td>
+                            </tr>
+                            <tr>
+                                <td>2</td><td>adds a report per iteration</td>
+                            </tr>
+                            <tr>
+                                <td>>2</td><td>adds reports on linear search</td>
+                            </tr>
+                        </table>
                         <warning>
-                            Warning: most of these reports are written on the Scilab standard output.
+                            Most of the reports are displayed in the Scilab console.
                         </warning>
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>G</term>
-                <listitem>
-                    <para>function descriptor (e=G(p,z), e: ne x 1, p: np x 1, z: nz x
-                        1)
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>DG</term>
-                <listitem>
-                    <para>partial of G wrt p function descriptor (optional; S=DG(p,z),
-                        S: ne x np)
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>Z</term>
-                <listitem>
-                    <para>matrix [z_1,z_2,...z_n] where z_i (nz x 1) is the ith
-                        measurement
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>W</term>
-                <listitem>
-                    <para>weighting matrix of size ne x ne (optional; default no
-                        ponderation)
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>contr</term>
-                <listitem>
-                    <para>
-                        <literal>'b',binf,bsup</literal> with
-                        <literal>binf</literal> and <literal>bsup</literal> real vectors
-                        with same dimension as <literal>p0</literal>.
-                        <literal>binf</literal> and <literal>bsup</literal> are lower and
-                        upper bounds on <literal>p</literal>.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>p0</term>
                 <listitem>
-                    <para>initial guess (size np x 1)</para>
+                    Matrix of initial guess of the model parameters.
+                  <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>algo</term>
+                <term>"b"</term>
                 <listitem>
-                    <para>
-                        <literal>'qn'</literal> or <literal>'gc'</literal> or
-                        <literal>'nd'</literal> . This string stands for quasi-Newton
-                        (default), conjugate gradient or non-differentiable respectively.
-                        Note that <literal>'nd'</literal> does not accept bounds on
-                        <literal>x</literal> ).
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>df0</term>
-                <listitem>
-                    <para>
-                        real scalar. Guessed decreasing of <literal>f</literal> at
-                        first iteration. (<literal>df0=1</literal> is the default
-                        value).
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>mem :</term>
-                <listitem>
-                    <para>integer, number of variables used to approximate the Hessian,
-                        (<literal>algo='gc' or 'nd'</literal>). Default value is around
-                        6.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>stop</term>
-                <listitem>
-                    <para>sequence of optional parameters controlling the convergence of
-                        the algorithm. <literal> stop= 'ar',nap, [iter [,epsg [,epsf
-                            [,epsx]]]]
-                        </literal>
-                    </para>
-                    <variablelist>
-                        <varlistentry>
-                            <term>"ar"</term>
-                            <listitem>
-                                <para>reserved keyword for stopping rule selection defined as
-                                    follows:
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>nap</term>
-                            <listitem>
-                                <para>
-                                    maximum number of calls to <literal>fun</literal>
-                                    allowed.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>iter</term>
-                            <listitem>
-                                <para>maximum number of iterations allowed.</para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>epsg</term>
-                            <listitem>
-                                <para>threshold on gradient norm.</para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>epsf</term>
-                            <listitem>
-                                <para>threshold controlling decreasing of
-                                    <literal>f</literal>
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>epsx</term>
-                            <listitem>
-                                <para>
-                                    threshold controlling variation of <literal>x</literal>.
-                                    This vector (possibly matrix) of same size as
-                                    <literal>x0</literal> can be used to scale
-                                    <literal>x</literal>.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                    </variablelist>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>"in"</term>
-                <listitem>
-                    <para>reserved keyword for initialization of parameters used when
-                        <literal>fun</literal> in given as a Fortran routine (see
-                        below).
-                    </para>
+                    keyword heading the <literal>p_inf, p_sup</literal> sequence, where
+                    <literal>p_inf</literal> and <literal>p_sup</literal> are real matrices
+                    with the <literal>p0</literal> shape and sizes.
+                    <literal>p_inf</literal> is the vector of lower bounds of respective
+                    <literal>p</literal> components. <literal>p_sup</literal> are upper bounds.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>p</term>
                 <listitem>
-                    <para>Column vector, optimal solution found</para>
+                    Matrix of the best fitting model parameters, with the <varname>p0</varname> sizes.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>err</term>
+                <term>Data</term>
                 <listitem>
-                    <para>scalar, least square error.</para>
+                    (ndc x nd) matrix of experimental data points, where <literal>Data(:,i)</literal>
+                    are the #nzc coordinates of the ith measurement.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Wd</term>
+                <listitem>
+                    Data weights (optional). Row vector with size(Data,2) elements.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>G</term>
+                <listitem>
+                    <para>
+                        Gap function: handle of a function in Scilab language or of a compiled
+                        external function. Computed gap(s) between the fitting model and data
+                        may be of the first order, not quadratic.
+                    </para>
+                    <para>
+                        <emphasis role="bold">
+                            If <literal>G()</literal>
+                        </emphasis>
+                        does not need
+                        any input parameters (like constants), only arguments, its syntax must be
+                        <literal>g = G(p, Data)</literal>.
+                    </para>
+                    <para>
+                        <emphasis role="bold">
+                            If <literal>G()</literal>
+                        </emphasis>
+                        needs
+                        some input parameters in addition to input arguments, its syntax must be
+                        <literal>g = G(p, Data, param1, param2, .., paramN)</literal>.
+                        Then, <literal>list(G, param1, param2, .., paramN)</literal> must be provided
+                        to <literal>datafit()</literal> instead of only <literal>G</literal>.
+                    </para>
+                    <para>
+                        The following definitions will be used:
+                        <itemizedlist>
+                            <listitem>
+                                <literal>ng = size(g,1)</literal>: number of fitting criteria (= of
+                                gap definitions).
+                            </listitem>
+                            <listitem>
+                                <literal>np = size(p,"*")</literal>: total number of fitting parameters.
+                            </listitem>
+                            <listitem>
+                                <literal>nd = size(Data,2)</literal>: number of data points.
+                            </listitem>
+                            <listitem>
+                                <literal>ndc = size(Data,1)</literal>: number of coordinates of each
+                                data point.
+                            </listitem>
+                        </itemizedlist>
+                    </para>
+                    <para>
+                        Then, the sizes of G arguments are the following ones:
+                        <table>
+                            <tr valign="top">
+                                <th>g</th>
+                                <td>: (ng x nd) matrix
+                                    <itemizedlist>
+                                        <listitem>
+                                            Each column is related to a given data point and retuns its
+                                            gaps to the fitting model.
+                                        </listitem>
+                                        <listitem>
+                                            Each row is about a gap definition. <literal>G</literal> may
+                                            compute several types of gaps. For instance, the vertical
+                                            gaps may be returned in <literal>g(1,:)</literal> ; the
+                                            horizontal gaps in <literal>g(2,:)</literal> ; the nearest
+                                            distances in <literal>g(3,:)</literal> ; etc.
+                                        </listitem>
+                                    </itemizedlist>
+                                </td>
+                            </tr>
+                            <tr valign="top">
+                                <th>p</th>
+                                <td>: fitting parameters to be optimized.
+                                    <para/>
+                                </td>
+                            </tr>
+                            <tr valign="top">
+                                <th>Data</th>
+                                <td>: (ndc x nd) matrix: Each column provides the
+                                    <literal>#ndc</literal> coordinates of a given data point.
+                                    If <literal>G</literal> computes gaps only for a single
+                                    data point, <literal>datafit()</literal> will automatically
+                                    loop over the set of <literal>Data</literal> columns.
+                                    This makes <literal>datafit()</literal> slower.
+                                </td>
+                            </tr>
+                        </table>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>DG</term>
+                <listitem>
+                    (optional) Handle of a function in Scilab language or of a compiled external
+                    function, computing the partial of <varname>G</varname> wrt <varname>p</varname>.
+                    Its syntax must be like <literal>S = DG(p, Data)</literal>. The expected sizes
+                    of the result are (ng x np x 1) (Data-unvectorized) or (ng x np x nd)
+                    (Data-vectorized).
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Wg</term>
+                <listitem>
+                    Optional (ng x ng) matrix of weights of gaps definitions. Default = eye().
+                    <varname>G()</varname> defines as many types of gaps as required.
+                    Most often, a unique gap will be computed -- most often the vertical one --,
+                    but other ones can be computed (horizontal, nearest distance, etc).
+                    This matrix allows to weight the different types.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>algo</term>
+                <listitem>
+                    Word <literal>'qn'</literal> (quasi-Newton, default), or
+                    <literal>'gc'</literal> (conjugate gradient), or
+                    <literal>'nd'</literal> (non-differentiable. Then <varname>p_inf</varname>
+                    and <varname>p_sup</varname> parameters bounds are not accepted).
+                    Selects the algorithm used to perform the fitting.
+                    See <function>optim()</function> for more details.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>stop</term>
+                <listitem>
+                    <para>sequence of optional arguments controlling the convergence of
+                        the fitting algorithm:
+                    </para>
+                    <para>
+                        <literal>'ar',nap, [iter [,epsg [,epsf [,epsx]]]]</literal>, with
+                    </para>
+                    <table>
+                        <tr>
+                            <th>"ar"</th>
+                            <td>
+                                reserved keyword heading the list of stopping criteria as defined below.
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>nap</th>
+                            <td>
+                                maximum number of calls to the cost f function allowed (default: 100).
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>iter</th>
+                            <td>maximum number of iterations allowed (default: 100).</td>
+                        </tr>
+                        <tr>
+                            <th>epsg</th>
+                            <td>threshold on gradient norm (default: %eps).</td>
+                        </tr>
+                        <tr>
+                            <th>epsf</th>
+                            <td>
+                                threshold controlling the decreasing of <literal>f</literal>
+                                (defined in the description section). Default: 0.
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>epsx</th>
+                            <td>
+                                threshold controlling the variation of <varname>p</varname>.
+                                This vector (possibly matrix) of same size as <varname>p0</varname>
+                                can be used to scale <varname>p</varname>. Default: 0.
+                            </td>
+                        </tr>
+                    </table>
+                </listitem>
+            </varlistentry>
+            <!--            <varlistentry>
+                <term>fmin</term>
+                <listitem>
+                    <para>
+                        <literal>f</literal> quadratic residu (minimal <literal>f</literal> value reached).
+                        <literal>sqrt(fmin/ng/nz)</literal> or
+                        <literal>sqrt(fmin/ng/sum(Wd))</literal> estimates the Model-to-Data average
+                        distance.
+                    </para>
+                </listitem>
+            </varlistentry>
+-->
+            <varlistentry>
+                <term>dmin</term>
+                <listitem>
+                    Average Model-to-data residual distance. It is equal to
+                    <literal>sqrt(fmin/ng/nd)</literal> or
+                    <literal>sqrt(fmin/ng/sum(Wd))</literal>, where fmin is the quadratic residue
+                    of the cost function <literal>f</literal> (see the description).
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>status</term>
+                <listitem>
+                  return flag = termination status (only for the 'qn' default algorithm.
+                  Set to %nan otherwise): <literal>9</literal> is successful. Possible values are:
+                  <table>
+                    <tr valign="top">
+                      <th>1</th><td>: Norm of projected gradient lower than...</td>
+                      <td>....</td>
+                      <th>6</th><td>: Optim stops: too small variations in gradient direction.</td>
+                    </tr>
+                    <tr valign="top">
+                      <th>2</th><td>: At last iteration, f decreases by less than...</td>
+                      <td></td>
+                      <th>7</th><td>: Stop during calculation of descent direction.</td>
+                    </tr>
+                    <tr valign="top">
+                      <th>3</th><td>: Optim stops: Too small variations for p.</td>
+                      <td></td>
+                      <th>8</th><td>: Stop during calculation of estimated hessian.</td>
+                    </tr>
+                    <tr valign="top">
+                      <th>4</th><td>: Optim stops: maximum number of calls to f is reached.</td>
+                      <td></td>
+                      <th>9</th><td>: Successful completion.</td>
+                    </tr>
+                    <tr valign="top">
+                      <th>5</th><td>: Optim stops: maximum number of iterations is reached.</td>
+                      <td></td>
+                      <th>10</th><td>: Linear search fails.</td>
+                    </tr>
+                  </table>
+                  <para/>
                 </listitem>
             </varlistentry>
         </variablelist>
+        <para>
+            Other <function>optim()</function> input arguments such that <varname>df0</varname>,
+            <varname>mem</varname>, or <varname>'in'</varname> may be used with
+            <literal>datafit()</literal>. They will be passed as is to <function>optim()</function>.
+        </para>
     </refsection>
     <refsection>
         <title>Description</title>
         <para>
-            <literal>datafit</literal> is used for fitting data to a model. For
-            a given function <literal>G(p,z)</literal>, this function finds the best
-            vector of parameters <literal>p</literal> for approximating
-            <literal>G(p,z_i)=0</literal> for a set of measurement vectors
-            <literal>z_i</literal>. Vector <literal>p</literal> is found by minimizing
-            <literal>G(p,z_1)'WG(p,z_1)+G(p,z_2)'WG(p,z_2)+...+G(p,z_n)'WG(p,z_n)</literal>
+            <literal>datafit</literal> is used to fit a parametrized model to given data.
+        </para>
+        <para>
+            A function <literal>G(p, Data)</literal> must be defined to compute the gaps between the
+            <varname>Data</varname> points and a model whose parameters to be tuned are provided
+            through the matrix <varname>p</varname>.
+
+        </para>
+        <para>
+            <literal>datafit()</literal> checks whether <literal>G()</literal> is vectorized or not
+            over <varname>Data</varname>. If <literal>G()</literal> works only with a single
+            <literal>data</literal> point as a single column of coordinates, then <literal>datafit()</literal>
+            loops over <literal>data=Data(:,i)</literal> points. Otherwise, <literal>G(p, Data)</literal>
+            is called for the whole <varname>Data</varname> array of data coordinates, which is
+            way faster if <varname>G()</varname>'s code is truly vectorized.
+        </para>
+        <para>
+            Starting from initial values <varname>p0</varname> of the model parameters,
+            <literal>datafit()</literal> varies them in order to minimize the whole Model-to-Data
+            distance defined as
+            <screen>
+f = (G(p, Data(:,1))' * Wg * G(p, Data(:,1)))* Wd(1) + ..
+    (G(p, Data(:,2))' * Wg * G(p, Data(:,2)))* Wd(2) + ..
+    ...
+    (G(p, Data(:,nz))' * Wg * G(p,Data(:,nz)))* Wd(nz)
+</screen>
+        </para>
+        <para>
+            When <literal>Wg = eye()</literal> (default), this definition is equivalent to
+<screen>
+f = sum(G(p, Data(:,1)).^2) * Wd(1) + ..
+    sum(G(p, Data(:,2)).^2) * Wd(2) + ..
+    ...
+    sum(G(p, Data(:,nz)).^2) * Wd(nz)
+</screen>
+        </para>
+        <para>
+            If in addition <varname>G</varname> returns only one gap type, this even simplifies to
+            <screen>
+f = G(p, Data(:,1))^2 * Wd(1) + ..
+    G(p, Data(:,2))^2 * Wd(2) + ..
+    ...
+    G(p, Data(:,nz))^2 * Wd(nz)
+</screen>
+        </para>
+        <para>
+            <literal>datafit()</literal> calls <function>optim()</function> to minimize f.
+        </para>
+        <para>
+            Choosing appropriately <varname>p0</varname> may improve and faster
+            <literal>datafit()</literal>'s convergence to the best fit.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[
-//generate the data
-function y=FF(x,p)
-  y=p(1)*(x-p(2))+p(3)*x.*x
+        <table>
+            <tr>
+                <td>
+                    <para>
+                        <emphasis role="bold">Simple example: Polynomial fitting (parabola = 3 parameters)</emphasis>.
+                    </para>
+                    <programlisting role="example"><![CDATA[
+// Model (parabola)
+function y = FF(x,p)
+    y = (p(1)*x + p(2)).*x + p(3)
 endfunction
 
-X=[];
-Y=[];
-pg=[34;12;14] //parameter used to generate data
-for x=0:.1:3
-  Y=[Y,FF(x,pg)+100*(rand()-.5)];
-  X=[X,x];
-end
-Z=[Y;X];
+// Data creation
+pa = [2;-4;14] // parameters of the actual law, to generate data
+X = 0:0.1:3.5;
+Y0 = FF(X, pa);
+noise = 10*(rand(Y0)-.5);   // We add some noise
+Y = Y0 + noise
+Data = [X ; Y];
 
-//The criterion function
-function e=G(p,z),
-  y=z(1),x=z(2);
-  e=y-FF(x,p),
+// Gap function definition
+function e = G(p, Data)
+    e = Data(2,:) - FF(Data(1,:), p);  // vertical distance
 endfunction
 
-//Solve the problem
-p0=[3;5;10]
-[p,err]=datafit(G,Z,p0);
+// Performing the fitting
+// ----------------------
+// Without weighting data:
+p0 = [1;-1;10]
+[p, dmin] = datafit(G, Data, p0);
+// The uncertainty is identified to the noise value.
+// The weight is set inversely proportional to the uncertainty
+[pw, dmin] = datafit(G, Data, 1./abs(noise), p0);
 
-scf(0);clf()
-plot2d(X,FF(X,pg),5) //the curve without noise
-plot2d(X,Y,-1)  // the noisy data
-plot2d(X,FF(X,p),12) //the solution
- ]]></programlisting>
-        <scilab:image>
-            function y=FF(x,p)
-            y=p(1)*(x-p(2))+p(3)*x.*x
-            endfunction
-
-            X=[];Y=[];
-            pg=[34;12;14]
-            for x=0:.1:3
-            Y=[Y,FF(x,pg)+100*(rand()-.5)];
-            X=[X,x];
-            end
-            Z=[Y;X];
-
-            function e=G(p,z),
-            y=z(1),x=z(2);
-            e=y-FF(x,p),
-            endfunction
-
-            p0=[3;5;10]
-            [p,err]=datafit(G,Z,p0);
-
-            scf(0);clf()
-            plot2d(X,FF(X,pg),5)
-            plot2d(X,Y,-1)
-            plot2d(X,FF(X,p),12)
-        </scilab:image>
-        <programlisting role="example"><![CDATA[
-//generate the data
-function y=FF(x,p)
-  y=p(1)*(x-p(2))+p(3)*x.*x
-endfunction
-
-//the gradient of the criterion function
-function s=DG(p,z),
-  a=p(1),b=p(2),c=p(3),y=z(1),x=z(2),
-  s=-[x-b,-a,x*x]
-endfunction
-
-function e=G(p,z),
-  y=z(1),x=z(2);
-  e=y-FF(x,p),
-endfunction
-
-X=[];Y=[];
-pg=[34;12;14]
-for x=0:.1:3
-  Y=[Y,FF(x,pg)+100*(rand()-.5)];
-  X=[X,x];
-end
-Z=[Y;X];
-
-p0=[3;5;10]
-[p,err]=datafit(G,DG,Z,p0);
-scf(1);
+// Display
+// -------
+scf(0);
 clf()
-plot2d(X,FF(X,pg),5) //the curve without noise
-plot2d(X,Y,-1)  // the noisy data
-plot2d(X,FF(X,p),12) //the solution
- ]]></programlisting>
-        <scilab:image>
-            function y=FF(x,p)
-            y=p(1)*(x-p(2))+p(3)*x.*x
-            endfunction
+xsetech([0 0 1 0.83])
+plot2d(X, Y0, 24)       // True underlaying law
+plot2d(X, Y, -1)        // Noisy data
+plot2d(X, FF(X, p), 15)  // best unweighted fit
+plot2d(X, FF(X, pw), 18) // best weighted fit
+legend(["True law" "Noisy data" "Unweighted fit" "Weighted fit"],2)
 
-            function s=DG(p,z),
-            a=p(1),b=p(2),c=p(3),y=z(1),x=z(2),
-            s=-[x-b,-a,x*x]
-            endfunction
+xsetech([0 .75 1 0.25])
+plot2d(X, FF(X,p)-Y0, 15)  // remaining gap <= best unweighted fit
+plot2d(X, FF(X,pw)-Y0, 18) // remaining gap <= best weighted fit
+ylabel("Data fit - True law")
+ax = gca(); ax.x_location = "top";
+tmp = ax.x_ticks.labels;
+gca().x_ticks.labels = emptystr(size(tmp,"*"),1);
+xgrid(color("grey70"))
+         ]]></programlisting>
+                </td>
+                <td>
+                    <scilab:image>
+                        // Model (parabola)
+                        function y = FF(x,p)
+                        y = p(1)*x.*x + p(2)*x + p(3)
+                        endfunction
 
-            function e=G(p,z),
-            y=z(1),x=z(2);
-            e=y-FF(x,p),
-            endfunction
+                        // Data creation
+                        pa = [2;-4;14] // parameters of the actual law, used to generate data
+                        X = 0:0.1:3.5;
+                        Y0 = FF(X, pa);
+                        noise = 10*(rand(Y0)-.5);   // We add some noise
+                        Y = Y0 + noise
+                        Data = [X ; Y];
 
-            X=[];Y=[];
-            pg=[34;12;14]
-            for x=0:.1:3
-            Y=[Y,FF(x,pg)+100*(rand()-.5)];
-            X=[X,x];
-            end
-            Z=[Y;X];
+                        // Gap function definition
+                        function e = G(p, Data)
+                        e = Data(2,:) - FF(Data(1,:), p);  // vertical distance
+                        endfunction
 
-            p0=[3;5;10]
-            [p,err]=datafit(G,DG,Z,p0);
-            scf(1);
-            clf()
-            plot2d(X,FF(X,pg),5)
-            plot2d(X,Y,-1)
-            plot2d(X,FF(X,p),12)
-        </scilab:image>
-        <programlisting role="example"><![CDATA[
-//generate the data
-function y=FF(x,p)
-  y=p(1)*(x-p(2))+p(3)*x.*x
+                        // Performing the fitting
+                        // ----------------------
+                        // Without weighting data:
+                        p0 = [1;-1;10]
+                        [p, dmin] = datafit(G, Data, p0);
+
+                        // The uncertainty is identified to the noise value.
+                        // The weight is set inversely proportional to the uncertainty
+                        [pw, dmin] = datafit(G, Data, 1 ./abs(noise), p0);
+
+                        // Display
+                        // -------
+                        scf(0);
+                        clf()
+                        xsetech([0 0 1 0.83])
+                        plot2d(X, Y0, 24)       // True underlaying law
+                        plot2d(X, Y, -1)        // Noisy data
+                        plot2d(X, FF(X,p), 15)  // best unweighted fit
+                        plot2d(X, FF(X,pw), 18) // best weighted fit
+                        legend(["True law" "Noisy data" "Unweighted fit" "Weighted fit"],2)
+
+                        xsetech([0 .75 1 0.25])
+                        plot2d(X, FF(X,p)-Y0, 15)  // remaining gap with best unweighted fit
+                        plot2d(X, FF(X,pw)-Y0, 18) // remaining gap best weighted fit
+                        ylabel("Data fit - True law")
+                        ax = gca(); ax.x_location = "top";
+                        tmp = ax.x_ticks.labels;
+                        gca().x_ticks.labels = emptystr(size(tmp,"*"),1);
+                        xgrid(color("grey70"))
+                        // ===============
+                        gcf().axes_size = [500 500];
+                        gcf().children(1).margins(1) = 0.07;
+                        gcf().children(2).margins(1) = 0.07;
+                    </scilab:image>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <para/>
+                    <para>
+                        <emphasis role="bold">Fitting a gaussian curve + sloping base (5 parameters)</emphasis>:
+                    </para>
+                    <programlisting role="example"><![CDATA[
+function Y = model(P, X)
+    Y = P(3) * exp(-(X-P(1)).^2 / (2*P(2)*P(2))) + P(4)*X + P(5);
 endfunction
-
-//the gradient of the criterion function
-function s=DG(p,z),
-  a=p(1),b=p(2),c=p(3),y=z(1),x=z(2),
-  s=-[x-b,-a,x*x]
+// -------------------------------
+// Gap function
+function r = gap(P,XY)
+    r = XY(2,:) - model(P,XY(1,:))
 endfunction
+// -------------------------------
+// True parameters
+Pg = [3.5 1.5 7 0.4 -0.5]; // mean stDev ymax a(.x) b
 
-function e=G(p,z),
-  y=z(1),x=z(2);
-  e=y-FF(x,p),
-endfunction
+// Generating data
+// ---------------
+X = 0:0.2:10;
+Np = length(X);
+Y0 = model(Pg, X);              // True law
+noise = (rand(Y0)-.5)*Pg(3)/4;
+Y = Y0 + noise                  // Noised data
+Data = [X ; Y];
 
-X=[];Y=[];
-pg=[34;12;14]
-for x=0:.1:3
-  Y=[Y,FF(x,pg)+100*(rand()-.5)];
-  X=[X,x];
-end
-Z=[Y;X];
+// Trying to recover original parameters from the (noisy) data:
+// -----------------------------------------------------------
+// Performing the fitting = parameters optimization
+[v, k] = max(Y0);
+P0 = [X(k) 1 v 1 1];
+[P, dmin, s]  = datafit(gap, Data, P0);
+Wd =  1./abs(noise);
+[Pw, dminw, s] = datafit(gap, Data, Wd, P0);
 
-p0=[3;5;10]
+// Computing fitting curves from found parameters
+fY = model(P, X);
+fYw = model(Pw, X);
 
-// Add some bounds on the estimate of the parameters
-// We want positive estimation (the result will not change)
-[p,err]=datafit(G,DG,Z,'b',[0;0;0],[%inf;%inf;%inf],p0,algo='gc');
-scf(1);
+// Display
+// -------
+scf(0);
 clf()
-plot2d(X,FF(X,pg),5) //the curve without noise
-plot2d(X,Y,-1)  // the noisy data
-plot2d(X,FF(X,p),12) //the solution
- ]]></programlisting>
-        <scilab:image>
-            function y=FF(x,p)
-            y=p(1)*(x-p(2))+p(3)*x.*x
-            endfunction
+xsetech([0 0 1 0.8])
+plot2d(X, Y0, 24)  // True underlaying law
+plot2d(X, Y,  -1)  // Noisy data
+plot2d(X, fY, 15)  // best unweighted fit
+plot2d(X, fYw,18)  // best weighted fit
 
-            function s=DG(p,z),
-            a=p(1),b=p(2),c=p(3),y=z(1),x=z(2),
-            s=-[x-b,-a,x*x]
-            endfunction
+// Legends: Average vertical Model-Data distance:
+// True one v/s according to the residual cost
+L_1 = "Unweighted fit (%5.2f /%5.2f)";
+L_1 = msprintf(L1, mean(abs(fY-Y0)), sqrt(dmin/Np));
+L_2 = "Weighted fit (%5.2f /%5.2f)";
+L_2 = msprintf(L1, mean(abs(fYw-Y0)), sqrt(dminw/sum(Wd)));
+legend(["True law", "Noisy Data", L_1, L_2],1)
 
-            function e=G(p,z),
-            y=z(1),x=z(2);
-            e=y-FF(x,p),
-            endfunction
+// Params: row#1: true params row#2:
+//  from unweighted fit row#3: from weighted fit
+[xs, ys] = meshgrid(linspace(2,6,5), linspace(0.5,-0.5,3));
+xnumb(xs, ys, [Pg ; P ; Pw]);
+LawTxt = "$\Large p_3\,.\,"+..
+         "exp\left({-(x-p_1)^2}\over{2\,p_2} \right)+p_4.x+p_5$";
+xstring(2, 1.3, LawTxt)
 
-            X=[];Y=[];
-            pg=[34;12;14]
-            for x=0:.1:3
-            Y=[Y,FF(x,pg)+100*(rand()-.5)];
-            X=[X,x];
-            end
-            Z=[Y;X];
+// Plotting residus:
+xsetech([0 .75 1 0.25])
+plot2d(X, model(P ,X)-Y0, 15) // remaining gap with best unweighted fit
+plot2d(X, model(Pw,X)-Y0, 18) // remaining gap best weighted fit
+ylabel("Data fit - True law")
+ax = gca();
+ax.x_location = "top";
+tmp = ax.x_ticks.labels;
+gca().x_ticks.labels = emptystr(size(tmp,"*"),1);
+xgrid(color("grey70"))
+         ]]></programlisting>
+                </td>
+                <td>
+                    <scilab:image>
+                        function Y = model(P,X)
+                        Y = P(3) * exp(-(X-P(1)).^2 / (2*P(2)*P(2))) + P(4)*X + P(5);
+                        endfunction
+                        // -------------------------------
+                        // Gap function
+                        function r = gap(P,XY)
+                        r = XY(2,:) - model(P,XY(1,:))
+                        endfunction
+                        // -------------------------------
+                        // True parameters
+                        Pg = [3.5 1.5 7 0.4 -0.5]; // mean stDev ymax a(.x) b
 
-            p0=[3;5;10]
+                        // Generating data
+                        // ---------------
+                        X = 0:0.2:10;
+                        Np = length(X);
+                        Y0 = model(Pg, X);              // True law
+                        noise = (rand(Y0)-.5)*Pg(3)/4;
+                        Y = Y0 + noise                  // Noised data
+                        Data = [X ; Y];
 
-            [p,err]=datafit(G,DG,Z,'b',[0;0;0],[%inf;%inf;%inf],p0,algo='gc');
-            scf(1);
-            clf()
-            plot2d(X,FF(X,pg),5)
-            plot2d(X,Y,-1)
-            plot2d(X,FF(X,p),12)
-        </scilab:image>
+                        // Let's try to find the original parameters from the (noisy) data:
+                        // ---------------------------------------------------------------
+                        // Performing the fitting = parameters optimization
+                        [v, k] = max(Y0);
+                        P0 = [X(k) 1 v 1 1];
+                        [P, dmin, s]  = datafit(gap, Data, P0);
+                        Wd =  1./abs(noise);
+                        [Pw, dminw, s] = datafit(gap, Data, Wd, P0);
+
+                        // Computing fitting curves from found parameters
+                        fY = model(P, X);
+                        fYw = model(Pw,X);
+
+                        // Display
+                        // -------
+                        scf(0);
+                        clf()
+                        xsetech([0 0 1 0.82])
+                        plot2d(X, Y0, 24)  // True underlaying law
+                        plot2d(X, Y,  -1)  // Noisy data
+                        plot2d(X, fY, 15)  // best unweighted fit
+                        plot2d(X, fYw,18)  // best weighted fit
+                        legend(["True law" "Noisy Data" ..
+                        msprintf("Unweighted fit (%5.2f /%5.2f)",mean(abs(fY-Y0)), sqrt(dmin/Np)) ..
+                        msprintf("Weighted fit (%5.2f /%5.2f)", mean(abs(fYw-Y0)), sqrt(dminw/sum(Wd)))],1)
+                        // Average vertical Model-Data distance: True one / according to the residual cost
+                        // Params: row#1: true params row#2: from unweighted fit row#3: from weighted fit
+                        [xs, ys] = meshgrid(linspace(2,6,5), linspace(0.5,-0.5,3));
+                        xnumb(xs, ys, [Pg ; P ; Pw])
+                        xstring(2,1.3,"$\Large p_3\,.\,exp\left({-(x-p_1)^2}\over{2\,p_2} \right)+p_4.x+p_5$")
+
+                        // Plotting residus:
+                        xsetech([0 .75 1 0.25])
+                        plot2d(X, model(P ,X)-Y0, 15)  // remaining gap with best unweighted fit
+                        plot2d(X, model(Pw,X)-Y0, 18)  // remaining gap best weighted fit
+                        ylabel("Data fit - True law")
+                        ax = gca();
+                        ax.x_location = "top";
+                        tmp = ax.x_ticks.labels;
+                        gca().x_ticks.labels = emptystr(size(tmp,"*"),1);
+                        xgrid(color("grey70"))
+                        // ===============
+                        gcf().axes_size = [500 600];
+                    </scilab:image>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <para/>
+                    <para>
+                        <emphasis role="bold">Extraction of 3 overlapping gaussian curves (9 parameters)</emphasis>:
+                        example with constrained bounds and a matrix of parameters.
+                    </para>
+                    <programlisting role="example"><![CDATA[
+// Basic gaussian component:
+function Y = gauss(X, average, stDev, ymax)
+    Y = ymax * exp(-(X-average).^2 / (2*stDev*stDev))
+endfunction
+
+// Model: cumulated gaussian laws
+function r = model(P, X)
+    // P(1,:): averages  P(2,:): standard deviation  P(3,:): ymax
+    r = 0;
+    for i = 1:size(P,2)
+        r = r + gauss(X, P(1,i), P(2,i), P(3,i));
+    end
+endfunction
+
+// Gap function:
+function r = gap(P,XY)
+    r = XY(2,:) - model(P,XY(1,:))
+endfunction
+
+// Actual parameters :
+Pa = [ 1.1  4    7    // averages
+        1  0.8  1.5   // standard deviations
+        3   2   5.5   // ymax
+      ];
+Nc = size(Pa,2);      // Number of summed curves
+Np = 200;             // Number of data points
+
+// Data generation (without noise)
+xmin = 0;
+xmax = 10;
+X = linspace(xmin-2, xmax+2, Np);
+Y = model(Pa, X);
+Data = [X ; Y];          // Curve to analyze / fit
+
+// FITTING
+// -------
+// Fitting parameters:
+// Initial values & bounds (amplitudes must be > 0)
+Po = [ linspace(xmin,xmax,Nc)
+       ones(1,Nc)*0.5
+       ones(1,Nc)*max(Y)/2 ];
+Pinf = [ones(1,Nc)*-2 ; ones(1,Nc)*0.1 ; ones(1,Nc)*1];
+Psup = [ones(1,Nc)*12 ; ones(1,Nc)*3   ; ones(1,Nc)*max(Y)*1.2];
+// Fitting
+[P, dmin] = datafit(gap,Data,'b',Pinf,Psup,Po,'qn','ar',200,200);
+
+// Display
+// -------
+clf()
+xsetech([0 0 1 0.8]);
+plot(X, Y, "-b", X, model(P,X), "-r");
+gca().children.children(1:2).thickness = 2;
+for i = 1:Nc
+    // True gaussian components
+    plot(X, gauss(X, Pa(1,i), Pa(2,i), Pa(3,i)), "-c");
+    // Extracted gaussian components
+    plot(X, gauss(X, P(1,i), P(2,i), P(3,i)), "-g");
+end
+legend("Data", "Parametric Model", ..
+       "True components", "Extracted components",  2);
+
+xsetech([0 0.75 1 0.25])
+plot(X, model(P,X)-Y);
+gca().x_location = "top";
+gca().x_ticks.labels = emptystr(size(gca().x_ticks.labels,"*"),1);
+ylabel("Model - Data")
+xgrid(color("grey70"))
+         ]]></programlisting>
+                </td>
+                <td>
+                    <scilab:image>
+                        // Basic gaussian component:
+                        function Y = gauss(X, average, stDev, ymax)
+                        Y = ymax * exp(-(X-average).^2 / (2*stDev*stDev))
+                        endfunction
+
+                        // Model: cumulated gaussian laws
+                        function r = model(P, X)
+                        // P(1,:): averages  P(2,:): standard deviation  P(3,:): ymax
+                        r = 0;
+                        for i = 1:size(P,2)
+                        r = r + gauss(X, P(1,i), P(2,i), P(3,i));
+                        end
+                        endfunction
+
+                        // Gap function:
+                        function r = gap(P,XY)
+                        r = XY(2,:) - model(P,XY(1,:))
+                        endfunction
+
+                        // True parameters :
+                        Pa = [ 1.1  4    7    // averages
+                        1  0.8  1.5   // standard deviations
+                        3   2   5.5   // ymax
+                        ];
+                        Nc = size(Pa,2);       // Number of summed curves
+                        Np = 200;             // Number of data points
+
+                        // Data generation (without noise)
+                        xmin = 0;
+                        xmax = 10;
+                        X = linspace(xmin-2, xmax+2, Np);
+                        Y = model(Pa, X);
+                        Data = [X ; Y];          // Curve to analyze / fit
+
+                        // FITTING
+                        // -------
+                        // Fitting parameters: initial values and bounds (amplitudes must be > 0)
+                        Po = [ linspace(xmin,xmax,Nc) ; ones(1,Nc)*0.5 ; ones(1,Nc)*max(Y)/2];
+                        Pinf = [ones(1,Nc)*-2 ; ones(1,Nc)*0.1 ; ones(1,Nc)*1];
+                        Psup = [ones(1,Nc)*12 ; ones(1,Nc)*3   ; ones(1,Nc)*max(Y)*1.2];
+                        // Fitting
+                        [P, dmin] = datafit(gap, Data, 'b',Pinf,Psup, Po, 'qn','ar',200,200);
+
+                        // Display
+                        // -------
+                        clf()
+                        xsetech([0 0 1 0.8]);
+                        plot(X, Y, "-b", X, model(P,X), "-r");
+                        gca().children.children(1:2).thickness = 2;
+                        for i = 1:Nc
+                        plot(X, gauss(X, Pa(1,i), Pa(2,i), Pa(3,i)), "-c"); // True gaussian components
+                        plot(X, gauss(X, P(1,i), P(2,i), P(3,i)), "-g");    // Extracted gaussian components
+                        end
+                        legend("Data", "Parametric Model","True components", "Extracted components",  2);
+
+                        xsetech([0 0.75 1 0.25])
+                        plot(X, model(P,X)-Y);
+                        gca().x_location = "top";
+                        gca().x_ticks.labels = emptystr(size(gca().x_ticks.labels,"*"),1);
+                        ylabel("Model - Data")
+                        xgrid(color("grey70"))
+                        // ===============
+                        gcf().axes_size = [500 500];
+                    </scilab:image>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <para>
+                        <emphasis role="bold">With a parametric curve: Fitting a off-centered tilted 2D elliptical arc (5 parameters)</emphasis>.
+                    </para>
+                    <programlisting role="example"><![CDATA[
+function g = Gap(p, Data)
+    // p: a, b, center xc, yc, alpha tilt °
+    C = cosd(p(5)); S = -sind(p(5));
+    x = Data(1,:) - p(3);
+    y = Data(2,:) - p(4);
+    g = ((x*C - y*S )/p(1)).^2 + ((x*S + y*C)/p(2)).^2 - 1;
+endfunction
+
+// Generating the data
+// -------------------
+// Actual parameters :
+Pa = [3, 1.3, -2, 1.5, 30];
+Np = 30;            // Number of data points
+Theta = grand(1,Np, "unf",-100, 170);
+// untilted centered noisy arc
+x = Pa(1)*(cosd(Theta) + grand(Theta, "unf", -0.07, 0.07));
+y = Pa(2)*(sind(Theta) + grand(Theta, "unf", -0.07, 0.07));
+// Tilting and off-centering the arc
+A = Pa(5);
+C = cosd(A); S = sind(A);
+xe =  C*x + y*S + Pa(3);
+ye = -S*x + y*C + Pa(4);
+Data = [xe ; ye];
+
+// Retrieving parameters from noisy data
+// -------------------------------------
+// Initial estimation
+ab0 = (strange(xe)+strange(ye))/2;
+xc0 = mean(xe);
+yc0 = mean(ye);
+A0 = -atand(reglin(xe,ye));
+P0 = [ab0 ab0/2 xc0 yc0 A0];
+// Parameters bounds
+Pinf = [ 0     0     xc0-2*ab0, yc0-2*ab0 -90];
+Psup = [3*ab0 3*ab0  xc0+2*ab0, yc0+2*ab0  90];// Fitting
+
+// FITTING
+[P, dmin] = datafit(Gap, Data, 'b',Pinf,Psup, P0);
+
+// P(1) is the longest axis:
+if P(1)<P(2) then
+    P([1 2]) = P([2 1]);
+    P(5) = 90 - P(5);
+end
+
+// DISPLAY
+// -------
+disp([Pa;P], dmin);
+// A successful fit should lead to dmin ~ noise amplitude
+
+clf
+plot(xe, ye, "+")   // Data
+// Model
+Theta = 0:2:360;
+x = P(1) * cosd(Theta);
+y = P(2) * sind(Theta);
+A = P(5);
+[x, y] = (x*cosd(A)+y*sind(A)+P(3), -x*sind(A)+y*cosd(A)+P(4));
+plot(x, y, "r")
+isoview
+// Parameters values:
+Patxt = msprintf("%5.2f   %5.2f   %5.2f   %5.2f  %5.1f", Pa);
+Ptxt  = msprintf("%5.2f   %5.2f   %5.2f   %5.2f  %5.1f", P);
+xstring(-3.7, 1.2, ["" "    a           b        xc       yc     A°"
+                    "Actual:" Patxt
+                    "Fit:" Ptxt ])
+xstring(-2.5, 0.9, "dmin = " + msprintf("%5.3f", dmin))
+         ]]></programlisting>
+                </td>
+                <td>
+                    <scilab:image><![CDATA[
+function g = Gap(p, Data)
+    // p: a, b, center xc, yc, alpha tilt °
+    C = cosd(p(5)); S = -sind(p(5));
+    x = Data(1,:) - p(3);
+    y = Data(2,:) - p(4);
+    g = ((x*C - y*S )/p(1)).^2 + ((x*S + y*C)/p(2)).^2 - 1;
+endfunction
+
+// Generating the data
+// -------------------
+// Actual parameters :
+Pa = [3, 1.3, -2, 1.5, 30];
+Np = 30;            // Number of data points
+Theta = grand(1,Np, "unf",-100, 170);
+// untilted centered noisy arc
+x = Pa(1)*(cosd(Theta) + grand(Theta, "unf",-0.07, 0.07));
+y = Pa(2)*(sind(Theta) + grand(Theta, "unf",-0.07, 0.07));
+// Tilting and off-centering the arc
+A = Pa(5);
+C = cosd(A); S = sind(A);
+xe =  C*x + y*S + Pa(3);
+ye = -S*x + y*C + Pa(4);
+Data = [xe ; ye];
+
+// Retrieving parameters from noisy data
+// -------------------------------------
+// Initial estimation
+ab0 = (strange(xe)+strange(ye))/2;
+xc0 = mean(xe);
+yc0 = mean(ye);
+A0 = -atand(reglin(xe,ye));
+P0 = [ab0 ab0/2 xc0 yc0 A0];
+// Parameters bounds
+Pinf = [ 0     0     xc0-2*ab0, yc0-2*ab0 -90];
+Psup = [3*ab0 3*ab0  xc0+2*ab0, yc0+2*ab0  90];// Fitting
+
+// FITTING
+[P, dmin] = datafit(Gap, Data, 'b',Pinf,Psup, P0);
+
+// P(1) is the longest axis:
+if P(1)<P(2) then
+    P([1 2]) = P([2 1]);
+    P(5) = 90 - P(5);
+end
+
+// DISPLAY
+// -------
+clf
+plot(xe, ye, "+")   // Data
+// Model
+Theta = 0:2:360;
+x = P(1) * cosd(Theta);
+y = P(2) * sind(Theta);
+A = P(5);
+[x, y] = (x*cosd(A)+y*sind(A)+P(3), -x*sind(A)+y*cosd(A)+P(4));
+plot(x, y, "r")
+isoview
+// Parameters values:
+Patxt = msprintf("%5.2f   %5.2f   %5.2f   %5.2f  %5.1f", Pa);
+Ptxt  = msprintf("%5.2f   %5.2f   %5.2f   %5.2f  %5.1f", P);
+xstring(-3.7, 1.2, ["" "    a           b        xc       yc     A°"
+                    "Actual:" Patxt
+                    "Fit:" Ptxt ]);
+xstring(-2.5, 0.9, "dmin = " + msprintf("%5.3f", dmin))
+title("datafit() example #4", "fontsize", 3)
+// ===============
+gcf().axes_size = [500 500];
+gcf().children(1).margins(1) = 0.05;
+]]>             </scilab:image>
+                </td>
+            </tr>
+        </table>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
@@ -423,5 +955,32 @@ plot2d(X,FF(X,p),12) //the solution
                 <link linkend="leastsq">leastsq</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1</revnumber>
+                <revdescription>
+                    <para>
+                        New option <varname>Wd</varname> to weight measured data <varname>Data</varname>.
+                    </para>
+                    <para>
+                        The gap function G() may now be vectorized over <literal>Data</literal> points.
+                    </para>
+                    <para>
+                        Initial parameters <varname>p0</varname> and their bounds may now be
+                        provided as a matrix instead of a mandatory column.
+                    </para>
+                    <para>
+                        The <literal>err</literal> output argument is replaced with
+                        <literal>dmin</literal> = average Model-to-data distance.
+                    </para>
+                    <para>
+                        New output argument <literal>status</literal> added (for the "qn" algorithm).
+                    </para>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

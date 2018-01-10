@@ -10,10 +10,12 @@ function subdemolist = demo_gateway()
     _("Optimization and Simulation");  // lets gettext() harvesting it
     add_demo("Optimization and Simulation", demopath+"optimization.dem.gateway.sce");
 
-    subdemolist = [_("Non linear data fitting"), "datafit/datafit.dem.gateway.sce"; ..
-    _("Optimisation"),            "optim/optim.dem.gateway.sce"; ..
-    _("fminsearch"),              "neldermead/neldermead.dem.gateway.sce"; ..
-    _("ICSE"),              "icse/icse.dem.gateway.sce"];
+    subdemolist = [
+    _("datafit: Nonlinear fitting"), "datafit/datafit.dem.gateway.sce"
+    _("Optimisation"),  "optim/optim.dem.gateway.sce"
+    _("fminsearch"),    "neldermead/neldermead.dem.gateway.sce"
+    _("ICSE"),          "icse/icse.dem.gateway.sce"
+    ];
 
     subdemolist = [subdemolist; ..
     _("Genetic algorithms"), "genetic/genetic_algorithms.dem.gateway.sce"];

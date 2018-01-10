@@ -70,4 +70,4 @@ assert_checkequal(v, zeros(6, 1));
 // datafit
 p0 = x0;
 [p, err] = datafit(G, Z, p0);
-assert_checkalmostequal([p err], [4 0], [], 1e-9);
+assert_checkalmostequal([p err], [4 0], [], 2e-9);

@@ -5,5 +5,9 @@
 // This file is released under the 3-clause BSD license. See COPYING-BSD.
 
 
-subdemolist = [_("Non linear data fitting"), "datafit.dem.sce"];
+subdemolist = [
+    _("Parabolic model (3 params)"), "datafit.dem.sce"
+    _("Sloping gaussian model (5 params)"), "slopingGaussian.dem.sce"
+    _("Tilted ellipse (5 params)"), "ellipse.dem.sce"
+    ];
 subdemolist(:,2) = SCI + "/modules/optimization/demos/datafit/" + subdemolist(:,2);

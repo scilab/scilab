@@ -171,16 +171,17 @@ Feature changes and additions
   - The probing direction can now be numeric: 1, 2, ..
   - Returned indices can now be formatted with the new option `indType`.
   - There were no unit tests. More than 100 tests are added.
-
+* `datafit` is now able to fit weighted data. It now supports any gap function vectorized for Data points, and so is much faster. It now accepts any matrix of parameters (not necessarily a colum). It now returns the average Mode-to-data distance, and the termination status for the quasi-Newton algo.
 
 Help pages:
 -----------
 
-* overhauled / rewritten: `bitget`, `edit`, `factorial`, `vectorfind`
+* overhauled / rewritten: `bitget`, `edit`, `factorial`, `vectorfind`, `datafit`
 * fixed / improved:  `bench_run` `M_SWITCH`, `comet`, `comet3d`
 * Rewritten: `weekday`
 * Translations added:
   - (ru): `weekday`
+
 
 User Interface improvements:
 ----------------------------
@@ -244,10 +245,12 @@ Bug Fixes
 
 ### Bugs fixed in 6.1.0:
 * [#2694](https://bugzilla.scilab.org/2694): `bitget` did not accept positive integers of types int8, int16 or int32.
+* [#5824](https://bugzilla.scilab.org/5824): The `datafit` algorithm was not documented.
 * [#6070](https://bugzilla.scilab.org/6070): How to make multiscaled plots was not documented.
 * [#7562](https://bugzilla.scilab.org/7562): `factorial` could use a huge memory amount even for a scalar argument.
 * [#7657](https://bugzilla.scilab.org/7657): `lstsize` was a duplicate of `size` and should be removed.
 * [#7724](https://bugzilla.scilab.org/7724): When a figure is created in .auto_resize="on" mode, its .axes_size sets its .figure_size accordingly, not the reverse. But this was not documented.
+* [#7732](https://bugzilla.scilab.org/7732): The `datafit` help page needed to be fixed and overhauled.
 * [#7765](https://bugzilla.scilab.org/7765): `champ1` is useless. `champ().colored` is available for a long time.
 * [#7948](https://bugzilla.scilab.org/7948): `gsort` could not perform multilevel sorting, and could not sort complex numbers completely.
 * [#7967](https://bugzilla.scilab.org/7967): The tricky size `[ny,nx]` of `meshgrid(x,y)` results and usages with graphics was not enough documented.
