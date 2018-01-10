@@ -195,7 +195,7 @@ int mgetl(int iFileID, int iLineCount, wchar_t ***pwstLines)
         return 0;
     }
 
-    *pwstLines = (wchar_t**)MALLOC(nbLinesOut * sizeof(wchar_t**));
+    *pwstLines = (wchar_t**)MALLOC(nbLinesOut * sizeof(wchar_t*));
     if (*pwstLines == NULL)
     {
         return -1;
