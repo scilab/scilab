@@ -601,14 +601,16 @@ static void appendData(scicos_block * block, int input, double t, double *data)
         /*
          * Update data
          */
-
-        for (i = 0; i < block->insz[input]; i++)
+        if (sco != NULL)
         {
-            const double value = data[i];
-            setBuffersCoordinates(block, sco->internal.bufferCoordinates[input][i], sco->internal.numberOfPoints, block->ipar[2], t, value);
-        }
+            for (i = 0; i < block->insz[input]; i++)
+            {
+                const double value = data[i];
+                setBuffersCoordinates(block, sco->internal.bufferCoordinates[input][i], sco->internal.numberOfPoints, block->ipar[2], t, value);
+            }
 
-        sco->internal.numberOfPoints++;
+            sco->internal.numberOfPoints++;
+        }
     }
 }
 
