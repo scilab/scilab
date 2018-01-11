@@ -305,7 +305,7 @@ public class JoGLTextureManager implements TextureManager {
                         hasChanged = true;
                     }
 
-                    if (newBuffer != null || buffer != null) {
+                    if (buffer != null) {
                         if (wCuts == 1 && hCuts == 1) {
                             if (hasChanged) {
                                 if (isRowMajorOrder()) {
