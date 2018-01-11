@@ -573,28 +573,31 @@ static void appendData(scicos_block * block, int input, double t, double *data)
         /*
          * Handle the case where the scope has more points than maxNumberOfPoints
          */
-        if (sco->internal.numberOfPoints >= block->ipar[2])
+        if (sco != NULL)
         {
-            int maxNumberOfPoints = sco->internal.maxNumberOfPoints;
-
-            // on a full scope, re-alloc history coordinates
-            maxNumberOfPoints = maxNumberOfPoints + block->ipar[2];
-            sco = reallocHistoryBuffer(block, maxNumberOfPoints);
-
-            // set the buffer coordinates to the last point
-            for (i = 0; i < block->insz[input]; i++)
+            if (sco->internal.numberOfPoints >= block->ipar[2])
             {
-                sco->internal.bufferCoordinates[input][i][0] = sco->internal.bufferCoordinates[input][i][block->ipar[2] - 1];
-                sco->internal.bufferCoordinates[input][i][block->ipar[2]] = sco->internal.bufferCoordinates[input][i][2 * block->ipar[2] - 1];
-            }
-            sco->internal.numberOfPoints = 1;
+                int maxNumberOfPoints = sco->internal.maxNumberOfPoints;
 
-            // reconfigure related graphic objects
-            if (pushHistory(block, input, sco->internal.maxNumberOfPoints) == FALSE)
-            {
-                set_block_error(-5);
-                freeScoData(block);
-                sco = NULL;
+                // on a full scope, re-alloc history coordinates
+                maxNumberOfPoints = maxNumberOfPoints + block->ipar[2];
+                sco = reallocHistoryBuffer(block, maxNumberOfPoints);
+
+                // set the buffer coordinates to the last point
+                for (i = 0; i < block->insz[input]; i++)
+                {
+                    sco->internal.bufferCoordinates[input][i][0] = sco->internal.bufferCoordinates[input][i][block->ipar[2] - 1];
+                    sco->internal.bufferCoordinates[input][i][block->ipar[2]] = sco->internal.bufferCoordinates[input][i][2 * block->ipar[2] - 1];
+                }
+                sco->internal.numberOfPoints = 1;
+
+                // reconfigure related graphic objects
+                if (pushHistory(block, input, sco->internal.maxNumberOfPoints) == FALSE)
+                {
+                    set_block_error(-5);
+                    freeScoData(block);
+                    sco = NULL;
+                }
             }
         }
 
