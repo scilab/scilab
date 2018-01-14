@@ -311,6 +311,8 @@ public class JoGLElementsBuffer extends JoGLDataBuffer implements ElementsBuffer
         if (data != null) {
             data.clear();
         }
-        data = null;
+        synchronized (mutex) {  
+            data = null;
+        }
     }
 }
