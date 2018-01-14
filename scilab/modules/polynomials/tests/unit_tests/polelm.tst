@@ -562,6 +562,17 @@ p1=1;p2=1;
 [p,U]=bezout(p1,p2+0);if norm(coeff([p1 p2]*U-[p 0]))>10*%eps  then pause,end
 [p,U]=bezout(p1+0,p2+0);if norm(coeff([p1 p2]*U-[p 0]))>10*%eps  then pause,end
 
+//bezout single output
+p1=1;p2=1;
+[p, U] = bezout(p1,p2);
+assert_checkequal(p, bezout(p1,p2));
+[p, U] = bezout(p1+0,p2);
+assert_checkequal(p, bezout(p1+0,p2));
+[p, U] = bezout(p1,p2+0);
+assert_checkequal(p, bezout(p1,p2+0));
+[p, U] = bezout(p1+0,p2+0);
+assert_checkequal(p, bezout(p1+0,p2+0));
+
 
 //sfact
 p=(%s-1/2)*(2-%s);

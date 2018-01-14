@@ -13,14 +13,20 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="bezout">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="bezout">
     <refnamediv>
         <refname>bezout</refname>
-        <refpurpose>Bezout equation for polynomials or integers</refpurpose>
+        <refpurpose>GCD of two polynomials or two integers, by the Bezout method</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>[thegcd,U]=bezout(p1,p2)</synopsis>
+        <synopsis>
+          thegcd = bezout(p1,p2)
+          [thegcd, U] = bezout(p1,p2)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -35,7 +41,8 @@
                 <term>thegcd</term>
                 <listitem>
                     <para>
-                        scalar of the same type as <literal>p1</literal> and <literal>p2</literal>
+                        scalar with the type of <literal>p1</literal>:
+                        The Greatest Common Divisor of <literal>p1</literal> and <literal>p2</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -43,7 +50,8 @@
                 <term>U</term>
                 <listitem>
                     <para>
-                        <literal>2x2</literal> matrix of the same type as <literal>p1</literal> and <literal>p2</literal>
+                        <literal>2x2</literal> unimodular matrix of the type of <literal>p1</literal>,
+                        such that <literal>[p1 p2]*U = [thegcd 0]</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -52,11 +60,13 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>[thegcd, U] = bezout(p1, p2)</literal> computes the GCD <literal>thegcd</literal> of <literal>p1</literal> and <literal>p2</literal>, and in addition a (2x2)
-            unimodular matrix <literal>U</literal> such that:
+            <literal>thegcd = bezout(p1, p2)</literal> computes the GCD
+            <literal>thegcd</literal> of <literal>p1</literal> and <literal>p2</literal>.
         </para>
         <para>
-            <literal>[p1 p2]*U = [thegcd 0]</literal>
+            In addition, <literal>[thegcd, U] = bezout(p1, p2)</literal> computes and returns a
+            (2x2) unimodular matrix <varname>U</varname> such that
+            <literal>[p1 p2]*U = [thegcd 0]</literal>.
         </para>
         <para>
             The lcm of <literal>p1</literal> and <literal>p2</literal> is given by:
@@ -65,8 +75,8 @@
             <literal>p1*U(1,2)</literal> (or <literal>-p2*U(2,2)</literal>)
         </para>
         <para>
-            If <literal>p1</literal> or <literal>p2</literal> are given as doubles (type 1), then they are treated as
-            null degree polynomials.
+            If <literal>p1</literal> or <literal>p2</literal> are given as doubles (type 1),
+            then they are processed as null degree polynomials.
         </para>
     </refsection>
     <refsection>
@@ -82,7 +92,7 @@ clean([p1 p2]*U)
 thelcm = p1*U(1,2)
 lcm([p1 p2])
 
-// Double case
+// With decimal numbers
 i1 = 2*3^5;
 i2 = 2^3*3^2;
 [thegcd,U] = bezout(i1, i2)
@@ -105,6 +115,12 @@ lcm(V)
         <title>See also</title>
         <simplelist type="inline">
             <member>
+                <link linkend="gcd">gcd</link>
+            </member>
+            <member>
+                <link linkend="lcm">lcm</link>
+            </member>
+            <member>
                 <link linkend="poly">poly</link>
             </member>
             <member>
@@ -115,9 +131,6 @@ lcm(V)
             </member>
             <member>
                 <link linkend="clean">clean</link>
-            </member>
-            <member>
-                <link linkend="lcm">lcm</link>
             </member>
         </simplelist>
     </refsection>
