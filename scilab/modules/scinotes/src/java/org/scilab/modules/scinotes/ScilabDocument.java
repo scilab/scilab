@@ -448,7 +448,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
     /**
      * @param alphaOrder is true if names must be sorted with alphabetic order
      */
-    public void setAlphaOrderInTree(boolean alphaOrder) {
+    public synchronized void setAlphaOrderInTree(boolean alphaOrder) {
         this.alphaOrder = alphaOrder;
     }
 
