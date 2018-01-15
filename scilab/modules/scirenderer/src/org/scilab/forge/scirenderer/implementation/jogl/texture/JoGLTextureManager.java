@@ -651,7 +651,7 @@ public class JoGLTextureManager implements TextureManager {
         }
 
         /** Called when gl context is gone. */
-        public void glReload() {
+        public synchronized void glReload() {
             buffer = null;
             textures = null;
             upToDate = false;
