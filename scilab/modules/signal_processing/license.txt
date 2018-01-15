@@ -44,3 +44,19 @@ UNIVERSITAET ERLANGEN-NUERNBERG
 
 License:
 Public Domain
+
+FILTER:
+=======
+
+Files:
+sci_filter.cpp
+
+Copyright:
+John W. Eaton
+Tony Richardson
+Kurt Hornik
+Fritz Leisch
+Andreas Weingessel
+
+License:
+GPL v3
