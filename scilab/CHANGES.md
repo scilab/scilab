@@ -433,7 +433,7 @@ the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 * [#14376](http://bugzilla.scilab.org/show_bug.cgi?id=14376): `input()` was broken: \n was introduced before prompting; multiple prompts occurred; the output value could be missing; "%" "\n" "\t" were no longer supported in messages...
 * [#14399](http://bugzilla.scilab.org/show_bug.cgi?id=14399): `whereami`: wrong information (line numbers).
 * [#14424](http://bugzilla.scilab.org/show_bug.cgi?id=14424): There were some troubles with `input`.
-* [#14490](http://bugzilla.scilab.org/show_bug.cgi?id=14490): `plot2d` crashed when leg parameter was a vector. 
+* [#14490](http://bugzilla.scilab.org/show_bug.cgi?id=14490): `plot2d` crashed when leg parameter was a vector.
 * [#14531](http://bugzilla.scilab.org/show_bug.cgi?id=14531): It was not possible to specify SCIHOME as a start-up option.
 * [#14532](http://bugzilla.scilab.org/show_bug.cgi?id=14532): `test_run` failed for toolboxes that are not autoloaded.
 * [#14544](http://bugzilla.scilab.org/show_bug.cgi?id=14544): `scatter` and `scatter3` canceled any upstream `drawlater` instruction.
@@ -463,6 +463,7 @@ the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 * [#15010](http://bugzilla.scilab.org/show_bug.cgi?id=15010): Coselica did not simulate on Scilab 6.
 * [#15015](http://bugzilla.scilab.org/show_bug.cgi?id=15015): Xcos blocks using the `ascii` didn't work
 * [#15017](http://bugzilla.scilab.org/show_bug.cgi?id=15017): On numbers, `gcd` result was always of `int32` type instead of matching the input type.
+* [#15018](http://bugzilla.scilab.org/show_bug.cgi?id=15018): `mfprintf`'\n' not working.
 * [#15019](http://bugzilla.scilab.org/show_bug.cgi?id=15019): Add 'csci6' in the calling of ilib_build in 'Getting started with API_Scilab' help page.
 * [#15020](http://bugzilla.scilab.org/show_bug.cgi?id=15020): Examples of ilib_build help page updated.
 * [#15023](http://bugzilla.scilab.org/show_bug.cgi?id=15023): `clf()` wrongly reset `figure_id`.
@@ -870,6 +871,6 @@ the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 * [#14524](http://bugzilla.scilab.org/show_bug.cgi?id=14524): Numeric locales were not set to standard "C" by default at scilab startup
 * [#14540](http://bugzilla.scilab.org/show_bug.cgi?id=14540): Datatips did not clip outside axes bounds
 * [#14685](http://bugzilla.scilab.org/show_bug.cgi?id=14685): datavec produced an invalid index error.
-* [#14980] (http://bugzilla.scilab.org/show_bug.cgi?id=14980): The datatip display of the root locus arcs is broken.
-* [#14992] (http://bugzilla.scilab.org/show_bug.cgi?id=14992): `readgateway` has been removed, use `whereis` instead.
+* [#14980](http://bugzilla.scilab.org/show_bug.cgi?id=14980): The datatip display of the root locus arcs is broken.
+* [#14992](http://bugzilla.scilab.org/show_bug.cgi?id=14992): `readgateway` has been removed, use `whereis` instead.
 

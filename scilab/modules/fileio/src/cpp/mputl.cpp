@@ -74,7 +74,7 @@ mputlError mputl(int _iFileId, wchar_t **pstStrings, int _iSizeStrings, BOOL _CR
         {
             return MPUTL_ERROR;
         }
-        if (_CR)
+        if ((i != _iSizeStrings-1) || _CR)
         {
             iRet = fputs("\n", pF->getFiledesc());
             if (iRet == -1)
