@@ -59,7 +59,7 @@ public class PaletteDiagram extends XcosDiagram {
 
         setTitle(PaletteDiagram.class.getName());
 
-        setCellsLocked(true);
+        setCellsLocked(false);
         setGridVisible(false);
         setCellsDeletable(false);
         setCellsEditable(false);
@@ -115,7 +115,7 @@ public class PaletteDiagram extends XcosDiagram {
         }
 
         int blockWidth = PaletteManagerPanel.getCurrentSize().getBlockDimension().width
-                       + XcosConstants.PALETTE_HMARGIN;
+                         + XcosConstants.PALETTE_HMARGIN;
 
         int oldRowItem = (int) (newWidth / blockWidth);
         int maxRowItem = (int) (windowWidth / blockWidth);
