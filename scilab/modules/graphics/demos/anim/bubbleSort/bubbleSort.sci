@@ -27,10 +27,13 @@ function demo_bubbleSort()
         res = in;
     endfunction
 
+    my_handle = scf(100001);
+    clf(my_handle, "reset");
+    demo_viewCode(SCI+"/modules/graphics/demos/anim/bubbleSort/bubbleSort.sci");
+    my_handle.figure_name = "Bubble sort";
+
     nbValues = 200;
     x = floor(rand(1, nbValues) * nbValues);
-    scf()
-    demo_viewCode(SCI+"/modules/graphics/demos/anim/bubbleSort/bubbleSort.sci");
     plot(x, "diamond-");
     a = gca();
     e = a.children(1).children(1);

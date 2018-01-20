@@ -3,6 +3,7 @@
 // Copyright (C) 2008 - INRIA - Pierre MARECHAL
 // Copyright (C) 2012 - DIGITEO - Vincent COUVERT
 // Copyright (C) 2014 - Scilab Enterprises - Anais AUBERT
+// Copyright (C) 2018 - Samuel GOUGEON
 //
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
@@ -17,17 +18,19 @@
 function script_path = demo_gui_update()
     global subdemolist;
 
-    // Suppression d'une figure précédemment dessinée, si figure il y a ...
+    // Deleting All existing demo figures, except the first one (it may be
+    // docked in order to view demos figures in a stable way:
+    // http://bugzilla.scilab.org/6973
     all_figs = winsid();
     all_figs = all_figs(all_figs >= 100001); // All Scilab graphic windows opened for demos
-    for fig_index = 1:size(all_figs, "*")
+    for fig_index = 2:size(all_figs, "*")
         fig_to_del = get_figure_handle(all_figs(fig_index));
         if ~isempty(fig_to_del) then
             delete(fig_to_del);
         end
     end
 
-    // Handle de la figure
+    // Handle of the main demos GUI
     demo_fig = get("scilab_demo_fig");
 
     // Frame sur laquelle on a cliqué
