@@ -249,7 +249,7 @@ Help pages:
 * rewritten: `consolebox`, `double`, `isoview`, `pixel_drawing_mode`, `householder`, `or`, `|,||`,
  `and`, `&,&&`, `format`, `type`, `typeof`, `brackets`, `setlanguage`, `sleep`, `isinf`, `unique`,
  `bitor`, `bitxor`, `bitand`, `macr2tree`, `geomean`, `clf`, `getPreferencesValue`, `gcd`, `isglobal`,
- `whereis`, `mode`, `%onprompt`, `toeplitz`, `param3d`, `param3d1`
+ `whereis`, `mode`, `%onprompt`, `toeplitz`, `param3d`, `param3d1`, `argn`
 * reorganized:
   - `else`, `elseif`, `end`, `try`, `sciargs`, `global`, `halt`, `empty`, `power`, `numderivative`
   - `pixel_drawing_mode`, `show_window`, `twinkle`, `uigetcolor`, `winsid`, `xdel`, `xgrid`, `xname`, `xnumb`
@@ -539,6 +539,7 @@ Known issues
 * [#15370](http://bugzilla.scilab.org/show_bug.cgi?id=15370): `bezout()` mishandled its output arguments.
 * [#15375](http://bugzilla.scilab.org/show_bug.cgi?id=15375): A .zcos file opened as a palette was greyed out.
 * [#15379](http://bugzilla.scilab.org/show_bug.cgi?id=15379): `zeros(A)` was not documented as equivalent to `mtlb_zeros(size(A))`.
+* [#15380](http://bugzilla.scilab.org/show_bug.cgi?id=15380): `argn()` documentation was somewhat unclear and uncomplete.
 * [#15395](http://bugzilla.scilab.org/show_bug.cgi?id=15395): `ones(2,3,2) / %z` yielded an error..
 * [#15396](http://bugzilla.scilab.org/show_bug.cgi?id=15396): `[m,n,p] = size(hr)` yielded an error with an hypermatrix hr of rationals.
 * [#15402](http://bugzilla.scilab.org/show_bug.cgi?id=15402): The `range()` page was not fixed against the bug 1904 for the french and portuguese versions.
