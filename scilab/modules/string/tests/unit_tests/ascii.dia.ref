@@ -26,7 +26,7 @@ txt = mgetl( fd );
 mclose( fd );
 ASCII_TXT           = ascii(txt);
 TXT_FROM_ASCII_CODE = ascii(ASCII_TXT);
-if (length(TXT_FROM_ASCII_CODE) <> 27455) then bugmes();quit;end
+if (length(TXT_FROM_ASCII_CODE) <> 27453) then bugmes();quit;end
 // == TEST 5 ===================================================================
 if ascii("!") <> 33 then bugmes();quit;end
 if ascii("""")<> 34 then bugmes();quit;end

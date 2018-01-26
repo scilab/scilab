@@ -79,7 +79,7 @@
             param3d()
 
             subplot(2,2,4)
-            hist3d()
+            bar3d()
  ]]></programlisting>
         <scilab:image>
             subplot(221)
@@ -89,7 +89,7 @@
             subplot(2,2,3)
             param3d()
             subplot(2,2,4)
-            hist3d()
+            bar3d()
         </scilab:image>
         <para/>
         <para>

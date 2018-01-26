@@ -230,6 +230,7 @@ Obsolete functions or features
 * `ric_desc` is obsolete and will be removed from Scilab 6.1.x. Please use `riccati` instead.
 * `noisegen` will be removed from Scilab 6.1.x. Please use `grand` instead.
 * `get_figure_handle(n)` is obsolete. Please use `findobj('figure_id',n)` instead.
+* `hist3d` is renamed `bar3d`. The former `hist3d` function is declared obsolete and will be replaced by an actual 3D histogram function in Scilab 6.2.
 
 Removed Functions
 -----------------
@@ -307,6 +308,7 @@ Bug Fixes
 * [#14642](https://bugzilla.scilab.org/14642): No more "\r" carriage return with printf.
 * [#14655](https://bugzilla.scilab.org/14655): `bitset` worked only element-wise, without accepting mixed scalar and array inputs.
 * [#14735](https://bugzilla.scilab.org/14735): The `genetic_algorithms` module was out of the `optimization` one.
+* [#14738](https://bugzilla.scilab.org14738): `hist3d` was not actually an histogram function. It is renamed `bar3d`.
 * [#14741](https://bugzilla.scilab.org/14741): The syntax `[m,e]=log2(x)` was not documented. As public function `frexp` was in duplicate with `[m,e]=log2(x)`.
 * [#14742](https://bugzilla.scilab.org/14742): `mprintf`, `msprintf` a non finite number displayed nothing.
 * [#14746](https://bugzilla.scilab.org/14746): Tiny numbers were sometimes displayed as 0.

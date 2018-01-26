@@ -176,9 +176,12 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>hist3d</term>
+                <term>bar3d</term>
                 <listitem>
-                    <para>representação 3d de um histograma</para>
+                    <para>representação 3D do diagrama de barras</para>
+                    <para>
+                        <scilab:image>bar3d();</scilab:image>
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>

@@ -15,7 +15,7 @@ subdemolist=[
     _("Bars (custom)")       , "bars_custom.dem.sce"
     _("Bars (grouped)")      , "bar.dem.sce"
     _("histplot")            , "histplot.dem.sce"
-    _("hist3d")              , "hist3d.dem.sce"
+    _("bar3d")               , "bar3d.dem.sce"
     ];
 
 

@@ -298,7 +298,7 @@ plot3d(x, y, z, theta, alpha, ebox=[xmin, xmax, ymin, ymax, zmin, zmax])
  Représentation de données statistiques  [modifier]
 Si x est un vecteur, la fonction histplot(n, x), n étant un entier, va découper l’intervalle de valeurs prises par les coefficients de x en n tranches d’égale largeur, et tracer l’histogramme de répartition des valeurs selon ces tranches. Si n est un vecteur dont les coefficients sont strictement croissants, les valeurs des coefficients de n servent à déterminer les tranches.
 
-Si x est une matrice, hist3d(x) trace un histogramme 3D tel que le parallélépipède situé en (i, j) a pour hauteur x(i, j). Comme pour toutes les fonctions de tracé en trois dimensions, on peut définir l’angle de vue avec ? et a.
+Si x est une matrice, bar3d(x) trace un diagramme en barres 3D tel que la barre située en (i, j) a pour hauteur x(i, j). Comme pour toutes les fonctions de tracé en trois dimensions, on peut définir l’angle de vue avec ? et a.
 
 
  Dessin  [modifier]

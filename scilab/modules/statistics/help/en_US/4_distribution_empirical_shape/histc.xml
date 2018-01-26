@@ -1029,7 +1029,7 @@ histc([2+%z %z %z ]) == [1 2]
                 <link linkend="histplot">histplot</link>
             </member>
             <member>
-                <link linkend="hist3d">hist3d</link>
+                <link linkend="bar3d">bar3d</link>
             </member>
             <member>
                 <link linkend="bar">bar</link>

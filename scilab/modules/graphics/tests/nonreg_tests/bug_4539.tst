@@ -19,7 +19,7 @@
 A=rand(10,10);
 b=[linspace(1,10,11)];
 c=[linspace(10,20,11)];
-hist3d(list(A,b,c),leg="A@b@c");
+bar3d(list(A,b,c),leg="A@b@c");
 
 // should not display any warning or error
 

@@ -347,15 +347,15 @@
             </varlistentry>
             <varlistentry>
                 <term>
-                    <link linkend="hist3d">hist3d</link>
+                    <link linkend="bar3d">bar3d</link>
                 </term>
                 <listitem>
-                    <para>représentation d'un histogramme en 3D</para>
+                    <para>représentation d'un diagramme à barres en 3D</para>
                     <para>
                         <emphasis role="bold">Exemple:</emphasis>
                     </para>
                     <para>
-                        <scilab:image>hist3d();</scilab:image>
+                        <scilab:image>bar3d();</scilab:image>
                     </para>
                 </listitem>
             </varlistentry>

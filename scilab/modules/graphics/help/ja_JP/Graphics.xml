@@ -347,15 +347,15 @@
             </varlistentry>
             <varlistentry>
                 <term>
-                    <link linkend="hist3d">hist3d</link>
+                    <link linkend="bar3d">bar3d</link>
                 </term>
                 <listitem>
-                    <para>ヒストグラムの3次元表現3</para>
+                    <para>棒グラフの3D表現</para>
                     <para>
                         <emphasis role="bold">例:</emphasis>
                     </para>
                     <para>
-                        <scilab:image>hist3d();</scilab:image>
+                        <scilab:image>bar3d();</scilab:image>
                     </para>
                 </listitem>
             </varlistentry>

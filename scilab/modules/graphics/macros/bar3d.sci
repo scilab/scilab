@@ -1,7 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) 2012 - Scilab Enterprises - Adeline CARNIS
-// Copyright (C) 2012, 2018 - Samuel GOUGEON
 //
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
@@ -13,21 +12,21 @@
 // along with this program.
 
 
-function hist3d(f,theta,alpha,leg,flags,ebox)
+function bar3d(f,theta,alpha,leg,flags,ebox)
     //!
-    nep = 8   // bars half widths = 1/nep
+    nep=8
 
     if ~isdef("theta","local") then theta = 35; end;
     if ~isdef("alpha","local") then alpha = 45; end;
     if ~isdef("leg","local") then leg = "X@Y@Z"; end;
     if ~isdef("flags","local") then flags = [2 1 4]; end;
 
-    def = list(theta,alpha,leg,flags);
+    def=list(theta,alpha,leg,flags);
     [lhs,rhs]=argn(0)
     if rhs<=0 then  //demo
         towns = ["Agen" "Bastia" "Chamonix" "Cognac" "Hyères" "Le Mans" "Le Puy" ..
         "Lille" "Lorient" "Mende" ]
-        months = [_("January") _("February") _("March") _("April") _("May") _("June")..
+        months = [_("January") _("Febuary") _("March") _("April") _("May") _("June")..
         _("July") _("August") _("September") _("October") _("November") ..
         _("December") _("Average") ]
         months = "$\scalebox{1.3}{\rotatebox{90}{\mbox{" + months + "}}}$"
@@ -43,9 +42,7 @@ function hist3d(f,theta,alpha,leg,flags,ebox)
         6.6 6.7 8.6 10.3 13.6 16.2 18.1 18.0 16.0 13.0 9.4 7.0 12.0
         0.6 1.3 3.7 5.5 9.6 13.1 16.2 16.0 12.8 8.8 3.8 1.8 7.8
         ];
-        initDrawingMode = gcf().immediate_drawing;
-        gcf().immediate_drawing = "off";
-        hist3d(T)
+        bar3d(T)
         ax = gca()
         ax.y_ticks = tlist(["ticks" "locations" "labels"], (0:12)+0.5, months)
         ax.x_ticks = tlist(["ticks" "locations" "labels"], (0:9)+0.5, towns)
@@ -53,14 +50,8 @@ function hist3d(f,theta,alpha,leg,flags,ebox)
         xtitle(_("Average monthly temperatures in french cities"),"","")
         ax.title.font_size = 3
         ax.rotation_angles = [28 19]
-        ax.children.color_mode = color("violet")
-        // ax.children.color_flag = 1
-        gcf().immediate_drawing = initDrawingMode;
-        return
+        return;
     end
-
-    warnobsolete("bar3d()","6.2.0")
-
     if typeof(f)=="list" then
         [f,x,y]=f(1:3);
         sx=prod(size(x));
@@ -82,14 +73,14 @@ function hist3d(f,theta,alpha,leg,flags,ebox)
         dx=1/nep; dy=1/nep;
         bnds=[0 nl,0 nc,min(0,min(f)) max(0,max(f))]
     end
-    x = matrix([x-dx ; x+dx], 1, -1);
-    y = matrix([y-dy ; y+dy], 1, -1);
+    x=x.*.[1,1] + dx*ones(x).*.[0,1] - dx*ones(x).*.[1,0];
+    y=y.*.[1,1] + dy*ones(y).*.[0,1] - dy*ones(y).*.[1,0];
     a=[0;0;1;1]
     b=[0;1;1;0]
     c=[0;0;0;0]
     d=[1;1;1;1]
-    ix=[b,(1-b),a,(1-a),c,d];
-    iy=[a,a,c,d,b,(1-b)];
+    ix=[b,b,a,a,c,d];
+    iy=[a,a,c,d,b,b];
     indx=ones(1,nc) .*. (ones(1,nl).*.ix +(1:2:2*nl-1).*.ones(ix));
     iy=matrix(iy,24,1);
     //indy=(ones(1,nl).*.iy+(1:2:2*nl-1).*.ones(iy)) .*. ones(1,nc);
@@ -99,15 +90,9 @@ function hist3d(f,theta,alpha,leg,flags,ebox)
 
     xx=matrix(x(matrix(indx,1,nnl*nnc)),nnl,nnc);
     yy=matrix(y(matrix(indy,1,nnl*nnc)),nnl,nnc);
-    f = matrix(f,1,-1);
-    zz = f.*.[c,d,b,b,a,a];
-    // bars with f < 0 => faces orientation must be inverted:
-    f = f .*.ones(4,6);
-    b = f<0
-    zz(b) = f(b) - zz(b)
+    zz=matrix(f,1,nl*nc).*.[c,d,b,b,a,a];
 
     if ~isdef("ebox","local") then ebox = bnds; else "ebox = ebox"; end;
     plot3d(xx,yy,zz,def(1),def(2),def(3),def(4),ebox)
 
 endfunction
-

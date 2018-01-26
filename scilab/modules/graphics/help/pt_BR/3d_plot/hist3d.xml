@@ -20,7 +20,8 @@
           xmlns:scilab="http://www.scilab.org" xml:id="hist3d" xml:lang="pt">
     <refnamediv>
         <refname>hist3d</refname>
-        <refpurpose>representação 3d de um histograma</refpurpose>
+        <refpurpose>representação 3d de um histograma   (<emphasis role="bold">obsoleto</emphasis>)
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
@@ -65,6 +66,14 @@
     </refsection>
     <refsection>
         <title>Descrição</title>
+        <warning>
+           Up to Scilab 6.0, <literal>hist3d()</literal> features are actually some
+           <literal>bar3d()</literal> ones. In Scilab 6.1.0, <literal>bar3d()</literal> is
+           introduced as a clone of <literal>hist3d()</literal>. From now on, please use
+           <literal>bar3d()</literal> in replacement of the former <literal>hist3d()</literal>.
+           <literal>hist3d()</literal> will be redefined in Scilab 6.2.0 to actually support 3D
+            histogram features.
+        </warning>
         <para>
             <literal>hist3d</literal> representa um histograma 2d como um esboço
             3d. Os valores são associados aos intervalos <literal>[x(i) x(i+1)[ X
@@ -155,5 +164,18 @@ isoview off
                 <link linkend="plot3d">plot3d</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>Histórico</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revdescription>
+                   <para>
+                     The current implementation of hist3d() is declared obsolete. Use bar3d() instead.
+                  </para>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

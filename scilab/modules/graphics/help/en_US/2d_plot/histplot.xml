@@ -226,13 +226,13 @@ legend(["normalized histogram" "frequency polygon chart"],"lower_caption");
                 <link linkend="histc">histc</link>
             </member>
             <member>
-                <link linkend="hist3d">hist3d</link>
-            </member>
-            <member>
-                <link linkend="plot2d">plot2d</link>
+                <link linkend="bar3d">bar3d</link>
             </member>
             <member>
                 <link linkend="bar">bar</link>
+            </member>
+            <member>
+                <link linkend="plot2d">plot2d</link>
             </member>
             <member>
                 <link linkend="dsearch">dsearch</link>

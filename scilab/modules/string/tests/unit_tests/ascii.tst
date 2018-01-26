@@ -37,7 +37,7 @@ mclose( fd );
 ASCII_TXT           = ascii(txt);
 TXT_FROM_ASCII_CODE = ascii(ASCII_TXT);
 
-if (length(TXT_FROM_ASCII_CODE) <> 27455) then pause,end
+if (length(TXT_FROM_ASCII_CODE) <> 27453) then pause,end
 
 // == TEST 5 ===================================================================
 

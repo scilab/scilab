@@ -178,7 +178,7 @@ bar(x,y,0.2,'green');
                 <link linkend="polyline_properties">polyline_properties</link>
             </member>
             <member>
-                <link linkend="hist3d">hist3d</link>
+                <link linkend="bar3d">bar3d</link>
             </member>
         </simplelist>
     </refsection>

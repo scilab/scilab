@@ -17,18 +17,17 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
           xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
-          xmlns:scilab="http://www.scilab.org" xml:id="hist3d" xml:lang="fr">
+          xmlns:scilab="http://www.scilab.org" xml:id="bar3d" xml:lang="fr">
     <refnamediv>
-        <refname>hist3d</refname>
-        <refpurpose>représentation 3D d'un histogramme  (<emphasis role="bold">obsolète</emphasis>)
-        </refpurpose>
+        <refname>bar3d</refname>
+        <refpurpose>représentation 3D d'un histogramme</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>hist3d(mtx,[theta,alpha,leg,flag,ebox])
-            hist3d(mtx,&lt;opt_args&gt;)
-            hist3d(list(mtx,x,y),[theta,alpha,leg,flag,ebox])
-            hist3d(list(mtx,x,y),&lt;opt_args&gt;)
+        <synopsis>bar3d(mtx,[theta,alpha,leg,flag,ebox])
+            bar3d(mtx,&lt;opt_args&gt;)
+            bar3d(list(mtx,x,y),[theta,alpha,leg,flag,ebox])
+            bar3d(list(mtx,x,y),&lt;opt_args&gt;)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -81,51 +80,41 @@
     </refsection>
     <refsection>
         <title>Description</title>
-        <warning>
-           Jusqu'à Scilab 6.0 inclus, les fonctionnalités de <literal>hist3d()</literal> sont en
-           réalité celles d'une fonction <literal>bar3d()</literal>. <literal>bar3d()</literal> est
-           introduite dans Scilab 6.1.0 comme un clone de <literal>hist3d()</literal> et doit
-           désormais être utilisée à l'identique à sa place. <literal>hist3d()</literal> sera
-           redéfinie dans Scilab 6.2.0 pour réellement proposer les fonctionnalités
-           d'histogrammisation 3D à deux variables.
-        </warning>
         <para>
-            <literal>hist3d</literal> représente un histogramme 2D dans
+            <literal>bar3d</literal> représente un histogramme 2D dans
             l'espace. Les valeurs sont associées aux intervalles <literal>[x(i)
                 x(i+1)[ X [y(i) y(i+1)[
             </literal>
             .
         </para>
         <para>
-            Taper <literal>hist3d()</literal> pour voir une démonstration de la
+            Taper <literal>bar3d()</literal> pour voir une démonstration de la
             fonction.
         </para>
     </refsection>
     <refsection>
         <title>Exemples</title>
         <programlisting role="example"><![CDATA[
-        hist3d();
+        bar3d();
  ]]></programlisting>
-        <scilab:image localized="true">hist3d();</scilab:image>
+        <scilab:image localized="true">bar3d();</scilab:image>
         <programlisting role="example"><![CDATA[
-hist3d(10*rand(10,10));
+bar3d(10*rand(10,10));
  ]]></programlisting>
-        <scilab:image>hist3d(10*rand(10,10));</scilab:image>
+        <scilab:image>bar3d(10*rand(10,10));</scilab:image>
         <programlisting role="example"><![CDATA[
 Z = zeros(100,5);
 A = abs(rand(40,5));
 Z(1:40,:) = A;
 scf();
-hist3d(Z);
-isoview off
+bar3d(Z);
  ]]></programlisting>
         <scilab:image>
             Z = zeros(100,5);
             A = abs(rand(40,5));
             Z(1:40,:) = A;
             scf();
-            hist3d(Z);
-            isoview off
+            bar3d(Z);
         </scilab:image>
         <programlisting role="example"><![CDATA[
 Z = zeros(100,5);
@@ -134,8 +123,7 @@ Z(1:40,:) = A;
 Index = find(Z==0);
 Z(Index) = %nan;
 scf();
-hist3d(Z);
-isoview off
+bar3d(Z);
  ]]></programlisting>
         <scilab:image>
             Z = zeros(100,5);
@@ -144,8 +132,7 @@ isoview off
             Index = find(Z==0);
             Z(Index) = %nan;
             scf();
-            hist3d(Z);
-            isoview off
+            bar3d(Z);
         </scilab:image>
         <programlisting role="example"><![CDATA[
 Z = zeros(100,5);
@@ -154,8 +141,7 @@ Z(1:40,:) = A;
 A = abs(rand(10,5));
 Z(91:100,:) = A;
 scf();
-hist3d(Z);
-isoview off
+bar3d(Z);
  ]]></programlisting>
         <scilab:image>
             Z = zeros(100,5);
@@ -164,14 +150,15 @@ isoview off
             A = abs(rand(10,5));
             Z(91:100,:) = A;
             scf();
-            hist3d(Z);
-            isoview off
-            gca().rotation_angles = [30 50];
+            bar3d(Z);
         </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="hist3d">hist3d</link>
+            </member>
             <member>
                 <link linkend="histplot">histplot</link>
             </member>
@@ -186,10 +173,7 @@ isoview off
             <revision>
                 <revnumber>6.1.0</revnumber>
                 <revdescription>
-                   <para>
-                     L'actuelle implémentation de hist3d() est déclarée obsolète. Utiliser bar3d()
-                     à l'identique à la place.
-                  </para>
+                  <para>Introduction de bar3d(), égal à l'actuel hist3d() à redéfinir.</para>
                 </revdescription>
             </revision>
         </revhistory>

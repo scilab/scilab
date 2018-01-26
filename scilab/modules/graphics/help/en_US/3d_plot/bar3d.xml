@@ -17,40 +17,38 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
           xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
-          xmlns:scilab="http://www.scilab.org" xml:id="hist3d" xml:lang="fr">
+          xmlns:scilab="http://www.scilab.org"  xml:id="bar3d" xml:lang="en">
     <refnamediv>
-        <refname>hist3d</refname>
-        <refpurpose>représentation 3D d'un histogramme  (<emphasis role="bold">obsolète</emphasis>)
-        </refpurpose>
+        <refname>bar3d</refname>
+        <refpurpose>3D representation of a histogram</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Séquence d'appel</title>
-        <synopsis>hist3d(mtx,[theta,alpha,leg,flag,ebox])
-            hist3d(mtx,&lt;opt_args&gt;)
-            hist3d(list(mtx,x,y),[theta,alpha,leg,flag,ebox])
-            hist3d(list(mtx,x,y),&lt;opt_args&gt;)
+        <title>Syntax</title>
+        <synopsis>bar3d(mtx,[theta,alpha,leg,flag,ebox])
+            bar3d(mtx,&lt;opt_args&gt;)
+            bar3d(list(mtx,x,y),[theta,alpha,leg,flag,ebox])
+            bar3d(list(mtx,x,y),&lt;opt_args&gt;)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Paramètres</title>
+        <title>Arguments</title>
         <variablelist>
             <varlistentry>
                 <term>mtx</term>
                 <listitem>
-                    <para>matrice de taille (m,n) définissant l'histogramme
-                        <literal>mtx(i,j)=F(x(i),y(j))</literal>, où <literal>x</literal> et
-                        <literal>y</literal> sont considérés égaux à <literal>0:m</literal>
-                        et <literal>0:n</literal>.
+                    <para>matrix of size (m,n) defining the histogram
+                        <literal>mtx(i,j)=F(x(i),y(j))</literal>, where <literal>x</literal>
+                        and <literal>y</literal> are taken as <literal>0:m</literal> and
+                        <literal>0:n</literal>.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>list(mtx,x,y)</term>
                 <listitem>
-                    <para>où mtx est une matrice de taille (m,n) définissant
-                        l'histogramme <literal>mtx(i,j)=F(x(i),y(j))</literal>, avec
-                        <literal>x</literal> et <literal>y</literal> deux vecteurs de
-                        tailles respectives (1,m+1) et (1,n+1).
+                    <para>where mtx is a matrix of size (m,n)defining the histogram
+                        <literal>mtx(i,j)=F(x(i),y(j))</literal>, with <literal>x</literal>
+                        and <literal>y</literal> vectors of size (1,m+1) and (1,n+1).
                     </para>
                 </listitem>
             </varlistentry>
@@ -58,14 +56,12 @@
                 <term>&lt;opt_args&gt;</term>
                 <listitem>
                     <para>
-                        Représente une séquence de la forme <literal>clé1=valeur1,
-                            clé2=valeur2
+                        This represents a sequence of statements <literal>key1=value1,
+                            key2=value2
                         </literal>
-                        ,... où <literal>clé1,
-                            clé2,...
-                        </literal>
-                        peut être n'importe quel paramètre optionnel de <link linkend="plot3d">plot3d</link>
-                        (<literal>theta,alpha,leg,flag,ebox</literal>).
+                        ,... where <literal>key1</literal>,
+                        <literal>key2,...</literal> can be one of the following: theta,
+                        alpha,leg,flag,ebox. See <link linkend="plot3d">plot3d</link>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -73,7 +69,7 @@
                 <term>theta,alpha,leg,flag,ebox</term>
                 <listitem>
                     <para>
-                        voir <link linkend="plot3d">plot3d</link>.
+                        see <link linkend="plot3d">plot3d</link>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -81,51 +77,41 @@
     </refsection>
     <refsection>
         <title>Description</title>
-        <warning>
-           Jusqu'à Scilab 6.0 inclus, les fonctionnalités de <literal>hist3d()</literal> sont en
-           réalité celles d'une fonction <literal>bar3d()</literal>. <literal>bar3d()</literal> est
-           introduite dans Scilab 6.1.0 comme un clone de <literal>hist3d()</literal> et doit
-           désormais être utilisée à l'identique à sa place. <literal>hist3d()</literal> sera
-           redéfinie dans Scilab 6.2.0 pour réellement proposer les fonctionnalités
-           d'histogrammisation 3D à deux variables.
-        </warning>
         <para>
-            <literal>hist3d</literal> représente un histogramme 2D dans
-            l'espace. Les valeurs sont associées aux intervalles <literal>[x(i)
-                x(i+1)[ X [y(i) y(i+1)[
+            <literal>bar3d</literal> represents a 2d histogram as a 3D plot.
+            The values are associated to the intervals <literal>[x(i) x(i+1)[ X [y(i)
+                y(i+1)[
             </literal>
             .
         </para>
         <para>
-            Taper <literal>hist3d()</literal> pour voir une démonstration de la
-            fonction.
+            Enter the command <literal>bar3d()</literal> to see a demo.
         </para>
     </refsection>
     <refsection>
-        <title>Exemples</title>
+        <title>Examples</title>
         <programlisting role="example"><![CDATA[
-        hist3d();
+        bar3d();
  ]]></programlisting>
-        <scilab:image localized="true">hist3d();</scilab:image>
+
+        <scilab:image localized="true">bar3d();</scilab:image>
         <programlisting role="example"><![CDATA[
-hist3d(10*rand(10,10));
+bar3d(10*rand(10,10));
  ]]></programlisting>
-        <scilab:image>hist3d(10*rand(10,10));</scilab:image>
+        <scilab:image>bar3d(10*rand(10,10));</scilab:image>
         <programlisting role="example"><![CDATA[
 Z = zeros(100,5);
 A = abs(rand(40,5));
 Z(1:40,:) = A;
 scf();
-hist3d(Z);
-isoview off
+bar3d(Z);
  ]]></programlisting>
         <scilab:image>
             Z = zeros(100,5);
             A = abs(rand(40,5));
             Z(1:40,:) = A;
             scf();
-            hist3d(Z);
-            isoview off
+            bar3d(Z);
         </scilab:image>
         <programlisting role="example"><![CDATA[
 Z = zeros(100,5);
@@ -134,8 +120,7 @@ Z(1:40,:) = A;
 Index = find(Z==0);
 Z(Index) = %nan;
 scf();
-hist3d(Z);
-isoview off
+bar3d(Z);
  ]]></programlisting>
         <scilab:image>
             Z = zeros(100,5);
@@ -144,8 +129,7 @@ isoview off
             Index = find(Z==0);
             Z(Index) = %nan;
             scf();
-            hist3d(Z);
-            isoview off
+            bar3d(Z);
         </scilab:image>
         <programlisting role="example"><![CDATA[
 Z = zeros(100,5);
@@ -154,8 +138,7 @@ Z(1:40,:) = A;
 A = abs(rand(10,5));
 Z(91:100,:) = A;
 scf();
-hist3d(Z);
-isoview off
+bar3d(Z);
  ]]></programlisting>
         <scilab:image>
             Z = zeros(100,5);
@@ -164,14 +147,15 @@ isoview off
             A = abs(rand(10,5));
             Z(91:100,:) = A;
             scf();
-            hist3d(Z);
-            isoview off
-            gca().rotation_angles = [30 50];
+            bar3d(Z);
         </scilab:image>
     </refsection>
     <refsection role="see also">
-        <title>Voir aussi</title>
+        <title>See also</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="hist3d">hist3d</link>
+            </member>
             <member>
                 <link linkend="histplot">histplot</link>
             </member>
@@ -181,15 +165,15 @@ isoview off
         </simplelist>
     </refsection>
     <refsection role="history">
-        <title>Historique</title>
+        <title>History</title>
+        <title>履歴</title>
+        <title>Histórico</title>
+        <title>История</title>
         <revhistory>
             <revision>
                 <revnumber>6.1.0</revnumber>
                 <revdescription>
-                   <para>
-                     L'actuelle implémentation de hist3d() est déclarée obsolète. Utiliser bar3d()
-                     à l'identique à la place.
-                  </para>
+                  <para>bar3d() introduced, equal to the current hist3d() to be redefined.</para>
                 </revdescription>
             </revision>
         </revhistory>

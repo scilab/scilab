@@ -202,7 +202,7 @@ Redefining permanent variable.
         <programlisting role="example"><![CDATA[
 clf reset
 subplot(1,3,1), plot2d(), a1 = gca();
-subplot(1,3,2), hist3d()
+subplot(1,3,2), bar3d()
 subplot(1,3,3), plot3d(), a3 = gca();
 save(TMPDIR+"/test.scg", "a3", "a1")
 clf reset

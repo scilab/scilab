@@ -264,7 +264,7 @@ gcf().axes_size = [700 300];
             subplot(1,2,1), param3d()
             subplot(1,2,2), plot2d4(), xtitle("plot2d4()"); a = gca();
             path = TMPDIR + "/test.dat";
-            save(path, "a");       // We save only the right axes (hist3d)
+            save(path, "a");       // We save only the right axes (bar3d)
             clf reset, clear a
             xload(path);           // The right axes is restored and rendered
             gcf().axes_size = [700 300];

@@ -1634,6 +1634,7 @@ Sfgrayplot
 Sgrayplot
 TitleLabel
 autumncolormap
+bar3d
 bar
 barh
 barhomogenize

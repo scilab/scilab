@@ -4,24 +4,24 @@
 //
 // This file is released under the 3-clause BSD license. See COPYING-BSD.
 
-function demo_hist3d()
+function demo_bar3d()
 
     my_handle             = scf(100001);
     clf(my_handle,"reset");
-    demo_viewCode("hist3d.dem.sce");
+    demo_viewCode("bar3d.dem.sce");
 
     // DEMO START
-    my_plot_desc          = "hist3d: Average monthly temperatures in french cities";
+    my_plot_desc = "bar3d: Average monthly temperatures in french cities";
     my_handle.figure_name = my_plot_desc;
 
-    hist3d();
+    bar3d();
     xtitle(my_plot_desc," "," "," ");
     // DEMO END
 
 endfunction
 
-demo_hist3d();
-clear demo_hist3d;
+demo_bar3d();
+clear demo_bar3d;
 
 
 

@@ -912,19 +912,19 @@ grand(12,"prm",(1:7)')
 // Showing the first and last layers.
 R = grand(10,10,10,"nor",0,1);
 subplot(1,2,1)
-hist3d(R(:,:,1));
+bar3d(R(:,:,1));
 xtitle("Layer 1");
 subplot(1,2,2)
-hist3d(R(:,:,10));
+bar3d(R(:,:,10));
 xtitle("Layer 10");
  ]]></programlisting>
         <scilab:image localized="true">
             R = grand(10,10,10,"nor",0,1);
             subplot(1,2,1)
-            hist3d(R(:,:,1));
+            bar3d(R(:,:,1));
             xtitle("Layer 1");
             subplot(1,2,2)
-            hist3d(R(:,:,10));
+            bar3d(R(:,:,10));
             xtitle("Layer 10");
         </scilab:image>
     </refsection>
