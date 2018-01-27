@@ -10,11 +10,12 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function s2=%r_i_lss(i,j,s1,s2)
+function s2 = %r_i_lss(i,j,s1,s2)
     //%r_i_lss(i,j,s1,s2) <=> s2(i,j)=s1
     //!
-    if type(i)==10|type(j)==10 then
-        error(21)
+    if type(i)==10 | type(j)==10 then
+        msg = _("%s: Invalid index.\n")
+        error(msprintf(msg, "%r_i_lss"))
     end
     [s1 s2]=sysconv(s1,s2)
     s2(i,j)=s1

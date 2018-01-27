@@ -20,13 +20,17 @@ function [frq,rep,splitf]=repfreq(sys,fmin,fmax,pas)
         args=["sys","fmin","fmax","pas"];
         ierr=execstr("[frq,rep,splitf]=%"+overloadname(sys)+"_repfreq("+strcat(args(1:rhs),",")+")","errcatch")
         if ierr<>0 then
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear dynamical system expected.\n"),"repfreq",1))
+            msg = gettext("%s: Wrong type for input argument #%d: Linear dynamical system expected.\n")
+            error(msprintf(msg, "repfreq", 1))
         end
         return
     end
     if typeof(sys)=="zpk" then sys=zpk2tf(sys);end
     dom=sys.dt
-    if dom==[]|dom==0 then error(96,1),end
+    if dom==[] | dom==0 then
+        msg = gettext("%s: Argument #%d: Undefined time domain.\n")
+        error(msprintf(msg, "repfreq", 1));
+    end
     if dom=="d" then dom=1;end
 
     select  rhs
@@ -51,7 +55,8 @@ function [frq,rep,splitf]=repfreq(sys,fmin,fmax,pas)
         pas=pas_def
     case 4 then ,
     else
-        error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "repfreq",1,4))
+        msg = gettext("%s: Wrong number of input arguments: %d to %d expected.\n")
+        error(msprintf(msg, "repfreq", 1, 4))
     end;
     splitf=1
     if rhs<>2 then
@@ -81,8 +86,8 @@ function [frq,rep,splitf]=repfreq(sys,fmin,fmax,pas)
                 frq= [exp(l10*((log(-fmax)/l10):pas:(log(-fmin)/l10))) -fmin];
                 frq=-frq($:-1:1);
             elseif fmin >= fmax then
-                error(msprintf(gettext("%s: Wrong value for input arguments #%d and #%d: %s < %s expected.\n"),..
-                "repfreq",2,3,"fmin","fmax"));
+                msg = gettext("%s: Wrong value for input arguments #%d and #%d: %s < %s expected.\n")
+                error(msprintf(msg, "repfreq", 2, 3, "fmin", "fmax"));
             else
                 fmin=max(eps,fmin);
                 frq=[exp(l10*((log(fmin)/l10):pas:(log(fmax)/l10))) fmax];
@@ -97,7 +102,10 @@ function [frq,rep,splitf]=repfreq(sys,fmin,fmax,pas)
     case "r" then
         [n,d]=sys(["num","den"]),
         [mn,nn]=size(n)
-        if nn<>1 then error(95,1),end
+        if nn<>1 then
+            msg = gettext("%s: Argument #%d: %s expected.\n")
+            error(msprintf(msg, "repfreq", 1, _("SISO system")))
+        end
         if dom=="c" then
             rep=freq(n,d,2*%pi*%i*frq),
         else
@@ -106,7 +114,10 @@ function [frq,rep,splitf]=repfreq(sys,fmin,fmax,pas)
     case "lss" then
         [a,b,c,d]=abcd(sys)
         [mn,nn]=size(d)
-        if nn<>1 then error(95,1),end
+        if nn<>1 then
+            msg = gettext("%s: Argument #%d: %s expected.\n")
+            error(msprintf(msg, "repfreq", 1, _("SISO system")))
+        end
 
         if dom=="c" then
             if a==[] then
@@ -121,7 +132,9 @@ function [frq,rep,splitf]=repfreq(sys,fmin,fmax,pas)
                 rep=freq(a,b,c,d,exp(2*%pi*%i*dom*frq))
             end
         end;
-    else error(97,1),
+    else
+        msg = gettext("%s: Argument #%d: A system in state space or transfer matrix form expected.\n")
+        error(msprintf(msg, "repfreq", 1))
     end;
     //representation
     if lhs==1 then frq=rep,end

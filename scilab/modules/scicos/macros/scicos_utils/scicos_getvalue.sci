@@ -80,10 +80,13 @@ function [%ok,%1,%2,%3,%4,%5,...
     // 12/02/07 -Alan- : fix (variable evaluation of %scicos_context)
     //
     // Copyright INRIA
-    [%lhs,%rhs]=argn(0)
+    [%lhs, %rhs]=argn(0)
 
     %nn=prod(size(%labels))
-    if %lhs<>%nn+2&%lhs<>%nn+1 then error(41),end
+    if %lhs <> %nn+2 & %lhs <> %nn+1 then
+        msg = _("%s: Wrong number of output arguments: %d to %d expected.\n")
+        error(msprintf(msg, "scicos_getvalue", %nn+1, %nn+2))
+    end
     if size(%typ)<>2*%nn then
         error("%typ : list(''type'',[sizes],...)")
     end
@@ -292,13 +295,16 @@ function [%ok,%1,%2,%3,%4,%5,...
             execstr("%"+string(%kk)+"=%vv")
         end
         if %nok>0 then
-            messagebox(msprintf(_("Answer given for %s \n has invalid dimension: \n waiting for dimension %s.\n"), %labels(%nok), %ssz), "modal");
+            msg = _("Answer given for %s \n has invalid dimension: \n waiting for dimension %s.\n")
+            messagebox(msprintf(msg, %labels(%nok), %ssz), "modal");
             %ini=%str
         elseif %nok<0 then
             if %ierr==0 then
-                messagebox(msprintf(_("Answer given for %s \n has incorrect type %s.\n"), %labels(-%nok), %typ(-2*%nok-1)), "modal");
+                msg = _("Answer given for %s \n has incorrect type %s.\n")
+                messagebox(msprintf(msg, %labels(-%nok), %typ(-2*%nok-1)), "modal");
             else
-                messagebox(msprintf(_("Answer given for %s \n is incorrect: %s.\n"), %labels(-%nok), lasterror()), "modal");
+                msg = _("Answer given for %s \n is incorrect: %s.\n")
+                messagebox(msprintf(msg, %labels(-%nok), lasterror()), "modal");
             end
             %ini=%str
         else

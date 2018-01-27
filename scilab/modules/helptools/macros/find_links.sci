@@ -26,7 +26,10 @@ function flag = find_links(filein,fileout)
 
     flag=%f;
 
-    if rhs<>2 then error(39), end
+    if rhs<>2 then
+        msg = _("%s: Wrong number of input arguments: %d expected.\n")
+        error(msprintf(msg, "find_links", 2))
+    end
 
     sep=filesep();
 

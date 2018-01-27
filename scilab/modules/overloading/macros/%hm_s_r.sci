@@ -9,7 +9,8 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-function f=%hm_s_r(m,f)
+
+function f = %hm_s_r(m,f)
     //f=  m-f
     //author Serge Steer INRIA
     //!
@@ -17,7 +18,7 @@ function f=%hm_s_r(m,f)
     szf=size(den)
     szm=size(m)
 
-    if and(szf>=0)&and(szm>=0) then
+    if and(szf>=0) & and(szm>=0) then
         num=num(:);den=den(:);m=m(:)
         if prod(szf)==1&prod(szm)>1 then
             den=den(ones(m))
@@ -27,7 +28,8 @@ function f=%hm_s_r(m,f)
         den=matrix(den,szf)
         f=rlist(num,den,f.dt)
     else
-        error(9)
+        msg = "%s: Eye variable undefined in this context.\n"
+        error(msprintf(msg, "%hm_s_r"));
     end
 
 endfunction

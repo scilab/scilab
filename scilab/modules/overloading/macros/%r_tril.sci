@@ -10,14 +10,24 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function d=%r_tril(a,k)
+function d = %r_tril(a,k)
     if argn(2)<2 then
-        k=0,
+        k=0
     else
-        if type(k)<>1 then error(53,2);end
-        if size(k,"*")<>1 then error(89,2);end
-        if ~isreal(k) then error(52,2);end
+        fname = "%r_tril";
+        if type(k)<>1 then
+            msg = _("%s: Argument #%d: Decimal number(s) expected.\n")
+            error(msprintf(msg, fname, 2))
+        end
+        if size(k,"*")<>1 then
+            msg = _("%s: Argument #%d: Scalar (1 element) expected.\n")
+            error(msprintf(msg, fname, 2))
+        end
+        if ~isreal(k) then
+            msg = _("%s: Argument #%d: Decimal number(s) expected.\n")
+            error(msprintf(msg, fname, 2))
+        end
     end
 
-    d=rlist(tril(a.num,k),tril(a.den,k)+triu(ones(a.den),k+1),a.dt)
+    d = rlist(tril(a.num,k),tril(a.den,k)+triu(ones(a.den),k+1),a.dt)
 endfunction

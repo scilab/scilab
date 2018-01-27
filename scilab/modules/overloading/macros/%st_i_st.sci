@@ -47,7 +47,9 @@ function M=%st_i_st(varargin)
         end
         //convert N-dimensional indexes to 1-D and extend dims if necessary
         [Ndims,I]=convertindex(list(dims,double(matrix(N.dims,1,-1))),varargin(1:$-2));Ndims=matrix(Ndims,1,-1)
-        if reduced_index&or(Ndims<>dims)  then error(21),end
+        if reduced_index & or(Ndims<>dims)  then
+            error(msprintf(_("%s: Invalid index.\n"), "%st_i_ste"))
+        end
         if or(Ndims>dims) then
             //extend the destination matrix
             I1=0

@@ -10,7 +10,7 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function M=generic_i_hm(default_value,varargin)
+function M = generic_i_hm(default_value,varargin)
 
 
     //insertion of a matrix in an hypermatrix
@@ -50,10 +50,12 @@ function M=generic_i_hm(default_value,varargin)
             if or(size(dk)<>-1) then
                 dk=gsort(dk);
                 if or(dk<>(dims(k):-1:1)) then
-                    msg_index = _("Invalid index.\n");
-                    if dk(1)<1|dk($)>dims(k) then error(msg_index),end
+                    if dk(1)<1|dk($)>dims(k) then
+                        error(msprintf(_("%s: Invalid index.\n"), "generic_i_hm"))
+                    end
                     if ok<>[] then
-                        error(msprintf(_("%s: A null assignment can have only one non-colon index.\n"),"generic_i_hm"));
+                        msg = _("%s: A null assignment can have only one non-colon index.\n")
+                        error(msprintf(msg, "generic_i_hm"));
                     end
                     ok=k
                     I1=1:dims(k);I1(dk)=[]
@@ -76,13 +78,11 @@ function M=generic_i_hm(default_value,varargin)
         return
     end
 
-
     //convert N-dimensional indexes to 1-D and extend dims if necessary
     [Ndims,I]=convertindex(list(dims,size(N)),varargin(1:$-2));
     Ndims=matrix(Ndims,-1,1)
 
-
-    //if reduced_index&or(Ndims<>dims)  then error(21),end
+    //if reduced_index & or(Ndims<>dims), error(msprintf(_("%s: Invalid index.\n"), "generic_i_hm")), end
     if or(Ndims>dims) then
         //extend the destination matrix
         I1=0

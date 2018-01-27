@@ -26,13 +26,22 @@ function [WINID] = GEDeditvar(varargin)
 
     [%_nams]=who("get");
     %_loc_type=type(varargin(1))
-    if (%_loc_type~=10) then error(42), end
+    if (%_loc_type~=10) then
+        msg = _("%s: Argument #%d: Text(s) expected.\n")
+        error(msprintf(msg, "GEDeditvar", 1))
+    end
     %_in_list=find(%_nams==varargin(1));
-    if (%_in_list==[]) then error(42), end
+    if (%_in_list==[]) then
+        msg = _("%s: Argument #%d: Variable undefined.\n")
+        error(msprintf(msg, "GEDeditvar", 1))
+    end
     execstr("%_loc_var="+varargin(1));
     %_loc_type=type(%_loc_var);
     %_allo=find([1;4;10]==%_loc_type);
-    if (%_allo==[]) then error(42), end
+    if (%_allo==[]) then
+        msg = _("%s: Argument #%d: Name of a variable of type 1, 4 or 10 expected.\n")
+        error(msprintf(msg, "GEDeditvar", 1))
+    end
 
     //disp("Please wait...");
     %_loc_nam=varargin(1);

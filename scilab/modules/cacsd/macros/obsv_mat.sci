@@ -10,26 +10,39 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function o=obsv_mat(a,c)
+function o = obsv_mat(a, c)
 
     [lhs,rhs]=argn(0)
     select typeof(a)
     case "constant"  then
         if rhs==1 then
-            error(msprintf(gettext("%s: Wrong number of input arguments: %d expected"),"obsv_mat",2)),
+            msg = _("%s: Wrong number of input arguments: %d expected")
+            error(msprintf(msg, "obsv_mat", 2))
         end
-        [m,n]=size(a)
-        if m<>n then error(20,1),end
-        [mb,nb]=size(c);if nb<>n then error(60),end
+        [m,n] = size(a)
+        if m<>n then
+           msg = _("%s: Argument #%d: Square matrix expected.\n")
+            error(msprintf(msg, "obsv_mat", 1))
+        end
+        [mb, nb] = size(c);
+        if nb<>n then
+            msg = _("%s: Arguments #%d and #%d: Same numbers of columns expected.\n")
+            error(msprintf(msg, "obsv_mat", 1, 2))
+        end
     case "state-space" then
         [a,c]=a([2,4])
         [n,n]=size(a)
     else
         if rhs==1 then
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear dynamical system expected.\n"),"obsv_mat",1))
+            msg = _("%s: Wrong type for input argument #%d: Linear dynamical system expected.\n")
+            error(msprintf(msg,"obsv_mat",1))
         else
-            error(msprintf(gettext("%s: Wrong type of input argument #%d: Array of floating point numbers expected.\n"),"obsv_mat",1))
+            msg = _("%s: Wrong type of input argument #%d: Array of floating point numbers expected.\n")
+            error(msprintf(msg, "obsv_mat", 1))
         end
     end;
-    o=c;for k=1:n-1, o=[c;o*a],end
+    o = c;
+    for k = 1:n-1
+        o = [c ; o*a]
+    end
 endfunction

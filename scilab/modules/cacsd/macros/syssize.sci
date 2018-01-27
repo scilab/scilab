@@ -10,7 +10,7 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function [io,s]=syssize(sys)
+function [io,s] = syssize(sys)
     //Old stuff
     //  io=syssize(sys)
     //  [io,ns]=syssize(sys)
@@ -36,9 +36,11 @@ function [io,s]=syssize(sys)
             [lhs,rhs]=argn(0);
             if lhs==2 then  sys=tf2ss(sys);[s,s]=size(sys("A")),end
         else
-            error(97,1)
+            msg = _("%s: Argument #%d: A system in state space or transfer matrix form expected.\n")
+            error(msprintf(msg, "syssize", 1))
         end
     else
-        error(97,1),
+        msg = _("%s: Argument #%d: A system in state space or transfer matrix form expected.\n")
+        error(msprintf(msg, "syssize", 1))
     end
 endfunction

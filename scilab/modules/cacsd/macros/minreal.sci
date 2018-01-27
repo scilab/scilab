@@ -17,7 +17,8 @@ function [a,b,c]=minreal(a,b,c,domaine,tol)
     select typeof(a)
     case "state-space" then
         if lhs<>1 then
-            error(msprintf(gettext("%s: Wrong number of output arguments: %d expected.\n"),"minreal",1)),
+            msg = gettext("%s: Wrong number of output arguments: %d expected.\n")
+            error(msprintf(msg, "minreal", 1))
         end;
         select rhs
         case 1 then
@@ -26,11 +27,13 @@ function [a,b,c]=minreal(a,b,c,domaine,tol)
             istol = %t,
             tol = b,
         else
-            error(msprintf(gettext("%s: Wrong number of input arguments: %d or %d expected.\n"),"minreal",1,2)),
-        end;
-        [a,b,c,d,x0,dom] = a(2:7);
+            msg = gettext("%s: Wrong number of input arguments: %d or %d expected.\n");
+            error(msprintf(msg, "minreal", 1, 2))
+        end
+        [a,b,c,d,x0,dom] = a(2:7)
         if dom == [] then
-            error(96,1);
+            msg = gettext("%s: Argument #%d: Undefined time domain.\n");
+            error(msprintf(msg, "minreal", 1));
         end
         domaine="c";
         if dom<>"c" then
@@ -38,16 +41,19 @@ function [a,b,c]=minreal(a,b,c,domaine,tol)
         end
     case "constant" then
         if lhs<>3 then
-            error(msprintf(gettext("%s: Wrong number of output arguments: %d expected.\n"),"minreal",3)),
-        end;
+            msg = gettext("%s: Wrong number of output arguments: %d expected.\n");
+            error(msprintf(msg, "minreal", 3))
+        end
         select rhs
         case 4 then istol = %f
         case 5 then istol = %t,
         else
-            error(msprintf(gettext("%s: Wrong number of input arguments: %d or %d expected.\n"),"minreal",4,5));
-        end;
+            msg = gettext("%s: Wrong number of input arguments: %d or %d expected.\n");
+            error(msprintf(msg, "minreal", 4, 5))
+        end
     else
-        error(91,1);
+        msg = gettext("%s: Argument #%d: Linear state space expected.\n");
+        error(msprintf(msg, "minreal", 1))
     end;
     //
     wc = lyap(a', -b*b', domaine);

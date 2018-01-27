@@ -19,7 +19,8 @@ function r=%i_j_s(a,n)
             r=iconvert(double(a).^n,inttype(a))
         else
             if size(n,"*")<>1 then
-                error(43)
+                msg = _("%s: Non implemented feature.\n")
+                error(msprintf(msg, "%i_j_s"))
             else
                 r=a
                 for i=2:n,r=r.*a,end

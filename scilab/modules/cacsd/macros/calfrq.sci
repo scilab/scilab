@@ -26,7 +26,8 @@ function [frq, bnds, splitf] = calfrq(h, fmin, fmax)
         args=["h", "fmin", "fmax"]
         ierr=execstr("%"+overloadname(h)+"_calfrq("+strcat(args(1:rhs),",")+")","errcatch")
         if ierr<>0 then
-            error(msprintf(_("%s: Wrong type for input argument #%d: Linear dynamical system or row vector of floats expected.\n"),"calfrq",1))
+            msg = _("%s: Wrong type for input argument #%d: Linear dynamical system or row vector of floats expected.\n")
+            error(msprintf(msg, "calfrq", 1))
         end
         return
     end
@@ -44,19 +45,23 @@ function [frq, bnds, splitf] = calfrq(h, fmin, fmax)
     case "d" then
         dom = 1
     case [] then
-        error(96, 1)
+        msg = _("%s: Argument #%d: Undefined time domain.\n");
+        error(msprintf(msg, "calfrq", 1));
     case 0 then
-        error(96, 1)
+        msg = _("%s: Argument #%d: Undefined time domain.\n");
+        error(msprintf(msg, "calfrq", 1));
     end;
 
     if type(dom) == 1 then
         nyq_frq = 1/2/dom;
         if fmax > nyq_frq then
-            warning(msprintf(gettext("%s: Frequencies beyond Nyquist frequency are ignored.\n"), "calfrq"));
+            msg = _("%s: Frequencies beyond Nyquist frequency are ignored.\n")
+            warning(msprintf(msg, "calfrq"));
             fmax = min(fmax, nyq_frq)
         end
         if fmin < -nyq_frq then
-            warning(msprintf(gettext("%s: Negative frequencies below Nyquist frequency are ignored.\n"), "calfrq"));
+            msg = _("%s: Negative frequencies below Nyquist frequency are ignored.\n")
+            warning(msprintf(msg, "calfrq"));
             fmin = max(fmin, -nyq_frq)
         end
     end
@@ -99,8 +104,8 @@ function [frq, bnds, splitf] = calfrq(h, fmin, fmax)
         bnds = [bnds(1), bnds(2), -bnds(4), -bnds(3)];
         return;
     elseif fmin >= fmax then
-        error(msprintf(gettext("%s: Wrong value for input arguments #%d and #%d: %s < %s expected.\n"),..
-        "calfrq", 2, 3, "fmin", "fmax"));
+        msg = _("%s: Wrong value for input arguments #%d and #%d: %s < %s expected.\n");
+        error(msprintf(msg, "calfrq", 2, 3, "fmin", "fmax"));
     end
 
     // Compute dicretisation over a given range

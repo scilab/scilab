@@ -15,7 +15,9 @@ function s1=%r_l_r(s1,s2)
     //!
     [s1,s2]=sysconv(s1,s2)
     [n,m]=size(s1("den"))
-    if n<>m then error(43),end
+    if n<>m then
+       error(msprintf(_("%s: Non implemented feature.\n"), "%r_l_r"))
+    end
     if m*n==1 then
         s1=%r_m_r(rlist(s1("den"),s1("num"),s1("dt")),s2)
     else

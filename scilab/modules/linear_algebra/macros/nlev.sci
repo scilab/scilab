@@ -23,7 +23,8 @@ function[m,den]=nlev(a,z,rmax)
 
     rhs=argn(2);
     if rhs < 2 then
-        error(msprintf(gettext("%s: Wrong number of input arguments: %d or %d expected.\n"),"nlev",2,3));
+        msg = gettext("%s: Wrong number of input arguments: %d or %d expected.\n")
+        error(msprintf(msg, "nlev", 2, 3));
     end
 
     z=poly(0,z);
@@ -36,7 +37,8 @@ function[m,den]=nlev(a,z,rmax)
 
     [m1 n1]=size(a)
     if m1<>n1 then
-        error(20,1);
+        msg = _("%s: Argument #%d: Square matrix expected.\n")
+        error(msprintf(msg, "nlev", 1))
     end
     k=1;
     m=[];

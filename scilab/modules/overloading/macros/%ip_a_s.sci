@@ -10,8 +10,11 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function r=%ip_a_s(ip,s)
+function r = %ip_a_s(ip,s)
     // ip+s
-    if size(s,"*")<>1 then error(10),end
-    r=(ip(1)+s):(ip(2)+s):(ip(3)+s)
+    if size(s,"*")<>1 then
+        msg = _("%s: Argument #%d: Scalar (1 element) expected.\n")
+        error(msprintf(msg, "%ip_a_s", 2))
+    end
+    r = (ip(1)+s):(ip(2)+s):(ip(3)+s)
 endfunction

@@ -94,7 +94,10 @@ function [%ok,%1,%2,%3,%4,%5,...
     [%lhs,%rhs]=argn(0)
 
     %nn=prod(size(%labels))
-    if %lhs<>%nn+2&%lhs<>%nn+1 then error(41),end
+    if %lhs <> %nn+2 & %lhs <> %nn+1 then
+        msg = _("%s: Wrong number of output arguments: %d to %d expected.\n")
+        error(msprintf(msg, "setvalue", %nn+1, %nn+2))
+     end
     if size(%typ)<>2*%nn then
         error("typ : list(''type'',[sizes],...)")
     end

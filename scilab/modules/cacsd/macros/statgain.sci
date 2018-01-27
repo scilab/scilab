@@ -10,7 +10,7 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function st=statgain(sl)
+function st = statgain(sl)
 
     select typeof(sl)
     case "rational" then
@@ -25,17 +25,20 @@ function st=statgain(sl)
         [m,p]=size(sl(2));
         if dom=="c" then
             if rank(sl(2)) <> m then
-                error(msprintf(gettext("%s: Wrong values for input argument #%d: State matrix is singular.\n"),"statgain",1)),
+                msg = gettext("%s: Wrong values for input argument #%d: State matrix is singular.\n");
+                error(msprintf(msg, "statgain", 1));
             end
             st=sl(5)-sl(4)*inv(sl(2))*sl(3);
         else
             if rank(eye(m,m)-sl(2))<>m then
-                error(msprintf(gettext("%s: Wrong values for input argument #%d: State matrix - eye is singular.\n"),"statgain",1))
+                msg = gettext("%s: Wrong values for input argument #%d: State matrix - eye is singular.\n");
+                error(msprintf(msg, "statgain", 1));
             end
-            st=sl(5)+sl(4)*inv(eye(m,m)-sl(2))*sl(3);
-        end;
+            st = sl(5) + sl(4)*inv(eye(m,m) - sl(2))*sl(3);
+        end
     else
-        error(97,1)
+        msg = gettext("%s: Argument #%d: A system in state space or transfer matrix form expected.\n")
+        error(msprintf(msg, "statgain", 1));
     end
 
 endfunction

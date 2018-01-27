@@ -9,6 +9,7 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
+
 function f=%b_e(varargin)
     //A(i,j,k,..)
 
@@ -21,7 +22,10 @@ function f=%b_e(varargin)
         ind=varargin(k)
         if type(ind)==2|type(ind)==129 then ind=horner(ind,1),end
         if type(ind)==4 then ind=find(ind),end
-        if or(ind<>1) then error(21),end
+        if or(ind<>1) then
+            msg = _("%s: Invalid index.\n")
+            error(msprintf(msg, "%b_e"))
+        end
         n=size(ind,"*")
         dims=[dims,n]
     end

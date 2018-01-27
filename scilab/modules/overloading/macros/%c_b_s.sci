@@ -10,12 +10,13 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function r=%c_b_s(varargin)
+function r = %c_b_s(varargin)
     if size(varargin)==3 then
         if type(varargin(1))==10 & type(varargin(2))==1 & type(varargin(3))==10 then
             r=asciimat(asciimat(varargin(1)):varargin(2):asciimat(varargin(3)))
         end
     else
-        error(43)
+        msg = _("%s: Non implemented feature.\n");
+        error(msprintf(msg, "char:num"));
     end
 endfunction

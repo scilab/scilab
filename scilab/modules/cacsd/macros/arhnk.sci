@@ -13,9 +13,18 @@
 function [slm]=arhnk(a,ordre,tol)
 
     [lhs,rhs]=argn(0),
-    if lhs<>1 then error(41),end
-    if typeof(a)<>"state-space" then error(91,1),end;
-    if a.dt<>"c" then error(93,1),end
+    if lhs<>1 then
+        msg = _("%s: Wrong number of output arguments: %d to %d expected.\n");
+        error(msprintf(msg, "arhnk", 0, 1));
+    end
+    if typeof(a)<>"state-space" then
+        msg = _("%s: Argument #%d: Linear state space expected.\n");
+        error(msprintf(msg, "arhnk", 1));
+    end;
+    if a.dt<>"c" then
+        msg = _("%s: Wrong type for input argument #%d: In continuous time expected.\n");
+        error(msprintf(msg, "arhnk",1));
+    end
     select rhs
     case 2 then istol=0;
     case 3 then istol=1;
@@ -23,7 +32,8 @@ function [slm]=arhnk(a,ordre,tol)
 
     [a,b,c,d,x0,dom]=a(2:7);
     if(max(real(spec(a)))) > 0 then
-        error(msprintf(_("%s: Wrong values for input argument #%d: Stable system expected.\n"),"arhnk",1));
+        msg = _("%s: Wrong values for input argument #%d: Stable system expected.\n");
+        error(msprintf(msg, "arhnk", 1));
     end
     domaine="c"
     wc=lyap(a',-b*b',domaine)

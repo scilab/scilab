@@ -15,10 +15,14 @@ function s2=%s_i_lss(i,j,s1,s2)
     //!
     if type(i)==10 then  // sl('A'),sl('B'),sl('C'),sl('D'),sl('X'),sl('dt')
         [lhs,rhs]=argn(0)
-        if rhs<>3 then  error(21),end
+        if rhs<>3 then
+            error(msprintf(_("%s: Invalid index.\n"), "%s_i_lss"))
+        end
         nams=["A","B","C","D","X","dt"]
         kf=find(convstr(i,"u")==nams)
-        if kf==[] then error(21),end
+        if kf==[] then
+            error(msprintf(_("%s: Invalid index.\n"), "%s_i_lss"))
+        end
         s2=s1;kf=kf+1
         if size(s2(kf))<>size(j) then
             if kf<>7|prod(size(j))>1 then

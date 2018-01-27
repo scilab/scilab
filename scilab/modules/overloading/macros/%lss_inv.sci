@@ -46,7 +46,7 @@ function x=%lss_inv(a)
             if min(svd(stmp(5))) > 1.d-6 then
                 x=invsyslin(stmp)*ws
             else
-                error(19)
+                error(msprintf(_("%s: The problem is singular.\n"), "%lss_inv"));
             end
         end
     elseif m>n then
@@ -58,7 +58,7 @@ function x=%lss_inv(a)
             if min(svd(stmp(5))) > 1.d-6 then
                 x=invsyslin(stmp)*ws
             else
-                error(19)
+                error(msprintf(_("%s: The problem is singular.\n"), "%lss_inv"));
             end
         end
     end

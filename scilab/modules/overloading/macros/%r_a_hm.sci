@@ -10,25 +10,28 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function f=%r_a_hm(f,m)
+function f = %r_a_hm(f,m)
     //f = f+m,
     //f: transfer matrix, m : hypermatrix
     //author Serge Steer INRIA
     //!
     [num,den]=f(["num","den"])
-    szf=size(den)
-    szm=size(m)
+    szf = size(den)
+    szm = size(m)
 
-    if and(szf>=0)&and(szm>=0) then
-        num=num(:);den=den(:);m=m(:)
-        if prod(szf)==1&prod(szm)>1 then
-            den=den(ones(m))
+    if and(szf>=0) & and(szm>=0) then
+        num = num(:);
+        den = den(:);
+        m = m(:)
+        if prod(szf)==1 & prod(szm)>1 then
+            den = den(ones(m))
         end
         [num,den]=simp(num+m.*den,den)
         num=matrix(num,szf)
         den=matrix(den,szf)
         f=rlist(num,den,f.dt)
     else
-        error(8)
+        msg = _("%s: Implicit size not supported.\n")
+        error(msprintf(msg, "%r_a_hm"))
     end
 endfunction

@@ -10,16 +10,20 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function M=%s_i_c(varargin)
+function M = %s_i_c(varargin)
     //insertion of a matrix of numbers in a matrix of of string
 
 
     rhs=argn(2)
+    msg = _("%s: Non implemented feature.\n")
+
     if rhs<=4 then //type conversion
-        error(43)
+        error(msprintf(msg, "%s_i_c"))
     else //hypermatrix syntax
-        if varargin($-1)<>[] then error(43),end
-        M=generic_i_hm("",varargin(:))
+        if varargin($-1)<>[] then
+            error(msprintf(msg, "%s_i_c"))
+        end
+        M = generic_i_hm("",varargin(:))
     end
 endfunction
 

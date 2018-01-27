@@ -33,7 +33,8 @@ function out=%s_i_st(varargin)
             for k=Ndims+1:nindex
                 i=varargin(k)
                 if size(i,"*")>1|(i<>1&i<>eye()) then
-                    error(msprintf(_("%s: A null assignment can have only one non-colon index.\n"),"%s_i_st"));
+                    msg = _("%s: A null assignment can have only one non-colon index.\n")
+                    error(msprintf(msg, "%s_i_st"));
                 end
             end
             nindex=Ndims
@@ -56,7 +57,8 @@ function out=%s_i_st(varargin)
                 ind=floor(ind);
                 //check if index is valid
                 if ~isreal(ind)|or(ind<=0) then
-                    error(21)
+                    msg = _("%s: Invalid index\n");
+                    error(msprintf(msg, "%s_i_st"))
                 end
                 //remove indices that exceed the associated struct dimension
                 ind(ind>dims(k))=[];
@@ -66,7 +68,8 @@ function out=%s_i_st(varargin)
                     cj=ind
                     loc=k,
                 else
-                    error(msprintf(_("%s: A null assignment can have only one non-colon index.\n"),"%s_i_st"));
+                    msg = _("%s: A null assignment can have only one non-colon index.\n")
+                    error(msprintf(msg, "%s_i_st"));
                 end
             end
         end

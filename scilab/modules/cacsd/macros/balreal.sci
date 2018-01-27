@@ -15,9 +15,15 @@ function [slb,u]=balreal(a)
 
     [lhs,rhs]=argn(0)
 
-    if typeof(a)<>"state-space" then error(91,1),end
+    if typeof(a)<>"state-space" then
+        msg = _("%s: Argument #%d: Linear state space expected.\n");
+        error(msprintf(msg, "balreal", 1));
+    end
     [a,b,c,d,x0,dom]=a(2:7);
-    if dom==[] then error(96,1),end
+    if dom==[] then
+        msg = _("%s: Argument #%d: Undefined time domain.\n");
+        error(msprintf(msg, "balreal", 1));
+    end
     domain="c";
     if dom<>"c" then domain="d",end
     wc=lyap(a',-b*b',domain)

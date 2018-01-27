@@ -16,7 +16,9 @@ function s2=%p_i_lss(i,j,s1,s2)
 
     if type(i)==10 then  // sl('D')
         [lhs,rhs]=argn(0)
-        if rhs<>3 then  error(21),end
+        if rhs<>3 then
+            error(msprintf(_("%s: Invalid index.\n"), "%p_i_lss"))
+        end
         if i<>"D" then
             error(msprintf(_("%s: Wrong type for input argument #%d.\n"),"%p_i_lss",1));
         end

@@ -13,16 +13,21 @@
 function f=%p_p_s(p,s)
     // %p_p_s(p,s)  computes p^s for p polynomial matrix in special cases
     //!
+    fname = "%p_p_s"
 
     if s==[] then f=[],return,end
-    if  or(imag(s)<>0)|or(int(s)<>s) then  error(msprintf(_("%s: Wrong type for input argument #%d: An integer matrix expected.\n"),"%p_p_s",2)),end
+    if  or(imag(s)<>0)|or(int(s)<>s) then
+        msg = _("%s: Wrong type for input argument #%d: An integer matrix expected.\n")
+        error(msprintf(msg, fname, 2))
+    end
     [m,n]=size(p)
     [ms,ns]=size(s)
     if ms==1&ns==1 then
         if m==1|n==1 then //Element wise exponentiation p.^s with p vector
             if s<0 then
                 if or(abs(coeff(p(:)))*ones(max(degree(p))+1,1)==0) then
-                    error(27)
+                    msg = _("%s: Division by zero...")
+                    error(msprintf(msg, fname))
                 end
                 f = rlist(ones(p),p.^(-s),[])
             else // this case is in fact hard coded
@@ -38,10 +43,14 @@ function f=%p_p_s(p,s)
                 for k=2:s,f=f*p;end
             end
         else
-            error(20,1)
+            msg = _("%s: Argument #%d: Square matrix expected.\n")
+            error(msprintf(msg, fname, 1))
         end
     elseif ms==1|ns==1 then // Element wise exponentiation f.^s with f "scalar"
-        if m<>1|n<>1 then error(43),end
+        if m<>1 | n<>1 then
+            msg = _("%s: Non implemented feature.\n")
+            error(msprintf(msg, fname))
+        end
 
         kp=find(s>=0)
         kn=find(s<0)
@@ -49,13 +58,14 @@ function f=%p_p_s(p,s)
         den=ones(s)
         num(kp)=p.^s(kp)
         if abs(coeff(p))*ones(degree(p)+1,1)==0 then
-            error(27)
+            msg = _("%s: Division by zero...")
+            error(msprintf(msg, fname))
         end
         den(kn)=p.^(-s(kn))
         f = rlist(num,den,[])
     else
-        error(43)
+        msg = _("%s: Non implemented feature.\n")
+        error(msprintf(msg, fname))
     end
-
 
 endfunction

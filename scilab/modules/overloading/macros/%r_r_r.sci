@@ -10,13 +10,16 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function s1=%r_r_r(s1,s2)
+function s1 = %r_r_r(s1,s2)
     // %r_r_r(s1,s2) <=> s1/s2    for rationals
     //!
 
     [s1,s2]=sysconv(s1,s2),
     [n,m]=size(s2("num"))
-    if n<>m then error(43),end
+    if n<>m then
+        msg = _("%s: Non implemented feature.\n")
+        error(msprintf(msg, "%r_r_r"))
+    end
     if n*m==1 then
         s1=%r_m_r(s1,rlist(s2("den"),s2("num"),s2("dt")) ),
     else
