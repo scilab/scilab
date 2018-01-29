@@ -461,6 +461,7 @@ Known issues
 * [#15089](http://bugzilla.scilab.org/show_bug.cgi?id=15089): The `getcolor` GUI cleared and used the current figure.
 * [#15106](http://bugzilla.scilab.org/show_bug.cgi?id=15106): Operation without operand crashed Scilab.
 * [#15107](http://bugzilla.scilab.org/show_bug.cgi?id=15107): Scilab failed to build with ocaml 4.04.0.
+* [#15111](http://bugzilla.scilab.org/show_bug.cgi?id=15111): Summation block symbol displayed minus sign instead of plus sign.
 * [#15117](http://bugzilla.scilab.org/show_bug.cgi?id=15117): Imbricated calls to `optim` / `leastsq` / `lsqrsolve` / `fsolve` either crashed or returned errors.
 * [#15119](http://bugzilla.scilab.org/show_bug.cgi?id=15119): Inequality comparisons between complex-encoded real numbers failed.
 * [#15121](http://bugzilla.scilab.org/show_bug.cgi?id=15121): `getOptionals` fails to recognize some options.

@@ -27,6 +27,7 @@ import org.scilab.modules.xcos.JavaController;
 import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.ObjectProperties;
 import org.scilab.modules.xcos.VectorOfDouble;
+import org.scilab.modules.xcos.VectorOfInt;
 
 /**
  * Change the port label on rpar change.
@@ -77,25 +78,48 @@ public class SumPortLabeler {
          * Set the ports labels
          */
         JavaController controller = new JavaController();
-        VectorOfDouble rpar = new VectorOfDouble();
-        controller.getObjectProperty(source.getUID(), Kind.BLOCK, ObjectProperties.RPAR, rpar);
+        String[] simulationFunction = {""};
+        controller.getObjectProperty(source.getUID(), Kind.BLOCK, ObjectProperties.SIM_FUNCTION_NAME, simulationFunction);
+        if ("sum".equals(simulationFunction[0])) { // BIGSOM_f case
+            VectorOfDouble rpar = new VectorOfDouble();
+            controller.getObjectProperty(source.getUID(), Kind.BLOCK, ObjectProperties.RPAR, rpar);
 
-        for (int i = 0; i < ports.size(); i++) {
-            final double gain;
+            for (int i = 0; i < ports.size(); i++) {
+                final double gain;
 
-            if (i < rpar.size()) {
-                gain = rpar.get(i);
-            } else {
-                gain = 1;
+                if (i < rpar.size()) {
+                    gain = rpar.get(i);
+                } else {
+                    gain = 1;
+                }
+
+                ports.get(i).setValue(getLabel(gain));
             }
+        } else { // SUMMATION case
+            VectorOfInt ipar = new VectorOfInt();
+            controller.getObjectProperty(source.getUID(), Kind.BLOCK, ObjectProperties.IPAR, ipar);
 
-            ports.get(i).setValue(getLabel(gain));
+            for (int i = 0; i < ports.size(); i++) {
+                final double gain;
+
+                if (i < ipar.size()) {
+                    gain = ipar.get(i);
+                } else {
+                    gain = 1;
+                }
+
+                ports.get(i).setValue(getLabel(gain));
+            }
         }
+
+
 
         /**
          * Check if all the values are equal to the default one.
          */
         if (!hasDefaultValue(ports)) {
+
+
             return;
         }
 
