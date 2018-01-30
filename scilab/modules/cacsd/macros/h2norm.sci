@@ -24,10 +24,12 @@ function [nh]=h2norm(g,tol)
 
     if type(g)==1,if norm(g)==0,nh=0,return,end,end,
     if and(typeof(g)<>["rational","state-space"]) then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear state space or a transfer function expected.\n"),"h2norm",1))
+        msg = gettext("%s: Wrong type for input argument #%d: Linear state space or a transfer function expected.\n")
+        error(msprintf(msg, "h2norm", 1))
     end
-    if g.dt<>"c" then
-        error(msprintf(gettext("%s: Wrong type for argument #%d: In continuous time expected.\n"),"h2norm",1))
+    if g.dt<>"c" & g.dt<>[] then
+        msg = gettext("%s: Wrong type for argument #%d: In continuous or undefined time domain expected.\n")
+        error(msprintf(msg,"h2norm",1))
     end
 
     [lhs,rhs]=argn(0),
@@ -35,43 +37,51 @@ function [nh]=h2norm(g,tol)
         tol=1000*%eps,
     else
         if type(tol)<>1|size(tol,"*")<>1 then
-            error(msprintf(gettext("%s: Wrong type for input argument: Scalar expected.\n"),"h2norm",2))
+            msg = gettext("%s: Wrong type for input argument: Scalar expected.\n")
+            error(msprintf(msg, "h2norm", 2))
         end
         if ~isreal(tol)|tol<=0 then
-            error(msprintf(gettext( "%s: Input argument #%d must be strictly positive.\n"),"h2norm",2))
+            msg = gettext( "%s: Input argument #%d must be strictly positive.\n")
+            error(msprintf(msg, "h2norm", 2))
         end
     end;
     select typeof(g)
     case "state-space" then
         if norm(g.D)>0 then
-            error(msprintf(gettext("%s: Wrong value for input argument #%d: Proper system expected.\n"),"h2norm",1)),
+            msg = gettext("%s: Wrong value for input argument #%d: Proper system expected.\n")
+            error(msprintf(msg, "h2norm", 1)),
         end;
-        sp=spec(g.A),
+        sp = spec(g.A),
         if max(real(sp))>=-tol then
-            error(msprintf(gettext("%s: Wrong value for input argument #%d: Stable system expected.\n"),"h2norm",1)),
+            msg = gettext("%s: Wrong value for input argument #%d: Stable system expected.\n")
+            error(msprintf(msg, "h2norm", 1)),
         end,
         w=obs_gram(g.A,g.C,"c"),
         nh=abs(sqrt(sum(diag(g.B'*w*g.B)))),return,
     case "rational" then
-        num=g.num;
-        den=g.den;
-        s=poly(0,varn(den)),
-        [t1,t2]=size(num),
-        for i=1:t1,
-            for j=1:t2,
-                n=num(i,j),d=den(i,j),
+        num = g.num;
+        den = g.den;
+        s = poly(0,varn(den))
+        [t1,t2] = size(num)
+        for i = 1:t1,
+            for j = 1:t2,
+                n = num(i,j)
+                d = den(i,j),
                 if coeff(n)==0 then
-                    nh(i,j)=0,
+                    nh(i,j) = 0
                 else
-                    if degree(n)>=degree(d) then
-                        error(msprintf(gettext("%s: Wrong value for input argument #%d: Proper system expected.\n"),"h2norm",1)),
+                    if degree(n) >= degree(d) then
+                        msg = gettext("%s: Wrong value for input argument #%d: Proper system expected.\n")
+                        error(msprintf(msg, "h2norm", 1)),
                     end
-                    pol=roots(d),
+                    pol = roots(d),
                     if max(real(pol))>-tol then
-                        error(msprintf(gettext("%s: Wrong value for input argument #%d: Stable system expected.\n"),"h2norm",1)),
+                        msg = gettext("%s: Wrong value for input argument #%d: Stable system expected.\n")
+                        error(msprintf(msg, "h2norm", 1))
                     end,
-                    nt=horner(n,-s),dt=horner(d,-s),
-                    nh(i,j)=residu(n*nt,d,dt),
+                    nt = horner(n,-s)
+                    dt = horner(d,-s)
+                    nh(i,j) = residu(n*nt,d,dt)
                 end,
             end
         end

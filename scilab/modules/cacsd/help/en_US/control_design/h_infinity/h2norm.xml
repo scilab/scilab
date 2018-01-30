@@ -13,14 +13,20 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="h2norm">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="h2norm">
     <refnamediv>
         <refname>h2norm</refname>
         <refpurpose>H2 norm of a continuous time proper dynamical system</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>[n]=h2norm(Sl [,tol])</synopsis>
+        <synopsis>
+          n = h2norm(Sl)
+          n = h2norm(Sl, tol)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -28,7 +34,10 @@
             <varlistentry>
                 <term>Sl</term>
                 <listitem>
-                    <para>continuous time proper linear dynamical system</para>
+                    <para>
+                      Proper linear dynamical system in non-discrete (continuous or undefined)
+                      time domain
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -42,7 +51,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            produces the H2 norm  of a linear continuous time system <literal>Sl</literal>.
+            produces the H2 norm of a linear continuous time system <literal>Sl</literal>.
         </para>
         <para>
             (For <literal>Sl</literal> in state-space form <literal>h2norm</literal> uses the observability
@@ -62,9 +71,8 @@
             <revision>
                 <revnumber>5.4.0</revnumber>
                 <revremark>
-                    <literal>Sl</literal> is now checked for
-                    continuous time linear dynamical system.  This modification
-                    has been introduced by this <ulink url="http://gitweb.scilab.org/?p=scilab.git;a=commit;h=3d7083daae3339813ba747c8adcda1f9599bb80d">commit</ulink>
+                    <literal>Sl</literal> is now checked for non-discrete (continuous or undefined)
+                    time linear dynamical system.
                 </revremark>
             </revision>
         </revhistory>
