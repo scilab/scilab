@@ -1,20 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- * Add some comments about XML file
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) Serge Steer
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ja" xml:id="comet3d">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ja" xml:id="comet3d">
     <refnamediv>
         <refname>comet3d</refname>
-        <refpurpose>3次元 comet アニメーションプロット. </refpurpose>
+        <refpurpose>3次元 comet アニメーションプロット</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
         <synopsis>
             comet3d(z)
             comet3d(x, y, z)
+            comet3d(x, y, z, Lf)
             comet3d(x, y, fun)
-            comet3d(x, y, z, p)
-            comet3d(x, y, fun, p)
+            comet3d(x, y, fun, Lf)
             comet3d(...,"colors", c)
         </synopsis>
     </refsynopsisdiv>
@@ -24,57 +37,55 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>
-                        実数ベクトルまたは行列. 省略された場合,
-                        ベクトル  <literal>1:nz</literal> が使用されます.
-                        ただし,  <literal>nz</literal> は<literal>z</literal>パラメータ
-                        で指定される曲線の点の数です.
-                    </para>
+                    実数ベクトルまたは行列. 省略された場合,
+                    ベクトル <literal>1:np</literal> が指定されたと仮定されます.
+                    ただし,<literal>np</literal> は曲線の点の数(下記参照)です.
+                    行列として、各列は別々の彗星の軌跡の水平座標を定義します.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>y</term>
                 <listitem>
-                    <para>
-                        実数ベクトルまたは行列. 省略された場合,
-                        ベクトル  <literal>1:nz</literal> が使用されます.
-                        ただし,  <literal>nz</literal> は<literal>z</literal>パラメータ
-                        で指定される曲線の点の数です.
-                    </para>
+                    実数ベクトル（デフォルト値<literal>=1：np</literal>）または行列.
+                    行列として、各列は、個々の彗星の痕跡のy座標を定義します.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>z</term>
                 <listitem>
-                    <para>
-                        長さ <literal>nz</literal> の実数ベクトル, または,
-                        <literal>nz</literal> 行の行列.
-                    </para>
+                    長さがnpの実数ベクトル、またはnp個の行を持つ行列.
+                    行列として、各列は個々の彗星のトレースのz座標を定義します. <literal>nc=size（z,"c"）</literal>
+                    は、同時に描画される彗星の数です.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>p</term>
+                <term>Lf</term>
                 <listitem>
-                    <para>
-                        範囲 <literal>[0 1[</literal> の実数スカラー.
-                        デフォルト値は 0.1.
-                    </para>
+                    範囲 <literal>[0 1[</literal> の実数スカラー. デフォルト値は 0.1です.
+                    これは、彗星の痕跡のLeading fractionを定義します。最近の点は太い線でプロットされています
+                    （<literal>k=Lf*np</literal>）。
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>fun</term>
                 <listitem>
-                    <para>
-                        呼び出し手順 <literal>z=fun(x,y)</literal> のScilab関数.
-                    </para>
+                    呼び出し手順 <literal>z=fun(x,y)</literal> のScilab関数.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>c</term>
                 <listitem>
-                    <para>
-                        <literal>ny</literal> 色の添字のベクトル.
-                    </para>
+                    <literal>nc</literal> colors of the <literal>nc</literal> comets traces.
+                    They may be specified as a vector of <literal>nc</literal> color indices or
+                    <link linkend="color_list">color names</link> or "#RRGGBB" hexadecimal
+                    color codes. Or by a matrix (ncx3) of <literal>[r,g,b]</literal> vectors of
+                    Red-Green-Blue intensities in the [0,1] interval.
+                    <para/>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -85,56 +96,37 @@
             <literal>(x,y,z)</literal>が要素数が同じ3つのベクトルの場合,
             この関数は3次元cometアニメーションプロットを描画します.
             このプロットは以下の3つの部分から構成されます:
-            <variablelist>
-                <varlistentry>
-                    <term>ヘッド</term>
-                    カレントの位置<literal>(x(i),y(i),z(i))</literal>を示すマーカ.
-                    <listitem><para>
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>ボディー</term> ヘッドに続く尾の曲線を示す:
-                    曲線の一部
-                    <literal>(x(i-k:i),y(i-k:i),z(i-k:i))</literal>)
-                    <listitem><para>
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>テール</term>
-                    曲線の一部<literal>(x(1:i-k),y(1:i-k),z(1:i-k))</literal> を示す.
-                    <listitem><para>
-                        </para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-            <para>
-                <literal>z</literal> が行列,
-                <literal>(x,y)</literal> がベクトルの場合,
-                アニメーション表示される曲線は各<literal>(x,y,z(:,l))</literal>
-                の組について描画されます.
-                この場合,
-                <literal>nz</literal> は <literal>z</literal>の行の数となります.
-            </para>
-            <para>
-                <literal>x,y,z</literal> が同じ次元の行列の場合,
-                アニメーション表示される曲線は,
-                各組<literal>(x(:,l),y(:,l),z(:,l))</literal>について
-                描画されます.
-            </para>
-            <para>
-                <literal>comet3d(x,y,fun,...)</literal> は,
-                <literal>z</literal> ベクトルを
-                <literal>z(i)=fun(x(i),y(i))</literal>により
-                計算します.
-            </para>
-            <para>
-                <literal>comet3d(...,p)</literal> は,
-                ボディの相対長を設定するために使用することができます.
-                <literal>k</literal> は,
-                <literal>k = round(p*nz)</literal>により定義されます.
-            </para>
+            <table>
+                <tr><td><emphasis role="bold">ヘッド</emphasis></td>
+                    <td>カレントの位置<literal>[x(i), y(i), z(i)]</literal>を示すマーカ.</td>
+                </tr>
+                <tr><td><emphasis role="bold">ボディ</emphasis></td>
+                    <td>
+                        軌跡の最も最近の点である<literal>k=round（Lf*np）</literal>
+                        で構成され、トレースのより厚い部分として表示されます。
+                    </td>
+                </tr>
+                <tr><td><emphasis role="bold">テール</emphasis></td>
+                    <td>
+                        曲線の一部<literal>[x(1:i-k), y(1:i-k), z(1:i-k)]</literal> を示す.
+                    </td>
+                </tr>
+            </table>
+        </para>
+        <para>
+            <literal>z</literal> が行列, <literal>(x, y)</literal> がベクトルの場合,
+            アニメーション表示される曲線は各<literal>(x, y, z(:,j))</literal> の組について描画されます.
+        </para>
+        <para>
+            <literal>x,y,z</literal> が同じ次元の行列の場合, アニメーション表示される曲線は, 各組
+            <literal>(x(:,j), y(:,j), z(:,j))</literal>について描画されます.
+        </para>
+        <para>
+            <literal>comet3d(x, y, fun,...)</literal> は, <literal>z</literal> ベクトルを
+            <literal>z(i)=fun(x(i),y(i))</literal>により 計算します.
+        </para>
+        <para>
+            <literal>comet3d(..., "colors", c)</literal> は 各曲線の色を設定する際に使用できます.
         </para>
     </refsection>
     <refsection>
@@ -142,18 +134,24 @@
         <programlisting role="example"><![CDATA[
 t = linspace(-%pi,%pi,500);
 clf
-comet3d(sin(5*t), sin(t), t^2)
+comet3d(sin(5*t), sin(t), t.^2)
     ]]></programlisting>
         <programlisting role="example"><![CDATA[
 t = linspace(-%pi,%pi,500)';
 clf
-comet3d(sin(5*t), sin(t), [t^2,ones(t)])
+comet3d(sin(5*t), sin(t), [t.^2,ones(t)])
+    ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+// Chosen colors:
+t = linspace(0, 10*%pi, 500)';
+clf, gca().rotation_angles = [26, 112];
+comet3d(t.*sin(t), t, [t.*sin(2*t) t.*sin(3*t)], "colors", ["orange" "red"])
     ]]></programlisting>
         <programlisting role="example"><![CDATA[
 t = linspace(-%pi,%pi,500)';
-function z=traj(x,y),z=1.5*sin(x^2)*cos(y),endfunction
+function z = traj(x,y), z = 1.5*sin(x^2)*cos(y), endfunction
 clf
-comet3d(cos(t), sin(t), traj)
+comet3d(cos(t),sin(t),traj)
     ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -162,6 +160,15 @@ comet3d(cos(t), sin(t), traj)
             <member>
                 <link linkend="comet">comet</link>
             </member>
+            <member>
+                <link linkend="paramfplot2d">paramfplot2d</link>
+            </member>
+            <member>
+                <link linkend="realtime">realtime</link>
+            </member>
+            <member>
+                <link linkend="color_list">colors names</link>
+            </member>
         </simplelist>
     </refsection>
     <refsection>
@@ -169,7 +176,13 @@ comet3d(cos(t), sin(t), traj)
         <revhistory>
             <revision>
                 <revnumber>5.3.2</revnumber>
-                <revremark>関数 comet3d が導入されました.</revremark>
+                <revremark>関数 comet3d() が導入されました.</revremark>
+            </revision>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revremark>
+                  色は、名前、"#RRGGBB"の16進コード、または赤緑青の強度で指定することもできるようになりました。
+                </revremark>
             </revision>
         </revhistory>
     </refsection>

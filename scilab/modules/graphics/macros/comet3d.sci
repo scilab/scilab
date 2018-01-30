@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2011 - INRIA - Serge Steer <serge.steer@inria.fr>
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - 2019 - Samuel GOUGEON
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,67 +11,75 @@
 // along with this program.
 
 function comet3d(varargin)
-    //Comet-like trajectory.
-    //   comet(y) displays an animated comet plot of the vector y.
-    //   comet(x,y) displays an animated comet plot of vector y vs. x.
-    //   comet(x,y,p) uses a comet of length p*size(y,'*').  Default is p = 0.1.
+    // 3D Comet-like trajectory.
+    // comet3d(z)
+    // comet3d(x, y, z)
+    // comet3d(x, y, z, Lf)     // Lf: Leading fraction
+    // comet3d(x, y, fun)       // fun: function identifier, polynomial, rational
+    // comet3d(x, y, fun, Lf)
+    // comet3d(...,"colors", c) // c: -1, 4, "orange", "ma", "#RRGGBB", [r g b]
+    //
+    // History:
+    //  2018: colors as "name" "nam" "#RRGGBB" or [r g b] now allowed
 
-    //   Example:
-    //       t = linspace(-%pi,%pi,500);
-    //       clf();comet3d(sin(5*t),sin(t),t^2)
-    //
-    //       function z=traj(x,y),z=1.5*sin(x^2)*cos(y),endfunction
-    //       clf();comet3d(cos(t),sin(t),traj)
-    //
-    nv=size(varargin)
-    if nv>=3&varargin(nv-1)=="colors" then
-        c=round(varargin(nv))
-        if type(c)<>1|~isreal(c) then
-            error(msprintf(_("%s: Wrong type for argument #%d: Real vector expected.\n"),"comet3d",nv))
+    nv = size(varargin)
+    if nv >= 3 & varargin(nv-1)=="colors" then
+        c = iscolor( varargin(nv))
+        if or(isnan(c))
+            msg = "%s: Argument #%d: Wrong color specification.\n";
+            error(msprintf(msg, "comet", nv))
         end
-        varargin=list(varargin(1:$-2))
+        if size(c,2)==3
+            c = addcolor(c)
+        end
+        varargin = list(varargin(1:$-2))
     else
-        c=[]
+        c = []
     end
+
     select size(varargin)
-
     case 1 then //z
-        z=varargin(1)
+        z = varargin(1)
         if or(size(z)==1) then
-            x=1:size(z,"*")
+            x = 1:size(z,"*")
         else
-            x=1:size(z,1)
+            x = 1:size(z,1)
         end
-        y=x
-        p=0.1
+        y = x
+        p = 0.1
     case 3 then  //x,y,z
-        [x,y,z]=varargin(1:3)
-        p=0.1
+        [x,y,z] = varargin(1:3)
+        p = 0.1
     case 4 then  //x,y,z,p
-        [x,y,z,p]=varargin(1:4)
+        [x,y,z,p] = varargin(1:4)
     else
-        error(msprintf(_("%s: Wrong number of input arguments: %d or %d to %d expected.\n"),"comet3d",1,3,4))
+        msg = _("%s: Wrong number of input arguments: %d or %d to %d expected.\n")
+        error(msprintf(msg, "comet3d", 1, 3, 6))
     end
 
 
-    if type(x)<>1|~isreal(x) then
-        error(msprintf(_("%s: Wrong type for argument #%d: Real vector expected.\n"),"comet3d",1))
+    if type(x) <> 1 | ~isreal(x) then
+        msg = _("%s: Wrong type for argument #%d: Real vector expected.\n")
+        error(msprintf(msg, "comet3d", 1))
     end
     if type(y)<>1|~isreal(x) then
-        error(msprintf(_("%s: Wrong type for argument #%d: Real vector expected.\n"),"comet3d",1))
+        msg = _("%s: Wrong type for argument #%d: Real vector expected.\n")
+        error(msprintf(msg, "comet3d", 1))
     end
 
     if (type(z)<>1|~isreal(z))&type(z)<>13 then
-        error(msprintf(_("%s: Wrong type for argument #%d: Real vector expected.\n"),"comet3d",3))
+        msg = _("%s: Wrong type for argument #%d: Real vector expected.\n")
+        error(msprintf(msg, "comet3d", 3))
     end
 
-
     if type(z)==13 then
-        x=x(:);y=y(:)
-        n=size(x,"*")
-        m=1
-        if n<>size(y,"*") then
-            error(msprintf(_("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"),"comet3d",1,2))
+        x = x(:);
+        y = y(:)
+        n = size(x,"*")
+        m = 1
+        if n <> size(y,"*") then
+            msg = _("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n")
+            error(msprintf(msg, "comet3d", 1, 2))
         end
         prot=funcprot();funcprot(0)
         zz=z;
@@ -82,113 +90,121 @@ function comet3d(varargin)
         funcprot(prot)
     else
         if or(size(z)==1) then
-            m=1
-            z=z(:)
-            n=size(z,"*")
+            m = 1
+            z = z(:)
+            n = size(z,"*")
         else
-            [n,m]=size(z)
+            [n, m] = size(z)
         end
         if or(size(x)==1) then
-            x=x(:)
+            x = x(:)
             if size(x,"*")<>n then
-                error(msprintf(_("%s: Wrong size for argument #%d: %d expected.\n"),"comet3d",1,n))
+                msg = _("%s: Wrong size for argument #%d: %d expected.\n")
+                error(msprintf(msg, "comet3d", 1, n))
             end
-            x=x*ones(1,m)
+            x = x*ones(1,m)
         else
             if or(size(x)<>size(z)) then
-                error(msprintf(_("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"),"comet3d",1,3))
+                msg = _("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n")
+                error(msprintf(msg, "comet3d", 1, 3))
             end
         end
         if or(size(y)==1) then
-            y=y(:)
+            y = y(:)
             if size(y,"*")<>n then
-                error(msprintf(_("%s: Wrong size for argument #%d: %d expected.\n"),"comet3d",2,n))
+                msg = _("%s: Wrong size for argument #%d: %d expected.\n")
+                error(msprintf(msg, "comet3d", 2, n))
             end
-            y=y*ones(1,m)
+            y = y*ones(1,m)
         else
             if or(size(y)<>size(z)) then
-                error(msprintf(_("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"),"comet3d",2,3))
+                msg = _("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n")
+                error(msprintf(msg, "comet3d", 2, 3))
             end
 
         end
     end
 
 
-    if type(p)<>1|~isreal(p)|size(p,"*")>1 then
-        error(msprintf(_("%s: Wrong type for argument #%d: Real scalar expected.\n"),"comet3d",3))
+    if type(p) <> 1 | ~isreal(p) | size(p,"*") > 1 then
+        msg = _("%s: Wrong type for argument #%d: Real scalar expected.\n")
+        error(msprintf(msg, "comet3d", 3))
     end
-    if p<0|p>=1 then
-        error(msprintf(_("%s: Wrong value for input argument #%d: Must be in the interval %s.\n"),"comet3d",3,"[0 1["))
+    if p<0 | p >= 1 then
+        msg = _("%s: Wrong value for input argument #%d: Must be in the interval %s.\n")
+        error(msprintf(msg, "comet3d", 3, "[0 1["))
     end
-    fig=gcf();
+    fig = gcf();
     if c==[] then
-        c=1:m
+        c = 1:m
     else
-        if size(c,"*")<>m then
-            error(msprintf(_("%s: Wrong size for argument #%d: %d expected.\n"),"comet",nv,m))
-        end
-        if min(c)<1|max(c)>size(fig.color_map,1) then
-            error(msprintf(_( "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),"comet",nv,"1,...,"+string(size(fig.color_map,1))))
+        if size(c,"*") <> m then
+            msg = _("%s: Wrong size for argument #%d: %d expected.\n")
+            error(msprintf(msg, "comet", nv, m))
         end
     end
-    axes=gca();
-    axes.view="3d"
+    axes = gca();
+    axes.view = "3d"
 
 
     if axes.children==[] then
-        axes.data_bounds=[min(x) min(y) min(z);max(x) max(y) max(z)];
-        axes.axes_visible="on";
-        axes.box="on";
+        axes.data_bounds = [min(x) min(y) min(z);max(x) max(y) max(z)];
+        axes.axes_visible = "on";
+        axes.box = "on";
     else
-        axes.data_bounds=[min(axes.data_bounds(1,:), [min(x) min(y) min(z)]);
+        axes.data_bounds = [min(axes.data_bounds(1,:), [min(x) min(y) min(z)]);
         max(axes.data_bounds(2,:), [max(x) max(y) max(z)])];
     end
     //create the head, body and tail polylines
     drawlater()
-    for l=1:m
-        xpoly([],[]);tail(l)=gce();
-        tail(l).foreground=c(l);
+    for l = 1:m
+        xpoly([],[]);
+        tail(l) = gce();
+        tail(l).foreground = c(l);
 
-        xpoly([],[]);body(l)=gce();
-        body(l).foreground=c(l); body(l).thickness=2;
-        xpoly([],[],"marks");head(l)=gce();
-        head(l).mark_size_unit="point";
-        head(l).mark_size=6;
-        head(l).mark_style=9;
-        head(l).mark_foreground=c(l);
+        xpoly([],[]);
+        body(l) = gce();
+        body(l).foreground = c(l);
+        body(l).thickness = 2;
+        xpoly([], [], "marks");
+        head(l) = gce();
+        head(l).mark_size_unit = "point";
+        head(l).mark_size = 6;
+        head(l).mark_style = 9;
+        head(l).mark_foreground = c(l);
     end
     show_window();
 
     function anim()
         //animation loop
         k = round(p*n);
-        step=ceil(n/200); //used to speed up the drawing
+        step = ceil(n/200); //used to speed up the drawing
 
-        for i=1:n
-            for l=1:m
-                head(l).data=[x(i,l),y(i,l),z(i,l)];
-                if i<=k then
-                    body(l).data= [body(l).data;[x(i,l),y(i,l),z(i,l)]];
+        for i = 1:n
+            for l = 1:m
+                head(l).data = [x(i,l),y(i,l),z(i,l)];
+                if i <= k then
+                    body(l).data = [body(l).data;[x(i,l),y(i,l),z(i,l)]];
                 else
-                    body(l).data= [body(l).data(2:$,:);[x(i,l),y(i,l),z(i,l)]];
-                    tail(l).data=[ tail(l).data;[x(i-k,l),y(i-k,l),z(i-k,l)]];
+                    body(l).data = [body(l).data(2:$,:);[x(i,l),y(i,l),z(i,l)]];
+                    tail(l).data =[ tail(l).data;[x(i-k,l),y(i-k,l),z(i-k,l)]];
                 end
             end
             if modulo(i,step)==0 then
-                fig.immediate_drawing = "on"
-                fig.immediate_drawing = "off"
+                fig.immediate_drawing = "on";
+                fig.immediate_drawing = "off";
             end
         end
         drawnow(),drawlater()
 
-        for i=n:n+k
-            for l=1:m
-                body(l).data= body(l).data(2:$,:);
-                tail(l).data=[ tail(l).data;[x(i-k,l),y(i-k,l),z(i-k,l)]];
+        for i = n:n+k
+            for l = 1:m
+                body(l).data = body(l).data(2:$,:);
+                tail(l).data = [tail(l).data;[x(i-k,l),y(i-k,l),z(i-k,l)]];
             end
             if modulo(i,step)==0 then
-                fig.immediate_drawing = "on"
-                fig.immediate_drawing = "off"
+                fig.immediate_drawing = "on";
+                fig.immediate_drawing = "off";
             end
         end
         delete(body)

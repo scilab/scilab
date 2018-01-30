@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) Serge Steer
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018-2019 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,20 +12,23 @@
  * For more information, see the COPYING file which you should have received
  * along with this program.
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en_US" xml:id="comet">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en_US" xml:id="comet">
     <refnamediv>
         <refname>comet</refname>
-        <refpurpose>2D comet animated plot. </refpurpose>
+        <refpurpose>2D comet animated plot</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
             comet(y)
-            comet(x,y)
-            comet(x,fun)
-            comet(x,y,p)
-            comet(x,fun,p)
-            comet(...,"colors",c)
+            comet(x, y)
+            comet(x, y, Lf)
+            comet(x, fun)
+            comet(x, fun, Lf)
+            comet(..., "colors",c)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -34,43 +37,48 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>
-                        a real vector or matrix. If omitted, it is assumed to be the vector
-                        <literal>1:ny</literal> where <literal>ny</literal> is the
-                        number of curve points (see below).
-                    </para>
+                    a real vector or matrix. If omitted, it is assumed to be the vector
+                    <literal>1:np</literal> where <literal>np</literal> is the total number of
+                    curve points (see below). As a matrix, each column defines the abscissae
+                    of the trace of a separate comet.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>y</term>
                 <listitem>
-                    <para>
-                        a real vector or matrix of length.
-                    </para>
+                    a real vector or matrix. As a matrix, each column defines the  ordinates
+                    of the trace of a separate comet.
+                    <literal>nc=size(y,"c")</literal> is the number of comets simultaneously drawn.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>p</term>
+                <term>Lf</term>
                 <listitem>
-                    <para>
-                        a real scalar in the interval<literal>[0 1[</literal>. Default value is 0.1.
-                    </para>
+                    a real scalar in the interval<literal>[0,1[</literal>. Default value is 0.1:
+                    It defines the Leading fraction of the comet's trace.
+                    The <literal>k=Lf*np</literal> most recent points are plotted in thicker line.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>fun</term>
                 <listitem>
-                    <para>
-                        a scilab function with syntax <literal>y=fun(x)</literal>.  <varname>fun</varname> can also be a polynomial or a rational fraction.
-                    </para>
+                    a scilab function with syntax <literal>y = fun(x)</literal>.
+                    <varname>fun</varname> can also be a polynomial or a rational fraction.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>c</term>
                 <listitem>
-                    <para>
-                        a vector of  <literal>ny</literal> color index.
-                    </para>
+                    <literal>nc</literal> colors of the <literal>nc</literal> comets traces.
+                    They may be specified as a vector of <literal>nc</literal> color indices or
+                    <link linkend="color_list">color names</link> or "#RRGGBB" hexadecimal
+                    color codes. Or by a matrix (ncx3) of <literal>[r,g,b]</literal> vectors of
+                    Red-Green-Blue intensities in the [0,1] interval.
+                    <para/>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -78,96 +86,89 @@
     <refsection>
         <title>Description</title>
         <para>
-            If <literal>(x,y)</literal> are two vectors with the same number
-            of elements, this function draws a 2D comet animated plot
-            showing the progression of the curve
-            <literal>(x(1:k),y(1:k))</literal> for <literal>k</literal>
-            varying from <literal>1</literal> to
-            <literal>size(x,'*')</literal>.
+            If <literal>(x,y)</literal> are two vectors, this function draws a 2D comet animated
+            plot showing the progression of the curve <literal>(x(1:m),y(1:m))</literal> for
+            <literal>m</literal> varying from <literal>1</literal> to
+            <literal>np=length(x)</literal>.
         </para>
         <para>
             The plot is made of three parts:
-            <variablelist>
-                <varlistentry>
-                    <term>a head</term>
-                    <listitem>
-                        <para>
-                            mark that shows the current <literal>(x(i),y(i))</literal> position.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>a body</term>
-                    <listitem>
-                        <para>
-                            that shows the trailing curve that follows the head: the
-                            <literal>(x(i-k:i),y(i-k:i))</literal> part of the curve.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>a tail</term>
-                    <listitem>
-                        <para>
-                            that shows the  <literal>(x(1:i-k),y(1:i-k))</literal> part of the curve.
-                        </para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
+            <table>
+                <tr><td><emphasis role="bold">a head</emphasis></td>
+                    <td>
+                        mark that shows the current <literal>(x(i),y(i))</literal> position.
+                    </td>
+                </tr>
+                <tr><td><emphasis role="bold">a body</emphasis></td>
+                    <td>consisting in the <literal>k=round(Lf*np)</literal> most recent points
+                        of the trajectory, displayed as a thicker part of the trace.
+                    </td>
+                </tr>
+                <tr><td><emphasis role="bold">a tail</emphasis></td>
+                    <td>
+                        that shows the  <literal>(x(1:i-k),y(1:i-k))</literal> part of the curve.
+                    </td>
+                </tr>
+            </table>
             <para>
-                <literal>comet(x,fun,...)</literal> is equivalent to <literal>comet(x,feval(x,fun),...)</literal>.
+                <literal>comet(x,fun,...)</literal> is equivalent to
+                <literal>comet(x, feval(x,fun),...)</literal>.
             </para>
             <para>
-                <literal>comet(...,p)</literal> can be used to set the
-                relative length of the body. <literal>k</literal> is defined
-                as <code>k = round(p*ny)</code>.
-            </para>
-            <para>
-                If <varname>y</varname> is a matrix then animated curves
-                are drawn for each pair <literal>(x,y(:,l))</literal>.
-                In this case <literal>ny</literal> is the number of rows
-                of <varname>y</varname>.
-            </para>
-            <para>
-                If <varname>x</varname> and <varname>y</varname> are
-                matrices with identical sizes then animated curves are drawn
-                for each pair <literal>(x(:,l),y(:,l))</literal>.  In this
-                case <literal>ny</literal> is the number of rows of
+                If <varname>x</varname> and <varname>y</varname> are matrices with identical sizes,
+                then animated curves are drawn for each pair <literal>(x(:,j),y(:,j))</literal>.
+                In this case <literal>np</literal> is the number of rows of
                 <varname>x</varname> and <varname>y</varname>.
             </para>
-
             <para>
-                <literal>comet(...,"colors",c)</literal> can be used to set the colors of each curves.
+                <literal>comet(...,"colors",c)</literal> can be used to set the colors of each
+                trajectory.
             </para>
-
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-t = linspace(0,10*%pi,500);
-clf();
-isoview; //set isoview axes
-comet(t.*sin(t), t.*cos(t))
+// One comet in spiral:
+t = linspace(0, 10*%pi, 500);
+clf, isoview
+comet(t.*sin(t), t.*cos(t), "colors", "orange")
     ]]></programlisting>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../images/comet_1.png"/>
+            </imageobject>
+        </inlinemediaobject>
+        <para/>
         <programlisting role="example"><![CDATA[
-t = linspace(0,10*%pi,500)';
-clf();
+// Two simultaneous comets with default colors:
+t = linspace(0, 10*%pi, 500)';
+clf
 comet(t.*sin(t), [t.*sin(2*t) t.*sin(3*t)])
     ]]></programlisting>
+        <para/>
         <programlisting role="example"><![CDATA[
-t = linspace(0,10*%pi,500)';
-clf();comet(t.*sin(t),[t.*sin(2*t) t.*sin(3*t)],"colors",[3 5])
+// Chosen colors:
+t = linspace(0, 10*%pi, 500)';
+clf
+comet(t.*sin(t), [t.*cos(t) t.*sin(2*t)], "colors", ["orange" "mag"])
     ]]></programlisting>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../images/comet_2.png"/>
+            </imageobject>
+        </inlinemediaobject>
+        <para/>
         <programlisting role="example"><![CDATA[
-function y=traj(x)
-  y=1.5*sin(x^2)
+function y = traj(x)
+    y = 1.5*sin(x^2)
 endfunction
-clf();
+clf
 comet(linspace(0,5,500),traj)
     ]]></programlisting>
+        <para/>
         <programlisting role="example"><![CDATA[
-clf();
+clf
 comet(linspace(-2,4,500), (%s-3)/(%s^3+2*%s^2+1))
     ]]></programlisting>
     </refsection>
@@ -175,13 +176,16 @@ comet(linspace(-2,4,500), (%s-3)/(%s^3+2*%s^2+1))
         <title>See also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="color">color</link>
-            </member>
-            <member>
                 <link linkend="comet3d">comet3d</link>
             </member>
             <member>
                 <link linkend="paramfplot2d">paramfplot2d</link>
+            </member>
+            <member>
+                <link linkend="realtime">realtime</link>
+            </member>
+            <member>
+                <link linkend="color_list">colors names</link>
             </member>
         </simplelist>
     </refsection>
@@ -191,7 +195,14 @@ comet(linspace(-2,4,500), (%s-3)/(%s^3+2*%s^2+1))
             <revision>
                 <revnumber>5.3.2</revnumber>
                 <revremark>
-                    Function <function>comet</function> introduced.
+                    Function comet() introduced.
+                </revremark>
+            </revision>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revremark>
+                    Colors can now be specified also by their name, or by their "#RRGGBB" hexadecimal
+                    code, or by their [r g b] Red-Green-Blue intensities.
                 </revremark>
             </revision>
         </revhistory>
