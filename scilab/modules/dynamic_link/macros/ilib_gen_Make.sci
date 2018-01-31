@@ -38,7 +38,7 @@ function Makename = ilib_gen_Make(name, ..
     end
 
     if ~isempty(files) & ~and(isfile(files)) then
-        error(999, msprintf(_("%s: Wrong value for input argument #%d: existing file(s) expected.\n"), "ilib_gen_Make", 3));
+        error(msprintf(_("%s: Wrong value for input argument #%d: existing file(s) expected.\n"), "ilib_gen_Make", 3));
     end
 
     // remove duplicate files

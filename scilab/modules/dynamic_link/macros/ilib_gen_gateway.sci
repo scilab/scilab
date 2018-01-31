@@ -262,7 +262,7 @@ function [gate,names,cppCompilation] = new_names(table)
             names(i) = table(i,2);
             gate(i, 1) = "STACK_GATEWAY_PROTOTYPE(" + names(i) + ");";
         else
-            error(999,"Wrong interface type " + table(i,3));
+            error("Wrong interface type " + table(i,3));
         end
     end
 endfunction

@@ -43,11 +43,11 @@ function libn = ilib_for_link(names, ..
     if rhs <= 10 then cc  = ""; end
 
     if isempty(files) | ~and(isfile(files)) then
-        error(999, msprintf(_("%s: Wrong value for input argument #%d: existing file(s) expected.\n"), "ilib_for_link", 2));
+        error(msprintf(_("%s: Wrong value for input argument #%d: existing file(s) expected.\n"), "ilib_for_link", 2));
     end
 
     if ~isempty(files) & (or(fileext(files)==".o") | or(fileext(files)==".obj")) then
-        error(999, msprintf(_("%s: A managed file extension for input argument #%d expected.\n"), "ilib_for_link", 2));
+        error(msprintf(_("%s: A managed file extension for input argument #%d expected.\n"), "ilib_for_link", 2));
     end
 
     if getos() == "Windows" then
@@ -74,7 +74,7 @@ function libn = ilib_for_link(names, ..
             end
         else
             if flag == "f90" then
-                error(999, _("F2C cannot build fortran 90"));
+                error(_("F2C cannot build fortran 90"));
             end
         end
     end

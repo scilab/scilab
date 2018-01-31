@@ -1,6 +1,6 @@
 function deff(varargin)
     if size(varargin) <> 2  then
-        error(999, msprintf(_("%s: Wrong number of input arguments: %d expected.\n"), "deff", 2));
+        error(msprintf(_("%s: Wrong number of input arguments: %d expected.\n"), "deff", 2));
     end
 
     //try to build execstr string

@@ -20,11 +20,11 @@ function r = dlwForceRebuild(varargin)
     if rhs == 1 then
         newValue = varargin(1);
         if type(newValue) <> 4 then
-            error(999,msprintf(_("%s: Wrong type for input argument #%d: A boolean expected.\n"), "dlwForceRebuild", 1));
+            error(msprintf(_("%s: Wrong type for input argument #%d: A boolean expected.\n"), "dlwForceRebuild", 1));
         end
 
         if size(newValue,"*") <> 1 then
-            error(999,msprintf(_("%s: Wrong size for input argument #%d: A scalar expected.\n"), "dlwForceRebuild", 1));
+            error(msprintf(_("%s: Wrong size for input argument #%d: A scalar expected.\n"), "dlwForceRebuild", 1));
         end
 
         if newValue == %t then

@@ -25,27 +25,27 @@ function levels = contour2d(x, y, z, nz, style, strf, leg, rect, nax, void)
     end
 
     if type(x) <> 1 then
-        error(999, msprintf(gettext("%s: Wrong type for input argument #%d: Real vector expected.\n"), "contour2d", 1));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: Real vector expected.\n"), "contour2d", 1));
     end
 
     if type(y) <> 1 then
-        error(999, msprintf(gettext("%s: Wrong type for input argument #%d: Real vector expected.\n"), "contour2d", 2));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: Real vector expected.\n"), "contour2d", 2));
     end
 
     if type(z) <> 1 & type(z) <> 13 then
-        error(999, msprintf(gettext("%s: Wrong type for input argument #%d: Real matrix or Scilab function expected.\n"), "contour2d", 3));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: Real matrix or Scilab function expected.\n"), "contour2d", 3));
     end
 
     if type(nz) <> 1 then
-        error(999, msprintf(gettext("%s: Wrong type for input argument #%d: Real matrix expected.\n"), "contour2d", 4));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: Real matrix expected.\n"), "contour2d", 4));
     end
 
     if ~isvector(x) then
-        error(999, msprintf(gettext("%s: Wrong size for input argument #%d: Real vector expected.\n"), "contour2d", 1));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: Real vector expected.\n"), "contour2d", 1));
     end
 
     if ~isvector(y) then
-        error(999, msprintf(gettext("%s: Wrong size for input argument #%d: Real vector expected.\n"), "contour2d", 2));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: Real vector expected.\n"), "contour2d", 2));
     end
 
     opts = [];

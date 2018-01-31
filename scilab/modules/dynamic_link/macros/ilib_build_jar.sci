@@ -144,31 +144,31 @@ function ilib_build_jar(jarFilePath, packageNames, sourcePaths, classPaths, mani
 
     // Input argument 1: jar file path
     if type(jarFilePath) <> 10 then
-        error(999, msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"), "ilib_build_jar", 1));
+        error(msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"), "ilib_build_jar", 1));
     end
     if size(jarFilePath, "*") <> 1 then
-        error(999, msprintf(_("%s: Wrong size for input argument #%d: string expected.\n"), "ilib_build_jar", 1));
+        error(msprintf(_("%s: Wrong size for input argument #%d: string expected.\n"), "ilib_build_jar", 1));
         return;
     end
 
     // Input argument 2: package names
     if rhs > 2 then
         if type(packageNames) <> 10 then
-            error(999, msprintf(_("%s: Wrong type for input argument #%d: A matrix of strings expected.\n"), "ilib_build_jar", 2));
+            error(msprintf(_("%s: Wrong type for input argument #%d: A matrix of strings expected.\n"), "ilib_build_jar", 2));
             return;
         end
     end
 
     // Input argument 3: source paths
     if type(sourcePaths) <> 10 then
-        error(999, msprintf(_("%s: Wrong type for input argument #%d: A matrix of strings expected.\n"), "ilib_build_jar", 3));
+        error(msprintf(_("%s: Wrong type for input argument #%d: A matrix of strings expected.\n"), "ilib_build_jar", 3));
         return;
     end
 
     // Input argument 4 (optional): class paths
     if rhs > 3 then
         if type(classPaths) <> 10 then
-            error(999, msprintf(_("%s: Wrong type for input argument #%d: A matrix of strings expected.\n"), "ilib_build_jar", 4));
+            error(msprintf(_("%s: Wrong type for input argument #%d: A matrix of strings expected.\n"), "ilib_build_jar", 4));
             return;
         end
     else
@@ -178,7 +178,7 @@ function ilib_build_jar(jarFilePath, packageNames, sourcePaths, classPaths, mani
     // Input argument 5 (optional): manifest file path
     if rhs > 4 then
         if type(manifestFilePath) <> 10 then
-            error(999, msprintf(_("%s: Wrong type for input argument #%d: A matrix of strings expected.\n"), "ilib_build_jar", 5));
+            error(msprintf(_("%s: Wrong type for input argument #%d: A matrix of strings expected.\n"), "ilib_build_jar", 5));
             return;
         end
     else

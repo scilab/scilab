@@ -28,13 +28,13 @@ function [t]=soundsec (n,rate)
         if isreal(n)
             if ~isscalar(n)
                 //n is not a real positive scalar
-                error(999, msprintf(_("%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"),"soundsec",1,1,1));
+                error(msprintf(_("%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"),"soundsec",1,1,1));
             end
         else //n is not real
-            error(999, msprintf(_("%s: Wrong type for argument #%d: Real matrix expected.\n"),"soundsec",1));
+            error(msprintf(_("%s: Wrong type for argument #%d: Real matrix expected.\n"),"soundsec",1));
         end
     else //n is not a constant matrix
-        error(999, msprintf(_("%s: Wrong type for argument #%d: Real matrix expected.\n"),"soundsec",1));
+        error(msprintf(_("%s: Wrong type for argument #%d: Real matrix expected.\n"),"soundsec",1));
     end
 
     //rate must be a real strictly positive scalar
@@ -42,22 +42,22 @@ function [t]=soundsec (n,rate)
         if isreal(rate)
             if ~isscalar(rate)
                 //rate is not a real positive scalar
-                error(999, msprintf(_("%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"),"soundsec",2,1,1));
+                error(msprintf(_("%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"),"soundsec",2,1,1));
             end
         else //rate is not real
-            error(999, msprintf(_("%s: Wrong type for argument #%d: Real matrix expected.\n"),"soundsec",2));
+            error(msprintf(_("%s: Wrong type for argument #%d: Real matrix expected.\n"),"soundsec",2));
         end
     else //rate is not a constant matrix
-        error(999, msprintf(_("%s: Wrong type for argument #%d: Real matrix expected.\n"),"soundsec",2));
+        error(msprintf(_("%s: Wrong type for argument #%d: Real matrix expected.\n"),"soundsec",2));
     end
 
     //n and rate must be positive
     if n<0
-        error(999, msprintf(_("%s: Wrong value for input argument #%d: Must be >= %d.\n"),"soundsec",1,0));
+        error(msprintf(_("%s: Wrong value for input argument #%d: Must be >= %d.\n"),"soundsec",1,0));
     end
 
     if rate<0
-        error(999, msprintf(_("%s: Wrong value for input argument #%d: Must be >= %d.\n"),"soundsec",2,0));
+        error(msprintf(_("%s: Wrong value for input argument #%d: Must be >= %d.\n"),"soundsec",2,0));
     end
     //Format test end
     //==============================================================================
