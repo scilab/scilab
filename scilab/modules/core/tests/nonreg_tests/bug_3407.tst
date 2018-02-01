@@ -258,7 +258,7 @@ l=myfun2();if l(1)<>3 then pause,end
 
 function l=myfun2()
     try
-        error(999)
+        error("test")
     catch
         [l,w]=where()
     end
@@ -267,7 +267,7 @@ l=myfun2();if l(1)<>5 then pause,end
 
 function l=myfun2()
     try
-        error(999)
+        error("test")
     catch
         l=0
     end

@@ -50,7 +50,7 @@ deff("[f1,f2,f3,f4,f5,f6,f7]=%t_e(i,j,f)",[
 "nams=[''a'',''b'',''c''];"
 "for k=1:prod(size(i))";
 "   kf=find(i(k)==nams);";
-"   if kf==[] then error(21),end;"
+"   if kf==[] then error(""%s: Invalid index.\n""),end;"
 "   execstr(''f''+string(k)+''=j(kf+1)'');"
 "   end;"])
 if l(2)<>1 then pause,end

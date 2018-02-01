@@ -6,6 +6,7 @@
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 // <-- Non-regression test for bug 2613 -->
 //
@@ -22,7 +23,7 @@ function y=test()
     y=0
     try
         for j=1:3;
-            error(1001);
+            error("test");
         end
     catch
         y=1
@@ -33,7 +34,7 @@ if test()<>1 then pause,end
 
 // temporary arguments removal
 //in try/catch
-function y=fii,y=3,error(1001),endfunction
+function y=fii,y=3,error("test"),endfunction
 function y=foo(a,b,c),y=a+b+c,endfunction
 y=0;
 try
