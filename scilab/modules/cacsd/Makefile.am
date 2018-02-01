@@ -225,8 +225,7 @@ CHECK_SRC= $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscicacsd_la_CPPFLAGS)
 
 
-libscicacsd_la_LIBADD = libscicacsd-algo.la $(ATLAS_LIBS)
-
+libscicacsd_la_LIBADD = libscicacsd-algo.la $(FLIBS)
 
 #### Target ######
 modulename=cacsd

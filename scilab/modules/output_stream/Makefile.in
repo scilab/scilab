@@ -698,7 +698,7 @@ libscioutput_stream_algo_la_CPPFLAGS = $(libscioutput_stream_la_CPPFLAGS)
 # For the code check (splint)
 CHECK_SRC = $(OUTPUT_STREAM_C_SOURCES) $(OUTPUT_STREAM_CPP_SOURCES) $(OUTPUT_STREAM_CPP_SOURCES)
 INCLUDE_FLAGS = $(libscioutput_stream_la_CPPFLAGS)
-libscioutput_stream_la_LIBADD = libscioutput_stream-algo.la
+libscioutput_stream_la_LIBADD = libscioutput_stream-algo.la $(FLIBS)
 
 #### Target ######
 modulename = output_stream

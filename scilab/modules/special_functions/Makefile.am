@@ -75,7 +75,7 @@ libscispecial_functions_algo_la_CPPFLAGS = $(libscispecial_functions_la_CPPFLAGS
 CHECK_SRC= $(SPECIAL_FUNCTIONS_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscispecial_functions_la_CPPFLAGS)
 
-libscispecial_functions_la_LIBADD = libscispecial_functions-algo.la
+libscispecial_functions_la_LIBADD = libscispecial_functions-algo.la $(FLIBS)
 
 #### Target ######
 modulename=special_functions

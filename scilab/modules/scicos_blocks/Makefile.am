@@ -482,9 +482,9 @@ libsciscicos_blocks_la_LIBADD += libsciscicos_blocks-algo.la
 endif
 endif
 
-libsciscicos_blocks_algo_la_LIBADD += $(RT_LIB)
-libsciscicos_blocks_la_LIBADD += $(RT_LIB)
-libsciscicos_blocks_cli_la_LIBADD += $(RT_LIB)
+libsciscicos_blocks_algo_la_LIBADD += $(RT_LIB) $(FLIBS)
+libsciscicos_blocks_la_LIBADD += $(RT_LIB) $(FLIBS)
+libsciscicos_blocks_cli_la_LIBADD += $(RT_LIB) $(FLIBS)
 
 # For the code check (splint)
 CHECK_SRC= $(SCICOS_BLOCKS_C_SOURCES) $(NON_BLOCK_C_SOURCES)

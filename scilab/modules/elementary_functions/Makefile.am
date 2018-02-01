@@ -396,7 +396,7 @@ libscielementary_functions_algo_la_CPPFLAGS = $(libscielementary_functions_la_CP
 CHECK_SRC= $(ELEMENTARIES_FUNCTIONS_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscielementary_functions_la_CPPFLAGS)
 
-libscielementary_functions_la_LIBADD = libdummy-elementary_functions.la libscielementary_functions-algo.la
+libscielementary_functions_la_LIBADD = libdummy-elementary_functions.la libscielementary_functions-algo.la $(FLIBS)
 
 # Following lines are extracted from a processed Makefile.in
 # Take care while modifying : append -O0 after all commons options

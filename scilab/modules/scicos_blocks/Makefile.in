@@ -1410,9 +1410,9 @@ libsciscicos_blocks_algo_la_SOURCES = \
 
 libsciscicos_blocks_cli_la_SOURCES = $(am__append_2)
 libsciscicos_blocks_la_SOURCES = $(am__append_4)
-libsciscicos_blocks_algo_la_LIBADD = $(RT_LIB)
-libsciscicos_blocks_la_LIBADD = $(am__append_5) $(RT_LIB)
-libsciscicos_blocks_cli_la_LIBADD = $(am__append_3) $(RT_LIB)
+libsciscicos_blocks_algo_la_LIBADD = $(RT_LIB) $(FLIBS)
+libsciscicos_blocks_la_LIBADD = $(am__append_5) $(RT_LIB) $(FLIBS)
+libsciscicos_blocks_cli_la_LIBADD = $(am__append_3) $(RT_LIB) $(FLIBS)
 
 # For the code check (splint)
 CHECK_SRC = $(SCICOS_BLOCKS_C_SOURCES) $(NON_BLOCK_C_SOURCES)

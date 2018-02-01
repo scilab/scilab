@@ -62,7 +62,8 @@ CHECK_SRC= $(INTERPOLATION_C_SOURCES) $(GATEWAY_CPP_SOURCES)
 INCLUDE_FLAGS = $(libsciinterpolation_la_CFLAGS)
 
 libsciinterpolation_la_LIBADD = \
-	libsciinterpolation-algo.la
+	libsciinterpolation-algo.la \
+	 $(FLIBS)
 
 #### Target ######
 modulename=interpolation
