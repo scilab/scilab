@@ -517,6 +517,7 @@ Known issues
 * [#15370](http://bugzilla.scilab.org/show_bug.cgi?id=15370): `bezout()` mishandled its output arguments.
 * [#15375](http://bugzilla.scilab.org/show_bug.cgi?id=15375): A .zcos file opened as a palette was greyed out.
 * [#15395](http://bugzilla.scilab.org/show_bug.cgi?id=15395): `ones(2,3,2) / %z` yielded an error..
+* [#15396](http://bugzilla.scilab.org/show_bug.cgi?id=15396): `[m,n,p] = size(hr)` yielded an error with an hypermatrix hr of rationals.
 * [#15405](http://bugzilla.scilab.org/show_bug.cgi?id=15405): Accessing int64 hdf5 values crashed scilab.
 
 
