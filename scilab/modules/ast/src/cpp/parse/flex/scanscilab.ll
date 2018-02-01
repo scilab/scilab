@@ -1,10 +1,10 @@
 %{
 /* -*- C++ -*- */
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2008-2012 - Scilab Enterprises - Bruno JOFRET
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008-2012 - Scilab Enterprises - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -104,7 +104,7 @@ utf3            ({utf31}|{utf32}|{utf33}|{utf34})
 utf4            ({utf41}|{utf42}|{utf43})
 
 utf             ({utf2}|{utf3}|{utf4})
-id              ((([a-zA-Z_%#?]|{utf})([a-zA-Z_0-9#?$]|{utf})*)|([$]([a-zA-Z_0-9#?$]|{utf})+))
+id              ((([a-zA-Z_%!#?]|{utf})([a-zA-Z_0-9!#?$]|{utf})*)|([$]([a-zA-Z_0-9!#?$]|{utf})+))
 
 
 newline			("\r"|"\n"|"\r\n")
