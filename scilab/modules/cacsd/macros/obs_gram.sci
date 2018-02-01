@@ -31,12 +31,12 @@ function [go]=obs_gram(a,c,domaine)
         end
         [mb,nb]=size(c);
         if nb<>n then
-            msg = gettext"%s: Arguments #%d and #%d: Incompatible sizes.\n")
+            msg = gettext("%s: Arguments #%d and #%d: Incompatible sizes.\n")
             error(msprintf(msg, "obs_gram", 1, 2))
         end
     case "state-space" then
         if rhs>1 then
-            msg = gettext("%s: Wrong number of input arguments: %d expected")
+            msg = gettext("%s: Wrong number of input arguments: %d expected.\n")
             error(msprintf(msg, "obs_gram", 1))
         end
         [a,c,domaine]=a([2,4,7])
@@ -50,7 +50,7 @@ function [go]=obs_gram(a,c,domaine)
         [n,n]=size(a)
     case "rational" then
         if rhs>1 then
-            msg = gettext("%s: Wrong number of input arguments: %d expected")
+            msg = gettext("%s: Wrong number of input arguments: %d expected.\n")
             error(msprintf(msg, "obs_gram", 1)),
         end
         a=tf2ss(a)
