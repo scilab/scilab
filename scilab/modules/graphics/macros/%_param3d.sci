@@ -1,6 +1,5 @@
-//
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2009 - DIGITEO - Jean-Baptiste Silvy
+// Copyright (C) 2018 - Samuel GOUGEON
 //
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
@@ -11,14 +10,19 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 //
-//
 
-//
 // This is the demonstration script of param3d
 // used when calling param3d without any parameter.
-//
 
 function [] = %_param3d()
-    t=0:0.1:5*%pi;
-    param3d(sin(t),cos(t),t/10,35,45,"X@Y@Z",[2,4]);
+    t = (0:0.1:5*%pi)';
+    r = (max(t)-t)/10;
+    clf
+    param3d1(r.*sin(t), r.*cos(t), list(t/10, -10), 28, 61,"axis X@axis Y@axis Z",[4,4])
+    gce().mark_foreground = color("magenta")
+    gce().line_mode = "on";
+
+    gca().foreground = color("grey60");
+    gca().sub_ticks = [4 4 4];
+    xgrid(color("grey80"),[1 1 1],[8 8 8]);
 endfunction

@@ -233,7 +233,7 @@ Help pages:
 * rewritten: `consolebox`, `double`, `isoview`, `pixel_drawing_mode`, `householder`, `or`, `|,||`,
  `and`, `&,&&`, `format`, `type`, `typeof`, `brackets`, `setlanguage`, `sleep`, `isinf`, `unique`,
  `bitor`, `bitxor`, `bitand`, `macr2tree`, `geomean`, `clf`, `getPreferencesValue`, `gcd`, `isglobal`,
- `whereis`, `mode`, `%onprompt`, `toeplitz`
+ `whereis`, `mode`, `%onprompt`, `toeplitz`, `param3d`, `param3d1`
 * reorganized:
   - `else`, `elseif`, `end`, `try`, `sciargs`, `global`, `halt`, `empty`, `power`, `numderivative`
   - `pixel_drawing_mode`, `show_window`, `twinkle`, `uigetcolor`, `winsid`, `xdel`, `xgrid`, `xname`, `xnumb`
@@ -368,6 +368,7 @@ Known issues
 * [#5381](http://bugzilla.scilab.org/show_bug.cgi?id=5381): For UTF-8 inputs, `msprintf`, `mprintf` and `mfprintf` shortened the output.
 * [#5602](http://bugzilla.scilab.org/show_bug.cgi?id=5602): Assigning a component of a list in a cells array replaced the whole list.
 * [#5611](http://bugzilla.scilab.org/show_bug.cgi?id=5611): It was not possible to delete the row or column of a cells array.
+* [#6155](http://bugzilla.scilab.org/show_bug.cgi?id=6155): Pages of `param3d()` and `param3d1()` deserved being fixed, improved and merged in a single page.
 * [#6607](http://bugzilla.scilab.org/show_bug.cgi?id=6607): `clear S; S(1:2,1:3).a = 1` yielded an error.
 * [#6608](http://bugzilla.scilab.org/show_bug.cgi?id=6608): Field and data insertion in an array of structures might fail.
 * [#6813](http://bugzilla.scilab.org/show_bug.cgi?id=6813): `makecell` used to create a N>2-D hyperarray yielded an error.
