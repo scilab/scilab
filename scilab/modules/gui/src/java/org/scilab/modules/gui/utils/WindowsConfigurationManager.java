@@ -671,7 +671,9 @@ public class WindowsConfigurationManager implements XConfigurationListener {
             // it will use the same tab as created here.
             ScilabTabFactory factory = ScilabTabFactory.getInstance();
             factory.addTabFactory(e.getAttribute("load"), e.getAttribute("factory"));
-            currentlyRestored.add(e.getAttribute("uuid"));
+            synchronized (currentlyRestored) {
+                currentlyRestored.add(e.getAttribute("uuid"));
+            }
             SwingScilabDockablePanel tab = factory.getTab(e.getAttribute("uuid"));
             if (!e.getAttribute("width").isEmpty() && !e.getAttribute("height").isEmpty()) {
                 tab.setMinimumSize(nullDims);
