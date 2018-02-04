@@ -238,7 +238,7 @@ public final class Xcos {
     /**
      * Try to quit xcos
      */
-    public void quit(boolean force) {
+    public static synchronized void quit(boolean force) {
         if (sharedInstance == null) {
             return;
         }
