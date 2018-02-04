@@ -211,7 +211,7 @@ public class SearchFile extends SwingScilabDockablePanel {
         mySearch = search;
     }
 
-    private void saveSearchFile() {
+    private synchronized void saveSearchFile() {
         if (mySearch != null) {
             try ( FileWriter fwriter = new FileWriter(ScilabConstants.SCIHOME.toString() + File.separator + getPersistentId() + ".xml");
                   BufferedWriter buffer = new BufferedWriter(fwriter) ) {
