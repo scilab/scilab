@@ -308,10 +308,10 @@ public class JoGLElementsBuffer extends JoGLDataBuffer implements ElementsBuffer
 
     @Override
     public void clear() {
-        if (data != null) {
-            data.clear();
-        }
-        synchronized (mutex) {  
+        synchronized (mutex) { 
+            if (data != null) {
+                data.clear();
+            }
             data = null;
         }
     }
