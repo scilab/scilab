@@ -1,5 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2004-2006 - INRIA - Fabrice Leray
+// Copyright (C) 2018 - Samuel GOUGEON
+//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -28,46 +30,30 @@ function [fail]=setPlotProperty(PropertyName,PropertyValue,Curves,current_figure
         return;
     end
 
-
     select PName
 
         /////////////////////////
     case "foreground"         // <=> Color
         /////////////////////////
-
-        if (type(PropertyValue) == 10)
-
-            index = getColorIndex(PropertyValue);
-
-            ColorVal   = ["red" "green" "blue" "cyan" "magenta" "yellow" "black" "black" "white"];
-
-            if (index < 10)
-                Curves.line_mode="on";
-                Curves.foreground = color(ColorVal(index));
-                Curves.mark_foreground = color(ColorVal(index));
-            else  // 'none' selected
-                warning(msprintf(gettext("%s: Wrong value for input argument #%d: A color of the colormap expected.\n"),"setPlotProperty",2));
-                ResetFigureDDM(current_figure, cur_draw_mode);
-                return;
-            end
-        elseif (type(PropertyValue) == 1) // we entered plot(x,y,'Color',[R,G,B])
-
-            if (size(PropertyValue,"*")==3)
-                Curves.line_mode="on";
-                Curves.foreground = addcolor(PropertyValue);
-                Curves.mark_foreground = addcolor(PropertyValue);
-            else
-                warning(msprintf(gettext("%s: Wrong size for input argument #%d: 3x1 or 1x3 vector expected.\n"),"setPlotProperty",2));
-                ResetFigureDDM(current_figure, cur_draw_mode);
-                return;
-            end
-
-        else
-            warning(msprintf(gettext("%s: Wrong type for input argument #%d: 3 elements vector or index in the colormap expected.\n"),"setPlotProperty",2));
+        c = iscolor(PropertyValue);
+        if or(c(:,1)==-1)
+            msg = _("%s: Argument #%d: Wrong color specification.\n")
+            warning(msprintf(msg, "setPlotProperty", 2));
             ResetFigureDDM(current_figure, cur_draw_mode);
-            return;
+            return
         end
-
+        if size(c,"r")<length(Curves)
+            msg = _("%s: Arguments #%d and #%d: Incompatible sizes.\n")
+            warning(msprintf(msg, "setPlotProperty", 2, 3));
+            ResetFigureDDM(current_figure, cur_draw_mode);
+            return
+        end
+        Curves.line_mode = "on";
+        ind = addcolor(c(1:length(Curves),:));
+        for i = 1:length(ind)
+            Curves($-i+1).foreground = ind(i);
+            Curves($-i+1).mark_foreground = ind(i);
+        end
 
         /////////////////////////
     case "clipping"           // Clipping
