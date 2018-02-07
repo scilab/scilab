@@ -189,7 +189,6 @@ am__v_lt_0 = --silent
 am__v_lt_1 = 
 am__DEPENDENCIES_1 =
 libscigraphic_objects_la_DEPENDENCIES =  \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
 	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
 am__objects_2 = src/jni/libscigraphic_objects_la-DataLoader_wrap.lo \
 	src/jni/libscigraphic_objects_la-ScilabNativeView_wrap.lo \
@@ -831,7 +830,7 @@ SWIG_WRAPPERS = \
     src/jni/graphic_objects.i \
     src/jni/ObjectData.i
 
-libscigraphic_objects_la_LIBADD = $(top_builddir)/modules/output_stream/libscioutput_stream.la $(X_LIBS) $(X_EXTRA_LIBS)
+libscigraphic_objects_la_LIBADD = $(X_LIBS) $(X_EXTRA_LIBS)
 
 #### graphic_objects : gateway declaration ####
 libscigraphic_objects_la_sci_gatewaydir = $(mydatadir)/sci_gateway

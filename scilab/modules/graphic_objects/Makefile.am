@@ -164,7 +164,7 @@ if SWIG
 BUILT_SOURCES+=swig
 endif
 
-libscigraphic_objects_la_LIBADD = $(top_builddir)/modules/output_stream/libscioutput_stream.la $(X_LIBS) $(X_EXTRA_LIBS)
+libscigraphic_objects_la_LIBADD = $(X_LIBS) $(X_EXTRA_LIBS)
 
 
 #### graphic_objects : gateway declaration ####

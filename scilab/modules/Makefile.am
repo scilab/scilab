@@ -252,7 +252,7 @@ if FORCE_LINK
 libscilab_la_LIBADD += $(ENGINE_LIBS_DYNAMIC_LOAD)
 endif
 
-libscilab_la_LIBADD += $(LAPACK_LIBS) $(BLAS_LIBS)
+libscilab_la_LIBADD += $(FLIBS) $(LAPACK_LIBS) $(BLAS_LIBS)
 
 ################## libscilab-cli  ##################
 
@@ -261,6 +261,6 @@ libscilab_cli_la_SOURCES =
 libscilab_cli_la_LDFLAGS = $(AM_LDFLAGS) $(SCI_LDFLAGS)
 
 # Core modules
-libscilab_cli_la_LIBADD = $(ENGINE_LIBS) $(NO_GUI_LIBS) $(OTHER_LIBS) $(EXTERNAL_LIBS) $(LAPACK_LIBS) $(BLAS_LIBS)
+libscilab_cli_la_LIBADD = $(ENGINE_LIBS) $(NO_GUI_LIBS) $(OTHER_LIBS) $(EXTERNAL_LIBS) $(FLIBS) $(LAPACK_LIBS) $(BLAS_LIBS)
 
 .NOTPARALLEL: libscilab-cli.la libscilab.la
