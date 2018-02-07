@@ -534,6 +534,7 @@ Known issues
 * [#15354](http://bugzilla.scilab.org/show_bug.cgi?id=15354): `invr(%s^2)` returned 0 instead of `1/%s^2`. For any scalar number, polynomial or rational `a`, `coffg(a)` returned `0` instead of `1`. `coffg([])` yielded an error. `invr` and `coffg` had no unitary tests. The `coffg` help page was inaccurate and unclear.
 * [#15360](http://bugzilla.scilab.org/show_bug.cgi?id=15360): `numer()` and `denom()` were almost useless, unused, and with more handy replacements. They are declared obsolete to be removed in Scilab 6.1.0.
 * [#15363](http://bugzilla.scilab.org/show_bug.cgi?id=15363): `h2norm()` could no longer be applied to undefined time domain systems, and made the residu() right example failing.
+* [#15368](http://bugzilla.scilab.org/show_bug.cgi?id=15368): `freson()` wrongly returned [] (no peak frequency detected) for some continuous time linear systems.
 * [#15370](http://bugzilla.scilab.org/show_bug.cgi?id=15370): `bezout()` mishandled its output arguments.
 * [#15375](http://bugzilla.scilab.org/show_bug.cgi?id=15375): A .zcos file opened as a palette was greyed out.
 * [#15395](http://bugzilla.scilab.org/show_bug.cgi?id=15395): `ones(2,3,2) / %z` yielded an error..
