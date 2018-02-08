@@ -30,6 +30,11 @@ H5CompoundData::H5CompoundData(H5Object & _parent, const hsize_t _totalSize, con
         hid_t mtype = H5Tget_member_type(compoundType, i);
         hsize_t size = H5Tget_size(mtype);
         char * mname = H5Tget_member_name(compoundType, i);
+        std::string name(mname);
+
+        //free crash: it will be fix with hdf5 libs >= 1.8.16 with new function h5free_memory
+        //h5free_memory(mname);
+
         size_t offs = H5Tget_member_offset(compoundType, i);
         FieldInfo * info = 0;
         if (H5Tget_class(type) == H5T_STRING && !H5Tis_variable_str(type))
@@ -38,10 +43,9 @@ H5CompoundData::H5CompoundData(H5Object & _parent, const hsize_t _totalSize, con
             size++;
         }
 
-        info = new FieldInfo(mtype, size, offs, std::string(mname));
-        (*infos)[std::string(mname)] = info;
+        info = new FieldInfo(mtype, size, offs, name);
+        (*infos)[name] = info;
         fieldinfos[i] = info;
-        free(mname);
     }
 }
 
