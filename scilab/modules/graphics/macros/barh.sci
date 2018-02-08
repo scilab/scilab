@@ -193,6 +193,7 @@ function  barh(varargin)
             inter=inter*0.9
         end
     else
+        Xtemp=X
         inter=1
     end
 
