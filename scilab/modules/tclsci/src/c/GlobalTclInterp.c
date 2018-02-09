@@ -46,7 +46,9 @@ void initTclInterp(void)
 */
 void deleteTclInterp(void)
 {
+    __Lock(&singleInterpAccess);
     __globalTclInterp = NULL;
+    __UnLock(&singleInterpAccess);
 
 }
 
