@@ -37,17 +37,11 @@ void banner(void)
     centerPrint(SCI_VERSION_WIDE_STRING);
     scilabForcedWriteW(L"\n\n");
 
-    centerPrint(_W("Scilab Enterprises\n").c_str());
-    centerPrint(_W("Copyright (c) 2011-2018 (Scilab Enterprises)\n").c_str());
+    centerPrint(_W("ESI Group\n").c_str());
+    centerPrint(_W("Copyright (c) 2017-2018 (ESI Group)\n").c_str());
+    centerPrint(_W("Copyright (c) 2011-2017 (Scilab Enterprises)\n").c_str());
     centerPrint(_W("Copyright (c) 1989-2012 (INRIA)\n").c_str());
     centerPrint(_W("Copyright (c) 1989-2007 (ENPC)\n").c_str());
-
-    scilabForcedWriteW(line);
-    scilabForcedWriteW(L"\n");
-
-    scilabForcedWriteW(L"\n");
-    centerPrint(L"-*- This is the future version 6 of Scilab. Only for testing -*-");
-    scilabForcedWriteW(L"\n");
 
     scilabForcedWriteW(line);
     scilabForcedWriteW(L"\n");

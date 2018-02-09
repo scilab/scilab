@@ -134,9 +134,11 @@ void CreateScilabConsole(int ShowBanner)
         printf(line);
         wsprintf(line, "                         %s\n\n", SCI_VERSION_STRING);
         printf(line);
-        strcpy(line, "                     Scilab Enterprises\n");
+        strcpy(line, "                     ESI Group\n");
         printf(line);
-        strcpy(line, "         Copyright (c) 2011-2018 (Scilab Enterprises)\n");
+        strcpy(line, "         Copyright (c) 2017-2018 (ESI Grroup)\n");
+        printf(line);
+        strcpy(line, "         Copyright (c) 2011-2017 (Scilab Enterprises)\n");
         printf(line);
         strcpy(line, "               Copyright (c) 1989-2012 (INRIA)\n");
         printf(line);

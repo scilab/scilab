@@ -205,7 +205,7 @@ input and output arguments.
 * `atomsSetConfig` does not update cache.
 * `lqi` function added to compute "linear quadratic integral compensator".
 * A new console `File => Go to Favorite directory` menu allows to go to a favorite directory selected in a dynamical list set from Scinotes favorite and most recent directories.
-* The console `File => Open a file` menu allows now to open *.xcos *.zcos *.scg or lib files with the proper Scilab component, and other files with the proper OS application. All files were opened in Scinotes and could freeze it.
+* The console `File => Open a file` menu allows now to open xcos, zcos, scg or lib files with the proper Scilab component, and other files with the proper OS application. All files were opened in Scinotes and could freeze it.
 * `size` is now overloadable for `tlist` lists, as it already could for `mlist` lists.
 * For arrays of cells or structures, `length` now returns their number of elements.
 * `gcd` now accepts `int64` and `uint64` integers. The input can now be an array instead of a row vector.
@@ -218,7 +218,7 @@ input and output arguments.
   - For unregistered user-defined macros, `"script"` is now returned instead of `[]`.
 * `mgetl` speed has been improved for files with a lot of lines.
 * `ndgrid(x)` now accepts only one input `x`, with by default `y=x`.
-
+* `banner()` updated with ESI Group a 2017-2018 copyright.
 
 Help pages:
 -----------
