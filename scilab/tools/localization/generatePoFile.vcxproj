@@ -60,11 +60,11 @@
     <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)locales\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
-    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(SolutionDir)bin\Scilex" -ns -nwni -e exec(SCI+%27/tools/localization/generatePoFile.sce%27);quit
+    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(SolutionDir)bin\scilab" -nwni -ns -e exec(SCI+%27/tools/localization/generatePoFile.sce%27);quit
 exit  /B 0
 </NMakeBuildCommandLine>
     <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">IF EXIST "$(SolutionDir)locale" rmdir /s /q  "$(SolutionDir)locale"
-"$(SolutionDir)bin\Scilex" -ns -nwni -e exec(SCI+%27/tools/localization/generatePoFile.sce%27);quit
+"$(SolutionDir)bin\scilab" -nwni -ns -e exec(SCI+%27/tools/localization/generatePoFile.sce%27);quit
 exit  /B 0
 </NMakeReBuildCommandLine>
     <NMakeCleanCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">rmdir /s /q  "$(SolutionDir)locale"</NMakeCleanCommandLine>
@@ -76,11 +76,11 @@ exit  /B 0
     <NMakeForcedUsingAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(NMakeForcedUsingAssemblies)</NMakeForcedUsingAssemblies>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)locales\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)$(Configuration)\</IntDir>
-    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"$(SolutionDir)bin\Scilex" -ns -nwni -e exec(SCI+%27/tools/localization/generatePoFile.sce%27);quit
+    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"$(SolutionDir)bin\scilab" -nwni -ns -e exec(SCI+%27/tools/localization/generatePoFile.sce%27);quit
 exit  /B 0
 </NMakeBuildCommandLine>
     <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">IF EXIST "$(SolutionDir)locale" rmdir /s /q  "$(SolutionDir)locale"
-"$(SolutionDir)bin\Scilex" -ns -nwni -e exec(SCI+%27/tools/localization/generatePoFile.sce%27);quit
+"$(SolutionDir)bin\scilab" -nwni -ns -e exec(SCI+%27/tools/localization/generatePoFile.sce%27);quit
 exit  /B 0
 </NMakeReBuildCommandLine>
     <NMakeCleanCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">rmdir /s /q  "$(SolutionDir)locale"</NMakeCleanCommandLine>
@@ -92,11 +92,11 @@ exit  /B 0
     <NMakeForcedUsingAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(NMakeForcedUsingAssemblies)</NMakeForcedUsingAssemblies>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)locales\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
-    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(SolutionDir)bin\Scilex" -ns -nwni -e exec(SCI+%27/tools/localization/generatePoFile.sce%27);quit
+    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(SolutionDir)bin\scilab" -nwni -ns -e exec(SCI+%27/tools/localization/generatePoFile.sce%27);quit
 exit  /B 0
 </NMakeBuildCommandLine>
     <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">IF EXIST "$(SolutionDir)locale" rmdir /s /q  "$(SolutionDir)locale"
-"$(SolutionDir)bin\Scilex" -ns -nwni -e exec(SCI+%27/tools/localization/generatePoFile.sce%27);quit
+"$(SolutionDir)bin\scilab" -nwni -ns -e exec(SCI+%27/tools/localization/generatePoFile.sce%27);quit
 exit  /B 0
 </NMakeReBuildCommandLine>
     <NMakeCleanCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">rmdir /s /q  "$(SolutionDir)locale"</NMakeCleanCommandLine>
@@ -108,11 +108,11 @@ exit  /B 0
     <NMakeForcedUsingAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(NMakeForcedUsingAssemblies)</NMakeForcedUsingAssemblies>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)locales\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)$(Configuration)\</IntDir>
-    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(SolutionDir)bin\Scilex" -ns -nwni -e exec(SCI+%27/tools/localization/generatePoFile.sce%27);quit
+    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(SolutionDir)bin\scilab" -nwni -ns -e exec(SCI+%27/tools/localization/generatePoFile.sce%27);quit
 exit  /B 0
 </NMakeBuildCommandLine>
     <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|x64'">IF EXIST "$(SolutionDir)locale" rmdir /s /q  "$(SolutionDir)locale"
-"$(SolutionDir)bin\Scilex" -ns -nwni -e exec(SCI+%27/tools/localization/generatePoFile.sce%27);quit
+"$(SolutionDir)bin\scilab" -nwni -ns -e exec(SCI+%27/tools/localization/generatePoFile.sce%27);quit
 exit  /B 0
 </NMakeReBuildCommandLine>
     <NMakeCleanCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|x64'">rmdir /s /q  "$(SolutionDir)locale"</NMakeCleanCommandLine>

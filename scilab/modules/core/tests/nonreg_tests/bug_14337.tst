@@ -8,6 +8,7 @@
 // <-- Non-regression test for bug 14337 -->
 //
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 // <-- NOT FIXED --> 6.0.0
 //
 // <-- Bugzilla URL -->
@@ -16,11 +17,13 @@
 // <-- Short Description -->
 // piping one command using a shell pipepine ( "|" ) works, but scilab segfaults at exit
 
-cmd = """(1 + 1)""";
-
 if getos() == "Windows"
-    ierr = host("echo " + cmd + " | start " + WSCI + "\bin\scilex -ns -quit > " + TMPDIR + "/out_bug_14337.txt");
+    cmd = "(1 + 1)";
+    f = "echo " + cmd + " | " + WSCI + "\bin\scilab -nwni -ns > " + TMPDIR + "\out_bug_14337.txt";
+    disp(f);
+    ierr = host(f);
 else
+    cmd = """(1 + 1)""";
     ierr = host("echo " + cmd + " | nohup " + SCI + "/bin/scilab-cli -ns -quit > " + TMPDIR + "/out_bug_14337.txt 2>&1 &");
 end
 

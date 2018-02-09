@@ -6,6 +6,7 @@
 // =============================================================================
 //
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 //
 // <-- Non-regression test for bug 14225 -->
 //
@@ -22,11 +23,7 @@ else
     SCI_BIN = SCI;
 end
 
-if getos() == "Windows" then
-    scilabBin = SCI_BIN + "/bin/scilex ";
-else
-    scilabBin = SCI_BIN + "/bin/scilab-cli ";
-end
+scilabBin = SCI_BIN + "/bin/scilab -nwni ";
 
 //With -quit argument
 err = unix(scilabBin + "-e ""exit()"" -quit");

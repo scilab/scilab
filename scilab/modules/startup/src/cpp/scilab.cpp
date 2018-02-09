@@ -230,11 +230,27 @@ static int get_option(const int argc, char *argv[], ScilabEngineInfo* _pSEI)
         else if (!strcmp("-nw", argv[i]))
         {
             _pSEI->iConsoleMode = 1;
+#ifdef _MSC_VER
+#if WITH_CONSOLE_JAVA
+            MessageBoxA(NULL, "Argument \"-nw\" is no longer supported.\nSee help page: https://help.scilab.org/scilab \n", "Error", MB_OK | MB_ICONERROR);
+#else
+            printf("Argument \"-nw\" is no longer supported.\nSee help page: https://help.scilab.org/scilab \n");
+#endif
+            exit(-1);
+#endif
         }
         else if (!strcmp("-nwni", argv[i]))
         {
             _pSEI->iConsoleMode = 1;
             _pSEI->iNoJvm = 1;
+#ifdef _MSC_VER
+#if WITH_CONSOLE_JAVA
+            MessageBoxA(NULL, "Argument \"-nwni\" is no longer supported.\nSee help page: https://help.scilab.org/scilab \n", "Error", MB_OK | MB_ICONERROR);
+#else
+            printf("Argument \"-nwni\" is no longer supported.\nSee help page: https://help.scilab.org/scilab \n");
+#endif
+            exit(-1);
+#endif
         }
         else if (!strcmp("-ns", argv[i]))
         {
@@ -452,7 +468,7 @@ int main(int argc, char *argv[])
 
 #ifdef _MSC_VER
     /* if file descriptor returned is -2 stdin is not associated with an input stream */
-    /* example : echo plot3d | scilex -nw -e */
+    /* example : echo plot3d | scilex -e */
 
     if (!isatty(_fileno(stdin)) && (_fileno(stdin) != -2) && getScilabMode() != SCILAB_STD)
 #else

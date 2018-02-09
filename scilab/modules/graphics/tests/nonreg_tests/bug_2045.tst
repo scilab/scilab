@@ -14,7 +14,7 @@
 //
 // <-- Short Description -->
 //    xpolys([],[],-1)
-//    kills scilex
+//    kills scilab
 
 // should not draw anything
 xpolys([],[],-1) ;

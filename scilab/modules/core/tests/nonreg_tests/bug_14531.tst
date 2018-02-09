@@ -18,7 +18,7 @@
 //start scilab like
 
 //windows
-bin\scilex -scihome %USERPROFILE%\Scilab\new_home
+bin\scilab -nwni -scihome %USERPROFILE%\Scilab\new_home
 
 //linux
 bin/scilab -nwni -scihome ~/Scilab/new_home

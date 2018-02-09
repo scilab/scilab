@@ -3,22 +3,15 @@
         xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
         xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
         xmlns:scilab="http://www.scilab.org" xml:id="scilab" xml:lang="fr">
-    <refnamediv xml:id="wscilex">
-    </refnamediv>
-    <refnamediv xml:id="scilex">
-    </refnamediv>
     <refnamediv>
-        <refname>scilex | scilab</refname>
+        <refname>scilab</refname>
         <refpurpose>lance Scilab en mode interactif ou batch avec options
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntaxe</title>
         <synopsis>
-#      MS Windows          |  # Linux / Unix / Mac OS X
-wscilex     &lt;Options&gt;     |  scilab         &lt;Options&gt;
-wscilex-cli &lt;Options&gt; |  scilab-adv-cli &lt;Options&gt;
-scilex      &lt;Options&gt;      |  scilab-cli     &lt;Options&gt;
+scilab &lt;Options&gt;
         </synopsis>
     </refsynopsisdiv>
     <refsection role="arguments">
@@ -236,16 +229,22 @@ evstr(a(i+2))*2
                         A partir de la version 5.2 de Scilab:
                         <itemizedlist>
                             <listitem>
-                                <para>La distribution de Scilab fournit aussi un binaire dédié
-                                    faisant la même chose que l'option <emphasis>-nw</emphasis>:
-                                    <emphasis>scilab-adv-cli</emphasis> (Scilab Advanced Command
-                                    Line Interpreter).
-                                </para>
-                            </listitem>
-                            <listitem>
                                 <para>Les fonctionnalités de pipe sont accessibles pour tous les
                                     systèmes d'exploitations (voir les examples pour plus de
                                     détails)
+                                </para>
+                            </listitem>
+                            <listitem>
+                                <para>La distribution de Scilab fournit aussi un binaire dédié
+                                    faisant la même chose que l'option <emphasis>-nw</emphasis>:
+                                    <itemizedlist>
+                                        <listitem>
+                                            Windows: <literal>WScilex-cli.exe</literal>.
+                                        </listitem>
+                                        <listitem>
+                                            <literal>scilab-adv-cli</literal> (Scilab Advanced Command Line Interpreter).
+                                        </listitem>
+                                    </itemizedlist>
                                 </para>
                             </listitem>
                         </itemizedlist>
@@ -278,8 +277,14 @@ evstr(a(i+2))*2
                             <listitem>
                                 <para>La distribution de Scilab fournit aussi un binaire dédié
                                     faisant la même chose que l'option <emphasis>-nw</emphasis>:
-                                    <emphasis>scilab-cli</emphasis> (Scilab Command Line
-                                    Interpreter).
+                                    <itemizedlist>
+                                        <listitem>
+                                            Windows: <literal>Scilex.exe</literal>.
+                                        </listitem>
+                                        <listitem>
+                                            Others: <literal>scilab-cli</literal> (Scilab Command Line Interpreter).
+                                        </listitem>
+                                    </itemizedlist>
                                 </para>
                             </listitem>
                         </itemizedlist>
@@ -541,4 +546,10 @@ echo $? ]]></screen>
             </revision>
         </revhistory>
     </refsection>
+    <!--add some kewywords -->
+    <refnamediv xml:id="wscilex"></refnamediv>
+    <refnamediv xml:id="wscilex-cli"></refnamediv>
+    <refnamediv xml:id="scilex"></refnamediv>
+    <refnamediv xml:id="scilab-cli"></refnamediv>
+    <refnamediv xml:id="scilab-adv-cli"></refnamediv>
 </refentry>

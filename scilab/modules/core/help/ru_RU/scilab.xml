@@ -3,12 +3,8 @@
     xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
     xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
     xmlns:scilab="http://www.scilab.org" xml:id="scilab" xml:lang="ru">
-    <refnamediv xml:id="wscilex">
-    </refnamediv>
-    <refnamediv xml:id="scilex">
-    </refnamediv>
     <refnamediv>
-        <refname>scilex | scilab</refname>
+        <refname>scilab</refname>
         <refpurpose>
             главный файл-сценарий для запуска Scilab'а и различных инструментов
         </refpurpose>
@@ -16,10 +12,7 @@
     <refsynopsisdiv>
         <title>Синтаксис</title>
         <synopsis>
-#      MS Windows          |  # Linux / Unix / Mac OS X
-wscilex     &lt;Options&gt;     |  scilab         &lt;Options&gt;
-wscilex-cli &lt;Options&gt; |  scilab-adv-cli &lt;Options&gt;
-scilex      &lt;Options&gt;      |  scilab-cli     &lt;Options&gt;
+scilab &lt;Options&gt;
         </synopsis>
     </refsynopsisdiv>
     <refsection role="arguments">
@@ -245,8 +238,13 @@ evstr(a(i+2))*2
                             <listitem>
                                 <para>
                                     Дистрибутив Scilab также предоставляет специальный бинарный файл, который
-                                    делает то же, что и <literal>-nw</literal>: <literal>scilab-adv-cli</literal>
-                                    (Интерпретатор Scilab с улучшенной командной строкой).
+                                    делает то же, что и <literal>-nw</literal>:
+                                    <listitem>
+                                        Windows: <literal>WScilex-cli.exe</literal>.
+                                    </listitem>
+                                    <listitem>
+                                        <literal>scilab-adv-cli</literal> (Интерпретатор Scilab с улучшенной командной строкой).
+                                    </listitem>
                                 </para>
                             </listitem>
                         </itemizedlist>
@@ -273,9 +271,16 @@ evstr(a(i+2))*2
                           </listitem>
                           <listitem>
                             <para>
-                              Дистрибутив Scilab также предоставляет специальный бинарный файл, который
-                              делает то же, что и <literal>-nwni</literal>: <literal>scilab-cli</literal>
-                              (Интерпретатор Scilab с улучшенной командной строкой).
+                                  Дистрибутив Scilab также предоставляет специальный бинарный файл, который
+                                  делает то же, что и <literal>-nwni</literal>: 
+                            <itemizedlist>
+                                <listitem>
+                                    Windows: <literal>Scilex.exe</literal>.
+                                </listitem>
+                                <listitem>
+                                    Others: <literal>scilab-cli</literal> (Интерпретатор Scilab с улучшенной командной строкой).
+                                </listitem>
+                            </itemizedlist>
                             </para>
                           </listitem>
                         </itemizedlist>
@@ -557,4 +562,10 @@ echo $? ]]></screen>
             </revision>
         </revhistory>
     </refsection>
+    <!--add some kewywords -->
+    <refnamediv xml:id="wscilex"></refnamediv>
+    <refnamediv xml:id="wscilex-cli"></refnamediv>
+    <refnamediv xml:id="scilex"></refnamediv>
+    <refnamediv xml:id="scilab-cli"></refnamediv>
+    <refnamediv xml:id="scilab-adv-cli"></refnamediv>
 </refentry>

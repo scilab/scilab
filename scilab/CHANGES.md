@@ -41,6 +41,22 @@ It is still also available under the terms of the CeCILL v2.1.
   - `tbx_builder_gateway`: scans the subdirectories under `sci_gateway` for builder files and executes them
 
 
+Windows starting changes:
+
+options -nw and -nwni are no longer supported by binaries ( WScilex.exe, WScilex-cli.exe and Scilex.exe )
+Each binary already matches an execution  mode
+ -> WScilex.exe starts Scilab with GUI
+ -> Wscilex-cli.exe starts Scilab without GUI but with Java
+ -> Scilex.exe starts Scilab without GUI and without Java.
+ 
+A batch file `Scilab.bat ` has been added to select the right binary depending on the option flag.
+scilab       -> WScilex.exe
+scilab -nw   -> WScilex-cli.exe
+scilab -nwni -> Scilex.exe
+
+others flags are forwarded to binaries as before.
+
+
 Installation
 ------------
 
@@ -227,7 +243,7 @@ Help pages:
 * Support to `id` attribute added for the `<tr>` tag.
 * fixed / improved:  `members`, `part`, `ode`, `ode_optional_output`, `ode_root`, `plot2d`, `roots`,
   `printf`, `sprintf`, `iconvert`, `stdev`, `xlabel`, `and_op`, `or_op`, `permute`, `tree2code`, `%helps`,
-  `scilab|scilex`, `flipdim`, `Matplot_properties`, `text_properties`, `meshgrid`, `ismatrix`, `xget`, `xset`, `ieee`, `evstr`,
+  `scilab`, `flipdim`, `Matplot_properties`, `text_properties`, `meshgrid`, `ismatrix`, `xget`, `xset`, `ieee`, `evstr`,
   `uigetfont`, `uigetdir`, `uigetfile`, `uiputfile`, `cat`, `makecell`, `xstring`, `norm`, `barhomogenize`,
   `colordef`, `matrix`, `coffg`, `diag`, `speye`, `sparse`
 * rewritten: `consolebox`, `double`, `isoview`, `pixel_drawing_mode`, `householder`, `or`, `|,||`,
