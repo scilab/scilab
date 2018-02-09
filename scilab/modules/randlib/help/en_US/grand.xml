@@ -364,7 +364,7 @@
                         random variates from the geometric distribution with
                         parameter <varname>p</varname> : number of Bernouilli trials
                         (with probability success of <varname>p</varname>) until a
-                        success is met. <varname>p</varname> must be in [1.3e-307, 1].
+                        success is met. <varname>p</varname> must be in [1.3e-307, 1]).
                     </para>
                     <para>
                         <varname>Y</varname> contains positive real numbers
