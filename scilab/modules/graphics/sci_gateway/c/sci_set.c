@@ -21,6 +21,10 @@
 /* file: sci_set.h                                                        */
 /* desc : interface for sci_set routine                                   */
 /*------------------------------------------------------------------------*/
+#ifdef _MSC_VER
+#include <Windows.h>
+#endif
+
 #include <stdio.h>
 /*------------------------------------------------------------------------*/
 #include "gw_graphics.h"
@@ -465,11 +469,13 @@ int sci_set(char *fname, void *pvApiCtx)
         freeAllocatedSingleString(pstProperty);
     }
 
+#ifdef _MSC_VER
     //never occurs, just to break weird optimisation (bug 14896)
     if (iRhs == 0)
     {
-        sciprint("%d/%d\n", i, iRhs);
+        Sleep(1);
     }
+#endif
 
     AssignOutputVariable(pvApiCtx, 1) = 0;
     ReturnArguments(pvApiCtx);
