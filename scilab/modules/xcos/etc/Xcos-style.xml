@@ -393,8 +393,7 @@
 		-->
     </add>
     <add as="MAXMIN" extend="blockWithLabel">
-        <add as="displayedLabel" value="MIN / MAX"/>
-        
+        <add as="displayedLabel" value="$\mathsf{\tiny MIN|MAX\\\small{MAX}}$"/>
     </add>
     <add as="ABS_VALUE" extend="blockWithLabel">
         <add as="displayedLabel" value="ABS"/>
@@ -921,7 +920,6 @@
     </add>
     <add as="BPLATFORM" extend="Icon">
         <add as="image" value="$SCILAB/modules/xcos/images/blocks/BPLATFORM.svg"/>
-        
     </add>
     <add as="AUTOMAT" extend="blockWithLabel">
         <add as="displayedLabel" value="$\mathsf{\substack{\large Automaton\\%s\ modes\ |\ \vphantom{%s}%s\ states}}$"/>
