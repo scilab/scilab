@@ -126,6 +126,8 @@ public final class ScilabVariables {
      *            will contain the data
      * @param data
      *            the data
+     * @param rows number of rows
+     * @param cols number of columns
      * @param handlerId
      *            the handler id
      */
@@ -170,6 +172,10 @@ public final class ScilabVariables {
      * @param indexes
      *            an integer array with the indexes of the (sub)*-list which
      *            will contain the data
+     * @param real complex real part data buffer
+     * @param imag complex imaginary part data buffer
+     * @param rows number of rows
+     * @param cols number of columns
      * @param handlerId
      *            the handler id
      */
@@ -214,6 +220,8 @@ public final class ScilabVariables {
      *            will contain the data
      * @param data
      *            the data
+     * @param rows number of rows
+     * @param cols number of columns
      * @param handlerId
      *            the handler id
      */
@@ -258,6 +266,8 @@ public final class ScilabVariables {
      *            will contain the data
      * @param data
      *            the data
+     * @param rows number of rows
+     * @param cols number of columns
      * @param handlerId
      *            the handler id
      */
@@ -302,6 +312,8 @@ public final class ScilabVariables {
      *            will contain the data
      * @param data
      *            the data
+     * @param rows number of rows
+     * @param cols number of columns
      * @param handlerId
      *            the handler id
      */
@@ -346,6 +358,8 @@ public final class ScilabVariables {
      *            will contain the data
      * @param data
      *            the data
+     * @param rows number of rows
+     * @param cols number of columns
      * @param handlerId
      *            the handler id
      */
@@ -390,6 +404,8 @@ public final class ScilabVariables {
      *            will contain the data
      * @param data
      *            the data
+     * @param rows number of rows
+     * @param cols number of columns
      * @param handlerId
      *            the handler id
      */
@@ -434,6 +450,8 @@ public final class ScilabVariables {
      *            will contain the data
      * @param data
      *            the data
+     * @param rows number of rows
+     * @param cols number of columns
      * @param handlerId
      *            the handler id
      */
@@ -478,6 +496,8 @@ public final class ScilabVariables {
      *            will contain the data
      * @param data
      *            the data
+     * @param rows number of rows
+     * @param cols number of columns
      * @param handlerId
      *            the handler id
      */
@@ -522,6 +542,8 @@ public final class ScilabVariables {
      *            will contain the data
      * @param data
      *            the data
+     * @param rows number of rows
+     * @param cols number of columns
      * @param handlerId
      *            the handler id
      */
@@ -803,6 +825,7 @@ public final class ScilabVariables {
      *
      * @param varName
      *            the variable name
+     * @param nbItems number of element in the list
      * @param indexes
      *            an integer array with the indexes of the (sub)*-list which
      *            will contain the data
@@ -842,6 +865,7 @@ public final class ScilabVariables {
      * Call when the list filling is finished a * @param indexes an integer
      * array with the indexes of the (sub)*-list which will contain the data
      *
+     * @param indexes to close
      * @param handlerId
      *            the handler id
      */

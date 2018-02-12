@@ -130,6 +130,7 @@ public class ScilabIntegerReference extends ScilabInteger {
     /**
      * {@inheritDoc}
      */
+    @Override
     public byte getByteElement(final int i, final int j) {
         return byteBuffer.get(i + nbRows * j);
     }
@@ -137,6 +138,7 @@ public class ScilabIntegerReference extends ScilabInteger {
     /**
      * {@inheritDoc}
      */
+    @Override
     public short getShortElement(final int i, final int j) {
         return shortBuffer.get(i + nbRows * j);
     }
@@ -144,6 +146,7 @@ public class ScilabIntegerReference extends ScilabInteger {
     /**
      * {@inheritDoc}
      */
+    @Override
     public int getIntElement(final int i, final int j) {
         return intBuffer.get(i + nbRows * j);
     }
@@ -151,6 +154,7 @@ public class ScilabIntegerReference extends ScilabInteger {
     /**
      * {@inheritDoc}
      */
+    @Override
     public long getLongElement(final int i, final int j) {
         return longBuffer.get(i + nbRows * j);
     }
@@ -158,6 +162,7 @@ public class ScilabIntegerReference extends ScilabInteger {
     /**
      * {@inheritDoc}
      */
+    @Override
     public void setByteElement(final int i, final int j, final byte x) {
         byteBuffer.put(i + nbRows * j, x);
     }
@@ -165,6 +170,7 @@ public class ScilabIntegerReference extends ScilabInteger {
     /**
      * {@inheritDoc}
      */
+    @Override
     public void setShortElement(final int i, final int j, final short x) {
         shortBuffer.put(i + nbRows * j, x);
     }
@@ -172,6 +178,7 @@ public class ScilabIntegerReference extends ScilabInteger {
     /**
      * {@inheritDoc}
      */
+    @Override
     public void setIntElement(final int i, final int j, final int x) {
         intBuffer.put(i + nbRows * j, x);
     }
@@ -179,6 +186,7 @@ public class ScilabIntegerReference extends ScilabInteger {
     /**
      * {@inheritDoc}
      */
+    @Override
     public void setLongElement(final int i, final int j, final long x) {
         longBuffer.put(i + nbRows * j, x);
     }
@@ -191,6 +199,7 @@ public class ScilabIntegerReference extends ScilabInteger {
      * @param bUnsigned
      *            true, if these values are unsigned; false otherwise.
      */
+    @Override
     public void setData(byte[][] data, boolean bUnsigned) {
         ScilabTypeUtils.setPart(byteBuffer, data);
         if (bUnsigned) {
@@ -208,6 +217,7 @@ public class ScilabIntegerReference extends ScilabInteger {
      * @param bUnsigned
      *            true, if these values are unsigned; false otherwise.
      */
+    @Override
     public void setData(short[][] data, boolean bUnsigned) {
         ScilabTypeUtils.setPart(shortBuffer, data);
         if (bUnsigned) {
@@ -225,6 +235,7 @@ public class ScilabIntegerReference extends ScilabInteger {
      * @param bUnsigned
      *            true, if these values are unsigned; false otherwise.
      */
+    @Override
     public void setData(int[][] data, boolean bUnsigned) {
         ScilabTypeUtils.setPart(intBuffer, data);
         if (bUnsigned) {
@@ -242,6 +253,7 @@ public class ScilabIntegerReference extends ScilabInteger {
      * @param bUnsigned
      *            true, if these values are unsigned; false otherwise.
      */
+    @Override
     public void setData(long[][] data, boolean bUnsigned) {
         ScilabTypeUtils.setPart(longBuffer, data);
         if (bUnsigned) {
@@ -256,6 +268,7 @@ public class ScilabIntegerReference extends ScilabInteger {
      *
      * @return the values as short
      */
+    @Override
     public short[][] getDataAsShort() {
         short[][] d = new short[nbRows][nbCols];
         ScilabTypeUtils.setBuffer(d, shortBuffer);
@@ -268,6 +281,7 @@ public class ScilabIntegerReference extends ScilabInteger {
      *
      * @return the values as byte
      */
+    @Override
     public byte[][] getDataAsByte() {
         byte[][] d = new byte[nbRows][nbCols];
         ScilabTypeUtils.setBuffer(d, byteBuffer);
@@ -280,6 +294,7 @@ public class ScilabIntegerReference extends ScilabInteger {
      *
      * @return the values as int
      */
+    @Override
     public int[][] getDataAsInt() {
         int[][] d = new int[nbRows][nbCols];
         ScilabTypeUtils.setBuffer(d, intBuffer);
@@ -292,6 +307,7 @@ public class ScilabIntegerReference extends ScilabInteger {
      *
      * @return the values as long
      */
+    @Override
     public long[][] getDataAsLong() {
         long[][] d = new long[nbRows][nbCols];
         ScilabTypeUtils.setBuffer(d, longBuffer);
@@ -349,6 +365,7 @@ public class ScilabIntegerReference extends ScilabInteger {
     /**
      * {@inheritDoc}
      */
+    @Override
     public Object getRawData() {
         switch (this.getPrec()) {
             case sci_int8:
@@ -371,6 +388,7 @@ public class ScilabIntegerReference extends ScilabInteger {
     /**
      * {@inheritDoc}
      */
+    @Override
     public Object getCorrectData() {
         switch (this.getPrec()) {
             case sci_int8:

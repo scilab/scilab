@@ -39,7 +39,6 @@ import java.util.Arrays;
 public class ScilabBoolean implements ScilabType {
 
     private static final long serialVersionUID = 6511497080095473901L;
-    private static final ScilabTypeEnum type = ScilabTypeEnum.sci_boolean;
 
     private static final int VERSION = 0;
 
@@ -69,8 +68,9 @@ public class ScilabBoolean implements ScilabType {
     /**
      * Create an object from an array of array of boolean
      *
-     * @param data
-     *            the array of boolean
+     * @param varName the variable name
+     * @param data the array of boolean
+     * @param swaped true if the matrix is stored row by row
      */
     public ScilabBoolean(String varName, boolean[][] data, boolean swaped) {
         this.varName = varName;
@@ -92,6 +92,7 @@ public class ScilabBoolean implements ScilabType {
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean isReference() {
         return byref;
     }
@@ -145,6 +146,7 @@ public class ScilabBoolean implements ScilabType {
     /**
      * {@inheritDoc}
      */
+    @Override
     public String getVarName() {
         return varName;
     }
@@ -152,6 +154,7 @@ public class ScilabBoolean implements ScilabType {
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean isSwaped() {
         return swaped;
     }
@@ -164,7 +167,7 @@ public class ScilabBoolean implements ScilabType {
      */
     @Override
     public ScilabTypeEnum getType() {
-        return type;
+        return ScilabTypeEnum.sci_boolean;
     }
 
     /**
@@ -232,6 +235,7 @@ public class ScilabBoolean implements ScilabType {
     /**
      * {@inheritDoc}
      */
+    @Override
     public Object getSerializedObject() {
         return getData();
     }

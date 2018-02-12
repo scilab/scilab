@@ -40,7 +40,6 @@ import java.util.Collection;
 public class ScilabList extends ArrayList<ScilabType> implements ScilabType {
 
     private static final long serialVersionUID = 6884293176289980909L;
-    private static final ScilabTypeEnum type = ScilabTypeEnum.sci_list;
 
     private static final int VERSION = 0;
 
@@ -69,6 +68,7 @@ public class ScilabList extends ArrayList<ScilabType> implements ScilabType {
      *
      * Note that the first element of this collection is the header used by
      * Scilab to find each field name.
+     * @param varName the variable name
      */
     public ScilabList(String varName) {
         super();
@@ -87,6 +87,7 @@ public class ScilabList extends ArrayList<ScilabType> implements ScilabType {
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean isReference() {
         return false;
     }
@@ -94,6 +95,7 @@ public class ScilabList extends ArrayList<ScilabType> implements ScilabType {
     /**
      * {@inheritDoc}
      */
+    @Override
     public String getVarName() {
         return varName;
     }
@@ -101,6 +103,7 @@ public class ScilabList extends ArrayList<ScilabType> implements ScilabType {
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean isSwaped() {
         return false;
     }
@@ -125,7 +128,7 @@ public class ScilabList extends ArrayList<ScilabType> implements ScilabType {
      */
     @Override
     public ScilabTypeEnum getType() {
-        return type;
+        return ScilabTypeEnum.sci_list;
     }
 
     /**
@@ -148,6 +151,7 @@ public class ScilabList extends ArrayList<ScilabType> implements ScilabType {
      *
      * @return a serialized ScilabList/
      */
+    @Override
     public Object[] getSerializedObject() {
         int[] types = new int[size()];
         Object[] items = new Object[types.length + 1];

@@ -35,7 +35,6 @@ import java.util.List;
 public class ScilabBooleanSparse implements ScilabType {
 
     private static final long serialVersionUID = 879625048944109684L;
-    private static final ScilabTypeEnum type = ScilabTypeEnum.sci_boolean_sparse;
 
     private static final int VERSION = 0;
 
@@ -82,6 +81,7 @@ public class ScilabBooleanSparse implements ScilabType {
      *            the column position of each true
      * @param check
      *            if true the parameters validity is checked
+     * @throws ScilabSparseException if the sparse representation is invalid
      */
     public ScilabBooleanSparse(int rows, int cols, int nbItem, int[] nbItemRow, int[] colPos, boolean check) throws ScilabSparseException {
         this(rows, cols, nbItem, nbItemRow, colPos);
@@ -167,6 +167,7 @@ public class ScilabBooleanSparse implements ScilabType {
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean isReference() {
         return false;
     }
@@ -179,7 +180,7 @@ public class ScilabBooleanSparse implements ScilabType {
      */
     @Override
     public ScilabTypeEnum getType() {
-        return type;
+        return ScilabTypeEnum.sci_boolean_sparse;
     }
 
     /**
@@ -265,6 +266,7 @@ public class ScilabBooleanSparse implements ScilabType {
     /**
      * {@inheritDoc}
      */
+    @Override
     public String getVarName() {
         return varName;
     }
@@ -272,6 +274,7 @@ public class ScilabBooleanSparse implements ScilabType {
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean isSwaped() {
         return false;
     }
@@ -355,6 +358,7 @@ public class ScilabBooleanSparse implements ScilabType {
     /**
      * {@inheritDoc}
      */
+    @Override
     public Object getSerializedObject() {
         return new Object[] { new int[] { rows, cols }, nbItemRow, getScilabColPos() };
     }

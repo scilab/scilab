@@ -38,7 +38,6 @@ import java.util.Arrays;
 public class ScilabString implements ScilabType {
 
     private static final long serialVersionUID = 359802519980180085L;
-    private static final ScilabTypeEnum type = ScilabTypeEnum.sci_strings;
 
     private static final int VERSION = 0;
 
@@ -66,8 +65,10 @@ public class ScilabString implements ScilabType {
     /**
      * Constructor with data.
      *
+     * @param varName the variable name
      * @param data
      *            the associated data.
+     * @param swaped true if the matrices are stored row by row
      */
     public ScilabString(String varName, String[][] data, boolean swaped) {
         this.varName = varName;
@@ -125,7 +126,7 @@ public class ScilabString implements ScilabType {
      */
     @Override
     public ScilabTypeEnum getType() {
-        return type;
+        return ScilabTypeEnum.sci_strings;
     }
 
     /**
@@ -138,6 +139,7 @@ public class ScilabString implements ScilabType {
     /**
      * {@inheritDoc}
      */
+    @Override
     public String getVarName() {
         return varName;
     }
@@ -145,6 +147,7 @@ public class ScilabString implements ScilabType {
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean isSwaped() {
         return swaped;
     }
@@ -152,6 +155,7 @@ public class ScilabString implements ScilabType {
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean isReference() {
         return false;
     }
@@ -213,6 +217,7 @@ public class ScilabString implements ScilabType {
     /**
      * {@inheritDoc}
      */
+    @Override
     public Object getSerializedObject() {
         return data;
     }

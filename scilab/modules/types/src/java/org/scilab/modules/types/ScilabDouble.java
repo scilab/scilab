@@ -46,7 +46,6 @@ import java.util.Arrays;
 public class ScilabDouble implements ScilabType {
 
     private static final long serialVersionUID = 879624048944109684L;
-    private static final ScilabTypeEnum type = ScilabTypeEnum.sci_matrix;
 
     private static final int VERSION = 0;
 
@@ -126,10 +125,12 @@ public class ScilabDouble implements ScilabType {
     /**
      * Constructor with a matrix of complex numbers
      *
+     * @param varName the variable name
      * @param realData
      *            the real part of the data
      * @param imagData
      *            the imaginary part of the data
+     * @param swaped true if the matrices are stored row by row
      */
     public ScilabDouble(String varName, double[][] realData, double[][] imagData, boolean swaped) {
         this(realData, imagData);
@@ -145,7 +146,7 @@ public class ScilabDouble implements ScilabType {
      */
     @Override
     public ScilabTypeEnum getType() {
-        return type;
+        return ScilabTypeEnum.sci_matrix;
     }
 
     /**
@@ -161,6 +162,7 @@ public class ScilabDouble implements ScilabType {
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean isReference() {
         return byref;
     }
@@ -215,6 +217,7 @@ public class ScilabDouble implements ScilabType {
     /**
      * {@inheritDoc}
      */
+    @Override
     public String getVarName() {
         return varName;
     }
@@ -222,6 +225,7 @@ public class ScilabDouble implements ScilabType {
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean isSwaped() {
         return swaped;
     }
@@ -325,6 +329,7 @@ public class ScilabDouble implements ScilabType {
     /**
      * {@inheritDoc}
      */
+    @Override
     public Object getSerializedObject() {
         if (isReal()) {
             return new Object[] { getRealPart() };

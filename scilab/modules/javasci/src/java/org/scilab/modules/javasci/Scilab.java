@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - INRIA - Sylvestre LEDRU
+ * Copyright (C) 2018 - ESI Group - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -30,7 +31,6 @@ import org.scilab.modules.types.ScilabBooleanSparse;
 import org.scilab.modules.types.ScilabInteger;
 import org.scilab.modules.types.ScilabPolynomial;
 import org.scilab.modules.types.ScilabSparse;
-import org.scilab.modules.javasci.Call_Scilab;
 import org.scilab.modules.javasci.JavasciException.AlreadyRunningException;
 import org.scilab.modules.javasci.JavasciException.InitializationException;
 import org.scilab.modules.javasci.JavasciException.UnsupportedTypeException;
@@ -68,6 +68,7 @@ public class Scilab {
      * <LI>Scilab data path is autodetected (SCI) </LI>
      * <LI>advanced features are disabled (no Java nor TCL/TK features) </LI>
      * </UL>
+     * @throws InitializationException when Scilab installation is not detected or the <pre>SCI</pre> variable is not setup correctly.
      */
     public Scilab() throws InitializationException {
         this(null, false);
@@ -83,6 +84,7 @@ public class Scilab {
      * <BR>
      * </code>
      * @param SCI provide the path to Scilab data
+     * @throws InitializationException when Scilab installation is not detected or the <pre>SCI</pre> variable is not setup correctly.
      */
     public Scilab(String SCI) throws InitializationException {
         this(SCI, false);
@@ -98,6 +100,7 @@ public class Scilab {
      * <BR>
      * </code>
      * @param advancedMode true enables the advanced mode (GUI, graphics, Tcl/Tk, sciNotes...). Smaller.
+     * @throws InitializationException when Scilab installation is not detected or the <pre>SCI</pre> variable is not setup correctly.
      */
     public Scilab(boolean advancedMode) throws InitializationException {
         this(null, advancedMode);
@@ -118,17 +121,18 @@ public class Scilab {
      * </code>
      * @param SCIPath the path to Scilab data
      * @param advancedMode true enables the advanced mode (GUI, graphics, Tcl/Tk, sciNotes...). Smaller.
+     * @throws InitializationException when Scilab installation is not detected or the <pre>SCI</pre> variable is not setup correctly.
      */
     public Scilab(String SCIPath, boolean advancedMode) throws InitializationException {
-        String SCI = SCIPath;
+        String sci = SCIPath;
         if (!System.getProperty("os.name").toLowerCase().contains("windows")) {
-            if (SCI == null) {
+            if (sci == null) {
                 // Auto detect
                 try {
-                    SCI = System.getProperty("SCI");
-                    if (SCI == null || SCI.length() == 0) {
-                        SCI = System.getenv("SCI");
-                        if (SCI == null || SCI.length() == 0) {
+                    sci = System.getProperty("SCI");
+                    if (sci == null || sci.length() == 0) {
+                        sci = System.getenv("SCI");
+                        if (sci == null || sci.length() == 0) {
                             throw new InitializationException("Auto detection of SCI failed.\nSCI empty.");
                         }
                     }
@@ -138,7 +142,7 @@ public class Scilab {
             }
         }
         this.advancedMode = advancedMode;
-        this.initScilab(SCI);
+        this.initScilab(sci);
 
     }
 
@@ -169,7 +173,7 @@ public class Scilab {
      * </code>
      * @return if the operation is successful
      * @throws AlreadyRunningException Scilab is already running
-     * @throws InitializationException Cannot start Scilab
+     * @throws JavasciException when the connection to Scilab encountered an issue.
      */
     public boolean open() throws JavasciException {
         int res = Call_Scilab.Call_ScilabOpen(this.SCI, this.advancedMode, null, -1);
@@ -204,6 +208,7 @@ public class Scilab {
      * </code>
      * @param job The job to run on startup
      * @return if the operation is successful
+     * @throws JavasciException when the connection to Scilab encountered an issue.
      */
     public boolean open(String job) throws JavasciException {
         if (!this.open()) {
@@ -227,6 +232,7 @@ public class Scilab {
      * </code>
      * @param jobs The serie of jobs to run on startup
      * @return if the operation is successful
+     * @throws JavasciException when the connection to Scilab encountered an issue.
      */
     public boolean open(String jobs[]) throws JavasciException {
         if (!this.open()) {
@@ -250,6 +256,8 @@ public class Scilab {
      * </code>
      * @param scriptFilename The script to execute on startup
      * @return if the operation is successful
+     * @throws JavasciException when the connection to Scilab encountered an issue.
+     * @throws FileNotFoundException if the passed <code>scriptFilename</code> is not a valid Scilab file.
      */
     public boolean open(File scriptFilename) throws JavasciException, FileNotFoundException {
         if (!this.open()) {
@@ -276,7 +284,7 @@ public class Scilab {
         try {
             this.execException(job);
             return true;
-        } catch (Exception e) {
+        } catch (ScilabErrorException e) {
             return false;
         }
     }
@@ -294,6 +302,7 @@ public class Scilab {
      * </code>
      * @param job the job to execute
      * @since 5.4.0
+     * @throws ScilabErrorException when the connection to Scilab or the Scilab execution encountered an issue.
      */
     public void execException(String job) throws ScilabErrorException {
         int result = Call_Scilab.SendScilabJob(job);
@@ -319,7 +328,7 @@ public class Scilab {
         try {
             this.execException(jobs);
             return true;
-        } catch (Exception e) {
+        } catch (ScilabErrorException e) {
             return false;
         }
     }
@@ -336,6 +345,7 @@ public class Scilab {
      * </code>
      * @param jobs the serie of job to execute
      * @since 5.4.0
+     * @throws ScilabErrorException when the connection to Scilab or the Scilab execution encountered an issue.
      */
     public void execException(String jobs[]) throws ScilabErrorException {
         int result = Call_Scilab.SendScilabJobs(jobs, jobs.length);
@@ -359,6 +369,8 @@ public class Scilab {
      * </code>
      * @param scriptFilename the script to execute
      * @since 5.4.0
+     * @throws FileNotFoundException if the passed <code>scriptFilename</code> is not a valid Scilab file.
+     * @throws ScilabErrorException when the connection to Scilab or the Scilab execution encountered an issue.
      */
     public void execException(File scriptFilename) throws FileNotFoundException, ScilabErrorException {
         if (!scriptFilename.exists()) {
@@ -381,6 +393,7 @@ public class Scilab {
      * </code>
      * @param scriptFilename the script to execute
      * @return if the operation is successful
+     * @throws FileNotFoundException if the passed <code>scriptFilename</code> is not a valid Scilab file.
      */
     public boolean exec(File scriptFilename) throws FileNotFoundException {
         if (!scriptFilename.exists()) {
@@ -604,6 +617,7 @@ public class Scilab {
      * <BR>
      * </code>
      * @param varname the name of the variable
+     * @param byref the data buffer is shared (not copied) between Scilab and the returned ScilabType value.
      * @return return the variable
      * @throws UnsupportedTypeException Type not managed yet.
      */
@@ -740,7 +754,7 @@ public class Scilab {
                         err = Call_Scilab.putInt(varname, sciInteger.getDataAsInt());
                         break;
                     case sci_uint64:
-                        //                    err = Call_Scilab.putUnsignedLong(varname, sciInteger.getData_());
+                    //                    err = Call_Scilab.putUnsignedLong(varname, sciInteger.getData_());
                     case sci_int64:
                         //                    err = Call_Scilab.putLong(varname, sciInteger.getData_());
                         break;

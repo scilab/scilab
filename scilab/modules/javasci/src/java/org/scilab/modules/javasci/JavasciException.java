@@ -117,6 +117,7 @@ public abstract class JavasciException extends Exception {
 
     /**
      * Default constructor
+     * @param message the message to be printed
      */
     public JavasciException(String message) {
         super(message);
