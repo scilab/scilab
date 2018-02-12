@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2016-03-09 19:31+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
-"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18511)\n"
+"X-Generator: Launchpad (build 18544)\n"
+"Language: it\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: A real expected.\n"
@@ -30,7 +30,8 @@ msgid "%s: Wrong size for input argument #%d: %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: number of columns %d expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: number of columns %d expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
 "numero %d di colonne.\n"
@@ -156,7 +157,8 @@ msgid "%s: Wrong type for input argument #%d: A vector expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A vector of size %d expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: A vector of size %d expected.\n"
 msgstr ""
 
 #, c-format
@@ -204,7 +206,8 @@ msgid "%s: Wrong number of input argument(s): %d or more expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A matrix or polynom expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A matrix or polynom expected.\n"
 msgstr ""
 
 #, c-format
@@ -242,7 +245,8 @@ msgid "%s: Wrong type for input argument #%d: A String expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A scalar of a string expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar of a string expected.\n"
 msgstr ""
 
 #, c-format
@@ -450,7 +454,7 @@ msgid "Undefined function '%ls'.\n"
 msgstr ""
 
 #, c-format
-msgid "User function '%s' have not been setted.\n"
+msgid "User function '%s' have not been set.\n"
 msgstr ""
 
 #, c-format
@@ -460,10 +464,6 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for output argument #%d: Real matrix expected.\n"
 msgstr ""
-
-#, fuzzy, c-format
-msgid "%s: Wrong size for output argument #%d: %d element(s) expected.\n"
-msgstr "%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso %s.\n"
 
 #, c-format
 msgid ""
@@ -638,7 +638,8 @@ msgstr ""
 msgid "Relative error on f = %e\n"
 msgstr ""
 
-msgid "Illustrates the sensitivity to dimension of the Nelder-Mead algorithm\n"
+msgid ""
+"Illustrates the sensitivity to dimension of the Nelder-Mead algorithm\n"
 msgstr ""
 
 msgid ""
@@ -861,7 +862,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s expected.\n"
-msgstr "%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso %s.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso %s.\n"
 
 #, c-format
 msgid "%s: Either one of Aeq, A, lb or ub must be non-empty."
@@ -884,7 +886,8 @@ msgstr ""
 "[0,1]."
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d. maxiter must be greater than 1."
+msgid ""
+"%s: Wrong value for input argument #%d. maxiter must be greater than 1."
 msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato. maxiter deve essere "
 "maggiore di 1."
@@ -917,7 +920,8 @@ msgstr ""
 "banda inferiore lb."
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d. x0 greater than upper bound ub."
+msgid ""
+"%s: Wrong value for input argument #%d. x0 greater than upper bound ub."
 msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato. x0 è maggiore della "
 "banda superiore ub."
@@ -1210,7 +1214,8 @@ msgstr ""
 #, c-format
 msgid ""
 "%s: The value of the 'PlotFcns' option is neither a function nor a list."
-msgstr "%s: Il valore dell'opzione 'PlotFcns' non è una funzione né una lista."
+msgstr ""
+"%s: Il valore dell'opzione 'PlotFcns' non è una funzione né una lista."
 
 #, c-format
 msgid "Syntax %s is obsolete."
@@ -1233,8 +1238,8 @@ msgid ""
 "%s: Expected function or list for variable %s at input #%d, but got %s "
 "instead."
 msgstr ""
-"%s: Era attesa una funzione o una lista per la variabile %s(1) all'ingresso #"
-"%d, ma si è ottenuto %s invece."
+"%s: Era attesa una funzione o una lista per la variabile %s(1) all'ingresso "
+"#%d, ma si è ottenuto %s invece."
 
 #, c-format
 msgid ""
@@ -1284,13 +1289,15 @@ msgstr ""
 "è ottenuto %s invece."
 
 #, c-format
-msgid "%s: Expected function but for variable %s at input #%d, got %s instead."
+msgid ""
+"%s: Expected function but for variable %s at input #%d, got %s instead."
 msgstr ""
 "%s: Era attesa una funzione, ma per la variabile %s all'ingresso #%d si è "
 "ottenuto %s invece."
 
 #, c-format
-msgid "%s: Expected boolean but for variable %s at input #%d, got %s instead."
+msgid ""
+"%s: Expected boolean but for variable %s at input #%d, got %s instead."
 msgstr ""
 "%s: Era atteso un booleano, ma per la variabile %s all'ingresso #%d si è "
 "ottenuto %s invece."
@@ -1364,7 +1371,8 @@ msgid "%s: Unknown restart detection %s"
 msgstr "%s: %s è un rilevamento di riavvio sconosciuto"
 
 #, c-format
-msgid "%s: Randomized bounds initial simplex is not available without bounds."
+msgid ""
+"%s: Randomized bounds initial simplex is not available without bounds."
 msgstr ""
 "%s: Il simplesso iniziale a confini fissati a caso non è disponibile senza "
 "confini."
@@ -1389,7 +1397,8 @@ msgstr ""
 "disuguaglianza"
 
 #, c-format
-msgid "%s: Problem has no constraints, but Box algorithm is designed for them."
+msgid ""
+"%s: Problem has no constraints, but Box algorithm is designed for them."
 msgstr ""
 "%s: Il problema non ha vincoli, ma l'algoritmo Box è pensato per quelli."
 
@@ -1400,7 +1409,8 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Randomized bounds restart simplex is not available without bounds."
+msgid ""
+"%s: Randomized bounds restart simplex is not available without bounds."
 msgstr ""
 
 #, c-format
@@ -1455,6 +1465,66 @@ msgstr ""
 "nel percorso."
 
 #, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Function or list expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for argument #%d: Function expected in first element of "
+"list.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong number of elements in input argument #%d: At least %d elements "
+"expected, but current number is %d.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha un numero di elementi sbagliato: ne erano "
+"attesi almeno %d, ma il loro attuale numero è %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set  {%s}.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Q must be orthogonal.\n"
+msgstr "%s: Q deve essere ortogonale.\n"
+
+#, c-format
+msgid "%s: Unknown value %s for option %s.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A function expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
+"funzione.\n"
+
+#, c-format
 msgid ""
 "%s: The number of variables %d does not match the number of max bounds: %d.\n"
 msgstr ""
@@ -1465,7 +1535,8 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: The max bound %s for variable #%d is lower than the min bound %s.\n"
+msgid ""
+"%s: The max bound %s for variable #%d is lower than the min bound %s.\n"
 msgstr ""
 
 #, c-format
@@ -1523,7 +1594,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: History disabled ; enable -storehistory option."
-msgstr "%s: La cronologia è disabilitata ; abilitare l'opzione -storehistory."
+msgstr ""
+"%s: La cronologia è disabilitata ; abilitare l'opzione -storehistory."
 
 #, c-format
 msgid "%s: Negative iteration index %d is not allowed."
@@ -1726,18 +1798,3 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
 msgstr ""
-
-#~ msgid ""
-#~ "%s: Wrong number of elements in input argument #%d: At least %d elements "
-#~ "expected, but current number is %d.\n"
-#~ msgstr ""
-#~ "%s: L'argomento in ingresso #%d ha un numero di elementi sbagliato: ne "
-#~ "erano attesi almeno %d, ma il loro attuale numero è %d.\n"
-
-#~ msgid "%s: Q must be orthogonal.\n"
-#~ msgstr "%s: Q deve essere ortogonale.\n"
-
-#~ msgid "%s: Wrong type for input argument #%d: A function expected.\n"
-#~ msgstr ""
-#~ "%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
-#~ "funzione.\n"

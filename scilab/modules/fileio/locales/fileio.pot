@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2017-12-14 15:55+0100\n"
+"Revision-Date: 2018-02-12 08:52+0100\n"
 
 # File: modules/fileio/sci_gateway/c/sci_chdir.c, line: 56
 # File: modules/fileio/sci_gateway/c/sci_chdir.c, line: 73
@@ -282,19 +282,6 @@ msgstr ""
 # File: modules/fileio/sci_gateway/cpp/sci_createdir.cpp, line: 60
 #, c-format
 msgid "%ls: Warning: Directory '%ls' already exists.\n"
-msgstr ""
-
-#
-# File: modules/fileio/sci_gateway/cpp/sci_deletefile.cpp, line: 36
-# File: modules/fileio/sci_gateway/cpp/sci_fileext.cpp, line: 35
-# File: modules/fileio/sci_gateway/cpp/sci_filesep.cpp, line: 37
-# File: modules/fileio/sci_gateway/cpp/sci_fullpath.cpp, line: 33
-# File: modules/fileio/sci_gateway/cpp/sci_getlongpathname.cpp, line: 33
-# File: modules/fileio/sci_gateway/cpp/sci_getshortpathname.cpp, line: 36
-# File: modules/fileio/sci_gateway/cpp/sci_isdir.cpp, line: 41
-# File: modules/fileio/sci_gateway/cpp/sci_isfile.cpp, line: 36
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
 
 #
@@ -924,7 +911,7 @@ msgid "%s: Options ignored.\n"
 msgstr ""
 
 #
-# File: modules/fileio/macros/mdelete.sci, line: 33
+# File: modules/fileio/macros/mdelete.sci, line: 34
 #, c-format
 msgid "%s: Wrong type for input argument: String expected.\n"
 msgstr ""

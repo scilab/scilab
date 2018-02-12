@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2017-12-14 15:55+0100\n"
+"Revision-Date: 2018-02-12 08:52+0100\n"
 
 # File: modules/graphics/sci_gateway/c/sci_Legend.c, line: 83
 # File: modules/graphics/sci_gateway/c/sci_Legend.c, line: 221
@@ -3226,13 +3226,14 @@ msgstr ""
 
 #
 # File: modules/graphics/macros/Sfgrayplot.sci, line: 28
-# File: modules/graphics/macros/bar.sci, line: 65
+# File: modules/graphics/macros/bar.sci, line: 79
 # File: modules/graphics/macros/colorbar.sci, line: 47
 # File: modules/graphics/macros/colordef.sci, line: 18
 # File: modules/graphics/macros/comet.sci, line: 53
 # File: modules/graphics/macros/fac3d.sci, line: 44
 # File: modules/graphics/macros/fac3d1.sci, line: 46
 # File: modules/graphics/macros/getcolor.sci, line: 49
+# File: modules/graphics/macros/iscolor.sci, line: 38
 # File: modules/graphics/macros/replot.sci, line: 37
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -3261,8 +3262,8 @@ msgstr ""
 
 #
 # File: modules/graphics/macros/Sgrayplot.sci, line: 56
-# File: modules/graphics/macros/bar.sci, line: 120
-# File: modules/graphics/macros/bar.sci, line: 145
+# File: modules/graphics/macros/bar.sci, line: 137
+# File: modules/graphics/macros/bar.sci, line: 169
 # File: modules/graphics/macros/barh.sci, line: 116
 # File: modules/graphics/macros/barh.sci, line: 140
 #, c-format
@@ -3281,7 +3282,7 @@ msgstr ""
 
 #
 # File: modules/graphics/macros/TitleLabel.sci, line: 32
-# File: modules/graphics/macros/bar.sci, line: 42
+# File: modules/graphics/macros/bar.sci, line: 52
 # File: modules/graphics/macros/barh.sci, line: 45
 # File: modules/graphics/macros/barhomogenize.sci, line: 46
 #, c-format
@@ -3337,14 +3338,21 @@ msgid "%s: Wrong size for input argument #%d: a real scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/macros/bar.sci, line: 50
-# File: modules/graphics/macros/bar.sci, line: 56
+# File: modules/graphics/macros/bar.sci, line: 62
+# File: modules/graphics/macros/bar.sci, line: 201
+# File: modules/graphics/macros/setPlotProperty.sci, line: 40
+#, c-format
+msgid "%s: Argument #%d: Wrong color specification.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/bar.sci, line: 69
 #, c-format
 msgid "%s: Wrong type for input arguments #%d: string expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/macros/bar.sci, line: 76
+# File: modules/graphics/macros/bar.sci, line: 91
 # File: modules/graphics/macros/barh.sci, line: 74
 #, c-format
 msgid ""
@@ -3352,23 +3360,22 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/graphics/macros/bar.sci, line: 80
+# File: modules/graphics/macros/bar.sci, line: 96
 # File: modules/graphics/macros/barh.sci, line: 78
 #, c-format
 msgid "%s: Wrong type for input arguments: String expected for %s and %s.\n"
 msgstr ""
 
 #
-# File: modules/graphics/macros/bar.sci, line: 123
+# File: modules/graphics/macros/bar.sci, line: 141
 #, c-format
 msgid ""
-"%s: Wrong size for input argument #%d: A scalar or a column vector "
-"expected.\n"
+"%s: Wrong size for input argument #%d: A scalar or a row vector expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/macros/bar.sci, line: 126
-# File: modules/graphics/macros/bar.sci, line: 151
+# File: modules/graphics/macros/bar.sci, line: 145
+# File: modules/graphics/macros/bar.sci, line: 177
 # File: modules/graphics/macros/barh.sci, line: 122
 # File: modules/graphics/macros/barh.sci, line: 146
 #, c-format
@@ -3376,23 +3383,30 @@ msgid "%s: Wrong type for input argument #%d: A scalar or a vector expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/macros/bar.sci, line: 138
+# File: modules/graphics/macros/bar.sci, line: 161
 # File: modules/graphics/macros/barh.sci, line: 133
 # File: modules/graphics/macros/datatips/datatipSetStyle.sci, line: 46
-# File: modules/graphics/macros/setPlotProperty.sci, line: 115
+# File: modules/graphics/macros/setPlotProperty.sci, line: 101
 # File: modules/graphics/macros/setSurfProperty.sci, line: 394
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/macros/bar.sci, line: 148
+# File: modules/graphics/macros/bar.sci, line: 173
 # File: modules/graphics/macros/barh.sci, line: 119
 # File: modules/graphics/macros/barh.sci, line: 143
 #, c-format
 msgid ""
 "%s: Wrong size for input arguments #%d: A scalar or a column vector "
 "expected.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/bar.sci, line: 216
+# File: modules/graphics/macros/setPlotProperty.sci, line: 46
+#, c-format
+msgid "%s: Arguments #%d and #%d: Incompatible sizes.\n"
 msgstr ""
 
 #
@@ -4010,9 +4024,8 @@ msgstr ""
 
 #
 # File: modules/graphics/macros/getColorIndex.sci, line: 49
-# File: modules/graphics/macros/setPlotProperty.sci, line: 49
-# File: modules/graphics/macros/setPlotProperty.sci, line: 204
-# File: modules/graphics/macros/setPlotProperty.sci, line: 258
+# File: modules/graphics/macros/setPlotProperty.sci, line: 190
+# File: modules/graphics/macros/setPlotProperty.sci, line: 244
 # File: modules/graphics/macros/setSurfProperty.sci, line: 106
 # File: modules/graphics/macros/setSurfProperty.sci, line: 156
 # File: modules/graphics/macros/setSurfProperty.sci, line: 299
@@ -4169,6 +4182,24 @@ msgstr ""
 # File: modules/graphics/macros/histplot.sci, line: 78
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real expected.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/iscolor.sci, line: 42
+#, c-format
+msgid "%s: Argument #%d: Numbers or text expected.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/iscolor.sci, line: 47
+#, c-format
+msgid "%s: Argument #%d: Decimal number(s) expected.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/iscolor.sci, line: 55
+#, c-format
+msgid "%s: Argument #%d: Text(s) expected.\n"
 msgstr ""
 
 #
@@ -4371,9 +4402,27 @@ msgid "%s: Wrong size for input argument #%d: An '%s' handle expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/macros/setPlotProperty.sci, line: 60
-# File: modules/graphics/macros/setPlotProperty.sci, line: 221
-# File: modules/graphics/macros/setPlotProperty.sci, line: 276
+# File: modules/graphics/macros/setPlotProperty.sci, line: 64
+# File: modules/graphics/macros/setPlotProperty.sci, line: 296
+# File: modules/graphics/macros/setSurfProperty.sci, line: 67
+# File: modules/graphics/macros/setSurfProperty.sci, line: 405
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/setPlotProperty.sci, line: 122
+# File: modules/graphics/macros/setPlotProperty.sci, line: 127
+# File: modules/graphics/macros/setPlotProperty.sci, line: 145
+# File: modules/graphics/macros/setSurfProperty.sci, line: 231
+# File: modules/graphics/macros/setSurfProperty.sci, line: 254
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A marker style expected.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/setPlotProperty.sci, line: 207
+# File: modules/graphics/macros/setPlotProperty.sci, line: 262
 # File: modules/graphics/macros/setSurfProperty.sci, line: 117
 # File: modules/graphics/macros/setSurfProperty.sci, line: 167
 # File: modules/graphics/macros/setSurfProperty.sci, line: 316
@@ -4383,35 +4432,8 @@ msgid "%s: Wrong size for input argument #%d: 3x1 or 1x3 vector expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/macros/setPlotProperty.sci, line: 66
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: 3 elements vector or index in the "
-"colormap expected.\n"
-msgstr ""
-
-#
-# File: modules/graphics/macros/setPlotProperty.sci, line: 78
-# File: modules/graphics/macros/setPlotProperty.sci, line: 310
-# File: modules/graphics/macros/setSurfProperty.sci, line: 67
-# File: modules/graphics/macros/setSurfProperty.sci, line: 405
-#, c-format
-msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
-msgstr ""
-
-#
-# File: modules/graphics/macros/setPlotProperty.sci, line: 136
-# File: modules/graphics/macros/setPlotProperty.sci, line: 141
-# File: modules/graphics/macros/setPlotProperty.sci, line: 159
-# File: modules/graphics/macros/setSurfProperty.sci, line: 231
-# File: modules/graphics/macros/setSurfProperty.sci, line: 254
-#, c-format
-msgid "%s: Wrong value for input argument #%d: A marker style expected.\n"
-msgstr ""
-
-#
-# File: modules/graphics/macros/setPlotProperty.sci, line: 227
-# File: modules/graphics/macros/setPlotProperty.sci, line: 282
+# File: modules/graphics/macros/setPlotProperty.sci, line: 213
+# File: modules/graphics/macros/setPlotProperty.sci, line: 268
 # File: modules/graphics/macros/setSurfProperty.sci, line: 123
 # File: modules/graphics/macros/setSurfProperty.sci, line: 173
 # File: modules/graphics/macros/setSurfProperty.sci, line: 269
@@ -4430,13 +4452,13 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/graphics/macros/setPlotProperty.sci, line: 299
+# File: modules/graphics/macros/setPlotProperty.sci, line: 285
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/macros/setPlotProperty.sci, line: 333
+# File: modules/graphics/macros/setPlotProperty.sci, line: 319
 #, c-format
 msgid ""
 "%s: Wrong size or type for input argument #%d: A column or row vector "

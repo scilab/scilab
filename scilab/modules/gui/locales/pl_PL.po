@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2016-12-07 22:12+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
-"Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18511)\n"
+"X-Generator: Launchpad (build 18544)\n"
+"Language: pl\n"
 
 #, c-format
 msgid "%s: Figure number must be given when not in '%s' mode.\n"
@@ -272,7 +272,8 @@ msgstr ""
 "(handle) '%s'.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"
 msgstr ""
 "%s: Nieprawidłowa wartość parametru wejściowego nr %d: oczekiwano poprawnego "
 "uchwytu (handle) '%s'.\n"
@@ -326,11 +327,13 @@ msgid "%s: Wrong number for input argument: %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: string or macro name expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: string or macro name expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: string or macro name expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: string or macro name expected.\n"
 msgstr ""
 
 #, c-format
@@ -355,7 +358,8 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A scalar or a vector expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar or a vector expected.\n"
 msgstr ""
 
 #, c-format
@@ -523,7 +527,8 @@ msgstr ""
 "%s: Nieprawidłowy parametr wejściowy nr %d: oczekiwano '%s' lub '%s'.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: 'pos' or 'gdi' value expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: 'pos' or 'gdi' value expected.\n"
 msgstr ""
 
 #, c-format
@@ -561,17 +566,27 @@ msgstr ""
 msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
 msgstr ""
 
-msgid "Scilab Input Value Request"
-msgstr "Wprowadzenie wartości wejścowej"
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ parametru wejściowego nr %d: Oczekiwano wektora "
+"wartości rzeczywistych lub zespolonych.\n"
 
-msgid "Scilab Multiple Values Request"
-msgstr "Wprowadzenie wartości wejściowych Scilab"
+msgid "Scilab Choices Request"
+msgstr "Scilab Choices Request"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
 msgstr ""
 "%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano wektora "
 "ciągów znaków.\n"
+
+msgid "Scilab Input Value Request"
+msgstr "Wprowadzenie wartości wejścowej"
+
+msgid "Scilab Multiple Values Request"
+msgstr "Wprowadzenie wartości wejściowych Scilab"
 
 #, c-format
 msgid ""
@@ -591,16 +606,6 @@ msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
 "%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwana macierz ciągów "
 "znaków.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
-msgstr ""
-"%s: Nieprawidłowy typ parametru wejściowego nr %d: Oczekiwano wektora "
-"wartości rzeczywistych lub zespolonych.\n"
-
-msgid "Scilab Choices Request"
-msgstr "Scilab Choices Request"
 
 #, c-format
 msgid "'%s' property does not exist for this handle.\n"
@@ -787,7 +792,8 @@ msgstr ""
 "wartość liczbową\n"
 
 #, c-format
-msgid "Wrong type for '%s' property: A real row vector or a string expected.\n"
+msgid ""
+"Wrong type for '%s' property: A real row vector or a string expected.\n"
 msgstr ""
 "Zły typ właściwości '%s': Oczekiwano wierszowego wektora wartości "
 "rzeczywistych lub ciągu znaków.\n"
@@ -816,8 +822,8 @@ msgstr "Zły rozmiar właściwości '%s': Oczekiwano '%s', '%s', lub '%s'.\n"
 #, c-format
 msgid "Wrong value for '%s' property: '%s', '%s', or '%s' expected.\n"
 msgstr ""
-"Nieprawidłowa wartość dla właściwości '%s': oczekiwano '%s', '%s', lub "
-"'%s' .\n"
+"Nieprawidłowa wartość dla właściwości '%s': oczekiwano '%s', '%s', lub '%s' "
+".\n"
 
 msgid "&File"
 msgstr "&Plik"
@@ -951,10 +957,7 @@ msgstr "&Załaduj środowisko..."
 msgid "&Save environment..."
 msgstr "&Zapisz środowisko..."
 
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 94
-# File: modules/gui/src/gui_fake_xml.c, line: 147
-msgid "&Current Working Directory"
+msgid "&Current Working Directory (CWD):"
 msgstr ""
 
 msgid "    &Browse for new"
@@ -2227,6 +2230,9 @@ msgstr "SCE-pliki Scilab"
 msgid "Scilab binary files"
 msgstr "Pliki binarne Scilab"
 
+msgid "All Scilab files"
+msgstr "Wszystkie pliki Scilab"
+
 msgid "Xcos files"
 msgstr "pliki Xcos"
 
@@ -2279,7 +2285,8 @@ msgstr "Nie mogę otworzyć: "
 msgid "Restoration error"
 msgstr ""
 
-msgid "The configuration file has been corrupted and reset to the default one."
+msgid ""
+"The configuration file has been corrupted and reset to the default one."
 msgstr ""
 
 msgid "The configuration file has been corrupted. Scilab needs to restart."
@@ -2605,7 +2612,8 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A border or a string expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A border or a string expected.\n"
 msgstr ""
 
 #, c-format
@@ -2668,26 +2676,6 @@ msgid ""
 " is incorrect: %s.\n"
 msgstr ""
 
-#, fuzzy
-msgid "Select a file to open"
-msgstr "Wybierz plik do załadowania"
-
-#, fuzzy
-msgid "Scilab scripts"
-msgstr "Scilab Quit files"
-
-#, fuzzy
-msgid "Xcos diagrams"
-msgstr "pliki Xcos"
-
-#, fuzzy
-msgid "Scilab Tests"
-msgstr "Komunikat Scilab"
-
-#, fuzzy
-msgid "Scilab Library"
-msgstr "Pliki binarne Scilab"
-
 #, c-format
 msgid "%s: Wrong type for input argument #%d: uitree expected.\n"
 msgstr ""
@@ -2699,7 +2687,8 @@ msgstr ""
 "%d.\n"
 
 #, c-format
-msgid "%s: Wrong type for element %d of input argument #%d: uitree expected.\n"
+msgid ""
+"%s: Wrong type for element %d of input argument #%d: uitree expected.\n"
 msgstr ""
 
 #, c-format
@@ -2788,6 +2777,3 @@ msgstr "%s: Nieprawidłowy typ dla %s: Oczekiwano wartości typu real.\n"
 #, c-format
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s: Nieprawidłowy rozmiar dla %s: Oczekiwano wartości typu real .\n"
-
-#~ msgid "All Scilab files"
-#~ msgstr "Wszystkie pliki Scilab"

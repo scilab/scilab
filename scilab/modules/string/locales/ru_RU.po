@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2017-04-16 14:05+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
-"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18511)\n"
+"X-Generator: Launchpad (build 18544)\n"
+"Language: ru\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -58,8 +58,8 @@ msgid ""
 "%s: Wrong value for input argument #%d: 'u' (Upper) or 'l' (Lower) "
 "expected.\n"
 msgstr ""
-"%s: Неверное значение входного параметра №%d: ожидалось «u» (Upper) или "
-"«l» (Lower).\n"
+"%s: Неверное значение входного параметра №%d: ожидалось «u» (Upper) или «l» "
+"(Lower).\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
@@ -79,7 +79,12 @@ msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
 msgstr "%s: Неверное количество выходных аргументов: ожидалось %d или %d.\n"
 
 #, c-format
-msgid "%s: Wrong values for input argument #%d: Non-empty strings expected.\n"
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Non-empty strings expected.\n"
 msgstr ""
 "%s: Неверные значения входного параметра №%d: ожидались непустые строки.\n"
 
@@ -93,7 +98,8 @@ msgstr "%s: Неверный тип входного аргумента №%d: �
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar String expected.\n"
-msgstr "%s: Неверный тип входного аргумента №%d: ожидалась скалярная строка.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидалась скалярная строка.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string or matrix expected.\n"
@@ -118,14 +124,15 @@ msgstr "%s: Неверные значения входного аргумент�
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
-msgstr "%s: Неверное количество выходных аргументов: ожидалось от %d до %d.\n"
+msgstr ""
+"%s: Неверное количество выходных аргументов: ожидалось от %d до %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: '%s' expected.\n"
 msgstr "%s: Неверный тип входного аргумента №%d: ожидался '%s'.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: '%s' or '%s' expected.\n"
+#, c-format
+msgid "%s: Wrong type for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""
 "%s: Неверный тип входного аргумента №%d: ожидалось ''%s'' или ''%s''.\n"
 
@@ -161,7 +168,8 @@ msgstr "%s: Не осталось доступной памяти.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 's' or 'r' expected.\n"
-msgstr "%s: Неверное значение входного аргумента №%d: ожидалось 's' или 'r'.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d: ожидалось 's' или 'r'.\n"
 
 #, c-format
 msgid ""
@@ -278,15 +286,18 @@ msgstr "%s: Неверный тип входного параметра №%d: �
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr "%s: Неверное количество выходных аргументов: ожидалось от %d до %d.\n"
+msgstr ""
+"%s: Неверное количество выходных аргументов: ожидалось от %d до %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
-msgstr "%s: Неверный тип входного аргумента №%d: ожидалась одиночная строка.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидалась одиночная строка.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '.' or ',' expected.\n"
-msgstr "%s: Неверное значение входного аргумента №%d: ожидалось '.' или ','.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d: ожидалось '.' или ','.\n"
 
 #, c-format
 msgid "%s: Delimiter must not be alphameric.\n"
@@ -393,36 +404,6 @@ msgid "%s: Wrong value for input argument #%d: %s, %s or %s expected.\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d: ожидалось %s, %s или %s.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected."
-msgstr "%s: Неверное количество входных аргументов: Ожидалось от %d до %d.\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
-"expected.\n"
-msgstr ""
-"%s: Неверное значение входного параметра №%d: ожидалось %s, %s или %s.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
-msgstr ""
-"%s: Неверный тип входного параметра №%d: ожидалось логическое значение.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected"
-msgstr "%s: Неверное количество входных аргументов: ожидалось от %d до %d.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong export format: %s"
-msgstr "%s: Неверный размер входного параметра №%d.\n"
-
-#
-# File: modules/string/macros/prettyprint.sci, line: 597
-#, c-format
-msgid "%s: Type %s is not handled : Define the function %s2%s."
-msgstr ""
-
 #, c-format
 msgid ""
 "%s: This feature has not been implemented: Variable translation of type %s.\n"
@@ -437,6 +418,3 @@ msgid ""
 msgstr ""
 "%s: Неверный размер входного параметра №%d: ожидался символ или вектор "
 "символов.\n"
-
-#~ msgid "%s: Wrong type for input argument #%d: String expected.\n"
-#~ msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"

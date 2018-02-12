@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 22:02+0000\n"
+"PO-Revision-Date: 2017-12-14 15:52+0000\n"
 "Last-Translator: Adolfo Jayme <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
-"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18511)\n"
+"X-Generator: Launchpad (build 18544)\n"
+"Language: es\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -301,19 +301,19 @@ msgstr ""
 "existente válido.\n"
 
 #, c-format
-msgid "%s: The CHAPTER file is not well formated at line %d\n"
+msgid "%s: The CHAPTER file is not well formatted at line %d\n"
 msgstr "%s: El archivo CHAPTER no tiene formato correcto en la línea %d\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: A string that end with ."
-"last_successful_build expected.\n"
+"%s: Wrong value for input argument #%d: A string that end with "
+".last_successful_build expected.\n"
 msgstr ""
 "%s: Valor incorrecto del argumento de entrada #%d: Se esperaba un string que "
 "termine con .last_successful_build.\n"
 
 #, c-format
-msgid "%s: The last_successful_build file is not well formated at line %d\n"
+msgid "%s: The last_successful_build file is not well formatted at line %d\n"
 msgstr ""
 "%s: El archivo last_successful_build no tiene formato correcto en la línea "
 "%d\n"

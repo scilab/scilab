@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2011-10-20 14:18+0000\n"
 "Last-Translator: Grzegorz Szostek <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
-"Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18511)\n"
+"X-Generator: Launchpad (build 18544)\n"
+"Language: pl\n"
 
 msgid "Warning: Problem(s) with TCL/TK interface. Interface not enabled.\n"
 msgstr ""
@@ -139,7 +139,8 @@ msgstr ""
 "Inicjalizacja TCL nieudana !\n"
 
 msgid "Tcl Error: Unable to create Tcl interpreter (Tcl_CreateInterp).\n"
-msgstr "Błąd Tcl: Nie można utworzyć interpretatora Tcl (Tcl_CreateInterp).\n"
+msgstr ""
+"Błąd Tcl: Nie można utworzyć interpretatora Tcl (Tcl_CreateInterp).\n"
 
 #, c-format
 msgid "Tcl Error: Error during the Tcl initialization (Tcl_Init): %s\n"

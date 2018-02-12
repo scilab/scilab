@@ -11,12 +11,12 @@ msgstr ""
 "PO-Revision-Date: 2017-05-01 23:16+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
-"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18511)\n"
+"X-Generator: Launchpad (build 18544)\n"
 "X-Poedit-Country: Japan\n"
+"Language: ja\n"
 "X-Poedit-Language: Japanese\n"
 
 #, c-format
@@ -46,12 +46,11 @@ msgstr "%c: 入力引数 #%d は辞書式順序で保存する必要がありま
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: 'c', 'd' or a scalar expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています:  'c', 'd'またはスカラーを指定してくだ"
-"さい.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています:  'c', 'd'またはスカラーを指定してください.\n"
 
 #, c-format
-msgid "%s: Affection of a string in a matrix of numbers is not implemented.\n"
+msgid ""
+"%s: Affection of a string in a matrix of numbers is not implemented.\n"
 msgstr "%s: 数値行列に文字列を指定することはできません.\n"
 
 #, c-format
@@ -63,10 +62,9 @@ msgid "%s: Invalid field name.\n"
 msgstr "%s: フィールド名が不正です.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: a valid field name expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: 有効なフィールド名を指定してくださ"
-"い.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: a valid field name expected.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 有効なフィールド名を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
@@ -77,7 +75,8 @@ msgid "%s: Wrong number of output arguments.\n"
 msgstr "%s: 出力引数の数が間違っています.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Transpose can not be defined.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: Transpose can not be defined.\n"
 msgstr "%s: 入力引数 #%d の大きさが間違っています: 転置が定義できません.\n"
 
 #, c-format
@@ -88,6 +87,10 @@ msgstr "%s: パスが無効です.\n"
 msgid ""
 "%s: Input argument #%d and input argument #%d have incompatible dimensions.\n"
 msgstr "%s: 入力引数 #%d と入力引数 #%d は次元に互換性がありません.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: スカラーを指定してください.\n"
 
 #, c-format
 msgid ""
@@ -109,8 +112,7 @@ msgstr "%s: 添字記号が多すぎます.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: 3D maximum expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています:  3D最大値を指定してください.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています:  3D最大値を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for argument: Incompatible dimensions.\n"
@@ -128,9 +130,7 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 実数の行列を�
 msgid ""
 "%s: Wrong value for input argument #%d: integer <= ndims(argument #%d) "
 "expected.\n"
-msgstr ""
-"%s: 入力引数 #%dの値が間違っています: 整数 <= ndims(引数 #%d) を指定してくだ"
-"さい.\n"
+msgstr "%s: 入力引数 #%dの値が間違っています: 整数 <= ndims(引数 #%d) を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: integer values expected.\n"
@@ -143,16 +143,13 @@ msgstr "%s:  時間領域に互換性がありません。\n"
 #, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: Same number of rows expected.\n"
-msgstr ""
-"%s: 入力引数 #%d と #%d に互換性がありません: 行の数を同じにしてください.\n"
+msgstr "%s: 入力引数 #%d と #%d に互換性がありません: 行の数を同じにしてください.\n"
 
 #, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: Same number of columns "
 "expected.\n"
-msgstr ""
-"%s: 入力引数 #%d 及び #%d に互換性がありません : 列の数を同じにする必要があり"
-"ます.\n"
+msgstr "%s: 入力引数 #%d 及び #%d に互換性がありません : 列の数を同じにする必要があります.\n"
 
 #, c-format
 msgid "%s: Invalid syntax for a MIMO system.\n"
@@ -160,8 +157,7 @@ msgstr "%s: MIMOシステムの構文が不正です.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %d or %s expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: %d または %s を指定してください.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: %d または %s を指定してください.\n"
 
 #, c-format
 msgid ""
@@ -182,18 +178,15 @@ msgstr "%s: 入力引数の大きさが間違っています.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+msgstr "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: スカラーを指定してください.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: スカラーを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Integer >= %d expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: %d 以上の整数を指定してください.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: %d 以上の整数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: string expected.\n"
@@ -201,15 +194,11 @@ msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を�
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が正しくありません: 集合 {%s} に含まれる値を指定してくだ"
-"さい.\n"
+msgstr "%s: 入力引数 #%d の値が正しくありません: 集合 {%s} に含まれる値を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string or scalar expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 文字列またはスカラーを指定してくださ"
-"い.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列またはスカラーを指定してください.\n"
 
 msgid "Invalid exponent: expected real exponents."
 msgstr "指数が間違っています: 実数の指数を指定してください."
@@ -220,44 +209,10 @@ msgstr "ゼロ割"
 msgid "Invalid Exponent"
 msgstr "指数が間違っています"
 
-#
-# File: modules/overloading/macros/%s_1_s.sci, line: 22
-#, c-format
-msgid ""
-"Complex comparison not supported. Please define %s_1_s_custom() or check "
-"your code."
-msgstr ""
-
-#
-# File: modules/overloading/macros/%s_2_s.sci, line: 22
-#, c-format
-msgid ""
-"Complex comparison not supported. Please define %s_2_s_custom() or check "
-"your code."
-msgstr ""
-
-#
-# File: modules/overloading/macros/%s_3_s.sci, line: 22
-#, c-format
-msgid ""
-"Complex comparison not supported. Please define %s_3_s_custom() or check "
-"your code."
-msgstr ""
-
-#
-# File: modules/overloading/macros/%s_4_s.sci, line: 22
-#, c-format
-msgid ""
-"Complex comparison not supported. Please define %s_4_s_custom() or check "
-"your code."
-msgstr ""
-
 #, c-format
 msgid ""
 "%s: Wrong type for input arguments #%d and #%d: Integer values expected.\n"
-msgstr ""
-"%s: 入力引数 #%d および #%d の型が間違っています:  整数値を指定してくださ"
-"い.\n"
+msgstr "%s: 入力引数 #%d および #%d の型が間違っています:  整数値を指定してください.\n"
 
 #, c-format
 msgid "%s: Not yet implemented.\n"
@@ -285,8 +240,7 @@ msgstr "%s: フィールド名が一致しません.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: not a valid field name.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: 正しいフィールド名ではありません.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 正しいフィールド名ではありません.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real vector expected.\n"
@@ -297,7 +251,8 @@ msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
 msgstr "%s: 引数 %d の型が間違っています: 実数スカラーを指定してください.\n"
 
 #, c-format
-msgid "%s: input and output matrices  must have the same number of elements.\n"
+msgid ""
+"%s: input and output matrices  must have the same number of elements.\n"
 msgstr "%s: 入力および出力の行列の要素の数は同じとする必要があります.\n"
 
 #, c-format
@@ -317,8 +272,7 @@ msgstr "乗算が不整合です.\n"
 #, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: Same dimensions expected.\n"
-msgstr ""
-"%s: 入力引数 #%d と #%d に互換性がありません: 同じ次元で指定してください.\n"
+msgstr "%s: 入力引数 #%d と #%d に互換性がありません: 同じ次元で指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument: %d expected.\n"
@@ -331,16 +285,12 @@ msgstr "%s: 実装されていません.\n"
 #, c-format
 msgid ""
 "%s: Wrong assignment: for insertion in cell, use e.g. x(i,j).entries=y.\n"
-msgstr ""
-"%s: 引数が間違っています: 例えば, セルに挿入する場合,  x(i,j).エントリ=y とし"
-"てください.\n"
+msgstr "%s: 引数が間違っています: 例えば, セルに挿入する場合,  x(i,j).エントリ=y としてください.\n"
 
 #, c-format
 msgid ""
 "%s: Incompatible sizes for properties '%s' and '%s': Same sizes expected.\n"
-msgstr ""
-"%s: プロパティ '%s' および '%s' の大きさに互換性がありません: 同じ大きさで指"
-"定してください.\n"
+msgstr "%s: プロパティ '%s' および '%s' の大きさに互換性がありません: 同じ大きさで指定してください.\n"
 
 msgid "Invalid index.\n"
 msgstr "添字が間違っています.\n"
@@ -348,7 +298,3 @@ msgstr "添字が間違っています.\n"
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"
-
-#~ msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
-#~ msgstr ""
-#~ "%s: 入力引数 #%d の型が間違っています: スカラーを指定してください.\n"

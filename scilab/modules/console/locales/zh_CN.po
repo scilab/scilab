@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2017-11-02 11:02+0000\n"
-"Last-Translator: Webish <Unknown>\n"
+"PO-Revision-Date: 2018-01-10 15:21+0000\n"
+"Last-Translator: Wesh <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18511)\n"
+"X-Generator: Launchpad (build 18544)\n"
+"Language: \n"
 
 #, c-format
 msgid "%s: This feature has not been implemented in this mode.\n"
@@ -58,6 +58,11 @@ msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s：第%d个输入参数的类型错误：应该为字符串。\n"
 
 #, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A Single string of size %d expected.\n"
+msgstr "%s：第%d个输入参数的维度错度：应该为%d长度的字符串。\n"
+
+#, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr "%s：输入参数的数目错误：应该为%d个。\n"
 
@@ -93,6 +98,14 @@ msgstr "命令过长（超过%d个字符）：无法发送到Scilab\n"
 
 msgid "[Continue display? n (no) to stop, any other key to continue]"
 msgstr "[继续显示？按n键停止，按其他键继续]"
+
+#, c-format
+msgid ""
+"Type '%s' or '%s' to return to standard level prompt.\n"
+"\n"
+msgstr ""
+"键入‘%s’或‘%s’以返回到标准层提示符。\n"
+"\n"
 
 msgid "Console"
 msgstr "控制台"
@@ -257,7 +270,7 @@ msgid "Next history line"
 msgstr "下一行历史记录"
 
 msgid "Help Browser"
-msgstr "帮助浏览器"
+msgstr "Scilab帮助"
 
 msgid "Console Search Field"
 msgstr "控制台搜索框"
@@ -778,14 +791,6 @@ msgstr "操作名"
 msgid "Key binding"
 msgstr "快捷键绑定"
 
-#, c-format
-msgid ""
-"Type '%s' or '%s' to return to standard level prompt.\n"
-"\n"
-msgstr ""
-"键入‘%s’或‘%s’以返回到标准层提示符。\n"
-"\n"
-
 msgid "Field"
 msgstr "字段"
 
@@ -800,8 +805,3 @@ msgstr "无法改变控制台字体"
 
 msgid "Could not change the Console Foreground."
 msgstr "无法改变控制台前景"
-
-#~ msgid ""
-#~ "%s: Wrong size for input argument #%d: A Single string of size %d "
-#~ "expected.\n"
-#~ msgstr "%s：第%d个输入参数的维度错度：应该为%d长度的字符串。\n"

@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2015-10-08 22:06+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
-"Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18511)\n"
+"X-Generator: Launchpad (build 18544)\n"
+"Language: pl\n"
 
 #, c-format
 msgid ""
@@ -34,7 +34,8 @@ msgstr "%s: Zły typ parametru wejściowego: Oczekiwano komórki.\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments: String expected.\n"
-msgstr "%s: Nieprawidłowy typ dla argumentu wejściowego: oczekiwany łańcuch.\n"
+msgstr ""
+"%s: Nieprawidłowy typ dla argumentu wejściowego: oczekiwany łańcuch.\n"
 
 #, c-format
 msgid ""
@@ -53,7 +54,8 @@ msgstr ""
 "nie odpowiadają określonej zawartości komórki.\n"
 
 #, c-format
-msgid "%s: This feature has not been implemented: Support for hypermatrices.\n"
+msgid ""
+"%s: This feature has not been implemented: Support for hypermatrices.\n"
 msgstr "%s: Wsparcie dla hipermacierzy nie zostało zrealizowane.\n"
 
 #, c-format
@@ -100,7 +102,8 @@ msgstr ""
 "kwadratowej.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: %s, %s,'%s' or '%s' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: %s, %s,'%s' or '%s' expected.\n"
 msgstr ""
 "%s: Zła wartość parametru wejściowego #%d: oczekiwano %s, %s,'%s' lub '%s'.\n"
 
@@ -188,7 +191,8 @@ msgid "%s: No minor grid in Scilab.\n"
 msgstr "%s: Nie ma siatki podrzędnej w programie Scilab.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%s: Nieprawidłowa wartość parametru wejściowego nr %d: oczekiwano '%s', '%s' "
 "lub '%s'.\n"

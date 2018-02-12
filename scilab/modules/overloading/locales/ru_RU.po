@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2017-03-01 14:55+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
-"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18511)\n"
+"X-Generator: Launchpad (build 18544)\n"
+"Language: ru\n"
 
 #, c-format
 msgid "%s: Invalid index.\n"
@@ -51,7 +51,8 @@ msgstr ""
 "скаляр.\n"
 
 #, c-format
-msgid "%s: Affection of a string in a matrix of numbers is not implemented.\n"
+msgid ""
+"%s: Affection of a string in a matrix of numbers is not implemented.\n"
 msgstr "%s: Вставка строкового значения в матрицу чисел не реализовано.\n"
 
 #, c-format
@@ -63,7 +64,8 @@ msgid "%s: Invalid field name.\n"
 msgstr "%s: Недопустимое имя поля.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: a valid field name expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: a valid field name expected.\n"
 msgstr ""
 "%s: Неверное значение входного аргумента №%d: ожидалось допустимое имя "
 "поля.\n"
@@ -77,7 +79,8 @@ msgid "%s: Wrong number of output arguments.\n"
 msgstr "%s: Неверное количество выходных аргументов.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Transpose can not be defined.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: Transpose can not be defined.\n"
 msgstr ""
 "%s: Неверный размер входного аргумента №%d: нельзя определить "
 "транспонирование.\n"
@@ -90,6 +93,10 @@ msgstr "%s: Недопустимый путь.\n"
 msgid ""
 "%s: Input argument #%d and input argument #%d have incompatible dimensions.\n"
 msgstr "%s: Входные аргументы №%d и №%d имеют несовместимые размеры.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr "%s: Неверный тип входного аргумента №%d: ожидался скаляр.\n"
 
 #, c-format
 msgid ""
@@ -227,38 +234,6 @@ msgstr "Деление на ноль"
 msgid "Invalid Exponent"
 msgstr "Недопустимая Экспонента"
 
-#
-# File: modules/overloading/macros/%s_1_s.sci, line: 22
-#, c-format
-msgid ""
-"Complex comparison not supported. Please define %s_1_s_custom() or check "
-"your code."
-msgstr ""
-
-#
-# File: modules/overloading/macros/%s_2_s.sci, line: 22
-#, c-format
-msgid ""
-"Complex comparison not supported. Please define %s_2_s_custom() or check "
-"your code."
-msgstr ""
-
-#
-# File: modules/overloading/macros/%s_3_s.sci, line: 22
-#, c-format
-msgid ""
-"Complex comparison not supported. Please define %s_3_s_custom() or check "
-"your code."
-msgstr ""
-
-#
-# File: modules/overloading/macros/%s_4_s.sci, line: 22
-#, c-format
-msgid ""
-"Complex comparison not supported. Please define %s_4_s_custom() or check "
-"your code."
-msgstr ""
-
 #, c-format
 msgid ""
 "%s: Wrong type for input arguments #%d and #%d: Integer values expected.\n"
@@ -296,7 +271,8 @@ msgstr "%s: Имена полей не совпадают.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: not a valid field name.\n"
-msgstr "%s: Неверное значение входного аргумента №%d: неправильное имя поля.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d: неправильное имя поля.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real vector expected.\n"
@@ -307,7 +283,8 @@ msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
 msgstr "%s: Неверный тип параметра %d: ожидался вещественный скаляр.\n"
 
 #, c-format
-msgid "%s: input and output matrices  must have the same number of elements.\n"
+msgid ""
+"%s: input and output matrices  must have the same number of elements.\n"
 msgstr ""
 "%s: входная и выходная матрицы должны иметь одинаковое число элементов.\n"
 
@@ -328,7 +305,8 @@ msgstr "Несогласованное перемножение.\n"
 #, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: Same dimensions expected.\n"
-msgstr "%s: Несовместимые аргументы №%d и №%d: ожидались одинаковые размеры.\n"
+msgstr ""
+"%s: Несовместимые аргументы №%d и №%d: ожидались одинаковые размеры.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument: %d expected.\n"
@@ -358,6 +336,3 @@ msgstr "Недопустимый индекс.\n"
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: Неверное количество входных аргументов: ожидалось %d.\n"
-
-#~ msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
-#~ msgstr "%s: Неверный тип входного аргумента №%d: ожидался скаляр.\n"

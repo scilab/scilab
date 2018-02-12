@@ -11,14 +11,15 @@ msgstr ""
 "PO-Revision-Date: 2017-01-14 13:31+0000\n"
 "Last-Translator: Paul Bignier <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
-"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18511)\n"
+"X-Generator: Launchpad (build 18544)\n"
+"Language: fr\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%s: An MPI communicator expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%s: An MPI communicator expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée #%s : un communicateur MPI attendu.\n"
 
@@ -112,4 +113,5 @@ msgstr "%s : Nombre erroné d'argument(s) de sortie : %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A Matrix expected.\n"
-msgstr "%s : Type erroné de l'argument d'entrée #%d : une matrice attendue.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée #%d : une matrice attendue.\n"

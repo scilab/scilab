@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2015-10-08 21:59+0000\n"
 "Last-Translator: Rafael Leandro <crf-rafa@live.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
-"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18511)\n"
+"X-Generator: Launchpad (build 18544)\n"
+"Language: pt_BR\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -61,8 +61,8 @@ msgid ""
 "%s: Wrong value for input argument #%d: 'u' (Upper) or 'l' (Lower) "
 "expected.\n"
 msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: esperava-se "
-"'u' (superior) ou 'l' (L - inferior).\n"
+"%s: Valor incorreto para o argumento de entrada #%d: esperava-se 'u' "
+"(superior) ou 'l' (L - inferior).\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
@@ -81,7 +81,13 @@ msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong values for input argument #%d: Non-empty strings expected.\n"
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um texto.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Non-empty strings expected.\n"
 msgstr ""
 "%s: Valores incorretos para o argumento de entrada #%d: esperava-se textos "
 "não-vazios.\n"
@@ -126,10 +132,9 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: '%s' expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: '%s' or '%s' expected.\n"
+#, c-format
+msgid "%s: Wrong type for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: esperava-se %s ou %s.\n"
 
 #, c-format
 msgid ""
@@ -393,38 +398,6 @@ msgstr ""
 "%s: Valor incorreto para o argumento de entrada #%d: esperava-se %s, %s ou "
 "%s.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected."
-msgstr "%s: Quantidade incorreta de argumentos de entrada: esperava-se %d.\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
-"expected.\n"
-msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: esperava-se %s, %s ou "
-"%s.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
-msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um "
-"booleano.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected"
-msgstr "%s: Quantidade incorreta de argumentos de entrada: esperava-se %d.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong export format: %s"
-msgstr "%s: Tamanho incorreto para o argumento de entrada #%d.\n"
-
-#
-# File: modules/string/macros/prettyprint.sci, line: 597
-#, c-format
-msgid "%s: Type %s is not handled : Define the function %s2%s."
-msgstr ""
-
 #, c-format
 msgid ""
 "%s: This feature has not been implemented: Variable translation of type %s.\n"
@@ -438,8 +411,3 @@ msgid ""
 msgstr ""
 "%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um "
 "caractere ou um vetor de caracteres.\n"
-
-#~ msgid "%s: Wrong type for input argument #%d: String expected.\n"
-#~ msgstr ""
-#~ "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um "
-#~ "texto.\n"

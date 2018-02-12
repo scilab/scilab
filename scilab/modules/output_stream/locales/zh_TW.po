@@ -6,11 +6,11 @@ msgstr ""
 "PO-Revision-Date: 2015-10-08 22:09+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Scilab Chinese (traditional) <ade-scilab@googlegroups.com>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18511)\n"
+"X-Generator: Launchpad (build 18544)\n"
+"Language: \n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
 #, c-format
@@ -78,7 +78,8 @@ msgid "%s: Wrong value for input argument #%d: error can not close diary.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: error can not close diary %d.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: error can not close diary %d.\n"
 msgstr ""
 
 #, c-format
@@ -86,7 +87,8 @@ msgid "%s: Wrong value for input argument #%d: error can not pause diary.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
 msgstr ""
 
 #, c-format
@@ -166,6 +168,36 @@ msgid "%s: Wrong type of input arguments #%d: A real scalar expected.\n"
 msgstr ""
 
 #, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected."
+msgstr "%s: Wrong number of input argument(s): %d to %d expected."
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: 第 #%d 輸入參數錯誤: 應該是字串.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
+msgstr "%s: 第 #%d 輸入參數的數值錯誤: 應該是 '%s', '%s', '%s', '%s', '%s' 或 '%s' .\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
+msgstr "%s: 第 %d 參數的型態錯誤: 應該是布林(邏輯)值.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected"
+msgstr "%s: Wrong number of input arguments: %d to %d expected"
+
+#, c-format
+msgid "%s: Wrong export format: %s"
+msgstr "%s: Wrong export format: %s"
+
+#, c-format
+msgid "%s: Type %s is not handled : Define the function %s2%s."
+msgstr "%s: Type %s is not handled : Define the function %s2%s."
+
+#, c-format
 msgid "%s: Wrong number of input argument(s).\n"
 msgstr ""
 
@@ -178,34 +210,10 @@ msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A state-space model expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A state-space model expected.\n"
 msgstr ""
 
 #, c-format
 msgid "%s: system cannot be displayed in this page.\n"
 msgstr "%s: 系統無法在此頁中顯示.\n"
-
-#~ msgid "%s: Wrong number of input argument(s): %d to %d expected."
-#~ msgstr "%s: Wrong number of input argument(s): %d to %d expected."
-
-#~ msgid "%s: Wrong type for input argument #%d: String expected.\n"
-#~ msgstr "%s: 第 #%d 輸入參數錯誤: 應該是字串.\n"
-
-#~ msgid ""
-#~ "%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or "
-#~ "'%s' expected.\n"
-#~ msgstr ""
-#~ "%s: 第 #%d 輸入參數的數值錯誤: 應該是 '%s', '%s', '%s', '%s', '%s' 或 "
-#~ "'%s' .\n"
-
-#~ msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
-#~ msgstr "%s: 第 %d 參數的型態錯誤: 應該是布林(邏輯)值.\n"
-
-#~ msgid "%s: Wrong number of input arguments: %d to %d expected"
-#~ msgstr "%s: Wrong number of input arguments: %d to %d expected"
-
-#~ msgid "%s: Wrong export format: %s"
-#~ msgstr "%s: Wrong export format: %s"
-
-#~ msgid "%s: Type %s is not handled : Define the function %s2%s."
-#~ msgstr "%s: Type %s is not handled : Define the function %s2%s."

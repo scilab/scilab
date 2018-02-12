@@ -11,15 +11,16 @@ msgstr ""
 "PO-Revision-Date: 2012-03-04 18:11+0000\n"
 "Last-Translator: Dennis Baudys <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
-"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18511)\n"
+"X-Generator: Launchpad (build 18544)\n"
+"Language: de\n"
 
 #, c-format
 msgid "%s: wrong parameter type. %s expected. Return default value %d.\n"
-msgstr "%s: Falscher Parametertyp. %s erwartet. Rückgabe von Defaultwert %d.\n"
+msgstr ""
+"%s: Falscher Parametertyp. %s erwartet. Rückgabe von Defaultwert %d.\n"
 
 #, c-format
 msgid "%s: parameter not found. Return default value %d.\n"
@@ -47,7 +48,8 @@ msgstr "%s: Erwartete Parameter: "
 
 #, c-format
 msgid "%s: wrong parameter type. %s expected. Return default value %f.\n"
-msgstr "%s: Falscher Parametertyp. %s erwartet. Rückgabe von Defaultwert %f.\n"
+msgstr ""
+"%s: Falscher Parametertyp. %s erwartet. Rückgabe von Defaultwert %f.\n"
 
 #, c-format
 msgid "%s: parameter not found. Return default value %f.\n"
@@ -71,7 +73,8 @@ msgstr "%s: Falscher Wert für Parameter %s: Wert %f\n"
 
 #, c-format
 msgid "%s: wrong parameter type. %s expected. Return default value %s.\n"
-msgstr "%s: Falscher Parametertyp. %s erwartet. Rückgabe von Defaultwert %s.\n"
+msgstr ""
+"%s: Falscher Parametertyp. %s erwartet. Rückgabe von Defaultwert %s.\n"
 
 #, c-format
 msgid "%s: parameter not found. Return default value %s.\n"

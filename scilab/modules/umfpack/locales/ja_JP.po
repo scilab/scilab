@@ -11,12 +11,12 @@ msgstr ""
 "PO-Revision-Date: 2017-05-01 23:02+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
-"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18511)\n"
+"X-Generator: Launchpad (build 18544)\n"
 "X-Poedit-Country: Japan\n"
+"Language: ja\n"
 "X-Poedit-Language: Japanese\n"
 
 #, c-format
@@ -27,9 +27,7 @@ msgstr "%s: 入力引数の大きさが間違っています: 同じ大きさで
 msgid ""
 "%s: Wrong value for input argument #%d: not a valid reference to Cholesky "
 "factors.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています:コレスキー分解への有効な参照ではありま"
-"せん.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています:コレスキー分解への有効な参照ではありません.\n"
 
 #, c-format
 msgid ""
@@ -54,9 +52,7 @@ msgstr "因数分解"
 msgid ""
 "%s: Wrong value for input argument #%d: Must be a valid reference to a "
 "Cholesky factorization"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: コレスキー分解への有効な参照を指定して"
-"ください"
+msgstr "%s: 入力引数 #%d の値が間違っています: コレスキー分解への有効な参照を指定してください"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -66,9 +62,7 @@ msgstr "%s: メモリ確保エラー.\n"
 msgid ""
 "%s: Wrong value for input argument #%d: not a valid reference to Cholesky "
 "factors"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています:コレスキー分解への有効な参照ではありま"
-"せん"
+msgstr "%s: 入力引数 #%d の値が間違っています:コレスキー分解への有効な参照ではありません"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
@@ -78,16 +72,13 @@ msgstr "%s: 入力引数 #%d の大きさが間違っています.\n"
 msgid ""
 "%s: Wrong type for input argument #%d: not compatible with the Cholesky "
 "factorization.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: コレスキー分解と互換性がありません.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: コレスキー分解と互換性がありません.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: not compatible with the Cholesky "
 "factorization.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: コレスキー分解と互換性がありませ"
-"ん.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: コレスキー分解と互換性がありません.\n"
 
 #, c-format
 msgid "%s: not enough memory.\n"
@@ -101,9 +92,7 @@ msgstr "%s: 入力引数 #%d の型が間違っています: ポインタを指�
 msgid ""
 "%s: Wrong value for input argument #%d: Must be a valid reference to (umf) "
 "LU factors.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: (umf) LU分解への有効な参照を指定してく"
-"ださい.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: (umf) LU分解への有効な参照を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A sparse matrix expected.\n"
@@ -156,8 +145,7 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 疎行列を指定�
 
 #, c-format
 msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
-msgstr ""
-"%s: 入力引数 #%d が間違っています: '%s' または '%s' を指定してください.\n"
+msgstr "%s: 入力引数 #%d が間違っています: '%s' または '%s' を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %s.\n"
@@ -234,8 +222,7 @@ msgid ""
 " umf_lufact but if you have already computed this one it is recommended to "
 "give the pointer to the factorization."
 msgstr ""
-"     Aの逆行列を陽に計算せずに. condestspは umf_lufactによる(LU)分解を使用し"
-"ますが, すでにこれを計算済みの場合,\n"
+"     Aの逆行列を陽に計算せずに. condestspは umf_lufactによる(LU)分解を使用しますが, すでにこれを計算済みの場合,\n"
 "その分解へのポインタを指定することを推奨します."
 
 msgid ""
@@ -243,8 +230,7 @@ msgid ""
 "exactly with\n"
 "norm(inv(full(A)),1)) whose values are chosen from the normal distribution."
 msgstr ""
-"このテストは(norm(inv(full(A)),1)によりK1を計算すると共に)その値が正規分布か"
-"ら選択された小さな疎行列の\n"
+"このテストは(norm(inv(full(A)),1)によりK1を計算すると共に)その値が正規分布から選択された小さな疎行列の\n"
 "作成からなります."
 
 msgid ""
@@ -256,16 +242,12 @@ msgstr ""
 
 msgid ""
 "This test compares umfpack v3 and sparse v1.3 via their Scilab interface."
-msgstr ""
-"このテストはそれぞれのScilabインターフェイスによりumfpack v3とsparse v1.3を比"
-"較します."
+msgstr "このテストはそれぞれのScilabインターフェイスによりumfpack v3とsparse v1.3を比較します."
 
 msgid ""
 "The test consists in loading Harwell-Boeing sparse matrices and solve linear "
 "system with a random rhs."
-msgstr ""
-"このテストはHarwell-Boeing疎行列を読み込み, ランダムな右辺を指定した線形シス"
-"テムを解きます."
+msgstr "このテストはHarwell-Boeing疎行列を読み込み, ランダムな右辺を指定した線形システムを解きます."
 
 msgid "The matrices presented here come from the NIST server Matrix server:"
 msgstr "ここに示す行列はNISTの行列サーバーから取得したものです."
@@ -276,9 +258,7 @@ msgstr "警告: テスト2と3は他とくらべて非常に多くの時間を�
 msgid ""
 "Test 1: Jacobian of a nonlinear system of ordinary differential equations "
 "(ODEs) modeling a laser"
-msgstr ""
-"テスト1: レーザーをモデリングする常備分方程式(ODEs)の非線形システムのヤコビア"
-"ン"
+msgstr "テスト1: レーザーをモデリングする常備分方程式(ODEs)の非線形システムのヤコビアン"
 
 msgid "  Mean time and accuracy for umfpack (t1 and ||A*x-b||):"
 msgstr "  平均時間およびumfpackの精度 (t1 and ||A*x-b||):"
@@ -304,16 +284,12 @@ msgstr "テスト5: 音響散乱"
 msgid ""
 "To load a sparse matrix stored in the Harwell-Boeing format in Scilab, you "
 "may use the function ReadHBSparse."
-msgstr ""
-"Harwell-Boeing 形式で保存された疎行列をScilabに読み込む際には, ReadHBSparse関"
-"数を使用します."
+msgstr "Harwell-Boeing 形式で保存された疎行列をScilabに読み込む際には, ReadHBSparse関数を使用します."
 
 msgid ""
 "4 matrices will be loaded for the demo: they come from the University of "
 "Florida Sparse Matrix Collection:"
-msgstr ""
-"4つの行列がデモで読み込まれます: これらはフロリダ大学の疎行列集から取得したも"
-"のです:"
+msgstr "4つの行列がデモで読み込まれます: これらはフロリダ大学の疎行列集から取得したものです:"
 
 msgid "    maintained by Tim Davis, author of UMFPACK"
 msgstr "    UMFPACKの作者であるTim Davisにより管理された"
@@ -385,8 +361,7 @@ msgid ""
 "     or  x = umf_lusolve(lup,b,Ax=b,A)  to add an iterative refinement step\n"
 msgstr ""
 "     x = umf_lusolve(lup,b)\n"
-"     または x = umf_lusolve(lup,b,Ax=b,A)   (反復改良ステップを追加する場"
-"合)\n"
+"     または x = umf_lusolve(lup,b,Ax=b,A)   (反復改良ステップを追加する場合)\n"
 
 msgid "  3/ to solve A'*x=b you may use:"
 msgstr "  3/ A'*x=b を解く場合, 次のように行います:"
@@ -398,8 +373,7 @@ msgid ""
 "step\n"
 msgstr ""
 "     x = umf_lusolve(lup,b,Ax''=b)\n"
-"     または x = umf_lusolve(lup,b,Ax''=b,A)  (反復改良ステップを追加する場"
-"合)\n"
+"     または x = umf_lusolve(lup,b,Ax''=b,A)  (反復改良ステップを追加する場合)\n"
 
 msgid "  4/ you may also compute the 1-norm condition number quicky with:"
 msgstr "  4/ 第一ノルム条件数を次のように簡単に計算することも可能です:"
@@ -411,8 +385,7 @@ msgid ""
 "computed inside\n"
 msgstr ""
 "     K1 = condestsp(A,lup)\n"
-"     K1 = condestsp(A) も動作しますが, この場合 LU分解が内部的に再計算されま"
-"す\n"
+"     K1 = condestsp(A) も動作しますが, この場合 LU分解が内部的に再計算されます\n"
 
 msgid ""
 "  5/ if you don't need the lu factors anymore, it is recommended to free "
@@ -426,16 +399,11 @@ msgid ""
 "the current umf lu factors\n"
 msgstr ""
 "     umf_ludel(lup)\n"
-"     ポインタを失った場合, カレントの umf LU分解を全て解放する umf_ludel()を"
-"使用可能です\n"
+"     ポインタを失った場合, カレントの umf LU分解を全て解放する umf_ludel()を使用可能です\n"
 
 #, c-format
 msgid "     norm of the residual    = "
 msgstr "     残差のノルム = "
-
-#, fuzzy, c-format
-msgid "     same but with refinment = "
-msgstr "     改善処理付きの残差のノルム = "
 
 #, c-format
 msgid "     norm of the residual     = "
@@ -453,7 +421,8 @@ msgid ""
 "definite (s.p.d.)."
 msgstr "これは行列が正定対称(s.p.d.)の場合に便利であり推奨されます."
 
-msgid "  1/ the Cholesky factorization of a s.p.d. matrix A is obtained with:"
+msgid ""
+"  1/ the Cholesky factorization of a s.p.d. matrix A is obtained with:"
 msgstr "  1/ 正定対称行列Aのコレスキー分解は次のように取得できます:"
 
 #, c-format
@@ -486,17 +455,13 @@ msgstr "     [K2, lm, vm, lM, vM] = cond2sp(A, Cp [, itermax, eps, verb])\n"
 msgid ""
 "  5/ if you don't need the Cholesky factorization anymore, it is recommended "
 "to free it with taucs_chdel(Cp)"
-msgstr ""
-"  5/ コレスキー分解をもう使用しない場合, taucs_chdel(Cp) により解放することを"
-"推奨します"
+msgstr "  5/ コレスキー分解をもう使用しない場合, taucs_chdel(Cp) により解放することを推奨します"
 
 #, c-format
 msgid ""
 "     if you have lost your pointer you may use taucs_chdel() which frees "
 "memory for all the current Cholesky factorizations.\n"
-msgstr ""
-"     ポインタを失った場合, カレントのコレスキー分解用のメモリを全て解放する "
-"taucs_chdel()を使用できます.\n"
+msgstr "     ポインタを失った場合, カレントのコレスキー分解用のメモリを全て解放する taucs_chdel()を使用できます.\n"
 
 msgid " with umfpack:"
 msgstr " umfpackを使用した場合:"
@@ -550,9 +515,7 @@ msgstr "%s: 現在, 集約されていない(要素の)疎行列を読み込む�
 
 #, c-format
 msgid "%s: No values for this matrix (only non zero pattern) : put some 1."
-msgstr ""
-"%s: この行列に値がありません(ゼロでない要素のパターンのみ): 1をいくつか代入し"
-"てください."
+msgstr "%s: この行列に値がありません(ゼロでない要素のパターンのみ): 1をいくつか代入してください."
 
 msgid ""
 "\n"
@@ -576,9 +539,7 @@ msgstr " 警告: rtol = %e におけるIM の収束 \n"
 
 #, c-format
 msgid "           don't reached after %d iterations (got only %e) \n"
-msgstr ""
-"           %d 回の反復では収束しませんでした (%e までしか到達しませんでし"
-"た) \n"
+msgstr "           %d 回の反復では収束しませんでした (%e までしか到達しませんでした) \n"
 
 msgid ""
 "\n"
@@ -602,17 +563,17 @@ msgstr " 警告: rtol = %e におけるIm の収束 \n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+msgstr "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 正方疎行列を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: 正方疎行列を指定してください.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 正方疎行列を指定してください.\n"
 
 #
 # File: macros/condestsp.sci, line: 103

@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2016-10-19 13:06+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18511)\n"
+"X-Generator: Launchpad (build 18544)\n"
+"Language: \n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
 #, c-format
@@ -23,7 +23,8 @@ msgid "%s: Memory allocation error.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input arguments #%d and #%d: Incompatible length.\n"
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Incompatible length.\n"
 msgstr "%s: 第 #%d 及第 #%d 輸入參數大小錯誤: 長度不相容.\n"
 
 #, c-format
@@ -83,7 +84,8 @@ msgid "%s: The handle is not valid.\n"
 msgstr "%s: 此代碼 (handle) 無效.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: 2D array of strings expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: 2D array of strings expected.\n"
 msgstr "%s: 第 #%d 個輸入參數型態錯誤: 應該是　2D 字串陣列.\n"
 
 #, c-format
@@ -95,7 +97,8 @@ msgid "%s: Wrong type for input argument #%d: Real vector nx3 expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Must be between 0.0 and 1.0.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Must be between 0.0 and 1.0.\n"
 msgstr ""
 
 #, c-format
@@ -219,7 +222,8 @@ msgid "%s: Wrong size for input argument #%d: List of size %d expected.\n"
 msgstr "%s: 第 #%d 輸入參數大小錯誤: 應該為大小為 %d 的 list.\n"
 
 #, c-format
-msgid "%s: Wrong number of mandatory input arguments. At least %d expected.\n"
+msgid ""
+"%s: Wrong number of mandatory input arguments. At least %d expected.\n"
 msgstr "%s: 輸入變數之數目錯誤.  最少須為 %d 個.\n"
 
 #, c-format
@@ -282,7 +286,8 @@ msgid ""
 msgstr "%s: 第 #%d, #%d 和第 #%d 個輸入參數數值錯誤: 長度不相容.\n"
 
 #, c-format
-msgid "%s: Wrong value for input arguments #%d and #%d: Incompatible length.\n"
+msgid ""
+"%s: Wrong value for input arguments #%d and #%d: Incompatible length.\n"
 msgstr "%s: 第 #%d 和第 #%d 個輸入參數數值錯誤: 長度不相容.\n"
 
 #, c-format
@@ -293,9 +298,7 @@ msgstr "%s: 第 #%d 及第 #%d 輸入參數大小錯誤: 應該為 %s.\n"
 msgid ""
 "%s: Wrong type for input argument #%d: Single Figure or Axes handle "
 "expected.\n"
-msgstr ""
-"%s: 第 #%d 個輸入參數型態錯誤: 應該是 Figure 或 Axes 代碼 (handle) "
-"expected.\n"
+msgstr "%s: 第 #%d 個輸入參數型態錯誤: 應該是 Figure 或 Axes 代碼 (handle) expected.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
@@ -324,8 +327,7 @@ msgstr ""
 msgid ""
 "%s: Wrong type for input argument #%d: Real row vector or a boolean "
 "expected.\n"
-msgstr ""
-"%s: 第 #%d 個輸入參數型態錯誤: 應該是實數行 (row) 向量或一布林值expected.\n"
+msgstr "%s: 第 #%d 個輸入參數型態錯誤: 應該是實數行 (row) 向量或一布林值expected.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real row vector expected.\n"
@@ -352,7 +354,8 @@ msgid "%s: Wrong number of input argument(s) : an odd number is expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A handle or a string expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A handle or a string expected.\n"
 msgstr ""
 
 #, c-format
@@ -510,21 +513,9 @@ msgstr ""
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
-msgid "%s: Wrong size for argument #%d: A real scalar expected.\n"
-msgstr "%s: 第 #%d 輸入參數大小錯誤: 應該為實數純量.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong size for input argument #%d: scalar string expected.\n"
-msgstr "%s: 第 #%d 輸入參數大小錯誤: 應該為一字串.\n"
-
 #, c-format
 msgid "%s: Could not read property '%s' for root object.\n"
 msgstr ""
-
-#, fuzzy, c-format
-msgid "%s: Wrong size for argument #%d: scalar string expected.\n"
-msgstr "%s: 第 #%d 輸入參數大小錯誤: 應該為一字串.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real or integer expected.\n"
@@ -546,109 +537,9 @@ msgstr ""
 msgid "%s: Unrecognized input argument: '%s'.\n"
 msgstr "%s: 無法辨識之輸入參數: '%s'.\n"
 
-#
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 125
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 142
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 154
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 173
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 181
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 188
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 200
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 219
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 230
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 242
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 250
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 263
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 271
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 286
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 301
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 316
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 325
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 332
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 345
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 357
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 371
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 385
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 398
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 146
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 178
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 213
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 228
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 246
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 268
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 281
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 385
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 394
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 403
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 417
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 435
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 464
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 478
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 492
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 505
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 519
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 533
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 547
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 566
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 598
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 616
 #, c-format
 msgid ""
-"%s: This feature will be permanently removed in Scilab %s\n"
-"\n"
-msgstr ""
-
-#
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 125
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 142
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 154
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 173
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 181
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 188
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 200
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 219
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 230
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 242
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 250
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 263
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 271
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 286
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 301
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 316
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 325
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 332
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 345
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 357
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 371
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 385
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 398
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 146
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 178
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 213
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 228
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 246
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 268
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 281
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 385
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 394
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 403
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 417
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 435
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 464
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 478
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 492
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 505
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 519
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 533
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 547
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 566
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 598
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 616
-msgid "Warning"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A %d-element vector expected.\n"
+"%s: Wrong size for input argument #%d: A %d-element vector expected.\n"
 msgstr ""
 
 #, c-format
@@ -662,19 +553,15 @@ msgstr ""
 msgid "The parent has to be a SUBWIN\n"
 msgstr ""
 
-#
-# File: modules/graphics/src/c/Champ.c, line: 147
 #, c-format
-msgid "%s: Could not retrive bounding box.\n"
+msgid "%s: Could not retrieve bounding box.\n"
 msgstr ""
 
 #, c-format
 msgid "%s is only made to compute level curves and not display them.\n"
 msgstr "%s 只用來計算等高線而非顯是它們.\n"
 
-#
-# File: modules/graphics/src/c/DrawObjects.c, line: 88
-msgid "Could not retrive bounds.\n"
+msgid "Could not retrieve bounds.\n"
 msgstr ""
 
 msgid "Warning: Can't use Log on X-axis xmin is negative.\n"
@@ -972,7 +859,8 @@ msgid "Wrong value for '%s' property: Non-empty string expected.\n"
 msgstr ""
 
 #, c-format
-msgid "Wrong value for '%s' property: String with length 3 or less expected.\n"
+msgid ""
+"Wrong value for '%s' property: String with length 3 or less expected.\n"
 msgstr ""
 
 #, c-format
@@ -1017,7 +905,8 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "Wrong value for '%s' property: An Integer between %d and %d expected.\n"
+msgid ""
+"Wrong value for '%s' property: An Integer between %d and %d expected.\n"
 msgstr "'%s' 屬性錯誤: 應該為介於 %d 和 %d 之間的整數.\n"
 
 msgid "Could not retrieve format.\n"
@@ -1187,7 +1076,8 @@ msgid "%s: Wrong type for input argument #%d: Columns vectors expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input arguments #%d and #%d: Incompatible lengths.\n"
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Incompatible lengths.\n"
 msgstr ""
 
 #, c-format
@@ -1315,9 +1205,6 @@ msgstr ""
 msgid "Radius should be real and finite"
 msgstr ""
 
-msgid "Misc"
-msgstr ""
-
 msgid "datatips on 2D curves"
 msgstr ""
 
@@ -1370,6 +1257,9 @@ msgid "LaTeX/MathML"
 msgstr ""
 
 msgid "Lighting"
+msgstr ""
+
+msgid "Misc"
 msgstr ""
 
 msgid "Colormap"
@@ -1495,7 +1385,8 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A scalar or a vector expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar or a vector expected.\n"
 msgstr ""
 
 #, c-format
@@ -1680,7 +1571,8 @@ msgid ""
 "Datatip manager cannot be enabled, user data figure field is already used"
 msgstr ""
 
-msgid "Left click on a curve to create a datatip, right opens contextual menu"
+msgid ""
+"Left click on a curve to create a datatip, right opens contextual menu"
 msgstr ""
 
 #, c-format
@@ -1826,7 +1718,8 @@ msgstr "%s: 第 #%d 個輸入參數型態錯誤: 應該是一實數.\n"
 msgid "%s: Wrong size for input argument #%d: A Real expected.\n"
 msgstr "%s: 第 #%d 輸入參數大小錯誤: 應該為一實數.\n"
 
-msgid "Entity picker cannot be enabled, user data figure field is already used"
+msgid ""
+"Entity picker cannot be enabled, user data figure field is already used"
 msgstr ""
 
 msgid "Left click on a graphic entity to open its property editor"
@@ -1871,6 +1764,12 @@ msgstr ""
 
 msgid "Cancel"
 msgstr "取消"
+
+msgid "Color number"
+msgstr "色碼"
+
+msgid "Name"
+msgstr ""
 
 msgid "April"
 msgstr ""
@@ -1955,9 +1854,7 @@ msgstr ""
 msgid ""
 "%s: Wrong type for input argument #%d: Real array or graphic handle array "
 "expected.\n"
-msgstr ""
-"%s: 第 #%d 個輸入參數型態錯誤: 應該是或實數向量 graphic　代碼 (handle) 之向量"
-"expected.\n"
+msgstr "%s: 第 #%d 個輸入參數型態錯誤: 應該是或實數向量 graphic　代碼 (handle) 之向量expected.\n"
 
 #, c-format
 msgid ""
@@ -2045,7 +1942,8 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument '%s': A vector of size %d expected.\n"
+msgid ""
+"%s: Wrong size for input argument '%s': A vector of size %d expected.\n"
 msgstr ""
 
 #, c-format
@@ -2155,7 +2053,8 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input arguments '%s' and '%s': Same size expected.\n"
+msgid ""
+"%s: Wrong size for input arguments '%s' and '%s': Same size expected.\n"
 msgstr ""
 
 #, c-format
@@ -2173,6 +2072,3 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value given for %s."
 msgstr ""
-
-#~ msgid "Color number"
-#~ msgstr "色碼"

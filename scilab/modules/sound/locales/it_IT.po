@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2015-10-08 22:01+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
-"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18511)\n"
+"X-Generator: Launchpad (build 18544)\n"
+"Language: it\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -30,7 +30,8 @@ msgstr "%s: Errore di allocazione della memoria.\n"
 
 #, c-format
 msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
-msgstr "%s: L'argomento in ingresso #%d è sbagliato: era atteso '%s' o '%s'.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è sbagliato: era atteso '%s' o '%s'.\n"
 
 msgid "Scilab sound module not installed.\n"
 msgstr "Il modulo di Scilab per il suono non è installato.\n"
@@ -195,7 +196,8 @@ msgid "%s: An error occurred: %s is not supported.\n"
 msgstr "%s: Si è verificato un errore: %s non è supportato.\n"
 
 #, c-format
-msgid "%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
+msgid ""
+"%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
 msgstr ""
 "%s: Si è verificato un errore: il formato di file non è valido. Errore nel "
 "leggere la porzione <%s>.\n"

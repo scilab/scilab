@@ -6,11 +6,11 @@ msgstr ""
 "PO-Revision-Date: 2015-10-08 22:01+0000\n"
 "Last-Translator: tim loo <timloo0710@gmail.com>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18511)\n"
+"X-Generator: Launchpad (build 18544)\n"
+"Language: \n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
 #, c-format
@@ -95,9 +95,19 @@ msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
 msgstr ""
 
 #
+# File: sci_gateway/c/sci_isalphanum.c, line: 79
+# File: sci_gateway/c/sci_isletter.c, line: 79
+# File: sci_gateway/c/sci_isdigit.c, line: 79
+# File: sci_gateway/c/sci_grep.c, line: 94
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為字串.\n"
+
+#
 # File: sci_gateway/c/sci_grep.c, line: 204
 #, c-format
-msgid "%s: Wrong values for input argument #%d: Non-empty strings expected.\n"
+msgid ""
+"%s: Wrong values for input argument #%d: Non-empty strings expected.\n"
 msgstr "%s: Wrong values for input argument #%d: 應為非空字串.\n"
 
 #
@@ -175,11 +185,9 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: '%s' expected.\n"
 msgstr ""
 
-#
-# File: sci_gateway/c/sci_strcmp.c, line: 57
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: '%s' or '%s' expected.\n"
-msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 %s 或 %s.\n"
+#, c-format
+msgid "%s: Wrong type for input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgstr ""
 
 #
 # File: sci_gateway/c/sci_strstr.c, line: 54
@@ -451,8 +459,7 @@ msgstr "%s: Wrong values for input argument #%d: 應為一非負整數.\n"
 msgid ""
 "%s: Wrong type for input argument #%d: Real or Complex matrix, Matrix of "
 "character strings or list expected.\n"
-msgstr ""
-"%s: 第 %d 個輸入參數型態錯誤: 應為實數或複數矩陣, 應為字串矩陣 或 list.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為實數或複數矩陣, 應為字串矩陣 或 list.\n"
 
 #
 # File: macros/evstr.sci, line: 48
@@ -477,49 +484,6 @@ msgid "%s: Wrong value for input argument #%d: %s, %s or %s expected.\n"
 msgstr ""
 
 #
-# File: macros/arobasestring2strings.sci, line: 23
-#, fuzzy, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected."
-msgstr "%s: 輸入參數之數目錯誤: 應為 %d.\n"
-
-#
-# File: sci_gateway/c/sci_strcmp.c, line: 57
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
-"expected.\n"
-msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 %s 或 %s.\n"
-
-#
-# File: sci_gateway/c/sci_stripblanks.c, line: 56
-#, fuzzy, c-format
-msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為布林數(boolean).\n"
-
-#
-# File: macros/arobasestring2strings.sci, line: 23
-#, fuzzy, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected"
-msgstr "%s: 輸入參數之數目錯誤: 應為 %d.\n"
-
-#
-# File: sci_gateway/c/sci_strstr.c, line: 91
-# File: sci_gateway/c/sci_strstr.c, line: 136
-# File: sci_gateway/c/sci_strncpy.c, line: 143
-# File: sci_gateway/c/sci_part.c, line: 96
-# File: sci_gateway/c/sci_strspn.c, line: 72
-# File: sci_gateway/c/sci_strcspn.c, line: 73
-#, fuzzy, c-format
-msgid "%s: Wrong export format: %s"
-msgstr "%s: 第 %d 個輸入參數長度錯誤.\n"
-
-#
-# File: modules/string/macros/prettyprint.sci, line: 597
-#, c-format
-msgid "%s: Type %s is not handled : Define the function %s2%s."
-msgstr ""
-
-#
 # File: macros/sci2exp.sci, line: 93
 #, c-format
 msgid ""
@@ -533,11 +497,3 @@ msgid ""
 "%s: Wrong size for input argument #%d: A character or vector of characters "
 "expected.\n"
 msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為一字元或字元向量.\n"
-
-#
-# File: sci_gateway/c/sci_isalphanum.c, line: 79
-# File: sci_gateway/c/sci_isletter.c, line: 79
-# File: sci_gateway/c/sci_isdigit.c, line: 79
-# File: sci_gateway/c/sci_grep.c, line: 94
-#~ msgid "%s: Wrong type for input argument #%d: String expected.\n"
-#~ msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為字串.\n"

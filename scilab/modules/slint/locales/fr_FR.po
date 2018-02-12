@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2017-01-06 08:59+0000\n"
 "Last-Translator: davidcl <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
-"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18511)\n"
+"X-Generator: Launchpad (build 18544)\n"
+"Language: fr\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: at least %d expected.\n"
@@ -205,7 +205,8 @@ msgid "Not operator '~' should be used rather than '@'."
 msgstr ""
 
 #, c-format
-msgid "Invalid number of arguments in %s: data don't correspond to the format."
+msgid ""
+"Invalid number of arguments in %s: data don't correspond to the format."
 msgstr ""
 
 #, c-format
@@ -266,7 +267,8 @@ msgstr ""
 msgid "A function argument must be preceded by a single space."
 msgstr ""
 
-msgid "All the fields in a struct should be defined at the struct definition."
+msgid ""
+"All the fields in a struct should be defined at the struct definition."
 msgstr ""
 
 msgid "Struct definition must contain an even number of arguments."
@@ -336,7 +338,7 @@ msgid "Use of non-initialized variable '%s' may have any side-effects."
 msgstr ""
 
 #, c-format
-msgid "Use of a private macro '%s' defined in an other file %s."
+msgid "Use of a private macro '%s' defined in another file %s."
 msgstr ""
 
 #, c-format

@@ -11,12 +11,12 @@ msgstr ""
 "PO-Revision-Date: 2017-05-01 15:49+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
-"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18511)\n"
+"X-Generator: Launchpad (build 18544)\n"
 "X-Poedit-Country: Japan\n"
+"Language: ja\n"
 "X-Poedit-Language: Japanese\n"
 
 #, c-format
@@ -29,8 +29,7 @@ msgstr "%s: 入力引数の数に誤りがあります: %d 個の引数を指定
 msgid ""
 "%s: Wrong type for argument #%d: Matrix of strings or Integer matrix "
 "expected.\n"
-msgstr ""
-"%s: 入力引数 #%d で不正な型: 文字列の行列、または、整数行列を想定します。\n"
+msgstr "%s: 入力引数 #%d で不正な型: 文字列の行列、または、整数行列を想定します。\n"
 
 #, c-format
 msgid "%s : wrong UTF-8 sequence.\n"
@@ -53,8 +52,7 @@ msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
+msgstr "%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
 
 #
 # File: sci_gateway/c/sci_convstr.c, line: 103
@@ -84,8 +82,7 @@ msgstr "%s: 入力引数 #%d で不正な型: 文字列の行列を想定しま�
 msgid ""
 "%s: Wrong value for input argument #%d: 'u' (Upper) or 'l' (Lower) "
 "expected.\n"
-msgstr ""
-"%s: 入力引数 #%d で不正な型: 'u' (Upper) または 'l' (Lower) を想定します。\n"
+msgstr "%s: 入力引数 #%d で不正な型: 'u' (Upper) または 'l' (Lower) を想定します。\n"
 
 # File: macros/arobasestring2strings.sci, line: 23
 #, c-format
@@ -98,18 +95,26 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 整数の行列を�
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
+msgstr "%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
-msgstr ""
-"%s: 出力引数の数が間違っています: %d 個または%d 個の引数を指定してください.\n"
+msgstr "%s: 出力引数の数が間違っています: %d 個または%d 個の引数を指定してください.\n"
+
+#
+# File: sci_gateway/c/sci_grep.c, line: 93
+# File: sci_gateway/c/sci_isalphanum.c, line: 78
+# File: sci_gateway/c/sci_isdigit.c, line: 78
+# File: sci_gateway/c/sci_isletter.c, line: 78
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 文字列を想定します。\n"
 
 #
 # File: sci_gateway/c/sci_grep.c, line: 203
 #, c-format
-msgid "%s: Wrong values for input argument #%d: Non-empty strings expected.\n"
+msgid ""
+"%s: Wrong values for input argument #%d: Non-empty strings expected.\n"
 msgstr "%s: 入力引数 #%d で不正な値: 空でない文字列を想定します。\n"
 
 #
@@ -149,13 +154,11 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定�
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar String expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: スカラー文字列を指定してください.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: スカラー文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string or matrix expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 文字列または行列を指定してください.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列または行列を指定してください.\n"
 
 #
 # File: sci_gateway/c/sci_part.c, line: 93
@@ -176,8 +179,7 @@ msgstr "%s: 入力引数(s)で不正な型です。.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A vector expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: ベクトルを指定してください.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: ベクトルを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d: Must be >= 1.\n"
@@ -185,18 +187,15 @@ msgstr "%s: 入力引数 #%d の値が間違っています: 1以上を指定し
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
-msgstr ""
-"%s: 出力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+msgstr "%s: 出力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: '%s' expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: '%s' を指定してください.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: '%s' or '%s' expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: \"%s\" または\"%s\"を指定してくださ"
-"い.\n"
+#, c-format
+msgid "%s: Wrong type for input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: \"%s\" または\"%s\"を指定してください.\n"
 
 #
 # File: sci_gateway/c/sci_strstr.c, line: 53
@@ -204,8 +203,7 @@ msgstr ""
 msgid ""
 "%s: Wrong size for input argument #%d: Non-empty matrix of strings "
 "expected.\n"
-msgstr ""
-"%s: 入力引数 #%d で不正なサイズ: 空でない行列、または、文字列を想定します。\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: 空でない行列、または、文字列を想定します。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Char(s) expected.\n"
@@ -213,8 +211,7 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 文字を指定し�
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+msgstr "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Char expected.\n"
@@ -236,15 +233,12 @@ msgstr "%s: これ以上メモリがありません。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 's' or 'r' expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: 's' または 'r'を指定してください.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 's' または 'r'を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: string or string vector expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 文字列または文字列のベクトルを指定して"
-"ください.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列または文字列のベクトルを指定してください.\n"
 
 #
 # File: sci_gateway/c/sci_string.c, line: 103
@@ -254,8 +248,7 @@ msgstr "%s: 入力引数 #%d で不正な型です。\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+msgstr "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
 #
 # File: sci_gateway/c/sci_stripblanks.c, line: 55
@@ -269,9 +262,7 @@ msgstr "%s: 入力引数 #%d の型が間違っています: スカラーを指�
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が正しくありません: 集合 {%s} に含まれる値を指定してくだ"
-"さい.\n"
+msgstr "%s: 入力引数 #%d の値が正しくありません: 集合 {%s} に含まれる値を指定してください.\n"
 
 #
 # File: sci_gateway/c/sci_strindex.c, line: 115
@@ -284,8 +275,7 @@ msgstr ""
 msgid ""
 "%s: Wrong type for input argument #%d: Matrix of strings or empty matrix "
 "expected.\n"
-msgstr ""
-"%s: 入力引数 #%d で不正な型: 文字列の行列、または、空行列を想定します。\n"
+msgstr "%s: 入力引数 #%d で不正な型: 文字列の行列、または、空行列を想定します。\n"
 
 #
 # File: sci_gateway/c/sci_strncpy.c, line: 51
@@ -295,8 +285,7 @@ msgstr "%s: 入力引数 #%d で不正なサイズ: 空でない行列を想定�
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of Strings expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
@@ -308,9 +297,7 @@ msgstr "%s: 入力引数 #%d の型が間違っています: doubleを指定し�
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar double expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: doubleスカラーを指定してくださ"
-"い.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: doubleスカラーを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
@@ -322,9 +309,7 @@ msgstr "%s: 入力引数 #%d の大きさが間違っています: 正の値を�
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A Scalar or vector expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: スカラーまたはベクトルを指定してく"
-"ださい.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: スカラーまたはベクトルを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
@@ -356,25 +341,19 @@ msgstr "%s: エラー\n"
 msgid ""
 "%s: Wrong value for input argument #%d: a string expected, not a regexp "
 "pattern.\n"
-msgstr ""
-"%s: 入力引数 #%d で不正なサイズ: 文字列を想定します、regexp パターンではあり"
-"ません。\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: 文字列を想定します、regexp パターンではありません。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A double or string expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: doubleまたは文字列を指定してくださ"
-"い.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: doubleまたは文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string matrix expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr ""
-"%s: 出力引数の数が間違っています: %d から %d  個の引数を指定してください.\n"
+msgstr "%s: 出力引数の数が間違っています: %d から %d  個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
@@ -382,8 +361,7 @@ msgstr "%s: 入力引数#%dの型が間違っています: 文字列を指定し
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '.' or ',' expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: '.' または ',' を指定してください.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: '.' または ',' を指定してください.\n"
 
 #
 # File: src/c/pcre_error.c, line: 31
@@ -494,9 +472,7 @@ msgstr "%s: 入力引数 #%d で不正な値: 負数でない整数を想定し�
 msgid ""
 "%s: Wrong type for input argument #%d: Real or Complex matrix, Matrix of "
 "character strings or list expected.\n"
-msgstr ""
-"%s: 入力引数 #%d で不正な型: 実、または、複素行列、文字列の行列、または、リス"
-"トを想定します。\n"
+msgstr "%s: 入力引数 #%d で不正な型: 実、または、複素行列、文字列の行列、または、リストを想定します。\n"
 
 #
 # File: macros/evstr.sci, line: 48
@@ -518,48 +494,7 @@ msgstr "%s: 入力引数 #%d で不正なサイズ: 文字列を想定します�
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %s, %s or %s expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: %s, %s または %s を指定してください.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected."
-msgstr ""
-"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
-"expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: %s, %s または %s を指定してください.\n"
-
-#
-# File: sci_gateway/c/sci_stripblanks.c, line: 55
-#, fuzzy, c-format
-msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: ブーリアンを想定します。\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
-
-#
-# File: sci_gateway/c/sci_part.c, line: 93
-# File: sci_gateway/c/sci_strcspn.c, line: 72
-# File: sci_gateway/c/sci_strncpy.c, line: 142
-# File: sci_gateway/c/sci_strspn.c, line: 71
-# File: sci_gateway/c/sci_strstr.c, line: 90
-# File: sci_gateway/c/sci_strstr.c, line: 135
-#, fuzzy, c-format
-msgid "%s: Wrong export format: %s"
-msgstr "%s: 入力引数 #%d で不正なサイズです。\n"
-
-#
-# File: modules/string/macros/prettyprint.sci, line: 597
-#, c-format
-msgid "%s: Type %s is not handled : Define the function %s2%s."
-msgstr ""
+msgstr "%s: 入力引数 #%d の値が間違っています: %s, %s または %s を指定してください.\n"
 
 #, c-format
 msgid ""
@@ -572,13 +507,4 @@ msgstr "%s: この特徴は装備されていません: 型 %s の翻訳変数\n
 msgid ""
 "%s: Wrong size for input argument #%d: A character or vector of characters "
 "expected.\n"
-msgstr ""
-"%s: 入力引数 #%d で不正なサイズ: 文字列、または、文字ベクトルを想定します。\n"
-
-#
-# File: sci_gateway/c/sci_grep.c, line: 93
-# File: sci_gateway/c/sci_isalphanum.c, line: 78
-# File: sci_gateway/c/sci_isdigit.c, line: 78
-# File: sci_gateway/c/sci_isletter.c, line: 78
-#~ msgid "%s: Wrong type for input argument #%d: String expected.\n"
-#~ msgstr "%s: 入力引数 #%d で不正な型: 文字列を想定します。\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: 文字列、または、文字ベクトルを想定します。\n"

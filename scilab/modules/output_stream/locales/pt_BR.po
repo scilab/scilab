@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2015-10-08 22:04+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
-"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18511)\n"
+"X-Generator: Launchpad (build 18544)\n"
+"Language: pt_BR\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -27,7 +27,8 @@ msgstr "%s: Não foi possível ler o argumento de entrada #%d.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 0 expected.\n"
-msgstr "%s: Valor incorreto para o argumento de entrada #%d: esperava-se 0.\n"
+msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: esperava-se 0.\n"
 
 #, c-format
 msgid "%s: error can not create diary: %s.\n"
@@ -88,7 +89,8 @@ msgid "%s: Wrong value for input argument #%d: error can not close diary.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: error can not close diary %d.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: error can not close diary %d.\n"
 msgstr ""
 
 #, c-format
@@ -96,7 +98,8 @@ msgid "%s: Wrong value for input argument #%d: error can not pause diary.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
 msgstr ""
 
 #, c-format
@@ -176,6 +179,41 @@ msgid "%s: Wrong type of input arguments #%d: A real scalar expected.\n"
 msgstr ""
 
 #, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected."
+msgstr ""
+"%s: Quantidade incorreta de argumentos de entrada: esperava-se de %d a %d."
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um texto.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
+msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: esperava-se '%s', '%s', "
+"'%s', '%s', '%s' ou '%s'.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
+msgstr "%s: Tipo incorreto para o argumento #%d: esperava-se um booleano.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected"
+msgstr ""
+"%s: Quantidade incorreta de argumentos de entrada: esperava-se de %d a %d"
+
+#, c-format
+msgid "%s: Wrong export format: %s"
+msgstr "%s: Formato de exportação incorreto: %s"
+
+#, c-format
+msgid "%s: Type %s is not handled : Define the function %s2%s."
+msgstr "%s: Tipo %s não é suportado: defina a função %s2%s."
+
+#, c-format
 msgid "%s: Wrong number of input argument(s).\n"
 msgstr ""
 
@@ -188,38 +226,10 @@ msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A state-space model expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A state-space model expected.\n"
 msgstr ""
 
 #, c-format
 msgid "%s: system cannot be displayed in this page.\n"
 msgstr "%s: o sistema não pode ser exibido nesta página.\n"
-
-#~ msgid "%s: Wrong number of input argument(s): %d to %d expected."
-#~ msgstr ""
-#~ "%s: Quantidade incorreta de argumentos de entrada: esperava-se de %d a %d."
-
-#~ msgid "%s: Wrong type for input argument #%d: String expected.\n"
-#~ msgstr ""
-#~ "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um "
-#~ "texto.\n"
-
-#~ msgid ""
-#~ "%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or "
-#~ "'%s' expected.\n"
-#~ msgstr ""
-#~ "%s: Valor incorreto para o argumento de entrada #%d: esperava-se '%s', "
-#~ "'%s', '%s', '%s', '%s' ou '%s'.\n"
-
-#~ msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
-#~ msgstr "%s: Tipo incorreto para o argumento #%d: esperava-se um booleano.\n"
-
-#~ msgid "%s: Wrong number of input arguments: %d to %d expected"
-#~ msgstr ""
-#~ "%s: Quantidade incorreta de argumentos de entrada: esperava-se de %d a %d"
-
-#~ msgid "%s: Wrong export format: %s"
-#~ msgstr "%s: Formato de exportação incorreto: %s"
-
-#~ msgid "%s: Type %s is not handled : Define the function %s2%s."
-#~ msgstr "%s: Tipo %s não é suportado: defina a função %s2%s."

@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-03-09 19:49+0000\n"
+"PO-Revision-Date: 2017-12-14 15:53+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
-"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18511)\n"
+"X-Generator: Launchpad (build 18544)\n"
+"Language: it\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -212,7 +212,8 @@ msgid "Used Functions"
 msgstr "Funzioni usate"
 
 msgid "         Add here the Scilab, C,... used code references"
-msgstr "         Aggiungere qui i riferimenti al codice usato di Scilab, C,..."
+msgstr ""
+"         Aggiungere qui i riferimenti al codice usato di Scilab, C,..."
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
@@ -310,19 +311,19 @@ msgstr ""
 "file esistente.\n"
 
 #, c-format
-msgid "%s: The CHAPTER file is not well formated at line %d\n"
+msgid "%s: The CHAPTER file is not well formatted at line %d\n"
 msgstr "%s: Il file CHAPTER non è formattato bene alla riga %d\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: A string that end with ."
-"last_successful_build expected.\n"
+"%s: Wrong value for input argument #%d: A string that end with "
+".last_successful_build expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato: era attesa una "
 "stringa che finisce con .last_successful_build.\n"
 
 #, c-format
-msgid "%s: The last_successful_build file is not well formated at line %d\n"
+msgid "%s: The last_successful_build file is not well formatted at line %d\n"
 msgstr ""
 "%s: Il file .last_successful_build non è formattato bene alla riga %d\n"
 

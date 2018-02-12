@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2017-11-02 15:30+0000\n"
-"Last-Translator: Webish <Unknown>\n"
+"PO-Revision-Date: 2018-01-08 15:58+0000\n"
+"Last-Translator: Wesh <Unknown>\n"
 "Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18511)\n"
+"X-Generator: Launchpad (build 18544)\n"
+"Language: \n"
 
 #, c-format
 msgid "%s: Invalid argument address"
@@ -200,7 +200,7 @@ msgid "\tin %s\n"
 msgstr "\t在%s中\n"
 
 msgid "handle matrix"
-msgstr ""
+msgstr "handle矩阵"
 
 #, c-format
 msgid "%s: Bad call to get a non complex matrix"
@@ -237,7 +237,7 @@ msgstr "API_ERROR_GET_POLY_IN_LIST"
 
 #, c-format
 msgid "%ls: Unrecognized optional arguments %ls.\n"
-msgstr ""
+msgstr "%ls：无法识别的可选参数%ls。\n"
 
 msgid "Optional argument list is empty.\n"
 msgstr "可选参数列表为空。\n"

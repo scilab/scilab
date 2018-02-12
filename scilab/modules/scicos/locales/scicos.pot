@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2017-12-14 15:55+0100\n"
+"Revision-Date: 2018-02-12 08:52+0100\n"
 
 # File: modules/scicos/sci_gateway/cpp/sci_buildouttb.cpp, line: 72
 # File: modules/scicos/sci_gateway/cpp/sci_coserror.cpp, line: 61
@@ -474,12 +474,6 @@ msgstr ""
 # File: modules/scicos/sci_gateway/cpp/sci_set_blockerror.cpp, line: 83
 #, c-format
 msgid "%s: Wrong value for input argument #%d : An integer value expected.\n"
-msgstr ""
-
-#
-# File: modules/scicos/sci_gateway/cpp/sci_scicos_log.cpp, line: 50
-#, c-format
-msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr ""
 
 #
@@ -2228,6 +2222,12 @@ msgid "%s: Empty diagram"
 msgstr ""
 
 #
+# File: modules/scicos/macros/scicos_scicos/scimihm.sci, line: 10
+#, c-format
+msgid "%s: Wrong input argument.\n"
+msgstr ""
+
+#
 # File: modules/scicos/macros/scicos_scicos/script2var.sci, line: 75
 # File: modules/scicos/macros/scicos_scicos/script2var.sci, line: 85
 #, c-format
@@ -2246,20 +2246,20 @@ msgid "Scilab Graphics of %s"
 msgstr ""
 
 #
-# File: modules/scicos/macros/scicos_scicos/setvalue.sci, line: 244
-# File: modules/scicos/macros/scicos_utils/scicos_getvalue.sci, line: 290
+# File: modules/scicos/macros/scicos_scicos/setvalue.sci, line: 247
+# File: modules/scicos/macros/scicos_utils/scicos_getvalue.sci, line: 293
 #, c-format
 msgid "%s: Type %s is not implemented.\n"
 msgstr ""
 
 #
-# File: modules/scicos/macros/scicos_scicos/setvalue.sci, line: 256
+# File: modules/scicos/macros/scicos_scicos/setvalue.sci, line: 259
 #, c-format
 msgid "%s: Wrong size for block parameter '%s': %s expected, getting %s"
 msgstr ""
 
 #
-# File: modules/scicos/macros/scicos_scicos/setvalue.sci, line: 266
+# File: modules/scicos/macros/scicos_scicos/setvalue.sci, line: 269
 #, c-format
 msgid "%s: Wrong type for block parameter '%s': %s(%s) expected, getting %s"
 msgstr ""
@@ -2288,7 +2288,7 @@ msgid "Xcos block parameter error"
 msgstr ""
 
 #
-# File: modules/scicos/macros/scicos_utils/scicos_getvalue.sci, line: 295
+# File: modules/scicos/macros/scicos_utils/scicos_getvalue.sci, line: 298
 #, c-format
 msgid ""
 "Answer given for %s \n"
@@ -2297,7 +2297,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/scicos/macros/scicos_utils/scicos_getvalue.sci, line: 299
+# File: modules/scicos/macros/scicos_utils/scicos_getvalue.sci, line: 303
 #, c-format
 msgid ""
 "Answer given for %s \n"
@@ -2305,7 +2305,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/scicos/macros/scicos_utils/scicos_getvalue.sci, line: 301
+# File: modules/scicos/macros/scicos_utils/scicos_getvalue.sci, line: 306
 #, c-format
 msgid ""
 "Answer given for %s \n"

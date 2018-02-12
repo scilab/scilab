@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2017-11-02 07:15+0000\n"
-"Last-Translator: Webish <Unknown>\n"
+"PO-Revision-Date: 2018-01-08 16:03+0000\n"
+"Last-Translator: Wesh <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18511)\n"
+"X-Generator: Launchpad (build 18544)\n"
+"Language: \n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -39,7 +39,7 @@ msgstr "%s：内存不足。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为字符串。\n"
+msgstr "%s：第%d个输入参数的类型错误：应该为字符串。\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
@@ -59,7 +59,7 @@ msgstr "%s：第%d个输入参数的类型错误：应该为字符串。\n"
 
 #, c-format
 msgid "Unsupported language '%ls'.\n"
-msgstr "不支持的语言'%ls'。\n"
+msgstr "不支持的语言“%ls”。\n"
 
 msgid "The language for menus cannot be changed on a running console.\n"
 msgstr "不可以在正在运行的控制台中改变菜单的语言。\n"
@@ -73,8 +73,8 @@ msgstr "%s：第%d个输入参数的类型错误：应该为字符串。\n"
 
 #, c-format
 msgid "%ls: Unsupported language '%ls'.\n"
-msgstr "%ls：不支持的语言'%ls'。\n"
+msgstr "%ls：不支持的语言“%ls\"。\n"
 
 #, c-format
 msgid "Switching to default language : '%ls'.\n"
-msgstr "切换到默认语言：'%ls'。\n"
+msgstr "切换到默认语言：%ls。\n"

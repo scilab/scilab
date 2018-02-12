@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2017-11-02 15:19+0000\n"
-"Last-Translator: Webish <Unknown>\n"
+"PO-Revision-Date: 2018-01-10 17:21+0000\n"
+"Last-Translator: Wesh <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18511)\n"
+"X-Generator: Launchpad (build 18544)\n"
+"Language: \n"
 
 #, c-format
 msgid "%s: Figure number must be given when not in '%s' mode.\n"
@@ -173,7 +173,7 @@ msgstr "%s：输入参数#%d的类型错误：应该为一个实数或Figure句�
 
 #, c-format
 msgid "%s: can not read file %s.\n"
-msgstr ""
+msgstr "%s：无法读取文件%s。\n"
 
 #, c-format
 msgid "%s: Could not set property '%s'.\n"
@@ -201,7 +201,7 @@ msgstr "%s：未知属性：句柄'%s'的'%s'属性。\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: string or boolean expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的类型错误：应该为字符串或布尔型。\n"
 
 #, c-format
 msgid "%s: Could not create 'Uicontrol' handle.\n"
@@ -233,7 +233,8 @@ msgid "%s: Wrong size for input argument #%d: A '%s' handle expected.\n"
 msgstr "%s：输入参数#%d的大小错误：应该为'%s'句柄。\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"
 msgstr ""
 
 #, c-format
@@ -273,14 +274,16 @@ msgstr "%s：输入参数#%d的大小错误：应该为一个布尔值。\n"
 
 #, c-format
 msgid "%s: Wrong number for input argument: %d expected.\n"
+msgstr "%s：输入参数的数目错误：应该为%d个。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: string or macro name expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: string or macro name expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: string or macro name expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: string or macro name expected.\n"
 msgstr ""
 
 #, c-format
@@ -305,7 +308,8 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A scalar or a vector expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar or a vector expected.\n"
 msgstr ""
 
 #, c-format
@@ -461,14 +465,15 @@ msgstr "%s：第%d个输入参数的大小错误：应该为一个1xn或mx1数�
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
-msgstr "%s：输入参数#%d的大小错误：应该为字符串。\n"
+msgstr "%s：第%d个输入参数的大小错误：应该为字符串。\n"
 
 #, c-format
 msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
 msgstr "%s：第%d个输入参数错误：应该为‘%s’或‘%s’。\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: 'pos' or 'gdi' value expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: 'pos' or 'gdi' value expected.\n"
 msgstr ""
 
 #, c-format
@@ -497,15 +502,23 @@ msgstr "%s：输入参数#%d的大小错误：应该为一个字符串矩阵。\
 msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
 msgstr "%s：参数 %d 的类型出错：应该为布尔型矩阵。\n"
 
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为实数或复数向量。\n"
+
+msgid "Scilab Choices Request"
+msgstr "Scilab需要选择"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
+msgstr "%s：输入参数#%d的大小错误：应该为字符串向量。\n"
+
 msgid "Scilab Input Value Request"
 msgstr "Scilab需要输入"
 
 msgid "Scilab Multiple Values Request"
 msgstr "Scilab需要多个值"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
-msgstr "%s：输入参数#%d的大小错误：应该为字符串向量。\n"
 
 #, c-format
 msgid ""
@@ -521,14 +534,6 @@ msgstr "%s：输入参数#%d的大小错误：应该为 %dx%d 字符串矩阵。
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为字符串矩阵。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为实数或复数向量。\n"
-
-msgid "Scilab Choices Request"
-msgstr "Scilab需要选择"
 
 #, c-format
 msgid "'%s' property does not exist for this handle.\n"
@@ -684,7 +689,8 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "Wrong type for '%s' property: A real row vector or a string expected.\n"
+msgid ""
+"Wrong type for '%s' property: A real row vector or a string expected.\n"
 msgstr "属性'%s'的类型错误：应该为一个实数行向量或者一个字符串。\n"
 
 #, c-format
@@ -844,10 +850,7 @@ msgstr "加载运行环境(&L)..."
 msgid "&Save environment..."
 msgstr "保存运行环境(&S)"
 
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 94
-# File: modules/gui/src/gui_fake_xml.c, line: 147
-msgid "&Current Working Directory"
+msgid "&Current Working Directory (CWD):"
 msgstr ""
 
 msgid "    &Browse for new"
@@ -866,7 +869,7 @@ msgid "SCI"
 msgstr ""
 
 msgid "User's home ~"
-msgstr ""
+msgstr "用户目录~"
 
 msgid "&Quit"
 msgstr "退出(&Q)"
@@ -992,7 +995,7 @@ msgid "Toggle curve data modification"
 msgstr ""
 
 msgid "Help Browser"
-msgstr "帮助浏览器"
+msgstr "Scilab帮助"
 
 msgid "Launch SciNotes"
 msgstr "启动SciNotes"
@@ -1127,22 +1130,22 @@ msgid "Command for mailer: "
 msgstr ""
 
 msgid "Proxy settings"
-msgstr ""
+msgstr "代理设置"
 
 msgid "Enable proxy"
-msgstr ""
+msgstr "使用代理"
 
 msgid "Host: "
-msgstr ""
+msgstr "主机： "
 
 msgid "Port: "
-msgstr ""
+msgstr "端口： "
 
 msgid "User: "
-msgstr ""
+msgstr "用户名： "
 
 msgid "Password: "
-msgstr ""
+msgstr "密码： "
 
 msgid "Console Font..."
 msgstr "控制台字体..."
@@ -1168,9 +1171,7 @@ msgid ""
 "Due to your video card drivers limitations, that are not able to manage "
 "OpenGL, Scilab will not be able to draw any graphics. Please update your "
 "driver."
-msgstr ""
-"由于显卡驱动限制，无法管理OpenGL，所以Scilab无法绘制任何图形。请升级您的驱"
-"动。"
+msgstr "由于显卡驱动限制，无法管理OpenGL，所以Scilab无法绘制任何图形。请升级您的驱动。"
 
 msgid ""
 "disp(\"WARNING: Despite of our previous warning, you choose to use Scilab "
@@ -1191,19 +1192,19 @@ msgid "Select All"
 msgstr "全选"
 
 msgid "Help on a selected keyword"
-msgstr "所选关键词的帮助"
+msgstr "帮助之所选关键词"
 
 msgid "Help about a selected text"
-msgstr "所选文字的帮助"
+msgstr "帮助之所选文字"
 
 msgid "Help about '"
-msgstr "帮助'"
+msgstr "帮助之‘"
 
 msgid "Evaluate selection with echo"
-msgstr "计算并显示所选表达式"
+msgstr "回显表达式计算其值"
 
 msgid "Evaluate selection with no echo"
-msgstr "计算但不显示所选表达"
+msgstr "回隐表达式计算其值"
 
 #, c-format
 msgid "Option for %s format"
@@ -1223,10 +1224,10 @@ msgstr ""
 
 #, c-format
 msgid "An error occurred during export: %s"
-msgstr ""
+msgstr "导出错误：%s"
 
 msgid "Export error"
-msgstr ""
+msgstr "导出错误"
 
 msgid "Windows BMP image"
 msgstr "Windows BMP图像"
@@ -1280,7 +1281,7 @@ msgid "Please specify a file format"
 msgstr "请指定一个文件格式"
 
 msgid "Error on export"
-msgstr "导出时发生错误"
+msgstr "导出错误"
 
 #, c-format
 msgid ""
@@ -1313,7 +1314,7 @@ msgid "Preview"
 msgstr "预览"
 
 msgid "Loading help browser..."
-msgstr "加载帮助浏览器..."
+msgstr "加载帮助文档……"
 
 msgid "Feature not available in this mode..."
 msgstr ""
@@ -1866,7 +1867,7 @@ msgid "Upper Left Point"
 msgstr ""
 
 msgid "User Data"
-msgstr ""
+msgstr "用户数据"
 
 msgid "X Label"
 msgstr ""
@@ -1938,7 +1939,7 @@ msgid "View"
 msgstr ""
 
 msgid "Viewport"
-msgstr ""
+msgstr "视区"
 
 msgid "X Left"
 msgstr ""
@@ -2113,6 +2114,9 @@ msgstr ""
 msgid "Scilab binary files"
 msgstr "Scilab二进制文件"
 
+msgid "All Scilab files"
+msgstr "所有Scilab文件"
+
 msgid "Xcos files"
 msgstr "Xcos文件"
 
@@ -2165,7 +2169,8 @@ msgstr "无法打开： "
 msgid "Restoration error"
 msgstr ""
 
-msgid "The configuration file has been corrupted and reset to the default one."
+msgid ""
+"The configuration file has been corrupted and reset to the default one."
 msgstr ""
 
 msgid "The configuration file has been corrupted. Scilab needs to restart."
@@ -2487,7 +2492,8 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A border or a string expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A border or a string expected.\n"
 msgstr ""
 
 #, c-format
@@ -2550,26 +2556,6 @@ msgid ""
 " is incorrect: %s.\n"
 msgstr ""
 
-#, fuzzy
-msgid "Select a file to open"
-msgstr "装载文件"
-
-#, fuzzy
-msgid "Scilab scripts"
-msgstr "Scilab消息"
-
-#, fuzzy
-msgid "Xcos diagrams"
-msgstr "Xcos文件"
-
-#, fuzzy
-msgid "Scilab Tests"
-msgstr "Scilab消息"
-
-#, fuzzy
-msgid "Scilab Library"
-msgstr "Scilab二进制文件"
-
 #, c-format
 msgid "%s: Wrong type for input argument #%d: uitree expected.\n"
 msgstr ""
@@ -2579,7 +2565,8 @@ msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr "%s：输入参数的数目错误：至少%d个。\n"
 
 #, c-format
-msgid "%s: Wrong type for element %d of input argument #%d: uitree expected.\n"
+msgid ""
+"%s: Wrong type for element %d of input argument #%d: uitree expected.\n"
 msgstr ""
 
 #, c-format
@@ -2659,6 +2646,3 @@ msgstr "%s：%s的类型错误：应该为一个实数。\n"
 #, c-format
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s：%s的大小错误：应该为一个实数。\n"
-
-#~ msgid "All Scilab files"
-#~ msgstr "所有Scilab文件"

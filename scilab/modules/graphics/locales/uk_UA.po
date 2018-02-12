@@ -11,18 +11,19 @@ msgstr ""
 "PO-Revision-Date: 2017-02-28 22:39+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
-"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18511)\n"
+"X-Generator: Launchpad (build 18544)\n"
+"Language: uk\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr "%s: помилка під час спроби виділення пам’яті.\n"
 
 #, c-format
-msgid "%s: Wrong size for input arguments #%d and #%d: Incompatible length.\n"
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Incompatible length.\n"
 msgstr ""
 "%s: помилкова розмірність вхідних параметрів №%d і №%d: несумісна "
 "розмірність.\n"
@@ -40,7 +41,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Incorrect value.\n"
-msgstr "%s: помилкове значення вхідного параметра №%d: некоректне значення.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: некоректне значення.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -98,7 +100,8 @@ msgid "%s: The handle is not valid.\n"
 msgstr "%s: елемент керування некоректний.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: 2D array of strings expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: 2D array of strings expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати двовимірний "
 "вектор рядків.\n"
@@ -116,7 +119,8 @@ msgstr ""
 "дійсних значень.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Must be between 0.0 and 1.0.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Must be between 0.0 and 1.0.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: значення має належати "
 "діапазону від 0.0 до 1.0.\n"
@@ -133,7 +137,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
-msgstr "%s: помилкові розмірності вхідних параметрів: несумісні розмірності.\n"
+msgstr ""
+"%s: помилкові розмірності вхідних параметрів: несумісні розмірності.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
@@ -275,7 +280,8 @@ msgstr ""
 "список розмірності %d.\n"
 
 #, c-format
-msgid "%s: Wrong number of mandatory input arguments. At least %d expected.\n"
+msgid ""
+"%s: Wrong number of mandatory input arguments. At least %d expected.\n"
 msgstr ""
 "%s: помилкова кількість обов’язкових вхідних параметрів. Слід "
 "використовувати %d параметрів.\n"
@@ -351,7 +357,8 @@ msgstr ""
 "розмірність.\n"
 
 #, c-format
-msgid "%s: Wrong value for input arguments #%d and #%d: Incompatible length.\n"
+msgid ""
+"%s: Wrong value for input arguments #%d and #%d: Incompatible length.\n"
 msgstr ""
 "%s: помилкове значення вхідних параметрів №%d і №%d: несумісна розмірність.\n"
 
@@ -443,7 +450,8 @@ msgstr ""
 "кількість.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A handle or a string expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A handle or a string expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: мало бути вказано елемент "
 "керування або рядок.\n"
@@ -647,25 +655,9 @@ msgstr "%s: некоректний індекс вершини.\n"
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
 msgstr "%s: помилкова кількість вихідних параметрів: мало бути %d.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong size for argument #%d: A real scalar expected.\n"
-msgstr ""
-"%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
-"дійсне число.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong size for input argument #%d: scalar string expected.\n"
-msgstr ""
-"%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
-
 #, c-format
 msgid "%s: Could not read property '%s' for root object.\n"
 msgstr "%s: не вдалося прочитати властивість «%s» кореневого об’єкта.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong size for argument #%d: scalar string expected.\n"
-msgstr ""
-"%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real or integer expected.\n"
@@ -693,109 +685,9 @@ msgstr ""
 msgid "%s: Unrecognized input argument: '%s'.\n"
 msgstr "%s: невідомий вхідний параметр: «%s».\n"
 
-#
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 125
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 142
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 154
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 173
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 181
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 188
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 200
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 219
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 230
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 242
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 250
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 263
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 271
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 286
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 301
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 316
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 325
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 332
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 345
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 357
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 371
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 385
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 398
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 146
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 178
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 213
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 228
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 246
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 268
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 281
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 385
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 394
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 403
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 417
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 435
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 464
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 478
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 492
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 505
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 519
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 533
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 547
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 566
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 598
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 616
 #, c-format
 msgid ""
-"%s: This feature will be permanently removed in Scilab %s\n"
-"\n"
-msgstr ""
-
-#
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 125
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 142
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 154
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 173
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 181
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 188
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 200
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 219
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 230
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 242
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 250
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 263
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 271
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 286
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 301
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 316
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 325
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 332
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 345
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 357
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 371
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 385
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 398
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 146
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 178
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 213
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 228
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 246
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 268
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 281
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 385
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 394
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 403
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 417
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 435
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 464
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 478
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 492
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 505
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 519
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 533
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 547
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 566
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 598
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 616
-msgid "Warning"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A %d-element vector expected.\n"
+"%s: Wrong size for input argument #%d: A %d-element vector expected.\n"
 msgstr ""
 "%s: помилкова розмірність вхідного параметра №%d: мало бути вказано вектор з "
 "%d компонентами.\n"
@@ -811,8 +703,8 @@ msgstr "%s: встановлено розміри вікна, менші за 2^
 msgid "The parent has to be a SUBWIN\n"
 msgstr "Батьківським елементом має бути SUBWIN\n"
 
-#, fuzzy, c-format
-msgid "%s: Could not retrive bounding box.\n"
+#, c-format
+msgid "%s: Could not retrieve bounding box.\n"
 msgstr "%s: не вдалося отримати обмежувальну рамку.\n"
 
 #, c-format
@@ -821,8 +713,7 @@ msgstr ""
 "%s призначено для обчислення даних кривих рівнів, а не для показу цих "
 "кривих.\n"
 
-#, fuzzy
-msgid "Could not retrive bounds.\n"
+msgid "Could not retrieve bounds.\n"
 msgstr "Не вдалося отримати межі.\n"
 
 msgid "Warning: Can't use Log on X-axis xmin is negative.\n"
@@ -986,7 +877,8 @@ msgstr ""
 
 #, c-format
 msgid "Wrong type for '%s' property: String expected.\n"
-msgstr "Помилковий тип властивості «%s»: слід використовувати тип «string».\n"
+msgstr ""
+"Помилковий тип властивості «%s»: слід використовувати тип «string».\n"
 
 #, c-format
 msgid "Wrong value for '%s' property.\n"
@@ -1200,7 +1092,8 @@ msgstr ""
 "рядок.\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: String with length 3 or less expected.\n"
+msgid ""
+"Wrong value for '%s' property: String with length 3 or less expected.\n"
 msgstr ""
 "Помилкове значення властивості «%s»: мало бути використано рядок довжини 3 "
 "або меншої.\n"
@@ -1257,7 +1150,8 @@ msgstr ""
 "зверніться до сторінки довідки команди «set».\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: An Integer between %d and %d expected.\n"
+msgid ""
+"Wrong value for '%s' property: An Integer between %d and %d expected.\n"
 msgstr ""
 "Помилкове значення властивості «%s»: слід використовувати ціле число у межах "
 "від %d до %d.\n"
@@ -1473,7 +1367,8 @@ msgstr ""
 "стовпчики.\n"
 
 #, c-format
-msgid "%s: Wrong size for input arguments #%d and #%d: Incompatible lengths.\n"
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Incompatible lengths.\n"
 msgstr ""
 "%s: помилкова розмірність вхідних параметрів №%d і №%d: несумісні довжини.\n"
 
@@ -1485,7 +1380,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Incompatible length.\n"
-msgstr "%s: помилкова розмірність вхідного параметра №%d: несумісна довжина.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: несумісна довжина.\n"
 
 #, c-format
 msgid ""
@@ -1619,9 +1515,6 @@ msgstr "Помилкове визначення f(z)"
 msgid "Radius should be real and finite"
 msgstr "Радіус має бути дійсним і скінченним"
 
-msgid "Misc"
-msgstr "Інше"
-
 msgid "datatips on 2D curves"
 msgstr "підказки щодо даних на плоских кривих"
 
@@ -1675,6 +1568,9 @@ msgstr "LaTeX/MathML"
 
 msgid "Lighting"
 msgstr "Освітлення"
+
+msgid "Misc"
+msgstr "Інше"
 
 msgid "Colormap"
 msgstr "Карта кольорів"
@@ -1832,7 +1728,8 @@ msgstr ""
 "або вектор-стовпчик.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A scalar or a vector expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar or a vector expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати скалярний "
 "або векторний тип.\n"
@@ -2077,7 +1974,8 @@ msgstr ""
 "Вмикання керування позначками даних неможливе, поле даних користувача "
 "рисунка вже використано"
 
-msgid "Left click on a curve to create a datatip, right opens contextual menu"
+msgid ""
+"Left click on a curve to create a datatip, right opens contextual menu"
 msgstr ""
 "Клацання лівою кнопкою миші на кривій створить позначку даних, клацання "
 "правою — відкриє контекстне меню."
@@ -2240,7 +2138,8 @@ msgid "%s: Wrong size for input argument #%d: A Real expected.\n"
 msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: очікувалося дійсне число.\n"
 
-msgid "Entity picker cannot be enabled, user data figure field is already used"
+msgid ""
+"Entity picker cannot be enabled, user data figure field is already used"
 msgstr ""
 "Вмикання визначення значень неможливе, поле даних користувача рисунка вже "
 "використано"
@@ -2296,6 +2195,12 @@ msgstr "Гаразд"
 
 msgid "Cancel"
 msgstr "Скасувати"
+
+msgid "Color number"
+msgstr "Номер кольору"
+
+msgid "Name"
+msgstr "Назва"
 
 msgid "April"
 msgstr "квітень"
@@ -2472,7 +2377,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Argument #%d: Matrix with 4 or 6 columns expected.\n"
-msgstr "%s: параметр №%d: мало бути вказано матрицю із 4 або 6 стовпчиками.\n"
+msgstr ""
+"%s: параметр №%d: мало бути вказано матрицю із 4 або 6 стовпчиками.\n"
 
 #, c-format
 msgid "%s: Argument #%d: tight or on or off values expected.\n"
@@ -2506,7 +2412,8 @@ msgstr ""
 "у інтервалі [%d, %d]\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument '%s': A vector of size %d expected.\n"
+msgid ""
+"%s: Wrong size for input argument '%s': A vector of size %d expected.\n"
 msgstr ""
 "%s: помилкова розмірність вхідного параметра «%s»: мало бути використано "
 "вектор розмірності %d.\n"
@@ -2654,7 +2561,8 @@ msgstr ""
 "матриці однакової розмірності.\n"
 
 #, c-format
-msgid "%s: Wrong size for input arguments '%s' and '%s': Same size expected.\n"
+msgid ""
+"%s: Wrong size for input arguments '%s' and '%s': Same size expected.\n"
 msgstr ""
 "%s: помилкові розмірності вхідних параметрів «%s» і «%s»: розмірність має "
 "бути однаковою.\n"
@@ -2678,9 +2586,3 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value given for %s."
 msgstr "%s: вказано помилкове значення %s."
-
-#~ msgid "Color number"
-#~ msgstr "Номер кольору"
-
-#~ msgid "Name"
-#~ msgstr "Назва"

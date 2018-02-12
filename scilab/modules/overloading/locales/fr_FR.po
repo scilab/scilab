@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2017-02-05 11:21+0000\n"
 "Last-Translator: Paul Bignier <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
-"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18511)\n"
+"X-Generator: Launchpad (build 18544)\n"
+"Language: fr\n"
 
 #, c-format
 msgid "%s: Invalid index.\n"
@@ -54,21 +54,24 @@ msgstr ""
 "attendu.\n"
 
 #, c-format
-msgid "%s: Affection of a string in a matrix of numbers is not implemented.\n"
+msgid ""
+"%s: Affection of a string in a matrix of numbers is not implemented.\n"
 msgstr ""
 "%s : L'affectation d'une chaîne de caractères dans une matrice de nombres "
 "n'est pas implémentée.\n"
 
 #, c-format
 msgid "%s: Syntax x(j) only allowed for row cblock's.\n"
-msgstr "%s : La syntaxe x(j) est seulement autorisée pour les blocs C ligne.\n"
+msgstr ""
+"%s : La syntaxe x(j) est seulement autorisée pour les blocs C ligne.\n"
 
 #, c-format
 msgid "%s: Invalid field name.\n"
 msgstr "%s : Nom de champ invalide.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: a valid field name expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: a valid field name expected.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : Un nom de champ valide "
 "attendu.\n"
@@ -82,7 +85,8 @@ msgid "%s: Wrong number of output arguments.\n"
 msgstr "%s : Nombre erroné d'arguments de sortie.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Transpose can not be defined.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: Transpose can not be defined.\n"
 msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : La transposée ne peut "
 "pas être définie.\n"
@@ -96,6 +100,11 @@ msgid ""
 "%s: Input argument #%d and input argument #%d have incompatible dimensions.\n"
 msgstr ""
 "%s : Les arguments d'entrée n°%d et n°%d ont des dimensions incompatibles.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Un scalaire attendu.\n"
 
 #, c-format
 msgid ""
@@ -176,7 +185,8 @@ msgstr "%s : Syntaxe invalide pour un système MIMO.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %d or %s expected.\n"
-msgstr "%s : Valeur erronée de l'argument d'entrée n°%d : %d ou %s attendu.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : %d ou %s attendu.\n"
 
 #, c-format
 msgid ""
@@ -240,38 +250,6 @@ msgstr "Division par zéro"
 msgid "Invalid Exponent"
 msgstr "Exposant invalide"
 
-#
-# File: modules/overloading/macros/%s_1_s.sci, line: 22
-#, c-format
-msgid ""
-"Complex comparison not supported. Please define %s_1_s_custom() or check "
-"your code."
-msgstr ""
-
-#
-# File: modules/overloading/macros/%s_2_s.sci, line: 22
-#, c-format
-msgid ""
-"Complex comparison not supported. Please define %s_2_s_custom() or check "
-"your code."
-msgstr ""
-
-#
-# File: modules/overloading/macros/%s_3_s.sci, line: 22
-#, c-format
-msgid ""
-"Complex comparison not supported. Please define %s_3_s_custom() or check "
-"your code."
-msgstr ""
-
-#
-# File: modules/overloading/macros/%s_4_s.sci, line: 22
-#, c-format
-msgid ""
-"Complex comparison not supported. Please define %s_4_s_custom() or check "
-"your code."
-msgstr ""
-
 #, c-format
 msgid ""
 "%s: Wrong type for input arguments #%d and #%d: Integer values expected.\n"
@@ -322,7 +300,8 @@ msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
 msgstr "%s : Type erroné de l'argument %d : Un scalaire réel attendu.\n"
 
 #, c-format
-msgid "%s: input and output matrices  must have the same number of elements.\n"
+msgid ""
+"%s: input and output matrices  must have the same number of elements.\n"
 msgstr ""
 "%s : Les matrices d'entrée et de sortie doivent avoir le même nombre "
 "d'éléments.\n"
@@ -374,7 +353,3 @@ msgstr "Indice invalide.\n"
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendus.\n"
-
-#~ msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
-#~ msgstr ""
-#~ "%s : Type erroné de l'argument d'entrée n°%d : Un scalaire attendu.\n"

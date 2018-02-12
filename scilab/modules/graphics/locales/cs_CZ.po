@@ -11,18 +11,19 @@ msgstr ""
 "PO-Revision-Date: 2016-12-07 22:12+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
-"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18511)\n"
+"X-Generator: Launchpad (build 18544)\n"
+"Language: cs\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr "%s: Chyba při přidělování paměti.\n"
 
 #, c-format
-msgid "%s: Wrong size for input arguments #%d and #%d: Incompatible length.\n"
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Incompatible length.\n"
 msgstr ""
 "%s: Špatná velikost vstupních argumentů #%d a #%d: Nekompatibilní délka.\n"
 
@@ -65,7 +66,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Real scalar expected.\n"
-msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván reálný skalár.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekáván reálný skalár.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A 'Text' handle expected.\n"
@@ -85,7 +87,8 @@ msgid "%s: The handle is not valid.\n"
 msgstr "%s: Obslužná rutina není platná.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: 2D array of strings expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: 2D array of strings expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáváno 2D pole řetězců.\n"
 
 #, c-format
@@ -97,7 +100,8 @@ msgid "%s: Wrong type for input argument #%d: Real vector nx3 expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Must be between 0.0 and 1.0.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Must be between 0.0 and 1.0.\n"
 msgstr ""
 
 #, c-format
@@ -163,7 +167,8 @@ msgstr "%s: Špatná velikost vstupního argumentu #%d: očekáváno %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real scalar expected.\n"
-msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván reálný skalár.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekáván reálný skalár.\n"
 
 msgid "%: Wrong value for %s '%c': '%s', '%s' and '%s' expected.\n"
 msgstr "%: Špatná hodnota pro %s '%c': Očekáváno '%s' a '%s'.\n"
@@ -200,7 +205,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Vector %s or %s expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván vektor %s nebo %s.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáván vektor %s nebo %s.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix of string expected.\n"
@@ -226,7 +232,8 @@ msgstr ""
 "%d.\n"
 
 #, c-format
-msgid "%s: Wrong number of mandatory input arguments. At least %d expected.\n"
+msgid ""
+"%s: Wrong number of mandatory input arguments. At least %d expected.\n"
 msgstr ""
 "%s: Špatný počet povinných vstupních argumentů. Očekáváno alespoň %d.\n"
 
@@ -300,7 +307,8 @@ msgstr ""
 "délka.\n"
 
 #, c-format
-msgid "%s: Wrong value for input arguments #%d and #%d: Incompatible length.\n"
+msgid ""
+"%s: Wrong value for input arguments #%d and #%d: Incompatible length.\n"
 msgstr ""
 "%s: Špatná hodnota vstupních argumentů #%d a #%d: Nekompatibilní délka.\n"
 
@@ -360,7 +368,8 @@ msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván boolean.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
-msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván jeden řetězec.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekáván jeden řetězec.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A matrix of string expected.\n"
@@ -377,7 +386,8 @@ msgid "%s: Wrong number of input argument(s) : an odd number is expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A handle or a string expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A handle or a string expected.\n"
 msgstr ""
 
 #, c-format
@@ -460,7 +470,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Boolean vector expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván booleovský vektor.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáván booleovský vektor.\n"
 
 #, c-format
 msgid ""
@@ -485,7 +496,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr "%s: Špatná hodnota vstupního argumentu #%d: Očekáván '%s' nebo '%s'.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: Očekáván '%s' nebo '%s'.\n"
 
 #, c-format
 msgid "%s: Incompatible length for input arguments #%d and #%d.\n"
@@ -553,7 +565,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Error on input argument #%d: Specified bounds are not correct.\n"
-msgstr "%s: Chyba ve vstupním argumentu #%d: Určené hranice nejsou správné.\n"
+msgstr ""
+"%s: Chyba ve vstupním argumentu #%d: Určené hranice nejsou správné.\n"
 
 #, c-format
 msgid "%s: Invalid vertex index.\n"
@@ -563,21 +576,9 @@ msgstr ""
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
-msgid "%s: Wrong size for argument #%d: A real scalar expected.\n"
-msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván reálný skalár.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong size for input argument #%d: scalar string expected.\n"
-msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n"
-
 #, c-format
 msgid "%s: Could not read property '%s' for root object.\n"
 msgstr ""
-
-#, fuzzy, c-format
-msgid "%s: Wrong size for argument #%d: scalar string expected.\n"
-msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real or integer expected.\n"
@@ -599,109 +600,9 @@ msgstr ""
 msgid "%s: Unrecognized input argument: '%s'.\n"
 msgstr "%s: Nerozpoznaný vstupní argument: '%s'.\n"
 
-#
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 125
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 142
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 154
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 173
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 181
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 188
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 200
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 219
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 230
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 242
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 250
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 263
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 271
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 286
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 301
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 316
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 325
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 332
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 345
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 357
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 371
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 385
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 398
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 146
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 178
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 213
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 228
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 246
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 268
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 281
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 385
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 394
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 403
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 417
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 435
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 464
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 478
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 492
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 505
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 519
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 533
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 547
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 566
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 598
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 616
 #, c-format
 msgid ""
-"%s: This feature will be permanently removed in Scilab %s\n"
-"\n"
-msgstr ""
-
-#
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 125
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 142
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 154
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 173
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 181
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 188
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 200
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 219
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 230
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 242
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 250
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 263
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 271
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 286
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 301
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 316
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 325
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 332
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 345
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 357
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 371
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 385
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 398
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 146
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 178
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 213
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 228
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 246
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 268
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 281
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 385
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 394
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 403
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 417
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 435
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 464
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 478
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 492
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 505
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 519
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 533
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 547
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 566
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 598
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 616
-msgid "Warning"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A %d-element vector expected.\n"
+"%s: Wrong size for input argument #%d: A %d-element vector expected.\n"
 msgstr ""
 "%s: Špatná velikost vstupního argumentu #%d: Očekáván vektor s %d prvky.\n"
 
@@ -716,19 +617,15 @@ msgstr ""
 msgid "The parent has to be a SUBWIN\n"
 msgstr "Nadřazena musí být PODOKNO\n"
 
-#
-# File: modules/graphics/src/c/Champ.c, line: 147
 #, c-format
-msgid "%s: Could not retrive bounding box.\n"
+msgid "%s: Could not retrieve bounding box.\n"
 msgstr ""
 
 #, c-format
 msgid "%s is only made to compute level curves and not display them.\n"
 msgstr "%s je vytvořena pouze pro výpočet křivek, ne pro jejich zobrazení.\n"
 
-#
-# File: modules/graphics/src/c/DrawObjects.c, line: 88
-msgid "Could not retrive bounds.\n"
+msgid "Could not retrieve bounds.\n"
 msgstr ""
 
 msgid "Warning: Can't use Log on X-axis xmin is negative.\n"
@@ -848,7 +745,8 @@ msgid "'%s' property does not exist for this handle.\n"
 msgstr "Vlastnost '%s' pro tuto obslužnou rutinu neexistuje.\n"
 
 msgid "Tlist could not be created, check ticks location and label vectors.\n"
-msgstr "Tlist nelze vytvořit, zkontrolujte umístění odkazů a vektory štítků.\n"
+msgstr ""
+"Tlist nelze vytvořit, zkontrolujte umístění odkazů a vektory štítků.\n"
 
 #, c-format
 msgid "%s should be a vector of double.\n"
@@ -1035,7 +933,8 @@ msgid "Wrong value for '%s' property: Non-empty string expected.\n"
 msgstr ""
 
 #, c-format
-msgid "Wrong value for '%s' property: String with length 3 or less expected.\n"
+msgid ""
+"Wrong value for '%s' property: String with length 3 or less expected.\n"
 msgstr ""
 
 #, c-format
@@ -1082,7 +981,8 @@ msgstr ""
 "stránku nápovědy.\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: An Integer between %d and %d expected.\n"
+msgid ""
+"Wrong value for '%s' property: An Integer between %d and %d expected.\n"
 msgstr "Špatný hodnota vlastnosti '%s': Očekáváno celé číslo mezi %d a %d.\n"
 
 msgid "Could not retrieve format.\n"
@@ -1143,7 +1043,8 @@ msgstr "Špatný hodnota vlastnosti '%s': Musí být mezi %d a %d.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: Graphic handle array expected.\n"
-msgstr "Špatný typ vlastnosti '%s': Očekáváno pole grafické obslužné rutiny.\n"
+msgstr ""
+"Špatný typ vlastnosti '%s': Očekáváno pole grafické obslužné rutiny.\n"
 
 #, c-format
 msgid "%s: Input argument #%d must be a '%s' handle.\n"
@@ -1259,7 +1160,8 @@ msgid "%s: Wrong type for input argument #%d: Columns vectors expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input arguments #%d and #%d: Incompatible lengths.\n"
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Incompatible lengths.\n"
 msgstr ""
 
 #, c-format
@@ -1389,9 +1291,6 @@ msgstr ""
 msgid "Radius should be real and finite"
 msgstr ""
 
-msgid "Misc"
-msgstr ""
-
 msgid "datatips on 2D curves"
 msgstr ""
 
@@ -1444,6 +1343,9 @@ msgid "LaTeX/MathML"
 msgstr ""
 
 msgid "Lighting"
+msgstr ""
+
+msgid "Misc"
 msgstr ""
 
 msgid "Colormap"
@@ -1574,7 +1476,8 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A scalar or a vector expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar or a vector expected.\n"
 msgstr ""
 
 #, c-format
@@ -1680,7 +1583,8 @@ msgstr "%s: Špatný typ argumentu %d: Očekáván reálný skalár.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the interval %s.\n"
-msgstr "%s: Špatná hodnota vstupního argumentu #%d: Musí být v intervalu %s.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: Musí být v intervalu %s.\n"
 
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
@@ -1720,7 +1624,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Real vector expected.\n"
-msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván reálný vektor.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekáván reálný vektor.\n"
 
 #, c-format
 msgid "Error %d : in plot2d called by contour2d"
@@ -1771,7 +1676,8 @@ msgid ""
 msgstr ""
 "Výběr objektu nemůže být povolen, pole čísla data uživatele je již použito"
 
-msgid "Left click on a curve to create a datatip, right opens contextual menu"
+msgid ""
+"Left click on a curve to create a datatip, right opens contextual menu"
 msgstr ""
 "Levým kliknutím na křivku vytvoříte popisek dat, pravým otevřete kontextové "
 "menu"
@@ -1826,7 +1732,8 @@ msgstr "Vyberte styl vrcholu"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean scalar expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d:  Očekáván booleovský skalár.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d:  Očekáván booleovský skalár.\n"
 
 msgid "&File"
 msgstr "&Soubor"
@@ -1925,9 +1832,11 @@ msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván Reálné číslo\
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A Real expected.\n"
-msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáváno reálné číslo.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekáváno reálné číslo.\n"
 
-msgid "Entity picker cannot be enabled, user data figure field is already used"
+msgid ""
+"Entity picker cannot be enabled, user data figure field is already used"
 msgstr ""
 "Výběr objektu nemůže být povolen, pole čísla data uživatele je již použito"
 
@@ -1966,13 +1875,20 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
-msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáváno reálné číslo.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekáváno reálné číslo.\n"
 
 msgid "Ok"
 msgstr "Ok"
 
 msgid "Cancel"
 msgstr "Zrušit"
+
+msgid "Color number"
+msgstr "Číslo barvy"
+
+msgid "Name"
+msgstr "Název"
 
 msgid "April"
 msgstr "Duben"
@@ -2153,7 +2069,8 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument '%s': A vector of size %d expected.\n"
+msgid ""
+"%s: Wrong size for input argument '%s': A vector of size %d expected.\n"
 msgstr ""
 "%s: Špatná velikost vstupního argumentu '%s': Očekáván vektor o velikosti "
 "%d.\n"
@@ -2279,7 +2196,8 @@ msgstr ""
 "stejnou velikostí.\n"
 
 #, c-format
-msgid "%s: Wrong size for input arguments '%s' and '%s': Same size expected.\n"
+msgid ""
+"%s: Wrong size for input arguments '%s' and '%s': Same size expected.\n"
 msgstr ""
 "%s: Špatná velikost vstupních argumentů '%s' a '%s': Očekávány stejné "
 "velikosti.\n"
@@ -2294,14 +2212,9 @@ msgstr "%s: soubor %s neexistuje.\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
-msgstr "%s: Špatná velikost vstupních argumentů: Očekávány stejné velikosti.\n"
+msgstr ""
+"%s: Špatná velikost vstupních argumentů: Očekávány stejné velikosti.\n"
 
 #, c-format
 msgid "%s: Wrong value given for %s."
 msgstr "%s: Zadána špatná hodnota pro %s."
-
-#~ msgid "Color number"
-#~ msgstr "Číslo barvy"
-
-#~ msgid "Name"
-#~ msgstr "Název"

@@ -12,11 +12,11 @@ msgstr ""
 "PO-Revision-Date: 2016-02-12 11:06+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
-"Language: ukPlural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18511)\n"
+"X-Generator: Launchpad (build 18544)\n"
+"Language: ukPlural-Forms: nplurals=1; plural=0;\n"
 
 msgid "overflow error"
 msgstr "помилка переповнення"
@@ -501,8 +501,71 @@ msgstr "Неявний порт виведення даних"
 msgid "Regular output port"
 msgstr "Порт звичайного виведення даних"
 
+#, c-format
+msgid "Feature %s is obsolete."
+msgstr "Функція %s вважається застарілою."
+
+#, c-format
+msgid "Please use %s instead."
+msgstr "Будь ласка, використовуйте %s."
+
+msgid "Write to output file"
+msgstr "Записати до файла вихідних даних"
+
+msgid "&nbsp; - A binary file if no format given"
+msgstr "&nbsp; — файл двійових даних, якщо не вказано формату"
+
+msgid "Write is done on:"
+msgstr "Запис здійснено:"
+
+msgid "&nbsp; - A formatted text file if a  format (Fortran type) is given"
+msgstr ""
+"&nbsp; — форматований текстовий файл, якщо вказано формат (тип Fortran)"
+
+msgid "Input Size"
+msgstr "Вхідна розмірність"
+
+msgid "Output File Name"
+msgstr "Назва файла вихідних даних"
+
 msgid "Buffer Size"
 msgstr "Розмір буфера"
+
+msgid "Output Format"
+msgstr "Формат вихідних даних"
+
+msgid "End current simulation first."
+msgstr "Спочатку завершіть поточне моделювання"
+
+msgid ""
+"Simulation running !!! You cannot switch<br />between formatted and "
+"unformatted when running"
+msgstr ""
+"Виконується імітація! Не можна перемикатися<br />між форматованим та "
+"неформатованим типом під час імітації."
+
+msgid "You cannot modify 'Output File Name' when running."
+msgstr ""
+"Не можна змінювати значення «Назва файла вихідних даних» під час виконання."
+
+msgid "Wrong value for 'Output File Name' parameter"
+msgstr "Помилкове значення параметра «Назва файла вихідних даних»"
+
+msgid "You must provide a filename."
+msgstr "Слід вказати назву файла."
+
+#, c-format
+msgid "Directory '%s' does not exist"
+msgstr "Каталогу «%s» не існує"
+
+msgid "Input Format"
+msgstr "Формат вхідних даних"
+
+msgid "You must enclose the format's string between parentheses."
+msgstr "Рядок опису формату слід вказувати у дужках."
+
+msgid "Must be greater than 1."
+msgstr "Має бути більшим за 1."
 
 msgid "Swap Mode (0:No, 1:Yes)"
 msgstr "Режим переставляння (0 — ні, 1 — так)"
@@ -520,20 +583,8 @@ msgstr "Спочатку завершіть поточне моделюванн�
 msgid "Swap Mode"
 msgstr "Режим переставляння"
 
-msgid "Input Size"
-msgstr "Вхідна розмірність"
-
-msgid "Output File Name"
-msgstr "Назва файла вихідних даних"
-
 msgid "Write to C binary file"
 msgstr "Записати до файла двійкових даних C"
-
-msgid "Output Format"
-msgstr "Формат вихідних даних"
-
-msgid "Input Format"
-msgstr "Формат вхідних даних"
 
 msgid "Valid formats are: "
 msgstr "Можливі такі формати: "
@@ -542,18 +593,8 @@ msgstr "Можливі такі формати: "
 msgid "You cannot modify '%s' when running"
 msgstr "Не можна змінювати «%s» під час виконання"
 
-msgid "End current simulation first."
-msgstr "Спочатку завершіть поточне моделювання"
-
 msgid "You cannot modify 'Buffer Size' when running."
 msgstr "Не можна змінювати значення «Розмір буфера» під час виконання."
-
-msgid "You must provide a filename."
-msgstr "Слід вказати назву файла."
-
-#, c-format
-msgid "Directory '%s' does not exist"
-msgstr "Каталогу «%s» не існує"
 
 msgid "Event input port"
 msgstr "Порт введення даних подій"
@@ -748,9 +789,6 @@ msgstr "[1, розмір запису = "
 msgid "Wrong value for indexes in '%s' parameter: %s."
 msgstr "Помилкове значення номерів у параметрі «%s»: %s."
 
-msgid "&nbsp; - A binary file if no format given"
-msgstr "&nbsp; — файл двійових даних, якщо не вказано формату"
-
 msgid "Read from an input file"
 msgstr "Читати з файла вхідних даних"
 
@@ -790,9 +828,6 @@ msgstr "Помилкове значення параметра «%s»: %s"
 msgid "Wrong format for '%s' parameter: %s."
 msgstr "Помилкове форматування параметра «%s»: %s."
 
-msgid "You must enclose the format's string between parentheses."
-msgstr "Рядок опису формату слід вказувати у дужках."
-
 msgid "Buffer size must be at least 2."
 msgstr "Розмір буфера не повинен бути меншим за 2."
 
@@ -825,37 +860,3 @@ msgid "%s: Wrong number of input arguments: At most %d expected.\n"
 msgstr ""
 "%s: помилкова кількість вхідних параметрів: слід використовувати не більше "
 "%d.\n"
-
-#~ msgid "Feature %s is obsolete."
-#~ msgstr "Функція %s вважається застарілою."
-
-#~ msgid "Please use %s instead."
-#~ msgstr "Будь ласка, використовуйте %s."
-
-#~ msgid "Write to output file"
-#~ msgstr "Записати до файла вихідних даних"
-
-#~ msgid "Write is done on:"
-#~ msgstr "Запис здійснено:"
-
-#~ msgid "&nbsp; - A formatted text file if a  format (Fortran type) is given"
-#~ msgstr ""
-#~ "&nbsp; — форматований текстовий файл, якщо вказано формат (тип Fortran)"
-
-#~ msgid ""
-#~ "Simulation running !!! You cannot switch<br />between formatted and "
-#~ "unformatted when running"
-#~ msgstr ""
-#~ "Виконується імітація! Не можна перемикатися<br />між форматованим та "
-#~ "неформатованим типом під час імітації."
-
-#~ msgid "You cannot modify 'Output File Name' when running."
-#~ msgstr ""
-#~ "Не можна змінювати значення «Назва файла вихідних даних» під час "
-#~ "виконання."
-
-#~ msgid "Wrong value for 'Output File Name' parameter"
-#~ msgstr "Помилкове значення параметра «Назва файла вихідних даних»"
-
-#~ msgid "Must be greater than 1."
-#~ msgstr "Має бути більшим за 1."

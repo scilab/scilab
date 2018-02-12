@@ -11,15 +11,16 @@ msgstr ""
 "PO-Revision-Date: 2013-05-24 21:22+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
-"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18511)\n"
+"X-Generator: Launchpad (build 18544)\n"
+"Language: cs\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
-msgstr "%s: Špatná velikost vstupních argumentů: Očekávány stejné velikosti.\n"
+msgstr ""
+"%s: Špatná velikost vstupních argumentů: Očekávány stejné velikosti.\n"
 
 #, c-format
 msgid ""
@@ -366,16 +367,6 @@ msgstr ""
 msgid "     norm of the residual    = "
 msgstr ""
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 145
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 149
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 153
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 193
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 197
-#, c-format
-msgid "     same but with refinment = "
-msgstr ""
-
 #, c-format
 msgid "     norm of the residual     = "
 msgstr ""
@@ -392,7 +383,8 @@ msgid ""
 "definite (s.p.d.)."
 msgstr ""
 
-msgid "  1/ the Cholesky factorization of a s.p.d. matrix A is obtained with:"
+msgid ""
+"  1/ the Cholesky factorization of a s.p.d. matrix A is obtained with:"
 msgstr ""
 
 #, c-format
@@ -532,12 +524,14 @@ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d až %d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
 msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Očekávána čtvercová řídká matice.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
 msgstr ""
 "%s: Špatná velikost vstupního argumentu #%d: Očekávána čtvercová řídká "
 "matice.\n"
@@ -548,7 +542,8 @@ msgstr "%s: Matice a faktory LU nemají stejné rozměry !\n"
 
 #, c-format
 msgid "%s: Invalid type and/or size and/or value for the second arg.\n"
-msgstr "%s: Neplatný typ a/nebo velikost a/nebo hodnota pro druhý argument.\n"
+msgstr ""
+"%s: Neplatný typ a/nebo velikost a/nebo hodnota pro druhý argument.\n"
 
 msgid "how to use this stuff"
 msgstr "jak toto používat"

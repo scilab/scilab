@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2015-10-08 22:04+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
-"Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18511)\n"
+"X-Generator: Launchpad (build 18544)\n"
+"Language: pl\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -176,7 +176,8 @@ msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
 msgstr ""
 
 #, c-format
@@ -213,7 +214,8 @@ msgid "%s: Wrong file descriptor: %d.\n"
 msgstr "%s: Zły deskryptor pliku: %d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A integer or string expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A integer or string expected.\n"
 msgstr ""
 
 #, c-format
@@ -299,7 +301,8 @@ msgid "%s: invalid status.\n"
 msgstr "%s: nieprawidłowy status.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: a String or Integer expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: a String or Integer expected.\n"
 msgstr ""
 "%s: Nieprawidłowy rozmiar dla argumentu wejściowego nr %d: Oczekiwano "
 "łańcuch lub liczbę całkowitą.\n"
@@ -333,7 +336,8 @@ msgid "%s: Wrong type for input argument #%d: A real or String expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%s: Nieprawidłowa wartość dla argumentu wejściowego nr %d: oczekiwana '%s', "
 "'%s' lub '%s'.\n"
@@ -414,22 +418,27 @@ msgstr "niezamknięta [ dyrektywa."
 
 #, c-format
 msgid "%s: An error occurred: too many (> %d) conversion required.\n"
-msgstr "%s: Wystąpił błąd: wymaganych jest zbyt wiele przekształceń (> %d).\n"
+msgstr ""
+"%s: Wystąpił błąd: wymaganych jest zbyt wiele przekształceń (> %d).\n"
 
 #, c-format
-msgid "%s: An error occurred: field %d is too long (> %d) for %%[ directive.\n"
-msgstr "%s:Wystąpił błąd: Pole %d jest zbyt długie (> %d) dla dyrektywy %%[.\n"
+msgid ""
+"%s: An error occurred: field %d is too long (> %d) for %%[ directive.\n"
+msgstr ""
+"%s:Wystąpił błąd: Pole %d jest zbyt długie (> %d) dla dyrektywy %%[.\n"
 
 msgid "Bad conversion."
 msgstr "Złe przekształcenie."
 
 #, c-format
-msgid "%s: An error occurred: field %d is too long (< %d) for %%s directive.\n"
+msgid ""
+"%s: An error occurred: field %d is too long (< %d) for %%s directive.\n"
 msgstr ""
 "%s: Wystąpił błąd: pole %d jest zbyt długie (< %d) dla dyrektywy %%s.\n"
 
 #, c-format
-msgid "%s: An error occurred: field %d is too long (< %d) for %%c directive.\n"
+msgid ""
+"%s: An error occurred: field %d is too long (< %d) for %%c directive.\n"
 msgstr ""
 "%s: Wystąpił błąd: pole %d jest zbyt długie (< %d) dla dyrektywy %%c.\n"
 
@@ -518,7 +527,8 @@ msgstr ""
 "niepustego ciągu znaków.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d ('%s'): Format not recognized.\n"
+msgid ""
+"%s: Wrong value for input argument #%d ('%s'): Format not recognized.\n"
 msgstr ""
 "%s: Nieprawidłowy wartość parametru wejściowego nr %d ('%s'): nie rozpoznano "
 "formatu.\n"

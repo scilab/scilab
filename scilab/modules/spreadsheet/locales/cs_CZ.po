@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2015-10-08 22:03+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
-"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18511)\n"
+"X-Generator: Launchpad (build 18544)\n"
+"Language: cs\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
@@ -107,7 +107,8 @@ msgid "%s: Wrong size for input argument #%d.\n"
 msgstr "%s: Špatná velikost vstupního argumentu #%d.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' or '%s' string expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: '%s' or '%s' string expected.\n"
 msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: Očekáván řetězec '%s' nebo "
 "'%s'.\n"
@@ -263,7 +264,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Failed to read expected data, may be invalid xls file.\n"
-msgstr "%s: Nelze přečíst očekávaná data, pravděpodobně neplatný soubor xls.\n"
+msgstr ""
+"%s: Nelze přečíst očekávaná data, pravděpodobně neplatný soubor xls.\n"
 
 #, c-format
 msgid "%s: End of file.\n"
@@ -334,7 +336,8 @@ msgstr ""
 
 #, c-format
 msgid "%s:%d:OLE_load_FAT:ERROR: FAT memory boundary limit exceeded %p >= %p"
-msgstr "%s:%d:OLE_load_FAT:CHYBA: Přesáhnut hraniční limit paměti FAT %p >= %p"
+msgstr ""
+"%s:%d:OLE_load_FAT:CHYBA: Přesáhnut hraniční limit paměti FAT %p >= %p"
 
 #, c-format
 msgid "%s:%d:OLE_load_FAT:ERROR: sector request was negative (%d)"
@@ -395,7 +398,8 @@ msgstr ""
 "%s\n"
 
 #, c-format
-msgid "%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n"
+msgid ""
+"%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n"
 msgstr "%s:%d:OLEUNWRAP_save_stream:CHYBA: Nelze otevřít %s pro zápis (%s)\n"
 
 #, c-format

@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2016-12-07 22:12+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
-"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18511)\n"
+"X-Generator: Launchpad (build 18544)\n"
+"Language: de\n"
 
 #, c-format
 msgid "%s: Figure number must be given when not in '%s' mode.\n"
@@ -31,7 +31,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
-msgstr "%s: falsche Größe für Eingangsargument #%d: eine Realzahl erwartet.\n"
+msgstr ""
+"%s: falsche Größe für Eingangsargument #%d: eine Realzahl erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Handle matrix expected.\n"
@@ -103,7 +104,8 @@ msgstr "%s: Speicherreservierungsfehler.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: string expected.\n"
-msgstr "%s: falsche Größe für Eingangsargument #%d: eine Variable erwartet.\n"
+msgstr ""
+"%s: falsche Größe für Eingangsargument #%d: eine Variable erwartet.\n"
 
 #, c-format
 msgid ""
@@ -264,7 +266,8 @@ msgstr ""
 "%s: falsche Größe für Eingangsargument #%d: ein '%s' Alias wird erwartet.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"
 msgstr ""
 "%s: falscher Wert für Eingangsargument #%d: eine gültige Handhabung '%s' "
 "erwartet.\n"
@@ -284,7 +287,8 @@ msgstr "von Scilab ausgewählte Nachricht"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be >= %d expected.\n"
-msgstr "%s: falscher Wert für Eingangsargument #%d: es wird => %d erwartet.\n"
+msgstr ""
+"%s: falscher Wert für Eingangsargument #%d: es wird => %d erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string or real expected.\n"
@@ -314,11 +318,13 @@ msgid "%s: Wrong number for input argument: %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: string or macro name expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: string or macro name expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: string or macro name expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: string or macro name expected.\n"
 msgstr ""
 
 #, c-format
@@ -343,7 +349,8 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A scalar or a vector expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar or a vector expected.\n"
 msgstr ""
 
 #, c-format
@@ -506,7 +513,8 @@ msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: 'pos' or 'gdi' value expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: 'pos' or 'gdi' value expected.\n"
 msgstr ""
 
 #, c-format
@@ -543,17 +551,27 @@ msgstr ""
 msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
 msgstr ""
 
-msgid "Scilab Input Value Request"
-msgstr "nachgefragter Eingabewert von Scilab"
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
+msgstr ""
+"%s: falscher Typ für Eingangsargument #%d: reeller oder komplexer Vektor "
+"erwartet.\n"
 
-msgid "Scilab Multiple Values Request"
-msgstr "Mehrfachwert Anfragen von Scilab"
+msgid "Scilab Choices Request"
+msgstr "Auswahl-Anfrage von Scilab"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
 msgstr ""
 "%s: falscher Größe für Eingangsargument #%d: Vektor mit Zeichenketten "
 "erwartet.\n"
+
+msgid "Scilab Input Value Request"
+msgstr "nachgefragter Eingabewert von Scilab"
+
+msgid "Scilab Multiple Values Request"
+msgstr "Mehrfachwert Anfragen von Scilab"
 
 #, c-format
 msgid ""
@@ -572,16 +590,6 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
 "%s: falscher Typ für Eingangsargument #%d: Matrix von Variablen erwartet.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
-msgstr ""
-"%s: falscher Typ für Eingangsargument #%d: reeller oder komplexer Vektor "
-"erwartet.\n"
-
-msgid "Scilab Choices Request"
-msgstr "Auswahl-Anfrage von Scilab"
 
 #, c-format
 msgid "'%s' property does not exist for this handle.\n"
@@ -632,8 +640,8 @@ msgid ""
 "Wrong type for '%s' property: 1 x 3 real vector or a 'R|G|B' string "
 "expected.\n"
 msgstr ""
-"Falscher Typ für Eigenschaft '%s': ein 1 x 3 reeller Vektor oder eine 'R|G|"
-"B' Zeichenkette erwartet.\n"
+"Falscher Typ für Eigenschaft '%s': ein 1 x 3 reeller Vektor oder eine "
+"'R|G|B' Zeichenkette erwartet.\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: Numbers between 0 and 1 expected.\n"
@@ -763,7 +771,8 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "Wrong type for '%s' property: A real row vector or a string expected.\n"
+msgid ""
+"Wrong type for '%s' property: A real row vector or a string expected.\n"
 msgstr ""
 "Falscher Typ für Eigenschaft '%s': ein reeller Reihenvektor oder eine "
 "Zeichenkette erwartet.\n"
@@ -787,11 +796,13 @@ msgstr "Falscher Typ für Eigenschaft '%s': '%s', '%s', oder '%s' erwartet.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: '%s', '%s', or '%s' expected.\n"
-msgstr "Falsche Größe für Eigenschaft '%s': '%s', '%s', oder '%s' erwartet.\n"
+msgstr ""
+"Falsche Größe für Eigenschaft '%s': '%s', '%s', oder '%s' erwartet.\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: '%s', '%s', or '%s' expected.\n"
-msgstr "Falscher Wert für Eigenschaft '%s': '%s', '%s', oder '%s' erwartet.\n"
+msgstr ""
+"Falscher Wert für Eigenschaft '%s': '%s', '%s', oder '%s' erwartet.\n"
 
 msgid "&File"
 msgstr "&Datei"
@@ -925,10 +936,7 @@ msgstr "&Umgebung laden..."
 msgid "&Save environment..."
 msgstr "&Umgebung speichern..."
 
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 94
-# File: modules/gui/src/gui_fake_xml.c, line: 147
-msgid "&Current Working Directory"
+msgid "&Current Working Directory (CWD):"
 msgstr ""
 
 msgid "    &Browse for new"
@@ -2192,6 +2200,9 @@ msgstr "Scilab SCE Dateien"
 msgid "Scilab binary files"
 msgstr "Scilab Binärdateien"
 
+msgid "All Scilab files"
+msgstr "Alle Scilab Dateien"
+
 msgid "Xcos files"
 msgstr "Xcos Dateien"
 
@@ -2244,7 +2255,8 @@ msgstr ""
 msgid "Restoration error"
 msgstr ""
 
-msgid "The configuration file has been corrupted and reset to the default one."
+msgid ""
+"The configuration file has been corrupted and reset to the default one."
 msgstr ""
 
 msgid "The configuration file has been corrupted. Scilab needs to restart."
@@ -2569,7 +2581,8 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A border or a string expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A border or a string expected.\n"
 msgstr ""
 
 #, c-format
@@ -2632,26 +2645,6 @@ msgid ""
 " is incorrect: %s.\n"
 msgstr ""
 
-#, fuzzy
-msgid "Select a file to open"
-msgstr "Wählen Sie eine Datei zum importieren aus"
-
-#, fuzzy
-msgid "Scilab scripts"
-msgstr "Scilab Nachricht"
-
-#, fuzzy
-msgid "Xcos diagrams"
-msgstr "Xcos Dateien"
-
-#, fuzzy
-msgid "Scilab Tests"
-msgstr "Scilab Nachricht"
-
-#, fuzzy
-msgid "Scilab Library"
-msgstr "Scilab Binärdateien"
-
 #, c-format
 msgid "%s: Wrong type for input argument #%d: uitree expected.\n"
 msgstr ""
@@ -2661,7 +2654,8 @@ msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr "%s: falsche Anzahl an Eingangsargumenten: mindestens %d erwartet.\n"
 
 #, c-format
-msgid "%s: Wrong type for element %d of input argument #%d: uitree expected.\n"
+msgid ""
+"%s: Wrong type for element %d of input argument #%d: uitree expected.\n"
 msgstr ""
 
 #, c-format
@@ -2686,7 +2680,8 @@ msgstr "%s: Kein übereinstimmender Knotenpunkt.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Boolean expected.\n"
-msgstr "%s: falscher Typ für Eingangsargument #%d: boolscher Wert erwartet.\n"
+msgstr ""
+"%s: falscher Typ für Eingangsargument #%d: boolscher Wert erwartet.\n"
 
 #, c-format
 msgid ""
@@ -2746,6 +2741,3 @@ msgstr "%s: falscher Typ für %s: eine Realzahl erwartet.\n"
 #, c-format
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s: falsche Größe für %s: eine Realzahl erwartet.\n"
-
-#~ msgid "All Scilab files"
-#~ msgstr "Alle Scilab Dateien"

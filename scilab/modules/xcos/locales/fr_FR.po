@@ -8,38 +8,41 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2017-01-09 17:53+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2018-01-01 11:14+0000\n"
+"Last-Translator: Paul Bignier <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18511)\n"
+"X-Generator: Launchpad (build 18544)\n"
 "Language: fr\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d à %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s : Nombre erroné d'argument(s) de sortie : %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s expected.\n"
-msgstr ""
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : %s attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string or %s expected.\n"
 msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Texte ou %s attendu.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Une chaîne de "
+"caractères attendue.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: at least %d expected.\n"
-msgstr ""
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d au moins attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
@@ -49,11 +52,11 @@ msgstr ""
 
 #, c-format
 msgid "%s: Argument #%d: %s expected.\n"
-msgstr ""
+msgstr "%s : Argument #%d : %s attendu.\n"
 
 #, c-format
 msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
-msgstr ""
+msgstr "%s : Argument #%d : scalaire attendu.\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -324,28 +327,28 @@ msgid "Save block GUI"
 msgstr "Enregistrer l'interface graphique du bloc"
 
 msgid "matches"
-msgstr ""
+msgstr "correspond à"
 
 msgid "Previous"
-msgstr ""
+msgstr "Précédent"
 
 msgid "Search"
-msgstr ""
+msgstr "Recherche"
 
 msgid "Searching..."
-msgstr ""
+msgstr "Recherche..."
 
 msgid "Zoom In"
-msgstr ""
+msgstr "Zoom avant"
 
 msgid "Zoom Out"
-msgstr ""
+msgstr "Zoom arrière"
 
 msgid "Unable to load the selected blocks."
-msgstr ""
+msgstr "Impossible de charger les blocs sélectionnés."
 
 msgid "Loading blocks"
-msgstr ""
+msgstr "Chargement des blocs"
 
 msgid "Load as palette"
 msgstr "Charger dans les palettes"
@@ -483,7 +486,7 @@ msgid "Xcos Demonstrations"
 msgstr "Démonstrations Xcos"
 
 msgid "About Scilab"
-msgstr ""
+msgstr "À propos de Scilab"
 
 msgid "Palettes"
 msgstr "Palettes"
@@ -628,7 +631,7 @@ msgid "Export to XML"
 msgstr "Exporter en XML"
 
 msgid "Export in progress"
-msgstr ""
+msgstr "Export en cours"
 
 msgid "Import from XML"
 msgstr "Importer depuis un fichier XML"
@@ -780,6 +783,7 @@ msgstr "Simulation en cours"
 
 msgid "Compilation in progress, results will be stored in the 'cpr' variable"
 msgstr ""
+"Compilation en cours, les résultats seront stockés dans la variable 'cpr'"
 
 msgid "Generate SuperBlock, please wait"
 msgstr "Génération du super bloc en cours"
@@ -816,7 +820,7 @@ msgid "Xcos (zip) file"
 msgstr "Fichier Xcos (zip)"
 
 msgid "XMI (Eclipse EMF) file"
-msgstr ""
+msgstr "Fichier XMI (Eclipse EMF)"
 
 msgid "Scilab Open Data file"
 msgstr "Fichier Scilab Open Data"
@@ -894,7 +898,7 @@ msgstr "Problème d'évaluation : Nombre de ports erroné."
 
 #, c-format
 msgid "Expecting <code>%d</code> but got <code>%d</code>."
-msgstr ""
+msgstr "<code>%d</code> attendu mais <code>%d</code> obtenu."
 
 msgid ""
 "<html><body>Compilation error: link ignored because it is not connected. "
@@ -904,40 +908,40 @@ msgstr ""
 "connecté. <br/>Veuillez le reconnecter.</body></html>"
 
 msgid "Block name: "
-msgstr ""
+msgstr "Nom du bloc : "
 
 msgid "Simulation: "
-msgstr ""
+msgstr "Simulation : "
 
 msgid "UID: "
-msgstr ""
+msgstr "UID : "
 
 msgid "Style: "
-msgstr ""
+msgstr "Style : "
 
 msgid "Rpar: "
-msgstr ""
+msgstr "Rpar : "
 
 msgid "Ipar: "
-msgstr ""
+msgstr "Ipar : "
 
 msgid "Opar: "
-msgstr ""
+msgstr "Opar : "
 
 msgid "Datatype: "
-msgstr ""
+msgstr "Type de donnée : "
 
 msgid "Implicit: "
-msgstr ""
+msgstr "Implicit : "
 
 msgid "Source datatype: "
-msgstr ""
+msgstr "Type de donnée source : "
 
 msgid "Target datatype: "
-msgstr ""
+msgstr "Type de donnée cible : "
 
 msgid "Label: "
-msgstr ""
+msgstr "Etiquette : "
 
 msgid "Optimal"
 msgstr "Optimal"
@@ -972,151 +976,151 @@ msgid "Default trace settings"
 msgstr "Paramètres de trace par défaut"
 
 msgid "Basic controller"
-msgstr ""
+msgstr "Contrôleur basique"
 
 msgid "Water tank"
-msgstr ""
+msgstr "Réservoir d'eau"
 
 msgid "Discrete Controller"
-msgstr ""
+msgstr "Contrôleur discret"
 
 msgid "Kalman Filter"
-msgstr ""
+msgstr "Filtre de Kalman"
 
 msgid "Discrete Kalman Filter"
-msgstr ""
+msgstr "Filtre de Kalman discret"
 
 msgid "Cont.Plant-Hybrid Observer"
-msgstr ""
+msgstr "Observateur de système continu hybride"
 
 msgid "Temperature Controller"
-msgstr ""
+msgstr "Contrôleur de température"
 
 msgid "Inverted pendulum"
-msgstr ""
+msgstr "Pendule inversé"
 
 msgid "Lorenz butterfly"
-msgstr ""
+msgstr "Papillon de Lorenz"
 
 msgid "RLC Circuit"
-msgstr ""
+msgstr "Circuit RLC"
 
 msgid "Bridge Rectifer"
-msgstr ""
+msgstr "Pont redresseur"
 
 msgid "Transformer"
-msgstr ""
+msgstr "Transformateur électrique"
 
 msgid "Differential amplifier"
-msgstr ""
+msgstr "Amplificateur différentiel"
 
 msgid "OpAmp amplifier"
-msgstr ""
+msgstr "Amplificateur OpAmp"
 
 msgid "Switched capacitor integrator"
-msgstr ""
+msgstr "Intégrateur à capacité commutée"
 
 msgid "DC/DC Buck Converter"
-msgstr ""
+msgstr "Convertisseur Buck DC/DC"
 
 msgid "DC/DC Boost Converter"
-msgstr ""
+msgstr "Convertisseur Boost DC/DC"
 
 msgid "Colpitts oscillator"
-msgstr ""
+msgstr "Oscillateur de Colpitts"
 
 msgid "Logic AND gate"
-msgstr ""
+msgstr "Porte logique ET"
 
 msgid "Logic NOR gate"
-msgstr ""
+msgstr "Porte logique NON-OU"
 
 msgid "If Then Else"
-msgstr ""
+msgstr "Bloc \"If Then Else\""
 
 msgid "And"
-msgstr ""
+msgstr "Et"
 
 msgid "Automotive Suspension"
-msgstr ""
+msgstr "Suspension automobile"
 
 msgid "Ball on a Platform"
-msgstr ""
+msgstr "Balle sur une plateforme"
 
 msgid "Bouncing Ball"
-msgstr ""
+msgstr "Balle rebondissante"
 
 msgid "Chaos Modelica"
-msgstr ""
+msgstr "Chaos en Modelica"
 
 msgid "Hydraulics blocks"
-msgstr ""
+msgstr "Blocs hydrauliques"
 
 msgid "RLC circuit"
-msgstr ""
+msgstr "Circuit RLC"
 
 msgid "Heat conduction in a rod"
-msgstr ""
+msgstr "Conduction de chaleur dans une barre"
 
 msgid "Second order rotational system"
-msgstr ""
+msgstr "Système rotationnel du second ordre"
 
 msgid "Old Gain Block"
-msgstr ""
+msgstr "Ancien bloc Gain"
 
 msgid "Standard demos"
-msgstr ""
+msgstr "Démonstrations standard"
 
 msgid "Control Systems"
-msgstr ""
+msgstr "Systèmes de contrôle"
 
 msgid "Electrical Systems"
-msgstr ""
+msgstr "Systèmes électriques"
 
 msgid "Mechanical Systems"
-msgstr ""
+msgstr "Systèmes mécaniques"
 
 msgid "Modelica demos"
-msgstr ""
+msgstr "Démonstrations Modelica"
 
 msgid "Old demos"
-msgstr ""
+msgstr "Anciennes démonstrations"
 
 msgid "Simple Demo"
-msgstr ""
+msgstr "Démonstration simple"
 
 msgid "Bouncing Balls"
-msgstr ""
+msgstr "Balles rebondissantes"
 
 msgid "Simple Thermostat"
-msgstr ""
+msgstr "Thermostat simple"
 
 msgid "Table Lookup"
-msgstr ""
+msgstr "Table de recherche"
 
 msgid "Signal Builder"
-msgstr ""
+msgstr "Construction de signal"
 
 msgid "Fibonacci Numbers"
-msgstr ""
+msgstr "Suite de Fibonacci"
 
 msgid "Scilab block"
-msgstr ""
+msgstr "Bloc Scilab"
 
 msgid "Xcos data types"
-msgstr ""
+msgstr "Type de données Xcos"
 
 msgid "Zero Crossing"
-msgstr ""
+msgstr "Traversée de zéro"
 
 msgid "_IF_ Xcos block"
-msgstr ""
+msgstr "Bloc _IF_"
 
 msgid "Goto/From blocks"
-msgstr ""
+msgstr "Blocs Goto/From"
 
 msgid "Event demos"
-msgstr ""
+msgstr "Démonstrations d'activations"
 
 #, c-format
 msgid "%s: Unable to export %s to %s.\n"
@@ -1195,7 +1199,7 @@ msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d attendu(s)."
 
 #, c-format
 msgid "%s: Not supported format %s.\n"
-msgstr ""
+msgstr "%s : Format %s non supporté.\n"
 
 #, c-format
 msgid ""
@@ -1391,7 +1395,7 @@ msgid "ReInitialization"
 msgstr "Réinitialisation"
 
 msgid "Continuous states properties update"
-msgstr ""
+msgstr "Mise à jour des états continus"
 
 msgid "Zero crossing surfaces computation"
 msgstr "Calcul des traversées de zéros"
@@ -1484,12 +1488,12 @@ msgstr "Erreur dans post_xcos_simulate : Simulation interrompue."
 
 #, c-format
 msgid "%s: Cannot open file '%s' for reading.\n"
-msgstr ""
+msgstr "%s : Impossible d'ouvrir le fichier '%s' en lecture.\n"
 
 #, c-format
 msgid "%s: Error while trying to read file contents from '%s'.\n"
-msgstr ""
+msgstr "%s : Erreur en tentant de lire le contenu du fichier '%s'.\n"
 
 #, c-format
 msgid "%s: Syntax error while trying to set up context from"
-msgstr ""
+msgstr "%s : Erreur syntaxique dans le contexte"
