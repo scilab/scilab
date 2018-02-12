@@ -1,6 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2013 - Scilab Enterprises - Antoine ELIAS
-// Copyright (C) 2016 - Samuel GOUGEON
+// Copyright (C) 2016, 2018 - Samuel GOUGEON
 //
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
@@ -64,7 +64,9 @@ function ret = tbx_generate_pofile(tbx_name, tbx_path)
     else
         XGETTEXT="xgettext";
     end
-    XGETTEXT_OPTIONS=" --omit-header -k --keyword=dgettext:2 --keyword=xmlgettext:2 --keyword=_d:2 --language=python ";
+    XGETTEXT_OPTIONS=" --omit-header  --language=python --no-wrap " + ..
+                 "-k --keyword=gettext:2 --keyword=_:2 " + ..
+                 "--keyword=dgettext:2 --keyword=_d:2 --keyword=xmlgettext:2";
 
     EXTENSIONS=["c" "h" "cpp" "cxx" "hxx" "hpp" "java"];
     EXTENSIONS_MACROS=["sci" "sce" "start" "quit"];
@@ -81,13 +83,17 @@ function ret = tbx_generate_pofile(tbx_name, tbx_path)
     xmlFiles = getFilesList("etc", EXTENSIONS_XML);
 
     if size(xmlFiles, "*") > 0 then
-        xmlTmpFile = TMPDIR + "/tmpLoc.xml";
+        xmlTmpFile = fullpath(TMPDIR + "/tmpLoc.xml");
         srcFiles = [srcFiles; xmlTmpFile];
         xmlFake = mopen(xmlTmpFile, "w");
+        search = "\(\s*(.*)\s*,\s*(.*)\s*\)\""/";
+        replace = "xmlgettext(""\1"", ""\2"")";
         for i = 1:size(xmlFiles, "*")
             content = mgetl(xmlFiles(i));
-            newLine = sedLoc(content, "/\""_d\(\s*(.*)\s*,\s*(.*)\s*\)\""/", "xmlgettext(""\1"", ""\2"")");// "_d(xxx,xxx)"
-            newLine = sedLoc(newLine, "/\""dgettext\(\s*(.*)\s*,\s*(.*)\s*\)\""/", "xmlgettext(""\1"", ""\2"")");
+            newLine = sedLoc(content, "/\""_d"+search, replace);// "_d(xxx,xxx)"
+            newLine = sedLoc(newLine, "/\""dgettext"+search, replace);
+            newLine = sedLoc(newLine, "/\""gettext"+search, replace);
+            newLine = sedLoc(newLine, "/\""_"+search, replace);
             mputl(newLine, xmlFake);
         end
         mclose(xmlFake);
@@ -97,7 +103,6 @@ function ret = tbx_generate_pofile(tbx_name, tbx_path)
     srcFiles = strcat(srcFiles, " ");
     cmd = XGETTEXT + XGETTEXT_OPTIONS + " -d " + tbx_name + " " + srcFiles + " -p " + TARGETDIR + " -o " + "en_US.po.tmp";
     host(cmd);
-
     if exists("xmlTmpFile") then
         deletefile(xmlTmpFile);
     end
@@ -120,6 +125,15 @@ function ret = tbx_generate_pofile(tbx_name, tbx_path)
 
     poFile = mgetl(TARGETDIR + "/en_US.po.tmp");
     poFile = [header ; poFile];
+
+    // Translating '' coming from Scilab into '
+    poFile = strsubst(poFile, "''''", "''");
+
+    // Making location paths relative to the toolbox root
+    poFile = strsubst(poFile, "#: "+fullpath(tbx_path), "#: ~");
+    poFile = strsubst(poFile, "#: "+xmlTmpFile, "#: a XML file");
+
+    // Building the final file
     mputl(poFile, TARGETDIR + "/en_US.po");
     deletefile(TARGETDIR + "/en_US.po.tmp");
 
@@ -191,4 +205,3 @@ function ret = getFilesList(folder, mask)
 
     cd(old);
 endfunction
-

@@ -48,7 +48,7 @@ Each binary already matches an execution  mode
  -> WScilex.exe starts Scilab with GUI
  -> Wscilex-cli.exe starts Scilab without GUI but with Java
  -> Scilex.exe starts Scilab without GUI and without Java.
- 
+
 A batch file `Scilab.bat ` has been added to select the right binary depending on the option flag.
 scilab       -> WScilex.exe
 scilab -nw   -> WScilex-cli.exe
@@ -403,7 +403,7 @@ Known issues
 * [#9617](http://bugzilla.scilab.org/show_bug.cgi?id=9617): Xcos run-time version check was too conservative.
 * [#9838](http://bugzilla.scilab.org/show_bug.cgi?id=9838): `evstr` poorly supported simple comments in input expressions.
 * [#10270](http://bugzilla.scilab.org/show_bug.cgi?id=10270): `execstr(["%val=[int16(1)";"]"])` needed entering twice <enter> to be actually performed.
-* [#10407](http://bugzilla.scilab.org/show_bug.cgi?id=10407): The macro `acf()` of the CACSD module was used nowhere and not documented. It is removed. 
+* [#10407](http://bugzilla.scilab.org/show_bug.cgi?id=10407): The macro `acf()` of the CACSD module was used nowhere and not documented. It is removed.
 * [#10467](http://bugzilla.scilab.org/show_bug.cgi?id=10467): `execstr` inside a `try/end` with a `catch` killed the stack.
 * [#11196](http://bugzilla.scilab.org/show_bug.cgi?id=11196): Some recursive extractions from a mlist failed.
 * [#11251](http://bugzilla.scilab.org/show_bug.cgi?id=11251): `execstr` could kill the variables stack.
@@ -423,6 +423,7 @@ Known issues
 * [#13277](http://bugzilla.scilab.org/show_bug.cgi?id=13277): `execstr("clear")` did not clear any variables in the current scope.
 * [#13581](http://bugzilla.scilab.org/show_bug.cgi?id=13581): The example of `inistate()` help page did not work on Windows 64bit.
 * [#13592](http://bugzilla.scilab.org/show_bug.cgi?id=13592): In an axes in a uicontrol frame, setting a `legend` interactively might not follow the mouse accurately.
+* [#13796](http://bugzilla.scilab.org/show_bug.cgi?id=13796): `tbx_generate_pofile` missed registering `_()` and `gettext()` references. In `en_US.po`, commented paths were absolute. Literal '' were copied in msgid without simplification.
 * [#13900](http://bugzilla.scilab.org/show_bug.cgi?id=13900): `nanmin` and `nanmax` were useless duplicates of `min` and `max`
 * [#13962](http://bugzilla.scilab.org/show_bug.cgi?id=13962): Preselecting a groupnamed radiobutton was impossible after having created it already once.
 * [#13979](http://bugzilla.scilab.org/show_bug.cgi?id=13979): A variable whose name is longer than 24 characters could not be cleared.

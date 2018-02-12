@@ -14,12 +14,12 @@ int sci_cerror(char *fname, void* pvApiCtx)
 
     if (iRhs != 1)
     {
-        Scierror(999, _d("toolbox_skeleton", "%s: I'm waiting for only one argument.\n"), fname);
+        Scierror(999, _("toolbox_skeleton", "%s: I'm waiting for only one argument.\n"), fname);
         return 0;
     }
     else
     {
-        Scierror(999, _d("toolbox_skeleton", "%s: Yeah! %d is a good number of arguments but I prefer fail, sorry.\n"), fname, 1);
+        Scierror(999, _("toolbox_skeleton", "%s: Yeah! %d is a good number of arguments but I prefer fail, sorry.\n"), fname, 1);
         return 0;
     }
 }
