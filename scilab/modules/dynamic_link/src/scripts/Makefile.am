@@ -34,5 +34,5 @@ pkglib_LTLIBRARIES = libsciexternal.la
 # Don't change name or order 
 libsciexternal_la_SOURCES = foo.c foo2.f foo3.cxx foo4.cpp foo5.f90
 
-
+libsciexternal_la_LIBADD = $(FLIBS)
 

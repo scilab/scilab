@@ -137,7 +137,7 @@ function libn = ilib_compile(lib_name, ..
 
         global cppCompilation;
         if cppCompilation then
-            cflags = cflags + " --std=c++11";
+            cflags = cflags + " -std=c++11";
         end
         clearglobal cppCompilation;
 
