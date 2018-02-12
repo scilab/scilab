@@ -305,7 +305,7 @@ if BUILD_HELP
 		done; \
 	else \
 		echo "Cannot find Scilab-adv-cli binary"; \
-	fi \
+	fi
 else
 	@echo "Cannot buid help. Add --enable-build-help to the ./configure if you want to build it."
 endif
