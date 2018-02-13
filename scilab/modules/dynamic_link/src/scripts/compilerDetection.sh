@@ -9,7 +9,7 @@ if test -x "$(which gcc 2>/dev/null)"; then
     # CF bug #7887 for more information.
     # Note that, for the Makefile, the setup is done in the Scilab macros
     # ilib_compile
-    GCClibpath=$(LC_ALL=C gcc -print-search-dirs|awk '$1=="install:"{print $2}')/../../../
+    GCClibpath=$(LC_ALL=C gcc -print-search-dirs|awk -F= '$1=="libraries: "{print $2}')
 
     if test -z "$(grep $GCClibpath $LD_LIBRARY_PATH 2>/dev/null)"; then
         LD_LIBRARY_PATH="$GCClibpath${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"

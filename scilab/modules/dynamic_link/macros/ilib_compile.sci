@@ -155,11 +155,11 @@ function libn = ilib_compile(lib_name, ..
         // build, we want to use the same lib as the compiler installed.
         // CF bug #7887 for more information.
         // Note that, for the configure, the setup is done by compilerDetection.sh
-        cmdGCC="if test -x ""$(which gcc 2>/dev/null)""; then echo $(LC_ALL=C gcc -print-search-dirs|awk ''$1==""install:""{print $2}''); fi";
+        cmdGCC="if test -x ""$(which gcc 2>/dev/null)""; then echo $(LC_ALL=C gcc -print-search-dirs|awk -F= ''$1==""libraries: ""{print $2}''); fi";
         [GCClibpath, ierr, stderr] = unix_g(cmdGCC);
 
         if (GCClibpath <> "" & GCClibpath <> [] & ierr == 0 & grep(getenv("LD_LIBRARY_PATH"),GCClibpath) == []) then
-            setenv("LD_LIBRARY_PATH",GCClibpath+"/../../../:"+getenv("LD_LIBRARY_PATH"));
+            setenv("LD_LIBRARY_PATH",GCClibpath+":"+getenv("LD_LIBRARY_PATH"));
         end
 
         cmd = "make "
