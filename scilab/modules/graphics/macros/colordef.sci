@@ -72,6 +72,10 @@ function colordef(varargin)
         a.foreground = -1;
         a.font_color = a.foreground;
         a.mark_foreground = a.foreground;
+        a.title.font_foreground = -1;
+        a.x_label.font_foreground = -1;
+        a.y_label.font_foreground = -1;
+        a.z_label.font_foreground = -1;
 
     case "black"
         if getos() == "Windows" then
@@ -85,6 +89,10 @@ function colordef(varargin)
         a.foreground = -2;
         a.font_color = a.foreground;
         a.mark_foreground = a.foreground;
+        a.title.font_foreground = -2;
+        a.x_label.font_foreground = -2;
+        a.y_label.font_foreground = -2;
+        a.z_label.font_foreground = -2;
 
     case "none"
         f.color_map  = [hsvcolormap(64)];
@@ -93,6 +101,10 @@ function colordef(varargin)
         a.foreground = -2;
         a.font_color = a.foreground;
         a.mark_foreground = a.foreground;
+        a.title.font_foreground = -2;
+        a.x_label.font_foreground = -2;
+        a.y_label.font_foreground = -2;
+        a.z_label.font_foreground = -2;
     else
         msg = gettext("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n");
         error(msprintf(msg, "colordef", size(varargin),"""default"", ""white"", ""black"", ""none"""));
