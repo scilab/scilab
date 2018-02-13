@@ -68,16 +68,13 @@ It is still also available under the terms of the CeCILL v2.1.</li>
 </li>
 </ul>
 <p>Windows starting changes:</p>
-<p>options -nw and -nwni are no longer supported by binaries ( WScilex.exe, WScilex-cli.exe and Scilex.exe )
-Each binary already matches an execution  mode
--&gt; WScilex.exe starts Scilab with GUI
--&gt; Wscilex-cli.exe starts Scilab without GUI but with Java
--&gt; Scilex.exe starts Scilab without GUI and without Java.</p>
-<p>A batch file <code>Scilab.bat</code> has been added to select the right binary depending on the option flag.
-scilab       -&gt; WScilex.exe
-scilab -nw   -&gt; WScilex-cli.exe
-scilab -nwni -&gt; Scilex.exe</p>
-<p>others flags are forwarded to binaries as before.</p>
+<p>The options <code>-nw</code> and <code>-nwni</code> are no longer supported by binaries (WScilex.exe, WScilex-cli.exe and Scilex.exe). Each binary already matches an execution mode and batch file <code>Scilab.bat</code> has been added to select the right binary depending on the option flag:</p>
+<ul>
+<li><code>scilab</code> starts <code>WScilex.exe</code> : Scilab with GUI and full functionnalities.</li>
+<li><code>scilab -nw</code> starts <code>WScilex-cli.exe</code>: Scilab CLI with full functionnalities.</li>
+<li><code>scilab -nwni</code> starts <code>Scilex.exe</code>: Scilab CLI without Java, Graphics, Xcos, etc.</li>
+</ul>
+<p>Others flags are forwarded to binaries as before.</p>
 <h2>Installation</h2>
 <ul>
 <li>Under Windows, MKL packages are now included in Scilab installer and are not more downloaded anymore while installing Scilab.</li>
@@ -477,12 +474,15 @@ For example: use <code>int sci_Levkov(char *fname, void* pvApiCtx)</code> instea
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=13277">#13277</a>: <code>execstr(&quot;clear&quot;)</code> did not clear any variables in the current scope.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=13581">#13581</a>: The example of <code>inistate()</code> help page did not work on Windows 64bit.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=13592">#13592</a>: In an axes in a uicontrol frame, setting a <code>legend</code> interactively might not follow the mouse accurately.</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=13796">#13796</a>: <code>tbx_generate_pofile</code> missed registering <code>_()</code> and <code>gettext()</code> references. In <code>en_US.po</code>, commented paths were absolute. Literal '' were copied in msgid without simplification.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=13900">#13900</a>: <code>nanmin</code> and <code>nanmax</code> were useless duplicates of <code>min</code> and <code>max</code></li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=13962">#13962</a>: Preselecting a groupnamed radiobutton was impossible after having created it already once.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=13979">#13979</a>: A variable whose name is longer than 24 characters could not be cleared.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=13984">#13984</a>: For a set of curves, <code>plot(.., &quot;color&quot;, colors..)</code> was not vectorized for colors specifications. Moreover, only 10 basic named colors were accepted, instead of the full list of predefined colors names.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14221">#14221</a>: <code>msprintf</code> and <code>mprintf</code> ignored row-wise processing with <code>%%</code>.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14254">#14254</a>: When installing an ATOMS module that is not locally registered and available, the error message was unclear.</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14305">#14305</a>: unused <code>%i_d_i</code> was still distributed.</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14371">#14371</a>: Scilab crashed when a block is edited.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14376">#14376</a>: <code>input()</code> was broken: \n was introduced before prompting; multiple prompts occurred; the output value could be missing; &quot;%&quot; &quot;\n&quot; &quot;\t&quot; were no longer supported in messages...</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14399">#14399</a>: <code>whereami</code>: wrong information (line numbers).</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14424">#14424</a>: There were some troubles with <code>input</code>.</li>
@@ -491,6 +491,7 @@ For example: use <code>int sci_Levkov(char *fname, void* pvApiCtx)</code> instea
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14532">#14532</a>: <code>test_run</code> failed for toolboxes that are not autoloaded.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14544">#14544</a>: <code>scatter</code> and <code>scatter3</code> canceled any upstream <code>drawlater</code> instruction.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14573">#14573</a>: <code>varargout</code> misworked when it was used in addition to fixed output arguments.</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14588">#14588</a>: Some cross usages of launching options <code>-nw</code> and <code>-nwni</code> with Wscilex.exe and Scilex.exe binaries were inconsistent.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14584">#14584</a>: The example of demo_choose help page was broken because of a wrong file path.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14598">#14598</a>: <code>fort</code> wasn't properly removed.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14603">#14603</a>: The icon of the PROD_f Xcos block was puzzled</li>
@@ -596,10 +597,16 @@ For example: use <code>int sci_Levkov(char *fname, void* pvApiCtx)</code> instea
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=15375">#15375</a>: A .zcos file opened as a palette was greyed out.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=15379">#15379</a>: <code>zeros(A)</code> was not documented as equivalent to <code>mtlb_zeros(size(A))</code>.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=15380">#15380</a>: <code>argn()</code> documentation was somewhat unclear and uncomplete.</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=15388">#15388</a>: Dynamic link did not work on MACOSX 10,12.</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=15389">#15389</a>: <code>Wscilex -nw</code> failed and created a ghost process.</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=15390">#15390</a>: In online help pages, tooltips showing the code on images were no longer displayed.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=15395">#15395</a>: <code>ones(2,3,2) / %z</code> yielded an error..</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=15396">#15396</a>: <code>[m,n,p] = size(hr)</code> yielded an error with an hypermatrix hr of rationals.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=15402">#15402</a>: The <code>range()</code> page was not fixed against the bug 1904 for the french and portuguese versions.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=15405">#15405</a>: Accessing int64 hdf5 values crashed scilab.</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=15413">#15413</a>: Deleting some ranges (rows, columns, pages, ..) in a structures array failed.</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=15418">#15418</a>: With <code>colordef('black')</code> and colordef('none')`, black title and labels were invisible on the black background.</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=15420">#15420</a>: insertion at negative index did not trigger an error.</li>
 </ul>
 <h3>Bugs fixed in 6.0.0:</h3>
 <ul>

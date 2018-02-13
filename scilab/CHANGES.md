@@ -43,18 +43,13 @@ It is still also available under the terms of the CeCILL v2.1.
 
 Windows starting changes:
 
-options -nw and -nwni are no longer supported by binaries ( WScilex.exe, WScilex-cli.exe and Scilex.exe )
-Each binary already matches an execution  mode
- -> WScilex.exe starts Scilab with GUI
- -> Wscilex-cli.exe starts Scilab without GUI but with Java
- -> Scilex.exe starts Scilab without GUI and without Java.
+The options `-nw` and `-nwni` are no longer supported by binaries (WScilex.exe, WScilex-cli.exe and Scilex.exe). Each binary already matches an execution mode and batch file `Scilab.bat` has been added to select the right binary depending on the option flag:
 
-A batch file `Scilab.bat ` has been added to select the right binary depending on the option flag.
-scilab       -> WScilex.exe
-scilab -nw   -> WScilex-cli.exe
-scilab -nwni -> Scilex.exe
+ * `scilab` starts `WScilex.exe` : Scilab with GUI and full functionnalities.
+ * `scilab -nw` starts `WScilex-cli.exe`: Scilab CLI with full functionnalities.
+ * `scilab -nwni` starts `Scilex.exe`: Scilab CLI without Java, Graphics, Xcos, etc.
 
-others flags are forwarded to binaries as before.
+Others flags are forwarded to binaries as before.
 
 
 Installation
@@ -440,6 +435,7 @@ Known issues
 * [#14532](http://bugzilla.scilab.org/show_bug.cgi?id=14532): `test_run` failed for toolboxes that are not autoloaded.
 * [#14544](http://bugzilla.scilab.org/show_bug.cgi?id=14544): `scatter` and `scatter3` canceled any upstream `drawlater` instruction.
 * [#14573](http://bugzilla.scilab.org/show_bug.cgi?id=14573): `varargout` misworked when it was used in addition to fixed output arguments.
+* [#14588](http://bugzilla.scilab.org/show_bug.cgi?id=14588): Some cross usages of launching options `-nw` and `-nwni` with Wscilex.exe and Scilex.exe binaries were inconsistent.
 * [#14584](http://bugzilla.scilab.org/show_bug.cgi?id=14584): The example of demo_choose help page was broken because of a wrong file path.
 * [#14598](http://bugzilla.scilab.org/show_bug.cgi?id=14598): `fort` wasn't properly removed.
 * [#14603](http://bugzilla.scilab.org/show_bug.cgi?id=14603): The icon of the PROD_f Xcos block was puzzled
@@ -546,6 +542,8 @@ Known issues
 * [#15379](http://bugzilla.scilab.org/show_bug.cgi?id=15379): `zeros(A)` was not documented as equivalent to `mtlb_zeros(size(A))`.
 * [#15380](http://bugzilla.scilab.org/show_bug.cgi?id=15380): `argn()` documentation was somewhat unclear and uncomplete.
 * [#15388](http://bugzilla.scilab.org/show_bug.cgi?id=15388): Dynamic link did not work on MACOSX 10,12.
+* [#15389](http://bugzilla.scilab.org/show_bug.cgi?id=15389): `Wscilex -nw` failed and created a ghost process.
+* [#15390](http://bugzilla.scilab.org/show_bug.cgi?id=15390): In online help pages, tooltips showing the code on images were no longer displayed.
 * [#15395](http://bugzilla.scilab.org/show_bug.cgi?id=15395): `ones(2,3,2) / %z` yielded an error..
 * [#15396](http://bugzilla.scilab.org/show_bug.cgi?id=15396): `[m,n,p] = size(hr)` yielded an error with an hypermatrix hr of rationals.
 * [#15402](http://bugzilla.scilab.org/show_bug.cgi?id=15402): The `range()` page was not fixed against the bug 1904 for the french and portuguese versions.
@@ -895,3 +893,4 @@ Known issues
 * [#14685](http://bugzilla.scilab.org/show_bug.cgi?id=14685): datavec produced an invalid index error.
 * [#14980](http://bugzilla.scilab.org/show_bug.cgi?id=14980): The datatip display of the root locus arcs is broken.
 * [#14992](http://bugzilla.scilab.org/show_bug.cgi?id=14992): `readgateway` has been removed, use `whereis` instead.
+
