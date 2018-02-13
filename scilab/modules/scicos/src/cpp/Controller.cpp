@@ -165,12 +165,13 @@ model::BaseObject* Controller::referenceBaseObject(model::BaseObject* o) const
         return 0u;
     }
 
-    lock(&m_instance.onViewsStructuralModification);
+    // not locked on purpose, this will allow referencing on View notification
+    // lock(&m_instance.onViewsStructuralModification);
     for (auto v : m_instance.allViews)
     {
         v->objectReferenced(o->id(), o->kind(), refCount);
     }
-    unlock(&m_instance.onViewsStructuralModification);
+    // unlock(&m_instance.onViewsStructuralModification);
 
     return o;
 }
@@ -184,13 +185,6 @@ void Controller::deleteBaseObject(model::BaseObject* initial)
     }
 
     lock(&m_instance.onModelStructuralModification);
-
-    if (initial == nullptr)
-    {
-        // defensive programming
-        unlock(&m_instance.onModelStructuralModification);
-        return;
-    }
     const kind_t k = initial->kind();
 
     // if this object has been referenced somewhere else do not delete it but decrement the reference counter
@@ -200,12 +194,13 @@ void Controller::deleteBaseObject(model::BaseObject* initial)
     {
         --refCount;
 
-        lock(&m_instance.onViewsStructuralModification);
+        // not locked on purpose, this will allow referencing on View notification
+        // lock(&m_instance.onViewsStructuralModification);
         for (auto v : m_instance.allViews)
         {
             v->objectUnreferenced(initial->id(), initial->kind(), refCount);
         }
-        unlock(&m_instance.onViewsStructuralModification);
+        // unlock(&m_instance.onViewsStructuralModification);
         return;
     }
 
@@ -259,17 +254,18 @@ void Controller::deleteBaseObject(model::BaseObject* initial)
         unlink(initial, CONNECTED_SIGNALS, DESTINATION_PORT);
     }
 
-    // delete the object
-    lock(&m_instance.onModelStructuralModification);
-    m_instance.model.deleteObject(initial);
-    unlock(&m_instance.onModelStructuralModification);
-
+    // notify first
     lock(&m_instance.onViewsStructuralModification);
     for (auto v : m_instance.allViews)
     {
         v->objectDeleted(initial->id(), k);
     }
     unlock(&m_instance.onViewsStructuralModification);
+
+    // then delete the object
+    lock(&m_instance.onModelStructuralModification);
+    m_instance.model.deleteObject(initial);
+    unlock(&m_instance.onModelStructuralModification);
 }
 
 void Controller::unlinkVector(model::BaseObject* initial, object_properties_t uid_prop, object_properties_t ref_prop)
