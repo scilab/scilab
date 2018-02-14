@@ -211,7 +211,7 @@ bool getScalarIndex(GenericType* _pRef, typed_list* _pArgsIn, int* index)
         if (in->isGenericType() && in->getAs<GenericType>()->isScalar())
         {
             ind[i] = static_cast<int>(getIndex(in)) - 1;
-            if (ind[i] == -1)
+            if (ind[i] < 0)
             {
                 return false;
             }
@@ -316,7 +316,7 @@ bool getImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<int>
         if (in->isGenericType() && in->getAs<GenericType>()->isScalar())
         {
             int idx = static_cast<int>(getIndex(in)) - 1;
-            if (idx == -1)
+            if (idx < 0)
             {
                 return false;
             }
