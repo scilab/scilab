@@ -47,7 +47,7 @@ function Y = calculate_traj(g_x, g_y, g_V, g_Vdir, t, gravity, slope)
     Y0(2) = g_V*cos(g_Vdir*%pi/180);//v_x
     Y0(3) = g_y;//y
     Y0(4) = g_V*sin(g_Vdir*%pi/180);//v_y
-    Y     = ode("roots", Y0, t(1), t, 1d-10, 1.D-10, list(traj, SlantedCylinder), 4, cyllim);//traj d'ecoulement
+    Y     = ode("root", Y0, t(1), t, 1d-10, 1.D-10, list(traj, SlantedCylinder), 4, cyllim);//traj d'ecoulement
 endfunction
 
 // draw_bille
