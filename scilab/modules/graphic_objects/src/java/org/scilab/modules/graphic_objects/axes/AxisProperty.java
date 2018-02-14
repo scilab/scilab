@@ -101,7 +101,7 @@ public class AxisProperty {
         reverse = false;
         gridColor = 0;
         gridThickness = -1;
-        gridStyle = Line.LineType.DASH_DOT;
+        gridStyle = Line.LineType.DOT;
 
         /* Sets the label to the null object */
         label = 0;

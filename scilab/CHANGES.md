@@ -159,7 +159,7 @@ Feature changes and additions
 * `repmat` has been rewritten. It is 7 times faster now.
 * `plot` can now work in semi or bi-logarithmic mode with some input logflag.
 * `plotimplicit()` function added.
-
+* The default smarter grid_style value is now 7 instead of 3.
 
 Help pages:
 -----------
@@ -229,6 +229,7 @@ Bug Fixes
 ---------
 
 ### Bugs fixed in 6.1.0:
+<<<<<<< HEAD
 * [#2694](https://bugzilla.scilab.org/2694): `bitget` did not accept positive integers of types int8, int16 or int32.
 * [#6070](https://bugzilla.scilab.org/6070): How to make multiscaled plots was not documented.
 * [#7562](https://bugzilla.scilab.org/7562): `factorial` could use a huge memory amount even for a scalar argument.
@@ -298,6 +299,7 @@ Bug Fixes
 * [#15425](https://bugzilla.scilab.org/15425): The Kronecker product `a .*. b` failed when `a` or `b` or both are hypermatrices, with one or both being polynomials or rationals.
 * [#15428](https://bugzilla.scilab.org/15428): `repmat` was slow. Its code did not use `kron` and was complex.
 * [#15431](https://bugzilla.scilab.org/15431): The empty matrix `[]` and its non-convertibility were poorly documented.
+* [#15421](https://bugzilla.scilab.org/15421): A new smarter default grid_style was required since smart lines styles #7-10 are available.
 * [#15451](https://bugzilla.scilab.org/15451): The code was not adapted to use `lucene 4.10` in Debian.
 * [#15514](https://bugzilla.scilab.org/15514): The `set` documentation page needed to be overhauled.
 * [#15517](https://bugzilla.scilab.org/15517): `factorial` could be actually used up to only n=170.
