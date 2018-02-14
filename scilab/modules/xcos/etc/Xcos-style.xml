@@ -859,7 +859,7 @@
     <add as="SineVoltage" extend="blockWithLabel">
         <add as="shape" value="ellipse"/>
         <add as="perimeter" value="ellipsePerimeter"/>
-        <add as="displayedLabel" value="$\mathsf{\substack{%s\,V\vphantom{%s}\\ \sim\,%s}}$"/>
+        <add as="displayedLabel" value="$\mathsf{\substack{%1$s\,V\\ \sim\,%3s}}$"/>
     </add>
     <add as="Switch" extend="Icon">
         <add as="image" value="$SCILAB/modules/xcos/images/blocks/SWITCH.svg"/>

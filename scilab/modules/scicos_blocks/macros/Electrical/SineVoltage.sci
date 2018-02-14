@@ -45,9 +45,6 @@ function [x,y,typ]= SineVoltage(job,arg1,arg2)
             graphics.exprs=exprs
             x.graphics=graphics;
             x.model=model
-            // Updating the label:
-            lab = "SineVoltage;displayedLabel=$\mathsf{\substack{"+exprs(1)+"\,V\\ \sim\,"+exprs(3)+"}}$"
-            x.graphics.style = lab;
             break
         end
     case "define" then
