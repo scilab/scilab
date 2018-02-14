@@ -55,7 +55,9 @@ en_US.DescriptionModulesManager =Tools for management of extern modules
 en_US.DescriptionModuleJVM =Graphic User Interface
 en_US.DescriptionMPI =MPI ( based on Microsoft HPC Pack 2012 R2 )
 ;
-en_US.ConsoleIconName =Scilab Console
+en_US.NWNIIconName = Console
+en_US.NWIconName = Advanced Console
+en_US.GUIIconName = Desktop
 ;
 en_US.WebIconScilab =Scilab on the Web
 ;
