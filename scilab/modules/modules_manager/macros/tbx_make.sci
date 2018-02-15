@@ -1,6 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2016 - Scilab Enterprises - Pierre-Aimé AGNEL
-// Copyright (C) 2016 - Samuel GOUGEON
+// Copyright (C) 2016, 2018 - Samuel GOUGEON
 //
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
@@ -50,7 +50,8 @@ function [] = tbx_make(tbx_path, sections)
     if ~isdef("tbx_path","l") then
         tbx_path = pwd()
     end
-    if ~isdef("sections","l") || sections==[] then
+    noSelectedSections = ~isdef("sections","l") || sections==[]
+    if noSelectedSections then
         sections = ["macros", "help", "src", "sci_gateway", "localization"]
     end
 
@@ -73,16 +74,20 @@ function [] = tbx_make(tbx_path, sections)
 
     // Default is to exec builder (in current directory or given tbx_path)
     buildscript = findfiles(tbx_path, "build*.sce");
-    if ~isempty(buildscript)
+    if ~isempty(buildscript) & noSelectedSections 
         exec(tbx_path + "/" + buildscript);
         return
     end
 
     // Set the actual set of sections = only available ones among selected ones.
     tmp = dir(tbx_path)
+    s0 = sections
     sections = sections(members(sections, tmp.name(tmp.isdir))>0)
+    if or(s0=="localization") then
+        sections = [sections "localization"];
+    end
 
-    // Build sections asked
+    // Builds requested sections
     if ( or(sections == "macros")  )
         tbx_builder_macros(tbx_path);
     end

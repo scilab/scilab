@@ -2,7 +2,7 @@
 // Copyright (C) 2008 - INRIA - Simon LIPP <simon.lipp@scilab.org>
 // Copyright (C) 2010 - DIGITEO - Pierre MARECHAL
 // Copyright (C) 2016 - Scilab Enterprises - Pierre-Aimé AGNEL
-// Copyright (C) 2016 - Samuel GOUGEON
+// Copyright (C) 2016, 2018 - Samuel GOUGEON
 //
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
@@ -32,6 +32,10 @@ function tbx_builder_macros(tbx_path)
         error(msprintf(msg, fname, tbx_path))
     end
 
+    name = tbx_get_name_from_path(tbx_path)
+    TOOLBOX_NAME = name;
+    TOOLBOX_TITLE = name;
+
     // WORK
     // ----
     builder_macros_dir = tbx_path + "/macros/"
@@ -50,7 +54,6 @@ function tbx_builder_macros(tbx_path)
         if ~isempty(builder_macros_file)
             tbx_builder(builder_macros_file);
         else
-            name = tbx_get_name_from_path(tbx_path)
             // Compiles the bin and lib files of files presents in macros
             tbx_build_macros(name, tbx_path + "/macros/")
         end

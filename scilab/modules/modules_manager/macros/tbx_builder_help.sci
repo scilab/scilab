@@ -2,6 +2,7 @@
 // Copyright (C) 2008 - INRIA - Simon LIPP <simon.lipp@scilab.org>
 // Copyright (C) 2010 - DIGITEO - Pierre MARECHAL
 // Copyright (C) 2016 - Scilab Enterprises - Pierre-Aimé AGNEL
+// Copyright (C) 2016, 2018 - Samuel GOUGEON
 //
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
@@ -45,6 +46,8 @@ function tbx_builder_help(module)
     if isdir(builder_help_dir)
         // Retrieve the toolbox name
         name = tbx_get_name_from_path(module)
+        TOOLBOX_NAME = name;
+        TOOLBOX_TITLE = name;
 
         // check there is a builder_help present and if so execute it with tbx_builder
         builder_help_files = findfiles(builder_help_dir, "builder*.sce");

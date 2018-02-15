@@ -14,7 +14,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="tbx_make" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="tbx_make" xml:lang="en">
 
     <refnamediv>
         <refname>tbx_make</refname>
@@ -71,7 +74,8 @@
             <varname>tbx_path</varname> is scanned for a script named like <literal>build*.sce</literal>.
         </para>
         <para>
-            If such a file is found, <varname>tbx_make</varname> executes it, and that's it.
+            If such a file is found and no specific <varname>sections</varname> are requested to
+            build, <varname>tbx_make</varname> executes the available builder script, and that's it.
         </para>
         <para>
             Otherwise, <varname>tbx_make</varname> builds the toolbox using directory naming
@@ -131,7 +135,7 @@
             provided with Scilab.
         </para>
         <para>
-            If <term>sections</term> is given, only the selected sections are built.
+           Only the selected <varname>sections</varname> are built.
         </para>
         <para>
             <literal>loader.sce</literal>, <literal>unloader.sce</literal> and <literal>cleaner.sce</literal>
@@ -160,13 +164,19 @@ tbx_make("path/to/mytoolbox", ["macros", "help", "src"])
                 <link linkend="tbx_builder_macros">tbx_builder_macros</link>
             </member>
             <member>
+                <link linkend="tbx_builder_help">tbx_builder_help</link>
+            </member>
+            <member>
+                <link linkend="tbx_build_localization">tbx_build_localization</link>
+            </member>
+            <member>
                 <link linkend="tbx_builder_src">tbx_builder_src</link>
             </member>
             <member>
                 <link linkend="tbx_builder_gateway">tbx_builder_gateway</link>
             </member>
             <member>
-                <link linkend="tbx_builder_help">tbx_builder_help</link>
+                <link linkend="tbx_build_blocks">tbx_build_blocks</link>
             </member>
             <member>
                 <link linkend="tbx_build_loader">tbx_build_loader</link>
@@ -184,6 +194,12 @@ tbx_make("path/to/mytoolbox", ["macros", "help", "src"])
                 <revnumber>6.0.0</revnumber>
                 <revremark>
                     <literal>tbx_make()</literal> introduced.
+                </revremark>
+            </revision>
+            <revision>
+                <revnumber>6.0.1</revnumber>
+                <revremark>
+                    The existing builder is run only if no specific sections are requested.
                 </revremark>
             </revision>
         </revhistory>
