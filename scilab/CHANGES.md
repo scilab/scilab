@@ -572,6 +572,7 @@ Known issues
 * [#15405](http://bugzilla.scilab.org/show_bug.cgi?id=15405): Accessing int64 hdf5 values crashed scilab.
 * [#15413](http://bugzilla.scilab.org/show_bug.cgi?id=15413): Deleting some ranges (rows, columns, pages, ..) in a structures array failed.
 * [#15418](http://bugzilla.scilab.org/show_bug.cgi?id=15418): With `colordef('black')` and `colordef('none')`, black title and labels were invisible on the black background.
+* [#15419](http://bugzilla.scilab.org/show_bug.cgi?id=15419): `tbx_build_localization` did nothing and silently returned when no `~/locales` directory was detected. `tbx_generate_pofile()` was not run, and the user was not warned and guided.
 * [#15420](http://bugzilla.scilab.org/show_bug.cgi?id=15420): insertion at negative index did not trigger an error.
 * [#15456](http://bugzilla.scilab.org/show_bug.cgi?id=15456): Xcos 5.5.x files did not load properly.
 * [#15459](http://bugzilla.scilab.org/show_bug.cgi?id=15459): Generating code from an Xcos superblock generated warnings.

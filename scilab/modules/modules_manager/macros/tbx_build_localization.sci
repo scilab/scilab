@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2013 - Scilab Enterprises - Antoine ELIAS
+// Copyright (C) 2016, 2018 - Samuel GOUGEON
 //
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
@@ -51,17 +52,30 @@ function tbx_build_localization(tbx_name, tbx_path)
         end
     end
 
-    // Is there a locales dir?
-    //------------------------
-    localePath = pathconvert(tbx_path + "/locales/")
-    if isdir(localePath) == %f then
-        // No locales is present, nothing to do
-        return
-    end
-
     // Retrieving the toolbox name
     // ---------------------------
     tbx_name = tbx_get_name_from_path(tbx_path)
+
+
+    // Run tbx_generate_pofile() ?  Yes if /locales or *.po do not exist
+    //------------------------
+    localePath = pathconvert(tbx_path + "/locales/")
+    generatePOfile =  ~isdir(localePath) // No locales is present => So: yes
+    if ~generatePOfile
+        generatePOfile = findfiles(localePath, "*.po")==[] 
+    end
+    if generatePOfile then
+        tbx_generate_pofile(tbx_path);
+        if findfiles(localePath, "*.po")==[]
+            msg = _("%s: The module ''%s'' has no entry to be localized.\n")
+            mprintf(msg, fname, tbx_name)
+            return
+        else
+            msg = _("%s: \n   ''%s'' has been generated in the module.\n   Please\n   - clone it into la_LA.po (ex: pt_BR.po) in the same directory\n   - translate the copies\n   - rerun the build\n");
+            warning(msprintf(msg, fname, "~\locales\en_US.po"))
+            // We anyway build the localization with only en_US, without returning here
+        end
+    end
 
     // find list of .po files
     // ----------------------
