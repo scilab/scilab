@@ -1,5 +1,5 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Express 2013 for Windows Desktop
+# Visual Studio 2013
 VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WScilex", "modules\windows_tools\src\c\WScilex\WScilex.vcxproj", "{CCD80549-EB9C-42AA-9B86-D687377E94F6}"
@@ -517,6 +517,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "coverage", "modules\coverage\coverage.vcxproj", "{B150E4A2-2EC1-4BE0-B416-95CFEB13E2FF}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "slint", "modules\slint\slint.vcxproj", "{C4A6EABA-B46E-421A-A8E3-2ACA7F27DD82}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WScilex-cli", "modules\windows_tools\src\c\WScilex\WScilex-cli.vcxproj", "{1633D502-8B08-442B-923F-F83F3213EEF3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -1694,6 +1696,14 @@ Global
 		{C4A6EABA-B46E-421A-A8E3-2ACA7F27DD82}.Release|Win32.Build.0 = Release|Win32
 		{C4A6EABA-B46E-421A-A8E3-2ACA7F27DD82}.Release|x64.ActiveCfg = Release|x64
 		{C4A6EABA-B46E-421A-A8E3-2ACA7F27DD82}.Release|x64.Build.0 = Release|x64
+		{1633D502-8B08-442B-923F-F83F3213EEF3}.Debug|Win32.ActiveCfg = Debug|Win32
+		{1633D502-8B08-442B-923F-F83F3213EEF3}.Debug|Win32.Build.0 = Debug|Win32
+		{1633D502-8B08-442B-923F-F83F3213EEF3}.Debug|x64.ActiveCfg = Debug|x64
+		{1633D502-8B08-442B-923F-F83F3213EEF3}.Debug|x64.Build.0 = Debug|x64
+		{1633D502-8B08-442B-923F-F83F3213EEF3}.Release|Win32.ActiveCfg = Release|Win32
+		{1633D502-8B08-442B-923F-F83F3213EEF3}.Release|Win32.Build.0 = Release|Win32
+		{1633D502-8B08-442B-923F-F83F3213EEF3}.Release|x64.ActiveCfg = Release|x64
+		{1633D502-8B08-442B-923F-F83F3213EEF3}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
