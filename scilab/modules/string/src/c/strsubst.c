@@ -299,7 +299,8 @@ wchar_t *wcssub_reg(const wchar_t* _pwstInput, const wchar_t* _pwstSearch, const
             FREE(arriEnd);
             return NULL;
         }
-    } while (iPcreStatus == PCRE_FINISHED_OK && iStart != iEnd);
+    }
+    while (iPcreStatus == PCRE_FINISHED_OK && iStart != iEnd);
 
     if (iOccurs)
     {
@@ -378,7 +379,14 @@ wchar_t **wcssubst(const wchar_t** _pwstInput, int _iInputSize, const wchar_t* _
             const wchar_t* pwst = _pwstInput[i];
             if (wcslen(pwst) == 0)
             {
-                pwstOutput[i] = os_wcsdup(L"");
+                if (wcslen(_pwstSearch) == 0)
+                {
+                    pwstOutput[i] = os_wcsdup(_pwstReplace);
+                }
+                else
+                {
+                    pwstOutput[i] = os_wcsdup(L"");
+                }
             }
             else
             {
@@ -407,12 +415,27 @@ wchar_t *wcssub(const wchar_t* _pwstInput, const wchar_t* _pwstSearch, const wch
         return NULL;
     }
 
-    if (_pwstInput[0] == L'\0')
+    if (_pwstSearch == NULL || _pwstReplace == NULL)
     {
-        return os_wcsdup(L"");
+        return os_wcsdup(_pwstInput);
     }
 
-    if (_pwstSearch == NULL || _pwstReplace == NULL)
+    //no needle
+    if (_pwstSearch[0] == L'\0')
+    {
+        //no input
+        if (_pwstInput[0] == L'\0')
+        {
+            return os_wcsdup(_pwstReplace);
+        }
+        else
+        {
+            return os_wcsdup(_pwstInput);
+        }
+    }
+
+    //no input
+    if (_pwstInput[0] == L'\0')
     {
         return os_wcsdup(_pwstInput);
     }
