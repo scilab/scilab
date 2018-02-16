@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2011 - INRIA - Serge Steer
+// Copyright (C) 2018 - Samuel GOUGEON
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -31,3 +32,36 @@ assert_checkequal(repmat(matrix(1:2, [1 2]),2),[1 2 1 2; 1 2 1 2]);
 assert_checkequal(repmat([1,2;3,4],[2,3]),[1,2,1,2,1,2;3,4,3,4,3,4;1,2,1,2,1,2;3,4,3,4,3,4]);
 assert_checkequal(repmat(int8([1,2;3,4]),[2,3]),int8([1,2,1,2,1,2;3,4,3,4,3,4;1,2,1,2,1,2;3,4,3,4,3,4]));
 assert_checkequal(repmat(matrix(1:2, 1, 2),[2,3]),[1,2,1,2,1,2;1,2,1,2,1,2]);
+
+// With other hypermatrices
+    // Polynomials
+H = repmat([%z %z^2], [1 2 2]);
+res = cat(3, [%z %z^2 %z %z^2], [%z %z^2 %z %z^2]);
+assert_checkequal(H,res);
+H = repmat(cat(3,[%z %z^2],[1 %z]), 1, 2);
+res = cat(3, [%z %z^2 %z %z^2], [1 %z 1 %z]);
+assert_checkequal(H,res);
+    // Rationals
+H = repmat(1./[%z %z^2], [1 2 2]);
+res = cat(3, 1./[%z %z^2 %z %z^2], 1./[%z %z^2 %z %z^2]);
+assert_checkequal(H,res);
+H = repmat(1./cat(3,[%z %z^2],[1 %z]), 1, 2);
+res = cat(3, 1./[%z %z^2 %z %z^2], 1./[1 %z 1 %z]);
+assert_checkequal(H,res);
+    // Booleans
+H = repmat([%t %f ; %f %t], [1 2 2]);
+res = cat(3, [%t %f %t %f; %f %t %f %t], [%t %f %t %f; %f %t %f %t]);
+assert_checkequal(H,res);
+H = repmat(cat(3,[%f %t %t],[%t %f %t]), 2, 1);
+res = cat(3, [%f %t %t ; %f %t %t], [%t %f %t; %t %f %t]);
+assert_checkequal(H,res);
+    // Texts
+H = repmat(["a" "b" ; "c" "d"], [2 1 2]);
+res = cat(3, ["a" "b" ; "c" "d" ; "a" "b" ; "c" "d"], ..
+             ["a" "b" ; "c" "d" ; "a" "b" ; "c" "d"]);
+assert_checkequal(H, res);
+H = repmat(cat(3,"a", "b", "c"), 2,3,2);
+res = cat(3,["a" "a" "a"; "a" "a" "a"],["b" "b" "b"; "b" "b" "b"],["c" "c" "c"; "c" "c" "c"]);
+res = cat(3, res, res);
+assert_checkequal(H, res);
+

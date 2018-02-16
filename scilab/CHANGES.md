@@ -145,6 +145,7 @@ Feature changes and additions
 * `intersect()` now supports complex numbers.
 * `setdiff()` now supports complex numbers.
 * `twinkle` can now blink together several hierarchically independent objects, like a curve and its labels, etc.
+* `repmat()` has been rewritten. It is 7 times faster now.
 
 
 Help pages:
@@ -272,6 +273,7 @@ Bug Fixes
 * [#15392](http://bugzilla.scilab.org/show_bug.cgi?id=15392): `comet` and `comet3d` did not allow specifying colors with colors names.
 * [#15393](http://bugzilla.scilab.org/show_bug.cgi?id=15393): In a new figure, `nicholschart` plotted nothing. The default frame color was a flashy cyan. The position of gain labels could be puzzling. It was not possible to specify colors by their names. Postprocessing the frames and the set of labels was not easy.
 * [#15425](http://bugzilla.scilab.org/show_bug.cgi?id=15425): The Kronecker product `a.*.b` failed when `a` or `b` or both are hypermatrices, with one or both being polynomials or rationals.
+* [#15428](http://bugzilla.scilab.org/show_bug.cgi?id=15428): `repmat()` was slow. Its code did not use `kron()` and was complex.
 * [#15431](http://bugzilla.scilab.org/show_bug.cgi?id=15431): The empty matrix `[]` and its non-convertibility were poorly documented.
 * [#15451](http://bugzilla.scilab.org/show_bug.cgi?id=15451): The code was not adapted to use `lucene 4.10` in Debian.
 * [#15514](http://bugzilla.scilab.org/show_bug.cgi?id=15514): The `set()` documentation page needed to be overhauled.

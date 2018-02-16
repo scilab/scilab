@@ -1,6 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) - 2011 -  INRIA, Serge Steer
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) - 2018 - Samuel GOUGEON
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -8,150 +9,126 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
+
 function B = repmat(A,varargin)
-    //ajouter test sur les type des elements de varargin
+
+    // CHECKING INPUT ARGUMENTS
+    // ------------------------
     rhs = argn(2);
     if rhs < 2 then
-        error(msprintf(_("%s: Wrong number of input arguments: at least %d expected.\n"), "repmat", 2))
+        msg = _("%s: Wrong number of input arguments: at least %d expected.\n")
+        error(msprintf(msg, "repmat", 2))
     end
 
-    narg=size(varargin);
+    if A == [] then
+        B = A
+        return
+    end
 
-    // Test varargin
-    if narg==1 then
+    narg = size(varargin);
+
+    // Reading & setting replication numbers
+    if narg == 1 then
         // Scalar of vector needed
-        if typeof(varargin(1)) <> "constant" then
-            error(msprintf(_("%s: Wrong type for input argument #%d: A real scalar or vector expected.\n"), "repmat", 2))
+        v = varargin(1);
+        if type(v) <> 1 | ~isreal(v, 0) | ~and(v == int(v)) | v == [] | v <0 then
+            msg = _("%s: Argument #%d: Non-negative integers expected.\n")
+            error(msprintf(msg, "repmat", 2))
+        else
+            v = real(v);    // in case of complex encoding with null imag
         end
-        if size(varargin(1),"*")<>1 & isempty(find(size(varargin(1))==1)) then
-            error(msprintf(_("%s: Wrong size for input argument #%d: A real scalar or vector expected.\n"), "repmat", 2))
+        if ~isscalar(v) & ~isvector(v) then
+            msg = _("%s: Wrong size for input argument #%d: A scalar or vector expected.\n")
+            error(msprintf(msg, "repmat", 2))
+        end
+        sizes = v;
+        if length(v) == 1 then
+            sizes = [v,v];
         end
     else
-        for i=1:narg
-            if typeof(varargin(i)) <> "constant" then
-                error(msprintf(_("%s: Wrong type for input argument #%d: A real scalar expected.\n"), "repmat", i+1))
+        sizes = [];
+        for i = 1:narg
+            v = varargin(i);
+            if type(v) <> 1 | ~isreal(v, 0) | ~and(v == int(v)) | v == [] | v < 0 then
+                msg = _("%s: Argument #%d: Non-negative integers expected.\n")
+                error(msprintf(msg, "repmat", i+1))
             end
-            if size(varargin(i),"*")<>1 then
-                error(msprintf(_("%s: Wrong size for input argument #%d: A real scalar expected.\n"), "repmat", i+1))
+            if length(v)<>1 then
+                msg = _("%s: Argument #%d: Scalar (1 element) expected.\n")
+                error(msprintf(msg, "repmat", i+1))
             end
+            sizes = [sizes v];
         end
     end
 
-    if type(A)>10 then
-        if typeof(A)=="rational" then
-            B=rlist(repmat(A.num,varargin(:)),repmat(A.den,varargin(:)),A.dt)
-            return
+    // Preprocessing sizes = replication factors
+    // -----------------------------------------
+    // Trimming ending ones in sizes
+    for s = length(sizes):-1:3
+        if sizes(s) == 1 then
+            sizes(s) = []
         else
-            execstr("B=%"+typeof(A)+"_repmat(A,varargin(:))")
-            return
+            break
         end
     end
-
-    if narg==1 then
-        if size(varargin(1),"*")==1 then
-            siz=list(varargin(1),varargin(1))
-        else //convert array into list
-            tmp=varargin(1)
-            siz=list();
-            for i=1:size(tmp,"*"),siz(i)=tmp(i); end
-        end
+    // B expected sizes
+    sA = size(A)
+    ndimsA = length(sA)
+    ndimsR = length(sizes)
+    if ndimsA >= ndimsR then
+        Bsizes = size(A).*[sizes ones(1,(ndimsA-ndimsR))]
     else
-        siz=list();
-        for i=1:narg
-            siz(i)=varargin(i)
-        end
+        Bsizes = [sA ones(1,(ndimsR-ndimsA))] .* sizes
+    end
+    // Sparse matrices are only 2D (limited output dimensions):
+    if or(type(A) == [5 6]) & length(Bsize) > 2 then
+        msg = _("%s: Wrong dimensions for input arguments: The sparse result must be 2D, not %dD.\n");
+        error(msprintf(msg, "repmat", length(Bsizes)));
+    end
+    // Replication factors
+    Rfactors = list();
+    for s = sizes
+        Rfactors($+1) = s
     end
 
-    nd=size(siz)
-    if or(type(A)==[5 6]) then //sparse matrices
-        if nd>2 then
-            error(msprintf(_("%s: Wrong number of output matrix dimensions required: %d expected for sparse matrices.\n"), "repmat", 2))
-        end
+    // PROCESSING
+    // ----------
+    if find(sizes == 0) then
+        B = []
+        return
     end
 
-    for i=size(siz):-1:3
-        if siz(i)>1 then break,end
-        nd=nd-1
-    end
-    sizA=size(A)
-    nda=size(sizA,"*")
-
-    if and(sizA==1) then //scalar case
-
-        //this case can also be handled by the general one but in a less
-        //efficient way
-        if nd<=2 then
-            B=A(ones(siz(1:nd)))
+    // Special case where the input A is scalar: special efficient processing
+    if size(A,"*") == 1 then
+        i = uint8(0);
+        i(Rfactors(:)) = 0;
+        i = i + 1;
+        if typeof(A) <> "rational" then
+            B = matrix(A(i), sizes);
         else
-            s=1;for k=1:nd;s=s*siz(k),end
-            B=matrix(A(ones(s,1)),siz(1:nd))
+            B = matrix(A(i,0), sizes);
         end
-    else //general case
-        if nda<nd then
-            sizA(nda+1:nd)=1;
-        elseif  nda>nd then
-            for k=nd+1:nda
-                siz(k)=1
-            end
-            nd=nda
-        end
-        I=list();
-        for i=1:nd
-            ind=matrix(1:sizA(i),-1,1);
-            ind=ind(:,ones(1,siz(i)));
-            I(i)=ind;
-        end
+        return
+    end
 
-        if nda > 2 | (size(varargin(1),"*") <> 1 & size(varargin(1)) <3) then // Works if A is hypermat but not for int8,int16 matrix
-            B=A(I(:));
-        else // Works for int8, int16... matrix but not for hypermat
-            if rhs ==2 then
-                if size(varargin(1),"*") <> 1 then // case repmat(A,size)
-                    varargin_temp=varargin;
-                    if size(varargin(1),1) <> 1 & size(varargin(1),2) == 1 then
-                        for i=1:size(varargin(1),1)
-                            varargin(i)=varargin_temp(1)(i);
-                        end
-                    elseif size(varargin(1),2) <> 1 & size(varargin(1),1) == 1 then
-                        for i=1:size(varargin(1),2)
-                            varargin(i)=varargin_temp(1)(i);
-                        end
-                    else
-                        error(msprintf(_("%s: Wrong size for input argument #%d: a vector expected.\n"),"repmat",2));
-                    end
-                end
-            end
-            res=A(I(1),I(2));
-            A_base=matrix(res,size(res,1)*size(res,2),1);
-            dims=[size(A,1)*varargin(1)];
-            for i=2:size(varargin) //compute dims
-                dims_1=[size(A,i)*varargin(i)];
-                dims=[dims, dims_1];
-            end
-            nb=1;
-            flag=0;
-            for i=3:size(varargin)
-                nb=nb*varargin(i);
-                if varargin(i)~=1 then // dims[2 2 1 1]=>dims[2 2]
-                    flag=1;
-                end
-            end
-            if size(varargin) ==1 then // dims[2] => dims[2 2]
-                varargin(2) = varargin(1);
-            end
-            if flag == 0 then
-                B=matrix(A_base,varargin(1)*size(A,1), varargin(2)*size(A,2));
-            else
-                J1=[1:size(A_base,1)];
-                J=J1;
-                for k=1:nb-1
-                    J=[J,J1];
-                end
-                J=J';
-                A_final=A_base(J);
-                B=matrix(A_final, dims);
-            end
-        end
+    // Numerical data: double, integers, polynomials, sparse : kron() is used
+    if or(type(A) == [1 2 5 7 8]) then
+        B = ones(Rfactors(:)) .*. A;
+        return
+    end
+
+    // Other regular types : booleans, textes..:
+    // => we replicate and use the matrix of linearized indices of A components
+    if or(type(A) == [4 6 9 10]) then
+        // Processing (without intermediate variable, to save memory)
+        B = matrix(A(ones(Rfactors(:)) .*. matrix(1:size(A,"*"), size(A))), Bsizes);
+        return
+    end
+
+    // Rationals, other mlists, overloads
+    if typeof(A) == "rational" then
+        B = rlist(repmat(A.num,sizes), repmat(A.den,sizes), A.dt)
+    else
+        execstr("B=%" + typeof(A) + "_repmat(A, sizes)")
     end
 endfunction
-
