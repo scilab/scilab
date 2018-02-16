@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) DIGITEO - 2012 - Cedric Delamarre
+// Copyright (C) 2018 - Samuel GOUGEON
 //
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
@@ -11,7 +12,6 @@
 // along with this program.
 
 function x = %i_k_s(a, b)
-
-    x = double(a) .*. b;
-
+    it = inttype(a);
+    x = iconvert(double(a) .*. double(iconvert(b,it)), it);
 endfunction
