@@ -13,46 +13,49 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="pdiv" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="pdiv" xml:lang="pt">
     <refnamediv>
         <refname>pdiv</refname>
-        <refpurpose>divis„o polinomial</refpurpose>
+        <refpurpose>divis√£o polinomial</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title> Seq¸Íncia de Chamamento </title>
+        <title> Seq√º√™ncia de Chamamento </title>
         <synopsis>[R,Q]=pdiv(P1,P2)
             [Q]=pdiv(P1,P2)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Par‚metros</title>
+        <title>Par√¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>P1</term>
                 <listitem>
-                    <para>matriz de polinÙmios </para>
+                    <para>matriz de polin√¥mios </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>P2</term>
                 <listitem>
-                    <para>polinÙmio ou matriz de polinÙmios</para>
+                    <para>polin√¥mio ou matriz de polin√¥mios</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>R,Q</term>
                 <listitem>
-                    <para>duas matrizes de polinÙmios</para>
+                    <para>duas matrizes de polin√¥mios</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>DescriÁ„o</title>
-        <para>Divis„o euclidiana elemento a elemento da matriz de polinÙmios
-            <literal>P1</literal> pelo polinÙmio <literal>P2</literal> ou pela matriz
-            de polinÙmios <literal>P2</literal>. <literal>Rij</literal> È a matriz de
-            restos, <literal>Qij</literal> È a matriz de quocientes e <literal>P1ij =
+        <title>Descri√ß√£o</title>
+        <para>Divis√£o euclidiana elemento a elemento da matriz de polin√¥mios
+            <literal>P1</literal> pelo polin√¥mio <literal>P2</literal> ou pela matriz
+            de polin√¥mios <literal>P2</literal>. <literal>Rij</literal> √© a matriz de
+            restos, <literal>Qij</literal> √© a matriz de quocientes e <literal>P1ij =
                 Qij*P2 + Rij
             </literal>
             ou <literal>P1ij = Qij*P2ij + Rij</literal>.
@@ -71,10 +74,13 @@ p2*q+r-p1
  ]]></programlisting>
     </refsection>
     <refsection>
-        <title> Ver TambÈm </title>
+        <title> Ver Tamb√©m </title>
         <simplelist type="inline">
             <member>
                 <link linkend="ldiv">ldiv</link>
+            </member>
+            <member>
+                <link linkend="pfss">pfss</link>
             </member>
             <member>
                 <link linkend="gcd">gcd</link>

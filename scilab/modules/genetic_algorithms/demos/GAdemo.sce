@@ -45,8 +45,8 @@ function demo_genetic_algo()
 
     ga_params = init_param();
     // Parameters to adapt to the shape of the optimization problem
-    ga_params = add_param(ga_params, "minbound", eval("min_bd_" + func + "()"));
-    ga_params = add_param(ga_params, "maxbound", eval("max_bd_" + func + "()"));
+    ga_params = add_param(ga_params, "minbound", evstr("min_bd_" + func + "()"));
+    ga_params = add_param(ga_params, "maxbound", evstr("max_bd_" + func + "()"));
     ga_params = add_param(ga_params, "dimension", 2);
     ga_params = add_param(ga_params, "beta", 0);
     ga_params = add_param(ga_params, "delta", 0.1);

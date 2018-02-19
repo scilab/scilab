@@ -6,6 +6,7 @@
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 // <-- Non-regression test for bug 9572 -->
 //
@@ -16,9 +17,9 @@
 // assert_checkerror did not check multi lines errors
 
 
-cmd = "error(999,''line1'' + ascii(10) + ''line2'')";
+cmd = "error(''line1'' + ascii(10) + ''line2'')";
 ref_msgerr = ['line1';'line2'];
-ref_ierr = 999;
+ref_ierr = 10000;
 
 // first, we check without assert_checkerror
 ierr = execstr(cmd, 'errcatch');

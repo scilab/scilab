@@ -7,7 +7,8 @@
 function subdemolist = demo_gateway()
 
     demopath = get_absolute_file_path("differential_equations.dem.gateway.sce");
-    add_demo(gettext("Simulation"), demopath + "differential_equations.dem.gateway.sce");
+    _("Simulation");  // lets gettext() harvesting it
+    add_demo("Simulation", demopath + "differential_equations.dem.gateway.sce");
 
     subdemolist = [_("n-pendulum")         ,"n_pendulum/n_pendulum.dem.sce" ;
     _("Wheel simulation")   ,"wheel/wheel.dem.gateway.sce"   ;

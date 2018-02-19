@@ -13,40 +13,63 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="bezout" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="bezout" xml:lang="pt">
     <refnamediv>
         <refname>bezout</refname>
-        <refpurpose>equação de Bezout para polinômios ou inteiros</refpurpose>
+        <refpurpose>Maior Comum Divisor de dois polinÃ´mios ou dois inteiros, pelo mÃ©todo Bezout</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title> Seqüência de Chamamento</title>
-        <synopsis>[thegcd,U]=bezout(p1,p2)</synopsis>
+        <title> SeqÃ¼Ãªncia de Chamamento</title>
+        <synopsis>
+           thegcd = bezout(p1,p2)
+          [thegcd,U] = bezout(p1,p2)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>p1, p2</term>
                 <listitem>
-                    <para>dois polinômios reais ou dois escalares inteiros (tipo igual a
-                        8)
+                    <para>dois polinÃ´mios reais ou dois escalares inteiros (tipo igual a 1 ou 8)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>thegcd</term>
+                <listitem>
+                    <para>
+                        scalar with the type of <literal>p1</literal>:
+                        The Greatest Common Divisor of <literal>p1</literal> and <literal>p2</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>U</term>
+                <listitem>
+                    <para>
+                        <literal>2x2</literal> unimodular matrix of the type of <literal>p1</literal>,
+                        such that <literal>[p1 p2]*U = [thegcd 0]</literal>.
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            <literal>[thegcd,U]=bezout(p1,p2)</literal> computa o MDC
-            <literal>thegcd</literal> de <literal>p1</literal> e <literal>p2</literal>
-            e também uma matriz (2x2) unimodular <literal>U</literal> tal quet:
+            <literal>thegcd = bezout(p1,p2)</literal> computa o MDC
+            <literal>thegcd</literal> de <literal>p1</literal> e <literal>p2</literal>.
         </para>
         <para>
-            <literal>[p1,p2]*U = [thegcd,0]</literal>
+             AlÃ©m disso, <literal>[thegcd,U] = bezout(p1,p2)</literal> calcula e retorna uma matriz
+             unimodular (2x2) <varname>U</varname> tal que <literal>[p1 p2]*U = [thegcd 0]</literal>.
         </para>
         <para>
-            O MMC de <literal>p1</literal> e <literal>p2</literal> é dado
+            O MMC de <literal>p1</literal> e <literal>p2</literal> Ã© dado
             por:
         </para>
         <para>
@@ -58,26 +81,43 @@
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
 // caso polinomial
-x=poly(0,'x');
-p1=(x+1)*(x-3)^5;p2=(x-2)*(x-3)^3;
-[thegcd,U]=bezout(p1,p2)
+x = poly(0,'x');
+p1 = (x+1)*(x-3)^5;
+p2 = (x-2)*(x-3)^3;
+[thegcd,U] = bezout(p1,p2)
 det(U)
 clean([p1,p2]*U)
-thelcm=p1*U(1,2)
+thelcm = p1*U(1,2)
 lcm([p1,p2])
 
+// Double case
+i1 = 2*3^5;
+i2 = 2^3*3^2;
+[thegcd,U] = bezout(i1, i2)
+V = [2^2*3^5 2^3*3^2 2^2*3^4*5];
+[thegcd,U] = gcd(V)
+V*U
+lcm(V)
+
 // caso inteiro
-i1=int32(2*3^5); i2=int32(2^3*3^2);
-[thegcd,U]=bezout(i1,i2)
-V=int32([2^2*3^5, 2^3*3^2,2^2*3^4*5]);
-[thegcd,U]=gcd(V)
+i1 = int32(2*3^5);
+i2 = int32(2^3*3^2);
+[thegcd,U] = bezout(i1,i2)
+V = int32([2^2*3^5, 2^3*3^2,2^2*3^4*5]);
+[thegcd,U] = gcd(V)
 V*U
 lcm(V)
  ]]></programlisting>
     </refsection>
     <refsection>
-        <title> Ver Também</title>
+        <title> Ver TambÃ©m</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="gcd">gcd</link>
+            </member>
+            <member>
+                <link linkend="lcm">lcm</link>
+            </member>
             <member>
                 <link linkend="poly">poly</link>
             </member>
@@ -89,9 +129,6 @@ lcm(V)
             </member>
             <member>
                 <link linkend="clean">clean</link>
-            </member>
-            <member>
-                <link linkend="lcm">lcm</link>
             </member>
         </simplelist>
     </refsection>

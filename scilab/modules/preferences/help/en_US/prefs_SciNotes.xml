@@ -13,7 +13,10 @@
  * along with this program.
 *
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="prefs_SciNotes" scilab:needs-examples="no" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="prefs_SciNotes" scilab:needs-examples="no" xml:lang="en">
     <refnamediv>
         <refname>SciNotes preferences</refname>
         <refpurpose>SciNotes general preferences</refpurpose>
@@ -23,7 +26,7 @@
         <para>
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata fileref="../images/scinotes/editor.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata fileref="../images/scinotes/editor.png" align="center" valign="middle"/>
                 </imageobject>
             </inlinemediaobject>
         </para>
@@ -55,7 +58,7 @@
         <para>
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata fileref="../images/scinotes/scinotes_general_settings.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata fileref="../images/scinotes/scinotes_general_settings.png" align="center" valign="middle"/>
                 </imageobject>
             </inlinemediaobject>
         </para>

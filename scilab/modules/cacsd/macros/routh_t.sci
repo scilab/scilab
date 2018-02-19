@@ -19,7 +19,7 @@ function [r,num]=routh_t(h,k,normalized)
     //feedback by the gain k
     //If  k=poly(0,'k') we will have a polynomial matrix with dummy variable
     //k, formal expression of the Routh table.
-    //r=routh_t(d) computes Routh table of h :attention ! d=denom of system
+    //r=routh_t(d) computes Routh table of h :attention ! d=denominator of system
 
     //If a zero row appears, it means that there exist a pair of pure imaginary
     //roots (oscillating system) or symmetric real roots. In this case, the pure imaginary roots are the

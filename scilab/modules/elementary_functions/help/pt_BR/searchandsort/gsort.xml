@@ -142,6 +142,9 @@
             <member>
                 <link linkend="find">find</link>
             </member>
+            <member>
+                <link linkend="overloading">overloading</link>
+            </member>
         </simplelist>
     </refsection>
     <refsection>

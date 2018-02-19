@@ -8,172 +8,173 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 21:58+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2017-05-02 06:34+0000\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
-"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18544)\n"
 "X-Poedit-Country: Japan\n"
+"Language: ja\n"
 "X-Poedit-Language: Japanese\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
+msgstr "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr ""
+msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Real vector expected.\n"
-msgstr ""
+msgstr "%s: 引数 %d の型が間違っています: 実数ベクトルを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Matrix expected.\n"
-msgstr ""
+msgstr "%s: 引数 %d の型が間違っています: 行列を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong size for input arguments %d: A vector of size %d expected.\n"
-msgstr ""
+msgid ""
+"%s: Wrong size for input arguments %d: A vector of size %d expected.\n"
+msgstr "%s: 引数 %d の大きさが間違っています: 大きさ%dのベクトルを指定してください.\n"
 
 #, c-format
 msgid "%s: Incompatible input argument.\n"
-msgstr ""
+msgstr "%s: 入力引数に互換性がありません.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s: 入力引数の数に誤りがあります: %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A matrix of integer value expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: 整数値行列を指定してください.\n"
 
 #, c-format
 msgid "%s: insufficient working storage"
-msgstr ""
+msgstr "%s: 作業用ストレージが不十分です"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d  expected.\n"
-msgstr ""
+msgstr "%s: 入力引数の数が間違っています: %d個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for argument %d:  Handle to sparse lu factors expected.\n"
-msgstr ""
+msgstr "%s: 引数 %dの型が間違っています: 疎行列 LU分解へのハンドルを指定してください.\n"
 
 #, c-format
 msgid "Wrong value for argument #%d: the lu handle is no more valid.\n"
-msgstr ""
+msgstr "引数 #%d の値が間違っています: LUハンドルがもう有効ではありません.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): At most %d expected.\n"
-msgstr ""
+msgstr "%s: 出力引数の数が間違っています:  %d 以下で指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of dimensions for input argument #%d.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の次元の数が間違っています.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
-msgstr ""
+msgstr "%s: 引数 %d の型が間違っています: 実数行列を指定してください.\n"
 
 #, c-format
 msgid "%s not yet implemented for full input parameter.\n"
-msgstr ""
+msgstr "%sは,完全な入力パラメータについて実装されていません.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Incompatible dimensions.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 次元に互換性がありません.\n"
 
 #, c-format
 msgid "%s: Wrong type argument %d: Sparse or matrix expected.\n"
-msgstr ""
+msgstr "%s: 引数 %d の型が間違っています: 疎行列または行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: 整数値を指定してください.\n"
 
 msgid ""
 " The provided \"n\" does not correspond to the matrix defined by xadj and "
 "iadj\n"
-msgstr ""
+msgstr " 指定した \"n\" は xadj および iadj により定義された行列に対応しません.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: sparse matrix expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: 疎行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
-msgstr ""
-"%s: 出力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+msgstr "%s: 出力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: 行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A m-by-n matrix expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の大きさが間違っています: m行n列の行列を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real or Complex matrix expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: 実数または複素数の行列を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A matrix of size %d x %d expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 大きさ %d x %d の行列を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A matrix of size %d expected.\n"
-msgstr ""
+msgid ""
+"%s: Wrong size for input argument #%d: A matrix of size %d expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 大きさ %d の行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Sparse matrix expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: 疎行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
-msgstr ""
+msgstr "%s: 引数 %d の型が間違っています:　実数行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for argument #%d: Square sparse matrix expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 正方疎行列を指定してください.\n"
 
 #, c-format
 msgid "%s: The provided data did not satisfy the prerequisites.\n"
-msgstr ""
+msgstr "%s: 指定されたデータが前提条件を満足していません.\n"
 
 #, c-format
 msgid "%s: Iterative procedure did not converge.\n"
-msgstr ""
+msgstr "%s: 反復手順が収束しませんでした.\n"
 
 #, c-format
 msgid ""
 "%s: The inputs are invalid, or the algorithm has been improperly called.\n"
 "When assertions are enabled, such errors trigger an assert.\n"
-msgstr ""
+msgstr "%s: 入力が無効, またはアルゴリズムが適切にコールされていません.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real vector expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: 実数ベクトルを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Sparse matrix expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: 疎行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: スカラーを指定してください.\n"
 
 #
 # File: src/c/lu.c, line: 121
@@ -527,9 +528,7 @@ msgstr "%s: 入力引数 #%d で不正な型: 列ベクトルを想定します�
 msgid ""
 "%s: Wrong size for input argument #%d: Same size as input argument #%d "
 "expected.\n"
-msgstr ""
-"%s: 入力引数 #%d で不正なサイズ: 入力引数 #%d として同じサイズを想定しま"
-"す。\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: 入力引数 #%d として同じサイズを想定します。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Single String expected.\n"
@@ -537,9 +536,7 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を1つ指
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %s, %s, %s or %s expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: %s, %s, %s または %s を指定してくださ"
-"い.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: %s, %s, %s または %s を指定してください.\n"
 
 #
 # File: macros/gmres.sci, line: 83
@@ -568,13 +565,11 @@ msgstr "%s: 入力引数で不正な数: 少なくとも %d を想定します�
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Column vector expected.\n"
-msgstr ""
-"%s: 入力引数  #%d の大きさが間違っています: 列ベクトルを指定してください.\n"
+msgstr "%s: 入力引数  #%d の大きさが間違っています: 列ベクトルを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
-msgstr ""
-"%s: 入力引数  #%d の大きさが間違っています: スカラーを指定してください.\n"
+msgstr "%s: 入力引数  #%d の大きさが間違っています: スカラーを指定してください.\n"
 
 #
 # File: macros/gmres.sci, line: 290
@@ -592,9 +587,7 @@ msgstr "%s: 入力引数で不正な数: 最低でも %d を想定します。\n
 msgid ""
 "%s: Wrong type for input argument #%d : A real or complex matrix or a sparse "
 "matrix or a function expected.\n"
-msgstr ""
-"%s: 引数 #%d の型が間違っています: 実数または複素数の行列、疎行列または関数を"
-"指定してください.\n"
+msgstr "%s: 引数 #%d の型が間違っています: 実数または複素数の行列、疎行列または関数を指定してください.\n"
 
 #
 # File: macros/qmr.sci, line: 97
@@ -608,40 +601,31 @@ msgstr "%s: 入力引数 #%d で不正な値: 機能 %s の置き換えを想定
 msgid ""
 "%s: Wrong type for input argument #%d: A transpose of the function %s "
 "expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 関数 %s の転置を指定してください.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 関数 %s の転置を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s : Calling qmr(A,Ap) is deprecated. Please see qmr documentation for more "
 "details.\n"
-msgstr ""
-"%s : qmr(A,Ap) のコールは廃止されています. 詳細については, qmr のドキュメント"
-"を参照ください.\n"
+msgstr "%s : qmr(A,Ap) のコールは廃止されています. 詳細については, qmr のドキュメントを参照ください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A real or complex, full or sparse "
 "column vector expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています:  実数または複素数の通常または疎の列ベ"
-"クトルを指定してください.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています:  実数または複素数の通常または疎の列ベクトルを指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A real or complex, full or sparse, "
 "square matrix or a function expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 実数または複素数の通常または疎の正方行"
-"列または関数を指定してください.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 実数または複素数の通常または疎の正方行列または関数を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s : Calling qmr(...,M1,M1p) is deprecated. Please see qmr documentation for "
 "more details.\n"
-msgstr ""
-"%s : qmr(...,M1,M1p) のコールは廃止されています. 詳細については, qmr のドキュ"
-"メントを参照ください.\n"
+msgstr "%s : qmr(...,M1,M1p) のコールは廃止されています. 詳細については, qmr のドキュメントを参照ください.\n"
 
 #, c-format
 msgid ""
@@ -654,34 +638,28 @@ msgid ""
 "%s: Wrong prototype of input argument #%d: If M1 is function, use the header "
 "M1(x,t) instead M1(x).\n"
 msgstr ""
-"%s: 入力引数 #%d のプロトタイプが間違っています: M1 が関数の場合, M1(x)ではな"
-"くヘッダ M1(x,t) を使用してください.\n"
+"%s: 入力引数 #%d のプロトタイプが間違っています: M1 が関数の場合, M1(x)ではなくヘッダ M1(x,t) を使用してください.\n"
 
 #, c-format
 msgid ""
 "%s : Calling qmr(...,M2,M2p) is deprecated. Please see qmr documentation for "
 "more details.\n"
-msgstr ""
-"%s : qmr(...,M2,M2p) のコールは廃止されています. 詳細については, qmr のドキュ"
-"メントを参照ください.\n"
+msgstr "%s : qmr(...,M2,M2p) のコールは廃止されています. 詳細については, qmr のドキュメントを参照ください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong prototype of input argument #%d: If M2 is function, use the header "
 "M2(x,t) instead M2(x).\n"
 msgstr ""
-"%s: 入力引数 #%d のプロトタイプが間違っています: M12が関数の場合, M2(x)ではな"
-"くヘッダ M2(x,t) を使用してください.\n"
+"%s: 入力引数 #%d のプロトタイプが間違っています: M12が関数の場合, M2(x)ではなくヘッダ M2(x,t) を使用してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real scalar expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 実数スカラーを指定してください.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 実数スカラーを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
+msgstr "%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
@@ -689,5 +667,4 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定�
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: '%s' または '%s' を指定してください.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: '%s' または '%s' を指定してください.\n"

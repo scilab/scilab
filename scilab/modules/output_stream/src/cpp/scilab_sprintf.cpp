@@ -370,11 +370,10 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
     int iLoop = 1;
     if (token.size() > 1)
     {
-        std::list<TokenDef*>::iterator it = std::next(token.begin());
-        iLoop = in[(*it)->pos]->getAs<types::GenericType>()->getRows();
-        for (; it != token.end(); ++it)
+        iLoop = in[first]->getAs<types::GenericType>()->getRows();
+        for (int i = first+1; i < in.size(); ++i)
         {
-            iLoop = std::min(iLoop, in[(*it)->pos]->getAs<types::GenericType>()->getRows());
+            iLoop = std::min(iLoop, in[i]->getAs<types::GenericType>()->getRows());
         }
 
         if (*_piNewLine || (*_piOutputRows) > 1)
@@ -382,14 +381,6 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
             (*_piOutputRows) *= iLoop;
         }
     }
-
-
-    //if ((token.size() - 1) != inPos.size())
-    //{
-    //    Scierror(999, _("%s: Wrong number of input arguments: at most %d expected.\n"), funcname.data(), token.size() - 1);
-    //    *_piOutputRows = 0;
-    //    return nullptr;
-    //}
 
     std::wostringstream oFirstOutput;
     for (int j = 0; j < iLoop; j++)

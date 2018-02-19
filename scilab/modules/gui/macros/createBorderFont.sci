@@ -25,33 +25,33 @@ function ret = createBorderFont(varargin)
 
     fontname = varargin(1);
     if typeof(fontname) <> "string" | size(fontname, "*") <> 1 then
-        error(999, msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"), "createBorderFont", 1));
+        error(msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"), "createBorderFont", 1));
     end
 
     fontsize = varargin(2);
     if typeof(fontsize) <> "constant" | size(fontsize, "*") <> 1 then
-        error(999, msprintf(_("%s: Wrong type for input argument #%d: A integer value expected.\n"), "createBorderFont", 2));
+        error(msprintf(_("%s: Wrong type for input argument #%d: A integer value expected.\n"), "createBorderFont", 2));
     end
 
     if rhs > 2 then
         fontweight = varargin(3);
         if typeof(fontweight) <> "string" | size(fontweight, "*") <> 1 then
-            error(999, msprintf(_("%s: Wrong type for input argument #%d: A integer value expected.\n"), "createBorderFont", 3));
+            error(msprintf(_("%s: Wrong type for input argument #%d: A integer value expected.\n"), "createBorderFont", 3));
         end
 
         if fontweight <> ["normal", "bold"] then
-            error(999, msprintf(_("%s: Wrong value for input argument #%d: %s or %s expected.\n"), "createBorderFont", 3, "normal", "bold"));
+            error(msprintf(_("%s: Wrong value for input argument #%d: %s or %s expected.\n"), "createBorderFont", 3, "normal", "bold"));
         end
     end
 
     if rhs > 3 then
         fontangle = varargin(4);
         if typeof(fontangle) <> "string" | size(fontangle, "*") <> 1 then
-            error(999, msprintf(_("%s: Wrong type for input argument #%d: A integer value expected.\n"), "createBorderFont", 4));
+            error(msprintf(_("%s: Wrong type for input argument #%d: A integer value expected.\n"), "createBorderFont", 4));
         end
 
         if fontangle <> ["normal", "italic"] then
-            error(999, msprintf(_("%s: Wrong value for input argument #%d: %s or %s expected.\n"), "createBorderFont", 4, "normal", "italic"));
+            error(msprintf(_("%s: Wrong value for input argument #%d: %s or %s expected.\n"), "createBorderFont", 4, "normal", "italic"));
         end
     end
 

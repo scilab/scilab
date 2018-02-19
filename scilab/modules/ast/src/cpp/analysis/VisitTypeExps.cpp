@@ -26,16 +26,16 @@ void AnalysisVisitor::visit(ast::DoubleExp & e)
         e.accept(cv.getExec());
         cv.getExec().setResult(nullptr);
     }
-    types::Double * pDbl = static_cast<types::Double *>(e.getConstant());
-    if (pDbl->isComplex())
+    types::GenericType* pGT = e.getConstant()->getAs<types::GenericType>();
+    if (pGT->isComplex())
     {
-        Result & res = e.getDecorator().setResult(TIType(dm.getGVN(), TIType::COMPLEX, pDbl->getRows(), pDbl->getCols()));
+        Result & res = e.getDecorator().setResult(TIType(dm.getGVN(), TIType::COMPLEX, pGT->getRows(), pGT->getCols()));
         res.getConstant() = e.getConstant();
         setResult(res);
     }
     else
     {
-        Result & res = e.getDecorator().setResult(TIType(dm.getGVN(), TIType::DOUBLE, pDbl->getRows(), pDbl->getCols()));
+        Result & res = e.getDecorator().setResult(TIType(dm.getGVN(), TIType::DOUBLE, pGT->getRows(), pGT->getCols()));
         res.getConstant() = e.getConstant();
         setResult(res);
     }
@@ -49,8 +49,9 @@ void AnalysisVisitor::visit(ast::BoolExp & e)
         e.accept(cv.getExec());
         cv.getExec().setResult(nullptr);
     }
-    types::Bool * pBool = static_cast<types::Bool *>(e.getConstant());
-    Result & res = e.getDecorator().setResult(TIType(dm.getGVN(), TIType::BOOLEAN, pBool->getRows(), pBool->getCols()));
+
+    types::GenericType* pGT = e.getConstant()->getAs<types::GenericType>();
+    Result & res = e.getDecorator().setResult(TIType(dm.getGVN(), TIType::BOOLEAN, pGT->getRows(), pGT->getCols()));
     res.getConstant() = e.getConstant();
     setResult(res);
 }
@@ -63,8 +64,8 @@ void AnalysisVisitor::visit(ast::StringExp & e)
         e.accept(cv.getExec());
         cv.getExec().setResult(nullptr);
     }
-    types::String * pStr = static_cast<types::String *>(e.getConstant());
-    Result & res = e.getDecorator().setResult(TIType(dm.getGVN(), TIType::STRING, pStr->getRows(), pStr->getCols()));
+    types::GenericType* pGT = e.getConstant()->getAs<types::GenericType>();
+    Result & res = e.getDecorator().setResult(TIType(dm.getGVN(), TIType::STRING, pGT->getRows(), pGT->getCols()));
     res.getConstant() = e.getConstant();
     setResult(res);
 }

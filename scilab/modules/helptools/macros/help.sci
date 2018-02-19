@@ -32,14 +32,16 @@ function help(varargin)
             end
 
             if type(key) <> 10 then
-                error(999,msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"),"help",1));
+                error(msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"),"help",1));
             end
 
             // Search a function name
             key=stripblanks(key)
 
             global %helps
-            if or(part(key,1)==["(",")","[","]","{","}","%","''","""",":","*","/","\",".","<",">","&","^","|","~","+","-"]) & exists(key)==0 then
+            symbols = strsplit("()[]{}%''"":*/\.<>&^|~+-")';
+            exceptions = ["%t" "%T" "%f" "%F" "%onprompt"]; // http://bugzilla.scilab.org/15356
+            if or(part(key,1)==symbols) & exists(key)==0 & and(key~=exceptions) then
                 key="symbols";
             end
 

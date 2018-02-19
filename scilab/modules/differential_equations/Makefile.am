@@ -143,7 +143,7 @@ libscidifferential_equations_algo_la_CPPFLAGS = $(libscidifferential_equations_l
 CHECK_SRC= $(DIFFERENTIAL_EQUATIONS_C_SOURCES) $(DIFFERENTIAL_EQUATIONS_CPP_SOURCES)
 INCLUDE_FLAGS = $(libscidifferential_equations_la_CPPFLAGS)
 
-libscidifferential_equations_la_LIBADD = libscidifferential_equations-algo.la
+libscidifferential_equations_la_LIBADD = libscidifferential_equations-algo.la $(FLIBS)
 
 
 #### Target ######

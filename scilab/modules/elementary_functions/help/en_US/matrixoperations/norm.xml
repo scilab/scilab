@@ -13,14 +13,20 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="norm" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+    xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+    xmlns:scilab="http://www.scilab.org" xml:id="norm" xml:lang="en">
     <refnamediv>
         <refname>norm</refname>
-        <refpurpose>matrix norm</refpurpose>
+        <refpurpose>norms of a vector or a matrix</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>[y]=norm(x [,flag])</synopsis>
+        <synopsis>
+        y = norm(x)
+        y = norm(x, normType)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -28,22 +34,36 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>real or complex vector or matrix (full or sparse
-                        storage)
+                    <para>vector or matrix of real or complex numbers (full or sparse storage)
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>flag</term>
+                <term>normType</term>
                 <listitem>
-                    <para>string (type of norm) (default value =2)</para>
+                    <para>
+                        <itemizedlist>
+                            <listitem>
+                                For a matrix <literal>x</literal>: a number among
+                                <literal>1, 2, %inf, -%inf</literal>, or a word among
+                                <literal>"inf"</literal> (or <literal>"i"</literal>) or
+                                <literal>"fro"</literal> (or <literal>"f"</literal>).
+                            </listitem>
+                            <listitem>
+                                For a vector <literal>x</literal>: any number or <literal>%inf</literal>,
+                                <literal>-%inf</literal>; or a word <literal>"inf"</literal>
+                                (<literal>"i"</literal>), <literal>"fro"</literal> (<literal>"f"</literal>).
+                            </listitem>
+                        </itemizedlist>
+                    </para>
+                    Default value = 2.
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>y</term>
                 <listitem>
                     <para>
-                        norm
+                        norm: single positive real number.
                     </para>
                 </listitem>
             </varlistentry>
@@ -75,16 +95,15 @@
                 <term>norm(x,'inf'),norm(x,%inf)</term>
                 <listitem>
                     <para>
-                        The infinity norm of <literal>x</literal> (the largest row sum
-                        : <literal>max(sum(abs(x),'c'))</literal> ).
+                        The infinity norm of <literal>x</literal> (the largest row sum :
+                        <literal>max(sum(abs(x),'c'))</literal> ).
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>norm(x,'fro')</term>
                 <listitem>
-                    <para>Frobenius norm i.e.
-                        <literal>sqrt(sum(diag(x'*x)))</literal>.
+                    <para>Frobenius norm i.e. <literal>sqrt(sum(diag(x'*x)))</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -95,7 +114,7 @@
                 <term>norm(v,p)</term>
                 <listitem>
                     <para>
-                        The l_p norm (<literal>sum(v(i)^p))^(1/p)</literal> .
+                        The l_p norm <literal>sum(abs(v(i))^p)^(1/p)</literal> .
                     </para>
                 </listitem>
             </varlistentry>
@@ -120,13 +139,13 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-A=[1,2,3];
+A = [1,2,3];
 norm(A,1)
 norm(A,'inf')
-A=[1,2;3,4]
-max(svd(A))-norm(A)
+A = [1,2;3,4]
+max(svd(A)) - norm(A)
 
-A=sparse([1 0 0 33 -1])
+A = sparse([1 0 0 33 -1])
 norm(A)
  ]]></programlisting>
     </refsection>

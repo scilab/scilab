@@ -1,4 +1,5 @@
 //<-- CLI SHELL MODE -->
+//<-- NO CHECK REF -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA
@@ -27,7 +28,7 @@ assert_checkerror('newfun(1,[fptr_cos,fptr_cos])', errmsg);
 
 function test_1(x)
     newfun(x, "cos");
-    assert_checkequal(eval(x + "(1)"), cos(1));
+    assert_checkequal(evstr(x + "(1)"), cos(1));
 endfunction
 
 test_1("cosAlias");
@@ -36,7 +37,7 @@ assert_checktrue(clearfun("cosAlias"));
 
 function test_2(x)
     test_1(x);
-    assert_checkequal(eval(x + "(1)"), cos(1));
+    assert_checkequal(evstr(x + "(1)"), cos(1));
 endfunction
 
 test_2("cosAlias");
@@ -45,7 +46,7 @@ assert_checktrue(clearfun("cosAlias"));
 
 function test_3(x)
     test_2(x);
-    assert_checkequal(eval(x + "(1)"), cos(1));
+    assert_checkequal(evstr(x + "(1)"), cos(1));
 endfunction
 
 test_3("cosAlias");

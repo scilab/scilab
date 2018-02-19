@@ -21,7 +21,10 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="Continuous_pal">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+    xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+    xmlns:scilab="http://www.scilab.org" xml:id="Continuous_pal" xml:lang="en_US">
     <refnamediv>
         <refname>Continuous_pal</refname>
         <refpurpose>Continuous time systems palette</refpurpose>
@@ -29,61 +32,105 @@
     <refsection>
         <title>Block Screenshot</title>
         <para>
+            <link linkend="CLINDUMMY_f">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="CLINDUMMY_f" fileref="../../../../../../modules/xcos/images/palettes/CLINDUMMY_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="CLINDUMMY_f" fileref="../../../../images/palettes/CLINDUMMY_f.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="CLR">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="CLR" fileref="../../../../../../modules/xcos/images/palettes/CLR.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="CLR" fileref="../../../../images/palettes/CLR.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="CLSS">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="CLSS" fileref="../../../../../../modules/xcos/images/palettes/CLSS.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="CLSS" fileref="../../../../images/palettes/CLSS.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="DERIV">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="DERIV" fileref="../../../../../../modules/xcos/images/palettes/DERIV.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="DERIV" fileref="../../../../images/palettes/DERIV.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="INTEGRAL_f">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="INTEGRAL_f" fileref="../../../../../../modules/xcos/images/palettes/INTEGRAL_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="INTEGRAL_f" fileref="../../../../images/palettes/INTEGRAL_f.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="INTEGRAL_m">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="INTEGRAL_m" fileref="../../../../../../modules/xcos/images/palettes/INTEGRAL_m.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="INTEGRAL_m" fileref="../../../../images/palettes/INTEGRAL_m.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="PID">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="PID" fileref="../../../../../../modules/xcos/images/palettes/PID.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="PID" fileref="../../../../images/palettes/PID.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="TCLSS">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="TCLSS" fileref="../../../../../../modules/xcos/images/palettes/TCLSS.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="TCLSS" fileref="../../../../images/palettes/TCLSS.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="TIME_DELAY">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="TIME_DELAY" fileref="../../../../../../modules/xcos/images/palettes/TIME_DELAY.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="TIME_DELAY" fileref="../../../../images/palettes/TIME_DELAY.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="VARIABLE_DELAY">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="VARIABLE_DELAY" fileref="../../../../../../modules/xcos/images/palettes/VARIABLE_DELAY.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="VARIABLE_DELAY" fileref="../../../../images/palettes/VARIABLE_DELAY.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="PDE">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="PDE" fileref="../../../../../../modules/xcos/images/palettes/PDE.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="PDE" fileref="../../../../images/palettes/PDE.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
         </para>
     </refsection>
     <refsection id="Module_Continuous_pal">

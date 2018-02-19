@@ -6,6 +6,7 @@
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 // unit tests for routh_t() function
 // =============================================================================
@@ -23,12 +24,12 @@ assert_checkequal(num, 0);
 //Test with a transfert function
 h=1/P1;
 ref1=[1 77; 18 k;(1386-k)/18 0; k 0];
-numref1=numer(ref1);
+numref1= ref1;
 numref1(3)=1386 - k;
-denref1=denom(ref1);
+denref1 = ones(ref1);
 denref1(3)=18;
-assert_checkequal(numer(routh_t(h,k))/horner(denom(routh_t(h,k)),1),numref1/denref1);
-assert_checkequal(numer(routh_t(h,k,%t))/horner(denom(routh_t(h,k,%t)),1),numref1/denref1);
+assert_checkequal(routh_t(h,k).num/horner(routh_t(h,k).den,1),numref1/denref1);
+assert_checkequal(routh_t(h,k,%t).num/horner(routh_t(h,k,%t).den,1),numref1/denref1);
 assert_checkequal(routh_t(h,k,%f),[1 77; 18 k; 1386-k 0; 1386*k-k*k 0]);
 
 // One of the coefficients in the polynomial equals zero

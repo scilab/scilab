@@ -16,7 +16,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="numer">
     <refnamediv>
         <refname>numer</refname>
-        <refpurpose>分子</refpurpose>
+        <refpurpose>分子 <emphasis role="bold">(非推奨関数)</emphasis></refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
@@ -41,6 +41,10 @@
     </refsection>
     <refsection>
         <title>説明</title>
+        <warning>
+            This function is obsolete and will be removed from Scilab 6.1.0. Please use the
+            <literal>.num</literal> rational attribute instead.
+        </warning>
         <para>
             ユーティリティ関数. <literal>num=numer(R)</literal> は,
             有理関数行列<literal>R</literal>の
@@ -56,5 +60,17 @@
                 <link linkend="denom">denom</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revdescription>
+                    <literal>numer()</literal> is declared obsolete. The rational attribute
+                    <literal>.num</literal> must be used instead.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

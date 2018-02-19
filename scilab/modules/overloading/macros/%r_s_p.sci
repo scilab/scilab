@@ -10,7 +10,7 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function f=%r_s_p(f,m)
+function f = %r_s_p(f,m)
     //f = f-m,
     //f: transfer matrix, m : scalar or scalar matrix
     //author Serge Steer INRIA
@@ -33,8 +33,9 @@ function f=%r_s_p(f,m)
         den=matrix(den,szf)
     else
         //at leat one matrix is eye*x
-        if size(szf,"*")>2|size(szm,"*")>2 then
-            error(9)
+        if size(szf,"*")>2 | size(szm,"*")>2 then
+            msg = gettext("%s: Eye variable undefined in this context.\n")
+            error(msprintf(msg, "%r_s_p"));
         end
         if or(szf<0)&or(szm<0) then
             [num,den]=simp(num-m.*den,den)

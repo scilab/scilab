@@ -232,7 +232,7 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
             }
         }
 
-        //add varargin to macro scope 
+        //add varargin to macro scope
         pContext->put(m_Varargin, pL);
     }
     else if (rhs > m_inputArgs->size())
@@ -387,15 +387,17 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
             return Callable::Error;
         }
 
-        if (pOut->isList() == false || pOut->getAs<List>()->getSize() == 0)
+        if (pOut->isList() == false)
         {
             cleanCall(pContext, oldVal);
-            Scierror(999, _("Invalid index.\n"));
+            char* pstMacroName = wide_string_to_UTF8(getName().c_str());
+            Scierror(999, _("%s: Wrong type for %s: A list expected.\n"), pstMacroName, "Varargout");
+            FREE(pstMacroName);
             return Callable::Error;
         }
 
         List* pVarOut = pOut->getAs<List>();
-        const int size = std::min(pVarOut->getSize(), _iRetCount);
+        const int size = std::min(pVarOut->getSize(), _iRetCount - (int)out.size());
         for (int i = 0 ; i < size ; ++i)
         {
             InternalType* pIT = pVarOut->get(i);

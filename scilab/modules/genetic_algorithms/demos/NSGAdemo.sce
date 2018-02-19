@@ -58,8 +58,8 @@ function demo_NSGA()
 
     ga_params = init_param();
     // Parameters to adapt to the shape of the optimization problem
-    ga_params = add_param(ga_params, "minbound", eval("min_bd_" + funcname + "(2)"));
-    ga_params = add_param(ga_params, "maxbound", eval("max_bd_" + funcname + "(2)"));
+    ga_params = add_param(ga_params, "minbound", evstr("min_bd_" + funcname + "(2)"));
+    ga_params = add_param(ga_params, "maxbound", evstr("max_bd_" + funcname + "(2)"));
     ga_params = add_param(ga_params, "dimension", 2);
     ga_params = add_param(ga_params, "beta", 0);
     ga_params = add_param(ga_params, "delta", 0.1);
@@ -100,7 +100,7 @@ function demo_NSGA()
         if isdef("get_opti_"+funcname) then
             t = 0:0.01:1;
             for i=1:length(t)
-                y_t(i,:) = eval("get_opti_" + funcname + "(t(" + string(i) + "))");
+                y_t(i,:) = evstr("get_opti_" + funcname + "(t(" + string(i) + "))");
             end
             plot(y_t(:,1), y_t(:,2), "k-");
         end
@@ -117,7 +117,7 @@ function demo_NSGA()
         if isdef("get_opti_"+funcname) then
             t = 0 : 0.01 : 1;
             for i = 1 : size(t,"*")
-                y_t(i,:) = eval("get_opti_" + funcname + "(t(" + string(i) + "))");
+                y_t(i,:) = evstr("get_opti_" + funcname + "(t(" + string(i) + "))");
             end
             plot(y_t(:,1), y_t(:,2), "k-");
         end

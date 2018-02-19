@@ -21,7 +21,10 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="Zerocrossingdetection_pal">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml"
+    xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+    xmlns:scilab="http://www.scilab.org" xml:id="Zerocrossingdetection_pal" xml:lang="en_US">
     <refnamediv>
         <refname>Zerocrossingdetection_pal</refname>
         <refpurpose>Zero crossing detection palette</refpurpose>
@@ -29,26 +32,42 @@
     <refsection>
         <title>Block Screenshot</title>
         <para>
+            <link linkend="GENERAL_f">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="GENERAL_f" fileref="../../../../../../modules/xcos/images/palettes/GENERAL_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="GENERAL_f" fileref="../../../../images/palettes/GENERAL_f.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="NEGTOPOS_f">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="NEGTOPOS_f" fileref="../../../../../../modules/xcos/images/palettes/NEGTOPOS_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="NEGTOPOS_f" fileref="../../../../images/palettes/NEGTOPOS_f.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="POSTONEG_f">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="POSTONEG_f" fileref="../../../../../../modules/xcos/images/palettes/POSTONEG_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="POSTONEG_f" fileref="../../../../images/palettes/POSTONEG_f.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="ZCROSS_f">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="ZCROSS_f" fileref="../../../../../../modules/xcos/images/palettes/ZCROSS_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="ZCROSS_f" fileref="../../../../images/palettes/ZCROSS_f.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
         </para>
     </refsection>
     <refsection id="Module_Zerocrossingdetection_pal">

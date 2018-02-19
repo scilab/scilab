@@ -13,14 +13,20 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="diag" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="diag" xml:lang="en">
     <refnamediv>
         <refname>diag</refname>
         <refpurpose>diagonal including or extracting</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>[y]=diag(vm, [k])</synopsis>
+        <synopsis>
+           y = diag(vm)
+           y = diag(vm, k)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -70,8 +76,7 @@
             If <literal>vm</literal> is a sparse matrix
             <literal>diag(vm,k)</literal> returns a sparse matrix.
         </para>
-        <para>To construct a diagonal linear system, use
-            <literal>sysdiag</literal>.
+        <para>To construct a diagonal linear system, use <literal>sysdiag</literal>.
         </para>
         <para>
             Note that <literal>eye(A).*A</literal> returns a diagonal matrix
@@ -99,10 +104,19 @@ m=5;diag(-m:m) +  diag(ones(2*m,1),1) +diag(ones(2*m,1),-1)
         <title>See also</title>
         <simplelist type="inline">
             <member>
+                <link linkend="toeplitz">toeplitz</link>
+            </member>
+            <member>
+                <link linkend="eye">eye</link>
+            </member>
+            <member>
                 <link linkend="sysdiag">sysdiag</link>
             </member>
             <member>
-                <link linkend="sparse">sparse</link>
+                <link linkend="spec">spec</link>
+            </member>
+            <member>
+                <link linkend="bdiag">bdiag</link>
             </member>
         </simplelist>
     </refsection>

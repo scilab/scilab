@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-10-10 13:12+0000\n"
-"Last-Translator: Webish <Unknown>\n"
+"PO-Revision-Date: 2018-01-08 15:58+0000\n"
+"Last-Translator: Wesh <Unknown>\n"
 "Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18544)\n"
 "Language: \n"
 
 #, c-format
@@ -34,7 +34,7 @@ msgstr "%s无法获取第%d个参数"
 
 #, c-format
 msgid "%s: No more memory to allocated variable"
-msgstr ""
+msgstr "%s：创建变量时内存不足"
 
 #, c-format
 msgid "%s: Unable to create variable in Scilab memory"
@@ -82,7 +82,7 @@ msgstr "%s：输入参数的数目错误：应该为%d个。\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr "%s：输入参数的数目出错：应该为%d到%d个。\n"
+msgstr "%s：输入参数的数目错误：应该为%d到%d个。\n"
 
 msgid "matrix"
 msgstr "矩阵"
@@ -179,18 +179,18 @@ msgstr "%s：无法获从变量\"%s\"获取维数"
 
 #, c-format
 msgid "Invalid type pointer in '%s'\n"
-msgstr ""
+msgstr "无效类型指针‘'%s’\n"
 
 msgid "double matrix"
 msgstr "双精度矩阵"
 
 #, c-format
 msgid "%s: %ls"
-msgstr ""
+msgstr "%s: %ls"
 
 #, c-format
 msgid "%s: No more memory to allocate variable"
-msgstr ""
+msgstr "%s：创建变量时内存不足"
 
 msgid "API Error:\n"
 msgstr "API错误：\n"
@@ -200,7 +200,7 @@ msgid "\tin %s\n"
 msgstr "\t在%s中\n"
 
 msgid "handle matrix"
-msgstr ""
+msgstr "handle矩阵"
 
 #, c-format
 msgid "%s: Bad call to get a non complex matrix"
@@ -237,17 +237,17 @@ msgstr "API_ERROR_GET_POLY_IN_LIST"
 
 #, c-format
 msgid "%ls: Unrecognized optional arguments %ls.\n"
-msgstr ""
+msgstr "%ls：无法识别的可选参数%ls。\n"
 
 msgid "Optional argument list is empty.\n"
-msgstr ""
+msgstr "可选参数列表为空。\n"
 
 msgid "Optional arguments list: \n"
-msgstr ""
+msgstr "可选参数列表： \n"
 
 #, c-format
 msgid "and %s.\n"
-msgstr ""
+msgstr "和%s。\n"
 
 msgid "pointer"
 msgstr "指针"

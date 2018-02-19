@@ -22,7 +22,7 @@ function CreateDir_test()
         DIR_TST = TMPDIR + "/dir_" + TST_LANG(i, 2);
         mkdir(DIR_TST);
         if ~isdir(DIR_TST) then
-            error(999, "directory did not create");
+            error("directory did not create");
         end
         FILENAME_TST = DIR_TST + "/" + "file_" + TST_LANG(i, 2);
         STR_TST = "str_" + TST_LANG(i, 2) + " : " + TST_LANG(i, 1);
@@ -30,7 +30,7 @@ function CreateDir_test()
         mfprintf(fd, "%s", STR_TST);
         mclose(fd);
         if ~isfile(FILENAME_TST) then
-            error(999, "file  did not create");
+            error("file  did not create");
         end
     end
 endfunction

@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ru" xml:id="Graphics">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ru" xml:id="Graphics">
     <refnamediv>
         <refname>Графики: введение</refname>
         <refpurpose>обзор библиотеки графиков</refpurpose>
@@ -431,7 +434,7 @@
                 </term>
                 <listitem>
                     <para>
-                        Проекция из трёхмерного построения на двумерное после того, как трёхмерное построено
+                        Проекция из трёхмерного построения на двумерное после того, как трёхмерное построено.
                     </para>
                     <para>
                         <emphasis role="bold">Пример:</emphasis>
@@ -506,7 +509,7 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Rectangle plotting</title>
+        <title>Построение прямоугольника</title>
         <variablelist>
             <varlistentry>
                 <term>
@@ -535,7 +538,7 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Arc plotting</title>
+        <title>Построение дуги</title>
         <variablelist>
             <varlistentry>
                 <term>
@@ -696,10 +699,7 @@
                 </term>
                 <listitem>
                     <para>
-                        Установка равного масштаба осей графика (не меняет размер окна)
-                        <warning>
-                            Эта функция устарела.
-                        </warning>
+                        Установка равного масштаба осей графика
                     </para>
                 </listitem>
             </varlistentry>

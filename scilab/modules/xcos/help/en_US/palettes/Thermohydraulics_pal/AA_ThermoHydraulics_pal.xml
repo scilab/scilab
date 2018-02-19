@@ -21,7 +21,10 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="ThermoHydraulics_pal">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="ThermoHydraulics_pal" xml:lang="en_US">
     <refnamediv>
         <refname>ThermoHydraulics_pal</refname>
         <refpurpose>Thermal-Hydraulics toolbox</refpurpose>
@@ -29,36 +32,60 @@
     <refsection>
         <title>Block Screenshot</title>
         <para>
+            <link linkend="Bache">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="Bache" fileref="../../../../../../modules/xcos/images/palettes/Bache.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="Bache" fileref="../../../../images/palettes/Bache.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="PerteDP">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="PerteDP" fileref="../../../../../../modules/xcos/images/palettes/PerteDP.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="PerteDP" fileref="../../../../images/palettes/PerteDP.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="PuitsP">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="PuitsP" fileref="../../../../../../modules/xcos/images/palettes/PuitsP.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="PuitsP" fileref="../../../../images/palettes/PuitsP.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="SourceP">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="SourceP" fileref="../../../../../../modules/xcos/images/palettes/SourceP.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="SourceP" fileref="../../../../images/palettes/SourceP.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="VanneReglante">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="VanneReglante" fileref="../../../../../../modules/xcos/images/palettes/VanneReglante.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="VanneReglante" fileref="../../../../images/palettes/VanneReglante.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="VanneReglante">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="VanneReglante" fileref="../../../../../../modules/xcos/images/palettes/Flowmeter.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="VanneReglante" fileref="../../../../images/palettes/Flowmeter.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
         </para>
     </refsection>
     <refsection id="Module_ThermoHydraulics_pal">

@@ -10,6 +10,9 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function b=%s_f_cblock(a,b)
-    if a<>[] then error(44,1),end
+function b = %s_f_cblock(a,b)
+    if a<>[] then
+        msg = _("%s: Wrong argument #%d.\n")
+        error(msprintf(msg, "%s_f_cblock", 1))
+    end
 endfunction

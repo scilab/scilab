@@ -324,9 +324,13 @@ void PrettyPrintVisitor::visit(const DoubleExp & e)
                    << static_cast<types::Double *>(pIL->getStep())->get(0) << L":"
                    << static_cast<types::Double *>(pIL->getEnd())->get(0);
         }
-        else
+        else if (pIT->isDouble())
         {
             printInternalType<types::Double>(stream, pIT);
+        }
+        else
+        {
+            stream << pIT->getTypeStr();
         }
     }
     else

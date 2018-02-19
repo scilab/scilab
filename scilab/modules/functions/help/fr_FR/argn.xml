@@ -1,16 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="argn">
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ????-2008 - INRIA
+ * Copyright (C) 2018 - Samuel GOUGEON
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:lang="fr" xml:id="argn">
     <refnamediv>
         <refname>argn</refname>
-        <refpurpose>nombre d'arguments d'appel d'une fonction  </refpurpose>
+        <refpurpose>nombre effectif d'arguments d'entrée reçus / attendus en sortie d'une fonction</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>[lhs [,rhs] ]=argn()
-            lhs=argn(1)
-            rhs=argn(2)
+        <synopsis>
+           [lhs, rhs] = argn()
+            lhs = argn(1)
+            rhs = argn(2)
         </synopsis>
     </refsynopsisdiv>
+    <refsection role="arguments">
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>lhs</term>
+                <listitem>
+                <para>
+                    Nombre d'arguments de sortie attendus. Vaut 1 (au lieu de 0) si la fonction
+                    a été appelée sans argument de sortie.
+                </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>rhs</term>
+                <listitem>
+                <para>
+                    Nombre d'arguments passés en entrée de la fonction Scilab considérée.
+                </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
     <refsection>
         <title>Description</title>
         <para>
@@ -18,26 +59,172 @@
             Elle donne le nombre effectif (au moment de l'appel) d'arguments d'entrée <varname>rhs</varname>
             et de sortie <varname>lhs</varname>. Elle permet d'utiliser des arguments optionnels.
         </para>
-        <para>
-            <note>
-                Notez que <varname>lhs</varname> est toujours supérieur ou égal à 1. Autrement dit, même si une
-                fonction est appelée sans avoir mentionné un argument de sortie, <varname>lhs</varname> sera égal à 1.
-            </note>
-        </para>
+        <warning>
+            Il n'est pas possible de savoir depuis une fonction Scilab si celle-ci a été appelée
+            sans aucun argument de sortie attendu. Le cas échéant, <varname>lhs</varname> vaut 1,
+            au lieu de 0.
+        </warning>
+        <warning>
+            L'existence d'un argument d'entrée nommé (hors de la portée d'un éventuel varargin)
+            peut être testée avec <literal>isdef(..,"l")</literal> de manière plus robuste
+            qu'en utilisant <literal>argn()</literal>. Un exemple figure ci-après.
+        </warning>
     </refsection>
     <refsection>
         <title>Exemples</title>
+        <para>Exemples élémentaires :</para>
         <programlisting role="example"><![CDATA[
-function concat=maFonction(nom,option)
-  [lhs,rhs]=argn(0);
-  disp(lhs);
+function [res, res2] = test(a, b)
+  [lhs, rhs] = argn()
+  [res, res2] = ("abc", %pi);
+  disp([lhs rhs])  // <<<<<<<<<<<
+endfunction
+
+test();
+test(4.321);
+test(3, -1);
+test(3, -1, a=0);
+test(3, -1, c=8);
+
+out1 = test();
+[o1, o2] = test(%pi);
+ ]]></programlisting>
+    <screen><![CDATA[
+--> test();
+   1.   0.
+
+--> test(4.321);
+   1.   1.
+
+--> test(3, -1);
+   1.   2.
+
+--> test(3, -1, a=0);
+Wrong number of input arguments.
+
+--> test(3, -1, c=8);
+Wrong number of input arguments.
+
+--> out1 = test();
+   1.   0.
+
+--> [o1, o2] = test(%pi);
+   2.   1.
+]]></screen>
+    <para/>
+    <para>Avec varargin ou/et varargout:</para>
+        <programlisting role="example"><![CDATA[
+function [res, varargout] = test(a, varargin)
+  res = "abc";
+  varargout = list(%i);
+  [lhs, rhs] = argn()
+  disp([lhs rhs])  // <<<<<<<<<<<
+endfunction
+
+test();
+test(4.321);
+test(3, -1);
+test(3, -1, a=0);
+test(3, -1, 8);
+
+out1 = test();
+[o1, o2] = test(%pi);
+[o1, o2, o3] = test(%pi);
+ ]]></programlisting>
+    <screen><![CDATA[
+--> test();
+   1.   0.
+
+--> test(4.321);
+   1.   1.
+
+--> test(3, -1);
+   1.   2.
+
+--> test(3, -1, a=0);
+   1.   3.
+
+--> test(3, -1, 8);
+   1.   3.
+
+--> out1 = test();
+   1.   0.
+
+--> [o1, o2] = test(%pi);
+   2.   1.
+
+--> [o1, o2, o3] = test(%pi);
+   3.   1.
+]]></screen>
+    <para/>
+    <para>Test robuste de l'existence d'un argument d'entrée:</para>
+        <programlisting role="example"><![CDATA[
+function res = test(a, b, varargin)
+    res = ""
+    if isdef("a","l")
+        res = "a passed."
+    end
+    if isdef("b","l")
+        res = res + " b passed."
+    end
+    if isdef("c","l")
+        res = res + " c passed."
+    end
+endfunction
+clc
+test()
+test(4.321)
+test(4.321, %z)
+test(b=3)
+test(c=3)
+test(-1, c=3)
+test(-1, a=2, c=3)
+test(b=-1, a=2, c=3)
+ ]]></programlisting>
+    <screen><![CDATA[
+--> test()
+ ans  =
+
+--> test(4.321)
+ ans  =
+ a passed.
+
+--> test(4.321, %z)
+ ans  =
+ a passed. b passed.
+
+--> test(b=3)
+ ans  =
+  b passed.
+
+--> test(c=3)
+ ans  =
+  c passed.
+
+--> test(-1, c=3)
+ ans  =
+ a passed. c passed.
+
+--> test(-1, a=2, c=3) // Les arguments passés via varargin sont toujours anonymes
+ ans  =
+ a passed.
+
+--> test(b=-1, a=2, c=3)
+ ans  =
+ a passed. b passed.
+]]></screen>
+    <para/>
+    <para>Autre usage fréquent:</para>
+        <programlisting role="example"><![CDATA[
+function concat = maFonction(nom,option)
+  [lhs, rhs] = argn()
   if rhs <= 1 then
-  	 option="mon argument optionnel";
+     option = "mon argument optionnel";
   end
   if rhs == 0 then
-  	 error("Au moins un argument attendu");
+     error("Au moins un argument attendu");
   end
-  concat=nom+" "+option;
+  concat = nom+" "+option;
 endfunction
  ]]></programlisting>
     </refsection>
@@ -45,10 +232,19 @@ endfunction
         <title>Voir aussi</title>
         <simplelist type="inline">
             <member>
-                <link linkend="function">function</link>
+                <link linkend="isdef">isdef</link>
             </member>
             <member>
                 <link linkend="varargin">varargin</link>
+            </member>
+            <member>
+                <link linkend="varargout">varargout</link>
+            </member>
+            <member>
+                <link linkend="macrovar">macrovar</link>
+            </member>
+            <member>
+                <link linkend="function">function</link>
             </member>
         </simplelist>
     </refsection>

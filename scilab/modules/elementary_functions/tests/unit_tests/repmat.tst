@@ -6,6 +6,7 @@
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 assert_checkequal(repmat(1:3,2,2),[1,2,3,1,2,3;1,2,3,1,2,3]);
 assert_checkequal(repmat(1+2*%i,2),[ 1+%i*2, 1+%i*2; 1+%i*2, 1+%i*2]);
@@ -18,8 +19,8 @@ assert_checkequal(repmat("Scilab",3,2),["Scilab","Scilab";"Scilab","Scilab";"Sci
 H=repmat([1/%s;2/(%s+1)],1,3);
 s=poly(0,"s");
 H_ref=[1/s,1/s,1/s;2/(1+s),2/(1+s),2/(1+s)];
-assert_checkequal(numer(H),numer(H_ref));
-assert_checkequal(denom(H),denom(H_ref));
+assert_checkequal(H.num, H_ref.num);
+assert_checkequal(H.den, H_ref.den);
 assert_checkequal(repmat([],2,2),[]);
 B_ref=int8(matrix([1;3;7;15;31;63;127;55;1;3;7;15;31;63;127;55], [2 4 2]));
 assert_checkequal(repmat(int8([1,7,31,127;3,15,63,55]),1,1,2),B_ref);

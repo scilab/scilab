@@ -10,12 +10,15 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function x=%sp_l_sp(a,b)
+function x = %sp_l_sp(a,b)
     // a\b , a sparse b sparse
 
     [ma,na]=size(a)
     [mb,nb]=size(b)
-    if ma<>mb then error(12),end
+    if ma<>mb then
+        msg = _("%s: Arguments #%d and #%d: Same numbers of rows expected.\n")
+        error(msprintf(msg, "%sp_l_sp", 1, 2))
+    end
     if ma<>na then
         b=a'*b;a=a'*a
     end

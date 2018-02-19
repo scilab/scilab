@@ -11,18 +11,19 @@ msgstr ""
 "PO-Revision-Date: 2011-10-20 14:06+0000\n"
 "Last-Translator: Grzegorz Szostek <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
-"Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18544)\n"
+"Language: pl\n"
 
 #, c-format
 msgid "%s: The file %s does not exist.\n"
 msgstr "%s: Plik %s nie istnieje.\n"
 
 #, c-format
-msgid "%s: Wrong input argument #%d: Path to a scilab script file expected.\n"
+msgid ""
+"%s: Wrong input argument #%d: Path to a scilab script file expected.\n"
 msgstr ""
 "%s: Nieprawidłowy argument wejściowy #%d: Oczekiwano ścieżki do pliku "
 "skryptu Scilab.\n"

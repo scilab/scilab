@@ -13,17 +13,20 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="range" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="range" xml:lang="pt">
     <refnamediv>
         <refname>range</refname>
         <refpurpose>Imagem (gerado) de A^k</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title> Seqüência de Chamamento</title>
+        <title> SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>[X,dim]=range(A,k)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>A</term>
@@ -47,18 +50,18 @@
             <varlistentry>
                 <term>dim</term>
                 <listitem>
-                    <para>inteiro (dimensão de subespaço)</para>
+                    <para>inteiro (dimensÃ£o de subespaÃ§o)</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            Computação da imagem de <literal>A^k</literal> ; as primeiras dim
-            colunas de <literal>X</literal> geram a imagem de <literal>A^k</literal>.
-            As últimas linhas de <literal>X</literal> geram o complemento ortogonal da
-            imagem. <literal>X*X'</literal> é a matriz identidade.
+            ComputaÃ§Ã£o da imagem de <literal>A^k</literal> ; as primeiras dim
+            linhas de <literal>X</literal> geram a imagem de <literal>A^k</literal>.
+            As Ãºltimas linhas de <literal>X</literal> geram o complemento ortogonal da
+            imagem. <literal>X*X'</literal> Ã© a matriz identidade.
         </para>
     </refsection>
     <refsection>
@@ -67,19 +70,19 @@
 A=rand(4,2)*rand(2,4);   // 4 vetores colunas, 2 independentes.
 [X,dim]=range(A,1);dim   // computando a imagem
 
-y1=A*rand(4,1);          //um vetor que está na imagem de A
-y2=rand(4,1);            //um vetor que não está na imagem de A
-norm(X(dim+1:$,:)*y1)    //as últimas entradas são zeros, y1 está na imagem de A
-norm(X(dim+1:$,:)*y2)    //as últimas entradas não são zeros
+y1=A*rand(4,1);          //um vetor que estÃ¡ na imagem de A
+y2=rand(4,1);            //um vetor que nÃ£o estÃ¡ na imagem de A
+norm(X(dim+1:$,:)*y1)    //as Ãºltimas entradas sÃ£o zeros, y1 estÃ¡ na imagem de A
+norm(X(dim+1:$,:)*y2)    //as Ãºltimas entradas nÃ£o sÃ£o zeros
 
-I=X(1:dim,:)'            //I é uma base para a imagem
-coeffs=X(1:dim,:)*y1     //componentes de y1 relativos à base I
+I=X(1:dim,:)'            //I Ã© uma base para a imagem
+coeffs=X(1:dim,:)*y1     //componentes de y1 relativos Ã  base I
 
 norm(I*coeffs-y1)        //verificando
  ]]></programlisting>
     </refsection>
     <refsection>
-        <title> Ver Também </title>
+        <title> Ver TambÃ©m </title>
         <simplelist type="inline">
             <member>
                 <link linkend="fullrfk">fullrfk</link>
@@ -90,9 +93,9 @@ norm(I*coeffs-y1)        //verificando
         </simplelist>
     </refsection>
     <refsection>
-        <title> Função Usada</title>
+        <title> FunÃ§Ã£o Usada</title>
         <para>
-            A função <literal>range</literal> é baseada na função <link linkend="rowcomp">rowcomp</link> que usa decomposição <link linkend="svd">svd</link> (decomposição em valores singulares).
+            A funÃ§Ã£o <literal>range</literal> Ã© baseada na funÃ§Ã£o <link linkend="rowcomp">rowcomp</link> que usa decomposiÃ§Ã£o <link linkend="svd">svd</link> (decomposiÃ§Ã£o em valores singulares).
         </para>
     </refsection>
 </refentry>

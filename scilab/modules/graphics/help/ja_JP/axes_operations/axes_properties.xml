@@ -14,7 +14,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="axes_properties">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ja" xml:id="axes_properties">
     <refnamediv>
         <refname>axes_properties</refname>
         <refpurpose>axesエンティティプロパティの説明</refpurpose>
@@ -276,16 +279,25 @@
                                         </varlistentry>
                                     </variablelist>
                                     <warning>
-                                        <para>
+                                      <itemizedlist>
+                                        <listitem>
                                             ある軸について, <literal>Locations</literal>及び<literal>Labels</literal>
                                             ベクトルの要素の数は同じとする必要があります.
-                                        </para>
-                                        <para>
+                                        </listitem>
+                                        <listitem>
                                             目盛の数が変更となった場合,不整合を回避するために
                                             各目盛の位置とラベルを同時に変更する必要があります:
                                             (例えばx軸に関して)構文
                                             <literal>Haxes.x_ticks = tlist(["ticks" "locations", "labels"], newLocations, newLabels)</literal> を使用します.
-                                        </para>
+                                        </listitem>
+                                        <listitem>
+                                            Changing by hand the <literal>Locations</literal> or/and
+                                            <literal>Labels</literal> of an axis automatically sets
+                                            its <literal>.auto_ticks</literal> status to
+                                            <literal>"off"</literal>. This cancels its
+                                            auto-regraduation under resizing of the figure.
+                                        </listitem>
+                                      </itemizedlist>
                                     </warning>
                                 </para>
                             </listitem>
@@ -325,6 +337,14 @@
                                     ここで,例えば ticks_format="%.2e" は,目盛の位置を10進2桁指数表記
                                     により出力します.
                                 </para>
+                                <warning>
+                                   Labels are actually updated according to the newly set
+                                   <literal>.ticks_format(i)</literal> only if the
+                                   <literal>.auto_ticks(i)</literal> status of the axis #i is
+                                   <literal>"on"</literal>. Otherwise, the new
+                                   <literal>.ticks_format(i)</literal> format is recorded without
+                                   being immediately used.
+                                </warning>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
@@ -1070,13 +1090,14 @@ a.ticks_st=[1 1;0 m(2)];
                 <revnumber>5.5.0</revnumber>
                 <revremark>
                     <itemizedlist>
-                        <listitem>line_style の値 9 と 10 を使用でき,
+                        <listitem>.grid_style property added.</listitem>
+                        <listitem>.line_style の値 9 と 10 を使用でき,
                             それぞれlongblank dot および bigblank dot 形式を意味します.
                         </listitem>
-                        <listitem>auto_margins プロパティが追加され,
+                        <listitem>.auto_margins プロパティが追加され,
                             マージンの自動計算が可能になりました.
                         </listitem>
-                        <listitem>ticks_format と ticks_st プロパティが追加され,
+                        <listitem>.ticks_format と .ticks_st プロパティが追加され,
                             目盛ラベルの表示が改善されました.
                         </listitem>
                     </itemizedlist>

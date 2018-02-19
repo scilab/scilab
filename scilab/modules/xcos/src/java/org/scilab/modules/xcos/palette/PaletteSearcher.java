@@ -52,7 +52,7 @@ public final class PaletteSearcher {
      */
     public List<Document> search(String str) {
         List<Document> found = new ArrayList<>();
-        try (IndexReader reader = DirectoryReader.open(mgr.getIndexWriter(), true)) {
+        try (IndexReader reader = DirectoryReader.open(mgr.getDirectory())) {
             IndexSearcher searcher = new IndexSearcher(reader);
 
             StandardQueryParser queryParserHelper = new StandardQueryParser();

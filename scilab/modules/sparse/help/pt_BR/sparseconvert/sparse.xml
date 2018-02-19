@@ -13,15 +13,20 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="sparse" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="sparse" xml:lang="pt">
     <refnamediv>
         <refname>sparse</refname>
         <refpurpose>definição de matriz esparsa</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
-        <synopsis>sp=sparse(X)
-            sp=sparse(ij,v [,mn])
+        <synopsis>
+            sp = sparse(X)
+            sp = sparse(ij, v)
+            sp = sparse(ij, v, mn)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -97,9 +102,30 @@
     <refsection>
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
-sp=sparse([1,2;4,5;3,10],[1,2,3])
+sp = sparse([1,2;4,5;3,10],[1,2,3])
 size(sp)
-x=rand(2,2);abs(x)-full(abs(sparse(x)))
+
+x = rand(2,2);
+abs(x) - full(abs(sparse(x)))
+
+// sparse constructor taking a single dense matrix
+// removes the zeros.
+dense = [0., 1., 0., 0., 0.,
+1., 0., 2., 0., 0.
+0., 0., 0., 0., 0.
+0., 0., 0., 0., -0.5];
+sp = sparse(dense)
+
+// complex matrices are also supported
+sp = sparse(dense*(1+2*%i))
+
+// for boolean matrices, the boolean sparse matrix
+// only stores true values (and removes false values).
+dense = [%F, %F, %T, %F, %F
+%T, %F, %F, %F, %F
+%F, %F, %F, %F, %F
+%F, %F, %F, %F, %T];
+sp = sparse(dense)
  ]]></programlisting>
     </refsection>
     <refsection>
@@ -118,7 +144,10 @@ x=rand(2,2);abs(x)-full(abs(sparse(x)))
                 <link linkend="speye">speye</link>
             </member>
             <member>
-                <link linkend="lufact">lufact</link>
+                <link linkend="diag">diag</link>
+            </member>
+            <member>
+                <link linkend="toeplitz">toeplitz</link>
             </member>
         </simplelist>
     </refsection>

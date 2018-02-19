@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2017-02-08 09:22+0100\n"
+"Revision-Date: 2018-02-12 08:52+0100\n"
 
 # File: modules/optimization/sci_gateway/c/sci_qld.c, line: 89
 # File: modules/optimization/sci_gateway/c/sci_qld.c, line: 115
@@ -155,9 +155,9 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 54
-# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 66
-# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 266
+# File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 52
+# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 64
+# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 276
 # File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 110
 # File: modules/optimization/sci_gateway/cpp/sci_readmps.cpp, line: 65
 # File: modules/optimization/sci_gateway/cpp/sci_semidef.cpp, line: 55
@@ -166,8 +166,8 @@ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 60
-# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 72
+# File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 58
+# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 70
 # File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 116
 # File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 1011
 # File: modules/optimization/sci_gateway/cpp/sci_semidef.cpp, line: 61
@@ -176,14 +176,14 @@ msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 101
+# File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 99
 # File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 125
-# File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 170
-# File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 195
-# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 113
+# File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 173
+# File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 200
+# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 111
 # File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 137
-# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 209
-# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 235
+# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 215
+# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 243
 # File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 249
 # File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 275
 #, c-format
@@ -191,20 +191,20 @@ msgid "%s: Subroutine not found: %s\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 113
-# File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 183
-# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 125
-# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 223
+# File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 112
+# File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 187
+# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 124
+# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 230
 # File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 262
 #, c-format
 msgid "%s: Argument #%d: Subroutine not found in list: %s\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 143
-# File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 216
-# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 155
-# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 258
+# File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 144
+# File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 222
+# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 156
+# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 267
 # File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 295
 #, c-format
 msgid ""
@@ -213,8 +213,8 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 149
-# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 161
+# File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 151
+# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 163
 # File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 301
 #, c-format
 msgid ""
@@ -222,7 +222,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 229
+# File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 236
 # File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 458
 # File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 688
 # File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 711
@@ -231,33 +231,33 @@ msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 237
+# File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 245
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 275
-# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 373
+# File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 284
+# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 390
 #, c-format
 msgid "%s: exception caught in '%s' subroutine.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 168
-# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 176
+# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 171
+# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 180
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real Scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 184
+# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 189
 #, c-format
 msgid "%s: Wrong value for input argument #%d: At most %d expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 278
+# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 289
 # File: modules/optimization/sci_gateway/cpp/sci_semidef.cpp, line: 169
 #, c-format
 msgid ""
@@ -265,26 +265,26 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 291
+# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 303
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 297
-# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 330
+# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 310
+# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 346
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A vector expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 311
+# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 325
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A vector of size %d expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 321
+# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 336
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A strictly positive vector "
@@ -292,29 +292,29 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 433
+# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 453
 #, c-format
 msgid "%s: %s: Number of calls to %s has reached or exceeded %s.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 433
-# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 436
-# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 439
-# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 442
+# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 453
+# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 456
+# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 459
+# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 462
 msgid "Warning"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 436
-# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 439
+# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 456
+# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 459
 #, c-format
 msgid ""
 "%s: %s: %s is too small. No further reduction in the criterion is possible.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 442
+# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 462
 #, c-format
 msgid ""
 "%s: %s: %s is too small. %s is orthogonal to the columns of the Jacobian to "
@@ -725,56 +725,62 @@ msgid "%s: End of optimization (linear search fails).\n"
 msgstr ""
 
 #
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 118
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 147
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 174
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 205
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 232
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 119
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 148
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 175
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 206
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 233
 #, c-format
 msgid "Undefined function '%ls'.\n"
 msgstr ""
 
 #
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 129
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 158
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 187
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 216
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 245
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 130
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 159
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 188
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 217
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 246
 #, c-format
 msgid "User function '%s' have not been set.\n"
 msgstr ""
 
 #
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 436
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 445
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 488
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 437
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 446
 # File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 497
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 578
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 667
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 767
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 864
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 506
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 587
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 676
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 776
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 873
 #, c-format
 msgid "%s: Wrong type for output argument #%d: Real scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 462
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 471
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 463
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 472
 #, c-format
 msgid "%s: Wrong type for output argument #%d: Real matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 587
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 676
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 480
+#, c-format
+msgid "%s: Wrong size for output argument #%d: %d element(s) expected.\n"
+msgstr ""
+
+#
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 596
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 685
 #, c-format
 msgid ""
 "%s: Wrong size for output argument #%d: A matrix of size %d x %d expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 776
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 873
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 785
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 882
 #, c-format
 msgid "%s: Wrong size for output argument #%d: A vector of %d expected.\n"
 msgstr ""
@@ -1487,7 +1493,6 @@ msgstr ""
 #
 # File: modules/optimization/macros/karmarkar.sci, line: 57
 # File: modules/optimization/macros/lmisolver.sci, line: 18
-# File: modules/optimization/macros/numderivative.sci, line: 21
 # File: modules/optimization/macros/optimsimplex/optimsimplex_compsomefv.sci, line: 43
 # File: modules/optimization/macros/optimsimplex/optimsimplex_computefv.sci, line: 42
 # File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 311
@@ -2190,9 +2195,6 @@ msgstr ""
 
 #
 # File: modules/optimization/macros/neldermead/neldermead_configure.sci, line: 302
-# File: modules/optimization/macros/numderivative.sci, line: 93
-# File: modules/optimization/macros/numderivative.sci, line: 107
-# File: modules/optimization/macros/numderivative.sci, line: 123
 # File: modules/optimization/macros/optimbase/optimbase_configure.sci, line: 215
 # File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 342
 # File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 349
@@ -2391,95 +2393,6 @@ msgstr ""
 msgid ""
 "%s: No default options available: the function '%s' does not exist on the "
 "path."
-msgstr ""
-
-#
-# File: modules/optimization/macros/numderivative.sci, line: 24
-#, c-format
-msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
-msgstr ""
-
-#
-# File: modules/optimization/macros/numderivative.sci, line: 31
-#, c-format
-msgid "%s: Wrong type for argument #%d: Function or list expected.\n"
-msgstr ""
-
-#
-# File: modules/optimization/macros/numderivative.sci, line: 37
-#, c-format
-msgid ""
-"%s: Wrong type for argument #%d: Function expected in first element of "
-"list.\n"
-msgstr ""
-
-#
-# File: modules/optimization/macros/numderivative.sci, line: 40
-#, c-format
-msgid ""
-"%s: Wrong number of elements in input argument #%d: At least %d elements "
-"expected, but current number is %d.\n"
-msgstr ""
-
-#
-# File: modules/optimization/macros/numderivative.sci, line: 48
-# File: modules/optimization/macros/numderivative.sci, line: 65
-# File: modules/optimization/macros/numderivative.sci, line: 90
-# File: modules/optimization/macros/numderivative.sci, line: 120
-#, c-format
-msgid "%s: Wrong type for argument #%d: Matrix expected.\n"
-msgstr ""
-
-#
-# File: modules/optimization/macros/numderivative.sci, line: 52
-# File: modules/optimization/macros/numderivative.sci, line: 71
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
-msgstr ""
-
-#
-# File: modules/optimization/macros/numderivative.sci, line: 77
-#, c-format
-msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
-msgstr ""
-
-#
-# File: modules/optimization/macros/numderivative.sci, line: 81
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
-msgstr ""
-
-#
-# File: modules/optimization/macros/numderivative.sci, line: 96
-# File: modules/optimization/macros/numderivative.sci, line: 110
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be in the set  {%s}.\n"
-msgstr ""
-
-#
-# File: modules/optimization/macros/numderivative.sci, line: 104
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String array expected.\n"
-msgstr ""
-
-#
-# File: modules/optimization/macros/numderivative.sci, line: 126
-#, c-format
-msgid "%s: Q must be orthogonal.\n"
-msgstr ""
-
-#
-# File: modules/optimization/macros/numderivative.sci, line: 201
-# File: modules/optimization/macros/numderivative.sci, line: 214
-# File: modules/optimization/macros/numderivative.sci, line: 218
-#, c-format
-msgid "%s: Unknown value %s for option %s.\n"
-msgstr ""
-
-#
-# File: modules/optimization/macros/numderivative.sci, line: 348
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A function expected.\n"
 msgstr ""
 
 #

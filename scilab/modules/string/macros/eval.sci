@@ -18,6 +18,8 @@ function _h = eval(z)
     // returns the evaluation of the matrix of character strings Z.
     // Example: a=1; b=2; Z=['a','b'] ; eval(Z) returns the matrix [1,2];
 
+    warnobsolete("evstr()", "6.1");
+
     [nL,nC] = size(z);
     if nL * nC > 1 then
         L = (1:nL)'*ones(1,nC)

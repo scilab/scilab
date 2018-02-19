@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="Sources_pal" xml:lang="fr_FR">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="Sources_pal" xml:lang="fr_FR">
     <refnamediv>
         <refname>Sources_pal</refname>
         <refpurpose>Palette Sources</refpurpose>
@@ -21,116 +24,203 @@
     <refsection>
         <title>Aperçu</title>
         <para>
+            <link linkend="CLKINV_f">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="CLKINV_f" fileref="../../../../images/palettes/CLKINV_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="CLKINV_f" fileref="../../../../images/palettes/CLKINV_f.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="CLOCK_c">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="CLOCK_c" fileref="../../../../images/palettes/CLOCK_c.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="CLOCK_c" fileref="../../../../images/palettes/CLOCK_c.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="CONST_m">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="CONST_m" fileref="../../../../images/palettes/CONST_m.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="CONST_m" fileref="../../../../images/palettes/CONST_m.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="CURV_f">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="CURV_f" fileref="../../../../images/palettes/CURV_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="CURV_f" fileref="../../../../images/palettes/CURV_f.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="Counter">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="Counter" fileref="../../../../images/palettes/Counter.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="Counter" fileref="../../../../images/palettes/Counter.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="FROMWSB">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="FROMWSB" fileref="../../../../images/palettes/FROMWSB.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="FROMWSB" fileref="../../../../images/palettes/FROMWSB.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="GENSIN_f">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="GENSIN_f" fileref="../../../../images/palettes/GENSIN_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="GENSIN_f" fileref="../../../../images/palettes/GENSIN_f.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="GENSQR_f">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="GENSQR_f" fileref="../../../../images/palettes/GENSQR_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="GENSQR_f" fileref="../../../../images/palettes/GENSQR_f.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="INIMPL_f">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="INIMPL_f" fileref="../../../../images/palettes/INIMPL_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="INIMPL_f" fileref="../../../../images/palettes/INIMPL_f.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="IN_f">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="IN_f" fileref="../../../../images/palettes/IN_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="IN_f" fileref="../../../../images/palettes/IN_f.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="Modulo_Count">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="Modulo_Count" fileref="../../../../images/palettes/Modulo_Count.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="Modulo_Count" fileref="../../../../images/palettes/Modulo_Count.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="RAMP">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="RAMP" fileref="../../../../images/palettes/RAMP.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="RAMP" fileref="../../../../images/palettes/RAMP.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="RAND_m">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="RAND_m" fileref="../../../../images/palettes/RAND_m.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="RAND_m" fileref="../../../../images/palettes/RAND_m.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="READAU_f">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="READAU_f" fileref="../../../../images/palettes/READAU_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="READAU_f" fileref="../../../../images/palettes/READAU_f.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="READC_f">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="READC_f" fileref="../../../../images/palettes/READC_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="READC_f" fileref="../../../../images/palettes/READC_f.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="RFILE_f">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="RFILE_f" fileref="../../../../images/palettes/RFILE_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="RFILE_f" fileref="../../../../images/palettes/RFILE_f.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="SAWTOOTH_f">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="SAWTOOTH_f" fileref="../../../../images/palettes/SAWTOOTH_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="SAWTOOTH_f" fileref="../../../../images/palettes/SAWTOOTH_f.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="STEP_FUNCTION">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="STEP_FUNCTION" fileref="../../../../images/palettes/STEP_FUNCTION.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="STEP_FUNCTION" fileref="../../../../images/palettes/STEP_FUNCTION.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="SampleCLK">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="SampleCLK" fileref="../../../../images/palettes/SampleCLK.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="SampleCLK" fileref="../../../../images/palettes/SampleCLK.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="Sigbuilder">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="Sigbuilder" fileref="../../../../images/palettes/Sigbuilder.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="Sigbuilder" fileref="../../../../images/palettes/Sigbuilder.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="TIME_f">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="TIME_f" fileref="../../../../images/palettes/TIME_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="TIME_f" fileref="../../../../images/palettes/TIME_f.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="TKSCALE">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="TKSCALE" fileref="../../../../images/palettes/TKSCALE.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="TKSCALE" fileref="../../../../images/palettes/TKSCALE.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
         </para>
     </refsection>
     <refsection id="Module_Sources_pal">

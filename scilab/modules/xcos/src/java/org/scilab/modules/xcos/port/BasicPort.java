@@ -131,7 +131,7 @@ public abstract class BasicPort extends XcosCell {
         controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.PORT_KIND, portKind.ordinal());
 
         this.orientation = orientation;
-        setLabelPosition(orientation);
+        setStyle(computeLabelPosition(orientation));
     }
 
     /**
@@ -153,7 +153,7 @@ public abstract class BasicPort extends XcosCell {
     public final void setOrientation(Orientation defaultOrientation) {
         if (orientation != defaultOrientation) {
             orientation = defaultOrientation;
-            setLabelPosition(orientation);
+            setStyle(computeLabelPosition(orientation));
         }
     }
 
@@ -162,8 +162,9 @@ public abstract class BasicPort extends XcosCell {
      *
      * @param current
      *            the port orientation, if null, does nothing.
+     * @return an updated style for the orientation
      */
-    public final void setLabelPosition(final Orientation current) {
+    public final String computeLabelPosition(final Orientation current) {
         if (current != null) {
             StyleMap style = new StyleMap(getStyle());
 
@@ -180,8 +181,10 @@ public abstract class BasicPort extends XcosCell {
             style.put(mxConstants.STYLE_VERTICAL_ALIGN, current.getVerticalLabelPosition());
             style.put(mxConstants.STYLE_SPACING, Double.toString(BasicPort.DEFAULT_PORTSIZE + 2.0));
 
-            setStyle(style.toString());
+            return style.toString();
         }
+
+        return getStyle();
     }
 
     /**

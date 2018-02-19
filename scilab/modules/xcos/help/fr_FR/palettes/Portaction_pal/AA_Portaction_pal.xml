@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="Portaction_pal" xml:lang="fr_FR">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="Portaction_pal" xml:lang="fr_FR">
     <refnamediv>
         <refname>Portaction_pal</refname>
         <refpurpose>Palette Port &amp; Sous-systèmes</refpurpose>
@@ -21,41 +24,68 @@
     <refsection>
         <title>Aperçus</title>
         <para>
+            <link linkend="CLKINV_f">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="CLKINV_f" fileref="../../../../images/palettes/CLKINV_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="CLKINV_f" fileref="../../../../images/palettes/CLKINV_f.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="CLKOUTV_f">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="CLKOUTV_f" fileref="../../../../images/palettes/CLKOUTV_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="CLKOUTV_f" fileref="../../../../images/palettes/CLKOUTV_f.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="IN_f">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="IN_f" fileref="../../../../images/palettes/IN_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="IN_f" fileref="../../../../images/palettes/IN_f.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="INIMPL_f">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="INIMPL_f" fileref="../../../../images/palettes/INIMPL_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="INIMPL_f" fileref="../../../../images/palettes/INIMPL_f.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="OUTIMPL_f">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="OUTIMPL_f" fileref="../../../../images/palettes/OUTIMPL_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="OUTIMPL_f" fileref="../../../../images/palettes/OUTIMPL_f.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="OUT_f">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="OUT_f" fileref="../../../../images/palettes/OUT_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="OUT_f" fileref="../../../../images/palettes/OUT_f.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="SUPER_f">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="SUPER_f" fileref="../../../../images/palettes/SUPER_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="SUPER_f" fileref="../../../../images/palettes/SUPER_f.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
         </para>
     </refsection>
     <refsection id="Module_Portaction_pal">

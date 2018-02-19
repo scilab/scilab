@@ -12,12 +12,23 @@
 
 function d=%r_diag(a,k)
     // %r_diag - implement diag function for  rational matrix ,..
+
+    fname = "%r_diag";
     if argn(2)<2 then
         k=0,
     else
-        if type(k)<>1 then error(53,2);end
-        if size(k,"*")<>1 then error(89,2);end
-        if ~isreal(k) then error(52,2);end
+        if type(k)<>1 then
+            msg = _("%s: Argument #%d: Decimal number(s) expected.\n")
+            error(msprintf(msg, fname, 2))
+        end
+        if size(k,"*")<>1 then
+            msg = _("%s: Argument #%d: Scalar (1 element) expected.\n")
+            error(msprintf(msg, fname, 2))
+        end
+        if ~isreal(k) then
+            msg = _("%s: Argument #%d: Decimal number(s) expected.\n")
+            error(msprintf(msg, fname, 2))
+        end
     end
     [m,n]=size(a.num)
     if m<>1&n<>1 then

@@ -10,16 +10,20 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function [f1,f2,f3,f4,f5,f6,f7]=%lss_e(i,j,f)
+function [f1,f2,f3,f4,f5,f6,f7] = %lss_e(i,j,f)
     // f= f(i,j)
 
     if type(i)==10 then
         [lhs,rhs]=argn(0)
-        if rhs<>2 then  error(21),end
+        if rhs<>2 then
+            error(msprintf(_("%s: Invalid index.\n"), "%lss_e"))
+        end
         nams=["A","B","C","D","X0","dt"]
         for k=1:prod(size(i))
             kf=find(convstr(i(k),"u")==nams)
-            if kf==[] then error(21),end
+            if kf==[] then
+                error(msprintf(_("%s: Invalid index.\n"), "%lss_e"))
+            end
             execstr("f"+string(k)+"=j(kf+1)")
         end
         return

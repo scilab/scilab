@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
+ * Copyright (C) 2017 - Samuel GOUGEON
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -13,7 +14,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="unique" xml:lang="ja">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="unique" xml:lang="ja">
     <refnamediv>
         <refname>unique</refname>
         <refpurpose>ベクトルまたは行列のユニークなな要素を展開</refpurpose>
@@ -22,7 +26,7 @@
         <title>呼び出し手順</title>
         <synopsis>
             [N ,k] = unique(M)
-            [N ,k] = unique(M ,orient)
+            [N ,k] = unique(M, orient)
         </synopsis>
     </refsynopsisdiv>
     <refsection role="parameters">
@@ -43,13 +47,28 @@
             <varlistentry>
                 <term>N</term>
                 <listitem>
-                    <para>数値または文字列のベクトルまたは行列</para>
+                    <para>
+                      <itemizedlist>
+                        <listitem>
+                          If <varname>orient</varname> is not used: Vector of extracted
+                          <varname>M</varname> components sorted in ascending order.
+                        </listitem>
+                        <listitem>
+                          If <varname>orient</varname> is used: Matrix of extracted
+                          <varname>M</varname> rows or columns, sorted in lexicographic ascending order.
+                        </listitem>
+                      </itemizedlist>
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>k</term>
                 <listitem>
-                    <para>整数のベクトル</para>
+                    <para>
+                      Vector of indices of first encountered occurences, such that
+                      <literal>N(i) = M(k(i))</literal> or <literal>N(i,:) = M(k(i),:)</literal>
+                      or <literal>N(:,i) = M(:,k(i))</literal>.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -73,11 +92,15 @@
             <literal>M</literal>のユニークな列を
             辞書式の昇順にして返します.
         </para>
-        <para>
-            出力引数<literal>k</literal>が指定された場合,
-            ユニークなエントリが最初に現れた最初の位置が
-            代入されます.
-        </para>
+        <note>
+          Extracted components, rows or columns can be resorted in their initial order by sorting
+          <varname>k</varname>:
+          <programlisting role="no-example"><![CDATA[
+              [N, k] = unique(M);      k = gsort(k,"g",i); N = N(k)
+              [N, k] = unique(M, "c"); k = gsort(k,"g",i); N = N(:, k)
+              [N, k] = unique(M, "r"); k = gsort(k,"g",i); N = N(k, :)
+          ]]></programlisting>
+        </note>
     </refsection>
     <refsection role="examples">
         <title>例</title>
@@ -113,6 +136,12 @@ unique(A,'c')
             </member>
             <member>
                 <link linkend="gsort">gsort</link>
+            </member>
+            <member>
+                <link linkend="vectorfind">vectorfind</link>
+            </member>
+            <member>
+                <link linkend="grep">grep</link>
             </member>
             <member>
                 <link linkend="union">union</link>

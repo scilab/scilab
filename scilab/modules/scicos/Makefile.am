@@ -179,8 +179,8 @@ endif
 libsciscicos_algo_la_LIBADD =  \
 		$(RT_LIB) \
 		$(LIBXML_LIBS)
-libsciscicos_cli_la_LIBADD = libsciscicos-algo.la
-libsciscicos_la_LIBADD = libsciscicos-algo.la
+libsciscicos_cli_la_LIBADD = libsciscicos-algo.la $(FLIBS)
+libsciscicos_la_LIBADD = libsciscicos-algo.la $(FLIBS)
 if XCOS
 libsciscicos_cli_la_LIBADD += libscisundials.la \
     $(top_builddir)/modules/scicos_blocks/libsciscicos_blocks-cli.la

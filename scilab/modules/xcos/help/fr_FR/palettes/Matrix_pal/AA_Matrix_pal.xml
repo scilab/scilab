@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="Matrix_pal" xml:lang="fr_FR">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="Matrix_pal" xml:lang="fr_FR">
     <refnamediv>
         <refname>Matrix_pal</refname>
         <refpurpose>Palette Opérations Matricielles</refpurpose>
@@ -21,136 +24,239 @@
     <refsection>
         <title>Aperçu</title>
         <para>
+            <link linkend="CUMSUM">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="CUMSUM" fileref="../../../../../../modules/xcos/images/palettes/CUMSUM.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="CUMSUM" fileref="../../../../images/palettes/CUMSUM.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="EXTRACT">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="EXTRACT" fileref="../../../../../../modules/xcos/images/palettes/EXTRACT.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="EXTRACT" fileref="../../../../images/palettes/EXTRACT.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="EXTTRI">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="EXTTRI" fileref="../../../../../../modules/xcos/images/palettes/EXTTRI.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="EXTTRI" fileref="../../../../images/palettes/EXTTRI.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="MATBKSL">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="MATBKSL" fileref="../../../../../../modules/xcos/images/palettes/MATBKSL.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="MATBKSL" fileref="../../../../images/palettes/MATBKSL.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="MATCATH">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="MATCATH" fileref="../../../../../../modules/xcos/images/palettes/MATCATH.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="MATCATH" fileref="../../../../images/palettes/MATCATH.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="MATCATV">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="MATCATV" fileref="../../../../../../modules/xcos/images/palettes/MATCATV.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="MATCATV" fileref="../../../../images/palettes/MATCATV.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="MATDET">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="MATDET" fileref="../../../../../../modules/xcos/images/palettes/MATDET.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="MATDET" fileref="../../../../images/palettes/MATDET.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="MATDIAG">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="MATDIAG" fileref="../../../../../../modules/xcos/images/palettes/MATDIAG.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="MATDIAG" fileref="../../../../images/palettes/MATDIAG.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="MATDIV">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="MATDIV" fileref="../../../../../../modules/xcos/images/palettes/MATDIV.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="MATDIV" fileref="../../../../images/palettes/MATDIV.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="MATEIG">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="MATEIG" fileref="../../../../../../modules/xcos/images/palettes/MATEIG.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="MATEIG" fileref="../../../../images/palettes/MATEIG.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="MATEXPM">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="MATEXPM" fileref="../../../../../../modules/xcos/images/palettes/MATEXPM.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="MATEXPM" fileref="../../../../images/palettes/MATEXPM.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="MATINV">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="MATINV" fileref="../../../../../../modules/xcos/images/palettes/MATINV.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="MATINV" fileref="../../../../images/palettes/MATINV.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="MATLU">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="MATLU" fileref="../../../../../../modules/xcos/images/palettes/MATLU.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="MATLU" fileref="../../../../images/palettes/MATLU.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="MATMAGPHI">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="MATMAGPHI" fileref="../../../../../../modules/xcos/images/palettes/MATMAGPHI.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="MATMAGPHI" fileref="../../../../images/palettes/MATMAGPHI.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="MATMUL">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="MATMUL" fileref="../../../../../../modules/xcos/images/palettes/MATMUL.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="MATMUL" fileref="../../../../images/palettes/MATMUL.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="MATPINV">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="MATPINV" fileref="../../../../../../modules/xcos/images/palettes/MATPINV.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="MATPINV" fileref="../../../../images/palettes/MATPINV.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="MATRESH">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="MATRESH" fileref="../../../../../../modules/xcos/images/palettes/MATRESH.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="MATRESH" fileref="../../../../images/palettes/MATRESH.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="MATSING">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="MATSING" fileref="../../../../../../modules/xcos/images/palettes/MATSING.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="MATSING" fileref="../../../../images/palettes/MATSING.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="MATSUM">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="MATSUM" fileref="../../../../../../modules/xcos/images/palettes/MATSUM.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="MATSUM" fileref="../../../../images/palettes/MATSUM.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="MATTRAN">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="MATTRAN" fileref="../../../../../../modules/xcos/images/palettes/MATTRAN.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="MATTRAN" fileref="../../../../images/palettes/MATTRAN.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="MATZCONJ">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="MATZCONJ" fileref="../../../../../../modules/xcos/images/palettes/MATZCONJ.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="MATZCONJ" fileref="../../../../images/palettes/MATZCONJ.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="MATZREIM">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="MATZREIM" fileref="../../../../../../modules/xcos/images/palettes/MATZREIM.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="MATZREIM" fileref="../../../../images/palettes/MATZREIM.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="RICC">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="RICC" fileref="../../../../../../modules/xcos/images/palettes/RICC.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="RICC" fileref="../../../../images/palettes/RICC.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="ROOTCOEF">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="ROOTCOEF" fileref="../../../../../../modules/xcos/images/palettes/ROOTCOEF.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="ROOTCOEF" fileref="../../../../images/palettes/ROOTCOEF.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="SQRT">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="SQRT" fileref="../../../../../../modules/xcos/images/palettes/SQRT.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="SQRT" fileref="../../../../images/palettes/SQRT.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="SUBMAT">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="SUBMAT" fileref="../../../../../../modules/xcos/images/palettes/SUBMAT.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="SUBMAT" fileref="../../../../images/palettes/SUBMAT.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
         </para>
     </refsection>
     <refsection id="Module_Matrix_pal">
@@ -166,8 +272,8 @@
     <refsection id="Description_Matrix_pal">
         <title>Description</title>
         <para>
-            La Palette Opérations matricielles contient les blocs dont vous avez besoin pour faire des opération
-            matricielles simples et complexes.
+            La Palette Opérations matricielles contient les blocs dont vous avez besoin pour faire
+            des opérations matricielles simples et complexes.
         </para>
     </refsection>
     <refsection id="Blocks_Matrix_pal">

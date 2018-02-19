@@ -9,14 +9,18 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-function a=%cblock_c_cblock(a,b)
-    na=length(a)
+
+function a = %cblock_c_cblock(a,b)
+    na = length(a)
     if na==1 then a=b,return,end
     if length(b)==1 then return,end
     v1=getfield(na,a)
     v2=getfield(2,b)
 
-    if size(v1,1)<>size(v2,1) then error(5),end
+    if size(v1,1)<>size(v2,1) then
+        msg = _("%s: Arguments #%d and #%d: Incompatible sizes.\n")
+        error(msprintf(msg, "%cblock_c_cblock", 1, 2))
+    end
     if type(v1)==type(v2) then
         a=setfield(na,[v1 v2],a)
     else

@@ -11,4 +11,4 @@ rem and continues to be available under such terms.
 rem For more information, see the COPYING file which you should have received
 rem along with this program.
 
-..\..\..\bin\scilex -nwni -ns -e exec('buildmacros.sce');quit;
+@..\..\..\bin\scilab -nwni -ns -e exec('buildmacros.sce');quit;

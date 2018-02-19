@@ -1,14 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="diag" xml:lang="fr">
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="diag" xml:lang="fr">
     <refnamediv>
         <refname>diag</refname>
-        <refpurpose>extraction de diagonale ou construction d'une matrice à partir
-            d'une diagonale.
+        <refpurpose>extraction de diagonale ou construction d'une matrice avec un vecteur en diagonal
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>[y]=diag(vm, [k])</synopsis>
+        <synopsis>
+           y = diag(vm)
+           y = diag(vm, k)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Paramètres</title>
@@ -89,10 +108,19 @@ m=5;diag(-m:m) +  diag(ones(2*m,1),1) +diag(ones(2*m,1),-1)
         <title>Voir aussi</title>
         <simplelist type="inline">
             <member>
+                <link linkend="toeplitz">toeplitz</link>
+            </member>
+            <member>
+                <link linkend="eye">eye</link>
+            </member>
+            <member>
                 <link linkend="sysdiag">sysdiag</link>
             </member>
             <member>
-                <link linkend="sparse">sparse</link>
+                <link linkend="spec">spec</link>
+            </member>
+            <member>
+                <link linkend="bdiag">bdiag</link>
             </member>
         </simplelist>
     </refsection>

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 22:03+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2018-01-10 15:21+0000\n"
+"Last-Translator: Wesh <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18544)\n"
 "Language: \n"
 
 #, c-format
@@ -23,15 +23,15 @@ msgstr "%s：在该模式下此功能尚未实现。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A double scalar expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的类型错误：应该为双精度标量。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A positive double expected\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：应该为双精度正实数\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数的数目错误：应该为%d到%d个。\n"
 
 #, c-format
 msgid "%s: Not implemented in this mode.\n"
@@ -43,15 +43,15 @@ msgstr "%s：第%d个输入参数的类型错误：应该为标量。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A scalar (>= 0) expected.\n"
-msgstr "%s：输入参数#%d的值错误：应该为标量（>= 0）。\n"
+msgstr "%s：输入参数#%d的值错误：应该为非负标量。\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr ""
+msgstr "%s：输出参数的数目错误：应该为%d到%d个。\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s：输出参数的数目错误：应该为%d个。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
@@ -60,17 +60,17 @@ msgstr "%s：第%d个输入参数的类型错误：应该为字符串。\n"
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A Single string of size %d expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的维度错度：应该为%d长度的字符串。\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数的数目错误：应该为%d个。\n"
 
 msgid "File"
-msgstr ""
+msgstr "文件"
 
 msgid "Directory"
-msgstr ""
+msgstr "目录"
 
 msgid "Scilab Fields"
 msgstr "Scilab字段"
@@ -85,19 +85,19 @@ msgid "Scilab Macro"
 msgstr "Scilab宏"
 
 msgid "Scilab Variable"
-msgstr "Scilab变量"
+msgstr "Scilab自带变量"
 
 msgid "Graphics handle field"
-msgstr "Scilab句柄域"
+msgstr "图形句柄域"
 
 #, c-format
 msgid ""
 "Command is too long (more than %d characters long): could not send it to "
 "Scilab\n"
-msgstr "命令过长(超过%d个字符): 无法发送到Scilab\n"
+msgstr "命令过长（超过%d个字符）：无法发送到Scilab\n"
 
 msgid "[Continue display? n (no) to stop, any other key to continue]"
-msgstr "[继续显示？按n键停止，按任意其他键继续]"
+msgstr "[继续显示？按n键停止，按其他键继续]"
 
 #, c-format
 msgid ""
@@ -114,28 +114,28 @@ msgid "Display"
 msgstr "显示"
 
 msgid "Automatically adapt the display to the console"
-msgstr ""
+msgstr "输出结果自动换行显示"
 
 msgid "Lines to display:"
-msgstr "显示行:"
+msgstr "显示行数："
 
 msgid "Columns to display:"
-msgstr "显示列:"
+msgstr "显示列数："
 
 msgid "Number of lines in console scroll buffer:"
-msgstr ""
+msgstr "控制台可滚动显示的最大行数"
 
 msgid "General"
 msgstr "常规"
 
 msgid "Produces an error"
-msgstr ""
+msgstr "显示为错误"
 
 msgid "Produces a warning"
-msgstr ""
+msgstr "显示为警告"
 
 msgid "Produces Inf or NaN"
-msgstr ""
+msgstr "显示为Inf或NaN"
 
 msgid "Variable format"
 msgstr "变量格式"
@@ -144,7 +144,7 @@ msgid "Scientific format"
 msgstr "科学记数格式"
 
 msgid "English"
-msgstr "英文"
+msgstr "英语"
 
 msgid "French"
 msgstr "法语"
@@ -186,10 +186,10 @@ msgid "Ukrainian"
 msgstr "乌克兰语"
 
 msgid "Start-up directory"
-msgstr ""
+msgstr "起始目录"
 
 msgid "Confirmation dialogs"
-msgstr ""
+msgstr "确认对话框"
 
 msgid "Warn before exiting Scilab"
 msgstr "退出Scilab时警告"
@@ -201,10 +201,10 @@ msgid "Warn before clearing the Console"
 msgstr "清空控制台时警告"
 
 msgid "Desktop layout"
-msgstr "桌面布局"
+msgstr "界面布局"
 
 msgid "Integrated"
-msgstr "集成"
+msgstr "完整"
 
 msgid "Simple"
 msgstr "简单"
@@ -225,7 +225,7 @@ msgid "Line beginning"
 msgstr "行首"
 
 msgid "Line end"
-msgstr "行末"
+msgstr "行尾"
 
 msgid "Previous char"
 msgstr "前一字符"
@@ -237,43 +237,43 @@ msgid "Delete previous char"
 msgstr "删除前一字符"
 
 msgid "Delete end of line"
-msgstr ""
+msgstr "删除换行符"
 
 msgid "Delete whole line"
 msgstr "删除整行"
 
 msgid "Delete last word"
-msgstr ""
+msgstr "删除最后一词"
 
 msgid "Previous console page"
-msgstr ""
+msgstr "控制台上一页"
 
 msgid "Next console page"
-msgstr ""
+msgstr "控制台下一页"
 
 msgid "Validate input"
-msgstr ""
+msgstr "验证输入"
 
 msgid "Clear console"
 msgstr "清空控制台"
 
 msgid "Console box"
-msgstr ""
+msgstr "命令行窗口"
 
 msgid "Completion"
 msgstr "补全"
 
 msgid "Previous history line"
-msgstr ""
+msgstr "上一行历史记录"
 
 msgid "Next history line"
-msgstr ""
+msgstr "下一行历史记录"
 
 msgid "Help Browser"
-msgstr "帮助浏览器"
+msgstr "Scilab帮助"
 
 msgid "Console Search Field"
-msgstr ""
+msgstr "控制台搜索框"
 
 msgid "Paste"
 msgstr "粘贴"
@@ -318,10 +318,10 @@ msgid "Clear history"
 msgstr "清除历史"
 
 msgid "Resume"
-msgstr ""
+msgstr "继续"
 
 msgid "Abort"
-msgstr ""
+msgstr "中止"
 
 msgid "Interrupt"
 msgstr "中断"
@@ -333,7 +333,7 @@ msgid "Launch Xcos"
 msgstr "启动Xcos"
 
 msgid "Matlab to Scilab Translator"
-msgstr ""
+msgstr "Matlab转Scilab"
 
 msgid "Module manager"
 msgstr "模块管理器"
@@ -357,13 +357,13 @@ msgid "Open Online Help"
 msgstr "打开在线帮助"
 
 msgid "Open Scilab wiki"
-msgstr ""
+msgstr "打开Scilab百科"
 
 msgid "Open ATOMS website"
 msgstr "打开ATOMS网站"
 
 msgid "Open File Exchange website"
-msgstr ""
+msgstr "打开Scilab文件交流网站"
 
 msgid "Open Mailing lists"
 msgstr "打开邮件列表"
@@ -405,13 +405,13 @@ msgid "Remove trailing whites"
 msgstr "删除行尾空格"
 
 msgid "Select block"
-msgstr "选择区块"
+msgstr "选择图块"
 
 msgid "Open current tab in a new window"
 msgstr "新窗口中打开当前标签页"
 
 msgid "Export current tab in a new window"
-msgstr ""
+msgstr "当前标签页移动到新窗口"
 
 msgid "Copy"
 msgstr "复制"
@@ -441,7 +441,7 @@ msgid "Open"
 msgstr "打开"
 
 msgid "Open URL"
-msgstr "打开URL"
+msgstr "打开网址"
 
 msgid "Open source"
 msgstr "开放源码"
@@ -480,10 +480,10 @@ msgid "Load in Scilab"
 msgstr "载入Scilab"
 
 msgid "Execute in Scilab"
-msgstr ""
+msgstr "载入Scilab执行"
 
 msgid "Evaluate selection"
-msgstr ""
+msgstr "所选求值"
 
 msgid "Save and execute"
 msgstr "保存并执行"
@@ -516,10 +516,10 @@ msgid "Go to previous anchor"
 msgstr "转到上一个锚点"
 
 msgid "Start Code Navigator"
-msgstr ""
+msgstr "启动代码导航器"
 
 msgid "Search word in file"
-msgstr ""
+msgstr "文件中查找"
 
 msgid "Search files"
 msgstr "搜索文件"
@@ -534,10 +534,10 @@ msgid "About"
 msgstr "关于"
 
 msgid "Next tab"
-msgstr "下一个标签"
+msgstr "下一标签页"
 
 msgid "Previous tab"
-msgstr "上一个标签"
+msgstr "上一标签页"
 
 msgid "Delete"
 msgstr "删除"
@@ -555,10 +555,10 @@ msgid "Overwrite"
 msgstr "覆盖"
 
 msgid "Close all"
-msgstr "全部关闭"
+msgstr "关闭所有文档"
 
 msgid "Close all but this"
-msgstr "关闭其他"
+msgstr "关闭其他文档"
 
 msgid "Convert quote to double quote"
 msgstr "单引号转为双引号"
@@ -576,7 +576,7 @@ msgid "New diagram"
 msgstr "新建图表"
 
 msgid "Open file in Scilab current directory"
-msgstr ""
+msgstr "打开Scilab当前目录文件"
 
 msgid "Export"
 msgstr "导出"
@@ -588,10 +588,10 @@ msgid "Invert selection"
 msgstr "反选"
 
 msgid "Block Parameters"
-msgstr "区块参数"
+msgstr "图块参数"
 
 msgid "Region to superblock"
-msgstr ""
+msgstr "组合图块"
 
 msgid "Zoom In"
 msgstr "放大"
@@ -600,37 +600,37 @@ msgid "Zoom Out"
 msgstr "缩小"
 
 msgid "Fit diagram to view"
-msgstr ""
+msgstr "视区显示"
 
 msgid "Normal 100%"
-msgstr ""
+msgstr "正常（100%）"
 
 msgid "Palette browser"
-msgstr ""
+msgstr "模块浏览器"
 
 msgid "Diagram browser"
 msgstr "图表浏览器"
 
 msgid "Viewport"
-msgstr ""
+msgstr "视区"
 
 msgid "Details"
-msgstr ""
+msgstr "详情"
 
 msgid "Setup"
-msgstr ""
+msgstr "设置"
 
 msgid "Execution trace and Debug"
-msgstr ""
+msgstr "Execution trace and Debug"
 
 msgid "Set Context"
-msgstr ""
+msgstr "设置关联指令"
 
 msgid "Compile"
 msgstr "编译"
 
 msgid "Start"
-msgstr ""
+msgstr "启动"
 
 msgid "Stop"
 msgstr "停止"
@@ -648,22 +648,22 @@ msgid "Show/Hide shadow"
 msgstr "显示/隐藏阴影"
 
 msgid "Left"
-msgstr ""
+msgstr "左对齐"
 
 msgid "Center"
 msgstr "居中"
 
 msgid "Right"
-msgstr ""
+msgstr "右对齐"
 
 msgid "Top"
-msgstr ""
+msgstr "顶端对齐"
 
 msgid "Middle"
-msgstr ""
+msgstr "垂直居中"
 
 msgid "Bottom"
-msgstr ""
+msgstr "底端对齐"
 
 msgid "Border Color"
 msgstr "边框颜色"
@@ -675,7 +675,7 @@ msgid "Horizontal"
 msgstr "水平"
 
 msgid "Straight"
-msgstr ""
+msgstr "直线"
 
 msgid "Vertical"
 msgstr "垂直"
@@ -687,16 +687,16 @@ msgid "Grid"
 msgstr "网格"
 
 msgid "Code generation"
-msgstr ""
+msgstr "代码生成"
 
 msgid "Xcos Help"
 msgstr "Xcos帮助"
 
 msgid "Block Help"
-msgstr ""
+msgstr "模块帮助"
 
 msgid "Xcos Demonstrations"
-msgstr ""
+msgstr "Xcos示例"
 
 msgid "About Xcos"
 msgstr "关于Xcos"
@@ -711,70 +711,70 @@ msgid "Save file"
 msgstr "保存文件"
 
 msgid "Environment"
-msgstr ""
+msgstr "环境设置"
 
 msgid "Floating point exception (ieee): "
-msgstr ""
+msgstr "浮点数异常（IEEE）： "
 
 msgid "Printing format: "
-msgstr ""
+msgstr "显示格式： "
 
 msgid "Width: "
 msgstr "宽度: "
 
 msgid "Recursion limit: "
-msgstr ""
+msgstr "递推次数： "
 
 msgid "Language setting"
 msgstr "语言设置"
 
 msgid "Default language: "
-msgstr "默认语言: "
+msgstr "默认语言： "
 
 msgid "(This requires a restart of Scilab)"
-msgstr "(需要重启Scilab)"
+msgstr "（需要重启Scilab）"
 
 msgid "Java Heap Memory"
-msgstr ""
+msgstr "Java堆内存"
 
 msgid "Select the memory (in MB) available in Java: "
-msgstr ""
+msgstr "Java堆内存容量 "
 
 msgid "Use current working directory"
-msgstr ""
+msgstr "使用当前工作目录"
 
 msgid "Use previous working directory"
-msgstr ""
+msgstr "使用之前工作目录"
 
 msgid "Use default directory"
-msgstr ""
+msgstr "使用默认目录"
 
 msgid "Default startup directory"
-msgstr ""
+msgstr "默认启动目录"
 
 msgid "Desktop Layout"
-msgstr "桌面布局"
+msgstr "界面布局"
 
 msgid "Select a layout"
 msgstr "选择布局"
 
 msgid "(Modify the layout requires to restart Scilab)"
-msgstr "(修改布局需要重启Scilab)"
+msgstr "（修改布局需要重启Scilab）"
 
 msgid "Save layout on exiting"
-msgstr ""
+msgstr "退出时保存布局"
 
 msgid "Reset layout"
-msgstr ""
+msgstr "恢复默认布局"
 
 msgid "Keys binding"
-msgstr ""
+msgstr "快捷键绑定"
 
 msgid "Filter on action name: "
-msgstr ""
+msgstr "搜索操作 "
 
 msgid "Component"
-msgstr "组件"
+msgstr "程序"
 
 msgid "Name: "
 msgstr "名称: "
@@ -783,13 +783,13 @@ msgid "Description: "
 msgstr "描述: "
 
 msgid "Binding: "
-msgstr "绑定: "
+msgstr "快捷键 "
 
 msgid "Action name"
 msgstr "操作名"
 
 msgid "Key binding"
-msgstr "键绑定"
+msgstr "快捷键绑定"
 
 msgid "Field"
 msgstr "字段"

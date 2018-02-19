@@ -6,7 +6,9 @@ function scimihm(%_xmlfile)
     icpr=list();
 
     sciGUI_init()
-    if execstr("%_filename="+%_xmlfile,"errcatch")~=0 then error(44), end
+    if execstr("%_filename="+%_xmlfile,"errcatch")~=0 then
+        error(msprintf(_("%s: Wrong input argument.\n"), "scimihm"));
+    end
 
     try
         %_winId=TCL_GetVar("IHMLoc")

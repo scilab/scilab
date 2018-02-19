@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -13,18 +13,22 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="eval" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="eval" xml:lang="pt">
     <refnamediv>
         <refname>eval</refname>
-        <refpurpose>avaliação de uma matriz de strings</refpurpose>
+        <refpurpose>avaliaÃ§Ã£o de uma matriz de strings  <emphasis role="bold">(obsolete)</emphasis>
+      </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>[H]= eval(Z)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Descrição</title>
-        <para>Retorna a avaliação da matriz de strings
+        <title>DescriÃ§Ã£o</title>
+        <para>Retorna a avaliaÃ§Ã£o da matriz de strings
             <literal>Z</literal>.
         </para>
     </refsection>
@@ -35,7 +39,7 @@ a=1; b=2; Z=['a','sin(b)'] ; eval(Z)  //retorna a matriz [1,0.909];
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="evstr">evstr</link>
@@ -44,5 +48,17 @@ a=1; b=2; Z=['a','sin(b)'] ; eval(Z)  //retorna a matriz [1,0.909];
                 <link linkend="execstr">execstr</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>HistÃ³rico</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.1</revnumber>
+                <revdescription>
+                  <literal>eval()</literal> is declared obsolete, to be removed from Scilab 6.1.0.
+                  Please use <literal>evstr()</literal> instead.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

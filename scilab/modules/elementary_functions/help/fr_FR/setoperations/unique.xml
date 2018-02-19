@@ -1,15 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="unique" xml:lang="fr">
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * Copyright (C) 2017 - Samuel GOUGEON
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="unique" xml:lang="fr">
     <refnamediv>
         <refname>unique</refname>
-        <refpurpose>supprime tous les éléments en doublon dans un vecteur ou une matrice
+        <refpurpose>extrait (et trie) tous les éléments distincts d'un vecteur ou d'une matrice
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
         <synopsis>
             [N [,k]] = unique(M)
-            [N [,k]] = unique(M,orient)
+            [N [,k]] = unique(M, orient)
         </synopsis>
     </refsynopsisdiv>
     <refsection role="parameters">
@@ -18,7 +36,7 @@
             <varlistentry>
                 <term>M</term>
                 <listitem>
-                    <para>vecteur ou matrice de nombres ou de chaînes de caractères
+                    <para>vecteur ou matrice de nombres ou de textes.
                     </para>
                 </listitem>
             </varlistentry>
@@ -31,15 +49,28 @@
             <varlistentry>
                 <term>N</term>
                 <listitem>
-                    <para>vecteur ou matrice de nombres ou de chaînes de
-                        caractères
+                    <para>
+                      <itemizedlist>
+                        <listitem>
+                          Sans <varname>orient</varname>: vecteur d'éléments de <varname>M</varname>
+                          triés par ordre croissant.
+                        </listitem>
+                        <listitem>
+                          Avec <varname>orient</varname>: Matrice de lignes ou colonnes extraites de
+                          <varname>M</varname>, triées par ordre lexicographique croissant.
+                        </listitem>
+                      </itemizedlist>
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>k</term>
                 <listitem>
-                    <para>vecteur d'entiers</para>
+                    <para>
+                      Indices des éléments, lignes ou colonnes extraits, tels que
+                      <literal>N(i) = M(k(i))</literal> ou <literal>N(i,:) = M(k(i),:)</literal>
+                      ou <literal>N(:,i) = M(:,k(i))</literal>.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -61,11 +92,15 @@
             <literal>unique(M,2)</literal>retourne les colonnes uniques
             <literal>M</literal> triées dans l'ordre lexicographique croissant.
         </para>
-        <para>
-            S'il est présent l'argument de sortie <literal>k</literal> contient
-            la position de la première occurrence de chaque valeur distincte dans
-            <literal>M</literal>.
-        </para>
+        <note>
+          Les éléments, lignes ou colonnes extraits peuvent être remis dans leur ordre d'origine en
+          triant <varname>k</varname> :
+          <programlisting role="no-example"><![CDATA[
+              [N, k] = unique(M);      k = gsort(k,"g",i); N = N(k)
+              [N, k] = unique(M, "c"); k = gsort(k,"g",i); N = N(:, k)
+              [N, k] = unique(M, "r"); k = gsort(k,"g",i); N = N(k, :)
+          ]]></programlisting>
+        </note>
     </refsection>
     <refsection role="examples">
         <title>Exemples</title>
@@ -104,6 +139,12 @@ unique(A,'c')
             </member>
             <member>
                 <link linkend="gsort">gsort</link>
+            </member>
+            <member>
+                <link linkend="vectorfind">vectorfind</link>
+            </member>
+            <member>
+                <link linkend="grep">grep</link>
             </member>
             <member>
                 <link linkend="union">union</link>

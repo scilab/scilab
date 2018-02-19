@@ -1103,8 +1103,8 @@ libsciscicos_algo_la_LIBADD = \
 		$(RT_LIB) \
 		$(LIBXML_LIBS)
 
-libsciscicos_cli_la_LIBADD = libsciscicos-algo.la $(am__append_2)
-libsciscicos_la_LIBADD = libsciscicos-algo.la $(am__append_3)
+libsciscicos_cli_la_LIBADD = libsciscicos-algo.la $(am__append_2) $(FLIBS)
+libsciscicos_la_LIBADD = libsciscicos-algo.la $(am__append_3) $(FLIBS)
 
 # For the code check (splint)
 CHECK_SRC = $(SCICOS_C_SOURCES) $(GATEWAY_C_SOURCES)

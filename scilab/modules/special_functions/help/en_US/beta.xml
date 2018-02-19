@@ -55,7 +55,7 @@
             </mediaobject>
         </informalequation>
         <para>
-            For small <literal>x</literal> and <literal>y</literal> (<literal>x+y&#8804;2</literal> elementwise),
+            For small <literal>x</literal> and <literal>y</literal> (<literal>x+y ≤ 2</literal> elementwise),
             the algorithm uses the expression in function of the gamma function, else it
             applies the exponential function onto the result of the
             <literal>betaln</literal> function provided with the DCDFLIB: Library of

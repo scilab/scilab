@@ -63,26 +63,24 @@ optim_ga(f, PopSize, NbGen, Proba_mut, Proba_cross, Log, ga_params);
 optim_ga: iteration 1 / 20 
     min / max value found = 6.4854E-03 / 1.1026E+00
 optim_ga: iteration 2 / 20 
-    min / max value found = 4.2909E-03 / 2.8682E-01
+    min / max value found = 2.3589E-03 / 2.6003E-01
 optim_ga: iteration 3 / 20 
-    min / max value found = 3.1174E-05 / 5.6912E-02
+    min / max value found = 2.2987E-04 / 2.8928E-02
 optim_ga: iteration 4 / 20 
-    min / max value found = 3.1174E-05 / 1.8523E-02
+    min / max value found = 8.7067E-05 / 5.3993E-03
 optim_ga: iteration 5 / 20 
-    min / max value found = 3.1174E-05 / 4.2909E-03
+    min / max value found = 5.9943E-06 / 1.3897E-03
 optim_ga: iteration 6 / 20 
-    min / max value found = 2.0292E-05 / 1.2683E-03
+    min / max value found = 9.6671E-07 / 3.8156E-04
 optim_ga: iteration 7 / 20 
-    min / max value found = 9.9116E-06 / 2.9666E-04
+    min / max value found = 9.6671E-07 / 8.9321E-05
 optim_ga: iteration 8 / 20 
-    min / max value found = 1.1124E-06 / 7.9347E-05
+    min / max value found = 4.4313E-07 / 1.9341E-05
 optim_ga: iteration 9 / 20 
-    min / max value found = 4.0632E-07 / 3.3694E-05
+    min / max value found = 2.3784E-08 / 6.0478E-06
 optim_ga: iteration 10 / 20 
-    min / max value found = 3.4754E-07 / 9.9116E-06
+    min / max value found = 2.3784E-08 / 1.7507E-06
 optim_ga: iteration 11 / 20 
-    min / max value found = 3.4470E-08 / 2.2709E-06
-optim_ga: iteration 12 / 20 
-    min / max value found = 3.4470E-08 / 9.0795E-07
+    min / max value found = 1.6279E-08 / 3.5704E-07
     Stop criterion reached: Delta Max to Min under threshold
 assert_checktrue(max(fobj_pop_opt) - min(fobj_pop_opt) <= 1E-6);

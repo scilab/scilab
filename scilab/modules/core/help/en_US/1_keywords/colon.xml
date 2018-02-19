@@ -1,8 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="colon">
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="colon">
     <refnamediv>
-        <refname>colon</refname>
-        <refpurpose>(:) colon operator</refpurpose>
+        <refname>colon (:)</refname>
+        <refpurpose>Ranging operator. Addresses all elements along an array dimension or of a list.</refpurpose>
     </refnamediv>
     <refsection>
         <title>Description</title>
@@ -30,8 +47,9 @@
             </varlistentry>
         </variablelist>
         <para>
-            The colon notation can also be used to pick out selected rows,
-            columns and elements of vectors and matrices (see also <link linkend="extraction">extraction</link>,<link linkend="insertion">insertion</link>):
+            The colon notation can also be used to pick out selected rows,  columns and elements
+            of vectors and other arrays (see also <link linkend="extraction">extraction</link>,
+            <link linkend="insertion">insertion</link>):
         </para>
         <variablelist>
             <varlistentry>
@@ -99,8 +117,8 @@
                 <term>A(:)=w</term>
                 <listitem>
                     <para>
-                        fills the matrix <literal>A</literal> with entries of <literal>w</literal>
-                        (taken column by column if <literal>w</literal> is a matrix). The amount of
+                        fills the array <literal>A</literal> with entries of <literal>w</literal>
+                        (taken column by column if <literal>w</literal> is a 2D array). The amount of
                         entries of <literal>A</literal> must be equal to the amount of
                         entries of <literal>w</literal>.
                     </para>
@@ -112,6 +130,10 @@
             <literal>k</literal> or <literal>d</literal> have a decimal part, only
             the integer part will be used.
         </para>
+       <note>
+          <literal>type(:)</literal> is 129.
+          <literal>typeof(:)</literal> is <literal>"implicitlist"</literal>.
+       </note>
     </refsection>
     <refsection>
         <title>Examples</title>
@@ -147,10 +169,13 @@ A(i)
         <title>See also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="matrix">matrix</link>
+                <link linkend="dollar">dollar</link>
             </member>
             <member>
-                <link linkend="for">for</link>
+                <link linkend="extraction">extraction</link>
+            </member>
+            <member>
+                <link linkend="matrix">matrix</link>
             </member>
             <member>
                 <link linkend="linspace">linspace</link>
@@ -159,5 +184,16 @@ A(i)
                 <link linkend="logspace">logspace</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                  <literal>%i:10</literal> now yields an error.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

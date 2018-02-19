@@ -21,7 +21,10 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="Sinks_pal">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="Sinks_pal" xml:lang="en_US">
     <refnamediv>
         <refname>Sinks_pal</refname>
         <refpurpose>Sinks palette</refpurpose>
@@ -29,116 +32,186 @@
     <refsection>
         <title>Block Screenshot</title>
         <para>
+            <link linkend="AFFICH_m">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="AFFICH_m" fileref="../../../../../../modules/xcos/images/palettes/AFFICH_m.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata fileref="../../../../images/palettes/AFFICH_m.png"
+                     style="width:100px; padding: 10px;  border-style: solid; border-width: 1px; border-color: #1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="CANIMXY">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="CANIMXY" fileref="../../../../../../modules/xcos/images/palettes/CANIMXY.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata fileref="../../../../images/palettes/CANIMXY.png"
+                     style="width:100px; padding: 10px;  border-style: solid; border-width: 1px; border-color: #1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="CANIMXY3D">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="CANIMXY3D" fileref="../../../../../../modules/xcos/images/palettes/CANIMXY3D.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata fileref="../../../../images/palettes/CANIMXY3D.png"
+                     style="width:100px; padding: 10px;  border-style: solid; border-width: 1px; border-color: #1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="CFSCOPE">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="CFSCOPE" fileref="../../../../../../modules/xcos/images/palettes/CFSCOPE.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata fileref="../../../../images/palettes/CFSCOPE.png"
+                     style="width:100px; padding: 10px;  border-style: solid; border-width: 1px; border-color: #1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="CLKOUTV_f">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="CLKOUTV_f" fileref="../../../../../../modules/xcos/images/palettes/CLKOUTV_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata fileref="../../../../images/palettes/CLKOUTV_f.png"
+                     style="width:100px; padding: 10px;  border-style: solid; border-width: 1px; border-color: #1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="CMAT3D">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="CMAT3D" fileref="../../../../../../modules/xcos/images/palettes/CMAT3D.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata fileref="../../../../images/palettes/CMAT3D.png"
+                     style="width:100px; padding: 10px;  border-style: solid; border-width: 1px; border-color: #1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="CMATVIEW">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="CMATVIEW" fileref="../../../../../../modules/xcos/images/palettes/CMATVIEW.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata fileref="../../../../images/palettes/CMATVIEW.png"
+                     style="width:100px; padding: 10px;  border-style: solid; border-width: 1px; border-color: #1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="CMSCOPE">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="CMSCOPE" fileref="../../../../../../modules/xcos/images/palettes/CMSCOPE.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata fileref="../../../../images/palettes/CMSCOPE.png"
+                     style="width:100px; padding: 10px;  border-style: solid; border-width: 1px; border-color: #1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="CSCOPE">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="SCALE_CMSCOPE" fileref="../../../../../../modules/xcos/images/palettes/SCALE_CMSCOPE.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata fileref="../../../../images/palettes/CSCOPE.png"
+                     style="width:100px; padding: 10px;  border-style: solid; border-width: 1px; border-color: #1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="CSCOPXY">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="CSCOPE" fileref="../../../../../../modules/xcos/images/palettes/CSCOPE.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata fileref="../../../../images/palettes/CSCOPXY.png"
+                     style="width:100px; padding: 10px;  border-style: solid; border-width: 1px; border-color: #1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
-             <inlinemediaobject>
-                <imageobject>
-                    <imagedata linkend="SCALE_CSCOPE" fileref="../../../../../../modules/xcos/images/palettes/SCALE_CSCOPE.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
+            </link>.
+
+            <link linkend="CSCOPXY3D">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="CSCOPXY" fileref="../../../../../../modules/xcos/images/palettes/CSCOPXY.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata fileref="../../../../images/palettes/CSCOPXY3D.png"
+                     style="width:100px; padding: 10px;  border-style: solid; border-width: 1px; border-color: #1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="ENDBLK">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="CSCOPXY3D" fileref="../../../../../../modules/xcos/images/palettes/CSCOPXY3D.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata fileref="../../../../images/palettes/ENDBLK.png"
+                     style="width:100px; padding: 10px;  border-style: solid; border-width: 1px; border-color: #1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="END_c">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="ENDBLK" fileref="../../../../../../modules/xcos/images/palettes/ENDBLK.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata fileref="../../../../images/palettes/END_c.png"
+                     style="width:100px; padding: 10px;  border-style: solid; border-width: 1px; border-color: #1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="HALT_f">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="END_c" fileref="../../../../../../modules/xcos/images/palettes/END_c.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata fileref="../../../../images/palettes/HALT_f.png"
+                     style="width:100px; padding: 10px;  border-style: solid; border-width: 1px; border-color: #1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="OUTIMPL_f">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="HALT_f" fileref="../../../../../../modules/xcos/images/palettes/HALT_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata fileref="../../../../images/palettes/OUTIMPL_f.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="OUT_f">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="OUTIMPL_f" fileref="../../../../../../modules/xcos/images/palettes/OUTIMPL_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata fileref="../../../../images/palettes/OUT_f.png"
+                     style="width:100px; padding: 10px;  border-style: solid; border-width: 1px; border-color: #1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="TOWS_c">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="OUT_f" fileref="../../../../../../modules/xcos/images/palettes/OUT_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata fileref="../../../../images/palettes/TOWS_c.png"
+                     style="width:100px; padding: 10px;  border-style: solid; border-width: 1px; border-color: #1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="TRASH_f">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="TOWS_c" fileref="../../../../../../modules/xcos/images/palettes/TOWS_c.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata fileref="../../../../images/palettes/TRASH_f.png"
+                     style="width:100px; padding: 10px;  border-style: solid; border-width: 1px; border-color: #1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="WRITEAU_f">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="TRASH_f" fileref="../../../../../../modules/xcos/images/palettes/TRASH_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata fileref="../../../../images/palettes/WRITEAU_f.png"
+                     style="width:100px; padding: 10px;  border-style: solid; border-width: 1px; border-color: #1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="WRITEC_f">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="WRITEAU_f" fileref="../../../../../../modules/xcos/images/palettes/WRITEAU_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata fileref="../../../../images/palettes/WRITEC_f.png"
+                     style="width:100px; padding: 10px;  border-style: solid; border-width: 1px; border-color: #1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata linkend="WRITEC_f" fileref="../../../../../../modules/xcos/images/palettes/WRITEC_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
+            </link>.
+
         </para>
     </refsection>
     <refsection id="Module_Sinks_pal">
@@ -208,17 +281,7 @@
             </listitem>
             <listitem>
                 <para>
-                    <link linkend="SCALE_CMSCOPE">SCALE_CMSCOPE - Multi display scope with Autoscale Graph Feature</link>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
                     <link linkend="CSCOPE">CSCOPE - Single Display Scope</link>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <link linkend="SCALE_CSCOPE">CSCOPE - Single Display Scope with Autoscale Graph Feature</link>
                 </para>
             </listitem>
             <listitem>

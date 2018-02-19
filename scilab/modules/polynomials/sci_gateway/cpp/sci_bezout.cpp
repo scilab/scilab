@@ -42,10 +42,11 @@ types::Function::ReturnValue sci_bezout(types::typed_list &in, int _iRetCount, t
         return types::Function::Error;
     }
 
-    if (_iRetCount != 2 && _iRetCount != 3)
+    if (_iRetCount > 3)
     {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "bezout", 2, 3);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "bezout", 1, 3);
         return types::Function::Error;
+        // _iRetCount==3 is undocumented. May be it is used in an internal way
     }
 
     // get input arguments
@@ -115,23 +116,27 @@ types::Function::ReturnValue sci_bezout(types::typed_list &in, int _iRetCount, t
     pPolyGCD->set(0, pSP);
     delete pSP;
 
-    types::Polynom* pPolyU = new types::Polynom(wstrName, 2, 2);
-    for (int i = 0; i < 4; i++)
+    // return result
+    out.push_back(pPolyGCD);
+
+    if (_iRetCount > 1)
     {
-        int ii     = i + 1;
-        int iRankU = ipb[ii + 1] - ipb[ii];
-        double* pdblU = NULL;
-        types::SinglePoly* pSPU = new types::SinglePoly(&pdblU, iRankU - 1);
-        memcpy(pdblU, pdblOut + ipb[ii] - 1, iRankU * sizeof(double));
-        pPolyU->set(i, pSPU);
-        delete pSPU;
+        types::Polynom* pPolyU = new types::Polynom(wstrName, 2, 2);
+        for (int i = 0; i < 4; i++)
+        {
+            int ii     = i + 1;
+            int iRankU = ipb[ii + 1] - ipb[ii];
+            double* pdblU = NULL;
+            types::SinglePoly* pSPU = new types::SinglePoly(&pdblU, iRankU - 1);
+            memcpy(pdblU, pdblOut + ipb[ii] - 1, iRankU * sizeof(double));
+            pPolyU->set(i, pSPU);
+            delete pSPU;
+        }
+        out.push_back(pPolyU);
     }
 
     delete[] pdblOut;
 
-    // return result
-    out.push_back(pPolyGCD);
-    out.push_back(pPolyU);
 
     if (_iRetCount == 3)
     {
@@ -141,4 +146,3 @@ types::Function::ReturnValue sci_bezout(types::typed_list &in, int _iRetCount, t
     return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/
-

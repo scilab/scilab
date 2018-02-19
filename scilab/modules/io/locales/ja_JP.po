@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 22:07+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2017-05-02 08:15+0000\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
-"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18544)\n"
 "X-Poedit-Country: Japan\n"
+"Language: ja\n"
 "X-Poedit-Language: Japanese\n"
 
 #, c-format
@@ -41,19 +41,19 @@ msgstr "%s: メモリ不足です.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
+msgstr "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : string expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A single string expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A scalar expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: スカラーを指定してください.\n"
 
 #, c-format
 msgid "%s: The file \"%s\" does not exist.\n"
@@ -65,57 +65,57 @@ msgstr "%s: ファイルが存在しません.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の値が間違っています.\n"
 
 #, c-format
 msgid "%s: %d logical unit already used.\n"
-msgstr ""
+msgstr "%s: 論理ユニット %d は既に使用されています.\n"
 
 #, c-format
 msgid "%s: Too many files opened!\n"
-msgstr ""
+msgstr "%s: 開いているファイルの数が多すぎます.\n"
 
 #, c-format
 msgid "%s: Unknown file format.\n"
-msgstr ""
+msgstr "%s: 未知のファイル形式.\n"
 
 #, c-format
 msgid "%s: File \"%s\" already exists or directory write access denied.\n"
-msgstr ""
+msgstr "%s: ファイル \"%s\"が既に存在しているか,ディレクトリへの書き込みアクセスが禁止されています.\n"
 
 #, c-format
 msgid "%s: File \"%s\" does not exist or read access denied.\n"
-msgstr ""
+msgstr "%s: ファイル \"%s\"が存在していないか,ディレクトリへの読み込みアクセスが禁止されています.\n"
 
 #, c-format
 msgid "%s: Can not open File \"%s\"\n"
-msgstr ""
+msgstr "%s: ファイル \"%s\"をオープンできません\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A matrix expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: 行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Cannot close file %d.\n"
-msgstr ""
+msgstr "%s: ファイル %d をクローズできません.\n"
 
 #, c-format
 msgid "%s: Wrong input argument #%d.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d が間違っています.\n"
 
 #, c-format
 msgid "%s: \n"
-msgstr ""
+msgstr "%s: \n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: \"%s\", \"%s\", \"%s\", \"%s\", \"%s"
-"\" \n"
-msgstr ""
+"%s: Wrong value for input argument #%d: \"%s\", \"%s\", \"%s\", \"%s\", "
+"\"%s\" \n"
+msgstr "%s: 入力引数 #%d の値が間違っています: \"%s\", \"%s\", \"%s\", \"%s\", \"%s\" \n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
@@ -123,96 +123,96 @@ msgstr "%s: 入力引数 #%d の型が間違っています: スカラーを指�
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar boolean expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: スカラー論理値を指定してください.\n"
 
 #, c-format
 msgid "-- Creation of [%ls] (Macros) --\n"
-msgstr ""
+msgstr "-- [%ls]の作成 (マクロ) --\n"
 
 #, c-format
 msgid "%ls: Cannot open file ''%ls''.\n"
-msgstr ""
+msgstr "%ls: ファイル \"%ls\" をオープンできません.\n"
 
 #, c-format
 msgid "%s: Cannot open file ''%s''.\n"
-msgstr ""
+msgstr "%s: ファイル \"%s\" をオープンできません.\n"
 
 #, c-format
 msgid "%ls: Processing file: %ls\n"
-msgstr ""
+msgstr "%ls: ファイルを処理しています: %ls\n"
 
 #, c-format
 msgid "%ls: Error in file %ls.\n"
-msgstr ""
+msgstr "%ls: ファイル %ls にエラーがあります.\n"
 
 #, c-format
 msgid ""
 "%ls: Warning: %ls information cannot be added to file %ls. File ignored\n"
-msgstr ""
+msgstr "%ls: 警告: %ls 情報がファイル %ls に追加できません. ファイルが無視されます\n"
 
 msgid "Redefining permanent variable.\n"
-msgstr ""
+msgstr "永続的変数を再定義しています.\n"
 
 #, c-format
 msgid "%s: %s is not a valid lib path.\n"
-msgstr ""
+msgstr "%s: %s は有効なlibパスではありません.\n"
 
 msgid "Cannot read lib file: Not in proper XML format.\n"
-msgstr ""
+msgstr "libファイルを読み込めません: 正しいXML形式ではありません.\n"
 
 msgid "Old binary lib detected. Please recompile it for Scilab 6.\n"
-msgstr ""
+msgstr "古いバイナリlibが検出されました. Scilab 6で再コンパイルしてください.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
-msgstr ""
+msgstr "%s: 入力引数の数が間違っています: %d 個以上の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: %s is not a valid module file.\n"
-msgstr ""
+msgstr "%s: %s は有効なモジュールファイルではありません.\n"
 
 #, c-format
 msgid "%s: Unable to open file: \"%ls\".\n"
-msgstr ""
+msgstr "%s: ファイルをオープンできません: \"%ls\".\n"
 
 #, c-format
 msgid "File \"%s\" already exists or directory write access denied.\n"
-msgstr ""
+msgstr "ファイル \"%s\"が既に存在するか, ディレクトリへの書き込みアクセスが拒否されました.\n"
 
 #, c-format
 msgid "File \"%s\" does not exist or read access denied.\n"
-msgstr ""
+msgstr "ファイル \"%s\"が存在しないか, ディレクトリへの読み込みアクセスが拒否されました.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A real scalar expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: 実数スカラーを指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d : A real scalar or file descriptor "
 "expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: 実数スカラーまたはファイル記述子を指定してください.\n"
 
 msgid "Incorrect file or format.\n"
-msgstr ""
+msgstr "ファイルまたは形式が正しくありません.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A scalar integer value expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: スカラー整数値を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A scalar integer value expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の大きさが間違っています: スカラー整数値を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong input argument %d.\n"
-msgstr ""
+msgstr "%s: 入力引数 %d が間違っています.\n"
 
 #, c-format
 msgid "End of file at line %d.\n"
-msgstr ""
+msgstr "ファイルの終端(%d行目).\n"
 
 #, c-format
 msgid "Undefined environment variable %s.\n"
@@ -246,8 +246,7 @@ msgstr "%s: 凡例はカレントのコンテキストに適合しません.　�
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+msgstr "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"

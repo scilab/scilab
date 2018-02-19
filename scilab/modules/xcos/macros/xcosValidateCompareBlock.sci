@@ -18,10 +18,10 @@ function [status, message] = xcosValidateCompareBlock(block1, block2)
     message = "";
 
     if (typeof(block1) <> "Block")
-        error(999, sprintf(_("%s: Wrong type for argument #%d: A Block expected."), "xcosValidateCompareBlock", 1))
+        error(sprintf(_("%s: Wrong type for argument #%d: A Block expected."), "xcosValidateCompareBlock", 1))
     end
     if (typeof(block2) <> "Block")
-        error(999, sprintf(_("%s: Wrong type for argument #%d: A Block expected."), "xcosValidateCompareBlock", 2))
+        error(sprintf(_("%s: Wrong type for argument #%d: A Block expected."), "xcosValidateCompareBlock", 2))
     end
 
     unconsistantFields = [];

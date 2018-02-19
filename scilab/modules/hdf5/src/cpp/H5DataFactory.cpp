@@ -91,11 +91,11 @@ H5Data & H5DataFactory::getObjectData(H5Object & parent, const hsize_t totalSize
 
 #ifdef __SCILAB_INT64__
 
-            else if (H5Tequal(type, H5T_NATIVE_LONG))
+            else if (H5Tequal(type, H5T_NATIVE_LLONG))
             {
                 return *new H5BasicData<long long>(parent, totalSize, dataSize, ndims, dims, (long long *)data, stride, offset, dataOwner);
             }
-            else if (H5Tequal(type, H5T_NATIVE_ULONG))
+            else if (H5Tequal(type, H5T_NATIVE_ULLONG))
             {
                 return *new H5BasicData<unsigned long long>(parent, totalSize, dataSize, ndims, dims, (unsigned long long *)data, stride, offset, dataOwner);
             }

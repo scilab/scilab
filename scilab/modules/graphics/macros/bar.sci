@@ -1,6 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2005 - INRIA - Farid Belahcene
 // Copyright (C) 2012 - Michael Baudin
+// Copyright (C) 2018 - Samuel GOUGEON
+// 
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -12,17 +14,23 @@
 
 
 function  bar(varargin)
-    // bar(x,y,width,style,color)
-    // This function  ...
+    // bar(x, y, width, colors, "stacked"|"grouped")|
     //
     // Input :
     // x : a real scalar or a vector
-    // y : a real scalar, or a vector
-    // width : a double, the bar width, it's the percentage (0<width<1) of the width max of one bar which is wanted (default: width=0.8)
+    // y : a real scalar, or a vector or a matrix.
+    //     If it's a matrix, size(y,"r")==length(x) and size(y,"c") is the 
+    //     number of categories that can either be grouped around each x(i),
+    //     or stacked at each x(i)
+    // width : a double, the bar width, it's the percentage (0<width<1) of the
+    //         width max of one bar which is wanted (default: width=0.8)
+    // colors: scalar or vector of colors identifiers. If it's a vector, it must
+    //         has as many components as there are categories.
     // style : a string 'grouped' or 'stacked' (default: style='grouped')
 
     if size(varargin)<1 | size(varargin)>5  then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected.\n"), "bar", 1, 5));
+        msg = gettext("%s: Wrong number of input argument(s): %d to %d expected.\n")
+        error(msprintf(msg, "bar", 1, 5));
     end
 
     styletab=["grouped","stacked"]
@@ -33,27 +41,33 @@ function  bar(varargin)
     ListArg = varargin;
 
     //detect and set the current axes now:
+    shift = 0;  // shift for argins positions
     if type(ListArg(1)) == 9
         hdle = ListArg(1);
         if (hdle.type == "Axes")
             sca(ListArg(1));
             ListArg(1) = null(); // remove this parameter from the list
+            shift = 1;
         else
-            warning(msprintf(gettext("%s: Wrong type for input argument #%d: Axes handle expected.\n"),"bar",1));
-            return;
+            msg = gettext("%s: Wrong type for input argument #%d: Axes handle expected.\n")
+            warning(msprintf(msg, "bar", 1));
+            return
         end
     end
 
     if size(ListArg) == 4 then
         COLOR=ListArg(4);
-        if type(COLOR) <> 10 then
-            error(msprintf(gettext("%s: Wrong type for input arguments #%d: string expected.\n"),"bar",4));
+        c = iscolor(COLOR,"a#")
+        if or(c(:,1)==-1)
+            msg = gettext("%s: Argument #%d: Wrong color specification.\n")
+            error(msprintf(msg, "bar", shift+4));
         end
     end
     if size(ListArg) == 5 then
         STYLE=ListArg(5);
         if type(STYLE) <> 10 then
-            error(msprintf(gettext("%s: Wrong type for input arguments #%d: string expected.\n"),"bar",5));
+            msg = gettext("%s: Wrong type for input arguments #%d: string expected.\n")
+            error(msprintf(msg, "bar", shift+5));
         end
     end
     nv = size(ListArg)
@@ -62,7 +76,8 @@ function  bar(varargin)
 
     // Number of inputs arguments < 6
     if  size(ListArg)>5 then
-        error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"bar",1,5));
+        msg = gettext("%s: Wrong number of input arguments: %d to %d expected.\n")
+        error(msprintf(msg, "bar", 1, shift+5));
     end
 
     for k=1:nv
@@ -73,18 +88,20 @@ function  bar(varargin)
     argstr=find(T==10)
 
     if size(argdb,"*")<> argdb($) then
-        error(msprintf(gettext("%s: Wrong type for input arguments: Matrix expected for %s, %s and %s.\n"),"bar", "x", "y", "width"));
+        msg = gettext("%s: Wrong type for input arguments: Matrix expected for %s, %s and %s.\n")
+        error(msprintf(msg, "bar", "x", "y", "width"));
     end
 
     if size(argstr,"*") <> nv-argdb($) then
-        error(msprintf(gettext("%s: Wrong type for input arguments: String expected for %s and %s.\n"),"bar", "color", "style"));
+        msg = gettext("%s: Wrong type for input arguments: String expected for %s and %s.\n")
+        error(msprintf(msg, "bar", "color", "style"));
     end
 
     //set the double argument : x,y,width
     // bar(y,...)
     if size(argdb,"*")==1
         Y=ListArg(1)
-        WIDTH=0.8
+        WIDTH = 0.8
         if or(size(Y)==1) then
             Y=Y(:)
         end
@@ -117,13 +134,16 @@ function  bar(varargin)
                         Y=Y(:)
                     end
                     if size(X,"*")<>size(Y,1) // Y is a matrix
-                        error(msprintf(gettext("%s: Wrong size for input arguments #%d and #%d: The number of rows of argument #%d must be equal to the size of argument #%d.\n"),"bar",1, 2, 2, 1));
+                        msg = gettext("%s: Wrong size for input arguments #%d and #%d: The number of rows of argument #%d must be equal to the size of argument #%d.\n")
+                        error(msprintf(msg, "bar", shift+1, shift+2, shift+2, shift+1));
                     end
                 elseif size(Y,1)>1 then
-                    error(msprintf(gettext("%s: Wrong size for input argument #%d: A scalar or a column vector expected.\n"),"bar",2));
+                    msg = gettext("%s: Wrong size for input argument #%d: A scalar or a row vector expected.\n")
+                    error(msprintf(msg,"bar", shift+2));
                 end
             else
-                error(msprintf(gettext("%s: Wrong type for input argument #%d: A scalar or a vector expected.\n"),"bar",1));
+                msg = gettext("%s: Wrong type for input argument #%d: A scalar or a vector expected.\n")
+                error(msprintf(msg, "bar", shift+1));
             end
             WIDTH=0.8
         end
@@ -131,24 +151,31 @@ function  bar(varargin)
 
     // bar(x,y,width,...)
     if size(argdb,"*")==3
-        X=ListArg(1)
-        Y=ListArg(2)
-        WIDTH=ListArg(3)
+        X = ListArg(1)
+        Y = ListArg(2)
+        WIDTH = ListArg(3)
+        if WIDTH==[]
+            WIDTH = 0.80
+        end
         if size(WIDTH,"*")<>1 then
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: A scalar expected.\n"),"bar",3));
+            msg = gettext("%s: Wrong type for input argument #%d: A scalar expected.\n")
+            error(msprintf(msg, "bar", shift+3));
         elseif or(size(X)==1) then
             if size(X,"*")<>1 then // X is a vector
                 if or(size(Y)==1) then // Y is a vector
                     Y=Y(:)
                 end
                 if size(X,"*")<>size(Y,1)
-                    error(msprintf(gettext("%s: Wrong size for input arguments #%d and #%d: The number of rows of argument #%d must be equal to the size of argument #%d.\n"),"bar",1, 2, 2, 1))
+                    msg = gettext("%s: Wrong size for input arguments #%d and #%d: The number of rows of argument #%d must be equal to the size of argument #%d.\n");
+                    error(msprintf(msg, "bar", shift+1, shift+2, shift+2, shift+1))
                 end
             elseif size(Y,1)>1 then
-                error(msprintf(gettext("%s: Wrong size for input arguments #%d: A scalar or a column vector expected.\n"),"bar",2));
+                msg = gettext("%s: Wrong size for input arguments #%d: A scalar or a column vector expected.\n");
+                error(msprintf(msg, "bar", shift+2));
             end
         else
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: A scalar or a vector expected.\n"),"bar",1));
+            msg = gettext("%s: Wrong type for input argument #%d: A scalar or a vector expected.\n");
+            error(msprintf(msg, "bar", shift+1));
         end
     end
     X=X(:)
@@ -163,16 +190,36 @@ function  bar(varargin)
             COLORBOOL=%t
         end
     end
-
     // drawlater
     curFig = gcf();
     immediate_drawing = curFig.immediate_drawing;
 
     wmode = warning("query");
-    warning("off"); // See bug #13579 (some bar() syntaxes will lead to a plot() warning)
     if COLORBOOL
-        plot(X,Y,COLOR); // plot manages immediate_drawing property itself to avoid flickering
+        c = iscolor(COLOR);
+        if or(c(:,1)==-1)
+            msg = _("%s: Argument #%d: Wrong color specification.\n")
+            error(msprintf(msg, "bar", shift+4));
+        end
+        nparts = max(1, size(Y,"c"));
+
+        if size(c,"r")==1
+            // Only one color is provided => we replicate it
+            if type(COLOR)==10
+                COLOR = emptystr(1,nparts) + COLOR;  // name or "#RRGGBB"
+            elseif size(COLOR,"c")==3
+                COLOR = ones(nparts,1)*COLOR        // [r g b]
+            else
+                COLOR = ones(nparts,1)*COLOR        // index in colormap
+            end
+        elseif size(c,"r") < nparts
+            msg = _("%s: Arguments #%d and #%d: Incompatible sizes.\n")
+            error(msprintf(msg, "bar", shift+2, shift+4));
+        end
+        warning("off"); // See bug #13579 (some bar() syntaxes will lead to a plot() warning)
+        plot(X,Y,"color",COLOR); // plot manages immediate_drawing property itself to avoid flickering
     else
+        warning("off"); 
         plot(X,Y); // plot manages immediate_drawing property itself to avoid flickering
     end
     warning(wmode);
@@ -225,18 +272,18 @@ function  bar(varargin)
 
         // Udate the axes data bounds
         if STYLE=="grouped"
-            xmin=min(a.data_bounds(1,1),min(X)+x_shift-0.4*wmax)
-            ymin=min(a.data_bounds(1,2),0,min(y_shift+Y(:,bar_number-i+1)))
-            xmax=max(a.data_bounds(2,1),max(X)+x_shift+0.4*wmax)
-            ymax=max(a.data_bounds(2,2),0)
-            ei.x_shift=x_shift*ones(size(X,"*"),1)
+            xmin = min(a.data_bounds(1,1),min(X)+x_shift-0.4*wmax)
+            ymin = min(a.data_bounds(1,2),0,min(y_shift+Y(:,bar_number-i+1)))
+            xmax = max(a.data_bounds(2,1),max(X)+x_shift+0.4*wmax)
+            ymax = max(a.data_bounds(2,2),0)
+            ei.x_shift = x_shift*ones(size(X,"*"),1)
         else
-            wmax=inter
-            xmin=min(a.data_bounds(1,1),min(X)-0.4*wmax)
-            ymin=min(a.data_bounds(1,2),min(y_shift+Y(:,bar_number-i+1)))
-            xmax=max(a.data_bounds(2,1),max(X)+0.4*wmax)
-            ymax=max(a.data_bounds(2,2),max(y_shift+Y(:,bar_number-i+1)))
-            ei.y_shift=y_shift
+            wmax = inter
+            xmin = min(a.data_bounds(1,1),min(X)-0.4*wmax)
+            ymin = min(a.data_bounds(1,2),min(y_shift+Y(:,bar_number-i+1)))
+            xmax = max(a.data_bounds(2,1),max(X)+0.4*wmax)
+            ymax = max(a.data_bounds(2,2),max(y_shift+Y(:,bar_number-i+1)))
+            ei.y_shift = y_shift
         end
         a.data_bounds=[xmin ymin; xmax ymax]
 

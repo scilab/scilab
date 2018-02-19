@@ -87,7 +87,7 @@ libscisparse_algo_la_CPPFLAGS = $(libscisparse_la_CPPFLAGS)
 CHECK_SRC = $(SPARSE_C_SOURCES)
 INCLUDE_FLAGS = $(libscisparse_la_CPPFLAGS)
 
-libscisparse_la_LIBADD = libscisparse-algo.la
+libscisparse_la_LIBADD = libscisparse-algo.la $(FLIBS)
 
 #### Target ######
 modulename=sparse

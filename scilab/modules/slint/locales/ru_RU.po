@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-06-18 07:53+0000\n"
+"PO-Revision-Date: 2017-12-14 15:52+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
-"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18544)\n"
+"Language: ru\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: at least %d expected.\n"
@@ -94,7 +94,8 @@ msgstr "Пустой блок."
 msgid ""
 "Possible confusion between assignment operator '=' and equality operator "
 "'=='."
-msgstr "Возможно перепутан оператор присвоения '=' и оператор равенства '=='."
+msgstr ""
+"Возможно перепутан оператор присвоения '=' и оператор равенства '=='."
 
 #, c-format
 msgid "Number of expressions in condition is limited: %d max."
@@ -178,7 +179,8 @@ msgid "Open file is not assigned."
 msgstr "Не указан файл для открытия."
 
 msgid "The instruction mclose(\"all\") may have any side effects."
-msgstr "Инструкция mclose(\"all\") может иметь какие угодно побочные эффекты."
+msgstr ""
+"Инструкция mclose(\"all\") может иметь какие угодно побочные эффекты."
 
 #, c-format
 msgid "Open files not closed: %s."
@@ -207,7 +209,8 @@ msgid "Not operator '~' should be used rather than '@'."
 msgstr "Следует использовать оператор НЕ '~' а не '@'."
 
 #, c-format
-msgid "Invalid number of arguments in %s: data don't correspond to the format."
+msgid ""
+"Invalid number of arguments in %s: data don't correspond to the format."
 msgstr ""
 "Недопустимое количество аргументов в %s: данные не соответствуют формату."
 
@@ -269,8 +272,10 @@ msgstr "Нет пробела перед первым аргументом фу�
 msgid "A function argument must be preceded by a single space."
 msgstr "Аргумент функции должен предваряться одиночным пробелом."
 
-msgid "All the fields in a struct should be defined at the struct definition."
-msgstr "Все поля в структуре должны быть определены при определении структуры."
+msgid ""
+"All the fields in a struct should be defined at the struct definition."
+msgstr ""
+"Все поля в структуре должны быть определены при определении структуры."
 
 msgid "Struct definition must contain an even number of arguments."
 msgstr "Определение структуры должно содеражать чётное число аргументов."

@@ -213,8 +213,8 @@ s1 = optimsimplex_destroy ( s1 );
     <refsection>
         <title>Bibliography</title>
         <para>
-            &#8220;Sequential Application of Simplex Designs in Optimisation and
-            Evolutionary Operation&#8221;, Spendley, W. and Hext, G. R. and Himsworth,
+            "Sequential Application of Simplex Designs in Optimisation and
+            Evolutionary Operation", Spendley, W. and Hext, G. R. and Himsworth,
             F. R., American Statistical Association and American Society for Quality,
             1962
         </para>
@@ -247,18 +247,18 @@ s1 = optimsimplex_destroy ( s1 );
             British Computer Society
         </para>
         <para>
-            &#8220;Detection and Remediation of Stagnation in the Nelder--Mead
-            Algorithm Using a Sufficient Decrease Condition&#8221;, SIAM J. on
+            "Detection and Remediation of Stagnation in the Nelder--Mead
+            Algorithm Using a Sufficient Decrease Condition", SIAM J. on
             Optimization, Kelley,, C. T., 1999
         </para>
         <para>
-            " Multi-Directional Search: A Direct Search Algorithm for Parallel
+            "Multi-Directional Search: A Direct Search Algorithm for Parallel
             Machines", by E. Boyd, Kenneth W. Kennedy, Richard A. Tapia, Virginia
             Joanne Torczon,, Virginia Joanne Torczon, 1989, Phd Thesis, Rice
             University
         </para>
         <para>
-            "Grid Restrained Nelder-Mead Algorithm", ¡rp·d B&#361;rmen, Janez
+            "Grid Restrained Nelder-Mead Algorithm", √Årp√°d B≈©rmen, Janez
             Puhan, Tadej Tuma, Computational Optimization and Applications, Volume 34
             , Issue 3 (July 2006), Pages: 359 - 375
         </para>

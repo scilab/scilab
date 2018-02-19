@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2018 - ESI Group - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -74,7 +75,7 @@ public final class BlockPositioning {
         diag.getModel().beginUpdate();
         for (int i = 0; i < portsSize; ++i) {
             final BasicPort port = (ports.get(i));
-            final mxGeometry portGeom = port.getGeometry();
+            final mxGeometry portGeom = (mxGeometry) port.getGeometry().clone();
 
             double nonVariantPosition = -portGeom.getWidth();
             final int order = i;
@@ -83,7 +84,8 @@ public final class BlockPositioning {
             portGeom.setX(nonVariantPosition);
             portGeom.setY(alignedPosition);
 
-            port.setLabelPosition(Orientation.WEST);
+            diag.getModel().setGeometry(port, portGeom);
+            diag.getModel().setStyle(port, port.computeLabelPosition(Orientation.WEST));
         }
         diag.getModel().endUpdate();
     }
@@ -138,7 +140,7 @@ public final class BlockPositioning {
         diag.getModel().beginUpdate();
         for (int i = 0; i < portsSize; ++i) {
             final BasicPort port = (ports.get(i));
-            final mxGeometry portGeom = port.getGeometry();
+            final mxGeometry portGeom = (mxGeometry) port.getGeometry().clone();
 
             double nonVariantPosition = -portGeom.getHeight();
             final int order = i;
@@ -147,7 +149,8 @@ public final class BlockPositioning {
             portGeom.setX(alignedPosition);
             portGeom.setY(nonVariantPosition);
 
-            port.setLabelPosition(Orientation.NORTH);
+            diag.getModel().setGeometry(port, portGeom);
+            diag.getModel().setStyle(port, port.computeLabelPosition(Orientation.NORTH));
         }
         diag.getModel().endUpdate();
     }
@@ -172,7 +175,7 @@ public final class BlockPositioning {
         diag.getModel().beginUpdate();
         for (int i = 0; i < portsSize; ++i) {
             final BasicPort port = (ports.get(i));
-            final mxGeometry portGeom = port.getGeometry();
+            final mxGeometry portGeom = (mxGeometry) port.getGeometry().clone();
 
             double nonVariantPosition = blockGeom.getWidth();
             final int order = i;
@@ -181,7 +184,8 @@ public final class BlockPositioning {
             portGeom.setX(nonVariantPosition);
             portGeom.setY(alignedPosition);
 
-            port.setLabelPosition(Orientation.EAST);
+            diag.getModel().setGeometry(port, portGeom);
+            diag.getModel().setStyle(port, port.computeLabelPosition(Orientation.EAST));
         }
         diag.getModel().endUpdate();
     }
@@ -206,7 +210,7 @@ public final class BlockPositioning {
         diag.getModel().beginUpdate();
         for (int i = 0; i < portsSize; ++i) {
             final BasicPort port = (ports.get(i));
-            final mxGeometry portGeom = port.getGeometry();
+            final mxGeometry portGeom = (mxGeometry) port.getGeometry().clone();
 
             double nonVariantPosition = blockGeom.getHeight();
             final int order = i;
@@ -215,7 +219,8 @@ public final class BlockPositioning {
             portGeom.setX(alignedPosition);
             portGeom.setY(nonVariantPosition);
 
-            port.setLabelPosition(Orientation.SOUTH);
+            diag.getModel().setGeometry(port, portGeom);
+            diag.getModel().setStyle(port, port.computeLabelPosition(Orientation.SOUTH));
         }
         diag.getModel().endUpdate();
     }
@@ -443,17 +448,12 @@ public final class BlockPositioning {
      *            The block to work on
      */
     public static void toggleFlip(final XcosDiagram diag, BasicBlock block) {
-        JavaController controller = new JavaController();
-        String[] style = new String[1];
-        controller.getObjectProperty(block.getUID(), Kind.BLOCK, ObjectProperties.STYLE, style);
-
-        StyleMap styleMap = new StyleMap(style[0]);
+        StyleMap styleMap = new StyleMap(block.getStyle());
         final boolean invertedFlip = ! Boolean.TRUE.toString().equals(styleMap.get(XcosConstants.STYLE_FLIP));
 
         styleMap.put(XcosConstants.STYLE_FLIP, Boolean.toString(invertedFlip));
 
-        controller.setObjectProperty(block.getUID(), Kind.BLOCK, ObjectProperties.STYLE, styleMap.toString());
-
+        diag.getModel().setStyle(block, styleMap.toString());
         updateBlockView(diag, block);
     }
 
@@ -464,17 +464,12 @@ public final class BlockPositioning {
      *            The block to work on
      */
     public static void toggleMirror(final XcosDiagram diag, BasicBlock block) {
-        JavaController controller = new JavaController();
-        String[] style = new String[1];
-        controller.getObjectProperty(block.getUID(), Kind.BLOCK, ObjectProperties.STYLE, style);
-
-        StyleMap styleMap = new StyleMap(style[0]);
+        StyleMap styleMap = new StyleMap(block.getStyle());
         final boolean invertedFlip = ! Boolean.TRUE.toString().equals(styleMap.get(XcosConstants.STYLE_MIRROR));
 
         styleMap.put(XcosConstants.STYLE_MIRROR, Boolean.toString(invertedFlip));
 
-        controller.setObjectProperty(block.getUID(), Kind.BLOCK, ObjectProperties.STYLE, styleMap.toString());
-
+        diag.getModel().setStyle(block, styleMap.toString());
         updateBlockView(diag, block);
     }
 
@@ -485,14 +480,10 @@ public final class BlockPositioning {
      *            The block to work on
      */
     public static void toggleAntiClockwiseRotation(final XcosDiagram diag, BasicBlock block) {
-        JavaController controller = new JavaController();
-        String[] style = new String[1];
-        controller.getObjectProperty(block.getUID(), Kind.BLOCK, ObjectProperties.STYLE, style);
-
-        StyleMap styleMap = new StyleMap(style[0]);
+        StyleMap styleMap = new StyleMap(block.getStyle());
         styleMap.put(XcosConstants.STYLE_ROTATION, Integer.toString(getNextAntiClockwiseAngle(styleMap)));
 
-        controller.setObjectProperty(block.getUID(), Kind.BLOCK, ObjectProperties.STYLE, styleMap.toString());
+        diag.getModel().setStyle(block, styleMap.toString());
         updateBlockView(diag, block);
     }
 

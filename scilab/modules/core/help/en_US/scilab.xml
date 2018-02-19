@@ -3,22 +3,15 @@
           xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
           xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
           xmlns:scilab="http://www.scilab.org" xml:id="scilab" xml:lang="en">
-    <refnamediv xml:id="wscilex">
-    </refnamediv>
-    <refnamediv xml:id="scilex">
-    </refnamediv>
     <refnamediv>
-        <refname>scilex | scilab</refname>
-        <refpurpose>runs Scilab in interactive or batch mode with command line options
+        <refname>scilab</refname>
+            <refpurpose>runs Scilab in interactive or batch mode with command line options
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-#      MS Windows          |  # Linux / Unix / Mac OS X
-wscilex     &lt;Options&gt;     |  scilab         &lt;Options&gt;
-wscilex-cli &lt;Options&gt; |  scilab-adv-cli &lt;Options&gt;
-scilex      &lt;Options&gt;      |  scilab-cli     &lt;Options&gt;
+scilab &lt;Options&gt;
         </synopsis>
     </refsynopsisdiv>
     <refsection role="arguments">
@@ -76,8 +69,6 @@ evstr(a(i+2))*2
 --> "This session has been launched from " + a(i+3)
  ans  =
  This session has been launched from "C:\Users\Me"
-
--->
 ]]></screen>
                      </para>
                      <para>
@@ -233,7 +224,14 @@ evstr(a(i+2))*2
                             <listitem>
                                 <para>Scilab distribution also provides a dedicated binary which
                                     is doing the same as <literal>-nw</literal>:
-                                    <literal>scilab-adv-cli</literal> (Scilab Advanced Command Line Interpreter).
+                                    <itemizedlist>
+                                        <listitem>
+                                            Windows: <literal>WScilex-cli.exe</literal>.
+                                        </listitem>
+                                        <listitem>
+                                            <literal>scilab-adv-cli</literal> (Scilab Advanced Command Line Interpreter).
+                                        </listitem>
+                                    </itemizedlist>
                                 </para>
                             </listitem>
                         </itemizedlist>
@@ -265,7 +263,14 @@ evstr(a(i+2))*2
                             <listitem>
                                 <para>Scilab distribution also provides a dedicated binary which
                                     is doing the same as <literal>-nwni</literal>:
-                                    <literal>scilab-cli</literal> (Scilab Command Line Interpreter).
+                                    <itemizedlist>
+                                        <listitem>
+                                            Windows: <literal>Scilex.exe</literal>.
+                                        </listitem>
+                                        <listitem>
+                                            Others: <literal>scilab-cli</literal> (Scilab Command Line Interpreter).
+                                        </listitem>
+                                    </itemizedlist>
                                 </para>
                             </listitem>
                         </itemizedlist>
@@ -522,9 +527,20 @@ echo $? ]]></screen>
             <revision>
                 <revnumber>6.0.1</revnumber>
                 <revremark>
-                    <literal>-scihome</literal> option added.
+                  <para><literal>-scihome</literal> option added.</para>
+                  <para>On Windows, a new <literal>scilab.bat</literal> file becomes the main
+                    executable script managing all launching options. There are now 3 binaries
+                    Wscilex.exe, Wscilex-cli.exe, and Scilex.exe corresponding to each Scilab
+                    running mode (STD, NW, NWNI).
+                  </para>
                 </revremark>
             </revision>
         </revhistory>
     </refsection>
+    <!--add some kewywords -->
+    <refnamediv xml:id="wscilex"></refnamediv>
+    <refnamediv xml:id="wscilex-cli"></refnamediv>
+    <refnamediv xml:id="scilex"></refnamediv>
+    <refnamediv xml:id="scilab-cli"></refnamediv>
+    <refnamediv xml:id="scilab-adv-cli"></refnamediv>
 </refentry>

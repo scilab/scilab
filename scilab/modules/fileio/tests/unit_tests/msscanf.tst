@@ -231,7 +231,7 @@ Fs='%s';Fs=strcat(Fs(ones(1,2)),' ');
 Fd='%d';Fd=strcat(Fd(ones(1,n-2)),' ');
 [n,a,b,c,d,e]=msscanf(-1,A1,Fs+' '+Fd);
 if n<>5 then pause;end 
-if norm([eval(a),eval(b),c,d,e]-A) > %eps then pause;end 
+if norm([evstr(a),evstr(b),c,d,e]-A) > %eps then pause;end 
 
 // same example but returned values are compacted in L
 L=msscanf(-1,A1,Fs+' '+Fd);

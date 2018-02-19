@@ -35,6 +35,7 @@ extern "C"
 #include "localization.h"
 #include "Scierror.h"
 #include "getScilabJavaVM.h"
+#include "getFullFilename.h"
 }
 /*--------------------------------------------------------------------------*/
 using namespace org_scilab_modules_xcos;
@@ -76,8 +77,10 @@ types::Function::ReturnValue sci_xcosDiagramToScilab(types::typed_list &in, int 
         for (int i = 0; i < _iRetCount; i++)
         {
             char* f = wide_string_to_UTF8(files->get(i));
-            out[i] = importFile(f);
+            char* resolvedFile = getFullFilename(f);
             FREE(f);
+            out[i] = importFile(resolvedFile);
+            FREE(resolvedFile);
             if (out[i] == nullptr)
             {
                 return types::Function::Error;
@@ -98,8 +101,10 @@ types::Function::ReturnValue sci_xcosDiagramToScilab(types::typed_list &in, int 
         for (int i = 0; i < _iRetCount; i++)
         {
             char* f = wide_string_to_UTF8(files->get(i));
-            bool success = exportFile(1 + i, f, in[1 + i]);
+            char* resolvedFile = getFullFilename(f);
             FREE(f);
+            bool success = exportFile(1 + i, resolvedFile, in[1 + i]);
+            FREE(resolvedFile);
             if (!success)
             {
                 return types::Function::Error;

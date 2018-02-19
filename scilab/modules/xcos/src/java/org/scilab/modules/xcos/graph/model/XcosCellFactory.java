@@ -279,9 +279,6 @@ public final class XcosCellFactory {
 
         // add all the children using the diagram modification tracking features
         diagram.addCells(cells);
-
-        // each cell has been referenced twice (CHILDREN insert and addCells), derefence them all by one
-        Arrays.stream(cells).forEach(c -> controller.deleteObject(c.getUID()));
     }
 
     /*
@@ -570,7 +567,6 @@ public final class XcosCellFactory {
 
         Arrays.stream(children).forEach(c -> {
             parent.insert(c);
-            controller.deleteObject(c.getUID());
         });
 
         return children.length;

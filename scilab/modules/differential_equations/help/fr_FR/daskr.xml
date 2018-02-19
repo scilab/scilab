@@ -422,7 +422,7 @@ integer ny, ng
                                     <literal>6</literal> si <literal>info(8)=0</literal>, <literal>2</literal> sinon),
                                 </para>
                                 <para>
-                                    - mxnh = nombre maximal de valeurs artificielles du pas <literal>h</literal> à tenter si info(7) &#8800; [] (par défaut
+                                    - mxnh = nombre maximal de valeurs artificielles du pas <literal>h</literal> à tenter si info(7) ≠ [] (par défaut
                                     <literal>5</literal>),
                                 </para>
                                 <para>

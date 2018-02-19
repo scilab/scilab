@@ -30,15 +30,16 @@ V = [2^2*3^5 2^3*3^2 2^2*3^4*5];
 V_int = int32(V);
 [thegcd, U] = gcd(V);
 [thegcd, U_int] = gcd(V);
-assert_checkequal(V*U, int32([0 0 36]));
+assert_checkequal(V*U, [0 0 36]);
 assert_checkequal(V_int*U_int, int32([0 0 36]));
 assert_checkequal(gcd(uint8([15 20])), uint8(5));
 assert_checkequal(gcd([iconvert(15, 4) iconvert(20, 4)]), int32(5));
 assert_checkequal(gcd(iconvert([15 20], 4)), int32(5));
 // Trying to use booleans, strings or decimals should yield an error
-refMsg2 = msprintf(_("%s: Wrong type for argument #%d: Integer array or Polynomial expected.\n"), "gcd", 1);
+refMsg2 = msprintf(_("%s: Wrong type for argument #%d: Decimal or encoded integers or Polynomial expected.\n"), "gcd", 1);
 assert_checkerror("gcd(%t);", refMsg2);
-assert_checkerror("gcd(1.5);", refMsg2);
+refMsg3 = msprintf(_("%s: Wrong values for argument #%d: Integer values expected.\n"), "gcd", 1);
+assert_checkerror("gcd(1.5);", refMsg3);
 assert_checkerror("gcd(""string"");", refMsg2);
 
 

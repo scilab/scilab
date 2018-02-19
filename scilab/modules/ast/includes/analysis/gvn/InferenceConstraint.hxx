@@ -39,7 +39,7 @@ struct InferenceConstraint
 
     virtual Result check(GVN & gvn, const std::vector<GVN::Value *> & values) const = 0;
     virtual MPolyConstraintSet getMPConstraints(const std::vector<GVN::Value *> & values) const = 0;
-    virtual void applyConstraints(const std::vector<GVN::Value *> & values) const { }
+    virtual void applyConstraints(const std::vector<GVN::Value *> & /*values*/) const { }
 
     inline static std::vector<const MultivariatePolynomial *> getArgs(const std::vector<GVN::Value *> & values)
     {

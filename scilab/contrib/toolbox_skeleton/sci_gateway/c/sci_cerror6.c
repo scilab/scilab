@@ -13,12 +13,12 @@ int sci_cerror6(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt* opt,
 {
     if (nin != 1)
     {
-        Scierror(999, _d("toolbox_skeleton", "%s: I'm waiting for only one argument.\n"), fname);
+        Scierror(999, _("toolbox_skeleton", "%s: I'm waiting for only one argument.\n"), fname);
         return STATUS_ERROR;
     }
     else
     {
-        Scierror(999, _d("toolbox_skeleton", "%s: Yeah! %d is a good number of arguments but I prefer fail, sorry.\n"), fname, 1);
+        Scierror(999, _("toolbox_skeleton", "%s: Yeah! %d is a good number of arguments but I prefer fail, sorry.\n"), fname, 1);
         return STATUS_ERROR;
     }
 }

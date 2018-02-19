@@ -21,7 +21,10 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="Discrete_pal">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+    xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+    xmlns:scilab="http://www.scilab.org" xml:id="Discrete_pal" xml:lang="en_US">
     <refnamediv>
         <refname>Discrete_pal</refname>
         <refpurpose>Discrete time systems palette</refpurpose>
@@ -29,56 +32,96 @@
     <refsection>
         <title>Block Screenshot</title>
         <para>
+            <link linkend="AUTOMAT">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="AUTOMAT" fileref="../../../../../../modules/xcos/images/palettes/AUTOMAT.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="AUTOMAT" fileref="../../../../images/palettes/AUTOMAT.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="DELAYV_f">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="DELAYV_f" fileref="../../../../../../modules/xcos/images/palettes/DELAYV_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="DELAYV_f" fileref="../../../../images/palettes/DELAYV_f.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="DELAY_f">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="DELAY_f" fileref="../../../../../../modules/xcos/images/palettes/DELAY_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="DELAY_f" fileref="../../../../images/palettes/DELAY_f.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="DLR">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="DLR" fileref="../../../../../../modules/xcos/images/palettes/DLR.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="DLR" fileref="../../../../images/palettes/DLR.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="DLRADAPT_f">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="DLRADAPT_f" fileref="../../../../../../modules/xcos/images/palettes/DLRADAPT_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="DLRADAPT_f" fileref="../../../../images/palettes/DLRADAPT_f.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="DLSS">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="DLSS" fileref="../../../../../../modules/xcos/images/palettes/DLSS.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="DLSS" fileref="../../../../images/palettes/DLSS.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="DOLLAR_f">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="DOLLAR_f" fileref="../../../../../../modules/xcos/images/palettes/DOLLAR_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="DOLLAR_f" fileref="../../../../images/palettes/DOLLAR_f.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="SAMPHOLD_m">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="SAMPHOLD_m" fileref="../../../../../../modules/xcos/images/palettes/SAMPHOLD_m.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="SAMPHOLD_m" fileref="../../../../images/palettes/SAMPHOLD_m.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="TCLSS">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="TCLSS" fileref="../../../../../../modules/xcos/images/palettes/TCLSS.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="TCLSS" fileref="../../../../images/palettes/TCLSS.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="REGISTER">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="REGISTER" fileref="../../../../../../modules/xcos/images/palettes/REGISTER.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="REGISTER" fileref="../../../../images/palettes/REGISTER.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
         </para>
     </refsection>
     <refsection id="Module_Discrete_pal">

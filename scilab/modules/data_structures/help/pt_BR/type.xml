@@ -1,15 +1,33 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="type" xml:lang="pt">
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * Copyright (C) 2017 - Samuel GOUGEON
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+    xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+    xmlns:scilab="http://www.scilab.org" xml:id="type" xml:lang="pt">
     <refnamediv>
         <refname>type</refname>
-        <refpurpose>tipo de variável</refpurpose>
+        <refpurpose>tipo de variÃ¡vel</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title> Seqüência de Chamamento </title>
+        <title> SeqÃ¼Ãªncia de Chamamento </title>
         <synopsis>[i]=type(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>x</term>
@@ -26,34 +44,142 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             <literal>type(x)</literal>retorna um inteiro que indica o tipo de
             <literal>x </literal>como segue:
         </para>
         <para> 1 : uma matriz constante de reais ou complexos;</para>
-        <para> 2 : uma matriz de polinômios;</para>
+        <para> 2 : uma matriz de polinÃ´mios;</para>
         <para> 4 : uma matriz de valores booleanos;</para>
         <para> 5 : uma matriz esparsa;</para>
         <para> 6 : uma matriz de valores booleanos esparsa;</para>
         <para> 7 : uma matriz esparsa do Matlab.</para>
         <para> 8 : uma matriz de inteiros armazenados em 1, 2, 4 ou 8 bytes;</para>
-        <para> 9 : uma matriz de manipuladores gráficos;</para>
+        <para> 9 : uma matriz de manipuladores grÃ¡ficos;</para>
         <para> 10 : uma matriz de strings;</para>
-        <para> 11 : uma função não-compilada (código Scilab);</para>
-        <para> 13 : uma função compilada (código Scilab);</para>
-        <para> 14 : uma biblioteca de funções;</para>
+        <para> 13 : uma funÃ§Ã£o compilada (cÃ³digo Scilab);</para>
+        <para> 14 : uma biblioteca de funÃ§Ãµes;</para>
         <para> 15 : uma lista;</para>
         <para> 16 : uma lista com tipo ("typed list" ou "tlist");</para>
         <para> 17 : uma lista com tipo orientada matricialmente (mlist);</para>
         <para>
-            128 : um ponteiro (ver <link linkend="lufact">lufact</link>).
+            128 : um ponteiro (identificador) para um bloco Xcos, para um resultado de
+             <link linkend="lufact">lufact</link>(), etc.
         </para>
-        <para>129 : polinômio de tamanho implícito, usado para indexação.</para>
-        <para>130 : intrínseco do Scilab (código C ou Fortran).</para>
+        <para>129 : polinÃ´mio de tamanho implÃ­cito, usado para indexaÃ§Ã£o.</para>
+        <para>130 : intrÃ­nseco do Scilab (cÃ³digo C ou Fortran).</para>
+        <para>0 :
+            An undefined component of a simple list. Such a component may be met as
+            an omitted input argument when calling Scilab function like in
+            <literal>foo(a,,b)</literal>: From within the function, the missing
+            argument is defined but is of null type. Defining
+            <literal>L=list(%pi,,%i,,,%z)</literal> creates L(2) of type 0; etc.
+            For these objects, <code>isdef()</code> returns <literal>%T</literal>,
+            but their null type can be tested with <literal>type()</literal>
+        </para>
+        <refsect2>
+            <title>Remarks</title>
+            <para>
+                Some data may be stored in custom containers defined as typed lists of type 16
+                (tlist) or 17 (matrix-oriented typed mlist). This is also the case for embedded
+                types like (<emphasis role="italic">rationals</emphasis>), structures
+                (<emphasis role="italic">struct</emphasis>),
+                <emphasis role="italic">state-space</emphasis>, interactive trees
+                (<emphasis role="italic">uitree</emphasis>), etc, for which
+                <literal>type(..)</literal> will return 16 or 17. One will use
+                <link linkend="typeof">typeof</link> to get more information about their actual
+                (sub)type.
+            </para>
+            <para>
+                <emphasis role="bold">Type conversion in mixed operations</emphasis>:
+            </para>
+            <para>
+                When a binary operator (like the multiplication) or an n-ary iterated one
+                (like the concatenation) is applied beween two operands of distinct but
+                compatible types, usually the type of one of both is implicitely converted,
+                and the other operand sets the type of the result to its own type.
+                <para>
+                    Examples with the <link linkend="brackets">concatenation</link> :
+                    <literal>[%t, 3.124]</literal>, <literal>[int8(5), 3.124]</literal>, etc.
+                </para>
+                <para>
+                For the concatenation, addition, substraction, multiplication, division,
+                and the power operation, the hierarchy between operands types is as follows
+                (read "A &lt; B": B imposes its type to A) :
+                <simplelist>
+                    <member>
+                        boolean &lt; (decimal number, complex encoded number)
+                    </member>
+                    <member>
+                        <warning>
+                            (decimal number, complex-encoded number) &lt; encoded integer.
+                        </warning>
+                    </member>
+                    <member>
+                        polynomial (real | complex) &lt; rational (real | complex)
+                    </member>
+                </simplelist>
+                </para>
+            </para>
+        </refsect2>
     </refsection>
     <refsection>
-        <title> Ver Também </title>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+// (Select some lines, right-click and choose "Execute.." to run the selection)
+L = list(%pi,,"abc");
+type(L(2))                  // undefined component of a list
+
+type(42)                    // decimal numbers
+type(%nan)
+type(%inf)
+
+type(1+%i)                  // complex numbers
+
+s = sparse([1,2;4,5;3,10],[1,2,3]);
+type(s)                     // sparse-encoded decimal or complex numbers
+
+type(%t)                    // booleans
+
+type(s>2)                   // sparse-encoded booleans
+
+g = int8([1 -120 127 312]); // encoded integers
+type(g)
+type(1.23 * int8(4))
+
+type(1-%z+%z^2)             // polynomials
+
+type(gdf())                 // graphic handles
+
+type("foo")                 // texts
+
+deff('[x] = mymacro(y,z)',['a=3*y+1'; 'x=a*z+y']);
+type(mymacro)               // Scilab functions
+
+type(disp)                  // Built-in functions
+
+l = list(1,["a" "b"]);      // simple lists
+type(l)
+
+e = tlist(["listtype","field1","field2"], [], []);
+type(e)                     // Typed list
+
+h = mlist(['V','name','value'],['a','b';'c' 'd'],[1 2; 3 4]);
+type(h)                     // Typed matrix-oriented list
+
+clear s, s.r = %pi          // structures
+type(s)
+
+c = {%t %pi %i %z "abc" s}  // cells
+type(c)
+
+r = [%z/(1-%z) (1-%z)/%z^2]
+type(r)                     // rational fractions
+]]></programlisting>
+    </refsection>
+    <refsection>
+        <title> Ver TambÃ©m </title>
         <simplelist type="inline">
             <member>
                 <link linkend="typeof">typeof</link>
@@ -61,6 +187,48 @@
             <member>
                 <link linkend="inttype">inttype</link>
             </member>
+            <member>
+                <link linkend="isreal">isreal</link>
+            </member>
+            <member>
+                <link linkend="brackets">brackets</link>
+            </member>
+            <member>
+                <link linkend="overloading">overloading</link>
+            </member>
+            <member>
+                <link linkend="poly">poly</link>
+            </member>
+            <member>
+                <link linkend="rational">rational</link>
+            </member>
+            <member>
+                <link linkend="tlist">tlist</link>
+            </member>
+            <member>
+                <link linkend="mlist">mlist</link>
+            </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>HistÃ³rico</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                <simplelist>
+                    <member>
+                       The type 11 is removed. It was used for uncompiled Scilab functions.
+                    </member>
+                    <member>
+                       <literal>type(:)</literal> now returns 129 instead of 1.
+                    </member>
+                    <member>
+                       Assigning an object of type 0 to a variable no longer deletes this one.
+                    </member>
+                </simplelist>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

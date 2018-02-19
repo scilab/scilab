@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2012-04-21 22:54+0000\n"
 "Last-Translator: Thiago de Melo <tmelo.mat@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
-"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18544)\n"
+"Language: pt_BR\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -54,7 +54,8 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A vector of size 11 expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: A vector of size 11 expected.\n"
 msgstr ""
 
 #, c-format
@@ -135,7 +136,8 @@ msgid "%s: The collocation matrix is singular.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: The expected no. of subintervals exceeds storage specifications.\n"
+msgid ""
+"%s: The expected no. of subintervals exceeds storage specifications.\n"
 msgstr ""
 
 #, c-format
@@ -629,16 +631,13 @@ msgstr ""
 msgid "Singular partial derivatives matrix (may be redundant equations).\n"
 msgstr ""
 
-msgid "Either ill-posed problem or discontinuity or singularity encountered.\n"
+msgid ""
+"Either ill-posed problem or discontinuity or singularity encountered.\n"
 msgstr ""
 
-#
-# File: modules/differential_equations/src/cpp/checkodeerror.cpp, line: 252
 msgid "External 'res' return many times with ires=-1.\n"
 msgstr ""
 
-#
-# File: modules/differential_equations/src/cpp/checkodeerror.cpp, line: 259
 msgid "Error in external 'res'.\n"
 msgstr ""
 
@@ -682,11 +681,13 @@ msgid "%s: Wrong size for output argument #%d: Matrix of size %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for output argument #%d: A Matrix of size %d expected.\n"
+msgid ""
+"%s: Wrong size for output argument #%d: A Matrix of size %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for output argument #%d: A matrix of size %d expected.\n"
+msgid ""
+"%s: Wrong size for output argument #%d: A matrix of size %d expected.\n"
 msgstr ""
 
 #, c-format
@@ -698,7 +699,8 @@ msgid ""
 "%s: Wrong size for output argument #%d: A matrix of size %d x %d expected.\n"
 msgstr ""
 
-msgid "An error occurred while getting DifferentialEquationFunctions object.\n"
+msgid ""
+"An error occurred while getting DifferentialEquationFunctions object.\n"
 msgstr ""
 
 msgid "Unstable trajectory"
@@ -864,7 +866,8 @@ msgstr "5: um passo, sem ultrapassar tcrit, e volta"
 msgid "Meaning of jactype:"
 msgstr "Significado de jactype:"
 
-msgid "0 : functional iterations (no jacobian used ('adams' or 'stiff' only))"
+msgid ""
+"0 : functional iterations (no jacobian used ('adams' or 'stiff' only))"
 msgstr ""
 "0 : iterações funcionais (nenhum jacobiano usado (somente 'adams' ou "
 "'stiff'))"
@@ -907,7 +910,8 @@ msgid "such that column 1 of J is made of mu zeros followed by"
 msgstr "tal que a coluna 1 de J é feita de mu zeros seguidos por"
 
 msgid "df1/dy1, df2/dy1, df3/dy1,... (1+ml possibly non-zero entries)"
-msgstr "df1/dy1, df2/dy1, df3/dy1, ... (1+ml entradas possivelmente não-nulas)"
+msgstr ""
+"df1/dy1, df2/dy1, df3/dy1, ... (1+ml entradas possivelmente não-nulas)"
 
 msgid "column 2 is made of mu-1 zeros followed by df1/dx2, df2/dx2,etc"
 msgstr "a coluna 2 é feita de mu-1 zeros seguidos por df1/dx2, df2/dx2,etc."

@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-10-10 12:14+0000\n"
-"Last-Translator: Webish <Unknown>\n"
+"PO-Revision-Date: 2018-01-10 17:23+0000\n"
+"Last-Translator: Wesh <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18544)\n"
+"Language: \n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -35,23 +35,23 @@ msgstr "%s：未定义的环境变量%s。\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
-msgstr "%s: 内存不足。\n"
+msgstr "%s：内存不足。\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数的数目错误：应该为%d到%d个。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : string expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的类型错误：应该为字符串。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A single string expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的类型错误：应该为字符串。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A scalar expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的类型错误：应该为标量。\n"
 
 #, c-format
 msgid "%s: The file \"%s\" does not exist.\n"
@@ -63,7 +63,7 @@ msgstr "%s：该文件不存在。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误。\n"
 
 #, c-format
 msgid "%s: %d logical unit already used.\n"
@@ -71,49 +71,49 @@ msgstr ""
 
 #, c-format
 msgid "%s: Too many files opened!\n"
-msgstr ""
+msgstr "%s：打开过多文件\n"
 
 #, c-format
 msgid "%s: Unknown file format.\n"
-msgstr ""
+msgstr "%s：未知文件格式\n"
 
 #, c-format
 msgid "%s: File \"%s\" already exists or directory write access denied.\n"
-msgstr ""
+msgstr "%s：文件“%s”已存在，或目录写入已拒绝。\n"
 
 #, c-format
 msgid "%s: File \"%s\" does not exist or read access denied.\n"
-msgstr ""
+msgstr "%s：文件“%s”不存在，或目录读取已拒绝。\n"
 
 #, c-format
 msgid "%s: Can not open File \"%s\"\n"
-msgstr ""
+msgstr "%s：无法打开文件“%s”\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s：输出参数的数目错误：应该为%d个。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A matrix expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的类型错误：应该为矩阵。\n"
 
 #, c-format
 msgid "%s: Cannot close file %d.\n"
-msgstr ""
+msgstr "%s：无法关闭文件%d。\n"
 
 #, c-format
 msgid "%s: Wrong input argument #%d.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数错误。\n"
 
 #, c-format
 msgid "%s: \n"
-msgstr ""
+msgstr "%s： \n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: \"%s\", \"%s\", \"%s\", \"%s\", \"%s"
-"\" \n"
-msgstr ""
+"%s: Wrong value for input argument #%d: \"%s\", \"%s\", \"%s\", \"%s\", "
+"\"%s\" \n"
+msgstr "%s：第%d个输入参数的值错误：“%s”、“%s”、“%s”、“%s”、“%s” \n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
@@ -129,11 +129,11 @@ msgstr ""
 
 #, c-format
 msgid "%ls: Cannot open file ''%ls''.\n"
-msgstr ""
+msgstr "%ls：无法打开文件“%ls”。\n"
 
 #, c-format
 msgid "%s: Cannot open file ''%s''.\n"
-msgstr ""
+msgstr "%s：无法打开文件“'%s”。\n"
 
 #, c-format
 msgid "%ls: Processing file: %ls\n"
@@ -149,68 +149,68 @@ msgid ""
 msgstr ""
 
 msgid "Redefining permanent variable.\n"
-msgstr ""
+msgstr "重定义永久变量。\n"
 
 #, c-format
 msgid "%s: %s is not a valid lib path.\n"
-msgstr ""
+msgstr "%s：%s并非有效的库路径.\n"
 
 msgid "Cannot read lib file: Not in proper XML format.\n"
-msgstr ""
+msgstr "无法读取库文件：文件XML格式为不正确。\n"
 
 msgid "Old binary lib detected. Please recompile it for Scilab 6.\n"
-msgstr ""
+msgstr "检测到旧二进制库，请重编译以适合Scilab 6。\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数的数目错误：应该为至少%d个。\n"
 
 #, c-format
 msgid "%s: %s is not a valid module file.\n"
-msgstr ""
+msgstr "%s：%s并未有效的模块文件。\n"
 
 #, c-format
 msgid "%s: Unable to open file: \"%ls\".\n"
-msgstr ""
+msgstr "%s：无法打开文件“%ls”。\n"
 
 #, c-format
 msgid "File \"%s\" already exists or directory write access denied.\n"
-msgstr ""
+msgstr "文件“%s”已存在，或目录写入已拒绝。\n"
 
 #, c-format
 msgid "File \"%s\" does not exist or read access denied.\n"
-msgstr ""
+msgstr "文件“%s”不存在，或目录读取已拒绝。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A real scalar expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的类型错误：应该为实数标量。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d : A real scalar or file descriptor "
 "expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的类型错误：应该为实数标量或文件描述符。\n"
 
 msgid "Incorrect file or format.\n"
-msgstr ""
+msgstr "文件或格式错误。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A scalar integer value expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的类型错误：应该为整数标量。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A scalar integer value expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的维度错误：应该为整数标量。\n"
 
 #, c-format
 msgid "%s: Wrong input argument %d.\n"
-msgstr ""
+msgstr "%s：输入参数%d错误。\n"
 
 #, c-format
 msgid "End of file at line %d.\n"
-msgstr ""
+msgstr "文件结束于第%d行。\n"
 
 #, c-format
 msgid "Undefined environment variable %s.\n"
@@ -269,4 +269,4 @@ msgstr "%s：%s在执行过程中发生错误"
 #, c-format
 msgid ""
 "%s: The command failed with the error code %s and the following message:\n"
-msgstr ""
+msgstr "%s：命令执行失败，其错误代码为%s，错误消息为：\n"

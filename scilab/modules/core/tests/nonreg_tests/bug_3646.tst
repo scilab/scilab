@@ -7,6 +7,7 @@
 // =============================================================================
 
 // <-- Non-regression test for bug 3646 -->
+// <-- NO CHECK REF -->
 //
 // <-- Bugzilla URL -->
 // http://bugzilla.scilab.org/show_bug.cgi?id=3646
@@ -24,8 +25,8 @@ if getos() == 'Windows' then
   // set APPDATA to find another SCIHOME
   setenv('APPDATA', path_directory);
   
-  res = unix('wscilex -e quit');
-  if res <> 0 then pause,end
+  res = unix('scilab -e quit');
+  assert_checkequal(res, 0);
   
   // restore previous env. variables
   setenv('APPDATA',prv_APPDATA);

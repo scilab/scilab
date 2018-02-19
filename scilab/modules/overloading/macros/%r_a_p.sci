@@ -33,8 +33,9 @@ function f=%r_a_p(f,m)
         den=matrix(den,szf)
     else
         //at leat one matrix is eye*x
-        if size(szf,"*")>2|size(szm,"*")>2 then
-            error(8)
+        if size(szf,"*")>2 | size(szm,"*")>2 then
+            msg = _("%s: Inconsistent addition.\n")
+            error(msprintf(msg, "%r_a_p"))
         end
         if or(szf<0)&or(szm<0) then
             [num,den]=simp(num+m.*den,den)

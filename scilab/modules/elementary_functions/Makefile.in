@@ -1202,7 +1202,7 @@ libscielementary_functions_algo_la_CPPFLAGS = $(libscielementary_functions_la_CP
 # For the code check (splint)
 CHECK_SRC = $(ELEMENTARIES_FUNCTIONS_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscielementary_functions_la_CPPFLAGS)
-libscielementary_functions_la_LIBADD = libdummy-elementary_functions.la libscielementary_functions-algo.la
+libscielementary_functions_la_LIBADD = libdummy-elementary_functions.la libscielementary_functions-algo.la $(FLIBS)
 
 #### Target ######
 modulename = elementary_functions

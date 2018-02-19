@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2017-02-01 14:30+0100\n"
+"Revision-Date: 2018-02-12 08:52+0100\n"
 
 # File: modules/windows_tools/sci_gateway/cpp/sci_consolebox.cpp, line: 34
 #, c-format
@@ -158,7 +158,7 @@ msgid "%s: Cannot query value of this type.\n"
 msgstr ""
 
 #
-# File: modules/windows_tools/src/c/scilab_windows/splashScreen.cpp, line: 228
+# File: modules/windows_tools/src/c/scilab_windows/splashScreen.cpp, line: 229
 #, c-format
 msgid "Scilab %s Console"
 msgstr ""

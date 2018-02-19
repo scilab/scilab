@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
@@ -14,267 +13,157 @@
  * along with this program.
  *
  -->
-
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="sparse">
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ja" xml:id="sparse">
     <refnamediv>
-
         <refname>sparse</refname>
-
         <refpurpose>疎行列を定義</refpurpose>
-
     </refnamediv>
-
     <refsynopsisdiv>
-
         <title>呼び出し手順</title>
-
-        <synopsis>sp=sparse(X)
-
-            sp=sparse(ij,v [,mn])
-
+        <synopsis>
+            sp = sparse(X)
+            sp = sparse(ij, v)
+            sp = sparse(ij, v, mn)
         </synopsis>
-
     </refsynopsisdiv>
-
     <refsection>
-
         <title>引数</title>
-
         <variablelist>
-
             <varlistentry>
-
                 <term>X</term>
-
                 <listitem>
-
                     <para>実数または複素数の通常の(または疎)行列</para>
-
                 </listitem>
-
             </varlistentry>
-
             <varlistentry>
-
                 <term>ij</term>
-
                 <listitem>
-
                     <para>2列の整数行列 (非ゼロエントリのインデックス)</para>
-
                 </listitem>
-
             </varlistentry>
-
             <varlistentry>
-
                 <term>v</term>
-
                 <listitem>
-
                     <para>ベクトル</para>
-
                 </listitem>
-
             </varlistentry>
-
             <varlistentry>
-
                 <term>mn</term>
-
                 <listitem>
-
                     <para>2つのエントリ(行の次元, 列の次元c)を有する整数ベクトル</para>
-
                 </listitem>
-
             </varlistentry>
-
             <varlistentry>
-
                 <term>sp</term>
-
                 <listitem>
-
                     <para>疎行列</para>
-
                 </listitem>
-
             </varlistentry>
-
         </variablelist>
-
     </refsection>
-
     <refsection>
-
         <title>説明</title>
-
         <para>
-
             <literal>sparse</literal>は疎行列を作成するために使用されます.
-
             ゼロでないエントリのみが保存されます.
-
         </para>
-
         <para>
-
             <literal>sp = sparse(X)</literal>  は,
-
             0要素を除外することにより,通常の行列を疎行列に変換します.
-
             (<literal>X</literal>が既に疎行列の場合,
-
             <literal>sp</literal>は<literal>X</literal>となります).
-
         </para>
-
         <para>
-
             <literal>sp=sparse(ij,v [,mn])</literal>は,
-
             <literal>sp(ij(k,1),ij(k,2))=v(k)</literal>となる
-
             <literal>mn(1)</literal>行<literal>mn(2)</literal>列の疎行列
-
             を作成します.
-
             <literal>ij</literal> および <literal>v</literal>は列の次元が
-
             同じである必要があります.
-
             オプションの<literal>mn</literal>パラメータが指定されない場合,
-
             行列<literal>sp</literal>の次元は,それぞれ
-
             <literal>ij(:,1)</literal> および <literal>ij(:,2)</literal>の
-
             最大値となります.
-
         </para>
-
         <para>
-
             疎行列に関する操作(結合,加算,等,)は通常の行列と同じ構文により
-
             行ないます.
-
         </para>
-
         <para>
-
             基本的な関数(<literal>abs,maxi,sum,diag,...</literal>)は疎行列でも
-
             利用可能です.
-
         </para>
-
         <para>
-
             (通常の行列と疎行列の)混用も可能です.
-
             結果は処理に応じて通常または疎行列となります.
-
         </para>
-
         <para>
-
             注意 :
-
             同じ大きさの通常の行列を含む任意の演算は,
-
             引数(例: <literal>sp=sparse(d)</literal>),
-
             または,結果(例  <literal>d= sp + 1.</literal>) のどちら
-
             についても利便性のために提供されていますが,当然避けるべきです.
-
             更に,要素(<literal>sp(r,c)</literal>)へのランダムアクセス,
-
             特に挿入,は効率的ではありません.
-
             このため,性能面の制約があるアクセスでは,
-
             読込みアクセスは<link linkend="spget">spget</link>,
-
             書込みアクセスは<literal>sp=sparse(ij, v, mn)</literal>による
-
             バッチ処理により行う必要があります.
-
         </para>
-
     </refsection>
-
     <refsection>
-
         <title>例</title>
-
         <programlisting role="example"><![CDATA[
-sp=sparse([1,2;4,5;3,10],[1,2,3])
+sp = sparse([1,2;4,5;3,10],[1,2,3])
 size(sp)
-x=rand(2,2);abs(x)-full(abs(sparse(x)))
+
+x = rand(2,2);
+abs(x) - full(abs(sparse(x)))
+
 // sparse constructor taking a single dense matrix
 // removes the zeros.
-dense=[0., 1., 0., 0., 0.,
+dense = [0., 1., 0., 0., 0.,
 1., 0., 2., 0., 0.
 0., 0., 0., 0., 0.
 0., 0., 0., 0., -0.5];
-sp=sparse(dense)
+sp = sparse(dense)
+
 // complex matrices are also supported
-sp=sparse(dense*(1+2*%i))
+sp = sparse(dense*(1+2*%i))
+
 // for boolean matrices, the boolean sparse matrix
 // only stores true values (and removes false values).
-dense=[%F, %F, %T, %F, %F
+dense = [%F, %F, %T, %F, %F
 %T, %F, %F, %F, %F
 %F, %F, %F, %F, %F
 %F, %F, %F, %F, %T];
 sp=sparse(dense)
-
  ]]></programlisting>
-
     </refsection>
-
     <refsection role="see also">
-
         <title>参照</title>
-
         <simplelist type="inline">
-
             <member>
-
                 <link linkend="full">full</link>
-
             </member>
-
             <member>
-
                 <link linkend="spget">spget</link>
-
             </member>
-
             <member>
-
                 <link linkend="sprand">sprand</link>
-
             </member>
-
             <member>
-
                 <link linkend="speye">speye</link>
-
             </member>
-
             <member>
-
-                <link linkend="lufact">lufact</link>
-
+                <link linkend="diag">diag</link>
             </member>
-
+            <member>
+                <link linkend="toeplitz">toeplitz</link>
+            </member>
         </simplelist>
-
     </refsection>
-
 </refentry>
-

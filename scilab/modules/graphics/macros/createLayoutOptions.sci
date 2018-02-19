@@ -30,7 +30,7 @@ function ret = createLayoutOptions(constType, varargin)
         if size(varargin) > 0 then
             arg1 = varargin(1);
             if typeof(arg1) <> "constant" | size(arg1, "*") <> 2 then
-                error(999, msprintf(_("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "createLayoutOptions", 2));
+                error(msprintf(_("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "createLayoutOptions", 2));
             end
         end
 
@@ -42,20 +42,20 @@ function ret = createLayoutOptions(constType, varargin)
         if size(varargin) > 0 then
             arg1 = varargin(1);
             if typeof(arg1) <> "constant" | size(arg1, "*") <> 2 then
-                error(999, msprintf(_("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "createLayoutOptions", 2));
+                error(msprintf(_("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "createLayoutOptions", 2));
             end
         end
 
         if size(varargin) > 1 then
             arg2 = varargin(2);
             if typeof(arg2) <> "constant" | size(arg2, "*") <> 2 then
-                error(999, msprintf(_("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "createLayoutOptions", 3));
+                error(msprintf(_("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "createLayoutOptions", 3));
             end
         end
         ret = tlist(["OptGrid","grid","padding"], arg1, arg2);
     elseif constType == "gridbag" then
         ret = tlist(["OptGridBag"]);
     else
-        error(999, msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), "createLayoutOptions", 1, "none/nolayout, border, grid, gridbag"));
+        error(msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), "createLayoutOptions", 1, "none/nolayout, border, grid, gridbag"));
     end
 endfunction

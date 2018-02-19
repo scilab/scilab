@@ -48,7 +48,7 @@ exec("loader.sce");
 //using the new primitive
 for i=1:999,
     execstr("res = fun"+string(i)+"();");
-    if res <> i then pause,end
+    assert_checkequal(res, i);
 end
 
 ulink();
@@ -60,6 +60,5 @@ for i=1:1024,
     test_table = [ test_table; "fun"+string(i), "sci_funxxx"];
 end
 
-ierr = execstr("ilib_build(''test_bug_4675'',test_table,files,[]);","errcatch");
-if ierr <> 999 then pause,end
-
+ierr = execstr("ilib_build(""test_bug_4675"", test_table, files, []);", "errcatch");
+assert_checkequal(ierr, 0);

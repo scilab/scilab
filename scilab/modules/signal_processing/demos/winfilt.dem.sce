@@ -24,7 +24,6 @@ function demo_winfilt()
         _("length 33")]);
 
         halt(_("Press Return to continue ... \n"));
-
     end
 
     // Stop band filter (length 127, Hamming window, cut-offs .2 and .3)
@@ -39,8 +38,6 @@ function demo_winfilt()
         _("length 127")]);
 
         halt(_("Press Return to continue ... \n"));
-
-
     end
 
     // Band pass filter (length 55, Chebyshev window, cut-offs .15 and .35)
@@ -55,8 +52,6 @@ function demo_winfilt()
         _("length 55")]);
 
         halt(_("Press Return to continue ... \n"));
-
-        delete(my_handle);
     end
 
 endfunction

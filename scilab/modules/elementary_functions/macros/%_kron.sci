@@ -16,11 +16,11 @@ function x = %_kron(a, b)
     lhs = argn(1)
 
     if rhs <> 2 then
-        error(999,msprintf(_("%s: Wrong number of output argument(s): %d expected.\n"), "kron", 2));
+        error(msprintf(_("%s: Wrong number of output argument(s): %d expected.\n"), "kron", 2));
     end
 
     if lhs <> 1 then
-        error(999,msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "kron", 1));
+        error(msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "kron", 1));
     end
 
     x = a .*. b;

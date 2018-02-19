@@ -35,7 +35,7 @@ extern "C"
 }
 
 /*--------------------------------------------------------------------------*/
-types::Function::ReturnValue sci_testAnalysis(types::typed_list &in, int _iRetCount, types::typed_list &out)
+types::Function::ReturnValue sci_testAnalysis(types::typed_list &in, int /*_iRetCount*/, types::typed_list &out)
 {
     if (in.size() == 0)
     {

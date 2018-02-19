@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="discontinuities_pal" xml:lang="fr">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="discontinuities_pal" xml:lang="fr">
     <refnamediv>
         <refname>discontinuities_pal</refname>
         <refpurpose>Palette Fonctions discontinues</refpurpose>
@@ -21,41 +24,69 @@
     <refsection>
         <title>Aperçu</title>
         <para>
+            <link linkend="BACKLASH">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="BACKLASH" fileref="../../../../../../modules/xcos/images/palettes/BACKLASH.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="BACKLASH" fileref="../../../../images/palettes/BACKLASH.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="DEADBAND">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="DEADBAND" fileref="../../../../../../modules/xcos/images/palettes/DEADBAND.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="DEADBAND" fileref="../../../../images/palettes/DEADBAND.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="DELAYV_f">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="DELAYV_f" fileref="../../../../../../modules/xcos/images/palettes/DELAYV_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="DELAYV_f" fileref="../../../../images/palettes/DELAYV_f.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="HYSTHERESIS">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="HYSTHERESIS" fileref="../../../../../../modules/xcos/images/palettes/HYSTHERESIS.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="HYSTHERESIS" fileref="../../../../images/palettes/HYSTHERESIS.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="RATELIMITER">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="RATELIMITER" fileref="../../../../../../modules/xcos/images/palettes/RATELIMITER.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="RATELIMITER" fileref="../../../../images/palettes/RATELIMITER.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="QUANT_f">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="QUANT_f" fileref="../../../../../../modules/xcos/images/palettes/QUANT_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="QUANT_f" fileref="../../../../images/palettes/QUANT_f.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="SATURATION">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="SATURATION" fileref="../../../../../../modules/xcos/images/palettes/SATURATION.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="SATURATION" fileref="../../../../images/palettes/SATURATION.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
         </para>
     </refsection>
     <refsection id="Module_discontinuities_pal">
@@ -105,7 +136,7 @@
             </listitem>
             <listitem>
                 <para>
-                    <link linkend="QUANT_f">QUANT_f - Quantification</link>
+                    <link linkend="QUANT_f">QUANT_f - Quantifization</link>
                 </para>
             </listitem>
             <listitem>

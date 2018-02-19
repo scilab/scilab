@@ -55,6 +55,10 @@
             dado por <literal>size</literal>).
         </para>
         <para>
+            The length of an array M of cells or of structures is the number of elements of the array.
+            It is equivalent to <literal>size(M, "*")</literal>.
+        </para>
+        <para>
             <literal>length('123')</literal> é <literal>3</literal>.
             <literal>length([1,2;3,4])</literal> is <literal>4</literal>.
         </para>
@@ -78,5 +82,35 @@ length(['olá mundo',SCI])
                 <link linkend="size">size</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>
+                    This function allows overloading for mlist type.
+                </revremark>
+            </revision>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revremark>
+                    <itemizedlist>
+                        <listitem>
+                            The <literal>length()</literal> of any array C of cells was formerly
+                            always 3, whatever are the number of dimensions and the sizes of the
+                            array. It is now the number of elements of the array at null depth
+                            (without recursive counting), equal to <literal>size(C, "*")</literal>.
+                        </listitem>
+                        <listitem>
+                            The <literal>length()</literal> of any array S of structures was formerly
+                            equal to its number of fields +2, whatever are the number of dimensions
+                            and the sizes of the array. It is now the number of elements of the
+                            array at null depth, equal to <literal>size(S, "*")</literal>.
+                        </listitem>
+                    </itemizedlist>
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

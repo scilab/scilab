@@ -13,6 +13,7 @@
  *
  */
 
+#include <cassert>
 #include <string>
 #include <vector>
 #include <utility>
@@ -162,8 +163,15 @@ void Model::deleteObject(model::BaseObject* object)
 {
     if (object->refCount() == 0)
     {
-        allObjects.erase(object->id());
-        deleteBaseObject(object);
+        if (allObjects.erase(object->id()))
+        {
+            deleteBaseObject(object);
+        }
+        else
+        {
+            // something went wrong, assert !
+            assert(0);
+        }
     }
     else
     {
@@ -200,12 +208,12 @@ std::vector<model::BaseObject*> Model::getAll(kind_t k) const
 model::BaseObject* Model::getObject(ScicosID uid) const
 {
     allobjects_t::const_iterator iter = allObjects.find(uid);
-    if (iter == allObjects.end())
+    if (iter != allObjects.end() && iter->first == uid)
     {
-        return nullptr;
+        return iter->second;
     }
 
-    return iter->second;
+    return nullptr;
 }
 
 // datatypes being a vector of Datatype pointers, we need a dereferencing comparison operator to use std::lower_bound()

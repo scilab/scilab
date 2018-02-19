@@ -13,7 +13,10 @@
  * along with this program.
     *
     -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="mtlb_zeros">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="fr" xml:id="mtlb_zeros">
     <refnamediv>
         <refname>mtlb_zeros</refname>
         <refpurpose>Fonction d'émulation de la fonction Matlab zeros</refpurpose>
@@ -48,7 +51,12 @@
             <listitem>
                 <para>
                     Si <literal>A</literal> n'est pas un scalaire
-                    <literal>mtlb_zeros(A)</literal> peut être remplacé par <literal>zeros(A)</literal>
+                    <literal>mtlb_zeros(A)</literal> peut être remplacé par <literal>zeros(A)</literal>.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <literal>mtlb_zeros(size(A))</literal> peut toujours être remplacé par <literal>zeros(A)</literal>.
                 </para>
             </listitem>
         </itemizedlist>

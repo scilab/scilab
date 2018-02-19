@@ -13,14 +13,20 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="bezout">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ja" xml:id="bezout">
     <refnamediv>
         <refname>bezout</refname>
-        <refpurpose>多項式またｈ整数のべズー方程式</refpurpose>
+        <refpurpose>Bezout法により、2つの多項式または2つの整数の最大公約数を計算します</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>[thegcd,U]=bezout(p1,p2)</synopsis>
+        <synopsis>
+           thegcd = bezout(p1,p2)
+          [thegcd, U] = bezout(p1,p2)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parameters</title>
@@ -29,6 +35,24 @@
                 <term>p1, p2</term>
                 <listitem>
                     <para>2つの実数多項式または2つの整数スカラー(8型)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>thegcd</term>
+                <listitem>
+                    <para>
+                        scalar with the type of <literal>p1</literal>:
+                        The Greatest Common Divisor of <literal>p1</literal> and <literal>p2</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>U</term>
+                <listitem>
+                    <para>
+                        <literal>2x2</literal> unimodular matrix of the type of <literal>p1</literal>,
+                        such that <literal>[p1 p2]*U = [thegcd 0]</literal>.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -57,18 +81,21 @@
         <title>例</title>
         <programlisting role="example"><![CDATA[
 // 多項式の場合
-x=poly(0,'x');
-p1=(x+1)*(x-3)^5;p2=(x-2)*(x-3)^3;
-[thegcd,U]=bezout(p1,p2)
+x = poly(0,'x');
+p1 = (x+1)*(x-3)^5;
+p2 = (x-2)*(x-3)^3;
+[thegcd, U] = bezout(p1,p2)
 det(U)
 clean([p1,p2]*U)
-thelcm=p1*U(1,2)
+thelcm = p1*U(1,2)
 lcm([p1,p2])
+
 // 整数の場合
-i1=int32(2*3^5); i2=int32(2^3*3^2);
-[thegcd,U]=bezout(i1,i2)
-V=int32([2^2*3^5, 2^3*3^2,2^2*3^4*5]);
-[thegcd,U]=gcd(V)
+i1 = int32(2*3^5);
+i2 = int32(2^3*3^2);
+[thegcd, U] = bezout(i1,i2)
+V = int32([2^2*3^5, 2^3*3^2,2^2*3^4*5]);
+[thegcd, U] = gcd(V)
 V*U
 lcm(V)
  ]]></programlisting>
@@ -76,6 +103,12 @@ lcm(V)
     <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="gcd">gcd</link>
+            </member>
+            <member>
+                <link linkend="lcm">lcm</link>
+            </member>
             <member>
                 <link linkend="poly">poly</link>
             </member>
@@ -87,9 +120,6 @@ lcm(V)
             </member>
             <member>
                 <link linkend="clean">clean</link>
-            </member>
-            <member>
-                <link linkend="lcm">lcm</link>
             </member>
         </simplelist>
     </refsection>

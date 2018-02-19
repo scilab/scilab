@@ -61,7 +61,7 @@ function %model_p(model)
         end
     end
     for k=3:size(fn,"*")
-        mprintf("%s\n", sci2exp(eval("model."+fn(k)),fn(k)))
+        mprintf("%s\n", sci2exp(evstr("model."+fn(k)),fn(k)))
     end
 endfunction
 

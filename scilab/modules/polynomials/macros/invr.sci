@@ -10,94 +10,133 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-
-function [f,d]=invr(h,flag)
+function [f, d] = invr(h, flag)
     //if h is a scalar, polynomial or rational function matrix, invr
     //computes h^(-1).
+    // "flag" and "d" are not documented. Are they internal?
     //!
-    if argn(2)==1 then
-        flag="C";
+    // The matrix must be square:
+    [m,n] = size(h);
+    if m<>n then
+        msg = gettext("%s: Argument #%d: Square matrix expected.\n");
+        error(msprintf(msg, "invr", 1));
     end
-    lhs=argn(1)
+    // default
+    if argn(2)==1 then
+        flag = "C";
+    end
+    lhs = argn(1)
     select typeof(h)
     case "constant" then
-        f=inv(h);
+        f = inv(h);
     case "polynomial" then //POLYNOMIAL MATRIX
-        [m,n]=size(h);
-        if m<>n then error(20),end
-        ndeg=max(degree(h));
+        if m*n==1
+            f = 1/h;
+            return
+        end
+        ndeg = max(degree(h));
         if ndeg==1 then   //MATRIX PENCIL
-            E=coeff(h,1);A=-coeff(h,0);
+            E = coeff(h,1);
+            A = -coeff(h,0);
             if norm(E-eye(E),1) < 100*%eps then
                 // sI -A
-                [num,den]=coff(A,varn(h));f=num/den;
+                [num,den] = coff(A, varn(h));
+                f = num/den;
             else
-                [Bfs,Bis,chis]=glever(E,A,varn(h));
-                f=Bfs/chis - Bis;
+                [Bfs,Bis,chis] = glever(E, A, varn(h));
+                f = Bfs/chis - Bis;
                 if lhs==2 then
-                    d=lcm(f("den"));
-                    f=f*d;f=f("num");
+                    d = lcm(f("den"));
+                    f = f*d;
+                    f = f("num");
                 end
             end
         else // GENERAL POLYNOMIAL MATRIX
             select flag
             case "L"
-                f=eye(n,n);
-                for k=1:n-1,
-                    b=h*f,
-                    d=-sum(diag(b))/k
-                    f=b+eye(n,n)*d,
+                f = eye(n,n);
+                for k = 1:n-1
+                    b = h*f;
+                    d = -sum(diag(b))/k;
+                    f = b+eye(n,n)*d;
                 end;
-                d=sum(diag(h*f))/n,
-                if degree(d)==0 then d=coeff(d),end,
-                if lhs==1 then f=f/d;end
+                d = sum(diag(h*f))/n;
+                if degree(d)==0 then
+                    d = coeff(d);
+                end
+                if lhs==1 then
+                    f = f/d;
+                end
             case "C"
-                [f,d]=coffg(h);
-                if degree(d)==0 then d=coeff(d),end
-                if lhs==1 then f=f/d;end
+                [f,d] = coffg(h);
+                if degree(d)==0 then
+                    d = coeff(d);
+                end
+                if lhs==1 then
+                    f = f/d;
+                end
             else
-                error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),..
-                "invr",2,"''C'',''D''"))
-            end;
+                msg = gettext("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n")
+                error(msprintf(msg,"invr",2,"''C'',''D''"))
+            end
         end
     case "rational" then
-        [m,n]=size(h(2));
-        if m<>n then error(20),end
         if m==1 then
-          f=h.den
-          d=h.num
-          if lhs==1 then f=f/d;end
+          f = h.den
+          d = h.num
+          if lhs==1 then
+              f = f/d;
+          end
           return
         end
         select flag
         case "L" //    Leverrier
-            f=eye(n,n);
-            for k=1:n-1,
-                b=h*f,
-                d=0;for l=1:n,d=d+b(l,l),end,d=-d/k;
-                f=b+eye(n,n)*d,
+            f = eye(n,n);
+            for k = 1:n-1,
+                b = h*f,
+                d = 0;
+                for l = 1:n,
+                    d = d + b(l,l),
+                end
+                d = -d/k;
+                f = b + eye(n,n)*d,
             end;
-            b=h*f;d=0;for l=1:n,d=d+b(l,l),end;d=d/n,
-            if lhs==1 then f=f/d;end
+            b = h*f;
+            d = 0;
+            for l=1:n
+                d = d+b(l,l)
+            end
+            d = d/n
+            if lhs==1 then
+                f = f/d;
+            end
         case "A" //   lcm of all denominator entries
-            denh=lcm(h("den"));
-            Num=h*denh;Num=Num("num");
-            [N,d]=coffg(Num);
-            f=N*denh;
-            if lhs==1 then f=f/d;end
+            denh = lcm(h("den"));
+            Num = h*denh;
+            Num = Num("num");
+            [N, d] = coffg(Num);
+            f = N*denh;
+            if lhs==1 then
+                f = f/d;
+            end
         case "C"// default method by polynomial inverse
-            [Nh,Dh]=lcmdiag(h); //h=Nh*inv(Dh); Dh diagonal;
-            [N,d]=coffg(Nh);
-            f=Dh*N;
-            if lhs==1 then f=f/d;end
+            [Nh,Dh] = lcmdiag(h); //h=Nh*inv(Dh); Dh diagonal;
+            [N, d]  = coffg(Nh);
+            f = Dh*N;
+            if lhs==1 then
+                f = f/d;
+            end
         case "Cof"// cofactors method
-            [f,d]=coffg(h);
-            if lhs==1 then f=f/d;end
+            [f,d] = coffg(h);
+            if lhs==1 then
+                f = f/d;
+            end
         else
-            error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),..
-            "invr",2,"''L'',''A'',''C'',''Cof''"))
-        end;
+            msg = gettext("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n");
+            error(msprintf(msg, "invr",2,"''L'',''A'',''C'',''Cof''"))
+        end
     else
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: A floating point number or polynomial or rational fraction array expected.\n"),"invr",1))
-    end;
+        msg = gettext("%s: Wrong type for input argument #%d: A floating point number or polynomial or rational fraction array expected.\n");
+        error(msprintf(msg, "invr", 1))
+    end
 endfunction

@@ -9,14 +9,18 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
+
 function a=%cblock_c_s(a,b)
     if b==[] then return,end
-    v=getfield($,a)
+    v = getfield($,a)
 
-    if size(v,1)<>size(b,1) then error(5),end
+    if size(v,1)<>size(b,1) then
+        msg = _("%s: Arguments #%d and #%d: Incompatible sizes.\n")
+        error(msprintf(msg, "%cblock_c_s", 1, 2))
+    end
     if type(b)==type(v) then
-        a=setfield($,[v b],a)
+        a = setfield($,[v b],a)
     else
-        a=setfield($+1,b,a)
+        a = setfield($+1,b,a)
     end
 endfunction

@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2017-02-01 14:29+0100\n"
+"Revision-Date: 2018-02-12 08:52+0100\n"
 
 # File: modules/console/sci_gateway/c/sci_tohome.c, line: 32
 # File: modules/console/sci_gateway/cpp/sci_clc.cpp, line: 62
@@ -82,13 +82,6 @@ msgstr ""
 # File: modules/console/sci_gateway/cpp/sci_prompt.cpp, line: 68
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
-msgstr ""
-
-#
-# File: modules/console/sci_gateway/cpp/sci_prompt.cpp, line: 75
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A Single string of size %d expected.\n"
 msgstr ""
 
 #
@@ -164,14 +157,6 @@ msgstr ""
 #
 # File: modules/console/src/c/more.c, line: 28
 msgid "[Continue display? n (no) to stop, any other key to continue]"
-msgstr ""
-
-#
-# File: modules/console/src/c/prompt.c, line: 64
-#, c-format
-msgid ""
-"Type '%s' or '%s' to return to standard level prompt.\n"
-"\n"
 msgstr ""
 
 #
@@ -1590,6 +1575,14 @@ msgstr ""
 # File: modules/console/src/console_fake_xml.c, line: 1354
 # File: modules/console/src/console_fake_xml.c, line: 1658
 msgid "Key binding"
+msgstr ""
+
+#
+# File: modules/console/src/cpp/prompt.cpp, line: 68
+#, c-format
+msgid ""
+"Type '%s' or '%s' to return to standard level prompt.\n"
+"\n"
 msgstr ""
 
 #

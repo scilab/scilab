@@ -735,14 +735,14 @@ ENGINE_LIBS_DYNAMIC_LOAD = \
 # Core modules
 libscilab_la_LIBADD = $(am__append_7) $(am__append_8) \
 	$(top_builddir)/modules/libscilab-cli.la $(OTHER_LIBS) \
-	$(EXTERNAL_LIBS) $(am__append_9) $(LAPACK_LIBS) $(BLAS_LIBS)
+	$(EXTERNAL_LIBS) $(am__append_9) $(FLIBS) $(LAPACK_LIBS) $(BLAS_LIBS)
 
 ################## libscilab-cli  ##################
 libscilab_cli_la_SOURCES = 
 libscilab_cli_la_LDFLAGS = $(AM_LDFLAGS) $(SCI_LDFLAGS)
 
 # Core modules
-libscilab_cli_la_LIBADD = $(ENGINE_LIBS) $(NO_GUI_LIBS) $(OTHER_LIBS) $(EXTERNAL_LIBS) $(LAPACK_LIBS) $(BLAS_LIBS)
+libscilab_cli_la_LIBADD = $(ENGINE_LIBS) $(NO_GUI_LIBS) $(OTHER_LIBS) $(EXTERNAL_LIBS) $(FLIBS) $(LAPACK_LIBS) $(BLAS_LIBS)
 all: all-recursive
 
 .SUFFIXES:

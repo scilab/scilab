@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="Electrical_pal" xml:lang="fr">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="Electrical_pal" xml:lang="fr">
     <refnamediv>
         <refname>Electrical_pal</refname>
         <refpurpose>Palette électrique</refpurpose>
@@ -21,121 +24,213 @@
     <refsection>
         <title>Aperçu</title>
         <para>
+            <link linkend="CCS">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="CCS" fileref="../../../../../../modules/xcos/images/palettes/CCS.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="CCS" fileref="../../../../images/palettes/CCS.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="CVS">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="CVS" fileref="../../../../../../modules/xcos/images/palettes/CVS.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="CVS" fileref="../../../../images/palettes/CVS.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="Capacitor">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="Capacitor" fileref="../../../../../../modules/xcos/images/palettes/Capacitor.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="Capacitor" fileref="../../../../images/palettes/Capacitor.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="ConstantVoltage">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="ConstantVoltage" fileref="../../../../../../modules/xcos/images/palettes/ConstantVoltage.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="ConstantVoltage" fileref="../../../../images/palettes/ConstantVoltage.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="CurrentSensor">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="CurrentSensor" fileref="../../../../../../modules/xcos/images/palettes/CurrentSensor.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="CurrentSensor" fileref="../../../../images/palettes/CurrentSensor.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="Diode">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="Diode" fileref="../../../../../../modules/xcos/images/palettes/Diode.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="Diode" fileref="../../../../images/palettes/Diode.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="Ground">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="Ground" fileref="../../../../../../modules/xcos/images/palettes/Ground.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="Ground" fileref="../../../../images/palettes/Ground.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="Gyrator">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="Gyrator" fileref="../../../../../../modules/xcos/images/palettes/Gyrator.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="Gyrator" fileref="../../../../images/palettes/Gyrator.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="IdealTransformer">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="IdealTransformer" fileref="../../../../../../modules/xcos/images/palettes/IdealTransformer.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="IdealTransformer" fileref="../../../../images/palettes/IdealTransformer.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="Inductor">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="Inductor" fileref="../../../../../../modules/xcos/images/palettes/Inductor.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="Inductor" fileref="../../../../images/palettes/Inductor.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="NMOS">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="NMOS" fileref="../../../../../../modules/xcos/images/palettes/NMOS.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="NMOS" fileref="../../../../images/palettes/NMOS.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="NPN">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="NPN" fileref="../../../../../../modules/xcos/images/palettes/NPN.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="NPN" fileref="../../../../images/palettes/NPN.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="OpAmp">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="OpAmp" fileref="../../../../../../modules/xcos/images/palettes/OpAmp.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="OpAmp" fileref="../../../../images/palettes/OpAmp.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="PMOS">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="PMOS" fileref="../../../../../../modules/xcos/images/palettes/PMOS.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="PMOS" fileref="../../../../images/palettes/PMOS.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="PNP">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="PNP" fileref="../../../../../../modules/xcos/images/palettes/PNP.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="PNP" fileref="../../../../images/palettes/PNP.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="PotentialSensor">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="PotentialSensor" fileref="../../../../../../modules/xcos/images/palettes/PotentialSensor.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="PotentialSensor" fileref="../../../../images/palettes/PotentialSensor.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="Resistor">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="Resistor" fileref="../../../../../../modules/xcos/images/palettes/Resistor.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="Resistor" fileref="../../../../images/palettes/Resistor.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="SineVoltage">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="SineVoltage" fileref="../../../../../../modules/xcos/images/palettes/SineVoltage.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="SineVoltage" fileref="../../../../images/palettes/SineVoltage.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="Switch">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="Switch" fileref="../../../../../../modules/xcos/images/palettes/Switch.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="Switch" fileref="../../../../images/palettes/Switch.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="VVsourceAC">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="VVsourceAC" fileref="../../../../../../modules/xcos/images/palettes/VVsourceAC.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="VVsourceAC" fileref="../../../../images/palettes/VVsourceAC.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="VariableResistor">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="VariableResistor" fileref="../../../../../../modules/xcos/images/palettes/VariableResistor.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="VariableResistor" fileref="../../../../images/palettes/VariableResistor.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="VoltageSensor">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="VoltageSensor" fileref="../../../../../../modules/xcos/images/palettes/VoltageSensor.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="VoltageSensor" fileref="../../../../images/palettes/VoltageSensor.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="VsourceAC">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="VsourceAC" fileref="../../../../../../modules/xcos/images/palettes/VsourceAC.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="VsourceAC" fileref="../../../../images/palettes/VsourceAC.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
         </para>
     </refsection>
     <refsection id="Module_Electrical_pal">

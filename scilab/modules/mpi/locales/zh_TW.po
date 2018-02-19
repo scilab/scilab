@@ -1,0 +1,110 @@
+# Chinese (Traditional) translation for scilab
+# Copyright (c) 2017 Rosetta Contributors and Canonical Ltd 2017
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2017-07-09 12:57+0000\n"
+"Last-Translator: TzuYuan Lin <Unknown>\n"
+"Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 18544)\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%s: An MPI communicator expected.\n"
+msgstr "%s: #%s 的輸入參數型態錯誤: 應該是 MPI 訊息傳遞介面.\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: 無法讀取第 #%d 個參數.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar integer value expected.\n"
+msgstr "%s: #%d 的輸入參數型態錯誤: 應該是一個純量整數.\n"
+
+#, c-format
+msgid "%s: Could not get communicator rank of the node %d: %s\n"
+msgstr ""
+
+msgid "Unable to serialize data\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Could not broadcast the variable to the node %d: %s\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Unable to deserialize data.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Unable to create variable.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Could not finalize the MPI instance: %s\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Could not get processor name: %s\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: Positive value expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: MPI_Probe failed. Rank %d / Tag %d: %s\n"
+msgstr ""
+
+#, c-format
+msgid "%s: MPI_Get_count failed. Rank %d / Tag %d: %s\n"
+msgstr ""
+
+#, c-format
+msgid "%s: MPI_Irecv failed. Rank %d / Tag %d: %s\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Could not send the variable to the node %d: %s\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Could not create the received variable.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: MPI_Recv failed. Rank %d / Tag %d: %s\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Unable to deserialize data !\n"
+msgstr ""
+
+#, c-format
+msgid "%s: MPI_Wait failed while waiting %d: %s\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A Matrix expected.\n"
+msgstr ""

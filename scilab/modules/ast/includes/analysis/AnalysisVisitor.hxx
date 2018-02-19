@@ -445,7 +445,6 @@ private:
     void visit(ast::ArrayListExp & e)
     {
         logger.log(L"ArrayListExp", e.getLocation());
-        const ast::exps_t & exps = e.getExps();
         for (const auto exp : e.getExps())
         {
             exp->accept(*this);

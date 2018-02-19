@@ -3,12 +3,8 @@
     xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
     xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
     xmlns:scilab="http://www.scilab.org" xml:id="scilab" xml:lang="ja">
-    <refnamediv xml:id="wscilex">
-    </refnamediv>
-    <refnamediv xml:id="scilex">
-    </refnamediv>
     <refnamediv>
-        <refname>scilex | scilab</refname>
+        <refname>scilab</refname>
         <refpurpose>
             Scilabおよび関連ツールを起動するためのツール
         </refpurpose>
@@ -16,10 +12,7 @@
     <refsynopsisdiv>
         <title>呼出し手順</title>
         <synopsis>
-#      MS Windows          |  # Linux / Unix / Mac OS X
-wscilex     &lt;Options&gt;     |  scilab         &lt;Options&gt;
-wscilex-cli &lt;Options&gt; |  scilab-adv-cli &lt;Options&gt;
-scilex      &lt;Options&gt;      |  scilab-cli     &lt;Options&gt;
+scilab &lt;Options&gt;
         </synopsis>
     </refsynopsisdiv>
     <refsection role="arguments">
@@ -239,8 +232,14 @@ evstr(a(i+2))*2
                         <listitem>
                             <para>Scilab のディストリビューションには,
                                 <literal>-nw</literal>と同様のバイナリを提供します:
-                                <literal>scilab-adv-cli</literal>
-                                (Scilab Advanced Command Line Interpreter).
+                                <itemizedlist>
+                                    <listitem>
+                                        Windows: <literal>WScilex-cli.exe</literal>.
+                                    </listitem>
+                                    <listitem>
+                                        <literal>scilab-adv-cli</literal> (Scilab Advanced Command Line Interpreter).
+                                    </listitem>
+                                </itemizedlist>
                             </para>
                         </listitem>
                     </itemizedlist>
@@ -267,8 +266,14 @@ evstr(a(i+2))*2
                             <para>
                                 Scilab のディストリビューションでは,
                                 <literal>-nwni</literal>と同じ専用バイナリが提供されています
-                                : <literal>scilab-cli</literal>
-                                (Scilab Command Line Interpreter).
+                                <itemizedlist>
+                                    <listitem>
+                                        Windows: <literal>Scilex.exe</literal>.
+                                    </listitem>
+                                    <listitem>
+                                        Others: <literal>scilab-cli</literal> (Scilab Command Line Interpreter).
+                                    </listitem>
+                                </itemizedlist>
                             </para>
                         </listitem>
                     </itemizedlist>
@@ -542,4 +547,10 @@ echo $? ]]></screen>
             </revision>
         </revhistory>
     </refsection>
+    <!--add some kewywords -->
+    <refnamediv xml:id="wscilex"></refnamediv>
+    <refnamediv xml:id="wscilex-cli"></refnamediv>
+    <refnamediv xml:id="scilex"></refnamediv>
+    <refnamediv xml:id="scilab-cli"></refnamediv>
+    <refnamediv xml:id="scilab-adv-cli"></refnamediv>
 </refentry>

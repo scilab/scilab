@@ -10,12 +10,13 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function r=%sp_q_s(a,b)
+function r = %sp_q_s(a,b)
     //r=a.\b
 
-    [ij,v,mn]=spget(a)
-    if size(v,"*")<>mn(1)*mn(2) then
-        error(27)
+    [ij,v,mn] = spget(a)
+    if size(v,"*") <> mn(1)*mn(2) then
+        msg = _("%s: Division by 0...\n")
+        error(msprintf(msg, "%sp_q_s"))
     else
         r=full(a).\b
     end

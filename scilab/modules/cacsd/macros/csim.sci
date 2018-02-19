@@ -43,7 +43,10 @@ function [y,x]=csim(u,dt,sl,x0,tol)
 
     [lhs,rhs]=argn(0)
     //
-    if rhs<3 then error(39),end
+    if rhs<3 then
+        msg = _("%s: Wrong number of input arguments: At least %d expected.\n");
+        error(msprintf(msg, "csim", 3));
+    end
     sltyp=typeof(sl)
     if and(sltyp<>["state-space" "rational" "zpk"]) then
         args=["u","dt","sl","x0","tol"];

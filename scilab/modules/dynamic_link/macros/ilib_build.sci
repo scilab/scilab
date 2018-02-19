@@ -34,15 +34,15 @@ function ilib_build(ilib_name, ..
     end
 
     if type(ilib_name) <> 10 then
-        error(999, msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"), "ilib_build", 1));
+        error(msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"), "ilib_build", 1));
     end
 
     if size(ilib_name,"*") <> 1 then
-        error(999, msprintf(_("%s: Wrong size for input argument #%d: string expected.\n"), "ilib_build", 1));
+        error(msprintf(_("%s: Wrong size for input argument #%d: string expected.\n"), "ilib_build", 1));
     end
 
     if type(table) <> 10 then
-        error(999,msprintf(_("%s: Wrong type for input argument #%d: A matrix of strings expected.\n"), "ilib_build", 2));
+        error(msprintf(_("%s: Wrong type for input argument #%d: A matrix of strings expected.\n"), "ilib_build", 2));
     end
 
     if getos() <> "Windows" & strncpy(ilib_name, 3) <> "lib" then
@@ -51,7 +51,7 @@ function ilib_build(ilib_name, ..
     end
 
     if ~isempty(files) & (or(fileext(files)==".o") | or(fileext(files)==".obj")) then
-        error(999, msprintf(_("%s: A managed file extension for input argument #%d expected."), "ilib_build", 3));
+        error(msprintf(_("%s: A managed file extension for input argument #%d expected."), "ilib_build", 3));
     end
 
     if rhs > 4 then
@@ -61,7 +61,7 @@ function ilib_build(ilib_name, ..
     end
 
     if ~isempty(files) & ~and(isfile(files)) then
-        error(999, msprintf(_("%s: Wrong value for input argument #%d: existing file(s) expected.\n"), "ilib_build", 3));
+        error(msprintf(_("%s: Wrong value for input argument #%d: existing file(s) expected.\n"), "ilib_build", 3));
     end
 
 
@@ -85,7 +85,7 @@ function ilib_build(ilib_name, ..
 
     // check if library is not already loaded
     if or(link() == ilib_name) then
-        error(999, msprintf(_("%s: ""%s"" already loaded in scilab."),"ilib_build",ilib_name) + ..
+        error(msprintf(_("%s: ""%s"" already loaded in scilab."),"ilib_build",ilib_name) + ..
         ascii(10) + _("You need to unload this library before."));
     end
 
@@ -104,7 +104,7 @@ function ilib_build(ilib_name, ..
 
     for i = 1:size(lang, "*")
         if isempty(grep(l, lang(i))) then
-            error(999, msprintf(_("%s: ""%s"" format is not supported by your compiler."), "ilib_build", lang(i)));
+            error(msprintf(_("%s: ""%s"" format is not supported by your compiler."), "ilib_build", lang(i)));
         end
     end
 

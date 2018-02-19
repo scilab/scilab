@@ -8,27 +8,26 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 22:01+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2017-05-01 15:43+0000\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
-"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18544)\n"
+"Language: ja\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr ""
+msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr ""
+msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d, %d or %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d, %d または %d を指定してください.\n"
+msgstr "%s: 入力引数の数が間違っています: %d, %d または %d を指定してください.\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -90,19 +89,19 @@ msgid "Feature not available in this mode..."
 msgstr "この機能はこのモードでは利用できません."
 
 msgid "News feed"
-msgstr ""
+msgstr "News フィード"
 
 msgid "News feed unavailable."
-msgstr ""
+msgstr "News フィードが利用できません."
 
 msgid "News feed configuration error."
-msgstr ""
+msgstr "News フィード設定エラー."
 
 msgid "Help"
-msgstr ""
+msgstr "ヘルプ"
 
 msgid "Update feed"
-msgstr ""
+msgstr "フィードを更新"
 
 msgid "File"
 msgstr "ファイル"

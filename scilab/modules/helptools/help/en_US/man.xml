@@ -14,7 +14,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="man" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="man" xml:lang="en">
     <refnamediv>
         <refname>Scilab documentation format</refname>
         <refpurpose>on line help XML file description format</refpurpose>
@@ -744,7 +747,25 @@ end
             </revision>
             <revision>
                 <revnumber>6.0.0</revnumber>
-                <revdescription>Update the documentation to Docbook 5.1</revdescription>
+                <revdescription>
+                  <itemizedlist>
+                    <listitem>Documentation updated to Docbook 5.1</listitem>
+                    <listitem>&lt;td>: valign and style attributes are now supported.</listitem>
+                    <listitem>&lt;th>: align, valign and style attributes are now supported.</listitem>
+                    <listitem>&lt;tr>: valign attribute now supported.</listitem>
+                 </itemizedlist>
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.0.1</revnumber>
+                <revdescription>
+                  <itemizedlist>
+                    <listitem>
+                      &lt;imagedata>: id, width, height, align and style attributes are now supported.
+                    </listitem>
+                    <listitem>&lt;tr>: id attribute now supported.</listitem>
+                  </itemizedlist>
+                </revdescription>
             </revision>
         </revhistory>
     </refsection>

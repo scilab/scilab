@@ -71,7 +71,9 @@ public:
         /** \brief "||" */	logicalShortCutOr,
 
         // Unary minus
-        /** \brief "-" */ unaryMinus
+        /** \brief "-" */ unaryMinus,
+
+        /** unknow operator*/ unknown
     };
 
     /** \name Ctor & dtor.
@@ -249,6 +251,8 @@ public:
                 return L"||";
             case unaryMinus:
                 return L"-";
+            case unknown:
+                return L"unknown";
         }
     }
 

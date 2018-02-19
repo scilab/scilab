@@ -30,6 +30,7 @@ public class GroupManager {
         removeFromGroup(obj);
 
         ButtonGroup group = buttonGroup.get(groupName);
+
         if (group == null) {
             group = new ButtonGroup();
             buttonGroup.put(groupName, group);
@@ -53,5 +54,11 @@ public class GroupManager {
     public void setSelected(ButtonModel model, String groupname, boolean status) {
         ButtonGroup group = buttonGroup.get(groupname);
         group.setSelected(model, status);
+    }
+
+    public boolean isSelected(String groupname) {
+        ButtonGroup group = buttonGroup.get(groupname);
+        ButtonModel model = group.getSelection();
+        return group.isSelected(model);
     }
 }

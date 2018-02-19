@@ -14,7 +14,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="assert_checkalmostequal" xml:lang="ja">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="assert_checkalmostequal" xml:lang="ja">
     <refnamediv>
         <refname>assert_checkalmostequal</refname>
         <refpurpose>計算値と予測値が数値的に近いことを調べる.</refpurpose>
@@ -36,8 +39,9 @@
                 <term>computed:</term>
                 <listitem>
                     <para>
-                        doubleの行列, doubleの疎行列, または
-                        doubleのハイパー行列, 計算結果
+                      matrix or hypermatrix or sparse matrix of decimal real or complex numbers;
+                      or matrix or hypermatrix of polynomials with real or complex coefficients:
+                      the computed result.
                     </para>
                 </listitem>
             </varlistentry>
@@ -45,9 +49,14 @@
                 <term>expected :</term>
                 <listitem>
                     <para>
-                        doubleの行列, doubleの疎行列, または
-                        doubleのハイパー行列, 予測する結果
+                      matrix or hypermatrix or sparse matrix of decimal real or complex numbers;
+                      or matrix or hypermatrix of polynomials with real or complex coefficients:
+                      the expected result.
                     </para>
+                  <para>
+                    If <literal>computed</literal> are polynomials, <literal>expected</literal>
+                    must be polynomials as well.
+                  </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -103,9 +112,13 @@
     <refsection>
         <title>説明</title>
         <para>
-            doubleまたは複素数doubleの2つの行列, computed と expected が近い
-            場合にそのまま実行されます.
-            変数computedとexpectedを交換しても結果に影響しません.
+            Performs silently if the two arrays of doubles or complex doubles, or the two arrays
+            of real or complex polynomials computed and expected are close.
+            The variables computed and expected can be exchanged without changing the result.
+        </para>
+        <para>
+          In case of polynomials, the size of both arrays, the degrees, and finally the
+          matrices of their coefficients are compared within the given or default tolerances.
         </para>
         <para>
             オプションの入力引数に空の行列ｗ指定するとデフォルト値で
@@ -291,6 +304,12 @@ assert_checkalmostequal ( 1+%i , 1+(1+1.e-4)*%i , 1.e-5 , [], "element" );
             <revision>
                 <revnumber>5.4.0</revnumber>
                 <revdescription>関数が導入されました
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.0.1</revnumber>
+                <revdescription>
+                    Extension to polynomials.
                 </revdescription>
             </revision>
         </revhistory>

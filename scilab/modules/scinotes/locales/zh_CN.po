@@ -8,18 +8,18 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-10-10 13:02+0000\n"
-"Last-Translator: Webish <Unknown>\n"
+"PO-Revision-Date: 2018-01-10 17:24+0000\n"
+"Last-Translator: Wesh <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18544)\n"
+"Language: \n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
-msgstr "%s：不能读取第%d个输入参数。\n"
+msgstr "%s：无法读取第%d个输入参数。\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: string expected.\n"
@@ -30,17 +30,18 @@ msgid "%s: No more memory.\n"
 msgstr "%s：内存不足。\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: Real matrix or 'readonly' expected.\n"
+msgid ""
+"%s: Wrong type for argument #%d: Real matrix or 'readonly' expected.\n"
 msgstr "%s：第%d个参数的类型错误：应该为实矩阵或‘只读’。\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
-msgstr "%s：第%d个参数的类型错误：应该为实矩阵。\n"
+msgstr "%s：第%d个参数的类型错误：应该为实数矩阵。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input arguments #%d and #%d: Same dimensions expected.\n"
-msgstr "%s：输入参数#%d和#%d的大小错误：应该为同样的维数。\n"
+msgstr "%s：第%d个输入参数和第%d个输入参数的维度错误：应该为相同维数。\n"
 
 msgid "Graphics handle field"
 msgstr "图形句柄域"
@@ -88,7 +89,7 @@ msgid "Source of '"
 msgstr "来源之‘"
 
 msgid "Recent Files"
-msgstr "最近的文件"
+msgstr "最近文件"
 
 msgid "Save"
 msgstr "保存"
@@ -97,16 +98,16 @@ msgid "Save as"
 msgstr "另存为"
 
 msgid "The file could not be created, check the path"
-msgstr "不能创建此文件，请检查文件路径"
+msgstr "无法创建此文件，请检查文件路径"
 
 msgid "The file is not writable so it is opened in read-only mode"
 msgstr "此文件不可写，故以只读模式打开"
 
 msgid "You do not have the permissions to write this file"
-msgstr "您没有权限写此文件"
+msgstr "你没有权限写入此文件"
 
 msgid "You do not have the permissions to read this file"
-msgstr "您没有权限读此文件"
+msgstr "你没有权限读取此文件"
 
 msgid "Save All"
 msgstr "保存全部"
@@ -175,10 +176,10 @@ msgid "Uncomment Selection"
 msgstr "取消选区注释"
 
 msgid "Shift Right"
-msgstr "右移"
+msgstr "缩进"
 
 msgid "Shift Left"
-msgstr "左移"
+msgstr "回退"
 
 msgid "Correct Indentation"
 msgstr "纠正缩进"
@@ -190,7 +191,7 @@ msgid "Generate help from function"
 msgstr "从函数生成帮助"
 
 msgid "Clone tab in a new window"
-msgstr "克隆标签页到新窗口"
+msgstr "复制标签页到新窗口"
 
 msgid "Clone and close tab in a new window"
 msgstr "克隆"
@@ -271,7 +272,7 @@ msgid "Enable Auto Reformat"
 msgstr "启用自动重新格式化"
 
 msgid "Line Endings"
-msgstr "行结束符"
+msgstr "换行符"
 
 msgid "Auto (Default)"
 msgstr "自动（默认）"
@@ -304,16 +305,16 @@ msgid "SciNotes help"
 msgstr "SciNotes帮助"
 
 msgid "Help on the current keyword"
-msgstr "当前关键字帮助"
+msgstr "帮助之当前关键字"
 
 msgid "Help on the selected text"
-msgstr "所选文本帮助"
+msgstr "帮助之所选文本"
 
 msgid "Help on selected text or keyword"
-msgstr "所选文本或关键字帮助"
+msgstr "帮助之所选文本或关键字"
 
 msgid "Help about '"
-msgstr "帮助'"
+msgstr "帮助之‘"
 
 msgid "About"
 msgstr "关于"
@@ -454,13 +455,13 @@ msgstr "上一个标签"
 
 msgid ""
 "You need to save your modifications before executing this file into Scilab."
-msgstr "在Scilab中执行文件前您需要先保存修改。"
+msgstr "你需要先保存才能执行文件。"
 
 msgid ""
 "This file is very long. \"Execute File Into Scilab\" could be better.\n"
 "Are you sure to continue ?"
 msgstr ""
-"文件太长，“载入Scilab执行”可能会更好。\n"
+"此文件太长，载入Scilab执行更合适。\n"
 "你确定要继续？"
 
 msgid "Enter line number"
@@ -498,14 +499,14 @@ msgstr "显示宏定义 "
 
 #, c-format
 msgid "Line %s, Column %s. Function '%s' at Line %s."
-msgstr "行%s，列%s。行%s处函数‘%s’。"
+msgstr "第%s行，第%s列。函数‘%s’在第%s行。"
 
 msgid "Unknown function"
 msgstr "未知函数"
 
 #, c-format
 msgid "Line %s, Column %s."
-msgstr "行%s，列%s。"
+msgstr "第%s行，第%s列。"
 
 msgid "Copyright (c)"
 msgstr "版权所有 (c)"
@@ -514,10 +515,10 @@ msgid "SciNotes error"
 msgstr "SciNotes错误"
 
 msgid "The file could not be saved."
-msgstr "不能保存此文件"
+msgstr "无法保存文件"
 
 msgid "The file could not be converted."
-msgstr "不能转换此文件"
+msgstr "无法转换文件"
 
 #, c-format
 msgid "%s is a directory."
@@ -553,17 +554,17 @@ msgstr "将所选内容复制到新标签页"
 #, c-format
 msgid ""
 "The file encoding is actually %s and it will be saved in using %s. Continue ?"
-msgstr "文件编码实际是%s，并会已%s编码保存。继续？"
+msgstr "文件实际编码是%s，但会以%s编码保存，继续？"
 
 msgid "Encoding problems"
 msgstr "编码问题"
 
 msgid "Cannot guess the file encoding."
-msgstr "不能猜出文件编码"
+msgstr "无法推测文件编码"
 
 #, c-format
 msgid "Cannot save the file %s... stop the backup process"
-msgstr "不能保存文件%s... 停止备份"
+msgstr "无法保存文件%s……停止备份"
 
 msgid "Backup finished..."
 msgstr "备份结束..."
@@ -574,22 +575,22 @@ msgstr "目录%s不存在，是否创建？"
 
 #, c-format
 msgid "The directory %s cannot be created. Please check your access rights."
-msgstr ""
+msgstr "无法创建%s文件夹，请检查你的访问权限。"
 
 #, c-format
 msgid "Impossible to write a file in %s. Please check your access rights."
-msgstr ""
+msgstr "无法在%s文件夹中创建文件，请检查你的访问权限。"
 
 #, c-format
 msgid "Invalid directory name: %s."
-msgstr ""
+msgstr "无效文件夹名称：%s。"
 
 msgid "SciNotes autosave"
 msgstr "SciNotes自动保存"
 
 #, c-format
 msgid "%s occurences found."
-msgstr ""
+msgstr "找到%s项"
 
 msgid "Change Colors"
 msgstr "更改颜色"
@@ -673,7 +674,7 @@ msgid "Are you sure that you want to close SciNotes ?"
 msgstr "你确定要关闭SciNotes？"
 
 msgid "Restore files from your last SciNotes session ?"
-msgstr "从最后一次SciNotes会话恢复文件？"
+msgstr "恢复上次SciNotes会话？"
 
 msgid "Restore the last sessions"
 msgstr "恢复最后一次会话"
@@ -786,19 +787,19 @@ msgid "Scilab '%s' module not installed.\n"
 msgstr "Scilab模块“%s”尚未安装。\n"
 
 msgid "Open recent"
-msgstr "最近打开文件"
+msgstr "打开最近文件"
 
 msgid "Working directories;Add a directory;Remove last directory"
 msgstr "工作目录；添加目录；删除最后一个目录"
 
 msgid "Open file in ..."
-msgstr "打开文件从..."
+msgstr "打开文件……"
 
 msgid "Save file in ..."
-msgstr "保存文件到..."
+msgstr "保存文件……"
 
 msgid "Restore opened files on start-up"
-msgstr "启动时恢复打开的文件"
+msgstr "启动时恢复上次打开文件"
 
 msgid "Export"
 msgstr "导出"
@@ -855,19 +856,19 @@ msgid "Change the case"
 msgstr "更改大小写"
 
 msgid "Make Selection Lowercase"
-msgstr "小写化所选内容"
+msgstr "所选转为小写"
 
 msgid "Make Selection Uppercase"
-msgstr "大写化所选内容"
+msgstr "所选转为大写"
 
 msgid "Capitalize Selection;Capitalize character"
-msgstr "首字母大写化所选内容；首字母大写化字符"
+msgstr "所选内容首字母大写；所选字符首字母大写"
 
 msgid "Single to double quote strings"
 msgstr "字符串单引号转为双引号"
 
 msgid "Current file encoding"
-msgstr "当前文件编码"
+msgstr "文件编码"
 
 msgid "Preferences"
 msgstr "首选项"
@@ -879,10 +880,10 @@ msgid "Set colors"
 msgstr "设置颜色"
 
 msgid "Scinotes General settings"
-msgstr "Scinotes一般设置"
+msgstr "一般设置"
 
 msgid "Auto-completion on"
-msgstr "自动补全开"
+msgstr "自动补全"
 
 msgid "(, [, ..."
 msgstr "(, [, ..."
@@ -891,7 +892,7 @@ msgid "if, function, ..."
 msgstr "if, function, ..."
 
 msgid "Line numbering;Off;Normal;Local numbering"
-msgstr ""
+msgstr "行号：不显示；普通行号；局部行号"
 
 msgid "Suppress comments when executing selection"
 msgstr "执行所选内容时不显示注释"
@@ -900,22 +901,22 @@ msgid "Window"
 msgstr "窗口"
 
 msgid "Copy tab in new window"
-msgstr "将标签页复制到新窗口"
+msgstr "复制标签页到新窗口"
 
 msgid "Detach tab in new window"
-msgstr "将标签页分离到新窗口"
+msgstr "移动标签页到新窗口"
 
 msgid "Split View;Off;Split in two columns;Split in two rows"
-msgstr ""
+msgstr "分割视图：关；分割成两列；分割成两行"
 
 msgid "... file with no echo"
-msgstr "....文件带回显"
+msgstr "隐没执行文件"
 
 msgid "... file with echo"
-msgstr "....文件不回显"
+msgstr "回显执行文件"
 
 msgid "... the selection with echo;... until the caret, with echo"
-msgstr "...所选内容带回显；...直到插入符（^），带回显"
+msgstr "回显执行所选；回显执行文件直到插入符（^）"
 
 msgid "Save and execute"
 msgstr "保存并执行"
@@ -927,16 +928,16 @@ msgid "Scinotes help"
 msgstr "Scinotes帮助"
 
 msgid "Help on ;Help on selection"
-msgstr "帮助关于；所选内容帮助"
+msgstr "帮助之；帮助之所选"
 
 msgid "Evaluate Selection with echo;Evaluate until the caret, with echo"
-msgstr "执行所选内容带回显；执行直到插入符（^），带回显"
+msgstr "回显表达式计算其值；回显表达式计算其值直到插入符（^）"
 
 msgid "Display"
 msgstr "显示"
 
 msgid "Header"
-msgstr "头部"
+msgstr "文件头"
 
 msgid "Autosave"
 msgstr "自动保存"
@@ -960,22 +961,22 @@ msgid "Restore previous session on start-up"
 msgstr "启动时恢复前一次会话"
 
 msgid "Add carriage return at the end of the file."
-msgstr "文件末尾添加回车."
+msgstr "文件末尾自动换行"
 
 msgid "Number of recently opened files to display: "
-msgstr "显示最近打开文件数目: "
+msgstr "最近打开文件数目： "
 
 msgid "Default file encoding: "
-msgstr "默认文件编码: "
+msgstr "文件默认编码： "
 
 msgid "Default End-Of-Line: "
-msgstr "默认行结束符 "
+msgstr "默认换行符： "
 
 msgid "Completion"
 msgstr "补全"
 
 msgid "Auto-complete brackets when cursor is at the end of a line"
-msgstr ""
+msgstr "光标在行尾时自动补全括号"
 
 msgid "General display options"
 msgstr "一般显示选项"
@@ -987,7 +988,7 @@ msgid "Show line numbers: "
 msgstr "显示行号: "
 
 msgid "Local numbering"
-msgstr ""
+msgstr "局部行号"
 
 msgid "Normal"
 msgstr "普通"
@@ -1077,7 +1078,7 @@ msgid "Filename"
 msgstr "文件名"
 
 msgid "Append filename with: "
-msgstr "文件名附加上: "
+msgstr "文件名附加上： "
 
 #, c-format
 msgid "(%date can be used to be replaced by the current date)"
@@ -1099,10 +1100,10 @@ msgid "Choose an autosave directory"
 msgstr "选择自动保存目录"
 
 msgid "Default header"
-msgstr "默认头部内容"
+msgstr "默认文件头"
 
 msgid "Add a default header to new file"
-msgstr ""
+msgstr "新建文件自动添加默认文件头"
 
 msgid "The last error did not occur inside a Scilab macro."
 msgstr ""
@@ -1111,13 +1112,13 @@ msgid " on line "
 msgstr ""
 
 msgid "Opening file "
-msgstr ""
+msgstr "正在打开文件 "
 
 msgid " of the source file of the function "
 msgstr ""
 
 msgid "The source file of the function "
-msgstr ""
+msgstr "函数源文件 "
 
 msgid " was not found in any library path"
 msgstr ""

@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2017-01-27 12:24+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2017-02-05 11:21+0000\n"
+"Last-Translator: Paul Bignier <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
-"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18544)\n"
+"Language: fr\n"
 
 #, c-format
 msgid "%s: Invalid index.\n"
@@ -54,21 +54,24 @@ msgstr ""
 "attendu.\n"
 
 #, c-format
-msgid "%s: Affection of a string in a matrix of numbers is not implemented.\n"
+msgid ""
+"%s: Affection of a string in a matrix of numbers is not implemented.\n"
 msgstr ""
 "%s : L'affectation d'une chaîne de caractères dans une matrice de nombres "
 "n'est pas implémentée.\n"
 
 #, c-format
 msgid "%s: Syntax x(j) only allowed for row cblock's.\n"
-msgstr "%s : La syntaxe x(j) est seulement autorisée pour les blocs C ligne.\n"
+msgstr ""
+"%s : La syntaxe x(j) est seulement autorisée pour les blocs C ligne.\n"
 
 #, c-format
 msgid "%s: Invalid field name.\n"
 msgstr "%s : Nom de champ invalide.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: a valid field name expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: a valid field name expected.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : Un nom de champ valide "
 "attendu.\n"
@@ -82,7 +85,8 @@ msgid "%s: Wrong number of output arguments.\n"
 msgstr "%s : Nombre erroné d'arguments de sortie.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Transpose can not be defined.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: Transpose can not be defined.\n"
 msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : La transposée ne peut "
 "pas être définie.\n"
@@ -99,7 +103,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
-msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un scalaire attendu.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Un scalaire attendu.\n"
 
 #, c-format
 msgid ""
@@ -134,6 +139,7 @@ msgstr "%s : Dimensions erronées de l'argument : Dimensions incompatibles\n"
 #, c-format
 msgid "%s: not implemented for argin#1 hypermatrix and argin#2 matrix\n"
 msgstr ""
+"%s : non-implémenté pour argument #1 hypermatrice et argument #2 matrice.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
@@ -156,18 +162,22 @@ msgstr ""
 
 #, c-format
 msgid "%s: time domains are not compatible.\n"
-msgstr ""
+msgstr "%s : Les domaines temporels ne sont pas compatibles.\n"
 
 #, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: Same number of rows expected.\n"
 msgstr ""
+"%s : Arguments d'entrée n°%d et n°%d incompatibles : même nombre de lignes "
+"attendu.\n"
 
 #, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: Same number of columns "
 "expected.\n"
 msgstr ""
+"%s : Arguments d'entrée n°%d et n°%d incompatibles : même nombre de colonnes "
+"attendu.\n"
 
 #, c-format
 msgid "%s: Invalid syntax for a MIMO system.\n"
@@ -175,7 +185,8 @@ msgstr "%s : Syntaxe invalide pour un système MIMO.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %d or %s expected.\n"
-msgstr "%s : Valeur erronée de l'argument d'entrée n°%d : %d ou %s attendu.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : %d ou %s attendu.\n"
 
 #, c-format
 msgid ""
@@ -259,6 +270,7 @@ msgstr ""
 #, c-format
 msgid "%s: not implemented for argin#1 matrix and argin#2 hypermatrix\n"
 msgstr ""
+"%s : non-implémenté pour argument #1 matrice et argument #2 hypermatrice.\n"
 
 #, c-format
 msgid "%s: Sparse insertion case is not implemented.\n"
@@ -288,7 +300,8 @@ msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
 msgstr "%s : Type erroné de l'argument %d : Un scalaire réel attendu.\n"
 
 #, c-format
-msgid "%s: input and output matrices  must have the same number of elements.\n"
+msgid ""
+"%s: input and output matrices  must have the same number of elements.\n"
 msgstr ""
 "%s : Les matrices d'entrée et de sortie doivent avoir le même nombre "
 "d'éléments.\n"
@@ -302,19 +315,19 @@ msgid "%s: Wrong value for input argument #%d.\n"
 msgstr "%s : Valeur erronée de l'argument d'entrée n°%d.\n"
 
 msgid "Inconsistent row/column dimensions.\n"
-msgstr ""
+msgstr "Dimensions ligne/colonne incohérentes.\n"
 
 msgid "Inconsistent multiplication.\n"
-msgstr ""
+msgstr "Multiplication incohérente.\n"
 
 #, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: Same dimensions expected.\n"
-msgstr ""
+msgstr "%s : Les arguments #%d et #%d doivent être de même taille.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument: %d expected.\n"
-msgstr ""
+msgstr "%s : Nombre erroné d'argument(s) de sortie : %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Not implemented.\n"
@@ -340,53 +353,3 @@ msgstr "Indice invalide.\n"
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendus.\n"
-
-#~ msgid "%s: Wrong type for input argument #%d: string expected.\n"
-#~ msgstr ""
-#~ "%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
-#~ "attendue.\n"
-
-#~ msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
-#~ msgstr ""
-#~ "%s : Valeur erronée de l'argument d'entrée n°%d : %s ou %s attendu.\n"
-
-#~ msgid "%s: Wrong number of input argument: %d to %d expected.\n"
-#~ msgstr "%s : Nombre erroné d'arguments d'entrée : %d à %d attendus.\n"
-
-#~ msgid "%s: Wrong type for input argument #%d: Hypermatrix expected.\n"
-#~ msgstr ""
-#~ "%s : Type erroné de l'argument d'entrée n°%d : Une hypermatrice "
-#~ "attendue.\n"
-
-#~ msgid "%s: Wrong size for input argument(s): integer scalars expected.\n"
-#~ msgstr ""
-#~ "%s : Dimension erronée de l'argument ou des arguments d'entrée : Des "
-#~ "scalaires entiers attendus.\n"
-
-#~ msgid "%s: Only one -1 value admitted.\n"
-#~ msgstr "%s : Une seule valeur -1 est possible.\n"
-
-#~ msgid "%s: Input and output matrices  must have the same number of elements"
-#~ msgstr ""
-#~ "%s : Les matrices d'entrée et de sortie doivent avoir le même nombre "
-#~ "d'éléments."
-
-#~ msgid ""
-#~ "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
-#~ msgstr ""
-#~ "%s : Valeur erronée de l'argument d'entrée n°%d : '%s', '%s' ou '%s' "
-#~ "attendu.\n"
-
-#~ msgid ""
-#~ "%s: Wrong value for input argument #%d: Scalar positive integer "
-#~ "expected.\n"
-#~ msgstr ""
-#~ "%s : Valeur erronée de l'argument d'entrée n°%d : Un scalaire entier "
-#~ "positif attendu.\n"
-
-#~ msgid ""
-#~ "%s: Wrong value for input argument #%d: Scalar positive integer or "
-#~ "character string expected.\n"
-#~ msgstr ""
-#~ "%s : Valeur erronée de l'argument d'entrée n°%d : Un scalaire entier "
-#~ "positif ou une chaîne de caractères attendu.\n"

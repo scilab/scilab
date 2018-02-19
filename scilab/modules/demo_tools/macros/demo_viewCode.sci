@@ -35,12 +35,14 @@ function demo_viewCode(this_script)
         my_submenu = uimenu("parent", my_menu , ..
         "label"       , gettext("Open in Editor"), ..
         "Foregroundcolor" , [ 0/255 81/255 6/255 ]     , ..
-        "callback"    , "editor("""+path+""", ""readonly"")" );
+        "callback"    , "editor("""+path+""", ""readonly"")", ...
+		"callback_type", 10);
     else
         my_menu = uimenu( "parent"      , my_fig             , ..
         "label"       , gettext(" -- View Code -- ") , ..
         "Foregroundcolor" , [ 0/255 81/255 6/255 ]     , ..
-        "callback"    , "editor("""+path+""", ""readonly"")" );
+        "callback"    , "editor("""+path+""", ""readonly"")", ...
+		"callback_type", 10);
     end
 endfunction
 

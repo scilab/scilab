@@ -1,13 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="matrix">
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) - INRIA
+ * Copyright (C) 2017 - Samuel GOUGEON
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="matrix">
     <refnamediv>
         <refname>matrix</refname>
-        <refpurpose>reshape a vector or a matrix to a different size matrix</refpurpose>
+        <refpurpose>reshapes an array with the same number and order of components</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>y=matrix(v,n,m)
-            y=matrix(v,[sizes])
+        <synopsis>
+            y = matrix(v, m, n)
+            y = matrix(v, m1, m2, m3, ..)
+            y = matrix(v, [sizes])
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -16,25 +36,36 @@
             <varlistentry>
                 <term>v</term>
                 <listitem>
-                    <para>a vector, a matrix or a hypermatrix</para>
+                    <para>
+                        Any matricial container (regular matrix of any data type; cells array;
+                        structures array), of any number of dimensions (vector, matrix, hyperarray),
+                        with any sizes.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>n,m</term>
+                <term>n, m, m1, m2, ..</term>
                 <listitem>
-                    <para>integers</para>
+                    <para>
+                    positive integers: new expected sizes after reshaping. One of them may be set
+                    to <literal>-1</literal>.
+                    </para>
+
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>sizes</term>
                 <listitem>
-                    <para>vector of non-negative integers</para>
+                    <para>vector of positive integers: new expected sizes</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>y</term>
                 <listitem>
-                    <para>a vector, a matrix or hypermatrix</para>
+                    <para>
+                        the reshaped array, with <literal>y(i)==v(i)</literal> and
+                        <literal>size(y,"*")==size(v,"*")</literal>.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -42,36 +73,148 @@
     <refsection>
         <title>Description</title>
         <para>
-            For a vector or a matrix with <literal>n</literal> x <literal>m</literal> entries, the command
-            <literal>y=matrix(v,n,m)</literal> or similarly <literal>y=matrix(v,[n,m])</literal>
-            transforms the <literal>v</literal> vector (or matrix) into an <literal>nxm</literal> matrix by
-            stacking columnwise the entries of <literal>v</literal>.
+            For an array or hyperarray <literal>v</literal> with <literal>n</literal> x
+            <literal>m</literal> entries, <literal>y = matrix(v, n, m)</literal> or
+            <literal>y = matrix(v, [n,m])</literal> transforms <literal>v</literal> into a
+            <literal>n</literal> x <literal>m</literal> matrix, by stacking columnwise
+            the entries of <literal>v</literal>.
         </para>
         <para>
-            If one of the dimension <literal>m</literal> or <literal>n</literal> is equal to -1 it is automatically
-            assigned to the quotient of <literal>size(v,'*')</literal> by the other dimension.
+            Similarly, for an array or hyperarray <literal>v</literal> with <literal>m1</literal> x
+            <literal>m2</literal> x <literal>m3 ..</literal> entries,
+            <literal>y = matrix(v, m1, m2, m3,..)</literal> or
+            <literal>y = matrix(v, [m1 m2 m3..])</literal> transforms <literal>v</literal>
+            into a hyperarray with <literal>m1</literal> rows, <literal>m2</literal> columns,
+            <literal>m3 ..</literal> layers, ...etc.
         </para>
         <para>
-            For a hypermatrix such as
-            <literal>prod(size(v))==prod(sizes)</literal>, the command <literal>y=matrix(v,sizes)</literal> (or
-            equivalently <literal>y=matrix(v,n1,n2,...nm)</literal>) transforms
-            <literal>v</literal>  into an  matrix or hypermatrix by
-            stacking "columnwise" (first dimension is varying first) the entries of <literal>v</literal>. <literal>y=matrix(v,sizes)</literal>
-            results in a regular matrix if sizes is a scalar or a 2-vector.
+            In all cases, the linear order of components in <literal>y</literal> is the same as in
+            <literal>v</literal>: For any <literal>1 &lt;= i &lt;= size(v,"*")</literal>,
+            <literal>y(i)=v(i)</literal>.
         </para>
+        <para>
+            If one of the sizes <literal>m</literal> or <literal>n</literal> or <literal>m1</literal>
+            etc.. is equal to -1, its actual value is automatically set such that the total number
+            of components is unchanged.
+        </para>
+        <note>
+            <itemizedlist>
+                <listitem>
+                    <literal>y = v(:)</literal> is equivalent to <literal>matrix(v,-1, 1)</literal>
+                </listitem>
+                <listitem>
+                    <literal>matrix()</literal> can be overloaded for any mlist() type, with a
+                    function named <literal>%&lt;type>_matrix(v,s,..)</literal> with at least 2
+                    input arguments.
+                </listitem>
+            </itemizedlist>
+        </note>
     </refsection>
     <refsection>
         <title>Examples</title>
+        <para><emphasis role="bold">With a regular matrix of decimal numbers:</emphasis></para>
         <programlisting role="example"><![CDATA[
-a=[1 2 3;4 5 6]
-matrix(a,1,6)
-matrix(a,1,-1)
-matrix(a,3,2)
+a = [1 3 5 7 9 11; 2 4 6 8 10 12]
+matrix(a, 4, 3)
+matrix(a, [3 4])
+matrix(a, 3, -1)
+// into an hypermatrix:
+matrix(a, 3, 2, 2)
  ]]></programlisting>
+    <para>
+        <emphasis role="bold">With texts:</emphasis>
+    </para>
+        <programlisting role="example"><![CDATA[
+t = strsplit("a":"x",1:23)'
+matrix(t,[3,8])
+ ]]></programlisting>
+    <screen><![CDATA[
+--> t = strsplit("a":"x",1:23)'
+ t  =
+!a  b  c  d  e  f  g  h  i  j  k  l  m  n  o  p  q  r  s  t  u  v  w  x  !
+
+--> matrix(t,[3,8])
+ ans  =
+!a  d  g  j  m  p  s  v  !
+!b  e  h  k  n  q  t  w  !
+!c  f  i  l  o  r  u  x  !
+]]></screen>
+    <para>
+        <emphasis role="bold">With a cells hyperarray:</emphasis>
+    </para>
+        <programlisting role="example"><![CDATA[
+c = makecell([2,3,2], %t,%z, %i,"abc", list(%pi,"a"), int8(23),cos,sind,"àèìòù",corelib, 0.5, 1/%z^2)
+rc = matrix(c, 3, 4)
+rc(8)==c(8)
+rc{8}.getshell
+ ]]></programlisting>
+    <screen><![CDATA[
+ c  =
+(:,:,1)
+  [1x1 boolean]  [1x1 polynomial]  [1x1 constant]
+  [1x1 string ]  [    list      ]  [1x1 int8    ]
+(:,:,2)
+  [      1 fptr   ]  [      1 function]  [1x1 string]
+  [        library]  [    1x1 constant]  [    r     ]
+
+--> rc = matrix(c, 3, 4)
+ rc  =
+  [1x1 boolean   ]  [    list    ]  [      1 fptr    ]  [1x1 constant]
+  [1x1 string    ]  [1x1 constant]  [        library ]  [1x1 string  ]
+  [1x1 polynomial]  [1x1 int8    ]  [      1 function]  [    r       ]
+
+--> rc(8)==c(8)
+ ans  =
+  T
+
+--> rc{8}.getshell
+ ans  =
+ cmd
+]]></screen>
+    <para>
+        <emphasis role="bold">With a structures array:</emphasis>
+    </para>
+        <programlisting role="example"><![CDATA[
+clear s
+s(3,6).r = %pi
+matrix(s,2,9)
+ ]]></programlisting>
+    <screen><![CDATA[
+--> s(3,6).r = %pi
+ s  =
+  3x6 struct array with fields:
+    r
+
+--> matrix(s,2,9)
+ ans  =
+  2x9 struct array with fields:
+    r
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="colon">colon (:)</link>
+            </member>
+            <member>
+                <link linkend="resize_matrix">resize_matrix</link>
+            </member>
+            <member>
+                <link linkend="ndims">ndims</link>
+            </member>
+            <member>
+                <link linkend="size">size</link>
+            </member>
+            <member>
+                <link linkend="extraction">extraction</link>
+            </member>
+            <member>
+                <link linkend="quote">transposition</link>
+            </member>
+            <member>
+                <link linkend="brackets">brackets [..]</link>
+            </member>
             <member>
                 <link linkend="matrices">matrices</link>
             </member>
@@ -79,22 +222,13 @@ matrix(a,3,2)
                 <link linkend="hypermatrices">hypermatrices</link>
             </member>
             <member>
-                <link linkend="ones">ones</link>
+                <link linkend="makecell">makecell</link>
             </member>
             <member>
-                <link linkend="zeros">zeros</link>
+                <link linkend="struct">struct</link>
             </member>
             <member>
-                <link linkend="emptystr">emptystr</link>
-            </member>
-            <member>
-                <link linkend="rand">rand</link>
-            </member>
-            <member>
-                <link linkend="poly">poly</link>
-            </member>
-            <member>
-                <link linkend="empty">empty</link>
+                <link linkend="mlist">mlist</link>
             </member>
         </simplelist>
     </refsection>

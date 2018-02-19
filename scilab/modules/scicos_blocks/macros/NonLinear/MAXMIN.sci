@@ -65,11 +65,11 @@ function [x,y,typ]=MAXMIN(job,arg1,arg2)
 
                 // Update the label of the block
                 if mm == 1 then
-                    label="MIN";
+                    label="\,MIN";
                 else
                     label="MAX";
                 end
-                graphics.style="MAXMIN;displayedLabel=" + label;
+                graphics.style = "MAXMIN;displayedLabel=$\mathsf{\tiny MIN|MAX\\\small{"+label+"}}$";
 
                 graphics.exprs=exprs;
                 x.graphics=graphics;

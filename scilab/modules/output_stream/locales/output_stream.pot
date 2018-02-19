@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2017-02-01 14:30+0100\n"
+"Revision-Date: 2018-02-12 08:52+0100\n"
 
 # File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 109
 # File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 127
@@ -332,57 +332,6 @@ msgstr ""
 msgid "%s: Wrong type of input arguments #%d: A real scalar expected.\n"
 msgstr ""
 
-# File: modules/output_stream/macros/prettyprint.sci, line: 77
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected."
-msgstr ""
-
-#
-# File: modules/output_stream/macros/prettyprint.sci, line: 85
-# File: modules/output_stream/macros/prettyprint.sci, line: 92
-# File: modules/output_stream/macros/prettyprint.sci, line: 101
-# File: modules/output_stream/macros/prettyprint.sci, line: 112
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
-
-#
-# File: modules/output_stream/macros/prettyprint.sci, line: 95
-# File: modules/output_stream/macros/prettyprint.sci, line: 104
-# File: modules/output_stream/macros/prettyprint.sci, line: 115
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
-"expected.\n"
-msgstr ""
-
-#
-# File: modules/output_stream/macros/prettyprint.sci, line: 107
-# File: modules/output_stream/macros/prettyprint.sci, line: 118
-# File: modules/output_stream/macros/prettyprint.sci, line: 121
-#, c-format
-msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
-msgstr ""
-
-#
-# File: modules/output_stream/macros/prettyprint.sci, line: 124
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected"
-msgstr ""
-
-#
-# File: modules/output_stream/macros/prettyprint.sci, line: 129
-#, c-format
-msgid "%s: Wrong export format: %s"
-msgstr ""
-
-#
-# File: modules/output_stream/macros/prettyprint.sci, line: 597
-#, c-format
-msgid "%s: Type %s is not handled : Define the function %s2%s."
-msgstr ""
-
-#
 # File: modules/output_stream/macros/ssprint.sci, line: 28
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"

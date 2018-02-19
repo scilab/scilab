@@ -9,7 +9,8 @@
 function subdemolist = demo_gateway()
 
     demopath = get_absolute_file_path("graphics.dem.gateway.sce");
-    add_demo(gettext("Graphics"), demopath+"graphics.dem.gateway.sce");
+    _("Graphics");  // lets gettext() harvesting it
+    add_demo("Graphics", demopath+"graphics.dem.gateway.sce");
 
     subdemolist = [_("2D and 3D plots")             ,"2d_3d_plots/2d_3d_plots.dem.gateway.sce"             ; ..
     _("Basic functions")             ,"basic_functions/basic_functions.dem.gateway.sce"     ; ..
@@ -22,8 +23,7 @@ function subdemolist = demo_gateway()
     _("Datatips")                    ,"datatips/datatips.dem.gateway.sce"                   ; ..
     _("LaTeX/MathML")                ,"textrendering/textrendering.dem.gateway.sce"         ; ..
     _("Lighting")                    ,"lighting/lighting.dem.gateway.sce"                   ; ..
-    _("Misc")                        ,"misc/misc.dem.sce"                                   ; ..
-    _("Colormap")                    ,"colormap/colormap.dem.sce"                           ; ..
+    _("Colormap")                    ,"colormap/colormaps.dem.sce"                           ; ..
     _("Matplot")                    ,"matplot/matplot.dem.gateway.sce"];
 
     subdemolist(:,2) = demopath + subdemolist(:,2);

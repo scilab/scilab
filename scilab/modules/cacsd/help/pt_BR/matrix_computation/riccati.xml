@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="pt" xml:id="riccati">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="pt" xml:id="riccati">
     <refnamediv>
         <refname>riccati</refname>
         <refpurpose>Riccati equation</refpurpose>
@@ -119,6 +122,12 @@ H = H*H';
             </member>
             <member>
                 <link linkend="ric_desc">ric_desc</link>
+            </member>
+            <member>
+                <link linkend="srfaur">srfaur</link>
+            </member>
+            <member>
+                <link linkend="lindquist">lindquist</link>
             </member>
         </simplelist>
     </refsection>

@@ -4,6 +4,7 @@
 # Copyright (C) DIGITEO - 2009-2011 - Sylvestre Ledru
 # Copyright (C) DIGITEO - 2009 - Pierre MARECHAL <pierre.marechal@scilab.org>
 # Copyright (C) Scilab Enterprises - 2014 - Clement DAVID <clement.david@scilab-enterprises.com>
+# Copyright (C) ESI Group - 2018 - Clement DAVID <clement.david@scilab-enterprises.com>
 #
 # Copyright (C) 2012 - 2016 - Scilab Enterprises
 #
@@ -554,6 +555,7 @@ case "$CXX" in
         else
             DEBUG_CXXFLAGS="-DNDEBUG -g1 -O2"
         fi
+        COMPILER_CXXFLAGS="$COMPILER_CXXFLAGS -fno-stack-protector " # bug 3131
     ;;
 
 esac
@@ -863,6 +865,8 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 
      AC_JAVA_DETECT_JVM
      case "$ac_java_jvm_version" in
+        1.9)
+        ;;
         1.8)
         ;;
         *)
@@ -1951,11 +1955,11 @@ if test ! -f modules/core/src/cpp/banner.cpp; then
 fi
 
 CURRENT_YEAR=`date "+%Y"`
-DETECTED_YEAR=`grep "Copyright (c) 2011-" modules/core/src/cpp/banner.cpp|sed -e "s/.*Copyright (c) 2011-\([[0-9]]*\).*/\1/g"`
+DETECTED_YEAR=`grep "Copyright (c) 2017-" modules/core/src/cpp/banner.cpp|sed -e "s/.*Copyright (c) 2017-\([[0-9]]*\).*/\1/g"`
 
 if test "$CURRENT_YEAR" != "$DETECTED_YEAR"; then
-   sed -i -e "s| 2011-$DETECTED_YEAR | 2011-$CURRENT_YEAR |g" modules/core/src/cpp/banner.cpp modules/windows_tools/src/c/scilab_windows/console.c
-   sed -i -e "s| 2011-$DETECTED_YEAR Scilab Enterprises| 2011-$CURRENT_YEAR Scilab Enterprises|g" etc/Info.plist.in
+   sed -i -e "s| 2017-$DETECTED_YEAR | 2017-$CURRENT_YEAR |g" modules/core/src/cpp/banner.cpp modules/windows_tools/src/c/scilab_windows/console.c
+   sed -i -e "s| 2017-$DETECTED_YEAR ESI Group| 2011-$CURRENT_YEAR ESI Group|g" etc/Info.plist.in
    sed -i -e "s|VALUE \"LegalCopyright\", \"Copyright (C) $DETECTED_YEAR|VALUE \"LegalCopyright\", \"Copyright (C) $CURRENT_YEAR|" $(find . -iname '*.rc')
    AC_MSG_WARN([New year ($CURRENT_YEAR) detected. Copyright files updated. Please commit them ASAP.])
 fi

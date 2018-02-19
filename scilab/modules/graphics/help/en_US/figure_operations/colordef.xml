@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Serge Steer
+ * Copyright (C) 2017 - Samuel GOUGEON
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:lang="en" xml:id="colordef">
+    <refnamediv>
+        <refname>colordef</refname>
+        <refpurpose>Set the color look-and-feel of a given or of all forthcoming graphic figures</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>
+            colordef(color_scheme)
+            colordef(f, color_scheme)
+            colordef("new", color_scheme)
+            colordef default
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>color_scheme</term>
+                <listitem>
+                    <para>
+                    a character string with possible value: <literal>'white'</literal>,
+                    <literal>'black'</literal>, <literal>'none'</literal>, or
+                    <literal>'default'</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>f</term>
+                <listitem>
+                    <para>handle on a graphic figure
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>colordef(color_scheme)</literal> sets the color properties of all forthcoming
+            figures and of their axes. The <literal>color_scheme</literal> and corresponding colors
+            are listed in the table here-below.
+        </para>
+        <para>
+            <table border="1">
+                <tr><td>Property / L&amp;F</td>  <th>'white'</th>      <th>'black'</th>        <th>'none'</th></tr>
+                <tr><td>fig.color_map</td> <td>jetcolormap(64)</td><td>jetcolormap(64)</td><td>hsvcolormap(64)</td></tr>
+                <tr><td>fig.background</td><td>light gray</td>   <td>dark gray</td>      <td>dark gray</td></tr>
+                <tr><td>axes.background</td><td>white</td>       <td>black</td>          <td>black</td></tr>
+                <tr><td>axes.foreground</td><td>black</td>       <td>white</td>          <td>white</td></tr>
+                <tr><td>(labels).font_foreground</td><td>black</td><td>white</td>        <td>white</td></tr>
+            </table>
+        </para>
+        <para>
+            After having used <literal>colordef(color_scheme)</literal>, it is possible to get back
+            the default default colors with <literal>colordef("default")</literal>.
+        </para>
+        <para>
+            <literal>colordef(f, color_scheme)</literal> sets the color properties corresponding to
+            the chosen color scheme, but only for the chosen figure with handle <literal>f</literal>.
+            The default colors of forthcoming figures are unchanged (except for "default").
+        </para>
+        <para>
+            <literal>colordef('new', color_scheme)</literal> creates a new graphic window and sets
+            its color properties according to the chosen <literal>color_scheme</literal>.
+            The default colors of forthcoming figures are unchanged (except for "default").
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <table>
+        <tr>
+            <td>
+                <programlisting role="example"><![CDATA[
+                colordef("black")
+                plot()
+                 ]]></programlisting>
+                <scilab:image>
+                colordef("black")
+                plot()
+                title("colordef(""black"")")
+                gcf().figure_size = [350 400];
+                </scilab:image>
+            </td>
+            <td>
+                <programlisting role="example"><![CDATA[
+                colordef("white")
+                plot()
+                 ]]></programlisting>
+                <scilab:image>
+                colordef("white")
+                plot()
+                title("colordef(""white"")")
+                gcf().figure_size = [350 400];
+                </scilab:image>
+            </td>
+            <td>
+                <programlisting role="example"><![CDATA[
+                colordef("default")
+                plot()
+                 ]]></programlisting>
+                <scilab:image>
+                colordef("default")
+                plot()
+                title("colordef(""default"")")
+                gcf().figure_size = [350 400];
+                </scilab:image>
+            </td>
+        </tr>
+        </table>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="sdf">sdf</link>
+            </member>
+            <member>
+                <link linkend="gdf">gdf</link>
+            </member>
+            <member>
+                <link linkend="sda">sda</link>
+            </member>
+            <member>
+                <link linkend="gda">gda</link>
+            </member>
+            <member>
+                <link linkend="figure_properties">figure_properties</link>
+            </member>
+            <member>
+                <link linkend="axes_properties">axes_properties</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.1</revnumber>
+                <revdescription>
+                    "default" color_scheme introduced.
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revdescription>
+                    With "black" and "none" color shemes, titles and axes labels are now drawn in white.
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

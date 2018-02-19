@@ -147,7 +147,8 @@ am__uninstall_files_from_dir = { \
   }
 am__installdirs = "$(DESTDIR)$(pkglibdir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
-libsciexternal_la_LIBADD =
+am__DEPENDENCIES_1 =
+libsciexternal_la_DEPENDENCIES = $(am__DEPENDENCIES_1)
 am_libsciexternal_la_OBJECTS = foo.lo foo2.lo foo3.lo foo4.lo foo5.lo
 libsciexternal_la_OBJECTS = $(am_libsciexternal_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
@@ -316,8 +317,10 @@ EXEEXT = @EXEEXT@
 F77 = @F77@
 FC = @FC@
 FCFLAGS = @FCFLAGS@
+FCLIBS = @FCLIBS@
 FFLAGS = @FFLAGS@
 FGREP = @FGREP@
+FLIBS = @FLIBS@
 GREP = @GREP@
 INSTALL = @INSTALL@
 INSTALL_DATA = @INSTALL_DATA@
@@ -429,6 +432,7 @@ pkglib_LTLIBRARIES = libsciexternal.la
 # these 3 languages.
 # Don't change name or order 
 libsciexternal_la_SOURCES = foo.c foo2.f foo3.cxx foo4.cpp foo5.f90
+libsciexternal_la_LIBADD = $(FLIBS)
 all: all-am
 
 .SUFFIXES:

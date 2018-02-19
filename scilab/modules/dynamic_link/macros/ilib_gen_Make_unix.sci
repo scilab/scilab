@@ -153,7 +153,7 @@ function ilib_gen_Make_unix(names,   ..
                 end
 
                 if ~isfile(pathFrom + "/" + file_name + file_extension) then
-                    error(999, msprintf(_("%s: Wrong value for input argument #%d: existing file(s) expected. Provided: %s\n"), "ilib_gen_Make_unix", 2, pathFrom + "/" + file_name + file_extension));
+                    error(msprintf(_("%s: Wrong value for input argument #%d: existing file(s) expected. Provided: %s\n"), "ilib_gen_Make_unix", 2, pathFrom + "/" + file_name + file_extension));
                 end
 
                 filelist = filelist + " " + file_name + file_extension;
@@ -169,7 +169,7 @@ function ilib_gen_Make_unix(names,   ..
                 for f=filesMatching(:)'
 
                     if ~isfile(f) then
-                        error(999, msprintf(_("%s: Wrong value for input argument #%d: existing file(s) expected.\n"), "ilib_gen_Make_unix", 2));
+                        error(msprintf(_("%s: Wrong value for input argument #%d: existing file(s) expected.\n"), "ilib_gen_Make_unix", 2));
                     end
 
                     if strindex(f,ignoredFileExtension) == [] then

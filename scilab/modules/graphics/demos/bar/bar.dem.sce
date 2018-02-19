@@ -46,7 +46,7 @@ function demo_bar()
 
     // Adjustements
     histogramme = gcf();
-    histogramme.figure_size = [900,600];
+    // histogramme.figure_size = [900,600];
     histogramme.background = BackgroundColorId;
 
     axes = gca();

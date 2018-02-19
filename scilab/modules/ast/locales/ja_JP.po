@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2015-08-17 11:20+0100\n"
-"PO-Revision-Date: 2016-04-28 14:19+0000\n"
+"PO-Revision-Date: 2017-05-01 12:32+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
-"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18544)\n"
+"Language: ja\n"
 
 msgid "Warning :\n"
 msgstr "警告:\n"
@@ -29,8 +29,7 @@ msgstr "最小二乗解を計算中. (lsq 参照).\n"
 
 #, c-format
 msgid "debugger stop on breakpoint(%d) in function %ls line %d\n"
-msgstr ""
-"デバッガがブレークポイント (%d)  で停止しました ( 関数 %ls ,  %d 行目)\n"
+msgstr "デバッガがブレークポイント (%d)  で停止しました ( 関数 %ls ,  %d 行目)\n"
 
 msgid "Execution aborted.\n"
 msgstr "実行をアボートしました.\n"
@@ -88,8 +87,7 @@ msgstr "%ls: 複数の要素を転置することはできません.\n"
 #, c-format
 msgid ""
 "It is not possible to redefine the %s primitive this way (see clearfun).\n"
-msgstr ""
-"%s プリミティブをこの方法で再定義することはできません (clearfun 参照).\n"
+msgstr "%s プリミティブをこの方法で再定義することはできません (clearfun 参照).\n"
 
 #, c-format
 msgid "%ls: Wrong type for argument %d: Real scalar expected.\n"
@@ -134,8 +132,7 @@ msgid "Submatrix incorrectly defined.\n"
 msgstr "誤ったサブ行列の定義が行われました.\n"
 
 msgid "Wrong insertion: A Cell expected: use {...} instead of (...).\n"
-msgstr ""
-"挿入が間違っています:  セルでは (...) の代わりに {...} を指定してください.\n"
+msgstr "挿入が間違っています:  セルでは (...) の代わりに {...} を指定してください.\n"
 
 msgid "Inconsistent row/column dimensions.\n"
 msgstr "行/列の次元が不整合です.\n"
@@ -155,13 +152,10 @@ msgstr "変数は同じ形式の変数を有しません."
 #, c-format
 msgid ""
 "Error: operator %ls: Matrix dimensions must agree (op1 is %ls, op2 is %ls).\n"
-msgstr ""
-"エラー:  %ls 演算子: 行列の次元を整合させる必要があります (op1 は %ls, op2 "
-"は %ls).\n"
+msgstr "エラー:  %ls 演算子: 行列の次元を整合させる必要があります (op1 は %ls, op2 は %ls).\n"
 
 msgid "With NaN or Inf a division by scalar expected.\n"
-msgstr ""
-"NaN または Inf を指定した場合, スカラーによる割り算を指定してください.\n"
+msgstr "NaN または Inf を指定した場合, スカラーによる割り算を指定してください.\n"
 
 msgid "Division by zero...\n"
 msgstr "ゼロによる割り算...\n"
@@ -186,8 +180,7 @@ msgid "Bad value in the left operand.\n"
 msgstr "左オペランドの値が不正です.\n"
 
 msgid "With NaN or Inf a left division by scalar expected.\n"
-msgstr ""
-"NaNまたはInfを指定した場合, スカラーによる左割り算を指定してください.\n"
+msgstr "NaNまたはInfを指定した場合, スカラーによる左割り算を指定してください.\n"
 
 msgid "Left division by zero...\n"
 msgstr "ゼロによる左割り算...\n"
@@ -200,7 +193,7 @@ msgid "Operator \\ : Error %d not yet managed.\n"
 msgstr "\\ 演算子: エラー %d は未管理です.\n"
 
 msgid "Invalid exponent: expected real exponents.\n"
-msgstr ""
+msgstr "指数が誤っています: 実数を指定してください.\n"
 
 msgid "Invalid exponent.\n"
 msgstr "指数が間違っています.\n"
@@ -238,9 +231,7 @@ msgstr "グローバル変数:"
 #, c-format
 msgid ""
 "Warning : redefining function: %s. Use funcprot(0) to avoid this message"
-msgstr ""
-"警告: 関数の再定義: %s. このメッセージを回避するには, funcport(0) を使用して"
-"ください"
+msgstr "警告: 関数の再定義: %s. このメッセージを回避するには, funcport(0) を使用してください"
 
 msgid "in builtin "
 msgstr "組込み "
@@ -272,11 +263,11 @@ msgstr "作成できません: %s"
 
 #, c-format
 msgid "Error: Could not resolve symbolic link %s\n"
-msgstr ""
+msgstr "エラー: シンボリックリンク %s を解決できません\n"
 
 #, c-format
 msgid "Error: Could not find %s\n"
-msgstr ""
+msgstr "エラー: %s が見つかりません\n"
 
 #, c-format
 msgid "Error: Could not create %s: %s\n"
@@ -284,7 +275,7 @@ msgstr "エラー: %s を作成できません: %s\n"
 
 #, c-format
 msgid "Scilab '%s' function disabled in -nogui or -nwni mode.\n"
-msgstr ""
+msgstr "Scilab '%s' 関数は -nogui または -nwni モードでは無効となります.\n"
 
 #, c-format
 msgid ""
@@ -318,11 +309,12 @@ msgstr "リストに複数の要素を挿入することはできません.\n"
 msgid "Index out of bounds.\n"
 msgstr "添字が範囲を超えています.\n"
 
-msgid "Wrong number of input arguments: This function has no input argument.\n"
+msgid ""
+"Wrong number of input arguments: This function has no input argument.\n"
 msgstr "入力引数の数が間違っています: この関数は入力引数を有しません.\n"
 
 msgid "Wrong number of input arguments.\n"
-msgstr ""
+msgstr "入力引数の数が間違っています.\n"
 
 #, c-format
 msgid "List element number %d is Undefined.\n"
@@ -340,8 +332,7 @@ msgstr "オープンできません: %s.\n"
 msgid ""
 "Warning : please rename your overloaded function\n"
 " \"%s\" to \"%s\"\n"
-msgstr ""
-"警告: オーバーロードされた関数の名前を\"%s\" から \"%s\"に変更してください\n"
+msgstr "警告: オーバーロードされた関数の名前を\"%s\" から \"%s\"に変更してください\n"
 
 #, c-format
 msgid "check or define function %s for overloading.\n"
@@ -387,33 +378,31 @@ msgstr "変数の大きさを超えました: %d 未満にしてください.\n"
 
 #, c-format
 msgid "%s: Could not find '%s': Please check that macros have been built.\n"
-msgstr ""
-"%s:  '%s' が見つかりませんでした: 構築されたマクロをチェックしてください.\n"
+msgstr "%s:  '%s' が見つかりませんでした: 構築されたマクロをチェックしてください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer matrix expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 整数行列を指定してください.\n"
 
 msgid "Invalid exponent: expected real exponents."
-msgstr ""
+msgstr "指数が間違っています: 実数の指数を指定してください."
 
 msgid "Division by zero"
-msgstr ""
+msgstr "ゼロ割"
 
 #, c-format
 msgid "%s: Argument #%d: Square matrix expected.\n"
-msgstr ""
+msgstr "%s: 引数 #%d: 正方行列を指定してください.\n"
 
 msgid "Not implemented"
-msgstr ""
+msgstr "実装されていません"
 
 msgid "Invalid exponent"
-msgstr ""
+msgstr "指数が間違っています"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: 正方行列を指定してください.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 正方行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Unable to diagonalize.\n"

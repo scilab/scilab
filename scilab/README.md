@@ -1,15 +1,14 @@
 Scilab
 ======
 
-Open source, cross-platform numerical computational package and a high-level,
-numerically oriented programming language.
+Open source, cross-platform numerical computational package and a high-level, numerically oriented programming language.
 
 COPYRIGHT NOTICE
 ----------------
 
 Scilab is a free software, released under the terms of the GNU General Public
 License (GPL) v2.0. Scilab was originally licensed under the terms of
-the CeCILL v2.1, and continues to be available under such terms.
+the CeCILL v2.1 and continues to be available under such terms.
 For more information, see the COPYING file.
 
 Scilab is also using some codes with other licenses. Please see
@@ -46,3 +45,4 @@ OTHER RESOURCES
     [File Exchange](http://fileexchange.scilab.org)
 
  4. Browse our packages available through [ATOMS](http://atoms.scilab.org)
+

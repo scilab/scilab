@@ -8,7 +8,7 @@
         <title>Syntaxe</title>
         <synopsis>y=ode(y0,t0,t,f)
             [y,w,iw]=ode([type],y0,t0,t [,rtol [,atol]],f [,jac] [,w,iw])
-            [y,rd,w,iw]=ode("roots",y0,t0,t [,rtol [,atol]],f [,jac],ng,g [,w,iw])
+            [y,rd,w,iw]=ode("root",y0,t0,t [,rtol [,atol]],f [,jac],ng,g [,w,iw])
             y=ode("discrete",y0,k0,kvect,f)
         </synopsis>
     </refsynopsisdiv>
@@ -48,7 +48,7 @@
                         une des chaînes de caractères : <literal>"adams"</literal>,
                         <literal>"stiff"</literal>, <literal>"rk"</literal>,
                         <literal>"rkf"</literal>, <literal>"fix"</literal>,
-                        <literal>"discrete"</literal>, <literal>"roots"</literal>
+                        <literal>"discrete"</literal>, <literal>"root"</literal>
                     </para>
                 </listitem>
             </varlistentry>
@@ -116,7 +116,9 @@
             <varlistentry>
                 <term>w, iw</term>
                 <listitem>
-                    <para>vecteurs de réels. Voir les <link linkend="ode_optional_output">options de sortie</link> de ode().</para>
+                    <para>
+                        vecteurs de réels. Voir les <link linkend="ode_optional_output">options de sortie</link> de ode().
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -192,12 +194,12 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>"roots":</term>
+                <term>"root":</term>
                 <listitem>
                     <para>Solveur d'EDO avec recherche de racines. Le solveur
                         <literal>lsodar</literal> du package ODEPACK est utilisé. C'est une
                         variante de <literal>lsoda</literal> permettant la recherche d'une
-                        racine d'une fonction vectorielle donnée. Voir <link linkend="ode_roots">ode_roots</link> pour plus de
+                        racine d'une fonction vectorielle donnée. Voir <link linkend="ode_root">ode_root</link> pour plus de
                         détails.
                     </para>
                 </listitem>
@@ -393,8 +395,9 @@ ccode=['#include <math.h>'
        '  ydot[0]=y[0]*y[0]-y[0]*sin(*t)+cos(*t);'
        '}']
 mputl(ccode,TMPDIR+'/myode.c') //create the C file
-ilib_for_link('myode','myode.c',[],'c',[],TMPDIR+'/loader.sce');//compile
-exec(TMPDIR+'/loader.sce') //incremental linking
+cd TMPDIR
+ilib_for_link('myode','myode.c',[],'c',[],'loader.sce');//compile
+exec('loader.sce') //incremental linking
 y0=0;t0=0;t=0:0.1:%pi;
 y=ode(y0,t0,t,'myode');
 
@@ -439,7 +442,7 @@ ode("stiff",[0;1],0,1,f,Jacobian)
                 <link linkend="ode_optional_output">ode_optional_output</link>
             </member>
             <member>
-                <link linkend="ode_roots">ode_roots</link>
+                <link linkend="ode_root">ode_root</link>
             </member>
             <member>
                 <link linkend="ode_discrete">ode_discrete</link>

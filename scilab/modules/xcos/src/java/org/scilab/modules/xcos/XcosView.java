@@ -75,10 +75,18 @@ public class XcosView extends View {
             if (e.onCallerThread) {
                 e.listener.objectCreated(uid, kind);
             } else {
+                // reference the object on the caller thread to avoid premature deletion
+                new JavaController().referenceObject(uid);
+
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
-                        e.listener.objectCreated(uid, kind);
+                        try {
+                            e.listener.objectCreated(uid, kind);
+                        } finally {
+                            // unreference the object on the EDT
+                            new JavaController().deleteObject(uid);
+                        }
                     }
                 });
             }
@@ -166,10 +174,18 @@ public class XcosView extends View {
                 }
             } else {
                 if (e.listenedProperties.contains(property)) {
+                    // reference the object on the caller thread to avoid premature deletion
+                    new JavaController().referenceObject(uid);
+
                     SwingUtilities.invokeLater(new Runnable() {
                         @Override
                         public void run() {
-                            e.listener.propertyUpdated(uid, kind, property, status);
+                            try {
+                                e.listener.propertyUpdated(uid, kind, property, status);
+                            } finally {
+                                // unreference the object on the EDT
+                                new JavaController().deleteObject(uid);
+                            }
                         }
                     });
                 }

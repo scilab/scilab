@@ -10,16 +10,21 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function r=%sp_z_sp(a,b)
+function r = %sp_z_sp(a,b)
     //  a.\.b with a and b sparse
 
-    [ija,va,mna]=spget(a)
-    [ijb,vb,mnb]=spget(b)
-    if size(ija,1)<>prod(mna)|or(va==0) then error(27),end
-    ia=ija(:,1);ja=ija(:,2)
-    ib=ijb(:,1);jb=ijb(:,2)
+    [ija,va,mna] = spget(a)
+    [ijb,vb,mnb] = spget(b)
+    if size(ija,1)<>prod(mna) | or(va==0) then
+        msg = _("%s: Division by 0...\n")
+        error(msprintf(msg, "%sp_z_sp"))
+    end
+    ia = ija(:,1);
+    ja = ija(:,2)
+    ib = ijb(:,1);
+    jb = ijb(:,2)
 
-    ij=[((ia-ones(ia))*mnb(1)).*.ones(ib)+ones(ia).*.ib,..
-    ((ja-ones(ja))*mnb(2)).*.ones(jb)+ones(ia).*.jb]
-    r=sparse(ij,va.\.vb,mna.*mnb)
+    ij = [((ia-ones(ia))*mnb(1)).*.ones(ib)+ones(ia).*.ib,..
+          ((ja-ones(ja))*mnb(2)).*.ones(jb)+ones(ia).*.jb]
+    r = sparse(ij, va.\.vb, mna.*mnb)
 endfunction

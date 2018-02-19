@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xcos_simulate">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="xcos_simulate">
     <refnamediv>
         <refname>xcos_simulate</refname>
         <refpurpose>Function for running xcos simulation in batch mode</refpurpose>
@@ -183,8 +186,8 @@ function post_xcos_simulate(%cpr, scs_m, needcompile)
     // Retrieve exprs
     exprs = clrBlock.graphics.exprs;
     s = poly(0,'s');
-    num = eval(exprs(1));
-    den = eval(exprs(2));
+    num = evstr(exprs(1));
+    den = evstr(exprs(2));
     h = syslin('c', num/den);
     // Open new figure then plot Bode
     scf(max(winsid())+1);
@@ -231,8 +234,8 @@ function continueSimulation = pre_xcos_simulate(scs_m, needcompile)
     // Retrieve exprs
     exprs = clrBlock.graphics.exprs;
     s = poly(0,'s');
-    num = eval(exprs(1));
-    den = eval(exprs(2));
+    num = evstr(exprs(1));
+    den = evstr(exprs(2));
     h = syslin('c', num/den);
     // Open new figure then plot Bode
     scf(max(winsid())+1);
@@ -254,19 +257,19 @@ xcos_simulate(scs_m, 4);
                 <link linkend="scicos_diagram">scs_m structure</link>
             </member>
             <member>
-                <link linkend="importXcosDiagram"> importXcosDiagram</link>
+                <link linkend="importXcosDiagram">importXcosDiagram</link>
             </member>
             <member>
-                <link linkend="scicosim">scicosim: xcos batch simulation function</link>
+                <link linkend="scicosim">scicosim</link>
             </member>
             <member>
-                <link linkend="xcos">xcos: Block diagram editor and GUI for the hybrid simulator</link>
+                <link linkend="xcos">xcos</link>
             </member>
             <member>
-                <link linkend="steadycos">steadycos: Finds an equilibrium state of a Xcos diagram</link>
+                <link linkend="steadycos">steadycos</link>
             </member>
             <member>
-                <link linkend="lincos">lincos: Constructs by linearization a linear state-space model from a Xcos diagram</link>
+                <link linkend="lincos">lincos</link>
             </member>
         </simplelist>
     </refsection>

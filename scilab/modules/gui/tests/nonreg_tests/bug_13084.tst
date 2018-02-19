@@ -29,8 +29,8 @@ for i=1:10:100
 end
 
 d=e.datatips;
-assert_checkequal(d.interp_mode, ["on" "off" "on" "off" "on" "off" "on" "off" "on" "off"]);
+assert_checkequal(d.interp_mode, ["on" "off" "on" "off" "on" "off" "on" "off" "on" "off"]');
 datatipSetInterp(e,%t);
-assert_checkequal(d.interp_mode, ["on" "on" "on" "on" "on" "on" "on" "on" "on" "on"]);
+assert_checkequal(d.interp_mode, ["on" "on" "on" "on" "on" "on" "on" "on" "on" "on"]');
 datatipSetInterp(e,%f);
-assert_checkequal(d.interp_mode, ["off" "off" "off" "off" "off" "off" "off" "off" "off" "off"]);
+assert_checkequal(d.interp_mode, ["off" "off" "off" "off" "off" "off" "off" "off" "off" "off"]');

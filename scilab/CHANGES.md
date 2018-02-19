@@ -22,9 +22,7 @@ Please report any thing we could have missed, on the [mailing lists][1] or on th
 Main new features
 -----------------
 
-For high-level description of the main new features of this release, please
-consult the [embedded help](modules/helptools/data/pages/homepage-en_US.html). It is also available
-as the "What's new" page of the help, by simply typing `help` in Scilab console.
+For a high-level description of the main new features of this release, please consult the [embedded help](modules/helptools/data/pages/homepage-en_US.html). It is also available as the "What's new" page of the help, by simply typing `help` in Scilab console.
 
 In summary, the main new features are:
 * Webtools utilities added for HTTP protocol, JSON data usage
@@ -88,10 +86,6 @@ Help pages:
 -----------
 
 * fixed / improved:  `bench_run` `M_SWITCH`
-
-
-Data Structures
----------------
 
 
 Xcos

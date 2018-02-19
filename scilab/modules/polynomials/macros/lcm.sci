@@ -32,6 +32,8 @@ function [p, fact] = lcm(p)
         end
     end
 
+    fact = 1;
+
     // Integers:
     if type(p)==8 then
         if argn(1)==2 then
@@ -50,7 +52,6 @@ function [p, fact] = lcm(p)
     [m, n] = size(p),
     p = matrix(p, m*n, 1),
     p0 = p(1);
-    fact = 1;
     for l = 2:m*n,
         [u, v] = simp(p0, p(l)),
         p0 = p0*v,

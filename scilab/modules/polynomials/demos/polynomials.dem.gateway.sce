@@ -7,7 +7,8 @@
 function subdemolist = demo_gateway()
 
     demopath = get_absolute_file_path("polynomials.dem.gateway.sce");
-    add_demo(gettext("Polynomials"),demopath+"polynomials.dem.gateway.sce");
+    gettext("Polynomials");   // Lets gettext() harvesting it
+    add_demo("Polynomials",demopath+"polynomials.dem.gateway.sce");
 
     subdemolist = [_("Introduction")             , "intro/poly.intro.dem.sce" ];
 

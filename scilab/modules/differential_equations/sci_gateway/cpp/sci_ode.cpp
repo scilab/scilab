@@ -35,6 +35,7 @@ extern "C"
 #include "sciprint.h"
 #include "common_structure.h"
 #include "sci_malloc.h"
+#include "sciprint.h"
 }
 /*--------------------------------------------------------------------------*/
 
@@ -117,8 +118,14 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
         {
             meth = 2;
         }
+        else if (wcscmp(wcsType, L"root") == 0)
+        {
+            meth = 3;
+        }
         else if (wcscmp(wcsType, L"roots") == 0)
         {
+            sciprint(_("%s: Feature %s is obsolete.\n"), _("Warning"), "roots");
+            sciprint(_("%s: Please use %s instead.\n"), _("Warning"), "root");
             meth = 3;
         }
         else if (wcscmp(wcsType, L"discrete") == 0)
@@ -139,7 +146,7 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
         }
         else
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: It must be one of the following strings: adams, stiff, rk, rkf, fix, roots or discrete.\n"), "ode", 1);
+            Scierror(999, _("%s: Wrong value for input argument #%d: It must be one of the following strings: adams, stiff, rk, rkf, fix, root or discrete.\n"), "ode", 1);
             return types::Function::Error;
         }
     }

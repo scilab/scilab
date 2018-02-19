@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="comments">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="comments">
     <refnamediv>
         <refname>comments</refname>
         <refpurpose>(// or /*...*/) comments</refpurpose>
@@ -46,11 +49,25 @@ help myfunction
         <title>See also</title>
         <simplelist type="inline">
             <member>
+                <link linkend="head_comments">head_comments</link>
+            </member>
+            <member>
                 <link linkend="slash">slash</link>
             </member>
             <member>
                 <link linkend="backslash">backslash</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    <literal>/* .. */</literal> block comments introduced.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

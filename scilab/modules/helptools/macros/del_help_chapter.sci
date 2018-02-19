@@ -37,9 +37,13 @@ function del_help_chapter(help_to_del,modulemode)
     // Check input arguments
     // -------------------------------------------------------------------------
     [lhs,rhs] = argn(0);
-    if (rhs<1) | (rhs>2) then error(39); end
+    if (rhs < 1) | (rhs > 2) then
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d or %d expected.\n"), "del_help_chapter", 1, 2));
+    end
     if (rhs == 1) then modulemode=%F; end
-    if type(help_to_del) <> 10 then error(55,1); end
+    if type(help_to_del) <> 10 | size(help_to_del, "*") <> 1 then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: a string expected.\n"), "del_help_chapter", 1));
+    end
 
     // Is the first parameter a module name ?
     // -------------------------------------------------------------------------

@@ -35,7 +35,8 @@ function f = %r_a_r(s1, s2)
             sz2 = sz1
         end
         if and(sz1<>sz2) then
-            error(8)
+            msg = _("%s: Inconsistent addition.\n")
+            error(msprintf(msg, "%r_a_r"))
         end
         for l = 1:prod(sz1)
             [den,fact] = lcm([den1(l); den2(l)])
@@ -46,7 +47,8 @@ function f = %r_a_r(s1, s2)
         f = rlist(matrix(num1,sz1),matrix(den1,sz1),s1.dt)
     else
         if size(sz1,"*")>2|size(sz2,"*")>2 then
-            error(8)
+            msg = _("%s: Inconsistent addition.\n")
+            error(msprintf(msg, "%r_a_r"))
         end
         if or(sz1<0) & or(sz2<0) then
             // both are eye*x

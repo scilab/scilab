@@ -19,7 +19,7 @@ function r = %ip_string(index)
         if execstr("v = [index(1) index(2)];", "errcatch") == 0 then
             r = sci2exp(v(1)) + ":" + sci2exp(v(2));
         else
-            error(999, msprintf(gettext("%s: Wrong size for input argument #%d.\n"), "string", 1));
+            error(msprintf(gettext("%s: Wrong size for input argument #%d.\n"), "string", 1));
         end
     end
 endfunction

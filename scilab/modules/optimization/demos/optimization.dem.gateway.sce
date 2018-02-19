@@ -7,7 +7,8 @@
 function subdemolist = demo_gateway()
 
     demopath = get_absolute_file_path("optimization.dem.gateway.sce");
-    add_demo(gettext("Optimization and Simulation"), demopath+"optimization.dem.gateway.sce");
+    _("Optimization and Simulation");  // lets gettext() harvesting it
+    add_demo("Optimization and Simulation", demopath+"optimization.dem.gateway.sce");
 
     subdemolist = [_("Non linear data fitting"), "datafit/datafit.dem.gateway.sce"; ..
     _("Optimisation"),            "optim/optim.dem.gateway.sce"; ..

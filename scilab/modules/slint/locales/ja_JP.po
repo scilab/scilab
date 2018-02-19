@@ -1,0 +1,347 @@
+# Japanese translation for scilab
+# Copyright (c) 2017 Rosetta Contributors and Canonical Ltd 2017
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2017-05-02 13:53+0000\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
+"Language-Team: Japanese <ja@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 18544)\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
+msgstr "%s: 入力引数の数が間違っています:  %d 以上の引数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A single boolean expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 論理値を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A string or a boolean expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列または論理値を指定してください.\n"
+
+#, c-format
+msgid "%s: %s\n"
+msgstr "%s: %s\n"
+
+msgid "Module developed with the contribution of CNES."
+msgstr "CNESの貢献により開発されたモジュール"
+
+msgid "Expression is not bracketed."
+msgstr "式が括弧でくくられていません."
+
+#, c-format
+msgid "Number of break is limited: %d max."
+msgstr "breakの数は制限されていません: 最大%d."
+
+#, c-format
+msgid "Number of continue is limited: %d max."
+msgstr "continueの数が制限されていません: 最大 %d."
+
+msgid "Cannot open the file"
+msgstr "ファイルを開けません"
+
+#, c-format
+msgid ""
+"The minimal ratio between commented lines and total lines is not reached: %d "
+"< %d."
+msgstr "コメント付きの行および全体の行の間の最小比が達していません: %d < %d."
+
+#, c-format
+msgid "Bad decimal exponent: %s was expected and %s was found."
+msgstr "10進指数が間違っています: %s が必要ですが, %s となりました."
+
+msgid "Decimal numbers must not begin by a dot."
+msgstr "10進数はドットで始まってはいけません."
+
+#, c-format
+msgid "Deprecated function: %s."
+msgstr "廃止予定の関数: %s."
+
+#, c-format
+msgid "Deprecated function %s: use %s instead."
+msgstr "廃止予定の関数%s: 代わりに%sを使用してください."
+
+msgid "svd(..., 0) is deprecated."
+msgstr "svd(..., 0) は廃止予定です."
+
+msgid "mfprintf(-1, ...) is deprecated."
+msgstr "mfprintf(-1, ...)は廃止予定です."
+
+msgid "Empty block."
+msgstr "空のブロック."
+
+msgid ""
+"Possible confusion between assignment operator '=' and equality operator "
+"'=='."
+msgstr "代入演算子'='と等価演算子'=='を混用している可能性があります."
+
+#, c-format
+msgid "Number of expressions in condition is limited: %d max."
+msgstr "条件の式の数は制限されています: 最大%d"
+
+#, c-format
+msgid "Duplicated function arguments: %s."
+msgstr "廃止予定の関数引数: %s."
+
+#, c-format
+msgid "Duplicated function output values: %s."
+msgstr "関数出力値が二重になっています: %s."
+
+#, c-format
+msgid "Function arguments used as output values: %s."
+msgstr "出力値として使用される関数引数: %s."
+
+#, c-format
+msgid "Argument at position %d must be an assignment."
+msgstr "位置 %d における引数は代入されます."
+
+#, c-format
+msgid "Argument %s declared at position %d and assigned at position %d."
+msgstr "%s 位置 %dで宣言され, 位置%dで代入される引数."
+
+#, c-format
+msgid "Function name doesn't match the pattern: %s, %s"
+msgstr "パターンに一致しない関数名: %s, %s"
+
+#, c-format
+msgid "Function name length is lower than minimum: %d < %d"
+msgstr "関数名の長さが最小値より短いです: %d < %d"
+
+#, c-format
+msgid "Function name length is greater than maximum: %d > %d"
+msgstr "関数名の長さが最大値より長いです: %d > %d"
+
+#, c-format
+msgid "Function %s requires an error checking just after the call."
+msgstr "関数 %s はコール後のエラーチェックが必要です."
+
+msgid "Function 'global' not allowed."
+msgstr "関数 'global' は使用できません."
+
+#, c-format
+msgid "Illegal call: %s."
+msgstr "不正なコール: %s."
+
+msgid "Invalid list, it contains NaN or Inf."
+msgstr "無効なリスト, NaNまたはInfを含む."
+
+msgid "Bad use of ':' operator."
+msgstr "':'演算子の使用法が間違っています."
+
+#, c-format
+msgid "Maximum line length exceeded at lines: %s."
+msgstr "行の最大長を%s行目で超えています."
+
+#, c-format
+msgid "Maximum lines number exceeded: %d > %d."
+msgstr "行番号の最大値を超えています: %d >%d."
+
+#, c-format
+msgid "Function %s has at least one argument."
+msgstr "関数%sには１つ以上の引数が必要です."
+
+#, c-format
+msgid "Function %s should be called with names of variables."
+msgstr "関数%sは変数名を指定してコールする必要があります."
+
+#, c-format
+msgid "Function %s should be called with constant strings."
+msgstr "関数%sは定数文字列を指定してコールする必要があります."
+
+#, c-format
+msgid "McCabe's complexity is %d and is greater than %d."
+msgstr "McCabeの複雑性は %dで%dより大きいです."
+
+msgid "Open file is not assigned."
+msgstr "オープンされたファイルが代入されていません."
+
+msgid "The instruction mclose(\"all\") may have any side effects."
+msgstr "命令 mclose(\"all\")には副作用がある可能性があります."
+
+#, c-format
+msgid "Open files not closed: %s."
+msgstr "オープンされたファイルがクローズされていません: %s."
+
+#, c-format
+msgid "Use %nan in a comparison expression will return false."
+msgstr "比較式で%nanを使用するとfalseが返されます."
+
+#, c-format
+msgid "Use isnan() when comparing values with %nan."
+msgstr "%nanと値を比較する際にはisnan()を使用してください."
+
+#, c-format
+msgid "Too many nested blocks: %d max."
+msgstr "ネストしたブロックが多すぎます: 最大 %d."
+
+#, c-format
+msgid "Operator '%s' should be used rather than '%s'."
+msgstr "演算子 '%s' を('%s'ではなく)使用してください."
+
+msgid "Double negation is not allowed."
+msgstr "二重否定は使用できません."
+
+msgid "Not operator '~' should be used rather than '@'."
+msgstr "'@'ではなく,否定演算子 '~' を使用してください."
+
+#, c-format
+msgid ""
+"Invalid number of arguments in %s: data don't correspond to the format."
+msgstr "%sの引数の数が間違っています: データがフォーマットに一致していません."
+
+#, c-format
+msgid "Redefinition of Scilab's constant: %s."
+msgstr "Scilabの定数の再定義: %s."
+
+#, c-format
+msgid "Redefinition of a built-in function: %s."
+msgstr "組み込み関数の再定義: %s."
+
+#, c-format
+msgid "Redefinition of a library function: %s."
+msgstr "ライブラリ関数の再定義: %s."
+
+#, c-format
+msgid "Redefinition of a macro: %s."
+msgstr "マクロの再定義: %s."
+
+#, c-format
+msgid "Redefinition of a private macro: %s."
+msgstr "プライベートマクロの再定義: %s."
+
+#, c-format
+msgid "Too many return instructions: %d max."
+msgstr "return命令が多すぎます: 最大%d."
+
+msgid "Select should have a default case."
+msgstr "selectにはdefault caseが必要です."
+
+msgid "Select with no case."
+msgstr "selectにcaseがありません."
+
+msgid "Select with one case: it could be replaced by an if statement."
+msgstr "caseが一つのselect文: if文で置き換えることができます."
+
+msgid "Case expression should be a number or string."
+msgstr "case式は数値または文字列とする必要があります."
+
+msgid "Case expression types are mixed."
+msgstr "case式の型が混ざっています."
+
+msgid "Instruction not finished by a semi-colon."
+msgstr "命令がセミコロンで終わっていません."
+
+msgid "Two instructions on the same line."
+msgstr "2つの命令が同じ行にあります."
+
+#, c-format
+msgid "Operator %s should be surrounded by single spaces."
+msgstr "演算子%sは空白一つで括られる必要があります."
+
+msgid "No space after function argument."
+msgstr "関数引数の後に空白がありません."
+
+msgid "No space before first function argument."
+msgstr "最初の関数の引数の後に空白がありません."
+
+msgid "A function argument must be preceded by a single space."
+msgstr "関数引数の前に空白一つを置く必要があります."
+
+msgid ""
+"All the fields in a struct should be defined at the struct definition."
+msgstr "構造体の全フィールドを構造体の定義で定義する必要があります."
+
+msgid "Struct definition must contain an even number of arguments."
+msgstr "構造体の定義は偶数の引数の数を有する必要があります."
+
+#, c-format
+msgid "Field name doesn't match the pattern: %s, %s"
+msgstr "フィールド名がパターンに一致しません: %s,%s"
+
+#, c-format
+msgid "Field name length is lower than minimum: %d < %d"
+msgstr "フィールド名の長さが最小値より短かいです: %d < %d"
+
+#, c-format
+msgid "Field name length is greater than maximum: %d > %d"
+msgstr "フィールド名の長さが最大値より長いです: %d > %d"
+
+#, c-format
+msgid "Duplicated field definition: %s."
+msgstr "フィールド定義が冗長です: %s."
+
+msgid "Field should be defined by a constant string."
+msgstr "フィールドは定数文字列で定義される必要があります."
+
+msgid "Function struct has only one return argument."
+msgstr "関数structはreturn引数を一つだけ有します."
+
+#, c-format
+msgid "It should be better to define field %s at struct definition."
+msgstr "構造体定義においてフィールド%sを定義する方が良いでしょう."
+
+#, c-format
+msgid "Read an undefined field: %s."
+msgstr "未定義のフィールドを読み込みます: %s."
+
+msgid "Comment contains a TODO."
+msgstr "コメントは TODOを有します."
+
+msgid "The code after the return statement is unreachable."
+msgstr "return命令の後のコードは実行されません."
+
+#, c-format
+msgid "Function argument might be unused: %s."
+msgstr "関数の引数は使用されない可能性があります: %s."
+
+msgid "Possible useless operation."
+msgstr "使用できない可能性がある演算."
+
+#, c-format
+msgid "Function returned value might be unused: %s."
+msgstr "関数が返す値が使用されません: %s."
+
+#, c-format
+msgid "Variable name doesn't match the pattern: %s, %s"
+msgstr "変数名のパターンが一致しません: %s,%s"
+
+#, c-format
+msgid "Variable name length is lower than minimum: %d < %d"
+msgstr "変数名の長さが最小値より短いです: %d < %d"
+
+#, c-format
+msgid "Variable name length is greater than maximum: %d > %d"
+msgstr "変数名の長さが最大値より長いです: %d > %d"
+
+#, c-format
+msgid "Use of non-initialized variable '%s' may have any side-effects."
+msgstr "初期化されていない変数'%s'を使用すると副作用がある可能性があります."
+
+#, c-format
+msgid "Use of a private macro '%s' defined in another file %s."
+msgstr ""
+
+#, c-format
+msgid "Use of non-initialized variable '%s' may have side effects."
+msgstr "初期化されていない変数'%s'を使用すると副作用がある可能性があります."
+
+#, c-format
+msgid "Declared variable and might be unused: %s."
+msgstr "宣言された変数で使用されていないもの: %s."
+
+msgid "Cannot create a parser context"
+msgstr "パーサコンテキストを作成できません"

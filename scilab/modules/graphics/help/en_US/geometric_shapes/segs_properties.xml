@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Djalel Abdemouche
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="segs_properties">
+    <refnamediv>
+        <refname>Segments properties</refname>
+        <refpurpose>
+            description of the Segments entity properties
+        </refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            The <literal>Segs</literal> entity is a leaf of the graphics entities hierarchy. This entity defines the parameters for a set of colored segments or colored arrows.
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>parent: </term>
+                <listitem>
+                    <para>
+                        This property contains the handle of the parent. The
+                        parent of the segment entity should be of the type
+                        <literal>"Axes"</literal> or <literal>"Compound"</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>children: </term>
+                <listitem>
+                    <para>
+                        This property contains a vector with the
+                        <literal>children</literal> of the handle. However,
+                        <literal>segs</literal> handles currently do not have
+                        any <literal>children</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>visible: </term>
+                <listitem>
+                    <para>
+                        This field contains the <literal>visible</literal>
+                        property value for the entity. It should be
+                        <literal>"on" </literal> or <literal>"off"</literal>.
+                        By default, the segments are visible, the value's
+                        property is <literal>"on"</literal>. If
+                        <literal>"off"</literal> the segments are not drawn on
+                        the screen.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>data: </term>
+                <listitem>
+                    <para>
+                        This field is two column matrix <literal>[x,y,
+                            [z]]
+                        </literal>
+                        which gives the coordinates of the
+                        segments boundary. If <literal>xv =
+                            matrix(x,2,-1)
+                        </literal>
+                        and <literal>yv =
+                            matrix(y,2,-1)
+                        </literal>
+                        then <literal>xv(:,k)</literal>
+                        and <literal>yv(:,k)</literal> are the boundary
+                        coordinates of the segment numbered
+                        <literal>k</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>line_mode: </term>
+                <listitem>
+                    <para>
+                        This field contains the default
+                        <literal>line_mode</literal> property value for the
+                        <literal>segs</literal>. Its value should be
+                        <literal>"on"</literal> (line drawn) or
+                        <literal>"off"</literal> (no line drawn).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>line_style: </term>
+                <listitem>
+                    <para>
+                        The <literal>line_style</literal> property value should
+                        be an integer in <literal>[1 8]</literal>.
+                        <literal>1</literal> stands for solid, the other value
+                        stands for a selection of dashes (dash, dash dot, longdash dot, bigdash dot, bigdash longdash, dot, double dot).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>thickness: </term>
+                <listitem>
+                    <para>
+                        This property is a positive real specifying the arrow
+                        width in pixels. The displayed width is actually
+                        determined by rounding the supplied width to the nearest
+                        integer. The only exception is vectorial export where
+                        the whole <literal>thickness</literal> value is
+                        considered.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>arrow_size: </term>
+                <listitem>
+                    <para>
+                        The factor that specify the size of arrowheads. With a
+                        negative value, the size is also dependent on the arrows
+                        length. To draw segment, the value must be set to 0.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>segs_color: </term>
+                <listitem>
+                    <para>
+                        This field contains the vector of colors to use to draw
+                        each segment. Each element is a color index relative to the current colormap.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>mark_mode: </term>
+                <listitem>
+                    <para>
+                        This field contains the default
+                        <literal>mark_mode</literal> property value for the
+                        polyline. Its value should be <literal>"on"</literal>
+                        (marks drawn) or <literal>"off"</literal> (no marks
+                        drawn).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>mark_style: </term>
+                <listitem>
+                    <para>
+                        The <literal>mark_style</literal> property value is used
+                        to select the type of mark to use when
+                        <literal>mark_mode</literal> property is
+                        <literal>"on"</literal>. The value should be an integer
+                        in <literal>[0 14]</literal> which stands for: dot,
+                        plus, cross, star, filled diamond, diamond, triangle up,
+                        triangle down, diamond plus, circle, asterisk, square,
+                        triangle right, triangle left and pentagram. The figure
+                        below shows the aspects of the marks depending on the
+                        <literal>mark_style</literal> and the
+                        <literal>mark_foreground</literal> and
+                        <literal>mark_background</literal> properties.
+                    </para>
+                    <para>
+                        <inlinemediaobject>
+                            <imageobject>
+                                <imagedata fileref="../../images/marks.svg"/>
+                            </imageobject>
+                        </inlinemediaobject>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>mark_size_unit: </term>
+                <listitem>
+                    <para>
+                        This field contains the default <literal>mark_size_unit</literal>
+                        property value. If <literal>mark_size_unit</literal> is
+                        set to <literal>"point"</literal>, then the
+                        <literal>mark_size</literal> value is directly given in
+                        points. When <literal>mark_size_unit</literal> is set to
+                        <literal>"tabulated"</literal>, <literal>mark_size</literal>
+                        is computed relative to the font size array: therefore,
+                        its value should be an integer in <literal>[0 5]</literal>
+                        which stands for 8pt, 10pt, 12pt, 14pt, 18pt and 24pt. Note that
+                        <link linkend="plot2d">plot2d</link> and pure scilab functions use
+                        <literal>tabulated</literal> mode as default; when using
+                        <link linkend="plot">plot</link> function, the
+                        <literal>point</literal> mode is automatically enabled.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>mark_size: </term>
+                <listitem>
+                    <para>
+                        The <literal>mark_size</literal> property is used to
+                        select the type of size of the marks when
+                        <literal>mark_mode</literal> property is
+                        <literal>"on"</literal>. Its value should be an integer between 0 and 5
+                        which stands for 8pt, 10pt, 12pt, 14pt, 18pt and 24pt.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>mark_foreground: </term>
+                <listitem>
+                    <para>
+                        This field contains the <literal>mark_foreground</literal>
+                        property value which is the marks' edge color. Its value
+                        should be a color index (relative to the current
+                        <literal>color_map</literal>) or 0 for transparent edge.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>mark_background: </term>
+                <listitem>
+                    <para>
+                        This field contains the <literal>mark_background</literal>
+                        property value which is the marks' face color. Its value should be a color index (relative to the current <literal>color_map</literal>) or 0 for transparent face.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>clip_state: </term>
+                <listitem>
+                    <para>
+                        This field contains the <literal>clip_state</literal>
+                        property value for the segments. It should be :
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                <literal>"off"</literal> this means that the
+                                segments are not clipped.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>"clipgrf"</literal> this means that the
+                                segments are clipped outside the Axes box.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>"on"</literal> this means that the
+                                segments are clipped outside the rectangle given
+                                by the property <literal>clip_box</literal>.
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>clip_box: </term>
+                <listitem>
+                    <para>
+                        This field contains the <literal>clip_box</literal>
+                        property. By default segments are not clipped,
+                        <literal>clip_state</literal> is <literal>"off"</literal>,
+                        so the value should be an empty matrix. Other cases the
+                        vector <literal>[x, y, w, h]</literal>
+                        (upper-left point, width, height) defines the portions
+                        of the segments to display, however
+                        <literal>clip_state</literal> property value will be
+                        changed.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>user_data: </term>
+                <listitem>
+                    <para>
+                        This field can be use to store any scilab variable in
+                        the <literal>segs</literal> data structure, and to retrieve it.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+a=get("current_axes");//get the handle of the newly created axes
+a.data_bounds=[-10,-10;10,10];
+x=2*%pi*(0:7)/8;
+xv=[2*sin(x);9*sin(x)];
+yv=[2*cos(x);9*cos(x)];
+xsegs(xv,yv,1:8)
+
+s=a.children
+s.arrow_size=1;
+s.segs_color=15:22;
+for j=1:2
+  for i=1:8
+    h=s.data(i*2,j);
+    s.data(i*2,j)=s.data(i*2-1,j);
+    s.data(i*2-1,j)=  h;
+  end
+end
+
+s.segs_color=5; //set all the colors to 5
+
+s.clip_box=[-4,4,8,8];
+a.thickness=4;
+xrect(s.clip_box);
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="set">set</link>
+            </member>
+            <member>
+                <link linkend="get">get</link>
+            </member>
+            <member>
+                <link linkend="delete">delete</link>
+            </member>
+            <member>
+                <link linkend="xsegs">xsegs</link>
+            </member>
+            <member>
+                <link linkend="graphics_entities">graphics entities</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>line_style value 0 is obsolete, use 1 instead (both are equivalent for SOLID). Using value 0 will produce an error in Scilab 5.4.1.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

@@ -14,7 +14,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="tbx_generate_pofile" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="tbx_generate_pofile" xml:lang="en">
     <refnamediv>
         <refname>tbx_generate_pofile</refname>
         <refpurpose>Extract localized strings from toolbox sources (toolbox compilation process)</refpurpose>
@@ -58,7 +61,12 @@
     <refsection role="examples">
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-tbx_generate_pofile("SCI/contrib/toolbox_skeleton")
+path = TMPDIR + "/example";
+copyfile(SCI+"/contrib/toolbox_skeleton", path);
+mdelete(path+"/locales/*");
+
+tbx_generate_pofile(path);
+edit(path+"/locales/en_US.po")
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -66,6 +74,9 @@ tbx_generate_pofile("SCI/contrib/toolbox_skeleton")
         <simplelist type="inline">
             <member>
                 <link linkend="tbx_build_localization">tbx_build_localization</link>
+            </member>
+            <member>
+                <link linkend="addlocalizationdomain">addlocalizationdomain</link>
             </member>
         </simplelist>
     </refsection>
@@ -79,6 +90,14 @@ tbx_generate_pofile("SCI/contrib/toolbox_skeleton")
             <revision>
                 <revnumber>6.0.0</revnumber>
                 <revdescription>tbx_name declared obsolete. It is no longer required.</revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.0.1</revnumber>
+                <revdescription>
+                    <para>_() and gettext() references are now detected.</para>
+                    <para>Litteral double '' are now simplified in the msgid.</para>
+                    <para>Files paths in comments are no longer absolute and refer to the toolbox root.</para>
+                </revdescription>
             </revision>
         </revhistory>
     </refsection>

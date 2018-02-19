@@ -42,7 +42,7 @@ C=sparse([-9;6;3]);
 assert_checkequal(cross(A,B),C);
 
 // Error messages
-errmsg1=msprintf(_("Wrong number of input arguments."));
+errmsg1=msprintf(_("Wrong number of input arguments.\n"));
 assert_checkerror("cross(A,B,C)", errmsg1);
 errmsg2=msprintf(_("%s: Wrong number of input arguments: %d expected.\n"), "cross",2);
 assert_checkerror("cross(A)", errmsg2);

@@ -2,7 +2,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="numer">
     <refnamediv>
         <refname>numer</refname>
-        <refpurpose>numérateurs d'une matrice rationnelle  </refpurpose>
+        <refpurpose>numérateurs d'une matrice rationnelle <emphasis role="bold">(obsolète)</emphasis></refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
@@ -29,6 +29,10 @@
     </refsection>
     <refsection>
         <title>Description</title>
+        <warning>
+            Cette fonction est obsolète et sera supprimée de Scilab 6.1.0. SVP utiliser
+            l'attribut <literal>.num</literal> des fractions rationnelles à la place.
+        </warning>
         <para>
             <literal>num=numer(R)</literal> renvoie le numérateur <literal>num</literal> d'une matrice rationnelle <literal>R</literal> (<literal>R</literal> peut aussi être une matrice constante ou une matrice de polynômes).
             <literal>numer(R)</literal> est équivalent à <literal>R(2)</literal>, <literal>R('num')</literal> ou <literal>R.num</literal>
@@ -54,5 +58,17 @@ numer(p)
                 <link linkend="denom">denom</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revdescription>
+                    <literal>numer()</literal> est déclarée obsolète. L'attribut
+                    <literal>.num</literal> des fractions rationelles doit être utilisé à la place.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

@@ -14,7 +14,10 @@ function b=%s_c_cblock(a,b)
     if a==[] then return,end
     v2=getfield(2,b)
 
-    if size(a,1)<>size(v2,1) then error(5),end
+    if size(a,1)<>size(v2,1) then
+        msg = _("%s: Arguments #%d and #%d: Same numbers of rows expected.\n")
+        error(msprintf(msg, "%s_c_cblock", 1, 2))
+    end
     if type(a)==type(v2) then
         b=setfield(2,[a v2],b)
     else

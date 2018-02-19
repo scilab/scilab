@@ -60,11 +60,10 @@ abstract class ScilabWriter {
             shared.stream.writeAttribute("style", v[0]);
 
             shared.controller.getObjectProperty(label[0],  Kind.ANNOTATION, ObjectProperties.DESCRIPTION, v);
-            if (!v[0].isEmpty()) {
-                // remove any '\n' character that will not be preserved by the XML Handlers on re-load
-                String escaped = v[0].replace('\n', ' ');
-                shared.stream.writeAttribute("value", escaped);
-            }
+
+            // remove any '\n' character that will not be preserved by the XML Handlers on re-load
+            String escaped = v[0].replace('\n', ' ');
+            shared.stream.writeAttribute("value", escaped);
 
             shared.stream.writeAttribute("vertex", "1");
 

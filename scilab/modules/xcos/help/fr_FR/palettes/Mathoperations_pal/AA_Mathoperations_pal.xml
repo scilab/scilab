@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="Mathoperations_pal" xml:lang="fr_FR">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="Mathoperations_pal" xml:lang="fr_FR">
     <refnamediv>
         <refname>Mathoperations_pal</refname>
         <refpurpose>Palette Opérations mathématiques</refpurpose>
@@ -21,116 +24,204 @@
     <refsection>
         <title>Aperçu</title>
         <para>
+            <link linkend="ABS_VALUE">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="ABS_VALUE" fileref="../../../../../../modules/xcos/images/palettes/ABS_VALUE.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="ABS_VALUE" fileref="../../../../images/palettes/ABS_VALUE.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="BIGSOM_f">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="BIGSOM_f" fileref="../../../../../../modules/xcos/images/palettes/BIGSOM_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="BIGSOM_f" fileref="../../../../images/palettes/BIGSOM_f.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="COSBLK_f">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="COSBLK_f" fileref="../../../../../../modules/xcos/images/palettes/COSBLK_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="COSBLK_f" fileref="../../../../images/palettes/COSBLK_f.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="EXPBLK_m">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="EXPBLK_m" fileref="../../../../../../modules/xcos/images/palettes/EXPBLK_m.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="EXPBLK_m" fileref="../../../../images/palettes/EXPBLK_m.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="GAINBLK_f">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="GAINBLK_f" fileref="../../../../../../modules/xcos/images/palettes/GAINBLK_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="GAINBLK_f" fileref="../../../../images/palettes/GAINBLK_f.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="INVBLK">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="INVBLK" fileref="../../../../../../modules/xcos/images/palettes/INVBLK.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="INVBLK" fileref="../../../../images/palettes/INVBLK.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="LOGBLK_f">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="LOGBLK_f" fileref="../../../../../../modules/xcos/images/palettes/LOGBLK_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="LOGBLK_f" fileref="../../../../images/palettes/LOGBLK_f.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="MATMAGPHI">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="MATMAGPHI" fileref="../../../../../../modules/xcos/images/palettes/MATMAGPHI.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="MATMAGPHI" fileref="../../../../images/palettes/MATMAGPHI.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="MATZREIM">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="MATZREIM" fileref="../../../../../../modules/xcos/images/palettes/MATZREIM.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="MATZREIM" fileref="../../../../images/palettes/MATZREIM.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="MAXMIN">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="MAXMIN" fileref="../../../../../../modules/xcos/images/palettes/MAXMIN.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="MAXMIN" fileref="../../../../images/palettes/MAXMIN.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="MAX_f">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="MAX_f" fileref="../../../../../../modules/xcos/images/palettes/MAX_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="MAX_f" fileref="../../../../images/palettes/MAX_f.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="MIN_f">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="MIN_f" fileref="../../../../../../modules/xcos/images/palettes/MIN_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="MIN_f" fileref="../../../../images/palettes/MIN_f.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="POWBLK_f">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="POWBLK_f" fileref="../../../../../../modules/xcos/images/palettes/POWBLK_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="POWBLK_f" fileref="../../../../images/palettes/POWBLK_f.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="PRODUCT">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="PRODUCT" fileref="../../../../../../modules/xcos/images/palettes/PRODUCT.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="PRODUCT" fileref="../../../../images/palettes/PRODUCT.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="PROD_f">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="PROD_f" fileref="../../../../../../modules/xcos/images/palettes/PROD_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="PROD_f" fileref="../../../../images/palettes/PROD_f.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="SIGNUM">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="SIGNUM" fileref="../../../../../../modules/xcos/images/palettes/SIGNUM.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="SIGNUM" fileref="../../../../images/palettes/SIGNUM.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="SINBLK_f">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="SINBLK_f" fileref="../../../../../../modules/xcos/images/palettes/SINBLK_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="SINBLK_f" fileref="../../../../images/palettes/SINBLK_f.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="SQRT">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="SQRT" fileref="../../../../../../modules/xcos/images/palettes/SQRT.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="SQRT" fileref="../../../../images/palettes/SQRT.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="SUMMATION">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="SUMMATION" fileref="../../../../../../modules/xcos/images/palettes/SUMMATION.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="SUMMATION" fileref="../../../../images/palettes/SUMMATION.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="SUM_f">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="SUM_f" fileref="../../../../../../modules/xcos/images/palettes/SUM_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="SUM_f" fileref="../../../../images/palettes/SUM_f.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="TANBLK_f">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="TANBLK_f" fileref="../../../../../../modules/xcos/images/palettes/TANBLK_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="TANBLK_f" fileref="../../../../images/palettes/TANBLK_f.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
+            <link linkend="TrigFun">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="TrigFun" fileref="../../../../../../modules/xcos/images/palettes/TrigFun.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="TrigFun" fileref="../../../../images/palettes/TrigFun.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>.
+
         </para>
     </refsection>
     <refsection id="Module_Mathoperations_pal">

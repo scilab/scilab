@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2017-02-01 14:29+0100\n"
+"Revision-Date: 2018-02-12 08:51+0100\n"
 
 # File: modules/atoms/macros/atomsAutoload.sci, line: 50
 # File: modules/atoms/macros/atomsLoad.sci, line: 41
@@ -84,7 +84,7 @@ msgstr ""
 # File: modules/atoms/macros/atoms_internals/atomsGetDepParents.sci, line: 33
 # File: modules/atoms/macros/atoms_internals/atomsGetMRVersion.sci, line: 32
 # File: modules/atoms/macros/atoms_internals/atomsInstallList.sci, line: 61
-# File: modules/atoms/macros/atoms_internals/atomsInstallList.sci, line: 222
+# File: modules/atoms/macros/atoms_internals/atomsInstallList.sci, line: 224
 # File: modules/atoms/macros/atoms_internals/atomsInstallRegister.sci, line: 36
 # File: modules/atoms/macros/atoms_internals/atomsInstallRegister.sci, line: 40
 # File: modules/atoms/macros/atoms_internals/atomsInstallRegister.sci, line: 44
@@ -482,13 +482,13 @@ msgstr ""
 # File: modules/atoms/macros/atoms_internals/atomsDESCRIPTIONadd.sci, line: 46
 # File: modules/atoms/macros/atoms_internals/atomsDESCRIPTIONaddField.sci, line: 47
 # File: modules/atoms/macros/atoms_internals/atomsDESCRIPTIONcat.sci, line: 55
-# File: modules/atoms/macros/atoms_internals/atomsDESCRIPTIONcat.sci, line: 144
-# File: modules/atoms/macros/atoms_internals/atomsDESCRIPTIONcat.sci, line: 206
+# File: modules/atoms/macros/atoms_internals/atomsDESCRIPTIONcat.sci, line: 150
+# File: modules/atoms/macros/atoms_internals/atomsDESCRIPTIONcat.sci, line: 212
 # File: modules/atoms/macros/atoms_internals/atomsDESCRIPTIONrm.sci, line: 46
 # File: modules/atoms/macros/atoms_internals/atomsDESCRIPTIONwrite.sci, line: 45
 # File: modules/atoms/macros/atoms_internals/atomsExtract.sci, line: 23
 # File: modules/atoms/macros/atoms_internals/atomsGetLeftListboxElts.sci, line: 30
-# File: modules/atoms/macros/atoms_internals/atomsInstallList.sci, line: 218
+# File: modules/atoms/macros/atoms_internals/atomsInstallList.sci, line: 220
 # File: modules/atoms/macros/atoms_internals/atomsInstallUnregister.sci, line: 28
 # File: modules/atoms/macros/atoms_internals/atomsIsCategory.sci, line: 32
 # File: modules/atoms/macros/atoms_internals/atomsIsCompatible.sci, line: 25
@@ -882,7 +882,6 @@ msgstr ""
 
 #
 # File: modules/atoms/macros/atomsShow.sci, line: 66
-# File: modules/atoms/macros/atoms_internals/atomsInstallList.sci, line: 115
 #, c-format
 msgid "%s: The package %s is not available.\n"
 msgstr ""
@@ -995,8 +994,8 @@ msgid "%s: '%s' isn't installed.\n"
 msgstr ""
 
 #
+# File: modules/atoms/macros/atoms_gui/atomsGui.sci, line: 203
 # File: modules/atoms/macros/atoms_gui/atomsGui.sci, line: 205
-# File: modules/atoms/macros/atoms_gui/atomsGui.sci, line: 207
 # File: modules/atoms/macros/atoms_gui/cbAtomsGui.sci, line: 66
 # File: modules/atoms/macros/atoms_gui/cbAtomsGui.sci, line: 75
 # File: modules/atoms/macros/atoms_gui/cbAtomsGui.sci, line: 87
@@ -1004,59 +1003,59 @@ msgid "ATOMS error"
 msgstr ""
 
 #
-# File: modules/atoms/macros/atoms_gui/atomsGui.sci, line: 205
+# File: modules/atoms/macros/atoms_gui/atomsGui.sci, line: 203
 msgid ""
 "No ATOMS module is available. Please, check your Internet connection or make "
 "sure that your OS is compatible with ATOMS."
 msgstr ""
 
 #
-# File: modules/atoms/macros/atoms_gui/atomsGui.sci, line: 207
+# File: modules/atoms/macros/atoms_gui/atomsGui.sci, line: 205
 msgid "No ATOMS module is available: your repository list is empty."
 msgstr ""
 
 #
-# File: modules/atoms/macros/atoms_gui/atomsGui.sci, line: 221
+# File: modules/atoms/macros/atoms_gui/atomsGui.sci, line: 219
 msgid "File"
 msgstr ""
 
 #
-# File: modules/atoms/macros/atoms_gui/atomsGui.sci, line: 222
+# File: modules/atoms/macros/atoms_gui/atomsGui.sci, line: 220
 msgid "Installed modules"
 msgstr ""
 
 #
-# File: modules/atoms/macros/atoms_gui/atomsGui.sci, line: 223
+# File: modules/atoms/macros/atoms_gui/atomsGui.sci, line: 221
 msgid "Update List of Packages"
 msgstr ""
 
 #
-# File: modules/atoms/macros/atoms_gui/atomsGui.sci, line: 224
+# File: modules/atoms/macros/atoms_gui/atomsGui.sci, line: 222
 msgid "Close"
 msgstr ""
 
 #
-# File: modules/atoms/macros/atoms_gui/atomsGui.sci, line: 225
+# File: modules/atoms/macros/atoms_gui/atomsGui.sci, line: 223
 msgid "?"
 msgstr ""
 
 #
-# File: modules/atoms/macros/atoms_gui/atomsGui.sci, line: 226
+# File: modules/atoms/macros/atoms_gui/atomsGui.sci, line: 224
 msgid "Atoms Help..."
 msgstr ""
 
 #
-# File: modules/atoms/macros/atoms_gui/atomsGui.sci, line: 235
+# File: modules/atoms/macros/atoms_gui/atomsGui.sci, line: 233
 msgid "Back"
 msgstr ""
 
 #
-# File: modules/atoms/macros/atoms_gui/atomsGui.sci, line: 236
+# File: modules/atoms/macros/atoms_gui/atomsGui.sci, line: 234
 msgid "Remove"
 msgstr ""
 
 #
-# File: modules/atoms/macros/atoms_gui/atomsGui.sci, line: 237
+# File: modules/atoms/macros/atoms_gui/atomsGui.sci, line: 235
 # File: modules/atoms/macros/atoms_gui/cbAtomsGui.sci, line: 62
 # File: modules/atoms/macros/atoms_gui/cbAtomsGui.sci, line: 302
 # File: modules/atoms/macros/atoms_gui/cbAtomsGui.sci, line: 324
@@ -1064,12 +1063,12 @@ msgid "Install"
 msgstr ""
 
 #
-# File: modules/atoms/macros/atoms_gui/atomsGui.sci, line: 238
+# File: modules/atoms/macros/atoms_gui/atomsGui.sci, line: 236
 msgid "Autoload"
 msgstr ""
 
 #
-# File: modules/atoms/macros/atoms_gui/atomsGui.sci, line: 242
+# File: modules/atoms/macros/atoms_gui/atomsGui.sci, line: 240
 msgid "List of installed modules"
 msgstr ""
 
@@ -1191,10 +1190,10 @@ msgstr ""
 # File: modules/atoms/macros/atoms_internals/atomsCatTree.sci, line: 40
 # File: modules/atoms/macros/atoms_internals/atomsDESCRIPTIONcat.sci, line: 62
 # File: modules/atoms/macros/atoms_internals/atomsDESCRIPTIONcat.sci, line: 66
-# File: modules/atoms/macros/atoms_internals/atomsDESCRIPTIONcat.sci, line: 151
-# File: modules/atoms/macros/atoms_internals/atomsDESCRIPTIONcat.sci, line: 155
-# File: modules/atoms/macros/atoms_internals/atomsDESCRIPTIONcat.sci, line: 213
-# File: modules/atoms/macros/atoms_internals/atomsDESCRIPTIONcat.sci, line: 217
+# File: modules/atoms/macros/atoms_internals/atomsDESCRIPTIONcat.sci, line: 157
+# File: modules/atoms/macros/atoms_internals/atomsDESCRIPTIONcat.sci, line: 161
+# File: modules/atoms/macros/atoms_internals/atomsDESCRIPTIONcat.sci, line: 219
+# File: modules/atoms/macros/atoms_internals/atomsDESCRIPTIONcat.sci, line: 223
 # File: modules/atoms/macros/atoms_internals/atomsDESCRIPTIONread.sci, line: 80
 # File: modules/atoms/macros/atoms_internals/atomsDepTreeFlat.sci, line: 70
 #, c-format
@@ -1262,7 +1261,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/atoms/macros/atoms_internals/atomsDESCRIPTIONcat.sci, line: 239
+# File: modules/atoms/macros/atoms_internals/atomsDESCRIPTIONcat.sci, line: 245
 # File: modules/atoms/macros/atoms_internals/atomsDESCRIPTIONwrite.sci, line: 82
 #, c-format
 msgid ""
@@ -1590,7 +1589,7 @@ msgstr ""
 
 #
 # File: modules/atoms/macros/atoms_internals/atomsGetInstalledStatus.sci, line: 37
-# File: modules/atoms/macros/atoms_internals/atomsInstallList.sci, line: 226
+# File: modules/atoms/macros/atoms_internals/atomsInstallList.sci, line: 228
 # File: modules/atoms/macros/atoms_internals/atomsIsDirectChild.sci, line: 54
 #, c-format
 msgid "%s: Wrong size for input argument #%d: mx2 string matrix expected.\n"
@@ -1739,7 +1738,18 @@ msgid "%s: Wrong number of input arguments: at most %d expected.\n"
 msgstr ""
 
 #
-# File: modules/atoms/macros/atoms_internals/atomsInstallList.sci, line: 127
+# File: modules/atoms/macros/atoms_internals/atomsInstallList.sci, line: 114
+#, c-format
+msgid ""
+"%s: The package %s is not registered.\n"
+"Please check on the ATOMS repository that it is available for Scilab %d.%d "
+"on %s.\n"
+"If it is, run atomsSystemUpdate() before trying atomsInstall(..) again.\n"
+"\n"
+msgstr ""
+
+#
+# File: modules/atoms/macros/atoms_internals/atomsInstallList.sci, line: 129
 #, c-format
 msgid "%s: The dependency tree cannot be resolved.\n"
 msgstr ""

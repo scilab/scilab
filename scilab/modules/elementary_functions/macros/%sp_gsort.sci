@@ -41,7 +41,7 @@ function [A, k] = %sp_gsort(A, optsort, directionsort)
 
     [ij, v, mn] = spget(A);
     if mn(1) <> 1 & mn(2) <> 1 then
-        error(999,msprintf(_("%s: Wrong size for input argument #%d: sparse vectors expected.\n"), "gsort", 1));
+        error(msprintf(_("%s: Wrong size for input argument #%d: sparse vectors expected.\n"), "gsort", 1));
     end
 
     if mn(1) == 1 then

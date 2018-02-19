@@ -948,6 +948,12 @@ function status = test_single(_module, _testPath, _testName)
                     txt(toRemove) = [];
                 end
 
+                // Remove SELinux context change warnings
+                if ~isempty(txt) then
+                    toRemove = grep(txt, "/usr/bin/chcon:");
+                    txt(toRemove) = [];
+                end
+
                 if isempty(txt) then
                     deletefile(tmp_err);
                 end

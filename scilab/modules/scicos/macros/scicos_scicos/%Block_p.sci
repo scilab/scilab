@@ -39,7 +39,7 @@ function txt=graphics2txt(graphics)
     txt=[]
     for k=2:size(fn,"*")
         txt=[txt
-        sci2exp(eval("graphics."+fn(k)),fn(k))]
+        sci2exp(evstr("graphics."+fn(k)),fn(k))]
     end
 endfunction
 
@@ -58,7 +58,7 @@ function txt=model2txt(model)
             txt=[txt;fn(k)+" : SuperBlock"];
         else
             txt=[txt
-            sci2exp(eval("model."+fn(k)),fn(k))];
+            sci2exp(evstr("model."+fn(k)),fn(k))];
         end
     end
 endfunction

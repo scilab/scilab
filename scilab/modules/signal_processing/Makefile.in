@@ -735,7 +735,7 @@ libscisignal_processing_algo_la_CPPFLAGS = $(libscisignal_processing_la_CPPFLAGS
 # For the code check (splint)
 CHECK_SRC = $(SIGNAL_PROCESSING_C_SOURCES) $(GATEWAY_C_SOURCES) $(SIGNAL_PROCESSING_CPP_SOURCES)
 INCLUDE_FLAGS = $(libscisignal_processing_la_CPPFLAGS)
-libscisignal_processing_la_LIBADD = libscisignal_processing-algo.la
+libscisignal_processing_la_LIBADD = libscisignal_processing-algo.la $(FLIBS)
 
 #### Target ######
 modulename = signal_processing

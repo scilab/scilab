@@ -1,4 +1,5 @@
-//<-- CLI SHELL MODE -->
+// <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA Michael Baudin
@@ -38,8 +39,8 @@ A=[1+%s 1; 1 2+%s];
 assert_checkequal(det(A), 1+3*%s+%s*%s);
 //Rationals
 A=[1+%s 1/%s; 1 2+%s];
-assert_checkequal(numer(det(A)), -1+2*%s+3*%s^2+%s^3);
-assert_checkequal(denom(det(A)), %s);
+assert_checkequal(det(A).num, -1+2*%s+3*%s^2+%s^3);
+assert_checkequal(det(A).den, %s);
 //Sparse complex
 A=[1 1; 1 2];
 A=A+%i;
@@ -80,7 +81,7 @@ assert_checktrue(abs(coeff(det(A)-prod(v))) < 1D-7);
 v=rand(1,21);
 v=v/%s;
 A=rand(21,21); A=(triu(A,1)+diag(v))*(tril(A,-1)+diag(ones(1,21)));
-assert_checktrue(abs(coeff(numer(det(A))-numer(prod(v)))) < 1D-7);
+assert_checktrue(abs(coeff(det(A).num - prod(v).num)) < 1D-7);
 //Sparse complex
 v=rand(1,21);
 v=(v+rand(v)*%i)/2;

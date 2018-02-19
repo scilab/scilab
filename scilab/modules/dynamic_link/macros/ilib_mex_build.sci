@@ -30,11 +30,11 @@ function ilib_mex_build(ilib_name, table, files, libs, makename, ldflags, cflags
     end
 
     if ~isempty(files) & (or(fileext(files)==".o") | or(fileext(files)==".obj")) then
-        error(999, msprintf(_("%s: A managed file extension for input argument #%d expected."), "ilib_mex_build", 3));
+        error(msprintf(_("%s: A managed file extension for input argument #%d expected."), "ilib_mex_build", 3));
     end
 
     if ~isempty(files) & ~and(isfile(files)) then
-        error(999, msprintf(_("%s: Wrong value for input argument #%d: existing file(s) expected.\n"), "ilib_mex_build", 3));
+        error(msprintf(_("%s: Wrong value for input argument #%d: existing file(s) expected.\n"), "ilib_mex_build", 3));
     end
 
     if rhs <= 5 then ldflags = ""; end

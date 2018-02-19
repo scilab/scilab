@@ -18,4 +18,4 @@
 function bug_10279(a,b,c)
 endfunction
 
-assert_checkerror("bug_10279(1,2,3,)", msprintf(_("Wrong number of input arguments.")));
+assert_checkerror("bug_10279(1,2,3,)", msprintf(_("Wrong number of input arguments.\n")));

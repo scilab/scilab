@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010 - INRIA - Serge Steer <serge.steer@inria.fr>
+// Copyright (C) 2018 - Samuel GOUGEON
 //
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
@@ -17,6 +18,7 @@ function out=%s_i_st(varargin)
     //   Only one non-colon index can be used
     // - Modified by Serge Steer INRIA (04/05/2010) to fix problems in element
     //   deletion part
+    // varargin: (1)=i, (2)=j, (3)=value, (4)=st  st(i,j)=value
 
     if size(varargin)>=3 & isempty(varargin($-1)) & ..
         and(type(varargin(1))<>[10 15]) then
@@ -33,7 +35,8 @@ function out=%s_i_st(varargin)
             for k=Ndims+1:nindex
                 i=varargin(k)
                 if size(i,"*")>1|(i<>1&i<>eye()) then
-                    error(msprintf(_("%s: A null assignment can have only one non-colon index.\n"),"%s_i_st"));
+                    msg = _("%s: A null assignment can have only one non-colon index.\n")
+                    error(msprintf(msg, "%s_i_st"));
                 end
             end
             nindex=Ndims
@@ -49,14 +52,22 @@ function out=%s_i_st(varargin)
         cj=[];
         for k=1:nindex
             ind=varargin(k)
-            if or(size(ind)<>[-1 -1]) then
-                if or(type(ind)==[2,129]) then // size implicit index ($ based)
-                    ind=horner(ind,dims(k));
+            if type(ind)==2 then // polynomial (like $)
+                ind = horner(ind,dims(k));
+            elseif typeof(ind)=="implicitlist"
+                if ind(1)==1 & ind(2)==1 & ind(3)==$
+                    ind = eye()
+                else
+                    a = horner([ind(1) ind(2) ind(3)],dims(k));
+                    execstr("ind=a(1):a(2):a(3)");
                 end
+            end
+            if or(size(ind)<>[-1 -1]) then
                 ind=floor(ind);
                 //check if index is valid
                 if ~isreal(ind)|or(ind<=0) then
-                    error(21)
+                    msg = _("%s: Invalid index\n");
+                    error(msprintf(msg, "%s_i_st"))
                 end
                 //remove indices that exceed the associated struct dimension
                 ind(ind>dims(k))=[];
@@ -66,7 +77,8 @@ function out=%s_i_st(varargin)
                     cj=ind
                     loc=k,
                 else
-                    error(msprintf(_("%s: A null assignment can have only one non-colon index.\n"),"%s_i_st"));
+                    msg = _("%s: A null assignment can have only one non-colon index.\n")
+                    error(msprintf(msg, "%s_i_st"));
                 end
             end
         end

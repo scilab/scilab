@@ -30,96 +30,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
 
     //get function arguments
     exps_t args = e.getArgs();
-    try
-    {
-        for (auto& arg : args)
-        {
-            int iSize = getExpectedSize();
-            if (arg->isAssignExp())
-            {
-                AssignExp* pAssign = static_cast<AssignExp*>(arg);
-                //optional parameter
-                Exp* pL = &pAssign->getLeftExp();
-                if (!pL->isSimpleVar())
-                {
-                    std::wostringstream os;
-                    os << _W("left side of optional parameter must be a variable") << std::endl;
-                    CoverageInstance::stopChrono((void*)&e);
-                    throw ast::InternalError(os.str(), 999, e.getLocation());
-                }
-
-                SimpleVar* pVar = pL->getAs<SimpleVar>();
-                Exp* pR = &pAssign->getRightExp();
-                // optional parameter have only one output argument
-                setExpectedSize(1);
-                try
-                {
-                    pR->accept(*this);
-                }
-                catch (ScilabException &)
-                {
-                    CoverageInstance::stopChrono((void*)&e);
-                    throw;
-                }
-                setExpectedSize(iSize);
-                types::InternalType* pITR = getResult();
-                // IncreaseRef to protect opt argument of scope_end delete
-                // It will be deleted by clear_opt
-                pITR->IncreaseRef();
-
-                vectOptName.push_back(pVar->getSymbol().getName());
-                inTmp.push_back(pITR);
-                vectNbResult.push_back(1);
-
-                clearResult();
-                continue;
-            }
-
-            setExpectedSize(-1);
-            try
-            {
-                arg->accept(*this);
-            }
-            catch (ScilabException &)
-            {
-                CoverageInstance::stopChrono((void*)&e);
-                throw;
-            }
-            setExpectedSize(iSize);
-
-            if (getResult() == NULL)
-            {
-                //special case for empty extraction of list ( list()(:) )
-                vectNbResult.push_back(0);
-                continue;
-            }
-
-            if (isSingleResult())
-            {
-                inTmp.push_back(getResult());
-                getResult()->IncreaseRef();
-            }
-            else
-            {
-                for (int i = 0; i < getResultSize(); i++)
-                {
-                    types::InternalType * pITArg = getResult(i);
-                    pITArg->IncreaseRef();
-                    inTmp.push_back(pITArg);
-                }
-            }
-
-            vectNbResult.push_back(getResultSize());
-            clearResult();
-        }
-    }
-    catch (const InternalError& ie)
-    {
-        clearResult();
-        cleanIn(inTmp, outTmp);
-        CoverageInstance::stopChrono((void*)&e);
-        throw ie;
-    }
+    getInputs(e, args, inTmp, vectOptName, vectNbResult);
 
     // reset expected size for recursive call
     // ie [a, b] = l(1)(1), where l is a list containing a function with two output argument
@@ -436,6 +347,7 @@ void RunVisitorT<T>::visitprivate(const CellCallExp &e)
                 CoverageInstance::stopChrono((void*)&e);
                 throw ast::InternalError(_W("[error] Cell contents reference from a non-cell array object.\n"), 999, e.getFirstLocation());
             }
+
             //Create list of indexes
             ast::exps_t exps = e.getArgs();
             types::typed_list *pArgs = GetArgumentList(exps);
@@ -495,4 +407,98 @@ void RunVisitorT<T>::visitprivate(const CellCallExp &e)
     CoverageInstance::stopChrono((void*)&e);
 }
 
+void RunVisitor::getInputs(const CallExp& e, exps_t& args, types::typed_list& inTmp, std::vector<std::wstring>& vectOptName, std::vector<int>& vectNbResult)
+{
+    try
+    {
+        for (auto& arg : args)
+        {
+            int iSize = getExpectedSize();
+            if (arg->isAssignExp())
+            {
+                AssignExp* pAssign = static_cast<AssignExp*>(arg);
+                //optional parameter
+                Exp* pL = &pAssign->getLeftExp();
+                if (!pL->isSimpleVar())
+                {
+                    std::wostringstream os;
+                    os << _W("left side of optional parameter must be a variable") << std::endl;
+                    CoverageInstance::stopChrono((void*)&e);
+                    throw ast::InternalError(os.str(), 999, e.getLocation());
+                }
+
+                SimpleVar* pVar = pL->getAs<SimpleVar>();
+                Exp* pR = &pAssign->getRightExp();
+                // optional parameter have only one output argument
+                setExpectedSize(1);
+                try
+                {
+                    pR->accept(*this);
+                }
+                catch (ScilabException &)
+                {
+                    CoverageInstance::stopChrono((void*)&e);
+                    throw;
+                }
+                setExpectedSize(iSize);
+                types::InternalType* pITR = getResult();
+                // IncreaseRef to protect opt argument of scope_end delete
+                // It will be deleted by clear_opt
+                pITR->IncreaseRef();
+
+                vectOptName.push_back(pVar->getSymbol().getName());
+                inTmp.push_back(pITR);
+                vectNbResult.push_back(1);
+
+                clearResult();
+                continue;
+            }
+
+            setExpectedSize(-1);
+            try
+            {
+                arg->accept(*this);
+            }
+            catch (ScilabException &)
+            {
+                CoverageInstance::stopChrono((void*)&e);
+                throw;
+            }
+            setExpectedSize(iSize);
+
+            if (getResult() == NULL)
+            {
+                //special case for empty extraction of list ( list()(:) )
+                vectNbResult.push_back(0);
+                continue;
+            }
+
+            if (isSingleResult())
+            {
+                inTmp.push_back(getResult());
+                getResult()->IncreaseRef();
+            }
+            else
+            {
+                for (int i = 0; i < getResultSize(); i++)
+                {
+                    types::InternalType * pITArg = getResult(i);
+                    pITArg->IncreaseRef();
+                    inTmp.push_back(pITArg);
+                }
+            }
+
+            vectNbResult.push_back(getResultSize());
+            clearResult();
+        }
+    }
+    catch (const InternalError& ie)
+    {
+        clearResult();
+        types::typed_list outTmp;
+        cleanIn(inTmp, outTmp);
+        CoverageInstance::stopChrono((void*)&e);
+        throw ie;
+    }
+}
 } /* namespace ast */

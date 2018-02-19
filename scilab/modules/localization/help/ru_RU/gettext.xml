@@ -50,9 +50,6 @@ gettext("Startup execution:")
         <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
-                <link linkend="dgettext">dgettext</link>
-            </member>
-            <member>
                 <link linkend="_">_</link>
             </member>
         </simplelist>

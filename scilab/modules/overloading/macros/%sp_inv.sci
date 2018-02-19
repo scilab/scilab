@@ -1,6 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
+// Copyright (C) 2018 - Samuel GOUGEON
 //
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
@@ -12,15 +13,17 @@
 // along with this program.
 
 function x = %sp_inv(a)
-    
     [ma, na] = size(a)
-    if ma<>na then 
-        error(20,1)
+    if ma<>na then
+        msg = _("%s: Argument #%d: Square matrix expected.\n")
+        error(msprintf(msg, "%sp_inv", 1))
     end
+
+    oldw = warning("query");
     warning("off")
     Lup = umf_lufact(a);
-    warning("on")
+    warning(oldw)
+
     x = sparse(umf_lusolve(Lup, eye(ma, na)));
     umf_ludel(Lup)
-
 endfunction

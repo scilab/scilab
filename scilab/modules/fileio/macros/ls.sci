@@ -23,7 +23,7 @@ function files=ls(varargin)
     else
         path = varargin(1);
         if type(path) <> 10 then
-            error(999,msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"ls",1));
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"ls",1));
         end
         for k=2:size(varargin)
             opts = [opts varargin(k)];

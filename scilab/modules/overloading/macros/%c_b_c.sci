@@ -9,16 +9,18 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
+
 function r=%c_b_c(varargin)
     if  size(varargin)==2 then
         if type(varargin(1))==10 & type(varargin(2))==10 then
-            r=asciimat(asciimat(varargin(1)):asciimat(varargin(2)))
+            r = asciimat(asciimat(varargin(1)):asciimat(varargin(2)))
         end
     elseif size(varargin)==3 then
         if type(varargin(1))==10 & type(varargin(2))==10 & type(varargin(3))==10 then
-            r=asciimat(asciimat(varargin(1)):asciimat(varargin(2)):asciimat(varargin(3)))
+            r = asciimat(asciimat(varargin(1)):asciimat(varargin(2)):asciimat(varargin(3)))
         end
     else
-        error(43)
+        msg = _("%s: Non implemented feature.\n");
+        error(msprintf(msg, "char:char"));
     end
 endfunction

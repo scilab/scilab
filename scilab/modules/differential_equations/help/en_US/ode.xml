@@ -25,7 +25,7 @@
         <synopsis>
             y = ode(y0, t0, t, f)
             [y, w, iw] = ode([type,] y0, t0, t [,rtol [,atol]], f [,jac] [,w, iw])
-            [y, rd, w, iw] = ode("roots", y0, t0, t [,rtol [,atol]], f [,jac],ng, g [,w,iw])
+            [y, rd, w, iw] = ode("root", y0, t0, t [,rtol [,atol]], f [,jac],ng, g [,w,iw])
             y = ode("discrete", y0, k0, kvect, f)
         </synopsis>
     </refsynopsisdiv>
@@ -36,7 +36,8 @@
                 <term>y0</term>
                 <listitem>
                     <para>a real vector or matrix: initial state,
-                        at <varname>t0</varname>.</para>
+                        at <varname>t0</varname>.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -72,7 +73,7 @@
                         <literal>"adams"</literal>,
                         <literal>"stiff"</literal>, <literal>"rk"</literal>,
                         <literal>"rkf"</literal>, <literal>"fix"</literal>,
-                        <literal>"discrete"</literal>, <literal>"roots"</literal>.
+                        <literal>"discrete"</literal>, <literal>"root"</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -137,7 +138,9 @@
             <varlistentry>
                 <term>w, iw</term>
                 <listitem>
-                    <para>real vectors. (INPUT/OUTPUT). See <link linkend="ode_optional_output">ode() optional output</link></para>
+                    <para>
+                        real vectors. (INPUT/OUTPUT). See <link linkend="ode_optional_output">ode() optional output</link>
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -402,13 +405,13 @@ void fex(int *n,double *t,double *y,int *ml,int *mu,double *J,int *nrpd,)
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>"roots":</term>
+                <term>"root":</term>
                 <listitem>
                     <para>
                         ODE solver with rootfinding capabilities. The
                         <literal>lsodar</literal> solver of package ODEPACK is used. It is a
                         variant of the <literal>lsoda</literal> solver where it finds the
-                        roots of a given vector function. See help on <link linkend="ode_roots">ode_roots</link> for more
+                        roots of a given vector function. See help on <link linkend="ode_root">ode_root</link> for more
                         details.
                     </para>
                 </listitem>
@@ -548,8 +551,9 @@ ccode=['#include <math.h>'
        '}']
 mputl(ccode,TMPDIR+'/myode.c') //create the C file
 // Compile
-ilib_for_link('myode','myode.c',[],'c',[],TMPDIR+'/loader.sce');
-exec(TMPDIR+'/loader.sce') //incremental linking
+cd TMPDIR
+ilib_for_link('myode','myode.c',[],'c',[],'loader.sce');
+exec('loader.sce') //incremental linking
 y0=0;
 t0=0;
 t=0:0.1:%pi;
@@ -567,7 +571,7 @@ y = ode(y0,t0,t,'myode');
                 <link linkend="ode_optional_output">ode_optional_output</link>
             </member>
             <member>
-                <link linkend="ode_roots">ode_roots</link>
+                <link linkend="ode_root">ode_root</link>
             </member>
             <member>
                 <link linkend="ode_discrete">ode_discrete</link>

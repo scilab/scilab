@@ -6,7 +6,8 @@
 function subdemolist = demo_gateway()
 
     demopath = get_absolute_file_path("spreadsheet.dem.gateway.sce");
-    add_demo(_("Spreadsheet"), demopath + "spreadsheet.dem.gateway.sce");
+    gettext("Spreadsheet");   // Lets gettext() harvesting it
+    add_demo("Spreadsheet", demopath + "spreadsheet.dem.gateway.sce");
 
     subdemolist = [_("Read a xls file")  ,"spreadsheet.dem.sce"];
 

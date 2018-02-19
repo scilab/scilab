@@ -50,6 +50,7 @@ public final class PaletteSearchManager {
 
     private Analyzer analyzer;
     private IndexWriter writer;
+    private Directory indexedDirectory;
     private PaletteIndexer paletteIndexer;
     private PaletteSearcher paletteSearcher;
     private PaletteSearchView view;
@@ -58,11 +59,11 @@ public final class PaletteSearchManager {
     /** Default constructor */
     public PaletteSearchManager() {
         try {
-            Directory ramDir = new RAMDirectory();
+            indexedDirectory = new RAMDirectory();
             analyzer = new StandardAnalyzer();
             IndexWriterConfig config = new IndexWriterConfig(analyzer);
             config.setOpenMode(OpenMode.CREATE);
-            writer = new IndexWriter(ramDir, config);
+            writer = new IndexWriter(indexedDirectory, config);
         } catch (IOException ex) {
             Logger.getLogger(PaletteSearchManager.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -159,5 +160,13 @@ public final class PaletteSearchManager {
      */
     public IndexWriter getIndexWriter() {
         return writer;
+    }
+
+    /**
+     * Get the current indexed directory.
+     * @return Directory
+     */
+    public Directory getDirectory() {
+        return indexedDirectory;
     }
 }

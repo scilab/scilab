@@ -7,7 +7,8 @@
 function subdemolist = demo_gateway()
 
     demopath = get_absolute_file_path("signal_processing.dem.gateway.sce");
-    add_demo(gettext("Signal Processing"), demopath + "signal_processing.dem.gateway.sce");
+    gettext("Signal Processing");   // Lets gettext() harvesting it
+    add_demo("Signal Processing", demopath + "signal_processing.dem.gateway.sce");
 
     subdemolist = [_("Spectral Estimation")               , "spect.dem.sce"
     _("IIR filter design")                 , "iir.dem.sce"

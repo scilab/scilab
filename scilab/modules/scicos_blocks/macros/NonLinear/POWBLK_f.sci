@@ -49,6 +49,10 @@ function [x,y,typ]=POWBLK_f(job,arg1,arg2)
             model.firing=[] //compatibility
             x.graphics=graphics;
             x.model=model
+            // Updating the label ("%" in exponents like "%e" should be protected):
+            lab = "POWBLK_f;displayedLabel=" + ..
+            "$\mathsf{u^{\,"+strsubst(exprs,"%","{\scriptsize \%\normal }")+"}}$"
+            x.graphics.style = lab;
             break
         end
     case "define" then

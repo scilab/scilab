@@ -21,7 +21,7 @@ body {
 }
 
 .synopsis {
-    border: 1px solid black;
+    border: 1px solid #CCCCCC;
     width:80%;
     padding: 0.5em;
 }
@@ -31,26 +31,27 @@ body {
 }
 
 .term {
-    color:#800000;
+    color:#A00000;
     font-size:100%;
+    font-weight: 600;
 }
 
 h3 {
-    color: #000063;
+    color: #0033FF;
     font-weight: bold;
     font-size:130%;
     margin-bottom: 10px;
 }
 
 h4 {
-    color: #000063;
+    color: #0066FF;
     font-weight: bold;
     font-size:120%;
     margin-bottom: 5px;
 }
 
 h5 {
-    color: #000063;
+    color: #0099FF;
     font-weight: bold;
     font-size:110%;
     margin-bottom: 1px;
@@ -59,11 +60,11 @@ h5 {
 .programlisting {
     font-family: monospace;
     font-size: 100%;
-    background-color:#EEEEFF;
+    background-color:#F4F4FF;
     border-color:#CCCCCC;
     border-style:solid;
     border-width:2px medium;
-    width:80%;
+    width:90%;
     color:#333333;
     line-height:120%;
     padding:10px;
@@ -193,7 +194,7 @@ ul.toc li {
     border-color:#CCCCCC;
     border-style:solid;
     border-width:2px medium;
-    width:80%;
+    width:90%;
     color:#333333;
     line-height:120%;
     padding:10px;
@@ -201,7 +202,7 @@ ul.toc li {
 
 /* Top and bottom navigation controls on manual pages --------------------- */
 div.manualnavbar {
-    background-color: #E0E0E0;
+    background-color: #F0F0FF;
         color: inherit;
         padding: 4px;
         margin-bottom: 10px;
@@ -348,10 +349,16 @@ div#cadre_help
     font-size:0.8em;
     color:#0000AA;
 }
-
+table
+{
+  border-collapse:collapse
+}
+th, td {
+    padding: 4px;
+}
 table.revhistory
 {
-  width:80%;
+  width:90%;
   border-color:#CCCCCC;
   border-style:solid;
   border-width:2px medium;
@@ -360,10 +367,12 @@ table.revhistory
 
 table.revhistory tr.title td
 {
-  background-color: #9999CC;
+  background-color: #CCCCEE;
+  font-weight: bold;
 }
 
 td.revnumber
 {
   vertical-align: top;
 }
+

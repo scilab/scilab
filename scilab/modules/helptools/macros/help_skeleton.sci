@@ -16,20 +16,24 @@ function txt = help_skeleton(funname, path, language)
     [lhs,rhs] = argn(0);
 
     if rhs > 3 | rhs < 1 then
-        error(39);
+        msg = _("%s: Wrong number of input arguments: %d to %d expected.\n")
+        error(msprintf(msg, "help_skeleton", 1, 3));
     end
 
     if type(funname) <> 10 then
-        error(999,msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"help_skeleton",1));
+        msg = gettext("%s: Wrong type for input argument #%d: string expected.\n")
+        error(msprintf(msg, "help_skeleton", 1));
     end
 
     if size(funname, "*") <> 1 then
-        error(999,msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"help_skeleton",1));
+        msg = gettext("%s: Wrong size for input argument #%d: string expected.\n")
+        error(msprintf(msg, "help_skeleton", 1));
     end
 
     if rhs > 1 then
         if type(path) <> 10 then
-            error(55,2);
+            msg = _("%s: Argument #%d: Text(s) expected.\n")
+            error(msprintf(msg, "help_skeleton", 2));
         end
     end
 
@@ -37,7 +41,8 @@ function txt = help_skeleton(funname, path, language)
 
     if rhs == 3 then
         if type(language) <> 10 then
-            error(55,3);
+            msg = _("%s: Argument #%d: Text(s) expected.\n")
+            error(msprintf(msg, "help_skeleton", 3));
         end
         setlanguage(language);
     else

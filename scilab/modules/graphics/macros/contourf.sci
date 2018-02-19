@@ -55,35 +55,35 @@ function contourf(x, y, z, nv, style, strf, leg, rect, nax)
     end
 
     if type(x) <> 1 then
-        error(999, msprintf(gettext("%s: Wrong type for input argument #%d: Real vector expected.\n"), "contourf", 1));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: Real vector expected.\n"), "contourf", 1));
     end
 
     if type(y) <> 1 then
-        error(999, msprintf(gettext("%s: Wrong type for input argument #%d: Real vector expected.\n"), "contourf", 2));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: Real vector expected.\n"), "contourf", 2));
     end
 
     if type(z) <> 1 then
-        error(999, msprintf(gettext("%s: Wrong type for input argument #%d: Real matrix expected.\n"), "contourf", 3));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: Real matrix expected.\n"), "contourf", 3));
     end
 
     if type(nv) <> 1 then
-        error(999, msprintf(gettext("%s: Wrong type for input argument #%d: Real matrix expected.\n"), "contourf", 4));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: Real matrix expected.\n"), "contourf", 4));
     end
 
     if type(strf) <> 10 then
-        error(999, msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"), "contourf", 6));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"), "contourf", 6));
     end
 
     if type(leg) <> 10 then
-        error(999, msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"), "contourf", 7));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"), "contourf", 7));
     end
 
     if type(rect) <> 1 then
-        error(999, msprintf(gettext("%s: Wrong type for input argument #%d: Real matrix expected.\n"), "contourf", 8));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: Real matrix expected.\n"), "contourf", 8));
     end
 
     if type(nax) <> 1 then
-        error(999, msprintf(gettext("%s: Wrong type for input argument #%d:  Real matrix expected.\n"), "contourf", 9));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d:  Real matrix expected.\n"), "contourf", 9));
     end
 
 
@@ -100,7 +100,7 @@ function contourf(x, y, z, nv, style, strf, leg, rect, nax)
     end
 
     if type(style) <> 1 then
-        error(999, msprintf(gettext("%s: Wrong type for input argument #%d: Real matrix expected.\n"), "contourf", 5));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: Real matrix expected.\n"), "contourf", 5));
     end
 
     if nin <= 7 then
@@ -108,19 +108,19 @@ function contourf(x, y, z, nv, style, strf, leg, rect, nax)
     end
 
     if ~isvector(x) then
-        error(999, msprintf(gettext("%s: Wrong size for input argument #%d: Real vector expected.\n"), "contourf", 1));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: Real vector expected.\n"), "contourf", 1));
     end
 
     if ~isvector(y) then
-        error(999, msprintf(gettext("%s: Wrong size for input argument #%d: Real vector expected.\n"), "contourf", 2));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: Real vector expected.\n"), "contourf", 2));
     end
 
     if size(strf, "*") <> 1 then
-        error(999, msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"), "contourf", 6));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"), "contourf", 6));
     end
 
     if size(leg, "*") <> 1 then
-        error(999, msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"), "contourf", 7));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"), "contourf", 7));
     end
 
     nv1 = nv;

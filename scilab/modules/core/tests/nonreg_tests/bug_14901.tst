@@ -8,6 +8,7 @@
 // <-- Non-regression test for bug 14901 -->
 // <-- TEST WITH GRAPHIC -->
 // <-- WINDOWS ONLY -->
+// <-- NO CHECK REF -->
 //
 //
 // <-- Bugzilla URL -->
@@ -22,7 +23,7 @@ txt = [...
 ""
 "public class Test_Exec_Scilab {"
 "    public static void main(String[] args) throws IOException, InterruptedException {"
-"    String[] cmd = {""" + SCI + "/bin/WScilex"", ""-e"", ""a=string(1:10);mputl(a, \\\"""" + args[0] + ""\\\"");"", ""-quit""};"
+"    String[] cmd = {""" + SCI + "/bin/scilab.bat"", ""-nw"", ""-e"", ""a=string(1:10);mputl(a, \\\"""" + args[0] + ""\\\"");"", ""-quit""};"
 "    Process p = Runtime.getRuntime().exec(cmd, null, null);"
 "    p.waitFor();"
 "    }"

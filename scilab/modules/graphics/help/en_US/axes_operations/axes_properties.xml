@@ -3,7 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
  * Copyright (C) 2009 - DIGITEO - Pierre Lando
- * Copyright (C) 2013 - Samuel GOUGEON : revision for x|y|z_ticks and "See also" sections
+ * Copyright (C) 2013, 2018 - Samuel GOUGEON
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -15,7 +15,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="axes_properties">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="axes_properties">
     <refnamediv>
         <refname>axes properties</refname>
         <refpurpose>
@@ -248,18 +251,32 @@
                             <term>auto_ticks: </term>
                             <listitem>
                                 <para>
-                                    A <literal>1x3</literal> string vector giving the auto_ticks status
-                                    for each axis. This property specifies whether each axis is
-                                    graduated using a computational algorithm or not (graduations are
-                                    set by the user). Its value should be <literal>"on"</literal> or
-                                    <literal>"off"</literal> for a global setting.To act on a single axis,
-                                    the syntax is <literal>auto_ticks(N)</literal> where <literal>N</literal> is
-                                    <literal>1,2</literal> or <literal>3</literal> corresponding to the
-                                    <literal>x,y</literal> or <literal>z</literal> axis. Note that editing ticks
-                                    (text and/or locations) via <literal>x_ticks, y_ticks</literal> or
-                                    <literal>z_ticks</literal> automatically set <literal>auto_ticks</literal> to
-                                    <literal>"off"</literal> for the corresponding axes.
+                                    Default <literal>["on" "on" "on"]</literal>. auto_ticks status
+                                    for each x, y and z respective axis.
                                 </para>
+                                <para>
+                                    <literal>"on"</literal> means that the axis is automatically
+                                    graduated through a
+                                    computational algorithm. Then, resizing the figure and axes
+                                    automatically updates accordingly graduations ticks and labels
+                                    of the given axis.
+                               </para>
+                               <para>
+                                    On the contrary, <literal>"off"</literal> means that graduations
+                                    ticks or/and labels are set by hand. Then resizing the figure and
+                                    axes has no effect on existing graduations ticks and labels.
+                              </para>
+                              <para>Setting <literal>.auto_ticks="on"</literal> or <literal>"off"</literal>
+                                sets the same status for the x, y and z axes. Setting
+                                <literal>.auto_ticks(2)="off"</literal> sets the status only for the
+                                y axis. Etc.
+                              </para>
+                              <warning>
+                                Editing ticks (labels and/or locations) via
+                                <literal>x_ticks, y_ticks</literal> or  <literal>z_ticks</literal>
+                                automatically sets <literal>auto_ticks</literal> to <literal>"off"</literal>
+                                for the corresponding axes.
+                              </warning>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
@@ -282,17 +299,36 @@
                                         <varlistentry>
                                             <term>Labels</term>
                                             <listitem>
-                                                is a text vector containing the labels to be displayed in front of each related graduation. As for Locations of ticks, Labels can be addressed with (e.g. along y) <literal>Haxes.y_ticks.labels = Labels</literal> or <literal>Haxes.y_ticks.labels(j) = newLabelJ</literal>
+                                                is a text vector containing the labels to be displayed
+                                                in front of each related graduation. As for Locations
+                                                of ticks, Labels can be addressed with (e.g. along y)
+                                                <literal>Haxes.y_ticks.labels = Labels</literal> or
+                                                <literal>Haxes.y_ticks.labels(j) = newLabelJ</literal>
                                             </listitem>
                                         </varlistentry>
                                     </variablelist>
                                     <warning>
-                                        <para>
-                                            For an axis, <literal>Locations</literal> and <literal>Labels</literal> vectors must have the same number of components.
-                                        </para>
-                                        <para>
-                                            When the number of ticks must be changed, their positions AND labels must be changed at once, in order to avoid any mismatch: The syntax (e.g. along x) <literal>Haxes.x_ticks = tlist(["ticks" "locations", "labels"], newLocations, newLabels)</literal> must then be used.
-                                        </para>
+                                        <itemizedlist>
+                                        <listitem>
+                                            For an axis, <literal>Locations</literal> and
+                                            <literal>Labels</literal> vectors must have the same
+                                            number of components.
+                                        </listitem>
+                                        <listitem>
+                                            When the number of ticks must be changed, their positions
+                                            AND labels must be changed at once, in order to avoid
+                                            any mismatch: The syntax (e.g. along x)
+                                            <literal>Haxes.x_ticks = tlist(["ticks" "locations", "labels"], newLocations, newLabels)</literal>
+                                            must then be used.
+                                        </listitem>
+                                        <listitem>
+                                            Changing by hand the <literal>Locations</literal> or/and
+                                            <literal>Labels</literal> of an axis automatically sets
+                                            its <literal>.auto_ticks</literal> status to
+                                            <literal>"off"</literal>. This cancels its
+                                            auto-regraduation under resizing of the figure.
+                                        </listitem>
+                                      </itemizedlist>
                                     </warning>
                                 </para>
                             </listitem>
@@ -301,7 +337,11 @@
                             <term>x_ticks.locations, y_ticks.locations, z_ticks.locations: </term>
                             <listitem>
                                 <para>
-                                    Each of these properties is a real vector containing the locations of graduations on the related x or y or z axis. <varname>x_ticks.locations</varname> must have the same number of components as <varname>x_ticks.labels</varname>. See <varname>x_ticks</varname> hereabove for more details.
+                                    Each of these properties is a real vector containing the locations
+                                  of graduations on the related x or y or z axis.
+                                  <varname>x_ticks.locations</varname> must have the same number of
+                                  components as <varname>x_ticks.labels</varname>.
+                                  See <varname>x_ticks</varname> hereabove for more details.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -309,7 +349,11 @@
                             <term>x_ticks.labels, y_ticks.labels, z_ticks.labels: </term>
                             <listitem>
                                 <para>
-                                    Each of these properties is a text vector containing the labels to be displayed in front of ticks on the related x or y or z axis. <varname>x_ticks.labels</varname> must have the same number of components as <varname>x_ticks.locations</varname>. See <varname>x_ticks</varname> hereabove for more details.
+                                  Each of these properties is a text vector containing the labels
+                                  to be displayed in front of ticks on the related x or y or z axis.
+                                  <varname>x_ticks.labels</varname> must have the same number of
+                                  components as <varname>x_ticks.locations</varname>.
+                                  See <varname>x_ticks</varname> hereabove for more details.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -318,24 +362,43 @@
                             <listitem>
                                 <para>
                                     This property specifies the format to use for each axes.
-                                    It is a row vector with at most 3 columns containing strings format (as specified for <link linkend="mprintf">mprintf</link>). Each ticks position will be used to format the string used as label.
+                                    It is a row vector with at most 3 columns containing strings
+                                    format (as specified for <link linkend="mprintf">mprintf</link>).
+                                    Each ticks position will be used to format the string used as label.
                                 </para>
                                 <para>
-                                    So, for example ticks_format="%.2e" will print ticks positions in using scientific notation with two decimals.
+                                    So, for example ticks_format="%.2e" will print ticks positions
+                                    in using scientific notation with two decimals.
                                 </para>
+                                <warning>
+                                   Labels are actually updated according to the newly set
+                                   <literal>.ticks_format(i)</literal> only if the
+                                   <literal>.auto_ticks(i)</literal> status of the axis #i is
+                                   <literal>"on"</literal>. Otherwise,
+                                   <literal>.ticks_format(i)</literal> is recorded without being
+                                   immediately used.
+                                </warning>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
                             <term>ticks_st: </term>
                             <listitem>
                                 <para>
-                                    This property specifies scale-translate factors to apply to each ticks position before to use it in the formatted string used as label. So if the factors are <literal>[x_s y_s z_s ; x_t y_t z_t]</literal> and if a x_tick is positioned at X, the value used to format the label will be <literal>x_s*(X-x_t)</literal>. It could be particularly useful when the axes bounds are too closed.
+                                  This property specifies scale-translate factors to apply to each
+                                  ticks position before to use it in the formatted string used as
+                                  label. So if the factors are
+                                  <literal>[x_s y_s z_s ; x_t y_t z_t]</literal> and if a x_tick is
+                                  positioned at X, the value used to format the label will be
+                                  <literal>x_s*(X-x_t)</literal>. It could be particularly useful
+                                  when the axes bounds are too closed.
                                     <para>
                                         It is a matrix with 2 rows and at most 3 columns.
                                     </para>
                                 </para>
                                 <para>
-                                    So, for example <literal>base=B</literal>, labels could be printed with <literal>ticks_format=string(base)+"%+.2e"</literal> and <literal>ticks_st=[1 base]</literal>
+                                    So, for example <literal>base=B</literal>, labels could be
+                                    printed with <literal>ticks_format=string(base)+"%+.2e"</literal>
+                                    and <literal>ticks_st=[1 base]</literal>
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -1041,15 +1104,17 @@ a.ticks_st=[1 1;0 m(2)];
         <revhistory>
             <revision>
                 <revnumber>5.4.0</revnumber>
-                <revremark>line_style value 0 is obsolete, use 1 instead (both are equivalent for SOLID). Using value 0 will produce an error in Scilab 5.4.1.</revremark>
+                <revremark>line_style value 0 is obsolete, use 1 instead (both are equivalent for SOLID).
+                  Using value 0 will produce an error in Scilab 5.4.1.</revremark>
             </revision>
             <revision>
                 <revnumber>5.5.0</revnumber>
                 <revremark>
                     <itemizedlist>
-                        <listitem>line_style values 9 and 10 can be used to have respectively longblank dot and bigblank dot styles.</listitem>
-                        <listitem>auto_margins property added to allow automatic computation of the margins.</listitem>
-                        <listitem>ticks_format and ticks_st properties added to improve ticks labels display.</listitem>
+                        <listitem>.grid_style property added.</listitem>
+                        <listitem>.line_style values 9 and 10 can be used to have respectively long blank dot and bigblank dot styles.</listitem>
+                        <listitem>.auto_margins property added to allow automatic computation of the margins.</listitem>
+                        <listitem>.ticks_format and .ticks_st properties added to improve ticks labels display.</listitem>
                     </itemizedlist>
                 </revremark>
             </revision>

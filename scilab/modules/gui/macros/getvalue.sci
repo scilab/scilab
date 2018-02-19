@@ -75,11 +75,15 @@ function [%ok,%1,%2,%3,%4,%5,...
     // Copyright INRIA
     [%lhs, %rhs] = argn(0)
     if %rhs < 3 then
-        error(sprintf(_("%s: Wrong number of input argument(s): %d to %d expected.\n"), "getvalue", 3, 4));
+        msg = _("%s: Wrong number of input argument(s): %d to %d expected.\n")
+        error(msprintf(msg, "getvalue", 3, 4));
     end
 
     %nn=prod(size(%labels))
-    if %lhs<>%nn+2&%lhs<>%nn+1 then error(41),end
+    if %lhs<>%nn+2 & %lhs<>%nn+1 then
+        msg = _("%s: Wrong number of output arguments: %d to %d expected.\n")
+        error(msprintf(msg, "getvalue", %nn+1, %nn+2))
+    end
     if size(%typ)<>2*%nn then
         error("%typ : list(''type'',[sizes],...)")
     end
@@ -231,18 +235,22 @@ function [%ok,%1,%2,%3,%4,%5,...
                     if %sz(2)>=0 then if %nv<>%sz(2) then %nok=%kk,break,end,end
                 end
             else
-                error(msprintf(_("%s: Type %s is not implemented.\n"),"getvalue", %typ(2*%kk-1)))
+                msg = _("%s: Type %s is not implemented.\n")
+                error(msprintf(msg, "getvalue", %typ(2*%kk-1)))
             end
             execstr("%"+string(%kk)+"=%vv")
         end
         if %nok>0 then
-            messagebox(msprintf(_("Answer given for %s \n has invalid dimension: \n waiting for dimension %s.\n"), %labels(%nok), %ssz), "modal");
+            msg = _("Answer given for %s \n has invalid dimension: \n waiting for dimension %s.\n")
+            messagebox(msprintf(msg, %labels(%nok), %ssz), "modal");
             %ini=%str
         elseif %nok<0 then
             if %ierr==0 then
-                messagebox(msprintf(_("Answer given for %s \n has incorrect type %s.\n"), %labels(-%nok), %typ(-2*%nok-1)), "modal");
+                msg = _("Answer given for %s \n has incorrect type %s.\n")
+                messagebox(msprintf(msg, %labels(-%nok), %typ(-2*%nok-1)), "modal");
             else
-                messagebox(msprintf(_("Answer given for %s \n is incorrect: %s.\n"), %labels(-%nok), lasterror()), "modal");
+                msg = _("Answer given for %s \n is incorrect: %s.\n")
+                messagebox(msprintf(msg, %labels(-%nok), lasterror()), "modal");
             end
             %ini=%str
         else

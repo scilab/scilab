@@ -14,7 +14,8 @@ funcprot(0);
 warning("off");
 
 function demo_basic_function_xarrows()
-    f = figure("dockable", "off", "toolbar", "none", "visible", "off");
+    f = scf(100001);
+    clf(f, "reset");
     f.backgroundcolor = [1, 1, 1];
     f.figure_name = "xarrows in 3D";
 

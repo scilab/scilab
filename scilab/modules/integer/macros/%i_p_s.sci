@@ -11,7 +11,7 @@
 // along with this program.
 
 
-function r=%i_p_s(a,n)
+function r = %i_p_s(a,n)
     if or(int(n)<>n)|or(n<0) then
         r=double(a)^n
     else
@@ -19,14 +19,15 @@ function r=%i_p_s(a,n)
             r=iconvert(double(a)^n,inttype(a))
         else
             if size(n,"*")<>1 then
-                error(43)
+                msg = _("%s: Non implemented feature.\n")
+                error(msprintf(msg, "%i_p_s"))
             else
                 r=a
                 if size(a,1)==size(a,2) then
                     for i=2:n,r=r*a,end
                 else
-                    mprintf(gettext("Warning: Syntax ""vector ^ scalar"" is obsolete. It will be removed in Scilab 6.0.\n  Use ""vector .^ scalar"" instead.\n"));
-                    for i=2:n,r=r.*a,end
+                    msg = _("%s: ""%s"" expected instead of ""%s"".\n")
+                    error(msprintf(msg, "%i_p_s", ".^", "^"));
                 end
             end
         end

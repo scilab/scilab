@@ -15,8 +15,8 @@ function h = %r_simp(h, d)
     // implement complex case
     // 0/den => 0/1
     if argn(2)==1 then
-        n = numer(h)
-        d = denom(h)
+        n = h.num
+        d = h.den
     else
         n = h
         h = []

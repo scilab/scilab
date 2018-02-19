@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA - Francois DELBECQUE
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -13,22 +14,46 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="coffg">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:lang="en" xml:id="coffg">
     <refnamediv>
         <refname>coffg</refname>
-        <refpurpose>inverse of polynomial matrix</refpurpose>
+        <refpurpose>Co-factors of a matrix of polynomials or rationals</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>[Ns,d]=coffg(Fs)</synopsis>
+        <synopsis>[tC, d] = coffg(M)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>Fs</term>
+                <term>M</term>
                 <listitem>
-                    <para>square polynomial matrix</para>
+                    <para>
+                        square matrix of numbers or polynomials or rationals, with real or complex
+                        coefficients.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>tC</term>
+                <listitem>
+                    <para>square matrix of the type of <varname>M</varname>: Transposed co-matrix
+                    of <varname>M</varname>, such that <literal>tC/d</literal> is equal to
+                    <literal>inv(M)</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>d</term>
+                <listitem>
+                    <para>
+                        scalar: determinant <literal>det(M)</literal>, with the
+                        <varname>M</varname>'s data type and encoding.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -36,45 +61,48 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>coffg</literal> computes <literal>Fs^-1</literal> where <literal>Fs</literal> is a polynomial
-            matrix by co-factors method.
+            <literal>coffg(M)</literal> computes co-factors of <varname>M</varname>, and returns
+            the transposed co-matrix <varname>tC</varname>.
         </para>
         <para>
-            <literal>Fs</literal> inverse = <literal>Ns/d</literal>
+            When <varname>M</varname> has a single component, <varname>tC</varname> is
+            <literal>1</literal> and <literal>d==M</literal>
         </para>
-        <para>
-            <literal>d</literal> = common denominator; <literal>Ns</literal> =  numerator (a polynomial matrix)
-        </para>
-        <para>
-            (For large matrices,be patient...results are generally reliable)
-        </para>
+        <warning>
+            For large matrices, calculations may be slow.
+        </warning>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-s=poly(0,'s')
-a=[ s, s^2+1; s  s^2-1];
-[a1,d]=coffg(a);
-(a1/d)-inv(a)
+// With polynomials
+a = [ %s, %s^2+1; %s  %s^2-1];
+[a1, d] = coffg(a)
+(a1/d) - inv(a)
+
+// With rationals
+a = [%s 0 ; 0 1/%s]
+[a1, d] = coffg(a)
+(a1/d) - inv(a)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="determ">determ</link>
-            </member>
-            <member>
-                <link linkend="detr">detr</link>
+                <link linkend="inv">inv</link>
             </member>
             <member>
                 <link linkend="invr">invr</link>
             </member>
             <member>
-                <link linkend="penlaur">penlaur</link>
+                <link linkend="glever">glever</link>
             </member>
             <member>
-                <link linkend="glever">glever</link>
+                <link linkend="determ">determ</link>
+            </member>
+            <member>
+                <link linkend="detr">detr</link>
             </member>
         </simplelist>
     </refsection>

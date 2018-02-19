@@ -149,11 +149,11 @@ F=['      double precision function ffun(x)'
    '      ffun=x*sin(30.0d+0*x)/sqrt(1.0d+0-(x/(2.0d+0*pi))**2)'
    '      return'
    '      end'];
-mputl(F,fullfile(TMPDIR,'ffun.f'))
+mputl(F,'ffun.f')
 
 
 // компилируем функцию
- l=ilib_for_link('ffun',fullfile(TMPDIR,'ffun.f'),[],'f');
+ l=ilib_for_link('ffun','ffun.f',[],'f');
 
 // добавляем  функцию в рабочее окружение
 link(l,'ffun','f')
@@ -171,10 +171,10 @@ C=['#include <math.h>'
    '  y=*x/(2.0e0*pi);'
    '  return *x*sin(30.0e0**x)/sqrt(1.0e0-y*y);'
    '}'];
-mputl(C,fullfile(TMPDIR,'cfun.c'))
+mputl(C,'cfun.c')
 
 //  компилируем функцию
- l=ilib_for_link('cfun',fullfile(TMPDIR,'cfun.c'),[],'c');
+ l=ilib_for_link('cfun','cfun.c',[],'c');
 
 // добавляем  функцию в рабочее окружение
 link(l,'cfun','c')

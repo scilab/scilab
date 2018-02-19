@@ -78,15 +78,15 @@ function [x,y,typ] = RELATIONALOP(job,arg1,arg2)
                 if rule == 0 then
                     label = "==";
                 elseif rule == 1 then
-                    label = "~=";
+                    label = "$\Large\ne$";
                 elseif rule == 2 then
-                    label = "&#60;"; // <
+                    label = "$\Large\lt$"; // <
                 elseif rule == 3 then
-                    label = "&#8804;"; // <=
+                    label = "$\Large\le$"; // <=
                 elseif rule == 4 then
-                    label = "&#62;"; // >
+                    label = "$\Large\gt$"; // >
                 elseif rule == 5 then
-                    label = "&#8805;"; // >=
+                    label = "$\Large\ge$"; // >=
                 end
                 graphics.exprs=exprs;
                 graphics.style=["fontSize=13;fontStyle=1;displayedLabel="+label];
@@ -100,7 +100,7 @@ function [x,y,typ] = RELATIONALOP(job,arg1,arg2)
         end
     case "define" then
         ipar=[2]
-        label="&lt";
+        label="$\Large\lt$";
         model=scicos_model()
         model.sim=list("relationalop",4)
         model.in=[1;1]
@@ -111,6 +111,6 @@ function [x,y,typ] = RELATIONALOP(job,arg1,arg2)
         exprs=[string(ipar);string(0)]
         gr_i=[]
         x=standard_define([2 2],model,exprs,gr_i)
-        x.graphics.style=["fontSize=13;fontStyle=1;displayedLabel="+label];
+        x.graphics.style=["displayedLabel="+label];
     end
 endfunction

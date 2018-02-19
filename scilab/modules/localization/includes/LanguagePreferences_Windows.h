@@ -33,7 +33,7 @@ wchar_t *getLanguagePreferences(void);
 BOOL setLanguagePreferences(void);
 
 /**
-* Set language from Command line (wscilex.exe -l lang)
+* Set language from Command line (scilab -l lang)
 * @param[in] language string
 * @return TRUE or FALSE
 */

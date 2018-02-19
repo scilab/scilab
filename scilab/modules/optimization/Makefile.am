@@ -143,7 +143,7 @@ libscioptimization_algo_la_SOURCES = $(OPTIMIZATION_C_SOURCES) $(OPTIMIZATION_CP
 libscioptimization_la_SOURCES = $(GATEWAY_CPP_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 libscioptimization_algo_la_CPPFLAGS = $(libscioptimization_la_CPPFLAGS)
 
-libscioptimization_la_LIBADD = libscioptimization-algo.la
+libscioptimization_la_LIBADD = libscioptimization-algo.la $(FLIBS)
 
 
 #### Target ######

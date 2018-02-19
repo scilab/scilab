@@ -19,7 +19,8 @@ function r=%i_j_i(a,n)
             r=iconvert(double(a).^double(n),inttype(a))
         else
             if size(n,"*")<>1 then
-                error(43)
+                msg = _("%s: Non implemented feature.\n");
+                error(msprintf(msg, "%i_j_i"))
             else
                 n=double(n)
                 r=a

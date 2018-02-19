@@ -1,8 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="colon">
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ru" xml:id="colon">
     <refnamediv>
-        <refname>colon</refname>
-        <refpurpose>(:) оператор "двоеточие"</refpurpose>
+        <refname>двоеточие (:)</refname>
+        <refpurpose>оператор "двоеточие"</refpurpose>
     </refnamediv>
     <refsection>
         <title>Описание</title>
@@ -114,6 +131,10 @@
             Обратите внимание, что если <literal>i</literal>, <literal>j</literal>, <literal>k</literal>
             или <literal>d</literal> являются нецелыми числами, то будет использоваться только целая часть.
         </para>
+       <note>
+          <literal>type(:)</literal> равно 129.
+          <literal>typeof(:)</literal> равно <literal>"implicitlist"</literal>.
+       </note>
     </refsection>
     <refsection>
         <title>Примеры</title>
@@ -149,10 +170,13 @@ A(i)
         <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
-                <link linkend="matrix">matrix</link>
+                <link linkend="dollar">доллар</link>
             </member>
             <member>
-                <link linkend="for">for</link>
+                <link linkend="extraction">extraction</link>
+            </member>
+            <member>
+                <link linkend="matrix">matrix</link>
             </member>
             <member>
                 <link linkend="linspace">linspace</link>
@@ -161,5 +185,16 @@ A(i)
                 <link linkend="logspace">logspace</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                  <literal>%i:10</literal> теперь выдаёт ошибку.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

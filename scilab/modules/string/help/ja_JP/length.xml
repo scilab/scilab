@@ -57,6 +57,10 @@
             (<literal>size</literal>でも出力されます).
         </para>
         <para>
+            The length of an array M of cells or of structures is the number of elements of the array.
+            It is equivalent to <literal>size(M, "*")</literal>.
+        </para>
+        <para>
             mlistのlengthはデフォルトでmlistの要素数ですが,
             オーバーロードすることができます(例参照).
             文字列でないハイパー行列は,
@@ -114,6 +118,25 @@ length(a)
                 <revnumber>5.4.0</revnumber>
                 <revremark>
                     この関数によりmlist型のオーバーロードが可能となりました.
+                </revremark>
+            </revision>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revremark>
+                    <itemizedlist>
+                        <listitem>
+                            The <literal>length()</literal> of any array C of cells was formerly
+                            always 3, whatever are the number of dimensions and the sizes of the
+                            array. It is now the number of elements of the array at null depth
+                            (without recursive counting), equal to <literal>size(C, "*")</literal>.
+                        </listitem>
+                        <listitem>
+                            The <literal>length()</literal> of any array S of structures was formerly
+                            equal to its number of fields +2, whatever are the number of dimensions
+                            and the sizes of the array. It is now the number of elements of the
+                            array at null depth, equal to <literal>size(S, "*")</literal>.
+                        </listitem>
+                    </itemizedlist>
                 </revremark>
             </revision>
         </revhistory>

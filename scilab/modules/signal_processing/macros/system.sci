@@ -33,7 +33,7 @@ function [x1, y] = system(x0, f, g, h, q, r)
 
     [lhs, rhs] = argn(0);
     if rhs == 0 then
-        error(999, msprintf(_("%s: Wrong number of input argument(s).\n"), "system"));
+        error(msprintf(_("%s: Wrong number of input argument(s).\n"), "system"));
     end
 
     rand("normal");

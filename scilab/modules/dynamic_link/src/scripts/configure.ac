@@ -40,7 +40,9 @@ AC_PROG_CXX
 
 # Detect Fortran Compiler (77 and 90)
 AC_PROG_F77
+AC_F77_LIBRARY_LDFLAGS
 AC_PROG_FC
+AC_FC_LIBRARY_LDFLAGS
 
 # Initialise libtool
 LT_INIT
@@ -54,21 +56,20 @@ AC_PROG_GREP
 case "$host" in
   x86_64-*-linux*)
     CFLAGS="$CFLAGS -fPIC"
-	CXXFLAGS="$CXXFLAGS -fPIC"
-	FFLAGS="$CXXFLAGS -fPIC"
-	LDFLAGS="$LDFLAGS -fPIC"
-	F77_LDFLAGS="$F77_LDFLAGS -fPIC"
-	;;
+    CXXFLAGS="$CXXFLAGS -fPIC"
+    FFLAGS="$CXXFLAGS -fPIC"
+    FCFLAGS="$FCFLAGS -fPIC"
+    ;;
 esac
 
 # Mac OS >= 10.6 need -arch xx
 case "$host" in
-     *-*-darwin*)
-	 CFLAGS=" $CFLAGS -I/sw/include "
-	 CPPFLAGS=" $CPPFLAGS -I/sw/include "
-	 LDFLAGS=" $LDFLAGS -L/sw/lib/ "
-     CC=" $CC -arch x86_64 "
-     CXX=" $CXX -arch x86_64 "
+  *-*-darwin*)
+    CFLAGS=" $CFLAGS -I/sw/include "
+    CPPFLAGS=" $CPPFLAGS -I/sw/include "
+    LDFLAGS=" $LDFLAGS -L/sw/lib/ "
+    CC=" $CC -arch x86_64 "
+    CXX=" $CXX -arch x86_64 "
 esac
 
 # Configure the Makefile
@@ -90,5 +91,8 @@ echo "  CXX              = $CXX"
 echo "  CXXFLAGS         = $CXXFLAGS"
 echo "  F77              = $F77"
 echo "  FFLAGS           = $FFLAGS"
-echo "  F77_LDFLAGS      = $F77_LDFLAGS"
+echo "  FLIBS            = $FLIBS"
+echo "  FC               = $FC"
+echo "  FFLAGS           = $FCFLAGS"
+echo "  FCLIBS           = $FCLIBS"
 echo ""

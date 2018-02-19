@@ -97,15 +97,6 @@ public final class Xcos {
 
     private static final String LOAD_XCOS_LIBS_LOAD_SCICOS = "prot=funcprot(); funcprot(0); loadXcosLibs(); loadScicos(); funcprot(prot); clear prot";
 
-    /*
-     * Dependencies version
-     */
-    private static final List<String> MXGRAPH_VERSIONS = null;
-    private static final List<String> BATIK_VERSIONS = Arrays.asList("1.7", "1.8pre", "1.8");
-
-    private static final String UNABLE_TO_LOAD_JGRAPHX = Messages.gettext("Unable to load the jgraphx library.\nExpecting version %s ; Getting version %s .");
-    private static final String UNABLE_TO_LOAD_BATIK = Messages.gettext("Unable to load the Batik library. \nExpecting version %s ; Getting version %s .");
-
     private static final String CALLED_OUTSIDE_THE_EDT_THREAD = "Called outside the EDT thread.";
     private static final Logger LOG = Logger.getLogger(Xcos.class.getName());
 
@@ -164,9 +155,6 @@ public final class Xcos {
             LOG.severe(e.toString());
         }
 
-        /* Check the dependencies at startup time */
-        checkDependencies();
-
         /*
          * Allocate data
          */
@@ -212,49 +200,6 @@ public final class Xcos {
 
         super.finalize();
     }
-
-    /**
-     * Check the dependencies and the version dependencies.
-     *
-     * This method use runtime class loading to handle ClassNotFoundException.
-     *
-     * This method catch any exception and rethrow it with a well defined message. Thus it doesn't pass the IllegalCatch metrics.
-     */
-    // CSOFF: IllegalCatch
-    // CSOFF: MagicNumber
-    private void checkDependencies() {
-        final ClassLoader loader = ClassLoader.getSystemClassLoader();
-
-        /* JGraphx */
-        String mxGraphVersion = "";
-        try {
-            final Class<?> klass = loader.loadClass("com.mxgraph.view.mxGraph");
-            mxGraphVersion = (String) klass.getDeclaredField("VERSION").get(null);
-
-            if (MXGRAPH_VERSIONS != null && !MXGRAPH_VERSIONS.contains(mxGraphVersion)) {
-                throw new Exception();
-            }
-        } catch (final Throwable e) {
-            throw new RuntimeException(String.format(UNABLE_TO_LOAD_JGRAPHX, MXGRAPH_VERSIONS.get(0), mxGraphVersion), e);
-        }
-
-        /* Batik */
-        String batikVersion = null;
-        try {
-            final Class<?> klass = loader.loadClass("org.apache.batik.Version");
-            batikVersion = klass.getPackage().getImplementationVersion().split("\\+")[0];
-
-            if (!BATIK_VERSIONS.contains(batikVersion)) {
-                throw new Exception();
-            }
-
-        } catch (final Throwable e) {
-            throw new RuntimeException(String.format(UNABLE_TO_LOAD_BATIK, BATIK_VERSIONS.get(0), batikVersion), e);
-        }
-    }
-
-    // CSON: MagicNumber
-    // CSON: IllegalCatch
 
     /**
      * @return the per Scilab application, Xcos instance

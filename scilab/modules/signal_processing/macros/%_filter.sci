@@ -87,8 +87,13 @@ function [y, z] = %_filter(b, a, x, z)
 
     if type_b == "polynomial" | type_a == "polynomial"
         c = b/a;
-        b = numer(c);
-        a = denom(c);
+        if type_a=="constant"
+            b = b/a
+            a = ones(a)
+        else
+            b = c.num;
+            a = c.den;
+        end
         deg_b = degree(b);
         deg_a = degree(a);
         deg = max(deg_b, deg_a);

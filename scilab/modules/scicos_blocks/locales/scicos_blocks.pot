@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2017-02-01 14:30+0100\n"
+"Revision-Date: 2018-02-12 08:52+0100\n"
 
 # File: modules/scicos_blocks/src/c/convert.c, line: 1214
 # File: modules/scicos_blocks/src/c/convert.c, line: 1239
@@ -274,10 +274,9 @@ msgstr ""
 # File: modules/scicos_blocks/macros/IntegerOp/LOGIC.sci, line: 34
 # File: modules/scicos_blocks/macros/IntegerOp/SHIFT.sci, line: 34
 # File: modules/scicos_blocks/macros/IntegerOp/SRFLIPFLOP.sci, line: 44
-# File: modules/scicos_blocks/macros/Sinks/CLKOUTV_f.sci, line: 94
+# File: modules/scicos_blocks/macros/Sinks/CLKOUTV_f.sci, line: 97
 # File: modules/scicos_blocks/macros/Sinks/OUTIMPL_f.sci, line: 37
 # File: modules/scicos_blocks/macros/Sinks/OUT_f.sci, line: 37
-# File: modules/scicos_blocks/macros/Sinks/WFILE_f.sci, line: 43
 # File: modules/scicos_blocks/macros/Sinks/WRITEAU_f.sci, line: 37
 # File: modules/scicos_blocks/macros/Sinks/WRITEC_f.sci, line: 39
 # File: modules/scicos_blocks/macros/Sources/CLKINV_f.sci, line: 36
@@ -357,8 +356,6 @@ msgstr ""
 # File: modules/scicos_blocks/macros/IntegerOp/LOGIC.sci, line: 56
 # File: modules/scicos_blocks/macros/IntegerOp/SHIFT.sci, line: 43
 # File: modules/scicos_blocks/macros/IntegerOp/SHIFT.sci, line: 114
-# File: modules/scicos_blocks/macros/Sinks/WFILE_f.sci, line: 81
-# File: modules/scicos_blocks/macros/Sinks/WFILE_f.sci, line: 85
 # File: modules/scicos_blocks/macros/Sinks/WRITEAU_f.sci, line: 54
 # File: modules/scicos_blocks/macros/Sinks/WRITEAU_f.sci, line: 59
 # File: modules/scicos_blocks/macros/Sinks/WRITEC_f.sci, line: 78
@@ -570,7 +567,6 @@ msgstr ""
 # File: modules/scicos_blocks/macros/IntegerOp/EXTRACTBITS.sci, line: 92
 # File: modules/scicos_blocks/macros/IntegerOp/EXTRACTBITS.sci, line: 140
 # File: modules/scicos_blocks/macros/IntegerOp/EXTRACTBITS.sci, line: 188
-# File: modules/scicos_blocks/macros/Sinks/WFILE_f.sci, line: 77
 # File: modules/scicos_blocks/macros/Sinks/WRITEC_f.sci, line: 56
 # File: modules/scicos_blocks/macros/Sources/READC_f.sci, line: 67
 # File: modules/scicos_blocks/macros/Sources/RFILE_f.sci, line: 69
@@ -671,7 +667,6 @@ msgstr ""
 
 #
 # File: modules/scicos_blocks/macros/IntegerOp/LOGIC.sci, line: 52
-# File: modules/scicos_blocks/macros/Sinks/WFILE_f.sci, line: 71
 # File: modules/scicos_blocks/macros/Sinks/WRITEC_f.sci, line: 68
 # File: modules/scicos_blocks/macros/Sinks/WRITEC_f.sci, line: 73
 # File: modules/scicos_blocks/macros/Sources/READAU_f.sci, line: 64
@@ -963,12 +958,12 @@ msgid "The code generation, the compilation and link took %.2f seconds"
 msgstr ""
 
 #
-# File: modules/scicos_blocks/macros/Sinks/CLKOUTV_f.sci, line: 94
+# File: modules/scicos_blocks/macros/Sinks/CLKOUTV_f.sci, line: 97
 msgid "Event output port"
 msgstr ""
 
 #
-# File: modules/scicos_blocks/macros/Sinks/CLKOUTV_f.sci, line: 95
+# File: modules/scicos_blocks/macros/Sinks/CLKOUTV_f.sci, line: 98
 # File: modules/scicos_blocks/macros/Sinks/OUTIMPL_f.sci, line: 38
 # File: modules/scicos_blocks/macros/Sinks/OUT_f.sci, line: 38
 # File: modules/scicos_blocks/macros/Sources/IN_f.sci, line: 41
@@ -976,7 +971,7 @@ msgid "Port number"
 msgstr ""
 
 #
-# File: modules/scicos_blocks/macros/Sinks/CLKOUTV_f.sci, line: 101
+# File: modules/scicos_blocks/macros/Sinks/CLKOUTV_f.sci, line: 104
 # File: modules/scicos_blocks/macros/Sinks/OUTIMPL_f.sci, line: 44
 # File: modules/scicos_blocks/macros/Sinks/OUT_f.sci, line: 44
 # File: modules/scicos_blocks/macros/Sources/INIMPL_f.sci, line: 45
@@ -985,10 +980,9 @@ msgid "Wrong value for 'Port Number' parameter: %d."
 msgstr ""
 
 #
-# File: modules/scicos_blocks/macros/Sinks/CLKOUTV_f.sci, line: 102
+# File: modules/scicos_blocks/macros/Sinks/CLKOUTV_f.sci, line: 105
 # File: modules/scicos_blocks/macros/Sinks/OUTIMPL_f.sci, line: 45
 # File: modules/scicos_blocks/macros/Sinks/OUT_f.sci, line: 45
-# File: modules/scicos_blocks/macros/Sinks/WFILE_f.sci, line: 86
 # File: modules/scicos_blocks/macros/Sinks/WRITEAU_f.sci, line: 55
 # File: modules/scicos_blocks/macros/Sinks/WRITEC_f.sci, line: 79
 # File: modules/scicos_blocks/macros/Sinks/WRITEC_f.sci, line: 83
@@ -1015,58 +1009,6 @@ msgid "Regular output port"
 msgstr ""
 
 #
-# File: modules/scicos_blocks/macros/Sinks/WFILE_f.sci, line: 30
-#, c-format
-msgid "Feature %s is obsolete."
-msgstr ""
-
-#
-# File: modules/scicos_blocks/macros/Sinks/WFILE_f.sci, line: 31
-#, c-format
-msgid "Please use %s instead."
-msgstr ""
-
-#
-# File: modules/scicos_blocks/macros/Sinks/WFILE_f.sci, line: 43
-msgid "Write to output file"
-msgstr ""
-
-#
-# File: modules/scicos_blocks/macros/Sinks/WFILE_f.sci, line: 44
-# File: modules/scicos_blocks/macros/Sources/RFILE_f.sci, line: 53
-msgid "&nbsp; - A binary file if no format given"
-msgstr ""
-
-#
-# File: modules/scicos_blocks/macros/Sinks/WFILE_f.sci, line: 44
-msgid "Write is done on:"
-msgstr ""
-
-#
-# File: modules/scicos_blocks/macros/Sinks/WFILE_f.sci, line: 45
-msgid "&nbsp; - A formatted text file if a  format (Fortran type) is given"
-msgstr ""
-
-#
-# File: modules/scicos_blocks/macros/Sinks/WFILE_f.sci, line: 45
-# File: modules/scicos_blocks/macros/Sinks/WFILE_f.sci, line: 85
-# File: modules/scicos_blocks/macros/Sinks/WRITEC_f.sci, line: 40
-# File: modules/scicos_blocks/macros/Sinks/WRITEC_f.sci, line: 82
-msgid "Input Size"
-msgstr ""
-
-#
-# File: modules/scicos_blocks/macros/Sinks/WFILE_f.sci, line: 45
-# File: modules/scicos_blocks/macros/Sinks/WFILE_f.sci, line: 71
-# File: modules/scicos_blocks/macros/Sinks/WRITEC_f.sci, line: 40
-# File: modules/scicos_blocks/macros/Sinks/WRITEC_f.sci, line: 68
-# File: modules/scicos_blocks/macros/Sinks/WRITEC_f.sci, line: 73
-msgid "Output File Name"
-msgstr ""
-
-#
-# File: modules/scicos_blocks/macros/Sinks/WFILE_f.sci, line: 46
-# File: modules/scicos_blocks/macros/Sinks/WFILE_f.sci, line: 81
 # File: modules/scicos_blocks/macros/Sinks/WRITEAU_f.sci, line: 38
 # File: modules/scicos_blocks/macros/Sinks/WRITEAU_f.sci, line: 50
 # File: modules/scicos_blocks/macros/Sinks/WRITEAU_f.sci, line: 54
@@ -1080,80 +1022,6 @@ msgstr ""
 # File: modules/scicos_blocks/macros/Sources/RFILE_f.sci, line: 55
 # File: modules/scicos_blocks/macros/Sources/RFILE_f.sci, line: 93
 msgid "Buffer Size"
-msgstr ""
-
-#
-# File: modules/scicos_blocks/macros/Sinks/WFILE_f.sci, line: 46
-# File: modules/scicos_blocks/macros/Sinks/WRITEC_f.sci, line: 41
-msgid "Output Format"
-msgstr ""
-
-#
-# File: modules/scicos_blocks/macros/Sinks/WFILE_f.sci, line: 59
-# File: modules/scicos_blocks/macros/Sinks/WFILE_f.sci, line: 62
-# File: modules/scicos_blocks/macros/Sinks/WRITEC_f.sci, line: 61
-# File: modules/scicos_blocks/macros/Sources/READAU_f.sci, line: 59
-# File: modules/scicos_blocks/macros/Sources/READAU_f.sci, line: 68
-# File: modules/scicos_blocks/macros/Sources/READC_f.sci, line: 72
-# File: modules/scicos_blocks/macros/Sources/READC_f.sci, line: 80
-# File: modules/scicos_blocks/macros/Sources/RFILE_f.sci, line: 78
-# File: modules/scicos_blocks/macros/Sources/RFILE_f.sci, line: 81
-# File: modules/scicos_blocks/macros/Sources/RFILE_f.sci, line: 84
-msgid "End current simulation first."
-msgstr ""
-
-#
-# File: modules/scicos_blocks/macros/Sinks/WFILE_f.sci, line: 59
-msgid ""
-"Simulation running !!! You cannot switch<br />between formatted and "
-"unformatted when running"
-msgstr ""
-
-#
-# File: modules/scicos_blocks/macros/Sinks/WFILE_f.sci, line: 62
-msgid "You cannot modify 'Output File Name' when running."
-msgstr ""
-
-#
-# File: modules/scicos_blocks/macros/Sinks/WFILE_f.sci, line: 65
-msgid "Wrong value for 'Output File Name' parameter"
-msgstr ""
-
-#
-# File: modules/scicos_blocks/macros/Sinks/WFILE_f.sci, line: 65
-# File: modules/scicos_blocks/macros/Sinks/WRITEC_f.sci, line: 68
-# File: modules/scicos_blocks/macros/Sources/READAU_f.sci, line: 64
-# File: modules/scicos_blocks/macros/Sources/RFILE_f.sci, line: 87
-msgid "You must provide a filename."
-msgstr ""
-
-#
-# File: modules/scicos_blocks/macros/Sinks/WFILE_f.sci, line: 72
-# File: modules/scicos_blocks/macros/Sinks/WRITEC_f.sci, line: 74
-#, c-format
-msgid "Directory '%s' does not exist"
-msgstr ""
-
-#
-# File: modules/scicos_blocks/macros/Sinks/WFILE_f.sci, line: 77
-# File: modules/scicos_blocks/macros/Sinks/WRITEC_f.sci, line: 56
-# File: modules/scicos_blocks/macros/Sinks/WRITEC_f.sci, line: 60
-# File: modules/scicos_blocks/macros/Sources/READC_f.sci, line: 48
-# File: modules/scicos_blocks/macros/Sources/READC_f.sci, line: 67
-# File: modules/scicos_blocks/macros/Sources/RFILE_f.sci, line: 55
-# File: modules/scicos_blocks/macros/Sources/RFILE_f.sci, line: 90
-msgid "Input Format"
-msgstr ""
-
-#
-# File: modules/scicos_blocks/macros/Sinks/WFILE_f.sci, line: 78
-# File: modules/scicos_blocks/macros/Sources/RFILE_f.sci, line: 91
-msgid "You must enclose the format's string between parentheses."
-msgstr ""
-
-#
-# File: modules/scicos_blocks/macros/Sinks/WFILE_f.sci, line: 82
-msgid "Must be greater than 1."
 msgstr ""
 
 #
@@ -1195,7 +1063,35 @@ msgstr ""
 
 #
 # File: modules/scicos_blocks/macros/Sinks/WRITEC_f.sci, line: 40
+# File: modules/scicos_blocks/macros/Sinks/WRITEC_f.sci, line: 82
+msgid "Input Size"
+msgstr ""
+
+#
+# File: modules/scicos_blocks/macros/Sinks/WRITEC_f.sci, line: 40
+# File: modules/scicos_blocks/macros/Sinks/WRITEC_f.sci, line: 68
+# File: modules/scicos_blocks/macros/Sinks/WRITEC_f.sci, line: 73
+msgid "Output File Name"
+msgstr ""
+
+#
+# File: modules/scicos_blocks/macros/Sinks/WRITEC_f.sci, line: 40
 msgid "Write to C binary file"
+msgstr ""
+
+#
+# File: modules/scicos_blocks/macros/Sinks/WRITEC_f.sci, line: 41
+msgid "Output Format"
+msgstr ""
+
+#
+# File: modules/scicos_blocks/macros/Sinks/WRITEC_f.sci, line: 56
+# File: modules/scicos_blocks/macros/Sinks/WRITEC_f.sci, line: 60
+# File: modules/scicos_blocks/macros/Sources/READC_f.sci, line: 48
+# File: modules/scicos_blocks/macros/Sources/READC_f.sci, line: 67
+# File: modules/scicos_blocks/macros/Sources/RFILE_f.sci, line: 55
+# File: modules/scicos_blocks/macros/Sources/RFILE_f.sci, line: 90
+msgid "Input Format"
 msgstr ""
 
 #
@@ -1212,8 +1108,33 @@ msgid "You cannot modify '%s' when running"
 msgstr ""
 
 #
+# File: modules/scicos_blocks/macros/Sinks/WRITEC_f.sci, line: 61
+# File: modules/scicos_blocks/macros/Sources/READAU_f.sci, line: 59
+# File: modules/scicos_blocks/macros/Sources/READAU_f.sci, line: 68
+# File: modules/scicos_blocks/macros/Sources/READC_f.sci, line: 72
+# File: modules/scicos_blocks/macros/Sources/READC_f.sci, line: 80
+# File: modules/scicos_blocks/macros/Sources/RFILE_f.sci, line: 78
+# File: modules/scicos_blocks/macros/Sources/RFILE_f.sci, line: 81
+# File: modules/scicos_blocks/macros/Sources/RFILE_f.sci, line: 84
+msgid "End current simulation first."
+msgstr ""
+
+#
 # File: modules/scicos_blocks/macros/Sinks/WRITEC_f.sci, line: 64
 msgid "You cannot modify 'Buffer Size' when running."
+msgstr ""
+
+#
+# File: modules/scicos_blocks/macros/Sinks/WRITEC_f.sci, line: 68
+# File: modules/scicos_blocks/macros/Sources/READAU_f.sci, line: 64
+# File: modules/scicos_blocks/macros/Sources/RFILE_f.sci, line: 87
+msgid "You must provide a filename."
+msgstr ""
+
+#
+# File: modules/scicos_blocks/macros/Sinks/WRITEC_f.sci, line: 74
+#, c-format
+msgid "Directory '%s' does not exist"
 msgstr ""
 
 #
@@ -1554,6 +1475,11 @@ msgstr ""
 
 #
 # File: modules/scicos_blocks/macros/Sources/RFILE_f.sci, line: 53
+msgid "&nbsp; - A binary file if no format given"
+msgstr ""
+
+#
+# File: modules/scicos_blocks/macros/Sources/RFILE_f.sci, line: 53
 msgid "Read from an input file"
 msgstr ""
 
@@ -1606,6 +1532,11 @@ msgstr ""
 # File: modules/scicos_blocks/macros/Sources/RFILE_f.sci, line: 90
 #, c-format
 msgid "Wrong format for '%s' parameter: %s."
+msgstr ""
+
+#
+# File: modules/scicos_blocks/macros/Sources/RFILE_f.sci, line: 91
+msgid "You must enclose the format's string between parentheses."
 msgstr ""
 
 #

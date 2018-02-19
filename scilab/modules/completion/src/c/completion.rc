@@ -68,7 +68,7 @@ BEGIN
             VALUE "FileDescription", "completion module"
             VALUE "FileVersion", "6, 0, 1, 0"
             VALUE "InternalName", "completion module"
-            VALUE "LegalCopyright", "Copyright (C) 2017"
+            VALUE "LegalCopyright", "Copyright (C) 2018"
             VALUE "OriginalFilename", "completion.dll"
             VALUE "ProductName", " completion"
             VALUE "ProductVersion", "6, 0, 1, 0"

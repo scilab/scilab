@@ -1,20 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="coffg">
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA - Francois DELBECQUE
+ * Copyright (C) 2018 - Samuel GOUGEON
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:lang="fr" xml:id="coffg">
     <refnamediv>
         <refname>coffg</refname>
-        <refpurpose>inverse d'une matrice de polynômes  </refpurpose>
+        <refpurpose>Co-facteurs d'une matrice carrée de polynômes ou de fractions rationnelles</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Séquence d'appel</title>
-        <synopsis>[Ns,d]=coffg(Fs)</synopsis>
+        <title>Syntaxe</title>
+        <synopsis>[tC, d] = coffg(M)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Paramètres</title>
+        <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>Fs  </term>
+                <term>M</term>
                 <listitem>
-                    <para>matrice carrée de polynômes
+                    <para>
+                        Matrice carrée de nombres ou de polynômes ou de fractions rationnelles,
+                        à coefficients réels ou complexes.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>tC</term>
+                <listitem>
+                    <para>Matrice carrée du type de <varname>M</varname> : transposée de la co-matrice
+                    de <varname>M</varname>, telle que <literal>tC/d</literal> égale <literal>inv(M)</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>d</term>
+                <listitem>
+                    <para>
+                        élément unique : déterminant <literal>det(M)</literal>, de type et encodage
+                        identiques à ceux de <varname>M</varname>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -23,44 +61,48 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>coffg</literal> calcule <literal>Fs^-1</literal> par la méthode des cofacteurs, où <literal>Fs</literal> est une matrice de polynômes.
+            <literal>coffg(M)</literal> calcule les co-facteurs de la matrice <varname>M</varname>,
+            et retourne la transposée <varname>tC</varname> de sa co-matrice.
         </para>
         <para>
-            inverse de <literal>Fs</literal> = <literal>Ns/d</literal>
+            Lorsque <varname>M</varname> est un élément unique, <varname>tC</varname> est
+            <literal>1</literal> et <literal>d==M</literal>
         </para>
-        <para>
-            <literal>d</literal> = dénominateur commun; <literal>Ns</literal> = numérateur (une matrice de polynômes).
-        </para>
-        <para>
-            (pour les grandes matrices, s'armer de patience... les résultats sont en général fiables)
-        </para>
+        <warning>
+            Pour une matrice de grande taille, les calculs peuvent être longs.
+        </warning>
     </refsection>
     <refsection>
         <title>Exemples</title>
         <programlisting role="example"><![CDATA[
-s=poly(0,'s')
-a=[ s, s^2+1; s  s^2-1];
-[a1,d]=coffg(a);
-(a1/d)-inv(a)
+// Matrice de polynômes
+a = [ %s, %s^2+1; %s  %s^2-1];
+[a1, d] = coffg(a)
+(a1/d) - inv(a)
+
+// Matrice de fractions rationnelles
+a = [%s 0 ; 0 1/%s]
+[a1, d] = coffg(a)
+(a1/d) - inv(a)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>
         <simplelist type="inline">
             <member>
-                <link linkend="determ">determ</link>
-            </member>
-            <member>
-                <link linkend="detr">detr</link>
+                <link linkend="inv">inv</link>
             </member>
             <member>
                 <link linkend="invr">invr</link>
             </member>
             <member>
-                <link linkend="penlaur">penlaur</link>
+                <link linkend="glever">glever</link>
             </member>
             <member>
-                <link linkend="glever">glever</link>
+                <link linkend="determ">determ</link>
+            </member>
+            <member>
+                <link linkend="detr">detr</link>
             </member>
         </simplelist>
     </refsection>

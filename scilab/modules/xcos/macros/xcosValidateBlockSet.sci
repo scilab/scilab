@@ -18,7 +18,7 @@ function [status, msg] = xcosValidateBlockSet(interfFunctionName)
     msg = "";
 
     if typeof(interfFunctionName) <> "string" | size(interfFunctionName) <> [1, 1]
-        error(999, sprintf(_("%s: Wrong type for argument #%d: A String expected."), "xcosValidateBlockSet", 1))
+        error(sprintf(_("%s: Wrong type for argument #%d: A String expected."), "xcosValidateBlockSet", 1))
     end
 
     // Check function is defined
@@ -49,11 +49,11 @@ function [status, msg] = xcosValidateBlockSet(interfFunctionName)
             vSize = size(labelsv, "*");
             hSize = size(labelsh, "*");
             if size(default_inputs_vector) <> [vSize, hSize] then
-                error(999, sprintf(_("%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"), "x_mdialog", 4, vSize, hSize));
+                error(sprintf(_("%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"), "x_mdialog", 4, vSize, hSize));
             end;
             result = default_inputs_vector;
         else
-            error(999, sprintf(_("%s: Wrong number of input arguments: %d or %d expected.\n"), "x_mdialog", 3, 4));
+            error(sprintf(_("%s: Wrong number of input arguments: %d or %d expected.\n"), "x_mdialog", 3, 4));
         end
     endfunction
 

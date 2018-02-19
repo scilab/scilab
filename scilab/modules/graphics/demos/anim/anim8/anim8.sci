@@ -46,7 +46,7 @@ function demo_riemann()
     my_axe               = gca();
     my_fac3d             = gce();
 
-    my_handle.axes_size  = [ 600 650 ];
+    // my_handle.axes_size  = [ 600 650 ];
 
     my_handle.background = -2;                 // white
     my_axe.background    = -1;                 // gray

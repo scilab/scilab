@@ -13,14 +13,19 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="coffg">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:lang="ja" xml:id="coffg">
     <refnamediv>
         <refname>coffg</refname>
         <refpurpose>多項式行列の逆</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>[Ns,d]=coffg(Fs)</synopsis>
+        <synopsis>
+            [Ns,d] = coffg(Fs)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>パラメータ</title>
@@ -52,29 +57,34 @@
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[
-s=poly(0,'s')
-a=[ s, s^2+1; s  s^2-1];
-[a1,d]=coffg(a);
-(a1/d)-inv(a)
+// With polynomials
+a = [ %s, %s^2+1; %s  %s^2-1];
+[a1, d] = coffg(a)
+(a1/d) - inv(a)
+
+// With rationals
+a = [%s 0 ; 0 1/%s]
+[a1, d] = coffg(a)
+(a1/d) - inv(a)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
             <member>
-                <link linkend="determ">determ</link>
-            </member>
-            <member>
-                <link linkend="detr">detr</link>
+                <link linkend="inv">inv</link>
             </member>
             <member>
                 <link linkend="invr">invr</link>
             </member>
             <member>
-                <link linkend="penlaur">penlaur</link>
+                <link linkend="glever">glever</link>
             </member>
             <member>
-                <link linkend="glever">glever</link>
+                <link linkend="determ">determ</link>
+            </member>
+            <member>
+                <link linkend="detr">detr</link>
             </member>
         </simplelist>
     </refsection>

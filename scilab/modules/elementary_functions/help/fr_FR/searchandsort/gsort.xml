@@ -197,8 +197,6 @@
             <member>
                 <link linkend="find">find</link>
             </member>
-        </simplelist>
-        <simplelist type="inline">
             <member>
                 <link linkend="overloading">overloading</link>
             </member>
@@ -212,11 +210,11 @@
         </para>
     </refsection>
     <refsection>
-        <title>History</title>
+        <title>Historique</title>
         <revhistory>
             <revision>
                 <revnumber>5.4.0</revnumber>
-                <revremark>Cette fonction permet la surcharge pour les types non gérés (autres que vecteur ou matrice de nombres réels, entiers ou de chaînes de caractères ou vecteur creux).</revremark>
+                <revremark>Cette fonction peut être étendue aux types non gérés (autres que vecteur ou matrice de nombres réels, entiers ou de chaînes de caractères ou vecteur creux).</revremark>
             </revision>
         </revhistory>
     </refsection>

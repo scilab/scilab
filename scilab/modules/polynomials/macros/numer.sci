@@ -15,6 +15,7 @@ function num=numer(r)
     //returns the numerator num of a rational function matrix r (r may be
     //also a scalar or polynomial matrix
     //!
+    warnobsolete("the r.num rational attribute","6.1.0")
     select typeof(r)
     case "constant" then
         num=r;

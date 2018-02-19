@@ -12,11 +12,11 @@ msgstr ""
 "PO-Revision-Date: 2016-10-19 14:58+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
-"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Generator: Launchpad (build 18544)\n"
+"Language: uk\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -24,7 +24,8 @@ msgstr "%s: не вдалося прочитати вхідний парамет
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A %s expected.\n"
-msgstr "%s: помилковий тип вхідного параметра №%d: слід використовувати %s.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати %s.\n"
 
 #, c-format
 msgid "%s: XML object does not exist.\n"
@@ -83,7 +84,8 @@ msgstr ""
 "непорожній рядок.\n"
 
 #, c-format
-msgid "%s: The XML Document has not an URI and there is no second argument.\n"
+msgid ""
+"%s: The XML Document has not an URI and there is no second argument.\n"
 msgstr "%s: документ XML не має адреси або не вказано другого параметра.\n"
 
 #, c-format
@@ -117,7 +119,8 @@ msgid "%s: XMLList does not exist.\n"
 msgstr "%s: XMLList не існує.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати «%s», "
 "«%s» або «%s».\n"

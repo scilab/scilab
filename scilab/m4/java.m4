@@ -310,6 +310,9 @@ Maybe JAVA_HOME is pointing to a JRE (Java Runtime Environment) instead of a JDK
     # The class java.util.stream.DoubleStream is new to 1.8
     AC_JAVA_TRY_COMPILE([import java.util.stream.DoubleStream;], , "no", ac_java_jvm_version=1.8)
 
+    # The class java.lang.ProcessHandle is new to 1.9
+    AC_JAVA_TRY_COMPILE([import java.lang.ProcessHandle;], , "no", ac_java_jvm_version=1.9)
+
     if test "x$ac_java_jvm_version" = "x" ; then
         AC_MSG_ERROR([Could not detect Java version, 1.4 or newer is required])
     fi
@@ -500,8 +503,32 @@ AC_DEFUN([AC_JAVA_JNI_LIBS], [
     libSymbolToTest="JNI_GetCreatedJavaVMs"
 
     if test "$ac_java_jvm_name" = "jdk"; then
-        # Sun/Blackdown 1.4 for Linux (client JVM)
 
+        # OpenJDK 9
+        F=lib/libjava.so
+        if test "x$ac_java_jvm_jni_lib_flags" = "x" ; then
+            AC_MSG_LOG([Looking for $ac_java_jvm_dir/$F])
+            if test -f $ac_java_jvm_dir/$F ; then
+                AC_MSG_LOG([Found $ac_java_jvm_dir/$F])
+                D=`dirname $ac_java_jvm_dir/$F`
+                ac_java_jvm_jni_lib_runtime_path=$D
+                ac_java_jvm_jni_lib_flags="-L$D -ljava -lverify"
+                D=$ac_java_jvm_dir/lib/client
+        if test ! -f $D/libjvm.so; then # Check if it is in the client or server directory
+            # Try the server directory
+            D=$ac_java_jvm_dir/lib/server
+            if test ! -f $D/libjvm.so; then
+                AC_MSG_ERROR([Could not find libjvm.so in
+                jre/lib/$machine/client/ or in jre/lib/$machine/server/.
+                Please report to http://bugzilla.scilab.org/])
+            fi
+        fi
+                ac_java_jvm_jni_lib_runtime_path="${ac_java_jvm_jni_lib_runtime_path}:$D"
+                ac_java_jvm_jni_lib_flags="$ac_java_jvm_jni_lib_flags -L$D -ljvm"
+            fi
+        fi
+
+        # Sun/Blackdown 1.4 for Linux (client JVM)
         F=jre/lib/$machine/libjava.so
         if test "x$ac_java_jvm_jni_lib_flags" = "x" ; then
             AC_MSG_LOG([Looking for $ac_java_jvm_dir/$F])
