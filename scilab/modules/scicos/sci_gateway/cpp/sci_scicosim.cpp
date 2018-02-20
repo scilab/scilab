@@ -1372,7 +1372,7 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
             }
             else
             {
-                void* f = funnum2(c_str); // Search associated function number of function name
+                void *f = funnum2(c_str); // Search associated function number of function name
                 // Block is defined by a C or Fortran function
                 if (f != nullptr)
                 {

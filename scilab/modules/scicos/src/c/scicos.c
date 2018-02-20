@@ -3649,9 +3649,9 @@ void callf(double *t, scicos_block *block, scicos_flag *flag)
     //sciprint("callf type=%d flag=%d\n",block->type,flagi);
     switch (block->type)
     {
-            /*******************/
-            /* function type 0 */
-            /*******************/
+        /*******************/
+        /* function type 0 */
+        /*******************/
         case 0 :
         {
             /* This is for compatibility */
@@ -6141,31 +6141,6 @@ static void FREE_blocks()
     return;
 } /* FREE_blocks */
 /*--------------------------------------------------------------------------*/
-/* Subroutine funnum */
-int C2F(funnum)(char * fname)
-{
-    int i = 0, ln = 0;
-    int loc = -1;
-    while (tabsim[i].name != (char *)NULL)
-    {
-        if (strcmp(fname, tabsim[i].name) == 0)
-        {
-            return (i + 1);
-        }
-        i++;
-    }
-    ln = (int)strlen(fname);
-    /*
-    C2F(iislink)(fname, &loc);
-    C2F(iislink)(fname, &loc);
-    if (loc >= 0)
-    {
-        return (ntabsim + (int)loc + 1);
-    }
-    */
-    return 0;
-}/* funnum */
-/*--------------------------------------------------------------------------*/
 /* Subroutine funnum2 */
 void* funnum2(char * fname)
 {
@@ -6925,7 +6900,7 @@ int C2F(hfjac)(double *x, double *jac, int *col)
 /*--------------------------------------------------------------------------*/
 int simblkKinsol(N_Vector yy, N_Vector resval, void *rdata)
 {
-    double t = 0., *xc = NULL , *xcdot = NULL, *residual = NULL;
+    double t = 0., *xc = NULL, *xcdot = NULL, *residual = NULL;
     UserData data;
     int jj = 0, nantest = 0, N = 0;
     N = *neq;

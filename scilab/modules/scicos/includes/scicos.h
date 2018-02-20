@@ -240,6 +240,6 @@ void Coserror(const char *fmt, ...);
 /**
 *
 */
-void* funnum2(char *fname);
+void *funnum2(char *fname);
 #endif
 

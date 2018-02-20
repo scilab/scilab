@@ -2,6 +2,7 @@
 #
 #  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
 #  Copyright (C) INRIA - Scilab Project - Sylvestre Ledru
+#  Copyright (C) ESI Group - 2018 - Clement DAVID
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -71,7 +72,6 @@ echo "{(char *) 0, (ScicosF) 0}};" >> $fout ;
 
 x=`cat $Fin $Cin $CPPin | wc -l `;
 echo " " >> $fout 
-echo "int ntabsim=" $x ";" >> $fout ;
 echo "#endif " >> $fout;
 rm -f $fout-temp$$
 echo "/***********************************/" >> $fout 

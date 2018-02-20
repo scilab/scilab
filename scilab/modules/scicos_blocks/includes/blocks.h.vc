@@ -146,6 +146,8 @@ SCICOS_BLOCKS_IMPEXP void shift_16_LA(ARGS_scicos);
 SCICOS_BLOCKS_IMPEXP void selector_m(ARGS_scicos);
 SCICOS_BLOCKS_IMPEXP void selector(ARGS_scicos);
 SCICOS_BLOCKS_IMPEXP void scicosexit(ARGS_scicos);
+SCICOS_BLOCKS_IMPEXP void scale_cscope(ARGS_scicos);
+SCICOS_BLOCKS_IMPEXP void scale_cmscope(ARGS_scicos);
 SCICOS_BLOCKS_IMPEXP void scalar2vector(ARGS_scicos);
 SCICOS_BLOCKS_IMPEXP void satur(ARGS_scicos);
 SCICOS_BLOCKS_IMPEXP void samphold4_m(ARGS_scicos);
@@ -284,7 +286,6 @@ SCICOS_BLOCKS_IMPEXP void gainblk_i16n(ARGS_scicos);
 SCICOS_BLOCKS_IMPEXP void gainblk_i16e(ARGS_scicos);
 SCICOS_BLOCKS_IMPEXP void gainblk(ARGS_scicos);
 SCICOS_BLOCKS_IMPEXP void gain(ARGS_scicos);
-SCICOS_BLOCKS_IMPEXP void fromws_c(ARGS_scicos);
 SCICOS_BLOCKS_IMPEXP void foriterator(ARGS_scicos);
 SCICOS_BLOCKS_IMPEXP void exttriuz(ARGS_scicos);
 SCICOS_BLOCKS_IMPEXP void exttriu(ARGS_scicos);
@@ -397,12 +398,10 @@ SCICOS_BLOCKS_IMPEXP void acosh_blk(ARGS_scicos);
 SCICOS_BLOCKS_IMPEXP void acos_blk(ARGS_scicos);
 SCICOS_BLOCKS_IMPEXP void absolute_value(ARGS_scicos);
 SCICOS_BLOCKS_IMPEXP void absblk(ARGS_scicos);
+SCICOS_BLOCKS_IMPEXP void fromws_c(ARGS_scicos);
 SCICOS_BLOCKS_IMPEXP void affich2(ARGS_scicos);
 
-#define SIZE_TAB_BLOCK_LIST 370
-int ntabsim = SIZE_TAB_BLOCK_LIST;
-
-OpTab tabsim[SIZE_TAB_BLOCK_LIST] = {
+OpTab tabsim[] = {
 {"zcross",(ScicosF) C2F(zcross)},
 {"writef",(ScicosF) C2F(writef)},
 {"trash",(ScicosF) C2F(trash)},
@@ -520,6 +519,8 @@ OpTab tabsim[SIZE_TAB_BLOCK_LIST] = {
 {"selector_m",(ScicosF) selector_m},
 {"selector",(ScicosF) selector},
 {"scicosexit",(ScicosF) scicosexit},
+{"scale_cscope",(ScicosF) scale_cscope},
+{"scale_cmscope",(ScicosF) scale_cmscope},
 {"scalar2vector",(ScicosF) scalar2vector},
 {"satur",(ScicosF) satur},
 {"samphold4_m",(ScicosF) samphold4_m},
@@ -658,7 +659,6 @@ OpTab tabsim[SIZE_TAB_BLOCK_LIST] = {
 {"gainblk_i16e",(ScicosF) gainblk_i16e},
 {"gainblk",(ScicosF) gainblk},
 {"gain",(ScicosF) gain},
-{"fromws_c",(ScicosF) fromws_c},
 {"foriterator",(ScicosF) foriterator},
 {"exttriuz",(ScicosF) exttriuz},
 {"exttriu",(ScicosF) exttriu},
@@ -771,8 +771,9 @@ OpTab tabsim[SIZE_TAB_BLOCK_LIST] = {
 {"acos_blk",(ScicosF) acos_blk},
 {"absolute_value",(ScicosF) absolute_value},
 {"absblk",(ScicosF) absblk},
+{"fromws_c",(ScicosF) fromws_c},
 {"affich2",(ScicosF) affich2},
 {(char *) 0, (ScicosF) 0}};
-#endif
+#endif /* __SCICOS_BLOCKS_H__ */
 /****************************************/
 

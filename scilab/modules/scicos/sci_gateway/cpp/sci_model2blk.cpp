@@ -55,11 +55,7 @@ extern "C"
 
 /*--------------------------------------------------------------------------*/
 //extern int *listentry(int *header, int i);
-//extern int C2F(funnum) (char *fname);
 //extern int C2F(namstr)();
-/*--------------------------------------------------------------------------*/
-//extern int ntabsim;
-//extern OpTab tabsim[];
 /*--------------------------------------------------------------------------*/
 /* model2blk Build a scicos_block structure from
 * a scicos model

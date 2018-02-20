@@ -1,6 +1,7 @@
 //  Scicos
 //
 //  Copyright (C) DIGITEO - 2009 - Allan CORNET
+//  Copyright (C) ESI Group - 2018 - Clement DAVID
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -32,6 +33,10 @@ NON_BLOCK_C_SOURCES = ["scoGetProperty.c",
 "scicos_evalhermite.c",
 "scicos_indexfinder.c"];
 
+NON_BLOCK_CPP_SOURCES = ["scoUtils.cpp",
+"HelpersJNI.cpp",
+"HelpersCLI.cpp"];
+
 BLOCK_C_SOURCES(grep(BLOCK_C_SOURCES,NON_BLOCK_C_SOURCES)) = [];
 BLOCKS_C = strsubst(BLOCK_C_SOURCES,".c","");
 
@@ -43,6 +48,7 @@ BLOCKS_FORTRAN = strsubst(BLOCK_FORTRAN_SOURCES,".f","");
 cd SCI/modules/scicos_blocks/src/cpp;
 
 BLOCK_CPP_SOURCES = gsort(ls("*.cpp"));
+BLOCK_CPP_SOURCES(grep(BLOCK_CPP_SOURCES,NON_BLOCK_CPP_SOURCES)) = [];
 BLOCKS_CPP = strsubst(BLOCK_CPP_SOURCES,".cpp","");
 
 BLOCKS_H = [
@@ -84,23 +90,15 @@ BLOCKS_H = [BLOCKS_H;
 "SCICOS_BLOCKS_IMPEXP void " + BLOCKS_CPP + "(ARGS_scicos);" ;
 ""];
 
-SIZE_BLOCKS_C = size(BLOCKS_C,"*") + 1;
-SIZE_BLOCKS_FORTRAN = size(BLOCKS_FORTRAN,"*") + 1;
-
-SIZE_TAB_BLOCK_LIST = SIZE_BLOCKS_C + SIZE_BLOCKS_FORTRAN;
-
 BLOCKS_H = [BLOCKS_H;
-"#define SIZE_TAB_BLOCK_LIST " + string(SIZE_TAB_BLOCK_LIST);
-"int ntabsim = SIZE_TAB_BLOCK_LIST;"
-"";
-"OpTab tabsim[SIZE_TAB_BLOCK_LIST] = {"];
+"OpTab tabsim[] = {"];
 
 BLOCKS_H = [BLOCKS_H;
 "{""" + BLOCKS_FORTRAN + """,(ScicosF) C2F(" + BLOCKS_FORTRAN + ")}," ;
 "{""" + BLOCKS_C + """,(ScicosF) " + BLOCKS_C + "}," ;
 "{""" + BLOCKS_CPP + """,(ScicosF) " + BLOCKS_CPP + "}," ;
 "{(char *) 0, (ScicosF) 0}};" ;
-"#endif" ;
+"#endif /* __SCICOS_BLOCKS_H__ */" ;
 "/****************************************/" ;
 ""];
 
