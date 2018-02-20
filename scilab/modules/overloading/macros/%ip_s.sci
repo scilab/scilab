@@ -1,5 +1,4 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA
 // Copyright (C) 2018 - Samuel GOUGEON
 //
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
@@ -11,11 +10,7 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function r = %s_s_ip(s,ip)
-    // s-ip
-    if size(s,"*")<>1 then
-        msg = _("%s: Argument #%d: Scalar (1 element) expected.\n")
-        error(msprintf(msg, "%s_s_ip", 1))
-    end
-    r = (s-ip(1)):-ip(2):(s-ip(3))
+function r = %ip_s(ip)
+    // -(1:2:$)
+    r = -ip(1):-ip(2):-ip(3)
 endfunction
