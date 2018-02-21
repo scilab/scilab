@@ -264,6 +264,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="cosh_blk.c" />
     <ClCompile Include="counter.c" />
     <ClCompile Include="cscope.c" />
+    <ClCompile Include="scale_cmscope.c" />
     <ClCompile Include="scale_cscope.c" />
     <ClCompile Include="cscopxy.c" />
     <ClCompile Include="cscopxy3d.c" />

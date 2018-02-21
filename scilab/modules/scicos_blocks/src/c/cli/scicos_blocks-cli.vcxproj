@@ -267,6 +267,7 @@ lib /DEF:"$(ProjectDir)../elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS 
     <ClCompile Include="..\cosh_blk.c" />
     <ClCompile Include="..\counter.c" />
     <ClCompile Include="..\cscope.c" />
+    <ClCompile Include="..\scale_cmscope.c" />
     <ClCompile Include="..\scale_cscope.c" />
     <ClCompile Include="..\cscopxy.c" />
     <ClCompile Include="..\cscopxy3d.c" />
@@ -592,11 +593,11 @@ lib /DEF:"$(ProjectDir)../elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS 
       <Project>{4fc72d4a-80ee-4b1a-8724-0201c1a35621}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\..\graphics\graphics.vcxproj">
-      <Project>{8ccdd3c2-b025-4a12-a986-1aa28d7c0c33}</Project>
+    <ProjectReference Include="..\..\..\..\graphics\src\nographics\nographics.vcxproj">
+      <Project>{0ac1142c-0eff-4406-9e5d-6111a7a8f614}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\..\graphic_objects\src\c\graphic_objects.vcxproj">
-      <Project>{30f9ee41-587b-4618-8de7-698d3fba4985}</Project>
+    <ProjectReference Include="..\..\..\..\graphic_objects\src\nographic_objects\nographic_objects.vcxproj">
+      <Project>{a910bd0c-8faf-4382-b06a-f767e4752733}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\hdf5\src\c\hdf5.vcxproj">
       <Project>{a824ea62-af07-4f43-9036-0e63990556bd}</Project>

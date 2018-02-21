@@ -113,12 +113,6 @@ double getDoubleFromStack(size_t stackPointer)
 }
 
 /*--------------------------------------------------------------------------*/
-int getFigureFromIndex(int figNum)
-{
-    return NULL;
-}
-
-/*--------------------------------------------------------------------------*/
 char **getStringMatrixFromStack(size_t stackPointer)
 {
     return NULL;
@@ -356,11 +350,6 @@ void setDoubleArraySingleValue(double dest[], double value, int nbElement)
 BOOL sciIsExistingFigure(int figNum)
 {
     return FALSE;
-}
-
-/*--------------------------------------------------------------------------*/
-void cloneAxesModel(int pstFigureUID)
-{
 }
 
 /*--------------------------------------------------------------------------*/

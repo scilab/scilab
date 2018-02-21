@@ -977,6 +977,9 @@
     <ClCompile Include="..\..\cpp\fromws_c.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\scale_cmscope.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\includes\blocks.h">
