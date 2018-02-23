@@ -557,6 +557,7 @@
                         <xsl:call-template name="context"/>
                     </entryChanged>
                 </TextArea>
+                <Label gridx="1" gridy="3" text="_(Available variables: {{$current-date}}, {{$current-year}})" enable="false"/>
             </Grid>
         </Title>
     </xsl:template>

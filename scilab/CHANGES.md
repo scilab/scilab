@@ -380,6 +380,7 @@ Known issues
 * [#9958](http://bugzilla.scilab.org/show_bug.cgi?id=9958): `mprintf("%d\r", 12345)` printed `" 345"`
 * [#10190](http://bugzilla.scilab.org/show_bug.cgi?id=10190): Xcos blocks and labels positioning were not aligned to the grid on creation.
 * [#11240](http://bugzilla.scilab.org/show_bug.cgi?id=11240): `A=[]; clear B; [A($+1),B]=1;` crashed Scilab.
+* [#11583](http://bugzilla.scilab.org/show_bug.cgi?id=11583): When in Scinotes preferences the default header is erased, the available variables were no longer documented.
 * [#11916](http://bugzilla.scilab.org/show_bug.cgi?id=11916): Loading a graphic file containing several figures restored them by superimposing them in the same window.
 * [#12109](http://bugzilla.scilab.org/show_bug.cgi?id=12109): `execstr(.,"errcatch")` calling a macro returning before setting the argout crashed Scilab.
 * [#12566](http://bugzilla.scilab.org/show_bug.cgi?id=12566): `disp()` of a T-list with a single field set to an encoded integer value generated an error.
