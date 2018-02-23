@@ -370,6 +370,9 @@ Known issues
 * This is one of the first releases of a completely rewritten interpreter engine. If you discover strange behaviors or unexpected results do not hesitate to [report](https://bugzilla.scilab.org) them.
 * Toolboxes rebuild is in progress. Do not hesitate to submit patch or feature upgrade to the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 
+### Bugs fixed in 6.0.2:
+* [#7675](http://bugzilla.scilab.org/show_bug.cgi?id=7675): sparse() got a wrong result, when creation with many values in same position.
+
 
 ### Bugs fixed in 6.0.1:
 * [#2441](http://bugzilla.scilab.org/show_bug.cgi?id=2441): `%onprompt()` could be defined only at the top execution level.
