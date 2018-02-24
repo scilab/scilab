@@ -177,7 +177,11 @@ Obsolete functions or features
 Removed Functions
 -----------------
 
+<<<<<<< HEAD
 * `getPreferencesValue` was obsolete and has been removed. Please use `xmlGetValues` instead.
+=======
+* `eval` was obsolete and has been removed. Please use `evstr` instead.
+>>>>>>> 1ec71c6c514... * Bug 15309 fixed: eval() actual removal
 * `hypermat` was obsolete and has been removed. Please use `matrix` instead.
 * `square` was obsolete and has been removed.
 * `xgetech` was obsolete and has been removed. Please use `gca` instead.
@@ -227,6 +231,7 @@ Bug Fixes
 * [#15248](http://bugzilla.scilab.org/show_bug.cgi?id=15248): `lsq()`was leaking memory.
 * [#15269](http://bugzilla.scilab.org/show_bug.cgi?id=15269): `xgetech` was poor and stiff compared to any combination of `gca()` properties `.axes_bounds`, `.data_bounds`, `.log_flags`, and `.margins`. It is removed.
 * [#15271](http://bugzilla.scilab.org/show_bug.cgi?id=15271): `bitget` needed to be upgraded.
+* [#15309](http://bugzilla.scilab.org/show_bug.cgi?id=15309): `eval()` was a weak duplicate of `evstr()`. It should be removed.
 * [#15321](http://bugzilla.scilab.org/show_bug.cgi?id=15321): `lu()` was leaking memory.
 * [#15350](http://bugzilla.scilab.org/show_bug.cgi?id=15350): `ric_desc()` should be merged into `riccati()`.
 * [#15368](http://bugzilla.scilab.org/show_bug.cgi?id=15368): `freson()` silently returned frequencies not corresponding to a maximum, or returned [] instead of some still computable maxima frequencies.

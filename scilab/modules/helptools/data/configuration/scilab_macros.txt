@@ -449,7 +449,6 @@ ascii2string
 asciimat
 blanks
 cat_code
-eval
 evstr
 expression2code
 format_txt

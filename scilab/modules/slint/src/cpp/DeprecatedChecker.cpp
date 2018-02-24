@@ -1,9 +1,8 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2015 - Scilab Enterprises - Calixte DENIZET
+ *  Copyright (C) 2012 - 2016 - Scilab Enterprises
  *  Copyright (C) 2017, 2018 - Samuel GOUGEON
- *
- * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -105,6 +104,7 @@ std::unordered_map<std::wstring, std::wstring> DeprecatedChecker::initDep()
     map.emplace(L"datatipToggle", L"datatipManagerMode");
     map.emplace(L"denom", L".den");
     map.emplace(L"frexp", L"log2");
+    map.emplace(L"eval", L"evstr");
     map.emplace(L"getPreferencesValue", L"xmlGetValues");
     map.emplace(L"hypermat", L"zeros|matrix");
     map.emplace(L"lstsize", L"size");
