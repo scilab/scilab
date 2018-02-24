@@ -180,6 +180,7 @@ Removed Functions
 * `getPreferencesValue` was obsolete and has been removed. Please use `xmlGetValues` instead.
 * `eval` was obsolete and has been removed. Please use `evstr` instead.
 * `hypermat` was obsolete and has been removed. Please use `matrix` instead.
+* `lstsize` was obsolete and has been removed. Please use `size` instead.
 * `square` was obsolete and has been removed.
 * `xgetech` was obsolete and has been removed. Please use `gca` instead.
 
@@ -193,6 +194,7 @@ Bug Fixes
 
 ### Bugs fixed in 6.1.0:
 * [#2694](http://bugzilla.scilab.org/show_bug.cgi?id=2694): `bitget` did not accept positive integers of types int8, int16 or int32.
+* [#7657](http://bugzilla.scilab.org/show_bug.cgi?id=7657): `lstsize` was a duplicate of `size` and should be removed.
 * [#7724](http://bugzilla.scilab.org/show_bug.cgi?id=7724): When a figure is created in .auto_resize="on" mode, its .axes_size sets its .figure_size accordingly, not the reverse. But this was not documented.
 * [#7765](http://bugzilla.scilab.org/show_bug.cgi?id=7765): `champ1()` is useless. `champ().colored` is available for a long time.
 * [#7967](http://bugzilla.scilab.org/show_bug.cgi?id=7967): The tricky size `[ny,nx]` of `meshgrid(x,y)` results and usages with graphics was not enough documented.

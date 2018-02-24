@@ -30,11 +30,11 @@ scs_m2 = xcosDiagramToScilab("TMPDIR/foo.zcos");
 scs_m3 = xcosDiagramToScilab("TMPDIR/foo.zcos");
 
 // check that objs have the same size
-assert_checkequal(lstsize(scs_m1.objs), lstsize(scs_m2.objs));
-assert_checkequal(lstsize(scs_m1.objs), lstsize(scs_m3.objs));
+assert_checkequal(size(scs_m1.objs), size(scs_m2.objs));
+assert_checkequal(size(scs_m1.objs), size(scs_m3.objs));
 
 // check that all blocks are connected
-for i=1:lstsize(scs_m1.objs)
+for i=1:size(scs_m1.objs)
     o = scs_m1.objs(i);
     if typeof(o) == "Block" then
         assert_checktrue(o.graphics.pin <> 0);
@@ -43,7 +43,7 @@ for i=1:lstsize(scs_m1.objs)
         assert_checktrue(o.graphics.peout <> 0);
     end
 end
-for i=1:lstsize(scs_m2.objs)
+for i=1:size(scs_m2.objs)
     o = scs_m2.objs(i);
     if typeof(o) == "Block" then
         assert_checktrue(o.graphics.pin <> 0);
@@ -52,7 +52,7 @@ for i=1:lstsize(scs_m2.objs)
         assert_checktrue(o.graphics.peout <> 0);
     end
 end
-for i=1:lstsize(scs_m3.objs)
+for i=1:size(scs_m3.objs)
     o = scs_m3.objs(i);
     if typeof(o) == "Block" then
         assert_checktrue(o.graphics.pin <> 0);
@@ -70,11 +70,11 @@ end
 scicos_simulate(scs_m1, "nw");
 
 // check that objs have the same size
-assert_checkequal(lstsize(scs_m1.objs), lstsize(scs_m2.objs));
-assert_checkequal(lstsize(scs_m1.objs), lstsize(scs_m3.objs));
+assert_checkequal(size(scs_m1.objs), size(scs_m2.objs));
+assert_checkequal(size(scs_m1.objs), size(scs_m3.objs));
 
 // check that all blocks are connected
-for i=1:lstsize(scs_m1.objs)
+for i=1:size(scs_m1.objs)
     o = scs_m1.objs(i);
     if typeof(o) == "Block" then
         assert_checktrue(o.graphics.pin <> 0);
@@ -83,7 +83,7 @@ for i=1:lstsize(scs_m1.objs)
         assert_checktrue(o.graphics.peout <> 0);
     end
 end
-for i=1:lstsize(scs_m2.objs)
+for i=1:size(scs_m2.objs)
     o = scs_m2.objs(i);
     if typeof(o) == "Block" then
         assert_checktrue(o.graphics.pin <> 0);
@@ -92,7 +92,7 @@ for i=1:lstsize(scs_m2.objs)
         assert_checktrue(o.graphics.peout <> 0);
     end
 end
-for i=1:lstsize(scs_m3.objs)
+for i=1:size(scs_m3.objs)
     o = scs_m3.objs(i);
     if typeof(o) == "Block" then
         assert_checktrue(o.graphics.pin <> 0);
@@ -106,11 +106,11 @@ end
 scicos_simulate(scs_m2, "nw");
 
 // check that objs have the same size
-assert_checkequal(lstsize(scs_m1.objs), lstsize(scs_m2.objs));
-assert_checkequal(lstsize(scs_m1.objs), lstsize(scs_m3.objs));
+assert_checkequal(size(scs_m1.objs), size(scs_m2.objs));
+assert_checkequal(size(scs_m1.objs), size(scs_m3.objs));
 
 // check that all blocks are connected
-for i=1:lstsize(scs_m1.objs)
+for i=1:size(scs_m1.objs)
     o = scs_m1.objs(i);
     if typeof(o) == "Block" then
         assert_checktrue(o.graphics.pin <> 0);
@@ -119,7 +119,7 @@ for i=1:lstsize(scs_m1.objs)
         assert_checktrue(o.graphics.peout <> 0);
     end
 end
-for i=1:lstsize(scs_m2.objs)
+for i=1:size(scs_m2.objs)
     o = scs_m2.objs(i);
     if typeof(o) == "Block" then
         assert_checktrue(o.graphics.pin <> 0);
@@ -128,7 +128,7 @@ for i=1:lstsize(scs_m2.objs)
         assert_checktrue(o.graphics.peout <> 0);
     end
 end
-for i=1:lstsize(scs_m3.objs)
+for i=1:size(scs_m3.objs)
     o = scs_m3.objs(i);
     if typeof(o) == "Block" then
         assert_checktrue(o.graphics.pin <> 0);
