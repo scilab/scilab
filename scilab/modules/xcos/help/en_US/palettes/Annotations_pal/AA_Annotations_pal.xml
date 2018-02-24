@@ -30,11 +30,14 @@
     <refsection>
         <title>Block Screenshot</title>
         <para>
+            <link linkend="TEXT_f">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="TEXT_f" fileref="../../../../images/palettes/TEXT_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="TEXT_f" fileref="../../../../images/palettes/TEXT_f.png"
+                       style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>
         </para>
     </refsection>
     <refsection id="Module_Annotations_pal">

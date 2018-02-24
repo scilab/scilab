@@ -599,53 +599,67 @@
     </refsection>
     <refsection>
         <title>Remarks</title>
-        <para>
-            1. The converged Ritz values are always returned in ascending
-            algebraic order. The computed Ritz values are approximate eigenvalues of
-            OP. The selection of WHICH should be made with this in mind when Mode =
-            3, 4, 5. After convergence, approximate eigenvalues of the original problem
-            may be obtained with the ARPACK subroutine dseupd .
-        </para>
-        <para>
-            2. If the Ritz vectors corresponding to the converged Ritz values
-            are needed, the user must call dseupd immediately following completion of
-            dsaupd . This is new starting with version 2.1 of ARPACK.
-        </para>
-        <para>
-            3. If M can be factored into a Cholesky factorization M = LL` then
-            Mode = 2 should not be selected. Instead one should use Mode = 1 with OP =
-            inv(L) * A * inv(L`). Appropriate triangular linear systems should be solved
-            with L and L` rather than computing inverses. After convergence, an
-            approximate eigenvector z of the original problem is recovered by solving
-            L`z = x where x is a Ritz vector of OP.
-        </para>
-        <para>
-            4. At present there is no a-priori analysis to guide the selection
-            of NCV relative to NEV. The only formal requirement is that NCV &gt; NEV.
-            However, it is recommended that NCV &gt;= 2 * NEV. If many problems of the
-            same type are to be solved, one should experiment with increasing NCV
-            while keeping NEV fixed for a given test problem. This will usually
-            decrease the required number of OP * x operations but it also increases the
-            work and storage required to maintain the orthogonal basis vectors. The
-            optimal "cross-over" with respect to CPU time is problem dependent and
-            must be determined empirically.
-        </para>
-        <para>
-            5. If IPARAM(7) = 2 then in the Reverse communication interface the
-            user must do the following. When IDO = 1, Y = OP * X is to be computed.
-            When IPARAM(7) = 2 OP = inv(B) * A. After computing A * X the user must
-            overwrite X with A * X. Y is then the solution to the linear set of
-            equations B * Y = A * X.
-        </para>
-        <para>
-            6. When IPARAM(1) = 0, and IDO = 3, the user needs to provide the NP
-            = IPARAM(8) shifts in locations: 1 WORKL(IPNTR(11)) 2 WORKL(IPNTR(11) + 1) .
-            . . NP WORKL(IPNTR(11) + NP - 1). The eigenvalues of the current tridiagonal
-            matrix are located in WORKL(IPNTR(6)) through WORKL(IPNTR(6) + NCV - 1). They
-            are in the order defined by WHICH. The associated Ritz estimates are
-            located in WORKL(IPNTR(8)), WORKL(IPNTR(8) + 1), ... ,
-            WORKL(IPNTR(8) + NCV - 1).
-        </para>
+        <orderedlist>
+          <listitem>
+            <para>
+              The converged Ritz values are always returned in ascending
+              algebraic order. The computed Ritz values are approximate eigenvalues of
+              OP. The selection of WHICH should be made with this in mind when Mode =
+              3, 4, 5. After convergence, approximate eigenvalues of the original problem
+              may be obtained with the ARPACK subroutine dseupd .
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              If the Ritz vectors corresponding to the converged Ritz values
+              are needed, the user must call dseupd immediately following completion of
+              dsaupd . This is new starting with version 2.1 of ARPACK.
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              If M can be factored into a Cholesky factorization M = LL` then
+              Mode = 2 should not be selected. Instead one should use Mode = 1 with OP =
+              inv(L) * A * inv(L`). Appropriate triangular linear systems should be solved
+              with L and L` rather than computing inverses. After convergence, an
+              approximate eigenvector z of the original problem is recovered by solving
+              L`z = x where x is a Ritz vector of OP.
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              At present there is no a-priori analysis to guide the selection
+              of NCV relative to NEV. The only formal requirement is that NCV &gt; NEV.
+              However, it is recommended that NCV &gt;= 2 * NEV. If many problems of the
+              same type are to be solved, one should experiment with increasing NCV
+              while keeping NEV fixed for a given test problem. This will usually
+              decrease the required number of OP * x operations but it also increases the
+              work and storage required to maintain the orthogonal basis vectors. The
+              optimal "cross-over" with respect to CPU time is problem dependent and
+              must be determined empirically.
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+                If IPARAM(7) = 2 then in the Reverse communication interface the
+                user must do the following. When IDO = 1, Y = OP * X is to be computed.
+                When IPARAM(7) = 2 OP = inv(B) * A. After computing A * X the user must
+                overwrite X with A * X. Y is then the solution to the linear set of
+                equations B * Y = A * X.
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+                When IPARAM(1) = 0, and IDO = 3, the user needs to provide the NP
+                = IPARAM(8) shifts in locations: 1 WORKL(IPNTR(11)) 2 WORKL(IPNTR(11) + 1) .
+                . . NP WORKL(IPNTR(11) + NP - 1). The eigenvalues of the current tridiagonal
+                matrix are located in WORKL(IPNTR(6)) through WORKL(IPNTR(6) + NCV - 1). They
+                are in the order defined by WHICH. The associated Ritz estimates are
+                located in WORKL(IPNTR(8)), WORKL(IPNTR(8) + 1), ... ,
+                WORKL(IPNTR(8) + NCV - 1).
+            </para>
+          </listitem>
+        </orderedlist>
     </refsection>
     <refsection>
         <title>Example</title>

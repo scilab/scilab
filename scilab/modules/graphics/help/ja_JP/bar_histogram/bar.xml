@@ -22,7 +22,10 @@
 
  -->
 
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ja" xml:id="bar">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ja" xml:id="bar">
 
     <refnamediv>
 
@@ -37,11 +40,9 @@
         <title>呼び出し手順</title>
 
         <synopsis>bar(y)
-
-            bar(x,y)
-
-            bar([h],x,y [,width [,color [,style]]])
-
+            bar(x, y)
+            bar(x, y [,width [,color [,style]]])
+            bar(h, x, y ..)
         </synopsis>
 
     </refsynopsisdiv>
@@ -115,9 +116,10 @@
                 <term>color</term>
 
                 <listitem>
-
-                    <para>(オプション), 文字列 (デフォルト: 'blue'), カラーバーの内側の色を指定.</para>
-
+                    <para>
+                        (オプション) the color filling bars, specified by its literal name among
+                        predefined ones, or by its "#RRGGBB" hexadecimal code.  Default: "blue"
+                    </para>
                 </listitem>
 
             </varlistentry>
@@ -204,11 +206,9 @@
 
             <literal>bar(...,color,...) : </literal>は,barの色を定義します.
 
-            bar関数は<literal>plot</literal>関数と同じカラーマップを使用します.
-
         </para>
 
-        <para>barを複数回コールする場合,
+        <para>bar()を複数回コールする場合,
 
             <literal>barhomogenize</literal>関数により
 
@@ -331,40 +331,38 @@ bar(x,y,0.2,'green');
         <title>参照</title>
 
         <simplelist type="inline">
-
             <member>
-
                 <link linkend="barh">barh</link>
-
             </member>
-
             <member>
-
                 <link linkend="barhomogenize">barhomogenize</link>
-
             </member>
-
             <member>
-
-                <link linkend="plot">plot</link>
-
-            </member>
-
-            <member>
-
                 <link linkend="histplot">histplot</link>
-
             </member>
-
             <member>
-
-                <link linkend="polyline_properties">polyline_properties</link>
-
+                <link linkend="plot">plot</link>
             </member>
-
+            <member>
+                <link linkend="color_list">named colors</link>
+            </member>
+            <member>
+                <link linkend="polyline_properties">polyline_properties</link>
+            </member>
         </simplelist>
-
     </refsection>
-
+    <refsection role="history">
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.1</revnumber>
+                <revdescription>
+                    color is no longer restricted to the 10 major colors: It can now be any of the
+                    numerous predefined Scilab color names. Moreover, it can now be specified by
+                    its "#RRGGBB" hexadecimal code.
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>
 

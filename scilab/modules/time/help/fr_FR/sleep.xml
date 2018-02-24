@@ -3,6 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA -
  * Copyright (C) 2016 - Samuel GOUGEON
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -13,7 +14,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="sleep">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="fr" xml:id="sleep">
     <refnamediv>
         <refname>sleep</refname>
         <refpurpose>mise en sommeil de l'interprêteur (console, scripts, callbacks)</refpurpose>
@@ -64,6 +68,7 @@
                         dans le script ou la function. Pendant ce temps, la console
                         est bloquée. L'interruption CTRL-C est prise en compte mais
                         exécutée uniquement au terme du sommeil programmé.
+                        <para/>
                     </listitem>
                 </varlistentry>
                 <varlistentry>
@@ -73,8 +78,9 @@
                         interactifs <literal>uicontrol</literal>. Durant le sommeil
                         provoqué par sleep(..), les interactions avec les menus et les
                         <literal>uicontrol</literal> sont possibles : les
-                        instructions/actions associées sont prises en compte et mémorises,
+                        instructions/actions associées sont prises en compte et mémorisées,
                         mais leur exécution est différée au terme du sommeil.
+                        <para/>
                     </listitem>
                 </varlistentry>
                 <varlistentry>
@@ -99,8 +105,8 @@
             </note>
             <warning>Résolution... n'est pas justesse : la durée réelle du sommeil
                 peut s'avérer différente de la durée spécifiée, en particulier en
-                fonction de la charge du processeur ou du temps mis par Scilab pour
-                déclencher <function>sleep()</function>. Voir le test en exemple.
+                fonction de la charge d'activité du processeur ou du temps mis par Scilab pour
+                déclencher <literal>sleep()</literal>. Voir le test en exemple.
             </warning>
         </para>
     </refsection>

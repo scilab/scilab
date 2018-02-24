@@ -313,10 +313,9 @@
                 </listitem>
             </varlistentry>
         </variablelist>
-        <para>
-            This function can not open a UTF filename. In this case, please uses
-            mopen.
-        </para>
+        <warning>
+            This function can not open a UTF filename. In this case, please use mopen.
+        </warning>
     </refsection>
     <refsection>
         <title>Examples</title>

@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="bar">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="fr" xml:id="bar">
     <refnamediv>
         <refname>bar</refname>
         <refpurpose>histogramme de barres</refpurpose>
@@ -7,8 +10,9 @@
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
         <synopsis>bar(y)
-            bar(x,y)
-            bar([h],x,y [,width [,color [,style]]])
+            bar(x, y)
+            bar(x, y [,width [,color [,style]]])
+            bar(h, x, y ..)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -23,31 +27,47 @@
             <varlistentry>
                 <term>y</term>
                 <listitem>
-                    <para>un scalaire, un vecteur de taille N, ou une matrice de taille N*M</para>
+                    <para>
+                      un scalaire, un vecteur de taille N, ou une matrice de taille N*M
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>un scalaire ou un vecteur de taille N, (si y est un vecteur alors x doit etre de meme longeur que y. Si y est une matrice alors x doit etre un vecteur de longeur egale au nombre de lignes de y).</para>
+                    <para>
+                      un scalaire ou un vecteur de taille N, (si y est un vecteur alors x doit
+                      etre de meme longeur que y. Si y est une matrice alors x doit etre un vecteur
+                      de longeur egale au nombre de lignes de y).
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>width</term>
                 <listitem>
-                    <para>(optionnel), un scalaire, définit l'épaisseur des barres (un pourcentage de l'epaisseur maximum autorisé pour une barre), par défaut: width=0.8, i.e 80%.</para>
+                    <para>
+                      (optionnel), un scalaire, définit l'épaisseur des barres (un pourcentage
+                      de l'epaisseur maximum autorisé pour une barre), par défaut: width=0.8,
+                      i.e 80%.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>color</term>
                 <listitem>
-                    <para>(optionnel), une chaine (par défaut: 'blue'), specifiant la couleur de l'intérieur des barres.</para>
+                    <para>
+                        (optionnel) couleur de remplissage des barres, indiquée par son nom
+                        littéral choisi dans la liste des couleurs Scilab prédéfinies, ou par
+                        son code hexadécimal littéral du type "#RRGGBB".  Par défaut: "blue"
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>style:</term>
                 <listitem>
-                    <para>(optionel), une chaine, 'grouped' or 'stacked' (par défaut: 'grouped').</para>
+                    <para>
+                      (optionel), une chaine, 'grouped' or 'stacked' (par défaut: 'grouped').
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -87,11 +107,9 @@
             'stacked' permet de les empiler.
         </para>
         <para>
-            <literal>bar(...,color,...) : </literal>definit la couleur des barres. La
-            fonction bar utilise la meme colormap que la fonction
-            <literal>plot</literal>.
+            <literal>bar(...,color,...) : </literal> definit la couleur des barres.
         </para>
-        <para>S'il y a plusieurs appels à la fonction bar, la fonction
+        <para>S'il y a plusieurs appels à la fonction bar(), la fonction
             <literal>barhomogenize</literal> permet d'homogénéiser l'épaisseur et le style
             de toutes les barres (i.e les polylines de type 6) inclus dans les axes
             courrants.
@@ -158,14 +176,31 @@ bar(x,y,0.2,'green');
                 <link linkend="barhomogenize">barhomogenize</link>
             </member>
             <member>
+                <link linkend="histplot">histplot</link>
+            </member>
+            <member>
                 <link linkend="plot">plot</link>
             </member>
             <member>
-                <link linkend="histplot">histplot</link>
+                <link linkend="color_list">couleurs prédéfinies</link>
             </member>
             <member>
                 <link linkend="polyline_properties">polyline_properties</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.1</revnumber>
+                <revdescription>
+                    La valeur de color n'est plus restreinte aux 10 principales couleurs : elle
+                    peut désormais être toute couleur parmi celles -- nombreuses -- prédéfinies
+                    dans Scilab. En outre, color peut maintenant être indiquée par son code
+                    hexadécimal "#RRGGBB".
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

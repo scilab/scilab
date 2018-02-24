@@ -22,7 +22,10 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="PULSE_SC" xml:lang="en_US">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="PULSE_SC" xml:lang="en_US">
     <refnamediv>
         <refname>PULSE_SC</refname>
         <refpurpose>Pulse Generator</refpurpose>
@@ -95,16 +98,17 @@
         <title>Description</title>
         <para>
             This block is a Pulse Generator. It generates a pulse at a rate of
-            <emphasis role="bold">1/P</emphasis> where <emphasis role="bold">P
-            </emphasis>
-            is the period of the signal. The <emphasis role="bold">Phase
-                delay
-            </emphasis>
-            gives the value (in time) of the first event. The
-            <emphasis role="bold">Phase delay</emphasis> known also as <emphasis role="bold">Offset</emphasis> must be less than the <literal>Frequency*(1-(Pulse_Width/100))</literal>.
-            The second parameter of the block gives the <emphasis role="bold">Pulse
-                width
-            </emphasis>
+            <emphasis role="bold">1/P</emphasis> where <emphasis role="bold">P</emphasis>
+            is the period of the signal.
+        </para>
+        <para>
+            The <emphasis role="bold">Phase delay</emphasis> gives the value (in time) of the
+            first event. Also known as <emphasis role="bold">Offset</emphasis>, the
+            <emphasis role="bold">Phase delay</emphasis>  must be less than the
+            <literal>Period*(1-(Pulse_Width/100))</literal>.
+        </para>
+        <para>
+            The second parameter of the block gives the <emphasis role="bold">Pulse width</emphasis>,
             and the fourth parameter gives the <emphasis role="bold">Pulse amplitude</emphasis>.
         </para>
     </refsection>

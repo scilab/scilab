@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="where">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ja" xml:id="where">
     <refnamediv>
         <refname>where</refname>
         <refpurpose>カレントの命令の呼び出しツリーを得る</refpurpose>
@@ -47,29 +50,44 @@
         <title>例</title>
         <programlisting role="example"><![CDATA[
 function foo()
-         [a,b] = where()
-         disp("Line:")
-         disp(a);
-         disp("Function:")
-         disp(b);
+    c = 1
+    [a,b] = where()
+    disp("Line:")
+    disp(a);
+    disp("Function:")
+    disp(b);
 endfunction
 
-function bar()
-         function beer()
-                  foo()
-         endfunction
-         beer()
+function test()
+    function beer()
+        foo()
+    endfunction
+    beer()
 endfunction
 
-bar()
-
+test()
  ]]></programlisting>
+    <screen><![CDATA[
+--> test()
+ Line:
+   3.
+   2.
+   5.
+
+ Function:
+!foo   !
+!beer  !
+!test  !
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
             <member>
                 <link linkend="whereami">whereami</link>
+            </member>
+            <member>
+                <link linkend="recursionlimit">recursionlimit</link>
             </member>
             <member>
                 <link linkend="pause">pause</link>

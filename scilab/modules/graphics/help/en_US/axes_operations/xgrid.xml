@@ -14,14 +14,22 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="xgrid">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="xgrid">
     <refnamediv>
         <refname>xgrid</refname>
         <refpurpose>add a grid on a 2D or 3D plot</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>xgrid([color] [, thickness] [, style])</synopsis>
+        <synopsis>
+          xgrid
+          xgrid(color)
+          xgrid(color, thickness)
+          xgrid(color, thickness, style)
+         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -29,19 +37,19 @@
             <varlistentry>
                 <term>color</term>
                 <listitem>
-                    <para>an integer or a row matrix.</para>
+                    <para>an integer or a row vector</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>thickness</term>
                 <listitem>
-                    <para>a real or a row matrix.</para>
+                    <para>a real or a row vector</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>style</term>
                 <listitem>
-                    <para>an integer or a row matrix.</para>
+                    <para>an integer or a row vector</para>
                 </listitem>
             </varlistentry>
         </variablelist>

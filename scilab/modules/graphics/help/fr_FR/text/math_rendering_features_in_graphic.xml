@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="math_rendering_features_in_graphic" xml:lang="fr">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="math_rendering_features_in_graphic" xml:lang="fr">
     <refnamediv>
         <refname>Rendu d'équations mathématiques dans le graphique Scilab
         </refname>
@@ -13,7 +16,7 @@
             Scilab des équations LaTeX ou MathML.
         </para>
         <para>Les expressions LaTeX doivent commencer par $ et se terminer $ (le
-            caractère dollar) tant que les expressions MathML doivent commencer par
+            caractère dollar), tandis que les expressions MathML doivent commencer par
             &lt; et se terminer par &gt; avec une syntaxe valide.
         </para>
         <para>A la première utilisation (les bibliothèques sont chargées à la

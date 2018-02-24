@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="complex" xml:lang="ru">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="complex" xml:lang="ru">
     <refnamediv>
         <refname>complex</refname>
         <refpurpose>Создание комплексного числа.</refpurpose>
@@ -72,7 +75,8 @@
         </para>
         <para>
             Эта функция является заменой для таких выражений как <literal>a+%i*b</literal>,
-            особенно в случаях, когда комплексная арифметика пересекается с особыми числами с плавающей запятой, такими как <literal>%inf</literal> или <literal>%nan</literal>.
+            особенно в случаях, когда комплексная арифметика пересекается с особыми числами с
+            плавающей запятой, такими как <literal>%inf</literal> или <literal>%nan</literal>.
         </para>
     </refsection>
     <refsection>
@@ -103,7 +107,8 @@ c = complex([1 2 3], 4)
 c = complex(1, [2 3 4])
  ]]></programlisting>
         <para>
-            Если <literal>a</literal> и <literal>b</literal> являются матрицами разных размеров, то сформируется ошибка, как в следующем примере.
+            Если <literal>a</literal> и <literal>b</literal> являются матрицами разных размеров,
+            то сформируется ошибка, как в следующем примере.
         </para>
         <screen><![CDATA[
 -->complex(ones(2,3),ones(4,5))
@@ -117,7 +122,9 @@ complex(ones(2,3),ones(4,5))
             такими как нечисловые значения (<literal>Nan</literal>) или бесконечность
             (<literal>Inf</literal>).
             На следующем примере мы покажем, что создание комплексного числа, у которого
-            реальная  и мнимая части являются комплексными, не простое дело, если мы используем комплексную арифметику. Это из-за того, что произведение <literal>%i</literal> на <literal>%inf</literal> вычисляется как <literal>(0+%i) * (%inf+%i*0)</literal>.
+            реальная  и мнимая части являются комплексными, не простое дело, если мы используем
+            комплексную арифметику. Это из-за того, что произведение <literal>%i</literal> на
+            <literal>%inf</literal> вычисляется как <literal>(0+%i) * (%inf+%i*0)</literal>.
             Это даёт промежуточное выражение <literal>0*%inf</literal>, которое равно <literal>%nan</literal>.
         </para>
         <screen><![CDATA[
@@ -137,6 +144,9 @@ complex(ones(2,3),ones(4,5))
     <refsection role="see also">
         <title>Смотрите также</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="percenti">%i</link>
+            </member>
             <member>
                 <link linkend="imult">imult</link>
             </member>

@@ -298,6 +298,9 @@
             dos arquivos abertos. So <literal>file('close',file() )</literal> fecha
             todos os arquivos do usuário abertos (tipo C ou Fortran).
         </para>
+        <warning>
+            This function can not open a UTF filename. In this case, please use mopen.
+        </warning>
     </refsection>
     <refsection>
         <title>Exemplos</title>

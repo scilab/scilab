@@ -1,47 +1,50 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="slash" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="slash" xml:lang="pt">
     <refnamediv>
         <refname>slash</refname>
-        <refpurpose>(/) divisão esquerda-direita e feedback
+        <refpurpose>(/) divisÃ£o esquerda-direita e feedback
             ("resposta")
         </refpurpose>
     </refnamediv>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            Divisão esquerda-direita. <literal>x=A / b</literal> é a solução de
+            DivisÃ£o esquerda-direita. <literal>x=A / b</literal> Ã© a soluÃ§Ã£o de
             <literal>x*b=A</literal> .
         </para>
         <para>
             <literal>b/a = (a' \ b')'</literal> .
         </para>
         <para>
-            <literal>a./ b</literal> é a matriz com entradas <literal>a(i,j)/
+            <literal>a./ b</literal> Ã© a matriz com entradas <literal>a(i,j)/
                 b(i,j)
             </literal>
-            .Se <literal>b</literal> é escalar (matriz 1x1) esta
-            operação é o mesmo que <literal> a./b*ones(a)</literal>. (mesma convenção
-            se <literal>a</literal> é um escalar).
+            .Se <literal>b</literal> Ã© escalar (matriz 1x1) esta
+            operaÃ§Ã£o Ã© o mesmo que <literal> a./b*ones(a)</literal>. (mesma convenÃ§Ã£o
+            se <literal>a</literal> Ã© um escalar).
         </para>
         <para>
-            Observe que<literal> 123./b</literal> é interpretado como
-            <literal>(123.)/b</literal>. Nestes casos, o ponto é parte do número, não
+            Observe que<literal> 123./b</literal> Ã© interpretado como
+            <literal>(123.)/b</literal>. Nestes casos, o ponto Ã© parte do nÃºmero, nÃ£o
             do operador.
         </para>
-        <para>(\) significa divisão direita-esquerda.</para>
+        <para>(\) significa divisÃ£o direita-esquerda.</para>
         <para>
             Feedback de sistema.<literal> S=G/.K</literal> avalia
             <literal>S=G*(eye()+K*G)^(-1)</literal> . Este operador evita o problema
-            de simplificação.
+            de simplificaÃ§Ã£o.
         </para>
         <para>
-            Observe que<literal> G/.5</literal> é interpretado como
-            <literal>G/(.5)</literal>. Em tais casos, o ponto é parte do número, não
+            Observe que<literal> G/.5</literal> Ã© interpretado como
+            <literal>G/(.5)</literal>. Em tais casos, o ponto Ã© parte do nÃºmero, nÃ£o
             do operador.
         </para>
         <para>
-            Comentário. <literal>//</literal> comenta uma linha, i.e. linhas que
-            começam por <literal>//</literal> são ignoradas pelo interpretador.
+            ComentÃ¡rio. <literal>//</literal> comenta uma linha, i.e. linhas que
+            comeÃ§am por <literal>//</literal> sÃ£o ignoradas pelo interpretador.
         </para>
         <para>
             It is the same with <code>/*</code> which start to comment a
@@ -58,17 +61,17 @@ B=[
    30.  -180.   180.
 ];
 x=a/B
-x*B-a // proche de zéro
+x*B-a // proche de zÃ©ro
 
 a=4 / 2; // Doit renvoyer 2
 a=2 ./ [2,4]; //     1.    0.5
-// Un commentaire aide à comprendre le code.
+// Un commentaire aide Ã  comprendre le code.
 /* Even long, that is to say on many lines,
 comments are useful */
  ]]></programlisting>
     </refsection>
     <refsection>
-        <title> Ver Também </title>
+        <title> Ver TambÃ©m </title>
         <simplelist type="inline">
             <member>
                 <link linkend="inv">inv</link>
@@ -83,5 +86,17 @@ comments are useful */
                 <link linkend="ieee">ieee</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>HistÃ³rico</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.1</revnumber>
+                <revremark>
+                  The threshold level which switches between Gaussian Elimination with row pivoting
+                  and linear least squares when computing B/A is decreased from sqrt(eps) to eps.
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

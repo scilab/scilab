@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Fabrice Leray
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -13,17 +14,25 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="plot" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="plot" xml:lang="pt">
     <refnamediv>
         <refname>plot</refname>
         <refpurpose>Esboço 2d</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
-        <synopsis>plot(y,&lt;LineSpec&gt;,&lt;GlobalProperty&gt;)
-            plot(x,y,&lt;LineSpec&gt;,&lt;GlobalProperty&gt;)
-            plot(x1,y1,&lt;LineSpec1&gt;,x2,y2,&lt;LineSpec2&gt;,...xN,yN,&lt;LineSpecN&gt;,&lt;GlobalProperty1&gt;,&lt;GlobalProperty2&gt;,..&lt;GlobalPropertyM&gt;)
-            plot(&lt;axes_handle&gt;,...)
+        <synopsis>
+            plot     // demo
+            plot(y)
+            plot(x, y)
+            plot(x, fun)
+            plot(.., LineSpec)
+            plot(.., LineSpec, GlobalProperty)
+            plot(x1,y1,LineSpec1, x2,y2,LineSpec2,...xN,yN,LineSpecN, GlobalProperty1, GlobalProperty2,..GlobalPropertyM)
+            plot(axes_handle,...)
         </synopsis>
     </refsynopsisdiv>
     <refsection role="parameters">
@@ -43,13 +52,21 @@
                 <term>y</term>
                 <listitem>
                     <para>
-                        uma matriz de reais ou um vetor. <literal>y</literal> também
-                        pode ser uma função definida como um macro ou uma primitiva.
+                        uma matriz de reais ou um vetor.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>&lt;LineSpec&gt;</term>
+                <term>fun</term>
+                <listitem>
+                    <para>
+                        função definida como um macro ou uma primitiva, como em
+                        <literal>plot(x, sin)</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>LineSpec</term>
                 <listitem>
                     <para>este argumento opcional deve ser usado como um atalho para
                         especificar um modo de desenhar uma linha. Podemos ter um
@@ -63,7 +80,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>&lt;GlobalProperty&gt;</term>
+                <term>GlobalProperty</term>
                 <listitem>
                     <para>este argumento opcional representa uma seqüência de pares de
                         declarações <literal>{PropertyName,PropertyValue}</literal> tque
@@ -421,8 +438,24 @@ plot(1:10,toto)
                 <link linkend="LineSpec">LineSpec</link>
             </member>
             <member>
+                <link linkend="color_list">Cores nomeadas</link>
+            </member>
+            <member>
                 <link linkend="GlobalProperty">GlobalProperty</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>Histórico</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.1</revnumber>
+                <revdescription>
+                    The "color"|"foreground", "markForeground", and "markBackground" GlobalProperty
+                    colors can now be chosen among the full predefined colors list, or by
+                    their "#RRGGBB" hexadecimal codes, or by their indices in the colormap.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

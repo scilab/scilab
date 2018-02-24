@@ -81,8 +81,13 @@
             <literal>ij</literal> and <literal>v</literal> must have the same column dimension.
             If optional <literal>mn</literal> parameter is not given the <literal>sp</literal>
             matrix dimensions are the max value of <literal>ij(:,1)</literal> and <literal>ij(:,2)</literal>
-            respectively. If many values are given for same position, theses values are summed.
+            respectively.
         </para>
+        <warning>For the building syntaxes, if several values are given for a same
+            <varname>ij</varname> position, the sum of theses values is assigned.
+        </warning>
+      <refsect3>
+        <title>Operating sparse matrices</title>
         <para>
             Operations (concatenation, addition, etc,) with sparse matrices are
             made using the same syntax as for full matrices.
@@ -102,6 +107,7 @@
             any performance-constrained access should be done in batches with <link linkend="spget">spget</link> for read access
             and the three arguments constructor <literal>sp=sparse(ij, v, mn)</literal> for write access.
         </para>
+      </refsect3>
     </refsection>
     <refsection>
         <title>Examples</title>

@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="backslash">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="backslash">
     <refnamediv>
         <refname>backslash</refname>
         <refpurpose>(\) left matrix division.</refpurpose>
@@ -140,7 +143,10 @@ mprintf('\ntime with backslash: %.3f\n',toc());
         <revhistory>
             <revision>
                 <revnumber>5.4.1</revnumber>
-                <revremark>The threshold level for conditioning in blackslash increased.</revremark>
+                <revremark>
+                  The threshold level which switches between Gaussian Elimination with row pivoting
+                  and linear least squares when computing A\B is decreased from sqrt(eps) to eps.
+                </revremark>
             </revision>
         </revhistory>
     </refsection>

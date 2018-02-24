@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Fabrice Leray
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -13,17 +14,25 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="plot">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="plot">
     <refnamediv>
         <refname>plot</refname>
         <refpurpose>2D plot</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>plot(y,&lt;LineSpec&gt;,&lt;GlobalProperty&gt;)
-            plot(x,y,&lt;LineSpec&gt;,&lt;GlobalProperty&gt;)
-            plot(x1,y1,&lt;LineSpec1&gt;,x2,y2,&lt;LineSpec2&gt;,...xN,yN,&lt;LineSpecN&gt;,&lt;GlobalProperty1&gt;,&lt;GlobalProperty2&gt;,..&lt;GlobalPropertyM&gt;)
-            plot(&lt;axes_handle&gt;,...)
+        <synopsis>
+            plot     // demo
+            plot(y)
+            plot(x, y)
+            plot(x, fun)
+            plot(.., LineSpec)
+            plot(.., LineSpec, GlobalProperty)
+            plot(x1,y1,LineSpec1, x2,y2,LineSpec2,...xN,yN,LineSpecN, GlobalProperty1, GlobalProperty2,..GlobalPropertyM)
+            plot(axes_handle,...)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -32,7 +41,7 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>a real matrix or vector. If omitted, it is assumed to be the
+                    <para>vector or matrix of real numbers. If omitted, it is assumed to be the
                         vector <literal>1:n</literal> where <literal>n</literal> is the number of curve
                         points given by the <literal>y</literal> parameter.
                     </para>
@@ -42,13 +51,20 @@
                 <term>y</term>
                 <listitem>
                     <para>
-                        a real matrix or vector. <literal>y</literal> can also be a
-                        function defined as a macro or a primitive.
+                        vector or matrix of real numbers.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>&lt;LineSpec&gt;</term>
+                <term>fun</term>
+                <listitem>
+                    <para>
+                        handle of a function, as in <literal>plot(x, sin)</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>LineSpec</term>
                 <listitem>
                     <para>This optional argument must be a string that will be used as a
                         shortcut to specify a way of drawing a line. We can have one
@@ -61,7 +77,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>&lt;GlobalProperty&gt;</term>
+                <term>GlobalProperty</term>
                 <listitem>
                     <para>This optional argument represents a sequence of couple
                         statements <literal>{PropertyName,PropertyValue}</literal> that defines
@@ -72,7 +88,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>&lt;axes_handle&gt;</term>
+                <term>axes_handle</term>
                 <listitem>
                     <para>This optional argument forces the plot to appear inside the
                         selected axes given by <literal>axes_handle</literal> rather than the
@@ -607,8 +623,24 @@ plot(1:10,toto)
                 <link linkend="LineSpec">LineSpec</link>
             </member>
             <member>
+                <link linkend="color_list">Named colors</link>
+            </member>
+            <member>
                 <link linkend="GlobalProperty">GlobalProperty</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.1</revnumber>
+                <revdescription>
+                    The "color"|"foreground", "markForeground", and "markBackground" GlobalProperty
+                    colors can now be chosen among the full predefined colors list, or by
+                    their "#RRGGBB" hexadecimal codes, or by their indices in the colormap.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

@@ -89,6 +89,11 @@
             <literal>sp</literal> são os valores máximos de <literal>ij(:,1)</literal>
             e <literal>ij(:,2)</literal> respectivamente.
         </para>
+        <warning>For the building syntaxes, if several values are given for a same
+            <varname>ij</varname> position, the sum of theses values is assigned.
+        </warning>
+      <refsect3>
+        <title>Operating sparse matrices</title>
         <para>Operações (concatenação, adição, etc,) com matrizes esparsas são
             feitas usando a mesma sintaxe para matrizes completas.
         </para>
@@ -98,6 +103,7 @@
         <para>Operações mistas (completas-esparsas) são permitidas. Os resultados
             são completos ou esparsos dependendo das operações.
         </para>
+      </refsect3>
     </refsection>
     <refsection>
         <title>Exemplos</title>

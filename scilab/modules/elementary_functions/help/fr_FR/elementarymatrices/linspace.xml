@@ -137,16 +137,13 @@ linspace([1:4]', [5:8]', 10)   // avec des colonnes de bornes
  ans  =
    1.   1.111   1.222   1.333   1.444   1.556   1.667   1.778   1.889   2.
 
-
 --> linspace(2, 1, 10)    // x2 &lt; x1 : suite décroissante
  ans  =
    2.   1.889   1.778   1.667   1.556   1.444   1.333   1.222   1.111   1.
 
-
 --> linspace(1+%i, 2-2*%i, 5)      // avec des nombres complexes
  ans  =
    1. +i     1.25 +0.25i   1.5 -0.5i   1.75 -1.25i   2. -2.i
-
 
 --> linspace([1:4]', [5:8]', 10)   // avec des colonnes de bornes
  ans  =
