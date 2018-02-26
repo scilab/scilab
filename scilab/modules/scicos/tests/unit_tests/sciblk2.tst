@@ -6,7 +6,8 @@
 // =============================================================================
 //
 // <-- XCOS TEST -->
-
+// <-- ENGLISH IMPOSED -->
+//
 // Load and run a diagram that calls a Scilab macro (tkscaleblk.sci)
 exec("SCI/modules/scicos/tests/unit_tests/bug_8348.cosf", -1);
 // Call sciblk2 instead of sciblk4
