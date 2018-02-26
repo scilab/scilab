@@ -112,6 +112,34 @@ Xcos trace:   objectReferenced( 3 , BLOCK ) : 2
 Xcos trace:   objectReferenced( 1 , BLOCK ) : 1
 Xcos info:    objectCreated( 4 , BLOCK )
 Xcos info:    objectCloned( 1 , 4 , BLOCK )
+Xcos trace:   propertyUpdated( 4 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+Xcos trace:   propertyUpdated( 4 , BLOCK , DESCRIPTION ) : NO_CHANGES
+Xcos trace:   propertyUpdated( 4 , BLOCK , INTERFACE_FUNCTION ) : NO_CHANGES
+Xcos trace:   propertyUpdated( 4 , BLOCK , SIM_FUNCTION_NAME ) : NO_CHANGES
+Xcos trace:   propertyUpdated( 4 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
+Xcos trace:   propertyUpdated( 4 , BLOCK , UID ) : NO_CHANGES
+Xcos trace:   propertyUpdated( 4 , BLOCK , STYLE ) : NO_CHANGES
+Xcos trace:   propertyUpdated( 4 , BLOCK , GEOMETRY ) : NO_CHANGES
+Xcos trace:   propertyUpdated( 4 , BLOCK , EXPRS ) : NO_CHANGES
+Xcos trace:   propertyUpdated( 4 , BLOCK , STATE ) : NO_CHANGES
+Xcos trace:   propertyUpdated( 4 , BLOCK , DSTATE ) : NO_CHANGES
+Xcos trace:   propertyUpdated( 4 , BLOCK , ODSTATE ) : NO_CHANGES
+Xcos trace:   propertyUpdated( 4 , BLOCK , RPAR ) : NO_CHANGES
+Xcos trace:   propertyUpdated( 4 , BLOCK , OPAR ) : NO_CHANGES
+Xcos trace:   propertyUpdated( 4 , BLOCK , EQUATIONS ) : NO_CHANGES
+Xcos trace:   propertyUpdated( 4 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
+Xcos trace:   propertyUpdated( 4 , BLOCK , NZCROSS ) : NO_CHANGES
+Xcos trace:   propertyUpdated( 4 , BLOCK , NMODE ) : NO_CHANGES
+Xcos trace:   propertyUpdated( 4 , BLOCK , IPAR ) : NO_CHANGES
+Xcos trace:   propertyUpdated( 4 , BLOCK , COLOR ) : NO_CHANGES
+Xcos trace:   propertyUpdated( 4 , BLOCK , CONTEXT ) : NO_CHANGES
+Xcos trace:   propertyUpdated( 4 , BLOCK , PARENT_DIAGRAM ) : NO_CHANGES
+Xcos trace:   propertyUpdated( 4 , BLOCK , INPUTS ) : NO_CHANGES
+Xcos trace:   propertyUpdated( 4 , BLOCK , OUTPUTS ) : NO_CHANGES
+Xcos trace:   propertyUpdated( 4 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+Xcos trace:   propertyUpdated( 4 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+Xcos trace:   propertyUpdated( 4 , BLOCK , PARENT_BLOCK ) : NO_CHANGES
+Xcos trace:   propertyUpdated( 4 , BLOCK , CHILDREN ) : NO_CHANGES
 Xcos trace:   objectReferenced( 4 , BLOCK ) : 1
 Xcos trace:   objectReferenced( 4 , BLOCK ) : 2
 Xcos trace:   propertyUpdated( 4 , BLOCK , PARENT_DIAGRAM ) : NO_CHANGES
