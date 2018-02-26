@@ -551,7 +551,6 @@ chepol
 cmndred
 coffg
 colcompr
-denom
 derivat
 determ
 detr
@@ -566,7 +565,6 @@ inv_coeff
 invr
 lcm
 lcmdiag
-numer
 pdiv
 pfactors
 pol2des

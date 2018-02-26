@@ -257,12 +257,10 @@ msgstr ""
 
 #
 # File: modules/polynomials/macros/coffg.sci, line: 25
-# File: modules/polynomials/macros/denom.sci, line: 31
 # File: modules/polynomials/macros/derivat.sci, line: 62
 # File: modules/polynomials/macros/determ.sci, line: 25
 # File: modules/polynomials/macros/detr.sci, line: 38
 # File: modules/polynomials/macros/invr.sci, line: 140
-# File: modules/polynomials/macros/numer.sci, line: 27
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A floating point number or polynomial "

@@ -184,6 +184,8 @@ Removed Functions
 * `eval` was obsolete and has been removed. Please use `evstr` instead.
 * `hypermat` was obsolete and has been removed. Please use `matrix` instead.
 * `lstsize` was obsolete and has been removed. Please use `size` instead.
+* `denom` was obsolete and has been removed. Please use the `.den` rational field instead.
+* `numer` was obsolete and has been removed. Please use the `.num` rational field instead.
 * `square` was obsolete and has been removed.
 * `strcmpi` was obsolete and has been removed. Please use `strcmp(,'i')` instead.
 * `xgetech` was obsolete and has been removed. Please use `gca` instead.
@@ -249,6 +251,7 @@ Bug Fixes
 * [#15309](http://bugzilla.scilab.org/show_bug.cgi?id=15309): `eval()` was a weak duplicate of `evstr()`. It should be removed.
 * [#15321](http://bugzilla.scilab.org/show_bug.cgi?id=15321): `lu()` was leaking memory.
 * [#15350](http://bugzilla.scilab.org/show_bug.cgi?id=15350): `ric_desc()` should be merged into `riccati()`.
+* [#15360](http://bugzilla.scilab.org/show_bug.cgi?id=15360): `numer()` and `denom()` were poor and duplicates of the `.num` and `.den` fields of rationals. They are removed.
 * [#15368](http://bugzilla.scilab.org/show_bug.cgi?id=15368): `freson()` silently returned frequencies not corresponding to a maximum, or returned [] instead of some still computable maxima frequencies.
 * [#15392](http://bugzilla.scilab.org/show_bug.cgi?id=15392): `comet` and `comet3d` did not allow specifying colors with colors names.
 * [#15393](http://bugzilla.scilab.org/show_bug.cgi?id=15393): In a new figure, `nicholschart` plotted nothing. The default frame color was a flashy cyan. The position of gain labels could be puzzling. It was not possible to specify colors by their names. Postprocessing the frames and the set of labels was not easy.
