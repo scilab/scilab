@@ -1409,6 +1409,7 @@ C
       DIMENSION RWORK(LRW),IWORK(LIW)
       DIMENSION RTOL(*),ATOL(*)
       DIMENSION RPAR(*),IPAR(*)
+      DIMENSION JROOT(NRT)
       CHARACTER MSG*80
       EXTERNAL  RES, JAC, PSOL, RT, DDASID, DDASIK, DNEDD, DNEDK
 C
@@ -2530,7 +2531,8 @@ C Pointers into RWORK:
       DOUBLE PRECISION TN, TOUT, Y, YP, PHI, PSI, R0, R1, RX, UROUND,
      *  RWORK, RPAR
       DIMENSION Y(*), YP(*), PHI(NEQ,*), PSI(*),
-     *          R0(*), R1(*), RX(*), JROOT(*), RWORK(*), IWORK(*)
+     *          R0(*), R1(*), RX(*), JROOT(NRT), RWORK(*), IWORK(*),
+     *          RPAR(*), IPAR(*)
       INTEGER I, JFLAG
       DOUBLE PRECISION H
       DOUBLE PRECISION HMINR, T1, TEMP1, TEMP2, X, ZERO
