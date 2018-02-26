@@ -900,7 +900,7 @@ C
       END
 
       subroutine tridv(node,node1,node2,coef,rank)
-      double precision node(10),node1(10),node2(10),coef
+      double precision node(9),node1(9),node2(9),coef
       integer rank
       double precision s(3),coef1,temp
       integer t(3)
