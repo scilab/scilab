@@ -30,9 +30,16 @@ function [x,y,typ]=CONVERT(job,arg1,arg2)
         model=arg1.model
         exprs=graphics.exprs
         while %t do
-            [ok,it,ot,np,exprs] = scicos_getvalue([msprintf(gettext("Set %s block parameters"), "CONVERT");" "; gettext("Type conversion");" "], ..
-            [gettext("Input Type (1:double, 3:int32, 4:int16, 5:int8, ...)"); gettext("Output Type (1:double, 3:int32, 4:int16, 5:int8, ...)"); ..
-            gettext("Do on Overflow (0:Nothing, 1:Saturate, 2:Error)")], ..
+            [ok,it,ot,np,exprs] = scicos_getvalue(..
+            [ msprintf(gettext("Set %s block parameters"), "CONVERT")
+              " "
+              gettext("Type conversion")
+              ""
+              "(a) 1|2:double&nbsp;  3:int32&nbsp;  4:int16&nbsp;  5:int8&nbsp;  6:uint32&nbsp;  7:uint16&nbsp;  8:uint8"
+              gettext("(b) 0:Nothing, 1:Saturate, 2:Error")], ..
+            [gettext("Input type (a)")
+             gettext("Output type (a)")
+             gettext("Do on overflow (b)")], ..
             list("vec",1,"vec",1,"vec",1), exprs);
             if ~ok then
                 break,

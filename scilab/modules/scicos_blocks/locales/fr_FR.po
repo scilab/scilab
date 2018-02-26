@@ -140,7 +140,7 @@ msgstr "Effacer un bit"
 
 #, c-format
 msgid "Set %s block parameters"
-msgstr "Définir %s les paramètres du bloc"
+msgstr "Définir les paramètres du bloc %s"
 
 #, c-format
 msgid "Data Type %s"
