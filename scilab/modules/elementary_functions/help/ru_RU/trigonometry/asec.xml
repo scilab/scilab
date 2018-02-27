@@ -57,14 +57,14 @@ asec(x)/%pi
         <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
+                <link linkend="asecd">asecd</link>
+            </member>
+            <member>
                 <link linkend="sec">sec</link>
             </member>
             <member>
-                <link linkend="asecd">asecd</link>
+                <link linkend="secd">secd</link>
             </member>
-            <!--<member>
-        <link linkend="csgn">csgn</link>
-      </member>-->
         </simplelist>
     </refsection>
     <refsection>

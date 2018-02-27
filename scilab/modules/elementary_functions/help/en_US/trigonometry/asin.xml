@@ -64,7 +64,13 @@ sin(asin(A))
         <title>See also</title>
         <simplelist type="inline">
             <member>
+                <link linkend="asind">asind</link>
+            </member>
+            <member>
                 <link linkend="sin">sin</link>
+            </member>
+            <member>
+                <link linkend="sind">sind</link>
             </member>
             <member>
                 <link linkend="sinm">sinm</link>

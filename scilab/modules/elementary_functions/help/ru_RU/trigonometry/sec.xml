@@ -67,17 +67,17 @@ plot(x,sec(x))
         <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
-                <link linkend="cos">cos</link>
-            </member>
-            <member>
                 <link linkend="secd">secd</link>
             </member>
+            <member>
+                <link linkend="asec">asec</link>
+            </member>
+            <member>
+                <link linkend="asecd">asecd</link>
+            </member>
+            <member>
+                <link linkend="cos">cos</link>
+            </member>
         </simplelist>
-    </refsection>
-    <refsection>
-        <title>Используемые функции</title>
-        <para>
-            Эта функция использует функцию <literal>cos</literal>.
-        </para>
     </refsection>
 </refentry>

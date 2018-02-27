@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,11 +19,11 @@
         <refpurpose>cotangente</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>[t]=cotg(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>x,t</term>
@@ -34,9 +34,9 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            Os elementos de <literal>t</literal> são as cotangentes das entradas
+            Os elementos de <literal>t</literal> sÃ£o as cotangentes das entradas
             correspondentes de <literal>x</literal>.
             <literal>t=cos(x)./sin(x)</literal>
         </para>
@@ -49,8 +49,17 @@ cotg(x)-cos(x)./sin(x)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="cotd">cotd</link>
+            </member>
+            <member>
+                <link linkend="acot">acot</link>
+            </member>
+            <member>
+                <link linkend="acotd">acotd</link>
+            </member>
             <member>
                 <link linkend="tan">tan</link>
             </member>

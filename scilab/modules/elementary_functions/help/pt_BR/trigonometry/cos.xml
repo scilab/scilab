@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,14 +16,14 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="cos" xml:lang="pt">
     <refnamediv>
         <refname>cos</refname>
-        <refpurpose>função co-seno</refpurpose>
+        <refpurpose>funÃ§Ã£o seno</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>[y]=cos(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>x</term>
@@ -34,10 +34,10 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            Para uma matriz ou vetor, <literal>cos(x)</literal> é o co-seno de
-            seus elementos . Para o co-seno da matriz (matriz co-seno), use a função
+            Para uma matriz ou vetor, <literal>cos(x)</literal> Ã© o co-seno de
+            seus elementos . Para o co-seno da matriz (matriz co-seno), use a funÃ§Ã£o
             <literal>cosm(X)</literal> .
         </para>
     </refsection>
@@ -49,13 +49,19 @@ acos(cos(x))
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
-                <link linkend="cosm">cosm</link>
+                <link linkend="cosd">cosd</link>
             </member>
             <member>
                 <link linkend="acos">acos</link>
+            </member>
+            <member>
+                <link linkend="acosd">acosd</link>
+            </member>
+            <member>
+                <link linkend="cosm">cosm</link>
             </member>
         </simplelist>
     </refsection>

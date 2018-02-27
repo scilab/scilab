@@ -86,7 +86,13 @@ atan(-%i)
         <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
+                <link linkend="atand">atand</link>
+            </member>
+            <member>
                 <link linkend="tan">tan</link>
+            </member>
+            <member>
+                <link linkend="tand">tand</link>
             </member>
             <member>
                 <link linkend="unwrap">unwrap</link>

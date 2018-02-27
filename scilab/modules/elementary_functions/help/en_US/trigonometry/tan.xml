@@ -65,7 +65,13 @@ sin(x)./cos(x)
         <title>See also</title>
         <simplelist type="inline">
             <member>
+                <link linkend="tand">tand</link>
+            </member>
+            <member>
                 <link linkend="atan">atan</link>
+            </member>
+            <member>
+                <link linkend="atand">atand</link>
             </member>
             <member>
                 <link linkend="tanm">tanm</link>
