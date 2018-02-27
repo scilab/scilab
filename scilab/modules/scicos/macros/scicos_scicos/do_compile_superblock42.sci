@@ -3568,18 +3568,31 @@ function make_standalone42(filename)
         ""], fd);
     end
 
+    if isempty(z) then
+        Cz = "";
+    else
+        Cz = strcat(string(z),",");
+    end
+    if isempty(work) then
+        Cwork = "";
+    else
+        Cwork = strcat(string(work),",");
+    end
+    if isempty(Z) then
+        CZ = "";
+    else
+        CZ = strcat(string(Z),",");
+    end
+
     mputl(["  /* Initial values */"
     ""
     "  /* Note that z[]=[z_initial_condition;outtbptr;work]"
-    cformatline("     z_initial_condition={"+...
-    strcat(string(z),",")+"};",70)
-    cformatline("     outtbptr={"+...
-    strcat(string(zeros(size(outtb),1)),"," )+"};",70)
-    cformatline("     work= {"+...
-    strcat(string(work),"," )+"};",70)
+    cformatline("     z_initial_condition={"+Cz+"};",70)
+    cformatline("     outtbptr={"+strcat(string(zeros(size(outtb),1)),"," )+"};",70)
+    cformatline("     work={"+Cwork+"};",70)
     "  */"
     ""
-    cformatline("  double z[]={"+strcat(string(Z),",")+"};",70)], fd);
+    cformatline("  double z[]={"+CZ+"};",70)], fd);
 
     if size(z,1) <> 0 then
         for i=1:(length(zptr)-1)
