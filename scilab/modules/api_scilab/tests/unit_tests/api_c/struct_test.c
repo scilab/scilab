@@ -73,7 +73,7 @@ int sci_struct_test(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt o
 
     if (size1 != size2)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: arg1 and arg2 must have same size.\n"), fname);
+        Scierror(999, _("%s: Arguments #%d and #%d: Same sizes expected.\n"), fname, 1, 2);
         return STATUS_ERROR;
     }
 

@@ -264,7 +264,7 @@ int sci_sident(char *fname, void* pvApiCtx)
 
     if (iN >= iNOBR)
     {
-        Scierror(999, _("%s: The order should be at most %d.\n"), fname, 4, iNOBR - 1);
+        Scierror(999, _("%s: Argument #%d: Must be < %d.\n"), fname, 4, iNOBR);
         return 0;
     }
 

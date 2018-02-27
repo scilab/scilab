@@ -325,7 +325,7 @@ int sci_eigs(char *fname, void* pvApiCtx)
 
         if ((Acomplex || !Asym) && (strcmp(pstData, "LA") == 0 || strcmp(pstData, "SA") == 0 || strcmp(pstData, "BE") == 0))
         {
-            Scierror(999, _("%s: Invalid sigma value for complex or non symmetric problem.\n"), "eigs", 4);
+            Scierror(999, _("%s: Invalid sigma value for complex or non symmetric problem.\n"), "eigs");
             FREE_AB;
             freeAllocatedSingleString(pstData);
             return 1;
@@ -333,7 +333,7 @@ int sci_eigs(char *fname, void* pvApiCtx)
 
         if (!Acomplex && Asym && (strcmp(pstData, "LR") == 0 || strcmp(pstData, "SR") == 0 || strcmp(pstData, "LI") == 0 || strcmp(pstData, "SI") == 0))
         {
-            Scierror(999, _("%s: Invalid sigma value for real symmetric problem.\n"), "eigs", 4);
+            Scierror(999, _("%s: Invalid sigma value for real symmetric problem.\n"), "eigs");
             freeAllocatedSingleString(pstData);
             return 1;
         }

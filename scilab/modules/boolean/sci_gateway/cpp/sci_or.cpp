@@ -48,7 +48,7 @@ types::Function::ReturnValue sci_or(types::typed_list &in, int _iRetCount, types
 
     if (_iRetCount > 1)
     {
-        Scierror(999, _("%s: Wrong number of output arguments: %d to %d expected.\n"), "or", 1);
+        Scierror(999, _("%s: Wrong number of output arguments: %d expected.\n"), "or", 1);
         return types::Function::Error;
     }
 

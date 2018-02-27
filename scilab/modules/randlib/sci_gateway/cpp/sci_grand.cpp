@@ -1451,7 +1451,7 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
 
             if (vectpDblInput[0]->get(0) < 0 || vectpDblInput[0]->get(0) > Maxgen)
             {
-                Scierror(999, _("%s: Wrong value for input argument #%d : Must be between %d and %d.\n"), "grand", 0, Maxgen);
+                Scierror(999, _("%s: Argument #%d: Must be in the interval [%d, %d].\n"), "grand", 2, 0, Maxgen);
                 return types::Function::Error;
             }
 

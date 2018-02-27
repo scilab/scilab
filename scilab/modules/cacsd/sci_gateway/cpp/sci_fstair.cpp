@@ -42,7 +42,7 @@ types::Function::ReturnValue sci_fstair(types::typed_list &in, int _iRetCount, t
 
     if (in.size() != 7)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "fstair", 7);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "fstair", 7);
         return types::Function::Error;
     }
 

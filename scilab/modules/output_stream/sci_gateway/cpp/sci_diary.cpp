@@ -1110,7 +1110,7 @@ static int CloseByFilenames(char *fname, void* pvApiCtx)
         if (diaryClose(wcFilenames[i]))
         {
             freeArrayOfWideString(wcFilenames, dIDs_size);
-            Scierror(999, _("%s: Wrong value for input argument #%d: error can not close diary.\n"), fname);
+            Scierror(999, _("%s: Wrong value for input argument #%d: error can not close diary.\n"), fname, 1);
             return 0;
         }
     }
@@ -1150,7 +1150,7 @@ static int CloseByIds(char *fname, void* pvApiCtx)
     {
         if (diaryClose((int)dIDs[i]))
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: error can not close diary %d.\n"), fname, (int)dIDs[i]);
+            Scierror(999, _("%s: Wrong value for input argument #%d: error can not close diary %d.\n"), fname, 1, (int)dIDs[i]);
             return 0;
         }
     }
@@ -1222,7 +1222,7 @@ static int PauseByIds(char *fname, void* pvApiCtx)
     {
         if (diaryPause((int)dIDs[i]))
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: error can not pause diary %d.\n"), fname, (int)dIDs[i]);
+            Scierror(999, _("%s: Wrong value for input argument #%d: error can not pause diary %d.\n"), fname, 1, (int)dIDs[i]);
             return 0;
         }
     }
@@ -1255,7 +1255,7 @@ static int ResumeByFilenames(char *fname, void* pvApiCtx)
         if (diaryResume(wcFilenames[i]))
         {
             freeArrayOfWideString(wcFilenames, dIDs_size);
-            Scierror(999, _("%s: Wrong value for input argument #%d: error can not resume diary.\n"), fname);
+            Scierror(999, _("%s: Wrong value for input argument #%d: error can not resume diary.\n"), fname, 1);
             return 0;
         }
     }
@@ -1296,7 +1296,7 @@ static int ResumeByIds(char *fname, void* pvApiCtx)
     {
         if (diaryResume((int)dIDs[i]))
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: error can not resume diary %d.\n"), fname, (int)dIDs[i]);
+            Scierror(999, _("%s: Wrong value for input argument #%d: error can not resume diary %d.\n"), fname, 1, (int)dIDs[i]);
             return 0;
         }
     }

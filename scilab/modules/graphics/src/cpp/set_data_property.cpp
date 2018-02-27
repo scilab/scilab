@@ -456,10 +456,6 @@ int setgrayplotdata(void* _pvCtx, int iObjUID, AssignedList * tlist)
     if (nbRow[2] != nbRow[0] || nbCol[2] != nbRow[1])
     {
         Scierror(999, _("%s: Wrong size for input argument #%d: Incompatible length.\n"), "Tlist", 3);
-        /* Was previously: */
-#if 0
-        Scierror(999, _("%s: Wrong size for input argument #%d: Incompatible length.\n"), "Tlist", "Tlist", 3);
-#endif
         return 0;
     }
 

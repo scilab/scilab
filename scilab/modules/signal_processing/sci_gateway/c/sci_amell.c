@@ -53,7 +53,7 @@ int sci_amell(char *fname, void* pvApiCtx)
     }
     if (parameter < 0 || parameter > 1)
     {
-        Scierror(999, _("%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"), fname, "0", "1");
+        Scierror(999, _("%s: Argument #%d: Must be in the interval [%s, %s].\n"), fname, 2, "0", "1");
         return 1;
     }
     allocMatrixOfDouble(pvApiCtx, Rhs + 1, input_rows, input_cols, &output);

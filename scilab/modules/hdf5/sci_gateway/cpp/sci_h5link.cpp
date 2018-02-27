@@ -166,7 +166,7 @@ int sci_h5link(char *fname, unsigned long fname_len)
         }
         else
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: string or boolean expected.\n"), fname);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string or boolean expected.\n"), fname, 4);
             return 0;
         }
     }

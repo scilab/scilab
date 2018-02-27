@@ -88,7 +88,7 @@ types::Function::ReturnValue sci_scicosDiagramToScilab(types::typed_list &in, in
         {
             if (!in[1 + i]->isUserType())
             {
-                Scierror(77, _("%s: Wrong type for input argument #%d: ""%s"" expected.\n"), funname, "diagram");
+                Scierror(77, _("%s: Wrong type for input argument #%d: ""%s"" expected.\n"), funname, i+2, "diagram");
                 return types::Function::Error;
             }
         }

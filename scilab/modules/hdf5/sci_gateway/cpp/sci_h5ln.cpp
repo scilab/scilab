@@ -215,7 +215,7 @@ int sci_h5ln(char *fname, int* pvApiCtx)
         }
         else
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: string or boolean expected.\n"), fname);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string or boolean expected.\n"), fname, 4);
             return 0;
         }
 
@@ -259,7 +259,7 @@ int sci_h5ln(char *fname, int* pvApiCtx)
             }
             else
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: string or boolean expected.\n"), fname);
+                Scierror(999, _("%s: Wrong type for input argument #%d: string or boolean expected.\n"), fname, 5);
                 return 0;
             }
         }

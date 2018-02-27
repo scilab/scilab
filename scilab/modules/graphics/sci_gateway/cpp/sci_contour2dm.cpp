@@ -202,7 +202,7 @@ int sci_contour2dm(char * fname, void *pvApiCtx)
     if (!res)
     {
         // error in index
-        Scierror(999, _("%s: Invalid vertex index.\n"), fname, 3);
+        Scierror(999, _("%s: Invalid vertex index.\n"), fname);
         printError(&sciErr, 0);
         return 1;
     }

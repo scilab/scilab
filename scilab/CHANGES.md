@@ -414,6 +414,7 @@ Known issues
 * [#15263](http://bugzilla.scilab.org/show_bug.cgi?id=15263): Assignments in an array of structures often overwrote some untargeted elements.
 * [#15422](http://bugzilla.scilab.org/show_bug.cgi?id=15422): `strsubst("ab", "", "cd")` crashed Scilab.
 * [#15423](http://bugzilla.scilab.org/show_bug.cgi?id=15423): `tbx_make(myModule,sections)` executed the existing builder (if any), instead of targeting only selected module sections. Otherwise, tbx_make(myModule, "help"|"macros") yielded an error, and tbx_make(myModule,"localization") never built it.
+* [#15430](http://bugzilla.scilab.org/show_bug.cgi?id=15430): 47 `Scierror()` errors messages had mismatching input data.
 * [#15440](http://bugzilla.scilab.org/show_bug.cgi?id=15440): Scilab debug help page linked to Xcos debug.
 * [#15442](http://bugzilla.scilab.org/show_bug.cgi?id=15442): `printf` could not handle uint64 integers greater than 2^32-1.
 * [#15447](http://bugzilla.scilab.org/show_bug.cgi?id=15447): The scilab.appdata.xml file deserved some refreshment.
