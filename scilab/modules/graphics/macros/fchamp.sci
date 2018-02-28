@@ -30,8 +30,7 @@ function [] = fchamp(macr_f,fch_t,fch_xr,fch_yr,arfact,rect,strf)
     if rhs == 0 then   // demo
         // Setting the figure
         fh = gcf()
-        isDocked = (fh.dockable=="on" & ((fh.figure_size(1,1)-fh.axes_size(1,1)) > 20))
-        if ~isDocked
+        if ~isDocked(fh)
             fh.visible = "off"
             fh.figure_size = [700,700]
         end
