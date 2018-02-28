@@ -377,7 +377,7 @@ Known issues
 * [#14521](http://bugzilla.scilab.org/show_bug.cgi?id=14521): For the CONVERT Xcos block, types codes 2, 6, 7, and 8 were not documented.
 * [#15440](http://bugzilla.scilab.org/show_bug.cgi?id=15440): Scilab debug help page linked to Xcos debug.
 * [#15422](http://bugzilla.scilab.org/show_bug.cgi?id=15422): `strsubst("ab", "", "cd")` crashed Scilab.
-
+* [#15464](http://bugzilla.scilab.org/show_bug.cgi?id=15464): Xcos C-blocks could not link dlls on Windows.
 
 ### Bugs fixed in 6.0.1:
 * [#2441](http://bugzilla.scilab.org/show_bug.cgi?id=2441): `%onprompt()` could be defined only at the top execution level.
