@@ -26,7 +26,7 @@
                         </option>
                     </xsl:for-each>
                 </Select>
-                
+
                 <Label gridx="1" gridy="2" weightx="0" text="_(Printing format: )"/>
                 <Select gridx="3" gridy="2" listener="ActionListener">
                     <xsl:variable name="pf" select="@printing-format"/>
@@ -299,6 +299,24 @@
                 </Table>
                 <Glue/>
             </VBox>
+        </Title>
+    </xsl:template>
+
+    <xsl:template match="demos">
+        <Title text="_(Demos)">
+            <Grid>
+                <Checkbox
+                      gridx="1"
+                      gridy="1"
+                      listener="ActionListener"
+                      checked="{@demoGUIisDockable}"
+                      text="_(The demo interface is dockable)"
+                      >
+                    <actionPerformed choose="demoGUIisDockable">
+                        <xsl:call-template name="context"/>
+                    </actionPerformed>
+                </Checkbox>
+            </Grid>
         </Title>
     </xsl:template>
 </xsl:stylesheet>

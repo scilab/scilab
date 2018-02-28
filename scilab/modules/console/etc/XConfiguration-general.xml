@@ -259,4 +259,9 @@
             </actions>
         </body>
     </shortcuts>
+    <demonstrations title="_(Demos)">
+      <body>
+        <demos demoGUIisDockable="checked"/>
+      </body>
+    </demonstrations>
 </general>

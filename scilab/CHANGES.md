@@ -231,6 +231,7 @@ input and output arguments.
 * `ndgrid(x)` now accepts only one input `x`, with by default `y=x`.
 * `banner()` updated with ESI Group a 2017-2018 copyright.
 * `%io` is now protected (read-only).
+* The demo GUI can now be set as not-dockable through the Preferences => General => Demos.
 
 Help pages:
 -----------
@@ -384,6 +385,7 @@ Known issues
 * [#11916](http://bugzilla.scilab.org/show_bug.cgi?id=11916): Loading a graphic file containing several figures restored them by superimposing them in the same window.
 * [#12109](http://bugzilla.scilab.org/show_bug.cgi?id=12109): `execstr(.,"errcatch")` calling a macro returning before setting the argout crashed Scilab.
 * [#12566](http://bugzilla.scilab.org/show_bug.cgi?id=12566): `disp()` of a T-list with a single field set to an encoded integer value generated an error.
+* [#13466](http://bugzilla.scilab.org/show_bug.cgi?id=13466): Since Scilab 5.5.0, it was no longer possible to dock the demo GUI.
 * [#13778](http://bugzilla.scilab.org/show_bug.cgi?id=13778): The size of `repmat([], [1 1 3])` was [0 0 3] instead of [0 0].
 * [#14521](http://bugzilla.scilab.org/show_bug.cgi?id=14521): For the CONVERT Xcos block, types codes 2, 6, 7, and 8 were not documented.
 * [#14704](http://bugzilla.scilab.org/show_bug.cgi?id=14704): In Scinotes, URL for the `https://`, `ftp://`, `ftps://`, and `file://` protocols were no longer hyperlinked.
