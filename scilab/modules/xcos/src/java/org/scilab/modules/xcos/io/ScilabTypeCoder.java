@@ -148,6 +148,9 @@ public class ScilabTypeCoder {
     private void encode(ScilabDouble var, VectorOfDouble vec) {
         // Header
         encodeHeader(var, vec, ScilabTypeEnum.sci_matrix);
+        if (var.getHeight() * var.getWidth() == 0) {
+            return;
+        }
 
         // specific flag for managing the complex case
         if (var.isReal()) {
@@ -207,6 +210,9 @@ public class ScilabTypeCoder {
 
         // Header
         encodeHeader(var, vec, ScilabTypeEnum.sci_ints);
+        if (var.getHeight() * var.getWidth() == 0) {
+            return;
+        }
 
         // push the data on a pre-allocated space
         final int requiredBytes = sizeof * var.getHeight() * var.getWidth();
@@ -242,6 +248,9 @@ public class ScilabTypeCoder {
     private void encode(ScilabBoolean var, VectorOfDouble vec) {
         // header
         encodeHeader(var, vec, ScilabTypeEnum.sci_boolean);
+        if (var.getHeight() * var.getWidth() == 0) {
+            return;
+        }
 
         // put all the boolean as int accordingly to Scilab 6 implementation
         final int requiredBytes = Integer.BYTES * var.getHeight() * var.getWidth();
@@ -261,6 +270,9 @@ public class ScilabTypeCoder {
     private void encode(ScilabString var, VectorOfDouble vec) {
         // header
         encodeHeader(var, vec, ScilabTypeEnum.sci_strings);
+        if (var.getHeight() * var.getWidth() == 0) {
+            return;
+        }
 
         // add the offset table which contains the offset of each UTF-8 encoded strings
         int offsetTableStart = vec.size();
@@ -328,6 +340,16 @@ public class ScilabTypeCoder {
                 break;
             default:
                 throw new IllegalArgumentException();
+        }
+
+        // corner-case [] is a ScilabDouble
+        if (matrix != null && matrix.getHeight() * matrix.getWidth() == 0) {
+            vec.add(ScilabTypeEnum.sci_matrix.swigValue());
+            vec.add(2);
+            vec.add(0);
+            vec.add(0);
+            vec.add(0); // isComplex is part of []
+            return;
         }
 
         vec.add(as.swigValue());
@@ -613,13 +635,13 @@ public class ScilabTypeCoder {
                 }
             case sci_boolean:
                 if (height * width == 0) {
-                    return new ScilabBoolean();
+                    return new ScilabDouble();
                 } else {
                     return new ScilabBoolean(new boolean[height][width]);
                 }
             case sci_ints:
                 if (height * width == 0) {
-                    return new ScilabInteger();
+                    return new ScilabDouble();
                 } else {
                     switch (ScilabIntegerTypeEnum.swigToEnum(precision)) {
                         case sci_int8:
@@ -643,7 +665,7 @@ public class ScilabTypeCoder {
                 }
             case sci_strings:
                 if (height * width == 0) {
-                    return new ScilabString();
+                    return new ScilabDouble();
                 } else {
                     return new ScilabString(new String[height][width]);
                 }

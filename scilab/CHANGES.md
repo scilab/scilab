@@ -558,9 +558,11 @@ Known issues
 * [#15402](http://bugzilla.scilab.org/show_bug.cgi?id=15402): The `range()` page was not fixed against the bug 1904 for the french and portuguese versions.
 * [#15405](http://bugzilla.scilab.org/show_bug.cgi?id=15405): Accessing int64 hdf5 values crashed scilab.
 * [#15413](http://bugzilla.scilab.org/show_bug.cgi?id=15413): Deleting some ranges (rows, columns, pages, ..) in a structures array failed.
-* [#15418](http://bugzilla.scilab.org/show_bug.cgi?id=15418): With `colordef('black')` and colordef('none')`, black title and labels were invisible on the black background.
+* [#15418](http://bugzilla.scilab.org/show_bug.cgi?id=15418): With `colordef('black')` and `colordef('none')`, black title and labels were invisible on the black background.
 * [#15420](http://bugzilla.scilab.org/show_bug.cgi?id=15420): insertion at negative index did not trigger an error.
+* [#15456](http://bugzilla.scilab.org/show_bug.cgi?id=15456): Xcos 5.5.x files did not load properly.
 * [#15459](http://bugzilla.scilab.org/show_bug.cgi?id=15459): Generating code from an Xcos superblock generated warnings.
+
 
 ### Bugs fixed in 6.0.0:
 * [#592](http://bugzilla.scilab.org/show_bug.cgi?id=592): `linspace(a, b, n<=0)` returned `b` instead of `[]`

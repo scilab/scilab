@@ -79,7 +79,8 @@ types::InternalType* get_with_vec2var(const ModelAdapter& adaptor, const Control
     types::InternalType* res;
     if (!vec2var(prop_content, res))
     {
-        return nullptr;
+        // if invalid data, return a valid value
+        return types::Double::Empty();
     }
 
     return res;

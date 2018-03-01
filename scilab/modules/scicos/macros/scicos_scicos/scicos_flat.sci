@@ -364,11 +364,16 @@ function  [cor,corinv,links_table,cur_fictitious,sco_mat,ok, IN, OUT, EIN, EOUT]
     for k=Links
         o=scs_m.objs(k);
         f=0
+
         if o.from(1)<0|o.from(1)>MaxBlock then //Link coming from a superblock input port
+        elseif o.from(1) == 0 then //not connected links
+            continue;
         else
             o.from(1)=cor(o.from(1));
         end
         if o.to(1)<0 |o.to(1)>MaxBlock then //Link going to a superblock output port
+        elseif o.to(1) == 0 then //not connected links
+            continue;
         else
             o.to(1)=cor(o.to(1)),
         end
