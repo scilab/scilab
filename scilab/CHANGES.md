@@ -451,7 +451,7 @@ Known issues
 * [#13306](http://bugzilla.scilab.org/show_bug.cgi?id=13306): Evaluating a function set as a structure field could fail.
 * [#13197](http://bugzilla.scilab.org/show_bug.cgi?id=13197): The documentation of `lib()` needed to be updated for Scilab 6.
 * [#13374](http://bugzilla.scilab.org/show_bug.cgi?id=13374): When setting an erroneous Xcos context, the error message printed in console could easily be missed.
-* [#13936](http://bugzilla.scilab.org/show_bug.cgi?id=13936): The exponentiation of a matrix was much slower than its multiple products.
+* [#13039](http://bugzilla.scilab.org/show_bug.cgi?id=13039): In Scinotes, the "File => Save file in" action opened the parent of the targeted directory.
 * [#13466](http://bugzilla.scilab.org/show_bug.cgi?id=13466): Since Scilab 5.5.0, it was no longer possible to dock the demo GUI.
 * [#13480](http://bugzilla.scilab.org/show_bug.cgi?id=13480): The default k value of `eigs` was wrong and made `eigs` failing for small full matrices.
 * [#13522](http://bugzilla.scilab.org/show_bug.cgi?id=13522): `savematfile` failed saving numerical hypermatrices.
@@ -459,6 +459,7 @@ Known issues
 * [#13778](http://bugzilla.scilab.org/show_bug.cgi?id=13778): The size of `repmat([], [1 1 3])` was [0 0 3] instead of [0 0].
 * [#13785](http://bugzilla.scilab.org/show_bug.cgi?id=13785): `gettext` was poorly documented.
 * [#13915](http://bugzilla.scilab.org/show_bug.cgi?id=13915): On Windows, reinstalling an ATOMS toolbox with an archive already present failed.
+* [#13936](http://bugzilla.scilab.org/show_bug.cgi?id=13936): The exponentiation of a matrix was much slower than its multiple products.
 * [#14010](http://bugzilla.scilab.org/show_bug.cgi?id=14010): Browsevar was not displaying dimensions > 2 of hypermatrix
 * [#14218](http://bugzilla.scilab.org/show_bug.cgi?id=14218): Karmarkar post-process fails on some problems.
 * [#14282](http://bugzilla.scilab.org/show_bug.cgi?id=14282): `listvarinfile(fn)` and `load(fn)` yielded some memory leak.
@@ -583,7 +584,6 @@ Known issues
 * [#15758](http://bugzilla.scilab.org/show_bug.cgi?id=15758): sparse([0 0],1) crashes scilab (regression)
 * [#15762](http://bugzilla.scilab.org/show_bug.cgi?id=15762): `error()` refused multiline error messages.
 * [#15814](http://bugzilla.scilab.org/show_bug.cgi?id=15814): Selecting graphic children with booleans yielded an error.
-
 
 
 ### Bugs fixed in 6.0.1:
