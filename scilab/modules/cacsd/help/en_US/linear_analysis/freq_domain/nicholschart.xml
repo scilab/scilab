@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - 2020 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,14 +13,21 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"  xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="nicholschart">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook"  xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="nicholschart">
     <refnamediv>
         <refname>nicholschart</refname>
         <refpurpose>Nichols chart</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>nicholschart([modules] [,args] [,colors])</synopsis>
+        <synopsis>
+            sh = nicholschart(modules)
+            sh = nicholschart(modules, args)
+            sh = nicholschart(modules, args, colors)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -28,89 +35,142 @@
             <varlistentry>
                 <term>modules</term>
                 <listitem>
-                    <para>real vector ( modules (in dB))</para>
+                    vector of real numbers: modules (in dB). Default values:
+                    <para/>
+                    <literal>[-30:-10:Modmin -20 -15 -12 -9 -6 -3 -2 -1 -.5 -0.2 -0.1 0 0.1 0.2 0.5 1 2 3 6 12]</literal>
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>args</term>
                 <listitem>
-                    <para>real vector (phases (in degree))</para>
+                    vector of real numbers: phases (in degree). Default values:
+                    <para/>
+                    <literal>-[1 2 5 10 20 30 50 70 90 120 140 160 180]°</literal>
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>colorss</term>
+                <term>colors</term>
                 <listitem>
-                    <para>a scalar or a vector, the color indices for isogain and iso phase curves</para>
+                    vector of 1 or 2 components specifying the colors of the isogain and isophase
+                    sets of curves. If a single color is provided, it is used for both gains and
+                    phases. colors may be specified either
+                    <itemizedlist>
+                        <listitem>
+                            by indices in the color map.
+                        </listitem>
+                        <listitem>
+                            named colors among the <link linkend="color_list">predefined ones</link>.
+                        </listitem>
+                        <listitem>
+                            "#RRGGBB" hexadecimal case-insensitive strings starting with "#",
+                            like "#FA7B35".
+                        </listitem>
+                        <listitem>
+                            A 1x3 or 2x3 matrix of [r g b] intensities such that 0 &lt;= r,g,b &lt;= 1.
+                        </listitem>
+                    </itemizedlist>
+                <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sh</term>
+                <listitem>
+                    Structure with 3 fields:
+                    <itemizedlist>
+                        <listitem>
+                            <literal>.phaseLines</literal>: vector of handles of isophase lines.
+                            <literal>.phaseLines(i)</literal> is the line for
+                            <literal>args(i)</literal>.
+                        </listitem>
+                        <listitem>
+                            <literal>.gainLines</literal>: vector of handles of isogain lines.
+                            <literal>.gainLines(i)</literal> is the line for
+                            <literal>modules(i)</literal>.
+                        </listitem>
+                        <listitem>
+                            <literal>.gainLabels</literal>: vector of handles of isogain labels.
+                            <literal>.gainLabels(i)</literal> is the label for
+                            <literal>modules(i)</literal>.
+                        </listitem>
+                    </itemizedlist>
+                    <para/>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
         <title>Description</title>
-        <para> plot the Nichols'chart: iso-module and iso-argument  contours of
-            <literal>y/(1+y)</literal> in <literal>y</literal> phase/gain plane
+        <para>
+            plot the Nichols'chart: iso-module and iso-argument contours of
+            <literal>y/(1+y)</literal> in <literal>y</literal> phase/gain plane.
         </para>
         <para>
             <literal>nicholschart</literal> may be used in conjunction with
             <link linkend="black">black</link>.
         </para>
-        <para>
-            The default values for <literal>modules</literal> and
-            <literal>args</literal> are respectively :
-        </para>
-        <para>
-            <literal>[-12 -8 -6 -5 -4 -3 -2 -1.4 -1 -.5 0.25 0.5 0.7 1 1.4 2 2.3 3 4 5 6 8 12]</literal>
-        </para>
-        <para>
-            <literal>[-(1:10) , -(20:10:160)]</literal>
-        </para>
-    </refsection>
-    <refsection>
-        <title>Remark</title>
-        <para>
-            Traditionally, the syntax for <code>nicholschart</code> is: nicholschart(modules=gains, args=phases, colors=colors),
-            but the following syntax is also allowed: nicholschart(gains, phases, colors).
-        </para>
+        <note>
+          To use the default value of an input argument, just skip it, as in
+          <literal>nicholschart(modules,,colors)</literal>.
+        </note>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
     //Nichols chart
-    clf()
-    nicholschart(modules=[-6 -3 -1 1 3 6], args=[-1 -20 20 40 80 160 180]);
+    clf
+    subplot(1,2,1)
+    nicholschart();
+    subplot(1,2,2)
+    mod = [-35:5:-10 -6 -3 -1 -0.2 1 2 3 6];
+    nicholschart(mod, -[1 20 40 80 160 180],["khaki" "paleturquoise"]);
     ]]></programlisting>
         <para>
             <scilab:image localized="true">
-                nicholschart(modules=[-6 -3 -1 1 3 6], args=[-1 -20 20 40 80 160 180]);
+            clf
+            subplot(1,2,1)
+            nicholschart()
+            subplot(1,2,2)
+            mod = [-35:5:-10 -6 -3 -1 -0.2 1 2 3 6];
+            nicholschart(mod, -[1 20 40 80 160 180],["khaki" "paleturquoise"]);
+            gcf().axes_size = [700 350];
             </scilab:image>
         </para>
         <programlisting role="example"><![CDATA[
     //Black diagram with Nichols chart as a grid
-    s=poly(0,'s');
-    Plant=syslin('c',16000/((s+1)*(s+10)*(s+100)));
+    s = poly(0,'s');
+    Plant = syslin('c',16000/((s+1)*(s+10)*(s+100)));
+
     //two degree of freedom PID
-    tau=0.2;xsi=1.2;
-    PID=syslin('c',(1/(2*xsi*tau*s))*(1+2*xsi*tau*s+tau^2*s^2));
-    clf();
+    tau = 0.2;
+    xsi = 1.2;
+    PID = syslin('c',(1/(2*xsi*tau*s))*(1+2*xsi*tau*s+tau^2*s^2));
+    clf
     black([Plant;Plant*PID ],0.01,100,["Plant";"Plant and PID corrector"]);
+
     //move the caption in the lower right corner
-    ax=gca();Leg=ax.children(1);
-    Leg.legend_location="in_lower_right";
-    nicholschart(colors=color('light gray')*[1 1])
+    gca().children(1).legend_location="in_lower_right";
+
+    // Add the Nichols frame and tune its labels color
+    h = nicholschart(,,'wheat');
+    h.gainLabels.font_foreground = color("orange");
     ]]></programlisting>
         <para>
-            <scilab:image localized="true">
-                s=poly(0,'s');
-                Plant=syslin('c',16000/((s+1)*(s+10)*(s+100)));
-                //two degree of freedom PID
-                tau=0.2;xsi=1.2;
-                PID=syslin('c',(1/(2*xsi*tau*s))*(1+2*xsi*tau*s+tau^2*s^2));
-                clf();
-                black([Plant;Plant*PID ],0.01,100,["Plant";"Plant and PID corrector"]);
-                //move the caption in the lower right corner
-                ax=gca();Leg=ax.children(1);
-                Leg.legend_location="in_lower_right";
-                nicholschart(colors=color('light gray')*[1 1])
+            <scilab:image>
+            //Black diagram with Nichols chart as a grid
+            s = poly(0,'s');
+            Plant = syslin('c',16000/((s+1)*(s+10)*(s+100)));
+            //two degree of freedom PID
+            tau = 0.2;
+            xsi = 1.2;
+            PID = syslin('c',(1/(2*xsi*tau*s))*(1+2*xsi*tau*s+tau^2*s^2));
+            clf
+            black([Plant;Plant*PID ],0.01,100,["Plant";"Plant and PID corrector"]);
+            //move the caption in the lower right corner
+            gca().children(1).legend_location="in_lower_right";
+            h = nicholschart(,,'wheat');
+            h.gainLabels.font_foreground = color("orange");
             </scilab:image>
         </para>
     </refsection>
@@ -118,13 +178,28 @@
         <title>See also</title>
         <simplelist type="inline">
             <member>
+                <link linkend="hallchart">hallchart</link>
+            </member>
+            <member>
+                <link linkend="sgrid">sgrid</link>
+            </member>
+            <member>
+                <link linkend="zgrid">zgrid</link>
+            </member>
+            <member>
+                <link linkend="bode">bode</link>
+            </member>
+            <member>
                 <link linkend="black">black</link>
             </member>
             <member>
                 <link linkend="nyquist">nyquist</link>
             </member>
             <member>
-                <link linkend="hallchart">hallchart</link>
+                <link linkend="svplot">svplot</link>
+            </member>
+            <member>
+                <link linkend="color_list">color_list</link>
             </member>
         </simplelist>
     </refsection>
@@ -133,7 +208,24 @@
         <revhistory>
             <revision>
                 <revnumber>5.5.0</revnumber>
-                <revremark> Syntax allowed: nicholschart(gains, phases, colors).</revremark>
+                <revremark>Syntax allowed: nicholschart(gains, phases, colors).</revremark>
+            </revision>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revremark>
+                    <itemizedlist>
+                        <listitem>
+                            The default frames color is now grey85 instead of cyan.
+                        </listitem>
+                        <listitem>
+                            Colors may now be specified by their Scilab names or their "#RRGGBB"
+                            hexadecimal code.
+                        </listitem>
+                        <listitem>
+                            Output argument <literal>sh</literal> added.
+                        </listitem>
+                    </itemizedlist>
+                </revremark>
             </revision>
         </revhistory>
     </refsection>

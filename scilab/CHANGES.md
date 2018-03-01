@@ -89,7 +89,7 @@ Feature changes and additions
 * Memory invalid accesses have been greatly reduced thanks to :
   - PVS-Studio inspections blog report
   - Coverity scan weekly source analysis
-* bitget() is upgraded:
+* `bitget` is upgraded:
   - It now accepts positive Signed encoded integers.
   - It now supports the new uint64 and int64 types of encoded integers.
   - For decimal numbers: bits with indices > 52 can now be retrieved (up to `log2(number_properties("huge"))` = 1024).
@@ -98,21 +98,21 @@ Feature changes and additions
 * `bitstring` function added.
 * `edit` now accepts a line number as text (like "23").
 * `profileEnable`, `profileDisable`, `profileGetInfo` could be used to instrument functions and gather execution information within Scilab.
-* `prettyprint()` is upgraded:
+* `prettyprint` is upgraded:
   - Integer and Text input are now actually supported.
   - Default input arguments can be skipped instead of still having to be provided.
   - The result string is better formatted to be easily wrappable and indentable.
 * `mesh2d` has been introduced to compute a 2d mesh from vectors (x,y) of points.
-* `loadmatfile()` is upgraded:
+* `loadmatfile` is upgraded:
   - Octave native text data files can now be read.
   - Automatic detection of the input data format implemented.
   - `-toStruct` option added, to return results in a structure instead of in the calling environment.
 * `jremove` is optional and `clear` could be used to release Java objects mapped to Scilab.
-* `blockdiag()` is introduced to improve, replace, and extend `sysdiag()` to strings.
-* `assert_checkequal()` is upgraded:
+* `blockdiag` is introduced to improve, replace, and extend `sysdiag` to strings.
+* `assert_checkequal` is upgraded:
   - support added for Nan and void in lists, Nan in sparses, implicit lists, graphic handles, macros, libraries, and built-in.
   - For arrays of matching typeof and sizes, and for lists of matching lengths, the failure message now indicates the index and values of the first mismatching elements.
-* `diophant()` is improved: Now,
+* `diophant` is improved: Now,
   - Encoded integers are accepted, in addition to decimal numbers. Only integer solutions are then searched.
   - When there is no solution, [] is returned.
   - When there is an infinite number of solutions, the err flag has a specific value.
@@ -135,7 +135,7 @@ Feature changes and additions
   - Handles of the grids and labels are returned. Post-processing them become easy.
   - Named colors accepted ; better default colors.
   - Improved placement of labels.
-
+* `nicholschart` is improved: more neutral default frame color; improved labels positionning; colors can now be specified by their predefined name or "#RRGGBB" hexa code; a structure of handles is now returned to easily postprocess both subframes and the set of labels.
 
 Help pages:
 -----------
@@ -197,7 +197,7 @@ Bug Fixes
 * [#8307](http://bugzilla.scilab.org/show_bug.cgi?id=8307): `list2vec()` and `vec2list()` were located in the [optimization] module instead of in [data_structures], and were missing in the `See also` section of `list()`.
 * [#8418](http://bugzilla.scilab.org/show_bug.cgi?id=8418): `unique()` was not able to return the number of occurences of returned dictinct entities.
 * [#8784](http://bugzilla.scilab.org/show_bug.cgi?id=8784): Automatic self-adjusting blocks `SCALE_CSCOPE` & `SCALE_CMSCOPE` in Xcos.
-* [#5512](http://bugzilla.scilab.org/show_bug.cgi?id=5512): `disp()` puzzlingly displayed arguments in reverse order.
+* [#5512](http://bugzilla.scilab.org/show_bug.cgi?id=5512): `disp` puzzlingly displayed arguments in reverse order.
 * [#9529](http://bugzilla.scilab.org/show_bug.cgi?id=9529): `assert_checkequal(list(1,,3), list(1,,3))` yielded an error.
 * [#9673](http://bugzilla.scilab.org/show_bug.cgi?id=9673): Priority of colon `:` operator was too low
 * [#10353](http://bugzilla.scilab.org/show_bug.cgi?id=10353): Documentation: The referential for the uicontrol.position property was not provided. Moreover, gca().axes_bounds refered to fig.figure_size instead of fig.axes_size.
@@ -210,12 +210,12 @@ Bug Fixes
 * [#14501](http://bugzilla.scilab.org/show_bug.cgi?id=14501): `strsubst` crashed on consecutive occurrences.
 * [#14557](http://bugzilla.scilab.org/show_bug.cgi?id=14557): `csim` failed when the system has no state.
 * [#14498](http://bugzilla.scilab.org/show_bug.cgi?id=14498): `size([],3)` returned 1 instead of 0.
-* [#14604](http://bugzilla.scilab.org/show_bug.cgi?id=14604): `emptystr()` is 40x slower with 6.0.0 wrt 5.5.2
+* [#14604](http://bugzilla.scilab.org/show_bug.cgi?id=14604): `emptystr` is 40x slower with 6.0.0 wrt 5.5.2
 * [#14605](http://bugzilla.scilab.org/show_bug.cgi?id=14605): fixed - `bench_run` was too strict about the specification of tests names.
 * [#14606](http://bugzilla.scilab.org/show_bug.cgi?id=14606): Memory used by variables returned by `[names,mem]=who()` was always zero.
 * [#14610](http://bugzilla.scilab.org/show_bug.cgi?id=14610): `x = ric_desc(H,E)` always yielded an error. [x1,x2,residual] = ric_desc(..) returned a wrong `residual` value.
 * [#14642](http://bugzilla.scilab.org/show_bug.cgi?id=14642): No more "\r" carriage return with printf.
-* [#14741](http://bugzilla.scilab.org/show_bug.cgi?id=14741): The syntax `[m,e]=log2(x)` was not documented. As public function `frexp()` was in duplicate with `[m,e]=log2(x)`.
+* [#14741](http://bugzilla.scilab.org/show_bug.cgi?id=14741): The syntax `[m,e]=log2(x)` was not documented. As public function `frexp` was in duplicate with `[m,e]=log2(x)`.
 * [#14746](http://bugzilla.scilab.org/show_bug.cgi?id=14746): Tiny numbers were sometimes displayed as 0.
 * [#14791](http://bugzilla.scilab.org/show_bug.cgi?id=14791): `sleep 1` crashed Scilab.
 * [#14812](http://bugzilla.scilab.org/show_bug.cgi?id=14812): Minor typos in messages.
@@ -223,7 +223,7 @@ Bug Fixes
 * [#14982](http://bugzilla.scilab.org/show_bug.cgi?id=14982): `msprintf` segmentation fault was caught due to wrong size
 * [#14985](http://bugzilla.scilab.org/show_bug.cgi?id=14985): scilab crashed if a .bin file was not found.
 * [#15087](http://bugzilla.scilab.org/show_bug.cgi?id=15087): Deleting rows or columns from a matrix is slow (regression)
-* [#15248](http://bugzilla.scilab.org/show_bug.cgi?id=15248): `lsq()`was leaking memory.
+* [#15248](http://bugzilla.scilab.org/show_bug.cgi?id=15248): `lsq`was leaking memory.
 * [#15269](http://bugzilla.scilab.org/show_bug.cgi?id=15269): `xgetech` was poor and stiff compared to any combination of `gca()` properties `.axes_bounds`, `.data_bounds`, `.log_flags`, and `.margins`. It is removed.
 * [#15271](http://bugzilla.scilab.org/show_bug.cgi?id=15271): `bitget` needed to be upgraded.
 * [#15309](http://bugzilla.scilab.org/show_bug.cgi?id=15309): `eval()` was a weak duplicate of `evstr()`. It should be removed.
@@ -231,6 +231,7 @@ Bug Fixes
 * [#15350](http://bugzilla.scilab.org/show_bug.cgi?id=15350): `ric_desc()` should be merged into `riccati()`.
 * [#15368](http://bugzilla.scilab.org/show_bug.cgi?id=15368): `freson()` silently returned frequencies not corresponding to a maximum, or returned [] instead of some still computable maxima frequencies.
 * [#15392](http://bugzilla.scilab.org/show_bug.cgi?id=15392): `comet` and `comet3d` did not allow specifying colors with colors names.
+* [#15393](http://bugzilla.scilab.org/show_bug.cgi?id=15393): In a new figure, `nicholschart` plotted nothing. The default frame color was a flashy cyan. The position of gain labels could be puzzling. It was not possible to specify colors by their names. Postprocessing the frames and the set of labels was not easy.
 * [#15425](http://bugzilla.scilab.org/show_bug.cgi?id=15425): The Kronecker product `a.*.b` failed when `a` or `b` or both are hypermatrices, with one or both being polynomials or rationals.
 * [#15451](http://bugzilla.scilab.org/show_bug.cgi?id=15451): The code was not adapted to use `lucene 4.10` in Debian.
 * [#15514](http://bugzilla.scilab.org/show_bug.cgi?id=15514): The `set()` documentation page needed to be overhauled.
@@ -244,7 +245,7 @@ Bug Fixes
 * [#15715](http://bugzilla.scilab.org/show_bug.cgi?id=15715): `%nan` indices crashed Scilab.
 * [#15742](http://bugzilla.scilab.org/show_bug.cgi?id=15742): The `compatibility_functions` module should be merged in the `m2sci` one.
 * [#15581](http://bugzilla.scilab.org/show_bug.cgi?id=15581): display of complex matrix was ugly.
-* [#15680](http://bugzilla.scilab.org/show_bug.cgi?id=15680): `loadmatfile()` could not return variables in a structure instead of into the calling environment.
+* [#15680](http://bugzilla.scilab.org/show_bug.cgi?id=15680): `loadmatfile` could not return variables in a structure instead of into the calling environment.
 * [#15734](http://bugzilla.scilab.org/show_bug.cgi?id=15734):  Trivial infinite loop could not be interrupted.
 * [#15744](http://bugzilla.scilab.org/show_bug.cgi?id=15744): `sylm(a,b)` yielded an error when degree(a)==0 or degree(b)==0.
 * [#15745](http://bugzilla.scilab.org/show_bug.cgi?id=15745): `diophant(0,0,m)`, `diophant([p 0],q)`, `diophant([0 p],q)` with m<>0 and p>q were wrong. There was no flag for cases with an infinite number of solutions. When there is no solution, some values were returned anyway, instead of []. In this case, the documented definition of the err value was dubious. Decimal numbers and integers were accepted, but not encoded integers. Inf and NaN input coefficients were not rejected.
@@ -254,7 +255,7 @@ Bug Fixes
 * [#15964](http://bugzilla.scilab.org/show_bug.cgi?id=15954): A complex empty sparse matrix could be obtained after insertion.
 * [#15969](http://bugzilla.scilab.org/show_bug.cgi?id=15969): Fix spelling
 * [#15974](http://bugzilla.scilab.org/show_bug.cgi?id=15974): `msprintf("%d", %nan)` did not return Nan
-* [#15983](http://bugzilla.scilab.org/show_bug.cgi?id=15983): `group()` regressed in 5.5.2 due to a too intrusive fix.
+* [#15983](http://bugzilla.scilab.org/show_bug.cgi?id=15983): `group` regressed in 5.5.2 due to a too intrusive fix.
 * [#15984](http://bugzilla.scilab.org/show_bug.cgi?id=15984): display scale was wrong with Retina dispplays on OSX..
 * [#15995](http://bugzilla.scilab.org/show_bug.cgi?id=15995): patch was missing in surface plot (regression)
 * [#16003](http://bugzilla.scilab.org/show_bug.cgi?id=16003): Zoom with mouse scroll wheel was broken on simple surfaces.
@@ -268,16 +269,16 @@ Bug Fixes
 * [#16015](http://bugzilla.scilab.org/show_bug.cgi?id=16015): `intg(a,b,f)` called f(x) with x outside [a,b].
 * [#16019](http://bugzilla.scilab.org/show_bug.cgi?id=16019): `polarplot(x,Z)` yielded an error when x is a vector and Z a matrix.
 * [#16021](http://bugzilla.scilab.org/show_bug.cgi?id=16021): `tand([-90 90])` answered [Nan Nan] instead of [-Inf, Inf]. `cotd([-90 90])` answered [Nan Nan] instead of [0 0]. `1 ./cosd([-90 90])` answered [Inf -Inf] instead of [Inf Inf].
-* [#16026](http://bugzilla.scilab.org/show_bug.cgi?id=16026): For `atanh()`, neither the documentation pages nor the `m2sci` converter were up to date.
+* [#16026](http://bugzilla.scilab.org/show_bug.cgi?id=16026): For `atanh`, neither the documentation pages nor the `m2sci` converter were up to date.
 * [#16051](http://bugzilla.scilab.org/show_bug.cgi?id=16051): undefined list elements could be of 2 distinct typeof "void" or "listundefined" according to the way they are created.
 * [#16067](http://bugzilla.scilab.org/show_bug.cgi?id=16067): The display of matrices of signed integers was misaligned (regression of 6.0.0 vs 5.5.2)
 * [#16071](http://bugzilla.scilab.org/show_bug.cgi?id=16071): `prettyprint(complex(1,%nan))` omitted the "+" in `1 + Nani`. It printed positive exponents with a useless "+". For any input nul polynomial, the string result never included the name of the variable. Default input arguments could not be skipped. ExportFormat was uselessly case-sensitive. For tex|latex: for text input, $ \ % & { } ~ and ^ special characters were not protected ; spaces were not protected, all words were concatenated ; for polynomials and rationals, the result string could be extremely long and not easily wrappable. For MathML: "<" was not protected ; <mi></mi> were missing for text input ; <mtable>, </mtable>, <mtr>, </mtr>, <mtd>, <mfenced> and </mfenced> tags were not wrapped and could not be indented. Delimiters: "" was not documented as possible value ; ")" was wrongly documented. Dynamical linear systems were not documented as possible input.
-* [#16072](http://bugzilla.scilab.org/show_bug.cgi?id=16072): `prettyprint()` did not actually support input encoded integers.
-* [#16075](http://bugzilla.scilab.org/show_bug.cgi?id=16075): `prettyprint()` was broken for cells.
+* [#16072](http://bugzilla.scilab.org/show_bug.cgi?id=16072): `prettyprint` did not actually support input encoded integers.
+* [#16075](http://bugzilla.scilab.org/show_bug.cgi?id=16075): `prettyprint` was broken for cells.
 * [#16085](http://bugzilla.scilab.org/show_bug.cgi?id=16085): insertion in an empty struct was broken.
-* [#16087](http://bugzilla.scilab.org/show_bug.cgi?id=16087): Insertion of struct() in a non-empty struct crashed Scilab.
+* [#16087](http://bugzilla.scilab.org/show_bug.cgi?id=16087): Insertion of struct in a non-empty struct crashed Scilab.
 * [#16089](http://bugzilla.scilab.org/show_bug.cgi?id=16089): x=1:1e10 freezed Scilab.
-* [#16104](http://bugzilla.scilab.org/show_bug.cgi?id=16104): `assert_checkequal()` did not support properly or at all Nan and void in lists, Nan in sparse, implicit lists, macros, libraries, built-in functions, graphical handles. For input arrays or lists of matching typeof and sizes, the failure message did not display neither the index nor the values of the first mismatching elements.
+* [#16104](http://bugzilla.scilab.org/show_bug.cgi?id=16104): `assert_checkequal` did not support properly or at all Nan and void in lists, Nan in sparse, implicit lists, macros, libraries, built-in functions, graphical handles. For input arrays or lists of matching typeof and sizes, the failure message did not display neither the index nor the values of the first mismatching elements.
 * [#16111](http://bugzilla.scilab.org/show_bug.cgi?id=16111): `isglobal` was not supporting non-scalar array of strings as input.
 * [#16118](http://bugzilla.scilab.org/show_bug.cgi?id=16118): `%s <> (1+%s)` returned %F.
 * [#16135](http://bugzilla.scilab.org/show_bug.cgi?id=16135): base2dec did not detect invalid numbers.
@@ -298,7 +299,7 @@ Bug Fixes
 * [#16199](http://bugzilla.scilab.org/show_bug.cgi?id=16199): In the documentation, `zpk2tf` and `zpk2ss` examples yielded an error.
 * [#16200](http://bugzilla.scilab.org/show_bug.cgi?id=16200): Concatenation of transposed cells crashed Scilab.
 * [#16208](http://bugzilla.scilab.org/show_bug.cgi?id=16208): Using 3D string matrix with old C-api gateways may crash Scilab.
-* [#16209](http://bugzilla.scilab.org/show_bug.cgi?id=16209): grand() causes a freeze after several consecutive calls when using default base generator.
+* [#16209](http://bugzilla.scilab.org/show_bug.cgi?id=16209): `grand` causes a freeze after several consecutive calls when using default base generator.
 * [#16210](http://bugzilla.scilab.org/show_bug.cgi?id=16210): The uicontrol.units = "normalized" property was not described.
 * [#16227](http://bugzilla.scilab.org/show_bug.cgi?id=16227): `WSCI` was not defined as environment variable and could not be used as `%WSCI%` in commands sent with `host()` or `unix_*()`.
 * [#16242](http://bugzilla.scilab.org/show_bug.cgi?id=16242): `loadmatfile()` could not read Octave native text data files.
@@ -312,10 +313,10 @@ Bug Fixes
 * [#16269](http://bugzilla.scilab.org/show_bug.cgi?id=16269): Scalar structures were poorly displayed.
 * [#16271](http://bugzilla.scilab.org/show_bug.cgi?id=16271): `loadmatfile()` was never able to automatically detect the input data format.
 * [#16272](http://bugzilla.scilab.org/show_bug.cgi?id=16272): `spzeros(0,n)` and `spzeros(n,0)` were different from `sparse(0,0)`.
-* [#16273](http://bugzilla.scilab.org/show_bug.cgi?id=16273): `calendar()` had no formated display mode.
+* [#16273](http://bugzilla.scilab.org/show_bug.cgi?id=16273): `calendar` had no formated display mode.
 * [#16275](http://bugzilla.scilab.org/show_bug.cgi?id=16275): `fsolve(x0, fun, tol)` no longer took `tol` into account.
 * [#16290](http://bugzilla.scilab.org/show_bug.cgi?id=16290): The `cn`, `dn`, `ns`, `nc` and `nd` Jacobi elliptic functions were not available.
 * [#16292](http://bugzilla.scilab.org/show_bug.cgi?id=16292): `hallchart()` had bugs and a poor rendering.
 * [#16293](http://bugzilla.scilab.org/show_bug.cgi?id=16293): Some demos run in step-by-step console mode(4) did not focus user's attention to the console to proceed.
-* [#16299](http://bugzilla.scilab.org/show_bug.cgi?id=16299): After `graypolarplot()`, `colorbar()` displayed an empty ungraduated color bar.
+* [#16299](http://bugzilla.scilab.org/show_bug.cgi?id=16299): After `graypolarplot`, `colorbar` displayed an empty ungraduated color bar.
 * [#16303](http://bugzilla.scilab.org/show_bug.cgi?id=16303): log10(x) had wrong dimensions when x is an hypermatrix.
