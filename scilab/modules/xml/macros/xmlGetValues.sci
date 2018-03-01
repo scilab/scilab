@@ -11,24 +11,22 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function values = getPreferencesValue(xpath, attributes, doc)
-
-    warnobsolete("xmlGetValues", "6.1");
+function values = xmlGetValues(xpath, attributes, doc)
     rhs = argn(2);
 
     if (rhs ~= 2 & rhs ~= 3) then
         msg = _("%s: Wrong number of input arguments: %d or %d expected.\n")
-        error(msprintf(msg, "getPreferencesValue", 2, 3));
+        error(msprintf(msg, "xmlGetValues", 2, 3));
     end
 
     if type(xpath) <> 10 then
         msg = _("%s: Wrong type for input argument #%d: String expected.\n")
-        error(msprintf(msg, "getPreferencesValue", 1));
+        error(msprintf(msg, "xmlGetValues", 1));
     end
 
     if type(attributes) <> 10 then
         msg = _("%s: Wrong type for input argument #%d: Matrix of strings expected.\n")
-        error(msprintf(msg, "getPreferencesValue", 2));
+        error(msprintf(msg, "xmlGetValues", 2));
     end
 
     if rhs == 2 then
@@ -42,15 +40,15 @@ function values = getPreferencesValue(xpath, attributes, doc)
                 doc = xmlRead(doc0);
             catch
                 msg = _("%s: Invalid ""%s"" file.\n")
-                error(msprintf(msg, "getPreferencesValue", tokens(doc0,["/" "\"])($)));
+                error(msprintf(msg, "xmlGetValues", tokens(doc0,["/" "\"])($)));
             end
         else
             msg = _("%s: The file ""%s"" does not exist.\n")
-            error(msprintf(msg, "getPreferencesValue", doc));
+            error(msprintf(msg, "xmlGetValues", doc));
         end
     elseif typeof(doc) ~= "XMLDoc" then
         msg = _("%s: Wrong type for input argument #%d: A XMLDoc expected.\n")
-        error(msprintf(msg, "getPreferencesValue", 3));
+        error(msprintf(msg, "xmlGetValues", 3));
     end
 
     try
@@ -60,7 +58,7 @@ function values = getPreferencesValue(xpath, attributes, doc)
             xmlDelete(doc);
         end
         msg = gettext("%s: Invalid XPath request.\n")
-        error(msprintf(msg, "getPreferencesValue"));
+        error(msprintf(msg, "xmlGetValues"));
     end
 
     if xp.size == 0 then
@@ -68,7 +66,7 @@ function values = getPreferencesValue(xpath, attributes, doc)
             xmlDelete(doc);
         end
         msg = gettext("%s: Invalid XPath request.")
-        error(msprintf(msg, "getPreferencesValue"));
+        error(msprintf(msg, "xmlGetValues"));
     end
 
     values = [];
@@ -79,7 +77,7 @@ function values = getPreferencesValue(xpath, attributes, doc)
                 xmlDelete(doc);
             end
             msg = gettext("%s: Target node is not a XML_ELEMENT_NODE.")
-            error(msprintf(msg, "getPreferencesValue"));
+            error(msprintf(msg, "xmlGetValues"));
         end
 
         attr = node.attributes;
@@ -93,7 +91,7 @@ function values = getPreferencesValue(xpath, attributes, doc)
                     xmlDelete(doc);
                 end
                 msg = gettext("%s: Invalid attribute name: %s.")
-                error(msprintf(msg, "getPreferencesValue", a));
+                error(msprintf(msg, "xmlGetValues", a));
             end
         end
     end

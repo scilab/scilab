@@ -47,5 +47,5 @@ function test()
 endfunction
 txt = tree2code(macr2tree(test), %t);
 path = "//interface/scinotes/display/body/scinotes-display";
-tmp = evstr(getPreferencesValue(path, "indent-size", "SCIHOME/XConfiguration.xml"));
+tmp = evstr(xmlGetValues(path, "indent-size", "SCIHOME/XConfiguration.xml"));
 assert_checkequal(txt(2), blanks(tmp)+"disp(2)");

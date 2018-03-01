@@ -68,7 +68,7 @@ function C = tree2code(P, bprettyprintformat)
         File = "SCIHOME/XConfiguration.xml"
         if isfile(File)
             path = "//interface/scinotes/display/body/scinotes-display"
-            tmp = evstr(getPreferencesValue(path, "indent-size", File))
+            tmp = evstr(xmlGetValues(path, "indent-size", File))
         else
             tmp = 4
         end

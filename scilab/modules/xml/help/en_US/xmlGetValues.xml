@@ -17,18 +17,16 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
           xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
-          xmlns:scilab="http://www.scilab.org" xml:id="getPreferencesValue" xml:lang="en">
+          xmlns:scilab="http://www.scilab.org" xml:id="xmlGetValues" xml:lang="en">
     <refnamediv>
-        <refname>getPreferencesValue</refname>
-        <refpurpose>Parses and gets values of chosen tags attributes in a XML file of preferences
-            <emphasis role="bold">(obsolete)</emphasis>
-        </refpurpose>
+        <refname>xmlGetValues</refname>
+        <refpurpose>Parses and gets values of chosen tags attributes in a XML file of preferences</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-            Values = getPreferencesValue(path2tag, attributes)
-            Values = getPreferencesValue(path2tag, attributes, XMLsource)
+            Values = xmlGetValues(path2tag, attributes)
+            Values = xmlGetValues(path2tag, attributes, XMLsource)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -120,22 +118,18 @@
     </refsection>
     <refsection>
         <title>Description</title>
-        <warning>
-            <literal>getPreferencesValue()</literal> is obsolete. It is cloned into
-            <code>xmlGetValues()</code>. It will be removed from Scilab 6.2.
-        </warning>
         <para>
             When an XML handle returned by <code>xmlRead(..)</code> is provided as
-            <varname>XMLsource</varname>, <function>getPreferencesValue()</function> uses it
+            <varname>XMLsource</varname>, <function>xmlGetValues()</function> uses it
             directly to parse the XML Preferences document opened by this prior
             <code>xmlRead(..)</code>. This is useful when the same document must be parsed with
-            multiple calls to <function>getPreferencesValue()</function>, typically to address
+            multiple calls to <function>xmlGetValues()</function>, typically to address
             different XML tags. In this case, one should not forget to close the XML document after
             its whole processing.
         </para>
         <para>
             When the path of the XML Preferences file is provided as <varname>XMLsource</varname>,
-            <function>getPreferencesValue()</function> opens the file, builds its DOM tree, parses
+            <function>xmlGetValues()</function> opens the file, builds its DOM tree, parses
             the tree for the chosen tag and attributes, and finally deletes the tree and closes the
             file before returning results. This is what occurs with the default Xconfiguration.xml
             file when no explicit <varname>XMLsource</varname> is specified.
@@ -175,14 +169,14 @@
             To get some informations about the proxy parameters (proxy tag), the required code
             will be:
             <programlisting role="scilab"><![CDATA[
-            proxy = getPreferencesValue("//web/body/proxy", ["enabled", "host", "port"]);
+            proxy = xmlGetValues("//web/body/proxy", ["enabled", "host", "port"]);
      ]]></programlisting>
         </para>
         <para>
             <emphasis role="bold">Example 2:</emphasis>
         </para>
         <para>
-            <function>getPreferencesValue()</function> can also be used to get values of a tag
+            <function>xmlGetValues()</function> can also be used to get values of a tag
             having multiple occurrences in the <literal>XMLsource</literal> file. For instance,
             your preferences for the Scilab's editor Scinotes are stored in the
             <literal>SCIHOME\scinotesConfiguration.xml</literal> file. The list of most recent files
@@ -209,7 +203,7 @@
             Then, the following code will extract, return and display the column of recent files:
             <programlisting role="example"><![CDATA[
             scinotesFile = SCIHOME + "/scinotesConfiguration.xml";
-            recent = getPreferencesValue("//Setting/Profile/recentFiles/document", "path", scinotesFile);
+            recent = xmlGetValues("//Setting/Profile/recentFiles/document", "path", scinotesFile);
             mprintf("%s\n", recent)
      ]]></programlisting>
             <screen><![CDATA[
@@ -223,9 +217,6 @@ C:\Path\to\another\working\dir2\clf.sci
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
-            <member>
-                <link linkend="xmlGetValues">xmlGetValues</link>
-            </member>
             <member>
                 <link linkend="setPreferencesValue">setPreferencesValue</link>
             </member>
@@ -256,27 +247,8 @@ C:\Path\to\another\working\dir2\clf.sci
         <title>History</title>
         <revhistory>
             <revision>
-                <revnumber>5.5.0</revnumber>
-                <revdescription>getPreferencesValue() introduced.
-                </revdescription>
-            </revision>
-            <revision>
-                <revnumber>6.0.0</revnumber>
-                <revdescription>
-                    <itemizedlist>
-                        <listitem>
-                            XMLsource can now be the path + filename of the preferences file.
-                        </listitem>
-                        <listitem>
-                            A tag with multiple occurrences can now be read.
-                        </listitem>
-                    </itemizedlist>
-                </revdescription>
-            </revision>
-            <revision>
                 <revnumber>6.0.2</revnumber>
-                <revdescription>getPreferencesValue() is cloned into xmlGetValues(). It is
-                    declared obsolete and will be removed from Scilab 6.2.
+                <revdescription>xmlGetValues() introduced, was formerly getPreferencesValue().
                 </revdescription>
             </revision>
         </revhistory>

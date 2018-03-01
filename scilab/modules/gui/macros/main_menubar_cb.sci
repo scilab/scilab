@@ -34,7 +34,7 @@ function main_menubar_cb(key)
             elseif ext==".scg"
                 load(%fileToOpen);
             elseif basename(%fileToOpen)=="lib"
-                libname = getPreferencesValue("/scilablib","name",%fileToOpen);
+                libname = xmlGetValues("/scilablib","name",%fileToOpen);
                 load(%fileToOpen);
                 mprintf(libname+" loaded.\n");
                 execstr(libname+"=return("+libname+")");
@@ -56,19 +56,19 @@ function main_menubar_cb(key)
         prefFile = SCIHOME + "/scinotesConfiguration.xml";
         try
             tagPath = "//Profile/favoriteDirectories/Directory";
-            r = getPreferencesValue(tagPath, "path", prefFile);
+            r = xmlGetValues(tagPath, "path", prefFile);
         catch
             r = []
         end
         try
             tagPath = "//Profile/recentFiles/document";
-            r2 = getPreferencesValue(tagPath, "path", prefFile);
+            r2 = xmlGetValues(tagPath, "path", prefFile);
         catch
             r2 = []
         end
         try
             tagPath = "//Profile/openFiles/document";
-            r2 = [r2 ; getPreferencesValue(tagPath, "path", prefFile)];
+            r2 = [r2 ; xmlGetValues(tagPath, "path", prefFile)];
         end
 
         if isempty([r;r2]) then

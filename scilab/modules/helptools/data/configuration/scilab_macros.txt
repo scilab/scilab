@@ -39,6 +39,7 @@ xmltojar
 xmltopdf
 xmltops
 xmltoweb
+xmlGetValues
 edit_error
 editor
 %Block_xcosUpdateBlock

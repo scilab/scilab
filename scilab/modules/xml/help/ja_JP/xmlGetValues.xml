@@ -13,15 +13,15 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="getPreferencesValue" xml:lang="ja">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xmlGetValues" xml:lang="ja">
     <refnamediv>
-        <refname>getPreferencesValue</refname>
-        <refpurpose>設定値を取得 <emphasis role="bold">（非推奨）</emphasis></refpurpose>
+        <refname>xmlGetValues</refname>
+        <refpurpose>設定値を取得</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
         <synopsis>
-            getPreferencesValue(xpath, attributes [, doc])
+            xmlGetValues(xpath, attributes [, doc])
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -55,10 +55,7 @@
     </refsection>
     <refsection>
         <title>説明</title>
-        <warning>
-            <literal>getPreferencesValue()</literal> is obsolete. It is cloned into
-            <code>xmlGetValues()</code>. It will be removed from Scilab 6.2.
-        </warning>
+		<warning>This page is not up-to-date. Please consider the english version.</warning>
         <para>
             設定ファイル(<literal>SCIHOME+'/XConfiguration.xml'</literal>)の
             属性の値を取得します.
@@ -96,7 +93,7 @@
     </web>
     ...
 </interface>
-          ]]></programlisting>
+	      ]]></programlisting>
                 <para>
                     パスは<literal>"/interface/web/body/proxy"</literal>
                     (または簡単化するために<literal>"//web/body/proxy"</literal>)
@@ -108,15 +105,12 @@
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[
-getPreferencesValue("//web/body/proxy", ["enabled", "host", "port"]);
+xmlGetValues("//web/body/proxy", ["enabled", "host", "port"]);
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
-            <member>
-                <link linkend="xmlGetValues">xmlGetValues</link>
-            </member>
             <member>
                 <link linkend="setPreferencesValue">setPreferencesValue</link>
             </member>
@@ -126,27 +120,8 @@ getPreferencesValue("//web/body/proxy", ["enabled", "host", "port"]);
         <title>History</title>
         <revhistory>
             <revision>
-                <revnumber>5.5.0</revnumber>
-                <revdescription>getPreferencesValue() introduced.
-                </revdescription>
-            </revision>
-            <revision>
-                <revnumber>6.0.0</revnumber>
-                <revdescription>
-                    <itemizedlist>
-                        <listitem>
-                            XMLsource can now be the path + filename of the preferences file.
-                        </listitem>
-                        <listitem>
-                            A tag with multiple occurrences can now be read.
-                        </listitem>
-                    </itemizedlist>
-                </revdescription>
-            </revision>
-            <revision>
                 <revnumber>6.0.2</revnumber>
-                <revdescription>getPreferencesValue() is cloned into xmlGetValues(). It is
-                    declared obsolete and will be removed from Scilab 6.2.
+                <revdescription>xmlGetValues() introduced, was formerly getPreferencesValue().
                 </revdescription>
             </revision>
         </revhistory>

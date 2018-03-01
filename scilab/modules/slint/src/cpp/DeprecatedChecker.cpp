@@ -97,6 +97,7 @@ std::unordered_map<std::wstring, std::wstring> DeprecatedChecker::initDep()
     map.emplace(L"dgettext", L"gettext");
     map.emplace(L"datatipToggle", L"datatipManagerMode");
     map.emplace(L"denom", L".den");
+    map.emplace(L"getPreferencesValue", L"xmlGetValues");
     map.emplace(L"hypermat", L"zeros|matrix");
     map.emplace(L"lstsize", L"size");
     map.emplace(L"nanmin", L"min");

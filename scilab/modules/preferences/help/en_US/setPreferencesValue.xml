@@ -95,22 +95,22 @@
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
 // Get the current values
-prev = getPreferencesValue("//web/body/proxy", ["enabled", "host", "port"]);
+prev = xmlGetValues("//web/body/proxy", ["enabled", "host", "port"]);
 setPreferencesValue("//web/body/proxy", ["enabled", "host", "port"; "true", "my.proxy.org", "1234"]);
 
 // Ok that's work
-getPreferencesValue("//web/body/proxy", ["enabled", "host", "port"])
+xmlGetValues("//web/body/proxy", ["enabled", "host", "port"])
 
 // We restore the previous values
 setPreferencesValue("//web/body/proxy", ["enabled", "host", "port" ; prev]);
-getPreferencesValue("//web/body/proxy", ["enabled", "host", "port"])
+xmlGetValues("//web/body/proxy", ["enabled", "host", "port"])
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="getPreferencesValue">getPreferencesValue</link>
+                <link linkend="xmlGetValues">xmlGetValues</link>
             </member>
         </simplelist>
     </refsection>
