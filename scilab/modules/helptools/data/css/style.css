@@ -68,6 +68,7 @@ h5 {
     color:#333333;
     line-height:120%;
     padding:10px;
+    direction: ltr;
 }
 
 .literal {
@@ -91,12 +92,14 @@ h5 {
     font-family: monospace;
     font-size: 100%;
     color: #32b9b9;
+    direction: ltr;
 }
 
 .varname {
     font-family: monospace;
     font-weight: bold;
     font-size: 100%;
+    direction: ltr;
 }
 
 .constant {
@@ -130,6 +133,7 @@ a:hover {
 pre {
     margin-bottom: 0px;
     margin-top: 0px;
+    direction: ltr;
 }
 
 .leftpart {
@@ -203,9 +207,10 @@ ul.toc li {
 /* Top and bottom navigation controls on manual pages --------------------- */
 div.manualnavbar {
     background-color: #F0F0FF;
-        color: inherit;
-        padding: 4px;
-        margin-bottom: 10px;
+    color: inherit;
+    padding: 4px;
+    margin-bottom: 10px;
+    direction: ltr;
 }
 div.manualnavbar .prev {
         padding-right: 4px;
@@ -375,4 +380,3 @@ td.revnumber
 {
   vertical-align: top;
 }
-

@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - Calixte DENIZET
- * Copyright (C) 2016, 2017 - Samuel GOUGEON
+ * Copyright (C) 2016 - 2018 - Samuel GOUGEON
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -438,7 +438,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      */
     public String makePath(final String id) {
         buffer.setLength(0);
-        buffer.append("<span class=\"path\">");
+        buffer.append("<span class=\"path\" dir=\"ltr\">");
         HTMLDocbookLinkResolver.TreeId leaf = mapTreeId.get(id);
         if (leaf == null) {
             return "";
@@ -876,7 +876,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @throws SAXEception if an error is encountered
      */
     public String handleLiteral(final Map<String, String> attributes, final String contents) throws SAXException {
-        return encloseContents("code", "literal", contents);
+      return encloseContents("code", new String[] {"class", "literal", "dir", "ltr"}, contents);
     }
 
     /**
@@ -893,7 +893,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         //replace spaces by &nbsp;
         s = s.replace(" ", "&nbsp;");
 
-        return encloseContents("code", "literallayout", s);
+        return encloseContents("code", new String[] {"class", "literallayout", "dir", "ltr"}, s);
     }
 
     /**

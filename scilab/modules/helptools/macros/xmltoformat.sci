@@ -4,7 +4,7 @@
 // Copyright (C) 2009 DIGITEO - Vincent COUVERT <vincent.couvert@scilab.org>
 // Copyright (C) 2010 - 2011 DIGITEO - Allan CORNET
 // Copyright (C) 2013 - Scilab Enterprises - Clement DAVID
-// Copyright (C) 2016 - Samuel GOUGEON
+// Copyright (C) 2016, 2018 - Samuel GOUGEON
 //
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
@@ -371,7 +371,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
         elseif nb_dir==1
             mprintf(_("\nBuilding the master document:\n"));
         end
-        
+
         for k=1:nb_dir
             mprintf(_("\t%s\n"),strsubst(dirs_c(k),SCI_long,"SCI"));
 
@@ -393,7 +393,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
         elseif nb_dir==1
             mprintf(_("\nBuilding the master document:\n"));
         end
-        
+
         for k=1:nb_dir
             mprintf(_("\t%s\n"),strsubst(dirs(k),SCI_long,"SCI"));
 
@@ -595,9 +595,21 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 
             // process the build
             fileToExec = buildDoc(output_format,this_tree("master_document"),directory_language_c(k),dirs_c(k));
+            // In case of HTML or jar requested: HTML files are now available
+            // Not yet the jar.
+
             if fileToExec ~= [] then
                 exec(fileToExec, -1);
             end
+
+            // In case of Right-to-left language, we must now tune some tags
+            //  and contents in HTML files to support the Right-to-left rendering
+            if or(part(directory_language_c(k),1:2)==["fa" "ar"])
+                path = dirs_c(k)+filesep()+"scilab_"+directory_language_c(k)+"_help"+filesep();
+                x2f_tune_rtl_html(path, directory_language_c(k));
+            end
+
+            // if javaHelp: => building now the jar from the HTML
             if ~isempty(second_pass_format) then
                 buildDoc(second_pass_format,this_tree("master_document"),directory_language_c(k),dirs_c(k));
             end
@@ -696,9 +708,21 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 
             // process the build
             fileToExec = buildDoc(output_format,this_tree("master_document"),directory_language(k),dirs(k));
+            // In case of HTML or jar requested: HTML files are now available
+            // Not yet the jar.
+
             if fileToExec ~= [] then
                 exec(fileToExec, -1);
             end
+
+            // In case of Right-to-left language, we must now tune some tags
+            //  and contents in HTML files to support the Right-to-left rendering
+            if or(part(directory_language(k),1:2)==["fa" "ar"])
+                path = dirs(k)+filesep()+"scilab_"+directory_language(k)+"_help"+filesep();
+                x2f_tune_rtl_html(path, directory_language(k));
+            end
+
+            // if javaHelp: => building now the jar from the HTML
             if ~isempty(second_pass_format) then
                 buildDoc(second_pass_format,this_tree("master_document"),directory_language(k),dirs(k));
             end
@@ -719,6 +743,57 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
     %helps_modules = %helps_modules_save;
     %HELPS         = saved_helps;
 
+endfunction
+
+// =============================================================================
+// In case of Right-to-left language: tune some HTML tags and contents in HTML
+// files to support the right-to-left rendering
+// =============================================================================
+function x2f_tune_rtl_html(path, lang)
+    // Called only for fa_* and ar_* RtL languages
+    mprintf(_("Post-processing Right-to-Left pages in ""%s""...\n"), lang);
+
+    lang = part(lang,1:2);
+
+    F = listfiles(path + "*.html");
+    if F==[] then
+        return
+    end
+    n = size(F,1);
+    if n>100 & getscilabmode()~="NWNI" then
+        h = waitbar(0);
+    end
+    i = 0;
+    for f = F'
+        c = htmlRead(f);
+        // We must detect, select and process only non default en_US pages:
+        // "ا" aleph = max frequency character in Farsi and Arabic (~12%)
+        // p = xmlXPath(c, "//body/div/p[@class=""refpurpose""]").content;
+        //   Too short sample... and not applicable to sections pages.
+        // => Rather considering the content of the whole page:
+        cc = htmlRead(f);
+        p = xmlXPath(cc, "//head");
+        xmlRemove(p);
+        p = xmlXPath(cc, "//body/div[@class=""manualnavbar""]");
+        xmlRemove(p);
+        p = xmlXPath(cc, "//body/span[@class=""path""]");
+        xmlRemove(p);
+        p = xmlXPath(cc, "//body/div/ul/li[@class=""member""]");
+        xmlRemove(p);
+        if grep(strcat(cc.root.content),"ا")~=[]
+            xmlSetAttributes(c.root, ["dir" "rtl"]);  // <html> => <html dir="rtl"> :
+            htmlWrite(c, f);
+        end
+        xmlDelete(c);
+        xmlDelete(cc);
+        i = i+1;
+        if isdef("h","l") & ~modulo(i, 20)
+            waitbar(i/n, h)
+        end
+    end
+    if isdef("h","l") then
+        close(h)
+    end
 endfunction
 
 // =============================================================================
@@ -1592,7 +1667,7 @@ endfunction
 // tree_out = x2f_merge_trees( tree_in_1 , tree_in_2 )
 //    tree_in_1: reference
 //    tree_in_2: secondary (to be completed from reference)
-//    
+//
 // Date : 27/04/2009
 // =============================================================================
 
@@ -1670,7 +1745,7 @@ function tree_out = x2f_merge_trees( tree_in_1 , tree_in_2 )
             tree_out("xml_number")  = tree_out("xml_number") + 1;
         end
     end
-    
+
     // Fix http://bugzilla.scilab.org/11692 :
     tmp = strsubst(convstr(xmllist_out(:,4)), "/^percent/","%","r")
     [tmp, k] = gsort(tmp, "g", "i");
