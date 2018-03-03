@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ru" xml:id="GlobalProperty">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:lang="ru" xml:id="GlobalProperty">
     <refnamediv>
         <refname>ГлобальноеСвойство</refname>
         <refpurpose>
@@ -72,7 +75,7 @@
         </para>
         <variablelist>
             <varlistentry>
-                <term>CData или ColorData: </term>
+                <term>"CData" или "ColorData": </term>
                 <listitem>
                     <para>
                         матрица вещественных значений, определяющая цвет каждой
@@ -87,7 +90,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>CDataMapping или ColorDataMapping: </term>
+                <term>"CDataMapping" или "ColorDataMapping": </term>
                 <listitem>
                     <para>
                         строка со значением <literal>'scaled'</literal> или
@@ -116,7 +119,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>Clipping: </term>
+                <term>"Clipping": </term>
                 <listitem>
                     <para>
                         строка <literal>"on"</literal> или
@@ -133,59 +136,45 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>Color ("цвет") или Foreground ("передний план"): </term>
+                <term>"Color" (цвет) или "Foreground" (передний план) (только полилинии): </term>
                 <listitem>
                     <para>
-                        строка, определяющая известный цвет (см. <link
-                        linkend="color_list">color_list</link>, "список цветов")
-                        или RGB-вектор размером <literal>1</literal> на
-                        <literal>3</literal> (или <literal>3</literal> на
-                        <literal>1</literal>), определяющий номер цвета. Номер
-                        цвета задаётся в виде тройки <literal>R</literal>,
-                        <literal>G</literal>, <literal>B</literal>,
-                        соответствующих, соответственно, интенсивности красного,
-                        зелёного и синего между 0 и 1. Это свойство связано со
+                        Цвет, указанный его именем (текстом) среди предопределенного названного
+                        <link linkend="color_list">списка цветов</link>) или его шестнадцатеричным
+                        кодом (текстом) <literal>"# RRGGBB"</literal>, или по его индексу в
+                        цветовой карте (целое число) или векторным символом <literal>[r,g,b]</literal>
+                        ее интенсивностей Red-Green-Blue в интервале [0,1].
+                    </para>
+                    <para>
+                        Это свойство связано со
                         объектным свойством <literal>foreground</literal>
                         (передний план, см. <link
                         linkend="polyline_properties">свойства ломаной
                             линии
                         </link>
                         ).
-                        <warning>
-                            Цвет не доступен для объектов поверхности. Свойство
-                            <literal>Foreground</literal> существует только для
-                            объектов поверхности, но  связано со свойством
-                            <literal>EdgeColor</literal> ("цвет кромки") в Matlab'е (см.
-                            <link linkend="surface_properties">свойства поверхности</link>).
-                        </warning>
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>EdgeColor ("цвет кромки") или Foreground: </term>
+                <term>"EdgeColor" (цвет кромки) или "Foreground" (только поверхность): </term>
                 <listitem>
                     <para>
-                        строка, определяющая известный цвет (см. <link linkend="color_list">color_list</link>) или RGB-вектор размером
-                        <literal>1</literal> на <literal>3</literal> (или
-                        <literal>3</literal> на <literal>1</literal>),
-                        определяющий номер цвета. Номер цвета задаётся в виде
-                        тройки <literal>R</literal>, <literal>G</literal>,
-                        <literal>B</literal>, соответствующих, соответственно,
-                        интенсивности красного, зелёного и синего между 0 и 1.
+                        Цвет, указанный его именем (текстом) среди предопределенного названного
+                        <link linkend="color_list">списка цветов</link>) или его шестнадцатеричным
+                        кодом (текстом) <literal>"# RRGGBB"</literal>, или по его индексу в
+                        цветовой карте (целое число) или векторным символом <literal>[r,g,b]</literal>
+                        ее интенсивностей Red-Green-Blue в интервале [0,1].
+                    </para>
+                    <para>
                         Это свойство связано со объектным свойством
                         <literal>foreground</literal> (см. <link
                         linkend="surface_properties">свойства поверхности</link>).
-                        <warning>
-                            Для объектов <literal>polyline</literal> ("ломаная
-                            линия"), свойство <literal>Foreground</literal>
-                            существует с различными значениями (см. выше), а
-                            <literal>EdgeColor</literal>  вообще отсутствует.
-                        </warning>
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>FaceColor: </term>
+                <term>"FaceColor": </term>
                 <listitem>
                     <para>
                         строка со значением <literal>'none'</literal>,
@@ -204,7 +193,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>LineStyle: </term>
+                <term>"LineStyle": </term>
                 <listitem>
                     <para>
                         это значение свойства должно быть строковым,
@@ -260,7 +249,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>Marker ("маркер") или MarkStyle ("стиль маркера"): </term>
+                <term>"Marker" (маркер) или "MarkStyle" (стиль маркера): </term>
                 <listitem>
                     <para>
                         строка, определяющая тип маркера. Заметьте, что если вы
@@ -366,16 +355,16 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>MarkerEdgeColor ("цвет кромки маркера") или MarkForeground ("передний план маркера"): </term>
+                <term>"MarkerEdgeColor" (цвет кромки маркера) или "MarkForeground" (передний план маркера): </term>
                 <listitem>
                     <para>
-                        строка, определяющая известный цвет (см. <link linkend="color_list">color_list</link>) или RGB-вектор размером
-                        <literal>1</literal> на <literal>3</literal> (или
-                        <literal>3</literal> на <literal>1</literal>),
-                        определяющий номер цвета. Номер цвета задаётся в виде
-                        тройки <literal>R</literal>, <literal>G</literal>,
-                        <literal>B</literal>, соответствующих, соответственно,
-                        интенсивности красного, зелёного и синего между 0 и 1.
+                        Цвет, указанный его именем (текстом) среди предопределенного названного
+                        <link linkend="color_list">списка цветов</link>) или его шестнадцатеричным
+                        кодом (текстом) <literal>"# RRGGBB"</literal>, или по его индексу в
+                        цветовой карте (целое число) или векторным символом <literal>[r,g,b]</literal>
+                        ее интенсивностей Red-Green-Blue в интервале [0,1].
+                    </para>
+                    <para>
                         Это свойство связано со объектным свойством
                         <literal>mark_foreground</literal> (см. <link
                         linkend="polyline_properties">свойства ломаной
@@ -386,28 +375,25 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>MarkerFaceColor ("цвет внешней стороны маркера") или MarkBackground ("задний план маркера"): </term>
+                <term>"MarkerFaceColor" (цвет внешней стороны маркера) или "MarkBackground" (задний план маркера) : </term>
                 <listitem>
                     <para>
-                        строка, определяющая известный цвет (см. <link
-                        linkend="color_list">color_list</link>) или RGB-вектор
-                        размером <literal>1</literal> на <literal>3</literal>
-                        (или <literal>3</literal> на <literal>1</literal>),
-                        определяющий номер цвета. Номер цвета задаётся в виде
-                        тройки <literal>R</literal>, <literal>G</literal>,
-                        <literal>B</literal>, соответствующих, соответственно,
-                        интенсивности красного, зелёного и синего между 0 и 1.
+                        Цвет, указанный его именем (текстом) среди предопределенного названного
+                        <link linkend="color_list">списка цветов</link>) или его шестнадцатеричным
+                        кодом (текстом) <literal>"# RRGGBB"</literal>, или по его индексу в
+                        цветовой карте (целое число) или векторным символом <literal>[r,g,b]</literal>
+                        ее интенсивностей Red-Green-Blue в интервале [0,1].
+                    </para>
+                    <para>
                         Это свойство связано с объектным свойством
                         <literal>mark_background</literal> ("фон маркера", см.
-                        <link linkend="polyline_properties">свойства ломаной
-                            линии
-                        </link>
+                        <link linkend="polyline_properties">свойства ломаной линии</link>
                         или <link linkend="surface_properties">свойства поверхности</link>).
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>MarkerSize ("размер маркера") или MarkSize: </term>
+                <term>"MarkerSize" (размер маркера) или "MarkSize" : </term>
                 <listitem>
                     <para>
                         скаляр, определяющий размер маркера в пунктах (
@@ -422,7 +408,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>Visible ("видимость"): </term>
+                <term>"Visible" (видимость) : </term>
                 <listitem>
                     <para>
                         строковое значение <literal>"on"</literal> ("вкл.") или
@@ -436,29 +422,31 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>X data: </term>
+                <term>"X data" : </term>
                 <listitem>
                     <para>
                         вектор или матрица вещественных значений,
                         (пере)определяющих указанные данные для всех построенных
                         линий или поверхностей. Касательно размеров, обратите
                         внимание, что эти новые данные должны совпадать со в
-                        определёнными ранее данными <literal>X</literal>: иными словами, все эти матрицы данных должны быть одного размера. Это свойство связано с объектным свойством
-                        <literal>data.x</literal> (см.
+                        определёнными ранее данными <literal>X</literal>: иными словами, все эти
+                        матрицы данных должны быть одного размера. Это свойство связано с объектным
+                        свойством <literal>data.x</literal> (см.
                         <link linkend="polyline_properties">свойства ломаной линии</link> или
                         <link linkend="surface_properties">свойства поверхностей</link>).
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>Y data: </term>
+                <term>"Y data" : </term>
                 <listitem>
                     <para>
                         вектор или матрица вещественных значений,
                         (пере)определяющих указанные данные для всех построенных
                         линий или поверхностей. Касательно размеров, обратите
-                        внимание, что эти новые данные должны совпадать со в
-                        определёнными ранее данными <literal>Y</literal>: иными словами, все эти матрицы данных должны быть одного размера. Это свойство связано с объектным свойством
+                        внимание, что эти новые данные должны совпадать со в определёнными ранее
+                        данными <literal>Y</literal>: иными словами, все эти матрицы данных должны
+                        быть одного размера. Это свойство связано с объектным свойством
                         <literal>data.y</literal> property (см.
                         <link linkend="polyline_properties">свойства ломаной линии</link> или
                         <link linkend="surface_properties">свойства поверхностей</link>).
@@ -466,20 +454,17 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>Z data: </term>
+                <term>"Z data" : </term>
                 <listitem>
                     <para>
-                        когда используется в <function>plot</function>, то это
-                        вещественный вектор или матрица, добавляющая данные
-                        <literal>Z</literal> ко всем построенным линиям;
-                        в <function>surf</function> это вещественная матрица,
-                        (пере)определяющая заданные данные для всех
-                        поверхностей. Касательно размеров, заметьте, что новые
-                        данные должны совпадать со всеми ранее определёнными
-                        данными <literal>X</literal> и <literal>Y</literal>. Это
-                        свойство связано с объектным свойством
-                        <literal>data.z</literal> (см. <link
-                        linkend="polyline_properties">свойства ломаной линии</link>
+                        когда используется в <function>plot</function>, то это вещественный вектор
+                        или матрица, добавляющая данные <literal>Z</literal> ко всем построенным
+                        линиям; в <function>surf</function> это вещественная матрица,
+                        (пере)определяющая заданные данные для всех поверхностей.
+                        Касательно размеров, заметьте, что новые данные должны совпадать со всеми
+                        ранее определёнными данными <literal>X</literal> и <literal>Y</literal>.
+                        Это свойство связано с объектным свойством <literal>data.z</literal>
+                        (см. <link linkend="polyline_properties">свойства ломаной линии</link>
                         или <link linkend="surface_properties">свойства поверхностей</link>).
                     </para>
                 </listitem>
@@ -493,18 +478,23 @@
 // С командой plot:
 // --------------------
 x=1:10; // Init.
+clf
 plot(x,sin(x),'colo','red','linest','-.','marker','>','markeredg','cyan','markerFace','yellow','markersize',5)
-clf();
+
+clf
 // порядок комбинаций {ИмяСвойства,ЗначениеСвойства} не имеет значения
 plot(x,sin(x),'marker','p','markerfac','cyan','markersiz',10)
-clf();
+
+clf
 // комбинация ВидаЛиний и ГлобальногоСвойства показывает преимущество Глобального свойства
-plot(x,x.*x,'*cya--','color','gr','linestyle','-','marker','sq','markersize',6,'markforegroun','red','markbackgro',[0.2 0.5 0.6])
-clf();
+plot(x, x.*x, '*cya--', 'color','gr', 'linestyle','-', ..
+     'marker','sq', 'markersize',6, 'markforegroun','red', 'markbackgro',[0.2 0.5 0.6])
+
+clf
 //множество графиков с различными ВидамиЛиний и, наконец, некоторые ГлобальныеСвойства
-clf();
 t=0:%pi/20:2*%pi;
 plot(t,sin(t),'ro-.',t,cos(t),'cya+',t,abs(sin(t)),'--mo','markstyl','diam')
+
 // --------------------
 // С командой plot2d:
 // --------------------
@@ -520,23 +510,28 @@ function draw_marks(title)
     plot2d(cos(theta),sin(theta),style=-i);
   end
 endfunction
-clf();
+
+clf
 subplot(2,2,1)
 draw_marks("чёрный передний план/ белый задний план")
+
 subplot(2,2,2)
 a=gca();
 a.mark_foreground=-1;
 a.mark_background=4;
 draw_marks("чёрный передний план/ синезелёный задний план")
+
 subplot(2,2,3)
 a=gca();
 a.mark_background=0;
 draw_marks("чёрный передний план/ невидимый задний план")
+
 subplot(2,2,4)
 a=gca();
 a.mark_foreground=0;
 a.mark_background=4;
 draw_marks("невидимый передний план/ синезелёный задний план")
+
 // --------------------
 // С командой surf:
 // --------------------
@@ -550,11 +545,14 @@ Z= [   0.0001    0.0013    0.0053   -0.0299   -0.1809   -0.2465   -0.1100   -0.0
    -0.0014   -0.0017    0.3189    2.7414    7.1622    7.1361    3.1242    0.6633    0.0674    0.0030
     0.0002    0.0104    0.1733    1.0852    2.6741    2.6725    1.1119    0.1973    0.0152    0.0005
     0.0000    0.0012    0.0183    0.1099    0.2684    0.2683    0.1107    0.0190    0.0014    0.0000];
+
 clf();
 f=gcf();
 f.figure_size = [610,724];
+
 subplot(211)
 surf(Z,'facecol','interp','ydat',101:110,'edgecol','mage')
+
 subplot(212)
 surf(Z,'edgeco','b','marker','d','markersiz',9,'markerfac','k','xdata',-50:-41)
  ]]></programlisting>
@@ -581,5 +579,18 @@ surf(Z,'edgeco','b','marker','d','markersiz',9,'markerfac','k','xdata',-50:-41)
                 <link linkend="surface_properties">свойства поверхностей</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revdescription>
+                    The "Foreground", "markForeground", and "markBackground" colors can now be
+                    specified as named colors chosen in the full predefined colors list, or by
+                    their "#RRGGBB" hexadecimal codes, or by their indices in the colormap.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

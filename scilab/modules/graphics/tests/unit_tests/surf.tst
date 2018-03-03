@@ -1,49 +1,125 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2008 - INRIA - Jean-Baptiste SILVY <jean-baptiste.silvy@inria.fr>
+// Copyright (C) 2018 - Samuel GOUGEON
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
+//
 // <-- TEST WITH GRAPHIC -->
-
-// non regression bug for surf
-
-Z= [   0.0001    0.0013    0.0053   -0.0299   -0.1809   -0.2465   -0.1100   -0.0168   -0.0008   -0.0000
-    0.0005    0.0089    0.0259   -0.3673   -1.8670   -2.4736   -1.0866   -0.1602   -0.0067    0.0000
-    0.0004    0.0214    0.1739   -0.3147   -4.0919   -6.4101   -2.7589   -0.2779    0.0131    0.0020
-   -0.0088   -0.0871    0.0364    1.8559    1.4995   -2.2171   -0.2729    0.8368    0.2016    0.0130
-   -0.0308   -0.4313   -1.7334   -0.1148    3.0731    0.4444    2.6145    2.4410    0.4877    0.0301
-   -0.0336   -0.4990   -2.3552   -2.1722    0.8856   -0.0531    2.6416    2.4064    0.4771    0.0294
-   -0.0137   -0.1967   -0.8083    0.2289    3.3983    3.1955    2.4338    1.2129    0.2108    0.0125
-   -0.0014   -0.0017    0.3189    2.7414    7.1622    7.1361    3.1242    0.6633    0.0674    0.0030
-    0.0002    0.0104    0.1733    1.0852    2.6741    2.6725    1.1119    0.1973    0.0152    0.0005
-    0.0000    0.0012    0.0183    0.1099    0.2684    0.2683    0.1107    0.0190    0.0014    0.0000];
+// <-- NO CHECK REF -->
+//
+// <-- Unit tests for surf() -->
 
 
-X = [ -3.0000   -2.3333   -1.6667   -1.0000   -0.3333    0.3333    1.0000    1.6667    2.3333    3.0000
-   -3.0000   -2.3333   -1.6667   -1.0000   -0.3333    0.3333    1.0000    1.6667    2.3333    3.0000
-   -3.0000   -2.3333   -1.6667   -1.0000   -0.3333    0.3333    1.0000    1.6667    2.3333    3.0000
-   -3.0000   -2.3333   -1.6667   -1.0000   -0.3333    0.3333    1.0000    1.6667    2.3333    3.0000
-   -3.0000   -2.3333   -1.6667   -1.0000   -0.3333    0.3333    1.0000    1.6667    2.3333    3.0000
-   -3.0000   -2.3333   -1.6667   -1.0000   -0.3333    0.3333    1.0000    1.6667    2.3333    3.0000
-   -3.0000   -2.3333   -1.6667   -1.0000   -0.3333    0.3333    1.0000    1.6667    2.3333    3.0000
-   -3.0000   -2.3333   -1.6667   -1.0000   -0.3333    0.3333    1.0000    1.6667    2.3333    3.0000
-   -3.0000   -2.3333   -1.6667   -1.0000   -0.3333    0.3333    1.0000    1.6667    2.3333    3.0000
-   -3.0000   -2.3333   -1.6667   -1.0000   -0.3333    0.3333    1.0000    1.6667    2.3333    3.0000];
+[X,Y] = meshgrid(-1:.1:1,-1:.1:1);
+Z = X.^2 - Y.^2;
+wh = color("white");
+ma = color("magenta");
+orange = color("orange");
 
-Y= [   -3.0000   -3.0000   -3.0000   -3.0000   -3.0000   -3.0000   -3.0000   -3.0000   -3.0000   -3.0000
-   -2.3333   -2.3333   -2.3333   -2.3333   -2.3333   -2.3333   -2.3333   -2.3333   -2.3333   -2.3333
-   -1.6667   -1.6667   -1.6667   -1.6667   -1.6667   -1.6667   -1.6667   -1.6667   -1.6667   -1.6667
-   -1.0000   -1.0000   -1.0000   -1.0000   -1.0000   -1.0000   -1.0000   -1.0000   -1.0000   -1.0000
-   -0.3333   -0.3333   -0.3333   -0.3333   -0.3333   -0.3333   -0.3333   -0.3333   -0.3333   -0.3333
-    0.3333    0.3333    0.3333    0.3333    0.3333    0.3333    0.3333    0.3333    0.3333    0.3333
-    1.0000    1.0000    1.0000    1.0000    1.0000    1.0000    1.0000    1.0000    1.0000    1.0000
-    1.6667    1.6667    1.6667    1.6667    1.6667    1.6667    1.6667    1.6667    1.6667    1.6667
-    2.3333    2.3333    2.3333    2.3333    2.3333    2.3333    2.3333    2.3333    2.3333    2.3333
-    3.0000    3.0000    3.0000    3.0000    3.0000    3.0000    3.0000    3.0000    3.0000    3.0000];
+// Testing already supported global propeties => Back-compatibility
+// ----------------------------------------------------------------
+// Foreground
+surf(X, Y, Z, "foreground", "magenta");
+assert_checkequal(gce().foreground, ma);
+clf
+surf(X, Y, Z, "foreground", "ma");
+assert_checkequal(gce().foreground, ma);
+clf
+surf(X, Y, Z, "foreground", [1 0 1]);
+assert_checkequal(gce().foreground, ma);
+clf
+surf(X, Y, Z, "foreground", "none");
+assert_checkequal(gce().color_mode, 0);
+assert_checkequal(gce().mark_foreground, -1);
 
-// use to throw an out of bounds exception because
-// some Z data are negative
-surf(Z,'cdatamapping','direct')
+// facecolor
+clf
+surf(X, Y, Z, "facecolor", "none");
+assert_checkequal(gce().surface_mode, "on");
+assert_checkequal(gce().color_mode, 0);
+assert_checkequal(gce().color_flag, 0);
+clf
+surf(X, Y, Z, "facecolor", "flat");
+assert_checkequal(gce().surface_mode, "on");
+assert_checkequal(gce().color_flag, 4);
+clf
+surf(X, Y, Z, "facecolor", "interp");
+assert_checkequal(gce().surface_mode, "on");
+assert_checkequal(gce().color_flag, 3);
+
+// markforeground
+clf
+surf(X, Y, Z, "foreground", "magenta", "marker", "*", "markforeground", "auto");
+assert_checkequal(gce().mark_foreground, ma);
+clf
+surf(X, Y, Z, "foreground", "magenta", "marker","*", "markforeground", "none");
+assert_checkequal(gce().mark_foreground, gca().background);
+clf
+surf(X, Y, Z, "marker","*", "markforeground", "magenta");
+assert_checkequal(gce().mark_foreground, ma);
+clf
+surf(X, Y, Z, "marker","*", "markforeground", "ma");
+assert_checkequal(gce().mark_foreground, ma);
+clf
+surf(X, Y, Z, "marker","*", "markforeground", [1 0 1]);
+assert_checkequal(gce().mark_foreground, ma);
+
+// markbackground
+clf     // NOT DOCUMENTED
+surf(X, Y, Z, "foreground", "magenta", "marker", "*", "markbackground", "auto");
+assert_checkequal(gce().mark_background, gca().background);
+clf     // NOT DOCUMENTED
+surf(X, Y, Z, "foreground", "magenta", "marker","*", "markbackground", "none");
+assert_checkequal(gce().mark_background, gca().background);
+clf
+surf(X, Y, Z, "marker","*", "markbackground", "magenta");
+assert_checkequal(gce().mark_background, ma);
+clf
+surf(X, Y, Z, "marker","*", "markbackground", "ma");
+assert_checkequal(gce().mark_background, ma);
+clf
+surf(X, Y, Z, "marker","*", "markbackground", [1 0 1]);
+assert_checkequal(gce().mark_background, ma);
+
+// Testing Fixed Extended global properties (bug 15404)
+// ----------------------------------------------------
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/15404
+// <-- Short Description -->
+//  surf() (adn so mesh() that calls it) did not accept extended color names
+//  out of a restricted list of 10 basic colors, nor color "RRGGBB" hexa codes,
+//  nor color indices, for all their colored properties.
+// Foreground
+clf
+surf(X, Y, Z, "foreground", "orange");
+assert_checkequal(gce().foreground, color("orange"));
+clf
+surf(X, Y, Z, "foreground", "#FF00FF");
+assert_checkequal(gce().foreground, color("magenta"));
+clf
+surf(X, Y, Z, "foreground", ma);
+assert_checkequal(gce().foreground, ma);
+
+// MarkForeground
+clf
+surf(X, Y, Z, "marker", "*", "markforeground", "orange");
+assert_checkequal(gce().mark_foreground, orange);
+clf
+surf(X, Y, Z, "marker", "*", "markforeground", "#FF00FF");
+assert_checkequal(gce().mark_foreground, ma);
+clf
+surf(X, Y, Z, "marker","*", "markforeground", ma);
+assert_checkequal(gce().mark_foreground, ma);
+
+// MarkBackground
+clf
+surf(X, Y, Z, "marker", "*", "markbackground", "orange");
+assert_checkequal(gce().mark_background, orange);
+clf
+surf(X, Y, Z, "marker", "*", "markbackground", "#FF00FF");
+assert_checkequal(gce().mark_background, ma);
+clf
+surf(X, Y, Z, "marker","*", "markbackground", ma);
+assert_checkequal(gce().mark_background, ma);
 

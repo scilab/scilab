@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="mesh">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:lang="en" xml:id="mesh">
     <refnamediv>
         <refname>mesh</refname>
         <refpurpose>3D mesh plot</refpurpose>
@@ -154,5 +157,18 @@ mesh(X,Y,Z);
                 <link linkend="GlobalProperty">GlobalProperty</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revdescription>
+                    The "Foreground", "markForeground", and "markBackground" global properties
+                    colors can now be specified as named colors chosen in the full predefined colors
+                    list, or by their "#RRGGBB" hexadecimal codes, or by their colormap indices.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
