@@ -2,6 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
+ * Copyright (C) 2018 - Samuel GOUGEON
+ * Copyright (C) 2018 - Stanislav KROTER
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -13,24 +15,31 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="fileinfo" xml:lang="ru">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="fileinfo" xml:lang="ru">
     <refnamediv>
         <refname>fileinfo</refname>
         <refpurpose>предоставляет информацию о файле</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Синтаксис</title>
-        <synopsis>[x,ierr] = fileinfo(files)</synopsis>
+        <synopsis>
+             x = fileinfo(filesPaths)
+            [x,ierr] = fileinfo(filesPaths)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
         <variablelist>
             <varlistentry>
-                <term>files</term>
+                <term>filesPaths</term>
                 <listitem>
                     <para>
-                        символьная строка или вектор-столбец строк, имя файла и
-                        путь до него
+                        вектор или матрица путей (в виде текста). Файлы могут быть любого типа:
+                        обычные файлы, директории (внутри собственные директории), ярлыки, символьные
+                        ссылки, и т.д.
                     </para>
                 </listitem>
             </varlistentry>
@@ -38,17 +47,68 @@
                 <term>x</term>
                 <listitem>
                     <para>
-                        вектор целых чисел размером 13 элементов, содержащий
-                        информацию, либо пустую матрицу, если файла не существует.
+                        матрицы или десятичные целые числа размером (m,13), где m: число
+                        указанных путей файлов. Строка №i возвращает информацию о файле
+                        <literal>filesPaths(i)</literal>.
+                    </para>
+                   <para>
+                     Если запрошен единственный путь, а файла не существует, то <varname>x</varname>
+                     возвращается в виде [].
                     </para>
                     <para>
-                        Если <varname>files</varname> является вектор-столбцом
-                        строк, то <varname>x</varname> будет матрицей размером
-                        <literal>m x 13</literal>.
+                        Если запрошено несколько файлов: когда файла среди них не существует, то функция
+                        возвращает <varname>x</varname>, в котором строка заполнена значениями <constant>Nan</constant>.
                     </para>
                     <para>
-                        Если файла с указанным именем не существует, то в качестве
-                        выходной информации будет возвращена строка из 13 элементов и в каждом элементе <constant>Nan</constant>.
+                        <table>
+                            <tr><th>столбец x</th><th align="left">Описание</th></tr>
+                            <tr><td align="center" valign="top">1 : </td>
+                                <td>фактический размер файла (байты). 0 для директории.</td>
+                            </tr>
+                            <tr><td align="center" valign="top">2 : </td>
+                                <td>права файла (см. описание)</td>
+                            </tr>
+                            <tr><td align="center" valign="top">3 : </td>
+                                <td>идентификатор собственника файла (всегда 0 в Windows)</td>
+                            </tr>
+                            <tr><td align="center" valign="top">4 : </td>
+                                <td>идентификатор группы файла (всегда 0 в Windows)</td>
+                            </tr>
+                            <tr><td align="center" valign="top">5 : </td>
+                                <td>номер устройства</td>
+                            </tr>
+                            <tr><td align="center" valign="top">6 : </td>
+                                <td>
+                                    временная метка UNIX последней модификации данных.
+                                    <literal>getdate(x(:,6))(:,[1 2 6 7 8 9])</literal> возвращает
+                                    соответствующую дату в виде матрицы из числовых строк [год месяц день час мин сек].
+                                </td>
+                            </tr>
+                            <tr><td align="center" valign="top">7 : </td>
+                                <td>временная метка UNIX последнего изменения статуса файла.</td>
+                            </tr>
+                            <tr><td align="center" valign="top">8 : </td>
+                                <td>временная метка UNIX последнего доступа к файлу.</td>
+                            </tr>
+                            <tr><td align="center" valign="top">9 : </td>
+                                <td>Тип устройства (если узловое устройство).</td>
+                            </tr>
+                            <tr><td align="center" valign="top">10 : </td>
+                                <td>Размер блока файловой системы ввода-вывода (всегда 0 в Windows)</td>
+                            </tr>
+                            <tr><td align="center" valign="top">11 : </td>
+                                <td>Количество блоков распределённых по этому хранилищу файлов
+                                    (всегда 0 в Windows)
+                                </td>
+                            </tr>
+                            <tr><td align="center" valign="top">12 : </td>
+                                <td>индексный дескриптор файла (уникальный идентификатор) (всегда 0 в Windows)</td>
+                            </tr>
+                            <tr><td align="center" valign="top">13 : </td>
+                                <td>Количество жёстких ссылок, указывающих на этот файл (всегда 1 в Windows).
+                                </td>
+                            </tr>
+                        </table>
                     </para>
                 </listitem>
             </varlistentry>
@@ -64,94 +124,6 @@
     </refsection>
     <refsection>
         <title>Описание</title>
-        <para>
-            <code>x = fileinfo(file)</code> возвращает:
-        </para>
-        <variablelist>
-            <varlistentry>
-                <term>x(1)</term>
-                <listitem>
-                    <para>Размер файла</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>x(2)</term>
-                <listitem>
-                    <para>Режимный код файла (десятичное значение)</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>x(3)</term>
-                <listitem>
-                    <para>Идентификатор пользователя</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>x(4)</term>
-                <listitem>
-                    <para>Идентификатор группы</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>x(5)</term>
-                <listitem>
-                    <para>Номер устройства</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>x(6)</term>
-                <listitem>
-                    <para>Дата последнего изменения данных</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>x(7)</term>
-                <listitem>
-                    <para>Дата последнего изменения статуса файла</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>x(8)</term>
-                <listitem>
-                    <para>Дата последнего доступа</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>x(9)</term>
-                <listitem>
-                    <para>Тип устройства (если инодное устройство)</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>x(10)</term>
-                <listitem>
-                    <para>
-                        Размер блока для ввода/вывода файловой системы (в Windows всегда 0)
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>x(11)</term>
-                <listitem>
-                    <para>Количество распределённых блоков (в Windows всегда 0)</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>x(12)</term>
-                <listitem>
-                    <para>Индексный дескриптор</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>x(13)</term>
-                <listitem>
-                    <para>Количество жёстких ссылок</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Ссылки</title>
         <para>
             Эта функция является интерфейсом к C-функции <function>stat</function>.
         </para>
@@ -170,15 +142,20 @@
             других пользователей в группе файлов с теми же самыми значениями.
         </para>
         <para>
-            So, to check permissions, it is necessary to use masks. Let us take an example:
-            In octal, x(2)=1664, so first digit corresponds to sticky attributes. The second
-            indicates that file owner has permission of writing and reading. It is the same
-            for other users in the file's group. Finally, others users has just right to read.
-            To apply a mask, it is simpler to look at this octal in binary.
-            So: <varname>x</varname>(2)= 1 110 110 100.
-            To check if the owner has write permission, we must take a look at the second triplet: 110
-            and compare it with write permission 010. So, the operation is: 110 000 000 &amp; 010 000 000.
-            If result is not null (it is the case here), owner has write permission.
+            Таким образом, чтобы проверить права, необходимо использовать маски.
+            Например, в восьмеричной системе <varname>x</varname><literal>(2)=1664</literal>,
+            таким образом первый элемент соответствует атрибуту sticky-бита (защита
+            от удаления и переименования). Второй указывает на то, что владелец
+            файла имеет право на запись и чтение. То же самое и для других пользователей
+            в группе файла. Наконец, другие пользователи имеют право лишь на чтение.
+            Использовать маску проще, чем смотреть на эти восьмеричные коды в
+            двоичном виде. Таким образом: <varname>x</varname><literal>(2)= 1 110 110 100</literal>.
+            Чтобы проверить имеет ли пользователь право на запись, нужно посмотреть
+            на вторую тройку: <literal>110</literal> и сравнить её с правом на запись
+            <literal>010</literal>. Таким образом, операция заключается в
+            <literal>110 000 000</literal> &amp; <literal>010 000 000</literal>.
+            Если результат отличен от нуля (как в данном случае), то пользователь
+            имеет право на запись.
         </para>
     </refsection>
     <refsection>
@@ -187,23 +164,19 @@
 w = fileinfo(SCI+'/etc/scilab.start')
 // права на файл
 dec2oct(w(2))
-// дата файла
-getdate(w(6))
-
+// дата файла : [год месяц день час мин сек .сек]
+getdate(w(6))(:,[1 2 6:10])
 // Проверка прав на запись
 w = fileinfo(SCI+'/etc/scilab.start')
-
 S_IWRITE = 128; // маска прав на запись
 S_IEXEC = 64; // маска прав на исполнение
 S_IREAD = 256; // маска прав на чтение
 S_IFCHR = 8192; // маска прав директории
-
 if ( bitand( w(2), S_IWRITE ) <> 0) then
  disp('Для этого файла есть ПРАВО НА ЗАПИСЬ.');
 else
  disp('Для этого файла НЕТ ПРАВА НА ЗАПИСЬ.');
 end
-
 FILES = [SCI;SCIHOME;'несуществующий_файл';TMPDIR]
 [X,ERRS] = fileinfo(FILES)
  ]]></programlisting>
@@ -231,5 +204,15 @@ FILES = [SCI;SCIHOME;'несуществующий_файл';TMPDIR]
             </member>
         </simplelist>
     </refsection>
+    <refsection>
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revremark>
+                    Теперь могут быть обработаны несколько путей файлов.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>
-

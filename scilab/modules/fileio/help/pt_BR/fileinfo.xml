@@ -1,7 +1,10 @@
-<?xml version="1.0" encoding="windows-1251"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
+ * Copyright (C) 2008 - Allan CORNET
+ * Copyright (C) 2008 - Serge STEERS
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -13,147 +16,129 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="fileinfo" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="fileinfo" xml:lang="pt">
     <refnamediv>
         <refname>fileinfo</refname>
-        <refpurpose>Fornece informa&#231;&#245;es sobre um arquivo</refpurpose>
+        <refpurpose>Fornece informações sobre um arquivo</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seq&#252;&#234;ncia de Chamamento</title>
-        <synopsis>[x,ierr]=fileinfo(file)</synopsis>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>
+             x = fileinfo(filesPaths)
+            [x,ierr] = fileinfo(filesPaths)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Par&#226;metros</title>
+        <title>Parâmetros</title>
         <variablelist>
             <varlistentry>
-                <term>file</term>
-                <listitem>
-                    <para>string, o endere&#231;o do arquivo</para>
-                </listitem>
+                <term>filesPaths</term>
+                    <para>
+                        vector of paths (as text). Files of any type can be targeted: regular files,
+                        directories (in their own), shortcuts, symbolic links, etc.
+                    </para>
             </varlistentry>
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>um vetor de inteiros de tamanho 13 contendo
-                        informa&#231;&#245;es ou uma matriz vazia se o arquivo n&#227;o
-                        existir.
+                    <para>
+                        matrix of decimal integers, of sizes (m,13) with m: number of provided
+                        files paths. The row #i returns informations about the file
+                        <literal>filesPaths(i)</literal>.
+                    </para>
+                   <para>
+                     If only one path is queried and the file does not exist, <varname>x</varname>
+                     returns [].
+                    </para>
+                    <para>
+                        If several files are queried: when a file among them does not exist, its
+                        <varname>x</varname> row is filled with <constant>Nan</constant> values.
+                    </para>
+                    <para>
+                        <table>
+                            <tr><th>x column</th><th align="left">Description</th></tr>
+                            <tr><td align="center" valign="top">1 : </td>
+                                <td >tamanho do arquivo</td>
+                            </tr>
+                            <tr><td align="center" valign="top">2 : </td>
+                                <td>file permissions (see the description)</td>
+                            </tr>
+                            <tr><td align="center" valign="top">3 : </td>
+                                <td>id of the file's owner (always 0 on Windows)</td>
+                            </tr>
+                            <tr><td align="center" valign="top">4 : </td>
+                                <td>id of the file's group (always 0 on Windows)</td>
+                            </tr>
+                            <tr><td align="center" valign="top">5 : </td>
+                                <td>número do dispositivo</td>
+                            </tr>
+                            <tr><td align="center" valign="top">6 : </td>
+                                <td valign="top">
+                                    UNIX timestamp of last data modification.
+                                    <literal>getdate(x(:,6))(:,[1 2 6 7 8 9])</literal> returns the
+                                    corresponding date as a matrix of [year month day hour mn ss]
+                                    numerical rows.
+                                </td>
+                            </tr>
+                            <tr><td align="center" valign="top">7 : </td>
+                                <td>data da última mudança.</td>
+                            </tr>
+                            <tr><td align="center" valign="top">8 : </td>
+                                <td>data do último acesso.</td>
+                            </tr>
+                            <tr><td align="center" valign="top">9 : </td>
+                                <td valign="top">tipo de dispositivo (se o dispositivo for inode).</td>
+                            </tr>
+                            <tr><td align="center" valign="top">10 : </td>
+                                <td>tamanho de bloco para a entrada/saída do sismtema
+                                                 de arquivos (sempre 0 no Windows).
+                                </td>
+                            </tr>
+                            <tr><td align="center" valign="top">11 : </td>
+                                <td>número de blocos alocados (sempre 0 no Windows)</td>
+                            </tr>
+                            <tr><td align="center" valign="top">12 : </td>
+                                <td>File's inode (unique id) (always 0 on Windows)</td>
+                            </tr>
+                            <tr><td align="center" valign="top">13 : </td>
+                                <td>Number of hard links pointing to this file
+                                                (always 1 on Windows).
+                                </td>
+                            </tr>
+                        </table>
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>ierr</term>
                 <listitem>
-                    <para>indicador de erro, 0, se n&#227;o for encontrado nenhum
-                        erro.
+                    <para>indicador de erro : 0, se não for encontrado nenhum erro.
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descri&#231;&#227;o</title>
-        <para>x=fileinfo(file) retorna</para>
-        <variablelist>
-            <varlistentry>
-                <term>x(1)</term>
-                <listitem>
-                    <para>O tamanho do arquivo</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>x(2)</term>
-                <listitem>
-                    <para>O modo do arquivo (valor decimal)</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>x(3)</term>
-                <listitem>
-                    <para>O id do usu&#225;rio</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>x(4)</term>
-                <listitem>
-                    <para>O id do grupo</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>x(5)</term>
-                <listitem>
-                    <para>O n&#250;mero do dispositivo</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>x(6)</term>
-                <listitem>
-                    <para>A data da &#250;ltima modifica&#231;&#227;o</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>x(7)</term>
-                <listitem>
-                    <para>A data da &#250;ltima mudan&#231;a</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>x(8)</term>
-                <listitem>
-                    <para>A data do &#250;ltimo acesso</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>x(9)</term>
-                <listitem>
-                    <para>O tipo de dispositivo (se o dispositivo for inode)</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>x(10)</term>
-                <listitem>
-                    <para>O tamanho de bloco para a entrada/sa&#237;da do sismtema de
-                        arquivos (sempre 0 no Windows)
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>x(11)</term>
-                <listitem>
-                    <para>O n&#250;mero de blocos alocados (sempre 0 no Windows)</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>x(12)</term>
-                <listitem>
-                    <para>O inode</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>x(13)</term>
-                <listitem>
-                    <para>O n&#250;mero de hard links.</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Refer&#234;ncia</title>
-        <para>Esta fun&#231;&#227;o &#233; uma interface para a fun&#231;&#227;o C
-            stat.
+        <title>Descrição</title>
+        <para>
+            Esta função é uma interface para a função C stat.
         </para>
-        <para>Permiss&#245;es s&#227;o tipicamente especificadas como n&#250;meros
-            octais : dec2oct(x(2)) para convers&#227;o.
+        <para>Permissões são tipicamente especificadas como números
+            octais : <literal>dec2oct(x(2))</literal> para conversão.
         </para>
-        <para>O modo num&#233;rico possui de um a quatro d&#237;gitos octais
-            (0-7), derivados atrav&#233;s da soma de bits com os valores 4, 2, e 1.
-            Quaisquer d&#237;gitos omitidos s&#227;o supostos como zeros &#224;
-            esquerda. O primeiro d&#237;gito seleciona o ID de usu&#225;rio (4) e
-            ajusta o ID do grupo (2) e atributos "sticky" (1). O segundo d&#237;gito
-            seleciona permiss&#245;es para o usu&#225;rio que possui o arquivo:
-            leitura (4), escrita (2), e execu&#231;&#227;o (1); o terceiro d&#237;gito
-            seleciona permiss&#245;es para os outros usu&#225;rios no grupo do
-            arquivo, com os mesmos valores; e o quarto seleciona permiss&#245;es para
-            outros usu&#225;rios que n&#227;o est&#227;o no grupo do arquivo, com os
+        <para>O modo numérico possui de um a quatro dígitos octais
+            (0-7), derivados através da soma de bits com os valores 4, 2, e 1.
+            Quaisquer dígitos omitidos são supostos como zeros à
+            esquerda. O primeiro dígito seleciona o ID de usuário (4) e
+            ajusta o ID do grupo (2) e atributos "sticky" (1). O segundo dígito
+            seleciona permissões para o usuário que possui o arquivo:
+            leitura (4), escrita (2), e execução (1); o terceiro dígito
+            seleciona permissões para os outros usuários no grupo do
+            arquivo, com os mesmos valores; e o quarto seleciona permissões para
+            outros usuários que não estão no grupo do arquivo, com os
             mesmos valores.
         </para>
     </refsection>
@@ -163,8 +148,8 @@
 w = fileinfo(SCI+'/etc/scilab.start')
 // permissão do arquivo
 dec2oct(w(2))
-// data do arquivo
-getdate(w(6))
+// data do arquivo : [year month day hh mn ss .ss]
+getdate(w(6))(:,[1 2 6:10])
 
 // Verificando a permissão de escrita em um arquivo
 w = fileinfo(SCI+'/etc/scilab.start')
@@ -178,11 +163,10 @@ if ( bitand( w(2), S_IWRITE ) <> 0) then
  disp('PERIMISSÃO DE ESCRITA neste arquivo.');
 else
  disp('NÃO HÁ PERIMISSÃO DE ESCRITA neste arquivo.');
-end
- ]]></programlisting>
+end ]]></programlisting>
     </refsection>
     <refsection>
-        <title>Ver Tamb&#233;m</title>
+        <title>Ver Também</title>
         <simplelist type="inline">
             <member>
                 <link linkend="getdate">getdate</link>
@@ -205,8 +189,14 @@ end
         </simplelist>
     </refsection>
     <refsection>
-        <title>Autores</title>
-        <para>S. Steer INRIA</para>
-        <para>A.C</para>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revremark>
+                    Several files paths can now be processed.
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
