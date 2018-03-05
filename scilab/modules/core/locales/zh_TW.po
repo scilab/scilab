@@ -6,11 +6,11 @@ msgstr ""
 "PO-Revision-Date: 2016-10-19 13:07+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Scilab Chinese (traditional) <ade-scilab@googlegroups.com>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18544)\n"
-"Language: \n"
+"X-Generator: Launchpad (build 18566)\n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
 #, c-format
@@ -287,8 +287,7 @@ msgid "%s: Wrong type for input argument #%d: An integer expected."
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: a String or Integer expected.\n"
+msgid "%s: Wrong type for input argument #%d: a String or Integer expected.\n"
 msgstr ""
 
 #, c-format
@@ -387,8 +386,7 @@ msgid "Pause mode: enter empty lines to continue.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Valid function name expected.\n"
+msgid "%s: Wrong value for input argument #%d: Valid function name expected.\n"
 msgstr ""
 
 #
@@ -414,8 +412,7 @@ msgid "%s: Wrong size for input argument #%d: string expected."
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 
 #, c-format
@@ -511,8 +508,8 @@ msgid ""
 "Error: Not a valid version file %s (should start with <MODULE_VERSION> and "
 "contain <VERSION major='' minor='' maintenance='' revision='' string=''>)\n"
 msgstr ""
-"錯誤:不是一個有效的版本檔%s (開頭應是<MODULE_VERSION>且包含<VERSION major='' minor='' "
-"maintenance='' revision='' string=''>)\n"
+"錯誤:不是一個有效的版本檔%s (開頭應是<MODULE_VERSION>且包含<VERSION major='' "
+"minor='' maintenance='' revision='' string=''>)\n"
 
 #, c-format
 msgid ""
@@ -531,18 +528,6 @@ msgid ""
 " * the following information:\n"
 "%s %s\n"
 msgstr ""
-
-#, c-format
-msgid ""
-"%s: Please install texmacs ATOMS module: atomsInstall('texmacs')\n"
-"\n"
-msgstr ""
-
-#
-# File: src/c/inisci-c.c, line: 150
-# File: src/c/inisci-c.c, line: 178
-msgid "Warning"
-msgstr "警告"
 
 #
 # File: src/c/version.c, line: 17
@@ -569,8 +554,7 @@ msgstr "Scilab 版本 資訊."
 msgid "Debugger is on a breakpoint\n"
 msgstr ""
 
-msgid ""
-"(c)ontinue or (a)bort current execution before execute a new command\n"
+msgid "(c)ontinue or (a)bort current execution before execute a new command\n"
 msgstr ""
 
 msgid ""
@@ -587,7 +571,10 @@ msgstr ""
 "堆疊結束\n"
 "\n"
 
-msgid "Scilab Enterprises\n"
+msgid "ESI Group\n"
+msgstr ""
+
+msgid "Copyright (c) 2017-2018 (ESI Group)\n"
 msgstr ""
 
 msgid "Copyright (c) 2011-2017 (Scilab Enterprises)\n"

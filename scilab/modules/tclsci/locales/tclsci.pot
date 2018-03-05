@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2018-02-12 08:52+0100\n"
+"Revision-Date: 2018-03-05 10:43+0100\n"
 
 # File: modules/tclsci/sci_gateway/c/gw_tclsci.c, line: 72
 msgid "Warning: Problem(s) with TCL/TK interface. Interface not enabled.\n"
@@ -333,11 +333,6 @@ msgstr ""
 msgid "Scilab TCL/TK module not installed.\n"
 msgstr ""
 
-# File: modules/tclsci/demos/tclsci.dem.gateway.sce, line: 10
-msgid "Tcl/Tk"
-msgstr ""
-
-#
 # File: modules/tclsci/demos/tclsci.dem.gateway.sce, line: 12
 msgid "Color"
 msgstr ""

@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2015-10-08 21:59+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
+"Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18544)\n"
-"Language: pl\n"
+"X-Generator: Launchpad (build 18566)\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -81,13 +81,7 @@ msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
-"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwano łańcuch.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Non-empty strings expected.\n"
+msgid "%s: Wrong values for input argument #%d: Non-empty strings expected.\n"
 msgstr ""
 "%s: Nieprawidłowe wartości argumentu wejściowego nr %d: oczekiwany niepusty "
 "ciąg znaków.\n"
@@ -133,7 +127,7 @@ msgid "%s: Wrong type for input argument #%d: '%s' expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgid "%s: Wrong type for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
 
 #, c-format
@@ -393,6 +387,32 @@ msgid "%s: Wrong value for input argument #%d: %s, %s or %s expected.\n"
 msgstr ""
 "%s: Niewłaściwa wartość parametru wejściowego nr %d: oczekiwano %s, %s lub "
 "%s.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong export format: %s"
+msgstr ""
+
+#, c-format
+msgid "%s: Type %s is not handled : Define the function %s2%s."
+msgstr ""
 
 #, c-format
 msgid ""

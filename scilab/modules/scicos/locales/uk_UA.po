@@ -9,14 +9,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2017-02-28 22:22+0000\n"
+"PO-Revision-Date: 2018-02-19 19:21+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
+"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18544)\n"
-"Language: uk\n"
+"X-Generator: Launchpad (build 18566)\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -285,12 +285,6 @@ msgstr ""
 "значення.\n"
 
 #, c-format
-msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вихідних параметрів: слід використовувати значення "
-"від %d до %d.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
@@ -319,8 +313,7 @@ msgstr ""
 "вектор-рядок.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d:  \"%ls\" type is not managed.\n"
+msgid "%s: Wrong value for input argument #%d:  \"%ls\" type is not managed.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: тип «%ls» не є керованим.\n"
 
@@ -350,8 +343,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вихідних параметрів: мало бути від %d до %d.\n"
+msgstr "%s: помилкова кількість вихідних параметрів: мало бути від %d до %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A tlist expected.\n"
@@ -397,8 +389,7 @@ msgid "%s: Memory allocation error.\n"
 msgstr "%s: помилка під час спроби виділення пам’яті.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d : %s, %s %s %s or %s expected.\n"
+msgid "%s: Wrong value for input argument #%d : %s, %s %s %s or %s expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати %s, %s, "
 "%s, %s або %s.\n"
@@ -540,8 +531,7 @@ msgstr ""
 "одинарну структуру.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong fields for input argument #%d : \"%s\" and \"%s\" expected.\n"
+msgid "%s: Wrong fields for input argument #%d : \"%s\" and \"%s\" expected.\n"
 msgstr ""
 "%s: помилкові поля вхідного параметра №%d: слід використовувати «%s» і "
 "«%s».\n"
@@ -646,8 +636,7 @@ msgid "**** SUNDIALS.IDA successfully initialized *****\n"
 msgstr "**** SUNDIALS.IDA успішно ініціалізовано *****\n"
 
 msgid "**** SUNDIALS.IDA failed to initialize ->try again *****\n"
-msgstr ""
-"**** Не вдалося ініціалізувати SUNDIALS.IDA -> повторна спроба *****\n"
+msgstr "**** Не вдалося ініціалізувати SUNDIALS.IDA -> повторна спроба *****\n"
 
 #, c-format
 msgid "****daskr from: %f to %f hot= %d  \n"
@@ -732,8 +721,8 @@ msgid ""
 "Warning: The preconditioner evaluation function returns a NaN at index #%d."
 msgstr ""
 "\n"
-"Попередження: функція обчислення передобумовлення повернула NaN для індексу "
-"№%d."
+"Попередження: функція обчислення передобумовлення повернула NaN для індексу №"
+"%d."
 
 msgid ""
 "\n"
@@ -852,26 +841,27 @@ msgstr ""
 "не може бути порожньою.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for element #%d of input argument #%d: Unknown type.\n"
+msgid "%s: Wrong value for element #%d of input argument #%d: Unknown type.\n"
 msgstr ""
 "%s: помилкове значення елемента №%d вхідного параметра №%d: невідомий тип.\n"
 
 #, c-format
-msgid "Wrong type for field %s: Tlist or Mlist expected.\n"
-msgstr "Помилковий тип поля %s: мав бути тип Tlist або Mlist.\n"
+msgid "Wrong type for field %ls: Tlist or Mlist expected.\n"
+msgstr "Помилковий тип поля %ls: мало бути викорисано Tlist або Mlist.\n"
 
 #, c-format
-msgid "Wrong length for field %s: at least %d element expected.\n"
-msgstr "Помилкова довжина поля %s:мало бути принаймні %d елементів.\n"
+msgid "Wrong length for field %ls: at least %d element expected.\n"
+msgstr "Помилкова довжина поля %ls: мало бути принаймні %d елементів.\n"
 
 #, c-format
-msgid "Wrong length for header of field %s: at least %d element expected.\n"
-msgstr "Помилкова довжина заголовка %s: мало бути принаймні %d елементів.\n"
+msgid ""
+"Wrong length for header of field \"%ls\": at least %d element expected.\n"
+msgstr ""
+"Помилкова довжина заголовка поля «%ls»: мало бути принаймні %d елементів.\n"
 
 #, c-format
-msgid "Wrong value for header of field %s: %s expected.\n"
-msgstr "Помилкове значення заголовка поля %s: мало бути %s.\n"
+msgid "Wrong value for header of field \"%ls\": \"%ls\" expected.\n"
+msgstr "Помилкове значення заголовка поля «%ls»: мало бути «%ls».\n"
 
 #, c-format
 msgid "Wrong type for field %s: list expected.\n"
@@ -895,8 +885,7 @@ msgstr "Поле «%s» призначено лише для читання.\n"
 
 #, c-format
 msgid "Wrong type for field %s.%s: Real matrix expected.\n"
-msgstr ""
-"Помилковий тип поля %s.%s: мала бути матриця з дійсними елементами.\n"
+msgstr "Помилковий тип поля %s.%s: мала бути матриця з дійсними елементами.\n"
 
 #, c-format
 msgid "Wrong dimension for field %s.%s: %d-by-%d expected.\n"
@@ -1137,8 +1126,7 @@ msgstr ""
 "значень типу «string».\n"
 
 msgid "Can't convert old diagram (problem in version)"
-msgstr ""
-"Не вдалося перетворити діаграму у старому форматі (проблеми з версією)"
+msgstr "Не вдалося перетворити діаграму у старому форматі (проблеми з версією)"
 
 #, c-format
 msgid ""
@@ -1331,8 +1319,8 @@ msgid ""
 "<em>Please update the diagram to avoid this warning.</em><br />Block output "
 "port has a non-determined size:"
 msgstr ""
-"<em>Будь ласка, оновіть діаграму, щоб усунути це попередження.</em><br "
-"/>Розмірність вихідного порту блоку не визначено:"
+"<em>Будь ласка, оновіть діаграму, щоб усунути це попередження.</em><br /"
+">Розмірність вихідного порту блоку не визначено:"
 
 msgid ""
 "<em>Please update the diagram to avoid this warning.</em><br />Block output "
@@ -1353,8 +1341,8 @@ msgid ""
 "<em>Please update the diagram to avoid this warning.</em><br />Block input "
 "port has a non-determined size:"
 msgstr ""
-"<em>Будь ласка, оновіть діаграму, щоб усунути це попередження.</em><br "
-"/>Розмірність вхідного порту блоку не визначено:"
+"<em>Будь ласка, оновіть діаграму, щоб усунути це попередження.</em><br /"
+">Розмірність вхідного порту блоку не визначено:"
 
 msgid ""
 "<em>Please update the diagram to avoid this warning.</em><br />Block input "
@@ -1372,10 +1360,10 @@ msgstr ""
 "розмірностями, які не можна визначити з контексту.\n"
 "Якою є розмірність цього зв’язку?"
 
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "the dep_ut size of the %s block is not correct.\n"
-"It should be a column vector of size %d."
+"It should be a colon vector of size %d."
 msgstr ""
 "розмірність dep_ut блоку %s є некоректною.\n"
 "Це мав бути вектор-стовпчик розмірності %d."
@@ -1487,8 +1475,8 @@ msgid ""
 "%s: Error while calling block %s [uid='%s']: invalid parameter (ier=%f, "
 "%%scicos_prob=%%%s).\n"
 msgstr ""
-"%s: помилка під час виклику блоку %s [uid=«%s»]: некоректний параметр "
-"(ier=%f, %%scicos_prob=%%%s).\n"
+"%s: помилка під час виклику блоку %s [uid=«%s»]: некоректний параметр (ier="
+"%f, %%scicos_prob=%%%s).\n"
 
 msgid "Cannot load dynamic library: "
 msgstr "Не вдалося завантажити динамічну бібліотеку: "
@@ -1531,6 +1519,10 @@ msgid "%s: Empty diagram"
 msgstr "%s: порожня діаграма"
 
 #, c-format
+msgid "%s: Wrong input argument.\n"
+msgstr "%s: помилковий вхідний параметр.\n"
+
+#, c-format
 msgid "The variable name %s cannot be used as block parameter: ignored\n"
 msgstr ""
 "Змінну з назвою %s не можна використовувати як параметр блоку: змінну "
@@ -1549,8 +1541,7 @@ msgstr "%s: тип %s не реалізовано.\n"
 
 #, c-format
 msgid "%s: Wrong size for block parameter '%s': %s expected, getting %s"
-msgstr ""
-"%s: помилкова розмірність параметра блоку «%s»: мало бути %s, маємо %s"
+msgstr "%s: помилкова розмірність параметра блоку «%s»: мало бути %s, маємо %s"
 
 #, c-format
 msgid "%s: Wrong type for block parameter '%s': %s(%s) expected, getting %s"

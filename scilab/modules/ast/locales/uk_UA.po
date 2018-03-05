@@ -9,22 +9,21 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2015-08-17 11:20+0100\n"
-"PO-Revision-Date: 2017-01-09 20:03+0000\n"
+"PO-Revision-Date: 2018-02-19 19:04+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
+"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18544)\n"
-"Language: uk\n"
+"X-Generator: Launchpad (build 18566)\n"
 
 msgid "Warning :\n"
 msgstr "Попередження:\n"
 
 #, c-format
 msgid "matrix is close to singular or badly scaled. rcond = %1.4E\n"
-msgstr ""
-"матриця близька до виродженої або погано масштабована. rcond = %1.4E\n"
+msgstr "матриця близька до виродженої або погано масштабована. rcond = %1.4E\n"
 
 msgid "computing least squares solution. (see lsq).\n"
 msgstr "обчислюємо розв’язок методом найменших квадратів. (див. lsq).\n"
@@ -337,8 +336,7 @@ msgstr "Не можна вставляти кратний запис до спи
 msgid "Index out of bounds.\n"
 msgstr "Індекс поза припустимими межами.\n"
 
-msgid ""
-"Wrong number of input arguments: This function has no input argument.\n"
+msgid "Wrong number of input arguments: This function has no input argument.\n"
 msgstr ""
 "Помилкова кількість вхідних параметрів: для функції не передбачено вхідних "
 "параметрів\n"
@@ -347,12 +345,16 @@ msgid "Wrong number of input arguments.\n"
 msgstr "Помилкова кількість параметрів.\n"
 
 #, c-format
-msgid "List element number %d is Undefined.\n"
-msgstr "Елемент списку із номером %d є невизначеним.\n"
-
-#, c-format
 msgid "Undefined variable '%s' in function '%s'.\n"
 msgstr "Невизначена змінна «%s» у функції «%s».\n"
+
+#, c-format
+msgid "%s: Wrong type for %s: A list expected.\n"
+msgstr "%s: помилковий тип %s: слід використовувати список.\n"
+
+#, c-format
+msgid "List element number %d is Undefined.\n"
+msgstr "Елемент списку із номером %d є невизначеним.\n"
 
 #, c-format
 msgid "Unable to open : %s.\n"
@@ -418,15 +420,23 @@ msgstr ""
 "%s: помилковий тип вхідного параметра №%d: мало бути вказано матрицю з цілих "
 "значень.\n"
 
+#, c-format
+msgid "%s: Division by zero..."
+msgstr "%s: ділення на нуль..."
+
+#, c-format
+msgid "%s: Argument #%d: Square matrix expected.\n"
+msgstr "%s: параметр №%d: мала бути квадратна матриця.\n"
+
+#, c-format
+msgid "%s: Non implemented feature.\n"
+msgstr "%s: нереалізована можливість.\n"
+
 msgid "Invalid exponent: expected real exponents."
 msgstr "Некоректний степінь: степінь має бути дійсним."
 
 msgid "Division by zero"
 msgstr "Ділення на нуль"
-
-#, c-format
-msgid "%s: Argument #%d: Square matrix expected.\n"
-msgstr "%s: параметр №%d: мала бути квадратна матриця.\n"
 
 msgid "Not implemented"
 msgstr "Не реалізовано"

@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2017-01-09 17:53+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18544)\n"
-"Language: ca\n"
+"X-Generator: Launchpad (build 18566)\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
@@ -63,22 +63,6 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un booleà.\n"
-
-#, c-format
-msgid ""
-"Unable to load the jgraphx library.\n"
-"Expecting version %s ; Getting version %s ."
-msgstr ""
-"No s'ha pogut carregar la llibreria jgraphx. \n"
-"Ha de ser la versió %s ; Hi ha la versió %s ."
-
-#, c-format
-msgid ""
-"Unable to load the Batik library. \n"
-"Expecting version %s ; Getting version %s ."
-msgstr ""
-"No s'ha pogut carregar la llibreria Batik. \n"
-"Ha de ser la versió %s ; Hi ha la versió %s ."
 
 msgid "Preview"
 msgstr ""
@@ -533,8 +517,8 @@ msgstr "Tractaments d'esdeveniments"
 msgid "Signal Routing"
 msgstr "Enrutament de senyal"
 
-msgid "Commonly Used Blocks"
-msgstr "Blocs utilitzats habitualment"
+msgid "Recently Used Blocks"
+msgstr ""
 
 msgid "User-Defined Functions"
 msgstr "Funcions definides per l'usuari"
@@ -554,8 +538,7 @@ msgstr "Activa"
 msgid "Palette name"
 msgstr "Nom de la paleta"
 
-msgid ""
-"Diagram has been modified since last save.<br/> Do you want to save it?"
+msgid "Diagram has been modified since last save.<br/> Do you want to save it?"
 msgstr ""
 "S'ha modificat el diagrama des de l'últim que es va desar.<br/> El voleu "
 "desar?"
@@ -633,26 +616,22 @@ msgstr "Afegeix"
 msgid "Add to new diagram"
 msgstr "Afegeix a un diagrama nou"
 
-msgid ""
-"Explicit data input port must be connected to explicit data output port"
+msgid "Explicit data input port must be connected to explicit data output port"
 msgstr ""
 "Un port de dades d'entrada explícit ha d'estar connectat a un port de dades "
 "de sortida explícit"
 
-msgid ""
-"Implicit data input port must be connected to implicit data output port"
+msgid "Implicit data input port must be connected to implicit data output port"
 msgstr ""
 "Un port de dades d'entrada implícit ha d'estar connectat a un port de dades "
 "de sortida implícit"
 
-msgid ""
-"Explicit data output port must be connected to explicit data input port"
+msgid "Explicit data output port must be connected to explicit data input port"
 msgstr ""
 "Un port de dades de sortida explícit ha d'estar connectat a un port de dades "
 "d'entrada explícit"
 
-msgid ""
-"Implicit data output port must be connected to implicit data input port"
+msgid "Implicit data output port must be connected to implicit data input port"
 msgstr ""
 "Un port de dades de sortida implícit ha d'estar connectat a un port de dades "
 "d'entrada implícit"
@@ -778,8 +757,7 @@ msgstr ""
 msgid "Generate SuperBlock, please wait"
 msgstr ""
 
-msgid ""
-"Click on diagram to add link point or on a compatible target to finish"
+msgid "Click on diagram to add link point or on a compatible target to finish"
 msgstr ""
 "Feu clic al diagrama per afegir un punt d'enllaç o en un destí compatible "
 "per finalitzar"
@@ -863,8 +841,8 @@ msgid ""
 "The user palette configuration file (palettes.xml) is invalid.<BR> Switching "
 "to the default one."
 msgstr ""
-"El fitxer de configuració de la paleta d'usuari (palettes.xml) és "
-"invàlid.<BR> S'utilitzarà el predeterminat."
+"El fitxer de configuració de la paleta d'usuari (palettes.xml) és invàlid."
+"<BR> S'utilitzarà el predeterminat."
 
 msgid ""
 "The user configuration file (xcos.xml) is invalid.<BR> Switching to the "
@@ -890,8 +868,8 @@ msgid "Expecting <code>%d</code> but got <code>%d</code>."
 msgstr ""
 
 msgid ""
-"<html><body>Compilation error: link ignored because it is not connected. "
-"<br/>Please reconnect it.</body></html>"
+"<html><body>Compilation error: link ignored because it is not connected. <br/"
+">Please reconnect it.</body></html>"
 msgstr ""
 
 msgid "Block name: "
@@ -940,6 +918,12 @@ msgid "Split Block"
 msgstr ""
 
 msgid "Auto-Position Split Block"
+msgstr ""
+
+msgid "A one-line description of the block"
+msgstr ""
+
+msgid "Annotation (or comment) attached to the object"
 msgstr ""
 
 #, c-format
@@ -1056,6 +1040,12 @@ msgstr ""
 msgid "Old Gain Block"
 msgstr ""
 
+msgid "Optimal link route"
+msgstr ""
+
+msgid "Optimal split block position"
+msgstr ""
+
 msgid "Standard demos"
 msgstr ""
 
@@ -1110,6 +1100,9 @@ msgstr ""
 msgid "Event demos"
 msgstr ""
 
+msgid "Optimal positions"
+msgstr ""
+
 #, c-format
 msgid "%s: Unable to export %s to %s.\n"
 msgstr "%s: No s'ha pogut exportar %s a %s.\n"
@@ -1125,8 +1118,7 @@ msgstr ""
 "%s: L'argument d'entrada %s és d'un tipus incorrecte: Ha de ser un bloc.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument %s: directory path string expected.\n"
+msgid "%s: Wrong type for input argument %s: directory path string expected.\n"
 msgstr ""
 "%s: L'argument d'entrada %s és d'un tipus incorrecte: Ha de ser un camí a un "
 "directori.\n"
@@ -1218,8 +1210,7 @@ msgstr ""
 "%d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument %s: palette type or path expected.\n"
+msgid "%s: Wrong type for input argument %s: palette type or path expected.\n"
 msgstr ""
 "%s: L'argument d'entrada %s és d'un tipus incorrecte: Ha de ser una paleta o "
 "un camí.\n"
@@ -1243,8 +1234,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Unable to load block from %s: hdf5 file expected.\n"
-msgstr ""
-"%s: No s'ha pogut carregar el bloc de %s: Ha de ser un fitxer hdf5.\n"
+msgstr "%s: No s'ha pogut carregar el bloc de %s: Ha de ser un fitxer hdf5.\n"
 
 #, c-format
 msgid "%s: Unable to load block from %s: no `scs_m' variable found.\n"

@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2013-09-24 19:25+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
+"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18544)\n"
-"Language: cs\n"
+"X-Generator: Launchpad (build 18566)\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
@@ -30,8 +30,7 @@ msgid "%s: Wrong size for input argument #%d: A real scalar expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A polynomial '%ls' expected.\n"
+msgid "%s: Wrong value for input argument #%d: A polynomial '%ls' expected.\n"
 msgstr ""
 
 #, c-format
@@ -162,17 +161,17 @@ msgid "Introduction"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A square matrix expected.\n"
-msgstr ""
-"%s: Špatná velikost vstupního argumentu #%d: Očekávána čtvercová matice.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A floating point number or polynomial "
 "or rational fraction array expected.\n"
 msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Očekáváno desetinné číslo, polynom, "
 "nebo pole racionálních zlomků.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A square matrix expected.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekávána čtvercová matice.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
@@ -183,8 +182,7 @@ msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
 msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván mnohočlen.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A rational fraction expected.\n"
+msgid "%s: Wrong size for input argument #%d: A rational fraction expected.\n"
 msgstr ""
 "%s: Špatná velikost vstupního argumentu #%d: Očekáván racionální zlomek.\n"
 
@@ -205,10 +203,18 @@ msgstr ""
 "nebo pole polynomů.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for argument #%d: Integer array or Polynomial expected.\n"
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
-"%s: Špatný typ argumentu #%d: Očekáváno pole celých čísel nebo polynom.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for argument #%d: Decimal or encoded integers or Polynomial "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong values for argument #%d: Integer values expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument: Polynomial array expected.\n"
@@ -227,14 +233,22 @@ msgid "%s: incompatible input arguments %d and %d\n"
 msgstr "%s: nekompatibilní vstupní argumenty %d a %d\n"
 
 #, c-format
+msgid "%s: Argument #%d: Square matrix expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr "%s: Špatná hodnota vstupního argumentu #%d: Musí být v sadě {%s}.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for argument #%d: Real Matrix of Polynomials expected.\n"
+"%s: Wrong type for argument #%d: Integer array or Polynomial expected.\n"
 msgstr ""
-"%s: Špatný typ argumentu #%d: Očekávána reálná matice nebo polynomy.\n"
+"%s: Špatný typ argumentu #%d: Očekáváno pole celých čísel nebo polynom.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Real Matrix of Polynomials expected.\n"
+msgstr "%s: Špatný typ argumentu #%d: Očekávána reálná matice nebo polynomy.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: String expected.\n"

@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2017-06-03 10:42+0000\n"
+"PO-Revision-Date: 2018-02-20 01:13+0000\n"
 "Last-Translator: Paul Bignier <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18544)\n"
-"Language: fr\n"
+"X-Generator: Launchpad (build 18566)\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -60,8 +60,8 @@ msgid ""
 "%s: Wrong value for input argument #%d: 'u' (Upper) or 'l' (Lower) "
 "expected.\n"
 msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : 'u' (supérieur) ou 'l' "
-"(inférieur) attendu.\n"
+"%s : Valeur erronée de l'argument d'entrée n°%d : 'u' (supérieur) ou "
+"'l' (inférieur) attendu.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
@@ -82,14 +82,7 @@ msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
 msgstr "%s : Nombre erroné d'arguments de sortie : %d ou %d attendu(s).\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
-"attendue.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Non-empty strings expected.\n"
+msgid "%s: Wrong values for input argument #%d: Non-empty strings expected.\n"
 msgstr ""
 "%s : Valeurs erronées de l'argument d'entrée n°%d : Des chaînes de "
 "caractères non vides attendues.\n"
@@ -142,9 +135,8 @@ msgid "%s: Wrong type for input argument #%d: '%s' expected.\n"
 msgstr "%s : Type erroné de l'argument d'entrée #%d : '%s' attendu.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: ''%s'' or ''%s'' expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : \"%s\" ou \"%s\" attendu.\n"
+msgid "%s: Wrong type for input argument #%d: '%s' or '%s' expected.\n"
+msgstr "%s : Type erroné de l'argument d'entrée #%d: '%s' ou '%s' attendu.\n"
 
 #, c-format
 msgid ""
@@ -166,13 +158,11 @@ msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d à %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Char expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : un caractère attendu.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : un caractère attendu.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
-msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : %s ou %s attendu.\n"
+msgstr "%s : Valeur erronée de l'argument d'entrée n°%d : %s ou %s attendu.\n"
 
 #, c-format
 msgid "%s : No more memory.\n"
@@ -203,8 +193,7 @@ msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un booléen attendu.\n
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : un scalaire attendu.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : un scalaire attendu.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
@@ -426,6 +415,34 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: %s, %s or %s expected.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : %s, %s ou %s attendu.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected."
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d à %d attendu(s)."
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : '%s', '%s', '%s', '%s', "
+"'%s' ou '%s' attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
+msgstr "%s : Type erroné de l'argument d'entrée #%d: Booléen attendu.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected"
+msgstr "%s : Nombre d'arguments d'entrée erroné : %d à %d attendu(s)"
+
+#, c-format
+msgid "%s: Wrong export format: %s"
+msgstr "%s : Format d'export erroné : %s"
+
+#, c-format
+msgid "%s: Type %s is not handled : Define the function %s2%s."
+msgstr "%s : Le type %s n'est pas supporté : Définissez la fonction %s2%s."
 
 #, c-format
 msgid ""

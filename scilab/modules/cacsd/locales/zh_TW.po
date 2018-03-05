@@ -6,11 +6,11 @@ msgstr ""
 "PO-Revision-Date: 2016-12-06 17:02+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18544)\n"
-"Language: \n"
+"X-Generator: Launchpad (build 18566)\n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
 #, c-format
@@ -159,8 +159,8 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong row size for input argument #%d: Same row size of input argument "
-"#%d expected.\n"
+"%s: Wrong row size for input argument #%d: Same row size of input argument #"
+"%d expected.\n"
 msgstr ""
 
 #, c-format
@@ -236,13 +236,11 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Method must be schur or sign.\n"
+msgid "%s: Wrong value for input argument #%d: Method must be schur or sign.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Method must be schur or invf.\n"
+msgid "%s: Wrong value for input argument #%d: Method must be schur or invf.\n"
 msgstr ""
 
 #, c-format
@@ -276,8 +274,7 @@ msgid "%s: DORGQR exit with info = %d.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 
 #, c-format
@@ -314,8 +311,7 @@ msgid "%s: Wrong size for input argument #%d: Must have %d rows expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Must have %d columns expected.\n"
+msgid "%s: Wrong size for input argument #%d: Must have %d columns expected.\n"
 msgstr ""
 
 #, c-format
@@ -355,8 +351,7 @@ msgid "%s: Wrong type for input argument #%d: A real polynom expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A Matrix or polynom expected.\n"
+msgid "%s: Wrong type for input argument #%d: A Matrix or polynom expected.\n"
 msgstr ""
 
 #, c-format
@@ -368,14 +363,13 @@ msgid "%s: Wrong value for input argument #%d: A real polynom expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: More or equal to %d expected.\n"
+msgid "%s: Wrong value for input argument #%d: More or equal to %d expected.\n"
 msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: More than degree of input argument "
-"#%d expected.\n"
+"%s: Wrong value for input argument #%d: More than degree of input argument #"
+"%d expected.\n"
 msgstr ""
 
 #, c-format
@@ -443,8 +437,7 @@ msgid "%s: Wrong number of output argument(s): %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A matrix or polynom expected.\n"
+msgid "%s: Wrong type for input argument #%d: A matrix or polynom expected.\n"
 msgstr ""
 
 #, c-format
@@ -492,8 +485,11 @@ msgstr ""
 msgid "%s: Uncontrollable system.\n"
 msgstr ""
 
+#
+# File: modules/cacsd/sci_gateway/cpp/sci_residu.cpp, line: 152
+# File: modules/cacsd/sci_gateway/cpp/sci_residu.cpp, line: 195
 #, c-format
-msgid "%s: An error occurred in '%s'.\n"
+msgid "%s: An error occured in '%s'.\n"
 msgstr ""
 
 #, c-format
@@ -547,8 +543,7 @@ msgid "Press Return to continue ... \n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument: Linear dynamical system expected.\n"
+msgid "%s: Wrong type for input argument: Linear dynamical system expected.\n"
 msgstr ""
 
 #, c-format
@@ -577,8 +572,21 @@ msgstr ""
 msgid "%s: Needs %s => Use default value %s=%d.\n"
 msgstr "%s: 須要 %s => 使用內定值 %s=%d.\n"
 
-msgid "Autocorrelation Function"
-msgstr "自相關 (Autocorrelation) 函數"
+#
+# File: macros/findAC.sci, line: 73
+# File: macros/findABCD.sci, line: 106
+# File: macros/findABCD.sci, line: 109
+#, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr "%s: 輸出參數之數目錯誤: 應為 %d 到 %d 之數.\n"
+
+#, c-format
+msgid "%s: Argument #%d: Linear state space expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: In continuous time expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d: Stable system expected.\n"
@@ -667,6 +675,10 @@ msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 '%s'.\n"
 
 #, c-format
+msgid "%s: Argument #%d: Undefined time domain.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A row vector with length>%d "
 "expected.\n"
@@ -682,7 +694,8 @@ msgstr "%s: 輸入參數 #%d 及 #%d 不相容(Incompatible): 列之維度必須
 msgid ""
 "%s: Wrong type for input argument #%d: Linear dynamical system or row vector "
 "of floats expected.\n"
-msgstr "%s: 第 #%d 個輸入參數型態錯誤: 應該是一線動態系統或實數行 (row) 向量.\n"
+msgstr ""
+"%s: 第 #%d 個輸入參數型態錯誤: 應該是一線動態系統或實數行 (row) 向量.\n"
 
 #, c-format
 msgid ""
@@ -819,12 +832,24 @@ msgstr "%s: 第 #%d 輸入參數大小錯誤: 應該為 %d.\n"
 msgid "%s: Wrong values for input argument #%d: Elements must be positive.\n"
 msgstr "%s:第 %d 輸入參數值有誤: 元素必須是正值.\n"
 
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Polynomial expected.\n"
+msgstr ""
+
 #
 # File: macros/obsv_mat.sci, line: 15
 # File: macros/cont_mat.sci, line: 19
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected"
 msgstr "%s: 輸入參數之數目錯誤: 應為 %d"
+
+#, c-format
+msgid "%s: Argument #%d: Square matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Arguments #%d and #%d: Incompatible sizes.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -874,8 +899,7 @@ msgid "%s: Wrong size for argument #%d: %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Stabilizable system expected.\n"
+msgid "%s: Wrong value for input argument #%d: Stabilizable system expected.\n"
 msgstr ""
 
 #, c-format
@@ -1018,14 +1042,6 @@ msgstr ""
 msgid "%s: Curve truncated to the first %d discretization points.\n"
 msgstr ""
 
-#
-# File: macros/findAC.sci, line: 73
-# File: macros/findABCD.sci, line: 106
-# File: macros/findABCD.sci, line: 109
-#, c-format
-msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
-msgstr "%s: 輸出參數之數目錯誤: 應為 %d 到 %d 之數.\n"
-
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Cell expected.\n"
 msgstr ""
@@ -1046,6 +1062,14 @@ msgstr "%s: 輸出參數之數目錯誤: 最少應為 %d.\n"
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %d or %d expected.\n"
 msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 %d 或 %d.\n"
+
+#, c-format
+msgid "%s: Argument #%d: Decimal or complex number(s) expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: In discrete time expected.\n"
+msgstr ""
 
 #
 # File: macros/obsvss.sci, line: 24
@@ -1138,8 +1162,7 @@ msgstr "%s: %s 不定值.\n"
 #
 # File: macros/gamitg.sci, line: 336
 #, c-format
-msgid ""
-"%s: Controllable & observable mode(s) of %s near the imaginary axis.\n"
+msgid "%s: Controllable & observable mode(s) of %s near the imaginary axis.\n"
 msgstr "%s:  %s 接近虛軸之可控 (controllable) 及可觀 (observable) 模式.\n"
 
 #
@@ -1153,6 +1176,12 @@ msgstr "%s: %s 之所有模式皆非最小，因此 %s 幾乎為 %d.\n"
 #, c-format
 msgid "%s: Francis equations not satisfied.\n"
 msgstr "%s: 不滿足 Francis 方程式.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for argument #%d: In continuous or undefined time domain "
+"expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument: Scalar expected.\n"
@@ -1329,8 +1358,7 @@ msgid "%s: Wrong type for argument %d: Real vector expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A %d elements array expected.\n"
+msgid "%s: Wrong size for input argument #%d: A %d elements array expected.\n"
 msgstr ""
 
 #, c-format
@@ -1346,8 +1374,7 @@ msgid "%s: incompatible time domains\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Linear state space  expected.\n"
+msgid "%s: Wrong type for input argument #%d: Linear state space  expected.\n"
 msgstr "%s: 輸入引數的型態錯誤 #%d: 需爲線性子空間。\n"
 
 #
@@ -1365,8 +1392,7 @@ msgstr "%s: A 矩陣之有接近虛軸之可控 (controllable) 及可觀 (observ
 #
 # File: macros/linfn.sci, line: 214
 #, c-format
-msgid ""
-"%s: All modes of A are nearly nonminimal so that || G || is almost 0.\n"
+msgid "%s: All modes of A are nearly nonminimal so that || G || is almost 0.\n"
 msgstr "%s: A 之所有模式皆非最小，因此 || G || 幾乎為 0.\n"
 
 #
@@ -1480,6 +1506,10 @@ msgid ""
 "%s: Wrong type for input argument #%d: Linear dynamical system  expected.\n"
 msgstr "%s: 第 #%d 個輸入參數型態錯誤: 應該是一線動態系統.\n"
 
+#, c-format
+msgid "%s: Arguments #%d and #%d: Same numbers of columns expected.\n"
+msgstr ""
+
 msgid "Phase (Deg)"
 msgstr ""
 
@@ -1502,12 +1532,24 @@ msgstr "極點"
 msgid "Transmission zeros and poles"
 msgstr "傳輸 (transmission) 零點及極點"
 
-#, c-format
-msgid "%s: Wrong type for input argument #%d: real matrix expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: real matix expected.\n"
+msgstr "%s: 輸入引數 #%d 型態錯誤: 需爲實數矩陣。\n"
 
 #, c-format
 msgid "%s: Arguments %d and %d must have equal dimensions.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Argument #%d: %s expected.\n"
+msgstr ""
+
+msgid "SISO system"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Argument #%d: A system in state space or transfer matrix form expected.\n"
 msgstr ""
 
 #
@@ -1622,7 +1664,8 @@ msgid ""
 "%s: Incompatible input arguments #%d and #%d: Same formal variable names "
 "expected.\n"
 msgstr ""
-"%s: 輸入參數 #%d 及 #%d 不相容(Incompatible): 應該有相同的形式變數名稱 (formal variable names.\n"
+"%s: 輸入參數 #%d 及 #%d 不相容(Incompatible): 應該有相同的形式變數名稱 "
+"(formal variable names.\n"
 
 #
 # File: macros/invsyslin.sci, line: 18
@@ -1732,8 +1775,7 @@ msgid "%s: Wrong type for input argument #%d: A real vector expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
+msgid "%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
 msgstr ""
 
 #, c-format

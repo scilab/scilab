@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2017-05-01 15:33+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
+"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18544)\n"
-"Language: ja\n"
+"X-Generator: Launchpad (build 18566)\n"
 
 msgid "overflow error"
 msgstr "オーバーフローエラー"
@@ -27,7 +27,8 @@ msgstr "トリガーブロックは離散時間入力が必要です."
 msgid ""
 "The LU factorization has been completed, but the factor U is exactly "
 "singular : U(%d,%d) is exactly zero."
-msgstr "LU分解は完了しましたが,分解したUが完全に特異です:  U(%d,%d) が完全にゼロです."
+msgstr ""
+"LU分解は完了しましたが,分解したUが完全に特異です:  U(%d,%d) が完全にゼロです."
 
 msgid "Read error!\n"
 msgstr "読込エラー!\n"
@@ -64,7 +65,9 @@ msgstr "変数'%s'が存在しません.\n"
 
 #, c-format
 msgid "%s: Wrong SOD file format version. Max Expected: %d Found: %d\n"
-msgstr "%s:  SODファイル形式のバージョンが間違っています. 仕様上の最大値: %d 指定値: %d\n"
+msgstr ""
+"%s:  SODファイル形式のバージョンが間違っています. 仕様上の最大値: %d 指定値: "
+"%d\n"
 
 msgid "Erroneous saved file.\n"
 msgstr "保存されたファイルに誤りがあります.\n"
@@ -118,7 +121,9 @@ msgstr "ベクトル型Timeは複素数です.\n"
 #, c-format
 msgid ""
 "The Time vector has a wrong size, expecting [%d, %d] and getting [%d, %d].\n"
-msgstr "時間ベクトルの大きさが間違っています, [%d, %d] を指定し, [%d, %d] を取得してください.\n"
+msgstr ""
+"時間ベクトルの大きさが間違っています, [%d, %d] を指定し, [%d, %d] を取得して"
+"ください.\n"
 
 msgid "Cannot read the time field.\n"
 msgstr "時間フィールドを読み込めません.\n"
@@ -212,7 +217,9 @@ msgstr "&nbsp;- ビット数またはビットの添字: 添字 0 は LSB です
 msgid ""
 "&nbsp;&nbsp;&nbsp;&nbsp;If 'Bits to Extract' is set to 'Range of bits': "
 "[Start, End]"
-msgstr "&nbsp;&nbsp;&nbsp;&nbsp;展開するビットをビットの範囲に設定するかどうか: [開始,終了]"
+msgstr ""
+"&nbsp;&nbsp;&nbsp;&nbsp;展開するビットをビットの範囲に設定するかどうか: [開"
+"始,終了]"
 
 msgid "Bits to extract"
 msgstr "展開するビット"
@@ -489,67 +496,8 @@ msgstr "陰的出力ポート"
 msgid "Regular output port"
 msgstr "標準出力ポート"
 
-#, c-format
-msgid "Feature %s is obsolete."
-msgstr "機能 %s は廃止されています."
-
-#, c-format
-msgid "Please use %s instead."
-msgstr "代わりに %s を使用してください."
-
-msgid "Write to output file"
-msgstr "出力ファイルに書込む"
-
-msgid "&nbsp; - A binary file if no format given"
-msgstr "&nbsp; - フォーマットが指定されない場合はバイナリファイル"
-
-msgid "Write is done on:"
-msgstr "書込みが完了しました:"
-
-msgid "&nbsp; - A formatted text file if a  format (Fortran type) is given"
-msgstr "&nbsp; - フォーマット (Fortran形式)が指定された場合は整形テキストファイル"
-
-msgid "Input Size"
-msgstr "入力の大きさ"
-
-msgid "Output File Name"
-msgstr "出力のファイル名"
-
 msgid "Buffer Size"
 msgstr "バッファの大きさ"
-
-msgid "Output Format"
-msgstr "出力の形式"
-
-msgid "End current simulation first."
-msgstr "まず現在のシミュレーションを終了."
-
-msgid ""
-"Simulation running !!! You cannot switch<br />between formatted and "
-"unformatted when running"
-msgstr "シミュレーション実行中 !!! 整形式と非整形式とを<br />変更できません"
-
-msgid "You cannot modify 'Output File Name' when running."
-msgstr "実行中に '出力のファイル名' を変更できません."
-
-msgid "Wrong value for 'Output File Name' parameter"
-msgstr "'出力ファイル名' パラメータの値が間違っています"
-
-msgid "You must provide a filename."
-msgstr "ファイル名を指定する必要があります."
-
-#, c-format
-msgid "Directory '%s' does not exist"
-msgstr "ディレクトリ '%s' が存在しません"
-
-msgid "Input Format"
-msgstr "入力の形式"
-
-msgid "You must enclose the format's string between parentheses."
-msgstr "文字列を括弧で括る必要があります."
-
-msgid "Must be greater than 1."
-msgstr "1 より大きい必要があります."
 
 msgid "Swap Mode (0:No, 1:Yes)"
 msgstr "スワップモード (0:No 1:Yes)"
@@ -567,8 +515,20 @@ msgstr "まず現在のシミュレーションを終了"
 msgid "Swap Mode"
 msgstr "スワップモード"
 
+msgid "Input Size"
+msgstr "入力の大きさ"
+
+msgid "Output File Name"
+msgstr "出力のファイル名"
+
 msgid "Write to C binary file"
 msgstr "Cバイナリファイルに書込む"
+
+msgid "Output Format"
+msgstr "出力の形式"
+
+msgid "Input Format"
+msgstr "入力の形式"
 
 msgid "Valid formats are: "
 msgstr "有効な形式: "
@@ -577,8 +537,18 @@ msgstr "有効な形式: "
 msgid "You cannot modify '%s' when running"
 msgstr "実行中に '%s' を変更できません"
 
+msgid "End current simulation first."
+msgstr "まず現在のシミュレーションを終了."
+
 msgid "You cannot modify 'Buffer Size' when running."
 msgstr "実行中に 'バッファの大きさ' を変更できません."
+
+msgid "You must provide a filename."
+msgstr "ファイル名を指定する必要があります."
+
+#, c-format
+msgid "Directory '%s' does not exist"
+msgstr "ディレクトリ '%s' が存在しません"
 
 msgid "Event input port"
 msgstr "入力ポートのイベント"
@@ -684,7 +654,8 @@ msgid "Outport Size must be a 2 elements vector"
 msgstr "出力ポートの大きさは2要素のベクトルとする必要があります"
 
 msgid "Outport type must be a number between 1 and 9, or -1 for inheritance."
-msgstr "出力ポートの型は1と9の間の数, または継承の場合は -1とする必要があります"
+msgstr ""
+"出力ポートの型は1と9の間の数, または継承の場合は -1とする必要があります"
 
 msgid "Modulo counter (0 to N counter)"
 msgstr "剰余カウンタ (0 から Nのカウンタ)"
@@ -770,6 +741,9 @@ msgstr "[1, レコードの大きさ = "
 msgid "Wrong value for indexes in '%s' parameter: %s."
 msgstr "'%s' パラメータのインデックスの値に誤りがあります: %s."
 
+msgid "&nbsp; - A binary file if no format given"
+msgstr "&nbsp; - フォーマットが指定されない場合はバイナリファイル"
+
 msgid "Read from an input file"
 msgstr "入力ファイルから読み込む"
 
@@ -777,7 +751,8 @@ msgid "Read is done on:"
 msgstr "読込完了:"
 
 msgid "&nbsp; - A formatted text file if a  format (fortran type) is given"
-msgstr "&nbsp; - フォーマット(fortran型)が指定された場合は整形済みのテキストファイル"
+msgstr ""
+"&nbsp; - フォーマット(fortran型)が指定された場合は整形済みのテキストファイル"
 
 msgid "Empty matrix or scalar expected."
 msgstr "空の行列またはスカラーを指定してください."
@@ -804,6 +779,9 @@ msgstr "'%s'パラメータの値が間違っています: %s"
 #, c-format
 msgid "Wrong format for '%s' parameter: %s."
 msgstr "'%s'パラメータのフォーマットが間違っています: %s."
+
+msgid "You must enclose the format's string between parentheses."
+msgstr "文字列を括弧で括る必要があります."
 
 msgid "Buffer size must be at least 2."
 msgstr "バッファの大きさは2以上を指定してください."

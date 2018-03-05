@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2012-01-06 15:15+0000\n"
 "Last-Translator: RodolfoRG <rodolforg@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
+"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18544)\n"
-"Language: pt_BR\n"
+"X-Generator: Launchpad (build 18566)\n"
 
 #, c-format
 msgid "%s: Answer appears to be lower than lowest search bound %g\n"
@@ -216,10 +216,9 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: Real vector or matrix expected.\n"
+"%s: Function not defined for given argument #%d type.\n"
+"Check arguments or define function %s for overloading.\n"
 msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um vetor ou "
-"uma matriz de números reais.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar or vector expected.\n"
@@ -318,8 +317,7 @@ msgid "%s: NaNs detected, please use %s() instead.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Non-negative values expected.\n"
+msgid "%s: Wrong value for input argument #%d: Non-negative values expected.\n"
 msgstr ""
 
 #, c-format
@@ -367,12 +365,15 @@ msgid "Eigenvalues"
 msgstr ""
 
 #, c-format
+msgid "%s: Argument #%d: Array of real numbers expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for %d input argument: '%s', '%s', %d or %d expected.\n"
+msgid "%s: Wrong value for %d input argument: '%s', '%s', %d or %d expected.\n"
 msgstr ""
 "%s: Valor incorreto para o argumento de entrada #%d: esperava-se '%s', '%s', "
 "%d ou %d.\n"
@@ -439,5 +440,4 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
-msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: deve ser > %d.\n"
+msgstr "%s: Valor incorreto para o argumento de entrada #%d: deve ser > %d.\n"

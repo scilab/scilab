@@ -11,15 +11,14 @@ msgstr ""
 "PO-Revision-Date: 2017-03-09 15:54+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18544)\n"
-"Language: ru\n"
+"X-Generator: Launchpad (build 18566)\n"
 
 msgid "Warning: Problem(s) with TCL/TK interface. Interface not enabled.\n"
-msgstr ""
-"Предупреждение: Проблемы с интерфейсом TCL/TK. Интерфейс не включён.\n"
+msgstr "Предупреждение: Проблемы с интерфейсом TCL/TK. Интерфейс не включён.\n"
 
 msgid "Tcl/TK interface disabled in -nogui mode.\n"
 msgstr "В режиме -nogui интерфейс Tcl/TK отключён.\n"
@@ -145,8 +144,7 @@ msgstr ""
 "Сбой инициализации TCL!\n"
 
 msgid "Tcl Error: Unable to create Tcl interpreter (Tcl_CreateInterp).\n"
-msgstr ""
-"Ошибка Tcl: Не удалось создать интерпретатор Tcl (Tcl_CreateInterp).\n"
+msgstr "Ошибка Tcl: Не удалось создать интерпретатор Tcl (Tcl_CreateInterp).\n"
 
 #, c-format
 msgid "Tcl Error: Error during the Tcl initialization (Tcl_Init): %s\n"
@@ -194,9 +192,6 @@ msgstr "%s: Неверное количество входных аргумен�
 msgid "Scilab TCL/TK module not installed.\n"
 msgstr "Модуль TCL/TK не установлен.\n"
 
-msgid "Tcl/Tk"
-msgstr "Tcl/Tk"
-
 msgid "Color"
 msgstr "Цвет"
 
@@ -208,6 +203,18 @@ msgstr "Прокрутка"
 
 msgid "Scale"
 msgstr "Масштаб"
+
+#, c-format
+msgid "%s: Argument #%d: Text(s) expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Argument #%d: Variable undefined.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Argument #%d: Name of a variable of type 1, 4 or 10 expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
@@ -233,3 +240,6 @@ msgstr "%s: Ведомый интерпретатор уже существуе�
 #, c-format
 msgid "Error %s while loading library %s"
 msgstr "Ошибка %s при загрузке библиотеки %s"
+
+#~ msgid "Tcl/Tk"
+#~ msgstr "Tcl/Tk"

@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2017-06-03 10:13+0000\n"
+"PO-Revision-Date: 2018-02-20 00:32+0000\n"
 "Last-Translator: Paul Bignier <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18544)\n"
-"Language: fr\n"
+"X-Generator: Launchpad (build 18566)\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected."
@@ -23,8 +23,11 @@ msgstr "%s : Nombre erroné d'arguments d'entrée : entre %d et %d attendus."
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Une matrice attendue.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Une matrice attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Polynomial expected.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un polynôme attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
@@ -53,6 +56,10 @@ msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 "%s : Arguments d'entrée n°%d et n°%d incompatibles : Mêmes dimensions "
 "attendues.\n"
+
+#, c-format
+msgid "%s: Arguments #%d and #%d: Same degrees expected.\n"
+msgstr "%s : Arguments #%d et #%d : Même degré attendu.\n"
 
 #, c-format
 msgid "%s: Assertion failed: expected = %s while computed = %s"
@@ -186,8 +193,7 @@ msgstr ""
 "d'arguments d'entrée %d."
 
 #, c-format
-msgid ""
-"%s: Expected %d rows in input argument #%d, but found %d rows instead."
+msgid "%s: Expected %d rows in input argument #%d, but found %d rows instead."
 msgstr ""
 "%s : L'argument d'entrée #%d doit avoir exactement %d lignes, et non %d."
 

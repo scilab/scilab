@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2017-01-09 17:52+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
+"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18544)\n"
-"Language: cs\n"
+"X-Generator: Launchpad (build 18566)\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
@@ -60,22 +60,6 @@ msgstr "%s: Nelze přečíst vstupní argument #%d.\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván boolean.\n"
-
-#, c-format
-msgid ""
-"Unable to load the jgraphx library.\n"
-"Expecting version %s ; Getting version %s ."
-msgstr ""
-"Nelze načíst knihovnu jgraphx.\n"
-"Očekávaná verze %s ; Získaná verze %s ."
-
-#, c-format
-msgid ""
-"Unable to load the Batik library. \n"
-"Expecting version %s ; Getting version %s ."
-msgstr ""
-"Nelze načíst knihovnu Batik. \n"
-"Očekávaná verze %s ; Získaná verze %s ."
 
 msgid "Preview"
 msgstr "Náhled"
@@ -534,8 +518,8 @@ msgstr "Obslužné rutiny událostí"
 msgid "Signal Routing"
 msgstr "Přesměrování Signálů"
 
-msgid "Commonly Used Blocks"
-msgstr "Běžně Používané Bloky"
+msgid "Recently Used Blocks"
+msgstr ""
 
 msgid "User-Defined Functions"
 msgstr "Uživatelem Určené Funkce"
@@ -555,8 +539,7 @@ msgstr "Povolit"
 msgid "Palette name"
 msgstr "Jméno palety"
 
-msgid ""
-"Diagram has been modified since last save.<br/> Do you want to save it?"
+msgid "Diagram has been modified since last save.<br/> Do you want to save it?"
 msgstr "Graf byl od posledního uložení změněn.<br/> Chcete ho uložit?"
 
 #, c-format
@@ -636,26 +619,22 @@ msgstr "Přidat do"
 msgid "Add to new diagram"
 msgstr "Přidat do nového grafu"
 
-msgid ""
-"Explicit data input port must be connected to explicit data output port"
+msgid "Explicit data input port must be connected to explicit data output port"
 msgstr ""
 "Explicitní port pro vstup dat musí být připojen k explicitnímu portu pro "
 "výstup dat"
 
-msgid ""
-"Implicit data input port must be connected to implicit data output port"
+msgid "Implicit data input port must be connected to implicit data output port"
 msgstr ""
 "Vstupní port implicitních dat musí být připojen k výstupnímu portu "
 "implicitních dat"
 
-msgid ""
-"Explicit data output port must be connected to explicit data input port"
+msgid "Explicit data output port must be connected to explicit data input port"
 msgstr ""
 "Explicitní port pro výstup dat musí být připojen k explicitnímu portu pro "
 "vstup dat"
 
-msgid ""
-"Implicit data output port must be connected to implicit data input port"
+msgid "Implicit data output port must be connected to implicit data input port"
 msgstr ""
 "Výstupní port implicitních dat musí být připojen ke vstupnímu portu "
 "implicitních dat"
@@ -779,8 +758,7 @@ msgstr ""
 msgid "Generate SuperBlock, please wait"
 msgstr "Vytvářím SuperBlok, čekejte prosím"
 
-msgid ""
-"Click on diagram to add link point or on a compatible target to finish"
+msgid "Click on diagram to add link point or on a compatible target to finish"
 msgstr ""
 "Klikněte na graf pro přidání bod propojení nebo kompatibilní cíl pro "
 "dokončení"
@@ -891,11 +869,11 @@ msgid "Expecting <code>%d</code> but got <code>%d</code>."
 msgstr ""
 
 msgid ""
-"<html><body>Compilation error: link ignored because it is not connected. "
-"<br/>Please reconnect it.</body></html>"
+"<html><body>Compilation error: link ignored because it is not connected. <br/"
+">Please reconnect it.</body></html>"
 msgstr ""
-"<html><body>Chyba sestavení: propojení ignorováno protože není spojené. "
-"<br/>Prosím, znovu ho spojte.</body></html>"
+"<html><body>Chyba sestavení: propojení ignorováno protože není spojené. <br/"
+">Prosím, znovu ho spojte.</body></html>"
 
 msgid "Block name: "
 msgstr ""
@@ -943,6 +921,12 @@ msgid "Split Block"
 msgstr ""
 
 msgid "Auto-Position Split Block"
+msgstr ""
+
+msgid "A one-line description of the block"
+msgstr ""
+
+msgid "Annotation (or comment) attached to the object"
 msgstr ""
 
 #, c-format
@@ -1058,6 +1042,12 @@ msgstr ""
 msgid "Old Gain Block"
 msgstr ""
 
+msgid "Optimal link route"
+msgstr ""
+
+msgid "Optimal split block position"
+msgstr ""
+
 msgid "Standard demos"
 msgstr ""
 
@@ -1112,6 +1102,9 @@ msgstr ""
 msgid "Event demos"
 msgstr ""
 
+msgid "Optimal positions"
+msgstr ""
+
 #, c-format
 msgid "%s: Unable to export %s to %s.\n"
 msgstr "%s: Nelze exportovat %s do %s.\n"
@@ -1125,8 +1118,7 @@ msgid "%s: Wrong type for input argument %s: Block type expected.\n"
 msgstr "%s: Špatný typ argumentu %s: Očekáván typ bloku.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument %s: directory path string expected.\n"
+msgid "%s: Wrong type for input argument %s: directory path string expected.\n"
 msgstr "%s: Špatný typ argumentu %s: očekáván řetězec cesty adresáře.\n"
 
 #, c-format
@@ -1210,8 +1202,7 @@ msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr "%s: Špatný počet výstupních argumentů: očekáváno %d až %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument %s: palette type or path expected.\n"
+msgid "%s: Wrong type for input argument %s: palette type or path expected.\n"
 msgstr "%s: Špatný typ argumentu %s: očekáván typ palety nebo cesta.\n"
 
 #, c-format

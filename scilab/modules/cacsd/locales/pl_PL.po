@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2016-12-06 17:01+0000\n"
 "Last-Translator: konrad509 <konrad509@op.pl>\n"
 "Language-Team: Polish <pl@li.org>\n"
+"Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18544)\n"
-"Language: pl\n"
+"X-Generator: Launchpad (build 18566)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -161,8 +161,8 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong row size for input argument #%d: Same row size of input argument "
-"#%d expected.\n"
+"%s: Wrong row size for input argument #%d: Same row size of input argument #"
+"%d expected.\n"
 msgstr ""
 
 #, c-format
@@ -238,13 +238,11 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Method must be schur or sign.\n"
+msgid "%s: Wrong value for input argument #%d: Method must be schur or sign.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Method must be schur or invf.\n"
+msgid "%s: Wrong value for input argument #%d: Method must be schur or invf.\n"
 msgstr ""
 
 #, c-format
@@ -278,8 +276,7 @@ msgid "%s: DORGQR exit with info = %d.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 
 #, c-format
@@ -316,8 +313,7 @@ msgid "%s: Wrong size for input argument #%d: Must have %d rows expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Must have %d columns expected.\n"
+msgid "%s: Wrong size for input argument #%d: Must have %d columns expected.\n"
 msgstr ""
 
 #, c-format
@@ -357,8 +353,7 @@ msgid "%s: Wrong type for input argument #%d: A real polynom expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A Matrix or polynom expected.\n"
+msgid "%s: Wrong type for input argument #%d: A Matrix or polynom expected.\n"
 msgstr ""
 
 #, c-format
@@ -370,14 +365,13 @@ msgid "%s: Wrong value for input argument #%d: A real polynom expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: More or equal to %d expected.\n"
+msgid "%s: Wrong value for input argument #%d: More or equal to %d expected.\n"
 msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: More than degree of input argument "
-"#%d expected.\n"
+"%s: Wrong value for input argument #%d: More than degree of input argument #"
+"%d expected.\n"
 msgstr ""
 
 #, c-format
@@ -445,8 +439,7 @@ msgid "%s: Wrong number of output argument(s): %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A matrix or polynom expected.\n"
+msgid "%s: Wrong type for input argument #%d: A matrix or polynom expected.\n"
 msgstr ""
 
 #, c-format
@@ -494,8 +487,11 @@ msgstr ""
 msgid "%s: Uncontrollable system.\n"
 msgstr ""
 
+#
+# File: modules/cacsd/sci_gateway/cpp/sci_residu.cpp, line: 152
+# File: modules/cacsd/sci_gateway/cpp/sci_residu.cpp, line: 195
 #, c-format
-msgid "%s: An error occurred in '%s'.\n"
+msgid "%s: An error occured in '%s'.\n"
 msgstr ""
 
 #, c-format
@@ -549,8 +545,7 @@ msgid "Press Return to continue ... \n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument: Linear dynamical system expected.\n"
+msgid "%s: Wrong type for input argument: Linear dynamical system expected.\n"
 msgstr ""
 "%s: Zły typ parametru wejściowego: Oczekiwano dynamicznego układu "
 "liniowego.\n"
@@ -584,8 +579,18 @@ msgstr "%s: Parametr wejściowy %d ma założoną ciągłość w czasie.\n"
 msgid "%s: Needs %s => Use default value %s=%d.\n"
 msgstr "%s: Potrzeba %s => Użyj wartości domyślnej %s=%d.\n"
 
-msgid "Autocorrelation Function"
-msgstr "Funkcja Autokorelacji"
+#, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr ""
+"%s: Nieprawidłowa liczba parametrów wyjściowych: oczekiwano %d lub %d.\n"
+
+#, c-format
+msgid "%s: Argument #%d: Linear state space expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: In continuous time expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d: Stable system expected.\n"
@@ -662,6 +667,10 @@ msgstr "%s: %s musi mieć wymiary (%s, %s).\n"
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr ""
 "%s: Nieprawidłowa wartość parametru wejściowego nr %d: oczekiwana '%s'.\n"
+
+#, c-format
+msgid "%s: Argument #%d: Undefined time domain.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -825,8 +834,20 @@ msgstr ""
 "dodatnie.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: Polynomial expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong number of input arguments: %d expected"
 msgstr "%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano %d."
+
+#, c-format
+msgid "%s: Argument #%d: Square matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Arguments #%d and #%d: Incompatible sizes.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -873,8 +894,7 @@ msgid "%s: Wrong size for argument #%d: %d expected.\n"
 msgstr "%s: Nieprawidłowy rozmiar argumentu %d: oczekiwano %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Stabilizable system expected.\n"
+msgid "%s: Wrong value for input argument #%d: Stabilizable system expected.\n"
 msgstr ""
 "%s: Zła wartość parametru wejściowego #%d: Oczekiwano układu dającego się "
 "stabilizować.\n"
@@ -1020,11 +1040,6 @@ msgstr ""
 "%s: Krzywa została ograniczona do pierwszych %d punktów dyskretyzacji.\n"
 
 #, c-format
-msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
-msgstr ""
-"%s: Nieprawidłowa liczba parametrów wyjściowych: oczekiwano %d lub %d.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: Cell expected.\n"
 msgstr ""
 
@@ -1040,6 +1055,14 @@ msgstr "%s: Zła liczba parametrów wyjściowych: Oczekiwano przynajmniej %d.\n"
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %d or %d expected.\n"
 msgstr "%s: Zła wartość parametru wejściowego nr %d: Oczekiwano %d lub %d.\n"
+
+#, c-format
+msgid "%s: Argument #%d: Decimal or complex number(s) expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: In discrete time expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of output argument: %d expected.\n"
@@ -1091,8 +1114,7 @@ msgstr "%s: Wymiary %s są nieodpowiednie.\n"
 
 #, c-format
 msgid "%s: %s is not full rank at the machine precision.\n"
-msgstr ""
-"%s: Rząd %s nie jest pełny w ramach dokładności obliczeń komputera.\n"
+msgstr "%s: Rząd %s nie jest pełny w ramach dokładności obliczeń komputera.\n"
 
 #, c-format
 msgid "%s: %s is nearly unstabilizable.\n"
@@ -1111,8 +1133,7 @@ msgid "%s: %s is indefinite.\n"
 msgstr "%s: %s jest nieokreślony.\n"
 
 #, c-format
-msgid ""
-"%s: Controllable & observable mode(s) of %s near the imaginary axis.\n"
+msgid "%s: Controllable & observable mode(s) of %s near the imaginary axis.\n"
 msgstr "%s: Tryb(-y) Sterowalny i Obserwowalny %s bliski(-e) osi urojonej.\n"
 
 #, c-format
@@ -1123,6 +1144,12 @@ msgstr ""
 #, c-format
 msgid "%s: Francis equations not satisfied.\n"
 msgstr "%s: Równania Francis'a nie spełnione.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for argument #%d: In continuous or undefined time domain "
+"expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument: Scalar expected.\n"
@@ -1277,8 +1304,7 @@ msgid "%s: Wrong type for argument %d: Real vector expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A %d elements array expected.\n"
+msgid "%s: Wrong size for input argument #%d: A %d elements array expected.\n"
 msgstr ""
 
 #, c-format
@@ -1294,8 +1320,7 @@ msgid "%s: incompatible time domains\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Linear state space  expected.\n"
+msgid "%s: Wrong type for input argument #%d: Linear state space  expected.\n"
 msgstr ""
 
 #, c-format
@@ -1307,8 +1332,7 @@ msgid "%s: Controllable & observable mode(s) of A near the imaginary axis"
 msgstr "%s: Tryb(-y) Sterowalny i Obserwowalny A bliski(-e) osi urojonej."
 
 #, c-format
-msgid ""
-"%s: All modes of A are nearly nonminimal so that || G || is almost 0.\n"
+msgid "%s: All modes of A are nearly nonminimal so that || G || is almost 0.\n"
 msgstr ""
 "%s: Wszystkie stany A są prawie nie minimalne, więc || G || jest prawie 0.\n"
 
@@ -1419,6 +1443,10 @@ msgstr ""
 "%s: Zły typ parametru wejściowego nr %d: Oczekiwano dynamicznego liniowego "
 "układu.\n"
 
+#, c-format
+msgid "%s: Arguments #%d and #%d: Same numbers of columns expected.\n"
+msgstr ""
+
 msgid "Phase (Deg)"
 msgstr ""
 
@@ -1435,12 +1463,25 @@ msgstr "Bieguny"
 msgid "Transmission zeros and poles"
 msgstr "Przekazanie zer i biegunów"
 
-#, c-format
-msgid "%s: Wrong type for input argument #%d: real matrix expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: real matix expected.\n"
 msgstr ""
+"%s: Nieprawidłowy typ dla argumentu wejściowego nr %d: Oczekiwano listy.\n"
 
 #, c-format
 msgid "%s: Arguments %d and %d must have equal dimensions.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Argument #%d: %s expected.\n"
+msgstr ""
+
+msgid "SISO system"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Argument #%d: A system in state space or transfer matrix form expected.\n"
 msgstr ""
 
 #, c-format
@@ -1671,8 +1712,7 @@ msgid "%s: Wrong type for input argument #%d: A real vector expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
+msgid "%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
 msgstr ""
 
 #, c-format

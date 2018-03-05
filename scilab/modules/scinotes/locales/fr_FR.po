@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2017-12-14 15:53+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18544)\n"
-"Language: fr\n"
+"X-Generator: Launchpad (build 18566)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -32,8 +32,7 @@ msgid "%s: No more memory.\n"
 msgstr "%s : Plus de mémoire disponible.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for argument #%d: Real matrix or 'readonly' expected.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix or 'readonly' expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument n°%d : Une matrice réelle ou 'readonly' "
 "attendu.\n"
@@ -74,8 +73,8 @@ msgstr "Fichier introuvable : %s"
 msgid "I/O error: %s"
 msgstr "Erreur E/S : %s"
 
-#, c-format
-msgid "The file %s has been modified by another program. Reload it ?"
+#, fuzzy, c-format
+msgid "The file %s has been modified by an other program. Reload it ?"
 msgstr "Le fichier %s a été modifié par un autre programme. Le recharger ?"
 
 msgid "File"
@@ -466,8 +465,7 @@ msgstr "Onglet précédent"
 
 msgid ""
 "You need to save your modifications before executing this file into Scilab."
-msgstr ""
-"Enregistrez vos modifications avant d'exécuter ce fichier dans Scilab."
+msgstr "Enregistrez vos modifications avant d'exécuter ce fichier dans Scilab."
 
 msgid ""
 "This file is very long. \"Execute File Into Scilab\" could be better.\n"
@@ -1096,8 +1094,7 @@ msgid "Underlined"
 msgstr "Souligné"
 
 msgid "Highlight corresponding keywords (e.g. if ... end)"
-msgstr ""
-"Mettre en surbrillance les mots-clés correspondants (e.g. if ... end)"
+msgstr "Mettre en surbrillance les mots-clés correspondants (e.g. if ... end)"
 
 msgid "Tabulation and Indentation"
 msgstr "Tabulation et indentation"

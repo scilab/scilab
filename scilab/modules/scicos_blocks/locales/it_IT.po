@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2011-09-01 15:20+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18544)\n"
-"Language: it\n"
+"X-Generator: Launchpad (build 18566)\n"
 
 msgid "overflow error"
 msgstr "errore di overflow"
@@ -493,69 +493,8 @@ msgstr "Porta di uscita implicita"
 msgid "Regular output port"
 msgstr "Porta di uscita regolare"
 
-#, c-format
-msgid "Feature %s is obsolete."
-msgstr ""
-
-#, c-format
-msgid "Please use %s instead."
-msgstr ""
-
-msgid "Write to output file"
-msgstr ""
-
-msgid "&nbsp; - A binary file if no format given"
-msgstr "&nbsp; - Un file binario se non è selezionato un formato"
-
-msgid "Write is done on:"
-msgstr ""
-
-msgid "&nbsp; - A formatted text file if a  format (Fortran type) is given"
-msgstr ""
-"&nbsp; - Un file di testo formattato se un formato (di tipo Fortran) è "
-"selezionato"
-
-msgid "Input Size"
-msgstr "Dimensione dei dati in ingresso"
-
-msgid "Output File Name"
-msgstr "Nome del file in uscita"
-
 msgid "Buffer Size"
 msgstr "Dimensione del buffer"
-
-msgid "Output Format"
-msgstr "Formato dei dati in uscita"
-
-msgid "End current simulation first."
-msgstr "Terminare prima la simulazione attuale."
-
-msgid ""
-"Simulation running !!! You cannot switch<br />between formatted and "
-"unformatted when running"
-msgstr ""
-
-msgid "You cannot modify 'Output File Name' when running."
-msgstr ""
-
-msgid "Wrong value for 'Output File Name' parameter"
-msgstr ""
-
-msgid "You must provide a filename."
-msgstr ""
-
-#, c-format
-msgid "Directory '%s' does not exist"
-msgstr "La directory '%s' non esiste"
-
-msgid "Input Format"
-msgstr "Formato dei dati in ingresso"
-
-msgid "You must enclose the format's string between parentheses."
-msgstr ""
-
-msgid "Must be greater than 1."
-msgstr "Deve essere maggiore di 1."
 
 msgid "Swap Mode (0:No, 1:Yes)"
 msgstr ""
@@ -573,8 +512,20 @@ msgstr "Terminare prima la simulazione attuale"
 msgid "Swap Mode"
 msgstr ""
 
+msgid "Input Size"
+msgstr "Dimensione dei dati in ingresso"
+
+msgid "Output File Name"
+msgstr "Nome del file in uscita"
+
 msgid "Write to C binary file"
 msgstr ""
+
+msgid "Output Format"
+msgstr "Formato dei dati in uscita"
+
+msgid "Input Format"
+msgstr "Formato dei dati in ingresso"
 
 msgid "Valid formats are: "
 msgstr ""
@@ -583,8 +534,18 @@ msgstr ""
 msgid "You cannot modify '%s' when running"
 msgstr ""
 
+msgid "End current simulation first."
+msgstr "Terminare prima la simulazione attuale."
+
 msgid "You cannot modify 'Buffer Size' when running."
 msgstr ""
+
+msgid "You must provide a filename."
+msgstr ""
+
+#, c-format
+msgid "Directory '%s' does not exist"
+msgstr "La directory '%s' non esiste"
 
 msgid "Event input port"
 msgstr ""
@@ -778,6 +739,9 @@ msgstr ""
 msgid "Wrong value for indexes in '%s' parameter: %s."
 msgstr ""
 
+msgid "&nbsp; - A binary file if no format given"
+msgstr "&nbsp; - Un file binario se non è selezionato un formato"
+
 msgid "Read from an input file"
 msgstr ""
 
@@ -811,6 +775,9 @@ msgstr ""
 
 #, c-format
 msgid "Wrong format for '%s' parameter: %s."
+msgstr ""
+
+msgid "You must enclose the format's string between parentheses."
 msgstr ""
 
 msgid "Buffer size must be at least 2."

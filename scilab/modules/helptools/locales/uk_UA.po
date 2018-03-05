@@ -9,14 +9,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2017-12-14 15:53+0000\n"
+"PO-Revision-Date: 2018-02-19 19:18+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
+"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18544)\n"
-"Language: uk\n"
+"X-Generator: Launchpad (build 18566)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -81,8 +81,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -98,6 +97,17 @@ msgstr ""
 
 msgid "-- Deleting help files --\n"
 msgstr "-- Вилучення файлів довідки --\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати %d або %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: a string expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"«string».\n"
 
 #, c-format
 msgid "%s: The help browser is disabled in %s mode.\n"
@@ -147,6 +157,10 @@ msgstr "%s: файл пропущено %s."
 msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
+
+#, c-format
+msgid "%s: Argument #%d: Text(s) expected.\n"
+msgstr "%s: параметр №%d: мало бути вказано текстові дані.\n"
 
 msgid " * Add some comments about XML file"
 msgstr " * Додайте коментарі щодо файла XML"
@@ -309,20 +323,20 @@ msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати коректну "
 "назву існуючого файла.\n"
 
-#, c-format
-msgid "%s: The CHAPTER file is not well formatted at line %d\n"
+#, fuzzy, c-format
+msgid "%s: The CHAPTER file is not well formated at line %d\n"
 msgstr "%s: помилка у форматуванні файла CHAPTER, рядок %d\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: A string that end with "
-".last_successful_build expected.\n"
+"%s: Wrong value for input argument #%d: A string that end with ."
+"last_successful_build expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати рядок, "
 "який завершується підрядком «.last_successful_build».\n"
 
-#, c-format
-msgid "%s: The last_successful_build file is not well formatted at line %d\n"
+#, fuzzy, c-format
+msgid "%s: The last_successful_build file is not well formated at line %d\n"
 msgstr "%s: помилка у форматуванні файла last_successful_build, рядок %d\n"
 
 #, c-format

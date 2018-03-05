@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2015-10-08 21:59+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18544)\n"
-"Language: de\n"
+"X-Generator: Launchpad (build 18566)\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -79,12 +79,7 @@ msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s: falscher Typ für Eingangsargument #%d: Variable erwartet.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Non-empty strings expected.\n"
+msgid "%s: Wrong values for input argument #%d: Non-empty strings expected.\n"
 msgstr ""
 "%s: falscher Wert für Eingangsargument #%d: nicht-leere Zeichenketten "
 "erwartet.\n"
@@ -130,7 +125,7 @@ msgid "%s: Wrong type for input argument #%d: '%s' expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgid "%s: Wrong type for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
 
 #, c-format
@@ -373,13 +368,37 @@ msgstr "%s: Angegebener Ausdruck hat keinen Wert.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: string expected.\n"
-msgstr ""
-"%s: falsche Größe für Eingangsargument #%d: eine Variable erwartet.\n"
+msgstr "%s: falsche Größe für Eingangsargument #%d: eine Variable erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %s, %s or %s expected.\n"
+msgstr "%s: Falscher Wert für Eingangsargument #%d: %s, %s oder %s erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected."
 msgstr ""
-"%s: Falscher Wert für Eingangsargument #%d: %s, %s oder %s erwartet.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong export format: %s"
+msgstr ""
+
+#, c-format
+msgid "%s: Type %s is not handled : Define the function %s2%s."
+msgstr ""
 
 #, c-format
 msgid ""

@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2017-12-14 15:53+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
+"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18544)\n"
-"Language: pt_BR\n"
+"X-Generator: Launchpad (build 18566)\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
@@ -209,8 +209,8 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr "%s: Valor incorreto para o argumento de entrada #%d.\n"
 
-#, c-format
-msgid "%s: The config file ('%s') is not well formatted at line %d\n"
+#, fuzzy, c-format
+msgid "%s: The config file ('%s') is not well formated at line %d\n"
 msgstr ""
 "%s: O arquivo de configuração ('%s') não está formatado adequadamente na "
 "linha %d\n"
@@ -595,8 +595,7 @@ msgstr "Instalando"
 msgid "Installation failed!"
 msgstr "Falha na instalação!"
 
-msgid ""
-"Installation done! Please restart Scilab to take changes into account."
+msgid "Installation done! Please restart Scilab to take changes into account."
 msgstr ""
 "Instalação concluída! Por favor, reinicie o Scilab para que as alterações "
 "tenham efeito."
@@ -682,8 +681,8 @@ msgid ""
 "%s: Wrong value for input argument #%d: 'filter:all','filter:main' or a "
 "valid main category expected.\n"
 msgstr ""
-"%s: Valor incorreto para o %dº argumento de entrada: esperava-se "
-"'filter:all', 'filter:main' ou uma categoria principal válida.\n"
+"%s: Valor incorreto para o %dº argumento de entrada: esperava-se 'filter:"
+"all', 'filter:main' ou uma categoria principal válida.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -775,18 +774,18 @@ msgstr "%s: O arquivo %s está vazio.\n"
 msgid "Updating Atoms modules database..."
 msgstr ""
 
-#, c-format
+#, fuzzy, c-format
 msgid ""
-"%s: The file %s is not well formatted, the toolbox %s - %s does not contain "
+"%s: The file %s is not well formated, the toolbox %s - %s does not contain "
 "the %s field\n"
-msgstr ""
+msgstr "%s: O arquivo '%s' não está formatado adequadamente na linha %d\n"
 
 #, c-format
 msgid "%s: name and version are not both defined\n"
 msgstr "%s: nem o nome nem a versão foram definidos\n"
 
-#, c-format
-msgid "%s: The file '%s' is not well formatted at line %d\n"
+#, fuzzy, c-format
+msgid "%s: The file '%s' is not well formated at line %d\n"
 msgstr "%s: O arquivo '%s' não está formatado adequadamente na linha %d\n"
 
 #, c-format
@@ -832,8 +831,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Neither Wget or Curl found: Please install one of them\n"
-msgstr ""
-"%s: Nem Wget nem Curl foram localizados: por favor, instale um deles\n"
+msgstr "%s: Nem Wget nem Curl foram localizados: por favor, instale um deles\n"
 
 msgid "Download in progress... Please be patient."
 msgstr ""
@@ -915,16 +913,15 @@ msgid "\t - MD5SUM watched  : '%s'\n"
 msgstr "\t - MD5SUM calculado  : '%s'\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d:'error' or 'warning' expected.\n"
+msgid "%s: Wrong value for input argument #%d:'error' or 'warning' expected.\n"
 msgstr ""
-"%s: Valor incorreto para o %dº argumento de entrada: esperava-se 'error' "
-"(erro) ou 'warning' (aviso).\n"
+"%s: Valor incorreto para o %dº argumento de entrada: esperava-se "
+"'error' (erro) ou 'warning' (aviso).\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Single string that ends with "
-".tar.gz, .tgz or .zip expected.\n"
+"%s: Wrong value for input argument #%d: Single string that ends with .tar."
+"gz, .tgz or .zip expected.\n"
 msgstr ""
 "%s: Valor incorreto para o %dº argumento de entrada: esperava-se um único "
 "texto terminado com .tar.gz, .tgz ou .zip.\n"
@@ -1050,20 +1047,28 @@ msgstr ""
 "%d.\n"
 
 #, c-format
+msgid ""
+"%s: The package %s is not registered.\n"
+"Please check on the ATOMS repository that it is available for Scilab %d.%d "
+"on %s.\n"
+"If it is, run atomsSystemUpdate() before trying atomsInstall(..) again.\n"
+"\n"
+msgstr ""
+
+#, c-format
 msgid "%s: The dependency tree cannot be resolved.\n"
 msgstr "%s: A árvore de dependência não pode ser resolvida.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Letters 'A' or 'I' expected.\n"
+msgid "%s: Wrong value for input argument #%d: Letters 'A' or 'I' expected.\n"
 msgstr ""
 "%s: Valor incorreto para o %dº argumento de entrada: esperava-se a letra 'A' "
 "ou 'I'.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: This is not a valid "
-"version/dependency.\n"
+"%s: Wrong value for input argument #%d: This is not a valid version/"
+"dependency.\n"
 msgstr ""
 "%s: Valor incorreto para o %dº argumento de entrada: não é uma versão ou "
 "dependência válida.\n"
@@ -1099,8 +1104,8 @@ msgid "%s: Wrong type for input argument #%d: mlist expected.\n"
 msgstr ""
 "%s: Tipo incorreto para o %dº argumento de entrada: esperava-se uma mlist.\n"
 
-#, c-format
-msgid "%s: The description is not well formatted at line %d\n"
+#, fuzzy, c-format
+msgid "%s: The description is not well formated at line %d\n"
 msgstr "%s: A descrição não está no formato adequado na linha %d\n"
 
 #, c-format
@@ -1125,8 +1130,7 @@ msgid "%s: %s (%s) isn't installed.\n"
 msgstr "%s: %s (%s) não está instalado.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: This is not a valid version.\n"
+msgid "%s: Wrong value for input argument #%d: This is not a valid version.\n"
 msgstr ""
 "%s: Valor incorreto para o %dº argumento de entrada: não é uma versão "
 "válida.\n"

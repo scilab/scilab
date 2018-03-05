@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2018-01-10 15:21+0000\n"
 "Last-Translator: Wesh <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18544)\n"
-"Language: \n"
+"X-Generator: Launchpad (build 18566)\n"
 
 #, c-format
 msgid "%s: This feature has not been implemented in this mode.\n"
@@ -58,11 +58,6 @@ msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s：第%d个输入参数的类型错误：应该为字符串。\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A Single string of size %d expected.\n"
-msgstr "%s：第%d个输入参数的维度错度：应该为%d长度的字符串。\n"
-
-#, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr "%s：输入参数的数目错误：应该为%d个。\n"
 
@@ -98,14 +93,6 @@ msgstr "命令过长（超过%d个字符）：无法发送到Scilab\n"
 
 msgid "[Continue display? n (no) to stop, any other key to continue]"
 msgstr "[继续显示？按n键停止，按其他键继续]"
-
-#, c-format
-msgid ""
-"Type '%s' or '%s' to return to standard level prompt.\n"
-"\n"
-msgstr ""
-"键入‘%s’或‘%s’以返回到标准层提示符。\n"
-"\n"
 
 msgid "Console"
 msgstr "控制台"
@@ -790,6 +777,14 @@ msgstr "操作名"
 
 msgid "Key binding"
 msgstr "快捷键绑定"
+
+#, c-format
+msgid ""
+"Type '%s' or '%s' to return to standard level prompt.\n"
+"\n"
+msgstr ""
+"键入‘%s’或‘%s’以返回到标准层提示符。\n"
+"\n"
 
 msgid "Field"
 msgstr "字段"
