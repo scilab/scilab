@@ -253,7 +253,7 @@ Help pages:
  `and`, `&,&&`, `format`, `type`, `typeof`, `brackets`, `setlanguage`, `sleep`, `isinf`, `unique`,
  `bitor`, `bitxor`, `bitand`, `macr2tree`, `geomean`, `clf`, `getPreferencesValue`, `gcd`, `isglobal`,
  `whereis`, `mode`, `%onprompt`, `toeplitz`, `param3d`, `param3d1`, `argn`,
- `mtlb_int8`, `mtlb_int16`, `mtlb_int32`, `mtlb_int64`, `mtlb_uint8`, `mtlb_uint16`, `mtlb_uint32`, `mtlb_uint64
+ `mtlb_int8`, `mtlb_int16`, `mtlb_int32`, `mtlb_int64`, `mtlb_uint8`, `mtlb_uint16`, `mtlb_uint32`, `mtlb_uint64`, `intersect`
 * reorganized:
   - `else`, `elseif`, `end`, `try`, `sciargs`, `global`, `halt`, `empty`, `power`, `numderivative`
   - `pixel_drawing_mode`, `show_window`, `twinkle`, `uigetcolor`, `winsid`, `xdel`, `xgrid`, `xname`, `xnumb`
@@ -395,6 +395,7 @@ Known issues
 * [#9063](http://bugzilla.scilab.org/show_bug.cgi?id=9063): `pt` was the alias of `pt_PT` instead of `pt_BR`.
 * [#9958](http://bugzilla.scilab.org/show_bug.cgi?id=9958): `mprintf("%d\r", 12345)` printed `" 345"`
 * [#10190](http://bugzilla.scilab.org/show_bug.cgi?id=10190): Xcos blocks and labels positioning were not aligned to the grid on creation.
+* [#10639](http://bugzilla.scilab.org/show_bug.cgi?id=10639): The page of `intersect` poorly described the arguments. Examples were not illustrated.
 * [#11240](http://bugzilla.scilab.org/show_bug.cgi?id=11240): `A=[]; clear B; [A($+1),B]=1;` crashed Scilab.
 * [#11583](http://bugzilla.scilab.org/show_bug.cgi?id=11583): When in Scinotes preferences the default header is erased, the available variables were no longer documented.
 * [#11916](http://bugzilla.scilab.org/show_bug.cgi?id=11916): Loading a graphic file containing several figures restored them by superimposing them in the same window.

@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -13,55 +14,85 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="intersect" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="intersect" xml:lang="en">
     <refnamediv>
         <refname>intersect</refname>
-        <refpurpose>returns the vector of common values of two
-            vectors
+        <refpurpose>
+            returns the unduplicated elements or rows or columns met in both input arrays
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>[v [,ka,kb]]=intersect(a,b)</synopsis>
-        <synopsis>[v [,ka,kb]]=intersect(a,b,orient)</synopsis>
+        <synopsis>
+            M = intersect(a, b)
+            M = intersect(a, b, orient)
+            [M, ka] = intersect(..)
+            [M, ka, kb] = intersect(..)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>a</term>
+                <term>a, b</term>
                 <listitem>
-                    <para>vector of numbers or strings</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>b</term>
-                <listitem>
-                    <para>vector of numbers or strings</para>
+                    <para>
+                        vectors, matrices or hypermatrices of encoded integers, decimal real
+                        numbers, or text. <varname>a</varname> and <varname>b</varname> must have
+                        the same datatype, but have independent sizes.
+                        For text inputs, UTF characters are accepted.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>orient</term>
                 <listitem>
-                    <para>flag with possible values : 1 or "r", 2 or "c"</para>
+                    <para>
+                        flag with possible values : 1 or "r", 2 or "c". Can't be used if
+                        <varname>a</varname> or/and <varname>b</varname> is an hypermatrix.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>v</term>
+                <term>M</term>
                 <listitem>
-                    <para>row vector of numbers or strings</para>
+                    <para>
+                        matrix of the same datatype as <varname>a</varname> and <varname>b</varname>.
+                        <itemizedlist>
+                            <listitem>
+                                Without <varname>orient</varname>: <varname>M</varname> is a row vector.
+                            </listitem>
+                            <listitem>
+                                With <literal>orient="r"|1</literal>: <varname>M</varname> is a
+                                matrix stacking the common rows of <varname>a</varname> and
+                                <varname>b</varname>.
+                            </listitem>
+                            <listitem>
+                                With <literal>orient="c"|2</literal>: <varname>M</varname> is a
+                                matrix stacking the common columns of <varname>a</varname> and
+                                <varname>b</varname>.
+                            </listitem>
+                        </itemizedlist>
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>ka</term>
                 <listitem>
-                    <para>row vector of integers</para>
+                    <para>
+                        row vector of indices in <varname>a</varname>.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>kb</term>
                 <listitem>
-                    <para>row vector of integers</para>
+                    <para>
+                        row vector of indices in <varname>b</varname>.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -69,78 +100,159 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>intersect(a,b)</literal> returns a sorted row vector of
-            common values of two vectors of <literal>a</literal> and
-            <literal>b</literal>.
+            <literal>intersect(a,b)</literal> returns a row vector of unduplicated sorted values
+            present in both <literal>a</literal> and <literal>b</literal> arrays.
+        </para>
+        <warning>
+            Two NaN elements are always considered as different. So NaN or rows or columns having
+            NaN will never be in the result <literal>M</literal>.
+        </warning>
+        <para>
+            <literal>[M, ka, kb] = intersect(a,b)</literal> additionnaly returns the vectors
+            <literal>ka</literal> and <literal>kb</literal> of indices in <literal>a</literal>
+            and <literal>b</literal> of selected components firstly met, such that
+            <literal>M=a(ka)</literal> and <literal>M=b(kb)</literal>.
+        </para>
+        <refsect3>
+            <title>Common rows or columns</title>
+        <para>
+            When the <varname>orient</varname> argument is provided, the comparison is performed
+            between the rows of <literal>a</literal> and <literal>b</literal> -- each one being
+            considered as a whole --, or between their columns.
         </para>
         <para>
-            <literal>[v,ka,kb]=intersect(a,b)</literal> also returns index
-            vectors <literal>ka</literal> and <literal>kb</literal> such that
-            <literal>v=a(ka)</literal> and <literal>v=b(kb)</literal>.
+            <literal>intersect(a,b,"r")</literal> or <literal>intersect(a,b,1)</literal> will return
+            the matrix of stacked unduplicated rows met in both  <literal>a</literal> and
+            <literal>b</literal>, sorted in lexicographic ascending order.
+            If <literal>a</literal> and <literal>b</literal> don't have the same number of columns,
+            [] is returned without comparing the values.
         </para>
         <para>
-            <literal>intersect(a,b,"r")</literal> or
-            <literal>intersect(a,b,1)</literal>returns the matrix formed by the
-            intersection of the unique rows of <literal>a</literal> and
-            <literal>b</literal> sorted in lexicographic ascending order. In this case
-            matrices <literal>a</literal> and <literal>b</literal> must have the same
-            number of columns.
+            <literal>[M,ka,kb] = intersect(a,b,"r")</literal> additionnaly returns the vectors
+            <literal>ka</literal> and <literal>kb</literal> of the minimal indices of common rows,
+            respectively in <literal>a</literal> and <literal>b</literal>,
+            such that <literal>M=a(ka,:)</literal> and <literal>M=b(kb,:)</literal>.
         </para>
         <para>
-            <literal>[v,ka,kb]=intersect(a,b,"r")</literal> also returns index
-            vectors <literal>ka</literal> and <literal>kb</literal> such that
-            <literal>v=a(ka,:)</literal> and <literal>v=b(kb,:)</literal>.
+            <literal>intersect(a,b,"c")</literal> or <literal>intersect(a,b,2)</literal> does
+            the same for columns.
         </para>
-        <para>
-            <literal>intersect(a,b,"c")</literal> or
-            <literal>intersect(a,b,2)</literal>returns the matrix formed by the
-            intersection of the unique columns of <literal>a</literal> and
-            <literal>b</literal> sorted in lexicographic ascending order. In this case
-            matrices <literal>a</literal> and <literal>b</literal> must have the same
-            number of rows.
-        </para>
-        <para>
-            <literal>[v,ka,kb]=intersect(a,b,"c")</literal> also returns index
-            vectors <literal>ka</literal> and <literal>kb</literal> such that
-            <literal>v=a(:,ka)</literal> and <literal>v=b(:,kb)</literal>.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Remark</title>
-        <para>NaN are considered as different from themselves so they are excluded
-            out of intersection in case of vector intersection.
-        </para>
+        </refsect3>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-A=round(5*rand(10,1));
-B=round(5*rand(7,1));
-
-intersect(A,B)
-[N,ka,kb]=intersect(A,B)
-
-intersect('a'+string(A),'a'+string(B))
-
-intersect(int16(A),int16(B))
-
-//with matrices
- A = [0,0,1,1 1;
-      0,1,1,1,1;
-      2,0,1,1,1;
-      0,2,2,2,2;
-      2,0,1,1,1;
-      0,0,1,1,%nan];
-B = [1,0,1;
-     1,0,2;
-     1,2,3;
-     2,0,4;
-     1,2,5;
-     %nan,0,6];
-
-[v,ka,kb] = intersect(A,B,'c')
-A(:,ka)
+A = grand(3, 3, "uin", 0, 9)
+B = grand(2, 4, "uin", 0, 9)
+intersect(A, B)
+[N, ka, kb] = intersect(A,B);
+ka, kb
  ]]></programlisting>
+    <screen><![CDATA[
+--> A = grand(3, 3, "uin", 0, 9)
+ A  =
+   0.   6.   4.
+   6.   6.   6.
+   2.   7.   9.
+
+--> B = grand(2, 4, "uin", 0, 9)
+ B  =
+   1.   8.   0.   2.
+   6.   2.   2.   1.
+
+--> intersect(A, B)
+ ans  =
+   0.   2.   6.
+
+--> [N, ka, kb] = intersect(A,B);
+--> ka, kb
+ ka  =
+   1.   3.   2.
+ kb  =
+   5.   4.   2.
+]]></screen>
+    <para>
+        In the above example, note that 6 is met four times in A, at indices [2 4 5 8].
+        Only the minimal index 2 is returned in ka. Same situation for 2 in B.
+    </para>
+    <para/>
+    <para>
+    NaN values can never be in the result:
+    </para>
+    <programlisting role="example"><![CDATA[
+%nan == %nan
+intersect([1 -2 %nan 3 6], [%nan 1:3])
+ ]]></programlisting>
+    <screen><![CDATA[
+--> %nan == %nan
+ ans  =
+  F
+
+--> intersect([1 -2 %nan 3 6], [%nan 1:3])
+ ans  =
+   1.   3.
+]]></screen>
+    <para/>
+    <para>
+        intersect() can also process some characters or some texts. Since Scilab is great with UTF
+        characters, here is an example with some Arabic contents, getting characters present in
+        both sentences:
+    </para>
+        <programlisting role="example"><![CDATA[
+A = strsplit("هو برنامج علمي كبير ""Scilab""")'
+B = strsplit("فهو حر ومفتوح")'
+intersect(A,B)
+ ]]></programlisting>
+    <screen><![CDATA[
+--> A = strsplit("هو برنامج علمي كبير ""Scilab""")'
+ A  =
+!ه  و     ب  ر  ن  ا  م  ج     ع  ل  م  ي     ك  ب  ي  ر     "  S  c  i  l  a  b  "  !
+
+--> B = strsplit("فهو حر ومفتوح")'
+ B  =
+!ف  ه  و     ح  ر     و  م  ف  ت  و  ح  !
+
+--> intersect(A,B)
+ ans  =
+!   ر  م  ه  و  !
+]]></screen>
+    <para/>
+    <para>
+        Column-wise or Row-wise processing of two matrices: Here we process 2 matrices of
+        signed 1-byte integers, and get the common columns:
+    </para>
+    <programlisting role="example"><![CDATA[
+A = int8(grand(3,5,"uin",0,1))
+B = int8(grand(3,9,"uin",0,1))
+[M,ka,kb] = intersect(A, B, "c");
+M, ka, kb
+ ]]></programlisting>
+    <screen><![CDATA[
+--> A = int8(grand(3,5,"uin",0,1))
+ A  =
+  0  0  1  1  1
+  0  0  1  1  0
+  0  0  0  0  1
+
+--> B = int8(grand(3,9,"uin",0,1))
+ B  =
+  1  0  1  1  1  0  1  1  1
+  1  0  0  1  1  1  0  0  0
+  1  0  1  0  1  1  1  0  0
+
+--> [M,ka,kb] = intersect(A, B, "c");
+--> M, ka, kb
+ M  =
+  0  1  1
+  0  0  1
+  0  1  0
+
+ ka  =
+   1.   5.   3.
+
+ kb  =
+   2.   3.   4.
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>See also</title>

@@ -1,49 +1,100 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="intersect" xml:lang="fr">
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * Copyright (C) 2018 - Samuel GOUGEON
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="intersect" xml:lang="fr">
     <refnamediv>
         <refname>intersect</refname>
-        <refpurpose>recherche de valeurs communes à deux vecteurs.</refpurpose>
+        <refpurpose>
+            éléments, lignes, ou colonnes communs aux 2 tableaux d'entrée, sans doublon
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Séquence d'appel</title>
+        <title>Syntaxe</title>
         <synopsis>
-            [v [,ka,kb]]=intersect(a,b)
-            [v [,ka,kb]]=intersect(a,b,orient)
+            M = intersect(a, b)
+            M = intersect(a, b, orient)
+            [M, ka] = intersect(..)
+            [M, ka, kb] = intersect(..)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Paramètres</title>
+        <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>a</term>
+                <term>a, b</term>
                 <listitem>
-                    <para>vecteur de nombres ou de chaînes de caractères</para>
+                    <para>
+                        vecteurs, matrices ou hypermatrices d'entiers encodés, de nombres décimaux
+                        réels, ou de texte. <varname>a</varname> et <varname>b</varname> doivent
+                        être du même type de données, mais ont des tailles indépendantes.
+                        Pour les données texte, les caractères UTF sont admis.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>b</term>
+                <term>orient</term>
                 <listitem>
-                    <para>vecteur de nombres ou de chaînes de caractères</para>
+                    <para>
+                        indicateur de traitement par colonnes ou lignes. Valeurs possibles :
+                        1 ou "r", 2 ou "c". Ne peut pas être utilisé lorsque <varname>a</varname>
+                        ou/et <varname>b</varname> est une hypermatrice.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>v</term>
+                <term>M</term>
                 <listitem>
-                    <para>vecteur ligne ou matrice de nombres ou de chaînes de
-                        caractères
+                    <para>
+                        Matrice du type de <varname>a</varname> et <varname>b</varname>.
+                        <itemizedlist>
+                            <listitem>
+                                Sans <varname>orient</varname>: <varname>M</varname> est un vecteur
+                                ligne.
+                            </listitem>
+                            <listitem>
+                                Avec <literal>orient="r"|1</literal>: <varname>M</varname> est une
+                                matrice empilant les lignes communes à <varname>a</varname> et
+                                <varname>b</varname>.
+                            </listitem>
+                            <listitem>
+                                Avec <literal>orient="c"|2</literal>: <varname>M</varname> est une
+                                matrice concaténant les colonnes communes à <varname>a</varname> et
+                                <varname>b</varname>.
+                            </listitem>
+                        </itemizedlist>
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>ka</term>
                 <listitem>
-                    <para>vecteur ligne d'entiers</para>
+                    <para>
+                        Vecteur ligne d'indices dans <varname>a</varname>.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>kb</term>
                 <listitem>
-                    <para>vecteur ligne d'entiers</para>
+                    <para>
+                        Vecteur lignes d'indices dans <varname>b</varname>.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -51,74 +102,160 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>intersect(a,b)</literal> renvoie un vecteur trié des
-            valeurs communes à <literal>a</literal> et <literal>b</literal>. A noter
-            que 2 NaN sont toujours considérés comme différents.
+            <literal>intersect(a,b)</literal> produit un vecteur ligne des éléments dédoublonnés
+            présents à la fois dans les tableaux <literal>a</literal> et <literal>b</literal>,
+            triés en ordre croissant.
+        </para>
+        <warning>
+            Deux éléments NaN étant toujours considérés comme différents, NaN ou les lignes ou
+            colonnes en contenant ne seront jamais présents dans le résultat <literal>M</literal>.
+        </warning>
+        <para>
+            <literal>[M, ka, kb] = intersect(a,b)</literal> fournit en outre les vecteurs lignes
+            <literal>ka</literal> et <literal>kb</literal> des indices dans <literal>a</literal>
+            et <literal>b</literal> des éléments communs rencontrés à leur première position,
+            tels que <literal>M=a(ka)</literal> and <literal>M=b(kb)</literal>.
+        </para>
+        <refsect3>
+            <title>Lignes ou colonnes en commun</title>
+        <para>
+            Lorsque l'option <varname>orient</varname> est utilisée, la comparaison entre
+            <literal>a</literal> et <literal>b</literal> est réalisée en considérant leurs lignes
+            ou leurs colonnes dans leur entier.
         </para>
         <para>
-            <literal>[v,ka,kb]=intersect(a,b)</literal> renvoie aussi deux
-            vecteurs d'indices <literal>ka</literal> et <literal>kb</literal> tels que
-            <literal>v=a(ka)</literal> et <literal>v=b(kb)</literal>.
+            <literal>intersect(a,b,"r")</literal> ou <literal>intersect(a,b,1)</literal> fournira
+            la matrice des lignes (sans doublons) présentes à la fois dans <literal>a</literal> et
+            dans <literal>b</literal>, triées en ordre lexicographique croissant.
+            Lorsque <literal>a</literal> et <literal>b</literal> n'ont pas le même nombre de
+            colonnes, [] est retourné sans comparer aucun élément.
         </para>
         <para>
-            <literal>intersect(a,b,"r")</literal> ou
-            <literal>intersect(a,b,1)</literal> retourne la matrice formée de
-            l'intersection des lignes distinctes des matrices <literal>a</literal> et
-            <literal>b</literal> triées dans l'ordre lexicographique croissant. Dans
-            ce cas les matrices <literal>a</literal> et <literal>b</literal> doivent
-            avoir le même nombre de colonnes.
+            <literal>[M,ka,kb]=intersect(a,b,"r")</literal> fournit en outre les vecteurs
+            <literal>ka</literal> et <literal>kb</literal> des indices minimaux des lignes communes,
+            indices respectivement dans <literal>a</literal> dans <literal>b</literal>. On a alors
+            <literal>M=a(ka,:)</literal> et <literal>M=b(kb,:)</literal>.
         </para>
         <para>
-            <literal>[v,ka,kb]=intersect(a,b,"r")</literal> retourne aussi les
-            vecteurs d'indices <literal>ka</literal> et <literal>kb</literal> tels que
-            <literal>v=a(ka,:)</literal> et <literal>v=b(kb,:)</literal>.
+            <literal>intersect(a,b,"c")</literal> ou <literal>intersect(a,b,2)</literal> réalise
+            la même chose sur les colonnes.
         </para>
-        <para>
-            <literal>intersect(a,b,"c")</literal> ou
-            <literal>intersect(a,b,2)</literal> retourne la matrice formée de
-            l'intersection des colonnes distinctes des matrices <literal>a</literal>
-            et <literal>b</literal> triées dans l'ordre lexicographique croissant.
-            Dans ce cas les matrices <literal>a</literal> et <literal>b</literal>
-            doivent avoir le même nombre de lignes.
-        </para>
-        <para>
-            <literal>[v,ka,kb]=intersect(a,b,"r")</literal> retourne aussi les
-            vecteurs d'indices <literal>ka</literal> et <literal>kb</literal> tels que
-            <literal>v=a(:,ka)</literal> et <literal>v=b(:,kb)</literal>.
-        </para>
+        </refsect3>
     </refsection>
     <refsection>
         <title>Exemples</title>
         <programlisting role="example"><![CDATA[
-A=round(5*rand(10,1));
-B=round(5*rand(7,1));
-
-intersect(A,B)
-[N,ka,kb]=intersect(A,B)
-
-intersect('a'+string(A),'a'+string(B))
-
-
-
-intersect(int16(A),int16(B))
-
-//with matrices
- A = [0,0,1,1 1;
-      0,1,1,1,1;
-      2,0,1,1,1;
-      0,2,2,2,2;
-      2,0,1,1,1;
-      0,0,1,1,%nan];
-B = [1,0,1;
-     1,0,2;
-     1,2,3;
-     2,0,4;
-     1,2,5;
-     %nan,0,6];
-
-[v,ka,kb] = intersect(A,B,'c')
-A(:,ka)
+A = grand(3, 3, "uin", 0, 9)
+B = grand(2, 4, "uin", 0, 9)
+intersect(A, B)
+[N, ka, kb] = intersect(A,B);
+ka, kb
  ]]></programlisting>
+    <screen><![CDATA[
+--> A = grand(3, 3, "uin", 0, 9)
+ A  =
+   0.   6.   4.
+   6.   6.   6.
+   2.   7.   9.
+
+--> B = grand(2, 4, "uin", 0, 9)
+ B  =
+   1.   8.   0.   2.
+   6.   2.   2.   1.
+
+--> intersect(A, B)
+ ans  =
+   0.   2.   6.
+
+--> [N, ka, kb] = intersect(A,B);
+--> ka, kb
+ ka  =
+   1.   3.   2.
+ kb  =
+   5.   4.   2.
+]]></screen>
+    <para>
+        Dans l'exemple ci-dessus, on notera que 6 est présent quatre fois dans A, aux indices [2 4 5 8].
+        Seule la position d'indice minimal 2 est donnée dans ka. Même situation pour 2 dans B.
+    </para>
+    <para/>
+    <para>
+    La valeur NaN (Not-a-Number) ne peut jamais figurer dans le résultat :
+    </para>
+    <programlisting role="example"><![CDATA[
+%nan == %nan
+intersect([1 -2 %nan 3 6], [%nan 1:3])
+ ]]></programlisting>
+    <screen><![CDATA[
+--> %nan == %nan
+ ans  =
+  F
+
+--> intersect([1 -2 %nan 3 6], [%nan 1:3])
+ ans  =
+   1.   3.
+]]></screen>
+    <para/>
+    <para>
+        intersect() peut aussi traiter des caractères ou du texte. Scilab sait traiter les textes
+        encodés en UTF. Voici un exemple avec du texte en arabe, afin d'obtenir les caractères
+        arabes communs à deux phrases :
+    </para>
+        <programlisting role="example"><![CDATA[
+A = strsplit("هو برنامج علمي كبير ""Scilab""")'
+B = strsplit("فهو حر ومفتوح")'
+intersect(A,B)
+ ]]></programlisting>
+    <screen><![CDATA[
+--> A = strsplit("هو برنامج علمي كبير ""Scilab""")'
+ A  =
+!ه  و     ب  ر  ن  ا  م  ج     ع  ل  م  ي     ك  ب  ي  ر     "  S  c  i  l  a  b  "  !
+
+--> B = strsplit("فهو حر ومفتوح")'
+ B  =
+!ف  ه  و     ح  ر     و  م  ف  ت  و  ح  !
+
+--> intersect(A,B)
+ ans  =
+!   ر  م  ه  و  !
+]]></screen>
+    <para/>
+    <para>
+        Lignes ou colonnes communes à deux matrices : l'exemple suivant extrait les colonnes communes
+        à deux matrices d'entiers signés encodés sur un octet :
+    </para>
+    <programlisting role="example"><![CDATA[
+A = int8(grand(3,5,"uin",0,1))
+B = int8(grand(3,9,"uin",0,1))
+[M,ka,kb] = intersect(A, B, "c");
+M, ka, kb
+ ]]></programlisting>
+    <screen><![CDATA[
+--> A = int8(grand(3,5,"uin",0,1))
+ A  =
+  0  0  1  1  1
+  0  0  1  1  0
+  0  0  0  0  1
+
+--> B = int8(grand(3,9,"uin",0,1))
+ B  =
+  1  0  1  1  1  0  1  1  1
+  1  0  0  1  1  1  0  0  0
+  1  0  1  0  1  1  1  0  0
+
+--> [M,ka,kb] = intersect(A, B, "c");
+--> M, ka, kb
+ M  =
+  0  1  1
+  0  0  1
+  0  1  0
+
+ ka  =
+   1.   5.   3.
+
+ kb  =
+   2.   3.   4.
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>
