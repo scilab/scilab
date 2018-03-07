@@ -6,6 +6,7 @@
 // =============================================================================
 
 // <-- XCOS TEST -->
+// <-- NO CHECK REF -->
 //
 // <-- Non-regression test for bug 9732 -->
 //
@@ -15,13 +16,13 @@
 // <-- Short Description -->
 // try to compile and link a superblock
 
-assert_checktrue(importXcosDiagram(SCI+'/modules/xcos/demos/Controller.zcos'));
+assert_checktrue(importXcosDiagram(SCI+"/modules/xcos/demos/Controller.zcos"));
 
 // getting the SUPER_f (System) block
 XX=scs_m.objs(11);
 
 subSystem=XX.model.rpar;
-assert_checkequal(subSystem.props.title, "System");
+assert_checkequal(subSystem.props.title(1), "System");
 
 // Overload get_value
 prot = funcprot();
@@ -36,5 +37,6 @@ funcprot(prot);
 ilib_verbose(0);
 cd(TMPDIR);
 
-do_compile_superblock42(XX, [], [], %f);
+ok = do_compile_superblock42(XX, [], [], %f);
+assert_checktrue(ok);
 

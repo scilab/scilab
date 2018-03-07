@@ -1,11 +1,11 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010 - DIGITEO - Clément DAVID
+// Copyright (C) 2015 - Scilab Enterprises - Clément DAVID
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 // <-- XCOS TEST -->
-// <-- LONG TIME EXECUTION -->
 //
 // <-- Non-regression test for bug 7537 -->
 //
@@ -20,7 +20,7 @@ doc = xmlRead(SCI + "/modules/xcos/etc/palettes.xml");
 blocks = xmlXPath(doc, "//block/@name");
 blocks = blocks.content;
 xmlDelete(doc);
-for blockIndex=1:size(blocks, '*')
+for blockIndex=1:size(blocks, "*")
     interfunction = blocks(blockIndex);
     execstr("out = " + interfunction + "(''define'');");
     xx = (modulo(blockIndex, 10) + 1) * 100;
@@ -28,10 +28,12 @@ for blockIndex=1:size(blocks, '*')
     out.graphics.orig =[xx yy];
     scs_m.objs(blockIndex) = out;
 end
-// export the diagram to h5
-h5name = TMPDIR + "/diagram.sod";
-err = execstr("save(h5name, ""scs_m"")", "errcatch");
-if err <> 0 then bugmes();quit;end
-// import to xcos (decode/encode synchronous version)
-status = xcosDiagramToScilab(h5name);
-if status <> 0 then bugmes();quit;end
+// export / import the diagram to the default ZCOS format
+xcosDiagramToScilab(fullfile(TMPDIR, "diagram.zcos"), scs_m);
+loaded = xcosDiagramToScilab(fullfile(TMPDIR, "diagram.zcos"));
+// to the XCOS format
+xcosDiagramToScilab(fullfile(TMPDIR, "diagram.xcos"), scs_m);
+loaded = xcosDiagramToScilab(fullfile(TMPDIR, "diagram.xcos"));
+// to the XMI format
+xcosDiagramToScilab(fullfile(TMPDIR, "diagram.xmi"), scs_m);
+loaded = xcosDiagramToScilab(fullfile(TMPDIR, "diagram.xmi"));

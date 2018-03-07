@@ -37,12 +37,15 @@ for blockIndex=1:size(blocks, "*")
 end
 
 
-// export the diagram to h5
-h5name = TMPDIR + "/diagram.sod";
-err = execstr("save(h5name, ""scs_m"")", "errcatch");
-if err <> 0 then pause, end
+// export / import the diagram to the default ZCOS format
+xcosDiagramToScilab(fullfile(TMPDIR, "diagram.zcos"), scs_m);
+loaded = xcosDiagramToScilab(fullfile(TMPDIR, "diagram.zcos"));
 
-// import to xcos (decode/encode synchronous version)
-status = importXcosDiagram(h5name);
-if status <> 0 then pause, end
+// to the XCOS format
+xcosDiagramToScilab(fullfile(TMPDIR, "diagram.xcos"), scs_m);
+loaded = xcosDiagramToScilab(fullfile(TMPDIR, "diagram.xcos"));
+
+// to the XMI format
+xcosDiagramToScilab(fullfile(TMPDIR, "diagram.xmi"), scs_m);
+loaded = xcosDiagramToScilab(fullfile(TMPDIR, "diagram.xmi"));
 
