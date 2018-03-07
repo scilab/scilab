@@ -1,6 +1,7 @@
 //  Scicos
 //
-//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) 2018 - Samuel GOUGEON
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -42,7 +43,31 @@ function [x,y,typ]=Capacitor(job,arg1,arg2)
             model.rpar=C
             model.equations.parameters(2)=list(C,v)
             graphics.exprs=exprs
+
+            // Updating the icon according to the Capacity value:
+            v = evstr(exprs(1));
+            if v>=1e-11 & v<1e-8
+                sv = msprintf("%d\\:p\n",v*1e12)
+            elseif v>=1e-8 & v<1e-5
+                sv = msprintf("%d\\:n\n",v*1e9)
+            elseif v>=1e-5 & v<1e-2
+                sv = msprintf("%d\\:\\mu\n",v*1e6)
+            elseif v>=1e-2 & v<10
+                sv = msprintf("%d\\:m\n",v*1000)
+            elseif v>=10 & v<10000
+                sv = msprintf("%d\\:\n",v)
+            elseif v>=1e4 & v<1e7
+                sv = msprintf("%d\\:k\n",v/1000)
+            else
+                p = floor(log10(v));
+                v = v/(10^p);
+                sv = msprintf("%3.1f\\,10^{%d}\\,\n",v,p)
+            end
+            lab = "Capacitor;displayedLabel=" + ..
+            "$\mathsf{\,\\\,\\\,\\\,\\\,\\\,\\\,\,\\\tiny{\!"+sv+"F}}$"
+            graphics.style = lab;
             x.graphics=graphics;
+
             x.model=model
             break
         end
@@ -64,7 +89,7 @@ function [x,y,typ]=Capacitor(job,arg1,arg2)
 
         exprs=string([C;v])
         gr_i=[];
-        x=standard_define([2 1.1],model,exprs,list(gr_i,0))
+        x=standard_define([2 2],model,exprs,list(gr_i,0))
         x.graphics.in_implicit=["I"]
         x.graphics.out_implicit=["I"]
     end
