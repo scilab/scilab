@@ -84,7 +84,7 @@ scicos_simulate(scs_m);   // IDA
 !                                                                     !
 !messagebox:                                                          !
 !                                                                     !
-!messagebox: Generated files path: TMPDIR/          !
+!messagebox: Generated files path: TMPDIR/         !
 !                                                                     !
 !messagebox:                                                          !
 assert_checkalmostequal(res.values, IDA_val_ref, [], 1d-6);

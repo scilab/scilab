@@ -5,12 +5,13 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-if getos() == 'Windows' then
-  
-  ierr = execstr('res = winqueryreg(''HKEY_CLASSES_ROOT'',''Scilab5.cos'')','errcatch');
-  if ierr <> 0 then pause,end
-  
-  ierr = execstr('res = winqueryreg(''HKEY_CLASSES_ROOT'',''Scilab5.cosf'')','errcatch');
-  if ierr <> 0 then pause,end
-  
-end
+
+
+// <-- WINDOWS ONLY -->
+// <-- NO CHECK REF -->
+
+res = winqueryreg("HKEY_CLASSES_ROOT","Scilab5.cos");
+res = winqueryreg("HKEY_CLASSES_ROOT","Scilab5.cosf");
+res = winqueryreg("HKEY_CLASSES_ROOT","Scilab5.xcos");
+res = winqueryreg("HKEY_CLASSES_ROOT","Scilab5.zcos");
+
