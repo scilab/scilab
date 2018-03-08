@@ -24,93 +24,50 @@
 >
     <refnamediv>
         <refname>WRITEC_f</refname>
-        <refpurpose>Ecriture dans une fichier binaire C</refpurpose>
+        <refpurpose>Ecriture dans un fichier binaire C</refpurpose>
     </refnamediv>
 
     <refsection>
         <title>Aperçu</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/WRITEC_f.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/WRITEC_f.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_WRITEC_f">
         <title>Contenu</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="WRITEC_f">Ecriture dans une fichier binaire C</link>
-                </para>
+				<xref linkend="Description_WRITEC_f">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_WRITEC_f">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_WRITEC_f">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Datatype_WRITEC_f">Types de données</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_WRITEC_f">Boîte de dialogue</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_WRITEC_f">Propriétés par défaut</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Example_WRITEC_f">Exemple</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_WRITEC_f">Fonction d'interfaçage</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_WRITEC_f">Fonction de calcul</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_WRITEC_f">Voir aussi</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+				<xref linkend="Datatype_WRITEC_f">Types de données</xref>
             </listitem>
-        </itemizedlist>
-    </refsection>
-
-    <refsection id="Palette_WRITEC_f">
-        <title>Palette</title>
-        <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="Sinks_pal">Palette Sinks</link>
-                </para>
+				<xref linkend="Dialogbox_WRITEC_f">Paramètres</xref>
+            </listitem>
+            <listitem>
+				<xref linkend="Defaultproperties_WRITEC_f">Propriétés par défaut</xref>
+            </listitem>
+            <listitem>
+				<xref linkend="Interfacingfunction_WRITEC_f">Fonction d'interfaçage</xref>
+            </listitem>
+            <listitem>
+				<xref linkend="Computationalfunction_WRITEC_f">Fonction de calcul</xref>
+            </listitem>
+            <listitem>
+				<xref linkend="Example_WRITEC_f">Exemple</xref>
+            </listitem>
+            <listitem>
+				<xref linkend="Seealso_WRITEC_f">Voir aussi</xref>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
 
     <refsection id="Description_WRITEC_f">
         <title>Description</title>
-
         <para>
             Ce  bloc permet à l'utilisateur d'écrire des données dans un fichier binaire C dont le nom est défini par la chaîne  <emphasis role="bold">Output File Name</emphasis>. Le fichier est une séquence
             d'enregistrements. Chaque enregistrement a une longueur fixée par le paramètre <emphasis role="bold">Input Size</emphasis> et la structure ci-dessous :
@@ -149,18 +106,17 @@ box "Champ #N";
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
 
     <refsection id="Dialogbox_WRITEC_f">
-        <title>Boîte de dialogue</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../gui/sinks_pal/fr_FR/WRITEC_f_gui.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para />
+        <title>Paramètres</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../gui/sinks_pal/fr_FR/WRITEC_f_gui.gif" align="center" style="float:right"/>
+                    <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -226,6 +182,7 @@ box "Champ #N";
                 <para> Propriétés : Type 'vec' de taille 1 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
 
     <refsection id="Defaultproperties_WRITEC_f">
@@ -291,25 +248,7 @@ box "Champ #N";
                 </para>
             </listitem>
         </itemizedlist>
-    </refsection>
-
-    <refsection id="Example_WRITEC_f">
-        <title>Exemple</title>
-        <para>
-            Dans cet exemple le bloc est utilisé pour enregistrer la sortie du générateur sinusoïdal. Pour enregistrer en même temps
-            les dates des événements, nous utilisons un bloc TIME_f et un multiplexeur pour former le vecteur d'entrée du bloc WRITEC_f
-            qui enregistre les données dans le fichier <emphasis>"TMPDIR/writec_f.datas"</emphasis>. Vous pouvez ensuite lire les ces
-            données avec le bloc <link linkend="READC_f">READC_f</link>.
-        </para>
-        <para>
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/sinks_pal/fr_FR/writec_f_fr_FR.zcos">
-                <inlinemediaobject>
-                    <imageobject>
-                        <imagedata align="center" fileref="../../../../examples/sinks_pal/fr_FR/writec_f_fr_FR.zcos" valign="middle"/>
-                    </imageobject>
-                </inlinemediaobject>
-            </link>
-        </para>
+        <para/>
     </refsection>
 
     <refsection id="Interfacingfunction_WRITEC_f">
@@ -330,17 +269,37 @@ box "Champ #N";
                 <para> SCI/modules/scicos_blocks/src/c/writec.c (Type 2)</para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
 
-    <refsection role="see also" id="Seealso_WRITEC_f">
+    <refsection id="Example_WRITEC_f">
+        <title>Exemple</title>
+        <para>
+            Dans cet exemple le bloc est utilisé pour enregistrer la sortie du générateur sinusoïdal. Pour enregistrer en même temps
+            les dates des événements, nous utilisons un bloc TIME_f et un multiplexeur pour former le vecteur d'entrée du bloc WRITEC_f
+            qui enregistre les données dans le fichier <emphasis>"TMPDIR/writec_f.datas"</emphasis>. Vous pouvez ensuite lire les ces
+            données avec le bloc <link linkend="READC_f">READC_f</link>.
+        </para>
+        <para>
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/sinks_pal/fr_FR/writec_f_fr_FR.zcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata align="center" fileref="../../../../examples/sinks_pal/fr_FR/writec_f_fr_FR.zcos"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+        </para>
+    </refsection>
+
+    <refsection id="Seealso_WRITEC_f" role="see also">
         <title>Voir aussi</title>
-        <itemizedlist>
-            <listitem>
+        <simplelist type="inline">
+            <member>
                 <link linkend="READC_f">READC_f</link>
-            </listitem>
-            <listitem>
+            </member>
+            <member>
                 <link linkend="RFILE_f">RFILE_f</link>
-            </listitem>
-        </itemizedlist>
+            </member>
+        </simplelist>
     </refsection>
 </refentry>

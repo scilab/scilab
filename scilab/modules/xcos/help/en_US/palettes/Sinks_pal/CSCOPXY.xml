@@ -4,6 +4,7 @@
  *
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
  * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,102 +22,67 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="CSCOPXY">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:id="CSCOPXY">
     <refnamediv>
         <refname>CSCOPXY</refname>
         <refpurpose>y=f(x) permanent viewer</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/CSCOPXY.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/CSCOPXY.png" align="center" valign="middle"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_CSCOPXY">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="CSCOPXY">y=f(x) permanent viewer</link>
-                </para>
+              <xref linkend="Description_CSCOPXY">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_CSCOPXY">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_CSCOPXY">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_CSCOPXY">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_CSCOPXY">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_CSCOPXY">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_CSCOPXY">Computational function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_CSCOPXY">See also</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+              <xref linkend="Dialogbox_CSCOPXY">Parameters</xref>
             </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Palette_CSCOPXY">
-        <title>Palette</title>
-        <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="Sinks_pal">Sinks palette</link>
-                </para>
+              <xref linkend="Defaultproperties_CSCOPXY">Default properties</xref>
+            </listitem>
+            <listitem>
+              <xref linkend="Interfacingfunction_CSCOPXY">Interfacing function</xref>
+            </listitem>
+            <listitem>
+              <xref linkend="Computationalfunction_CSCOPXY">Computational function</xref>
+            </listitem>
+            <listitem>
+              <xref linkend="Example_CSCOPXY">Example</xref>
+            </listitem>
+            <listitem>
+              <xref linkend="Seealso_CSCOPXY">See also</xref>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
+
     <refsection id="Description_CSCOPXY">
         <title>Description</title>
         <para>
             This block realizes the visualization of the evolution of the two regular inputs signals
-            by drawing the second input as a function of the first at instants of events on the event input port.
-            When a point is drawn on screen it stays until the simulation is finished.
-        </para>
-        <para>
+            by drawing the second input as a function of the first at instants of events on the event
+            input port. When a point is drawn on screen it stays until the simulation is finished.
         </para>
     </refsection>
-    <refsection id="Dialogbox_CSCOPXY">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/gui/CSCOPXY_gui.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para>
 
-        </para>
+    <refsection id="Dialogbox_CSCOPXY">
+        <title>Parameters</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/gui/CSCOPXY_gui.gif" align="center" style="float:right"/>
+                <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -197,7 +163,9 @@
                 <para> Properties : Type 'vec' of size 1</para>
             </listitem>
         </itemizedlist>
+		<para/>
     </refsection>
+
     <refsection id="Defaultproperties_CSCOPXY">
         <title>Default properties</title>
         <itemizedlist>
@@ -264,7 +232,9 @@
                 </para>
             </listitem>
         </itemizedlist>
+		<para/>
     </refsection>
+
     <refsection id="Interfacingfunction_CSCOPXY">
         <title>Interfacing function</title>
         <itemizedlist>
@@ -280,9 +250,11 @@
                 <para> SCI/modules/scicos_blocks/src/c/cscopxy.c (Type 4)</para>
             </listitem>
         </itemizedlist>
+		<para/>
     </refsection>
+
     <refsection id="Example_CSCOPXY">
-        <title>Permanent viewer example</title>
+        <title>Example</title>
         <link type="scilab" linkend="scilab.xcos/xcos/tests/unit_tests/cscopxy.zcos">
             <inlinemediaobject>
                 <imageobject>
@@ -291,14 +263,21 @@
             </inlinemediaobject>
         </link>
     </refsection>
-    <refsection id="Seealso_CSCOPXY">
+    <refsection id="Seealso_CSCOPXY" role="see also">
         <title>See also</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="CSCOPXY3D">CSCOPXY3D - z=f(x,y) permanent viewer</link>
-                </para>
-            </listitem>
-        </itemizedlist>
+        <simplelist type="inline">
+            <member>
+                <link linkend="CSCOPXY3D">CSCOPXY3D</link>
+            </member>
+            <member>
+                <link linkend="CSCOPE">CSCOPE</link>
+            </member>
+            <member>
+                <link linkend="CMSCOPE">CMSCOPE</link>
+            </member>
+            <member>
+                <link linkend="CFSCOPE">CFSCOPE</link>
+            </member>
+        </simplelist>
     </refsection>
 </refentry>

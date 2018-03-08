@@ -4,6 +4,7 @@
  *
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
  * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,80 +22,50 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="AFFICH_m">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:id="AFFICH_m">
     <refnamediv>
         <refname>AFFICH_m</refname>
-        <refpurpose>Display</refpurpose>
+        <refpurpose>Display input numbers on the block's icon</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/AFFICH_m.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/AFFICH_m.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_AFFICH_m">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="AFFICH_m">Display</link>
-                </para>
+              <xref linkend="Description_AFFICH_m">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_AFFICH_m">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_AFFICH_m">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_AFFICH_m">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_AFFICH_m">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Example_AFFICH_m">Example</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_AFFICH_m">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_AFFICH_m">Computational function</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+              <xref linkend="Dialogbox_AFFICH_m">Parameters</xref>
             </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Palette_AFFICH_m">
-        <title>Palette</title>
-        <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="Sinks_pal">Sinks palette</link>
-                </para>
+              <xref linkend="Defaultproperties_AFFICH_m">Default properties</xref>
+            </listitem>
+            <listitem>
+              <xref linkend="Interfacingfunction_AFFICH_m">Interfacing function</xref>
+            </listitem>
+            <listitem>
+              <xref linkend="Computationalfunction_AFFICH_m">Computational function</xref>
+            </listitem>
+            <listitem>
+              <xref linkend="Example_AFFICH_m">Example</xref>
+            </listitem>
+            <listitem>
+              <xref linkend="Seealso_AFFICH_m">See also</xref>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
+
     <refsection id="Description_AFFICH_m">
         <title>Description</title>
         <para>
@@ -104,17 +75,13 @@
         </para>
     </refsection>
     <refsection id="Dialogbox_AFFICH_m">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/gui/AFFICH_m_gui.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para>
-
-        </para>
+        <title>Parameters</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/gui/AFFICH_m_gui.gif" align="center" style="float:right"/>
+                    <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -170,6 +137,7 @@
                 <para> Properties : Type 'vec' of size 1</para>
             </listitem>
         </itemizedlist>
+		<para/>
     </refsection>
     <refsection id="Defaultproperties_AFFICH_m">
         <title>Default properties</title>
@@ -234,6 +202,25 @@
                 </para>
             </listitem>
         </itemizedlist>
+		<para/>
+    </refsection>
+    <refsection id="Interfacingfunction_AFFICH_m">
+        <title>Interfacing function</title>
+        <itemizedlist>
+            <listitem>
+                <para> SCI/modules/scicos_blocks/macros/Sinks/AFFICH_m.sci</para>
+            </listitem>
+        </itemizedlist>
+		<para/>
+    </refsection>
+    <refsection id="Computationalfunction_AFFICH_m">
+        <title>Computational function</title>
+        <itemizedlist>
+            <listitem>
+                <para> SCI/modules/scicos_blocks/src/fortran/affich2.f (Type 0)</para>
+            </listitem>
+        </itemizedlist>
+		<para/>
     </refsection>
     <refsection id="Example_AFFICH_m">
         <title>Example</title>
@@ -245,20 +232,15 @@
             </inlinemediaobject>
         </link>
     </refsection>
-    <refsection id="Interfacingfunction_AFFICH_m">
-        <title>Interfacing function</title>
-        <itemizedlist>
-            <listitem>
-                <para> SCI/modules/scicos_blocks/macros/Sinks/AFFICH_m.sci</para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Computationalfunction_AFFICH_m">
-        <title>Computational function</title>
-        <itemizedlist>
-            <listitem>
-                <para> SCI/modules/scicos_blocks/src/fortran/affich2.f (Type 0)</para>
-            </listitem>
-        </itemizedlist>
+    <refsection id="Seealso_AFFICH_m" role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="TOWS_c">TOWS_c</link>
+            </member>
+            <member>
+                <link linkend="WRITEC_f">WRITEC_f</link>
+            </member>
+        </simplelist>
     </refsection>
 </refentry>
