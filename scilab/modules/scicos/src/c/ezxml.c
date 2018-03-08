@@ -362,7 +362,7 @@ void ezxml_char_content(ezxml_root_t root, char *s, size_t len, char t)
 {
     ezxml_t xml = root->cur;
     char *m = s;
-    size_t l;
+    size_t l = 0;
 
     if (! xml || ! xml->name || ! len)
     {

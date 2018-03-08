@@ -446,7 +446,7 @@ int iEigen2ComplexM(doublecomplex* pData1, doublecomplex* pData2, int iCols, dou
 {
     int ret = 0;
     int iRWorkSize = 0;
-    int worksize;
+    int worksize = 0;
     double* pRWork = NULL;
     doublecomplex* pWork = NULL;
     int onlyOneLhs = (pBeta == NULL); /* if beta was not requested (only one lhs), memory was not provided for beta, but will be needed to scale alpha */
@@ -486,7 +486,7 @@ int iEigen2ComplexM(doublecomplex* pData1, doublecomplex* pData2, int iCols, dou
 int iEigen2RealM(double* pData1, double* pData2, int iCols, double* pAlphaReal, double* pAlphaImg, double* pBeta, double* pRReal, double* pRImg, double* pLReal, double* pLImg)
 {
     int ret = 0;
-    int worksize;
+    int worksize = 0;
     double* pWork = NULL;
     int onlyOneLhs = (pBeta == NULL);
 
@@ -531,7 +531,7 @@ int iEigen2RealM(double* pData1, double* pData2, int iCols, double* pAlphaReal, 
 /******************************************************************************
  * Code below lifted from assembleEigenvectors.c
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2008 - INRIA - Michaël Baudin
+ * Copyright (C) 2008 - INRIA - Micha\EBl Baudin
  *
  ******************************************************************************/
 //

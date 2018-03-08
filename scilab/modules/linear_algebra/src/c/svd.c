@@ -124,7 +124,7 @@ static int iDgesvd(char job, double* pData, int iRows, int iCols, int iColsToCom
 int iSvdM(double* pData, int iRows, int iCols, int complexArg, int economy, double tol, double* pSV, double* pU, double* pS, double* pV, double* pRk)
 {
     int ret = 0, allocOK;
-    int worksize;
+    int worksize = 0;
 
     double* pWork = NULL;
     double* pRWork = NULL;

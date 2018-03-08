@@ -45,7 +45,7 @@ int sci_h5rm(char *fname, int* pvApiCtx)
     int * addr = 0;
     char * str = 0;
     char ** strs = 0;
-    int row, col;
+    int row = 0 , col = 0;
     std::string file;
     const int nbIn = nbInputArgument(pvApiCtx);
 
