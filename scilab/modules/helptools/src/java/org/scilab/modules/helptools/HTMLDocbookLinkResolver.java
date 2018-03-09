@@ -41,7 +41,7 @@ import org.scilab.modules.commons.ScilabCommonsUtils;
  */
 public class HTMLDocbookLinkResolver extends DefaultHandler {
 
-    private static boolean isCaseInsensitiveOS = System.getProperty("os.name").toLowerCase().contains("windows");
+    private static boolean isCaseInsensitiveOS = System.getProperty("os.name").toLowerCase().contains("windows") || System.getProperty("os.name").toLowerCase().contains("mac");
 
     private Map<String, String> mapId = new LinkedHashMap<>();
     private List<String> listIdIgnoreCase = new ArrayList<>();

@@ -373,6 +373,7 @@ Known issues
 ### Bugs fixed in 6.0.2:
 * [#7675](http://bugzilla.scilab.org/show_bug.cgi?id=7675): sparse() got a wrong result, when creation with many values in same position.
 * [#8127](http://bugzilla.scilab.org/show_bug.cgi?id=8127): When using `ode()`, some internal errors messages were in french.
+* [#15440](http://bugzilla.scilab.org/show_bug.cgi?id=15440): Scilab debug help page linked to Xcos debug.
 
 
 ### Bugs fixed in 6.0.1:
