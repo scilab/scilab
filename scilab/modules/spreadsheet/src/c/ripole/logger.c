@@ -371,6 +371,8 @@ int LOGGER_log( char *format, ...)
         FREE(output);
     }
 
+    va_end(ptr);
+
     return 0;
 }
 

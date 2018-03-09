@@ -500,6 +500,7 @@ SciErr getStringInPList(void* _pvCtx, int * _piAddress, const char * _pstLabel, 
                     {
                         sciprint(_("%s: wrong value for parameter %s: value %s\n"), "getStringInPList", _pstLabel, *_pstValue);
                         sciprint(_("%s: awaited parameters: "), "getStringInPList");
+                        va_end(vl);
                         va_start(vl, _eCheck);
                         nb_value_to_check = va_arg(vl, int);
                         for (i = 0; i < nb_value_to_check; i++)
