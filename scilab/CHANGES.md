@@ -436,6 +436,7 @@ Known issues
 * [#12659](http://bugzilla.scilab.org/show_bug.cgi?id=12659): Crash on big modulo.
 * [#12926](http://bugzilla.scilab.org/show_bug.cgi?id=12926): `~%f==1` was parsed as `~(%f==1)` instead of `(~%f)==1`.
 * [#13306](http://bugzilla.scilab.org/show_bug.cgi?id=13306): Evaluating a function set as a structure field could fail.
+* [#13374](http://bugzilla.scilab.org/show_bug.cgi?id=13374): When setting an erroneous Xcos context, the error message printed in console could easily be missed.
 * [#13936](http://bugzilla.scilab.org/show_bug.cgi?id=13936): The exponentiation of a matrix was much slower than its multiple products.
 * [#13466](http://bugzilla.scilab.org/show_bug.cgi?id=13466): Since Scilab 5.5.0, it was no longer possible to dock the demo GUI.
 * [#13480](http://bugzilla.scilab.org/show_bug.cgi?id=13480): The default k value of `eigs` was wrong and made `eigs` failing for small full matrices.

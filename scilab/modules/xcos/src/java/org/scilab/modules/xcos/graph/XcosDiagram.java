@@ -2431,7 +2431,7 @@ public class XcosDiagram extends ScilabGraph {
             // read the structure
             result = handler.readContext();
         } catch (final InterpreterException e) {
-            info("Unable to evaluate the contexte");
+            info("Unable to evaluate the context");
             e.printStackTrace();
         } finally {
             handler.release();
