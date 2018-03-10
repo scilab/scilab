@@ -246,7 +246,7 @@
         </node>
         <node xsi:type="PreLoaded" enable="true" name="Mathematical Operations">
             <block name="ABS_VALUE">
-                <icon variable="SCI" path="/modules/xcos/images/palettes/ABS_VALUE.svg"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/ABS_VALUE.png"/>
             </block>
             <block name="BIGSOM_f">
                 <icon variable="SCI" path="/modules/xcos/images/palettes/BIGSOM_f.png"/>
@@ -649,6 +649,9 @@
             </block>
             <block name="BARXY">
                 <icon variable="SCI" path="/modules/xcos/images/palettes/BARXY.png"/>
+            </block>
+            <block name="CEVENTSCOPE">
+                <icon variable="SCI" path="/modules/xcos/images/palettes/CEVENTSCOPE.png"/>
             </block>
             <block name="CANIMXY">
                 <icon variable="SCI" path="/modules/xcos/images/palettes/CANIMXY.png"/>
