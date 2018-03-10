@@ -83,7 +83,7 @@ function dir_created = atomsExtract(archive_in,dir_out)
             extract_cmd = "unzip";
         end
 
-        extract_cmd = extract_cmd + " -q """ + archive_in + """ -d """ + pathconvert(dir_out,%F) +"""";
+        extract_cmd = extract_cmd + " -q -o """ + archive_in + """ -d """ + pathconvert(dir_out,%F) +"""";
 
     end
 
