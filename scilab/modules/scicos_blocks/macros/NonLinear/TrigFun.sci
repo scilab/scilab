@@ -1,6 +1,7 @@
 //  Scicos
 //
 //  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//  Copyright (C) 2018 - Samuel GOUGEON
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -44,11 +45,15 @@ function [x,y,typ]=TrigFun(job,arg1,arg2)
             else
                 graphics.exprs=exprs
                 execstr("model.sim=list(''"+fun+"_blk'',4)")
-                x.graphics=graphics;
                 x.model=model
+                //label = "$\mathsf{\tiny\begin{array}{ccc}sin\!\!&\!\!cos\!\!&\!\!tan\\asin\!\!&\!\!acos\!\!&\!\!atan\\\multicolumn{3}{c}{\normalsize "+exprs+"}\\sinh\!\!&\!\!cosh\!\!&\!\!tanh\\\!asinh\!\!\!&\!\!acosh\!\!\!&\!\!atanh \end{array}}$";    // @ middle
+                label = "$\mathsf{\tiny\begin{array}{ccc}sin\!\!&\!\!cos\!\!&\!\!tan\\asin\!\!&\!\!acos\!\!&\!\!atan\\sinh\!\!&\!\!cosh\!\!&\!\!tanh\\\!asinh\!\!\!&\!\!acosh\!\!\!&\!\!atanh\\&&\\\multicolumn{3}{c}{\normalsize "+exprs+"}\end{array}}$"; // @ bottom
+                graphics.style = "TrigFun;displayedLabel="+label;
+                x.graphics=graphics;
                 break
             end
         end
+
     case "define" then
         model=scicos_model()
         model.sim=list("sin_blk",4)
@@ -58,6 +63,6 @@ function [x,y,typ]=TrigFun(job,arg1,arg2)
         model.dep_ut=[%t %f]
         exprs="sin"
         gr_i=[]
-        x=standard_define([4 2],model,exprs,gr_i)
+        x=standard_define([3 3],model,exprs,gr_i)
     end
 endfunction

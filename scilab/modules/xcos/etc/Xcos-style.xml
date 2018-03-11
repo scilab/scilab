@@ -379,7 +379,7 @@
 		-->
     </add>
     <add as="TrigFun" extend="blockWithLabel">
-        <add as="displayedLabel" value="Trig function"/>
+        <add as="displayedLabel" value="$\mathsf{\tiny\begin{array}{ccc}sin\!\!&amp;\!\!cos\!\!&amp;\!\!tan\\asin\!\!&amp;\!\!acos\!\!&amp;\!\!atan\\sinh\!\!&amp;\!\!cosh\!\!&amp;\!\!tanh\\\!asinh\!\!\!&amp;\!\!acosh\!\!\!&amp;\!\!atanh\\&amp;&amp;\\\multicolumn{3}{c}{\normalsize sin}\end{array}}$"/>
     </add>
     <add as="PRODUCT" extend="Icon">
         <add as="image" value="$SCILAB/modules/xcos/images/blocks/PRODUCT.svg"/>
@@ -451,8 +451,7 @@
         <add as="displayedLabel" value="Set bit %2$s"/>
     </add>
     <add as="CONVERT" extend="blockWithLabel">
-        <!-- FIXME: update label from parameters -->
-        <add as="displayedLabel" value="Convert to"/>
+        <add as="displayedLabel" value="$\scriptsize \mathsf{\substack{CONVERT\\\\\ \!decim.\\\Rightarrow\\uint32}}$"/>
     </add>
     <add as="EXTRACTBITS" extend="blockWithLabel">
         <add as="displayedLabel" value="Extract Bits %2$s"/>
@@ -654,7 +653,6 @@
     </add>
     <add as="M_freq" extend="blockWithLabel">
         <add as="displayedLabel" value="Multiple&lt;BR&gt;         frequency"/>
-        
     </add>
     <add as="ANDBLK" extend="Icon">
         <add as="image" value="$SCILAB/modules/xcos/images/blocks/ANDBLK.svg"/>

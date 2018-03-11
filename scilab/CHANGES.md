@@ -478,6 +478,7 @@ Known issues
 * [#15450](http://bugzilla.scilab.org/show_bug.cgi?id=15450): Scilab's compilation did not support the ppc64le architecture.
 * [#15453](http://bugzilla.scilab.org/show_bug.cgi?id=15453): Scilab's compilation needed HOME to be writable.
 * [#15454](http://bugzilla.scilab.org/show_bug.cgi?id=15454): Hundreds of typos fixed all over the code: occured => occured, formated => formatted, an other => another, setted => set, retrived => retrieved ..
+* [#15457](http://bugzilla.scilab.org/show_bug.cgi?id=15457): The icon of the "Trigo functions" and "CONVERT" Xcos blocks was not updated according to actual input parameters.
 * [#15464](http://bugzilla.scilab.org/show_bug.cgi?id=15464): Xcos C-blocks could not link dlls on Windows.
 * [#15484](http://bugzilla.scilab.org/show_bug.cgi?id=15484): On Windows, `isdir("w:")`, `isdir("w:/")`, and `isdir("w:\")` returned %T whenever the W: drive does not exist.
 * [#15489](http://bugzilla.scilab.org/show_bug.cgi?id=15489): Help pages of `covStart`, `covStop`, `covWrite` and `covMerge` were not built for the fr, ja, pt and ru languages, and were unreachable from a session in non `en_US` language.

@@ -1,6 +1,7 @@
 //  Scicos
 //
 //  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//  Copyright (C) 2018 - Samuel GOUGEON
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -381,6 +382,12 @@ function [x,y,typ]=CONVERT(job,arg1,arg2)
             end
             if ok then
                 graphics.exprs=exprs
+                // Updating the block's label to display actual I/O types
+                // 1|2:double  3:int32  4:int16  5:int8  6:uint32  7:uint16  8:uint8
+                t = ["decim." "decim." "int32" "int16" "int8" "uint32" "uint16" "uint8"];
+                label = "$\scriptsize \mathsf{\substack{CONVERT\\\\\ \!" + ..
+                  t(evstr(exprs(1)))+"\\\Rightarrow\\"+t(evstr(exprs(2)))+"}}$"
+                graphics.style = "CONVERT;displayedLabel="+label;
                 x.graphics=graphics;
                 x.model=model
                 break
@@ -405,6 +412,6 @@ function [x,y,typ]=CONVERT(job,arg1,arg2)
 
         exprs=[sci2exp(1);sci2exp(3);sci2exp(0)]
         gr_i=[]
-        x=standard_define([3 2],model, exprs,gr_i)
+        x=standard_define([2 2],model, exprs,gr_i)
     end
 endfunction
