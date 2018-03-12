@@ -31,10 +31,6 @@ notTested = ["DSUPER" "SUPER_f" "TEXT_f" "PAL_f" ,..   // Specific blocks
 "CBLOCK" "CBLOCK4" "c_block" "fortran_block",..
 ,..                                        // not interface function
 "WFILE_f", "func_block", ..                // Deprecated blocks
-"vanne_inputs" "vanne_outputs" "vanne_draw_ports" ,..
-"source_inputs" "source_outputs" "source_draw_ports" ,..
-"puit_inputs" "puit_outputs" "puit_draw_ports" ,..
-"bache_inputs" "bache_outputs" "bache_draw_ports" ,..
 "tkscaleblk", "m_sin", "bplatform2", "anim_pen" ,..
 "BARXY_sim" ];
 

@@ -409,6 +409,7 @@ Known issues
 * [#6990](http://bugzilla.scilab.org/show_bug.cgi?id=6990): `or(hm,"r")`, `or(hm,"c")`, `and(hm,"r")` and `and(hm,"c")` generated an error for any hypermatrix hm of booleans, encoded integers, or doubles.
 * [#7221](http://bugzilla.scilab.org/show_bug.cgi?id=7221): `modulo` was not indicated as the equivalent of Matlab's rem().
 * [#7277](http://bugzilla.scilab.org/show_bug.cgi?id=7277): SciNotes `File>Open recent` menu was not updated after 5 items were added.
+* [#7362](http://bugzilla.scilab.org/show_bug.cgi?id=7362): There were 10 unused macros in the scicos_blocks hydraulic directory.
 * [#7641](http://bugzilla.scilab.org/show_bug.cgi?id=7641): `uint8(1):uint16(4)` produced an error instead of being parsed as `uint8(1):1:uint16(4)`, that passes.
 * [#7675](http://bugzilla.scilab.org/show_bug.cgi?id=7675): sparse() got a wrong result, when creation with many values in same position.
 * [#8000](http://bugzilla.scilab.org/show_bug.cgi?id=8000): `get(gcf(), "%s %s %s..")` crashed Scilab.
