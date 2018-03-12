@@ -16,7 +16,10 @@
  *
  -->
 
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="listfiles">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ja" xml:id="listfiles">
 
     <refnamediv>
 
@@ -222,6 +225,24 @@ files=listfiles(['SCI/modules/core/macros/*.sci';'SCI/modules/core/macros/*.bin'
 
         </simplelist>
 
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>If paths is not a single string, all returned files are homogenized
+                  with the absolute path form.
+                </revremark>
+            </revision>
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revremark>
+                    Under Windows, up to 6.0.1, <literal>listfile("test")</literal> actually
+                    performed <literal>listfile("test.*")</literal>. It is no longer the case.
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 
 </refentry>

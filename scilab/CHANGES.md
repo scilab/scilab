@@ -565,6 +565,7 @@ Known issues
 * [#15458](http://bugzilla.scilab.org/show_bug.cgi?id=15458): `hist3d` rendering was wrong.
 * [#15464](http://bugzilla.scilab.org/show_bug.cgi?id=15464): Xcos C-blocks could not link dlls on Windows.
 * [#15468](http://bugzilla.scilab.org/show_bug.cgi?id=15468): Xcos saved file used non UTF-8 characters which lead to invalid file loading later.
+* [#15472](http://bugzilla.scilab.org/show_bug.cgi?id=15472): mdelete("test") worked like mdelete("test.*") under Windows 
 * [#15476](http://bugzilla.scilab.org/show_bug.cgi?id=15476): In the Electrical palette, the Resistor, Inductor, Capacitor, and ConstantVoltage icons did not show the parameter's value.
 * [#15484](http://bugzilla.scilab.org/show_bug.cgi?id=15484): On Windows, `isdir("w:")`, `isdir("w:/")`, and `isdir("w:\")` returned %T whenever the W: drive does not exist.
 * [#15489](http://bugzilla.scilab.org/show_bug.cgi?id=15489): Help pages of `covStart`, `covStop`, `covWrite` and `covMerge` were not built for the fr, ja, pt and ru languages, and were unreachable from a session in non `en_US` language.
