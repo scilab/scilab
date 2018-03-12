@@ -67,13 +67,13 @@ try
   mkdir([])
 catch
   [str,n]=lasterror();
-  if n <> 999 then bugmes();quit;end
+  if n <> 10000 then bugmes();quit;end
   if str <> msprintf(_("%s: Wrong type for input argument #%d: String expected.\n"), "mkdir", 1) then bugmes();quit;end
 end
 try
   mkdir(["a", "b"])
 catch
   [str,n]=lasterror();
-  if n <> 999 then bugmes();quit;end
+  if n <> 10000 then bugmes();quit;end
   if str <> msprintf(_("%s: Wrong size for input argument #%d: string expected.\n"), "mkdir", 1) then bugmes();quit;end
 end
