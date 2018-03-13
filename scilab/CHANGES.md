@@ -385,10 +385,11 @@ Known issues
 * [#12566](http://bugzilla.scilab.org/show_bug.cgi?id=12566): `disp()` of a T-list with a single field set to an encoded integer value generated an error.
 * [#13778](http://bugzilla.scilab.org/show_bug.cgi?id=13778): The size of `repmat([], [1 1 3])` was [0 0 3] instead of [0 0].
 * [#14521](http://bugzilla.scilab.org/show_bug.cgi?id=14521): For the CONVERT Xcos block, types codes 2, 6, 7, and 8 were not documented.
+* [#15422](http://bugzilla.scilab.org/show_bug.cgi?id=15422): `strsubst("ab", "", "cd")` crashed Scilab.
 * [#15423](http://bugzilla.scilab.org/show_bug.cgi?id=15423): `tbx_make(myModule,sections)` executed the existing builder (if any), instead of targeting only selected module sections. Otherwise, tbx_make(myModule, "help"|"macros") yielded an error, and tbx_make(myModule,"localization") never built it.
 * [#15440](http://bugzilla.scilab.org/show_bug.cgi?id=15440): Scilab debug help page linked to Xcos debug.
-* [#15422](http://bugzilla.scilab.org/show_bug.cgi?id=15422): `strsubst("ab", "", "cd")` crashed Scilab.
 * [#15464](http://bugzilla.scilab.org/show_bug.cgi?id=15464): Xcos C-blocks could not link dlls on Windows.
+* [#15484](http://bugzilla.scilab.org/show_bug.cgi?id=15484): On Windows, `isdir("w:")`, `isdir("w:/")`, and `isdir("w:\")` returned %T whenever the W: drive does not exist.
 * [#15495](http://bugzilla.scilab.org/show_bug.cgi?id=15495): SampleCLK simple demo failed to simulate.
 * [#15496](http://bugzilla.scilab.org/show_bug.cgi?id=15496): Scinotes `File > Open recent` menu was not updated when it should.
 * [#15499](http://bugzilla.scilab.org/show_bug.cgi?id=15499): Scinotes menus were inactive after session restore under OSX.
