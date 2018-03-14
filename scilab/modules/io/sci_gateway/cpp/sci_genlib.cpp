@@ -181,7 +181,7 @@ types::Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, t
 
     if (in.size() == 1)
     {
-        delete pS;
+        pS->killMe();
     }
 
     os_swprintf(pstParseFile, PATH_MAX + FILENAME_MAX, L"%lslib", pstParsePath);
