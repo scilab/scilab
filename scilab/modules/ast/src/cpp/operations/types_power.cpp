@@ -243,7 +243,7 @@ int PowerDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoubleO
         if (_pDouble1->isVector())
         {
             //_pDouble1 is a vector and _pDouble is a scalar
-            *_pDoubleOut = new Double(_pDouble1->getDims(), _pDouble1->getDimsArray() , true);
+            *_pDoubleOut = new Double(_pDouble1->getDims(), _pDouble1->getDimsArray(), true);
 
             if (bComplex1 == false && bComplex2 == false)
             {
@@ -304,7 +304,7 @@ int PowerDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoubleO
                 return 0;
             }
 
-            *_pDoubleOut = new Double(_pDouble1->getRows(), _pDouble1->getCols() , true);
+            *_pDoubleOut = new Double(_pDouble1->getRows(), _pDouble1->getCols(), true);
             if (bComplex1 == false)
             {
                 iRet = iPowerRealSquareMatrixByRealScalar(
@@ -503,6 +503,9 @@ int DotPowerSpaseByDouble(Sparse* _pSp, Double* _pDouble, InternalType** _pOut)
     {
         delete[] pDblSp;
         delete[] pDbl;
+        delete[] Col;
+        delete[] Row;
+        delete[] iPositVal;
         throw ast::InternalError(_W("Invalid exponent.\n"));
         return 1;
     }
@@ -674,7 +677,7 @@ int DotPowerDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoub
     else if (_pDouble1->isScalar())
     {
         //a .^ (b or B)
-        *_pDoubleOut = new Double(_pDouble2->getDims() , _pDouble2->getDimsArray(), true);
+        *_pDoubleOut = new Double(_pDouble2->getDims(), _pDouble2->getDimsArray(), true);
 
         if (_pDouble1->isComplex())
         {
@@ -735,7 +738,7 @@ int DotPowerDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoub
     else if (_pDouble2->isScalar())
     {
         //A .^ b
-        *_pDoubleOut = new Double(_pDouble1->getDims() , _pDouble1->getDimsArray(), true);
+        *_pDoubleOut = new Double(_pDouble1->getDims(), _pDouble1->getDimsArray(), true);
         if (_pDouble1->isComplex())
         {
             double dblR2 = _pDouble2->get(0);
