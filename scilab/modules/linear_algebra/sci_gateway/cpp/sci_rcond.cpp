@@ -85,6 +85,7 @@ types::Function::ReturnValue sci_rcond(types::typed_list &in, int _iRetCount, ty
     if (iRet == -1)
     {
         Scierror(999, _("%s: Allocation failed.\n"), "rcond");
+        result->killMe();
         return types::Function::Error;
     }
 
