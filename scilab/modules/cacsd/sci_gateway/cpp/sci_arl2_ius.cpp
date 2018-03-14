@@ -255,21 +255,25 @@ types::Function::ReturnValue sci_arl2_ius(types::typed_list &in, int _iRetCount,
             if (C2F(arl2c).ierr == 3)
             {
                 Scierror(999, _("%s: Loop on two orders detected.\n"), "arl2a");
+                delete[] pdblDenTemp;
                 return types::Function::Error;
             }
             else if (C2F(arl2c).ierr == 4)
             {
                 Scierror(999, _("%s: Impossible to reach required order.\n"), "arl2a");
+                delete[] pdblDenTemp;
                 return types::Function::Error;
             }
             else if (C2F(arl2c).ierr == 5)
             {
                 Scierror(999, _("%s: Failure when looking for the intersection with domains bounds.\n"), "arl2a");
+                delete[] pdblDenTemp;
                 return types::Function::Error;
             }
             else if (C2F(arl2c).ierr == 7)
             {
                 Scierror(999, _("%s: Too many solutions found.\n"), "arl2a");
+                delete[] pdblDenTemp;
                 return types::Function::Error;
             }
         }
