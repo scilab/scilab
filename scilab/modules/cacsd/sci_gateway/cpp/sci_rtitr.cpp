@@ -366,6 +366,7 @@ types::Function::ReturnValue sci_rtitr(types::typed_list &in, int _iRetCount, ty
     /*** retrun output arguments ***/
     if (iErr)
     {
+        pDblOut->killMe();
         return types::Function::Error;
     }
 
