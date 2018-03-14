@@ -165,6 +165,18 @@ types::Function::ReturnValue sci_qr(types::typed_list &in, int _iRetCount, types
     if (iRet != 0)
     {
         Scierror(999, _("%s: LAPACK error n°%d.\n"), "qr", iRet);
+        pDblQ->killMe();
+        pDblR->killMe();
+        if (pDblE)
+        {
+            pDblE->killMe();
+        }
+
+        if (pDblRk)
+        {
+            pDblRk->killMe();
+        }
+
         return types::Function::Error;
     }
 
