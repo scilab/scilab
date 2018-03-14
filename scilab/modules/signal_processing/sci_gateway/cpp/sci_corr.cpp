@@ -291,6 +291,7 @@ types::Function::ReturnValue sci_corr(types::typed_list &in, int _iRetCount, typ
                     delete[] xui;
                     delete[] wi;
                     delete[] w;
+                    delete[] yi;
                     Scierror(999, _("fft call : needs power of two!"));
                     return types::Function::Error;
                 }
