@@ -207,6 +207,15 @@ types::Function::ReturnValue sci_splin3d(types::typed_list &in, int _iRetCount, 
     if (flag != 1) // flag can never be deffirent to 1.
     {
         Scierror(999, _("%s: Problem with 'flag' = %d\n"), "splin3d", flag);
+
+        pStr->killMe();
+        pDblOutX->killMe();
+        pDblOutY->killMe();
+        pDblOutZ->killMe();
+        pDblOutOrder->killMe();
+        pDblCoef->killMe();
+        pDblXYZMinMax->killMe();
+
         return types::Function::Error;
     }
 
