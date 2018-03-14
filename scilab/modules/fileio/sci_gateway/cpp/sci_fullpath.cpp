@@ -68,6 +68,7 @@ types::Function::ReturnValue sci_fullpath(types::typed_list &in, int _iRetCount,
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: '%s' is an invalid path.\n"), "fullpath", 1, relPath);
             FREE(relPath);
+            pOut->killMe();
             return types::Function::Error;
         }
 
