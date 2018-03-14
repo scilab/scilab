@@ -115,6 +115,7 @@ types::Function::ReturnValue sci_mget(types::typed_list &in, int _iRetCount, typ
     FREE(pstType);
     if (iErr > 0)
     {
+        pD->killMe();
         return types::Function::Error;
     }
 
