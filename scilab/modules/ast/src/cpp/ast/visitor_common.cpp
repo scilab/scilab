@@ -469,7 +469,7 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
                 break;
         }
 
-        if(poResult && isNew)
+        if (poResult && isNew)
         {
             poResult->killMe();
         }
@@ -541,7 +541,7 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
                 break;
             default:
             {
-                if(poResult && isNew)
+                if (poResult && isNew)
                 {
                     poResult->killMe();
                 }
@@ -1867,7 +1867,6 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
         if ((*_pArgs)[0]->isString())
         {
             types::String *pS = (*_pArgs)[0]->getAs<types::String>();
-            types::Struct* pStr = new types::Struct(1, 1);
 
             if (_pArgs->size() != 1 || pS->isScalar() == false)
             {
@@ -1881,6 +1880,7 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
                 throw ast::InternalError(os.str(), 999, e.getLocation());
             }
 
+            types::Struct* pStr = new types::Struct(1, 1);
             pStr->addField(pS->get(0));
             pStr->get(0)->set(pS->get(0), _pInsert);
             pOut = pStr;
