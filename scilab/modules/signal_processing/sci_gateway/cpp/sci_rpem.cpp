@@ -147,6 +147,9 @@ types::Function::ReturnValue sci_rpem(types::typed_list &in, int _iRetCount, typ
     if ((in[1]->isDouble() == false) || in[1]->getAs<types::Double>()->getRows() != 1)
     {
         Scierror(999, _("%s: Wrong size for input argument #%d: A row vector expected.\n"), "rpem", 2);
+        dPhi->killMe();
+        dPsi->killMe();
+        dL->killMe();
         return types::Function::Error;
     }
     u = in[1]->getAs<types::Double>()->get();
@@ -156,11 +159,17 @@ types::Function::ReturnValue sci_rpem(types::typed_list &in, int _iRetCount, typ
     if ((in[2]->isDouble() == false) || in[2]->getAs<types::Double>()->getRows() != 1)
     {
         Scierror(999, _("%s: Wrong size for input argument #%d: A row vector expected.\n"), "rpem", 3);
+        dPhi->killMe();
+        dPsi->killMe();
+        dL->killMe();
         return types::Function::Error;
     }
     if (in[2]->getAs<types::Double>()->getCols() != u_length)
     {
         Scierror(999, _("%s: Incompatible input arguments #%d and #%d: Same column dimensions expected.\n"), "rpem", 2, 3);
+        dPhi->killMe();
+        dPsi->killMe();
+        dL->killMe();
         return types::Function::Error;
     }
     y = in[2]->getAs<types::Double>()->get();
