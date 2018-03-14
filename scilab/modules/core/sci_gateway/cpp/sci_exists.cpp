@@ -107,6 +107,7 @@ types::Function::ReturnValue sci_existsOrIsdef(types::typed_list &in, int _iRetC
                 break;
             default :
                 Scierror(36, _("%s: Wrong input argument %d.\n"), fname, 2);
+                delete pDblOut;
                 return types::Function::Error;
         }
 
@@ -137,6 +138,7 @@ types::Function::ReturnValue sci_existsOrIsdef(types::typed_list &in, int _iRetC
                 break;
             default :
                 Scierror(36, _("%s: Wrong input argument %d.\n"), fname, 2);
+                delete pBOut;
                 return types::Function::Error;
         }
 
