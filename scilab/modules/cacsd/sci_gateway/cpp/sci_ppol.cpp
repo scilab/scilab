@@ -160,6 +160,7 @@ types::Function::ReturnValue sci_ppol(types::typed_list &in, int _iRetCount, typ
         }
         delete pDblA;
         delete pDblB;
+        pDblOut->killMe();
         return types::Function::Error;
     }
 
@@ -186,6 +187,7 @@ types::Function::ReturnValue sci_ppol(types::typed_list &in, int _iRetCount, typ
         }
         delete pDblA;
         delete pDblB;
+        pDblOut->killMe();
         return types::Function::Error;
     }
 
