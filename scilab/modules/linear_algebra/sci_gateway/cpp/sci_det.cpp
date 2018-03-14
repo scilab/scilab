@@ -93,6 +93,11 @@ types::Function::ReturnValue sci_det(types::typed_list &in, int _iRetCount, type
     if (iRet < 0)
     {
         Scierror(999, _("%s: LAPACK error n°%d.\n"), "det", iRet);
+        pDblMantissa->killMe();
+        if( pDblExponent )
+        {
+            pDblExponent->killMe();
+        }
         return types::Function::Error;
     }
 
