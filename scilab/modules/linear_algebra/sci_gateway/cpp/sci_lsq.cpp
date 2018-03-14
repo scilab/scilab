@@ -147,6 +147,8 @@ types::Function::ReturnValue sci_lsq(types::typed_list &in, int _iRetCount, type
         {
             Scierror(999, _("%s: LAPACK error n°%d.\n"),  "lsq", iRet);
         }
+
+        pDblResult->killMe();
         return types::Function::Error;
     }
 
