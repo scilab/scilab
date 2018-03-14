@@ -105,6 +105,7 @@ void ConstantVisitor::visit(ast::OpExp & e)
                         types::InternalType * b = new types::Bool(0);
                         e.replace(b->getExp(e.getLocation()));
                         setResult(true);
+                        delete b;
                         return;
                     }
                 }
@@ -120,6 +121,7 @@ void ConstantVisitor::visit(ast::OpExp & e)
                         types::InternalType * b = new types::Bool(0);
                         e.replace(b->getExp(e.getLocation()));
                         setResult(true);
+                        delete b;
                         return;
                     }
                 }
@@ -134,6 +136,7 @@ void ConstantVisitor::visit(ast::OpExp & e)
                         types::InternalType * b = new types::Bool(1);
                         e.replace(b->getExp(e.getLocation()));
                         setResult(true);
+                        delete b;
                         return;
                     }
                     else
@@ -149,6 +152,7 @@ void ConstantVisitor::visit(ast::OpExp & e)
                         types::InternalType * b = new types::Bool(1);
                         e.replace(b->getExp(e.getLocation()));
                         setResult(true);
+                        delete b;
                         return;
                     }
                     else
