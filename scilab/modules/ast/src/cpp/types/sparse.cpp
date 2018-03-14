@@ -3765,6 +3765,7 @@ GenericType* SparseBool::remove(typed_list* _pArgs)
         {
             //free pArg content
             cleanIndexesArguments(_pArgs, &pArg);
+            delete[] piNewDims;
             return new SparseBool(0, 0);
         }
         else
