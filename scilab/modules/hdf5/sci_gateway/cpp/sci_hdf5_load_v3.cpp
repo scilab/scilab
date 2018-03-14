@@ -722,6 +722,7 @@ static types::InternalType* import_poly(int dataset)
         int ret = getDatasetInfo(poly, &complex, &dims, NULL);
         if (ret < 0)
         {
+            p->killMe();
             return nullptr;
         }
 
@@ -982,6 +983,7 @@ static types::InternalType* import_handles(int dataset)
         int val = add_current_entity(ref);
         if (val < 0)
         {
+            handles->killMe();
             return nullptr;
         }
 
@@ -995,6 +997,7 @@ static types::InternalType* import_handles(int dataset)
             int val = import_handle(ref, -1);
             if (val < 0)
             {
+                handles->killMe();
                 return nullptr;
             }
 
