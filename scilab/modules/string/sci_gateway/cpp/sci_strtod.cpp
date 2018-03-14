@@ -86,6 +86,11 @@ types::Function::ReturnValue sci_strtod(types::typed_list &in, int _iRetCount, t
         if (in[1]->isString() == false)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A single string expected.\n"), "strtod", 2);
+            pOutDouble->killMe();
+            if (_iRetCount == 2)
+            {
+                pOutString->killMe();
+            }
             return types::Function::Error;
         }
 
@@ -95,6 +100,11 @@ types::Function::ReturnValue sci_strtod(types::typed_list &in, int _iRetCount, t
         if (pwstr != L"." && pwstr != L",")
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: '.' or ',' expected.\n"), "strtod", 2);
+            pOutDouble->killMe();
+            if (_iRetCount == 2)
+            {
+                pOutString->killMe();
+            }
             return types::Function::Error;
         }
 
