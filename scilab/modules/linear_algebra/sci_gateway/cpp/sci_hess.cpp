@@ -102,6 +102,7 @@ types::Function::ReturnValue sci_hess(types::typed_list &in, int _iRetCount, typ
             if (!pdH)
             {
                 Scierror(999, _("%s: Cannot allocate more memory.\n"), "hess");
+                pDblH->killMe();
                 return types::Function::Error;
             }
         }
