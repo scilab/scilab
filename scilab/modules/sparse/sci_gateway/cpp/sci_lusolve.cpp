@@ -149,12 +149,14 @@ types::Function::ReturnValue sci_lusolve(types::typed_list &in, int _iRetCount, 
                 if (ierr > 0)
                 {
                     Scierror(999, _("Wrong value for argument #%d: the lu handle is no more valid.\n"), 1);
+                    pDblOut->killMe();
                     return types::Function::Error;
                 }
                 C2F(lusolve1)(&fmatindex, imag + iPos, oImg + iPos, &ierr);
                 if (ierr > 0)
                 {
                     Scierror(999, _("Wrong value for argument #%d: the lu handle is no more valid.\n"), 1);
+                    pDblOut->killMe();
                     return types::Function::Error;
                 }
             }
@@ -167,6 +169,7 @@ types::Function::ReturnValue sci_lusolve(types::typed_list &in, int _iRetCount, 
                 if (ierr > 0)
                 {
                     Scierror(999, _("Wrong value for argument #%d: the lu handle is no more valid.\n"), 1);
+                    pDblOut->killMe();
                     return types::Function::Error;
                 }
             }
