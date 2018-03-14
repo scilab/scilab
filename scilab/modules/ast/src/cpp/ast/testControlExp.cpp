@@ -174,6 +174,7 @@ static void ForExpTest(void)
     delete poSymb3;
     delete poSymb2;
     delete poSymb1;
+    delete[] toto;
 
 }
 
