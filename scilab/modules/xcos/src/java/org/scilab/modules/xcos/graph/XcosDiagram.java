@@ -1939,6 +1939,35 @@ public class XcosDiagram extends ScilabGraph {
     }
 
     /**
+     * @return the title of the current diagram (root diagram or super block)
+     */
+    @Override
+    public String getTitle() {
+        JavaController controller = new JavaController();
+        String[] property = {""};
+
+        if (getKind() == Kind.DIAGRAM) {
+            controller.getObjectProperty(getUID(), getKind(), ObjectProperties.TITLE, property);
+        } else { // Kind.BLOCK
+            // if an annotation is present use it, otherwise use the one-line description
+            long[] annotation = { 0 };
+            controller.getObjectProperty(getUID(), getKind(), ObjectProperties.LABEL, annotation);
+
+            if (annotation[0] != 0) {
+                controller.getObjectProperty(annotation[0], Kind.ANNOTATION, ObjectProperties.DESCRIPTION, property);
+            } else {
+                controller.getObjectProperty(getUID(), getKind(), ObjectProperties.DESCRIPTION, property);
+            }
+        }
+
+        if (property[0].isEmpty()) {
+            return super.getTitle();
+        } else {
+            return property[0];
+        }
+    }
+
+    /**
      * Set the title of the diagram
      *
      * @param title the title

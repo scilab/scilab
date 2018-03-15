@@ -461,6 +461,7 @@ Known issues
 * [#15017](http://bugzilla.scilab.org/show_bug.cgi?id=15017): `lcm` did not support int64 and uint64 input integers. Input integers had to be in a row instead of any matrix. For input decimal integers, results were int32 encoded.
 * [#15115](http://bugzilla.scilab.org/show_bug.cgi?id=15115): Tabs order in SciNotes was incorrect when opening file and restoring session.
 * [#15182](http://bugzilla.scilab.org/show_bug.cgi?id=15182): The result of `a.*.b` with mixed integer/decimal operands introduced in Scilab 6 returned some doubles instead of integers, inconsistently wrt the `*` and `.*` products.
+* [#15187](http://bugzilla.scilab.org/show_bug.cgi?id=15187): Super block diagram title (on the window bar) was not set.
 * [#15263](http://bugzilla.scilab.org/show_bug.cgi?id=15263): Assignments in an array of structures often overwrote some untargeted elements.
 * [#15279](http://bugzilla.scilab.org/show_bug.cgi?id=15279): `unique` could not be used on sets of complex numbers.
 * [#15404](http://bugzilla.scilab.org/show_bug.cgi?id=15404): `surf()` and `mesh()` did not allow to specify `foreground`, `facecolor`, `markforeground` and `markbackground` global properties colors as a predefined named color out of a list of the 9 main color names. Colors specifications as "#RRGGBB" hexa code or Colors indices in the color map were nor allowed.
