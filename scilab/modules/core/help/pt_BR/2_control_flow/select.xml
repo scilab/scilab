@@ -1,39 +1,53 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="select" xml:lang="pt">
     <refnamediv>
         <refname>select</refname>
         <refpurpose>Palavra-chave da estrutura select (significa "selecionar (de
-            acordo com a variável)")
+            acordo com a variÃ¡vel)")
         </refpurpose>
     </refnamediv>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <programlisting role=""><![CDATA[
-select expressão,
-  case expressão1 then instruções1,
-  case expressão2 then instruções2,
+select expressÃ£o,
+  case expressÃ£o1 then instruÃ§Ãµes1,
+  case expressÃ£o2 then instruÃ§Ãµes2,
   ...
-  case expressãon then instruçõesn,
-  [else instruções],
+  case expressÃ£on then instruÃ§Ãµesn,
+  [else instruÃ§Ãµes],
 end
  ]]></programlisting>
         <para/>
         <para>Notas:</para>
         <itemizedlist>
             <listitem>
-                <para>A única restrição é de que a palavra-chave "then" deve estar na
+                <para>A Ãºnica restriÃ§Ã£o Ã© de que a palavra-chave "then" deve estar na
                     mesma linha que a palavra-chave "case" correspondente.
                 </para>
             </listitem>
             <listitem>
-                <para>A palavra-chave "then" pode ser substituída por uma vírgula ou
-                    um retorno de carro. <literal>instruçõesi</literal> são executadas se
-                    <literal>expressãoi=expressão</literal>.
+                <para>A palavra-chave "then" pode ser substituÃ­da por uma vÃ­rgula ou
+                    um retorno de carro. <literal>instruÃ§Ãµesi</literal> sÃ£o executadas se
+                    <literal>expressÃ£oi=expressÃ£o</literal>.
                 </para>
             </listitem>
         </itemizedlist>
-        <para>Aviso: o número de caracteres usados para definir o corpo de
-            qualquer instrução condicional (if while for ou select/case) deve ser
+        <para>Aviso: o nÃºmero de caracteres usados para definir o corpo de
+            qualquer instruÃ§Ã£o condicional (if while for ou select/case) deve ser
             limitado a 16k.
         </para>
     </refsection>
@@ -54,7 +68,7 @@ end
  ]]></programlisting>
     </refsection>
     <refsection>
-        <title> Ver Também </title>
+        <title> Ver TambÃ©m </title>
         <simplelist type="inline">
             <member>
                 <link linkend="if">if</link>
@@ -66,5 +80,17 @@ end
                 <link linkend="for">for</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>HistÃ³rico</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revdescription>
+                  <literal>select</literal> is now protected:
+                  Assignments like <literal>select=1</literal> are no longer possible.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

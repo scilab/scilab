@@ -1,17 +1,31 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="do" xml:lang="pt">
     <refnamediv>
         <refname>do</refname>
-        <refpurpose>palavra-chave de linguagem para laços ("loops") (significa
-            "faça...")
+        <refpurpose>palavra-chave de linguagem para laÃ§os ("loops") (significa
+            "faÃ§a...")
         </refpurpose>
     </refnamediv>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            Pode ser usado dentro de instruções <literal>for</literal> ou
-            <literal>while</literal> para separar a definição de variável do laço e o
-            conjunto de instruções do mesmo.
+            Pode ser usado dentro de instruÃ§Ãµes <literal>for</literal> ou
+            <literal>while</literal> para separar a definiÃ§Ã£o de variÃ¡vel do laÃ§o e o
+            conjunto de instruÃ§Ãµes do mesmo.
         </para>
     </refsection>
     <refsection>
@@ -35,7 +49,7 @@ end
     </refsection>
 
     <refsection>
-        <title> Ver Também </title>
+        <title> Ver TambÃ©m </title>
         <simplelist type="inline">
             <member>
                 <link linkend="for">for</link>
@@ -44,5 +58,17 @@ end
                 <link linkend="while">while</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>HistÃ³rico</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revdescription>
+                  <literal>do</literal> is now protected:
+                  Assignments like <literal>do=1</literal> are no longer possible.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

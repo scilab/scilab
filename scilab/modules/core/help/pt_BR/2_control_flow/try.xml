@@ -1,19 +1,33 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="try" xml:lang="pt">
     <refnamediv>
         <refname>try</refname>
-        <refpurpose>início de um bloco try numa instrução de controle try-catch
+        <refpurpose>inÃ­cio de um bloco try numa instruÃ§Ã£o de controle try-catch
             (significa "tentar...")
         </refpurpose>
     </refnamediv>
     <refnamediv xml:id="catch">
         <refname>catch</refname>
-        <refpurpose>início de um bloco catch numa instrução de controle try-catch
+        <refpurpose>inÃ­cio de um bloco catch numa instruÃ§Ã£o de controle try-catch
             (significa "prender...")
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title> Seqüência de Chamamento </title>
+        <title> SeqÃ¼Ãªncia de Chamamento </title>
         <synopsis>try
             statements
             catch
@@ -22,34 +36,34 @@
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title> Descrição </title>
-        <para>A instrução de controle
+        <title> DescriÃ§Ã£o </title>
+        <para>A instruÃ§Ã£o de controle
             <literal>try</literal>-<literal>catch</literal>pode ser usada para
-            gerenciar códigos que possivelmente poderiam gerar erros.
+            gerenciar cÃ³digos que possivelmente poderiam gerar erros.
         </para>
-        <para>Quando uma instrução de controle
-            <literal>try</literal>-<literal>catch</literal> é executada, normalmente
-            apenas as sentenças entre as palavras-chaves <literal>try</literal> e
-            <literal>catch</literal>são executadas. Contudo, se um erro ocorre durante
-            a execução de uma dessas sentenças, o erro é registrado, as sentenças
-            restantes até <literal>catch</literal>são puladas e as sentenças entre as
-            palavras-chaves <literal>catch</literal> e <literal>end</literal> são
-            executadas usando-se o modo de manipulação de erros padrão.
-        </para>
-        <para>
-            A mensagem de erro registrada pode ser recuperada pela função <link linkend="lasterror">lasterror</link> .
+        <para>Quando uma instruÃ§Ã£o de controle
+            <literal>try</literal>-<literal>catch</literal> Ã© executada, normalmente
+            apenas as sentenÃ§as entre as palavras-chaves <literal>try</literal> e
+            <literal>catch</literal>sÃ£o executadas. Contudo, se um erro ocorre durante
+            a execuÃ§Ã£o de uma dessas sentenÃ§as, o erro Ã© registrado, as sentenÃ§as
+            restantes atÃ© <literal>catch</literal>sÃ£o puladas e as sentenÃ§as entre as
+            palavras-chaves <literal>catch</literal> e <literal>end</literal> sÃ£o
+            executadas usando-se o modo de manipulaÃ§Ã£o de erros padrÃ£o.
         </para>
         <para>
-            As sentenças <literal>catch</literal> , tanto quanto a palavra-chave
-            <literal>catch</literal> podem ser omitidas se nenhuma sentença
+            A mensagem de erro registrada pode ser recuperada pela funÃ§Ã£o <link linkend="lasterror">lasterror</link> .
+        </para>
+        <para>
+            As sentenÃ§as <literal>catch</literal> , tanto quanto a palavra-chave
+            <literal>catch</literal> podem ser omitidas se nenhuma sentenÃ§a
             alternativa for fornecida.
         </para>
         <para>
-            Note que também é possível utilizar a função <link linkend="execstr">execstr</link> com o argumento<literal>
+            Note que tambÃ©m Ã© possÃ­vel utilizar a funÃ§Ã£o <link linkend="execstr">execstr</link> com o argumento<literal>
                 'errcatch'
             </literal>
-            para manipulação de erros. Isto pode ser
-            particularmente útil para manipulação de erros sintáticos.
+            para manipulaÃ§Ã£o de erros. Isto pode ser
+            particularmente Ãºtil para manipulaÃ§Ã£o de erros sintÃ¡ticos.
         </para>
     </refsection>
     <refsection>
@@ -61,15 +75,15 @@ try
   u=mopen(file_path,'r')
   x=mget(10,'c',u)
 catch
-  disp(['o arquivo '+file_path+ ' não pode ser lido',
-        'usando valores padrões para x'])
+  disp(['o arquivo '+file_path+ ' nÃ£o pode ser lido',
+        'usando valores padrÃµes para x'])
   x=1:10
 end
 [error_message,error_number]=lasterror(%t)
  ]]></programlisting>
     </refsection>
     <refsection>
-        <title> Ver Também </title>
+        <title> Ver TambÃ©m </title>
         <simplelist type="inline">
             <member>
                 <link linkend="error">error</link>
@@ -84,5 +98,18 @@ end
                 <link linkend="lasterror">lasterror</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>HistÃ³rico</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revdescription>
+                  <literal>try</literal> and <literal>catch</literal> are now protected:
+                  Assignments like <literal>try=1</literal> or <literal>catch=2</literal> are no
+                  longer possible.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

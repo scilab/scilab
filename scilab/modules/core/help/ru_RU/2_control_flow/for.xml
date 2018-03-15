@@ -233,6 +233,8 @@ for l = list([1 2;3 4], (1+%z)^3, 'example', [%F %T]); l, end
                 <revnumber>6.0.0</revnumber>
                 <revdescription>
                     Теперь for <literal>expression</literal> может быть вектором указателей на графические окна.
+                    <literal>for</literal> is now protected:
+                    Assignments like <literal>for=1</literal> are no longer possible.
                 </revdescription>
             </revision>
         </revhistory>

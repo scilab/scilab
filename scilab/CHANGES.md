@@ -120,6 +120,7 @@ See [the wiki page on porting code from 5.5 to 6.0](https://wiki.scilab.org/From
 These are reserved for cell definition.
 * New `&&` and `||` boolean AND and OR operators are introduced. They are shortcut in expressions even out of conditional tests, like `A = [1 %pi] || det([1 2])`
 * Syntax `%i:10` is now deprecated (only real scalars can be used).
+* Control and block keywords `break` `case` `catch` `continue` `do` `else` `elseif` `end` endfunction` `for` `function` `if` `resume` `return` `select` `then` `try` and `while` can no longer be overloaded as regular assignable variables as in `end=1`. They are now reserved and protected.
 * `else` is no longer supported in a `while ... end` control instruction.
 * Transposed matrix can now use the extraction operator directly `A'(1, 2)`.
 * Function without output argument cannot be called in assignation expression anymore:
@@ -386,6 +387,7 @@ Known issues
 * [#11583](http://bugzilla.scilab.org/show_bug.cgi?id=11583): When in Scinotes preferences the default header is erased, the available variables were no longer documented.
 * [#11916](http://bugzilla.scilab.org/show_bug.cgi?id=11916): Loading a graphic file containing several figures restored them by superimposing them in the same window.
 * [#12109](http://bugzilla.scilab.org/show_bug.cgi?id=12109): `execstr(.,"errcatch")` calling a macro returning before setting the argout crashed Scilab.
+* [#12198](http://bugzilla.scilab.org/show_bug.cgi?id=12198): Scilab control and block keywords `break case ... try while` and `clear()` could be overloaded as regular assignable variables.
 * [#12566](http://bugzilla.scilab.org/show_bug.cgi?id=12566): `disp()` of a T-list with a single field set to an encoded integer value generated an error.
 * [#13466](http://bugzilla.scilab.org/show_bug.cgi?id=13466): Since Scilab 5.5.0, it was no longer possible to dock the demo GUI.
 * [#13778](http://bugzilla.scilab.org/show_bug.cgi?id=13778): The size of `repmat([], [1 1 3])` was [0 0 3] instead of [0 0].

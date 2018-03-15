@@ -172,6 +172,8 @@ for l = list([1 2;3 4], (1+%z)^3, 'example', [%F %T]); l, end
                 <revdescription>
                     L'<literal>expression</literal> alimentant les itérations peut maintenant être
                     un vecteur d'identifiants graphiques.
+                    <literal>for</literal> est désormais protégé. Les affectations telles que
+                    <literal>for=1</literal> ne sont plus possibles.
                 </revdescription>
             </revision>
         </revhistory>

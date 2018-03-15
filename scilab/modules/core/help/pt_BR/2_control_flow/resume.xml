@@ -1,19 +1,33 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="resume" xml:lang="pt">
     <refnamediv>
         <refname>resume</refname>
-        <refpurpose>retorna ou pára a execução de uma função e copia algumas de
-            suas variáveis locais
+        <refpurpose>retorna ou pÃ¡ra a execuÃ§Ã£o de uma funÃ§Ã£o e copia algumas de
+            suas variÃ¡veis locais
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>resume
             [x1,..,xn]=resume(a1,..,an)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros </title>
+        <title>ParÃ¢metros </title>
         <variablelist>
             <varlistentry>
                 <term>x</term>
@@ -24,32 +38,32 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            Em uma função, <literal>resume</literal> pára a execução da mesma,
-            <literal>[..]=resume(..)</literal> pára a execução de uma função e põe as
-            variáveis locais <literal>ai</literal> no ambiente de chamamento sob os
+            Em uma funÃ§Ã£o, <literal>resume</literal> pÃ¡ra a execuÃ§Ã£o da mesma,
+            <literal>[..]=resume(..)</literal> pÃ¡ra a execuÃ§Ã£o de uma funÃ§Ã£o e pÃµe as
+            variÃ¡veis locais <literal>ai</literal> no ambiente de chamamento sob os
             nomes de <literal>xi</literal>.
         </para>
         <para>
-            No modo <literal>pause</literal> , permite retornar a um nível
-            inferior <literal>[..]=resume(..)</literal> retorna ao nível inferior e
-            põe as variáveis locais <literal>ai</literal> no ambiente de chamamento
+            No modo <literal>pause</literal> , permite retornar a um nÃ­vel
+            inferior <literal>[..]=resume(..)</literal> retorna ao nÃ­vel inferior e
+            pÃµe as variÃ¡veis locais <literal>ai</literal> no ambiente de chamamento
             sob os nomes de <literal>xi</literal>.
         </para>
         <para>
-            Em um<literal> execstr</literal> chamado por uma função,
-            <literal>[..]=resume(..)</literal> pára a execução da função e põe as
-            variáveis locais <literal>ai</literal> no ambiente de chamamento sob os
+            Em um<literal> execstr</literal> chamado por uma funÃ§Ã£o,
+            <literal>[..]=resume(..)</literal> pÃ¡ra a execuÃ§Ã£o da funÃ§Ã£o e pÃµe as
+            variÃ¡veis locais <literal>ai</literal> no ambiente de chamamento sob os
             nomes de <literal>xi</literal>.
         </para>
         <para>
-            <literal>resume</literal> é equivalente a
+            <literal>resume</literal> Ã© equivalente a
             <literal>return</literal>.
         </para>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="abort">abort</link>
@@ -58,5 +72,17 @@
                 <link linkend="break">break</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>HistÃ³rico</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revdescription>
+                  <literal>resume</literal> is now protected:
+                  Assignments like <literal>resume=1</literal> are no longer possible.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
