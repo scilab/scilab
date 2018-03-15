@@ -190,6 +190,20 @@ sparse([1,2;4,5;3,10],[1,2,3]) == sparse([1,2;4,5;3,10],[1,2,3])
         </simplelist>
 
     </refsection>
+    <refsection role="history">
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    <literal>~</literal> (not) priority is now higher than the comparisons one
+                    (<literal>==  ~=  &lt;=  >=</literal>). For instance, <literal>~%t==1</literal>
+                    is parsed as <literal>(~%t)==1</literal> instead of <literal>~(%t==1)</literal>
+                    and now yields <literal>%F</literal> instead of <literal>%T</literal>.
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
 
 </refentry>
 

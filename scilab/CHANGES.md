@@ -113,6 +113,7 @@ See [the wiki page on porting code from 5.5 to 6.0](https://wiki.scilab.org/From
 * Declaration of an unclosed string on two lines is no longer allowed: `"abc..\ndef"` now yields an error.
 * Comment blocks on multiple lines `/* ...\n ... \n ... */` are now possible.
 * `1./M` is now parsed as `1 ./ M` instead of `1. / M`.
+* `~` has now a priority higher than comparisons `==  ~=  <  <=  =>  >` one.
 * Declaring strings using non-homogenous delimiters ("string' or 'string") is no longer allowed.
 * `(a=b)` executed as `a == b` is now deprecated and returns an error.
 * Function definitions can finish with `end` instead of `endfunction`.
@@ -397,6 +398,7 @@ Known issues
 * [#12109](http://bugzilla.scilab.org/show_bug.cgi?id=12109): `execstr(.,"errcatch")` calling a macro returning before setting the argout crashed Scilab.
 * [#12198](http://bugzilla.scilab.org/show_bug.cgi?id=12198): Scilab control and block keywords `break case ... try while` and `clear()` could be overloaded as regular assignable variables.
 * [#12566](http://bugzilla.scilab.org/show_bug.cgi?id=12566): `disp()` of a T-list with a single field set to an encoded integer value generated an error.
+* [#12926](http://bugzilla.scilab.org/show_bug.cgi?id=12926): `~%f==1` was parsed as `~(%f==1)` instead of `(~%f)==1`.
 * [#13466](http://bugzilla.scilab.org/show_bug.cgi?id=13466): Since Scilab 5.5.0, it was no longer possible to dock the demo GUI.
 * [#13778](http://bugzilla.scilab.org/show_bug.cgi?id=13778): The size of `repmat([], [1 1 3])` was [0 0 3] instead of [0 0].
 * [#13915](http://bugzilla.scilab.org/show_bug.cgi?id=13915): On Windows, reinstalling an ATOMS toolbox with an archive already present failed.

@@ -35,4 +35,16 @@
             </member>
         </simplelist>
     </refsection>
+    <refsection role="history">
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    <literal>~</literal> a désormais une priorité supérieure à celle des opérateurs
+                    de comparaison (<literal>==  ~=  &lt;  &lt;=  >=  ></literal>).
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>

@@ -171,4 +171,17 @@ p/poly(1,'s','c')==0
             </member>
         </simplelist>
     </refsection>
+
+    <refsection role="history">
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    <literal>~</literal> (отрицание) сейчас имеет приоритет выше, чем у операций сравнения
+                    (<literal>==  ~=  &lt;  &lt;=  >=  ></literal>).
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>
