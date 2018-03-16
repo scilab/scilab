@@ -398,6 +398,7 @@ Known issues
 * [#6434](http://bugzilla.scilab.org/show_bug.cgi?id=6434): Calls like libname.Macro(..) worked only with one input argument.
 * [#6548](http://bugzilla.scilab.org/show_bug.cgi?id=6548): `gamma` did not accept an hypermatrix and could not be overloaded for complex numbers.
 * [#6729](http://bugzilla.scilab.org/show_bug.cgi?id=6729): The compatibility functions `mtlb_int8`, `mtlb_int16`, `mtlb_int32`, `mtlb_uint8`, `mtlb_uint16` and `mtlb_uint32` were not actually Matlab-like. Their documentation was neither correct nor up-to-date. `mtlb_int64` and `mtlb_int64` were missing.
+* [#6737](http://bugzilla.scilab.org/show_bug.cgi?id=6737): mouse events were not correctly reported to an event handler function.
 * [#6939](http://bugzilla.scilab.org/show_bug.cgi?id=6939): `nearfloat("succ",rand(2,2,2))` returned a (2,2) matrix with no error.
 * [#7277](http://bugzilla.scilab.org/show_bug.cgi?id=7277): SciNotes `File>Open recent` menu was not updated after 5 items were added.
 * [#7641](http://bugzilla.scilab.org/show_bug.cgi?id=7641): `uint8(1):uint16(4)` produced an error instead of being parsed as `uint8(1):1:uint16(4)`, that passes.

@@ -348,6 +348,12 @@
                 </listitem>
 
             </varlistentry>
+            <varlistentry>
+                <term>ibut==-10000</term>
+                <listitem>
+                    <para>Unmanaged event. It might be a drag and drop or a fast click and move</para>
+                </listitem>
+            </varlistentry>
 
         </variablelist>
 
