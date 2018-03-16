@@ -350,7 +350,6 @@ Removed Functions
 * `numdiff` has been removed. Please use `numderivative` instead.
 * `derivative` has been removed. Please use `numderivative` instead.
 * `curblockc` has been removed. Please use `curblock` instead.
-* `extract_help_examples` has been removed.
 * `xpause` has been removed. Please use `sleep` instead.
 * `xclear` has been removed. Please use `clf` instead.
 * `fcontour2d` has been removed. Please use `contour2d` instead.
@@ -363,7 +362,7 @@ Removed Functions
 * `jconvMatrixMethod` was obsolete and is now removed. Please use `jautoTranspose` instead.
 * `fcontour` was obsolete since Scilab 4 and has been removed. Please use `contour` instead.
 * `m_circle` was obsolete since Scilab 5.2.0. It is removed. Please use `hallchart` instead.
-* Symbolic module functions have been removed: `addf`, `cmb_lin`, `ldivf`, `mulf`, `rdivf`, `solve`, `subf`, `trianfml`, `trisolve` and `block2exp`.
+* Symbolic module functions have been removed: `addf`, `cmb_lin`, `ldivf`, `mulf`, `rdivf`, `solve`, `subf`, `trianfml`, `trisolve` and `bloc2exp`.
 * Functionnalities based on former Scilab stack have been removed:
   - `comp`, `errcatch`, `iserror`, `fun2string`, `getvariablesonstack`, `gstacksize`, `macr2lst`, `stacksize`, `code2str` and `str2code`.
   - `-mem` launching option (used to set `stacksize` at startup).

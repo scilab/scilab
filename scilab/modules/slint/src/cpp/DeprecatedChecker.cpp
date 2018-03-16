@@ -137,7 +137,6 @@ std::unordered_map<std::wstring, std::wstring> DeprecatedChecker::initDep()
     map.emplace(L"havewindow", L"getscilabmode");
     map.emplace(L"xpause", L"sleep");
     map.emplace(L"curblockc", L"curblock");
-    map.emplace(L"extract_help_examples", L"");
 
     map.emplace(L"addf", L"");
     map.emplace(L"subf", L"");
@@ -148,7 +147,7 @@ std::unordered_map<std::wstring, std::wstring> DeprecatedChecker::initDep()
     map.emplace(L"solve", L"");
     map.emplace(L"trianfml", L"");
     map.emplace(L"trisolve", L"");
-    map.emplace(L"block2exp", L"");
+    map.emplace(L"bloc2exp", L"");
 
     map.emplace(L"comp", L"exec");
     map.emplace(L"errcatch", L"");
@@ -191,6 +190,7 @@ std::unordered_map<std::wstring, std::wstring> DeprecatedChecker::initDep()
     map.emplace(L"demo_mdialog", L"");
     map.emplace(L"draw", L"");
     map.emplace(L"clear_pixmap", L"");
+    map.emplace(L"show_pixmap", L"");
     map.emplace(L"winclose", L"close");
     map.emplace(L"datatipInitStruct", L"");
     map.emplace(L"datatipRedraw", L"");
