@@ -443,6 +443,7 @@ Known issues
 * [#10190](http://bugzilla.scilab.org/show_bug.cgi?id=10190): Xcos blocks and labels positioning were not aligned to the grid on creation.
 * [#10197](http://bugzilla.scilab.org/show_bug.cgi?id=10197): creating implicit vector of integers could fail.
 * [#10639](http://bugzilla.scilab.org/show_bug.cgi?id=10639): The page of `intersect` poorly described the arguments. Examples were not illustrated.
+* [#10668](http://bugzilla.scilab.org/show_bug.cgi?id=10668): Some words in the `bloc2ss` page were inaccurate or misleading.
 * [#10918](http://bugzilla.scilab.org/show_bug.cgi?id=10918): After `a=5`, `a([%t ; %f])` returned `[5 ; 2.1e-314]` instead of `5`.
 * [#11240](http://bugzilla.scilab.org/show_bug.cgi?id=11240): `A=[]; clear B; [A($+1),B]=1;` crashed Scilab.
 * [#11435](http://bugzilla.scilab.org/show_bug.cgi?id=11435): The demo `Simulation => Flow => Blackhole` reliability had to be checked. Its displayed speed value was truncated.

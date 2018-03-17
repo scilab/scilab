@@ -14,14 +14,17 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="bloc2ss" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="bloc2ss" xml:lang="en">
     <refnamediv>
         <refname>bloc2ss</refname>
         <refpurpose>block-diagram to state-space conversion</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>[sl]=bloc2ss(blocd)</synopsis>
+        <synopsis>sl = bloc2ss(blocd)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -60,7 +63,7 @@ list('link','name_of_link',
  ]]></programlisting>
         <para>
             The strings <literal>'transfer'</literal> and
-            <literal>'links'</literal> are keywords which indicate the type of element
+            <literal>'link'</literal> are keywords which indicate the type of element
             in the block diagram.
         </para>
         <para>Case 1 : the second parameter of the list is a character string
@@ -95,14 +98,26 @@ list('link','name_of_link',
             <literal>['1','1']</literal>.
         </para>
         <para>
-            There are 4 links. The first one (named <literal>'U'</literal>)
-            links the input (port 0 of fictitious block -1, omitted) to port 1 of the
-            adder. The second and third one link respectively (output)port 1 of the
-            adder to (input)port 1 of system <literal>S1</literal>, and (output)port 1
-            of <literal>S1</literal> to (input)port 1 of <literal>S2</literal>. The
-            fourth link (named <literal>'Y'</literal>) links (output)port 1 of
-            <literal>S2</literal> to the output (port 0 of fictitious block -1,
-            omitted) and to (input)port 2 of the adder.
+            There are 4 links:
+            <itemizedlist>
+              <listitem>
+                The first one (named <literal>'U'</literal>) links the input
+                (port 0 of fictitious block -1, omitted) to port 1 of the adder.
+              </listitem>
+              <listitem>
+                The second one links the (output)port 1 of the adder to the (input)port 1 of system
+                <literal>S1</literal>.
+              </listitem>
+              <listitem>
+                The third one links the (output)port 1 of <literal>S1</literal> to
+                the (input)port 1 of <literal>S2</literal>.
+              </listitem>
+              <listitem>
+                The fourth link (named <literal>'Y'</literal>) links (output)port 1 of
+                <literal>S2</literal> to the output (port 0 of fictitious block -1,
+                omitted) and to (input)port 2 of the adder.
+              </listitem>
+          </itemizedlist>
         </para>
     </refsection>
     <refsection>
@@ -142,7 +157,7 @@ syst(l)=list('link','Y',[n_s2,1],[-1],[n_adder,2]);
             of the evaluation call <literal>sl=bloc2ss(syst);</literal> is a
             state-space representation for <literal>1/(s^2+s-1)</literal>.
         </para>
-        <para>[2] LFT example</para>
+        <para>[2] Example of LFT (Linear Fractional Transformation):</para>
         <programlisting role="example"><![CDATA[
 //Initialization
 syst=list('blocd');
