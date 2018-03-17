@@ -230,6 +230,7 @@ input and output arguments.
 * `mgetl` speed has been improved for files with a lot of lines.
 * `ndgrid(x)` now accepts only one input `x`, with by default `y=x`.
 * `banner()` updated with ESI Group a 2017-2018 copyright.
+* `%io` is now protected (read-only).
 
 Help pages:
 -----------

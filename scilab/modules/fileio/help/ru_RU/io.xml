@@ -13,17 +13,20 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="percentio" xml:lang="ru">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="percentio" xml:lang="ru">
     <refnamediv>
         <refname>%io</refname>
         <refpurpose>
-            переменная, которая хранит стандартный ввод и стандартный вывод
-            (дескриптор файла)
+            переменная, которая хранит стандартный ввод и стандартный вывод  (дескриптор файла)
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Синтаксис</title>
-        <synopsis>%io(1)
+        <synopsis>
+            %io(1)
             %io(2)
         </synopsis>
     </refsynopsisdiv>
@@ -53,10 +56,16 @@ write(0,'Scilab stderr (Fortran)');
         <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
+                <link linkend="getio">getio</link>
+            </member>
+            <member>
+                <link linkend="consolebox">consolebox</link>
+            </member>
+            <member>
                 <link linkend="write">write</link>
             </member>
             <member>
-                <link linkend="mfprintf">mfprintf</link>
+                <link linkend="mprintf">mprintf</link>
             </member>
             <member>
                 <link linkend="file">file</link>
@@ -65,6 +74,17 @@ write(0,'Scilab stderr (Fortran)');
                 <link linkend="dispfiles">dispfiles</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revdescription>
+                   <literal>%io</literal> is now protected (read-only).
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
 
