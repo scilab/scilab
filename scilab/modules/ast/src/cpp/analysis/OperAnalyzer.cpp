@@ -188,12 +188,10 @@ ast::MemfillExp * OperAnalyzer::analyzeMemfill(AnalysisVisitor & visitor, ast::O
                         cl->getDecorator().setResult(constant->getDecorator().getResult());
                         valExp = new ast::DoubleExp(loc, new types::Double(value));
                         valExp->getDecorator().setResult(Result(ty));
-                        delete valExp;
                         valExp = new ast::OpExp(loc, *cl, ast::OpExp::plus, *valExp);
                         valExp->getDecorator().setResult(Result(Checkers::check_____add____(visitor.getGVN(), cl->getDecorator().getResult().getType(), ty)));
                     }
                     me = new ast::MemfillExp(loc, *valExp, cloneArgs);
-                    delete valExp;
                     break;
                 }
                 case ast::OpExp::minus :
@@ -215,19 +213,16 @@ ast::MemfillExp * OperAnalyzer::analyzeMemfill(AnalysisVisitor & visitor, ast::O
                         valExp->getDecorator().setResult(Result(ty));
                         if (callAtLeft)
                         {
-                            delete valExp;
                             valExp = new ast::OpExp(loc, *valExp, ast::OpExp::minus, *cl);
                             valExp->getDecorator().setResult(Result(Checkers::check_____sub____(visitor.getGVN(), ty, cl->getDecorator().getResult().getType())));
                         }
                         else
                         {
-                            delete valExp;
                             valExp = new ast::OpExp(loc, *cl, ast::OpExp::minus, *valExp);
                             valExp->getDecorator().setResult(Result(Checkers::check_____sub____(visitor.getGVN(), cl->getDecorator().getResult().getType(), ty)));
                         }
                     }
                     me = new ast::MemfillExp(loc, *valExp, cloneArgs);
-                    delete valExp;
                     break;
                 }
                 case ast::OpExp::times :
@@ -248,7 +243,6 @@ ast::MemfillExp * OperAnalyzer::analyzeMemfill(AnalysisVisitor & visitor, ast::O
                         valExp->getDecorator().setResult(constant->getDecorator().getResult());
                     }
                     me = new ast::MemfillExp(loc, *valExp, cloneArgs);
-                    delete valExp;
                     break;
                 }
             }
