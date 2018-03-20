@@ -89,9 +89,10 @@ public class OpenAction extends DefaultAction {
         if (retval == JFileChooser.APPROVE_OPTION) {
             File[] f = fileChooser.getSelectedFiles();
             for (int i = 0; i < f.length; i++) {
-                RecentFileAction.updateRecentOpenedFilesMenu(getEditor());
+                ConfigSciNotesManager.saveToRecentOpenedFiles(f[i].getAbsolutePath());
                 getEditor().readFile(f[i]);
             }
+            RecentFileAction.updateRecentOpenedFilesMenu(getEditor());
         }
     }
 
