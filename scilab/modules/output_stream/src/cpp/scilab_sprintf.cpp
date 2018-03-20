@@ -37,6 +37,8 @@ extern "C"
 static wchar_t* replaceAndCountLines(const wchar_t* _pwstInput, int* _piLines, int* _piNewLine);
 static wchar_t* addl(TokenDef* token);
 static void updatel(TokenDef* token);
+static void replace_lu_llu(TokenDef* token);
+static void replace_ld_lld(TokenDef* token);
 
 #define NanString L"Nan"
 #define InfString L"Inf"
@@ -258,7 +260,7 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                         return nullptr;
                     }
 
-                    tok->outputType = types::InternalType::ScilabInt32;
+                    tok->outputType = types::InternalType::ScilabInt64;
                     tok->pos = p;
                     tok->col = c;
                     ++itPos;
@@ -287,7 +289,7 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                         return nullptr;
                     }
 
-                    tok->outputType = types::InternalType::ScilabUInt32;
+                    tok->outputType = types::InternalType::ScilabUInt64;
                     tok->pos = p;
                     tok->col = c;
                     ++itPos;
@@ -453,13 +455,15 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                     oFirstOutput << pwstTemp;
                     break;
                 }
-                case types::InternalType::ScilabInt32:
+                case types::InternalType::ScilabInt64:
                 {
                     wchar_t pwstTemp[bsiz];
                     double dblVal = in[tok->pos]->getAs<types::Double>()->get(j, tok->col);
-                    int iVal = (int)dblVal;
+                    long long iVal = (long long)dblVal;
+
                     if (std::isfinite(dblVal))
                     {
+                        replace_ld_lld(tok);
                         if (tok->widthStar)
                         {
                             if (tok->precStar)
@@ -509,14 +513,15 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                     oFirstOutput << pwstTemp;
                     break;
                 }
-                case types::InternalType::ScilabUInt32:
+                case types::InternalType::ScilabUInt64:
                 {
                     wchar_t pwstTemp[bsiz];
                     double dblVal = in[tok->pos]->getAs<types::Double>()->get(j, tok->col);
-                    unsigned int iVal = (unsigned int)dblVal;
+                    unsigned long long iVal = (unsigned long long)dblVal;
 
                     if (std::isfinite(dblVal))
                     {
+                        replace_lu_llu(tok);
                         if (tok->widthStar)
                         {
                             if (tok->precStar)
@@ -773,7 +778,7 @@ static wchar_t* replaceAndCountLines(const wchar_t* _pwstInput, int* _piLines, i
     return pwstFirstOutput;
 }
 /*--------------------------------------------------------------------------*/
-wchar_t* addl(TokenDef* token)
+static wchar_t* addl(TokenDef* token)
 {
     //replace %s or %c by %ls or %lc to wide char compatibility
     int iPos = token->typePos;
@@ -789,9 +794,50 @@ wchar_t* addl(TokenDef* token)
     return pwstToken;
 }
 /*--------------------------------------------------------------------------*/
-void updatel(TokenDef* token)
+static void updatel(TokenDef* token)
 {
     wchar_t* newToken = addl(token);
     delete[] token->pwstToken;
     token->pwstToken = newToken;
+}
+/*--------------------------------------------------------------------------*/
+static wchar_t* replace(const wchar_t* s, const wchar_t* r, int pos, const wchar_t* token)
+{
+    std::wstring h(token);
+    //find r
+    h.replace(pos - 1, wcslen(s), r);
+
+    wchar_t* res = new wchar_t[h.size() + 1];
+    wcscpy(res, h.data());
+    return res;
+}
+/*--------------------------------------------------------------------------*/
+static void replace_lu_llu(TokenDef* token)
+{
+#ifdef _MSC_VER
+    if (token->length)
+    {
+        wchar_t* newToken = replace(L"lu", L"llu", token->typePos, token->pwstToken);
+        if (newToken)
+        {
+            delete[] token->pwstToken;
+            token->pwstToken = newToken;
+        }
+    }
+#endif
+}
+/*--------------------------------------------------------------------------*/
+static void replace_ld_lld(TokenDef* token)
+{
+#ifdef _MSC_VER
+    if (token->length)
+    {
+        wchar_t* newToken = replace(L"ld", L"lld", token->typePos, token->pwstToken);
+        if (newToken)
+        {
+            delete[] token->pwstToken;
+            token->pwstToken = newToken;
+        }
+    }
+#endif
 }
