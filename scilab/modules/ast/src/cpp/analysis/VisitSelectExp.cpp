@@ -239,7 +239,6 @@ void AnalysisVisitor::analyze(ast::SelectExp & e)
                 sise->setLocation(e.getLocation());
                 e.replace(sise);
             }
-            delete _cases;
         }
     }
     else if (kind == STRING)
