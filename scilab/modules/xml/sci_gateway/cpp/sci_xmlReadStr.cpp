@@ -99,11 +99,16 @@ int sci_xmlReadStr(char *fname, void* pvApiCtx)
 
     if (!doc->createOnStack(Rhs + 1, pvApiCtx))
     {
+        delete doc;
+
         return 0;
     }
 
+    delete doc;
+
     LhsVar(1) = Rhs + 1;
     PutLhsVar();
+
     return 0;
 }
 
