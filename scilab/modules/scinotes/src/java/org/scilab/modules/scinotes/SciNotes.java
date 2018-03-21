@@ -709,6 +709,9 @@ public class SciNotes extends SwingScilabDockablePanel {
 
         addRestoreTab();
         WindowsConfigurationManager.restorationFinished(SciNotes.this);
+        if  (System.getProperty("os.name").toLowerCase().contains("mac")) {
+          RestoreOpenedFilesAction.restoreEnabledComponents(this);
+        }
     }
 
     /**
