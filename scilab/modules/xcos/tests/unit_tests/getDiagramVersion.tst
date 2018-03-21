@@ -14,7 +14,6 @@ try
     version = getDiagramVersion();
 catch
     [str,n,line,func] = lasterror();
-    if n <> 999 then pause, end;
     if func <> "getDiagramVersion" then pause, end;
 end
 
@@ -23,7 +22,6 @@ try
     version = getDiagramVersion([]);
 catch
     [str,n,line,func] = lasterror();
-    if n <> 999 then pause, end;
     if func <> "getDiagramVersion" then pause, end;
 end
 

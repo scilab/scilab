@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2011-09-03 11:05+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Italian <it@li.org>\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18544)\n"
-"Language: it\n"
+"X-Generator: Launchpad (build 18566)\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -48,8 +48,7 @@ msgstr ""
 
 #, c-format
 msgid "%s : First argument must be a scicos_block typed list.\n"
-msgstr ""
-"%s: Il primo argomento deve essere una lista tipizzata scicos_block.\n"
+msgstr "%s: Il primo argomento deve essere una lista tipizzata scicos_block.\n"
 
 #, c-format
 msgid "%s : First argument must be a valid scicos_block typed list.\n"
@@ -240,10 +239,6 @@ msgid "%s: Wrong value for input argument #%d : An integer value expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
 
@@ -264,8 +259,7 @@ msgid "%s: Wrong size for input argument #%d: Row vector expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d:  \"%ls\" type is not managed.\n"
+msgid "%s: Wrong value for input argument #%d:  \"%ls\" type is not managed.\n"
 msgstr ""
 
 #, c-format
@@ -326,8 +320,7 @@ msgid "%s: Memory allocation error.\n"
 msgstr "%s: Errore di allocazione della memoria.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d : %s, %s %s %s or %s expected.\n"
+msgid "%s: Wrong value for input argument #%d : %s, %s %s %s or %s expected.\n"
 msgstr ""
 
 #, c-format
@@ -442,8 +435,7 @@ msgid "%s: Wrong size for input argument #%d : A single struct expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong fields for input argument #%d : \"%s\" and \"%s\" expected.\n"
+msgid "%s: Wrong fields for input argument #%d : \"%s\" and \"%s\" expected.\n"
 msgstr ""
 
 #, c-format
@@ -718,24 +710,24 @@ msgid ""
 msgstr ""
 
 #, c-format
+msgid "%s: Wrong value for element #%d of input argument #%d: Unknown type.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong type for field %ls: Tlist or Mlist expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong length for field %ls: at least %d element expected.\n"
+msgstr ""
+
+#, c-format
 msgid ""
-"%s: Wrong value for element #%d of input argument #%d: Unknown type.\n"
+"Wrong length for header of field \"%ls\": at least %d element expected.\n"
 msgstr ""
 
 #, c-format
-msgid "Wrong type for field %s: Tlist or Mlist expected.\n"
-msgstr ""
-
-#, c-format
-msgid "Wrong length for field %s: at least %d element expected.\n"
-msgstr ""
-
-#, c-format
-msgid "Wrong length for header of field %s: at least %d element expected.\n"
-msgstr ""
-
-#, c-format
-msgid "Wrong value for header of field %s: %s expected.\n"
+msgid "Wrong value for header of field \"%ls\": \"%ls\" expected.\n"
 msgstr ""
 
 #, c-format
@@ -1186,10 +1178,12 @@ msgid ""
 "What is the size of this link?"
 msgstr ""
 
+#
+# File: modules/scicos/macros/scicos_scicos/c_pass2.sci, line: 2294
 #, c-format
 msgid ""
 "the dep_ut size of the %s block is not correct.\n"
-"It should be a column vector of size %d."
+"It should be a colon vector of size %d."
 msgstr ""
 
 msgid ""
@@ -1333,6 +1327,10 @@ msgstr ""
 
 #, c-format
 msgid "%s: Empty diagram"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong input argument.\n"
 msgstr ""
 
 #, c-format

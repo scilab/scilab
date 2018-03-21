@@ -5,7 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-//
+// <-- INTERACTIVE TEST -->
+// <-- XCOS TEST -->
 // <-- Non-regression test for bug 7761 -->
 //
 // <-- Bugzilla URL -->
@@ -15,23 +16,15 @@
 // Block inter-functions were not loaded after using the xcosPal API and then
 // starting Xcos.
 
-exec(SCI + "/modules/scicos/macros/scicos_scicos/standard_define.sci", -1);
-exec(SCI + "/modules/scicos/macros/scicos_scicos/scicos_model.sci", -1);
-exec(SCI + "/modules/scicos/macros/scicos_scicos/scicos_graphics.sci", -1);
-exec(SCI + "/modules/scicos/macros/scicos_scicos/scicos_block.sci", -1);
-
-// loading only the SUM_f block
-exec(SCI + "/modules/scicos_blocks/macros/Linear/SUM_f.sci", -1);
-
 scs_m = SUM_f("define");
-save(TMPDIR + "/sum.sod", "scs_m");
+save("sum.sod", "scs_m");
 pal = xcosPal("SamplePal");
 blockstyle = struct();
-pal = xcosPalAddBlock(pal, TMPDIR + "/sum.sod", SCI + "/modules/xcos/images/palettes/SUM_f.png", blockstyle);
-xcosPalExport(pal, TMPDIR + "/mypal.sod");
+pal = xcosPalAddBlock(pal, "sum.sod", SCI + "/modules/xcos/images/palettes/SUM_f.png", blockstyle);
+xcosPalExport(pal, "mypal.sod");
 
-clear all; // emulate a scilab restart
-xcosPalAdd(TMPDIR + "/mypal.sod");
+// restart Scilab
+xcosPalAdd("mypal.sod");
 
 xcos();
 

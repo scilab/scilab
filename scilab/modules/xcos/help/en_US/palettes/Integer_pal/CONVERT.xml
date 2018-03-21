@@ -22,93 +22,48 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="CONVERT">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="CONVERT">
     <refnamediv>
         <refname>CONVERT</refname>
         <refpurpose>Data Type Conversion</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../images/palettes/CONVERT.png" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata align="center" fileref="../../../../images/palettes/CONVERT.png" valign="middle"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_CONVERT">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="CONVERT">Data Type Conversion</link>
-                </para>
+              <xref linkend="Description_CONVERT">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_CONVERT">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_CONVERT">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Data_Type_CONVERT">Data types</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_CONVERT">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_CONVERT">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Example_CONVERT">Example</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_CONVERT">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_CONVERT">Computational function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_CONVERT">See also</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Palette_CONVERT">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Integer_pal">Integer palette</link>
-                </para>
-                <para/>
+              <xref linkend="Data_Type_CONVERT">Data types</xref>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="Commonlyusedblocks_pal">Commonly used blocks palette</link>
-                </para>
+              <xref linkend="Dialogbox_CONVERT">Parameters</xref>
+            </listitem>
+            <listitem>
+              <xref linkend="Defaultproperties_CONVERT">Default properties</xref>
+            </listitem>
+            <listitem>
+              <xref linkend="Interfacingfunction_CONVERT">Interfacing function</xref>
+            </listitem>
+            <listitem>
+              <xref linkend="Computationalfunction_CONVERT">Computational function</xref>
+            </listitem>
+            <listitem>
+              <xref linkend="Example_CONVERT">Example</xref>
+            </listitem>
+            <listitem>
+              <xref linkend="Seealso_CONVERT">See also</xref>
             </listitem>
         </itemizedlist>
     </refsection>
@@ -180,31 +135,33 @@
         </itemizedlist>
     </refsection>
     <refsection id="Dialogbox_CONVERT">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../gui/integer_pal/en_US/CONVERT_gui.png" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para/>
+        <title>Parameters</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../gui/integer_pal/en_US/CONVERT_gui.png"  align="center" style="float:right"/>
+                <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
-                    <emphasis role="bold">Input Type (1: double, 3:int32, 4:int16, 5:int8, ...)</emphasis>
+                    <emphasis role="bold">Input Type</emphasis> (1|2: double, 3:int32, 4:int16,
+                    5:int8, 6:uint32, 7:uint16, 8:uint8)
                 </para>
                 <para>
-                    It indicates the input data type that it can be a double or an integer: Between 1 and 8.
+                    Sets the output data type, that can be a double or an integer:
+                    Integer code in [1,8].
                 </para>
                 <para>Properties : Type 'vec' of size 1.</para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">Output Type (1: double, 3:int32, 4:int16, 5:int8, ...)</emphasis>
+                    <emphasis role="bold">Output Type</emphasis> (1|2: double, 3:int32, 4:int16,
+                    5:int8, 6:uint32, 7:uint16, 8:uint8)
                 </para>
                 <para>
-                    It indicates the output data type that can be a double or an integer: Between 1 and 8.
+                    Sets the output data type, that can be a double or an integer:
+                    Integer code in [1,8].
                 </para>
                 <para>Properties : Type 'vec' of size 1.</para>
             </listitem>
@@ -235,6 +192,7 @@
                 <para>Properties : Type 'vec' of size 1.</para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Defaultproperties_CONVERT">
         <title>Default properties</title>
@@ -308,21 +266,6 @@
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Example_CONVERT">
-        <title>Example</title>
-        <para>
-            This example shows the sign bit's propagation during a conversion from int8 to int16.
-        </para>
-        <para>
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/en_US/CONVERT_en_US.zcos">
-                <inlinemediaobject>
-                    <imageobject>
-                        <imagedata fileref="../../../../examples/integer_pal/en_US/CONVERT_en_US.zcos" align="center" valign="middle"/>
-                    </imageobject>
-                </inlinemediaobject>
-            </link>
-        </para>
-    </refsection>
     <refsection id="Interfacingfunction_CONVERT">
         <title>Interfacing function</title>
         <itemizedlist>
@@ -340,6 +283,21 @@
                 <para>SCI/modules/scicos_blocks/src/c/convert.c</para>
             </listitem>
         </itemizedlist>
+    </refsection>
+    <refsection id="Example_CONVERT">
+        <title>Example</title>
+        <para>
+            This example shows the sign bit's propagation during a conversion from int8 to int16.
+        </para>
+        <para>
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/en_US/CONVERT_en_US.zcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="../../../../examples/integer_pal/en_US/CONVERT_en_US.zcos" align="center" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+        </para>
     </refsection>
     <refsection role="see also" id="Seealso_CONVERT">
         <title>See also</title>

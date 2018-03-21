@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2012-04-22 01:44+0000\n"
 "Last-Translator: Thiago de Melo <tmelo.mat@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
+"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18544)\n"
-"Language: pt_BR\n"
+"X-Generator: Launchpad (build 18566)\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -49,8 +49,7 @@ msgid "%s: Wrong type for input argument #%d: A %s tlist expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d : A vector of size 3 expected.\n"
+msgid "%s: Wrong size for input argument #%d : A vector of size 3 expected.\n"
 msgstr ""
 
 #, c-format
@@ -74,8 +73,7 @@ msgid "%s: Wrong number of output argument(s): %d, %d or %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d : A tlist of type %s expected.\n"
+msgid "%s: Wrong type for input argument #%d : A tlist of type %s expected.\n"
 msgstr ""
 
 #, c-format
@@ -122,8 +120,7 @@ msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
+msgid "%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 "%s: Tamanho errado para os argumentos de entrada #%d e #%d: Esperava-se "
 "tamanhos iguais.\n"
@@ -164,8 +161,7 @@ msgstr ""
 "grid na dimensão %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d : A vector of size 2 expected.\n"
+msgid "%s: Wrong size for input argument #%d : A vector of size 2 expected.\n"
 msgstr ""
 
 #, c-format
@@ -190,8 +186,7 @@ msgstr ""
 "vetores de mesmo tamanho.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d : A matrix of size 2 expected.\n"
+msgid "%s: Wrong size for input argument #%d : A matrix of size 2 expected.\n"
 msgstr ""
 
 #, c-format
@@ -248,8 +243,7 @@ msgstr "%s: Problema com 'flag' = %d\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: Must be between %d and %d.\n"
-msgstr ""
-"%s: Número errado de argumentos de entrada: deve ser entre %d e %d.\n"
+msgstr "%s: Número errado de argumentos de entrada: deve ser entre %d e %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector or matrix expected.\n"

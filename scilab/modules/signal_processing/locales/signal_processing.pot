@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2018-02-12 08:52+0100\n"
+"Revision-Date: 2018-03-05 10:43+0100\n"
 
 #
 # File: modules/signal_processing/sci_gateway/c/sci_conv2.c, line: 42
@@ -451,62 +451,62 @@ msgid "Signal Processing"
 msgstr ""
 
 #
-# File: modules/signal_processing/demos/signal_processing.dem.gateway.sce, line: 12
+# File: modules/signal_processing/demos/signal_processing.dem.gateway.sce, line: 13
 msgid "Spectral Estimation"
 msgstr ""
 
 #
-# File: modules/signal_processing/demos/signal_processing.dem.gateway.sce, line: 13
+# File: modules/signal_processing/demos/signal_processing.dem.gateway.sce, line: 14
 msgid "IIR filter design"
 msgstr ""
 
 #
-# File: modules/signal_processing/demos/signal_processing.dem.gateway.sce, line: 14
+# File: modules/signal_processing/demos/signal_processing.dem.gateway.sce, line: 15
 msgid "Minimax FIR filter design"
 msgstr ""
 
 #
-# File: modules/signal_processing/demos/signal_processing.dem.gateway.sce, line: 15
+# File: modules/signal_processing/demos/signal_processing.dem.gateway.sce, line: 16
 msgid "Discrete IIR filter"
 msgstr ""
 
 #
-# File: modules/signal_processing/demos/signal_processing.dem.gateway.sce, line: 16
+# File: modules/signal_processing/demos/signal_processing.dem.gateway.sce, line: 17
 msgid "Wiener filter"
 msgstr ""
 
 #
-# File: modules/signal_processing/demos/signal_processing.dem.gateway.sce, line: 17
+# File: modules/signal_processing/demos/signal_processing.dem.gateway.sce, line: 18
 msgid "Bode plots"
 msgstr ""
 
 #
-# File: modules/signal_processing/demos/signal_processing.dem.gateway.sce, line: 18
+# File: modules/signal_processing/demos/signal_processing.dem.gateway.sce, line: 19
 msgid "Window FIR filters"
 msgstr ""
 
 #
-# File: modules/signal_processing/demos/signal_processing.dem.gateway.sce, line: 19
+# File: modules/signal_processing/demos/signal_processing.dem.gateway.sce, line: 20
 msgid "1-D convolution"
 msgstr ""
 
 #
-# File: modules/signal_processing/demos/signal_processing.dem.gateway.sce, line: 20
+# File: modules/signal_processing/demos/signal_processing.dem.gateway.sce, line: 21
 msgid "2-D convolution"
 msgstr ""
 
 #
-# File: modules/signal_processing/demos/signal_processing.dem.gateway.sce, line: 21
+# File: modules/signal_processing/demos/signal_processing.dem.gateway.sce, line: 22
 msgid "Arma simulation and identification"
 msgstr ""
 
 #
-# File: modules/signal_processing/demos/signal_processing.dem.gateway.sce, line: 22
+# File: modules/signal_processing/demos/signal_processing.dem.gateway.sce, line: 23
 msgid "Arma, bidimensional version"
 msgstr ""
 
 #
-# File: modules/signal_processing/demos/signal_processing.dem.gateway.sce, line: 23
+# File: modules/signal_processing/demos/signal_processing.dem.gateway.sce, line: 24
 msgid "Arma, Spectral power estimation"
 msgstr ""
 

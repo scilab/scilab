@@ -22,5 +22,5 @@ end
 
 [str, n] = lasterror();
 assert_checkequal(n, 999);
-assert_checkequal(strstr(str, "xcos:"), str);
+assert_checkequal(strstr(str, "xcos"), str);
 

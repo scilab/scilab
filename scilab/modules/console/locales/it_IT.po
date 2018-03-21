@@ -11,16 +11,15 @@ msgstr ""
 "PO-Revision-Date: 2015-10-08 22:07+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18544)\n"
-"Language: it\n"
+"X-Generator: Launchpad (build 18566)\n"
 
 #, c-format
 msgid "%s: This feature has not been implemented in this mode.\n"
-msgstr ""
-"%s: Questa caratteristica non è stata sviluppata in questa modalità.\n"
+msgstr "%s: Questa caratteristica non è stata sviluppata in questa modalità.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A double scalar expected.\n"
@@ -65,11 +64,6 @@ msgstr ""
 "stringa.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A Single string of size %d expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr ""
 
@@ -109,14 +103,6 @@ msgid "[Continue display? n (no) to stop, any other key to continue]"
 msgstr ""
 "[Continuare a mostrare? n (no) per fermare, qualsiasi altro tasto per "
 "continuare]"
-
-#, c-format
-msgid ""
-"Type '%s' or '%s' to return to standard level prompt.\n"
-"\n"
-msgstr ""
-"Digitare \"%s\" o \"%s\" per tornare al prompt di livello standard.\n"
-"\n"
 
 msgid "Console"
 msgstr ""
@@ -801,6 +787,14 @@ msgstr ""
 
 msgid "Key binding"
 msgstr ""
+
+#, c-format
+msgid ""
+"Type '%s' or '%s' to return to standard level prompt.\n"
+"\n"
+msgstr ""
+"Digitare \"%s\" o \"%s\" per tornare al prompt di livello standard.\n"
+"\n"
 
 msgid "Field"
 msgstr "Campo"

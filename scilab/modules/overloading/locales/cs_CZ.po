@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2017-01-27 12:24+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
+"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18544)\n"
-"Language: cs\n"
+"X-Generator: Launchpad (build 18566)\n"
 
 #, c-format
 msgid "%s: Invalid index.\n"
@@ -34,6 +34,10 @@ msgid "%s: Multidimensional sparse matrices are not handled.\n"
 msgstr "%s: Mnohorozměrné řídké matice nejsou zpracovávány.\n"
 
 #, c-format
+msgid "%s: Non implemented feature.\n"
+msgstr ""
+
+#, c-format
 msgid "%c: input argument #%d has duplicates\n"
 msgstr ""
 
@@ -48,9 +52,12 @@ msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: Očekáván skalár, 'c', nebo 'd'.\n"
 
 #, c-format
-msgid ""
-"%s: Affection of a string in a matrix of numbers is not implemented.\n"
+msgid "%s: Affection of a string in a matrix of numbers is not implemented.\n"
 msgstr "%s: Ovlivnění řetězce v matici čísel není zavedeno.\n"
+
+#, c-format
+msgid "%s: Arguments #%d and #%d: Incompatible sizes.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Syntax x(j) only allowed for row cblock's.\n"
@@ -61,8 +68,7 @@ msgid "%s: Invalid field name.\n"
 msgstr "%s: Neplatný název pole.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: a valid field name expected.\n"
+msgid "%s: Wrong value for input argument #%d: a valid field name expected.\n"
 msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: Očekáván platný název pole.\n"
 
@@ -75,8 +81,7 @@ msgid "%s: Wrong number of output arguments.\n"
 msgstr "%s: Špatný počet výstupních argumentů.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Transpose can not be defined.\n"
+msgid "%s: Wrong size for input argument #%d: Transpose can not be defined.\n"
 msgstr ""
 "%s: ŠPatná velikost vstupního argumentu #%d: Transpozice nemůže být určena.\n"
 
@@ -90,8 +95,8 @@ msgid ""
 msgstr "%s: Vstupní argument #%d a #%d nají nekompatibilní rozměry.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván skalár.\n"
+msgid "%s: Implicit size not supported.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -106,10 +111,6 @@ msgstr "%s: Rozporné rozměry.\n"
 #, c-format
 msgid "%s: Inconsistent element-wise operation.\n"
 msgstr "%s: Rozporné operace směřující k prvkům.\n"
-
-#, c-format
-msgid "%s: Too many subscripts.\n"
-msgstr "%s: Příliš mnoho dolních indexů.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: 3D maximum expected.\n"
@@ -139,6 +140,10 @@ msgstr ""
 "%s: Špatný txp vstupního argumentu #%d: Očekávány celočíselné hodnoty.\n"
 
 #, c-format
+msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: time domains are not compatible.\n"
 msgstr ""
 
@@ -158,6 +163,10 @@ msgid "%s: Invalid syntax for a MIMO system.\n"
 msgstr "%s: Neplatná syntaxe pro systém MIMO.\n"
 
 #, c-format
+msgid "%s: The problem is singular.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: %d or %s expected.\n"
 msgstr "%s: Špatná hodnota vstupního argumentu #%d: Očekáváno %d nebo %s.\n"
 
@@ -167,7 +176,19 @@ msgid ""
 msgstr "%s: Vložení řídké matice do číselné matice není zavedeno.\n"
 
 #, c-format
+msgid "%s: Inconsistent addition.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: An integer matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Division by 0...\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Eye variable undefined in this context.\n"
 msgstr ""
 
 #, c-format
@@ -202,6 +223,10 @@ msgstr "%s: Špatná hodnota vstupního argumentu #%d: Musí být v sadě {%s}.\
 msgid "%s: Wrong type for input argument #%d: string or scalar expected.\n"
 msgstr ""
 
+#, c-format
+msgid "%s: Argument #%d: Decimal number(s) expected.\n"
+msgstr ""
+
 msgid "Invalid exponent: expected real exponents."
 msgstr ""
 
@@ -209,6 +234,42 @@ msgid "Division by zero"
 msgstr ""
 
 msgid "Invalid Exponent"
+msgstr ""
+
+#, c-format
+msgid "%s: Hypermatrix not supported.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Inconsistent multiplication.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"Complex comparison not supported. Please define %s_1_s_custom() or check "
+"your code."
+msgstr ""
+
+#, c-format
+msgid ""
+"Complex comparison not supported. Please define %s_2_s_custom() or check "
+"your code."
+msgstr ""
+
+#, c-format
+msgid ""
+"Complex comparison not supported. Please define %s_3_s_custom() or check "
+"your code."
+msgstr ""
+
+#, c-format
+msgid ""
+"Complex comparison not supported. Please define %s_4_s_custom() or check "
+"your code."
 msgstr ""
 
 #, c-format
@@ -221,8 +282,20 @@ msgid "%s: Not yet implemented.\n"
 msgstr "%s: Není ještě zavedeno.\n"
 
 #, c-format
+msgid "%s: Arguments #%d and #%d: Same numbers of rows expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong argument #%d.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: A null assignment can have only one non-colon index.\n"
 msgstr "%s? Prázdné přidělení může mít index pouze bez dvojtečky.\n"
+
+#, c-format
+msgid "%s: Invalid index\n"
+msgstr ""
 
 #, c-format
 msgid "%s: not implemented for argin#1 matrix and argin#2 hypermatrix\n"
@@ -230,6 +303,10 @@ msgstr ""
 
 #, c-format
 msgid "%s: Sparse insertion case is not implemented.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Argument #%d: Square matrix expected.\n"
 msgstr ""
 
 #, c-format
@@ -253,8 +330,7 @@ msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
 msgstr "%s: Špatný typ argumentu %d: Očekáván reálný skalár.\n"
 
 #, c-format
-msgid ""
-"%s: input and output matrices  must have the same number of elements.\n"
+msgid "%s: input and output matrices  must have the same number of elements.\n"
 msgstr "%s: vstupní a výstupní matice musí mít stejný počet prvků.\n"
 
 #, c-format
@@ -294,9 +370,10 @@ msgid ""
 "%s: Incompatible sizes for properties '%s' and '%s': Same sizes expected.\n"
 msgstr ""
 
-msgid "Invalid index.\n"
-msgstr "Neplatný index.\n"
-
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: Špatný počet vstupních argumentů: Očekáváno %d.\n"
+
+#, c-format
+msgid "%s: Incorrect assignment.\n"
+msgstr ""

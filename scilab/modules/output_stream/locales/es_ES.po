@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2015-10-08 22:02+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18544)\n"
-"Language: es\n"
+"X-Generator: Launchpad (build 18566)\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -92,8 +92,7 @@ msgstr ""
 "el diario.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: error can not close diary %d.\n"
+msgid "%s: Wrong value for input argument #%d: error can not close diary %d.\n"
 msgstr ""
 "%s: Valor incorrecto del argumento de entrada #%d: error no se puede cerrar "
 "el diario %d.\n"
@@ -105,8 +104,7 @@ msgstr ""
 "el diario.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
+msgid "%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
 msgstr ""
 "%s: Valor incorrecto del argumento de entrada #%d: error no se puede pausar "
 "el diario %d.\n"
@@ -192,42 +190,6 @@ msgid "%s: Wrong type of input arguments #%d: A real scalar expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected."
-msgstr ""
-"%s: Número incorrecto de argumento(s) de entrada: Se esperaban de %d a %d."
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
-"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
-"expected.\n"
-msgstr ""
-"%s: Valor incorrecto del argumento de entrada #%d: Se esperaba '%s', '%s', "
-"'%s', '%s', '%s' o '%s'.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
-msgstr ""
-"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un booleano.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected"
-msgstr ""
-"%s: Número incorrecto de argumentos de entrada: Se esperaban de %d a %d"
-
-#, c-format
-msgid "%s: Wrong export format: %s"
-msgstr "%s: Formato de exportación incorrecto: %s"
-
-#, c-format
-msgid "%s: Type %s is not handled : Define the function %s2%s."
-msgstr "%s: Tipo %s no soportado : Defina la función %s2%s."
-
-#, c-format
 msgid "%s: Wrong number of input argument(s).\n"
 msgstr "%s: Número incorrecto de argumento(s) de entrada.\n"
 
@@ -244,8 +206,7 @@ msgstr ""
 "caracteres.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A state-space model expected.\n"
+msgid "%s: Wrong type for input argument #%d: A state-space model expected.\n"
 msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un modelo "
 "estado-espacio.\n"

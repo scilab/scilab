@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2018-02-12 08:52+0100\n"
+"Revision-Date: 2018-03-05 10:43+0100\n"
 
 # File: modules/core/sci_gateway/c/sci_debug.c, line: 43
 #, c-format
@@ -941,58 +941,58 @@ msgstr ""
 msgid "Scilab %s Console"
 msgstr ""
 
-# File: /home/davidcl/work/branches/6.0-review/scilab/etc/scilab.start, line: 39
+# File: /home/bignier/scilab2/scilab/etc/scilab.start, line: 39
 msgid "Startup execution:"
 msgstr ""
 
 #
-# File: /home/davidcl/work/branches/6.0-review/scilab/etc/scilab.start, line: 40
+# File: /home/bignier/scilab2/scilab/etc/scilab.start, line: 40
 #, c-format
 msgid "  loading initial environment"
 msgstr ""
 
 #
-# File: /home/davidcl/work/branches/6.0-review/scilab/etc/scilab.start, line: 56
+# File: /home/bignier/scilab2/scilab/etc/scilab.start, line: 56
 #, c-format
 msgid "Failed to execute %s:"
 msgstr ""
 
 #
-# File: /home/davidcl/work/branches/6.0-review/scilab/etc/scilab.start, line: 138
+# File: /home/bignier/scilab2/scilab/etc/scilab.start, line: 138
 msgid "&File"
 msgstr ""
 
 #
-# File: /home/davidcl/work/branches/6.0-review/scilab/etc/scilab.start, line: 139
+# File: /home/bignier/scilab2/scilab/etc/scilab.start, line: 139
 msgid "&Edit"
 msgstr ""
 
 #
-# File: /home/davidcl/work/branches/6.0-review/scilab/etc/scilab.start, line: 140
+# File: /home/bignier/scilab2/scilab/etc/scilab.start, line: 140
 msgid "&Preferences"
 msgstr ""
 
 #
-# File: /home/davidcl/work/branches/6.0-review/scilab/etc/scilab.start, line: 141
+# File: /home/bignier/scilab2/scilab/etc/scilab.start, line: 141
 msgid "&Control"
 msgstr ""
 
 #
-# File: /home/davidcl/work/branches/6.0-review/scilab/etc/scilab.start, line: 142
-# File: /home/davidcl/work/branches/6.0-review/scilab/etc/scilab.start, line: 144
-# File: /home/davidcl/work/branches/6.0-review/scilab/etc/scilab.start, line: 147
-# File: /home/davidcl/work/branches/6.0-review/scilab/etc/scilab.start, line: 150
-# File: /home/davidcl/work/branches/6.0-review/scilab/etc/scilab.start, line: 153
+# File: /home/bignier/scilab2/scilab/etc/scilab.start, line: 142
+# File: /home/bignier/scilab2/scilab/etc/scilab.start, line: 144
+# File: /home/bignier/scilab2/scilab/etc/scilab.start, line: 147
+# File: /home/bignier/scilab2/scilab/etc/scilab.start, line: 150
+# File: /home/bignier/scilab2/scilab/etc/scilab.start, line: 153
 msgid "&Applications"
 msgstr ""
 
 #
-# File: /home/davidcl/work/branches/6.0-review/scilab/etc/scilab.start, line: 155
+# File: /home/bignier/scilab2/scilab/etc/scilab.start, line: 155
 msgid "&?"
 msgstr ""
 
 #
-# File: /home/davidcl/work/branches/6.0-review/scilab/etc/scilab.start, line: 156
+# File: /home/bignier/scilab2/scilab/etc/scilab.start, line: 156
 # File: modules/core/macros/toolboxes.sci, line: 69
 # File: modules/core/macros/toolboxes.sci, line: 70
 # File: modules/core/macros/toolboxes.sci, line: 79
@@ -1005,37 +1005,37 @@ msgid "Introduction: Getting started with Scilab"
 msgstr ""
 
 #
-# File: modules/core/demos/core.dem.gateway.sce, line: 12
+# File: modules/core/demos/core.dem.gateway.sce, line: 13
 msgid "Scilab objects"
 msgstr ""
 
 #
-# File: modules/core/demos/core.dem.gateway.sce, line: 13
+# File: modules/core/demos/core.dem.gateway.sce, line: 14
 msgid "Operations and numerical primitives"
 msgstr ""
 
 #
-# File: modules/core/demos/core.dem.gateway.sce, line: 14
+# File: modules/core/demos/core.dem.gateway.sce, line: 15
 msgid "Online definition of function"
 msgstr ""
 
 #
-# File: modules/core/demos/core.dem.gateway.sce, line: 15
+# File: modules/core/demos/core.dem.gateway.sce, line: 16
 msgid "Optimization and simulation"
 msgstr ""
 
 #
-# File: modules/core/demos/core.dem.gateway.sce, line: 16
+# File: modules/core/demos/core.dem.gateway.sce, line: 17
 msgid "Systems: definition and analysis"
 msgstr ""
 
 #
-# File: modules/core/demos/core.dem.gateway.sce, line: 17
+# File: modules/core/demos/core.dem.gateway.sce, line: 18
 msgid "Linear algebra"
 msgstr ""
 
 #
-# File: modules/core/demos/core.dem.gateway.sce, line: 18
+# File: modules/core/demos/core.dem.gateway.sce, line: 19
 msgid "Call an external routine"
 msgstr ""
 

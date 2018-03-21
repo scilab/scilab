@@ -81,7 +81,7 @@ c
  90   call xerrwv('intdy--  t (=r1) illegal      ',
      1   30, 52, 1, 0, 0, 0, 1, t, 0.0d+0)
       call xerrwv(
-     1'      t n est pas entre tcur - hu (= r1) et tcur (=r2)',
+     1'      t is not in [tcur-hu, tcur] = [r1, r2]',
      1   60, 52, 1, 0, 0, 0, 2, tp, tn)
       iflag = -2
       return

@@ -28,8 +28,14 @@ if status <> %t then pause,end;
 
 scicos_simulate(scs_m);
 
-block = scs_m.objs(5);
-if block.gui <> "scifunc_block_m" then pause,end;
+block = [];
+for o = scs_m.objs
+    if typeof(o) == "Block" & o.gui == "scifunc_block_m" then
+        block = o;
+        break;
+    end
+end
+if typeof(block) <> "Block" then pause,end;
 if isempty(block.model.opar) <> %t then pause,end;
 
 

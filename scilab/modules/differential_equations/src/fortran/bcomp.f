@@ -15,7 +15,7 @@ C      implicit undefined (a-z)
       nnn=int(min(1+t/pas,dble(nn)))
       
       if ( nnn.le.0 .or. nnn.gt.nn) then 
-         write(06,*) ' depassement ds vbruit'
+         write(06,*) ' overflow in vbruit'
       endif
       
       brui=br(nnn)

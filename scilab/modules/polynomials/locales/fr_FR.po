@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-07-17 10:57+0000\n"
-"Last-Translator: Mickael Albertus <Unknown>\n"
+"PO-Revision-Date: 2018-02-20 01:08+0000\n"
+"Last-Translator: Paul Bignier <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18544)\n"
-"Language: fr\n"
+"X-Generator: Launchpad (build 18566)\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
@@ -33,8 +33,7 @@ msgstr ""
 "attendu.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A polynomial '%ls' expected.\n"
+msgid "%s: Wrong value for input argument #%d: A polynomial '%ls' expected.\n"
 msgstr ""
 "%s : Valeur erronée pour l'argument d'entrée n°%d : Un polynôme '%ls' "
 "attendu.\n"
@@ -203,18 +202,18 @@ msgid "Introduction"
 msgstr "Introduction"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A square matrix expected.\n"
-msgstr ""
-"%s : Dimension erronée de l'argument d'entrée n°%d : Une matrice carrée "
-"attendue.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A floating point number or polynomial "
 "or rational fraction array expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Un tableau de flottants, de "
 "polynômes ou de fractions rationnelles attendu.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A square matrix expected.\n"
+msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Une matrice carrée "
+"attendue.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
@@ -226,8 +225,7 @@ msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : Un polynôme attendu.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A rational fraction expected.\n"
+msgid "%s: Wrong size for input argument #%d: A rational fraction expected.\n"
 msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : Une fraction "
 "rationnelle attendue.\n"
@@ -249,11 +247,20 @@ msgstr ""
 "ou un tableau de polynômes est attendu.\n"
 
 #, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendu(s).\n"
+
+#, c-format
 msgid ""
-"%s: Wrong type for argument #%d: Integer array or Polynomial expected.\n"
+"%s: Wrong type for argument #%d: Decimal or encoded integers or Polynomial "
+"expected.\n"
 msgstr ""
-"%s : Type erroné de l'argument n°%d : Un tableau d'entiers ou un polynôme "
-"attendu.\n"
+"%s : Type erroné de l'argument d'entrée #%d: Réels, entiers ou polynômes "
+"attendus.\n"
+
+#, c-format
+msgid "%s: Wrong values for argument #%d: Integer values expected.\n"
+msgstr "%s : Valeur erronée de l'argument d'entrée #%d: Entier attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument: Polynomial array expected.\n"
@@ -275,6 +282,10 @@ msgid "%s: incompatible input arguments %d and %d\n"
 msgstr "%s : Les arguments d'entrée n°%d et n°%d sont incompatibles.\n"
 
 #, c-format
+msgid "%s: Argument #%d: Square matrix expected.\n"
+msgstr "%s : Argument #%d : matrice carrée attendue.\n"
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : Doit être dans l'ensemble "
@@ -282,7 +293,13 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong type for argument #%d: Real Matrix of Polynomials expected.\n"
+"%s: Wrong type for argument #%d: Integer array or Polynomial expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument n°%d : Un tableau d'entiers ou un polynôme "
+"attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Real Matrix of Polynomials expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument n°%d : Une matrice réelle de polynômes "
 "attendue.\n"
@@ -298,8 +315,7 @@ msgstr "%s : Valeur erronée de l'argument n°%d : %s ou %s attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Polynomial expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Un polynôme attendu.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un polynôme attendu.\n"
 
 #, c-format
 msgid "%s: Input argument #%d must be real.\n"

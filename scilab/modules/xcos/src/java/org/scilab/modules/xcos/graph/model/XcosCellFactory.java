@@ -263,6 +263,10 @@ public final class XcosCellFactory {
                 l.setSource(srcPort);
             } else {
                 LOG.severe("Unable to connect link " + l.getId() + " : invalid source " + src[0]);
+                int index = Arrays.asList(cells).indexOf(l);
+                if (index >= 0) {
+                    cells[index] = null;
+                }
             }
 
             BasicPort destPort = ports.get(dest[0]);
@@ -270,6 +274,10 @@ public final class XcosCellFactory {
                 l.setTarget(destPort);
             } else {
                 LOG.severe("Unable to connect link " + l.getId() + " : invalid target " + dest[0]);
+                int index = Arrays.asList(cells).indexOf(l);
+                if (index >= 0) {
+                    cells[index] = null;
+                }
             }
         }
 

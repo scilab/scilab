@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2016-10-19 13:04+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18544)\n"
-"Language: es\n"
+"X-Generator: Launchpad (build 18566)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -23,8 +23,7 @@ msgstr "%s: No se puede leer el argumento de entrada #%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
-msgstr ""
-"%s: Tipo incorrecto para argumento %d: Se esperaba un escalar real.\n"
+msgstr "%s: Tipo incorrecto para argumento %d: Se esperaba un escalar real.\n"
 
 #, c-format
 msgid "%s: Wrong size for argument #%d: Real scalar expected.\n"
@@ -264,8 +263,7 @@ msgid "%s: Wrong type for input argument #%d: An integer expected."
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: a String or Integer expected.\n"
+msgid "%s: Wrong type for input argument #%d: a String or Integer expected.\n"
 msgstr ""
 
 #, c-format
@@ -366,8 +364,7 @@ msgid "Pause mode: enter empty lines to continue.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Valid function name expected.\n"
+msgid "%s: Wrong value for input argument #%d: Valid function name expected.\n"
 msgstr ""
 
 #, c-format
@@ -391,8 +388,7 @@ msgid "%s: Wrong size for input argument #%d: string expected."
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 
 #, c-format
@@ -511,15 +507,6 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Please install texmacs ATOMS module: atomsInstall('texmacs')\n"
-"\n"
-msgstr ""
-
-msgid "Warning"
-msgstr "Advertencia"
-
-#, c-format
 msgid "Scilab version \"%d.%d.%d.%d\"\n"
 msgstr "Versión de Scilab \"%d.%d.%d.%d\"\n"
 
@@ -537,8 +524,7 @@ msgstr "Información sobre la versión de Scilab"
 msgid "Debugger is on a breakpoint\n"
 msgstr ""
 
-msgid ""
-"(c)ontinue or (a)bort current execution before execute a new command\n"
+msgid "(c)ontinue or (a)bort current execution before execute a new command\n"
 msgstr ""
 
 msgid ""
@@ -555,7 +541,10 @@ msgstr ""
 "Fin de la pila\n"
 "\n"
 
-msgid "Scilab Enterprises\n"
+msgid "ESI Group\n"
+msgstr ""
+
+msgid "Copyright (c) 2017-2018 (ESI Group)\n"
 msgstr ""
 
 msgid "Copyright (c) 2011-2017 (Scilab Enterprises)\n"

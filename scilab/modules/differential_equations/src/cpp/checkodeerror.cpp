@@ -46,7 +46,7 @@ int checkOdeError(int meth, int istate)
             }
             else if (istate == -2)
             {
-                sciprint(_("Excesive accuracy requested (tolerances too small).\n"));
+                sciprint(_("Excessive accuracy requested (tolerances too small).\n"));
                 return 1;
             }
             else if (istate == -3)

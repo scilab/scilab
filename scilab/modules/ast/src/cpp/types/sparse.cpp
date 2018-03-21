@@ -569,7 +569,7 @@ void Sparse::create2(int rows, int cols, Double SPARSE_CONST& src, Double SPARSE
         }
 
         matrixCplx = new CplxSparse_t(rows, cols);
-        matrixCplx->setFromTriplets(tripletList.begin(), tripletList.end(), DupFunctor<std::complex<double>>());
+        matrixCplx->setFromTriplets(tripletList.begin(), tripletList.end());
         m_iRows = static_cast<int>(matrixCplx->rows());
         m_iCols = static_cast<int>(matrixCplx->cols());
     }
@@ -586,7 +586,7 @@ void Sparse::create2(int rows, int cols, Double SPARSE_CONST& src, Double SPARSE
         }
 
         matrixReal = new RealSparse_t(rows, cols);
-        matrixReal->setFromTriplets(tripletList.begin(), tripletList.end(), DupFunctor<double>());
+        matrixReal->setFromTriplets(tripletList.begin(), tripletList.end());
 
         m_iRows = static_cast<int>(matrixReal->rows());
         m_iCols = static_cast<int>(matrixReal->cols());
@@ -3237,7 +3237,7 @@ void SparseBool::create2(int rows, int cols, Bool SPARSE_CONST& src, Double SPAR
     }
 
     matrixBool = new BoolSparse_t(rows, cols);
-    matrixBool->setFromTriplets(tripletList.begin(), tripletList.end(), DupFunctor<bool>());
+    matrixBool->setFromTriplets(tripletList.begin(), tripletList.end());
 
     m_iRows = static_cast<int>(matrixBool->rows());
     m_iCols = static_cast<int>(matrixBool->cols());

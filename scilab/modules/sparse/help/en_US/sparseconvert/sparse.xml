@@ -81,7 +81,7 @@
             <literal>ij</literal> and <literal>v</literal> must have the same column dimension.
             If optional <literal>mn</literal> parameter is not given the <literal>sp</literal>
             matrix dimensions are the max value of <literal>ij(:,1)</literal> and <literal>ij(:,2)</literal>
-            respectively.
+            respectively. If many values are given for same position, theses values are summed.
         </para>
         <para>
             Operations (concatenation, addition, etc,) with sparse matrices are

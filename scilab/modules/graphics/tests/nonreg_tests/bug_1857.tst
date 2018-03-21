@@ -6,12 +6,12 @@
 // =============================================================================
 
 // <-- TEST WITH GRAPHIC -->
-// <-- NOT FIXED -->
+// <-- NO CHECK REF -->
 
 // <-- Non-regression test for bug 1857 -->
 //
 // <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/show_bug.cgi?id=1857
+// http://bugzilla.scilab.org/1857
 //
 // <-- Short Description -->
 // Problems with mtlb_semilogx, mtlb_semilogy and mtlb_loglog.

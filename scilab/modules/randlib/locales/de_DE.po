@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2016-12-07 22:13+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18544)\n"
-"Language: de\n"
+"X-Generator: Launchpad (build 18566)\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
@@ -51,6 +51,10 @@ msgstr ""
 
 msgid "Missing vect for random permutation\n"
 msgstr "Fehlender Vektor für zufällige Permutation\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Positive scalar expected.\n"
@@ -109,8 +113,7 @@ msgid "%s: setgmn return with state %d.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d : Must be between %lf and %d.\n"
+msgid "%s: Wrong value for input argument #%d : Must be between %lf and %d.\n"
 msgstr ""
 
 #, c-format
@@ -165,8 +168,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input arguments #%d and #%d: Low < High expected.\n"
+msgid "%s: Wrong value for input arguments #%d and #%d: Low < High expected.\n"
 msgstr ""
 
 #, c-format
@@ -248,8 +250,7 @@ msgid "Bad seed for mt, must be an int in [0, 2^32-1]\n"
 msgstr "Falsche Vorgabe für mt, muß ein Integer in [0,2^32-1] sein\n"
 
 msgid "The first component of the mt state mt, must be an int in [1, 624]\n"
-msgstr ""
-"Die erste Komponente vom Zustand mt, muß ein Integer in [1,624] sein\n"
+msgstr "Die erste Komponente vom Zustand mt, muß ein Integer in [1,624] sein\n"
 
 msgid ""
 "\n"

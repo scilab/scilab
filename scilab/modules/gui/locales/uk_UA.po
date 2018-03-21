@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2017-02-09 21:20+0000\n"
+"PO-Revision-Date: 2018-02-19 19:18+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
+"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18544)\n"
-"Language: uk\n"
+"X-Generator: Launchpad (build 18566)\n"
 
 #, c-format
 msgid "%s: Figure number must be given when not in '%s' mode.\n"
@@ -183,8 +183,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong input arguments: '%s' expected.\n"
-msgstr ""
-"%s: помилкові вхідні параметри: слід використовувати параметр «%s».\n"
+msgstr "%s: помилкові вхідні параметри: слід використовувати параметр «%s».\n"
 
 #, c-format
 msgid "%s: Wrong input arguments: '%s' or '%s' expected.\n"
@@ -300,8 +299,7 @@ msgstr ""
 "керування «%s».\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"
+msgid "%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати "
 "коректний елемент керування «%s».\n"
@@ -355,15 +353,13 @@ msgid "%s: Wrong number for input argument: %d expected.\n"
 msgstr "%s: помилкове число для вхідного параметра: мало бути %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: string or macro name expected.\n"
+msgid "%s: Wrong size for input argument #%d: string or macro name expected.\n"
 msgstr ""
 "%s: помилкова розмірність вхідного параметра №%d: мало бути вказано рядок "
 "або назву макросу.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: string or macro name expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or macro name expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: мало бути вказано рядок або назву "
 "макросу.\n"
@@ -398,8 +394,7 @@ msgstr ""
 "вектор 1 на %d або %d на 1.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A scalar or a vector expected.\n"
+msgid "%s: Wrong type for input argument #%d: A scalar or a vector expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати скалярний "
 "або векторний тип.\n"
@@ -426,13 +421,11 @@ msgstr ""
 
 #, c-format
 msgid "%s:  Wrong number of output argument(s): %d to %d expected."
-msgstr ""
-"%s:  помилкова кількість вихідних параметрів: мало бути від %d до %d."
+msgstr "%s:  помилкова кількість вихідних параметрів: мало бути від %d до %d."
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A list expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: мало бути вказано список.\n"
+msgstr "%s: помилковий тип вхідного параметра №%d: мало бути вказано список.\n"
 
 #, c-format
 msgid ""
@@ -512,8 +505,7 @@ msgstr "Не вдалося визначити поточний вигляд і 
 
 #, c-format
 msgid "%s:  Wrong type for input argument #%d: A boolean expected."
-msgstr ""
-"%s:  помилковий тип вхідного параметра №%d: мало бути булеве значення."
+msgstr "%s:  помилковий тип вхідного параметра №%d: мало бути булеве значення."
 
 #, c-format
 msgid "%s:  Wrong type for input argument #%d: string expected."
@@ -601,8 +593,7 @@ msgstr ""
 "%s: помилковий вхідний параметр №%d: слід використовувати «%s» або «%s».\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: 'pos' or 'gdi' value expected.\n"
+msgid "%s: Wrong size for input argument #%d: 'pos' or 'gdi' value expected.\n"
 msgstr ""
 "%s: помилкова розмірність вхідного параметра №%d: мало бути вказано значення "
 "«pos» або «gdi».\n"
@@ -645,27 +636,17 @@ msgstr ""
 "%s: помилковий тип параметра %d: слід використовувати матрицю булівських "
 "значень.\n"
 
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати вектор "
-"дійсних або комплексних значень.\n"
+msgid "Scilab Input Value Request"
+msgstr "Запит Scilab на вхідне значення"
 
-msgid "Scilab Choices Request"
-msgstr "Запит щодо вибору Scilab"
+msgid "Scilab Multiple Values Request"
+msgstr "Запит Scilab на декілька значень"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
 msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати вектор з "
 "рядків.\n"
-
-msgid "Scilab Input Value Request"
-msgstr "Запит Scilab на вхідне значення"
-
-msgid "Scilab Multiple Values Request"
-msgstr "Запит Scilab на декілька значень"
 
 #, c-format
 msgid ""
@@ -687,6 +668,16 @@ msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати матрицю з "
 "рядків.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати вектор "
+"дійсних або комплексних значень.\n"
+
+msgid "Scilab Choices Request"
+msgstr "Запит щодо вибору Scilab"
 
 #, c-format
 msgid "'%s' property does not exist for this handle.\n"
@@ -753,8 +744,7 @@ msgstr ""
 
 #, c-format
 msgid "Wrong type for '%s' property: string expected.\n"
-msgstr ""
-"Помилковий тип властивості «%s»: слід використовувати тип «string».\n"
+msgstr "Помилковий тип властивості «%s»: слід використовувати тип «string».\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: string expected.\n"
@@ -803,8 +793,7 @@ msgstr ""
 
 #, c-format
 msgid "Wrong type for '%s' property: String expected.\n"
-msgstr ""
-"Помилковий тип властивості «%s»: слід використовувати тип «string».\n"
+msgstr "Помилковий тип властивості «%s»: слід використовувати тип «string».\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: A real expected.\n"
@@ -894,8 +883,7 @@ msgstr ""
 "значенням.\n"
 
 #, c-format
-msgid ""
-"Wrong type for '%s' property: A real row vector or a string expected.\n"
+msgid "Wrong type for '%s' property: A real row vector or a string expected.\n"
 msgstr ""
 "Помилковий тип значення властивості «%s»: слід використовувати вектор-рядок "
 "або рядок.\n"
@@ -1066,8 +1054,8 @@ msgstr "&Завантажити середовище..."
 msgid "&Save environment..."
 msgstr "З&берегти середовище…"
 
-msgid "&Current Working Directory (CWD):"
-msgstr "&Поточний робочий каталог (CWD):"
+msgid "&Current Working Directory"
+msgstr "&Поточний робочий каталог"
 
 msgid "    &Browse for new"
 msgstr "    &Вказати новий"
@@ -2348,9 +2336,6 @@ msgstr "Файли SCE Scilab"
 msgid "Scilab binary files"
 msgstr "Бінарні файли Scilab"
 
-msgid "All Scilab files"
-msgstr "Всі файли Scilab"
-
 msgid "Xcos files"
 msgstr "Файли Xcos"
 
@@ -2403,8 +2388,7 @@ msgstr "Не вдалося відкрити: "
 msgid "Restoration error"
 msgstr "Помилка відновлення"
 
-msgid ""
-"The configuration file has been corrupted and reset to the default one."
+msgid "The configuration file has been corrupted and reset to the default one."
 msgstr ""
 "Файл налаштувань пошкоджено. Довелося відновити типові значення параметрів."
 
@@ -2746,8 +2730,7 @@ msgstr ""
 "рядок.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A border or a string expected.\n"
+msgid "%s: Wrong type for input argument #%d: A border or a string expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: мало бути вказано межу або "
 "рядок.\n"
@@ -2794,6 +2777,12 @@ msgstr ""
 "%d параметрів.\n"
 
 #, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вихідних параметрів: слід використовувати значення "
+"від %d до %d.\n"
+
+#, c-format
 msgid "%s: Type %s is not implemented.\n"
 msgstr "%s: тип %s не реалізовано.\n"
 
@@ -2823,6 +2812,21 @@ msgstr ""
 "Відповідь, вказана для %s \n"
 " є помилковою: %s.\n"
 
+msgid "Select a file to open"
+msgstr "Виберіть файл, який слід відкрити"
+
+msgid "Scilab scripts"
+msgstr "скрипти Scilab"
+
+msgid "Xcos diagrams"
+msgstr "діаграми Xcos"
+
+msgid "Scilab Tests"
+msgstr "Тести Scilab"
+
+msgid "Scilab Library"
+msgstr "Бібліотека Scilab"
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: uitree expected.\n"
 msgstr ""
@@ -2836,8 +2840,7 @@ msgstr ""
 "%d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for element %d of input argument #%d: uitree expected.\n"
+msgid "%s: Wrong type for element %d of input argument #%d: uitree expected.\n"
 msgstr ""
 "%s: помилковий тип елемента %d вхідного параметра №%d: мало бути вказано "
 "uitree.\n"
@@ -2915,8 +2918,7 @@ msgstr "%s: помилковий тип %s: слід використовува�
 
 #, c-format
 msgid "%s: Wrong type for %s: A row vector of strings expected.\n"
-msgstr ""
-"%s: помилковий тип для %s: слід використовувати вектор-рядок рядків.\n"
+msgstr "%s: помилковий тип для %s: слід використовувати вектор-рядок рядків.\n"
 
 #, c-format
 msgid "%s: Wrong size for %s: A row vector of strings expected.\n"

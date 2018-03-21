@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2018-02-12 08:52+0100\n"
+"Revision-Date: 2018-03-05 10:43+0100\n"
 
 # File: modules/overloading/macros/%0_i_st.sci, line: 22
 # File: modules/overloading/macros/%b_e.sci, line: 26
@@ -547,7 +547,7 @@ msgstr ""
 
 #
 # File: modules/overloading/macros/%s_b_s.sci, line: 22
-# File: modules/overloading/macros/%s_i_st.sci, line: 97
+# File: modules/overloading/macros/%s_i_st.sci, line: 106
 #, c-format
 msgid "%s: Not yet implemented.\n"
 msgstr ""
@@ -568,15 +568,15 @@ msgstr ""
 
 #
 # File: modules/overloading/macros/%s_i_s.sci, line: 151
-# File: modules/overloading/macros/%s_i_st.sci, line: 36
-# File: modules/overloading/macros/%s_i_st.sci, line: 71
+# File: modules/overloading/macros/%s_i_st.sci, line: 38
+# File: modules/overloading/macros/%s_i_st.sci, line: 80
 # File: modules/overloading/macros/generic_i_hm.sci, line: 57
 #, c-format
 msgid "%s: A null assignment can have only one non-colon index.\n"
 msgstr ""
 
 #
-# File: modules/overloading/macros/%s_i_st.sci, line: 60
+# File: modules/overloading/macros/%s_i_st.sci, line: 69
 #, c-format
 msgid "%s: Invalid index\n"
 msgstr ""

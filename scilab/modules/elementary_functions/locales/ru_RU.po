@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2017-02-25 14:30+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18544)\n"
-"Language: ru\n"
+"X-Generator: Launchpad (build 18566)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -130,8 +130,7 @@ msgid "%s: variable size exceeded : less than %d expected.\n"
 msgstr "%s: размер переменной превышен: ожидалось менее %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d : Singularity of the function.\n"
+msgid "%s: Wrong value for input argument #%d : Singularity of the function.\n"
 msgstr ""
 "%s: Неверное значение входного аргумента №%d : сингулярность функции.\n"
 
@@ -179,8 +178,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): At most %d expected.\n"
-msgstr ""
-"%s: Неверное количество выходных аргументов: ожидалось не более %d.\n"
+msgstr "%s: Неверное количество выходных аргументов: ожидалось не более %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
@@ -225,8 +223,7 @@ msgstr "Недопустимый индекс.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr ""
-"%s: Неверное количество выходных аргументов: ожидалось от %d до %d.\n"
+msgstr "%s: Неверное количество выходных аргументов: ожидалось от %d до %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : string expected.\n"
@@ -260,8 +257,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d : At most %d expected.\n"
-msgstr ""
-"%s: Входное значение входного аргумента №%d : ожидалось не более %d.\n"
+msgstr "%s: Входное значение входного аргумента №%d : ожидалось не более %d.\n"
 
 #, c-format
 msgid ""
@@ -272,8 +268,7 @@ msgstr ""
 "переформировать более %d размерностей.\n"
 
 #, c-format
-msgid ""
-"%s: Input and output matrices must have the same number of elements.\n"
+msgid "%s: Input and output matrices must have the same number of elements.\n"
 msgstr ""
 "%s: Входные и выходные матрицы должны иметь одинаковое количество "
 "элементов.\n"
@@ -479,8 +474,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong input argument #%d: An unsigned integer expected.\n"
-msgstr ""
-"%s: Неверный входной параметр №%d: ожидалось целое число без знака.\n"
+msgstr "%s: Неверный входной параметр №%d: ожидалось целое число без знака.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
@@ -489,13 +483,11 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Same size expected.\n"
-msgstr ""
-"%s: Неверный размер входных параметров: ожидался одинаковый размер.\n"
+msgstr "%s: Неверный размер входных параметров: ожидался одинаковый размер.\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
-msgstr ""
-"%s: Неверный размер входных параметров: ожидался одинаковый размер.\n"
+msgstr "%s: Неверный размер входных параметров: ожидался одинаковый размер.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 0 or 1 expected.\n"
@@ -506,8 +498,8 @@ msgid ""
 "%s: Wrong type for input argument #%d: Scalar/matrix/hypermatrix of unsigned "
 "integers expected.\n"
 msgstr ""
-"%s: Неверный тип входного аргумента №%d: ожидался "
-"скаляр/матрица/гиперматрица беззнаковых целочисленных значений.\n"
+"%s: Неверный тип входного аргумента №%d: ожидался скаляр/матрица/"
+"гиперматрица беззнаковых целочисленных значений.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A positive real expected.\n"
@@ -535,8 +527,7 @@ msgstr ""
 "%s: Неверный размер входного параметра №%d: ожидалась квадратная матрица.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Matrix is not diagonalisable.\n"
+msgid "%s: Wrong value for input argument #%d: Matrix is not diagonalisable.\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d: матрица не может быть "
 "приведена к диагональному виду.\n"
@@ -658,8 +649,7 @@ msgstr "%s: Невозможно привести к диагональному 
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
-msgstr ""
-"%s: Неверный размер входного аргумента №%d: ожидался вектор-столбец.\n"
+msgstr "%s: Неверный размер входного аргумента №%d: ожидался вектор-столбец.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
@@ -720,13 +710,11 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of output arguments: At most %d expected.\n"
-msgstr ""
-"%s: Неверное количество выходных параметров: ожидалось не больше %d.\n"
+msgstr "%s: Неверное количество выходных параметров: ожидалось не больше %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: At most %d expected.\n"
-msgstr ""
-"%s: Неверное количество входных параметров: ожидалось не больше %d.\n"
+msgstr "%s: Неверное количество входных параметров: ожидалось не больше %d.\n"
 
 #, c-format
 msgid ""
@@ -765,8 +753,7 @@ msgstr ""
 "матрица.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong sizes for input argument #%d and #%d: Same sizes expected.\n"
+msgid "%s: Wrong sizes for input argument #%d and #%d: Same sizes expected.\n"
 msgstr ""
 "%s: Неверные размеры входных аргументов №%d и №%d: ожидались одинаковые "
 "размеры.\n"
@@ -781,8 +768,8 @@ msgstr "%s: Неверный размер входного параметра �
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Must be a valid permutation of "
-"[1..n>%d] integers.\n"
+"%s: Wrong value for input argument #%d: Must be a valid permutation of [1..n>"
+"%d] integers.\n"
 msgstr ""
 "%s: Неверное значение для входного аргумента №%d: должна быть корректная "
 "целых чисел в интервале [1..n>%d].\n"
@@ -924,8 +911,7 @@ msgstr ""
 "строки.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Must have at least 4 columns.\n"
+msgid "%s: Wrong size for input argument #%d: Must have at least 4 columns.\n"
 msgstr ""
 "%s: Неверный размер входного аргумента №%d: должно быть по крайней мере 4 "
 "столбца.\n"
@@ -941,5 +927,4 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
-msgstr ""
-"%s: Неверный размер входных параметров: ожидался совместимый размер.\n"
+msgstr "%s: Неверный размер входных параметров: ожидался совместимый размер.\n"

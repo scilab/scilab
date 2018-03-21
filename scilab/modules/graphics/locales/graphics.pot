@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2018-02-12 08:52+0100\n"
+"Revision-Date: 2018-03-05 10:43+0100\n"
 
 # File: modules/graphics/sci_gateway/c/sci_Legend.c, line: 83
 # File: modules/graphics/sci_gateway/c/sci_Legend.c, line: 221
@@ -518,7 +518,7 @@ msgstr ""
 
 #
 # File: modules/graphics/sci_gateway/c/sci_contour2di.c, line: 127
-# File: modules/graphics/sci_gateway/c/sci_set.c, line: 155
+# File: modules/graphics/sci_gateway/c/sci_set.c, line: 159
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
 msgstr ""
@@ -530,7 +530,7 @@ msgstr ""
 # File: modules/graphics/sci_gateway/c/sci_glue.c, line: 125
 # File: modules/graphics/sci_gateway/c/sci_move.c, line: 105
 # File: modules/graphics/sci_gateway/c/sci_rotate_axes.c, line: 102
-# File: modules/graphics/sci_gateway/c/sci_set.c, line: 304
+# File: modules/graphics/sci_gateway/c/sci_set.c, line: 308
 # File: modules/graphics/sci_gateway/c/sci_unglue.c, line: 84
 # File: modules/graphics/sci_gateway/cpp/sci_get.cpp, line: 240
 # File: modules/graphics/src/c/BuildObjects.c, line: 843
@@ -648,7 +648,7 @@ msgstr ""
 #
 # File: modules/graphics/sci_gateway/c/sci_is_handle_valid.c, line: 51
 # File: modules/graphics/sci_gateway/c/sci_is_handle_valid.c, line: 67
-# File: modules/graphics/sci_gateway/c/sci_set.c, line: 165
+# File: modules/graphics/sci_gateway/c/sci_set.c, line: 169
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of handle expected.\n"
 msgstr ""
@@ -674,15 +674,15 @@ msgstr ""
 
 #
 # File: modules/graphics/sci_gateway/c/sci_newaxes.c, line: 90
-# File: modules/graphics/sci_gateway/c/sci_set.c, line: 68
-# File: modules/graphics/sci_gateway/c/sci_set.c, line: 135
-# File: modules/graphics/sci_gateway/c/sci_set.c, line: 143
-# File: modules/graphics/sci_gateway/c/sci_set.c, line: 326
-# File: modules/graphics/sci_gateway/c/sci_set.c, line: 345
-# File: modules/graphics/sci_gateway/c/sci_set.c, line: 375
-# File: modules/graphics/sci_gateway/c/sci_set.c, line: 406
-# File: modules/graphics/sci_gateway/c/sci_set.c, line: 419
-# File: modules/graphics/sci_gateway/c/sci_set.c, line: 437
+# File: modules/graphics/sci_gateway/c/sci_set.c, line: 72
+# File: modules/graphics/sci_gateway/c/sci_set.c, line: 139
+# File: modules/graphics/sci_gateway/c/sci_set.c, line: 147
+# File: modules/graphics/sci_gateway/c/sci_set.c, line: 330
+# File: modules/graphics/sci_gateway/c/sci_set.c, line: 349
+# File: modules/graphics/sci_gateway/c/sci_set.c, line: 379
+# File: modules/graphics/sci_gateway/c/sci_set.c, line: 410
+# File: modules/graphics/sci_gateway/c/sci_set.c, line: 423
+# File: modules/graphics/sci_gateway/c/sci_set.c, line: 441
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
@@ -881,48 +881,48 @@ msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/c/sci_set.c, line: 121
-# File: modules/graphics/sci_gateway/c/sci_set.c, line: 127
-# File: modules/graphics/sci_gateway/c/sci_set.c, line: 187
-# File: modules/graphics/sci_gateway/c/sci_set.c, line: 271
-# File: modules/graphics/sci_gateway/c/sci_set.c, line: 338
-# File: modules/graphics/sci_gateway/c/sci_set.c, line: 399
+# File: modules/graphics/sci_gateway/c/sci_set.c, line: 125
+# File: modules/graphics/sci_gateway/c/sci_set.c, line: 131
+# File: modules/graphics/sci_gateway/c/sci_set.c, line: 191
+# File: modules/graphics/sci_gateway/c/sci_set.c, line: 275
+# File: modules/graphics/sci_gateway/c/sci_set.c, line: 342
+# File: modules/graphics/sci_gateway/c/sci_set.c, line: 403
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/c/sci_set.c, line: 178
+# File: modules/graphics/sci_gateway/c/sci_set.c, line: 182
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A matrix of string expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/c/sci_set.c, line: 227
+# File: modules/graphics/sci_gateway/c/sci_set.c, line: 231
 #, c-format
 msgid "%s: Wrong value for input argument #%d: a valid property expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/c/sci_set.c, line: 250
+# File: modules/graphics/sci_gateway/c/sci_set.c, line: 254
 #, c-format
 msgid "%s: Wrong number of input argument(s) : an odd number is expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/c/sci_set.c, line: 262
+# File: modules/graphics/sci_gateway/c/sci_set.c, line: 266
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A handle or a string expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/c/sci_set.c, line: 278
+# File: modules/graphics/sci_gateway/c/sci_set.c, line: 282
 #, c-format
 msgid "%s: Unable to find handle for path %s.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/c/sci_set.c, line: 295
+# File: modules/graphics/sci_gateway/c/sci_set.c, line: 299
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A single handle expected.\n"
 msgstr ""
@@ -3062,67 +3062,67 @@ msgid "Graphics"
 msgstr ""
 
 #
-# File: modules/graphics/demos/graphics.dem.gateway.sce, line: 14
+# File: modules/graphics/demos/graphics.dem.gateway.sce, line: 15
 msgid "2D and 3D plots"
 msgstr ""
 
 #
-# File: modules/graphics/demos/graphics.dem.gateway.sce, line: 15
+# File: modules/graphics/demos/graphics.dem.gateway.sce, line: 16
 msgid "Basic functions"
 msgstr ""
 
 #
-# File: modules/graphics/demos/graphics.dem.gateway.sce, line: 16
+# File: modules/graphics/demos/graphics.dem.gateway.sce, line: 17
 msgid "Animation"
 msgstr ""
 
 #
-# File: modules/graphics/demos/graphics.dem.gateway.sce, line: 17
+# File: modules/graphics/demos/graphics.dem.gateway.sce, line: 18
 msgid "Finite Elements"
 msgstr ""
 
 #
-# File: modules/graphics/demos/graphics.dem.gateway.sce, line: 18
+# File: modules/graphics/demos/graphics.dem.gateway.sce, line: 19
 msgid "Bezier curves and surfaces"
 msgstr ""
 
 #
-# File: modules/graphics/demos/graphics.dem.gateway.sce, line: 19
+# File: modules/graphics/demos/graphics.dem.gateway.sce, line: 20
 msgid "More surfaces"
 msgstr ""
 
 #
-# File: modules/graphics/demos/graphics.dem.gateway.sce, line: 20
+# File: modules/graphics/demos/graphics.dem.gateway.sce, line: 21
 msgid "Complex elementary functions"
 msgstr ""
 
 #
-# File: modules/graphics/demos/graphics.dem.gateway.sce, line: 21
+# File: modules/graphics/demos/graphics.dem.gateway.sce, line: 22
 msgid "bar histogram"
 msgstr ""
 
 #
-# File: modules/graphics/demos/graphics.dem.gateway.sce, line: 22
+# File: modules/graphics/demos/graphics.dem.gateway.sce, line: 23
 msgid "Datatips"
 msgstr ""
 
 #
-# File: modules/graphics/demos/graphics.dem.gateway.sce, line: 23
+# File: modules/graphics/demos/graphics.dem.gateway.sce, line: 24
 msgid "LaTeX/MathML"
 msgstr ""
 
 #
-# File: modules/graphics/demos/graphics.dem.gateway.sce, line: 24
+# File: modules/graphics/demos/graphics.dem.gateway.sce, line: 25
 msgid "Lighting"
 msgstr ""
 
 #
-# File: modules/graphics/demos/graphics.dem.gateway.sce, line: 25
+# File: modules/graphics/demos/graphics.dem.gateway.sce, line: 26
 msgid "Colormap"
 msgstr ""
 
 #
-# File: modules/graphics/demos/graphics.dem.gateway.sce, line: 26
+# File: modules/graphics/demos/graphics.dem.gateway.sce, line: 27
 msgid "Matplot"
 msgstr ""
 
@@ -3538,14 +3538,14 @@ msgstr ""
 #
 # File: modules/graphics/macros/colordef.sci, line: 42
 # File: modules/graphics/macros/colordef.sci, line: 58
-# File: modules/graphics/macros/colordef.sci, line: 97
+# File: modules/graphics/macros/colordef.sci, line: 109
 # File: modules/graphics/macros/comet.sci, line: 108
 # File: modules/graphics/macros/comet3d.sci, line: 131
 # File: modules/graphics/macros/createConstraints.sci, line: 103
 # File: modules/graphics/macros/createLayoutOptions.sci, line: 59
 # File: modules/graphics/macros/datatips/datatipSetStyle.sci, line: 50
 # File: modules/graphics/macros/edit_curv.sci, line: 72
-# File: modules/graphics/macros/legend.sci, line: 55
+# File: modules/graphics/macros/legend.sci, line: 56
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr ""
@@ -3617,7 +3617,7 @@ msgstr ""
 # File: modules/graphics/macros/graduate.sci, line: 45
 # File: modules/graphics/macros/graypolarplot.sci, line: 33
 # File: modules/graphics/macros/histplot.sci, line: 72
-# File: modules/graphics/macros/legend.sci, line: 16
+# File: modules/graphics/macros/legend.sci, line: 17
 # File: modules/graphics/macros/paramfplot2d.sci, line: 40
 # File: modules/graphics/macros/plot3d2.sci, line: 27
 # File: modules/graphics/macros/plot3d3.sci, line: 19
@@ -4225,13 +4225,13 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/graphics/macros/legend.sci, line: 59
+# File: modules/graphics/macros/legend.sci, line: 60
 #, c-format
 msgid "%s: Wrong size for input argument #%d."
 msgstr ""
 
 #
-# File: modules/graphics/macros/legend.sci, line: 85
+# File: modules/graphics/macros/legend.sci, line: 86
 #, c-format
 msgid "%s: No '%s' handle found.\n"
 msgstr ""

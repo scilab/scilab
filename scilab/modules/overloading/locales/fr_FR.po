@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2017-02-05 11:21+0000\n"
+"PO-Revision-Date: 2018-02-20 01:01+0000\n"
 "Last-Translator: Paul Bignier <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18544)\n"
-"Language: fr\n"
+"X-Generator: Launchpad (build 18566)\n"
 
 #, c-format
 msgid "%s: Invalid index.\n"
@@ -38,6 +38,10 @@ msgstr ""
 "charge.\n"
 
 #, c-format
+msgid "%s: Non implemented feature.\n"
+msgstr "%s : Fonction non implémentée\n"
+
+#, c-format
 msgid "%c: input argument #%d has duplicates\n"
 msgstr "%c : L'argument d'entrée n°%d a des doublons.\n"
 
@@ -54,24 +58,25 @@ msgstr ""
 "attendu.\n"
 
 #, c-format
-msgid ""
-"%s: Affection of a string in a matrix of numbers is not implemented.\n"
+msgid "%s: Affection of a string in a matrix of numbers is not implemented.\n"
 msgstr ""
 "%s : L'affectation d'une chaîne de caractères dans une matrice de nombres "
 "n'est pas implémentée.\n"
 
 #, c-format
+msgid "%s: Arguments #%d and #%d: Incompatible sizes.\n"
+msgstr "%s : Arguments #%d et #%d : tailles incompatibles.\n"
+
+#, c-format
 msgid "%s: Syntax x(j) only allowed for row cblock's.\n"
-msgstr ""
-"%s : La syntaxe x(j) est seulement autorisée pour les blocs C ligne.\n"
+msgstr "%s : La syntaxe x(j) est seulement autorisée pour les blocs C ligne.\n"
 
 #, c-format
 msgid "%s: Invalid field name.\n"
 msgstr "%s : Nom de champ invalide.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: a valid field name expected.\n"
+msgid "%s: Wrong value for input argument #%d: a valid field name expected.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : Un nom de champ valide "
 "attendu.\n"
@@ -85,8 +90,7 @@ msgid "%s: Wrong number of output arguments.\n"
 msgstr "%s : Nombre erroné d'arguments de sortie.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Transpose can not be defined.\n"
+msgid "%s: Wrong size for input argument #%d: Transpose can not be defined.\n"
 msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : La transposée ne peut "
 "pas être définie.\n"
@@ -102,9 +106,8 @@ msgstr ""
 "%s : Les arguments d'entrée n°%d et n°%d ont des dimensions incompatibles.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Un scalaire attendu.\n"
+msgid "%s: Implicit size not supported.\n"
+msgstr "%s : Taille implicite non supportée.\n"
 
 #, c-format
 msgid ""
@@ -121,10 +124,6 @@ msgstr "%s : Dimensions incohérentes.\n"
 #, c-format
 msgid "%s: Inconsistent element-wise operation.\n"
 msgstr "%s : Opération élément par élément incohérente.\n"
-
-#, c-format
-msgid "%s: Too many subscripts.\n"
-msgstr "%s : Trop d'indices.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: 3D maximum expected.\n"
@@ -161,6 +160,10 @@ msgstr ""
 "attendues.\n"
 
 #, c-format
+msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
+msgstr "%s : Argument #%d : scalaire attendu.\n"
+
+#, c-format
 msgid "%s: time domains are not compatible.\n"
 msgstr "%s : Les domaines temporels ne sont pas compatibles.\n"
 
@@ -184,9 +187,12 @@ msgid "%s: Invalid syntax for a MIMO system.\n"
 msgstr "%s : Syntaxe invalide pour un système MIMO.\n"
 
 #, c-format
+msgid "%s: The problem is singular.\n"
+msgstr "%s : Le problème est singulier.\n"
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: %d or %s expected.\n"
-msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : %d ou %s attendu.\n"
+msgstr "%s : Valeur erronée de l'argument d'entrée n°%d : %d ou %s attendu.\n"
 
 #, c-format
 msgid ""
@@ -196,10 +202,22 @@ msgstr ""
 "définie.\n"
 
 #, c-format
+msgid "%s: Inconsistent addition.\n"
+msgstr "%s : Addition incohérente.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: An integer matrix expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une matrice entière "
 "attendue.\n"
+
+#, c-format
+msgid "%s: Division by 0...\n"
+msgstr "%s : Division par zéro...\n"
+
+#, c-format
+msgid "%s: Eye variable undefined in this context.\n"
+msgstr "%s : Matrice identité non définie dans ce contexte.\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments.\n"
@@ -241,6 +259,10 @@ msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères ou "
 "un scalaire attendu.\n"
 
+#, c-format
+msgid "%s: Argument #%d: Decimal number(s) expected.\n"
+msgstr "%s Argument #%d : Nombre(s) réel(s) attendu(s).\n"
+
 msgid "Invalid exponent: expected real exponents."
 msgstr "Exposant invalide : exposants réels attendus."
 
@@ -249,6 +271,50 @@ msgstr "Division par zéro"
 
 msgid "Invalid Exponent"
 msgstr "Exposant invalide"
+
+#, c-format
+msgid "%s: Hypermatrix not supported.\n"
+msgstr "%s : Hypermatrice non supportée.\n"
+
+#, c-format
+msgid "%s: Inconsistent multiplication.\n"
+msgstr "%s : Multiplication incohérente.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr "%s : Nombre erroné d'arguments de sortie : %d attendu(s).\n"
+
+#, c-format
+msgid ""
+"Complex comparison not supported. Please define %s_1_s_custom() or check "
+"your code."
+msgstr ""
+"Comparaison complexe non supportée. Définissez %s_1_s_custom() ou vérifiez "
+"votre code."
+
+#, c-format
+msgid ""
+"Complex comparison not supported. Please define %s_2_s_custom() or check "
+"your code."
+msgstr ""
+"Comparaison complexe non supportée. Définissez %s_2_s_custom() ou vérifiez "
+"votre code."
+
+#, c-format
+msgid ""
+"Complex comparison not supported. Please define %s_3_s_custom() or check "
+"your code."
+msgstr ""
+"Comparaison complexe non supportée. Définissez %s_3_s_custom() ou vérifiez "
+"votre code."
+
+#, c-format
+msgid ""
+"Complex comparison not supported. Please define %s_4_s_custom() or check "
+"your code."
+msgstr ""
+"Comparaison complexe non supportée. Définissez %s_4_s_custom() ou vérifiez "
+"votre code."
 
 #, c-format
 msgid ""
@@ -262,10 +328,22 @@ msgid "%s: Not yet implemented.\n"
 msgstr "%s : Pas encore implémenté.\n"
 
 #, c-format
+msgid "%s: Arguments #%d and #%d: Same numbers of rows expected.\n"
+msgstr "%s : Arguments #%d et #%d : Même nombre de lignes attendu.\n"
+
+#, c-format
+msgid "%s: Wrong argument #%d.\n"
+msgstr "%s : Argument #%d erroné.\n"
+
+#, c-format
 msgid "%s: A null assignment can have only one non-colon index.\n"
 msgstr ""
 "%s : Une assignation à null peut seulement avoir un seul index qui ne soit "
 "pas :\n"
+
+#, c-format
+msgid "%s: Invalid index\n"
+msgstr "%s : Indice invalide\n"
 
 #, c-format
 msgid "%s: not implemented for argin#1 matrix and argin#2 hypermatrix\n"
@@ -276,6 +354,10 @@ msgstr ""
 msgid "%s: Sparse insertion case is not implemented.\n"
 msgstr ""
 "%s : Le cas de l'insertion dans une matrice creuse n'est pas implémenté.\n"
+
+#, c-format
+msgid "%s: Argument #%d: Square matrix expected.\n"
+msgstr "%s : Argument #%d : matrice carrée attendue.\n"
 
 #, c-format
 msgid "%s: Concatenated arrays must have the same number of dimensions.\n"
@@ -300,8 +382,7 @@ msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
 msgstr "%s : Type erroné de l'argument %d : Un scalaire réel attendu.\n"
 
 #, c-format
-msgid ""
-"%s: input and output matrices  must have the same number of elements.\n"
+msgid "%s: input and output matrices  must have the same number of elements.\n"
 msgstr ""
 "%s : Les matrices d'entrée et de sortie doivent avoir le même nombre "
 "d'éléments.\n"
@@ -347,9 +428,10 @@ msgstr ""
 "%s : Dimensions incompatibles des propriétés '%s' et '%s' : Mêmes dimensions "
 "attendues.\n"
 
-msgid "Invalid index.\n"
-msgstr "Indice invalide.\n"
-
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendus.\n"
+
+#, c-format
+msgid "%s: Incorrect assignment.\n"
+msgstr "%s : Assignation incorrecte.\n"

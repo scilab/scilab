@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2017-11-02 09:35+0000\n"
 "Last-Translator: Wesh <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18544)\n"
-"Language: \n"
+"X-Generator: Launchpad (build 18566)\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
@@ -60,22 +60,6 @@ msgstr "%s：无法读取第%d个输入参数。\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr "%s：第%d个输入参数的类型错误：应该为布尔型。\n"
-
-#, c-format
-msgid ""
-"Unable to load the jgraphx library.\n"
-"Expecting version %s ; Getting version %s ."
-msgstr ""
-"无法加载jgraphx库。\n"
-"要求版本%s；获取版本%s。"
-
-#, c-format
-msgid ""
-"Unable to load the Batik library. \n"
-"Expecting version %s ; Getting version %s ."
-msgstr ""
-"无法加载Batik库。  \n"
-"要求版本%s；获取版本%s。"
 
 msgid "Preview"
 msgstr "预览"
@@ -530,7 +514,7 @@ msgstr ""
 msgid "Signal Routing"
 msgstr ""
 
-msgid "Commonly Used Blocks"
+msgid "Recently Used Blocks"
 msgstr ""
 
 msgid "User-Defined Functions"
@@ -551,8 +535,7 @@ msgstr ""
 msgid "Palette name"
 msgstr ""
 
-msgid ""
-"Diagram has been modified since last save.<br/> Do you want to save it?"
+msgid "Diagram has been modified since last save.<br/> Do you want to save it?"
 msgstr ""
 
 #, c-format
@@ -628,20 +611,16 @@ msgstr "添加到"
 msgid "Add to new diagram"
 msgstr "添加到新图表"
 
-msgid ""
-"Explicit data input port must be connected to explicit data output port"
+msgid "Explicit data input port must be connected to explicit data output port"
 msgstr "显式的数据输入端口必须跟显式的数据数出端口相连"
 
-msgid ""
-"Implicit data input port must be connected to implicit data output port"
+msgid "Implicit data input port must be connected to implicit data output port"
 msgstr "隐式的数据输入端口必须跟隐式的数据数出端口相连"
 
-msgid ""
-"Explicit data output port must be connected to explicit data input port"
+msgid "Explicit data output port must be connected to explicit data input port"
 msgstr "显式的数据输出端口必须跟显式的数据数入端口相连"
 
-msgid ""
-"Implicit data output port must be connected to implicit data input port"
+msgid "Implicit data output port must be connected to implicit data input port"
 msgstr "隐式的数据输出端口必须跟隐式的数据数入端口相连"
 
 msgid "Command port must be connected to control port"
@@ -762,8 +741,7 @@ msgstr ""
 msgid "Generate SuperBlock, please wait"
 msgstr ""
 
-msgid ""
-"Click on diagram to add link point or on a compatible target to finish"
+msgid "Click on diagram to add link point or on a compatible target to finish"
 msgstr ""
 
 msgid "No trace nor debug printing"
@@ -868,8 +846,8 @@ msgid "Expecting <code>%d</code> but got <code>%d</code>."
 msgstr ""
 
 msgid ""
-"<html><body>Compilation error: link ignored because it is not connected. "
-"<br/>Please reconnect it.</body></html>"
+"<html><body>Compilation error: link ignored because it is not connected. <br/"
+">Please reconnect it.</body></html>"
 msgstr ""
 
 msgid "Block name: "
@@ -918,6 +896,12 @@ msgid "Split Block"
 msgstr ""
 
 msgid "Auto-Position Split Block"
+msgstr ""
+
+msgid "A one-line description of the block"
+msgstr ""
+
+msgid "Annotation (or comment) attached to the object"
 msgstr ""
 
 #, c-format
@@ -1033,6 +1017,12 @@ msgstr ""
 msgid "Old Gain Block"
 msgstr ""
 
+msgid "Optimal link route"
+msgstr ""
+
+msgid "Optimal split block position"
+msgstr ""
+
 msgid "Standard demos"
 msgstr ""
 
@@ -1087,6 +1077,9 @@ msgstr ""
 msgid "Event demos"
 msgstr ""
 
+msgid "Optimal positions"
+msgstr ""
+
 #, c-format
 msgid "%s: Unable to export %s to %s.\n"
 msgstr ""
@@ -1100,8 +1093,7 @@ msgid "%s: Wrong type for input argument %s: Block type expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument %s: directory path string expected.\n"
+msgid "%s: Wrong type for input argument %s: directory path string expected.\n"
 msgstr ""
 
 #, c-format
@@ -1181,8 +1173,7 @@ msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument %s: palette type or path expected.\n"
+msgid "%s: Wrong type for input argument %s: palette type or path expected.\n"
 msgstr ""
 
 #, c-format

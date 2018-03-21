@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2015-08-17 11:20+0100\n"
-"PO-Revision-Date: 2017-02-17 18:45+0000\n"
+"PO-Revision-Date: 2018-02-20 00:26+0000\n"
 "Last-Translator: Paul Bignier <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18544)\n"
-"Language: fr\n"
+"X-Generator: Launchpad (build 18566)\n"
 
 msgid "Warning :\n"
 msgstr "Attention :\n"
@@ -329,20 +329,23 @@ msgstr "Impossible d'ajouter plusieurs éléments à une liste.\n"
 msgid "Index out of bounds.\n"
 msgstr "Indice hors-limite.\n"
 
-msgid ""
-"Wrong number of input arguments: This function has no input argument.\n"
+msgid "Wrong number of input arguments: This function has no input argument.\n"
 msgstr "Nombre d'arguments erroné : cette fonction n'attend pas d'entrée.\n"
 
 msgid "Wrong number of input arguments.\n"
 msgstr "Nombre d'arguments d'entrée erroné.\n"
 
 #, c-format
-msgid "List element number %d is Undefined.\n"
-msgstr "L'élément numéro %d est indéfini.\n"
-
-#, c-format
 msgid "Undefined variable '%s' in function '%s'.\n"
 msgstr "Variable indéfinie '%s' dans la fonction '%s'.\n"
+
+#, c-format
+msgid "%s: Wrong type for %s: A list expected.\n"
+msgstr "%s : Type erroné de %s : Une liste attendue.\n"
+
+#, c-format
+msgid "List element number %d is Undefined.\n"
+msgstr "L'élément numéro %d est indéfini.\n"
 
 #, c-format
 msgid "Unable to open : %s.\n"
@@ -372,8 +375,7 @@ msgid "Function not defined for given argument type(s),\n"
 msgstr "Fonction non définie pour les types fournis.\n"
 
 msgid "Input arguments should have the same formal variable name.\n"
-msgstr ""
-"Les arguments d'entrée doivent avoir le même nom de variable formel.\n"
+msgstr "Les arguments d'entrée doivent avoir le même nom de variable formel.\n"
 
 #, c-format
 msgid "Can not allocate negative size (%d).\n"
@@ -412,15 +414,23 @@ msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : une matrice entière "
 "attendue.\n"
 
+#, c-format
+msgid "%s: Division by zero..."
+msgstr "%s : Division par zéro..."
+
+#, c-format
+msgid "%s: Argument #%d: Square matrix expected.\n"
+msgstr "%s : Argument #%d : matrice carrée attendue.\n"
+
+#, c-format
+msgid "%s: Non implemented feature.\n"
+msgstr "%s : Fonction non implémentée\n"
+
 msgid "Invalid exponent: expected real exponents."
 msgstr "Exposant invalide : exposants réels attendus."
 
 msgid "Division by zero"
 msgstr "Division par zéro"
-
-#, c-format
-msgid "%s: Argument #%d: Square matrix expected.\n"
-msgstr "%s : Argument #%d : matrice carrée attendue.\n"
 
 msgid "Not implemented"
 msgstr "Non implémenté"
@@ -443,8 +453,7 @@ msgstr "Non impiémenté dans Scilab...\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : un scalaire attendu.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : un scalaire attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer expected.\n"

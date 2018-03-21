@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2018-02-12 08:52+0100\n"
+"Revision-Date: 2018-03-05 10:43+0100\n"
 
 # File: modules/gui/sci_gateway/c/sci_delmenu.c, line: 55
 # File: modules/gui/sci_gateway/c/sci_setmenu.c, line: 49
@@ -4251,48 +4251,48 @@ msgid "GUI"
 msgstr ""
 
 #
-# File: modules/gui/demos/gui.dem.gateway.sce, line: 14
+# File: modules/gui/demos/gui.dem.gateway.sce, line: 15
 msgid "Dialogs"
 msgstr ""
 
 #
-# File: modules/gui/demos/gui.dem.gateway.sce, line: 15
+# File: modules/gui/demos/gui.dem.gateway.sce, line: 16
 msgid "Uicontrols 1"
 msgstr ""
 
 #
-# File: modules/gui/demos/gui.dem.gateway.sce, line: 18
+# File: modules/gui/demos/gui.dem.gateway.sce, line: 19
 msgid "Uicontrols 2"
 msgstr ""
 
 #
-# File: modules/gui/demos/gui.dem.gateway.sce, line: 21
+# File: modules/gui/demos/gui.dem.gateway.sce, line: 22
 msgid "Uicontrols with LaTeX/MathML"
 msgstr ""
 
 #
-# File: modules/gui/demos/gui.dem.gateway.sce, line: 24
+# File: modules/gui/demos/gui.dem.gateway.sce, line: 25
 msgid "Show images with uicontrols "
 msgstr ""
 
 #
-# File: modules/gui/demos/gui.dem.gateway.sce, line: 27
+# File: modules/gui/demos/gui.dem.gateway.sce, line: 28
 # File: modules/gui/demos/uicontrol_listbox_popupmenu.dem.sce, line: 18
 msgid "Listboxes and Popupmenus"
 msgstr ""
 
 #
-# File: modules/gui/demos/gui.dem.gateway.sce, line: 30
+# File: modules/gui/demos/gui.dem.gateway.sce, line: 31
 msgid "Uicontrols rendering"
 msgstr ""
 
 #
-# File: modules/gui/demos/gui.dem.gateway.sce, line: 33
+# File: modules/gui/demos/gui.dem.gateway.sce, line: 34
 msgid "Uicontrols layout"
 msgstr ""
 
 #
-# File: modules/gui/demos/gui.dem.gateway.sce, line: 36
+# File: modules/gui/demos/gui.dem.gateway.sce, line: 37
 msgid "Uicontrols messagebox-like"
 msgstr ""
 

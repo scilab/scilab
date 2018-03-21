@@ -97,6 +97,8 @@ function [status, msg] = xcosPalExport(pal, path)
     // export the data to the temp file
     try
         save(path, "pal");
+        status = %t;
+        msg = [];
     catch
         msg = msprintf(gettext("%s: Unable to export the palette to hdf5.\n"), "xcosPalExport");
         if  lhs == 1 then

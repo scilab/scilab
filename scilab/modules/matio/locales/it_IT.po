@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2015-10-08 22:07+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18544)\n"
-"Language: it\n"
+"X-Generator: Launchpad (build 18566)\n"
 
 #, c-format
 msgid "%s: Wrong size for first input argument: Single double expected.\n"
@@ -121,8 +121,7 @@ msgstr "%s: Il salvataggio di un array 2D di stringhe non è sviluppato.\n"
 
 #, c-format
 msgid "%s: Row array of strings saving is not implemented.\n"
-msgstr ""
-"%s: Il salvataggio di un vettore riga di stringhe non è sviluppato.\n"
+msgstr "%s: Il salvataggio di un vettore riga di stringhe non è sviluppato.\n"
 
 #, c-format
 msgid ""

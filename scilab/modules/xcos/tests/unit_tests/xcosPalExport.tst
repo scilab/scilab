@@ -18,7 +18,7 @@ if ~isfile(path) then pause, end
 deletefile(path);
 
 [status, msg] = xcosPalExport(pal, path);
-assert_checkequal(msg, "Success");
+assert_checkequal(msg, []);
 assert_checktrue(status);
 if ~isfile(path) then pause, end
 deletefile(path);

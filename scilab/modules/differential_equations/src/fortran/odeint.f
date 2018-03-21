@@ -72,7 +72,7 @@ c
          h=hnext
  16   continue
       ierror=-1
-c     print *, 'Trop d''iterations a faire pour la precision demandee.'
+c     print *, 'Too many iterations needed to reach the querried accuracy.'
       return
  17   format('stepsize ',e10.3,' smaller than minimum ',e10.3)
       end

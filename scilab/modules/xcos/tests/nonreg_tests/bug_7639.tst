@@ -36,16 +36,16 @@ status = importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_7639.zcos
 if ~status then pause, end
 
 // export the Superblock to the file
-blk = [];
+superblk = [];
 for i=1:length(scs_m.objs) do
-  blk = scs_m.objs(i);
-  if typeof(blk) == "Block" & blk.gui == "SUPER_f" then
-    break;
-  end
+    superblk = scs_m.objs(i);
+    if typeof(superblk) == "Block" & superblk.gui == "SUPER_f" then
+        break;
+    end
 end
-assert_checktrue(length(blk) <> 0);
+assert_checkequal(typeof(superblk), "Block");
 
 // call and check for a message error (the out blk will be empty on error)
-blk = xcosCodeGeneration(blk);
-assert_checktrue(length(blk) == 0);
+blk = xcosCodeGeneration(superblk);
+assert_checkequal(typeof(blk), "Block");
 assert_checktrue(length(msg) <> 0);

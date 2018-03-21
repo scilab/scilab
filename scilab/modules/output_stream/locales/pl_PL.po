@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2015-10-08 22:04+0000\n"
 "Last-Translator: Stanisław Dac <s.dac@yandex.ru>\n"
 "Language-Team: Polish <pl@li.org>\n"
+"Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18544)\n"
-"Language: pl\n"
+"X-Generator: Launchpad (build 18566)\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -94,8 +94,7 @@ msgstr ""
 "dziennika.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: error can not close diary %d.\n"
+msgid "%s: Wrong value for input argument #%d: error can not close diary %d.\n"
 msgstr ""
 "%s: Niewłaściwa wartość argumentu wejściowego nr %d: błąd, nie można zamknąć "
 "dziennika %d.\n"
@@ -107,8 +106,7 @@ msgstr ""
 "zatrzymać dziennika.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
+msgid "%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
 msgstr ""
 "%s: Niewłaściwa wartość argumentu wejściowego nr %d: błąd, nie można "
 "zatrzymać dziennika %d.\n"
@@ -193,42 +191,6 @@ msgid "%s: Wrong type of input arguments #%d: A real scalar expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected."
-msgstr ""
-"%s: Niewłaściwa liczba parametru(ów) wejściowych: oczekiwana jest od %d do "
-"%d."
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
-"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwano łańcuch.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
-"expected.\n"
-msgstr ""
-"%s: Niewłaściwa wartość argumentu wejściowego nr %d: oczekiwana jest '%s', "
-"'%s', '%s', '%s', '%s' lub '%s'.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
-msgstr "%s: Niewłaściwy typ argumentu nr %d: Oczekiwany typ boolean.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected"
-msgstr ""
-"%s: Niewłaściwa liczba parametrów wejściowych: oczekiwana jest od %d do %d."
-
-#, c-format
-msgid "%s: Wrong export format: %s"
-msgstr "%s: Zły format eksportu: %s"
-
-#, c-format
-msgid "%s: Type %s is not handled : Define the function %s2%s."
-msgstr "%s: Typ %s nie jest obsługiwany : Zdefiniuj funkcję %s2%s."
-
-#, c-format
 msgid "%s: Wrong number of input argument(s).\n"
 msgstr "%s: Nieprawidłowa liczba parametrów wejściowych.\n"
 
@@ -244,8 +206,7 @@ msgstr ""
 "%s: Nieprawidłowy typ dla argumentu wejściowego nr %d: oczekiwano łańcuch.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A state-space model expected.\n"
+msgid "%s: Wrong type for input argument #%d: A state-space model expected.\n"
 msgstr ""
 "%s: Nieprawidłowy typ argumentu wejściowego #%d: Oczekiwano modelu w "
 "przestrzeni stanów.\n"

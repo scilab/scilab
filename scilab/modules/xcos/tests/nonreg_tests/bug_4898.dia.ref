@@ -21,12 +21,19 @@ if scs_m.model.opar <> list() then bugmes();quit;end;
 status = importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_4898.zcos");
 if status <> %t then bugmes();quit;end;
 scicos_simulate(scs_m);
-block = scs_m.objs(5);
-if block.gui <> "scifunc_block_m" then bugmes();quit;end;
+block = [];
+for o = scs_m.objs
+    if typeof(o) == "Block" & o.gui == "scifunc_block_m" then
+        block = o;
+        break;
+    end
+end
+if typeof(block) <> "Block" then bugmes();quit;end;
 if isempty(block.model.opar) <> %t then bugmes();quit;end;
 block.model.opar = block.model.ipar;
 block.model.ipar = 0;
 scs_m.objs(5) = block;
 scicos_simulate(scs_m);
+ Le bloc est ignoré car ses entrées n'ont pas été définies.
 if block.gui <> "scifunc_block_m" then bugmes();quit;end;
 if block.model.ipar <> 0 then bugmes();quit;end;

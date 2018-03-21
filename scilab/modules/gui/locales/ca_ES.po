@@ -11,16 +11,15 @@ msgstr ""
 "PO-Revision-Date: 2016-12-07 22:14+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18544)\n"
-"Language: ca\n"
+"X-Generator: Launchpad (build 18566)\n"
 
 #, c-format
 msgid "%s: Figure number must be given when not in '%s' mode.\n"
-msgstr ""
-"%s: S'ha de donar el número de figura si no s'està en el mode '%s'.\n"
+msgstr "%s: S'ha de donar el número de figura si no s'està en el mode '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: string expected.\n"
@@ -167,13 +166,11 @@ msgstr "%s: Els arguments d'entrada són incorrectes: Han de ser '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong input arguments: '%s' or '%s' expected.\n"
-msgstr ""
-"%s: Els arguments d'entrada són incorrectes: Han de ser '%s' o '%s'.\n"
+msgstr "%s: Els arguments d'entrada són incorrectes: Han de ser '%s' o '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be > %d expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser > %d.\n"
+msgstr "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser > %d.\n"
 
 #, c-format
 msgid ""
@@ -274,8 +271,7 @@ msgstr ""
 "'%s'.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"
+msgid "%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser un tractament "
 "'%s' vàlid.\n"
@@ -325,13 +321,11 @@ msgid "%s: Wrong number for input argument: %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: string or macro name expected.\n"
+msgid "%s: Wrong size for input argument #%d: string or macro name expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: string or macro name expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or macro name expected.\n"
 msgstr ""
 
 #, c-format
@@ -356,8 +350,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A scalar or a vector expected.\n"
+msgid "%s: Wrong type for input argument #%d: A scalar or a vector expected.\n"
 msgstr ""
 
 #, c-format
@@ -522,8 +515,7 @@ msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: 'pos' or 'gdi' value expected.\n"
+msgid "%s: Wrong size for input argument #%d: 'pos' or 'gdi' value expected.\n"
 msgstr ""
 
 #, c-format
@@ -561,27 +553,17 @@ msgstr ""
 msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
 msgstr ""
 
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un vector "
-"de nombres reals o complexos.\n"
+msgid "Scilab Input Value Request"
+msgstr "Petició d'entrada de valors d'Scilab"
 
-msgid "Scilab Choices Request"
-msgstr "Petició d'opcions d'Scilab"
+msgid "Scilab Multiple Values Request"
+msgstr "Petició de valors múltiples d'Scilab"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un vector de "
 "cadenes de text.\n"
-
-msgid "Scilab Input Value Request"
-msgstr "Petició d'entrada de valors d'Scilab"
-
-msgid "Scilab Multiple Values Request"
-msgstr "Petició de valors múltiples d'Scilab"
 
 #, c-format
 msgid ""
@@ -601,6 +583,16 @@ msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una matriu "
 "de cadenes de text.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un vector "
+"de nombres reals o complexos.\n"
+
+msgid "Scilab Choices Request"
+msgstr "Petició d'opcions d'Scilab"
 
 #, c-format
 msgid "'%s' property does not exist for this handle.\n"
@@ -680,8 +672,7 @@ msgstr ""
 
 #, c-format
 msgid "Wrong size for '%s' property: A real expected.\n"
-msgstr ""
-"La propietat '%s' té una mida incorrecta: Ha de ser un nombre real.\n"
+msgstr "La propietat '%s' té una mida incorrecta: Ha de ser un nombre real.\n"
 
 #, c-format
 msgid ""
@@ -712,8 +703,7 @@ msgstr ""
 
 #, c-format
 msgid "Wrong value for '%s' property: A real expected.\n"
-msgstr ""
-"La propietat '%s' té un valor incorrecte: Ha de ser un nombre real.\n"
+msgstr "La propietat '%s' té un valor incorrecte: Ha de ser un nombre real.\n"
 
 #, c-format
 msgid ""
@@ -794,8 +784,7 @@ msgstr ""
 "valor numèric.\n"
 
 #, c-format
-msgid ""
-"Wrong type for '%s' property: A real row vector or a string expected.\n"
+msgid "Wrong type for '%s' property: A real row vector or a string expected.\n"
 msgstr ""
 "La propietat '%s' és d'un tipus incorrecte: Ha de ser un vector fila de "
 "nombres reals o una cadena de text.\n"
@@ -960,7 +949,7 @@ msgstr "&Carrega l'entorn..."
 msgid "&Save environment..."
 msgstr "&Desa l'entorn..."
 
-msgid "&Current Working Directory (CWD):"
+msgid "&Current Working Directory"
 msgstr ""
 
 msgid "    &Browse for new"
@@ -2224,9 +2213,6 @@ msgstr "Fitsers SCE d'Scilab"
 msgid "Scilab binary files"
 msgstr "Fitxers binaris d'Scilab"
 
-msgid "All Scilab files"
-msgstr "Tots els fitxers d'Scilab"
-
 msgid "Xcos files"
 msgstr "Fitxers d'Xcos"
 
@@ -2279,8 +2265,7 @@ msgstr ""
 msgid "Restoration error"
 msgstr ""
 
-msgid ""
-"The configuration file has been corrupted and reset to the default one."
+msgid "The configuration file has been corrupted and reset to the default one."
 msgstr ""
 
 msgid "The configuration file has been corrupted. Scilab needs to restart."
@@ -2563,8 +2548,7 @@ msgstr "%s: Els arguments d'entrada són incorrectes: Han de ser %s o %s.\n"
 
 #, c-format
 msgid "%s: Wrong input arguments: %s, %s or %s expected.\n"
-msgstr ""
-"%s: Els arguments d'entrada són incorrectes: Han de ser %s, %s o %s.\n"
+msgstr "%s: Els arguments d'entrada són incorrectes: Han de ser %s, %s o %s.\n"
 
 #, c-format
 msgid "%s: Wrong value for '%s' property: %d, %d or %d expected.\n"
@@ -2610,8 +2594,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A border or a string expected.\n"
+msgid "%s: Wrong type for input argument #%d: A border or a string expected.\n"
 msgstr ""
 
 #, c-format
@@ -2647,6 +2630,10 @@ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""
 
 #, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Type %s is not implemented.\n"
 msgstr "%s: No està implementat el tipus %s.\n"
 
@@ -2674,6 +2661,21 @@ msgid ""
 " is incorrect: %s.\n"
 msgstr ""
 
+msgid "Select a file to open"
+msgstr ""
+
+msgid "Scilab scripts"
+msgstr ""
+
+msgid "Xcos diagrams"
+msgstr ""
+
+msgid "Scilab Tests"
+msgstr ""
+
+msgid "Scilab Library"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: uitree expected.\n"
 msgstr ""
@@ -2684,8 +2686,7 @@ msgstr ""
 "%s: Nombre d'arguments d'entrada incorrecte: Són necessaris %d com a mínim.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for element %d of input argument #%d: uitree expected.\n"
+msgid "%s: Wrong type for element %d of input argument #%d: uitree expected.\n"
 msgstr ""
 
 #, c-format

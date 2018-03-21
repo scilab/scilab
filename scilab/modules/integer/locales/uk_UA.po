@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-09 17:01+0000\n"
+"PO-Revision-Date: 2018-02-19 19:18+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
+"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18544)\n"
-"Language: uk\n"
+"X-Generator: Launchpad (build 18566)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -32,8 +32,7 @@ msgstr "%s: доступну пам’ять вичерпано.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
 
 #, c-format
 msgid ""
@@ -77,14 +76,13 @@ msgstr ""
 "%s: помилкове значення вхідного параметра. Слід використовувати «%s», «%s», "
 "«%s», «%s» або «%s».\n"
 
-msgid ""
-"Warning: Syntax vector ^ scalar is obsolete. It will be removed in Scilab "
-"6.0.\n"
-"  Use vector .^ scalar instead.\n"
-msgstr ""
-"Попередження: синтаксична конструкцію «вектор ^ число» вважається "
-"застарілою. Її буде вилучено у Scilab 6.0.\n"
-"  Вам варто скористатися конструкцією «вектор .^ число».\n"
+#, c-format
+msgid "%s: Non implemented feature.\n"
+msgstr "%s: нереалізована можливість.\n"
+
+#, c-format
+msgid "%s: %s expected instead of %s.\n"
+msgstr "%s: мало бути %s, а не %s.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
