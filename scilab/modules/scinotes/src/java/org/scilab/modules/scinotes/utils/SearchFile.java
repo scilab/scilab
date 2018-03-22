@@ -207,7 +207,7 @@ public class SearchFile extends SwingScilabDockablePanel {
      * Set a MyBackgroundSearch to this SearchFile
      * @param search a MyBackgroundSearch
      */
-    public void setMyBackgroundSearch(MyBackgroundSearch search) {
+    public synchronized void setMyBackgroundSearch(MyBackgroundSearch search) {
         mySearch = search;
     }
 
