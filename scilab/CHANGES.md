@@ -375,6 +375,7 @@ Known issues
 
 
 ### Bugs fixed in 6.0.2:
+* [#5430](http://bugzilla.scilab.org/show_bug.cgi?id=5430): `clf` could erase the ATOMS GUI or the m2sci one.
 * [#7277](http://bugzilla.scilab.org/show_bug.cgi?id=7277): SciNotes `File>Open recent` menu was not updated after 5 items were added.
 * [#7675](http://bugzilla.scilab.org/show_bug.cgi?id=7675): sparse() got a wrong result, when creation with many values in same position.
 * [#8000](http://bugzilla.scilab.org/show_bug.cgi?id=8000): fixed   - `get(gcf(), "%s %s %s..")` crashed Scilab.
