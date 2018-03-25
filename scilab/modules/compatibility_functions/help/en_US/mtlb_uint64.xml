@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2004-2007 - INRIA - Vincent COUVERT
  * Copyright (C) 2018 - Samuel GOUGEON
- *
- * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -17,36 +14,33 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
         xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
         xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
-        xml:lang="en" xml:id="mtlb_uint32">
+        xml:lang="en" xml:id="mtlb_uint64">
     <refnamediv>
-        <refname>mtlb_uint32</refname>
-        <refpurpose>Fonction d'émulation de la fonction Matlab uint32()</refpurpose>
+        <refname>mtlb_uint64</refname>
+        <refpurpose>Matlab uint64 emulation function</refpurpose>
     </refnamediv>
     <refsection>
         <title>Description</title>
         <para>
-            Les versions Matlab et Scilab de la fonction <literal>uint32()</literal> produisent des
-            résultats le plus souvent différents :
+            Matlab and Scilab <literal>uint64</literal> behave differently :
             <itemizedlist>
                 <listitem>
-                    Hors des bornes de l'intervalle de travail principal, la version Scilab de
-                    <literal>uint32()</literal> travaille en congruence su rl'intervalle
-                    ("modulo"), alors que
-                    la version Matlab <literal>mtlb_uint32()</literal> sature et reste constante.
+                    Beyong the main interval bounds, Scilab's <literal>uint64()</literal> wraps,
+                    while Matlab's <literal>mtlb_uint64()</literal> saturates.
                 </listitem>
                 <listitem>
-                    Pour les valeurs non entières, la version Scilab <literal>uint32()</literal>
-                    tronque la partie fractionnaire, alors que la version Matlab
-                    <literal>mtlb_uint32()</literal> arrondit à l'entier le plus proche.
+                    For non integer values, Scilab's <literal>uint64()</literal> truncates the
+                    fractional part, while Matlab's <literal>mtlb_uint64()</literal> rounds to the
+                    nearest integer.
                 </listitem>
             </itemizedlist>
         </para>
         <para>
-        Soit <literal>imax = 2^32 - 1 = 4294967295</literal>.
+        Let <literal>imax = 2^64 - 1 = 18 446 744 073 709 551 615</literal>.
         </para>
         <para>
         <table border="1" align="center">
-            <tr><th>x</th><th>uint32(x)</th><th>mtlb_uint32(x)</th></tr>
+            <tr><th>x</th><th>uint64(x)</th><th>mtlb_uint64(x)</th></tr>
             <tr><td align="center">%nan</td><td align="center">0</td><td align="center">0</td></tr>
             <tr><td align="center">-%inf</td><td align="center">0</td><td align="center">0</td></tr>
             <tr><td align="center">-2</td><td align="center">imax-1</td><td align="center">0</td></tr>
@@ -65,14 +59,13 @@
         </para>
         <warning>
             <para>
-                <literal>mtlb_uint32</literal> ne doit pas être utilisée pour une programmation manuelle.
+                <literal>mtlb_uint64</literal> has not to be used for hand coded functions.
             </para>
             <para>
-                La fonction <literal>mtlb_uint32(A)</literal> est utilisée par
-                <literal>mfile2sci</literal> pour remplacer <literal>uint32(A)</literal>
-                quand il n'est pas possible de savoir ce qu'est le paramètre d'entrée pendant
-                la conversion d'un code Matlab vers Scilab.
-                Cette fonction détermine alors la sémantique correcte pendant l'exécution.
+                The function <literal>mtlb_uint64(A)</literal> is used by
+                <literal>mfile2sci</literal> to replace <literal>uint64(A)</literal> when it is not
+                possible to know what is the input while porting Matlab code to Scilab. This function
+                then determines the correct semantic at run time.
             </para>
         </warning>
     </refsection>

@@ -1,5 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
+// Copyright (C) 2018 - Samuel GOUGEON
 //
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
@@ -10,12 +10,18 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function i=mtlb_uint8(x)
+function i = mtlb_uint8(x)
     // Emulation function for Matlab uint8()
 
-    if x==%inf then
-        i=255
+    if type(x)==4 then
+        i = uint8(x*1)
     else
-        i=uint8(x)
+        if type(x)==1
+            if ~isreal(x)
+                x = real(x)
+            end
+            x(isnan(x)) = 0
+        end
+        i = uint8(max(min(round(x),255),0))
     end
 endfunction

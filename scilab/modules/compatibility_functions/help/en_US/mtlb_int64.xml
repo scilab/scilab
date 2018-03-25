@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2004-2007 - INRIA - Vincent COUVERT
  * Copyright (C) 2018 - Samuel GOUGEON
- *
- * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -17,33 +14,34 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
         xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
         xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
-        xml:lang="en" xml:id="mtlb_int32">
+        xml:lang="en" xml:id="mtlb_int64">
     <refnamediv>
-        <refname>mtlb_int32</refname>
-        <refpurpose>Matlab int32 emulation function</refpurpose>
+        <refname>mtlb_int64</refname>
+        <refpurpose>Matlab int64 emulation function</refpurpose>
     </refnamediv>
     <refsection>
         <title>Description</title>
         <para>
-            Matlab and Scilab <literal>int32</literal> behave differently :
+            Matlab and Scilab <literal>int64</literal> behave differently :
             <itemizedlist>
                 <listitem>
-                    Beyong the main interval bounds, Scilab's <literal>int32()</literal> wraps,
-                    while Matlab's <literal>mtlb_int32()</literal> saturates.
+                    Beyong the main interval bounds, Scilab's <literal>int64()</literal> wraps,
+                    while Matlab's <literal>mtlb_int64()</literal> saturates.
                 </listitem>
                 <listitem>
-                    For non integer values, Scilab's <literal>int32()</literal> truncates the
-                    fractional part, while Matlab's <literal>mtlb_int32()</literal> rounds to the
+                    For non integer values, Scilab's <literal>int64()</literal> truncates the
+                    fractional part, while Matlab's <literal>mtlb_int64()</literal> rounds to the
                     nearest integer.
                 </listitem>
             </itemizedlist>
         </para>
         <para>
-        Let <literal>imin = -(2^16) = -2147483648</literal> and <literal>imax = 2^16 - 1 = 2147483647</literal>.
+            Let <literal>imin = -(2^32) = -9223372036854775808</literal> and
+            <literal>imax = 2^32 - 1 = 9223372036854775807</literal>.
         </para>
         <para>
         <table border="1" align="center">
-            <tr><th>x</th><th>int32(x)</th><th>mtlb_int32(x)</th></tr>
+            <tr><th>x</th><th>int64(x)</th><th>mtlb_int64(x)</th></tr>
             <tr><td align="center">%nan</td><td align="center">0</td><td align="center">0</td></tr>
             <tr><td align="center">-%inf</td><td align="center">imin</td><td align="center">imin</td></tr>
             <tr><td align="center">imin-2</td><td align="center">imax-1</td><td align="center">imin</td></tr>
@@ -65,11 +63,11 @@
         </para>
         <warning>
             <para>
-                <literal>mtlb_int32</literal> has not to be used for hand coded functions.
+                <literal>mtlb_int64</literal> has not to be used for hand coded functions.
             </para>
             <para>
-                The function <literal>mtlb_int32(A)</literal> is used by
-                <literal>mfile2sci</literal> to replace <literal>int32(A)</literal> when it is not
+                The function <literal>mtlb_int64(A)</literal> is used by
+                <literal>mfile2sci</literal> to replace <literal>int64(A)</literal> when it is not
                 possible to know what is the input while porting Matlab code to Scilab. This function
                 then determines the correct semantic at run time.
             </para>

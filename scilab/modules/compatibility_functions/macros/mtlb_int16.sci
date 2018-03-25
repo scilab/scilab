@@ -1,5 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
+// Copyright (C) 2018 - Samuel GOUGEON
 //
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
@@ -10,16 +10,18 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function i=mtlb_int16(x)
+function i = mtlb_int16(x)
     // Emulation function for Matlab int16()
 
-    if x==%inf then
-        i=32767
-    elseif x==-%inf then
-        i=-32768
-    elseif isnan(x) then
-        i=0
+    if type(x)==4 then
+        i = int16(x)
     else
-        i=int16(x)
+        if type(x)==1
+            if ~isreal(x)
+                x = real(x)
+            end
+            x(isnan(x)) = 0
+        end
+        i = int16(max(min(round(x),32767),-32768))
     end
 endfunction

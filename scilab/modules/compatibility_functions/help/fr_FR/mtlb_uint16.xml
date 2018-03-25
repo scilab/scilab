@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
-    *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2004-2007 - INRIA - Vincent COUVERT
+ * Copyright (C) 2018 - Samuel GOUGEON
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -11,50 +12,65 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-    *
-    -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="mtlb_uint16">
+ *
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:lang="en" xml:id="mtlb_uint16">
     <refnamediv>
         <refname>mtlb_uint16</refname>
-        <refpurpose>Fonction d'émulation de la fonction Matlab uint16</refpurpose>
+        <refpurpose>Fonction d'émulation de la fonction Matlab uint16()</refpurpose>
     </refnamediv>
     <refsection>
         <title>Description</title>
         <para>
-            Dans plusieurs cas particuliers, la fonction <literal>uint16</literal> se comporte différemment dans Matlab et dans Scilab :
+            Les versions Matlab et Scilab de la fonction <literal>uint16()</literal> produisent des
+            résultats le plus souvent différents :
+            <itemizedlist>
+                <listitem>
+                    Hors des bornes de l'intervalle de travail principal, la version Scilab de
+                    <literal>uint16()</literal> travaille en congruence su rl'intervalle
+                    ("modulo"), alors que
+                    la version Matlab <literal>mtlb_uint16()</literal> sature et reste constante.
+                </listitem>
+                <listitem>
+                    Pour les valeurs non entières, la version Scilab <literal>uint16()</literal>
+                    tronque la partie fractionnaire, alors que la version Matlab
+                    <literal>mtlb_uint16()</literal> arrondit à l'entier le plus proche.
+                </listitem>
+            </itemizedlist>
         </para>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    Avec un paramètre d'entrée complexe : La fonction Matlab <literal>uint16</literal> peut être utilisée
-                    avec des complexes mais pas la fonction Scilab.
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    Avec la valeur <literal>%inf</literal> : Matlab retourne 65535 alors que Scilab retourne 0.
-                </para>
-            </listitem>
-        </itemizedlist>
         <para>
-            La fonction <literal>mtlb_uint16(A)</literal> est utilisée par
-            <literal>mfile2sci</literal> pour remplacer <literal>uint16(A)</literal> quand il n'était pas
-            possible de savoir ce qu'était le paramètre d'entrée pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
-            déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
-            on peut remplacer les appels à <literal>mtlb_uint16</literal> :
+        <table border="1" align="center">
+            <tr><th>x</th><th>uint16(x)</th><th>mtlb_uint16(x)</th></tr>
+            <tr><td align="center">%nan</td><td align="center">0</td><td align="center">0</td></tr>
+            <tr><td align="center">-%inf</td><td align="center">0</td><td align="center">0</td></tr>
+            <tr><td align="center">-2</td><td align="center">65534</td><td align="center">0</td></tr>
+            <tr><td align="center">-1</td><td align="center">65535</td><td align="center">0</td></tr>
+            <tr><td align="center">0</td><td align="center">0</td><td align="center">0</td></tr>
+            <tr><td align="center">2</td><td align="center">2</td><td align="center">2</td></tr>
+            <tr><td align="center">10.2</td><td align="center">10</td><td align="center">10</td></tr>
+            <tr><td align="center">10.5</td><td align="center">10</td><td align="center">11</td></tr>
+            <tr><td align="center">10.51</td><td align="center">10</td><td align="center">11</td></tr>
+            <tr><td align="center">...</td><td align="center">...</td><td align="center">...</td></tr>
+            <tr><td align="center">65535</td><td align="center">65535</td><td align="center">65535</td></tr>
+            <tr><td align="center">65536</td><td align="center">0</td><td align="center">65535</td></tr>
+            <tr><td align="center">65537</td><td align="center">1</td><td align="center">65535</td></tr>
+            <tr><td align="center">%inf</td><td align="center">65535</td><td align="center">65535</td></tr>
+        </table>
         </para>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    Si <literal>A</literal> ne contient pas de valeur <literal>%inf</literal>, <literal>%nan</literal> ou <literal>-%nan</literal>
-                    <literal>mtlb_uint16(A)</literal> peut être remplacé par <literal>uint16(A)</literal>
-                </para>
-            </listitem>
-        </itemizedlist>
-        <para>
-            <warning>
-                Attention : <literal>mtlb_uint16</literal> ne doit pas être utilisée pour une programmation manuelle.
-            </warning>
-        </para>
+        <warning>
+            <para>
+                <literal>mtlb_uint16</literal> ne doit pas être utilisée pour une programmation manuelle.
+            </para>
+            <para>
+                La fonction <literal>mtlb_uint16(A)</literal> est utilisée par
+                <literal>mfile2sci</literal> pour remplacer <literal>uint16(A)</literal>
+                quand il n'est pas possible de savoir ce qu'est le paramètre d'entrée pendant
+                la conversion d'un code Matlab vers Scilab.
+                Cette fonction détermine alors la sémantique correcte pendant l'exécution.
+            </para>
+        </warning>
     </refsection>
 </refentry>
