@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18566)\n"
+"X-Generator: Launchpad (build 18573)\n"
 
 msgid "Warning: Problem(s) with TCL/TK interface. Interface not enabled.\n"
 msgstr "Предупреждение: Проблемы с интерфейсом TCL/TK. Интерфейс не включён.\n"
@@ -240,6 +240,3 @@ msgstr "%s: Ведомый интерпретатор уже существуе�
 #, c-format
 msgid "Error %s while loading library %s"
 msgstr "Ошибка %s при загрузке библиотеки %s"
-
-#~ msgid "Tcl/Tk"
-#~ msgstr "Tcl/Tk"

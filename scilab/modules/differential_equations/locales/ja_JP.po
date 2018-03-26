@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18566)\n"
+"X-Generator: Launchpad (build 18573)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
@@ -674,7 +674,8 @@ msgstr ""
 "このコールで過剰な処理が発生しました(ヤコビアンの型が間違っている可能性があり"
 "ます).\n"
 
-msgid "Excesive accuracy requested (tolerances too small).\n"
+#, fuzzy
+msgid "Excessive accuracy requested (tolerances too small).\n"
 msgstr "過剰な精度が要求されました(許容誤差が小さすぎます).\n"
 
 msgid "Illegal input detected (see printed message).\n"

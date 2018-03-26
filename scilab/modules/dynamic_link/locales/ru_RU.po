@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18566)\n"
+"X-Generator: Launchpad (build 18573)\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -217,21 +217,17 @@ msgstr "с Y = %d"
 msgid "Result Z = %d"
 msgstr "РРезультате Z = %d"
 
-#, fuzzy
 msgid "Calling C function. Z = (1+Y)**X - 1"
-msgstr "Вызов C-функции. Z = X+Y"
+msgstr ""
 
-#, fuzzy
 msgid "Calling a C++ function from Scilab.\n"
-msgstr "Вызов C-функции из Scilab.\n"
+msgstr ""
 
-#, fuzzy
 msgid "Calling ilib_for_link to build C++ function.\n"
-msgstr "Вызов ilib_for_link для сборки C-функции.\n"
+msgstr ""
 
-#, fuzzy
 msgid "Calling C++ function. Z = X+Y"
-msgstr "Вызов C-функции. Z = X+Y"
+msgstr ""
 
 msgid "Calling a Fortran subroutine from Scilab.\n"
 msgstr "Вызов Fortran-подпрограммы  из Scilab.\n"
@@ -242,9 +238,8 @@ msgstr "Вызов ilib_for_link для сборки Fortran-подпрогра�
 msgid "Calling Fortran subroutine. Z = X+Y"
 msgstr "Вызов Fortran-подпрограммы. Z = X+Y"
 
-#, fuzzy
 msgid "Calling Fortran subroutine. Z = (1+Y)**X - 1"
-msgstr "Вызов Fortran-подпрограммы. Z = X+Y"
+msgstr ""
 
 msgid "Dynamic link"
 msgstr "Динамическая ссылка"
@@ -252,24 +247,18 @@ msgstr "Динамическая ссылка"
 msgid "Call a C function"
 msgstr "Вызов C-функции"
 
-#
-# File: modules/dynamic_link/demos/dynamic_link.dem.gateway.sce, line: 14
 msgid "Call a C function (using C standard library)"
 msgstr ""
 
 msgid "Call a Fortran subroutine"
 msgstr "Вызов Fortran-подпрограммы"
 
-#, fuzzy
 msgid "Call a Fortran subroutine (with Fortran intrinsics)"
-msgstr "Вызов Fortran-подпрограммы"
+msgstr ""
 
-#, fuzzy
 msgid "Call a C++ function"
-msgstr "Вызов C-функции"
+msgstr ""
 
-#
-# File: modules/dynamic_link/demos/dynamic_link.dem.gateway.sce, line: 18
 msgid "Call a C++ function (using C++ Standard Library)"
 msgstr ""
 

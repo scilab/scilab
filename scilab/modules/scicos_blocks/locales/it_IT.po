@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18566)\n"
+"X-Generator: Launchpad (build 18573)\n"
 
 msgid "overflow error"
 msgstr "errore di overflow"
@@ -169,13 +169,22 @@ msgstr ""
 msgid "Type conversion"
 msgstr ""
 
-msgid "Input Type (1:double, 3:int32, 4:int16, 5:int8, ...)"
-msgstr "Tipo dei dati in ingresso (1:double, 3:int32, 4:int16, 5:int8, ...)"
+#
+# File: modules/scicos_blocks/macros/IntegerOp/CONVERT.sci, line: 39
+msgid "(b) 0:Nothing, 1:Saturate, 2:Error"
+msgstr ""
 
-msgid "Output Type (1:double, 3:int32, 4:int16, 5:int8, ...)"
-msgstr "Tipo dei dati in uscita: (1:double, 3:int32, 4:int16, 5:int8, ...)"
+#, fuzzy
+msgid "Input type (a)"
+msgstr "Tipo dei dati in ingresso"
 
-msgid "Do on Overflow (0:Nothing, 1:Saturate, 2:Error)"
+#, fuzzy
+msgid "Output type (a)"
+msgstr "Tipo dei dati in uscita"
+
+#
+# File: modules/scicos_blocks/macros/IntegerOp/CONVERT.sci, line: 42
+msgid "Do on overflow (b)"
 msgstr ""
 
 msgid "Do on Overflow"
@@ -259,6 +268,9 @@ msgid "Indexes must be in the interval %s."
 msgstr "Gli indici devono essere nell'intervallo %s."
 
 msgid "Integer matrix multiplication"
+msgstr ""
+
+msgid "Do on Overflow (0:Nothing, 1:Saturate, 2:Error)"
 msgstr ""
 
 msgid "JK flip-flop"
@@ -809,3 +821,9 @@ msgstr "Erano attese le stesse dimensioni."
 #, c-format
 msgid "%s: Wrong number of input arguments: At most %d expected.\n"
 msgstr ""
+
+#~ msgid "Input Type (1:double, 3:int32, 4:int16, 5:int8, ...)"
+#~ msgstr "Tipo dei dati in ingresso (1:double, 3:int32, 4:int16, 5:int8, ...)"
+
+#~ msgid "Output Type (1:double, 3:int32, 4:int16, 5:int8, ...)"
+#~ msgstr "Tipo dei dati in uscita: (1:double, 3:int32, 4:int16, 5:int8, ...)"

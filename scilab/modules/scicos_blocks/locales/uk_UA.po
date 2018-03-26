@@ -16,7 +16,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18566)\n"
+"X-Generator: Launchpad (build 18573)\n"
 
 msgid "overflow error"
 msgstr "помилка переповнення"
@@ -175,15 +175,22 @@ msgstr "Визначити біт"
 msgid "Type conversion"
 msgstr "Перетворення типів"
 
-msgid "Input Type (1:double, 3:int32, 4:int16, 5:int8, ...)"
-msgstr "Тип вхідних даних (1: double, 3: int32, 4: int16, 5: int8, ...)"
-
-msgid "Output Type (1:double, 3:int32, 4:int16, 5:int8, ...)"
-msgstr "Тип виведених даних (1: double, 3: int32, 4: int16, 5: int8, ...)"
-
-msgid "Do on Overflow (0:Nothing, 1:Saturate, 2:Error)"
+#, fuzzy
+msgid "(b) 0:Nothing, 1:Saturate, 2:Error"
 msgstr ""
 "Дія при переповненні (0: Нічого, 1: Доповнити, 2: Повідомити про помилку)"
+
+#, fuzzy
+msgid "Input type (a)"
+msgstr "Вхідний тип"
+
+#, fuzzy
+msgid "Output type (a)"
+msgstr "Тип вихідних даних"
+
+#, fuzzy
+msgid "Do on overflow (b)"
+msgstr "Дія при переповненні"
 
 msgid "Do on Overflow"
 msgstr "Дія при переповненні"
@@ -267,6 +274,10 @@ msgstr "Позиції мають належати діапазону %s."
 
 msgid "Integer matrix multiplication"
 msgstr "Множення цілих матриць"
+
+msgid "Do on Overflow (0:Nothing, 1:Saturate, 2:Error)"
+msgstr ""
+"Дія при переповненні (0: Нічого, 1: Доповнити, 2: Повідомити про помилку)"
 
 msgid "JK flip-flop"
 msgstr "JK-тригер"
@@ -825,3 +836,9 @@ msgid "%s: Wrong number of input arguments: At most %d expected.\n"
 msgstr ""
 "%s: помилкова кількість вхідних параметрів: слід використовувати не більше "
 "%d.\n"
+
+#~ msgid "Input Type (1:double, 3:int32, 4:int16, 5:int8, ...)"
+#~ msgstr "Тип вхідних даних (1: double, 3: int32, 4: int16, 5: int8, ...)"
+
+#~ msgid "Output Type (1:double, 3:int32, 4:int16, 5:int8, ...)"
+#~ msgstr "Тип виведених даних (1: double, 3: int32, 4: int16, 5: int8, ...)"

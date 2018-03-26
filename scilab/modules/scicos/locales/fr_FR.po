@@ -8,43 +8,45 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-12-07 22:14+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2018-03-24 09:20+0000\n"
+"Last-Translator: Paul Bignier <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18566)\n"
+"X-Generator: Launchpad (build 18573)\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s : Nombre erroné d'argument(s) de sortie : %d attendu(s).\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d : A real or integer matrix expected.\n"
 msgstr ""
+"%s : Type erroné de l'argument d'entrée #%d : une matrice réelle ou entière "
+"attendue.\n"
 
 #, c-format
 msgid "%s : inconsistent dimensions between arguments.\n"
-msgstr ""
+msgstr "%s : dimensions incohérentes entre les arguments.\n"
 
 #, c-format
 msgid "%s : bad dimension for argument #%d.\n"
-msgstr ""
+msgstr "%s : Taille erronée de l'argument d'entrée #%d.\n"
 
 #, c-format
 msgid "%s : arguments must have the same length.\n"
-msgstr ""
+msgstr "%s : les arguments doivent avoir la même taille.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
-msgstr ""
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendu(s).\n"
 
 #, c-format
 msgid "%s : First argument must be a scicos_block typed list.\n"
@@ -70,42 +72,55 @@ msgstr "%s : scicosim n'est pas lancé.\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d : string expected.\n"
 msgstr ""
+"%s : Type erroné pour l'argument d'entrée n°%d : une chaîne de caractères "
+"attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A real matrix expected.\n"
 msgstr ""
+"%s : Type erroné pour l'argument d'entrée n°%d : Une matrice réelle "
+"attendue.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr ""
+msgstr "%s : Nombre erroné d'arguments de sortie : %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d à %d attendu(s).\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d : A real, complex or integer matrix "
 "expected.\n"
 msgstr ""
+"%s : Type erroné de l'argument d'entrée #%d : une matrice réelle, complexe "
+"ou entière attendue.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Only hypermatrices with 3 dimensions "
 "are allowed.\n"
 msgstr ""
+"%s : Taille erronée de l'argument d'entrée #%d : hypermatrice à 3 dimensions "
+"attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A real expected.\n"
 msgstr ""
+"%s : Type erroné de l'argument d'entrée #%d : une matrice réelle ou entière "
+"attendue.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d : A scalar expected.\n"
 msgstr ""
+"%s : Taille erronée pour l'argument d'entrée n°%d : Un scalaire attendu.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d : A real value expected.\n"
 msgstr ""
+"%s : Valeur erronée de l'argument d'entrée #%d : une valeur réelle "
+"attendue.\n"
 
 #, c-format
 msgid "%s: 1st and 2nd argument must have equal size\n"
@@ -115,12 +130,14 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
-msgstr ""
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d ou %d attendu(s).\n"
 
 msgid ""
 "\n"
 "getscicosvars: utility function to retrieve\n"
 msgstr ""
+"\n"
+"getscicosvars : fonction utilitaire pour retrouver\n"
 
 msgid ""
 "                scicos arrays during simulation.\n"
@@ -133,27 +150,31 @@ msgid ""
 "Usage: [myvar]=getscicosvars([\"str1\";\"str2\";...]);\n"
 "\n"
 msgstr ""
+"Utilisation : myvar=getscicosvars([\"str1\";\"str2\";...]);\n"
+"\n"
 
 msgid "- myvar: an int32 or double matrix or a Tlist.\n"
-msgstr ""
+msgstr "- myvar : une matrice d'int32 ou réels ou une Tlist.\n"
 
 msgid "- [\"str1\";\"str2\",...] is a string matrix\n"
 msgstr "- [\"str1\";\"str2\",...] est une matrice de chaînes de caractères\n"
 
 msgid "  that must be informed with the following values:\n"
-msgstr ""
+msgstr "  qui doit être renseignée avec les valeurs suivantes :\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string matrix expected.\n"
 msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une matrice de chaîne de "
+"caractères attendue.\n"
 
 #, c-format
 msgid "%s: Undefined field in string matrix position: %d.\n"
-msgstr ""
+msgstr "%s : champ indéfini à l'élément %d de la matrice de textes.\n"
 
 #, c-format
 msgid "%s: Error with parameter \"%s\".\n"
-msgstr ""
+msgstr "%s : Erreur avec le paramètre \"%s\".\n"
 
 #, c-format
 msgid "%s : First argument must be a Typed list.\n"
@@ -193,11 +214,11 @@ msgstr ""
 
 #, c-format
 msgid "%s : Undetermined Size. intyp(%d)=%d. Please adjust your model.\n"
-msgstr ""
+msgstr "%s : Taille indéterminée. intyp(%d)=%d. Prière d'ajuster le modèle.\n"
 
 #, c-format
 msgid "%s : Unknown Data type\n"
-msgstr ""
+msgstr "%s : Type de donnée inconnu\n"
 
 #, c-format
 msgid "%s : Undetermined Size. out(%d)=%d. Please adjust your model.\n"
@@ -211,107 +232,129 @@ msgstr ""
 
 #, c-format
 msgid "%s : Undetermined Size. outtyp(%d)=%d. Please adjust your model.\n"
-msgstr ""
+msgstr "%s : Taille indéterminée. outtyp(%d)=%d. Prière d'ajuster le modèle.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: at least %d expected.\n"
-msgstr ""
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d au moins attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : une chaîne de caractères "
+"attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s expected.\n"
-msgstr ""
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : %s attendu.\n"
 
 #, c-format
 msgid "%s: Unable to load \"%s\" .\n"
-msgstr ""
+msgstr "%s : Impossible de charger \"%s\".\n"
 
 #, c-format
 msgid "%s: Unable to save \"%s\" .\n"
-msgstr ""
+msgstr "%s : Impossible de sauver \"%s\".\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d ou %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d : A real scalar expected.\n"
 msgstr ""
+"%s : Taille erronée de l'argument d'entrée #%d : un scalaire réel attendu.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d : An integer value expected.\n"
 msgstr ""
+"%s : Valeur erronée de l'argument d'entrée #%d : une valeur entière "
+"attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : une chaîne de caractères "
+"attendue.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
 msgstr ""
+"%s : Taille erronée de l'argument d'entrée n°%d : Une chaîne de caractères "
+"attendue.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set  {%ls}.\n"
 msgstr ""
+"%s : Valeur erronée de l'argument d'entrée #%d : doit être dans l'ensemble "
+"[%ls].\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: unable to set \"%ls\".\n"
 msgstr ""
+"%s : Valeur erronée de l'argument d'entrée #%d : valeur \"%ls\" impossible.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Row vector expected.\n"
 msgstr ""
+"%s : Taille erronée de l'argument d'entrée n°%d : Un vecteur ligne attendu.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d:  \"%ls\" type is not managed.\n"
 msgstr ""
+"%s : Valeur erronéee de l'argument d'entrée #%d : type \"%ls\" non prévu.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %dx%d expected.\n"
-msgstr ""
+msgstr "%s : Taille erronée de l'argument d'entrée n°%d : %dx%d attendu.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: invalid UID.\n"
-msgstr ""
+msgstr "%s : Valeur erronée de l'argument d'entrée #%d : UID invalide.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: not handled kind.\n"
-msgstr ""
+msgstr "%s : Valeur erronée de l'argument d'entrée #%d : type non prévu.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
-msgstr ""
+msgstr "%s : Nombre erroné d'arguments d'entrée : au moins %d attendus.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String or ID expected.\n"
 msgstr ""
+"%s : Type erroné de l'argument d'entrée #%d : chaîne de caractères ou ID "
+"attendu.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr ""
+msgstr "%s : Nombre erroné d'argument(s) de sortie : %d à %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A tlist expected.\n"
-msgstr ""
+msgstr "%s : Type erroné de l'argument d'entrée #%d : une tlist attendue.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d : %d elements expected.\n"
 msgstr ""
+"%s : Taille erronée de l'argument d'entrée #%d : %d éléments attendus.\n"
 
 #, c-format
 msgid "%s: Wrong type for element #%d of argument #%d : A matrix expected.\n"
 msgstr ""
+"%s : Type erroné pour l'élément %d de l'argument #%d : une matrice "
+"attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for element #%d of argument #%d : A list expected.\n"
 msgstr ""
+"%s : Type erroné pour l'élément %d de l'argument d'entrée n°%d : une liste "
+"attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A matrix expected.\n"
 msgstr ""
+"%s : Type erroné pour l'argument d'entrée n°%d : Une matrice attendue.\n"
 
 #, c-format
 msgid "%s : Incompatible sim.nb RHS parameter.\n"
@@ -321,6 +364,8 @@ msgstr "%s : Paramètre RHS sim.nb incompatible.\n"
 msgid ""
 "%s: Wrong type for element #%d of argument #%d : A string matrix expected.\n"
 msgstr ""
+"%s : Type erroné pour l'élément %d de l'argument d'entrée n°%d : une matrice "
+"de chaînes de caractères attendue.\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -329,10 +374,14 @@ msgstr "%s : Erreur d'allocation mémoire.\n"
 #, c-format
 msgid "%s: Wrong value for input argument #%d : %s, %s %s %s or %s expected.\n"
 msgstr ""
+"%s : Valeur erronée pour l'argument d'entrée n°%d : %s, %s, %s, %s ou %s "
+"attendu.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d : %d to %d elements expected.\n"
 msgstr ""
+"%s : Taille erronée pour l'argument d'entrée n°%d : %d à %d éléments "
+"attendus.\n"
 
 #, c-format
 msgid "%s : error in cross variable size checking : %d\n"
@@ -343,18 +392,24 @@ msgstr ""
 msgid ""
 "%s: Wrong size for element #%d of input argument #%d : A scalar expected.\n"
 msgstr ""
+"%s : Taille erronée pour l'élément %d de l'argument d'entrée n°%d : un "
+"scalaire attendu.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for element #%d of input argument #%d : string or macro "
 "expected.\n"
 msgstr ""
+"%s : Type erroné pour l'élément %d de l'argument d'entrée n°%d : chaîne de "
+"caractères ou macro attendue.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for element #%d of element #%d of argument #%d : A matrix "
 "expected.\n"
 msgstr ""
+"%s : Type erroné pour l'élément %d de l'élément %d de l'argument d'entrée n°"
+"%d : une matrice attendue.\n"
 
 #, c-format
 msgid "%s : No more free memory.\n"
@@ -440,38 +495,50 @@ msgstr "Erreur inattendue de Scicos, veuillez rapportez le bug..."
 #, c-format
 msgid "%s: Wrong size for input argument #%d : A vector expected.\n"
 msgstr ""
+"%s : Taille erronée pour l'argument d'entrée n°%d : un vecteur attendu.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d : %d or %d expected.\n"
 msgstr ""
+"%s : Valeur erronée pour l'argument d'entrée n°%d : %d ou %d attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A struct expected.\n"
 msgstr ""
+"%s : Type erroné de l'argument d'entrée #%d : une structure attendue.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d : A single struct expected.\n"
 msgstr ""
+"%s : Taille erronée de l'argument d'entrée #%d : une seule structure "
+"attendue.\n"
 
 #, c-format
 msgid "%s: Wrong fields for input argument #%d : \"%s\" and \"%s\" expected.\n"
 msgstr ""
+"%s : Champs erronés pour l'argument d'entrée #%d : \"%s\" et \"%s\" "
+"attendus.\n"
 
 #, c-format
 msgid "%s: Wrong size for argument #%d: string expected.\n"
 msgstr ""
+"%s : Taille erronée de l'argument n°%d : Une chaîne de caractères attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real row vector expected.\n"
 msgstr ""
+"%s : Type erroné de l'argument d'entrée #%d : un vecteur ligne réel "
+"attendu.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A row vector expected.\n"
 msgstr ""
+"%s : Taille erronée de l'argument d'entrée n°%d : Un vecteur ligne attendu.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: At least %dx%d expected.\n"
 msgstr ""
+"%s : Taille erronée de l'argument d'entrée #%d : au moins %dx%d attendue.\n"
 
 msgid "type 1 function not allowed for scilab blocks\n"
 msgstr "fonction de type 1 non autorisée pour des blocs de Scilab\n"
@@ -571,7 +638,7 @@ msgstr ""
 
 #, c-format
 msgid "block %d [%s] is called "
-msgstr ""
+msgstr "le bloc %d [%s] est appelé "
 
 #, c-format
 msgid "with flag %d "
@@ -726,140 +793,159 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: unknown integer type.\n"
-msgstr ""
+msgstr "%s : Type erroné de l'argument d'entrée #%d : type d'entier inconnu.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Could not read its content.\n"
 msgstr ""
+"%s : Valeur erronée de l'argument d'entrée #%d : impossible de lire son "
+"contenu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s, %s, %s, %s or %s type.\n"
 msgstr ""
+"%s : Type erroné de l'argument d'entrée #%d : type %s, %s, %s, %s ou %s.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for element #%d of input argument #%d: Integer matrix cannot "
 "be empty.\n"
 msgstr ""
+"%s : Valeur erronée pour l'élément %d de l'argument d'entrée #%d : une "
+"matrice d'entiers ne peut pas être vide.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for element #%d of input argument #%d: String matrix cannot "
 "be empty.\n"
 msgstr ""
+"%s : Valeur erronée pour l'élément %d de l'argument d'entrée #%d : une "
+"matrice de textes ne peut pas être vide.\n"
 
 #, c-format
 msgid "%s: Wrong value for element #%d of input argument #%d: Unknown type.\n"
 msgstr ""
+"%s : Valeur erronée pour l'élément %d de l'argument d'entrée #%d : type "
+"inconnu.\n"
 
 #, c-format
 msgid "Wrong type for field %ls: Tlist or Mlist expected.\n"
-msgstr ""
+msgstr "Type erroné pour le champ %ls : Tlist ou Mlist attendue.\n"
 
 #, c-format
 msgid "Wrong length for field %ls: at least %d element expected.\n"
-msgstr ""
+msgstr "Taille erronée pour le champ %ls : au moins %d éléments attendus.\n"
 
 #, c-format
 msgid ""
 "Wrong length for header of field \"%ls\": at least %d element expected.\n"
 msgstr ""
+"Taille erronée pour l'en-tête du champ \"%ls\" : au moins %d éléments "
+"attendus.\n"
 
 #, c-format
 msgid "Wrong value for header of field \"%ls\": \"%ls\" expected.\n"
-msgstr ""
+msgstr "Valeur erronée pour l'en-tête du champ \"%ls\" : \"%ls\" attendue.\n"
 
 #, c-format
 msgid "Wrong type for field %s: list expected.\n"
-msgstr ""
+msgstr "Type erroné pour le champ %s : une liste attendue.\n"
 
 #, c-format
 msgid "Wrong type for element %d of field %s: unknown Scicos object.\n"
 msgstr ""
+"Type erroné pour l'lélément %d du champ \"%s\" : objet Scicos inconnu.\n"
 
 #, c-format
 msgid "Wrong dimension for field %s: %d-by-%d expected.\n"
-msgstr ""
+msgstr "Taille erronée du champ %s : %dx%d attendue.\n"
 
 #, c-format
 msgid "Wrong size for field %s: at least %d-by-%d expected.\n"
-msgstr ""
+msgstr "Taille erronée du champ %s : %dx%d attendue.\n"
 
 #, c-format
 msgid "\"%s\" is a read-only field.\n"
-msgstr ""
+msgstr "\"%s\" est un champ en lecture seule.\n"
 
 #, c-format
 msgid "Wrong type for field %s.%s: Real matrix expected.\n"
-msgstr ""
+msgstr "Type erroné du champ %s.%s : matrice réelle attendue.\n"
 
 #, c-format
 msgid "Wrong dimension for field %s.%s: %d-by-%d expected.\n"
-msgstr ""
+msgstr "Taille erronée du champ %s.%s : %dx%d attendue.\n"
 
 #, c-format
 msgid "Wrong type for field %s.%s: string expected.\n"
-msgstr ""
+msgstr "Type erroné du champ %s.%s : une chaîne de caractères attendue.\n"
 
 #, c-format
 msgid "Wrong type for field %s: Real matrix object.\n"
-msgstr ""
+msgstr "Type erroné du champ %s : matrice réelle.\n"
 
 #, c-format
 msgid "Wrong type for field %s: String matrix expected.\n"
 msgstr ""
+"Type erroné du champ %s : une matrice de chaînes de caractères attendue.\n"
 
 #, c-format
 msgid "Wrong type for field %s: Real matrix expected.\n"
-msgstr ""
+msgstr "Type erroné du champ %s : une matrice réelle attendue.\n"
 
 #, c-format
 msgid "Wrong dimension for field %s.%s : %d-by-%d expected.\n"
-msgstr ""
+msgstr "Taille erronée du champ %s.%s : %dx%d attendue.\n"
 
 #, c-format
 msgid "Wrong length for field %s.%s : %d expected.\n"
-msgstr ""
+msgstr "Taille erronée du champ %s.%s : %d attendue.\n"
 
 #, c-format
 msgid "Wrong type for field %s.%s : String matrix expected.\n"
 msgstr ""
+"Type erroné du champ %s.%s : une matrice de chaînes de caractères attendue.\n"
 
 #, c-format
 msgid "Wrong value for field %s.%s : Round number expected.\n"
-msgstr ""
+msgstr "Valeur erronée du champ %s.%s : valeur entière attendue.\n"
 
 #, c-format
 msgid "Wrong type for field %s.%s : Real matrix expected.\n"
-msgstr ""
+msgstr "Type erroné du champ %s.%s : une matrice réelle attendue.\n"
 
 #, c-format
 msgid "Wrong size for field %s.%s : %d-by-%d expected.\n"
-msgstr ""
+msgstr "Taille erronée du champ %s.%s : %dx%d attendue.\n"
 
 #, c-format
 msgid "Wrong dimension for field %s.%s : m-by-1 expected.\n"
-msgstr ""
+msgstr "Taille erronée du champ %s.%s : m-par-1 attendue.\n"
 
 #, c-format
 msgid "Wrong type for field %s.%s : List expected.\n"
-msgstr ""
+msgstr "Type erroné du champ %s.%s : une liste attendue.\n"
 
 #, c-format
 msgid "Wrong value for field %s.%s : %s (%s) has an invalid port number.\n"
 msgstr ""
+"Valeur erronée du champ %s.%s : %s (%s) a un numéro de port invalide.\n"
 
 #, c-format
 msgid "Wrong value for field %s.%s : %s (%s) has an invalid implicit port.\n"
 msgstr ""
+"Valeur erronée du champ %s.%s : %s (%s) a un numéro de port implicite "
+"invalide.\n"
 
 #, c-format
 msgid "Wrong value for field %s.%s : %s (%s) has an invalid explicit port.\n"
 msgstr ""
+"Valeur erronée du champ %s.%s : %s (%s) a un numéro de port explicite "
+"invalide.\n"
 
 #, c-format
 msgid "Wrong type for field %s.%s : Diagram expected.\n"
-msgstr ""
+msgstr "Type erroné du champ %s.%s : diagramme attendu.\n"
 
 #, c-format
 msgid "Wrong type for field %s.%s : List clear previous value.\n"
@@ -867,89 +953,93 @@ msgstr ""
 
 #, c-format
 msgid "Wrong dimension for field %s.%s : m-by-1 matrix expected.\n"
-msgstr ""
+msgstr "Taille erronée du champ %s.%s : m-par-1 attendue.\n"
 
 #, c-format
 msgid "Wrong value for field %s.%s : Integer values expected.\n"
-msgstr ""
+msgstr "Valeur erronée du champ %s.%s : valeurs entières attendues.\n"
 
 #, c-format
 msgid "Wrong type for field %s.%s : String expected.\n"
-msgstr ""
+msgstr "Type erroné du champ %s.%s : chaîne de caractères attendue.\n"
 
 #, c-format
 msgid "Wrong dimension for field %s.%s : String expected.\n"
-msgstr ""
+msgstr "Taille erronée du champ %s.%s : chaîne de caractères attendue.\n"
 
 #, c-format
 msgid "Wrong type for field %s.%s : Boolean matrix expected.\n"
-msgstr ""
+msgstr "Type erroné du champ %s.%s : matrice de booléens attendue.\n"
 
 #, c-format
 msgid "Wrong type for field %s.%s: String expected.\n"
-msgstr ""
+msgstr "Type erroné du champ %s.%s : chaînes de caractères attendue.\n"
 
 #, c-format
 msgid "Wrong dimension for field %s.%s: String expected.\n"
-msgstr ""
+msgstr "Taille erronée du champ %s.%s : chaîne de caractères attendue.\n"
 
 #, c-format
 msgid "Wrong type for field %s.%s: Real expected.\n"
-msgstr ""
+msgstr "Type erroné du champ %s.%s : réel attendu.\n"
 
 #, c-format
 msgid "Wrong dimension for field %s.%s: Real expected.\n"
-msgstr ""
+msgstr "Taille erronée du champ %s.%s : scalaire réel attendu.\n"
 
 #, c-format
 msgid "Wrong dimension for field %s.%s: m-by-1 expected.\n"
-msgstr ""
+msgstr "Taille erronée du champ %s.%s : m-par-1 attendue.\n"
 
 #, c-format
 msgid "Wrong type for field %s.%s : string expected.\n"
-msgstr ""
+msgstr "Type erroné du champ %s.%s : chaîne de caractères attendue.\n"
 
 #, c-format
 msgid "Wrong type for field %s: Mlist expected.\n"
-msgstr ""
+msgstr "Type erroné du champ %s : Mlist attendue.\n"
 
 #, c-format
 msgid "Wrong size for field %s: at least %d elements expected.\n"
-msgstr ""
+msgstr "Taille erronée du champ %s : au moins %d éléments attendu(s).\n"
 
 #, c-format
 msgid "Wrong value for header of field %s: field %s expected.\n"
-msgstr ""
+msgstr "Valeur erronée de l'en-tête du champ %s : champ %s attendu.\n"
 
 #, c-format
 msgid "Wrong dimensions for field %s.%s: %d-by-%d expected.\n"
-msgstr ""
+msgstr "Taille erronée du champ %s.%s : %dx%d attendue.\n"
 
 #, c-format
 msgid "Wrong type for field %s.%s: String matrix expected.\n"
 msgstr ""
+"Type erroné du champ %s.%s : matrice de chaînes de caractères attendue.\n"
 
 #, c-format
 msgid ""
 "Wrong value for field %s.%s: '%s' unrecognized, only expected '%s' or '%s' "
 "vector. Switching to '%s'.\n"
 msgstr ""
+"Valeur erronée du champ %s.%s : \"%s\" non reconnue, seuls \"%s\" et \"%s\" "
+"attendues. Changement vers \"%s\".\n"
 
 #, c-format
 msgid "Wrong type for field %s.%s.\n"
-msgstr ""
+msgstr "Type erroné du champ %s.%s.\n"
 
 #, c-format
 msgid "Wrong value for field %s.%s: Round number expected.\n"
-msgstr ""
+msgstr "Valeur erronée du champ %s.%s : valeur entière attendue.\n"
 
 #, c-format
 msgid "Wrong type for field %s.%s .\n"
-msgstr ""
+msgstr "Type erroné du champ %s.%s.\n"
 
 #, c-format
 msgid "Wrong value for field %s.%s: FIXME port has not been updated.\n"
 msgstr ""
+"Valeur erronée du champ %s.%s : le port FIXME n'a pas été mis à jour.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
@@ -1067,11 +1157,11 @@ msgstr "Sortie du problème : "
 
 #, c-format
 msgid "%s: property %s obsolete, please use %s instead.\n"
-msgstr ""
+msgstr "%s : propriété %s obsolète, veuillez utiliser %s à la place.\n"
 
 #, c-format
 msgid "Wrong type for diagram element #%d: %s, %s or %s expected.\n"
-msgstr ""
+msgstr "Type erroné de l'élément #%d du diagramme : %s, %s ou %s attendu.\n"
 
 msgid ""
 "Your model contains states defined in standard Scicos blocks.\n"
@@ -1402,11 +1492,13 @@ msgstr "%s : Diagramme vide"
 
 #, c-format
 msgid "%s: Wrong input argument.\n"
-msgstr ""
+msgstr "%s : Argument d'entrée erroné.\n"
 
 #, c-format
 msgid "The variable name %s cannot be used as block parameter: ignored\n"
 msgstr ""
+"Le nom de variable %s ne peut pas être utilisé comme paramètre de bloc : "
+"ignoré.\n"
 
 msgid "scs_show active..."
 msgstr "scs_show actif..."
