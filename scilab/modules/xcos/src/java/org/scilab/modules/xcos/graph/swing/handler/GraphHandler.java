@@ -152,18 +152,16 @@ public class GraphHandler extends mxGraphHandler {
             throw new RuntimeException(ex);
         }
 
-
-        // set the position of the block
-        final mxPoint pt = graphComponent.getPointForEvent(e);
-        final mxGeometry geo = textBlock.getGeometry();
-        geo.setX(pt.getX() - (geo.getWidth() / 2));
-        geo.setY(pt.getY() - (geo.getHeight() / 2));
-
         // add the block to the graph
         final mxGraph graph = graphComponent.getGraph();
         graph.getModel().beginUpdate();
         try {
             graph.addCell(textBlock);
+
+            // set the position of the block
+            final mxPoint pt = graphComponent.getPointForEvent(e);
+            final mxGeometry geo = textBlock.getGeometry();
+            graph.moveCells(new Object[] { textBlock }, pt.getX(), pt.getY() + geo.getHeight());
         } finally {
             graph.getModel().endUpdate();
         }
