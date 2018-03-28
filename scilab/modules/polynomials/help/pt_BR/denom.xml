@@ -69,7 +69,7 @@
         <title>Histórico</title>
         <revhistory>
             <revision>
-                <revnumber>6.0.2</revnumber>
+                <revnumber>6.0.1</revnumber>
                 <revdescription>
                     <literal>denom()</literal> is declared obsolete. The rational attribute
                     <literal>.den</literal> must be used instead.

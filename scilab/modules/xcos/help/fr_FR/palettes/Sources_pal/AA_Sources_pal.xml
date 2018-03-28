@@ -123,6 +123,15 @@
             </inlinemediaobject>
             </link>.
 
+            <link linkend="PULSE_SC">
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata linkend="PULSE_SC" fileref="../../../../images/palettes/PULSE_SC.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
+                </imageobject>
+            </inlinemediaobject>
+            </link>.
+
             <link linkend="RAMP">
             <inlinemediaobject>
                 <imageobject>
@@ -298,6 +307,11 @@
             <listitem>
                 <para>
                     <link linkend="Modulo_Count">Modulo_Count - Compteur Modulo</link>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <link linkend="PULSE_SC">PULSE_SC - Pulse generator</link>
                 </para>
             </listitem>
             <listitem>

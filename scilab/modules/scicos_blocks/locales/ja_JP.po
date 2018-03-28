@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18566)\n"
+"X-Generator: Launchpad (build 18573)\n"
 
 msgid "overflow error"
 msgstr "オーバーフローエラー"
@@ -172,14 +172,21 @@ msgstr "ビットをセット"
 msgid "Type conversion"
 msgstr "型変換"
 
-msgid "Input Type (1:double, 3:int32, 4:int16, 5:int8, ...)"
-msgstr "入力型 (1:double, 3:int32, 4:int16, 5:int8, ...)"
-
-msgid "Output Type (1:double, 3:int32, 4:int16, 5:int8, ...)"
-msgstr "出力の型 (1:double, 3:int32, 4:int16, 5:int8, ...)"
-
-msgid "Do on Overflow (0:Nothing, 1:Saturate, 2:Error)"
+#, fuzzy
+msgid "(b) 0:Nothing, 1:Saturate, 2:Error"
 msgstr "オーバーフロー時の動作 (0:何もしない, 1:飽和, 2:エラー)"
+
+#, fuzzy
+msgid "Input type (a)"
+msgstr "入力の型"
+
+#, fuzzy
+msgid "Output type (a)"
+msgstr "出力の型"
+
+#, fuzzy
+msgid "Do on overflow (b)"
+msgstr "オーバーフロー時の動作"
 
 msgid "Do on Overflow"
 msgstr "オーバーフロー時の動作"
@@ -263,6 +270,9 @@ msgstr "添字は %s の範囲とする必要があります."
 
 msgid "Integer matrix multiplication"
 msgstr "整数行列乗算"
+
+msgid "Do on Overflow (0:Nothing, 1:Saturate, 2:Error)"
+msgstr "オーバーフロー時の動作 (0:何もしない, 1:飽和, 2:エラー)"
 
 msgid "JK flip-flop"
 msgstr "JK フリップ-フロップ"
@@ -811,3 +821,9 @@ msgstr "同じ大きさを指定してください."
 #, c-format
 msgid "%s: Wrong number of input arguments: At most %d expected.\n"
 msgstr "%s: 入力引数の数が間違っています: 最大でも %d 個としてください.\n"
+
+#~ msgid "Input Type (1:double, 3:int32, 4:int16, 5:int8, ...)"
+#~ msgstr "入力型 (1:double, 3:int32, 4:int16, 5:int8, ...)"
+
+#~ msgid "Output Type (1:double, 3:int32, 4:int16, 5:int8, ...)"
+#~ msgstr "出力の型 (1:double, 3:int32, 4:int16, 5:int8, ...)"

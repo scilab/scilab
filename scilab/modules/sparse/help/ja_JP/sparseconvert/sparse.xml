@@ -88,6 +88,11 @@
             <literal>ij(:,1)</literal> および <literal>ij(:,2)</literal>の
             最大値となります.
         </para>
+        <warning>For the building syntaxes, if several values are given for a same
+            <varname>ij</varname> position, the sum of theses values is assigned.
+        </warning>
+      <refsect3>
+        <title>Operating sparse matrices</title>
         <para>
             疎行列に関する操作(結合,加算,等,)は通常の行列と同じ構文により
             行ないます.
@@ -113,6 +118,7 @@
             書込みアクセスは<literal>sp=sparse(ij, v, mn)</literal>による
             バッチ処理により行う必要があります.
         </para>
+      </refsect3>
     </refsection>
     <refsection>
         <title>例</title>

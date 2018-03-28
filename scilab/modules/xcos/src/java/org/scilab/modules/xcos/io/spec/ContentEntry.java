@@ -24,7 +24,6 @@ import java.util.zip.ZipOutputStream;
 import javax.xml.stream.XMLOutputFactory;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
-import javax.xml.transform.stream.StreamResult;
 import org.scilab.modules.commons.xml.ScilabXMLOutputFactory;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.sax.XcosSAXHandler;
@@ -84,8 +83,7 @@ public class ContentEntry implements Entry {
          */
         try {
             final XMLOutputFactory factory = ScilabXMLOutputFactory.newInstance();
-            final StreamResult result = new StreamResult(stream);
-            final XMLStreamWriter writer = factory.createXMLStreamWriter(result);
+            final XMLStreamWriter writer = factory.createXMLStreamWriter(stream, "UTF-8");
 
             LOG.entering("XMLStreamWriter", "write");
             new XcosWriter(pack.getDictionary(), writer).write(content.getUID(), content.getKind());

@@ -35,11 +35,11 @@ function [m,den,off,count,m1,fir,frequ,offset,ok]=mfrequ_clk(frequ,offset)
     [pgcd,den]=fixedpointgcd(v);//find the pgcd and the common denominator of the vector v
     [m1,k]=uni(frequ,offset); // m1 is a vector of different frequencies or same frequencies with different offsets
     // k is the index.
-    frequ=frequ(k);  // delete the dupplicated frequencies.
+    frequ=frequ(k);  // delete the duplicated frequencies.
     frd1=uint32(round((frequ.*double(den)))); // this will be used to construct the counter of the simulation.
     ppcm=lcm(frd1); // find the least common multiple of the frequencies.
     frd1=double(frd1);
-    offset=offset(k); // delete the dupplicated offset.
+    offset=offset(k); // delete the duplicated offset.
     //constructing the first element of the opar of the m_frequ block.
     // the first column contains the delay.
     // the second element contains the event output number to activate.
@@ -47,7 +47,7 @@ function [m,den,off,count,m1,fir,frequ,offset,ok]=mfrequ_clk(frequ,offset)
     if size(frequ,"*")>1 then   // more than one frequency
         mat=[];
         for i=1:size(frequ,"*")
-            mat1=[offset(i)*den:frd1(i):double(ppcm)]';// for each frequency
+            mat1=[offset(i)*double(den):frd1(i):double(ppcm)]';// for each frequency
             mat=[mat;[mat1 2^(i-1)*ones(size(mat1,"*"),1)]]; // contains the frequency and the corresponding output.
         end
         [n,k]=gsort(mat(:,1),"g","i");

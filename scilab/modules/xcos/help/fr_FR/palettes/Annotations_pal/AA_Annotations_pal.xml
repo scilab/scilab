@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="Annotations_pal" xml:lang="fr_FR">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="Annotations_pal" xml:lang="fr_FR">
     <refnamediv>
         <refname>Annotations_pal</refname>
         <refpurpose>Palette Annotations</refpurpose>
@@ -21,11 +24,14 @@
     <refsection>
         <title>Aperçu</title>
         <para>
+            <link linkend="TEXT_f">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="TEXT_f" fileref="../../../../images/palettes/TEXT_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    <imagedata linkend="TEXT_f" fileref="../../../../images/palettes/TEXT_f.png"
+                      style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
+            </link>
         </para>
     </refsection>
     <refsection id="Module_Annotations_pal">

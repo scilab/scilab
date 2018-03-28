@@ -170,7 +170,8 @@ struct exprs
         types::InternalType* res;
         if (!vec2var(exprs, res))
         {
-            return 0;
+            // if invalid data, return a valid value
+            return types::Double::Empty();
         }
         return res;
     }

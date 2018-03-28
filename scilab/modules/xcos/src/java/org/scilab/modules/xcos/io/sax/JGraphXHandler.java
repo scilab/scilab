@@ -96,8 +96,8 @@ class JGraphXHandler implements ScilabHandler {
 
                         VectorOfDouble parentGeom = new VectorOfDouble(4);
                         saxHandler.controller.getObjectProperty(parentUID[0], saxHandler.controller.getKind(parentUID[0]), ObjectProperties.GEOMETRY, parentGeom);
-                        g.setX(parentGeom.get(0) + g.getX() * parentGeom.get(2));
-                        g.setY(parentGeom.get(1) + g.getY() * parentGeom.get(3));
+                        g.setX(g.getX() * parentGeom.get(2));
+                        g.setY(g.getY() * parentGeom.get(3));
                     }
                 }
 
@@ -155,6 +155,19 @@ class JGraphXHandler implements ScilabHandler {
                             geom.put(0, geom.get(0) + p.getX());
                             geom.put(1, geom.get(1) + p.getY());
                             saxHandler.controller.setObjectProperty(annotation[0], Kind.ANNOTATION, ObjectProperties.GEOMETRY, geometry);
+                        }
+
+                        // translate control-points
+                        if (kind == Kind.LINK) {
+                            VectorOfDouble controlPoints = new VectorOfDouble();
+                            saxHandler.controller.getObjectProperty(uid, kind, ObjectProperties.CONTROL_POINTS, controlPoints);
+
+                            DoubleBuffer points = controlPoints.asByteBuffer(0, controlPoints.size()).asDoubleBuffer();
+                            for (int i = 0; i < controlPoints.size(); i += 2) {
+                                points.put(i, points.get(i) + p.getX());
+                                points.put(i + 1, points.get(i + 1) + p.getY());
+                            }
+                            saxHandler.controller.setObjectProperty(uid, kind, ObjectProperties.CONTROL_POINTS, controlPoints);
                         }
                     }
 

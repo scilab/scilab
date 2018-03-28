@@ -93,7 +93,7 @@ function [ok]=buildnewblock(blknam, files, filestan, filesint, libs, rpat, ldfla
     end
 
     //** otherlibs treatment
-    [ok, libs, for_link] = link_olibs(libs, rpat);
+    ok = link_olibs(libs, rpat);
     if ~ok then
         ok = %f;
         message(["sorry compiling problem"; lasterror()]);
@@ -146,7 +146,8 @@ function [ok]=buildnewblock(blknam, files, filestan, filesint, libs, rpat, ldfla
         dlwForceRebuild(%t);
     end
 
-    ierr = execstr("libn =ilib_for_link(blknam,files,"""",""c"","""",""loader.sce"","""",ldflags,cflags)","errcatch");
+    // In the call, remove the superfluous quotes & extension from 'libs'
+    ierr = execstr("libn =ilib_for_link(blknam,files,libs,""c"","""",""loader.sce"","""",ldflags,cflags)","errcatch");
 
     // restore previous build mode
     if getos() == "Windows" then

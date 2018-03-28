@@ -1,39 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="recursionlimit" xml:lang="en">
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="recursionlimit" xml:lang="en">
     <refnamediv>
         <refname>recursionlimit</refname>
-        <refpurpose>get or set recursion limit</refpurpose>
+        <refpurpose>get or set the current or maximal allowed depth of nested calls</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>limit = recursionlimit()
-            old = recursionlimit(new)
-            current = recursionlimit("current")
+        <synopsis>
+            currentMaxDepth = recursionlimit()
+            formerMaxDepth = recursionlimit(newMaxDepth)
+            currentDepth = recursionlimit("current")
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
+                <term>currentMaxDepth</term>
+                <listitem>
+                    <para>Maximal number of nested calls (= depth) currently set.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>newMaxDepth</term>
+                <listitem>
+                    <para>New maximal number of nested calls to set.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>formerMaxDepth</term>
+                <listitem>
+                    <para>Former value set, before it was changed</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>"current"</term>
-                    <para>used to get current recursion level</para>
+                    <para>input keyword retrieving the current calling depth (before reaching the max one).</para>
             </varlistentry>
             <varlistentry>
-                <term>limit</term>
+                <term>currentDepth</term>
                 <listitem>
-                    <para>current recursion limit</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>new</term>
-                <listitem>
-                    <para>new recursion limit</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>old</term>
-                <listitem>
-                    <para>old recursion limit</para>
+                    <para>Current calling depth.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -41,11 +66,14 @@
     <refsection>
         <title>Description</title>
         <para>
-        Use this function to change the recursion of Scilab.
-        each built-in, macro or overload is a level.
-        This parameter can be setup in Scilab preferences.
-        Default value is set to 1000.
+        Use this function to change the maximal number of nested calls allowed in Scilab.
+        Each script.sce, public or internal (like overloads) functions in Scilab language, or
+        built-in functions compiled from an external language is a level.
+        Default value is set to 1000 levels.
         </para>
+        <note>
+           <varname>newMaxDepth</varname> can be set in Scilab preferences.
+        </note>
     </refsection>
     <refsection>
         <title>Examples</title>
@@ -90,13 +118,27 @@ recfib(10); //OK
 recfib(11); //KO
 ]]></programlisting>
     </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="where">where</link>
+            </member>
+            <member>
+                <link linkend="getmemory">getmemory</link>
+            </member>
+            <member>
+                <link linkend="preferences">preferences</link>
+            </member>
+        </simplelist>
+    </refsection>
     <refsection>
         <title>History</title>
         <revhistory>
             <revision>
                 <revnumber>6.0.0</revnumber>
                 <revremark>
-                    Added in Scilab 6 family
+                    Function added
                 </revremark>
             </revision>
         </revhistory>

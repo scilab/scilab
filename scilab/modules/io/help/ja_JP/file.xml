@@ -294,9 +294,9 @@
             <literal>writb</literal>,<literal>save</literal>, <literal>load</literal>
             関数コールにおいてファイル記述子と同様に使用することができます.
         </para>
-        <para>この関数はUTFファイル名をオープンすることができません.
+        <warning>この関数はUTFファイル名をオープンすることができません.
             この場合,mopenを使用してください.
-        </para>
+        </warning>
         <para>
             <literal>file(action,unit)</literal> により,ファイルを閉じたり,
             カレントのファイルポインタを移動することができます.

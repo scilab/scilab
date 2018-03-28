@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="where">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="fr" xml:id="where">
     <refnamediv>
         <refname>where</refname>
         <refpurpose>donne l'arborescence d'appel courante  </refpurpose>
@@ -39,11 +42,48 @@
             "exec" ou "execstr" si l'instruction est dans un script ou dans une chaîne argument de execstr.
         </para>
     </refsection>
+    <refsection>
+        <title>Exemple</title>
+        <programlisting role="example"><![CDATA[
+function foo()
+    c = 1
+    [a,b] = where()
+    disp("Line:")
+    disp(a);
+    disp("Function:")
+    disp(b);
+endfunction
+
+function test()
+    function beer()
+        foo()
+    endfunction
+    beer()
+endfunction
+
+test()
+ ]]></programlisting>
+    <screen><![CDATA[
+--> test()
+ Line:
+   3.
+   2.
+   5.
+
+ Function:
+!foo   !
+!beer  !
+!test  !
+]]></screen>
+    </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>
         <simplelist type="inline">
             <member>
                 <link linkend="whereami">whereami</link>
+            </member>
+            <member>
+                <link linkend="recursionlimit">recursionlimit</link>
             </member>
             <member>
                 <link linkend="pause">pause</link>

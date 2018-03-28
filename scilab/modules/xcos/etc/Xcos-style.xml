@@ -229,7 +229,7 @@
     </add>
     <add as="CLSS_f" extend="CLSS"/>
     <add as="CLR" extend="blockWithLabel">
-        <add as="displayedLabel" value="$\frac{%s}{%s}$"/>
+        <add as="displayedLabel" value="$\mathsf\frac{%s}{%s}$"/>
     </add>
     <add as="CLR_f" extend="CLR"/>
     <add as="TIME_DELAY" extend="blockWithLabel">
@@ -603,7 +603,7 @@
         <add as="displayedLabel" value="N(z,p)&lt;BR&gt;&lt;HR&gt;D(z,p)"/>
     </add>
     <add as="DLR" extend="blockWithLabel">
-        <add as="displayedLabel" value="$\frac{%s}{%s}$"/>
+        <add as="displayedLabel" value="$\mathsf\frac{%s}{%s}$"/>
     </add>
     <add as="DLR_f" extend="DLR"/>
     <add as="DLSS" extend="blockWithLabel">

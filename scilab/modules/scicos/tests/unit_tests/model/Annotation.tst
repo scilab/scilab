@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- TEST WITH GRAPHIC -->
+// <-- CLI SHELL MODE -->
 
 loadXcosLibs();
 scicos_log("TRACE");
@@ -32,9 +32,18 @@ o.model
 o.void
 o.gui
 
+// Redefine gca() to prevent graphic display
+p = funcprot();
+funcprot(0);
+function a = gca()
+    a.font_style = 6;
+    a.font_size = 1;
+    a.font_color = -1;
+endfunction
+funcprot(p);
+
 // Modify it
 o = TEXT_f("set", o)
-close;
 o.graphics
 o.model
 o.void

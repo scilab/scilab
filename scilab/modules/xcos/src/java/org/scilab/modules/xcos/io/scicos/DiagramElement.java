@@ -193,7 +193,7 @@ public final class DiagramElement extends AbstractElement<XcosDiagram> {
 
         // Fill the diagram attributes
         ScicosParametersElement params = new ScicosParametersElement(controller);
-        params.decode(base.get(1), new ScicosParameters(Xcos.findRoot(diag), new ScicosObjectOwner(diag.getUID(), diag.getKind())));
+        params.decode(base.get(1), new ScicosParameters(Xcos.findRoot(controller, diag), new ScicosObjectOwner(controller, diag.getUID(), diag.getKind())));
 
         // Decode the objs attributes
         decodeObjs(diag);

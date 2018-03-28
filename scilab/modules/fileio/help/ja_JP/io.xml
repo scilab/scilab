@@ -15,7 +15,10 @@
  *
  -->
 
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="io" xml:lang="ja">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="io" xml:lang="ja">
 
     <refnamediv>
 
@@ -72,33 +75,37 @@ write(0,'Scilab stderr (Fortran');
         <title>参照</title>
 
         <simplelist type="inline">
-
             <member>
-
+                <link linkend="getio">getio</link>
+            </member>
+            <member>
+                <link linkend="consolebox">consolebox</link>
+            </member>
+            <member>
                 <link linkend="write">write</link>
-
             </member>
-
             <member>
-
-                <link linkend="mfprintf">mfprintf</link>
-
+                <link linkend="mprintf">mprintf</link>
             </member>
-
             <member>
-
                 <link linkend="file">file</link>
-
             </member>
-
             <member>
-
                 <link linkend="dispfiles">dispfiles</link>
-
             </member>
-
         </simplelist>
 
+    </refsection>
+    <refsection role="history">
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revdescription>
+                   <literal>%io</literal> is now protected (read-only).
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 
 </refentry>

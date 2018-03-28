@@ -118,4 +118,15 @@ lcm(V)
             </member>
         </simplelist>
     </refsection>
+    <refsection role="history">
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.1</revnumber>
+                <revdescription>
+                    Le second résulat U est désormais optionnel.
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>

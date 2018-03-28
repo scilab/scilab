@@ -157,13 +157,14 @@
             <revision>
                 <revnumber>6.0.1</revnumber>
                 <revdescription>
-                    "default" color_scheme introduced.
-                </revdescription>
-            </revision>
-            <revision>
-                <revnumber>6.0.2</revnumber>
-                <revdescription>
-                    With "black" and "none" color shemes, titles and axes labels are now drawn in white.
+                    <itemizedlist>
+                      <listitem>
+                         "default" color_scheme introduced.
+                      </listitem>
+                      <listitem>
+                         With "black" and "none" color shemes, titles and axes labels are now drawn in white.
+                      </listitem>
+                  </itemizedlist>
                 </revdescription>
             </revision>
         </revhistory>

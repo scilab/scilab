@@ -11,7 +11,10 @@
  * For more information, see the COPYING file which you should have received
  * along with this program.
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="orthProj">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ja" xml:id="orthProj">
     <refnamediv>
         <refname>orthProj</refname>
         <refpurpose>
@@ -123,5 +126,19 @@
             xpoly([pt(1);ptp(1)],[pt(2);ptp(2)])
             e=gce();e.polyline_style=4;e.arrow_size_factor = 1.5;
         </scilab:image>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="proj">proj</link>
+            </member>
+            <member>
+                <link linkend="householder">householder</link>
+            </member>
+            <member>
+                <link linkend="scaling">scaling</link>
+            </member>
+        </simplelist>
     </refsection>
 </refentry>

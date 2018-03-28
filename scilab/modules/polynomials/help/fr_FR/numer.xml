@@ -63,7 +63,7 @@ numer(p)
         <title>Historique</title>
         <revhistory>
             <revision>
-                <revnumber>6.0.2</revnumber>
+                <revnumber>6.0.1</revnumber>
                 <revdescription>
                     <literal>numer()</literal> est déclarée obsolète. L'attribut
                     <literal>.num</literal> des fractions rationelles doit être utilisé à la place.

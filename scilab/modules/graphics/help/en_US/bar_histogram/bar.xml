@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="bar">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="bar">
     <refnamediv>
         <refname>bar</refname>
         <refpurpose>bar histogram</refpurpose>
@@ -21,8 +24,9 @@
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>bar(y)
-            bar(x,y)
-            bar([h],x,y [,width [,color [,style]]])
+            bar(x, y)
+            bar(x, y [,width [,color [,style]]])
+            bar(h, x, y ..)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -61,8 +65,9 @@
             <varlistentry>
                 <term>color</term>
                 <listitem>
-                    <para>(optional), a string (default: 'blue'), specifying the inside
-                        color bar.
+                    <para>
+                        (optional) the color filling bars, specified by its literal name among
+                        predefined ones, or by its "#RRGGBB" hexadecimal code.  Default: "blue"
                     </para>
                 </listitem>
             </varlistentry>
@@ -106,11 +111,10 @@
             stack them.
         </para>
         <para>
-            <literal>bar(...,color,...) : </literal>defines the bar color. Bar functions
-            uses the same colormap than in the <literal>plot</literal> function.
+            <literal>bar(...,color,...) : </literal> defines the bars filling color.
         </para>
         <para>
-            If there are several bar calls, the <literal>barhomogenize</literal> function
+            If there are several bar() calls, the <literal>barhomogenize</literal> function
             allows to homogenize the width and style of all bars (i.e polylines of
             type 6) included in the current working axes.
         </para>
@@ -176,14 +180,30 @@ bar(x,y,0.2,'green');
                 <link linkend="barhomogenize">barhomogenize</link>
             </member>
             <member>
+                <link linkend="histplot">histplot</link>
+            </member>
+            <member>
                 <link linkend="plot">plot</link>
             </member>
             <member>
-                <link linkend="histplot">histplot</link>
+                <link linkend="color_list">named colors</link>
             </member>
             <member>
                 <link linkend="polyline_properties">polyline_properties</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.1</revnumber>
+                <revdescription>
+                    color is no longer restricted to the 10 major colors: It can now be any of the
+                    numerous predefined Scilab color names. Moreover, it can now be specified by
+                    its "#RRGGBB" hexadecimal code.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

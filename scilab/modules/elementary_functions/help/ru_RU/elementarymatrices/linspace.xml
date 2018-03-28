@@ -82,37 +82,37 @@
         <title>Описание</title>
         <para>
             <code>linspace(x1, x2)</code> генерирует   вектор-строку из
-	    <varname>n</varname> равномерно распределённых значений в диапазоне
-	    точно от <varname>x1</varname> до <varname>x2</varname>.
+            <varname>n</varname> равномерно распределённых значений в диапазоне
+            точно от <varname>x1</varname> до <varname>x2</varname>.
         </para>
         <note>
             <para>
                 Синтаксис <code>y1:y2</code> или <code>y1:step:y2</code>
                 наподобие <code>1:0.1:%pi</code> делает то же самое, но фиксирует
-		начальную границу <varname>y1</varname> и
-		<emphasis role="bold">шаг</emphasis> <varname>step</varname>.
-		Переменная <varname>y2</varname> используется в качестве границы
-		остановки, через которую нельзя переступить. Последнее значение,
-		которое фактически будет сгенерировано, может не достичь её. В
-		этом случае <varname>y2</varname> не включено в результат.
+                начальную границу <varname>y1</varname> и
+                <emphasis role="bold">шаг</emphasis> <varname>step</varname>.
+                Переменная <varname>y2</varname> используется в качестве границы
+                остановки, через которую нельзя переступить. Последнее значение,
+                которое фактически будет сгенерировано, может не достичь её. В
+                этом случае <varname>y2</varname> не включено в результат.
             </para>
             <para>
-		Вместо фиксированного шага указанным значением, функция
-		<function>linspace</function> фиксирует конечную границу
-		<varname>x2</varname>, которая точно <emphasis role="bold">будет достигнута</emphasis>
-		и вычисляет соответствующий шаг.
+                Вместо фиксированного шага указанным значением, функция
+                <function>linspace</function> фиксирует конечную границу
+                <varname>x2</varname>, которая точно <emphasis role="bold">будет достигнута</emphasis>
+                и вычисляет соответствующий шаг.
             </para>
         </note>
         <para>
-	    Если <varname>x1</varname> или <varname>x2</varname> являются комплексными
-	    числами, то <code>linspace(x1,x2)</code> интерполирует отдельно вещественную
-	    и мнимую части <varname>x1</varname> и <varname>x2</varname>.
+            Если <varname>x1</varname> или <varname>x2</varname> являются комплексными
+            числами, то <code>linspace(x1,x2)</code> интерполирует отдельно вещественную
+            и мнимую части <varname>x1</varname> и <varname>x2</varname>.
         </para>
         <para>
-	    Если указаны вектор-столбцы <varname>Col1</varname> и <varname>Col2</varname>,
-	    то функция <function>linspace</function> работает по строкам: результирующая
-	    матрица <varname>Matrix</varname> имеет то же количество строк и
-	    <varname>n</varname> столбцов, которое мы получим <code>Matrix(i,:) = linspace(Col1(i), Col2(i), n)</code>.
+            Если указаны вектор-столбцы <varname>Col1</varname> и <varname>Col2</varname>,
+            то функция <function>linspace</function> работает по строкам: результирующая
+            матрица <varname>Matrix</varname> имеет то же количество строк и
+            <varname>n</varname> столбцов, которое мы получим <code>Matrix(i,:) = linspace(Col1(i), Col2(i), n)</code>.
         </para>
     </refsection>
     <refsection>
@@ -132,16 +132,13 @@ linspace([1:4]', [5:8]', 10)   // со столбцами на входе
  ans  =
    1.   1.111   1.222   1.333   1.444   1.556   1.667   1.778   1.889   2.
 
-
 --> linspace(2, 1, 10)    // x2 &lt; x1 : значения уменьшаются
  ans  =
    2.   1.889   1.778   1.667   1.556   1.444   1.333   1.222   1.111   1.
 
-
 --> linspace(1+%i, 2-2*%i, 5)      // с комплексными числами
  ans  =
    1. +i     1.25 +0.25i   1.5 -0.5i   1.75 -1.25i   2. -2.i
-
 
 --> linspace([1:4]', [5:8]', 10)   // со столбцами на входе
  ans  =

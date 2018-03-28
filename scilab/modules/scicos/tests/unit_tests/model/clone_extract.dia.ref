@@ -87,6 +87,17 @@ Xcos trace:   objectUnreferenced( 1 , BLOCK ) : 0
 newLink.from = [3 1 0];
 Xcos info:    objectCreated( 5 , LINK )
 Xcos info:    objectCloned( 2 , 5 , LINK )
+Xcos trace:   propertyUpdated( 5 , LINK , COLOR ) : NO_CHANGES
+Xcos trace:   propertyUpdated( 5 , LINK , KIND ) : NO_CHANGES
+Xcos trace:   propertyUpdated( 5 , LINK , DESCRIPTION ) : NO_CHANGES
+Xcos trace:   propertyUpdated( 5 , LINK , UID ) : NO_CHANGES
+Xcos trace:   propertyUpdated( 5 , LINK , STYLE ) : NO_CHANGES
+Xcos trace:   propertyUpdated( 5 , LINK , CONTROL_POINTS ) : NO_CHANGES
+Xcos trace:   propertyUpdated( 5 , LINK , THICK ) : NO_CHANGES
+Xcos trace:   propertyUpdated( 5 , LINK , PARENT_DIAGRAM ) : NO_CHANGES
+Xcos trace:   propertyUpdated( 5 , LINK , PARENT_BLOCK ) : NO_CHANGES
+Xcos trace:   propertyUpdated( 5 , LINK , SOURCE_PORT ) : NO_CHANGES
+Xcos trace:   propertyUpdated( 5 , LINK , DESTINATION_PORT ) : NO_CHANGES
 Xcos trace:   objectUnreferenced( 2 , LINK ) : 0
 assert_checkequal(scs.objs(1).graphics.pout, 2);
 Xcos trace:   objectReferenced( 1 , BLOCK ) : 1

@@ -6,6 +6,8 @@
 // =============================================================================
 //
 // <-- XCOS TEST -->
+// <-- ENGLISH IMPOSED -->
+//
 // Load and run a diagram that calls a Scilab macro (tkscaleblk.sci)
 exec("SCI/modules/scicos/tests/unit_tests/bug_8348.cosf", -1);
 // Call sciblk2 instead of sciblk4
@@ -173,21 +175,23 @@ function [xd, tvec, z, x, outptr] = anim_pen(flag, nevprt, t, x, z, rpar, ipar, 
 endfunction
 warning(wMode);
 cpr = scicos_simulate(scs_m);
- INTEGRAL('set') : Type erroné du paramètre 'Initial Condition' du bloc 
-  : vec(-1) attendu, z0 obtenu                                         
- INTEGRAL('set') : Type erroné du paramètre 'Initial Condition' du bloc 
-  : vec(-1) attendu, th0 obtenu                                           Génère un fichier loader
-   Génère un Makefile
-   Exécute le Makefile
-   Compilation de inv_pend.c
-   Construit une bibliothèque partagée (Veuillez patienter)
-   Génère un fichier cleaner
-Bibliothèque partagée chargée.
-Édition de liens effectuée.
- INTEGRAL('set') : Type erroné du paramètre 'Initial Condition' du bloc 
-  : vec(-1) attendu, z0 obtenu                                         
- INTEGRAL('set') : Type erroné du paramètre 'Initial Condition' du bloc 
-  : vec(-1) attendu, th0 obtenu                                        
+ INTEGRAL('set'): Wrong type for block parameter 'Initial Condition': v 
+ ec(-1) expected, getting z0                                           
+ INTEGRAL('set'): Wrong type for block parameter 'Initial Condition': v 
+ ec(-1) expected, getting th0                                             Generate a loader file
+   Generate a Makefile
+   ilib_gen_Make: Copy compilation files (Makefile*, libtool...) to TMPDIR
+   ilib_gen_Make: Copy inv_pend.c to TMPDIR
+   ilib_gen_Make: configure : Generate Makefile.
+   ilib_gen_Make: Modification of the Makefile in TMPDIR.
+   Running the Makefile
+   Generate a cleaner file
+Shared archive loaded.
+Link done.
+ INTEGRAL('set'): Wrong type for block parameter 'Initial Condition': v 
+ ec(-1) expected, getting z0                                           
+ INTEGRAL('set'): Wrong type for block parameter 'Initial Condition': v 
+ ec(-1) expected, getting th0                                          
 cpr229 = [ ...
 -0.00000010072892435; ...
 -0.0000000093251865; ...

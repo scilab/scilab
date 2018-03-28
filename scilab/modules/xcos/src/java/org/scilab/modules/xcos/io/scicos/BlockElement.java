@@ -51,6 +51,9 @@ public final class BlockElement extends AbstractElement<BasicBlock> {
     /** Mutable field to easily get the data through methods */
     private ScilabMList data;
 
+    /** In-progress decoded diagram */
+    private final XcosDiagram diag;
+
     /** Element used to decode/encode Scicos model part into a BasicBlock */
     private final BlockModelElement modelElement;
 
@@ -74,6 +77,7 @@ public final class BlockElement extends AbstractElement<BasicBlock> {
      */
     public BlockElement(final JavaController controller, final XcosDiagram diag) {
         super(controller);
+        this.diag = diag;
 
         modelElement = new BlockModelElement(controller, diag);
         graphicElement = new BlockGraphicElement(controller, diag);
@@ -109,6 +113,14 @@ public final class BlockElement extends AbstractElement<BasicBlock> {
             BlockInterFunction func = XcosCellFactory.lookForInterfunction(interfunction);
             block = XcosCellFactory.createBlock(controller, func, interfunction, controller.createObject(Kind.BLOCK), Kind.BLOCK);
         }
+
+        // associate the parent - children relation before decoding it.
+        long[] parentDiagram = {0};
+        if (diag.getKind() == Kind.BLOCK) {
+            controller.getObjectProperty(diag.getUID(), diag.getKind(), ObjectProperties.PARENT_DIAGRAM, parentDiagram);
+            controller.setObjectProperty(block.getUID(), block.getKind(), ObjectProperties.PARENT_BLOCK, diag.getUID());
+        }
+        controller.setObjectProperty(block.getUID(), block.getKind(), ObjectProperties.PARENT_DIAGRAM, parentDiagram[0]);
 
         block = beforeDecode(element, block);
 

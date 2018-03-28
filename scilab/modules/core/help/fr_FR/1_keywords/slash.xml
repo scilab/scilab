@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="slash">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="fr" xml:id="slash">
     <refnamediv>
         <refname>slash (/)</refname>
         <refpurpose>division à droite et feedback  </refpurpose>
@@ -73,5 +76,17 @@ les commentaires sont utiles. */
                 <link linkend="ieee">ieee</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.1</revnumber>
+                <revremark>
+                  The threshold level which switches between Gaussian Elimination with row pivoting
+                  and linear least squares when computing B/A is decreased from sqrt(eps) to eps.
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

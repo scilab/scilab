@@ -76,7 +76,7 @@ numer(p)
         <title>History</title>
         <revhistory>
             <revision>
-                <revnumber>6.0.2</revnumber>
+                <revnumber>6.0.1</revnumber>
                 <revdescription>
                     <literal>numer()</literal> is declared obsolete. The rational attribute
                     <literal>.num</literal> must be used instead.

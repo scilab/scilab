@@ -103,8 +103,8 @@ public class RecentFileAction extends DefaultAction {
             Menu recentsMenu = menus.get(ed);
             if (recentsMenu != null) {
                 ((SwingScilabMenu) recentsMenu.getAsSimpleMenu()).removeAll();
-                final int N = Math.min(recentFiles.size(), SciNotesOptions.getSciNotesPreferences().numberOfRecentlyOpen);
-                for (int i = N - 1; i >= 0; i--) {
+                final int N = Math.max(0,recentFiles.size()-SciNotesOptions.getSciNotesPreferences().numberOfRecentlyOpen);
+                for (int i = recentFiles.size() - 1; i >= N ; i--) {
                     recentsMenu.add(RecentFileAction.createMenu(ed, recentFiles.get(i)));
                 }
             }
@@ -120,8 +120,8 @@ public class RecentFileAction extends DefaultAction {
         Menu recentsMenu = menus.get(editor);
         if (recentsMenu != null) {
             ((SwingScilabMenu) recentsMenu.getAsSimpleMenu()).removeAll();
-            final int N = Math.min(recentFiles.size(), SciNotesOptions.getSciNotesPreferences().numberOfRecentlyOpen);
-            for (int i = N - 1; i >= 0; i--) {
+            final int N = Math.max(0,recentFiles.size()-SciNotesOptions.getSciNotesPreferences().numberOfRecentlyOpen);
+            for (int i = recentFiles.size() - 1; i >= N ; i--) {
                 recentsMenu.add(RecentFileAction.createMenu(editor, recentFiles.get(i)));
             }
         }

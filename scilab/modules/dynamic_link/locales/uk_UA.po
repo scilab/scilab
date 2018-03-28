@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2018-02-19 19:15+0000\n"
+"PO-Revision-Date: 2018-03-21 20:16+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18566)\n"
+"X-Generator: Launchpad (build 18573)\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -239,21 +239,17 @@ msgstr "де Y = %d"
 msgid "Result Z = %d"
 msgstr "Результат Z = %d"
 
-#, fuzzy
 msgid "Calling C function. Z = (1+Y)**X - 1"
-msgstr "Викликаємо функцію C. Z = X+Y"
+msgstr "Викликаємо функцію C. Z = (1+Y)**X - 1"
 
-#, fuzzy
 msgid "Calling a C++ function from Scilab.\n"
-msgstr "Викликаємо функцію C з Scilab.\n"
+msgstr "Викликаємо функцію C++ з Scilab.\n"
 
-#, fuzzy
 msgid "Calling ilib_for_link to build C++ function.\n"
-msgstr "Викликаємо ilib_for_link для збирання функції C.\n"
+msgstr "Викликаємо ilib_for_link для збирання функції C++.\n"
 
-#, fuzzy
 msgid "Calling C++ function. Z = X+Y"
-msgstr "Викликаємо функцію C. Z = X+Y"
+msgstr "Викликаємо функцію C++. Z = X+Y"
 
 msgid "Calling a Fortran subroutine from Scilab.\n"
 msgstr "Викликаємо підпрограму Fortran з Scilab.\n"
@@ -264,9 +260,8 @@ msgstr "Викликаємо ilib_for_link для збирання підпро�
 msgid "Calling Fortran subroutine. Z = X+Y"
 msgstr "Викликаємо підпрограму Fortran. Z = X+Y"
 
-#, fuzzy
 msgid "Calling Fortran subroutine. Z = (1+Y)**X - 1"
-msgstr "Викликаємо підпрограму Fortran. Z = X+Y"
+msgstr "Викликаємо підпрограму Fortran. Z = (1+Y)**X - 1"
 
 msgid "Dynamic link"
 msgstr "Динамічне посилання"
@@ -274,26 +269,20 @@ msgstr "Динамічне посилання"
 msgid "Call a C function"
 msgstr "Виклик функції C"
 
-#
-# File: modules/dynamic_link/demos/dynamic_link.dem.gateway.sce, line: 14
 msgid "Call a C function (using C standard library)"
-msgstr ""
+msgstr "Виклик функції C (за допомогою стандартної бібліотеки C)"
 
 msgid "Call a Fortran subroutine"
 msgstr "Виклик підпрограми Fortran"
 
-#, fuzzy
 msgid "Call a Fortran subroutine (with Fortran intrinsics)"
-msgstr "Виклик підпрограми Fortran"
+msgstr "Виклик підпрограми Fortran (за допомогою вбудованих засобів Fortran)"
 
-#, fuzzy
 msgid "Call a C++ function"
-msgstr "Виклик функції C"
+msgstr "Виклик функції C++"
 
-#
-# File: modules/dynamic_link/demos/dynamic_link.dem.gateway.sce, line: 18
 msgid "Call a C++ function (using C++ Standard Library)"
-msgstr ""
+msgstr "Виклик функції C++ (за допомогою стандартної бібліотеки C++)"
 
 #, c-format
 msgid "%s: A Fortran or C compiler is required.\n"

@@ -13,48 +13,51 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="proj" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="proj" xml:lang="pt">
     <refnamediv>
         <refname>proj</refname>
-        <refpurpose>projeção</refpurpose>
+        <refpurpose>projeÃ§Ã£o</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>P = proj(X1,X2)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>X1,X2</term>
                 <listitem>
-                    <para>duas matrizes reais com igual número de colunas</para>
+                    <para>duas matrizes reais com igual nÃºmero de colunas</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>P</term>
                 <listitem>
                     <para>
-                        matriz de projeção de real (<literal>P^2=P</literal>)
+                        matriz de projeÃ§Ã£o de real (<literal>P^2=P</literal>)
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            <literal>P</literal> é a projeção sobre <literal>X2</literal>
+            <literal>P</literal> Ã© a projeÃ§Ã£o sobre <literal>X2</literal>
             paralela a <literal>X1</literal>.
         </para>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <programlisting role="example"><![CDATA[
 X1=rand(5,2);X2=rand(5,3);
 P=proj(X1,X2);
 norm(P^2-P,1)
-trace(P)    // Este é dim(X2)
+trace(P)    // Este Ã© dim(X2)
 [Q,M]=fullrf(P);
 svd([Q,X2])   // span(Q) = span(X2)
  ]]></programlisting>
@@ -67,6 +70,9 @@ svd([Q,X2])   // span(Q) = span(X2)
             </member>
             <member>
                 <link linkend="orth">orth</link>
+            </member>
+            <member>
+                <link linkend="orthProj">orthProj</link>
             </member>
             <member>
                 <link linkend="fullrf">fullrf</link>

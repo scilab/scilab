@@ -123,4 +123,15 @@ lcm(V)
             </member>
         </simplelist>
     </refsection>
+    <refsection role="history">
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.1</revnumber>
+                <revdescription>
+                    The second output U is now optional.
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>

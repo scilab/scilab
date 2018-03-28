@@ -139,7 +139,7 @@ public final class PaletteCtrl {
             }
 
             // render and export it
-            final double margin = 15.0;
+            final double margin = internalGraph.getGridSize();
             basicBlock.getGeometry().setX(margin + BLOCK_POSITION.width * column);
             basicBlock.getGeometry().setY(margin + BLOCK_POSITION.height * row);
             ++column;
