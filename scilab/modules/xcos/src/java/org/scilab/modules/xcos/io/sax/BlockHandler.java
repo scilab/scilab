@@ -17,6 +17,7 @@
 package org.scilab.modules.xcos.io.sax;
 
 import java.util.Arrays;
+import java.util.regex.Pattern;
 
 import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.ObjectProperties;
@@ -44,6 +45,7 @@ import org.scilab.modules.xcos.io.HandledElement;
 import org.xml.sax.Attributes;
 
 class BlockHandler implements ScilabHandler {
+    private static Pattern validCIdentifier = null;
 
     private final XcosSAXHandler saxHandler;
 
@@ -68,7 +70,10 @@ class BlockHandler implements ScilabHandler {
         final long uid = saxHandler.controller.createObject(kind);
 
         String value = atts.getValue("value");
-        if (value != null) {
+        if (validCIdentifier == null) {
+            validCIdentifier = Pattern.compile("[a-zA-Z_][a-zA-Z0-9_]*");
+        }
+        if (value != null && validCIdentifier.matcher(value).matches()) {
             saxHandler.controller.setObjectProperty(uid, kind, ObjectProperties.DESCRIPTION, value);
         }
 

@@ -442,14 +442,23 @@ struct id
 
     static types::InternalType* get(const GraphicsAdapter& adaptor, const Controller& controller)
     {
-        ScicosID adaptee = adaptor.getAdaptee()->id();
+        model::Block* adaptee = adaptor.getAdaptee();
 
-        std::string id;
-        controller.getObjectProperty(adaptee, BLOCK, DESCRIPTION, id);
+        ScicosID label;
+        std::string description;
+
+        controller.getObjectProperty(adaptee, LABEL, label);
+        if (label != ScicosID())
+        {
+            controller.getObjectProperty(label, ANNOTATION, DESCRIPTION, description);
+        }
+        else
+        {
+            controller.getObjectProperty(adaptee, DESCRIPTION, description);
+        }
 
         types::String* o = new types::String(1, 1);
-        o->set(0, id.data());
-
+        o->set(0, description.data());
         return o;
     }
 
@@ -468,13 +477,22 @@ struct id
             return false;
         }
 
-        ScicosID adaptee = adaptor.getAdaptee()->id();
-
         char* c_str = wide_string_to_UTF8(current->get(0));
-        std::string id(c_str);
+        std::string description(c_str);
         FREE(c_str);
 
-        controller.setObjectProperty(adaptee, BLOCK, DESCRIPTION, id);
+        model::Block* adaptee = adaptor.getAdaptee();
+
+        ScicosID label;
+        controller.getObjectProperty(adaptee, LABEL, label);
+        if (label != ScicosID())
+        {
+            controller.setObjectProperty(label, ANNOTATION, DESCRIPTION, description);
+        }
+        else
+        {
+            controller.setObjectProperty(adaptee, DESCRIPTION, description);
+        }
         return true;
     }
 };

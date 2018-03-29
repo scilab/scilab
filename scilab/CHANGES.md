@@ -417,6 +417,7 @@ Known issues
 * [#13915](http://bugzilla.scilab.org/show_bug.cgi?id=13915): On Windows, reinstalling an ATOMS toolbox with an archive already present failed.
 * [#14010](http://bugzilla.scilab.org/show_bug.cgi?id=14010): Browsevar was not displaying dimensions > 2 of hypermatrix
 * [#14218](http://bugzilla.scilab.org/show_bug.cgi?id=14218): Karmarkar post-process fails on some problems.
+* [#14296](http://bugzilla.scilab.org/show_bug.cgi?id=14296): Xcos labels moving after creating blocks using scripts crashed Scilab.
 * [#14460](http://bugzilla.scilab.org/show_bug.cgi?id=14460): sparse boolean indices were not supported.
 * [#14489](http://bugzilla.scilab.org/show_bug.cgi?id=14489): clicking the scinotes icon did not bring its window in the foreground.
 * [#14521](http://bugzilla.scilab.org/show_bug.cgi?id=14521): For the CONVERT Xcos block, types codes 2, 6, 7, and 8 were not documented.

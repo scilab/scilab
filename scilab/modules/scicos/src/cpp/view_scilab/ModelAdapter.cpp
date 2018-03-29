@@ -1179,30 +1179,12 @@ struct label
     {
         model::Block* adaptee = adaptor.getAdaptee();
 
-        ScicosID label;
         std::string description;
-
-        controller.getObjectProperty(adaptee, LABEL, label);
-        if (label != ScicosID())
-        {
-            controller.getObjectProperty(label, ANNOTATION, DESCRIPTION, description);
-        }
-        else
-        {
-            controller.getObjectProperty(adaptee, DESCRIPTION, description);
-        }
+        controller.getObjectProperty(adaptee, DESCRIPTION, description);
 
         types::String* o = new types::String(1, 1);
+        o->set(0, description.data());
 
-        // safety check ; the returned value should always be a valid C / modelica identifier
-        if (isValidCIdentifier(description))
-        {
-            o->set(0, description.data());
-        }
-        else
-        {
-            o->set(0, "");
-        }
         return o;
     }
 
@@ -1226,13 +1208,6 @@ struct label
         char* c_str = wide_string_to_UTF8(current->get(0));
         std::string description(c_str);
         FREE(c_str);
-
-        // TODO: validate a C/Scilab identifier only
-        //        if (!isValidCIdentifier(label))
-        //        {
-        //            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong value for field %s.%s : Valid C identifier expected.\n"), "model", "label");
-        //            return false;
-        //        }
 
         controller.setObjectProperty(adaptee, DESCRIPTION, description);
         return true;

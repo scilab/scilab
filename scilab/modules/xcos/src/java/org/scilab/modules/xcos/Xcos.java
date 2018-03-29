@@ -423,7 +423,7 @@ public final class Xcos {
             }
         }
 
-        final long currentId;
+        long currentId;
         if (diagramId != 0) {
             currentId = diagramId;
         } else {
@@ -442,7 +442,27 @@ public final class Xcos {
             /*
              * Allocate and setup a new diagram
              */
-            diag = new XcosDiagram(controller, currentId, controller.getKind(currentId), "");
+            Kind currentKind = controller.getKind(currentId);
+            if (Kind.BLOCK.equals(currentKind)) {
+                long[] rootId = new long[1];
+                controller.getObjectProperty(currentId, currentKind, ObjectProperties.PARENT_DIAGRAM, rootId);
+
+                if (rootId[0] == 0) {
+                    // a SuperBlock without a parent diagram, duplicate it as a root diagram
+                    VectorOfScicosID children = new VectorOfScicosID();
+                    controller.getObjectProperty(currentId, currentKind, ObjectProperties.CHILDREN, children);
+
+                    currentKind = Kind.DIAGRAM;
+                    currentId = controller.createObject(Kind.DIAGRAM);
+                    controller.setObjectProperty(currentId, currentKind, ObjectProperties.CHILDREN, children);
+
+                    for (int i = 0; i < children.size(); i++) {
+                        controller.referenceObject(children.get(i));
+                    }
+                }
+            }
+
+            diag = new XcosDiagram(controller, currentId, currentKind, "");
             diag.installListeners();
 
             root = findRoot(controller, diag);

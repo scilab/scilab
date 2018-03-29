@@ -46,7 +46,7 @@ import org.scilab.modules.xcos.block.TextBlock;
  */
 public class XcosCell extends mxCell {
     private static final long serialVersionUID = 1L;
-    private static final Pattern validCIdentifier = Pattern.compile("[a-zA-Z][a-zA-Z0-9_]+");
+    private static Pattern validCIdentifier = null;
 
     private transient ScicosObjectOwner owner;
 
@@ -108,17 +108,26 @@ public class XcosCell extends mxCell {
         setMVCValue(controller, value);
     }
 
+    /**
+     * Store the value on the C++ model.
+     * @param controller the controller
+     * @param value the value to store
+     */
     @SuppressWarnings("fallthrough")
-    private void setMVCValue(JavaController controller, Object value) {
+    protected void setMVCValue(JavaController controller, Object value) {
         if (value == null) {
             return;
         }
 
         switch (getKind()) {
             case BLOCK:
-                if (validCIdentifier.matcher(String.valueOf(value)).matches()) {
+                if (validCIdentifier == null) {
+                    validCIdentifier = Pattern.compile("[a-zA-Z_][a-zA-Z0-9_]*");
+                }
+                String description = String.valueOf(value);
+                if (validCIdentifier.matcher(description).matches()) {
                     // a block description should be a valid C / Scilab identifier to ease codegeneration
-                    controller.setObjectProperty(getUID(), getKind(), ObjectProperties.DESCRIPTION, String.valueOf(value));
+                    controller.setObjectProperty(getUID(), getKind(), ObjectProperties.DESCRIPTION, description);
                 }
                 break;
             case ANNOTATION:
