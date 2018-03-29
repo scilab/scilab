@@ -380,6 +380,7 @@ Known issues
 
 
 ### Bugs fixed in 6.0.2:
+* [#4050](http://bugzilla.scilab.org/show_bug.cgi?id=4050): `ged()` did not support graphical texts with a font size > 5.
 * [#5430](http://bugzilla.scilab.org/show_bug.cgi?id=5430): `clf` could erase the ATOMS GUI or the m2sci one.
 * [#6729](http://bugzilla.scilab.org/show_bug.cgi?id=6729): The compatibility functions `mtlb_int8`, `mtlb_int16`, `mtlb_int32`, `mtlb_uint8`, `mtlb_uint16` and `mtlb_uint32` were not actually Matlab-like. Their documentation was neither correct nor up-to-date. `mtlb_int64` and `mtlb_int64` were missing. 
 * [#7277](http://bugzilla.scilab.org/show_bug.cgi?id=7277): SciNotes `File>Open recent` menu was not updated after 5 items were added.
