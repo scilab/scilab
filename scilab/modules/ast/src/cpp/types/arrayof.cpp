@@ -1326,7 +1326,7 @@ GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
         }
     }
 
-    //vector
+    //linear indexing (one subscript)
     if (iDims == 1)
     {
         if (piCountDim[0] == 0)
@@ -1339,31 +1339,33 @@ GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
         }
         else
         {
-            //two cases, depends of original matrix/vector
-            if ((*_pArgs)[0]->isColon() == false && m_iDims == 2 && m_piDims[1] != 1 && m_piDims[0] == 1)
+            int *i_piDims = pArg[0]->getAs<GenericType>()->getDimsArray();
+            if (!isScalar() && isVector() && (i_piDims[0] == 1 || i_piDims[1] == 1))
             {
-                //special case for row vector
-                int piRealDim[2] = {1, piCountDim[0]};
+                //vector with vector subscript
+                int piRealDim[2] = { 1, 1 };
+                piRealDim[(int)(m_piDims[0] == 1)] = piCountDim[0];
                 pOut = createEmpty(2, piRealDim, m_pImgData != NULL);
             }
             else
             {
-                if (getSize() == 1)
+                if ((*_pArgs)[0]->isBool())
                 {
-                    //for extraction on scalar
-                    pOut = createEmpty(pArg[0]->getAs<GenericType>()->getDims(), pArg[0]->getAs<GenericType>()->getDimsArray(), m_pImgData != NULL);
+                    //boolean extraction must return a column vector
+                    int piRealDim[2] = { piCountDim[0], 1 };
+                    pOut = createEmpty(2, piRealDim, m_pImgData != NULL);
                 }
                 else
                 {
-                    int piRealDim[2] = {piCountDim[0], 1};
-                    pOut = createEmpty(2, piRealDim, m_pImgData != NULL);
+                    //other cases
+                    pOut = createEmpty(pArg[0]->getAs<GenericType>()->getDims(), i_piDims, m_pImgData != NULL);
                 }
             }
         }
     }
     else
     {
-        //matrix
+        //indexing with more than one subscript
         pOut = createEmpty(iDims, piCountDim, m_pImgData != NULL);
     }
 

@@ -306,6 +306,7 @@ Bug Fixes
 * [#14501](https://bugzilla.scilab.org/14501): `strsubst` crashed on consecutive occurrences.
 * [#14557](https://bugzilla.scilab.org/14557): `csim` failed when the system has no state.
 * [#14498](https://bugzilla.scilab.org/14498): `size([],3)` returned 1 instead of 0.
+* [#14487](https://bugzilla.scilab.org/14487): matrix indexing was not coherent with MATLAB. 
 * [#14502](https://bugzilla.scilab.org/14502): `Demo > GUI > Uicontrols 2` could not be exported to a file.
 * [#14604](https://bugzilla.scilab.org/14604): `emptystr` is 40x slower with 6.0.0 wrt 5.5.2
 * [#14605](https://bugzilla.scilab.org/14605): fixed - `bench_run` was too strict about the specification of tests names.
@@ -484,4 +485,3 @@ Bug Fixes
 * [#16321](https://bugzilla.scilab.org/16321): There were typo errors in the documentation.
 * [#16323](https://bugzilla.scilab.org/16323): `conj(sparse(x))` was complex when x is real.
 * [#16325](https://bugzilla.scilab.org/16325): `mgetl` could not read single line data which is greater than ~260,000 characters.
-
