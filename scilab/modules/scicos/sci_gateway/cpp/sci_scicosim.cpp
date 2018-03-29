@@ -1597,22 +1597,11 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
                 }
                 default :
                 {
-                    Scierror(999, _("%s: Wrong type for element #%d of element #%d of argument #%d : A matrix expected.\n"), funname.data(), j + 1, 4, 1);
-                    il_state->DecreaseRef();
-                    il_state->killMe();
-                    il_tcur->DecreaseRef();
-                    il_tcur->killMe();
-                    il_sim->DecreaseRef();
-                    il_sim->killMe();
-                    delete[] il_sim_labptr;
-                    delete[] l_sim_lab;
-                    delete[] il_sim_uidptr;
-                    delete[] l_sim_uid;
-                    delete[] lfunpt;
-                    delete[] oz;
-                    delete[] ozsz;
-                    delete[] oztyp;
-                    return types::Function::Error;
+                    oztyp[j] = SCSUNKNOW_N;
+                    oz[j] = il_sim_opar->get(j);
+                    ozsz[j] = 0; // rows
+                    ozsz[j + nopar] = 0; // cols
+                    break;
                 }
             }
         }
@@ -1764,13 +1753,14 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
                     opar[j] = (SCSINT8_COP *) oparInt8->get();
                     break;
                 }
-                case types::InternalType::ScilabInt16 :
+                case types::InternalType::ScilabInt16:
                 {
-                    types::Int16* oparInt16 = il_sim_opar->get(j)->getAs<types::Int16>();
+                    types::Int16 *oparInt16 =
+                        il_sim_opar->get(j)->getAs<types::Int16>();
                     opartyp[j] = SCSINT16_N; // int16
                     oparsz[j] = oparInt16->getRows();
                     oparsz[j + nopar] = oparInt16->getCols();
-                    opar[j] = (SCSINT16_COP *) oparInt16->get();
+                    opar[j] = (SCSINT16_COP *)oparInt16->get();
                     break;
                 }
                 case types::InternalType::ScilabInt32 :
@@ -1797,7 +1787,7 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
                     opartyp[j] = SCSUINT16_N; // uint16
                     oparsz[j] = oparUInt16->getRows();
                     oparsz[j + nopar] = oparUInt16->getCols();
-                    opar[j] = (SCSUINT16_COP *) oparUInt16->get();
+                    opar[j] = (SCSUINT16_COP *)oparUInt16->get();
                     break;
                 }
                 case types::InternalType::ScilabUInt32 :
@@ -1809,27 +1799,13 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
                     opar[j] = (SCSUINT32_COP *) oparUInt32->get();
                     break;
                 }
-                default :
+                default:
                 {
-                    Scierror(999, _("%s: Wrong type for element #%d of element #%d of argument #%d : A matrix expected.\n"), funname.data(), j + 1, 15, 4);
-                    il_state->DecreaseRef();
-                    il_state->killMe();
-                    il_tcur->DecreaseRef();
-                    il_tcur->killMe();
-                    il_sim->DecreaseRef();
-                    il_sim->killMe();
-                    delete[] il_sim_labptr;
-                    delete[] l_sim_lab;
-                    delete[] il_sim_uidptr;
-                    delete[] l_sim_uid;
-                    delete[] lfunpt;
-                    delete[] oz;
-                    delete[] ozsz;
-                    delete[] oztyp;
-                    delete[] opar;
-                    delete[] oparsz;
-                    delete[] opartyp;
-                    return types::Function::Error;
+                    opartyp[j] = SCSUNKNOW_N;
+                    opar[j] = il_sim_opar->get(j);
+                    oparsz[j] = 0; // rows
+                    oparsz[j + nopar] = 0; // cols
+                    break;
                 }
             }
         }
@@ -2249,8 +2225,13 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
             case 23  :
                 error = _("Cannot find the initial mode, maybe there is a sliding mode condition");
                 break;
-            case 24  :
-                error = _("You have changed a parameter in your model, but the model has been compiled to use an XML file containing initial values and parameters. So you should either recompile your Scicos diagram or [re]launch the initialization interface to regenerate the XML file  with new parameters.");
+            case 24:
+                error = _("You have changed a parameter in your model, but the "
+                          "model has been compiled to use an XML file containing "
+                          "initial values and parameters. So you should either "
+                          "recompile your Scicos diagram or [re]launch the "
+                          "initialization interface to regenerate the XML file  "
+                          "with new parameters.");
                 break;
 
             case 25  :

@@ -112,9 +112,9 @@ static types::InternalType* vartosci(void* data, const int rows, const int cols,
             }
             return var;
         }
-        default:
+        default: // case SCSUNKNOW_N: pass the data by pointers
         {
-            return nullptr;
+            return (types::InternalType *)data;
         }
     }
 }
@@ -273,7 +273,7 @@ types::InternalType* createblklist(const scicos_block* const Blocks, const int f
     m->append(oztyp);
 
     /* 11 - ozptr */
-    types::List* ozptr = new types::List();
+    types::List *ozptr = new types::List();
     for (int k = 0; k < Blocks->noz; k++)
     {
         const int rows = Blocks->ozsz[k]; /* retrieve number of rows */

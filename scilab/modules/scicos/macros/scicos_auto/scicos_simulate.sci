@@ -307,7 +307,7 @@ function Info = scicos_simulate(scs_m, Info, updated_vars, flag, Ignb)
         ierr = execstr("[state, t] = scicosim(%cpr.state, %tcur, tf, %cpr.sim," + ..
         "''start'', tolerances)","errcatch")
         if ierr <> 0 then
-            error(_("Initialization problem:"))
+            error([_("Initialization problem:");lasterror()])
         end
         %cpr.state = state
     end

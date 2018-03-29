@@ -27,11 +27,13 @@
 #include "var2vec.hxx"
 #include "vec2var.hxx"
 
-#include "internal.hxx"
 #include "callable.hxx"
-#include "list.hxx"
+#include "configvariable.hxx"
 #include "double.hxx"
 #include "function.hxx"
+#include "internal.hxx"
+#include "list.hxx"
+#include "scilabWrite.hxx"
 
 extern "C"
 {
@@ -127,10 +129,19 @@ void sciblk2(int* flag, int* nevprt, double* t, double xd[], double x[], int* nx
     ***********************/
     types::Callable* pCall = static_cast<types::Callable*>(scsptr);
 
+    ConfigVariable::increaseRecursion();
+    ConfigVariable::where_begin(1, 1, pCall);
+
+    types::optional_list opt;
+    types::Callable::ReturnValue Ret;
+
     try
     {
-        types::optional_list opt;
-        if (pCall->call(in, opt, 5, out) != types::Function::OK)
+        Ret = pCall->call(in, opt, 5, out);
+        ConfigVariable::where_end();
+        ConfigVariable::decreaseRecursion();
+
+        if (Ret != types::Function::OK)
         {
             setErrAndFree(-1, out);
             return;
@@ -142,10 +153,23 @@ void sciblk2(int* flag, int* nevprt, double* t, double xd[], double x[], int* nx
             return;
         }
     }
-    catch (const ast::InternalError& /*ie*/)
+    catch (const ast::InternalError &)
     {
+        std::wostringstream ostr;
+        ConfigVariable::whereErrorToString(ostr);
+
+        bool oldSilentError = ConfigVariable::isSilentError();
+        ConfigVariable::setSilentError(false);
+        scilabErrorW(ostr.str().c_str());
+        ConfigVariable::setSilentError(oldSilentError);
+        ConfigVariable::resetWhereError();
+
+        ConfigVariable::where_end();
+        ConfigVariable::setLastErrorFunction(pCall->getName());
+        ConfigVariable::decreaseRecursion();
+
         setErrAndFree(-1, out);
-        return;
+        throw;
     }
 
     switch (*flag)

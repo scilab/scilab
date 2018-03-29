@@ -449,6 +449,7 @@ Known issues
 * [#15499](http://bugzilla.scilab.org/show_bug.cgi?id=15499): Scinotes menus were inactive after session restore under OSX.
 * [#15501](http://bugzilla.scilab.org/show_bug.cgi?id=15501): listvarinfile() crashes Scilab when listing a cell array (regression).
 * [#15508](http://bugzilla.scilab.org/show_bug.cgi?id=15508): `int8..uint64` and `iconvert` help pages had errors and were not up to date.
+* [#15510](http://bugzilla.scilab.org/show_bug.cgi?id=15510): 'Initialization problem' error did not provide extra information.
 * [#15511](http://bugzilla.scilab.org/show_bug.cgi?id=15511): Keyboard ctrl-left ctrl-right shortcuts could not be used for slider under OSX.
 * [#15525](http://bugzilla.scilab.org/show_bug.cgi?id=15525): Memory allocation crashed with a simple Scilab script.
 * [#15527](http://bugzilla.scilab.org/show_bug.cgi?id=15527): `ode` gave incorrect results with %ODEOPTIONS(1)=2.
