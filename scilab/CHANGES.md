@@ -426,6 +426,7 @@ Known issues
 * [#15496](http://bugzilla.scilab.org/show_bug.cgi?id=15496): Scinotes `File > Open recent` menu was not updated when it should.
 * [#15499](http://bugzilla.scilab.org/show_bug.cgi?id=15499): Scinotes menus were inactive after session restore under OSX.
 * [#15508](http://bugzilla.scilab.org/show_bug.cgi?id=15508): `int8..uint64` and `iconvert` help pages had errors and were not up to date.
+* [#15511](http://bugzilla.scilab.org/show_bug.cgi?id=15511): Keyboard ctrl-left ctrl-right shortcuts could not be used for slider under OSX.
 * [#15527](http://bugzilla.scilab.org/show_bug.cgi?id=15527): `ode` gave incorrect results with %ODEOPTIONS(1)=2.
 * [#15528](http://bugzilla.scilab.org/show_bug.cgi?id=15528): savewave wrote null signal if 24 bits resolution and more than 2 channels
 * [#15539](http://bugzilla.scilab.org/show_bug.cgi?id=15539): zero step in integer implicit list crashed Scilab.
