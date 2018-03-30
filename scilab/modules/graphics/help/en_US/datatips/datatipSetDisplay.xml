@@ -11,7 +11,10 @@
  * For more information, see the COPYING file which you should have received
  * along with this program.
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en_US" xml:id="datatipSetDisplay">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en_US" xml:id="datatipSetDisplay">
     <refnamediv>
         <refname>datatipSetDisplay</refname>
         <refpurpose>Set the function used to compute the datatip string. </refpurpose>
@@ -90,7 +93,7 @@
         <programlisting role="example"><![CDATA[
     function str=infodisplay(h)
         pt = h.data;
-        xinfo(msprintf('x=%0.2g,\t 1-x^2=%0.2g', pt(1),pt(2)))
+        gcf().info_message=msprintf('x=%0.2g,\t 1-x^2=%0.2g', pt(1),pt(2));
         str=''
     endfunction
     datatipSetDisplay(d1,"infodisplay") //tip text displayed in the info bar

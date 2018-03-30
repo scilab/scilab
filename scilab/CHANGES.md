@@ -231,12 +231,9 @@ input and output arguments.
 * `mgetl` speed has been improved for files with a lot of lines.
 * `ndgrid(x)` now accepts only one input `x`, with by default `y=x`.
 * `banner()` updated with ESI Group a 2017-2018 copyright.
-<<<<<<< HEAD
 * `%io` is now protected (read-only).
 * The demo GUI can now be set as not-dockable through the Preferences => General => Demos.
-=======
 * Compatibility functions `mtlb_int8` `mtlb_int16` `mtlb_int32` `mtlb_uint8` `mtlb_uint16` `mtlb_uint32` have been rewritten to actually comply with Matlab versions. `mtlb_int64` and `mtlb_uint64` have been added.
->>>>>>> 893a034d702... * Bug 6729 fixed: mtlb_int# & mtlb_uint# were wrong. #64 were missing
 
 Help pages:
 -----------
@@ -334,6 +331,7 @@ Obsolete functions or features
 * `nanmin` is obsolete and will be removed in Scilab 6.1. Please use `min` instead.
 * `nanmax` is obsolete and will be removed in Scilab 6.1. Please use `max` instead.
 * `xgetech` is obsolete and will be removed in Scilab 6.1. Please use `gca` instead.
+* `xinfo` is obsolete and will be removed in Scilab 6.1. Please use `gcf().info_message` instead.
 * `lstsize` is obsolete and will be removed in Scilab 6.1. Please use `size` instead.
 * `eval` is obsolete and will be removed in Scilab 6.1. Please use `evstr` instead.
 * `dgettext` is obsolete and will be removed in Scilab 6.1. Please use `gettext(domain, text)` instead.
@@ -403,6 +401,7 @@ Known issues
 * [#14010](http://bugzilla.scilab.org/show_bug.cgi?id=14010): Browsevar was not displaying dimensions > 2 of hypermatrix
 * [#14521](http://bugzilla.scilab.org/show_bug.cgi?id=14521): For the CONVERT Xcos block, types codes 2, 6, 7, and 8 were not documented.
 * [#14704](http://bugzilla.scilab.org/show_bug.cgi?id=14704): In Scinotes, URL for the `https://`, `ftp://`, `ftps://`, and `file://` protocols were no longer hyperlinked.
+* [#14897](http://bugzilla.scilab.org/show_bug.cgi?id=14897): `xinfo` is poor and useless. It is declared obsolete.
 * [#14988](http://bugzilla.scilab.org/show_bug.cgi?id=14988): The example of Xcos diagram on the DERIV help page was distorted.
 * [#14989](http://bugzilla.scilab.org/show_bug.cgi?id=14989): The example of Xcos diagram on the INTEGRAL_m help page was distorted.
 * [#14990](http://bugzilla.scilab.org/show_bug.cgi?id=14990): The example of Xcos diagram on the NEGTOPOS_f help page was distorted.

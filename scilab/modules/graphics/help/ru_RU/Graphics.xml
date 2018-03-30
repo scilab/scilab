@@ -644,16 +644,6 @@
                     </para>
                 </listitem>
             </varlistentry>
-            <varlistentry>
-                <term>
-                    <link linkend="xinfo">xinfo</link>
-                </term>
-                <listitem>
-                    <para>
-                        Рисование информационной строки в подокне сообщений
-                    </para>
-                </listitem>
-            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>

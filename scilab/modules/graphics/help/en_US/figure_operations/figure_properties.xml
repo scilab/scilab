@@ -475,9 +475,6 @@ plot3d(t,t,sin(t)'*cos(t),35,45,'X@Y@Z',[15,2,4]);
                 <link linkend="xname">xname</link>
             </member>
             <member>
-                <link linkend="xinfo">xinfo</link>
-            </member>
-            <member>
                 <link linkend="scf">scf</link>
             </member>
             <member>

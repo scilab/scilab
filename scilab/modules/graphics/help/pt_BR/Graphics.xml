@@ -344,14 +344,6 @@
                     <para>adiciona título no meio de uma janela de gráficos</para>
                 </listitem>
             </varlistentry>
-            <varlistentry>
-                <term>xinfo</term>
-                <listitem>
-                    <para>escreve um string de informação na subjanela de
-                        mensagens
-                    </para>
-                </listitem>
-            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>

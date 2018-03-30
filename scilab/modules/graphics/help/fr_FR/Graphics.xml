@@ -618,14 +618,6 @@
                     <para>ajoute un titre au milieu d'une fenêtre graphique</para>
                 </listitem>
             </varlistentry>
-            <varlistentry>
-                <term>
-                    <link linkend="xinfo">xinfo</link>
-                </term>
-                <listitem>
-                    <para>affiche une chaîne de caractères dans la sous-fenêtre des messages</para>
-                </listitem>
-            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>

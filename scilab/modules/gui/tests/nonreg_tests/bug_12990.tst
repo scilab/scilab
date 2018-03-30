@@ -27,7 +27,7 @@ xclick()
 function my_eventhandler(win, x, y, ibut)
     if ibut==-1000 then return,end
     [x,y]=xchange(x,y,"i2f")
-    xinfo(msprintf("Event code %d at mouse position is (%f,%f)",ibut,x,y))
+    gcf().info_message = msprintf("Event code %d at mouse position is (%f,%f)",ibut,x,y);
 endfunction
 
 seteventhandler("my_eventhandler");

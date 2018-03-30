@@ -138,8 +138,8 @@ function [ok]=test_increasing(xx)
 
     for i=1:mx
         if (xx(i)<>xx(i)) then
-            xinfo("x contains no data in x("+string(i)+")");
-            return;
+            gcf().info_message = "x contains no data in x(" + string(i) + ")";
+            return
         end
 
     end

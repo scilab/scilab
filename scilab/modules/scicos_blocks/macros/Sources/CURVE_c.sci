@@ -224,7 +224,7 @@ function [rpar,ipar,ok] = poke_point(ixy,iparin,rparin)
     end;
 
     if size(xy,"c")<2 then
-        xinfo(" No [y] is provided");
+        gcf().info_message = " No [y] is provided";
         return
     end
 
@@ -421,11 +421,11 @@ function [rpar,ipar,ok] = poke_point(ixy,iparin,rparin)
             //drawlater();
             if mok then
                 if (xmn1 > xmx1 | ymn1 > ymx1) then
-                    xinfo("Incorrect bounds")
+                    gcf().info_message = "Incorrect bounds"
                     mok=%f;
                 end
                 if xmn1<0 then
-                    xinfo("X should be positive")
+                    gcf().info_message = "X should be positive"
                     mok=%f;
                 end
                 if mok then
@@ -518,7 +518,7 @@ function [rpar,ipar,ok] = poke_point(ixy,iparin,rparin)
                     xt=[];
                     yt=[];
                 end
-                //otherwise there	would be double	points at 0
+                //otherwise there would be double points at 0
                 if Pd3<Tp3 then
                     if Pw3>0 then
                         xt=[xt;Pd3; Pw3*Tp3/100+Pd3;Tp3];
@@ -874,7 +874,7 @@ function [tok,xyo]=ReadExcel()
         try
             [fd,SST,Sheetnames,Sheetpos] = xls_open(filen);
         catch
-            xinfo("Scicos cannot find the excel file:"+filen);
+            gcf().info_message = "Scicos cannot find the excel file:"+filen;
             break;
         end
         try
@@ -894,7 +894,7 @@ function [tok,xyo]=ReadExcel()
 
             x1p=min(strindex(x1,TN));
             if x1p==[] then,
-                xinfo("Bad address in X:"+x1);
+                gcf().info_message = "Bad address in X:"+x1;
                 break,
             end
             x11=part(x1,1:x1p-1);
@@ -902,7 +902,7 @@ function [tok,xyo]=ReadExcel()
 
             x2p=min(strindex(x2,TN));
             if x2p==[] then,
-                xinfo("Bad address in X:"+x2);
+                gcf().info_message = "Bad address in X:"+x2;
             break, end
             x21=par
             t(x2,1:x2p-1);
@@ -910,7 +910,7 @@ function [tok,xyo]=ReadExcel()
 
             y1p=min(strindex(y1,TN));
             if y1p==[] then,
-                xinfo("Bad address in Y:"+y1);
+                gcf().info_message = "Bad address in Y:"+y1;
                 break,
             end
             y11=part(y1,1:y1p-1);
@@ -918,7 +918,7 @@ function [tok,xyo]=ReadExcel()
 
             y2p=min(strindex(y2,TN));
             if y2p==[] then,
-                xinfo("Bad address in Y:"+y2);
+                gcf().info_message = "Bad address in Y:"+y2;
                 break,
             end
             y21=part(y2,1:y2p-1);
@@ -955,11 +955,11 @@ function [tok,xyo]=ReadExcel()
             [mv,nv]=size(Value)
 
             if ~(xstR<=mv & xstR>0 & xenR<=mv & xenR>0&ystR<=mv & ystR>0&yenR<=mv&yenR>0 ) then
-                xinfo("error in Row data addresses");
+                gcf().info_message = "error in Row data addresses";
                 break
             end
             if ~(xstC<=nv & xstC>0 & xenC<=nv & xenC>0&ystC<=nv & ystC>0&yenC<=nv&yenC>0 ) then
-                xinfo("error in Column data addresses");
+                gcf().info_message = "error in Column data addresses";
                 break
             end
 
@@ -977,8 +977,7 @@ function [tok,xyo]=ReadExcel()
             tok=%t;
             break,
         catch
-            xinfo(" Scicos cannot read your Excel file, please verify"+...
-            " the parameters ");
+            gcf().info_message = " Scicos cannot read your Excel file, please verify the parameters ";
             break
         end
     end
@@ -998,11 +997,11 @@ function [xyo]=cleandata(xye)
     // checking for NULL data
     for i=1:N
         if (xe(i)<>xe(i)) then
-            xinfo("x contains no data:x("+string(i)+")");
+            gcf().info_message = "x contains no data:x("+string(i)+")";
             return;
         end
         if (ye(i)<>ye(i)) then
-            xinfo("Y contains no data:y("+string(i)+")");
+            gcf().info_message = "Y contains no data:y("+string(i)+")";
             return;
         end
     end
@@ -1068,7 +1067,7 @@ function [sok,xye] = ReadFromFile()
         px=strindex(Cformat,"%");
         NC=size(px,"*");
         if NC==[] then,
-            xinfo("Bad format in reading data file");
+            gcf().info_message = "Bad format in reading data file";
             sok=%f;
             break;
         end
@@ -1078,18 +1077,18 @@ function [sok,xye] = ReadFromFile()
             Lx=mfscanf(-1,fd,Cformat);
             mclose(fd);
         catch
-            xinfo("Scicos cannot open the data file: " + filen);
+            gcf().info_message = "Scicos cannot open the data file: " + filen;
             break;
         end
 
         [nD,mD] = size(Lx);
         if ((mD==0) | (nD==0)) then,
-            xinfo("No data read");
+            gcf().info_message = "No data read";
             sok=%f;
             break;
         end
         if (mD<>NC) then,
-            xinfo("Bad format");
+            gcf().info_message = "Bad format";
             sok=%f;
             break;
         end
@@ -1117,7 +1116,7 @@ function [sok]=SaveToFile(xye)
         px=strindex(Cformat,"%");
         NC=size(px,"*");
         if NC<>2 then,
-            xinfo("Bad format in writing data file");
+            gcf().info_message = "Bad format in writing data file";
             sok=%f;
             break;
         end
@@ -1129,7 +1128,7 @@ function [sok]=SaveToFile(xye)
             mfprintf(fd,Cformat,xe,ye);
             mclose(fd);
         catch
-            xinfo("Scicos cannot open the data file:"+filen);
+            gcf().info_message = "Scicos cannot open the data file:" + filen;
             break;
         end
 
@@ -1208,7 +1207,7 @@ function [X,Y,orpar]=Do_Spline(N,order,x,y)
             Y = interp(X, x, y, d);
             orpar=d(:);
         catch
-            xinfo("ERROR in SPLINE: "+METHOD)
+            gcf().info_message = "ERROR in SPLINE: "+METHOD
         end
 
     end
@@ -1222,7 +1221,7 @@ function [X,Y,orpar]=Do_Spline(N,order,x,y)
             Y = interp(X, x, y, d);
             orpar=d(:);
         catch
-            xinfo("ERROR in SPLINE: "+METHOD)
+            gcf().info_message = "ERROR in SPLINE: " + METHOD
         end
     end
     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -1232,7 +1231,7 @@ function [X,Y,orpar]=Do_Spline(N,order,x,y)
             Y = interp(X, x, y, d);
             orpar=d(:);
         catch
-            xinfo("ERROR in SPLINE: "+METHOD)
+            gcf().info_message = "ERROR in SPLINE: " + METHOD
         end
 
     end
@@ -1243,7 +1242,7 @@ function [X,Y,orpar]=Do_Spline(N,order,x,y)
             Y = interp(X, x, y, d);
             orpar=d(:);
         catch
-            xinfo("ERROR in SPLINE:  "+METHOD)
+            gcf().info_message = "ERROR in SPLINE:  " + METHOD
         end
     end
     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -1253,7 +1252,7 @@ function [X,Y,orpar]=Do_Spline(N,order,x,y)
             Y = interp(X, x, y, d);
             orpar=d(:);
         catch
-            xinfo("ERROR in SPLINE: "+METHOD)
+            gcf().info_message = "ERROR in SPLINE: " + METHOD
         end
     end
 

@@ -40,7 +40,7 @@
         </menu>
         <menu tag="home">
             <menu callback="cbAtomsGui" tag="closeMenu"/>
-            <menu callback="xinfo(_('Updating the list of packages. Please wait... until Done.'));atomsSystemUpdate();xinfo(_('Update done.'));" tag="updatePackages"/>
+            <menu callback="gcf().info_message = _('Updating the list of packages. Please wait... until Done.');atomsSystemUpdate();gcf().info_message=_('Update done.');" tag="updatePackages"/>
             <menu callback="cbAtomsGui" tag="homeMenu"/>
         </menu>
     </figure>

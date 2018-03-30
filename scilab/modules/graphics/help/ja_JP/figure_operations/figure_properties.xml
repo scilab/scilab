@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="figure_properties">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ja" xml:id="figure_properties">
     <refnamediv>
         <refname>figure_properties</refname>
         <refpurpose>グラフィックエンティティプロパティの説明</refpurpose>
@@ -541,9 +544,6 @@ plot3d(t,t,sin(t)'*cos(t),35,45,'X@Y@Z',[15,2,4]);
             </member>
             <member>
                 <link linkend="xname">xname</link>
-            </member>
-            <member>
-                <link linkend="xinfo">xinfo</link>
             </member>
             <member>
                 <link linkend="scf">scf</link>

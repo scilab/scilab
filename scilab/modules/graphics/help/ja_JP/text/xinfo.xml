@@ -22,7 +22,10 @@
 
  -->
 
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="xinfo">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ja" xml:id="xinfo">
 
     <refnamediv>
 
@@ -31,6 +34,7 @@
         <refpurpose>
 
             カレントのウィンドウステータスバーに表示するテキストを設定する
+            <emphasis role="bold">(obsolete)</emphasis>
 
         </refpurpose>
 
@@ -69,7 +73,10 @@
     <refsection>
 
         <title>説明</title>
-
+        <warning>
+          <literal>xinfo()</literal> is obsolete and will be removed from Scilab 6.1. Please use
+          <literal>gcf().info_message</literal> instead.
+        </warning>
         <para>
 
             <literal>xinfo</literal> は文字列 <literal>text</literal> をカレントの
@@ -93,6 +100,17 @@ xinfo("ID figure : " + string(f.figure_id));
      ]]></programlisting>
 
     </refsection>
-
+    <refsection role="history">
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revdescription>
+                   xinfo() is tagged obsolete to be removed from Scilab 6.1. Please use
+                   gcf().info_message instead.
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>
 

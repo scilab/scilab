@@ -13,18 +13,23 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xinfo" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="xinfo" xml:lang="pt">
     <refnamediv>
         <refname>xinfo</refname>
-        <refpurpose>Define o texto exibido na barra de status da atual janela.
+        <refpurpose>
+          Define o texto exibido na barra de status da atual janela
+           <emphasis role="bold">(obsolete)</emphasis>
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>xinfo(texto)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>texto</term>
@@ -35,7 +40,11 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
+        <warning>
+          <literal>xinfo()</literal> is obsolete and will be removed from Scilab 6.1. Please use
+          <literal>gcf().info_message</literal> instead.
+        </warning>
         <para>
             <literal>xinfo</literal> define o texto exhibido na barra de status (painel na parte inferior das janelas) da atual janela.
         </para>
@@ -46,5 +55,17 @@
 f = scf(100001);
 xinfo("ID figure : " + string(f.figure_id));
      ]]></programlisting>
+    </refsection>
+    <refsection role="history">
+        <title>HistÃ³rico</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revdescription>
+                   xinfo() is tagged obsolete to be removed from Scilab 6.1. Please use
+                   gcf().info_message instead.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
