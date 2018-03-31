@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="eigs" xml:lang="ja">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="eigs" xml:lang="ja">
     <refnamediv>
         <refname>eigs</refname>
         <refpurpose>
@@ -23,10 +26,13 @@
     <refsynopsisdiv>
         <title>呼び出し手順</title>
         <synopsis>
-            d = eigs(A [,B [,k [,sigma [,opts]]]])
-            [d, v] = eigs(A [,B [,k [,sigma [,opts]]]])
-            d = eigs(Af, n [,B [,k [,sigma [,opts]]]])
-            [d, v] = eigs(Af, n [,B [,k [,sigma [,opts]]]])
+            d = eigs(A)
+            d = eigs(Af, n)
+            d = eigs(.., B)
+            d = eigs(.., B, k)
+            d = eigs(.., B, k, sigma)
+            d = eigs(.., B, k, sigma, opts)
+            [d, v] = eigs(..)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -36,6 +42,38 @@
                 <term>A </term>
                 <listitem>
                     <para>通常または疎, 実数または複素数, 対称または非対称正方行列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>B</term>
+                <listitem>
+                    <para>
+                        <literal>A</literal>と同じ次元の疎, 実数または複素数, 正方行列.
+                        Specify <literal>[]</literal> to skip it, as by default.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>k</term>
+                <listitem>
+                    <para>
+                      整数, 計算する固有値の数. By default,
+                      <literal>k=min(n-1, 6)</literal> (<varname>A</varname> real symetric) or
+                      <literal>k=min(n-2, 6)</literal> (otherwise) eigen values are computed,
+                      with n=size(A,1).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sigma</term>
+                <listitem>
+                    <para>実スカラーまたは長さ2の文字列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>opts</term>
+                <listitem>
+                    <para>構造体</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -50,33 +88,6 @@
                     <para>
                         スカラー, Aが関数の場合のみ <literal>A</literal> 定義
                     </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>B</term>
-                <listitem>
-                    <para>
-                        <literal> A</literal>と同じ次元の
-                        疎, 実数または複素数, 正方行列
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>k</term>
-                <listitem>
-                    <para>整数, 計算する固有値の数</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>sigma</term>
-                <listitem>
-                    <para>実スカラーまたは長さ2の文字列</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>opts</term>
-                <listitem>
-                    <para>構造体</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -186,8 +197,6 @@ function y = A ( x )
                 <listitem>
                     <para>
                         は,<literal>k</literal>個の固有値をベクトル<literal>d</literal>に返します.
-                        <literal>k</literal> が指定されない場合,
-                        <literal>k = min(n, 6)</literal>, ただし, nはAの行数となります.
                     </para>
                 </listitem>
             </varlistentry>

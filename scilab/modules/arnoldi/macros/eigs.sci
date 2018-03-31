@@ -62,11 +62,15 @@ function [d, v] = eigs(varargin)
     end
 
     if(typeof(varargin(1)) <> "function")
+        if isequal(A, A')   // A is real symmetric
+            nev = min(size(A, "r") - 1, 6);
+        else
+            nev = min(size(A, "r") - 2, 6);
+        end
+
         select rhs
         case 1
-            nev =  min(size(A, "r"), 6);
         case 2
-            nev = min(size(A, "r"), 6);
             B = varargin(2);
         case 3
             B = varargin(2);
