@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="end">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:lang="ru" xml:id="end">
     <refnamediv>
         <refname>end</refname>
         <refpurpose>ключевое слово конца конструкции</refpurpose>
@@ -22,8 +25,8 @@
         <title>Описание</title>
         <para>
             Используется в конце конструкций циклов или условий.
-            Конструкции <literal>for</literal>, <literal>while</literal>, <literal>if</literal>, <literal>select</literal>
-            должны заканчиваться ключевым словом <literal>end</literal>.
+            Конструкции <literal>for</literal>, <literal>while</literal>, <literal>if</literal>,
+            <literal>select</literal> должны заканчиваться ключевым словом <literal>end</literal>.
         </para>
     </refsection>
     <refsection>
@@ -46,12 +49,29 @@ for i = 1:n
         a(i,j) = 1/(i+j-1);
     end;
 end
-
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="endfunction">endfunction</link>
+            </member>
+            <member>
+                <link linkend="break">break</link>
+            </member>
+            <member>
+                <link linkend="continue">continue</link>
+            </member>
+            <member>
+                <link linkend="dollar">доллар</link>
+            </member>
+            <member>
+                <link linkend="comma">запятая</link>
+            </member>
+            <member>
+                <link linkend="semicolon">точка с запятой</link>
+            </member>
             <member>
                 <link linkend="for">for</link>
             </member>
@@ -72,8 +92,21 @@ end
             <revision>
                 <revnumber>6.0.0</revnumber>
                 <revdescription>
-                  <literal>end</literal> is now protected:
-                  Assignments like <literal>end=1</literal> are no longer possible.
+                    <itemizedlist>
+                        <listitem>
+                            Больше не нужно ставить <literal>,</literal> или <literal>;</literal> после
+                            <literal>end</literal> в инструкции одной строкой в качестве разделителя
+                            (например, <literal>if %t, a=1; end b=2</literal>).
+                        </listitem>
+                        <listitem>
+                            <literal>end</literal> теперь может закрыть блок <literal>function</literal>
+                            вместо <literal>endfunction</literal> (это может быть все же предпочтительнее).
+                        </listitem>
+                        <listitem>
+                            <literal>end</literal> is now protected:
+                            Assignments like <literal>end=1</literal> are no longer possible.
+                        </listitem>
+                    </itemizedlist>
                 </revdescription>
             </revision>
         </revhistory>

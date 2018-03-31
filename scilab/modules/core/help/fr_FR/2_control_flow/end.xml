@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2008 - INRIA
+ * Copyright (C) - INRIA
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="end">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:lang="fr" xml:id="end">
     <refnamediv>
         <refname>end</refname>
         <refpurpose>mot-clé end  </refpurpose>
@@ -25,9 +28,49 @@
             <literal>for, while, if, select</literal> doivent être terminées par <literal>end</literal> .
         </para>
     </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[
+a=42
+if a==42 then
+   disp("the answer to all questions")
+end
+
+i = 0
+while i<5
+   disp("i");
+   i = i + 1;
+end
+
+n=5;
+for i = 1:n
+    for j = 1:n
+        a(i,j) = 1/(i+j-1);
+    end
+end
+ ]]></programlisting>
+    </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="endfunction">endfunction</link>
+            </member>
+            <member>
+                <link linkend="break">break</link>
+            </member>
+            <member>
+                <link linkend="continue">continue</link>
+            </member>
+            <member>
+                <link linkend="dollar">dollar</link>
+            </member>
+            <member>
+                <link linkend="comma">comma</link>
+            </member>
+            <member>
+                <link linkend="semicolon">semicolon</link>
+            </member>
             <member>
                 <link linkend="for">for</link>
             </member>
@@ -48,8 +91,22 @@
             <revision>
                 <revnumber>6.0.0</revnumber>
                 <revdescription>
-                  <literal>end</literal> est désormais protégé. Les affectations telles que
-                  <literal>end=1</literal> ne sont plus possibles.
+                    <itemizedlist>
+                        <listitem>
+                            <literal>end</literal> ne peut plus être suivi par une instruction sur la
+                            ligne sans séparateur <literal>,</literal> ou <literal>;</literal>
+                            (comme dans <literal>if %t, a=1; end b=2</literal>).
+                        </listitem>
+                        <listitem>
+                            <literal>end</literal> peut désormais être utilisé pour conclure un bloc
+                            <literal>function</literal>, à la place <literal>endfunction</literal>
+                            (lequel reste preferable).
+                        </listitem>
+                        <listitem>
+                            <literal>end</literal> est désormais protégé. Les affectations telles que
+                            <literal>end=1</literal> ne sont plus possibles.
+                        </listitem>
+                    </itemizedlist>
                 </revdescription>
             </revision>
         </revhistory>

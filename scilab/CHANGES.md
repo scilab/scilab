@@ -122,6 +122,7 @@ These are reserved for cell definition.
 * Syntax `%i:10` is now deprecated (only real scalars can be used).
 * Control and block keywords `break` `case` `catch` `continue` `do` `else` `elseif` `end` endfunction` `for` `function` `if` `resume` `return` `select` `then` `try` and `while` can no longer be overloaded as regular assignable variables as in `end=1`. They are now reserved and protected.
 * `else` is no longer supported in a `while ... end` control instruction.
+* `end` can no longer be directly followed by an instruction on the line without a `,` or `;` separator.
 * Transposed matrix can now use the extraction operator directly `A'(1, 2)`.
 * Function without output argument cannot be called in assignation expression anymore:
 	```
@@ -244,7 +245,7 @@ Help pages:
   `printf`, `sprintf`, `iconvert`, `stdev`, `xlabel`, `and_op`, `or_op`, `permute`, `tree2code`, `%helps`,
   `scilab`, `flipdim`, `Matplot_properties`, `text_properties`, `meshgrid`, `ismatrix`, `xget`, `xset`, `ieee`, `evstr`,
   `uigetfont`, `uigetdir`, `uigetfile`, `uiputfile`, `cat`, `makecell`, `xstring`, `norm`, `barhomogenize`,
-  `colordef`, `matrix`, `coffg`, `diag`, `speye`, `sparse`, `recursionlimit`, `for`, `fileinfo`
+  `colordef`, `matrix`, `coffg`, `diag`, `speye`, `sparse`, `recursionlimit`, `for`, `fileinfo`, `end`
 * rewritten: `consolebox`, `double`, `isoview`, `pixel_drawing_mode`, `householder`, `or`, `|,||`,
  `and`, `&,&&`, `format`, `type`, `typeof`, `brackets`, `setlanguage`, `sleep`, `isinf`, `unique`,
  `bitor`, `bitxor`, `bitand`, `macr2tree`, `geomean`, `clf`, `getPreferencesValue`, `gcd`, `isglobal`,

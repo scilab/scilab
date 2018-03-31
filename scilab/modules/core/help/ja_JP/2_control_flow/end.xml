@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2008 - INRIA
+ * Copyright (C) - INRIA
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -13,39 +13,25 @@
  * along with this program.
  *
  -->
-
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="end">
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:lang="ja" xml:id="end">
     <refnamediv>
-
         <refname>end</refname>
-
         <refpurpose>end キーワード</refpurpose>
-
     </refnamediv>
-
     <refsection>
-
         <title>説明</title>
-
         <para>
-
             ループまたは条件文の末尾で使用されます.
-
             <literal>for</literal>, <literal>while</literal>, <literal>if</literal>,
-
             <literal>select</literal> は, <literal>end</literal> で
-
             終わる必要があります.
-
         </para>
-
     </refsection>
-
     <refsection>
-
         <title>例</title>
-
         <programlisting role="example"><![CDATA[
 a=42
 if a==42 then
@@ -64,43 +50,42 @@ for i = 1:n
         a(i,j) = 1/(i+j-1);
     end;
 end
-
  ]]></programlisting>
-
     </refsection>
-
     <refsection role="see also">
-
         <title>参照</title>
-
         <simplelist type="inline">
-
             <member>
-
+                <link linkend="endfunction">endfunction</link>
+            </member>
+            <member>
+                <link linkend="break">break</link>
+            </member>
+            <member>
+                <link linkend="continue">continue</link>
+            </member>
+            <member>
+                <link linkend="dollar">dollar</link>
+            </member>
+            <member>
+                <link linkend="comma">comma</link>
+            </member>
+            <member>
+                <link linkend="semicolon">semicolon</link>
+            </member>
+            <member>
                 <link linkend="for">for</link>
-
             </member>
-
             <member>
-
                 <link linkend="while">while</link>
-
             </member>
-
             <member>
-
                 <link linkend="if">if</link>
-
             </member>
-
             <member>
-
                 <link linkend="select">select</link>
-
             </member>
-
         </simplelist>
-
     </refsection>
     <refsection role="history">
         <title>履歴</title>
@@ -108,11 +93,23 @@ end
             <revision>
                 <revnumber>6.0.0</revnumber>
                 <revdescription>
-                  <literal>end</literal> is now protected:
-                  Assignments like <literal>end=1</literal> are no longer possible.
+                    <itemizedlist>
+                        <listitem>
+                            <literal>end</literal> can no longer be followed by an inline instruction
+                            without <literal>,</literal> or <literal>;</literal> separator
+                            (as in <literal>if %t, a=1; end b=2</literal>).
+                        </listitem>
+                        <listitem>
+                            <literal>end</literal> can now close a <literal>function</literal> block
+                            instead of <literal>endfunction</literal> (that still should be prefered).
+                        </listitem>
+                        <listitem>
+                            <literal>end</literal> is now protected:
+                            Assignments like <literal>end=1</literal> are no longer possible.
+                        </listitem>
+                    </itemizedlist>
                 </revdescription>
             </revision>
         </revhistory>
     </refsection>
 </refentry>
-
