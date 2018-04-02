@@ -3045,7 +3045,7 @@ proc PopUp { w numpage} {
 	    -background white -textvariable LOCATIONS_X($i)  -font $gedFont
 	#	bind  $w.frame.c.locationsdata$i <Return> "setTicksLocations $w $i "
 	bind  $fen1.frame.c.locationsdata$i <ButtonPress-1> "setLEI_x $i $fen1.frame.c.locationsdata$i;"
-	bind  $fen1.frame.c.locationsdata$i <Return> "TicksApplyXRepalce $fen1 $fen1.frame.c.locationsdata$i right"
+	bind  $fen1.frame.c.locationsdata$i <Return> "TicksApplyXReplace $fen1 $fen1.frame.c.locationsdata$i right"
 	bind  $fen1.frame.c.locationsdata$i <KP_Enter> "TicksApplyXReplace $fen1 $fen1.frame.c.locationsdata$i right"
 	bind  $fen1.frame.c.locationsdata$i <FocusOut> "TicksApplyXReplace $fen1 $fen1.frame.c.locationsdata$i right"
 	$fen1.frame.c create window $aa $bb -anchor c -window $fen1.frame.c.locationsdata$i
