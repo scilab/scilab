@@ -29,9 +29,9 @@ extern "C"
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_gamma(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    if (in.size() != 1)
+    if (in.size() < 1)
     {
-        Scierror(77, _("%s: Wrong number of input argument: %d expected.\n"), "gamma", 1);
+        Scierror(77, _("%s: Wrong number of input arguments: At least %d expected.\n"), "gamma", 1);
         return types::Function::Error;
     }
 
@@ -41,24 +41,24 @@ types::Function::ReturnValue sci_gamma(types::typed_list &in, int _iRetCount, ty
         return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
+    if (in.size() > 1)
+    {
+        Scierror(77, _("%s: Wrong number of input argument: %d expected.\n"), "gamma", 1);
+        return types::Function::Error;
+    }
+
     if (in[0]->isDouble() == false)
     {
-        Scierror(999, _("%s: Wrong type for argument #%d: A matrix expected.\n"), "gamma", 1);
+        Scierror(999, _("%s: Argument #%d: Decimal number(s) expected.\n"), "gamma", 1);
         return types::Function::Error;
     }
 
     /***** get data *****/
     types::Double* pDblIn = in[0]->getAs<types::Double>();
 
-    if (pDblIn->isComplex())
+    if (pDblIn->isComplex() || pDblIn->getDims() > 2)
     {
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), "gamma", 1);
-        return types::Function::Error;
-    }
-
-    if (pDblIn->getDims() > 2)
-    {
-        return Overload::call(L"%hm_gamma", in, _iRetCount, out);
+        return Overload::call(L"%s_gamma", in, _iRetCount, out);
     }
 
     types::Double* pDblOut = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray());
