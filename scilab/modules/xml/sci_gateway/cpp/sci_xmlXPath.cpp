@@ -171,11 +171,6 @@ int sci_xmlXPath(char* fname, void* pvApiCtx)
         case XPATH_NODESET:
         {
             const XMLNodeSet *set = xpath->getNodeSet();
-
-            if (set->getSize() == 0)
-            {
-                createMatrixOfDouble(pvApiCtx, Rhs + 1, 0, 0, 0);
-            }
             set->createOnStack(Rhs + 1, pvApiCtx);
             mustDelete = false;
             break;
