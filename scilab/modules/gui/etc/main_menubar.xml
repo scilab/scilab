@@ -102,7 +102,7 @@
     <!-- Applications menu -->
     <menu label="&amp;Applications" enabled="true">
         <submenu label="&amp;SciNotes" icon="accessories-text-editor">
-            <callback instruction="editor();" type="0"/>
+            <callback instruction="scinotes();" type="0"/>
         </submenu>
         <separator/>
         <submenu label="&amp;Xcos" icon="utilities-system-monitor">
