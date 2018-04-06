@@ -202,6 +202,7 @@ static setHashTableCouple propertySetTable[] =
     {"verticalalignment", SetUicontrolVerticalAlignment},
     {"fontname", SetUicontrolFontName},
     {"sliderstep", SetUicontrolSliderStep},
+    {"snaptoticks", SetUicontrolSnapToTicks},
     {"checked", SetUimenuChecked},
     {"arc_drawing_method", set_arc_drawing_method_property},
     {"fractional_font", set_fractional_font_property},

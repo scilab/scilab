@@ -48,6 +48,7 @@ GUI_IMPEXP int SetUicontrolMin(void* _pvCtx, int iObjUID, void* _pvData, int val
 GUI_IMPEXP int SetUicontrolPosition(int iObjUID, void* pvData, int valueType, int nbRow, int nbCol);
 GUI_IMPEXP int SetUicontrolRelief(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol);
 GUI_IMPEXP int SetUicontrolSliderStep(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol);
+GUI_IMPEXP int SetUicontrolSnapToTicks(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol);
 GUI_IMPEXP int SetUicontrolString(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol ) ;
 GUI_IMPEXP int SetUicontrolTooltipString(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol ) ;
 GUI_IMPEXP int SetUicontrolUnits(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol);

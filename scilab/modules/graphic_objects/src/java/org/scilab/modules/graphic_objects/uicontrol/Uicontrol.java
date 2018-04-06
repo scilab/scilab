@@ -66,6 +66,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SLIDERSTEP__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SLIDER__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SPINNER__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SNAPTOTICKS__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING_COLNB__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING_SIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
@@ -441,7 +442,7 @@ public class Uicontrol extends GraphicObject {
     private static double defaultFontSize = 0;
     private static String defaultFontAngle = "";
     private static String defaultFontUnits = "";
-    
+
     private UicontrolStyle style;
     private Double[] backgroundColor = { -1.0, -1.0, -1.0};
     private Boolean enable = true;
@@ -459,6 +460,7 @@ public class Uicontrol extends GraphicObject {
     private Double[] position = {DEFAULT_X, DEFAULT_Y, DEFAULT_WIDTH, DEFAULT_HEIGHT};
     private String relief = RELIEF_DEFAULT;
     private Double[] sliderStep = {0.01, 0.1};
+    private Boolean snapToTicks = false;
     private String[] string = new String[] {};
     private int stringColNb = 1; // Used for tables
     private String[] tooltipString = {""};
@@ -516,6 +518,7 @@ public class Uicontrol extends GraphicObject {
         SCALE,
         SHEAR,
         SLIDERSTEP,
+        SNAPTOTICKS,
         STRING,
         STRING_SIZE,
         STRING_COLNB,
@@ -727,6 +730,8 @@ public class Uicontrol extends GraphicObject {
                 return UicontrolProperty.RELIEF;
             case __GO_UI_SLIDERSTEP__ :
                 return UicontrolProperty.SLIDERSTEP;
+            case __GO_UI_SNAPTOTICKS__ :
+                return UicontrolProperty.SNAPTOTICKS;
             case __GO_UI_STRING__ :
                 return UicontrolProperty.STRING;
             case __GO_UI_STRING_SIZE__ :
@@ -836,6 +841,8 @@ public class Uicontrol extends GraphicObject {
             return getRelief();
         } else if (property == UicontrolProperty.SLIDERSTEP) {
             return getSliderStep();
+        } else if (property == UicontrolProperty.SNAPTOTICKS) {
+            return getSnapToTicks();
         } else if (property == UicontrolProperty.STRING) {
             return getString();
         } else if (property == UicontrolProperty.STRING_SIZE) {
@@ -948,6 +955,8 @@ public class Uicontrol extends GraphicObject {
                 return setRelief((String) value);
             case SLIDERSTEP:
                 return setSliderStep((Double[]) value);
+            case SNAPTOTICKS:
+                return setSnapToTicks((Boolean) value);
             case STRING:
                 return setString((String[]) value);
             case STRING_COLNB:
@@ -1345,6 +1354,19 @@ public class Uicontrol extends GraphicObject {
             return UpdateStatus.NoChange;
         }
         this.sliderStep = sliderStep;
+        return UpdateStatus.Success;
+    }
+
+    /* SnapToTicks */
+    public Boolean getSnapToTicks() {
+        return this.snapToTicks;
+    }
+
+    public UpdateStatus setSnapToTicks(Boolean status) {
+        if (snapToTicks.equals(status)) {
+            return UpdateStatus.NoChange;
+        }
+        this.snapToTicks = status;
         return UpdateStatus.Success;
     }
 

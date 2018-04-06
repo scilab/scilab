@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
+ * Copyright (C) 2018 - Stéphane Mottelet
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -19,6 +20,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MAX__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MIN__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SLIDERSTEP__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SNAPTOTICKS__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE__;
 
 import java.awt.Color;
@@ -61,7 +63,8 @@ public class SwingScilabSlider extends JSlider implements SwingViewObject, Widge
     private static final long serialVersionUID = -4262320156090829309L;
 
     private static final int MINIMUM_VALUE = 0;
-    private static final int MAXIMUM_VALUE = 10000;
+    private static final int MAX_MAXIMUM_VALUE = 10000;
+    private int MAXIMUM_VALUE = MAX_MAXIMUM_VALUE;
 
     private Integer uid;
 
@@ -71,7 +74,7 @@ public class SwingScilabSlider extends JSlider implements SwingViewObject, Widge
 
     private Border defaultBorder = null;
 
-    private int previousValueCallback = 0;
+    private double previousUserValueCallback = Double.POSITIVE_INFINITY;
 
     static {
         if (OS.get() == OS.UNIX) {
@@ -84,14 +87,7 @@ public class SwingScilabSlider extends JSlider implements SwingViewObject, Widge
         private static final long serialVersionUID = -3289281207742516486L;
 
         public void actionPerformed(ActionEvent arg0) {
-            double userMin = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MIN__);
-            double userMax = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MAX__);
-            Double[] step = (Double[]) GraphicController.getController().getProperty(uid, __GO_UI_SLIDERSTEP__);
-            int value = SwingScilabSlider.this.getValue();
-
-            double ratio = (MAXIMUM_VALUE - MINIMUM_VALUE) / (userMax - userMin);
-            int newValue = Math.max(MINIMUM_VALUE, value - (int)(step[1] * ratio));
-            setValue(newValue);
+            setValue(SwingScilabSlider.this.getValue() - SwingScilabSlider.this.getMajorTickSpacing());
         }
     }
 
@@ -99,14 +95,7 @@ public class SwingScilabSlider extends JSlider implements SwingViewObject, Widge
         private static final long serialVersionUID = 2099826485447918397L;
 
         public void actionPerformed(ActionEvent arg0) {
-            double userMin = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MIN__);
-            double userMax = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MAX__);
-            Double[] step = (Double[]) GraphicController.getController().getProperty(uid, __GO_UI_SLIDERSTEP__);
-            int value = SwingScilabSlider.this.getValue();
-
-            double ratio = (MAXIMUM_VALUE - MINIMUM_VALUE) / (userMax - userMin);
-            int newValue = Math.max(MINIMUM_VALUE, value - (int)(step[0] * ratio));
-            setValue(newValue);
+            setValue(SwingScilabSlider.this.getValue() - SwingScilabSlider.this.getMinorTickSpacing());
         }
     }
 
@@ -114,14 +103,7 @@ public class SwingScilabSlider extends JSlider implements SwingViewObject, Widge
         private static final long serialVersionUID = 8666161246122371904L;
 
         public void actionPerformed(ActionEvent arg0) {
-            double userMin = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MIN__);
-            double userMax = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MAX__);
-            Double[] step = (Double[]) GraphicController.getController().getProperty(uid, __GO_UI_SLIDERSTEP__);
-            int value = SwingScilabSlider.this.getValue();
-
-            double ratio = (MAXIMUM_VALUE - MINIMUM_VALUE) / (userMax - userMin);
-            int newValue = Math.min(MAXIMUM_VALUE, value + (int)(step[0] * ratio));
-            setValue(newValue);
+          setValue(SwingScilabSlider.this.getValue() + SwingScilabSlider.this.getMinorTickSpacing());
         }
     }
 
@@ -129,14 +111,7 @@ public class SwingScilabSlider extends JSlider implements SwingViewObject, Widge
         private static final long serialVersionUID = -1364255463511656338L;
 
         public void actionPerformed(ActionEvent arg0) {
-            double userMin = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MIN__);
-            double userMax = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MAX__);
-            Double[] step = (Double[]) GraphicController.getController().getProperty(uid, __GO_UI_SLIDERSTEP__);
-            int value = SwingScilabSlider.this.getValue();
-
-            double ratio = (MAXIMUM_VALUE - MINIMUM_VALUE) / (userMax - userMin);
-            int newValue = Math.min(MAXIMUM_VALUE, value + (int)(step[1] * ratio));
-            setValue(newValue);
+          setValue(SwingScilabSlider.this.getValue() + SwingScilabSlider.this.getMajorTickSpacing());
         }
     }
 
@@ -169,23 +144,12 @@ public class SwingScilabSlider extends JSlider implements SwingViewObject, Widge
         changeListener = new ChangeListener() {
             public void stateChanged(ChangeEvent changeEvent) {
                 JSlider source = (JSlider) changeEvent.getSource();
-                if (!source.getValueIsAdjusting()) {
-                    previousValueCallback = getValue();
+                double offset = Math.abs(getUserValue() - previousUserValueCallback);
+                previousUserValueCallback = getUserValue();
+                if (offset != 0) {
                     updateModel();
                     if (callback != null) {
                         callback.actionPerformed(null);
-                    }
-                } else {
-                    int offset = Math.abs(getValue() - previousValueCallback);
-                    previousValueCallback = getValue();
-                    // When the user has clicked on the slider itself (not the knob)
-                    // and the knob makes a step of getMajorTickSpacing() value
-                    // ==> We do not call the callback (Bug #13549)
-                    if (offset != getMajorTickSpacing() && offset != 0) {
-                        updateModel();
-                        if (callback != null) {
-                            callback.actionPerformed(null);
-                        }
                     }
                 }
             }
@@ -336,22 +300,6 @@ public class SwingScilabSlider extends JSlider implements SwingViewObject, Widge
     }
 
     /**
-     * Set the minimum value of a Slider
-     * @param value the minimum value
-     */
-    public void setMinimumValue(double value) {
-        updateModel(); /* Update the model according to the knob position */
-    }
-
-    /**
-     * Set the maximum value of a Slider
-     * @param value the maximum value
-     */
-    public void setMaximumValue(double value) {
-        updateModel(); /* Update the model according to the knob position */
-    }
-
-    /**
      * Set the Relief of the Slider
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
@@ -428,16 +376,32 @@ public class SwingScilabSlider extends JSlider implements SwingViewObject, Widge
     }
 
     /**
+     * get the current value of the Slider
+     */
+    private double getUserValue() {
+        double value;
+        double userMin = (double) GraphicController.getController().getProperty(uid, __GO_UI_MIN__);
+        double userMax = (double) GraphicController.getController().getProperty(uid, __GO_UI_MAX__);
+        Double[] userStep = (Double[]) GraphicController.getController().getProperty(uid, __GO_UI_SLIDERSTEP__);
+        value = userMin + ((getValue() - MINIMUM_VALUE) * (userMax - userMin) / (MAXIMUM_VALUE - MINIMUM_VALUE));
+        if (getSnapToTicks()) {
+            value = Math.min(userMin+Math.round((value-userMin)/userStep[0])*userStep[0],userMax);
+        }
+        return value;
+    }
+
+
+    /**
      * Set the current value of the Slider
      * @param value the new value
      */
     public void setUserValue(double value) {
         /* Remove the listener to avoid the callback to be executed */
         removeChangeListener(changeListener);
-
+        
         double userMin = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MIN__);
         double userMax = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MAX__);
-        setValue(MINIMUM_VALUE + (int) ((value - userMin) * (MAXIMUM_VALUE - MINIMUM_VALUE) / (userMax - userMin)));
+        setValue(MINIMUM_VALUE + (int)Math.round((value - userMin) * (MAXIMUM_VALUE - MINIMUM_VALUE) / (userMax - userMin)));
 
         /* Put back the listener */
         addChangeListener(changeListener);
@@ -470,30 +434,18 @@ public class SwingScilabSlider extends JSlider implements SwingViewObject, Widge
         switch (property) {
             case __GO_UI_MAX__: {
                 Double maxValue = (Double) value;
-                // Update the slider properties
                 Double minValue = (Double) controller.getProperty(uid, __GO_UI_MIN__);
-                setMaximumValue(maxValue);
                 Double[] sliderStep = ((Double[]) controller.getProperty(uid, __GO_UI_SLIDERSTEP__));
-                double minorSliderStep = sliderStep[0].doubleValue();
-                double majorSliderStep = sliderStep[1].doubleValue();
-                if (minValue <= maxValue) {
-                    setMinorTickSpacing(minorSliderStep);
-                    setMajorTickSpacing(majorSliderStep);
-                }
+                // Update the slider properties
+                updateSwingSlider(minValue,maxValue,sliderStep);
                 break;
             }
             case __GO_UI_MIN__ : {
                 Double minValue = (Double)value;
-                // Update the slider properties
                 Double maxValue = (Double) controller.getProperty(uid, __GO_UI_MAX__);
-                setMinimumValue(minValue);
                 Double[] sliderStep = ((Double[]) controller.getProperty(uid, __GO_UI_SLIDERSTEP__));
-                double minorSliderStep = sliderStep[0].doubleValue();
-                double majorSliderStep = sliderStep[1].doubleValue();
-                if (minValue <= maxValue) {
-                    setMinorTickSpacing(minorSliderStep);
-                    setMajorTickSpacing(majorSliderStep);
-                }
+                // Update the slider properties
+                updateSwingSlider(minValue,maxValue,sliderStep);
                 break;
             }
             case __GO_POSITION__ : {
@@ -507,10 +459,15 @@ public class SwingScilabSlider extends JSlider implements SwingViewObject, Widge
             }
             case __GO_UI_SLIDERSTEP__ : {
                 Double[] sliderStep = ((Double[]) value);
-                double minorSliderStep = sliderStep[0].doubleValue();
-                double majorSliderStep = sliderStep[1].doubleValue();
-                setMinorTickSpacing(minorSliderStep);
-                setMajorTickSpacing(majorSliderStep);
+                Double minValue = (Double) controller.getProperty(uid, __GO_UI_MIN__);
+                Double maxValue = (Double) controller.getProperty(uid, __GO_UI_MAX__);
+                // Update the slider properties
+                updateSwingSlider(minValue,maxValue,sliderStep);
+                break;
+            }
+            case __GO_UI_SNAPTOTICKS__ : {
+                Boolean state=(Boolean) value;
+                setSnapToTicks(state);
                 break;
             }
             case __GO_UI_VALUE__ : {
@@ -531,14 +488,31 @@ public class SwingScilabSlider extends JSlider implements SwingViewObject, Widge
     }
 
     /**
+     * Update values in SwingSlider widget when needed
+     */
+    private void updateSwingSlider(Double userMin, Double userMax, Double[] sliderStep) {
+      double minorSliderStep = sliderStep[0].doubleValue();
+      double majorSliderStep = sliderStep[1].doubleValue();
+      MAXIMUM_VALUE=MAX_MAXIMUM_VALUE-(MAX_MAXIMUM_VALUE % Math.min(Math.max(1,(int)Math.abs((userMax-userMin)/minorSliderStep)),MAX_MAXIMUM_VALUE)); 
+
+      /* Remove the listener to avoid the callback to be executed */
+      removeChangeListener(changeListener);
+      setMaximum(MAXIMUM_VALUE);
+      setMinorTickSpacing(minorSliderStep);
+      setMajorTickSpacing(majorSliderStep);
+
+      /* Put back the listener */
+      addChangeListener(changeListener);
+      updateModel();
+    }
+
+    /**
      * Update values in the model when needed
      */
     private void updateModel() {
-        Double[] value = new Double[1];
-        double userMin = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MIN__);
-        double userMax = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MAX__);
-        value[0] = userMin + ((getValue() - MINIMUM_VALUE) * (userMax - userMin) / (MAXIMUM_VALUE - MINIMUM_VALUE));
-        GraphicController.getController().setProperty(uid, __GO_UI_VALUE__, value);
+      Double[] value = new Double[1];
+      value[0] = getUserValue();
+      GraphicController.getController().setProperty(uid, __GO_UI_VALUE__, value);
     }
 
     public void resetBackground() {

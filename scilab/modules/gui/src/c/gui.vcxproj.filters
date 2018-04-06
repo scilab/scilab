@@ -461,6 +461,12 @@
     <ClCompile Include="..\..\sci_gateway\cpp\sci_xchoicesi.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\cpp\GetUicontrolSnapToTicks.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\SetUicontrolSnapToTicks.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="core_import.def">

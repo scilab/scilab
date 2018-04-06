@@ -1012,6 +1012,9 @@ function %h_p(h)
             if or(h.style == ["slider", "spinner"]) | showHiddenProperties then
                 t($ + 1) = "SliderStep = " + sci2exp(h.sliderstep);
             end
+            if h.style=="slider" | showHiddenProperties then
+                t($ + 1) = "SnapToTicks = " + sci2exp(h.snaptoticks);
+            end
             if h.style <> "slider" | showHiddenProperties then
                 t($ + 1) = "String = " + fmtuser_data(h.string);
             end

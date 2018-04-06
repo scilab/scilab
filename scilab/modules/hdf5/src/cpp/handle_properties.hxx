@@ -818,6 +818,7 @@ struct UicontrolHandle
         m.emplace_back("position", std::vector<int>({SAVE_LOAD, __GO_POSITION__, jni_double_vector, -1, -4}));
         m.emplace_back("relief", std::vector<int>({SAVE_LOAD, __GO_UI_RELIEF__, jni_string}));
         m.emplace_back("sliderstep", std::vector<int>({SAVE_LOAD, __GO_UI_SLIDERSTEP__, jni_double_vector, -1, -2}));
+        m.emplace_back("snaptoticks", std::vector<int>({SAVE_LOAD, __GO_UI_SNAPTOTICKS__, jni_bool}));
         m.emplace_back("tooltipstring", std::vector<int>({SAVE_LOAD, __GO_UI_TOOLTIPSTRING__, jni_string_vector, -1, __GO_UI_TOOLTIPSTRING_SIZE__}));
         m.emplace_back("units", std::vector<int>({SAVE_LOAD, __GO_UI_UNITS__, jni_string}));
         m.emplace_back("verticalalignment", std::vector<int>({SAVE_LOAD, __GO_UI_VERTICALALIGNMENT__, jni_string}));

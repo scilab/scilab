@@ -122,6 +122,8 @@ GUI_CXX_SOURCES = \
     src/cpp/GetUicontrolVerticalAlignment.cpp \
     src/cpp/SetUicontrolSliderStep.cpp \
     src/cpp/GetUicontrolSliderStep.cpp \
+    src/cpp/SetUicontrolSnapToTicks.cpp \
+    src/cpp/GetUicontrolSnapToTicks.cpp \
     src/cpp/SetUicontrolIcon.cpp \
     src/cpp/GetUicontrolIcon.cpp \
     src/cpp/SetConsoleShowHiddenHandles.cpp \

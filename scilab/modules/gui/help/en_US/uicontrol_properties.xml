@@ -391,6 +391,14 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
+                <term>SnapToTicks</term>
+                <listitem>
+                    <para>on | {off}</para>
+                    <para>If <literal>SnapToTicks</literal> is <literal>"on"</literal>, the Slider knob will always snap to the closest position associated to a value given by the "Min" property plus an integer multiple of small step (see SliderStep above). The default value of this property is "off".
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>String</term>
                 <listitem>
                     <para>String.</para>

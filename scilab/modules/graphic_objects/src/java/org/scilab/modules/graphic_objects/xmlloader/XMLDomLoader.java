@@ -142,6 +142,7 @@ public class XMLDomLoader {
         UiPropToGO.put("position", new Pair<Integer, ModelType>(__GO_POSITION__, ModelType.DOUBLE_ARRAY));
         UiPropToGO.put("relief", new Pair<Integer, ModelType>(__GO_UI_RELIEF__, ModelType.STRING));
         UiPropToGO.put("sliderstep", new Pair<Integer, ModelType>(__GO_UI_SLIDERSTEP__, ModelType.DOUBLE_ARRAY));
+        UiPropToGO.put("snaptoticks", new Pair<Integer, ModelType>(__GO_UI_SNAPTOTICKS__, ModelType.BOOLEAN));
         UiPropToGO.put("units", new Pair<Integer, ModelType>(__GO_UI_UNITS__, ModelType.STRING));
         UiPropToGO.put("value", new Pair<Integer, ModelType>(__GO_UI_VALUE__, ModelType.DOUBLE_ARRAY));
         UiPropToGO.put("verticalalignment", new Pair<Integer, ModelType>(__GO_UI_VERTICALALIGNMENT__, ModelType.STRING));

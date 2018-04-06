@@ -43,6 +43,7 @@ GUI_IMPEXP void* GetUicontrolMin(void* _pvCtx, int iObjUID);
 GUI_IMPEXP void* GetUicontrolPosition(void* _pvCtx, int iObjUID);
 GUI_IMPEXP void* GetUicontrolPosition(void* _pvCtx, int iObjUID);
 GUI_IMPEXP void* GetUicontrolSliderStep(void* _pvCtx, int iObjUID);
+GUI_IMPEXP void* GetUicontrolSnapToTicks(void* _pvCtx, int iObjUID);
 GUI_IMPEXP void* GetUicontrolString(void* _pvCtx, int iObjUID);
 GUI_IMPEXP void* GetUicontrolStyle(void* _pvCtx, int iObjUID);
 GUI_IMPEXP void* GetUicontrolTooltipString(void* _pvCtx, int iObjUID);

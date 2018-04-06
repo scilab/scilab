@@ -221,10 +221,12 @@
     <ClCompile Include="..\cpp\CreateUIControl.cpp" />
     <ClCompile Include="..\cpp\GetConsoleShowHiddenHandles.cpp" />
     <ClCompile Include="..\cpp\GetUicontrolIcon.cpp" />
+    <ClCompile Include="..\cpp\GetUicontrolSnapToTicks.cpp" />
     <ClCompile Include="..\cpp\GetUicontrolTooltipString.cpp" />
     <ClCompile Include="..\cpp\InitializeGUI.cpp" />
     <ClCompile Include="..\cpp\SetConsoleShowHiddenHandles.cpp" />
     <ClCompile Include="..\cpp\SetUicontrolIcon.cpp" />
+    <ClCompile Include="..\cpp\SetUicontrolSnapToTicks.cpp" />
     <ClCompile Include="..\jni\DatatipCreate.cpp" />
     <ClCompile Include="..\jni\DatatipSetStyle.cpp" />
     <ClCompile Include="..\jni\DatatipDelete.cpp" />

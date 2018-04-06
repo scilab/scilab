@@ -58,6 +58,7 @@ static const char* propertiesNames[] =
     "horizontalalignment",
     "verticalalignment",
     "sliderstep",
+    "snaptoticks",
     "fontname",
     "callback",
     "fontangle",

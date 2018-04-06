@@ -72,3 +72,5 @@ GetUicontrolIcon
 SetUicontrolIcon
 GetConsoleShowHiddenProperties
 SetConsoleShowHiddenProperties
+GetUicontrolSnapToTicks
+SetUicontrolSnapToTicks

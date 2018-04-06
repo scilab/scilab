@@ -261,6 +261,8 @@ am__objects_2 = src/cpp/libscigui_algo_la-InitializeGUI.lo \
 	src/cpp/libscigui_algo_la-GetUicontrolVerticalAlignment.lo \
 	src/cpp/libscigui_algo_la-SetUicontrolSliderStep.lo \
 	src/cpp/libscigui_algo_la-GetUicontrolSliderStep.lo \
+	src/cpp/libscigui_algo_la-SetUicontrolSnapToTicks.lo \
+	src/cpp/libscigui_algo_la-GetUicontrolSnapToTicks.lo \
 	src/cpp/libscigui_algo_la-SetUicontrolIcon.lo \
 	src/cpp/libscigui_algo_la-GetUicontrolIcon.lo \
 	src/cpp/libscigui_algo_la-SetConsoleShowHiddenHandles.lo \
@@ -835,6 +837,8 @@ GUI_CXX_SOURCES = \
     src/cpp/GetUicontrolVerticalAlignment.cpp \
     src/cpp/SetUicontrolSliderStep.cpp \
     src/cpp/GetUicontrolSliderStep.cpp \
+    src/cpp/SetUicontrolSnapToTicks.cpp \
+    src/cpp/GetUicontrolSnapToTicks.cpp \
     src/cpp/SetUicontrolIcon.cpp \
     src/cpp/GetUicontrolIcon.cpp \
     src/cpp/SetConsoleShowHiddenHandles.cpp \
@@ -1439,6 +1443,10 @@ src/cpp/libscigui_algo_la-SetUicontrolSliderStep.lo:  \
 	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscigui_algo_la-GetUicontrolSliderStep.lo:  \
 	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscigui_algo_la-SetUicontrolSnapToTicks.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscigui_algo_la-GetUicontrolSnapToTicks.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscigui_algo_la-SetUicontrolIcon.lo:  \
 	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscigui_algo_la-GetUicontrolIcon.lo:  \
@@ -1773,6 +1781,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigui_algo_la-GetUicontrolPosition.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigui_algo_la-GetUicontrolRelief.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigui_algo_la-GetUicontrolSliderStep.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigui_algo_la-GetUicontrolSnapToTicks.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigui_algo_la-GetUicontrolString.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigui_algo_la-GetUicontrolStyle.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigui_algo_la-GetUicontrolTooltipString.Plo@am__quote@
@@ -1800,6 +1809,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigui_algo_la-SetUicontrolPosition.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigui_algo_la-SetUicontrolRelief.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigui_algo_la-SetUicontrolSliderStep.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigui_algo_la-SetUicontrolSnapToTicks.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigui_algo_la-SetUicontrolString.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigui_algo_la-SetUicontrolTooltipString.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigui_algo_la-SetUicontrolUnits.Plo@am__quote@
@@ -2488,6 +2498,20 @@ src/cpp/libscigui_algo_la-GetUicontrolSliderStep.lo: src/cpp/GetUicontrolSliderS
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/GetUicontrolSliderStep.cpp' object='src/cpp/libscigui_algo_la-GetUicontrolSliderStep.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscigui_algo_la-GetUicontrolSliderStep.lo `test -f 'src/cpp/GetUicontrolSliderStep.cpp' || echo '$(srcdir)/'`src/cpp/GetUicontrolSliderStep.cpp
+
+src/cpp/libscigui_algo_la-SetUicontrolSnapToTicks.lo: src/cpp/SetUicontrolSnapToTicks.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscigui_algo_la-SetUicontrolSnapToTicks.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscigui_algo_la-SetUicontrolSnapToTicks.Tpo -c -o src/cpp/libscigui_algo_la-SetUicontrolSnapToTicks.lo `test -f 'src/cpp/SetUicontrolSnapToTicks.cpp' || echo '$(srcdir)/'`src/cpp/SetUicontrolSnapToTicks.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscigui_algo_la-SetUicontrolSnapToTicks.Tpo src/cpp/$(DEPDIR)/libscigui_algo_la-SetUicontrolSnapToTicks.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/SetUicontrolSnapToTicks.cpp' object='src/cpp/libscigui_algo_la-SetUicontrolSnapToTicks.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscigui_algo_la-SetUicontrolSnapToTicks.lo `test -f 'src/cpp/SetUicontrolSnapToTicks.cpp' || echo '$(srcdir)/'`src/cpp/SetUicontrolSnapToTicks.cpp
+
+src/cpp/libscigui_algo_la-GetUicontrolSnapToTicks.lo: src/cpp/GetUicontrolSnapToTicks.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscigui_algo_la-GetUicontrolSnapToTicks.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscigui_algo_la-GetUicontrolSnapToTicks.Tpo -c -o src/cpp/libscigui_algo_la-GetUicontrolSnapToTicks.lo `test -f 'src/cpp/GetUicontrolSnapToTicks.cpp' || echo '$(srcdir)/'`src/cpp/GetUicontrolSnapToTicks.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscigui_algo_la-GetUicontrolSnapToTicks.Tpo src/cpp/$(DEPDIR)/libscigui_algo_la-GetUicontrolSnapToTicks.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/GetUicontrolSnapToTicks.cpp' object='src/cpp/libscigui_algo_la-GetUicontrolSnapToTicks.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscigui_algo_la-GetUicontrolSnapToTicks.lo `test -f 'src/cpp/GetUicontrolSnapToTicks.cpp' || echo '$(srcdir)/'`src/cpp/GetUicontrolSnapToTicks.cpp
 
 src/cpp/libscigui_algo_la-SetUicontrolIcon.lo: src/cpp/SetUicontrolIcon.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscigui_algo_la-SetUicontrolIcon.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscigui_algo_la-SetUicontrolIcon.Tpo -c -o src/cpp/libscigui_algo_la-SetUicontrolIcon.lo `test -f 'src/cpp/SetUicontrolIcon.cpp' || echo '$(srcdir)/'`src/cpp/SetUicontrolIcon.cpp

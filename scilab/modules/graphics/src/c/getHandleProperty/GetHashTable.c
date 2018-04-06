@@ -202,6 +202,7 @@ static getHashTableCouple propertyGetTable[] =
     {"verticalalignment", GetUicontrolVerticalAlignment},
     {"fontname", GetUicontrolFontName},
     {"sliderstep", GetUicontrolSliderStep},
+    {"snaptoticks", GetUicontrolSnapToTicks},
     {"checked", GetUimenuChecked},
     {"arc_drawing_method", get_arc_drawing_method_property},
     {"fractional_font", get_fractional_font_property},
