@@ -41,9 +41,9 @@ typedef struct __VAR_INFO6__
     char info[128];
     std::string name;
     std::string ctype;
-    int type;
-    int size;
-    int dims;
+    int type = 0;
+    int size = 0;
+    int dims = 0;
     std::vector<int> pdims;
 } VarInfo6;
 
