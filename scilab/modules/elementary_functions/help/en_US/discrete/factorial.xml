@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- *
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Michael Baudin
- *
- * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,68 +11,218 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="factorial" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="factorial" xml:lang="en">
     <refnamediv>
         <refname>factorial</refname>
-        <refpurpose>The factorial function</refpurpose>
+        <refpurpose>factorial function : product of the n first positive integers</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-            f = factorial ( n )
-
+            f = factorial(n)
+            [f, p] = factorial(n)
+            [f, p, m] = factorial(n)
         </synopsis>
     </refsynopsisdiv>
-    <refsection>
-        <title>Parameters</title>
+    <refsection role="arguments">
+        <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>n :</term>
+                <term>n</term>
                 <listitem>
-                    <para> a matrix of doubles. Must contain positive integers.</para>
+                    <para>
+                        scalar, vector, matrix or hypermatrix of positive integers
+                        &lt;= 10<superscript>14</superscript>.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>f :</term>
+                <term>f</term>
                 <listitem>
-                    <para> a matrix of doubles.</para>
+                    <para>
+                        array of doubles, of the sizes of n: <literal>f(i) = n(i)!</literal>.
+                        <varname>f</varname> values are exact up to <literal>n=21</literal> included.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>p</term>
+                <listitem>
+                    <para>
+                        array of doubles, of the sizes of n: power of 10 of <varname>f</varname>:
+                        <literal>p(i) = int(log10(f(i)!))</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>m</term>
+                <listitem>
+                    <para>
+                        array of doubles in [1,10[, of the sizes of n: Mantissae of <varname>f</varname>,
+                        such that <literal>n(i)! = m(i) * 10^p(i)</literal>.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Description</title>
         <para>
-            Returns the factorial of n, that is, the product of all
-            integers 1 * 2 * ... * n.
+            Returns the factorial of n, that is the product 1 * 2 * ... * n.
         </para>
-        <para>
-            This function overflows as soon as n&gt;170.
-        </para>
+        <warning>
+            <varname>f</varname> overflows as soon as n&gt;170 and always returns %inf for any
+            bigger n.
+        </warning>
+        <note>
+            <itemizedlist>
+                <listitem>
+                    For <literal>n in [22, 170]</literal>, the relative accuracy of
+                    <varname>f</varname> is roughly <literal>%eps ~ 2e-16</literal>.
+                </listitem>
+                <listitem>
+                    For <literal>n in [171, 1.0x10<superscript>14</superscript>]</literal>, the
+                    power <varname>p</varname> value is exact, and the relative accuracy of the
+                    mantissa <varname>m</varname> goes roughly as
+                    <literal>n*%eps ~ n * 1e-16</literal> (see the last example).
+                </listitem>
+                <listitem>
+                    Beyond <literal>n > 10.0<superscript>14</superscript></literal>,
+                    <varname>p</varname> becomes > 1/%eps and gets truncated. It is then no longer
+                    possible to retrieve a reliable mantissa.
+                </listitem>
+            </itemizedlist>
+        </note>
+		<para/>
     </refsection>
     <refsection>
+        <title>Graph</title>
+        <scilab:image>
+            x = (10^(0:13)).*.(1:9); x(1)=[]; x($)=1e14;
+            [f, p, m] = factorial(x);
+            plot2d("ll", x, p+log10(m))
+            xlabel("n", "fontsize",3)
+            title("$\mathsf{log_{10}(n!)}$", "fontsize", 4)
+            xgrid(color("grey70"), 1, 7)
+            set(gca(), "sub_ticks",[8 2], "tight_limits","on");
+            gca().data_bounds([1 4]) = [1 2e15];
+            gcf().axes_size = [840 470];
+        </scilab:image>
+    </refsection>
+    <refsection role="examples">
         <title>Examples</title>
+        <para>Table of the first n! exact values :</para>
         <programlisting role="example"><![CDATA[
-// Make a table of factorial
-n = (0:30)';
+format(22);
+n = (0:21)';
 [n factorial(n)]
-
-// See the limits of factorial: f(171)=%inf
+format(10);
+   ]]></programlisting>
+   <screen><![CDATA[
+--> [n factorial(n)]
+ ans  =
+   0.    1.
+   1.    1.
+   2.    2.
+   3.    6.
+   4.    24.
+   5.    120.
+   6.    720.
+   7.    5040.
+   8.    40320.
+   9.    362880.
+   10.   3628800.
+   11.   39916800.
+   12.   479001600.
+   13.   6227020800.
+   14.   87178291200.
+   15.   1307674368000.
+   16.   20922789888000.
+   17.   355687428096000.
+   18.   6402373705728000.
+   19.   121645100408832000.
+   20.   2432902008176640000.
+   21.   51090942171709440000.
+]]></screen>
+        <para>Ceiling of factorial() in floating point representation:</para>
+      <programlisting role="example"><![CDATA[
 factorial(170) // 7.257415615307998967e306
 factorial(171) // %inf
-
-// Plot the function on all its range.
-scf();
-plot ( 1:170 , factorial , "b-o" )
-h = gcf();
-h.children.log_flags="nln";
-
    ]]></programlisting>
+        <para>Plot the function on its whole range:</para>
+      <programlisting role="example"><![CDATA[
+x = (10^(0:13)).*.(1:9); x(1)=[]; x($)=1e14;
+[f, p, m] = factorial(x);
+clf
+plot2d("ll", x, p+log10(m))
+xlabel("n", "fontsize",3)
+title("$\mathsf{log_{10}(n!)}$", "fontsize", 4)
+xgrid(color("grey70"), 1, 7)
+set(gca(), "sub_ticks",[8 2], "tight_limits","on");
+gca().data_bounds([1 4]) = [1 2e15];
+gcf().axes_size = [850 480];
+   ]]></programlisting>
+        <para>Relative factorial() errors:</para>
+      <programlisting role="example"><![CDATA[
+n = 10^(1:14)';
+[f, p, m] = factorial(n);
+// Exact (truncated) mantissae for n = 10^(1:14) :
+m0 = [
+   3.6288000000000000  9.3326215443944153  4.0238726007709377 ..  // n = 10     100   1000
+   2.8462596809170545  2.8242294079603479                     ..  // n = 10000  100000
+   8.2639316883312401  1.2024233400515904  1.6172037949214624 ..  // n = 1e6    1e7   1e8
+   9.9046265792229937  2.3257962056730834  3.7489285991050270 ..  // n = 1e9    1e10  1e11
+   1.4036611603737561  2.4033300843401153  1.6456020559872979     // n = 1e12   1e13  1e14
+   ]';
+r_err = m./m0 - 1;
+[n r_err]
+   ]]></programlisting>
+   <screen><![CDATA[
+--> [n r_err]
+ ans  =
+   10.          0.
+   100.        -5.551D-16
+   1000.        1.132D-13
+   10000.       1.918D-12
+   100000.      6.611D-12
+   1000000.     9.962D-11
+   10000000.    5.048D-08
+   100000000.   1.050D-08
+   1.000D+09   0.0000001
+   1.000D+10   0.0000019
+   1.000D+11   0.0000062
+   1.000D+12   0.0001327
+   1.000D+13   0.0004839
+   1.000D+14   0.0071116
+]]></screen>
     </refsection>
-    <refsection>
-        <title>Bibliography</title>
-        <para>
-            <ulink url="http://www.scilab.org/en/support/documentation/tutorials">Introduction to discrete probabilities</ulink>, Michael Baudin
-        </para>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="cumprod">cumprod</link>
+            </member>
+            <member>
+                <link linkend="gamma">gamma</link>
+            </member>
+            <member>
+                <link linkend="gammaln">gammaln</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1</revnumber>
+                <revdescription>
+                    Extension up to n = 10<superscript>14</superscript>. <varname>p</varname>
+                    10-power and <varname>m</varname> mantissa output added.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

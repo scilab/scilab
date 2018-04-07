@@ -141,12 +141,15 @@ Feature changes and additions
 * `sciargs()` returns a column instead of formerly a row.
 * Booleans and encoded integers can now be concatenated together, as in `[%f int8(-5)]`.
 * `gsort` can now perform multilevel sorting. This noticeably allows to sort completely complex numbers.
+* `factorial(n)` can be used now from n=171 up to n=10^14.
+
 
 Help pages:
 -----------
 
-* overhauled / rewritten: `bitget`, `edit`
+* overhauled / rewritten: `bitget`, `edit`, `factorial`
 * fixed / improved:  `bench_run` `M_SWITCH`, `comet`, `comet3d`
+
 
 User Interface improvements:
 ----------------------------
@@ -206,6 +209,7 @@ Bug Fixes
 ### Bugs fixed in 6.1.0:
 * [#2694](http://bugzilla.scilab.org/show_bug.cgi?id=2694): `bitget` did not accept positive integers of types int8, int16 or int32.
 * [#6070](http://bugzilla.scilab.org/show_bug.cgi?id=6070): Making multiscaled plots was not documented.
+* [#7562](http://bugzilla.scilab.org/show_bug.cgi?id=7562): `factorial` could use a huge memory amount even for a scalar argument.
 * [#7657](http://bugzilla.scilab.org/show_bug.cgi?id=7657): `lstsize` was a duplicate of `size` and should be removed.
 * [#7724](http://bugzilla.scilab.org/show_bug.cgi?id=7724): When a figure is created in .auto_resize="on" mode, its .axes_size sets its .figure_size accordingly, not the reverse. But this was not documented.
 * [#7765](http://bugzilla.scilab.org/show_bug.cgi?id=7765): `champ1()` is useless. `champ().colored` is available for a long time.
@@ -267,6 +271,7 @@ Bug Fixes
 * [#15431](http://bugzilla.scilab.org/show_bug.cgi?id=15431): The empty matrix `[]` and its non-convertibility were poorly documented.
 * [#15451](http://bugzilla.scilab.org/show_bug.cgi?id=15451): The code was not adapted to use `lucene 4.10` in Debian.
 * [#15514](http://bugzilla.scilab.org/show_bug.cgi?id=15514): The `set()` documentation page needed to be overhauled.
+* [#15517](http://bugzilla.scilab.org/show_bug.cgi?id=15517): `factorial(n)` could be actually used up to only n=170.
 * [#15522](http://bugzilla.scilab.org/show_bug.cgi?id=15522): `unique()` was not able to consider all Nan values as the same value. A `uniqueNan` option now allows it.
 * [#15523](http://bugzilla.scilab.org/show_bug.cgi?id=15523): `%ODEOPTIONS(1)=2` didn't work with solvers 'rk' and 'rkf'
 * [#15534](http://bugzilla.scilab.org/show_bug.cgi?id=15534): Booleans and encoded integers could not be concatenated together.
