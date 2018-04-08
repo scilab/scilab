@@ -42,6 +42,9 @@ function cels=casc(x,z)
         nf=[col(1:2);1];
         nd=[col(3:4);1];
         cels=[cels,syslin([],poly(nf,"z","c"),poly(nd,"z","c"))];
-    end,
+    end
+    if isdef("z","l") & type(z)==10 then
+        cels = varn(cels,z(1))
+    end
 
 endfunction
