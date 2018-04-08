@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * Copyright (C) 2017 - Samuel GOUGEON
+ * Copyright (C) 2017, 2018 - Samuel GOUGEON
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -25,8 +25,9 @@
     <refsynopsisdiv>
         <title>Синтаксис</title>
         <synopsis>
-            [N ,k] = unique(M)
-            [N ,k] = unique(M ,orient)
+            N = unique(M)
+            N = unique(M, orient)
+            [N, k] = unique(..)
         </synopsis>
     </refsynopsisdiv>
     <refsection role="parameters">
@@ -41,7 +42,9 @@
             <varlistentry>
                 <term>orient</term>
                 <listitem>
-                    <para>флаг с возможными значениями: 1 или "r", 2 или "c"</para>
+                    <para>флаг с возможными значениями: 1 или "r", 2 или "c".
+                        Не может использоваться, если <varname>M</varname> является гиперматрицей.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -89,40 +92,107 @@
         </para>
         <note>
           Извлечённые компоненты, строки или столбцы могут быть пересортированны в их исходном порядке через
-          сортировку с помощью <varname>k</varname>:
-          <programlisting role="no-example"><![CDATA[
-              [N, k] = unique(M);      k = gsort(k,"g",i); N = N(k)
-              [N, k] = unique(M, "c"); k = gsort(k,"g",i); N = N(:, k)
-              [N, k] = unique(M, "r"); k = gsort(k,"g",i); N = N(k, :)
-          ]]></programlisting>
+          сортировку с помощью <varname>k</varname>. См. первый пример.
         </note>
     </refsection>
     <refsection role="examples">
         <title>Примеры</title>
+        <para>With some numbers:</para>
         <programlisting role="example"><![CDATA[
-M = round(2*rand(20,1));
-unique(M)
-[N,k] = unique(M)
+M = int8([2  0  2  2  1  1  1  2  1  1  0  1  1  0  1  1
+          0  1  2  0  1  2  2  0  1  1  2  0  1  0  0  0
+          ])
+[u, k] = unique(M)
+[uc, kc] = unique(M, "c")
 
-unique(string(M))
-[N,k] = unique(string(M))
-
-A = [0,0,1,1;
-     0,1,1,1;
-     2,0,1,1;
-     0,2,2,2;
-     2,0,1,1;
-     0,0,1,1];
-T = 'x' + string(A);
-
-//уникальные строки
-[m,k] = unique(A,'r')
-unique(T,'r')
-
-//уникальные столбцы
-[m,k] = unique(T,'c')
-unique(A,'c')
+// Получим недублированные столбцы в исходном порядке:
+M(:, gsort(kc,"g","i"))
  ]]></programlisting>
+    <screen><![CDATA[
+--> M 
+ M = 
+  2  0  2  2  1  1  1  2  1  1  0  1  1  0  1  1
+  0  1  2  0  1  2  2  0  1  1  2  0  1  0  0  0
+
+--> [u, k] = unique(M)
+ u  =
+  0
+  1
+  2
+
+ k  =
+   2.
+   4.
+   1.
+
+--> [uc, kc] = unique(M, "c")
+ uc  =
+  0  0  0  1  1  1  2  2
+  0  1  2  0  1  2  0  2
+
+ kc  =
+   14.   2.   11.   12.   5.   6.   1.   3.
+
+--> // Получим недублированные столбцы в исходном порядке:
+--> M(:, gsort(kc,"g","i"))
+ ans  =
+  2  0  2  1  1  0  1  0
+  0  1  2  1  2  2  0  0
+]]></screen>
+        <para>С комплексными числами:</para>
+        <programlisting role="example"><![CDATA[
+i = %i;
+c = [1+i, 1-i, -i, i, -i, 1+i]
+[u, k] = unique(c)
+[uc, kc] = unique(c, "c")
+ ]]></programlisting>
+    <screen><![CDATA[
+--> c = [1+i, 1-i, -i, i, -i, 1+i]
+ c  =
+   1. + i     1. - i  -i    i   -i    1. + i
+
+--> [u, k] = unique(c)
+ u  =
+  -i    i    1. - i   1. + i
+
+ k  =
+   3.   4.   2.   1.
+]]></screen>
+
+    <para>С текстом:</para>
+        <programlisting role="example"><![CDATA[
+t = ["AB" "BA" "BA" "BA" "AB" "BA" "AB" "AB" "BB" "AA" "AB" "BA" "BA" "BA" "AA"
+     "AA" "AA" "AB" "AA" "BB" "BB" "BB" "BA" "AB" "AB" "BB" "BB" "AB" "AB" "AA"
+    ]
+[u, k] = unique(t)
+[uc, kc] = unique(t, "c")
+ ]]></programlisting>
+    <screen><![CDATA[
+ t  =
+!AB  BA  BA  BA  AB  BA  AB  AB  BB  AA  AB  BA  BA  BA  AA  !
+!AA  AA  AB  AA  BB  BB  BB  BA  AB  AB  BB  BB  AB  AB  AA  !
+
+--> [u, k] = unique(t);
+ u  =
+!AA  !
+!AB  !
+!BA  !
+!BB  !
+
+ k  =
+   2.
+   1.
+   3.
+   10.
+
+--> [uc, kc] = unique(t, "c")
+ uc  =
+!AA  AA  AB  AB  AB  BA  BA  BA  BB  !
+!AA  AB  AA  BA  BB  AA  AB  BB  AB  !
+
+ kc  =
+   15.   10.   1.   8.   5.   2.   3.   6.   9.
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>
@@ -146,5 +216,16 @@ unique(A,'c')
                 <link linkend="intersect">intersect</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revdescription>
+                    unique() теперь может использоваться для удаления дубликатов комплексных чисел.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
