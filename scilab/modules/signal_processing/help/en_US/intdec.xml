@@ -42,24 +42,30 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-Fs1 = 10000;
-Fs2 = 14000;
-t1 = 0:1/Fs1:10;
-t2 = 0:1/Fs2:10;
-F0 = 500;
+Fs1 = 10000;               // initial sampling frequency
+Fs2 = 14000;               // targeted resampling frequency
+t1 = (0:1/Fs1:5)';
+t2 = (0:1/Fs2:5)';
+F0 = 2;                    // Signal frequency
 u1 = sin(2*%pi*F0*t1);
-u2 = sin(2*%pi*F0*t2);
-u2b = intdec(u1, Fs2/Fs1)
-plot(u2b, u2);
+u2 = sin(2*%pi*F0*t2);     // Direct sampling at targeted frequency (as reference)
+u2b = intdec(u1, Fs2/Fs1); // Resampled signal
+clf
+plot(t2,u2,"b", t2,(u2b-u2)*1000, "r");
+legend("Direct highly sampled u2","(resampled_u1 - u2) x 1000","in_upper_left");
  ]]></programlisting>
         <scilab:image>
-
-            Fs1 = 10000; Fs2 = 14000;
-            t1 = 0:1/Fs1:10; t2 = 0:1/Fs2:10;
-            F0 = 500;
-            u1 = sin(2*%pi*F0*t1); u2 = sin(2*%pi*F0*t2);
-            u2b = intdec(u1, Fs2/Fs1);
-            plot(u2b, u2);
+          Fs1 = 10000;               // initial sampling frequency
+          Fs2 = 14000;               // targeted resampling frequency
+          t1 = (0:1/Fs1:5)';
+          t2 = (0:1/Fs2:5)';
+          F0 = 2;                    // Signal frequency
+          u1 = sin(2*%pi*F0*t1);
+          u2 = sin(2*%pi*F0*t2);     // Direct sampling at targeted frequency (as reference)
+          u2b = intdec(u1, Fs2/Fs1); // Resampled signal
+          clf
+          plot(t2,u2,"b", t2,(u2b-u2)*1000, "r");
+          legend("Direct highly sampled u2","(resampled_u1 - u2) x 1000","in_upper_left");
         </scilab:image>
     </refsection>
 </refentry>
