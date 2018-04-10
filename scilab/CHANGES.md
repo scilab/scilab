@@ -454,6 +454,7 @@ Known issues
 * [#15510](http://bugzilla.scilab.org/show_bug.cgi?id=15510): 'Initialization problem' error did not provide extra information.
 * [#15511](http://bugzilla.scilab.org/show_bug.cgi?id=15511): Keyboard ctrl-left ctrl-right shortcuts could not be used for slider under OSX.
 * [#15525](http://bugzilla.scilab.org/show_bug.cgi?id=15525): Memory allocation crashed with a simple Scilab script.
+* [#15526](http://bugzilla.scilab.org/show_bug.cgi?id=15526): fscanfMat could fail with large text files.
 * [#15527](http://bugzilla.scilab.org/show_bug.cgi?id=15527): `ode` gave incorrect results with %ODEOPTIONS(1)=2.
 * [#15528](http://bugzilla.scilab.org/show_bug.cgi?id=15528): savewave wrote null signal if 24 bits resolution and more than 2 channels
 * [#15529](http://bugzilla.scilab.org/show_bug.cgi?id=15529): In the `iir` page, the descriptions of z and p were inverted.

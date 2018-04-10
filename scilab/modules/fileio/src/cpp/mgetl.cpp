@@ -176,7 +176,7 @@ int mgetl(int iFileID, int iLineCount, wchar_t ***pwstLines)
                 if (!ifs.eof())
                 {
                     //some data stay in buf, rewind file to begin of this data and read it again
-                    ifs.seekg(-offset, std::ios::cur);
+                    ifs.seekg(ptr - buf, std::ios::beg);
                 }
                 else
                 {
