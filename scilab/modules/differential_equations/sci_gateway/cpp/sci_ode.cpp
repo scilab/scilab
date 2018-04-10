@@ -1043,7 +1043,7 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
 
     if (bOneStep)
     {
-        std::list<double*> pDblYOutList = std::list<double*>();
+        std::list<std::vector<double>> pDblYOutList = std::list<std::vector<double>>();
         std::list<double> pDblTOutList = std::list<double>();
         int iLastT = pDblT->getSize() - 1;
         double t = pDblT->get(iLastT);
@@ -1158,7 +1158,8 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
                 return types::Function::Error;
             }
 
-            pDblYOutList.push_back(pdYData);
+            std::vector<double> newY (pdYData, pdYData + pDblY0->getSize());
+            pDblYOutList.push_back(newY);
             pDblTOutList.push_back(t0);
 
             if (err == 2) // warning case
@@ -1601,4 +1602,3 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
 
     return types::Function::OK;
 }
-

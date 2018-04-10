@@ -389,6 +389,7 @@ Known issues
 * [#15495](http://bugzilla.scilab.org/show_bug.cgi?id=15495): SampleCLK simple demo failed to simulate.
 * [#15496](http://bugzilla.scilab.org/show_bug.cgi?id=15496): Scinotes `File > Open recent` menu was not updated when it should.
 * [#15499](http://bugzilla.scilab.org/show_bug.cgi?id=15499): Scinotes menus were inactive after session restore under OSX.
+* [#15527](http://bugzilla.scilab.org/show_bug.cgi?id=15527): `ode` gave incorrect results with %ODEOPTIONS(1)=2.
 
 
 ### Bugs fixed in 6.0.1:
