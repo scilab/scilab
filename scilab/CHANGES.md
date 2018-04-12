@@ -405,16 +405,19 @@ Known issues
 * [#8000](http://bugzilla.scilab.org/show_bug.cgi?id=8000): `get(gcf(), "%s %s %s..")` crashed Scilab.
 * [#8017](http://bugzilla.scilab.org/show_bug.cgi?id=8017): `atomsInstall` yielded an error when a version without packaging subversion is specified.
 * [#8127](http://bugzilla.scilab.org/show_bug.cgi?id=8127): When using `ode()`, some internal errors messages were in french.
+* [#8767](http://bugzilla.scilab.org/show_bug.cgi?id=8767): `%F & ~%F | %T & ~%F` was `%F`.
 * [#8779](http://bugzilla.scilab.org/show_bug.cgi?id=8779): gsort(x,'lr') did not preserve order of equal items in index output.
 * [#8810](http://bugzilla.scilab.org/show_bug.cgi?id=8810): Insertions with an hypermatrix of indices failed.
 * [#8995](http://bugzilla.scilab.org/show_bug.cgi?id=8995): Problem with row insertion in empty matrix.
 * [#9063](http://bugzilla.scilab.org/show_bug.cgi?id=9063): `pt` was the alias of `pt_PT` instead of `pt_BR`.
 * [#9231](http://bugzilla.scilab.org/show_bug.cgi?id=9231): `fsolve()` produced wrong info for certain initial values
+* [#9539](http://bugzilla.scilab.org/show_bug.cgi?id=9539): For a big 1600x1600 input map, `contour2di` crashed Scilab.
 * [#9958](http://bugzilla.scilab.org/show_bug.cgi?id=9958): `mprintf("%d\r", 12345)` printed `" 345"`
 * [#10171](http://bugzilla.scilab.org/show_bug.cgi?id=10171): `loadmatfile()` did not load files containing a matlab cell structure.
 * [#10190](http://bugzilla.scilab.org/show_bug.cgi?id=10190): Xcos blocks and labels positioning were not aligned to the grid on creation.
 * [#10197](http://bugzilla.scilab.org/show_bug.cgi?id=10197): creating implicit vector of integers could fail.
 * [#10639](http://bugzilla.scilab.org/show_bug.cgi?id=10639): The page of `intersect` poorly described the arguments. Examples were not illustrated.
+* [#10918](http://bugzilla.scilab.org/show_bug.cgi?id=10918): After `a=5`, `a([%t ; %f])` returned `[5 ; 2.1e-314]` instead of `5`.
 * [#11240](http://bugzilla.scilab.org/show_bug.cgi?id=11240): `A=[]; clear B; [A($+1),B]=1;` crashed Scilab.
 * [#11435](http://bugzilla.scilab.org/show_bug.cgi?id=11435): The demo `Simulation => Flow => Blackhole` reliability had to be checked. Its displayed speed value was truncated.
 * [#11583](http://bugzilla.scilab.org/show_bug.cgi?id=11583): When in Scinotes preferences the default header is erased, the available variables were no longer documented.
@@ -422,11 +425,14 @@ Known issues
 * [#12109](http://bugzilla.scilab.org/show_bug.cgi?id=12109): `execstr(.,"errcatch")` calling a macro returning before setting the argout crashed Scilab.
 * [#12147](http://bugzilla.scilab.org/show_bug.cgi?id=12147): `mfile2sci()` produced an error when 1) the {function} block is closed with {end}; 2) the macro's name matches a variable existing in the environment.
 * [#12198](http://bugzilla.scilab.org/show_bug.cgi?id=12198): Scilab control and block keywords `break case ... try while` and `clear()` could be overloaded as regular assignable variables.
+* [#12275](http://bugzilla.scilab.org/show_bug.cgi?id=12275): `msprintf("%s",ascii(97*ones(1,4097)))` produced "An error occurred: Buffer too small."
 * [#12402](http://bugzilla.scilab.org/show_bug.cgi?id=12402): The menu `Applications => Scinotes` could launch the external editor instead of Scinotes.
 * [#12566](http://bugzilla.scilab.org/show_bug.cgi?id=12566): `disp()` of a T-list with a single field set to an encoded integer value generated an error.
 * [#12618](http://bugzilla.scilab.org/show_bug.cgi?id=12618): `mfile2sci()` failed converting `a=1i // ab` into `a=1*%i // ab`.
 * [#12659](http://bugzilla.scilab.org/show_bug.cgi?id=12659): Crash on big modulo.
 * [#12926](http://bugzilla.scilab.org/show_bug.cgi?id=12926): `~%f==1` was parsed as `~(%f==1)` instead of `(~%f)==1`.
+* [#13306](http://bugzilla.scilab.org/show_bug.cgi?id=13306): Evaluating a function set as a structure field could fail.
+* [#13936](http://bugzilla.scilab.org/show_bug.cgi?id=13936): The exponentiation of a matrix was much slower than its multiple products.
 * [#13466](http://bugzilla.scilab.org/show_bug.cgi?id=13466): Since Scilab 5.5.0, it was no longer possible to dock the demo GUI.
 * [#13480](http://bugzilla.scilab.org/show_bug.cgi?id=13480): The default k value of `eigs` was wrong and made `eigs` failing for small full matrices.
 * [#13522](http://bugzilla.scilab.org/show_bug.cgi?id=13522): `savematfile` failed saving numerical hypermatrices.
@@ -556,6 +562,7 @@ Known issues
 * [#10407](http://bugzilla.scilab.org/show_bug.cgi?id=10407): The macro `acf()` of the CACSD module was used nowhere and not documented. It is removed.
 * [#10467](http://bugzilla.scilab.org/show_bug.cgi?id=10467): `execstr` inside a `try/end` with a `catch` killed the stack.
 * [#11196](http://bugzilla.scilab.org/show_bug.cgi?id=11196): Some recursive extractions from a mlist failed.
+* [#11228](http://bugzilla.scilab.org/show_bug.cgi?id=11228): Some recursive extraction from a mlist was not done in the right order and yielded a stack problem.
 * [#11251](http://bugzilla.scilab.org/show_bug.cgi?id=11251): `execstr` could kill the variables stack.
 * [#11483](http://bugzilla.scilab.org/show_bug.cgi?id=11483): The `Graphics => Misc` demo had a hole, 2 duplicates, and other bugs.
 * [#11530](http://bugzilla.scilab.org/show_bug.cgi?id=11530): Raise (help, scinotes, ...) windows when iconified ( recall or startup )
