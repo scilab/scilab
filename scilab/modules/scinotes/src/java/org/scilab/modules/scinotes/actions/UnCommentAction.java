@@ -57,6 +57,9 @@ public final class UnCommentAction extends DefaultAction {
             ret = com.uncommentLines(start, start);
             sep.setCaretPosition(ret[0]);
         } else {
+            try {
+             end   -= doc.getText(end-1,1).charAt(0)=='\n' ? 1 : 0;
+            } catch (Exception e) {} // 0<=start<end hence end>0 exception won't occur
             ret = com.uncommentLines(start, end);
             if (ret != null) {
                 if (pos == start) {
