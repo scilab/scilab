@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2016 - Samuel GOUGEON
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2016, 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -142,92 +142,91 @@
                     </note>
                     <para>Dans les crochets,
                         <itemizedlist>
-                            <listitem>les espaces (blancs ou tabulations) ou
-                                les virgules servent de séparateurs.
-                                <note>Il est préférable d'utiliser des virgules,
-                                en particulier lorsque des nombres complexes
-                                ou des polynômes sont fournis en expressions
-                                litérales. Par exemple, <literal>[2 1 +%i]</literal>
-                                sera interprété comme <literal>[2, 1, %i]</literal>,
-                                alors que <literal>[2 1 + %i]</literal> sera
-                                compris comme <literal>[2, 1+%i]</literal>.
+                            <listitem>
+                                les espaces (blancs ou tabulations) ou les virgules servent de
+                                séparateurs.
+                                <note>
+                                Il est préférable d'utiliser des virgules, en particulier lorsque
+                                des nombres complexes ou des polynômes sont fournis en expressions
+                                litérales. Par exemple, <literal>[2 1 +%i]</literal> sera interprété
+                                comme <literal>[2, 1, %i]</literal>, alors que
+                                <literal>[2 1 + %i]</literal> sera compris comme
+                                <literal>[2, 1+%i]</literal>.
                                 </note>
                             </listitem>
-                            <listitem>les points-virgules ou les changements de
-                            lignes sont utilisés comme séparateurs de lignes.
-                            Pour peu que la ligne courante soit complète, le
-                            passage à la ligne ne pré-requiert pas les points de
-                            poursuite-à-la-ligne <literal>..</literal>.
+                            <listitem>
+                                les points-virgules ou les changements de lignes sont utilisés comme
+                                séparateurs de lignes. Pour peu que la ligne courante soit complète,
+                                le passage à la ligne ne pré-requiert pas les points de
+                                poursuite-à-la-ligne <literal>..</literal>.
                             </listitem>
                         </itemizedlist>
                     </para>
                     <refsect3 id="brackets_Types_conversions">
                         <title>Transtypages</title>
                         <para>
-                            Avec quelques restrictions, les crochets peuvent être
-                            utilisés sur une série de valeurs ayant des types distincts
-                            mais compatibles. Des valeurs sont alors converties
-                            de proche en proche dans le type de données dominant.
-                            Les principales règles de conversion implicite sont
+                            Avec quelques restrictions, les crochets peuvent être utilisés sur une
+                            série de valeurs ayant des types distincts mais compatibles.
+                            Des valeurs sont alors converties de proche en proche dans le type de
+                            données dominant. Les principales règles de conversion implicite sont
                             les suivantes :
                             <orderedlist>
-                                <listitem>booléen &lt; nombre décimal &lt; nombre complexe
+                                <listitem>
+                                    booléen &lt; entier encodé.
+                                </listitem>
+                                <listitem>
+                                    booléen &lt; nombre décimal &lt; nombre complexe
                                 </listitem>
                                 <listitem>décimal &lt; polynôme &lt; fraction rationelle
-                                    <warning>Les booléens et les polynômes ne sont pas
-                                        compatibles entre eux :
+                                    <warning>
+                                        Les booléens et les polynômes ne sont pas compatibles entre
+                                        eux :
                                         <itemizedlist>
                                             <listitem>
                                                 <literal>[%t 2. %z]</literal> est accepté, car :
-                                                <literal>[%t 2.]</literal> est d'abord
-                                                converti en
+                                                <literal>[%t 2.]</literal> est d'abord converti en
                                                 <literal>[1. 2.]</literal>, puis
-                                                <literal>[[1. 2.] %z]</literal> est
-                                                accepté.
+                                                <literal>[[1. 2.] %z]</literal> est accepté.
                                             </listitem>
                                             <listitem>
-                                                <literal>[%z %t 2.]</literal> est
-                                                refusé et produit une erreur.
-                                                En effet, <literal>[%z %t]</literal>
+                                                <literal>[%z %t 2.]</literal> est refusé et produit
+                                                une erreur. En effet, <literal>[%z %t]</literal>
                                                 n'est pas permis et bloque la suite.
                                             </listitem>
                                         </itemizedlist>
                                     </warning>
                                 </listitem>
                                 <listitem>
-                                    Le résultat est encodé en valeurs complexes (avec
-                                    parties imaginaires éventuellement nulles) dés qu'un
-                                    élément -- valeur, polynôme, ou fraction rationnelle --
-                                    à valeur complexe est rencontré.
-                                    <para>De même, le résultat est encodé sous forme
-                                    creuse
-                                    dés qu'un élément encodé creux est rencontré.
+                                    Le résultat est encodé en valeurs complexes (avec parties
+                                    imaginaires éventuellement nulles) dés qu'un élément
+                                    -- valeur, polynôme, ou fraction rationnelle -- à valeur
+                                    complexe est rencontré.
+                                    <para>
+                                        De même, le résultat est encodé sous forme creuse dés qu'un
+                                        élément encodé creux est rencontré.
                                     </para>
                                 </listitem>
                                 <listitem>
-                                    Des polynômes ou des fractions rationnelles
-                                    de différentes variables peuvent
-                                    être concaténés entre eux. Le premier polynôme
-                                    ou fraction rationnelle listé donne alors le
-                                    nom de sa variable au résultat de la concaténation :
+                                    Des polynômes ou des fractions rationnelles de différentes
+                                    variables peuvent être concaténés entre eux. Le premier polynôme
+                                    ou fraction rationnelle listé donne alors le nom de sa variable
+                                    au résultat de la concaténation :
                                     <literal>[%z, 1+%s, 1-%i*%s]
                                         // => [z, 1+z, 1-iz]
                                     </literal>.
                                 </listitem>
                                 <listitem>
-                                    Tout entier encodé peut être concaténé uniquement
-                                    avec d'autres entiers du même type entier
-                                    (<link linkend="inttype">inttype</link>). Ainsi,
-                                    les expressions
-                                    <literal>[%t int8(2)]</literal>,
+                                    Tout entier encodé peut être concaténé uniquement avec des
+                                    booléens ou d'autres entiers du même type entier
+                                    (<link linkend="inttype">inttype</link>). Ainsi, les expressions
                                     <literal>[int8(2) uint8(7)]</literal>,
                                     <literal>[int8(2) int16(7)]</literal>,
-                                    <literal>[int8(2) 1.]</literal> produiront
-                                    toutes une erreur.
+                                    <literal>[int8(2) 1.]</literal> produiront toutes une erreur.
                                 </listitem>
-                                <listitem>Les éléments de texte (type "string") peuvent
-                                être concaténés (au sens ensembliste, avec les crochets)
-                                uniquement entre eux ou avec la matrice vide
+                                <listitem>
+                                    Les éléments de texte (type "string") peuvent être concaténés
+                                    (au sens ensembliste, avec les crochets) uniquement entre eux
+                                    ou avec la matrice vide
                                 <literal>[]</literal>.
                                 </listitem>
                             </orderedlist>
@@ -237,16 +236,15 @@
                         <title>Surcharge</title>
                         <para>
                             <itemizedlist>
-                                <listitem>[,]: concaténation horizontale :
-                                    cet opérateur n-aire (pouvant être appliqué à un
-                                    nombre arbitraire n de données) est en fait un
-                                    opérateur binaire automatiquement itéré de la
+                                <listitem>[,]: concaténation horizontale : cet opérateur n-aire
+                                    (pouvant être appliqué à un nombre arbitraire n de données)
+                                    est en fait un opérateur binaire automatiquement itéré de la
                                     gauche vers la droite. Son code de surcharge est
                                     <literal>"c"</literal>.
                                 </listitem>
-                                <listitem>[;]: la concaténation verticale est
-                                    également un opérateur binaire, itéré du haut
-                                    vers le bas. Son code de surcharge est
+                                <listitem>
+                                    [;]: la concaténation verticale est également un opérateur
+                                    binaire, itéré du haut vers le bas. Son code de surcharge est
                                     <literal>"f"</literal>.
                                 </listitem>
                             </itemizedlist>
@@ -274,26 +272,25 @@
                 <term>[] figurant à gauche d'une affectation <literal>"="</literal></term>
                 <listitem>
                     <para>
-                    Dans ce cas, les crochets ne désignent en rien une concaténation.
-                    Ils délimitent une série de variables servant de récipients.
+                        Dans ce cas, les crochets ne désignent en rien une concaténation. Ils
+                        délimitent une série de variables servant de récipients.
                     </para>
                     <para>
                         <itemizedlist>
-                            <listitem>Les termes entre crochets doivent alors
-                                impérativement être des variables. Les expressions
-                                litérales ou symboliques sont rejetées.
+                            <listitem>
+                                Les termes entre crochets doivent alors impérativement être des
+                                variables. Les expressions litérales ou symboliques sont rejetées.
                             </listitem>
-                            <listitem>Les variables sont séparées par des virgules
-                              ou des espaces. Lorsqu'il s'agit de la liste des
-                              arguments de sortie d'une function, les virgules
-                              sont obligatoires.
+                            <listitem>
+                                Les variables sont séparées par des virgules ou des espaces.
+                                Lorsqu'il s'agit de la liste des arguments de sortie d'une function,
+                                les virgules sont obligatoires.
                             </listitem>
                             <listitem>Dans une affectation distributive, il doit
                                 y avoir <emphasis role="italic">au plus</emphasis>
-                                autant de récipients que de sources de données
-                                provenant du terme de droite, pas plus. S'il y
-                                moins de récipients à gauche que de sources à droite,
-                                les sources non collectées sont ignorées. Exemples :
+                                autant de récipients que de sources de données provenant du terme de
+                                droite, pas plus. S'il y moins de récipients à gauche que de sources
+                                à droite, les sources non collectées sont ignorées. Exemples :
                                 <simplelist>
                                     <member><literal>[a,b] = (%pi,"Hi", %z)</literal>
                                         est correct, mais <literal>%z</literal>
@@ -303,12 +300,14 @@
                                         produit une erreur, car <literal>c</literal>
                                         attend du contenu.
                                     </member>
-                                </simplelist>                            </listitem>
-                            <listitem>La même variable peut être utilisée plusieurs
-                                fois dans la liste de gauche entre crochets.
-                                Le cas échéant, les affectations successives sont réalisées
-                              <emphasis role="italic">de droite à gauche (!)</emphasis> dans la liste,
-                               et écrasent les contenus pré-existants. Exemple :
+                                </simplelist>
+                            </listitem>
+                            <listitem>
+                                La même variable peut être utilisée plusieurs fois dans la liste
+                                de gauche entre crochets. Le cas échéant, les affectations
+                                successives sont réalisées
+                              <emphasis role="italic">de droite à gauche (!)</emphasis> dans la
+                              liste, et écrasent les contenus pré-existants. Exemple :
                                 <literal>[a,b,a] = (%pi, %z, "Allo")</literal>
                                 est équivalent à <literal>a = %pi, b = %z</literal>.
                             </listitem>
@@ -354,6 +353,7 @@ s = poly(0,'s');[1/s,2/s]
 [%t %f %f %T %F]
 
 // Concaténation d'objets de types compatibles différents, avec transtypages automatiques
+[%T int8(-5)]
 [%T %pi %f 2]
 [%pi, 2+%i, %F]
 v = [%pi+0*%i, %F, %z, (1-%z)^2 ]; typeof(v), isreal(v)
@@ -361,9 +361,9 @@ v = [10 1/%z], typeof(v)
 
 // Concaténations hétérogènes d'objets de types incompatibles => ERREURS
 [%F %z]
-[%F int8(5)]
 [int8(%pi) uint8(%e)]
 [int8(%pi) int16(%e)]
+[int8(%pi) %e]
 
 // Concaténation de tableaux de cellules :
 c1 = {%pi %t};
@@ -428,12 +428,6 @@ s.r([2 4 6])
         <title>Voir aussi</title>
         <simplelist type="inline">
             <member>
-                <link linkend="empty">empty</link>
-            </member>
-            <member>
-                <link linkend="parentheses">parentheses</link>
-            </member>
-            <member>
                 <link linkend="cat">cat</link>
             </member>
             <member>
@@ -446,6 +440,12 @@ s.r([2 4 6])
                 <link linkend="semicolon">semicolon</link>
             </member>
             <member>
+                <link linkend="parentheses">parentheses</link>
+            </member>
+            <member>
+                <link linkend="empty">empty</link>
+            </member>
+            <member>
                 <link linkend="overloading">overloading</link>
             </member>
         </simplelist>
@@ -456,8 +456,15 @@ s.r([2 4 6])
             <revision>
                 <revnumber>6.0</revnumber>
                 <revdescription>
-                    Crochets <literal>[..]</literal> et accolades
-                    <literal>{..}</literal> ont désormais des fonctions distinctes.
+                    Crochets <literal>[..]</literal> et accolades <literal>{..}</literal> ont
+                    désormais des fonctions distinctes.
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.1</revnumber>
+                <revdescription>
+                    Booléens et entiers encodés peuvent désormais être concaténés ensemble,
+                    comme dans [%t, int8(-5)].
                 </revdescription>
             </revision>
         </revhistory>

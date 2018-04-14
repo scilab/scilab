@@ -224,8 +224,10 @@ mfile2sci
 translatepaths
 %b_a_b
 %b_a_s
+%b_c_i
 %b_c_s
 %b_d_s
+%b_f_i
 %b_f_s
 %b_l_b
 %b_l_s
@@ -681,9 +683,11 @@ systmat
 %hm_x_s
 %i_and
 %i_ascii
+%i_b_c
 %i_b_s
 %i_bezout
 %i_dsearch
+%i_f_b
 %i_i_ce
 %i_i_h
 %i_i_hm

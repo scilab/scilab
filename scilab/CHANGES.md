@@ -139,6 +139,7 @@ Feature changes and additions
   - Improved placement of labels.
 * `nicholschart` is improved: more neutral default frame color; improved labels positionning; colors can now be specified by their predefined name or "#RRGGBB" hexa code; a structure of handles is now returned to easily postprocess both subframes and the set of labels.
 * `sciargs()` returns a column instead of formerly a row.
+* Booleans and encoded integers can now be concatenated together, as in `[%f int8(-5)]`.
 
 Help pages:
 -----------
@@ -247,11 +248,16 @@ Bug Fixes
 * [#15392](http://bugzilla.scilab.org/show_bug.cgi?id=15392): `comet` and `comet3d` did not allow specifying colors with colors names.
 * [#15393](http://bugzilla.scilab.org/show_bug.cgi?id=15393): In a new figure, `nicholschart` plotted nothing. The default frame color was a flashy cyan. The position of gain labels could be puzzling. It was not possible to specify colors by their names. Postprocessing the frames and the set of labels was not easy.
 * [#15425](http://bugzilla.scilab.org/show_bug.cgi?id=15425): The Kronecker product `a.*.b` failed when `a` or `b` or both are hypermatrices, with one or both being polynomials or rationals.
+<<<<<<< HEAD
 * [#15431](http://bugzilla.scilab.org/show_bug.cgi?id=15431): The empty matrix `[]` and its non-convertibility were poorly documented.
 * [#15451](http://bugzilla.scilab.org/show_bug.cgi?id=15451): The code was not adapted to use `lucene 4.10` in Debian.
 * [#15514](http://bugzilla.scilab.org/show_bug.cgi?id=15514): The `set()` documentation page needed to be overhauled.
 * [#15522](http://bugzilla.scilab.org/show_bug.cgi?id=15522): `unique()` was not able to consider all Nan values as the same value. A `uniqueNan` option now allows it.
 * [#15523](http://bugzilla.scilab.org/show_bug.cgi?id=15523): `%ODEOPTIONS(1)=2` didn't work with solvers 'rk' and 'rkf'
+=======
+* [#15523](http://bugzilla.scilab.org/show_bug.cgi?id=15523): `%ODEOPTIONS(1)=2` didn't work with solvers 'rk' and 'rkf' 
+* [#15534](http://bugzilla.scilab.org/show_bug.cgi?id=15534): Booleans and encoded integers could not be concatenated together.
+>>>>>>> 7115870ad73... * Bug 15534 fixed: [%t int8(-5)] was refused
 * [#15577](http://bugzilla.scilab.org/show_bug.cgi?id=15577): `edit` did not accept a line number as text, as with `edit linspace 21`.
 * [#15580](http://bugzilla.scilab.org/show_bug.cgi?id=15580): `det(sparse([],[]))` yielded an error.
 * [#15981](http://bugzilla.scilab.org/show_bug.cgi?id=15981): `wavread()` kept the wav file open and locked when returning on errors. It weakly managed the input file name. It claimed for invalid data formats instead of unsupported ones, with poor information about the current format vs the supported ones. Several error messages refered to a wrong function.

@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2016 - Samuel GOUGEON
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2016, 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -161,60 +160,57 @@
                             into the dominating type available in the set. The main conversion
                             rules are the following:
                             <orderedlist>
-                                <listitem>boolean &lt; decimal number &lt; complex
+                                <listitem>
+                                    boolean &lt; encoded integers.
+                                </listitem>
+                                <listitem>
+                                    boolean &lt; decimal number &lt; complex
                                 </listitem>
                                 <listitem>decimal number &lt; polynomial &lt; rational
                                     <warning>booleans and polynomials are not compatible.
                                         <itemizedlist>
                                             <listitem>
                                                 <literal>[%t 2. %z]</literal> is accepted:
-                                                <literal>[%t 2.]</literal> is first
-                                                converted into
+                                                <literal>[%t 2.]</literal> is first converted into
                                                 <literal>[1. 2.]</literal>, and then
                                                 <literal>[[1. 2.] %z]</literal> is accepted.
                                             </listitem>
                                             <listitem>
-                                                <literal>[%z %t 2.]</literal> is
-                                                rejected and yields an error.
-                                                Indeed, <literal>[%z %t]</literal>
+                                                <literal>[%z %t 2.]</literal> is rejected and yields
+                                                an error. Indeed, <literal>[%z %t]</literal>
                                                 can't be converted first.
                                             </listitem>
                                         </itemizedlist>
                                     </warning>
                                 </listitem>
                                 <listitem>
-                                    The result becomes complex-encoded as soon as
-                                    a complex-encoded component -- value, polynomial,
-                                    or rational -- is met in the list
-                                    (even with a null imaginary part)
+                                    The result becomes complex-encoded as soon as a complex-encoded
+                                    component -- value, polynomial, or rational -- is met in the
+                                    list (even with a null imaginary part)
                                     <para>Similarly, the result becomes sparse-encoded
-                                    as soon as a sparse-encoded component is met
-                                    and processed.
+                                    as soon as a sparse-encoded component is met and processed.
                                     </para>
                                 </listitem>
                                 <listitem>
-                                    It is possible to concatenate polynomials or/and
-                                    rationals having different variable names. Then,
-                                    the first polynomial or rational met in the list
-                                    sets the variable name to the concatenation result:
+                                    It is possible to concatenate polynomials or/and rationals
+                                    having different variable names. Then, the first polynomial
+                                    or rational met in the list sets the variable name to the
+                                    concatenation result:
                                     <literal>[%z, 1+%s, 1-%i*%s]
                                         // => [z, 1+z, 1-iz]
                                     </literal>.
                                 </listitem>
                                 <listitem>
-                                    Any encoded integer can be concatenated
-                                    only with integers of the same inttype.
-                                    Thus, the expressions
-                                    <literal>[%t int8(2)]</literal>,
+                                    Any encoded integer can be concatenated only with booleans or
+                                    with integers of the same inttype. Thus, the expressions
                                     <literal>[int8(2) uint8(7)]</literal>,
                                     <literal>[int8(2) int16(7)]</literal>,
-                                    <literal>[int8(2) 1.]</literal> will all yield
-                                    an error.
+                                    <literal>[int8(2) 1.]</literal> will all yield an error.
                                 </listitem>
-                                <listitem>Text components can be concatenated
-                                    (in the set meaning, with brackets) only with other
-                                    text components or with the empty matrix.
-                                    <literal>[]</literal>.
+                                <listitem>
+                                    Text components can be concatenated (in the set meaning,
+                                    with brackets) only with other text components or with the
+                                    empty matrix <literal>[]</literal>.
                                 </listitem>
                             </orderedlist>
                         </para>
@@ -334,6 +330,7 @@ s = poly(0,'s');[1/s,2/s]
 [%t %f %f %T %F]
 
 // Heterogeneous concatenations with automatical types conversions
+[%T int8(-5)]
 [%T %pi %f 2]
 [%pi, 2+%i, %F]
 v = [%pi+0*%i, %F, %z, (1-%z)^2 ]; typeof(v), isreal(v)
@@ -341,9 +338,9 @@ v = [10 1/%z], typeof(v)
 
 // Incompatible heterogeneous concatenations => ERRORS
 [%F %z]
-[%F int8(5)]
 [int8(%pi) uint8(%e)]
 [int8(%pi) int16(%e)]
+[int8(%pi) %e]
 
 // Concatenation of cells arrays:
 c1 = {%pi %t};
@@ -406,12 +403,6 @@ s.r([2 4 6])
         <title>See also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="empty">empty</link>
-            </member>
-            <member>
-                <link linkend="parentheses">parentheses</link>
-            </member>
-            <member>
                 <link linkend="cat">cat</link>
             </member>
             <member>
@@ -422,6 +413,12 @@ s.r([2 4 6])
             </member>
             <member>
                 <link linkend="semicolon">semicolon</link>
+            </member>
+            <member>
+                <link linkend="parentheses">parentheses</link>
+            </member>
+            <member>
+                <link linkend="empty">empty</link>
             </member>
             <member>
                 <link linkend="overloading">overloading</link>
@@ -436,6 +433,12 @@ s.r([2 4 6])
                 <revdescription>
                     Brackets <literal>[..]</literal> and braces
                     <literal>{..}</literal> are no longer equivalent
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.1</revnumber>
+                <revdescription>
+                    Booleans and encoded integers can now be concatenated together, as in [%t, int8(-5)].
                 </revdescription>
             </revision>
         </revhistory>
