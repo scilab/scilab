@@ -109,6 +109,7 @@ Some small changes have been done to the language syntax, aiming at more clarity
 See [the wiki page on porting code from 5.5 to 6.0](https://wiki.scilab.org/FromScilab5ToScilab6) for details and examples.
 
 * The parser now fully supports names of variables and functions of any length or/and including some UTF-8 multilingual characters.
+* The name of the symbolic variable of polynomials and rationals can now be longer than 4 characters, and can include UTF-8 extended characters.
 * Declaration of a number on two lines is no longer allowed: `1.. \n 2`.
 * Declaration of an unclosed string on two lines is no longer allowed: `"abc..\ndef"` now yields an error.
 * Comment blocks on multiple lines `/* ...\n ... \n ... */` are now possible.
@@ -252,11 +253,11 @@ Help pages:
   `printf`, `sprintf`, `iconvert`, `stdev`, `xlabel`, `and_op`, `or_op`, `permute`, `tree2code`, `%helps`,
   `scilab`, `flipdim`, `Matplot_properties`, `text_properties`, `meshgrid`, `ismatrix`, `xget`, `xset`, `ieee`, `evstr`,
   `uigetfont`, `uigetdir`, `uigetfile`, `uiputfile`, `cat`, `makecell`, `xstring`, `norm`, `barhomogenize`,
-  `colordef`, `matrix`, `coffg`, `diag`, `speye`, `sparse`, `recursionlimit`, `for`, `fileinfo`, `end`, `iconvert`, `Globalproperty`, `unique`, `intdec`, `plus`, `minus`
+  `colordef`, `matrix`, `coffg`, `diag`, `speye`, `sparse`, `recursionlimit`, `for`, `fileinfo`, `end`, `iconvert`, `Globalproperty`, `unique`, `intdec`, `plus`, `minus`, `varn`
 * rewritten: `consolebox`, `double`, `isoview`, `pixel_drawing_mode`, `householder`, `or`, `|,||`,
  `and`, `&,&&`, `format`, `type`, `typeof`, `brackets`, `setlanguage`, `sleep`, `isinf`, `unique`,
  `bitor`, `bitxor`, `bitand`, `macr2tree`, `geomean`, `clf`, `getPreferencesValue`, `gcd`, `lcm`, `isglobal`,
- `whereis`, `mode`, `%onprompt`, `toeplitz`, `param3d`, `param3d1`, `argn`, `gettext`,
+ `whereis`, `mode`, `%onprompt`, `toeplitz`, `param3d`, `param3d1`, `argn`, `gettext`, `poly`,
  `mtlb_int8`, `mtlb_int16`, `mtlb_int32`, `mtlb_int64`, `mtlb_uint8`, `mtlb_uint16`, `mtlb_uint32`, `mtlb_uint64`, `intersect`,
  `load`
 * reorganized:
