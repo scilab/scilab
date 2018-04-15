@@ -140,7 +140,7 @@
                     <para>
                         <literal>"dst1"</literal>の場合, この関数は
                         正規化しないDST-I変換を計算します.
-                        長さ<latex>$n$</latex> のベクトルの1次元変換は以下のようになります:
+                        長さ<emphasis>n</emphasis> のベクトルの1次元変換は以下のようになります:
                     </para>
                     <para>
                         <latex>
@@ -153,7 +153,7 @@
                     <para>
                         <literal>"dst2"</literal>の場合, この関数は
                         正規化しないDST-II変換を計算します.
-                        長さ<latex>$n$</latex> のベクトルの1次元変換は以下のようになります:
+                        長さ<emphasis>n</emphasis> のベクトルの1次元変換は以下のようになります:
                     </para>
                     <para>
                         <latex>
@@ -166,7 +166,7 @@
                     <para>
                         <literal>"dst3"</literal>の場合, この関数は
                         正規化しないDST-III変換を計算します.
-                        長さ<latex>$n$</latex> のベクトルの1次元変換は以下のようになります:
+                        長さ<emphasis>n</emphasis> のベクトルの1次元変換は以下のようになります:
                     </para>
                     <para>
                         <latex>
@@ -178,7 +178,7 @@
                     <para>
                         <literal>"dst4"</literal>の場合, この関数は
                         正規化しないDST-IV変換を計算します.
-                        長さ<latex>$n$</latex> のベクトルの1次元変換は以下のようになります:
+                        長さ<emphasis>n</emphasis> のベクトルの1次元変換は以下のようになります:
                     </para>
                     <para>
                         <latex>
@@ -191,7 +191,7 @@
                     <para>
                         <literal>"dst"</literal>の場合, この関数は
                         正規化されたDST-I変換を計算します.
-                        長さ<latex>$n$</latex> のベクトルの1次元変換は以下のようになります:
+                        長さ<emphasis>n</emphasis> のベクトルの1次元変換は以下のようになります:
                     </para>
                     <para>
                         <latex>
@@ -204,7 +204,7 @@
                     <para>
                         <literal>"idst"</literal>の場合, この関数は
                         正規化されたDST-I変換を計算します.
-                        長さ<latex>$n$</latex> のベクトルの1次元変換は以下のようになります:
+                        長さ<emphasis>n</emphasis> のベクトルの1次元変換は以下のようになります:
                     </para>
                     <para>
                         <latex>

@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="atan" xml:lang="ja">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="atan" xml:lang="ja">
     <refnamediv>
         <refname>atan</refname>
         <refpurpose>2象限および 4象限逆正接</refpurpose>
@@ -45,20 +48,20 @@
             最初の形式は2象限逆正接を計算します.
             これは,<code>tan(phi)</code>の逆関数です．
             <varname>x</varname>が実数の場合,
-            <varname>phi</varname>は <latex>\left(\dfrac{-\pi}{2}, \dfrac{\pi}{2}\right)</latex> の範囲となります.
+            <varname>phi</varname>は (-π/2,π/2) の範囲となります.
             <varname>x</varname>が複素数の場合,
             <function>atan</function>は二つの特異な分岐点
             <code>+%i</code>, <code>-%i</code>を有し,
             選択した分枝切断(branch cuts)は, 虚数の2つの半直線
-            <latex>[i, i*\infty)</latex> および
-            <latex>(-i*\infty, -i]</latex> となります.
+            [i,i∞) および
+            (-i∞,-i] となります.
         </para>
         <para>
             2番目の形式は4象限逆正接を計算します(Fortranの
             <function>atan2</function>).
             この場合,この関数は,複素数 <literal>x+i*y</literal> の偏角(角度)を
             返します.
-            <code>atan(y, x)</code>の範囲は, <latex>(-\pi, \pi]</latex> です.
+            <literal>atan(y, x)</literal>の範囲は, (-π,π] です.
         </para>
         <para>
             引数が実数の場合,<literal>x&gt;0</literal>には
@@ -68,8 +71,8 @@
             引数がベクトルまたは行列の場合,
             要素毎に評価が行われ,<varname>phi</varname>は
             同じ大きさのベクトルまたは行列となります.
-            この際, <code>phi(i, j) = atan(x(i, j))</code> または
-            <code>phi(i,j) = atan(y(i, j), x(i, j))</code>
+            この際, <literal>phi(i, j) = atan(x(i, j))</literal> または
+            <literal>phi(i,j) = atan(y(i, j), x(i, j))</literal>
             となります.
         </para>
     </refsection>
@@ -81,11 +84,13 @@ x=[1,%i,-1,%i]
 phasex=atan(imag(x),real(x))
 atan(0,-1)
 atan(-%eps,-1)
+
 // 分岐切断(branch cut)
 atan(-%eps + 2*%i)
 atan(+%eps + 2*%i)
 atan(-%eps - 2*%i)
 atan(+%eps - 2*%i)
+
 // 分岐点における値
 ieee(2)
 atan(%i)

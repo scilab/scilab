@@ -20,10 +20,11 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>y=cumprod(x)
-            y=cumprod(x,orientation)
-            y=cumprod(x,outtype)
-            y=cumprod(x,orientation,outtype)
+        <synopsis>
+          y = cumprod(x)
+          y = cumprod(x, orientation)
+          y = cumprod(x, outtype)
+          y = cumprod(x, orientation, outtype)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
