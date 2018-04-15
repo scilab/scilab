@@ -471,7 +471,7 @@ private :
                 Exp* _start = get_exp();
                 Exp* _step = get_exp();
                 Exp* _end = get_exp();
-                exp = new ListExp(loc, *_start, *_step, *_end);
+                exp = new ListExp(loc, *_start, *_step, *_end, true);
                 break;
             }
             case 31:
