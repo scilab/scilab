@@ -9,10 +9,10 @@
 // <-- NO CHECK REF -->
 // <-- WINDOWS ONLY -->
 //
-// <-- Non-regression test for bug 15486 -->
+// <-- Non-regression test for bug 15484 -->
 //
 // <-- Bugzilla URL -->
-// https://bugzilla.scilab.org/15486
+// https://bugzilla.scilab.org/15484
 //
 // <-- Short Description -->
 // isdir("w:"), isdir("w:\"), and  isdir("w:/") returned %T whenever the w:
