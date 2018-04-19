@@ -1,0 +1,18 @@
+Language: Cpp
+AllowShortIfStatementsOnASingleLine: false
+BreakBeforeBraces: Allman
+ColumnLimit: 0
+IndentCaseLabels: true
+IndentWidth: 4
+PointerAlignment: Left
+SpaceAfterTemplateKeyword: false
+Standard: Cpp11
+UseTab: Never
+---
+Language: Java
+BreakBeforeBraces: Attach
+ColumnLimit: 0
+IndentCaseLabels: true
+IndentWidth: 4
+SpaceAfterCStyleCast: true
+UseTab: Never
