@@ -270,6 +270,12 @@ bool ImplicitList::compute()
                 long long llStep    = convert_input(m_poStep);
                 long long llEnd     = convert_input(m_poEnd);
 
+                // step null
+                if (llStep == 0) // return []
+                {
+                    m_bComputed = true;
+                    return true;
+                }
 #ifdef _MSC_VER
                 m_iSize = static_cast<int>(floor( static_cast<double>(_abs64(llEnd - llStart) / _abs64(llStep)) )) + 1;
 #else
@@ -283,6 +289,12 @@ bool ImplicitList::compute()
                 unsigned long long ullStep	= convert_unsigned_input(m_poStep);
                 unsigned long long ullEnd   = convert_unsigned_input(m_poEnd);
 
+                // step null
+                if (ullStep == 0) // return []
+                {
+                    m_bComputed = true;
+                    return true;
+                }
 #ifdef _MSC_VER
                 m_iSize = static_cast<int>(floor(static_cast<double>(_abs64(ullEnd - ullStart) / _abs64(ullStep)) )) + 1;
 #else
