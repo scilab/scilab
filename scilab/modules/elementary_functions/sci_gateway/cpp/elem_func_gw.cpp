@@ -2,7 +2,7 @@
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
 *  Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
-*
+*  Copyright (C) 2018 - Stéphane MOTTELET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -20,6 +20,7 @@
 #endif
 
 #include "elem_func_gw.hxx"
+#include "function.hxx"
 #include "context.hxx"
 #include "overload.hxx"
 #include "Scierror.h"
@@ -27,6 +28,9 @@
 #include "charEncoding.h"
 #include "sparse.hxx"
 #include "int.hxx"
+#include "double.hxx"
+#include "bool.hxx"
+#include "string.hxx"
 
 #define MODULE_NAME L"elementary_functions"
 extern "C"
@@ -276,4 +280,151 @@ types::Double* trigo(types::Double* in, func_real func_r, func_complex func_c, b
     }
 
     return out;
+}
+
+types::Function::ReturnValue zerosOrOnesFromValue(types::typed_list& in, int _iRetCount, types::typed_list& out, bool value)
+{
+    int iDims = 0;
+    int* piDims = NULL;
+
+    static std::map<std::wstring, types::InternalType::ScilabType> mapOfTypes = {
+        {L"double", types::InternalType::ScilabDouble},
+        {L"constant", types::InternalType::ScilabDouble},
+        {L"boolean", types::InternalType::ScilabBool},
+        {L"uint8", types::InternalType::ScilabUInt8},
+        {L"int8", types::InternalType::ScilabInt8},
+        {L"uint16", types::InternalType::ScilabUInt16},
+        {L"int16", types::InternalType::ScilabInt16},
+        {L"uint32", types::InternalType::ScilabUInt32},
+        {L"int32", types::InternalType::ScilabInt32},
+        {L"uint64", types::InternalType::ScilabUInt64},
+        {L"int64", types::InternalType::ScilabInt64}
+    };
+
+    types::InternalType::ScilabType reftype = types::InternalType::ScilabDouble;
+    bool alloc = false;
+
+    int size = (int)in.size();
+    types::InternalType* it = in[size - 1];
+    if (size > 1 && it->isString())
+    {
+        // get optional type string
+        wchar_t* pType = it->getAs<types::String>()->get()[0];
+        auto f = mapOfTypes.find(pType);
+        if (f == mapOfTypes.end())
+        {
+            Scierror(999, _("%s: Wrong value for input argument #%d: Must be in the set {%s}"),
+                value ? "ones" : "zeros", in.size(), "double, boolean, (u)int(8|16|32|64) ");
+            return types::Function::Error;
+        }
+
+        reftype = f->second;
+        in.pop_back();
+    }
+
+    bool ret = getDimsFromArguments(in, value ? "ones" : "zeros", &iDims, &piDims, &alloc);
+    if (ret == false)
+    {
+        switch (iDims)
+        {
+            case -1:
+                Scierror(21, _("Invalid index.\n"));
+                break;
+            case 1:
+            {
+                //call overload
+                return Overload::generateNameAndCall(value ? L"ones" : L"zeros", in, _iRetCount, out);
+            }
+        }
+
+        return types::Function::Error;
+    }
+
+    if (std::find(piDims, piDims+iDims, 0) != piDims+iDims)
+    {
+      // in Scilab, empty matrix is always a Double
+      reftype = types::InternalType::ScilabDouble;
+    }
+
+    switch (reftype)
+    {
+        case types::InternalType::ScilabInt8:
+        {
+            types::Int8* pOut = new types::Int8(iDims, piDims);
+            std::fill(pOut->get(), pOut->get() + pOut->getSize(), value);
+            out.push_back(pOut);
+            break;
+        }
+        case types::InternalType::ScilabInt16:
+        {
+            types::Int16* pOut = new types::Int16(iDims, piDims);
+            std::fill(pOut->get(), pOut->get() + pOut->getSize(), value);
+            out.push_back(pOut);
+            break;
+        }
+        case types::InternalType::ScilabInt32:
+        {
+            types::Int32* pOut = new types::Int32(iDims, piDims);
+            std::fill(pOut->get(), pOut->get() + pOut->getSize(), value);
+            out.push_back(pOut);
+            break;
+        }
+        case types::InternalType::ScilabInt64:
+        {
+            types::Int64* pOut = new types::Int64(iDims, piDims);
+            std::fill(pOut->get(), pOut->get() + pOut->getSize(), value);
+            out.push_back(pOut);
+            break;
+        }
+        case types::InternalType::ScilabUInt8:
+        {
+            types::UInt8* pOut = new types::UInt8(iDims, piDims);
+            std::fill(pOut->get(), pOut->get() + pOut->getSize(), value);
+            out.push_back(pOut);
+            break;
+        }
+        case types::InternalType::ScilabUInt16:
+        {
+            types::UInt16* pOut = new types::UInt16(iDims, piDims);
+            std::fill(pOut->get(), pOut->get() + pOut->getSize(), value);
+            out.push_back(pOut);
+            break;
+        }
+        case types::InternalType::ScilabUInt32:
+        {
+            types::UInt32* pOut = new types::UInt32(iDims, piDims);
+            std::fill(pOut->get(), pOut->get() + pOut->getSize(), value);
+            out.push_back(pOut);
+            break;
+        }
+        case types::InternalType::ScilabUInt64:
+        {
+            types::UInt64* pOut = new types::UInt64(iDims, piDims);
+            std::fill(pOut->get(), pOut->get() + pOut->getSize(), value);
+            out.push_back(pOut);
+            break;
+        }
+        case types::InternalType::ScilabBool:
+        {
+            types::Bool* pOut = new types::Bool(iDims, piDims);
+            std::fill(pOut->get(), pOut->get() + pOut->getSize(), value);
+            out.push_back(pOut);
+            break;
+        }
+        default: // other cases: create double with inherited dimensions only (not type)
+        case types::InternalType::ScilabDouble:
+        {
+            types::Double* pOut = new types::Double(iDims, piDims);
+            std::fill(pOut->get(), pOut->get() + pOut->getSize(), value);
+            out.push_back(pOut);
+            break;
+        }
+    }
+
+    if (alloc)
+    {
+        delete[] piDims;
+    }
+
+    return types::Function::OK;
 }

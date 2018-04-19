@@ -43,21 +43,18 @@
                     <para>integers</para>
                 </listitem>
             </varlistentry>
+            <varlistentry>
+                <term>type</term>
+                <listitem>
+                    <para>optional character string: 'double', 'boolean', 'int8', 'uint8', 'int16', 'uint16', 'int32', 'uint32', 'int64', or 'uint64'.</para>
+                </listitem>
+            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
         <title>Description</title>
-        <para>Returns a matrix made of ones.</para>
+        <para>Returns a matrix made of ones.  By default the returned matrix is of double precision floating point type but a given type can be precised in the <term>type</term>argument.</para>
         <variablelist>
-            <varlistentry>
-                <term>ones(m1,m2)</term>
-                <listitem>
-                    <para>
-                        returns a <literal>(m1,m2)</literal> matrix full of
-                        ones.
-                    </para>
-                </listitem>
-            </varlistentry>
             <varlistentry>
                 <term>ones(m1,m2,..,mn)</term>
                 <listitem>
@@ -68,10 +65,26 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
+                <term>ones(m1,m2,..,mn,type)</term>
+                <listitem>
+                    <para>
+                        returns a <literal>(m1,m2,..,mn)</literal> matrix made of ones with type given by <literal>type</literal>. In the case of boolean type the matrix is filled with <literal>%T</literal> value. 
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>ones(x)</term>
                 <listitem>
-                    <para>returns a matrix full of ones with the same size that
+                    <para>returns a matrix full of ones with the same size as
                         <literal>x</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ones(x,type)</term>
+                <listitem>
+                    <para>returns a matrix full of ones with the same size as
+                        <literal>x</literal> and type given by <literal>type</literal>. In the case of boolean type the matrix is filled with <literal>%T</literal> value. 
                     </para>
                 </listitem>
             </varlistentry>
@@ -114,6 +127,8 @@
         <programlisting role="example"><![CDATA[
 ones(3)
 ones(3,3)
+ones(3,3,"uint8")
+ones(3,3,"boolean")
 ones(2,3,2)
 
 repmat(1, [2 4 2])
@@ -127,6 +142,9 @@ repmat(1, [2 4 2])
             </member>
             <member>
                 <link linkend="zeros">zeros</link>
+            </member>
+            <member>
+                <link linkend="repmat">repmat</link>
             </member>
         </simplelist>
     </refsection>

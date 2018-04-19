@@ -2,7 +2,8 @@
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
 *  Copyright (C) 2010-2011 - DIGITEO - Bruno JOFRET
-*
+*  Copyright (C) 2018 - Stéphane Mottelet
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -20,6 +21,7 @@
 #include "cpp_gateway_prototype.hxx"
 #include "double.hxx"
 #include "complex"
+#include "function.hxx"
 
 extern "C"
 {
@@ -131,5 +133,6 @@ typedef double(*func_real)(double);
 typedef std::complex<double>(*func_complex)(const std::complex<double>&);
 
 types::Double* trigo(types::Double* in, func_real func_r, func_complex func_c, bool forceComplex = false);
+types::Function::ReturnValue zerosOrOnesFromValue(types::typed_list& in, int _iRetCount, types::typed_list& out, bool value);
 
 #endif /* __ELEM_FUNC_GW_HXX__ */

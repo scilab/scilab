@@ -9,8 +9,8 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>y=zeros(m1,m2,...)
-            y=zeros(x)
+        <synopsis>y=zeros(m1,m2,...,[,type])
+            y=zeros(x,[,type])
             y=zeros()
         </synopsis>
     </refsynopsisdiv>
@@ -29,25 +29,32 @@
                     <para>entiers</para>
                 </listitem>
             </varlistentry>
+            <varlistentry>
+                <term>type</term>
+                <listitem>
+                    <para>chaine de caractères optionnelle : 'double', 'boolean', 'int8', 'uint8', 'int16', 'uint16', 'int32', 'uint32', 'int64', ou 'uint64'.</para>
+                </listitem>
+            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
         <title>Description</title>
-        <para>Renvoie une matrice dont tous les termes sont nuls.</para>
+        <para>Renvoie une matrice nulle Par défaut la matrice renvoyée est de type flottant à double précision mais un type donné peut être précisé dans l'argument <term>type</term>.
+        </para>
         <variablelist>
             <varlistentry>
-                <term>zeros(m1,m2)</term>
+                <term>zeros(m1,m2,..,mn)</term>
                 <listitem>
-                    <para>Renvoie une matrice nulle de taille
-                        <literal>(m1,m2)</literal>.
+                    <para>
+                        renvoie une matrice nulle de dimensions<literal>(m1,m2,..,mn)</literal> 
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>zeros(m1,m2,..,mn)</term>
+                <term>zeros(m1,m2,..,mn,type)</term>
                 <listitem>
-                    <para>renvoie une matrice nulle de taille
-                        <literal>(m1,m2,..,mn)</literal>.
+                    <para>
+                        renvoie une matrice nulle de dimensions <literal>(m1,m2,..,mn)</literal> et de type précisé dans <literal>type</literal>. Dans le cas où le type est booléen la matrice est remplie avec la valeur <literal>%F</literal>. 
                     </para>
                 </listitem>
             </varlistentry>
@@ -56,6 +63,15 @@
                 <listitem>
                     <para>renvoie une matrice nulle de même taille que
                         <literal>x</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>zeros(x,type)</term>
+                <listitem>
+                    <para>
+                        renvoie une matrice nulle de même taille que <literal>x</literal>.
+                         et de type précisé dans <literal>type</literal>. Dans le cas où le type est booléen la matrice est remplie avec la valeur <literal>%F</literal>. 
                     </para>
                 </listitem>
             </varlistentry>
@@ -70,15 +86,30 @@
                 </listitem>
             </varlistentry>
         </variablelist>
-        <warning>
-            <literal>zeros(3)</literal> est équivalent à
-            <literal>zeros(a)</literal> avec <literal>a=3</literal> et donc n'est PAS
-            une matrice 3x3 !
-        </warning>
-        <para>zeros() est équivalent à zeros(1,1).</para>
+    </refsection>
+    <refsection>
+        <title>Remarques</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    Notez que <literal>zeros(3)</literal> est équivalent à
+                    <literal>zeros(a)</literal> avec <literal>a=3</literal> et donc n'est PAS
+                    une matrice 3x3 !
+                </para>
+            </listitem>
+            <listitem>
+                <para>zeros() est équivalent à zeros(1,1).</para>
+            </listitem>
+            <listitem>
+                <para>
+                    Les commandes <literal>zeros(3,-3)</literal> et <literal>zeros(-3,-3)</literal> renvoient
+                    une matrice vide.
+                </para>
+            </listitem>
+        </itemizedlist>
         <note>
-           <literal>repmat(0, sizes)</literal> peut être utilisé pour générer un tableau de zéros
-           dont les dimensions sont données dans un vecteur <literal>sizes=[m1 m2 ..]</literal>.
+           <literal>repmat(0, sizes)</literal> peut être utilisé pour créer une matrice nulle dont
+           les dimensions sont données dans un vecteur <literal>sizes=[m1 m2 ..]</literal>.
         </note>
     </refsection>
     <refsection>
@@ -86,9 +117,11 @@
         <programlisting role="example"><![CDATA[
 zeros(3)
 zeros(3,3)
+zeros(3,3,'uint8')
+zeros(3,3,'boolean')
 zeros(2,3,2)
 
-repmat(0, [2 4 2])
+repmat(1, [2 4 2])
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -101,7 +134,7 @@ repmat(0, [2 4 2])
                 <link linkend="ones">ones</link>
             </member>
             <member>
-                <link linkend="spzeros">spzeros</link>
+                <link linkend="repmat">repmat</link>
             </member>
         </simplelist>
     </refsection>

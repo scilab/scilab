@@ -9,8 +9,8 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>y=ones(m1,m2,...)
-            y=ones(x)
+        <synopsis>y=ones(m1,m2,...,[,type])
+            y=ones(x,[,type])
             y=ones()
         </synopsis>
     </refsynopsisdiv>
@@ -29,21 +29,19 @@
                     <para>entiers</para>
                 </listitem>
             </varlistentry>
+            <varlistentry>
+                <term>type</term>
+                <listitem>
+                    <para>chaine de caractères optionnelle : 'double', 'boolean', 'int8', 'uint8', 'int16', 'uint16', 'int32', 'uint32', 'int64', ou 'uint64'.</para>
+                </listitem>
+            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
         <title>Description</title>
-        <para>Renvoie une matrice dont tous les termes valent 1.</para>
+        <para>Renvoie une matrice dont tous les termes valent 1. Par défaut la matrice renvoyée est de type flottant à double précision mais un type donné peut être précisé dans l'argument <term>type</term>.
+        </para>
         <variablelist>
-            <varlistentry>
-                <term>ones(m1,m2)</term>
-                <listitem>
-                    <para>
-                        Renvoie une matrice de taille <literal>(m1,m2)</literal>
-                        remplie de 1.
-                    </para>
-                </listitem>
-            </varlistentry>
             <varlistentry>
                 <term>ones(m1,m2,..,mn)</term>
                 <listitem>
@@ -54,10 +52,27 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
+                <term>ones(m1,m2,..,mn,type)</term>
+                <listitem>
+                    <para>
+                        renvoie une matrice <literal>(m1,m2,..,mn)</literal> remplie de 1 et de type précisé dans <literal>type</literal>. Dans le cas où le type est booléen la matrice est remplie avec la valeur <literal>%T</literal>. 
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>ones(x)</term>
                 <listitem>
-                    <para>renvoie une matrice remplie de 1 de même taille que
+                    <para>renvoie une matrice remplie de 1. de même taille que
                         <literal>x</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ones(x,type)</term>
+                <listitem>
+                    <para>
+                        renvoie une matrice remplie de 1. de même taille que <literal>x</literal>.
+                         et de type précisé dans <literal>type</literal>. Dans le cas où le type est booléen la matrice est remplie avec la valeur <literal>%T</literal>. 
                     </para>
                 </listitem>
             </varlistentry>
@@ -103,6 +118,8 @@
         <programlisting role="example"><![CDATA[
 ones(3)
 ones(3,3)
+ones(3,3,'uint8')
+ones(3,3,'boolean')
 ones(2,3,2)
 
 repmat(1, [2 4 2])
@@ -116,6 +133,9 @@ repmat(1, [2 4 2])
             </member>
             <member>
                 <link linkend="zeros">zeros</link>
+            </member>
+            <member>
+                <link linkend="repmat">repmat</link>
             </member>
         </simplelist>
     </refsection>

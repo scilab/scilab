@@ -19,13 +19,13 @@
           xmlns:scilab="http://www.scilab.org" xml:id="zeros" xml:lang="en">
     <refnamediv>
         <refname>zeros</refname>
-        <refpurpose>matrix made of zeros</refpurpose>
+        <refpurpose>null matrix</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>y=zeros()
+        <synopsis>y=zeros(m1,m2,...)
             y=zeros(x)
-            y=zeros(m1,m2,..)
+            y=zeros()
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -43,73 +43,95 @@
                     <para>integers</para>
                 </listitem>
             </varlistentry>
+            <varlistentry>
+                <term>type</term>
+                <listitem>
+                    <para>optional character string: 'double', 'boolean','int8', 'uint8', 'int16', 'uint16', 'int32', 'uint32', 'int64', or 'uint64'.</para>
+                </listitem>
+            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
         <title>Description</title>
-        <para>
-            Creates matrix of zeros (same as <literal>0*ones</literal>).
-        </para>
+        <para>Returns a null matrix.  By default the returned matrix is of double precision floating point type but a given type can be precised in the <term>type</term> argument.</para>
         <variablelist>
-            <varlistentry>
-                <term>zeros(m1,m2)</term>
-                <listitem>
-                    <para>
-                        for an <literal>(m1,m2)</literal> matrix.
-                    </para>
-                </listitem>
-            </varlistentry>
             <varlistentry>
                 <term>zeros(m1,m2,..,mn)</term>
                 <listitem>
                     <para>
-                        creates a <literal>(m1,m2,..,mn)</literal> matrix filled with
-                        zeros
+                        creates a <literal>(m1,m2,..,mn)</literal> null matrix.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>zeros(A)</term>
+                <term>zeros(m1,m2,..,mn,type)</term>
                 <listitem>
                     <para>
-                        for a matrix of same size of <literal>A</literal>.
+                        returns a <literal>(m1,m2,..,mn)</literal> null matrix with type given by <literal>type</literal>. In the case of boolean type the matrix is filled with <literal>%F</literal> value. 
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>zeros(3)</term>
+                <term>zeros(x)</term>
+                <listitem>
+                    <para>returns a null matrix with the same size as
+                        <literal>x</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>zeros(m1,m2,..,mn,type)</term>
                 <listitem>
                     <para>
-                        is <literal>zeros(a)</literal> with <literal>a=3</literal> i.e
-                        it is NOT a 3x3 matrix!
+                        returns a null matrix with the same size as <literal>x</literal>
+                        and type given by <literal>type</literal>. In the case of boolean type the matrix is filled with <literal>%F</literal> value. 
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>zeros()</term>
+                <term>zeros(x)</term>
                 <listitem>
-                    <para>returns a single zero</para>
+                    <para>
+                        is also valid for <literal>x</literal> a
+                        <literal>syslin</literal> list.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
+    </refsection>
+    <refsection>
+        <title>Remarks</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    Note that <literal>zeros(3)</literal> is <literal>zeros(a)</literal>
+                    with <literal>a=3</literal> i.e it is NOT a 3x3 matrix!
+                </para>
+            </listitem>
+            <listitem>
+                <para>zeros() is equivalent to zeros(1,1).</para>
+            </listitem>
+            <listitem>
+                <para>
+                    <literal>zeros(3,-3)</literal> and <literal>zeros(-3,-3)</literal> both return an empty matrix.
+                </para>
+            </listitem>
+        </itemizedlist>
         <note>
-           <literal>repmat(0, sizes)</literal> can be used to generate an array of zeros with
+           <literal>repmat(1, sizes)</literal> can be used to generate an array of zeros with
            <literal>sizes=[m1 m2 ..]</literal> given as a vector.
         </note>
-        <para>
-            If <literal>x</literal> is a <literal>syslin</literal> list (linear
-            system in state-space or transfer form), <literal>zeros(x)</literal> is
-            also valid and returns a zero matrix.
-        </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
 zeros(3)
 zeros(3,3)
+zeros(3,3,"uint8")
+zeros(3,3,"boolean")
 zeros(2,3,2)
 
-repmat(0, [2 4 2])
+repmat(1, [2 4 2])
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -122,7 +144,7 @@ repmat(0, [2 4 2])
                 <link linkend="ones">ones</link>
             </member>
             <member>
-                <link linkend="spzeros">spzeros</link>
+                <link linkend="repmat">repmat</link>
             </member>
         </simplelist>
     </refsection>
