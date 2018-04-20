@@ -430,6 +430,7 @@ Known issues
 * [#15525](http://bugzilla.scilab.org/show_bug.cgi?id=15525): Memory allocation crashed with a simple Scilab script.
 * [#15527](http://bugzilla.scilab.org/show_bug.cgi?id=15527): `ode` gave incorrect results with %ODEOPTIONS(1)=2.
 * [#15528](http://bugzilla.scilab.org/show_bug.cgi?id=15528): savewave wrote null signal if 24 bits resolution and more than 2 channels
+* [#15535](http://bugzilla.scilab.org/show_bug.cgi?id=15535): `sign(int8(0))` returned 1 instead of 0, as well with any other input encoded integer type.
 * [#15539](http://bugzilla.scilab.org/show_bug.cgi?id=15539): zero step in integer implicit list crashed Scilab.
 * [#15548](http://bugzilla.scilab.org/show_bug.cgi?id=15548): [%t %t]./[%f %f] crashed Scilab.
 * [#15549](http://bugzilla.scilab.org/show_bug.cgi?id=15549): unary minus incorrectly acted as the negation operator on %t.

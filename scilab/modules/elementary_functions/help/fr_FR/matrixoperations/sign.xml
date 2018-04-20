@@ -2,7 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * Copyright (C) 2015 - 2016 - Samuel GOUGEON
+ * Copyright (C) 2015, 2016, 2018 - Samuel GOUGEON
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -13,7 +14,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="sign" xml:lang="fr">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="sign" xml:lang="fr">
     <refnamediv>
         <refname>sign</refname>
         <refpurpose>fonction signe</refpurpose>
@@ -28,13 +32,19 @@
             <varlistentry>
                 <term>А</term>
                 <listitem>
-                    <para>matrice de nombres réels ou complexes, d'encodage dense ou creux.</para>
+                    <para>
+                        Matrice d'entiers encodés, de nombres décimaux, ou de nombres complexes.
+                        <varname>A</varname> peut être encodée creuse.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>X</term>
                 <listitem>
-                    <para>matrice de nombres réels ou complexes.</para>
+                    <para>
+                        Matrice de taille et de type de données identiques à ceux de
+                        <varname>A</varname>.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -42,16 +52,74 @@
     <refsection role="description">
         <title>Description</title>
         <para>
-            <literal>X = sign(A)</literal> renvoie la matrice contenant les signes
-            de termes <literal>A(i,j)</literal>. Pour les matrices de nombres
-            complexes, <literal>sign(A) = A./abs(A)</literal>.
+            Si <varname>X</varname> sont des entiers encodés ou des nombres décimaux,
+            <itemizedlist>
+                <listitem>
+                    <literal>X(i) = -1</literal> lorsque <literal>A(i)&lt;0</literal>
+                </listitem>
+                <listitem>
+                    <literal>X(i) = 0</literal> lorsque <literal>A(i)==0</literal>
+                </listitem>
+                <listitem>
+                    <literal>X(i) = 1</literal> lorsque <literal>A(i)>0</literal>
+                </listitem>
+                <listitem>
+                    <literal>X(i)= %nan</literal> lorsque <literal>A(i)</literal> est NaN.
+                </listitem>
+            </itemizedlist>
+        </para>
+        <para>
+            Si <varname>X</varname> est encodée en nombres complexes :
+            <literal>sign(A==0) = 0</literal>. Ailleurs, <literal>sign(A) = A./abs(A)</literal>.
         </para>
     </refsection>
     <refsection role="examples">
         <title>Exemples</title>
+        <para>Avec des nombres décimaux :</para>
         <programlisting role="example"><![CDATA[
-sign(rand(2,3))
-sign(1+%i)
+m  = [ 1.25  -2.5  -%inf   2.75
+       0.     1.    0.75   %inf
+       %nan   0.   -1.5   -2.5 ]; m
+sign(m)
+ ]]></programlisting>
+    <screen><![CDATA[
+--> m  =
+   1.25  -2.5  -Inf    2.75
+   0.     1.    0.75   Inf
+   Nan    0.   -1.5   -2.5
+
+--> sign(m)
+ ans  =
+   1.   -1.  -1.   1.
+   0.    1.   1.   1.
+   Nan   0.  -1.  -1.
+]]></screen>
+    <para>Avec des nombres complexes :</para>
+    <programlisting role="example"><![CDATA[
+i = %i;
+c = [-1, -i, -3+4*i
+      1,  i,  3+4*i
+      3,  0,  3-4*i
+     -4, 4*i,-4-3*i ];
+c
+sign(c)
+ ]]></programlisting>
+    <screen><![CDATA[
+--> c  =
+  -1.  -i     -3. + 4.i
+   1.   i      3. + 4.i
+   3.   0.     3. - 4.i
+  -4.   4.i   -4. - 3.i
+
+--> sign(c)
+ ans  =
+  -1.  -i     -0.6 + 0.8i
+   1.   i      0.6 + 0.8i
+   1.   0.     0.6 - 0.8i
+  -1.   i     -0.8 - 0.6i
+]]></screen>
+    <para>Avec une matrice creuse:</para>
+    <programlisting role="example"><![CDATA[
 sign(sprand(8,3,0.3,"normal"))
  ]]></programlisting>
     </refsection>
@@ -60,6 +128,12 @@ sign(sprand(8,3,0.3,"normal"))
         <simplelist type="inline">
             <member>
                 <link linkend="abs">abs</link>
+            </member>
+            <member>
+                <link linkend="csgn">csgn</link>
+            </member>
+            <member>
+                <link linkend="signm">signm</link>
             </member>
         </simplelist>
     </refsection>

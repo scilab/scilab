@@ -96,7 +96,7 @@ public :
         pbClone->set(ArrayOf<T>::get());
         return pbClone;
     }
-
+    
     /*Config management*/
     void whoAmI();
 
@@ -170,6 +170,18 @@ public :
     {
         int size = GenericType::getSize();
         memset(this->m_pRealData, 0x00, sizeof(T) * size);
+    }
+
+    Int<T>* sign()
+    {
+        Int<T> *pOut = new Int<T>(getDims(), getDimsArray());
+        T* p = pOut->get();
+        int size = getSize();
+        for (int i = 0; i < size; ++i)
+        {
+            p[i] = (m_pRealData[i] > T(0)) - (m_pRealData[i] < T(0));
+        }
+        return pOut;
     }
 
 protected :

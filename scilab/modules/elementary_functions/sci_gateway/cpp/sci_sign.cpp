@@ -17,6 +17,7 @@
 #include "elem_func_gw.hxx"
 #include "function.hxx"
 #include "double.hxx"
+#include "int.hxx"
 #include "overload.hxx"
 
 extern "C"
@@ -94,6 +95,36 @@ types::Function::ReturnValue sci_sign(types::typed_list &in, int _iRetCount, typ
             }
 
             out.push_back(pOut);
+        }
+    }
+    else if(in[0]->isInt())
+    {
+        switch (in[0]->getType())
+        {
+            case types::InternalType::ScilabInt8 :
+                out.push_back(in[0]->getAs<types::Int8>()->sign());
+                break;
+            case types::InternalType::ScilabUInt8 :
+                out.push_back(in[0]->getAs<types::UInt8>()->sign());
+                break;
+            case types::InternalType::ScilabInt16 :
+                out.push_back(in[0]->getAs<types::Int16>()->sign());
+                break;
+            case types::InternalType::ScilabUInt16 :
+                out.push_back(in[0]->getAs<types::UInt16>()->sign());
+                break;
+            case types::InternalType::ScilabInt32 :
+                out.push_back(in[0]->getAs<types::Int32>()->sign());
+                break;
+            case types::InternalType::ScilabUInt32 :
+                out.push_back(in[0]->getAs<types::UInt32>()->sign());
+                break;
+            case types::InternalType::ScilabInt64 :
+                out.push_back(in[0]->getAs<types::Int64>()->sign());
+                break;
+            case types::InternalType::ScilabUInt64 :
+                out.push_back(in[0]->getAs<types::UInt64>()->sign());
+                break;
         }
     }
     else
