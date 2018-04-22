@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -13,36 +14,70 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="unix_w" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="unix_w" xml:lang="pt">
     <refnamediv>
         <refname>unix_w</refname>
-        <refpurpose>execução de comando shell (sh), saída redirecionada à janela
-            do Scilab
+        <refpurpose>
+           executa algumas instruÃ§Ãµes do Windows, Linux ou MacOS, resulta no console do Scilab
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
-        <synopsis>unix_w(cmd)</synopsis>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
+        <synopsis>unix_w(commands)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
-                <term>cmd</term>
+                <term>commands</term>
                 <listitem>
-                    <para>string</para>
+                    <para>Texto Ãºnico contendo algumas instruÃ§Ãµes do Windows, Linux ou MacOS.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            Envia um string <literal>cmd</literal> ao Unix para execução com o
-            comando shell (sh). A saída é redirecionada à janela do Scilab. Erros de
-            execução Unix são detectados. Note que apenas o último erro de comando
-            shell é reportado quando uma lista de comandos separados por ";" é
-            enviada: isto não é recomandado.
+            <literal>unix_w()</literal> abre uma nova sessÃ£o do interpretador de comandos do
+            Sistema Operacional (SO) (<emphasis>sh</emphasis> com Linux, <emphasis>cmd.exe</emphasis>
+            com MS Windows, etc ..), envia <varname>commands</varname> para ele, permite processar
+            instruÃ§Ãµes do <varname>comandos</varname>, recebe a saÃ­da e a possÃ­vel mensagem de erro
+            gerada pelo processamento, e fecha a sessÃ£o do intÃ©rprete.
+        </para>
+        <para>
+            O diretÃ³rio de trabalho inicial e as variÃ¡veis de ambiente do interpretador aberto
+            estÃ£o definidos <link linkend="host_description">como descrito para host()</link>.
+        </para>
+        <para>
+            A saÃ­da retornada pelo sistema operacional Ã© exibida no console do Scilab
+            ("_w" significa a "Janela" do Scilab principal).
+        </para>
+        <para>
+            Se uma instruÃ§Ã£o nos <varname>commands</varname> gera um erro,
+            <itemizedlist>
+                <listitem>
+                    A mensagem de erro do interpretador do sistema operacional Ã© exibida no console
+                    do Scilab
+                </listitem>
+                <listitem>
+                    <literal>unix_w</literal> para e exibe sua prÃ³pria mensagem de erro no console
+                    do Scilab.
+                </listitem>
+                <listitem>
+                    As instruÃ§Ãµes restantes nos <varname>commands</varname> sÃ£o entÃ£o ignoradas.
+                </listitem>
+            </itemizedlist>
+            <warning>
+                Os efeitos de instruÃ§Ãµes vÃ¡lidas processadas antes do erro permanecem reais
+                (por exemplo, arquivos deletados). No entanto, a saÃ­da Ã© perdida: ela nÃ£o Ã© exibida
+                no console do Scilab.
+                Os <varname>commands</varname> com mÃºltiplas instruÃ§Ãµes nÃ£o sÃ£o recomendados.
+                Eles sÃ£o mais difÃ­ceis de depurar.
+            </warning>
         </para>
     </refsection>
     <refsection>
@@ -56,14 +91,8 @@ end
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
-            <member>
-                <link linkend="edit">edit</link>
-            </member>
-            <member>
-                <link linkend="manedit">manedit</link>
-            </member>
             <member>
                 <link linkend="unix_g">unix_g</link>
             </member>
@@ -74,7 +103,16 @@ end
                 <link linkend="unix_x">unix_x</link>
             </member>
             <member>
-                <link linkend="unix">unix</link>
+                <link linkend="host">host</link>
+            </member>
+            <member>
+                <link linkend="powershell">powershell</link>
+            </member>
+            <member>
+                <link linkend="setenv">setenv</link>
+            </member>
+            <member>
+                <link linkend="getos">getos</link>
             </member>
         </simplelist>
     </refsection>

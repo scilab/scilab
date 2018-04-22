@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -13,23 +14,27 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="unix_g" xml:lang="ja">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="unix_g" xml:lang="ja">
     <refnamediv>
         <refname>unix_g</refname>
-        <refpurpose>シェル (sh)コマンドを実行,　出力を変数にリダイレクト</refpurpose>
+        <refpurpose>いくつかのWindows、LinuxまたはMacOS命令を実行し、変数で出力する</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>rep=unix_g(cmd)
-            [rep,stat]=unix_g(cmd)
-            [rep,stat,stderr]=unix_g(cmd)
+        <synopsis>
+            rep = unix_g(commands)
+            [rep, status] = unix_g(commands)
+            [rep, status, msgerr] = unix_g(commands)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>パラメータ</title>
         <variablelist>
             <varlistentry>
-                <term>cmd</term>
+                <term>commands</term>
                 <listitem>
                     <para>文字列</para>
                 </listitem>
@@ -41,15 +46,15 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>stat</term>
+                <term>status</term>
                 <listitem>
-                    <para>整数, エラーステータス. エラーが発生しない場合, stat=0</para>
+                    <para>整数, エラーステータス. エラーが発生しない場合, status=0</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>err</term>
+                <term>msgerr</term>
                 <listitem>
-                    <para>文字列の列ベクトル  (標準エラー)</para>
+                    <para>テキストの列：エラーメッセージ。</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -57,26 +62,52 @@
     <refsection>
         <title>説明</title>
         <para>
-            shシェルで実行する文字列 <literal>cmd</literal> をUnixに送信します.
-            標準出力はScilab変数<literal>rep</literal>にリダイレクトされます.
-            標準エラーはScilab変数 err にリダイレクトされるか,出力引数が2つのみの場合に表示されます.
-            Unixの実行エラーはトラップされます; *注意*
-            コマンドのリストを ";" で区切った場合,
-            最後のシェルコマンドエラーのみが
-            リポートされます.これは推奨されません.
+            <literal>unix_g（）</literal>は、オペレーティングシステム（OS）（<emphasis>sh</emphasis>、
+            Linuxでは<emphasis>cmd.exe</emphasis>）のコマンドインタープリタの新しいセッションを開き、 等..）。
+            次に、<varname>commands</varname>がOSインタプリタに送信され、その命令が処理されます。
+            処理によって得られた標準出力とエラーメッセージが受信され、インタプリタセッションが閉じられます。
+        </para>
+        <para>
+            開いているインタプリタの開始作業ディレクトリと環境変数は、
+            <link linkend="host_description">host()</link>ページで説明されているように定義されています。
+        </para>
+        <para>
+            標準出力は変数<varname>rep</varname>に記録されます。.
+        </para>
+        <para>
+            <varname>commands</varname>に誤った命令が含まれていると、
+            <itemizedlist>
+              <listitem>
+                <varname>rep</varname>が ""に設定されています.
+              </listitem>
+              <listitem>
+                出力変数<varname>msgerr</varname>を使用すると、
+                通常はOS端末に表示されるエラーメッセージがキャッチされて格納されます。
+                それ以外の場合は、OSエラーがScilabコンソールに表示されます。
+              </listitem>
+              <listitem>
+                誤った命令の後の残りの命令は無視される。
+              </listitem>
+            </itemizedlist>
+            <warning>
+                The effects of valid instructions processed before the erroneous one remain actual
+                (for instance, deleted files). However, their standard output is lost.
+                複数の命令を持つ<varname>commands</varname>はお勧めできません。 それらはデバッグするのがより困難です。
+            </warning>
         </para>
     </refsection>
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[
-function d=DIR(path)
-  path=pathconvert(path,%t,%t)
+function d = DIR(path)
+  path = pathconvert(path,%t,%t)
   if getos() == 'Windows' then
-    d=unix_g('dir '+path)
+    d = unix_g('dir '+path)
   else
-    d=unix_g('ls '+path)
+    d = unix_g('ls '+path)
   end
 endfunction
+
 DIR('SCI/etc')
  ]]></programlisting>
     </refsection>
@@ -93,7 +124,19 @@ DIR('SCI/etc')
                 <link linkend="unix_x">unix_x</link>
             </member>
             <member>
-                <link linkend="unix">unix</link>
+                <link linkend="host">host</link>
+            </member>
+            <member>
+                <link linkend="getos">getos</link>
+            </member>
+            <member>
+                <link linkend="setenv">setenv</link>
+            </member>
+            <member>
+                <link linkend="powershell">powershell</link>
+            </member>
+            <member>
+                <ulink url="https://msdn.microsoft.com/en-us/library/windows/desktop/ms681382.aspx">List of MS Windows exit codes</ulink>
             </member>
         </simplelist>
     </refsection>

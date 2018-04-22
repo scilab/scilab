@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -13,50 +14,53 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="unix_g" xml:lang="fr">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="unix_g" xml:lang="fr">
     <refnamediv>
         <refname>unix_g</refname>
-        <refpurpose>exécution d'une commande Unix ou DOS, sortie redirigée vers
-            une variable
+        <refpurpose>
+          exécute des instructions Windows, Linux ou MacOS : résultats dans des variables
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>rep=unix_g(cmd)
-            [rep,stat]=unix_g(cmd)
-            [rep,stat,err]=unix_g(cmd)
+        <synopsis>
+            rep = unix_g(commands)
+            [rep, status] = unix_g(commands)
+            [rep, status, msgerr] = unix_g(commands)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Paramètres</title>
+        <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>command-name</term>
+                <term>commands</term>
                 <listitem>
-                    <para>chaîne de caractères</para>
+                    <para>chaîne de caractères unique : instructions à exécuter.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>rep</term>
                 <listitem>
-                    <para>vecteur colonne de chaînes de caractères (sortie
-                        standard)
+                    <para>colonne de texte : résultats normalement affichés en sortie standard.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>stat</term>
+                <term>status</term>
                 <listitem>
-                    <para>un entier, le statut d'erreur, si stat==0 aucune
-                        erreur.
+                    <para>
+                        nombre entier : code de résultat d'exécution. status==0 est retourné si
+                        aucune erreur ne s'est produite.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>err</term>
+                <term>msgerr</term>
                 <listitem>
-                    <para>vecteur colonne de chaînes de caractères (sortie
-                        d'erreurs)
+                    <para>Colonne de texte : message d'erreur.
                     </para>
                 </listitem>
             </varlistentry>
@@ -65,26 +69,56 @@
     <refsection>
         <title>Description</title>
         <para>
-            Envoie la chaîne <literal>command-name</literal> à l'interpréteur de
-            commande (sh sous Unix, ou command.com sous DOS). La sortie standard est
-            reporté dans la variable <literal>rep</literal>. La sortie d'erreurs est
-            reporté dans la variable <literal>err</literal> ou affichée si seulement
-            deux arguments de sortie. Les erreurs se produisant dans l'interpréteur de
-            commande sont interceptées; notez que la *dernière erreur uniquement* est
-            signalée quand <literal>command-name</literal> est une suite de commandes
-            séparées par des ";".
+            <literal>unix_g()</literal> ouvre une nouvelle session de l'interpréteur de commandes
+            du système d'exploitation (OS) (<emphasis>sh</emphasis> avec Linux,
+            <emphasis>cmd.exe</emphasis> avec MS Windows, etc..), lui envoie les instructions
+            <varname>commands</varname>, attend le traitement de celles-ci, reçoit les messages
+            de résultats standard ou le possible message d'erreur générés lors du traitement,
+            et ferme la session de l'interpréteur.
+        </para>
+        <para>
+            Le dossier de travail initial et les variables d'environnement de la session OS ouverte
+            sont établis <link linkend="host_description">comme pour host()</link>.
+        </para>
+        <para>
+            Les résultats standard habituellement affichés dans le terminal de l'interpréteur sont
+            capturés et stockés en colonne texte dans la variable <varname>rep</varname>.
+        </para>
+        <para>
+            Si <varname>commands</varname> comporte une instruction erronée,
+            <itemizedlist>
+                <listitem>
+                    <varname>rep</varname> vaut "".
+                </listitem>
+                <listitem>
+                    Si la variable de sortie <varname>msgerr</varname> est indiquée, le message d'erreur
+                    normalement affiché dans le terminal de l'interpréteur est capturé et enregistré
+                    dans celle-ci. Sinon, le message d'erreur est affiché dans la console Scilab.
+                </listitem>
+                <listitem>
+                    Les instructions suivant celle erronée sont ignorées.
+                </listitem>
+                <warning>
+                    Les opérations effectuées par les instructions valides figurant dans
+                    <varname>commands</varname> avant l'instruction
+                    erronée demeurent réelles (par exemple, fichiers supprimés). Leurs
+                    compte-rendus ou résultats d'exécution affichables sont cependant ignorés
+                    et perdus. Les instructions multiples sont déconseillées. Elles sont souvent
+                    plus difficiles à déboguer.
+                </warning>
+            </itemizedlist>
         </para>
     </refsection>
     <refsection>
         <title>Exemples</title>
         <programlisting role="example"><![CDATA[
-function d=DIR(path)
- path=pathconvert(path,%t,%t)
- if getos() == 'Windows' then
-   d=unix_g('dir '+path)
- else
-   d=unix_g('ls '+path)
- end
+function d = DIR(path)
+  path=pathconvert(path,%t,%t)
+  if getos() == 'Windows' then
+    d = unix_g('dir '+path)
+  else
+    d = unix_g('ls '+path)
+  end
 endfunction
 
 DIR('SCI/etc')
@@ -103,7 +137,19 @@ DIR('SCI/etc')
                 <link linkend="unix_x">unix_x</link>
             </member>
             <member>
-                <link linkend="unix">unix</link>
+                <link linkend="host">host</link>
+            </member>
+            <member>
+                <link linkend="getos">getos</link>
+            </member>
+            <member>
+                <link linkend="setenv">setenv</link>
+            </member>
+            <member>
+                <link linkend="powershell">powershell</link>
+            </member>
+            <member>
+                <ulink url="https://msdn.microsoft.com/en-us/library/windows/desktop/ms681382.aspx">Liste de codes de sortie MS Windows</ulink>
             </member>
         </simplelist>
     </refsection>

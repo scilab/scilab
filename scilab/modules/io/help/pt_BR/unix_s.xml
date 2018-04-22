@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -13,34 +14,74 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="unix_s" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="unix_s" xml:lang="pt">
     <refnamediv>
         <refname>unix_s</refname>
-        <refpurpose>execu��o do comando shell (sh), sem sa�da</refpurpose>
+        <refpurpose>
+           executa silenciosamente algumas instruções do Windows, Linux ou MacOS
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seq��ncia de Chamamento</title>
-        <synopsis>unix_s(cmd)</synopsis>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>unix_s(commands)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Par�metros</title>
+        <title>Parâmetros</title>
         <variablelist>
             <varlistentry>
-                <term>cmd</term>
+                <term>commands</term>
                 <listitem>
-                    <para>string</para>
+                    <para>Texto único contendo algumas instruções do Windows, Linux ou MacOS.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descri��o</title>
+        <title>Descrição</title>
         <para>
-            Envia um string <literal>cmd</literal> ao Unix para execu��o pelo
-            shell sh. A sa�da padr�o � redirecionada para /dev/null. Erros de execu��o
-            Unix s�o detectados; Note que apenas o �ltimo erro de comando shell �
-            reportado quando uma lista de comandos separados por ";" � enviada: isto
-            n�o � recomendado.
+            <literal>unix_s()</literal> abre uma nova sessão do interpretador de comandos do
+            Sistema Operacional (SO) (<emphasis>sh</emphasis> com Linux, <emphasis>cmd.exe</emphasis>
+            com MS Windows, etc ..), envia <varname>commands</varname> para ele, permite processar
+            instruções do <varname>comandos</varname>, recebe a possível mensagem de erro
+            gerada pelo processamento, e fecha a sessão do intérprete.
+        </para>
+        <para>
+            O diretório de trabalho inicial e as variáveis de ambiente do interpretador aberto
+            estão definidos <link linkend="host_description">como descrito para host()</link>.
+        </para>
+        <para>
+            A saída é ignorada : nada é exibido nem no console do Scilab nem no terminal do SO
+            (Windows consolebox).
+        </para>
+        <para>
+           a mensagem de erro do
+          sistema operacional será exibida no console do Scilab e o <literal>unix_s</literal>
+          será interrompido e exibirá sua própria mensagem de erro. As seguintes instruções
+          (separadas por ";") nos <varname>commands</varname> são então ignoradas.
+        </para>
+        <para>
+            Se uma instrução nos <varname>commands</varname> gera um erro,
+            <itemizedlist>
+              <listitem>
+                A mensagem de erro do interpretador do sistema operacional é exibida no console
+                do Scilab
+              </listitem>
+              <listitem>
+                 <literal>unix_s</literal> para e exibe sua própria mensagem de erro.
+              </listitem>
+              <listitem>
+                As instruções restantes nos <varname>commands</varname> são então ignoradas.
+              </listitem>
+            </itemizedlist>
+            <warning>
+                Os efeitos de instruções válidas processadas antes do erro permanecem reais
+                (por exemplo, arquivos deletados).
+                Os <varname>commands</varname> com múltiplas instruções não são recomendados.
+                Eles são mais difíceis de depurar.
+          </warning>
         </para>
     </refsection>
     <refsection>
@@ -54,14 +95,8 @@ end
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Tamb�m</title>
+        <title>Ver Também</title>
         <simplelist type="inline">
-            <member>
-                <link linkend="edit">edit</link>
-            </member>
-            <member>
-                <link linkend="manedit">manedit</link>
-            </member>
             <member>
                 <link linkend="unix_g">unix_g</link>
             </member>
@@ -72,7 +107,16 @@ end
                 <link linkend="unix_x">unix_x</link>
             </member>
             <member>
-                <link linkend="unix">unix</link>
+                <link linkend="host">host</link>
+            </member>
+            <member>
+                <link linkend="powershell">powershell</link>
+            </member>
+            <member>
+                <link linkend="setenv">setenv</link>
+            </member>
+            <member>
+                <link linkend="getos">getos</link>
             </member>
         </simplelist>
     </refsection>

@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -13,64 +14,208 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="host">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="host">
     <refnamediv>
         <refname>host</refname>
-        <refpurpose>Unix or DOS command execution</refpurpose>
+        <refpurpose>executes a Windows, Linux, or MacOS command</refpurpose>
+    </refnamediv>
+    <refnamediv xml:id="unix">
+        <refname>unix</refname>
+        <refpurpose>alias of host()</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>stat=host(command-name)</synopsis>
+        <synopsis>status = host(commands)</synopsis>
+        <para/>
+        <synopsis>status = unix(commands)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>command-name</term>
+                <term>commands</term>
                 <listitem>
-                    <para>A character string containing Unix sh instruction</para>
+                    <para>
+                        Single text containing Windows, Linux, or MacOS instructions sent to the
+                        OS command interpreter.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>stat</term>
+                <term>status</term>
                 <listitem>
-                    <para>An integer flag</para>
+                    <para>
+                      integer flag: -1 if the <varname>commands</varname> can't be executed
+                      (for instance due to unsufficient memory). If <varname>commands</varname>
+                      is executed (successfully or not) : exit code number returned by the Operating
+                      System (OS) interpreter.
+                    </para>
+                    <note>
+                       With Windows, 0 is most often returned in case of successful execution.
+                    </note>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection id="host_description">
         <title>Description</title>
         <para>
-            Sends a string <literal>command-name</literal> to Unix for execution by the command interpreter (sh under Unix, or command.com under DOS). Standard output and standard errors of the shell command are written in the calling shell.
-            <literal>stat</literal> gives -1 if host can't be called (Not enough system memory
-            available) or the command interpreter return code.
+            <literal>host(…)</literal>
+            <itemizedlist>
+                <listitem>
+                    creates a session of the OS command interpreter (<emphasis>sh</emphasis>
+                    with Linux, or <emphasis>cmd.exe</emphasis> with Windows).
+                </listitem>
+                <listitem>
+                    sends the given <literal>commands</literal> to it,
+                </listitem>
+                <listitem>
+                    lets them be executed by the OS interpreter,
+                </listitem>
+                <listitem>
+                    receives all the messages normally displayed in the OS interpreter terminal,
+                </listitem>
+                <listitem>
+                    and closes the OS interpreter session.
+                </listitem>
+            </itemizedlist>
         </para>
+        <important>
+            The opened session of the OS interpreter is a fork of the session homing the current
+            Scilab session. As a consequence, it has the following properties:
+            <itemizedlist>
+                <listitem>
+                    Its starting current working directory (CWD) is the current one in the Scilab
+                    session when running <literal>host(…)</literal>.
+                </listitem>
+                <listitem>
+                    Its starting environment variables are copied from the OS interpreter session
+                    homing the current Scilab session. They can be modified using
+                    <link linkend="setvenv">setenv</link>, before calling host().
+                </listitem>
+                <listitem>
+                    Changing the CWD or/and the environment variables with instructions in
+                    <varname>commands</varname> does not change them in the Scilab session or/and
+                    in the underlying OS interpreter session homing it.
+                </listitem>
+            </itemizedlist>
+        </important>
+        <para>
+            The host(…) results as standard output and standard errors are written in the terminal
+            from which the Scilab session has been launched (a.k.a. the
+            <link linkend="consolebox">consolebox</link> for MS Windows)..
+        </para>
+        <note>
+            host() shall be preferred to its unix() alias, whose name is misleading.
+        </note>
+        <note>
+            On MS Windows, <literal>host("cls")</literal> CLears the consolebox Screen.
+        </note>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[
-//create a getdir function based on host
-function wd=getdir()
-  if getos() == 'Windows' then
-    host('cd>'+TMPDIR+'\path');
-  else
-    host('pwd>'+TMPDIR+'/path');
-  end
-  wd=read(TMPDIR+'/path',1,1,'(a)')
-endfunction
-//call it
-wd=getdir()
- ]]></programlisting>
+        <refsect3>
+            <title>For Windows users:</title>
+            <para>
+                Current working directory in the host() and Scilab OS interpreter respective sessions:
+            </para>
+            <programlisting role="example"><![CDATA[
+pwd     // Current working directory of the Scilab session
+if getos()=="Windows"
+    host cls;
+    consolebox on;
+    host cd;        // Starting working directory in the OS interpreter session
+else
+    host pwd;
+end
+// The paths in the OS terminal/consolebox and in the Scilab console are the same  <<==
+     ]]></programlisting>
+        <para>Display in the OS terminal (consolebox):</para>
+            <programlisting role="example"><![CDATA[
+host cls;
+host "echo Scilab host() function";
+host "echo A & echo BC";
+host("echo DEF"+ascii(10)+"echo G");
+host("echo Current working directory: & cd");
+host dira;   // => error: unknown command
+     ]]></programlisting>
+        <screen><![CDATA[
+Scilab host() function
+A
+BC
+DEF
+Current working directory:
+C:\Scilab\tests
+'dira' is not a known internal or external command, executable program, or batch file.
+]]></screen>
+        <para>Environment variables in the Scilab and host() sessions:</para>
+            <programlisting role="example"><![CDATA[
+setenv TEST AAAA;
+getenv NUMBER_OF_PROCESSORS
+host cls;
+host "echo %TEST%";
+host "echo %USERNAME% %NUMBER_OF_PROCESSORS%";
+host "set TEST=BBBB";
+getenv TEST
+     ]]></programlisting>
+        Display: Rows starting with ":" are displayed in the consolebox, other ones in the Scilab console:
+        <screen><![CDATA[
+--> setenv TEST AAAA;
+--> getenv NUMBER_OF_PROCESSORS
+ ans  =
+ 2
+
+--> host cls;
+--> host "echo %TEST%";
+: AAAA
+
+--> host "echo %USERNAME% %NUMBER_OF_PROCESSORS%";
+: Samuel 2
+
+--> host "set TEST=BBBB"  // well done:
+ ans  =
+   0.
+
+--> getenv TEST
+ ans  =
+ AAAA
+]]></screen>
+        </refsect3>
+        <refsect3>
+            <title>Application example:</title>
+            <para>Portable openURL() function based on host():</para>
+            <programlisting role="example"><![CDATA[
+    function openURL(url)
+        if getos()=="Windows"
+            winopen(url)
+        elseif getos()=="Linux"
+            host("xdg-open """+url+"""")
+        elseif getos()=="Darwin"         // Mac OS
+            host("open """+url+"""")
+        else
+            warning("openURL: unknown OS")
+        end
+    endfunction
+
+    // call it:
+    openURL("https://help.scilab.org/docs/current/en_US/host.html")
+        ]]></programlisting>
+        </refsect3>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="edit">edit</link>
+                <link linkend="consolebox">consolebox</link>
             </member>
             <member>
-                <link linkend="manedit">manedit</link>
+                <link linkend="getos">getos</link>
+            </member>
+            <member>
+                <link linkend="setenv">setenv</link>
             </member>
             <member>
                 <link linkend="unix_g">unix_g</link>
@@ -83,6 +228,15 @@ wd=getdir()
             </member>
             <member>
                 <link linkend="unix_x">unix_x</link>
+            </member>
+            <member>
+                <link linkend="dos">dos</link>
+            </member>
+            <member>
+                <link linkend="powershell">powershell</link>
+            </member>
+            <member>
+                <ulink url="https://msdn.microsoft.com/en-us/library/windows/desktop/ms681382.aspx">List of MS Windows exit codes</ulink>
             </member>
         </simplelist>
     </refsection>

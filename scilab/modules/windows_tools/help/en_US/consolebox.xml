@@ -13,17 +13,20 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="consolebox">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:lang="en" xml:id="consolebox">
     <refnamediv>
         <refname>consolebox</refname>
-        <refpurpose>show or hide the OS window running Scilab (MS Windows)</refpurpose>
+        <refpurpose>shows or hides the MS Windows terminal running the Scilab session</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
             consolebox on
             consolebox off
-            status = consolebox("toogle")
+            status = consolebox("toggle")
             status = consolebox()
         </synopsis>
     </refsynopsisdiv>
@@ -43,127 +46,118 @@
     </refsection>
     <refsection role="description">
         <title>Description</title>
-        <itemizedlist>
-            <listitem><literal>consolebox on</literal> : makes the OS window visible
-            and adds its button in the task bar. The consolebox
-            black window lays on the background, and then may be masked
-            by other windows of the OS desktop.
-            </listitem>
-            <listitem><literal>consolebox off</literal> : masks the OS window and
-            its button from the task bar.
-            </listitem>
-            <listitem><literal>consolebox toogle</literal> : toogles the OS window's
-            visibility.
-            </listitem>
-            <listitem><literal>status = consolebox()</literal> : queries
-             the visibility of the OS window.
-            </listitem>
-        </itemizedlist>
-        <para>The "consolebox" black window is the "hidden" terminal of the
-        Operating system from
-        which the current Scilab session has been run. It is somewhat the
-        "dark side" of your session :) Each Scilab session
-        has its own "consolebox". Its lifetime is the Scilab session lifetime:
-        The consolebox of a session is killed
-        when the Scilab session is quit.
-        </para>
-        <para>Some low level Scilab functions (such as the documentation builder
-        or other ones) send most of their errors messages in this window. They
-        would be considered as some spam in the Scilab console. Nevertheless,
-        these messages are very helpful for
-        debugging. <literal>consolebox on</literal> make them visible.
-        </para>
-        <para>The "consolebox" black window can't be closed interactively:
-        its X-cross at the upper-right corner is disabled. Killing it kills Scilab session.
+        <note>
+            <literal>consolebox(…)</literal> is available only if the Scilab session runs in
+            normal (standard desktop) mode (<literal>getscilabmode()=="STD"</literal>).
+        </note>
+        <para>
+            The "consolebox" black window is the "hidden" terminal of the Operating system from
+            which the current Scilab session has been run. It is somewhat the "dark side" of your
+            session :)
         </para>
         <para>
-            When some external OS instructions are send to the operating
-            system through
-            <link linkend="host">host(..)</link> or equivalently
-            <link linkend="unix">unix(..)</link>, or any other
-            <link linkend="unix_w">unix_w(..)</link>,
-            <link linkend="unix_g">unix_g(..)</link>,
-            <link linkend="unix_s">unix_s(..)</link>, or
-            <link linkend="unix_x">unix_x(..)</link> Scilab function,
-            these OS instructions are processed within the Scilab consolebox.
-            <para><literal>host(..)</literal> and
-                <literal>unix(..)</literal> show the results in the consolebox itself
-            </para>
-            <para><literal>unix_g, unix_w, unix_x, unix_s</literal> catch results
-                returned by the OS and cancel any display in the consolebox:
-            <itemizedlist>
-                <listitem>
-                    <literal>r = unix_g(..)</literal>
-                    <emphasis role="bold">g</emphasis>rabs and returns the
-                    results in any variable <literal>r</literal>.
-                </listitem>
-                <listitem>
-                    <literal>unix_w(..)</literal> displays results in Scilab's console,
-                    and returns nothing.
-                </listitem>
-                <listitem>
-                    <literal>unix_x(..)</literal> displays results in a messagebox.
-                </listitem>
-                <listitem>
-                    <literal>unix_s(..)</literal> runs
-                    <emphasis role="bold">s</emphasis>ilently: it returns and
-                    displays no results returned from the OS.
-                </listitem>
-            </itemizedlist>
-            </para>
+            <table>
+                <tr>
+                    <td valign="top" style="white-space: nowrap">
+                        <emphasis role="bold"><literal>consolebox on</literal></emphasis>
+                    </td>
+                    <td>
+                        makes the OS window visible and adds its button in the task bar.
+                        The black consolebox window lays in the background, and then may
+                        be masked by other windows of the OS desktop.
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="top" style="white-space: nowrap">
+                        <emphasis role="bold"><literal>consolebox off</literal></emphasis>
+                    </td>
+                    <td>
+                        masks the OS window and its button from the task bar.
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="top" style="white-space: nowrap">
+                        <emphasis role="bold"><literal>consolebox toggle</literal></emphasis>
+                    </td>
+                    <td>
+                        toggles the OS window's visibility, and returns its new status "on"|"off".
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="top" style="white-space: nowrap">
+                        <emphasis role="bold"><literal>status = consolebox()</literal></emphasis>
+                    </td>
+                    <td>
+                        queries the visibility of the OS window.
+                    </td>
+                </tr>
+            </table>
         </para>
-        <note><literal>host("cls")</literal> clears the consolebox screen</note>
+        <para>
+            Each Scilab session has its own "consolebox". The consolebox of a session is killed
+            when the Scilab session is quit.
+        </para>
+        <para>
+            The "consolebox" black window can't be closed interactively: its X-cross at the
+            upper-right corner is disabled. Killing it kills Scilab session.
+        </para>
+        <para>
+            <literal>host</literal> and <literal>unix</literal> display their results in the
+            consolebox. <literal>unix_g, unix_w, unix_x, unix_s</literal> catch results returned
+            by the OS and cancel any display in the consolebox.
+        </para>
+        <important>
+            Some low level Scilab functions (such as the documentation builder or other ones)
+            send most of their errors messages in the consolebox. These messages would be considered
+            as spam in the Scilab console. <literal>consolebox on</literal> allows to read them
+            very helpfully for debugging.
+        </important>
         <note>
-            When the console has the focus, pressing the <literal>F12</literal> key toggles
+            When the Scilab console has the focus, pressing the <literal>F12</literal> key toggles
             the consolebox on|off
         </note>
+        <note><literal>host("cls")</literal> clears the consolebox screen</note>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
 consolebox on
-mprintf("See the consolebox button appearing in the task bar.\n"+..
-  "Click on it to bring the consolebox on the foreground.\n");
+// See the consolebox button appearing in the task bar.   <==
+
+// Click on it to bring the consolebox on the foreground. <==
 sleep(10,"s")
-consolebox('toggle')
+consolebox toggle
 sleep(5,"s")
-// Now: press the F12 key to toggle the consolebox
+
+// Now: press the F12 key to toggle the consolebox        <==
 consolebox on
-consolebox()
+consolebox
 
-// Instructions passed to host() or unix() or other unix_#() functions are
-// processed in the consolebox:
+// Instructions passed to host() or unix() are echoed in the consolebox:
 host("echo Test of output") // displays "Test of output" in the consolebox
-host("cls")  // clears the consolebox screen
-host("set")  // lists all defined MS Windows environnement variables
+host cls   // clears the consolebox screen
+host set   // lists all defined MS Windows environnement variables
 
-// Other unix_#() commands catch results returned by the Operating System
+// Other unix_#() commands catch results returned by the Operating System,
 //  instead of displaying them in the consolebox:
-host("cls")
+host cls
 unix_w("echo Test of output") // "Test of output" is now displayed in Scilab console
+unix_x set;          // Results are displayed in a messagebox. Nothing in consolebox
 r = unix_g("set");   // Environment variables are returned in r.
 r                    //   Nothing is displayed in the consolebox
-unix_x("set");       // Results are displayed in a messagebox. Nothing in consolebox
-
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="console">console</link>
-            </member>
-            <member>
                 <link linkend="host">host</link>
             </member>
             <member>
-                <link linkend="unix_w">unix_w</link>
+                <link linkend="console">console</link>
             </member>
             <member>
-                <link linkend="unix_g">unix_g</link>
-            </member>
-            <member>
-                <link linkend="unix_x">unix_x</link>
+                <link linkend="tbx_builder_help">tbx_builder_help</link>
             </member>
         </simplelist>
     </refsection>
