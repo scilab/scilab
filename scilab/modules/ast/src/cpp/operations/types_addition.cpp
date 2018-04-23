@@ -619,7 +619,7 @@ void fillAddFunction()
     scilab_fill_add(Bool, UInt32, M_M, Bool, UInt32, UInt32);
     scilab_fill_add(Bool, Int64, M_M, Bool, Int64, Int64);
     scilab_fill_add(Bool, UInt64, M_M, Bool, UInt64, UInt64);
-    scilab_fill_add(Bool, Bool, M_M, Bool, Bool, Bool);
+    scilab_fill_add(Bool, Bool, M_M, Bool, Bool, Double);
     scilab_fill_add(Bool, Empty, M_E, Bool, Double, Double);
 
     //Matrix + Scalar
@@ -632,7 +632,7 @@ void fillAddFunction()
     scilab_fill_add(Bool, ScalarUInt32, M_S, Bool, UInt32, UInt32);
     scilab_fill_add(Bool, ScalarInt64, M_S, Bool, Int64, Int64);
     scilab_fill_add(Bool, ScalarUInt64, M_S, Bool, UInt64, UInt64);
-    scilab_fill_add(Bool, ScalarBool, M_S, Bool, Bool, Bool);
+    scilab_fill_add(Bool, ScalarBool, M_S, Bool, Bool, Double);
 
     //Scalar + Matrix
     scilab_fill_add(ScalarBool, Double, S_M, Bool, Double, Double);
@@ -644,7 +644,7 @@ void fillAddFunction()
     scilab_fill_add(ScalarBool, UInt32, S_M, Bool, UInt32, UInt32);
     scilab_fill_add(ScalarBool, Int64, S_M, Bool, Int64, Int64);
     scilab_fill_add(ScalarBool, UInt64, S_M, Bool, UInt64, UInt64);
-    scilab_fill_add(ScalarBool, Bool, S_M, Bool, Bool, Bool);
+    scilab_fill_add(ScalarBool, Bool, S_M, Bool, Bool, Double);
     scilab_fill_add(ScalarBool, Empty, S_E, Bool, Double, Double);
 
     //Scalar + Scalar
@@ -657,7 +657,7 @@ void fillAddFunction()
     scilab_fill_add(ScalarBool, ScalarUInt32, S_S, Bool, UInt32, UInt32);
     scilab_fill_add(ScalarBool, ScalarInt64, S_S, Bool, Int64, Int64);
     scilab_fill_add(ScalarBool, ScalarUInt64, S_S, Bool, UInt64, UInt64);
-    scilab_fill_add(ScalarBool, ScalarBool, S_S, Bool, Bool, Bool);
+    scilab_fill_add(ScalarBool, ScalarBool, S_S, Bool, Bool, Double);
 
     //String
     scilab_fill_add(String, String, M_M, String, String, String);
