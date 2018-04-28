@@ -61,16 +61,23 @@ SciErr getBooleanSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows, int* 
     types::SparseBool* pSpBool = ((types::InternalType*)_piAddress)->getAs<types::SparseBool>();
     *_piNbItem = (int)pSpBool->nbTrue();
 
-    if (!sciErr.iErr && _piNbItemRow != NULL)
+    if (_piNbItemRow == NULL)
     {
-        int* piNbItemRows = (int*)MALLOC(sizeof(int) **_piRows);
-        *_piNbItemRow = pSpBool->getNbItemByRow(piNbItemRows);
+        return sciErr;
     }
-    if (!sciErr.iErr && _piColPos != NULL)
+
+    //WARNING: leak memory, caller must free pointer
+    int* piNbItemRows = (int*)MALLOC(sizeof(int) **_piRows);
+    *_piNbItemRow = pSpBool->getNbItemByRow(piNbItemRows);
+
+    if (_piColPos == NULL)
     {
-        int* piColPos = (int*)MALLOC(sizeof(int) **_piNbItem);
-        *_piColPos = pSpBool->getColPos(piColPos);
+        return sciErr;
     }
+
+    //WARNING: leak memory, caller must free pointer
+    int* piColPos = (int*)MALLOC(sizeof(int) **_piNbItem);
+    *_piColPos = pSpBool->getColPos(piColPos);
 
     return sciErr;
 }
