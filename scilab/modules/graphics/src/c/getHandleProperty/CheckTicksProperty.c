@@ -68,7 +68,11 @@ AssignedList * createTlistForTicks(void* _pvCtx)
             return NULL;
         }
 
-        getCurrentStringMatrixFromList(_pvCtx, tlist, &nbRowLab, &nbColLab);
+        char** ret = getCurrentStringMatrixFromList(_pvCtx, tlist, &nbRowLab, &nbColLab);
+        if (ret != NULL)
+        {
+            freeAllocatedMatrixOfString(nbRowLab, nbColLab, ret);
+        }
 
         if (nbRowLoc != nbRowLab || nbColLoc != nbColLab)
         {
