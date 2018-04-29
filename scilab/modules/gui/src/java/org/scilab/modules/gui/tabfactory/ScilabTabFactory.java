@@ -104,7 +104,7 @@ public class ScilabTabFactory extends DockableFactory.Stub {
      * @param factory the factory to remove
      */
     public void removeTabFactory(AbstractScilabTabFactory factory) {
-        factories.remove(factory);
+        factories.values().remove(factory);
     }
 
     /**
