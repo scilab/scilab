@@ -82,7 +82,7 @@ Adapters::adapters_index_t Adapters::lookup_by_typename(const std::wstring& name
 
 std::wstring Adapters::get_typename(Adapters::adapters_index_t kind)
 {
-    for (auto it : adapters)
+    for (const auto& it : adapters)
     {
         if (it.kind == kind)
         {

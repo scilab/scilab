@@ -196,7 +196,7 @@ kind_t Model::getKind(ScicosID uid) const
 std::vector<model::BaseObject*> Model::getAll(kind_t k) const
 {
     std::vector<model::BaseObject*> all;
-    for (auto it : allObjects)
+    for (const auto& it : allObjects)
         if (it.second->kind() == k)
         {
             all.emplace_back(it.second);

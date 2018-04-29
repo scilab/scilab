@@ -710,7 +710,7 @@ bool update_ports_property(const Adaptor& adaptor, const object_properties_t por
     }
 
     // remove objects from the model after de-association
-    for (auto o : deletedObjects)
+    for (const auto& o : deletedObjects)
     {
         controller.deleteBaseObject(o);
     }

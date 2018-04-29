@@ -50,7 +50,7 @@ Controller::SharedData::SharedData() :
 Controller::SharedData::~SharedData()
 {
     lock(&onViewsStructuralModification);
-    for (auto v : m_instance.allViews)
+    for (const auto& v : m_instance.allViews)
     {
         delete v;
     }
@@ -143,7 +143,7 @@ model::BaseObject* Controller::createBaseObject(kind_t k)
     unlock(&m_instance.onModelStructuralModification);
 
     lock(&m_instance.onViewsStructuralModification);
-    for (auto v : m_instance.allViews)
+    for (const auto& v : m_instance.allViews)
     {
         v->objectCreated(object->id(), object->kind());
     }
@@ -167,7 +167,7 @@ model::BaseObject* Controller::referenceBaseObject(model::BaseObject* o) const
 
     // not locked on purpose, this will allow referencing on View notification
     // lock(&m_instance.onViewsStructuralModification);
-    for (auto v : m_instance.allViews)
+    for (const auto& v : m_instance.allViews)
     {
         v->objectReferenced(o->id(), o->kind(), refCount);
     }
@@ -196,7 +196,7 @@ void Controller::deleteBaseObject(model::BaseObject* initial)
 
         // not locked on purpose, this will allow referencing on View notification
         // lock(&m_instance.onViewsStructuralModification);
-        for (auto v : m_instance.allViews)
+        for (const auto& v : m_instance.allViews)
         {
             v->objectUnreferenced(initial->id(), initial->kind(), refCount);
         }
@@ -256,7 +256,7 @@ void Controller::deleteBaseObject(model::BaseObject* initial)
 
     // notify first
     lock(&m_instance.onViewsStructuralModification);
-    for (auto v : m_instance.allViews)
+    for (const auto& v : m_instance.allViews)
     {
         v->objectDeleted(initial->id(), k);
     }
@@ -378,7 +378,7 @@ model::BaseObject* Controller::cloneBaseObject(cloned_t& mapped, model::BaseObje
         std::make_pair(initial->id(), cloned_pair_t(initial, cloned)));
 
     lock(&m_instance.onViewsStructuralModification);
-    for (auto v : m_instance.allViews)
+    for (const auto& v : m_instance.allViews)
     {
         v->objectCloned(initial->id(), o, k);
     }
