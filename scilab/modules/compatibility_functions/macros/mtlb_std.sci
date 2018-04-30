@@ -17,7 +17,8 @@ function m = mtlb_std(x, flag, dim)
 
     if rhs < 2 then
         flag = 0;
-    elseif rhs < 3 then
+    end
+    if rhs < 3 then
         dim = "*";
     end
 

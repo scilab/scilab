@@ -499,6 +499,7 @@ Known issues
 * [#15549](http://bugzilla.scilab.org/show_bug.cgi?id=15549): unary minus incorrectly acted as the negation operator on %t.
 * [#15551](http://bugzilla.scilab.org/show_bug.cgi?id=15551): arithmetic operators gave wrong results with booleans.
 * [#15553](http://bugzilla.scilab.org/show_bug.cgi?id=15553): TOWS_c block failed with 0 simulation time.
+* [#15557](http://bugzilla.scilab.org/show_bug.cgi?id=15557): `mtlb_std(1:10)` yielded an error.
 * [#15563](http://bugzilla.scilab.org/show_bug.cgi?id=15563): poly(A,v) was broken when A is a matrix.
 * [#15566](http://bugzilla.scilab.org/show_bug.cgi?id=15566): matrix insertion checked overall size but not individual dimensions.
 * [#15578](http://bugzilla.scilab.org/show_bug.cgi?id=15578): `mfile2sci` no longer processed correctly a comment appended to the function prototype, nor any m2scideclare() statement.

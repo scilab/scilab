@@ -6,8 +6,11 @@
 // =============================================================================
 //
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 X = [1 5 9; 7 15 22];
+
+assert_checkalmostequal(mtlb_std(X), 7.547626558506);
 
 assert_checkalmostequal(mtlb_std(X, 0), 7.547626558506);
 assert_checkalmostequal(mtlb_std(X, 1), 6.890008869531);
