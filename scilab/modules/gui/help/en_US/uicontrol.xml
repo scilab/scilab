@@ -165,7 +165,7 @@ h.fontsize=20
         <programlisting role="example"><![CDATA[
 // Include an editable table into a figure:
 // Building a table of data:
-params = [" " "Country" "Population [Mh]" "Temp.[Â°C]" ];
+params = [" " "Country" "Population [Mh]" "Temp.[°C]" ];
 towns = ["Mexico" "Paris" "Tokyo" "Singapour"]';
 country = ["Mexico" "France" "Japan" "Singapour"]';
 pop  = string([22.41 11.77 33.41 4.24]');

@@ -20,7 +20,7 @@
         xml:lang="fr" xml:id="for">
     <refnamediv>
         <refname>for</refname>
-        <refpurpose>Mot-clé ouvrant une boucle itérative non conditionnelle</refpurpose>
+        <refpurpose>Ouverture d'une boucle itérative non conditionnelle</refpurpose>
     </refnamediv>
     <refsection>
         <title>Description</title>

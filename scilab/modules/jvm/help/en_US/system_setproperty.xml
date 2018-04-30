@@ -16,8 +16,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="system_setproperty">
     <refnamediv>
         <refname>system_setproperty</refname>
-        <refpurpose>set a system property
-            indicated by a specified key and value.
+        <refpurpose>set a system property for a given JVM key to a given value.
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
@@ -61,5 +60,23 @@ system_getproperty('myproperty')
 system_setproperty('myproperty','hello')
 system_getproperty('myproperty')
  ]]></programlisting>
+    </refsection>
+
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="system_getproperty">system_getproperty</link>
+            </member>
+            <member>
+                <link linkend="setenv">setenv</link>
+            </member>
+            <member>
+                <link linkend="getenv">getenv</link>
+            </member>
+            <member>
+                <link linkend="root_properties">root_properties</link>
+            </member>
+        </simplelist>
     </refsection>
 </refentry>

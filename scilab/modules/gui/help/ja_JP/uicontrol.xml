@@ -197,7 +197,7 @@ h.fontsize=20
         <programlisting role="example"><![CDATA[
 // 編集可能な表を図に含める:
 // データの表を構築:
-params = [" " "Country" "Population [Mh]" "Temp.[A°C]" ];
+params = [" " "Country" "Population [Mh]" "Temp.[°C]" ];
 towns = ["Mexico" "Paris" "Tokyo" "Singapour"]';
 country = ["Mexico" "France" "Japan" "Singapour"]';
 pop  = string([22.41 11.77 33.41 4.24]');

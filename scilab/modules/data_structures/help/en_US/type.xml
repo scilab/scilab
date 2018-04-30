@@ -157,13 +157,10 @@
             <varlistentry>
                 <term>0</term>
                 <listitem>
-                    An undefined component of a simple list. Such a component may be met as
-                    an omitted input argument when calling Scilab function like in
-                    <literal>foo(a,,b)</literal>: From within the function, the missing
-                    argument is defined but is of null type. Defining
-                    <literal>L=list(%pi,,%i,,,%z)</literal> creates L(2) of type 0; etc.
-                    For these objects, <code>isdef()</code> returns <literal>%T</literal>,
-                    but their null type can be tested with <literal>type()</literal>
+                    An undefined element of a list (with a typeof <literal>void</literal>, such as
+                    in the function call <literal>foo(a,,b)</literal>, or in
+                    <literal>list(%pi,,%i,,,%z)</literal>), or a null object of typeof
+                    <literal>listdelete</literal> returned by <literal>null()</literal>.
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -297,6 +294,9 @@ type(r)                     // rational fractions
             <member>
                 <link linkend="mlist">mlist</link>
             </member>
+            <member>
+                <link linkend="null">null</link>
+            </member>
         </simplelist>
     </refsection>
     <refsection role="history">
@@ -311,9 +311,6 @@ type(r)                     // rational fractions
                     </member>
                     <member>
                        <literal>type(:)</literal> now returns 129 instead of 1.
-                    </member>
-                    <member>
-                       Assigning an object of type 0 to a variable no longer deletes this one.
                     </member>
                 </simplelist>
                 </revdescription>

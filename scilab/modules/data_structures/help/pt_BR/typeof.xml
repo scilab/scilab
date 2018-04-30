@@ -192,7 +192,7 @@
                 </td>
             </tr>
             <tr>
-                <td>
+                <td style="white-space:nowrap">
                     <emphasis role="bold">"Matlab sparse"</emphasis>
                 </td>
                 <td>

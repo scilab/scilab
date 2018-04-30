@@ -569,7 +569,26 @@ f.children.y_label.font_size = 3;
                 <revnumber>5.4.0</revnumber>
                 <revremark>
                   line_style value 0 is obsolete, use 1 instead (both are equivalent for  SOLID).
-                  Using value 0 will produce an error in Scilab 5.4.1.</revremark>
+                  Using value 0 will produce an error in Scilab 5.4.1.
+                </revremark>
+            </revision>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>
+                <itemizedlist>
+                    <listitem>
+                        <literal>.mark_stride</literal> and <literal>.mark_offset</literal>
+                        properties added.
+                    </listitem>
+                    <listitem>
+                        <literal>.datatips</literal> property added.
+                    </listitem>
+                    <listitem>
+                        <literal>.display_function</literal> and
+                        <literal>.display_function_data</literal> properties added.
+                    </listitem>
+                </itemizedlist>
+                </revremark>
             </revision>
             <revision>
                 <revnumber>6.0.0</revnumber>

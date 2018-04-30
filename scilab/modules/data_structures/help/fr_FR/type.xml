@@ -162,12 +162,11 @@
             <varlistentry>
                 <term>0</term>
                 <listitem>
-                    Elément d'une liste simple non défini. Il peut par exemple s'agir d'un
-                    argument d'entrée omis lors de l'appel d'une fonction Scilab tel que
-                    <literal>foo(a,,b)</literal> ; ou omis lors de la création d'une liste à
-                    trous telle que <literal>list(%pi,,%i,,,%z)</literal>, etc. Pour tester
-                    l'état de ces objets, <code>isdef()</code> répond <literal>%T</literal>,
-                    mais on pourra vérifier que leur type est nul.
+                    Elément non défini d'une liste (de typeof <literal>void</literal>, tel que
+                    dans l'appel de fonction <literal>foo(a,,b)</literal>, ou dans
+                    <literal>list(%pi,,%i,,,%z)</literal>),
+                    ou objet nul produit par <literal>null()</literal> (de typeof
+                    <literal>listdelete</literal>).
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -300,6 +299,9 @@ type(r)                     // Fractions polynomiales (rationnelles)
             <member>
                 <link linkend="mlist">mlist</link>
             </member>
+            <member>
+                <link linkend="null">null</link>
+            </member>
         </simplelist>
     </refsection>
     <refsection role="history">
@@ -316,11 +318,7 @@ type(r)                     // Fractions polynomiales (rationnelles)
                         <member>
                            <literal>type(:)</literal> vaut désormais 129 au lieu de 1.
                         </member>
-                        <member>
-                            L'affectation d'un objet de type 0 à une variable ne détruit plus celle-ci.
-                        </member>
                     </simplelist>
-
                 </revdescription>
             </revision>
         </revhistory>

@@ -21,7 +21,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>rcond(X)</synopsis>
+        <synopsis>r = rcond(X)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -30,6 +30,12 @@
                 <term>X</term>
                 <listitem>
                     <para>real or complex square matrix</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>r</term>
+                <listitem>
+                    <para>real positive number</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -45,27 +51,30 @@
             If not, <literal>rcond(X)</literal> is close to 0.
         </para>
         <para>
-            We compute the 1-norm of A with Lapack/DLANGE, compute its LU decomposition with Lapack/DGETRF
-            and finally estimate the condition with Lapack/DGECON.
+          <note>
+            Estimating the 1-norm inverse condition number with <literal>rcond</literal> is
+            much faster than computing the 2-norm condition number with <literal>cond</literal>.
+            As a trade-off, <literal>rcond</literal> may be less reliable.
+          </note>
+        </para>
+        <para>
+            Algorithm: We compute the 1-norm of X with Lapack/DLANGE, compute its LU decomposition
+            with Lapack/DGETRF, and finally estimate the condition with Lapack/DGECON.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-A=diag([1:10]);
+A = diag([1:10]);
 rcond(A)
-A(1,1)=0.000001;
+A(1,1) = 0.000001;
 rcond(A)
- ]]></programlisting>
-        <para>
-            Estimating the 1-norm inverse condition number with <literal>rcond</literal> is
-            much faster than computing the 2-norm condition number with <literal>cond</literal>.
-            As a trade-off, <literal>rcond</literal> may be less reliable.
-        </para>
+]]></programlisting>
+      <para>Comparative benchmark: </para>
         <programlisting role="example"><![CDATA[
-    A=ones(1000,1000);
-    timer();cond(A);timer()
-    timer();1/rcond(A);timer()
+    A = ones(1000, 1000);
+    timer(); cond(A);    timer()
+    timer(); 1/rcond(A); timer()
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
