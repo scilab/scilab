@@ -260,7 +260,7 @@ Help pages:
 * rewritten: `consolebox`, `double`, `isoview`, `pixel_drawing_mode`, `householder`, `or`, `|,||`,
  `and`, `&,&&`, `format`, `type`, `typeof`, `brackets`, `setlanguage`, `sleep`, `isinf`, `unique`,
  `bitor`, `bitxor`, `bitand`, `macr2tree`, `geomean`, `clf`, `getPreferencesValue`, `gcd`, `lcm`, `isglobal`,
- `whereis`, `mode`, `%onprompt`, `toeplitz`, `param3d`, `param3d1`, `argn`, `gettext`, `poly`,
+ `whereis`, `mode`, `%onprompt`, `toeplitz`, `param3d`, `param3d1`, `argn`, `powershell`, `gettext`, `poly`,
  `mtlb_int8`, `mtlb_int16`, `mtlb_int32`, `mtlb_int64`, `mtlb_uint8`, `mtlb_uint16`, `mtlb_uint32`, `mtlb_uint64`, `intersect`,
  `load`, `save`, `host`, `locate`, `null`
 * reorganized:
@@ -465,6 +465,7 @@ Known issues
 * [#14282](http://bugzilla.scilab.org/show_bug.cgi?id=14282): `listvarinfile(fn)` and `load(fn)` yielded some memory leak.
 * [#14296](http://bugzilla.scilab.org/show_bug.cgi?id=14296): Xcos labels moving after creating blocks using scripts crashed Scilab.
 * [#14318](http://bugzilla.scilab.org/show_bug.cgi?id=14318): There was a memory leak when writing a HDF5 file.
+* [#14355](http://bugzilla.scilab.org/show_bug.cgi?id=14355): `powershell` was poorly documented.
 * [#14460](http://bugzilla.scilab.org/show_bug.cgi?id=14460): sparse boolean indices were not supported.
 * [#14489](http://bugzilla.scilab.org/show_bug.cgi?id=14489): clicking the scinotes icon did not bring its window in the foreground.
 * [#14506](http://bugzilla.scilab.org/show_bug.cgi?id=14506): An `atomsInstallList` error message had a wrong number of input arguments.
