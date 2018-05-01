@@ -213,7 +213,9 @@ public class SciNotesLineNumberPanel extends JPanel implements CaretListener, Do
     public synchronized void updateFont(Font font) {
         setFont(font);
         metrics = textPane.getFontMetrics(font);
-        ascent = metrics.getAscent();
+        synchronized (doc) {
+            ascent = metrics.getAscent();
+        }
         updateWidth(false);
     }
 
