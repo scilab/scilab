@@ -518,6 +518,7 @@ static void* watchdog_thread(void* arg)
     memset(&abstime, 0, sizeof(struct timespec));
     abstime.tv_sec = tv.tv_sec + timeoutDelay;
 
+    pthread_mutex_lock(&watchdog_mutex);
     while (1)
     {
         if (pthread_cond_timedwait(&dummy_condition, &watchdog_mutex, &abstime) == ETIMEDOUT)
@@ -529,6 +530,7 @@ static void* watchdog_thread(void* arg)
             kill(getpid(), SIGABRT);
         }
     }
+    pthread_mutex_unlock(&watchdog_mutex);
     return NULL;
 }
 
