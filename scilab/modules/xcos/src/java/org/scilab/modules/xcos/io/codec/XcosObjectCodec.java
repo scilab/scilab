@@ -46,7 +46,7 @@ public class XcosObjectCodec extends mxCellCodec {
     /*
      * Cache fields and accessors
      */
-    protected Map<Class<?>, Map<String, Field>> fields = new WeakHashMap<>();
+    protected Map<Class<?>, Map<String, Field>> cfields = new WeakHashMap<>();
     protected Map<Class<?>, Map<Field, Method>> getters = new WeakHashMap<>();
     protected Map<Class<?>, Map<Field, Method>> setters = new WeakHashMap<>();
 
@@ -134,10 +134,10 @@ public class XcosObjectCodec extends mxCellCodec {
          */
         final Class<?> type = obj.getClass();
 
-        Map<String, Field> map = fields.get(type);
+        Map<String, Field> map = cfields.get(type);
         if (map == null) {
             map = new WeakHashMap<String, Field>();
-            fields.put(type, map);
+            cfields.put(type, map);
         }
 
         Field f = map.get(fieldname);
