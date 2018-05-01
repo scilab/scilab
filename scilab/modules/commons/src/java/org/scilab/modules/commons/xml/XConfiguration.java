@@ -657,7 +657,6 @@ public class XConfiguration {
         Method[] meths = type.getDeclaredMethods();
         List<String[]> attrs = new ArrayList<String[]>();
         List<Method> methods = new ArrayList<Method>();
-        Map<String[], Method> mapMethods = new HashMap<String[], Method>();
         for (Method m : meths) {
             String name = m.getName();
             Annotation ann = m.getAnnotation(XConfAttribute.class);
