@@ -8,14 +8,21 @@
 // <-- Non-regression test for bug 14564 -->
 //
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 //
 // <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/show_bug.cgi?id=14564
+// https://bugzilla.scilab.org/show_bug.cgi?id=14564
 //
 // <-- Short Description -->
-// fieldnames failed for empty struct
+// fieldnames failed for empty struct, tlist & mlist
 
 a.r = 1;
 a.r = null();
 assert_checkequal(fieldnames(a), []);
+
+u = mlist("v");
+assert_checkequal(fieldnames(u), []);
+
+u = tlist("v");
+assert_checkequal(fieldnames(u), []);
 
