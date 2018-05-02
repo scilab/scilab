@@ -196,6 +196,7 @@ types::Function::ReturnValue sci_poly(types::typed_list &in, int _iRetCount, typ
         pPolyOut->setCoef(0, pDblIn);
     }
 
+    pPolyOut->updateRank();
     out.push_back(pPolyOut);
     return types::Function::OK;
 }
