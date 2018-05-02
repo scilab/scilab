@@ -36,7 +36,6 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.swing.ActionMap;
 import javax.swing.BorderFactory;
 import javax.swing.InputMap;
 import javax.swing.JPanel;
@@ -380,7 +379,6 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
      * Find the key used to navigate in the history
      */
     private void getKeysForHistory() {
-        ActionMap am = getActionMap();
         InputMap im = getInputMap();
         KeyStroke[] keys = im.keys();
 
