@@ -1,14 +1,19 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) - 2012 - DIGITEO - Allan CORNET
+// Copyright (C) - 2018 - Samuel GOUGEON
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 //
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 //
-A = [];
-assert_checkequal(or(A), %F);
+assert_checkequal(or([]), %F);
+assert_checkequal(or(%nan), %T);
+assert_checkequal(or([0 %nan]), %T);
+assert_checkequal(or(sparse([],[])), %F);
+assert_checkequal(or(sparse(%nan)), %T);
 
 A = %T(ones(1, 3));
 assert_checkequal(or(A), %T);

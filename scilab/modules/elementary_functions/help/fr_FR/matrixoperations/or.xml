@@ -205,7 +205,7 @@ or(A, "c")
 
 --> or(%nan)
  ans  =
-  F           // %T attendu  => Bug 14522
+  T
 
 --> // Projection à travers une dimension / selon une direction :
 --> A = rand(2,5)<0.3

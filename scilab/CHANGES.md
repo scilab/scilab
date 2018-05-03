@@ -447,6 +447,7 @@ Known issues
 * [#14489](http://bugzilla.scilab.org/show_bug.cgi?id=14489): clicking the scinotes icon did not bring its window in the foreground.
 * [#14510](http://bugzilla.scilab.org/show_bug.cgi?id=14510): The example in the `atomsLoad` page could not run properly.
 * [#14521](http://bugzilla.scilab.org/show_bug.cgi?id=14521): For the CONVERT Xcos block, types codes 2, 6, 7, and 8 were not documented.
+* [#14522](http://bugzilla.scilab.org/show_bug.cgi?id=14522): `or(%nan)` was %F.
 * [#14606](http://bugzilla.scilab.org/show_bug.cgi?id=14606): Memory used by variables returned by `[names,mem]=who()` was always zero.
 * [#14701](http://bugzilla.scilab.org/show_bug.cgi?id=14701): `poly(c,v,"coeff")` did not ignore null high order coefficients.
 * [#14704](http://bugzilla.scilab.org/show_bug.cgi?id=14704): In Scinotes, URL for the `https://`, `ftp://`, `ftps://`, and `file://` protocols were no longer hyperlinked.
