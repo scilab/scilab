@@ -260,7 +260,7 @@ Help pages:
  `bitor`, `bitxor`, `bitand`, `macr2tree`, `geomean`, `clf`, `getPreferencesValue`, `gcd`, `lcm`, `isglobal`,
  `whereis`, `mode`, `%onprompt`, `toeplitz`, `param3d`, `param3d1`, `argn`, `gettext`, `poly`,
  `mtlb_int8`, `mtlb_int16`, `mtlb_int32`, `mtlb_int64`, `mtlb_uint8`, `mtlb_uint16`, `mtlb_uint32`, `mtlb_uint64`, `intersect`,
- `load`, `host`, `locate`
+ `load`, `host`, `locate`, `null`
 * reorganized:
   - `else`, `elseif`, `end`, `try`, `sciargs`, `global`, `halt`, `empty`, `power`, `numderivative`
   - `pixel_drawing_mode`, `show_window`, `twinkle`, `uigetcolor`, `winsid`, `xdel`, `xgrid`, `xname`, `xnumb`
@@ -395,6 +395,7 @@ Known issues
 
 
 ### Bugs fixed in 6.0.2:
+* [#2464](http://bugzilla.scilab.org/show_bug.cgi?id=2464): `null()` was poorly documented.
 * [#4050](http://bugzilla.scilab.org/show_bug.cgi?id=4050): `ged()` did not support graphical texts with a font size > 5.
 * [#5430](http://bugzilla.scilab.org/show_bug.cgi?id=5430): `clf` could erase the ATOMS GUI or the m2sci one.
 * [#5557](http://bugzilla.scilab.org/show_bug.cgi?id=5557): `locate()` allowed to click out of the current axes and then returned meaningless coordinates.
