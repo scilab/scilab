@@ -346,6 +346,12 @@ ArrayOf<T>* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
         }
     }
 
+    //update complexity *before* first resizing
+    if (pSource->isComplex() && m_pImgData == NULL)
+    {
+        setComplex(true);
+    }
+
     //before resize, check input dimension
     if (bNeedToResize)
     {
@@ -363,12 +369,6 @@ ArrayOf<T>* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
     {
         piNewDims = m_piDims;
         iNewDims = m_iDims;
-    }
-
-    //update complexity
-    if (pSource->isComplex() && m_pImgData == NULL)
-    {
-        setComplex(true);
     }
 
     int argSize = static_cast<int>(pArg.size());
