@@ -467,6 +467,7 @@ Known issues
 * [#15448](http://bugzilla.scilab.org/show_bug.cgi?id=15448): The Linux desktop files needed to be refreshed.
 * [#15449](http://bugzilla.scilab.org/show_bug.cgi?id=15449): Some small changes were required to ease the compilation with gcc >= 7.
 * [#15450](http://bugzilla.scilab.org/show_bug.cgi?id=15450): Scilab's compilation did not support the ppc64le architecture.
+* [#15453](http://bugzilla.scilab.org/show_bug.cgi?id=15453): Scilab's compilation needed HOME to be writable.
 * [#15464](http://bugzilla.scilab.org/show_bug.cgi?id=15464): Xcos C-blocks could not link dlls on Windows.
 * [#15484](http://bugzilla.scilab.org/show_bug.cgi?id=15484): On Windows, `isdir("w:")`, `isdir("w:/")`, and `isdir("w:\")` returned %T whenever the W: drive does not exist.
 * [#15489](http://bugzilla.scilab.org/show_bug.cgi?id=15489): Help pages of `covStart`, `covStop`, `covWrite` and `covMerge` were not built for the fr, ja, pt and ru languages, and were unreachable from a session in non `en_US` language.
