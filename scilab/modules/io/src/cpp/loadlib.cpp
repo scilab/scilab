@@ -38,7 +38,7 @@ types::Library* loadlib(const std::wstring& _wstXML, int* err, bool _isFile, boo
 {
     types::Library* lib = NULL;
 
-    wchar_t* pwstXML = pathconvertW(_wstXML.data(), FALSE, FALSE, AUTO_STYLE);
+    wchar_t* pwstXML = pathconvertW(_wstXML.data(), (BOOL)FALSE, (BOOL)FALSE, AUTO_STYLE);
     wchar_t* pwstPathLib = expandPathVariableW(pwstXML);
 
     bool expanded = true;
