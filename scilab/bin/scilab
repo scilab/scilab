@@ -538,8 +538,11 @@ detect_java_vm() {
                         "ppc"|"powerpc")
                             proc="ppc"
                             ;;
-                        "ppc64"|"ppc64el")
+                        "ppc64")
                             proc="ppc64"
+                            ;;
+                        "ppc64le")
+                            proc="ppc64le"
                             ;;
                         "s390")
                             proc="s390"

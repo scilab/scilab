@@ -480,7 +480,10 @@ AC_DEFUN([AC_JAVA_JNI_LIBS], [
         powerpc)
           machine=ppc
           ;;
-        ppc64|ppc64le)
+        ppc64le)
+          machine=ppc64le
+          ;;
+        ppc64)
           machine=ppc64
           ;;
         armv*)
