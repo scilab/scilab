@@ -886,7 +886,7 @@ public class ScilabSparse implements ScilabType {
      * @param a
      *            an array
      * @param b
-     *            an other array
+     *            another array
      * @return true if the arrays are equal
      */
     static final boolean compareNbItemRow(final int[] a, final int[] b) {

@@ -33,7 +33,7 @@ int sci_jwrapinfloat(char * fname, void* pvApiCtx)
     }
     catch (std::exception & e)
     {
-        Scierror(999, "%s: An error occured: %s", fname, e.what());
+        Scierror(999, "%s: An error occurred: %s", fname, e.what());
         return 0;
     }
 }

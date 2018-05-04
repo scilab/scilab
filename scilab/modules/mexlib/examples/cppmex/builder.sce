@@ -35,7 +35,7 @@ if getos() <> "Windows" then
     else
         // Since linking is done by gcc and not g++
         // we must add the libstdc++ to cflags
-        // an other possibility would be to use cflags="" and cc="
+        // another possibility would be to use cflags="" and cc="
         cflags = " -lstdc++"
         fflags = "";
         ldflags= "";

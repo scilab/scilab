@@ -136,7 +136,7 @@ types::Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, 
     }
 
     // add execstr in list of macro called
-    // to manage line displayed when error occured.
+    // to manage line displayed when error occurred.
     ConfigVariable::macroFirstLine_begin(1);
 
     ThreadManagement::LockParser();

@@ -1,9 +1,9 @@
       program callsci
 c!Purpose
-c     Example of calling scilab from an other C or Fortran program
+c     Example of calling scilab from another C or Fortran program
 c!Description
 c     This program demonstrate on a simple example to use scilab as a
-c     procedure for an other program
+c     procedure for another program
 c     The computations performed are:
 c      -1-  computation of x such that a*x=b  (a and b real matrices)
 c      -2-  computation of y=a*x-b

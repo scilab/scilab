@@ -56,7 +56,7 @@ InternalCompressLevel=ultra64
 SolidCompression=true
 VersionInfoVersion={#ScilabVersion}
 VersionInfoCompany=Scilab Enterprises
-; minimun right to install Scilab
+; minimum right to install Scilab
 PrivilegesRequired=none
 ;-------------------------------------------------------------------------------
 ;

@@ -1211,7 +1211,7 @@ function desc_out = x2f_read_CHAPTER(file_in)
         end
 
         // Else Error
-        error(msprintf(gettext("%s: The CHAPTER file is not well formated at line %d\n"),"x2f_read_CHAPTER",i));
+        error(msprintf(gettext("%s: The CHAPTER file is not well formatted at line %d\n"),"x2f_read_CHAPTER",i));
 
     end
 
@@ -1264,7 +1264,7 @@ function desc_out = x2f_read_lsb(file_in)
             current_value           = part(FILETOPARSE(i),current_field_length+3:length(FILETOPARSE(i)));
 
             if regexp(current_value,"/^[0-9]+$/") == [] then
-                error(msprintf(gettext("%s: The last_successful_build file is not well formated at line %d\n"),"x2f_read_lsb",i));
+                error(msprintf(gettext("%s: The last_successful_build file is not well formatted at line %d\n"),"x2f_read_lsb",i));
             end
 
             desc_out(current_field) = strtod(current_value);
@@ -1277,7 +1277,7 @@ function desc_out = x2f_read_lsb(file_in)
         end
 
         // Else Error
-        error(msprintf(gettext("%s: The last_successful_build file is not well formated at line %d\n"),"x2f_read_lsb",i));
+        error(msprintf(gettext("%s: The last_successful_build file is not well formatted at line %d\n"),"x2f_read_lsb",i));
 
     end
 

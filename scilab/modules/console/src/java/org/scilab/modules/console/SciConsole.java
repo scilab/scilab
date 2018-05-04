@@ -164,7 +164,7 @@ public abstract class SciConsole extends JPanel {
         jSP.getVerticalScrollBar().setModel(new DefaultBoundedRangeModel(model.getValue(), model.getExtent(), model.getMinimum(), model.getMaximum()) {
             public void setRangeProperties(int newValue, int newExtent, int newMin, int newMax, boolean adjusting) {
                 // This method is overriden to keep the knob at the bottom during viewport resize
-                // and to keep the knob at an other place if the user decided it.
+                // and to keep the knob at another place if the user decided it.
                 if (newMax != getMaximum()) {
                     if (!adjusting) {
                         if (atBottom) {

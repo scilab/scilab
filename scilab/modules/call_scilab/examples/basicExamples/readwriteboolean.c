@@ -154,12 +154,12 @@ int main(void)
         }
 
         printf("\n");
-        printf("Display from B formated (size: %d, %d):\n", rowB_, colB_);
+        printf("Display from B formatted (size: %d, %d):\n", rowB_, colB_);
         for (j = 0 ; j < rowB_ ; j++)
         {
             for (i = 0 ; i < colB_ ; i++)
             {
-                /* Display the formated matrix ... the way the user
+                /* Display the formatted matrix ... the way the user
                 * expect */
                 printf("%d ", matrixOfBooleanB[i * rowB_ + j]);
             }

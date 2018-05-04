@@ -43,7 +43,7 @@ public class ScilabTabFactory extends DockableFactory.Stub {
     private static final String ERROR = Messages.gettext("The tab with uuid %s cannot be restored.\nPlease report a bug with the previous message and in attaching the file %s.");
 
     /*
-      Certains components could depend an other Tab and this last one could be created before
+      Certains components could depend on other Tab and this last one could be created before
       to be requested by the Tab restorator. So we cache it to be sure to have the same instance.
     */
     private Map<String, SwingScilabDockablePanel> cache = new HashMap<String, SwingScilabDockablePanel>();

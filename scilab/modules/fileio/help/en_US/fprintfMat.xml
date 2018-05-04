@@ -78,7 +78,7 @@
         <title>Description</title>
         <para>
             The <function>fprintfMat</function> function writes a matrix in a
-            formated file. Each row of the matrix give a line in the file. If
+            formatted file. Each row of the matrix give a line in the file. If
             <varname>text</varname> is given then the elements of
             <varname>text</varname> are inserted elementwise at the beginning of the
             file one element per line.

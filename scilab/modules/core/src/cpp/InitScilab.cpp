@@ -615,7 +615,7 @@ static void processCommand(ScilabEngineInfo* _pSEI)
     }
 }
 
-// Thread used to parse and execute Scilab command setted in storeCommand
+// Thread used to parse and execute Scilab command set in storeCommand
 void* scilabReadAndExecCommand(void* param)
 {
     char* command           = NULL;

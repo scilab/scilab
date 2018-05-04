@@ -267,7 +267,7 @@
                                     When the figure <literal>"dockable"</literal> property is <literal>"off"</literal>, setting the <literal>"Visible"</literal> property affects the whole figure including its window decorations.
                                 </para>
                                 <para>
-                                    When the figure <literal>"dockable"</literal> property is <literal>"on"</literal> and the figure is docked with an other one inside the same parent window, this field concerns only the figure children (See dedicated part below). If the figure is not docked with an other one, then the <literal>"Visible"</literal> property behaves as if the figure <literal>"dockable"</literal> property was set to <literal>"off"</literal>.
+                                    When the figure <literal>"dockable"</literal> property is <literal>"on"</literal> and the figure is docked with another one inside the same parent window, this field concerns only the figure children (See dedicated part below). If the figure is not docked with another one, then the <literal>"Visible"</literal> property behaves as if the figure <literal>"dockable"</literal> property was set to <literal>"off"</literal>.
                                 </para>
                             </listitem>
                         </varlistentry>

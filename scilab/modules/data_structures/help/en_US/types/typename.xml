@@ -33,7 +33,7 @@
             associated to data types to form the name of the overloading function
             (see <link linkend="overloading">overloading</link>). The <function>typename</function> can be used to handle this
             formal names for hard coded data types (the <literal>tlist</literal> or <literal>mlist</literal>
-            coded data types formal names are defined in an other way, see <link linkend="overloading">overloading</link>).
+            coded data types formal names are defined in another way, see <link linkend="overloading">overloading</link>).
         </para>
         <para>
             <function>typename</function> returns information on defined data types.

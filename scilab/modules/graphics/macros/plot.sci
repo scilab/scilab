@@ -250,7 +250,7 @@ function plot(varargin)
 
                 // All right: go on plotting:
                 ListArg(xyIndexLineSpec(i,2)) = tmp;
-                // if there is an other iteration, we will have error message redefining function.
+                // if there is another iteration, we will have error message redefining function.
                 // we need to clear here and not before, because user must see the warning if needed.
                 clear buildFunc;
             end

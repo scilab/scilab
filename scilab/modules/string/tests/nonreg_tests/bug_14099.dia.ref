@@ -11,7 +11,7 @@
 // http://bugzilla.scilab.org/14099
 //
 // <-- Short Description -->
-// string(polynomial) and string(rational) had badly formated outputs
+// string(polynomial) and string(rational) had badly formatted outputs
 //  and were not vectorized
 //
 // * Coefficients equal to +1|-1 were not masked: 1x^n  =>  x^n

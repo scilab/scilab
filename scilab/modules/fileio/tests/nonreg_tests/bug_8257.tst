@@ -13,7 +13,7 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=8257
 //
 // <-- Short Description -->
-// fscanfMat did not read matrix file not formated by fprintfMat.
+// fscanfMat did not read matrix file not formatted by fprintfMat.
 //
 
 ierr = execstr("r = fscanfMat(""SCI/modules/fileio/tests/nonreg_tests/bug_8257.txt"");", "errcatch");

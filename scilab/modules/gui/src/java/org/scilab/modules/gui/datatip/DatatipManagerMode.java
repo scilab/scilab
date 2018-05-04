@@ -470,7 +470,7 @@ public class DatatipManagerMode {
     /**
      * Check if we are on a curve
      * @param pos the mouse position
-     * @return true if the click occured on a curve
+     * @return true if the click occurred on a curve
      */
     private boolean onCurve(Integer[] pos) {
         Integer axes = AxesHandler.clickedAxes(getFigure(), pos);

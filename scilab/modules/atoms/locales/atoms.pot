@@ -528,7 +528,7 @@ msgstr ""
 #
 # File: modules/atoms/macros/atomsGetConfig.sci, line: 127
 #, c-format
-msgid "%s: The config file ('%s') is not well formated at line %d\n"
+msgid "%s: The config file ('%s') is not well formatted at line %d\n"
 msgstr ""
 
 #
@@ -1348,7 +1348,7 @@ msgstr ""
 # File: modules/atoms/macros/atoms_internals/atomsDESCRIPTIONread.sci, line: 144
 #, c-format
 msgid ""
-"%s: The file %s is not well formated, the toolbox %s - %s does not contain "
+"%s: The file %s is not well formatted, the toolbox %s - %s does not contain "
 "the %s field\n"
 msgstr ""
 
@@ -1362,7 +1362,7 @@ msgstr ""
 #
 # File: modules/atoms/macros/atoms_internals/atomsDESCRIPTIONread.sci, line: 247
 #, c-format
-msgid "%s: The file '%s' is not well formated at line %d\n"
+msgid "%s: The file '%s' is not well formatted at line %d\n"
 msgstr ""
 
 #
@@ -1806,7 +1806,7 @@ msgstr ""
 #
 # File: modules/atoms/macros/atoms_internals/atomsReadDesc.sci, line: 73
 #, c-format
-msgid "%s: The description is not well formated at line %d\n"
+msgid "%s: The description is not well formatted at line %d\n"
 msgstr ""
 
 #

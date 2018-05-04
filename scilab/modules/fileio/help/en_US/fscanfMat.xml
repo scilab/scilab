@@ -97,7 +97,7 @@
             <function>fscanfMat</function> supports files encoded as ANSI/ASCII and UTF-8.
         </para>
         <para>
-            To read a CSV formated file, the <link linkend="csvRead">csvRead</link> function is recommended.
+            To read a CSV formatted file, the <link linkend="csvRead">csvRead</link> function is recommended.
         </para>
     </refsection>
     <refsection>

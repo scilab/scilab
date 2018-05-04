@@ -127,7 +127,7 @@ void OptimizationFunctions::execCostf(int *ind, int *n, double *x, double *f, do
     }
     else
     {
-        sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "costf");
+        sprintf(errorMsg, _("User function '%s' have not been set.\n"), "costf");
         throw ast::InternalError(errorMsg);
     }
 }
@@ -156,7 +156,7 @@ void OptimizationFunctions::execFsolveFct(int* n, double* x, double* v, int* ifl
     }
     else
     {
-        sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "costf");
+        sprintf(errorMsg, _("User function '%s' have not been set.\n"), "costf");
         throw ast::InternalError(errorMsg);
     }
 }
@@ -185,7 +185,7 @@ void OptimizationFunctions::execFsolveJac(int* n, double* x, double* v, double* 
     }
     else
     {
-        sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "costf");
+        sprintf(errorMsg, _("User function '%s' have not been set.\n"), "costf");
         throw ast::InternalError(errorMsg);
     }
 }
@@ -214,7 +214,7 @@ void OptimizationFunctions::execLsqrsolveFct(int* m, int* n, double* x, double* 
     }
     else
     {
-        sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "costf");
+        sprintf(errorMsg, _("User function '%s' have not been set.\n"), "costf");
         throw ast::InternalError(errorMsg);
     }
 }
@@ -243,7 +243,7 @@ void OptimizationFunctions::execLsqrsolveJac(int* m, int* n, double* x, double* 
     }
     else
     {
-        sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "costf");
+        sprintf(errorMsg, _("User function '%s' have not been set.\n"), "costf");
         throw ast::InternalError(errorMsg);
     }
 }

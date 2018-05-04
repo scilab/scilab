@@ -129,7 +129,7 @@ c     messages du sous programme arl2
      $        '------------------------------------------------------')
       else if(ifich.eq.22) then
          call basout(ifl,nwf,
-     $        ' Unwanted loop beetween two orders..., Stop')
+     $        ' Unwanted loop between two orders..., Stop')
       else if(ifich.eq.23) then
          write(buf(1:2),'(i2)') neqbac
          call basout(ifl,nwf,'Il y a eu '//buf(1:2)//
@@ -324,7 +324,7 @@ c
       if(ifich.eq.80) then
         call basout(ifl,nwf,'Already reached minimum ')
       else if(ifich.eq.81) then
-        call basout(ifl,nwf,'Preserve minimun in  tback ')
+        call basout(ifl,nwf,'Preserve minimum in  tback ')
       endif
       return
       end

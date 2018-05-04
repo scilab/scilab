@@ -124,7 +124,7 @@ function result = atomsGetConfig(field)
                 result(current_field) = current_value;
             end
         else
-            error(msprintf(gettext("%s: The config file (''%s'') is not well formated at line %d\n"),"atomsGetConfig",atoms_directory+"config",i));
+            error(msprintf(gettext("%s: The config file (''%s'') is not well formatted at line %d\n"),"atomsGetConfig",atoms_directory+"config",i));
         end
     end
 

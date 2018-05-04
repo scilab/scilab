@@ -122,7 +122,7 @@ int main(void)
         }
 
         printf("\n");
-        printf("Display formated A (size: %d, %d):\n", rowA_, colA_);
+        printf("Display formatted A (size: %d, %d):\n", rowA_, colA_);
         for (i = 0; i < rowA_ * colA_; i++)
         {
             fprintf(stdout, "%5.2f + %5.2f.i ", matrixOfComplex[i], matrixOfComplex[i + colA_]);
@@ -185,12 +185,12 @@ int main(void)
         }
 
         printf("\n");
-        printf("Display from B formated (size: %d, %d):\n", rowB_, colB_);
+        printf("Display from B formatted (size: %d, %d):\n", rowB_, colB_);
         for (j = 0 ; j < rowB_ ; j++)
         {
             for (i = 0 ; i < colB_ ; i++)
             {
-                /* Display the formated matrix ... the way the user
+                /* Display the formatted matrix ... the way the user
                  * expect */
                 printf("%5.2f + %5.2f.i  ", matrixOfComplexB[i * rowB_ + j], matrixOfComplexB_img[i * rowB_ + j]);
             }

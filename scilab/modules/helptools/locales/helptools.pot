@@ -466,7 +466,7 @@ msgstr ""
 #
 # File: modules/helptools/macros/xmltoformat.sci, line: 1214
 #, c-format
-msgid "%s: The CHAPTER file is not well formated at line %d\n"
+msgid "%s: The CHAPTER file is not well formatted at line %d\n"
 msgstr ""
 
 #
@@ -481,7 +481,7 @@ msgstr ""
 # File: modules/helptools/macros/xmltoformat.sci, line: 1267
 # File: modules/helptools/macros/xmltoformat.sci, line: 1280
 #, c-format
-msgid "%s: The last_successful_build file is not well formated at line %d\n"
+msgid "%s: The last_successful_build file is not well formatted at line %d\n"
 msgstr ""
 
 #

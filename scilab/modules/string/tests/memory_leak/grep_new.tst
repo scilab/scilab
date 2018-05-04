@@ -13,7 +13,7 @@ clear;
 FUNCTION_TO_TEST = "grep";
 NB_LOOPS = 1000000;
 txt=['find matches of a string in a vector of strings'
-     'search position of a character string in an other string'
+     'search position of a character string in another string'
      'Compare Strings'];
 
 REF_4_1_2 = 0;

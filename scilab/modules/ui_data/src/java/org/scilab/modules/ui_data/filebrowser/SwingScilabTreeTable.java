@@ -470,7 +470,7 @@ public class SwingScilabTreeTable extends JTable {
     /**
      * A modulo for negative numbers
      * @param n an int
-     * @param p an other int
+     * @param p another int
      * @return n modulo p
      */
     private static final int modulo(int n, int p) {

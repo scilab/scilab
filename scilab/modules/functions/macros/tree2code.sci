@@ -15,7 +15,7 @@ function C = tree2code(P, bprettyprintformat)
     // Convert a tree returned by macr2tree() to a macro code
     // Input:
     // - P: 'program' tlist
-    // - bprettyprintformat: boolean value, if FALSE (default value), generated code is not formated else it is
+    // - bprettyprintformat: boolean value, if FALSE (default value), generated code is not formatted else it is
     // Output:
     // - C: character string matrix (colum vector)
 

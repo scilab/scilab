@@ -54,7 +54,7 @@ a = h5open(TMPDIR + "/test.h5", "w")
 // we create a group which will be used as mount point
 h5group(a, "/mnt");
 
-// Create an other file with a group and a dataset
+// Create another file with a group and a dataset
 b = h5open(TMPDIR + "/test1.h5", "w")
 h5group(b, "Group_1");
 h5write(b, "Group_1/Dataset_1", [1 2;3 4]);

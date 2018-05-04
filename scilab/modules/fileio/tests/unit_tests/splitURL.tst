@@ -53,7 +53,7 @@ assert_checkequal(e, "plop:ae");
 assert_checkequal(f, int32(443)); // port
 assert_checkequal(g, "myFragment"); // fragment
 
-// Badly formated URL
+// Badly formatted URL
 assert_checkerror("splitURL(''http://plop@ae:sylvestre.ledru.info:80'');", [], 999);
 
 // No protocol

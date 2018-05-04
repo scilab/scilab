@@ -26,8 +26,8 @@
             application.
         </para>
         <para>Thanks to this module, it is possible to call Scilab from C/C++ in
-            order to interface Scilab's features from an other code/application or to
-            be able to interface Scilab's features from an other language.
+            order to interface Scilab's features from another code/application or to
+            be able to interface Scilab's features from another language.
         </para>
         <para>Since Scilab 5.2.0, all Scilab datatype can be handle by call_scilab.
             This is done thanks to <link linkend="api_scilab">API_Scilab</link>

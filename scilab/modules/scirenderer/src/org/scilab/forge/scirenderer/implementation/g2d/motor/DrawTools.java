@@ -296,7 +296,7 @@ public final class DrawTools {
      * Get the projection in 2D of point A on line (BC)
      * @param A the point to project
      * @param B a point of the line
-     * @param C an other point of the line (different of B)
+     * @param C another point of the line (different of B)
      * @return the projected point
      */
     private static final double[] get2DProjection(final double xA, final double yA, final double xB, final double yB, final double xC, final double yC) {

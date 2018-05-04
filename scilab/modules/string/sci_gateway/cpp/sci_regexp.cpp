@@ -14,7 +14,7 @@
 *
 */
 
-/* desc : search position of a character string in an other string
+/* desc : search position of a character string in another string
 using regular expression .                                      */
 /*------------------------------------------------------------------------*/
 #include "function.hxx"

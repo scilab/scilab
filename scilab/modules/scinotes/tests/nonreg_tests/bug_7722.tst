@@ -17,5 +17,5 @@
 // Several FindReplace windows could be opened.
 
 // In SciNotes, open two files, select the first and open a find/replace window (ctrl+F)
-// and repeat the process in the second file, the first find/replace window should closed 
-// and an other on should be opened.
+// and repeat the process in the second file. The first find/replace window should close
+// and another one should be opened.

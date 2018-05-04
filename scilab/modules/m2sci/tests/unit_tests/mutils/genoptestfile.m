@@ -18,7 +18,7 @@ function []=genoptestfile(opnames,datacell)
 
 % opnames = cell containing : 
 %    - the name of the operator to test
-%    - an other optional operator name
+%    - another optional operator name
 %      Scilab result (e.g. : abs...)
 
 % datacell = cell which contain data used to test the operator

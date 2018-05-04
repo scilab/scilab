@@ -26,7 +26,7 @@ timer();
 xcosDiagramToScilab(SCI+"/modules/xcos/demos/susp.zcos");
 run3 = timer();
 
-// If the computer slows for an other reasons, we might have this bug again.
+// If the computer slows for another reason, we might have this bug again.
 // Add a XX% error
 errorPercentage=1.1;
 

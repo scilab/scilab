@@ -15,7 +15,7 @@ function [txt,space]=format_txt(txt,instr,bprettyprintformat,nextinstr)
     // Inputs:
     // - txt: code to format
     // - instr: instruction to evaluate as a possible EOL
-    // - bprettyprintformat = %T -> code generated is formated %F -> code generated has same format as original code
+    // - bprettyprintformat = %T -> code generated is formatted %F -> code generated has same format as original code
     // - nextinstr: next instruction after instr (format EOL between instructions)
     // Outputs:
     // - txt: updated txt

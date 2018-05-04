@@ -14,7 +14,7 @@
 //
 // <-- Short Description -->
 //
-// fscanfMat did not read a malformated text with many blanks at the end of file.
+// fscanfMat did not read a malformatted text with many blanks at the end of file.
 
 if execstr("r = fscanfMat(SCI + ""/modules/fileio/tests/nonreg_tests/bug_8837.txt"")", "errcatch") <> 0 then pause, end
 if size(r, "r") <> 9 then pause, end

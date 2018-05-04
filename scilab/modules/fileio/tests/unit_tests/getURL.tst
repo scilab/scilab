@@ -90,7 +90,7 @@ checkContent(filePath, content, 100, "html");
 [filePath, content] = getURL("http://httpbin.org/basic-auth/user/passwd", destdir, "user", "passwd");
 checkContent(filePath, content, 10, "authenticated");
 
-// Badly formated URL
+// Badly formatted URL
 assert_checkerror("getURL(''http://plop@ae:www.scilab.org:80'');", [], 999);
 
 cd(curdir);

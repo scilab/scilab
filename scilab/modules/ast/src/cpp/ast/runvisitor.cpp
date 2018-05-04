@@ -1994,7 +1994,7 @@ void RunVisitorT<T>::visitprivate(const TryCatchExp  &e)
         ConfigVariable::setSilentError(oldVal);
         //to lock lasterror
         ConfigVariable::setLastErrorCall();
-        // reset call stack filled when error occured
+        // reset call stack filled when error occurred
         ConfigVariable::resetWhereError();
         try
         {

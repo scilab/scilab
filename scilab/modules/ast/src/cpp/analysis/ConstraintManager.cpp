@@ -32,9 +32,9 @@ std::vector<std::shared_ptr<InferenceConstraint>> ConstraintManager::init()
     v.emplace_back(new PositiveConstraint());
     // Strict positivity of a value
     v.emplace_back(new StrictPositiveConstraint());
-    // Is a value greater than an other ?
+    // Is a value greater than another ?
     v.emplace_back(new GreaterConstraint());
-    // Is a value strict greater than an other ?
+    // Is a value strict greater than another ?
     v.emplace_back(new StrictGreaterConstraint());
     // Valid index
     v.emplace_back(new ValidIndexConstraint());

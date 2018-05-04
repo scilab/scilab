@@ -437,58 +437,58 @@ std::string formatMatrix(int nbRows, int nbCols, double *pdblReal, double *pdblI
     if (nbRows * nbCols == 1)
     {
         std::ostringstream os;
-        std::string formated = addDouble(pdblReal[0]);
+        std::string formatted = addDouble(pdblReal[0]);
         if (pdblImg)
         {
             double img = pdblImg[0];
             if (img > 0)
             {
-                formated += PLUS_STR;
+                formatted += PLUS_STR;
             }
             else
             {
-                formated += MINUS_STR;
+                formatted += MINUS_STR;
             }
-            formated += addDouble(std::fabs(img));
-            formated += I_STR;
+            formatted += addDouble(std::fabs(img));
+            formatted += I_STR;
         }
-        return formated;
+        return formatted;
     }
 
-    std::string formated = LBRACKET_STR;
+    std::string formatted = LBRACKET_STR;
     for (j = 0 ; j < nbRows ; j++)
     {
         for (i = 0 ; i < nbCols ; i++)
         {
-            /* Display the formated matrix ... the way the user
+            /* Display the formatted matrix ... the way the user
              * expect */
-            formated += addDouble(pdblReal[i * nbRows + j]);
+            formatted += addDouble(pdblReal[i * nbRows + j]);
             if (pdblImg)
             {
                 double img = pdblImg[i * nbRows + j];
                 if (img > 0)
                 {
-                    formated += PLUS_STR;
+                    formatted += PLUS_STR;
                 }
                 else
                 {
-                    formated += MINUS_STR;
+                    formatted += MINUS_STR;
                 }
 
-                formated += addDouble(std::fabs(img));
-                formated += I_STR;
+                formatted += addDouble(std::fabs(img));
+                formatted += I_STR;
             }
 
 
             if (i + 1 != nbCols) // Not the last element of the matrix
             {
-                formated += COMMA_STR;
+                formatted += COMMA_STR;
             }
         }
         if (j + 1 != nbRows) // Not the last line of the matrix
         {
-            formated += SEMICOLON_STR;
+            formatted += SEMICOLON_STR;
         }
     }
-    return formated + "]";
+    return formatted + "]";
 }
