@@ -109,6 +109,7 @@ scilab_bin_LDADD 	= \
 if NEED_JAVA
 scilab_bin_LDADD += \
 			$(top_builddir)/modules/console/libsciconsole.la \
+			$(top_builddir)/modules/console/libsciconsole-minimal.la \
 			$(top_builddir)/modules/jvm/libscijvm.la \
 			$(top_builddir)/modules/commons/libscicommons.la
 else

@@ -224,7 +224,6 @@ AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
 am__v_lt_1 = 
-libsciconsole_la_DEPENDENCIES = libsciconsole-minimal.la
 am__libsciconsole_la_SOURCES_DIST = src/jni/GuiManagement_wrap.c \
 	src/jni/DropFiles_wrap.c src/c/GuiManagement.c \
 	src/c/dropFiles.c src/c/others/initMacOSXEnv.c \
@@ -1095,7 +1094,7 @@ src/cpp/libsciconsole_la-ScilabLinesUpdate.lo:  \
 src/cpp/libsciconsole_la-SetConsolePrompt.lo: src/cpp/$(am__dirstamp) \
 	src/cpp/$(DEPDIR)/$(am__dirstamp)
 
-libsciconsole.la: $(libsciconsole_la_OBJECTS) $(libsciconsole_la_DEPENDENCIES) $(EXTRA_libsciconsole_la_DEPENDENCIES) 
+libsciconsole.la: $(libsciconsole_la_OBJECTS) $(EXTRA_libsciconsole_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(CXXLINK) $(am_libsciconsole_la_rpath) $(libsciconsole_la_OBJECTS) $(libsciconsole_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:

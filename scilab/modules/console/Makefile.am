@@ -178,8 +178,6 @@ if GUI
 pkglib_LTLIBRARIES += libsciconsole.la
 endif
 
-libsciconsole_la_LIBADD = libsciconsole-minimal.la
-
 # All the sources needed by libsciconsole.la
 libsciconsole_la_SOURCES = $(CONSOLE_C_JNI_SOURCES) $(CONSOLE_C_SOURCES) $(CONSOLE_CPP_JNI_SOURCES) $(CONSOLE_CPP_SOURCES) $(CONSOLE_GATEWAY_C_SOURCES) $(CONSOLE_GATEWAY_CPP_SOURCES)
 
