@@ -16,3 +16,4 @@ StartupNotify=false
 Terminal=true
 Type=Application
 Categories=Science;Math;
+Keywords=Science;Math;Numerical;
