@@ -116,8 +116,11 @@ types::Function::ReturnValue sci_poly(types::typed_list &in, int _iRetCount, typ
         }
 
         bool bDeleteInput = false;
+        bool forceRealPoly = false;
         if (pDblIn->getSize() != 1 && pDblIn->getCols() == pDblIn->getRows())
         {
+            // characteristic polynomial is always real if matrix is real
+            forceRealPoly = (pDblIn->isComplex()==false);
             //call spec
             types::typed_list tlInput;
             types::typed_list tlOutput;
@@ -145,12 +148,15 @@ types::Function::ReturnValue sci_poly(types::typed_list &in, int _iRetCount, typ
             double* pdblCoefImg = pPolyOut->get(0)->getImg();
             C2F(wprxc)(iRanks, pdblInReal, pdblInImg, pdblCoefReal, pdblCoefImg);
             bool bSetCplx = false;
-            for (int k = 0; k < *iRanks; k++)
+            if (!forceRealPoly)
             {
-                if ((pdblCoefReal[k] + pdblCoefImg[k]) != pdblCoefReal[k])
+                for (int k = 0; k < *iRanks; k++)
                 {
-                    bSetCplx = true;
-                    break;
+                    if ((pdblCoefReal[k] + pdblCoefImg[k]) != pdblCoefReal[k])
+                    {
+                        bSetCplx = true;
+                        break;
+                    }
                 }
             }
             pPolyOut->setComplex(bSetCplx);

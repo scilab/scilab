@@ -407,6 +407,7 @@ Known issues
 * [#15499](http://bugzilla.scilab.org/show_bug.cgi?id=15499): Scinotes menus were inactive after session restore under OSX.
 * [#15527](http://bugzilla.scilab.org/show_bug.cgi?id=15527): `ode` gave incorrect results with %ODEOPTIONS(1)=2.
 * [#15539](http://bugzilla.scilab.org/show_bug.cgi?id=15539): zero step in integer implicit list crashed Scilab.
+* [#15563](http://bugzilla.scilab.org/show_bug.cgi?id=15563): poly(A,v) was broken when A is a matrix.
 
 ### Bugs fixed in 6.0.1:
 * [#2441](http://bugzilla.scilab.org/show_bug.cgi?id=2441): `%onprompt()` could be defined only at the top execution level.
