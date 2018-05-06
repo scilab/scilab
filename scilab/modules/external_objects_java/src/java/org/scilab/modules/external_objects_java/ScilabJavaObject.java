@@ -1501,7 +1501,6 @@ public class ScilabJavaObject {
      */
     public static final double[][] unwrapMatDouble(final int id) {
         if (arraySJO[id].object instanceof Double[][]) {
-            Object o = ScilabJavaArray.toPrimitive(arraySJO[id].object);
             return (double[][]) ScilabJavaArray.toPrimitive(arraySJO[id].object);
         }
 
