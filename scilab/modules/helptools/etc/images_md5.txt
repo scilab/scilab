@@ -997,6 +997,7 @@ lighting_2.png=2f09837a0807ac6bc45aeb6842038029
 lighting_3.png=4db104cec73db5309f073b24c2d740e1
 linear_interpn_1.png=6097d912048862430be0c7efc1cb5715
 linear_interpn_2.png=babfba25d7f0743ed8a6f6618379fba9
+locate_1.png=12b128890d9e8e2336d8db9d64d8dfcb
 lqe_1.png=6998d2cb2b3cb41b367d983b18dd17f1
 lqg_1.png=14a7c678dad15cad4fc6f3ee55e9f3fd
 lqg_2.png=2e36ecf8ee7566963a9683f68063692f

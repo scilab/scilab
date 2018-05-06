@@ -260,7 +260,7 @@ Help pages:
  `bitor`, `bitxor`, `bitand`, `macr2tree`, `geomean`, `clf`, `getPreferencesValue`, `gcd`, `lcm`, `isglobal`,
  `whereis`, `mode`, `%onprompt`, `toeplitz`, `param3d`, `param3d1`, `argn`, `gettext`, `poly`,
  `mtlb_int8`, `mtlb_int16`, `mtlb_int32`, `mtlb_int64`, `mtlb_uint8`, `mtlb_uint16`, `mtlb_uint32`, `mtlb_uint64`, `intersect`,
- `load`, `host`
+ `load`, `host`, `locate`
 * reorganized:
   - `else`, `elseif`, `end`, `try`, `sciargs`, `global`, `halt`, `empty`, `power`, `numderivative`
   - `pixel_drawing_mode`, `show_window`, `twinkle`, `uigetcolor`, `winsid`, `xdel`, `xgrid`, `xname`, `xnumb`
@@ -397,6 +397,9 @@ Known issues
 ### Bugs fixed in 6.0.2:
 * [#4050](http://bugzilla.scilab.org/show_bug.cgi?id=4050): `ged()` did not support graphical texts with a font size > 5.
 * [#5430](http://bugzilla.scilab.org/show_bug.cgi?id=5430): `clf` could erase the ATOMS GUI or the m2sci one.
+* [#5557](http://bugzilla.scilab.org/show_bug.cgi?id=5557): `locate()` allowed to click out of the current axes and then returned meaningless coordinates.
+* [#5558](http://bugzilla.scilab.org/show_bug.cgi?id=5558): `locate()` drawn crosses at unexpected positions in the current axes and may dramatically resize it when clicking in an axes or figure not being current ones.
+* [#5559](http://bugzilla.scilab.org/show_bug.cgi?id=5559): `locate()` inconsistently asked for left or right mouse clicks to select points, according to the given or unknown expected number of points.
 * [#6434](http://bugzilla.scilab.org/show_bug.cgi?id=6434): Calls like libname.Macro(..) worked only with one input argument.
 * [#6548](http://bugzilla.scilab.org/show_bug.cgi?id=6548): `gamma` did not accept an hypermatrix and could not be overloaded for complex numbers.
 * [#6729](http://bugzilla.scilab.org/show_bug.cgi?id=6729): The compatibility functions `mtlb_int8`, `mtlb_int16`, `mtlb_int32`, `mtlb_uint8`, `mtlb_uint16` and `mtlb_uint32` were not actually Matlab-like. Their documentation was neither correct nor up-to-date. `mtlb_int64` and `mtlb_int64` were missing.
