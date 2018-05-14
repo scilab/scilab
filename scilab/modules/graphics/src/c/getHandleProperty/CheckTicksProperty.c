@@ -31,6 +31,7 @@ AssignedList * createTlistForTicks(void* _pvCtx)
     int nbColLoc  = 0;
     int nbRowLab  = 0;
     int nbColLab  = 0;
+    char** ret;
 
     tlist = createAssignedList(_pvCtx, 3, 2);
 
@@ -68,7 +69,7 @@ AssignedList * createTlistForTicks(void* _pvCtx)
             return NULL;
         }
 
-        char** ret = getCurrentStringMatrixFromList(_pvCtx, tlist, &nbRowLab, &nbColLab);
+        ret = getCurrentStringMatrixFromList(_pvCtx, tlist, &nbRowLab, &nbColLab);
         if (ret != NULL)
         {
             freeAllocatedMatrixOfString(nbRowLab, nbColLab, ret);
