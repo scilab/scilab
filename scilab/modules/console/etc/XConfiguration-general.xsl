@@ -198,7 +198,7 @@
                         </option>
                     </xsl:for-each>
                 </Select>
-                <Label text="_((Modify the layout requires to restart Scilab))" font-face="bold" gridx="1" gridy="2" anchor="west" weightx="0"/>
+                <Label text="_((Modifying the layout requires to restart Scilab))" font-face="bold" gridx="1" gridy="2" anchor="west" weightx="0"/>
                 <Panel gridx="1" gridy="3">
                     <VSpace height="10"/>
                 </Panel>
