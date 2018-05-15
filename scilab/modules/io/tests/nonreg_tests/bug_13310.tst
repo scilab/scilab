@@ -13,6 +13,6 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=13310
 //
 // <-- Short Description -->
-// .scg files createad by Scialb 5.4.1 can no more be loaded (pixmap property removed).
+// .scg files createad by Scilab 5.4.1 can no more be loaded (pixmap property removed).
 
 load(fullfile(SCI, "modules", "io", "tests", "nonreg_tests", "bug_13310.scg"));

@@ -838,7 +838,7 @@ int sci_int_test(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt opt,
 
     //out3 : int
     out[2] = scilab_createInteger32(env, in2 * 1000);
-    return SCIALB_OK;
+    return SCILAB_OK;
 }
             ]]>
         </programlisting>
