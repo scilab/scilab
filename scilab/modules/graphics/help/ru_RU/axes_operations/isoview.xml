@@ -253,7 +253,7 @@ subplot(1,2,2)
 plot2d(r.*sin(t),r.*cos(t),frameflag=4)
 xtitle("при frameflag=4")
              ]]></programlisting>
-        <scilab:image>
+        <scilab:image localized="true">
             r = linspace(1,10,200);
             t = r*3;
             scf();

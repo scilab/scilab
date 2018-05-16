@@ -265,7 +265,7 @@ subplot(1,2,2)
 plot2d(r.*sin(t),r.*cos(t),frameflag=4)
 xtitle("with frameflag=4")
  ]]></programlisting>
-        <scilab:image>
+        <scilab:image localized="true">
             r = linspace(1,10,200);
             t = r*3;
             scf();
@@ -275,7 +275,7 @@ xtitle("with frameflag=4")
 
             subplot(1,2,2)
             plot2d(r.*sin(t),r.*cos(t),frameflag=4)
-            xtitle("with frameflag=4")
+            xtitle("avec frameflag=4")
         </scilab:image>
     </refsection>
     <refsection role="see also">

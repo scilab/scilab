@@ -62,7 +62,6 @@
         <para>Lacetes iterativos comum :</para>
         <programlisting role="example"><![CDATA[
 // laços "for" tradicionais
->>>>>>> 58f750d5cbc... * Bug 12198 (+NRT): 'break case..while' & clear no longer overloadable as in end=1
 n=5;
 for i = 1:n
     for j = 1:n
@@ -73,7 +72,7 @@ for j = 2:n-1
     a(j,j) = j;
 end;
 a
- ]]></programlisting>
+]]></programlisting>
         <para>Laço "decrescente" :</para>
         <programlisting role="example"><![CDATA[
 for j = 4:-1:1
@@ -99,19 +98,6 @@ for  c = M, c, end
  c  =
    3.
    4.
-=======
-for j= 4:-1:1
-    disp(j);
-end // laço decrescente
-
-//laço em colunas de matrizes
-for  e=eye(3,3), e, end
-for v=a, write(6,v), end
-for j=1:n, v=a(:,j), write(6,v), end
-
-//laço em listas de entradas
-for l=list(1,2,'example'); l, end
->>>>>>> 58f750d5cbc... * Bug 12198 (+NRT): 'break case..while' & clear no longer overloadable as in end=1
 
  c  =
    5.
