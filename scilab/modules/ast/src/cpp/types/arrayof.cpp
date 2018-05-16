@@ -99,6 +99,73 @@ ArrayOf<T>* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
         //if complex continue
     }
 
+    typed_list pArg;
+    int iDims = (int)_pArgs->size();
+    int* piMaxDim = new int[iDims];
+    int* piCountDim = new int[iDims];
+    //evaluate each argument and replace by appropriate value and compute the count of combinations
+    int iSeqCount = checkIndexesArguments(this, _pArgs, &pArg, piMaxDim, piCountDim);
+
+    if (iSeqCount == 0)
+    {
+        //free pArg content
+        delete[] piCountDim;
+        delete[] piMaxDim;
+        cleanIndexesArguments(_pArgs, &pArg);
+        return this;
+    }
+
+    ArrayOf* pSource = _pSource->getAs<ArrayOf>();
+
+    //only scalar can be used to ".=" operation
+    if (iSeqCount != pSource->getSize() && pSource->isScalar() == false)
+    {
+        return NULL;
+    }
+
+    //remove last dimension at size 1
+    //remove last dimension if are == 1
+    for (int i = (iDims - 1); i >= m_iDims; i--)
+    {
+        if (piMaxDim[i] == 1)
+        {
+            iDims--;
+            pArg.back()->killMe();
+            pArg.pop_back();
+        }
+        else
+        {
+            break;
+        }
+    }
+
+
+    //insertion of a scalar is always possible regardless of index dimensions
+    if (pSource->isScalar() == false)
+    {
+        int *piSourceDims = pSource->getDimsArray();
+        int sDims = pSource->getDims();
+        int j=0;
+
+        for (int i=0; i<iDims; i++)
+        {
+            if (piCountDim[i]==1)
+            {
+                continue;
+            }
+            while (j<sDims && piSourceDims[j]==1) j++;
+            if (piSourceDims[j] != piCountDim[i])
+            {
+                delete[] piCountDim;
+                delete[] piMaxDim;
+                //free pArg content
+                cleanIndexesArguments(_pArgs, &pArg);
+                return NULL;
+            }
+            j++;
+        }
+    }
+
     std::vector<int> indexes;
     std::vector<int> dims;
     if (getImplicitIndex(this, _pArgs, indexes, dims))
@@ -190,53 +257,13 @@ ArrayOf<T>* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
     }
 
     bool bNeedToResize = false;
-    int iDims = (int)_pArgs->size();
     int iDimsOrigine = m_iDims;
-    typed_list pArg;
-
-    int* piMaxDim = new int[iDims];
-    int* piCountDim = new int[iDims];
 
     //on case of resize
     int* piNewDims = NULL;
     int iNewDims = 0;
-    ArrayOf* pSource = _pSource->getAs<ArrayOf>();
 
     bool bIsColon = false;
-
-    //evaluate each argument and replace by appropriate value and compute the count of combinations
-    int iSeqCount = checkIndexesArguments(this, _pArgs, &pArg, piMaxDim, piCountDim);
-    if (iSeqCount == 0)
-    {
-        //free pArg content
-        delete[] piCountDim;
-        delete[] piMaxDim;
-        cleanIndexesArguments(_pArgs, &pArg);
-        return this;
-    }
-
-    //only scalar can be used to ".=" operation
-    if (iSeqCount != pSource->getSize() && pSource->isScalar() == false)
-    {
-        return NULL;
-    }
-
-    //remove last dimension at size 1
-    //remove last dimension if are == 1
-    for (int i = (iDims - 1); i >= m_iDims; i--)
-    {
-        if (piMaxDim[i] == 1)
-        {
-            iDims--;
-            pArg.back()->killMe();
-            pArg.pop_back();
-        }
-        else
-        {
-            break;
-        }
-    }
-
 
     if (iDims >= m_iDims)
     {
