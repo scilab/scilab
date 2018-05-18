@@ -69,10 +69,15 @@ function   funcallname=lst_funcall(fil,fnamvect)
         funcdecl=[funcdecl size(txt,"*")+1]
         tmpfiles=[]
         for k=1:size(funcdecl,"*")-1
+            tmp = strindex(txt(funcdecl(k)),["function[","function "])
             if k==1 then
                 functxt=txt(funcdecl(k):funcdecl(k+1)-1)
-                str=  strindex(txt(funcdecl(k)),"(")-1
-                funcname=stripblanks(part(txt(funcdecl(k)),strindex(txt(funcdecl(k)),["function[","function "])+8:str(1)))
+                str =  strindex(txt(funcdecl(k)),"(")
+                if str==[] then
+                    funcname=stripblanks(part(txt(funcdecl(k)),tmp+8:length(txt(funcdecl(k)))))
+                else
+                    funcname=stripblanks(part(txt(funcdecl(k)),tmp+8:str(1)-1))
+                end
                 keq=strindex(funcname,"=")
                 if ~isempty(keq) then
                     funcname=stripblanks(part(funcname,keq+1:length(funcname)))
@@ -80,11 +85,11 @@ function   funcallname=lst_funcall(fil,fnamvect)
                 mputl(functxt,pathconvert(TMPDIR)+fnam+".m");
             else
                 functxt=txt(funcdecl(k):funcdecl(k+1)-1)
-                str=strindex(txt(funcdecl(k)),"(")-1
-                if str==-1 then
-                    funcname=stripblanks(part(txt(funcdecl(k)),strindex(txt(funcdecl(k)),["function[","function "])+8:length(txt(funcdecl(k)))))
+                str=strindex(txt(funcdecl(k)),"(")
+                if str==[] then
+                    funcname=stripblanks(part(txt(funcdecl(k)),tmp+8:length(txt(funcdecl(k)))))
                 else
-                    funcname=stripblanks(part(txt(funcdecl(k)),strindex(txt(funcdecl(k)),["function[","function "])+8:str(1)))
+                    funcname=stripblanks(part(txt(funcdecl(k)),tmp+8:str(1)-1))
                 end
                 keq=strindex(funcname,"=")
                 if ~isempty(keq) then
@@ -147,7 +152,7 @@ function   funcallname=lst_funcall(fil,fnamvect)
     [helppart,txt,batch]=m2sci_syntax(txt)
     // save txt vector, helpart and batch after the syntax modification
     if strindex(fil,TMPDIR)==[] then
-        save(pathconvert(TMPDIR)+fnam+".tree",txt,helppart,batch)
+        save(pathconvert(TMPDIR)+fnam+".tree", "txt", "helppart", "batch")
     end
 
     funcallname=[]
@@ -188,8 +193,9 @@ function   funcallname=lst_funcall(fil,fnamvect)
         part(func_proto,kpar:length(func_proto))
 
         deff(func_proto,[firstline;txt(2:$)])
-        w=who("get");
-        mname=w(1);
+        // w=who("get");
+        // mname=w(1);
+
 
         funcprot(fprot)
 

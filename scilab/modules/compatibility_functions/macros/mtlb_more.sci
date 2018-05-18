@@ -13,11 +13,11 @@
 function []=mtlb_more(in)
     // Emulation function for more() Matlab function
 
-    if in=="''off''" then
+    if in=="''off''" | in=="""off""" then
         lines(0)
-    elseif in=="''on''" then
+    elseif in=="''on''" | in=="""on""" then
         lines(60)
     else
-        lines(n)
+        lines(in)
     end
 endfunction

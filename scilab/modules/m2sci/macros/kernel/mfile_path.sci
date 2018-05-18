@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ???? - INRIA - Scilab
+// Copyright (C) 2018 - Samuel GOUGEON
 //
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
@@ -11,11 +12,15 @@
 // along with this program.
 
 function path=mfile_path(nam)
-    fil=nam+".m";nf=length(fil)
-    path=[];
+    fil = nam+".m";
+    nf = length(fil)
+    path = [];
     for k=1:size(mfiles,"*")
         pk=mfiles(k);
-        kk=strindex(pk,"/");
+        kk=strindex(pk,["/" "\"]);
+        if kk==[]
+            kk = 0
+        end
         if fil==part(pk,kk($)+1:length(pk)) then
             path=pk;
             break

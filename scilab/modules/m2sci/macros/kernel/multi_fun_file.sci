@@ -33,8 +33,8 @@ function bval=multi_fun_file(fil,res_path,Recmode,only_double,verbose_mode,prett
         file_path="./"
     else
         file_path=part(fil,1:k($))
+        base_name=part(base_name,k($)+1:ke)
     end
-    base_name=part(base_name,k($)+1:ke)
 
     txt=mgetl(fil);
 
@@ -83,11 +83,11 @@ function bval=multi_fun_file(fil,res_path,Recmode,only_double,verbose_mode,prett
         tmpfiles=[]
         for k=1:size(funcdecl,"*")-1
             functxt=txt(funcdecl(k):funcdecl(k+1)-1)
-            str=  strindex(txt(funcdecl(k)),"(")-1
-            if str==-1 then
+            str=  strindex(txt(funcdecl(k)),"(")
+            if str==[] then
                 funcname=stripblanks(part(txt(funcdecl(k)),strindex(txt(funcdecl(k)),["function[","function "])+8:length(txt(funcdecl(k)))))
             else
-                funcname=stripblanks(part(txt(funcdecl(k)),strindex(txt(funcdecl(k)),["function[","function "])+8:str(1)))
+                funcname=stripblanks(part(txt(funcdecl(k)),strindex(txt(funcdecl(k)),["function[","function "])+8:str(1)-1))
             end
 
             keq=strindex(funcname,"=")
