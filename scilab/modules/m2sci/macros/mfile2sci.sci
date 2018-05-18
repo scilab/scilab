@@ -211,7 +211,6 @@ function res=mfile2sci(fil,res_path,Recmode,only_double,verbose_mode,prettyprint
             error(msprintf(msg,"mfile2sci", mname))
         end
         w = mname;
-
         nametbl=[nametbl;mname]
         if fnam<>mname & ~batch then // warning is not displayed for a batch file
             mss=msprintf(gettext("Warning: file %s defines function %s instead of %s\n         %s.sci, %s.cat and sci_%s.sci will be generated !"),fil,mname,fnam,mname,mname,mname);
@@ -222,7 +221,20 @@ function res=mfile2sci(fil,res_path,Recmode,only_double,verbose_mode,prettyprint
         // Compilation
         txt = [part(txt(1),kc:ksc-1);firstline;txt(2:$)]
         mputl(txt, TMPDIR+"/"+mname+".sci");
-        exec(TMPDIR+"/"+mname+".sci", -1);
+        err = exec(TMPDIR+"/"+mname+".sci", "errcatch", -1);
+        if err~=0
+            // Maybe a final {end} closing {function} => try without it
+            txt($) = []   // removing "endfunction"
+            while size(txt,1)>0 & stripblanks(txt($))==""
+                txt($) = []
+            end
+            if size(txt,1)>0 & stripblanks(txt($))=="end" then
+                txt($) = []
+                txt = [txt ; "endfunction"]
+                mputl(txt, TMPDIR+"/"+mname+".sci");
+            end
+            exec(TMPDIR+"/"+mname+".sci", -1);
+        end
         funcprot(fprot);
         mdelete(TMPDIR+"/"+mname+".sci");
 
@@ -375,8 +387,7 @@ endfunction
 
 function funcname = getMacroNameFromPrototype(proto)
     // Private utility function
-
-    // Extraction of the macro's name: http://bugzilla.scilab.org/12147
+    // Extraction of the macro's name
     tmp = tokens(proto,["(" "=" ")"]);
     if size(tmp,1)>1
         [?,?,?,funcname] = regexp(proto, "/(?:.*?=(.*?)\(|(.*?)\(|[^(]+?=\s*([^(]+))/","o");
@@ -391,4 +402,3 @@ function funcname = getMacroNameFromPrototype(proto)
     // proto = "fun5";
     // proto = "a = fun6"; // from bug_2341 use case
 endfunction
-
