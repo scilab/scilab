@@ -61,6 +61,9 @@
             Algorithm: We compute the 1-norm of X with Lapack/DLANGE, compute its LU decomposition
             with Lapack/DGETRF, and finally estimate the condition with Lapack/DGECON.
         </para>
+        <para>
+          <literal>rcond([])</literal> returns <literal>[]</literal>.
+        </para>
     </refsection>
     <refsection>
         <title>Examples</title>

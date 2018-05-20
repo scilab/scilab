@@ -135,6 +135,11 @@
                 </listitem>
             </varlistentry>
         </variablelist>
+
+        <para>For [] :</para>
+        <para>
+            <literal>norm([])</literal> and <literal>norm([],p)</literal> return 0.
+        </para>
     </refsection>
     <refsection>
         <title>Примеры</title>

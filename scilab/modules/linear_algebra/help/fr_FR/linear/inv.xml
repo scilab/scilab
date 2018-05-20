@@ -48,6 +48,9 @@
             équivalent à <literal>invr(X)</literal>.
         </para>
         <para>
+          <literal>inv([])</literal> vaut <literal>[]</literal>.
+        </para>
+        <para>
             Pour les systèmes dynamiques linéaires sous forme de leur représentation
             d'état (liste de type <literal>syslin</literal>), <literal>inv(X)</literal> est
             équivalent à <literal>invsyslin(X)</literal>.

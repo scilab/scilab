@@ -118,8 +118,8 @@ See [the wiki page on porting code from 5.5 to 6.0](https://wiki.scilab.org/From
 * Declaring strings using non-homogenous delimiters ("string' or 'string") is no longer allowed.
 * `(a=b)` executed as `a == b` is now deprecated and returns an error.
 * Function definitions can finish with `end` instead of `endfunction`.
-* `{}` and `[]` are now distinct operators. Matrices can no longer be defined using `{}` operators.
-These are reserved for cell definition.
+* `{}` and `[]` are now distinct operators. Matrices can no longer be defined using `{}` operators. These are reserved for cell definition.
+* Addition, subtraction, and inequality comparisons `<` `<=` `>=` `>` with an empty matrix now returns an empty matrix.
 * New `&&` and `||` boolean AND and OR operators are introduced. They are shortcut in expressions even out of conditional tests, like `A = [1 %pi] || det([1 2])`
 * Syntax `%i:10` is now deprecated (only real scalars can be used).
 * Control and block keywords `break` `case` `catch` `continue` `do` `else` `elseif` `end` endfunction` `for` `function` `if` `resume` `return` `select` `then` `try` and `while` can no longer be overloaded as regular assignable variables as in `end=1`. They are now reserved and protected.
@@ -139,7 +139,6 @@ These are reserved for cell definition.
 Feature changes and additions
 -----------------------------
 
-* Addition or subtraction with an empty matrix now returns an empty matrix.
 * `scatter/scatter3` plot with different mark colors is now available.
 * `parulacolormap` is now available.
 * `name2rgb` can now handle a single string and a matrix of strings.
@@ -253,7 +252,7 @@ Help pages:
   `printf`, `sprintf`, `iconvert`, `stdev`, `xlabel`, `and_op`, `or_op`, `permute`, `tree2code`, `%helps`,
   `scilab`, `flipdim`, `Matplot_properties`, `text_properties`, `meshgrid`, `ismatrix`, `xget`, `xset`, `ieee`, `evstr`,
   `uigetfont`, `uigetdir`, `uigetfile`, `uiputfile`, `cat`, `makecell`, `xstring`, `norm`, `barhomogenize`,
-  `colordef`, `matrix`, `coffg`, `diag`, `speye`, `sparse`, `recursionlimit`, `for`, `fileinfo`, `end`, `iconvert`, `Globalproperty`, `unique`, `intdec`, `plus`, `minus`, `varn`, `savematfile`
+  `colordef`, `matrix`, `coffg`, `diag`, `speye`, `sparse`, `recursionlimit`, `for`, `fileinfo`, `end`, `iconvert`, `Globalproperty`, `unique`, `intdec`, `plus`, `minus`, `varn`, `savematfile`, `empty`
 * rewritten: `consolebox`, `double`, `isoview`, `pixel_drawing_mode`, `householder`, `or`, `|,||`,
  `and`, `&,&&`, `format`, `type`, `typeof`, `brackets`, `setlanguage`, `sleep`, `isinf`, `unique`,
  `bitor`, `bitxor`, `bitand`, `macr2tree`, `geomean`, `clf`, `getPreferencesValue`, `gcd`, `lcm`, `isglobal`,

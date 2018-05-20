@@ -61,6 +61,10 @@
             Xの1-ノルムを Lapack/DLANGEで計算, そのLU分解をLapack/DGETRFで計算,
             最後に条件をLapack/DGECONで推定します.
         </para>
+        <para>
+          <literal>rcond([])</literal> returns <literal>[]</literal>.
+        </para>
+
     </refsection>
     <refsection>
         <title>例</title>

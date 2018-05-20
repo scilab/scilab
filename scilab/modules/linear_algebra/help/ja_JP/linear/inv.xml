@@ -82,6 +82,9 @@
             <literal>inv(X)</literal> は <literal>invr(X)</literal>に等しくなります.
 
         </para>
+        <para>
+          <literal>inv([])</literal> returns <literal>[]</literal>.
+        </para>
 
         <para>
 

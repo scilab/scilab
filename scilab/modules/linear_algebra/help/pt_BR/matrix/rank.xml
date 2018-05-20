@@ -19,13 +19,13 @@
         <refpurpose>posto</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title> Seqüência de Chamamento </title>
+        <title> SeqÃ¼Ãªncia de Chamamento </title>
         <synopsis>[i]=rank(X)
             [i]=rank(X,tol)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>X</term>
@@ -36,29 +36,30 @@
             <varlistentry>
                 <term>tol</term>
                 <listitem>
-                    <para>número real não-negativo</para>
+                    <para>nÃºmero real nÃ£o-negativo</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            <literal>rank(X)</literal> é o posto numérico de
-            <literal>X</literal> i.e. o número de valores singulares de X que são
+            <literal>rank(X)</literal> Ã© o posto numÃ©rico de
+            <literal>X</literal> i.e. o nÃºmero de valores singulares de X que sÃ£o
             maiores que <literal>norm(size(X),'inf') * norm(X) *
                 %eps
             </literal>
             .
         </para>
         <para>
-            <literal>rank(X,tol)</literal> é o número de valores singulares de
-            <literal>X</literal> que são maiores que <literal>tol</literal>.
+            <literal>rank(X,tol)</literal> Ã© o nÃºmero de valores singulares de
+            <literal>X</literal> que sÃ£o maiores que <literal>tol</literal>.
         </para>
+        <para><literal>rank([])</literal> returns 0.</para>
         <para>
-            Note que o valor padrão de <literal>tol</literal> é proporcional a
-            <literal>norm(X)</literal>. Como conseqüência,
-            <literal>rank([1.d-80,0;0,1.d-80])</literal> é 2 !.
+            Note que o valor padrÃ£o de <literal>tol</literal> Ã© proporcional a
+            <literal>norm(X)</literal>. Como conseqÃ¼Ãªncia,
+            <literal>rank([1.d-80,0;0,1.d-80])</literal> Ã© 2 !.
         </para>
     </refsection>
     <refsection>
@@ -69,7 +70,7 @@ rank([1,0;0,1.d-80])
  ]]></programlisting>
     </refsection>
     <refsection>
-        <title> Ver Também</title>
+        <title> Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="svd">svd</link>

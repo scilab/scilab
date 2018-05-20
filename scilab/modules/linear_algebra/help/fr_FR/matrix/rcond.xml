@@ -64,6 +64,9 @@
             de X est effectuée avec Lapack/DGETRF. Finalement, le conditionnement est estimé
             avec Lapack/DGECON.
         </para>
+        <para>
+          <literal>rcond([])</literal> vaut <literal>[]</literal>.
+        </para>
     </refsection>
     <refsection>
         <title>Exemples</title>

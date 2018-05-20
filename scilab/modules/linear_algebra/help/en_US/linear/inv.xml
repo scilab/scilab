@@ -44,6 +44,9 @@
             <literal>inv(X)</literal> is equivalent to <literal>invr(X)</literal>.
         </para>
         <para>
+          <literal>inv([])</literal> returns <literal>[]</literal>.
+        </para>
+        <para>
             For linear systems in state-space representation (<literal>syslin</literal> list),
             <literal>invr(X)</literal> is equivalent to <literal>invsyslin(X)</literal>.
         </para>

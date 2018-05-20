@@ -86,21 +86,16 @@
         </para>
 
         <para>
-
             <literal>rank(X,tol)</literal> は,<literal>tol</literal>
-
             より大きな<literal>X</literal>の特異値の数です.
-
         </para>
-
+        <para><literal>rank([])</literal> returns 0.</para>
         <para>
-
+          <note>
             <literal>tol</literal> のデフォルト値は
-
             <literal>norm(X)</literal>に比例することに注意してください.
-
             結果として,<literal>rank([1.d-80,0;0,1.d-80])</literal> は 2 になります!.
-
+          </note>
         </para>
 
     </refsection>
