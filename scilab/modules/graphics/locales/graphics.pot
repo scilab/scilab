@@ -3665,7 +3665,6 @@ msgstr ""
 # File: modules/graphics/macros/plot3d3.sci, line: 19
 # File: modules/graphics/macros/plotframe.sci, line: 28
 # File: modules/graphics/macros/title.sci, line: 17
-# File: modules/graphics/macros/xinfo.sci, line: 19
 # File: modules/graphics/macros/xlabel.sci, line: 17
 # File: modules/graphics/macros/xsave.sci, line: 14
 # File: modules/graphics/macros/ylabel.sci, line: 17

@@ -192,6 +192,7 @@ Removed Functions
 * `xgetech` was obsolete and has been removed. Please use `gca` instead.
 * `fac3d` was obsolete since Scilab 4 and has been removed. Please use `plot3d` instead.
 * `fac3d1` was obsolete since Scilab 4 and has been removed. Please use `plot3d1` instead.
+* `xinfo` was obsolete and has been removed. Please use `gcf().info_message` instead.
 
 
 Known issues
