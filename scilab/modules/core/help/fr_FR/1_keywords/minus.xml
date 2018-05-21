@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="minus">
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * Copyright (C) 2018 - Samuel GOUGEON
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:lang="fr" xml:id="minus">
     <refnamediv>
         <refname>minus (-)</refname>
         <refpurpose>opérateur de soustraction, changement de signe  </refpurpose>
@@ -14,18 +32,11 @@
         <title>Paramètres</title>
         <variablelist>
             <varlistentry>
-                <term>X  </term>
+                <term>X, Y</term>
                 <listitem>
                     <para>
-                        scalaire, vecteur ou matrice de nombres, polynômes ou fractions rationnelles, ou liste de type <literal>syslin</literal>.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>Y  </term>
-                <listitem>
-                    <para>
-                        scalaire, vecteur ou matrice de nombres, polynômes ou fractions rationnelles, ou liste de type <literal>syslin</literal>.
+                        scalaires, vecteurs, matrices ou hypermatrices de booléens, nombres,
+                        polynômes ou fractions rationnelles, ou liste de type <literal>syslin</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -37,36 +48,121 @@
             Soustraction
         </para>
         <para>
-            Pour les opérandes numériques la signification est celle de la soustraction habituelle. Si l'un des opérandes est une matrice (ou un vecteur) et l'autre un scalaire l'opération est effectuée pour chaque élément de la matrice. Si <literal>Y==[]</literal> le résultat est <literal>X</literal>. Si <literal>X==[]</literal> le résultat est <literal>-Y</literal>.
+            Pour les opérandes numériques, la signification est celle de la soustraction habituelle.
+            Si l'un des opérandes est un scalaire, l'opération est effectuée sur chaque élément
+            de l'autre opérande.
         </para>
         <para>
-            La soustraction peut être aussi définie pour d'autres types de données via
+            Dés que des booléens sont impliqués dans une soustraction avec des nombres (décimaux,
+            complexes, ou entiers encodés), ils sont automatiquement convertis dans le type numérique
+            considéré avant d'effectuer la soustraction, avec
+            <literal>%F => 0</literal> et <literal>%T => 1</literal>.
+        </para>
+        <para>
+            Quel que soit le type (régulier) de <varname>X</varname>, alors <literal>[]-X</literal>,
+            <literal>X-[]</literal>, et <literal>-[]</literal> produisent <literal>[]</literal>.
+        </para>
+        <para>
+            La soustraction peut être définie pour d'autres types de données via
             la surcharge d'opérateurs (voir <link linkend="overloading">overloading</link>).
         </para>
     </refsection>
     <refsection>
         <title>Exemples</title>
         <programlisting role="example"><![CDATA[
-[1,2]-1
-[]-2
+[] - 2
+1 - []
+[2, 5] - 1
+[2, 5] - [3 -2]
 
-%s-2
-1/%s-2
-"cat"+"enate"
+%s - 2
+1/%s - 2
+]]></programlisting>
+    <screen><![CDATA[
+--> [] - 2
+ ans  =
+    []
+
+--> 1 - []
+ ans  =
+    []
+
+--> [2, 5] - 1
+ ans  =
+   1.   4.
+
+--> [2, 5] - [3 -2]
+ ans  =
+  -1.   7.
+
+--> %s - 2
+ ans  =
+  -2 +s
+
+--> 1/%s - 2
+ ans  =
+   1 - 2s
+   -------
+     s
+]]></screen>
+    <para>Avec des booléens :</para>
+        <programlisting role="example"><![CDATA[
+-[%f %t]
+[%f %f %t %t]  - [%f %t %f %t]
+%t - %i
+c = %t - int8(7), inttype(c)
  ]]></programlisting>
+    <screen><![CDATA[
+--> -[%f %t]
+ ans  =
+   0.  -1.
+
+--> [%f %f %t %t]  - [%f %t %f %t]
+ ans  =
+   0.  -1.   1.   0.
+
+--> %t - %i
+ ans  =
+   1. - i
+
+--> c = %t - int8(7), typeof(c)
+ c  =
+ -6
+
+ ans  =
+ int8
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>
         <simplelist type="inline">
             <member>
-                <link linkend="mtlb_mode">mtlb_mode</link>
+                <link linkend="plus">plus</link>
             </member>
             <member>
-                <link linkend="plus">plus</link>
+                <link linkend="symbols">operators</link>
             </member>
             <member>
                 <link linkend="overloading">overloading</link>
             </member>
+            <member>
+                <link linkend="oldEmptyBehaviour">oldEmptyBehaviour</link>
+            </member>
+            <member>
+                <link linkend="mtlb_s">mtlb_s</link>
+            </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revremark>
+                    <literal>A - []</literal> et <literal>[] - A</literal> produisent désormais
+                    <literal>[]</literal> au lieu de <literal>A</literal> ou <literal>-A</literal>.
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

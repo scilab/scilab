@@ -1,29 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="plus">
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ???? - INRIA
+ * Copyright (C) 2018 - Samuel GOUGEON
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:lang="ru" xml:id="plus">
     <refnamediv>
-        <refname>плюс</refname>
-        <refpurpose>(+)  оператор суммирования</refpurpose>
+        <refname>плюс (+)</refname>
+        <refpurpose>Суммирование чисел. Конкатенация текста (склейка)</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Синтаксис</title>
         <synopsis>
-            X+Y
-            str1+str2
+            X + Y
+            str1 + str2
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
         <variablelist>
             <varlistentry>
-                <term>X,Y</term>
+                <term>X, Y</term>
                 <listitem>
                     <para>
-                        скаляр или матрица/вектор числовых, полиномиальных или рациональных значений. Это также может быть список <literal>syslin</literal>.
+                      скаляры, векторы, матрицы или гиперматрицы чисел, многочлены, рациональные
+                      или логические значения. Они также могут быть <literal>syslin</literal>.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>str1,str2</term>
+                <term>str1, str2</term>
                 <listitem>
                     <para>символьная строка, вектор или матрица символьных строк.</para>
                 </listitem>
@@ -33,42 +52,113 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Суммирование.
+            Для числовых операндов суммирование имеет свое обычное значение.
         </para>
         <para>
-            Для числовых операндов суммирование имеет свой обычный смысл. Если один из операндов является
-            матрицей, а другой -- скаляр, то скаляр добавляется к каждому элементу матрицы. Если один из
-            операндов является пустой матрицей, то возвращается второй операнд (это поведение по умолчанию,
-            но его можно изменить с помощью функции <literal>mtlb_mode</literal>).
+            Суммирование логических значений друг с другом или числами целыми, десятичными или комплексными
+            выполняет перед обработкой неявные преобразования <literal>%F => 0</literal> и <literal>%T => 1</literal>.
+            Результат имеет тот же тип, который у входных чисел, либо десятичный для суммируемых друг с
+            другом логических значений.
         </para>
         <para>
-            Для символьных строк <literal>+</literal> означает конкатенацию.
+            Для двух текстов <literal>+</literal> объединяет (склеивает) их вместе.
         </para>
         <para>
-            Суммирование может быть также определено для других типов данных через "запрограммированные"
-            операции (см. <link linkend="overloading">перегрузку</link>).
+            Если один операнд является массивом, а другой - скаляром, то скаляр применяется
+            (добавляется или склеивается) к каждому компоненту массива.
+        </para>
+        <para>
+            Если операндом является пустая матрица <literal>[]</literal>, то результатом будет
+            <literal>[]</literal>.
+        </para>
+        <para>
+            Оператор суммирования может быть распространен на другие типы данных через
+            <link linkend="overloading">перегрузку</link>.
         </para>
     </refsection>
     <refsection>
         <title>Примеры</title>
         <programlisting role="example"><![CDATA[
-[1,2]+1
-[]+2
-s=poly(0,"s");
-s+2
-1/s+2
-"кон"+"кат"+"енация"
+[1, 2] + 1
+[] + 2
+%s + 2
+1/%s + %s
+"кон" + ["катенация" "такт" "соль"]
  ]]></programlisting>
+    <screen><![CDATA[
+--> [1, 2] + 1
+ ans  =
+   2.   3.
+
+--> [] + 2
+ ans  =
+    []
+
+--> %s + 2
+ ans  =
+   2 +s
+
+--> 1/%s + %s
+ ans  =
+        2
+   1 + s
+   ------
+     s
+
+--> "кон" + ["катенация" "такт" "соль"]
+ ans  =
+!конкатенация  контакт  консоль  !
+]]></screen>
+    <para>С логическими значенниями:</para>
+        <programlisting role="example"><![CDATA[
+[%f %f %t %t] + [%f %t %f %t]
+%f + [-1 0 2 %i]
+%t + [-1 0 2 %i]
+ ]]></programlisting>
+    <screen><![CDATA[
+--> [%f %f %t %t] + [%f %t %f %t]
+ ans  =
+   0.   1.   1.   2.
+
+--> %f + [-1 0 2 %i]
+ ans  =
+  -1.   0.   2.   i
+
+--> %t + [-1 0 2 %i]
+ ans  =
+   0.   1.   3.   1. + i
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
-                <link linkend="mtlb_mode">mtlb_mode</link>
+                <link linkend="minus">минус</link>
+            </member>
+            <member>
+                <link linkend="symbols">символы</link>
             </member>
             <member>
                 <link linkend="overloading">перегрузка</link>
             </member>
+            <member>
+                <link linkend="oldEmptyBehaviour">oldEmptyBehaviour</link>
+            </member>
+            <member>
+                <link linkend="mtlb_a">mtlb_a</link>
+            </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revremark>
+                    <literal>A + []</literal> теперь возвращает <literal>[]</literal> вместо
+                    <literal>A</literal>
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -13,34 +14,31 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="minus" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="minus" xml:lang="en">
     <refnamediv>
         <refname>minus</refname>
-        <refpurpose>(-) subtraction operator, sign changes</refpurpose>
+        <refpurpose>(-) subtraction operator. Sign change</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-            X-Y
-            -Y
+            X - Y
+            -X
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>X</term>
+                <term>X, Y</term>
                 <listitem>
-                    <para>scalar or vector or matrix of numbers, polynomials or
-                        rationals. It may also be a <literal>syslin</literal> list.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>Y</term>
-                <listitem>
-                    <para>scalar or vector or matrix of numbers, polynomials or
-                        rationals. It may also be a <literal>syslin</literal> list.
+                    <para>
+                        scalars, vectors, matrices, or hypermatrices of booleans, numbers,
+                        polynomials or rationals.
+                        They may also be some <literal>syslin</literal> lists.
                     </para>
                 </listitem>
             </varlistentry>
@@ -49,35 +47,109 @@
     <refsection>
         <title>Description</title>
         <para>Subtraction</para>
-        <para>For numeric operands subtraction as its usual meaning. If one of
-            the operands is a matrix and the other one a scalar then the operation is
-            performed element-wise. For <literal>X - Y</literal>, if <literal>Y == []</literal> or <literal>Y == []</literal> then <literal>[]</literal> is returned;
+        <para>
+            For numeric operands, the subtraction has its usual meaning. If one of
+            the operands is a scalar, then the substraction is performed with each component of
+            the other operand.
         </para>
-        <para>Subtraction may also be defined for other data types through
-            "soft-coded" operations (see <link linkend="overloading">overloading</link>).
+        <para>
+            As soon as a boolean is involved in a substraction with a number (decimal, complex,
+            or encoded integer), it is automatically converted in the type (and integer type)
+            of the number before performing the substraction or the sign change, as
+            <literal>%F => 0</literal> and <literal>%T => 1</literal>.
+        </para>
+        <para>
+            Whatever is the (regular) type of <varname>X</varname>, then <literal>[]-X</literal>,
+            <literal>X-[]</literal>, and <literal>-[]</literal> return <literal>[]</literal>.
+        </para>
+        <para>
+            The subtraction operator may be extended to other custom data types through the
+            <link linkend="overloading">overloading</link> mechanism.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-[1,2]-1
-[]-2
+[] - 2
+1 - []
+[2, 5] - 1
+[2, 5] - [3 -2]
 
-%s-2
-1/%s-2
+%s - 2
+1/%s - 2
+]]></programlisting>
+    <screen><![CDATA[
+--> [] - 2
+ ans  =
+    []
+
+--> 1 - []
+ ans  =
+    []
+
+--> [2, 5] - 1
+ ans  =
+   1.   4.
+
+--> [2, 5] - [3 -2]
+ ans  =
+  -1.   7.
+
+--> %s - 2
+ ans  =
+  -2 +s
+
+--> 1/%s - 2
+ ans  =
+   1 - 2s
+   -------
+     s
+]]></screen>
+    <para>With booleans:</para>
+        <programlisting role="example"><![CDATA[
+-[%f %t]
+[%f %f %t %t]  - [%f %t %f %t]
+%t - %i
+c = %t - int8(7), inttype(c)
  ]]></programlisting>
+    <screen><![CDATA[
+--> -[%f %t]
+ ans  =
+   0.  -1.
+
+--> [%f %f %t %t]  - [%f %t %f %t]
+ ans  =
+   0.  -1.   1.   0.
+
+--> %t - %i
+ ans  =
+   1. - i
+
+--> c = %t - int8(7), typeof(c)
+ c  =
+ -6
+
+ ans  =
+ int8
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="mtlb_mode">mtlb_mode</link>
-            </member>
-            <member>
                 <link linkend="plus">plus</link>
             </member>
             <member>
+                <link linkend="symbols">operators</link>
+            </member>
+            <member>
                 <link linkend="overloading">overloading</link>
+            </member>
+            <member>
+                <link linkend="oldEmptyBehaviour">oldEmptyBehaviour</link>
+            </member>
+            <member>
+                <link linkend="mtlb_s">mtlb_s</link>
             </member>
         </simplelist>
     </refsection>
@@ -87,7 +159,8 @@
             <revision>
                 <revnumber>6.0.0</revnumber>
                 <revremark>
-                    Modified the behaviour of <literal>A- []</literal> and <literal>[] - A</literal> to return the empty matrix <literal>[]</literal> instead of <literal>A</literal> or <literal>-A</literal>
+                    <literal>A - []</literal> and <literal>[] - A</literal> now return
+                    <literal>[]</literal> instead of <literal>A</literal> or <literal>-A</literal>.
                 </revremark>
             </revision>
         </revhistory>
