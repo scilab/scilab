@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ????-2008 - INRIA
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -13,14 +14,21 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="edit" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="edit" xml:lang="en">
     <refnamediv>
         <refname>edit</refname>
-        <refpurpose>function editing</refpurpose>
+        <refpurpose>edits a given Scilab function or file</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>edit(functionname[,linenumber])</synopsis>
+        <synopsis>
+            edit functionname
+            edit(functionname, linenumber)
+            edit functionname linenumber
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -34,7 +42,9 @@
             <varlistentry>
                 <term>linenumber</term>
                 <listitem>
-                    <para>integer</para>
+                    <para>
+                        positive integer (of type 1 or 10)
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -42,44 +52,60 @@
     <refsection>
         <title>Description</title>
         <para>
-            If <literal>functionname</literal> is the name of a defined scilab function
-            <literal>edit(functionname)</literal> try to open the associated file
+            If <varname>functionname</varname> is the name of a defined scilab function,
+            <literal>edit(functionname)</literal> tries to open the associated source file
             <literal>functionname.sci</literal>.
         </para>
         <para>
-            If <literal>functionname</literal> is the name of a undefined scilab function
-            <literal>edit(functionname)</literal> create a <literal>functionname.sci</literal> file in
-            the current directory.
+            If <varname>functionname</varname> is not found as a defined Scilab function but
+            matches naming rules of Scilab functions, <literal>edit(functionname)</literal>
+            creates the file <literal>functionname.sci</literal> file in the
+            <literal>TMPDIR</literal> directory.
         </para>
         <para>
-            If <literal>functionname</literal> is not a valid macro or function name
-            <literal>edit(functionname)</literal> opens the file with file name equal to
-            <literal>functionname</literal>.
+            If <varname>functionname</varname> is a file path or an expression not matching
+            Scilab functions naming rules, <literal>edit(functionname)</literal> opens the file
+            with file name equal to <varname>functionname</varname>.
         </para>
         <para>
-            If <literal>linenumber</literal> is given, the file is opened at this line relatively to the definition of the macro named as the file itself. If the macro definition is not found, the file is opened at line given by <literal>linenumber</literal>.
+            If <varname>linenumber</varname> is given, the file is opened at this line inside the
+            function/endfunction block defining the macro named as the file itself.
+            If the definition of the function <varname>functionname</varname> is not found in the
+            file, the file is opened at the absolute line number <varname>linenumber</varname>.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-//open editor with text of this function
-edit('edit')
+// Opens editor with text of this function
+edit edit
 
-//open editor for a new function
-edit('myfunction')
+// Opens editor for a new function, creating the file myfun.sci in TMPDIR
+edit myfunction
 
-//open the file bar.sci in TMPDIR directory
-edit(fullfile(TMPDIR+'bar.sci'))
+// Opens or creates the file foo.sce in the current working directory
+edit foo.sce
 
-// open the file test_run.sci at line 123
-// relatively to the definition of test_run()
+// Opens the file scilab.ini in the SCIHOME directory
+edit(SCIHOME+"/scilab.ini")
+
+// Opens the file test_run.sci in which test_run() is defined,
+// at line 123 inside the test_run() function block:
 edit('test_run', 123)
+
+// Same thing with an inline syntax (line number as text):
+edit test_run 123
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="editor">editor</link>
+            </member>
+            <member>
+                <link linkend="scinotes">scinotes</link>
+            </member>
             <member>
                 <link linkend="manedit">manedit</link>
             </member>
@@ -87,8 +113,29 @@ edit('test_run', 123)
                 <link linkend="names">names</link>
             </member>
             <member>
-                <link linkend="editor">editor</link>
+                <link linkend="editvar">editvar</link>
+            </member>
+            <member>
+                <link linkend="ged">ged</link>
             </member>
         </simplelist>
+    </refsection>
+
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.3.1</revnumber>
+                <revdescription>
+                    New <varname>linenumber</varname> input option.
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revdescription>
+                    <varname>linenumber</varname> can now be of type text as "23".
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

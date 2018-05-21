@@ -2,6 +2,7 @@
 // Copyright (C) ????-2008 - INRIA
 // Copyright (C) 2008 - INRIA - Allan CORNET
 // Copyright (C) 2010 - DIGITEO - Allan CORNET
+// Copyright (C) 2018 - Samuel GOUGEON
 //
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
@@ -14,19 +15,31 @@
 
 function edit(macroname,linenumber)
     // macroname : character string giving a macroname
-    // linenumber : line number
+    // linenumber : line number (as decimal number or literal one)
 
     [lhs,rhs] = argn(0);
     if (rhs > 2) then
-        error(sprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "edit", 1));
+        msg = _("%s: Wrong number of input argument(s): At least %d expected.\n")
+        error(sprintf(msg, "edit", 1));
     end
 
     if (rhs >= 1 & type(macroname) ~= 10) then
-        error(sprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"),"edit",1));
+        msg = _("%s: Wrong type for input argument #%d: String expected.\n")
+        error(sprintf(msg, "edit", 1));
     end
 
-    if (rhs == 2 & type(linenumber) ~= 1) then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Double expected.\n"),"edit",2));
+    if rhs == 2 then
+        if and(type(linenumber)~=[1 10]) then
+            msg = _("%s: Wrong type for input argument #%d: Number expected.\n")
+            error(msprintf(msg, "edit", 2));
+        end
+        if type(linenumber)==10
+            linenumber = strtod(linenumber(1))
+            if linenumber==%nan then
+                msg = _("%s: Wrong type for input argument #%d: Number expected.\n")
+                error(msprintf(msg, "edit", 2))
+            end
+        end
     end
 
     found = %f;

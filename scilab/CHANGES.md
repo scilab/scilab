@@ -86,12 +86,12 @@ Feature changes and additions
   - For decimal numbers: bits with indices > 52 can now be retrieved (up to `log2(number_properties("huge"))` = 1024).
   - For decimal numbers `x > 2^52`, querried bits below `%eps` (indices < log2(x)-52) now return `Nan` instead of 0.
   - Several bits can now be retrieved from each component of an input array.
-
+* `edit` now accepts a line number as text (like "23").
 
 Help pages:
 -----------
 
-* overhauled / rewritten: `bitget`
+* overhauled / rewritten: `bitget`, `edit`
 * fixed / improved:  `bench_run` `M_SWITCH`
 
 
@@ -135,3 +135,4 @@ Bug Fixes
 * [#15269](http://bugzilla.scilab.org/show_bug.cgi?id=15269): `xgetech` was poor and stiff compared to any combination of `gca()` properties `.axes_bounds`, `.data_bounds`, `.log_flags`, and `.margins`. It is removed.
 * [#15271](http://bugzilla.scilab.org/show_bug.cgi?id=15271): `bitget` needed to be upgraded.
 * [#15425](http://bugzilla.scilab.org/show_bug.cgi?id=15425): The Kronecker product `a.*.b` failed when `a` or `b` or both are hypermatrices, with one or both being polynomials or rationals.
+* [#15577](http://bugzilla.scilab.org/show_bug.cgi?id=15577): `edit` did not accept a line number as text, as with `edit linspace 21`.

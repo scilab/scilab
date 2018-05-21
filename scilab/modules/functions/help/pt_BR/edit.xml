@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ????-2008 - INRIA
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -13,14 +14,21 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="edit" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="edit" xml:lang="pt">
     <refnamediv>
         <refname>edit</refname>
         <refpurpose>edição de funções</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
-        <synopsis>edit(functionname)</synopsis>
+        <synopsis>
+            edit functionname
+            edit(functionname, linenumber)
+            edit functionname linenumber
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parameters</title>
@@ -31,32 +39,103 @@
                     <para>string</para>
                 </listitem>
             </varlistentry>
+            <varlistentry>
+                <term>linenumber</term>
+                <listitem>
+                    <para>
+                        positive integer (of type 1 or 10)
+                    </para>
+                </listitem>
+            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
         <title>Descrição</title>
-        <para>Se functionname for o nome de uma função Scilab definida
+        <para>Se functionname for o nome de uma função Scilab definida,
             <literal>edit(functionname)</literal> tente abrir o arquivo associado
             <literal>functionname.sci</literal>.
         </para>
-        <para>Se functionname for o nome de uma função Scilab indefinida,
-            <literal>edit</literal> cria o arquivo functionname.sci no diretório
-            TMPDIR.
+        <para>
+            Se <varname>functionname</varname> não for encontrado como uma função Scilab definida,
+            mas corresponder às regras de nomeação das funções do Scilab,
+            <literal>edit(functionname)</literal> cria o arquivo <literal>functionname.sci</literal>
+            no diretório <literal>TMPDIR</literal>.
         </para>
-    </refsection>
+        <para>
+            Se <varname>functionname</varname> for um caminho de arquivo ou uma expressão que não
+            corresponde às regras de nomenclatura da função do Scilab,
+            <literal>edit(functionname)</literal> abre o caminho + nome do arquivo
+            <varname>functionname</varname >.
+        </para>
+        <para>
+            Se <varname>linenumber</varname> for fornecido, o arquivo será aberto nessa linha
+            dentro do bloco function / endfunction, definindo a macro nomeada como o próprio arquivo.
+            Se a definição da função <varname>functionname</varname> não for encontrada no arquivo,
+            o arquivo será aberto no número de linha absoluta <varname>linenumber</varname>.
+        </para>
+        </refsection>
     <refsection>
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
-edit('edit')  //abre o editor com o texto dessa função
-edit('myfunction')  //abre o editor para uma nova função
+// abre o editor com o texto dessa função
+edit edit
+
+// abre o editor para uma nova função, in TMPDIR
+edit myfunction
+
+// Opens or creates the file foo.sce in the current working directory
+edit foo.sce
+
+// Opens the file scilab.ini in the SCIHOME directory
+edit(SCIHOME+"/scilab.ini")
+
+// Opens the file test_run.sci in which test_run() is defined,
+// at line 123 inside the test_run() function block:
+edit('test_run', 123)
+
+// Same thing with an inline syntax (line number as text):
+edit test_run 123
  ]]></programlisting>
     </refsection>
     <refsection>
         <title>Ver Também</title>
         <simplelist type="inline">
             <member>
+                <link linkend="editor">editor</link>
+            </member>
+            <member>
+                <link linkend="scinotes">scinotes</link>
+            </member>
+            <member>
                 <link linkend="manedit">manedit</link>
             </member>
+            <member>
+                <link linkend="names">names</link>
+            </member>
+            <member>
+                <link linkend="editvar">editvar</link>
+            </member>
+            <member>
+                <link linkend="ged">ged</link>
+            </member>
         </simplelist>
+    </refsection>
+
+    <refsection role="history">
+        <title>Histórico</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.3.1</revnumber>
+                <revdescription>
+                    New <varname>linenumber</varname> input option.
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revdescription>
+                    <varname>linenumber</varname> can now be of type text as "23".
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
