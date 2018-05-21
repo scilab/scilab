@@ -382,6 +382,7 @@ Removed Functions
 * `comp` and its associated type `11` have been removed. All functions will have type `13`.
 * `readgateway` has been removed.
 * `fort` has been removed. Please use `call` instead.
+* `mtlb_mode` has been removed. Please use `oldEmptyBehavior` instead.
 
 
 Known issues

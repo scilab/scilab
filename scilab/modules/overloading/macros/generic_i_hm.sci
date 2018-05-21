@@ -121,7 +121,7 @@ function M = generic_i_hm(default_value,varargin)
         case 1 then
             k=find(olddims<>1&olddims<>0)
             if k==[]|Ndims>prod(olddims) then //shape changed
-                if mtlb_mode() then
+                if oldEmptyBehaviour("query")=="off" then
                     Ndims=[1,Ndims]
                 else
                     Ndims=[Ndims,1]

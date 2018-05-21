@@ -13,6 +13,8 @@
 function  M=createstruct(index,N)
     // Create a struct with field pointed by index equal to N
 
+    mtlbMode = oldEmptyBehaviour("query")=="off"
+
     // If index is not a list, creation is done by routines
     if type(index)==15 then
 
@@ -26,7 +28,7 @@ function  M=createstruct(index,N)
                 if type(index(1))==1 then
                     // X(p).f = y  -> index=list(p,f)
                     I=index(1)
-                    if mtlb_mode() then
+                    if mtlbMode then
                         Dims=[1 max(I)]
                     else
                         Dims=[max(I) 1]
@@ -77,7 +79,7 @@ function  M=createstruct(index,N)
                     if type(index(2))==15 then // index=list(f,list(p,q[,...]))
                         Dims=list2vec(index(2))'
                     else // index=list(f,p)
-                        if mtlb_mode() then
+                        if mtlbMode then
                             Dims=[1 index(2)]
                         else
                             Dims=[index(2) 1]
@@ -113,7 +115,7 @@ function  M=createstruct(index,N)
                         if type(index($))==15 then
                             Dims=list2vec(index($))'
                         else
-                            if mtlb_mode() then
+                            if mtlbMode then
                                 Dims=[1 index($)]
                             else
                                 Dims=[index($) 1]
@@ -140,7 +142,7 @@ function  M=createstruct(index,N)
                         if type(index($))==15 then
                             Dims=list2vec(index($))'
                         else
-                            if mtlb_mode() then
+                            if mtlbMode then
                                 Dims=[1 index($)]
                             else
                                 Dims=[index($) 1]

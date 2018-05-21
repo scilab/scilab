@@ -139,6 +139,8 @@ std::unordered_map<std::wstring, std::wstring> DeprecatedChecker::initDep()
     map.emplace(L"havewindow", L"getscilabmode");
     map.emplace(L"xpause", L"sleep");
     map.emplace(L"curblockc", L"curblock");
+    map.emplace(L"extract_help_examples", L"");
+    map.emplace(L"mtlb_mode", L"oldEmptyBehaviour");
 
     map.emplace(L"addf", L"");
     map.emplace(L"subf", L"");
