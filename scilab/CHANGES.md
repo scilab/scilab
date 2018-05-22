@@ -488,6 +488,7 @@ Known issues
 * [#15553](http://bugzilla.scilab.org/show_bug.cgi?id=15553): TOWS_c block failed with 0 simulation time.
 * [#15563](http://bugzilla.scilab.org/show_bug.cgi?id=15563): poly(A,v) was broken when A is a matrix.
 * [#15566](http://bugzilla.scilab.org/show_bug.cgi?id=15566): matrix insertion checked overall size but not individual dimensions.
+* [#15578](http://bugzilla.scilab.org/show_bug.cgi?id=15578): `mfile2sci` no longer processed correctly a comment appended to the function prototype, nor any m2scideclare() statement.
 * [#15583](http://bugzilla.scilab.org/show_bug.cgi?id=15583): `color(["red" "blue"])` yielded a puzzling error message asking for String type instead of a scalar.
 * [#15586](http://bugzilla.scilab.org/show_bug.cgi?id=15586): `tree2code()` added some leading `,` in the argins and argout lists.
 * [#15589](http://bugzilla.scilab.org/show_bug.cgi?id=15589): `inv()` could fail on some matrices of polynomials with complex coefficients.
