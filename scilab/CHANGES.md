@@ -430,6 +430,7 @@ Known issues
 * [#14988](http://bugzilla.scilab.org/show_bug.cgi?id=14988): The example of Xcos diagram on the DERIV help page was distorted.
 * [#14989](http://bugzilla.scilab.org/show_bug.cgi?id=14989): The example of Xcos diagram on the INTEGRAL_m help page was distorted.
 * [#14990](http://bugzilla.scilab.org/show_bug.cgi?id=14990): The example of Xcos diagram on the NEGTOPOS_f help page was distorted.
+* [#15091](http://bugzilla.scilab.org/show_bug.cgi?id=15091): `translatepaths()` was KO.
 * [#15092](http://bugzilla.scilab.org/show_bug.cgi?id=15092): Scalar variable was resized as a column vector instead of row.
 * [#15115](http://bugzilla.scilab.org/show_bug.cgi?id=15115): Tabs order in SciNotes was incorrect when opening file and restoring session.
 * [#15182](http://bugzilla.scilab.org/show_bug.cgi?id=15182): The result of `a.*.b` with mixed integer/decimal operands introduced in Scilab 6 returned some doubles instead of integers, inconsistently wrt the `*` and `.*` products.

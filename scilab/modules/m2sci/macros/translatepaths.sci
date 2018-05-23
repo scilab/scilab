@@ -65,7 +65,7 @@ function   transorder=translatepaths(Paths,res_path)
     end
 
     whsfil_unit=file("open",res_path+"whatis","unknown")
-    save(pathconvert(TMPDIR)+gettext("unitfile.dat"),whsfil_unit)
+    save(pathconvert(TMPDIR)+gettext("unitfile.dat"),"whsfil_unit")
     // Close paths with a / or a \
     for k=1:size(Paths,"*")
         if part(Paths(k),length(Paths(k)))<>sep then
