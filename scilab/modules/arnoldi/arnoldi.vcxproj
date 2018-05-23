@@ -212,7 +212,6 @@
     <ResourceCompile Include="src\c\arnoldi.rc" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="locales\arnoldi.pot" />
     <None Include="core_import.def" />
     <None Include="arnoldi.iss" />
     <None Include="locales\arnoldi.pot" />
