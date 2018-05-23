@@ -51,9 +51,15 @@ int sci_color(char *fname, void* pvApiCtx)
             return 1;
         }
 
-        if (isStringType(pvApiCtx, piAddr) == FALSE || isScalar(pvApiCtx, piAddr) == FALSE)
+        if (isStringType(pvApiCtx, piAddr) == FALSE)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 1);
+            return 1;
+        }
+
+        if (isScalar(pvApiCtx, piAddr) == FALSE)
+        {
+            Scierror(999, _("%s: Wrong size for input argument #%d: Scalar (1 element) expected.\n"), fname, 1);
             return 1;
         }
 
@@ -90,9 +96,15 @@ int sci_color(char *fname, void* pvApiCtx)
                 return 1;
             }
 
-            if (isDoubleType(pvApiCtx, piAddr) == FALSE || isScalar(pvApiCtx, piAddr) == FALSE)
+            if (isDoubleType(pvApiCtx, piAddr) == FALSE)
             {
-                Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), fname, i + 1);
+                Scierror(999, _("%s: Wrong type for input argument #%d: A number expected.\n"), fname, i + 1);
+                return 1;
+            }
+
+            if (isScalar(pvApiCtx, piAddr) == FALSE)
+            {
+                Scierror(999, _("%s: Wrong size for input argument #%d: Scalar (1 element) expected.\n"), fname, i + 1);
                 return 1;
             }
 
