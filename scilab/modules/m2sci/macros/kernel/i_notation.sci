@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ???? - INRIA - Scilab
+// Copyright 2018 - Samuel GOUGEON
 //
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
@@ -10,12 +11,11 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function txt=i_notation(txt)
+function txt = i_notation(txt)
     // This function changes 1i ,... by 1*i,...
 
     // M2SCI kernel functions called :
     //  - isinstring
-
 
     // To succeed in this work, we successively suppress occurences which can be proved not to be complex notation
     // Until we are 'sure' to have a complex notation
@@ -29,16 +29,19 @@ function txt=i_notation(txt)
     s2=[string(0:9),"d","e","D","E","."]
 
     for k=1:n
+        // Isolate a possible appended comment
         st=strindex(txt(k),[";//","//"])
+        endComment = "";
+        tk = txt(k) + " "
         if st<> [] then
             for stk=1:size(st,"*")
-                if ~isinstring(txt(k),stk) then
+                if ~isinstring(txt(k),st(stk)) then
+                    endComment = part(txt(k), st(stk):$);
+                    tk = part(txt(k), 1:st(stk)-1)
                     break
                 end
             end
-            continue
         end
-        tk=txt(k)+" "
 
         // Find possible occurence of complex notation
         kc=strindex(tk,matches)
@@ -76,7 +79,6 @@ function txt=i_notation(txt)
                 if ke<kd then tokill=%T,end
             end
 
-
             if ~tokill then
                 // If char which follows supposed complex notation is not an operation symbol
                 if km<>kc(kk-1) then
@@ -92,6 +94,6 @@ function txt=i_notation(txt)
                 end
             end
         end
-        txt(k)=tk
+        txt(k) = tk + endComment
     end
 endfunction
