@@ -186,17 +186,3 @@ function clf(varargin)
         end
     end
 endfunction
-
-function yn = isDocked(fh)
-    // http://fileexchange.scilab.org/toolboxes/360000
-    sf = size(fh)
-    fh = fh(:)
-    fs = matrix(fh.figure_size,2,-1)'
-    as = matrix(fh.axes_size,2,-1)'
-
-    yn = (fh.dockable=="on" & ((fs(:,1)-as(:,1)) > 20)')
-    // A test on vertical dimensions is more complicated, due to switchable
-    // menubar, toolbar and infobar.
-    yn = matrix(yn, sf)
-endfunction
-

@@ -16,7 +16,9 @@ function demo_subplot()
     my_handle.figure_name = my_plot_desc;
 
     f = gcf();
-    f.axes_size = [790, 570];
+    if ~isDocked(f)
+        f.axes_size = [790, 570];
+    end
     subplot(2,2,1);
     plot3d();
     subplot(2,2,2);
