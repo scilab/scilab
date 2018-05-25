@@ -73,7 +73,7 @@ public :
         return m_iRows;
     }
 
-    virtual int                  getSize()
+    virtual int                  getSize() const
     {
         return m_iSize;
     }
