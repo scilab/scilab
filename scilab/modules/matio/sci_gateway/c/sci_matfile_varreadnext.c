@@ -37,6 +37,7 @@ int sci_matfile_varreadnext(char *fname, void* pvApiCtx)
     int * fd_addr = NULL;
     double tmp_dbl;
     SciErr sciErr;
+    int ret;
 
     CheckRhs(1, 1);
     CheckLhs(1, 3);
@@ -85,7 +86,14 @@ int sci_matfile_varreadnext(char *fname, void* pvApiCtx)
     if ((matvar == NULL) || (matvar->name == NULL))
     {
         /* Return empty name */
-        createSingleString(pvApiCtx, Rhs + 1, "\0");
+        ret = createSingleString(pvApiCtx, Rhs + 1, "\0");
+         
+        if (ret)
+        {
+            Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            return FALSE;
+        }
+
         LhsVar(1) = Rhs + 1;
 
         if (Lhs >= 2)
