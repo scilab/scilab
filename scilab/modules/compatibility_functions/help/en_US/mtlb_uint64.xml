@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2018 - Samuel GOUGEON
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:lang="en" xml:id="mtlb_uint64">
+    <refnamediv>
+        <refname>mtlb_uint64</refname>
+        <refpurpose>Matlab uint64 emulation function</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Matlab and Scilab <literal>uint64</literal> behave differently :
+            <itemizedlist>
+                <listitem>
+                    Beyong the main interval bounds, Scilab's <literal>uint64()</literal> wraps,
+                    while Matlab's <literal>mtlb_uint64()</literal> saturates.
+                </listitem>
+                <listitem>
+                    For non integer values, Scilab's <literal>uint64()</literal> truncates the
+                    fractional part, while Matlab's <literal>mtlb_uint64()</literal> rounds to the
+                    nearest integer.
+                </listitem>
+            </itemizedlist>
+        </para>
+        <para>
+        Let <literal>imax = 2^64 - 1 = 18 446 744 073 709 551 615</literal>.
+        </para>
+        <para>
+        <table border="1" align="center">
+            <tr><th>x</th><th>uint64(x)</th><th>mtlb_uint64(x)</th></tr>
+            <tr><td align="center">%nan</td><td align="center">0</td><td align="center">0</td></tr>
+            <tr><td align="center">-%inf</td><td align="center">0</td><td align="center">0</td></tr>
+            <tr><td align="center">-2</td><td align="center">imax-1</td><td align="center">0</td></tr>
+            <tr><td align="center">-1</td><td align="center">imax</td><td align="center">0</td></tr>
+            <tr><td align="center">0</td><td align="center">0</td><td align="center">0</td></tr>
+            <tr><td align="center">1</td><td align="center">1</td><td align="center">1</td></tr>
+            <tr><td align="center">10.2</td><td align="center">10</td><td align="center">10</td></tr>
+            <tr><td align="center">10.5</td><td align="center">10</td><td align="center">11</td></tr>
+            <tr><td align="center">10.51</td><td align="center">10</td><td align="center">11</td></tr>
+            <tr><td align="center">...</td><td align="center">...</td><td align="center">...</td></tr>
+            <tr><td align="center">imax</td><td align="center">imax</td><td align="center">imax</td></tr>
+            <tr><td align="center">imax+1</td><td align="center">0</td><td align="center">imax</td></tr>
+            <tr><td align="center">imax+1</td><td align="center">1</td><td align="center">imax</td></tr>
+            <tr><td align="center">%inf</td><td align="center">imax</td><td align="center">imax</td></tr>
+        </table>
+        </para>
+        <warning>
+            <para>
+                <literal>mtlb_uint64</literal> has not to be used for hand coded functions.
+            </para>
+            <para>
+                The function <literal>mtlb_uint64(A)</literal> is used by
+                <literal>mfile2sci</literal> to replace <literal>uint64(A)</literal> when it is not
+                possible to know what is the input while porting Matlab code to Scilab. This function
+                then determines the correct semantic at run time.
+            </para>
+        </warning>
+    </refsection>
+</refentry>

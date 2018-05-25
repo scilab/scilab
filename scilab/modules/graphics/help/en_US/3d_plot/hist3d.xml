@@ -14,7 +14,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="hist3d" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org"  xml:id="hist3d" xml:lang="en">
     <refnamediv>
         <refname>hist3d</refname>
         <refpurpose>3D representation of a histogram</refpurpose>
@@ -33,7 +36,7 @@
             <varlistentry>
                 <term>mtx</term>
                 <listitem>
-                    <para>matrix of size (m,n) defining the histogram
+                    <para>matrix of size <literal>(m,n)</literal> defining the histogram
                         <literal>mtx(i,j)=F(x(i),y(j))</literal>, where <literal>x</literal>
                         and <literal>y</literal> are taken as <literal>0:m</literal> and
                         <literal>0:n</literal>.
@@ -43,9 +46,9 @@
             <varlistentry>
                 <term>list(mtx,x,y)</term>
                 <listitem>
-                    <para>where mtx is a matrix of size (m,n)defining the histogram
+                    <para>where <literal>mtx</literal> is a matrix of size <literal>(m,n)</literal> defining the histogram
                         <literal>mtx(i,j)=F(x(i),y(j))</literal>, with <literal>x</literal>
-                        and <literal>y</literal> vectors of size (1,m+1) and (1,n+1).
+                        and <literal>y</literal> vectors of size <literal>(1,m+1)</literal> and <literal>(1,n+1)</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -53,12 +56,11 @@
                 <term>&lt;opt_args&gt;</term>
                 <listitem>
                     <para>
-                        This represents a sequence of statements <literal>key1=value1,
-                            key2=value2
-                        </literal>
-                        ,... where <literal>key1</literal>,
-                        <literal>key2,...</literal> can be one of the following: theta,
-                        alpha,leg,flag,ebox. See <link linkend="plot3d">plot3d</link>.
+                        This represents a sequence of statements <literal>key1=value1</literal>,
+                        <literal>key2=value2</literal>,... where <literal>key1</literal>,
+                        <literal>key2,...</literal> can be one of the following: <literal>theta</literal>,
+                        <literal>alpha</literal>, <literal>leg</literal>, <literal>flag</literal>,
+                        <literal>ebox</literal>. See <link linkend="plot3d">plot3d</link>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -102,6 +104,7 @@ A = abs(rand(40,5));
 Z(1:40,:) = A;
 scf();
 hist3d(Z);
+isoview off
  ]]></programlisting>
         <scilab:image>
             Z = zeros(100,5);
@@ -109,6 +112,7 @@ hist3d(Z);
             Z(1:40,:) = A;
             scf();
             hist3d(Z);
+            isoview off
         </scilab:image>
         <programlisting role="example"><![CDATA[
 Z = zeros(100,5);
@@ -118,6 +122,7 @@ Index = find(Z==0);
 Z(Index) = %nan;
 scf();
 hist3d(Z);
+isoview off
  ]]></programlisting>
         <scilab:image>
             Z = zeros(100,5);
@@ -127,6 +132,7 @@ hist3d(Z);
             Z(Index) = %nan;
             scf();
             hist3d(Z);
+            isoview off
         </scilab:image>
         <programlisting role="example"><![CDATA[
 Z = zeros(100,5);
@@ -136,6 +142,7 @@ A = abs(rand(10,5));
 Z(91:100,:) = A;
 scf();
 hist3d(Z);
+isoview off
  ]]></programlisting>
         <scilab:image>
             Z = zeros(100,5);
@@ -145,6 +152,8 @@ hist3d(Z);
             Z(91:100,:) = A;
             scf();
             hist3d(Z);
+            isoview off
+            gca().rotation_angles = [30 50];
         </scilab:image>
     </refsection>
     <refsection role="see also">

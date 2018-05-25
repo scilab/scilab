@@ -33,7 +33,6 @@ import java.util.Arrays;
 public class ScilabPolynomial implements ScilabType {
 
     private static final long serialVersionUID = 870624048944109684L;
-    private static final ScilabTypeEnum type = ScilabTypeEnum.sci_poly;
 
     private static final int VERSION = 0;
 
@@ -69,6 +68,7 @@ public class ScilabPolynomial implements ScilabType {
      *
      * @param data
      *            the unique polynomial
+     * @param polyVarName the polynomial variable name
      */
     public ScilabPolynomial(double[] data, String polyVarName) {
         this(data);
@@ -97,6 +97,7 @@ public class ScilabPolynomial implements ScilabType {
      *            the real part
      * @param imagData
      *            the complex part
+     * @param polyVarName the polynomial variable name
      */
     public ScilabPolynomial(double[] realData, double[] imagData, String polyVarName) {
         this(realData, imagData);
@@ -119,6 +120,7 @@ public class ScilabPolynomial implements ScilabType {
      *
      * @param data
      *            the data
+     * @param polyVarName the polynomial variable name
      */
     public ScilabPolynomial(double[][][] data, String polyVarName) {
         this(data);
@@ -145,6 +147,7 @@ public class ScilabPolynomial implements ScilabType {
      *            the real part of the data
      * @param imagData
      *            the imaginary part of the data
+     * @param polyVarName the polynomial variable name
      */
     public ScilabPolynomial(double[][][] realData, double[][][] imagData, String polyVarName) {
         this(realData, imagData);
@@ -176,6 +179,7 @@ public class ScilabPolynomial implements ScilabType {
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean isReference() {
         return false;
     }
@@ -188,7 +192,7 @@ public class ScilabPolynomial implements ScilabType {
      */
     @Override
     public ScilabTypeEnum getType() {
-        return type;
+        return ScilabTypeEnum.sci_poly;
     }
 
     /**
@@ -264,6 +268,7 @@ public class ScilabPolynomial implements ScilabType {
     /**
      * {@inheritDoc}
      */
+    @Override
     public String getVarName() {
         return varName;
     }
@@ -271,6 +276,7 @@ public class ScilabPolynomial implements ScilabType {
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean isSwaped() {
         return swaped;
     }
@@ -347,6 +353,7 @@ public class ScilabPolynomial implements ScilabType {
     /**
      * {@inheritDoc}
      */
+    @Override
     public Object getSerializedObject() {
         if (isReal()) {
             return new Object[] { polyVarName, realPart };

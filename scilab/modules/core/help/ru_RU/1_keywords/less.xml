@@ -71,4 +71,18 @@
             </member>
         </simplelist>
     </refsection>
+    <refsection role="history">
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    <literal>~</literal> (отрицание) сейчас имеет приоритет выше, чем операции
+                    <literal>&lt;</literal>, <literal>&lt;=</literal>, <literal>></literal> и <literal>>=</literal>.
+                    Например, <literal>~3&lt;1</literal> рассматривается как <literal>(~3)&lt;1</literal>,
+                    а не <literal>~(3&lt;1)</literal> и сейчас выдаётся ошибка вместо <literal>%T</literal>.
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>

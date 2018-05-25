@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,11 +19,11 @@
         <refpurpose>arco-seno</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>[t]=asin(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>x</term>
@@ -40,11 +40,11 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            As entradas de <literal>t</literal> são os arcos-senos das entradas
-            correspondentes de <literal>x</literal>. O domínio de deifinição é [-1,
-            1]. A função toma valores em conjuntos
+            As entradas de <literal>t</literal> sÃ£o os arcos-senos das entradas
+            correspondentes de <literal>x</literal>. O domÃ­nio de deifiniÃ§Ã£o Ã© [-1,
+            1]. A funÃ§Ã£o toma valores em conjuntos
         </para>
     </refsection>
     <refsection>
@@ -55,10 +55,16 @@ sin(asin(A))
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
+                <link linkend="asind">asind</link>
+            </member>
+            <member>
                 <link linkend="sin">sin</link>
+            </member>
+            <member>
+                <link linkend="sind">sind</link>
             </member>
             <member>
                 <link linkend="sinm">sinm</link>

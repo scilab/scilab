@@ -146,7 +146,7 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
                 {
                     vFreeDoubleComplexFromPointer((doublecomplex*)pDataA);
                     pDblA->killMe();
-                    Scierror(998, _("%s: On entry to ZGEEV parameter number  3 had an illegal value (lapack library problem).\n"), "spec", iRet);
+                    Scierror(998, _("%s: On entry to ZGEEV parameter number  3 had an illegal value (lapack library problem).\n"), "spec");
                     return types::Function::Error;
                 }
 
@@ -177,7 +177,7 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
                 if (iRet < 0)
                 {
                     pDblA->killMe();
-                    Scierror(998, _("%s: On entry to ZHEEV parameter number  3 had an illegal value (lapack library problem).\n"), "spec", iRet);
+                    Scierror(998, _("%s: On entry to ZHEEV parameter number  3 had an illegal value (lapack library problem).\n"), "spec");
                     return types::Function::Error;
                 }
 
@@ -213,7 +213,7 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
                 if (iRet < 0)
                 {
                     pDblA->killMe();
-                    Scierror(998, _("%s: On entry to ZGEEV parameter number  3 had an illegal value (lapack library problem).\n"), "spec", iRet);
+                    Scierror(998, _("%s: On entry to ZGEEV parameter number  3 had an illegal value (lapack library problem).\n"), "spec");
                     return types::Function::Error;
                 }
 
@@ -243,7 +243,7 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
                 if (iRet < 0)
                 {
                     pDblA->killMe();
-                    Scierror(998, _("%s: On entry to ZHEEV parameter number  3 had an illegal value (lapack library problem).\n"), "spec", iRet);
+                    Scierror(998, _("%s: On entry to ZHEEV parameter number  3 had an illegal value (lapack library problem).\n"), "spec");
                     return types::Function::Error;
                 }
 
@@ -435,7 +435,7 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
         {
             pDblA->killMe();
             pDblB->killMe();
-            Scierror(998, _("%s: On entry to ZHEEV parameter number  3 had an illegal value (lapack library problem).\n"), "spec", iRet);
+            Scierror(998, _("%s: On entry to ZHEEV parameter number  3 had an illegal value (lapack library problem).\n"), "spec");
             return types::Function::Error;
         }
 

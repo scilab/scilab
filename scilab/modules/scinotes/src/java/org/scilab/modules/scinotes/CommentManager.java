@@ -128,11 +128,12 @@ public class CommentManager {
     public int[] uncommentLines(int start, int end) {
         int first = elem.getElementIndex(start);
         int last = elem.getElementIndex(end);
+        int firstStartOffset = elem.getElement(first).getStartOffset();
         int[] ret = new int[] {start, end};
 
         boolean unc = uncommentLine(first);
         if (unc) {
-            ret[0] -= 2;
+            ret[0] -= Math.min(start-firstStartOffset,2);
             ret[1] -= 2;
         }
 

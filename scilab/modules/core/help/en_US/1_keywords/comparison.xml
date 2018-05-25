@@ -177,4 +177,16 @@ p/poly(1,'s','c')==0
             </member>
         </simplelist>
     </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    <literal>~</literal> (not) priority is now higher than the comparisons one
+                    (<literal>==  ~=  &lt;  &lt;=  >=  ></literal>).
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>

@@ -14,7 +14,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="hist3d" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="hist3d" xml:lang="pt">
     <refnamediv>
         <refname>hist3d</refname>
         <refpurpose>representação 3d de um histograma</refpurpose>
@@ -90,6 +93,7 @@ A = abs(rand(40,5));
 Z(1:40,:) = A;
 scf();
 hist3d(Z);
+isoview off
  ]]></programlisting>
         <scilab:image>
             Z = zeros(100,5);
@@ -97,6 +101,7 @@ hist3d(Z);
             Z(1:40,:) = A;
             scf();
             hist3d(Z);
+            isoview off
         </scilab:image>
         <programlisting role="example"><![CDATA[
 Z = zeros(100,5);
@@ -106,6 +111,7 @@ Index = find(Z==0);
 Z(Index) = %nan;
 scf();
 hist3d(Z);
+isoview off
  ]]></programlisting>
         <scilab:image>
             Z = zeros(100,5);
@@ -115,6 +121,7 @@ hist3d(Z);
             Z(Index) = %nan;
             scf();
             hist3d(Z);
+            isoview off
         </scilab:image>
         <programlisting role="example"><![CDATA[
 Z = zeros(100,5);
@@ -124,6 +131,7 @@ A = abs(rand(10,5));
 Z(91:100,:) = A;
 scf();
 hist3d(Z);
+isoview off
  ]]></programlisting>
         <scilab:image>
             Z = zeros(100,5);
@@ -133,6 +141,8 @@ hist3d(Z);
             Z(91:100,:) = A;
             scf();
             hist3d(Z);
+            isoview off
+            gca().rotation_angles = [30 50];
         </scilab:image>
     </refsection>
     <refsection>
@@ -145,9 +155,5 @@ hist3d(Z);
                 <link linkend="plot3d">plot3d</link>
             </member>
         </simplelist>
-    </refsection>
-    <refsection>
-        <title>Autores</title>
-        <para>Steer S. &amp; JPhilippe C.</para>
     </refsection>
 </refentry>

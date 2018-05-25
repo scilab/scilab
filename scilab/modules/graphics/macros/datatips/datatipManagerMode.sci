@@ -75,7 +75,7 @@ function datatipManagerMode(varargin)
         fig.event_handler_enable = "off" //to prevent against bug 7855
         fig.event_handler = "datatipEventhandler"
         fig.event_handler_enable = "on"
-        xinfo(_("Left click on a curve to create a datatip, right opens contextual menu"))
+        fig.info_message=_("Left click on a curve to create a datatip, right opens contextual menu")
         show_window(fig)
     case "off"
         fig.event_handler_enable = "off"
@@ -88,6 +88,6 @@ function datatipManagerMode(varargin)
             fig.event_handler_enable = "off"
         end
         clearglobal datatipAngles
-        xinfo("")
+        fig.info_message="";
     end
 endfunction

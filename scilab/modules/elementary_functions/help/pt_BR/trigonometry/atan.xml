@@ -1,17 +1,18 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="atan" xml:lang="pt">
     <refnamediv>
         <refname>atan</refname>
         <refpurpose>arco-tangente 2-quadrantes e 4-quadrantes</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
-        <synopsis>phi=atan(x)
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
+        <synopsis>
+            phi = atan(x)
             phi=atan(y,x)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>x</term>
@@ -46,23 +47,23 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
-        <para>A primeira forma computa o arco-tangente 2-quadrantes, que é o
+        <title>DescriÃ§Ã£o</title>
+        <para>A primeira forma computa o arco-tangente 2-quadrantes, que Ã© o
             inverso de <literal>tan(phi)</literal>. Para um real <literal>x</literal>,
-            <literal>phi</literal> está no intervalo <latex>\left(\dfrac{-\pi}{2}, \dfrac{\pi}{2}\right)</latex>.. Para um complexo
+            <literal>phi</literal> estÃ¡ no intervalo <latex>\left(\dfrac{-\pi}{2}, \dfrac{\pi}{2}\right)</latex>.. Para um complexo
             <literal>x</literal>, <literal>atan</literal> tem dois pontos de
-            ramificação singulares <literal>+%i</literal>,<literal>-%i</literal> e os
-            ramos escolhidos são as duas semi-retas imaginárias <latex>[i, i*\infty)</latex> e <latex>(-i*\infty, -i]</latex>.
+            ramificaÃ§Ã£o singulares <literal>+%i</literal>,<literal>-%i</literal> e os
+            ramos escolhidos sÃ£o as duas semi-retas imaginÃ¡rias <latex>[i, i*\infty)</latex> e <latex>(-i*\infty, -i]</latex>.
         </para>
         <para>A segunda forma computa o arco-tangente 4-quadrantes (atan2 em
-            FORTRAN), isto é, retorna o argumento (ângulo) do número complexo
-            <literal>x+i*y</literal>. A imagem de <literal>atan(y,x)</literal> é <latex>(-\pi, \pi]</latex>.
+            FORTRAN), isto Ã©, retorna o argumento (Ã¢ngulo) do nÃºmero complexo
+            <literal>x+i*y</literal>. A imagem de <literal>atan(y,x)</literal> Ã© <latex>(-\pi, \pi]</latex>.
         </para>
-        <para>Para argumentos reais, ambas as formas produzem valores idênticos se
+        <para>Para argumentos reais, ambas as formas produzem valores idÃªnticos se
             <literal>x&gt;0</literal>.
         </para>
-        <para>No caso de os argumentos serem vetores ou matrizes, a avaliação é
-            feita elemento a elemento, de modo que <literal>phi</literal> é um vetor
+        <para>No caso de os argumentos serem vetores ou matrizes, a avaliaÃ§Ã£o Ã©
+            feita elemento a elemento, de modo que <literal>phi</literal> Ã© um vetor
             ou matriz com o mesmo tamanho de <literal>phi(i,j)=atan(x(i,j))</literal>
             ou <literal>phi(i,j)=atan(y(i,j),x(i,j))</literal>.
         </para>
@@ -82,17 +83,23 @@ atan(+%eps + 2*%i)
 atan(-%eps - 2*%i)
 atan(+%eps - 2*%i)
 
-// valores nos pontos de ramificação
+// valores nos pontos de ramificaÃ§Ã£o
 ieee(2)
 atan(%i)
 atan(-%i)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
+                <link linkend="atand">atand</link>
+            </member>
+            <member>
                 <link linkend="tan">tan</link>
+            </member>
+            <member>
+                <link linkend="tand">tand</link>
             </member>
             <member>
                 <link linkend="unwrap">unwrap</link>
@@ -100,13 +107,6 @@ atan(-%i)
             <member>
                 <link linkend="ieee">ieee</link>
             </member>
-        </simplelist>
-    </refsection>
-    <refsection>
-        <title>Autores</title>
-        <simplelist type="vert">
-            <member>B.P.</member>
-            <member>L.V.D. (autores da função atan para complexos).</member>
         </simplelist>
     </refsection>
 </refentry>

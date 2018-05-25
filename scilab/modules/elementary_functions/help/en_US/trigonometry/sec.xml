@@ -67,10 +67,10 @@ plot(x,sec(x))
         <title>See also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="cos">cos</link>
+                <link linkend="secd">secd</link>
             </member>
             <member>
-                <link linkend="secd">secd</link>
+                <link linkend="cos">cos</link>
             </member>
         </simplelist>
     </refsection>

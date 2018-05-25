@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -14,117 +13,66 @@
  * along with this program.
  *
  -->
-
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="acos" xml:lang="ja">
-
     <refnamediv>
-
         <refname>acos</refname>
-
         <refpurpose>要素毎の逆余弦(rad)</refpurpose>
-
     </refnamediv>
-
     <refsynopsisdiv>
-
         <title>呼び出し手順</title>
-
         <synopsis>t = acos(x)</synopsis>
-
     </refsynopsisdiv>
-
     <refsection>
-
         <title>引数</title>
-
         <variablelist>
-
             <varlistentry>
-
                 <term>x</term>
-
                 <listitem>
-
                     <para>実数または複素数のベクトルまたは行列</para>
-
                 </listitem>
-
             </varlistentry>
-
             <varlistentry>
-
                 <term>t</term>
-
                 <listitem>
-
                     <para>実数または複素数のベクトルまたは行列</para>
-
                 </listitem>
-
             </varlistentry>
-
         </variablelist>
-
     </refsection>
-
     <refsection>
-
         <title>説明</title>
-
         <para>
-
             <varname>t</varname>の要素は,
-
             <varname>x</varname>の対応するエントリの逆余弦となります.
-
             定義域は[-1, 1]となります.
-
         </para>
-
     </refsection>
-
     <refsection>
-
         <title>サンプル</title>
-
         <scilab:image>
-
             x = -1:.05:1;
-
             plot(x,acos(x))
-
         </scilab:image>
-
     </refsection>
-
     <refsection>
-
         <title>例</title>
-
         <programlisting role="example"><![CDATA[
 x=[1,%i,-1,-%i]
 cos(acos(x))
  ]]></programlisting>
-
     </refsection>
-
     <refsection role="see also">
-
         <title>参照</title>
-
         <simplelist type="inline">
-
             <member>
-
-                <link linkend="cos">cos</link>
-
                 <link linkend="acosd">acosd</link>
-
             </member>
-
+            <member>
+                <link linkend="cos">cos</link>
+            </member>
+            <member>
+                <link linkend="cosd">cosd</link>
+            </member>
         </simplelist>
-
     </refsection>
-
 </refentry>
-

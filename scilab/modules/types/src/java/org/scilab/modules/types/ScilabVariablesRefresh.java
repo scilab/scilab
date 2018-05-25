@@ -38,6 +38,7 @@ public final class ScilabVariablesRefresh implements ScilabVariablesHandler {
     /**
      * {@inheritDoc}
      */
+    @Override
     public void handle(ScilabType var) {
         Object[] listeners = eventListeners.getListenerList();
         ScilabVariablesEvent event = null;

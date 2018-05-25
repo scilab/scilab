@@ -59,14 +59,14 @@ plot(x,acsc(x))
         <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
+                <link linkend="acscd">acscd</link>
+            </member>
+            <member>
                 <link linkend="csc">csc</link>
             </member>
             <member>
-                <link linkend="acscd">acscd</link>
+                <link linkend="cscd">cscd</link>
             </member>
-            <!--<member>
-        <link linkend="csgn">csgn</link>
-      </member>-->
         </simplelist>
     </refsection>
     <refsection>

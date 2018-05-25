@@ -401,7 +401,7 @@ function [X,Y,orpar]=Do_Spline2(N,order,x,y)
             Y = interp(X, x, y, d);
             orpar=d(:);
         catch
-            xinfo("ERROR in SPLINE: "+METHOD)
+            gcf().info_message = "ERROR in SPLINE: "+METHOD;
         end
 
     end
@@ -415,7 +415,7 @@ function [X,Y,orpar]=Do_Spline2(N,order,x,y)
             Y = interp(X, x, y, d);
             orpar=d(:);
         catch
-            xinfo("ERROR in SPLINE: "+METHOD)
+            gcf().info_message = "ERROR in SPLINE: "+METHOD;
         end
     end
     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -425,7 +425,7 @@ function [X,Y,orpar]=Do_Spline2(N,order,x,y)
             Y = interp(X, x, y, d);
             orpar=d(:);
         catch
-            xinfo("ERROR in SPLINE: "+METHOD)
+            gcf().info_message = "ERROR in SPLINE: "+METHOD;
         end
 
     end
@@ -436,7 +436,7 @@ function [X,Y,orpar]=Do_Spline2(N,order,x,y)
             Y = interp(X, x, y, d);
             orpar=d(:);
         catch
-            xinfo("ERROR in SPLINE:  "+METHOD)
+            gcf().info_message = "ERROR in SPLINE:  "+METHOD;
         end
     end
     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -446,7 +446,7 @@ function [X,Y,orpar]=Do_Spline2(N,order,x,y)
             Y = interp(X, x, y, d);
             orpar=d(:);
         catch
-            xinfo("ERROR in SPLINE: "+METHOD)
+            gcf().info_message = "ERROR in SPLINE: "+METHOD;
         end
     end
 

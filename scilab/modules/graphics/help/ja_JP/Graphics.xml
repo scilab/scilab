@@ -618,14 +618,6 @@
                     <para>グラフィックウインドウの中央にタイトルを追加</para>
                 </listitem>
             </varlistentry>
-            <varlistentry>
-                <term>
-                    <link linkend="xinfo">xinfo</link>
-                </term>
-                <listitem>
-                    <para>メッセージサブウインドウにinfo 文字列を描画</para>
-                </listitem>
-            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>

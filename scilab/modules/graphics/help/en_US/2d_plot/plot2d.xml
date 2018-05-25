@@ -15,7 +15,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="plot2d" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org"  xml:id="plot2d" xml:lang="en">
     <refnamediv>
         <refname>plot2d</refname>
         <refpurpose>2D plot</refpurpose>
@@ -774,7 +777,7 @@ a=gca(); // Handle on axes entity
 a.x_location = "origin";
 a.y_location = "origin";
 // Some operations on entities created by plot2d ...
-isoview()
+isoview
 a=gca();
 a.children // list the children of the axes.
 // There are a compound made of two polylines and a legend
@@ -785,7 +788,7 @@ poly1.clip_state='off'; // clipping control
 leg = a.children(2); // store legend handle into leg
 leg.font_style = 9;
 leg.line_mode = "on";
-isoview("off")
+isoview off
  ]]></programlisting>
         <scilab:image>
             // axis centered at (0,0)

@@ -81,6 +81,7 @@ public interface ScilabType extends Externalizable, Cloneable {
      *            the object we want to compare
      * @return true if the two objects are equals, false otherwise
      */
+    @Override
     public boolean equals(Object obj);
 
     /**
@@ -97,5 +98,6 @@ public interface ScilabType extends Externalizable, Cloneable {
      *
      * @return the pretty print
      */
+    @Override
     String toString();
 }

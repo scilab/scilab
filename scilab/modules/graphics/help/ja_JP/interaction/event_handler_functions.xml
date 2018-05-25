@@ -22,7 +22,10 @@
 
  -->
 
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="eventhandlerfunctions">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ja" xml:id="eventhandlerfunctions">
 
     <refnamediv>
 
@@ -382,7 +385,7 @@ function my_eventhandler(win,x,y,ibut)
 
   [x,y]=xchange(x,y,'i2f')
 
-  xinfo(msprintf('Event code %d at mouse position is (%f,%f)',ibut,x,y))
+  gcf().info_message = msprintf('Event code %d at mouse position is (%f,%f)',ibut,x,y);
 
 endfunction
 

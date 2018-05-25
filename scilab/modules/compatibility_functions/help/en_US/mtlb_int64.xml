@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2018 - Samuel GOUGEON
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:lang="en" xml:id="mtlb_int64">
+    <refnamediv>
+        <refname>mtlb_int64</refname>
+        <refpurpose>Matlab int64 emulation function</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Matlab and Scilab <literal>int64</literal> behave differently :
+            <itemizedlist>
+                <listitem>
+                    Beyong the main interval bounds, Scilab's <literal>int64()</literal> wraps,
+                    while Matlab's <literal>mtlb_int64()</literal> saturates.
+                </listitem>
+                <listitem>
+                    For non integer values, Scilab's <literal>int64()</literal> truncates the
+                    fractional part, while Matlab's <literal>mtlb_int64()</literal> rounds to the
+                    nearest integer.
+                </listitem>
+            </itemizedlist>
+        </para>
+        <para>
+            Let <literal>imin = -(2^32) = -9223372036854775808</literal> and
+            <literal>imax = 2^32 - 1 = 9223372036854775807</literal>.
+        </para>
+        <para>
+        <table border="1" align="center">
+            <tr><th>x</th><th>int64(x)</th><th>mtlb_int64(x)</th></tr>
+            <tr><td align="center">%nan</td><td align="center">0</td><td align="center">0</td></tr>
+            <tr><td align="center">-%inf</td><td align="center">imin</td><td align="center">imin</td></tr>
+            <tr><td align="center">imin-2</td><td align="center">imax-1</td><td align="center">imin</td></tr>
+            <tr><td align="center">imin-1</td><td align="center">imax</td><td align="center">imin</td></tr>
+            <tr><td align="center">imin</td><td align="center">imin</td><td align="center">imin</td></tr>
+            <tr><td align="center">imin-1</td><td align="center">imin-1</td><td align="center">imin-1</td></tr>
+            <tr><td align="center">-80.7</td><td align="center">-80</td><td align="center">-81</td></tr>
+            <tr><td align="center">-80.5</td><td align="center">-80</td><td align="center">-81</td></tr>
+            <tr><td align="center">-80.4</td><td align="center">-80</td><td align="center">-80</td></tr>
+            <tr><td align="center">10.2</td><td align="center">10</td><td align="center">10</td></tr>
+            <tr><td align="center">10.5</td><td align="center">10</td><td align="center">11</td></tr>
+            <tr><td align="center">10.51</td><td align="center">10</td><td align="center">11</td></tr>
+            <tr><td align="center">imax</td><td align="center">imax</td><td align="center">imax</td></tr>
+            <tr><td align="center">imax+1</td><td align="center">imin</td><td align="center">imax</td></tr>
+            <tr><td align="center">imax+2</td><td align="center">imin+1</td><td align="center">imax</td></tr>
+            <tr><td align="center">imax+3</td><td align="center">imin+2</td><td align="center">imax</td></tr>
+            <tr><td align="center">%inf</td><td align="center">imax</td><td align="center">imax</td></tr>
+        </table>
+        </para>
+        <warning>
+            <para>
+                <literal>mtlb_int64</literal> has not to be used for hand coded functions.
+            </para>
+            <para>
+                The function <literal>mtlb_int64(A)</literal> is used by
+                <literal>mfile2sci</literal> to replace <literal>int64(A)</literal> when it is not
+                possible to know what is the input while porting Matlab code to Scilab. This function
+                then determines the correct semantic at run time.
+            </para>
+        </warning>
+    </refsection>
+</refentry>

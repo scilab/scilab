@@ -2,7 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Serge Steer
- * Copyright (C) 2016 - Samuel GOUGEON
+ * Copyright (C) 2016, 2018 - Samuel GOUGEON
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -13,7 +14,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="isoview">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="isoview">
     <refnamediv>
         <refname>isoview</refname>
         <refpurpose>tunes isometric rendering of graphical axes
@@ -33,7 +37,9 @@
         <variablelist>
             <varlistentry>
                 <term>"on" | "off" | &lt;none&gt;</term>
-                <listitem>Enables or disables or switches the isometric rendering for all considered axes.
+                <listitem>
+                    Enables or disables or switches the isometric rendering for all considered axes.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -41,6 +47,7 @@
                 <listitem>
                     Vector of graphic handles. All the related axes are processed.
                     By default, the current axes is processed.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -48,9 +55,10 @@
                 <listitem>
                     Four decimal numbers: new axes bounds.
                     <warning>These parameters will be removed from Scilab 6.1.
-                        Please used <link linkend="replot">replot</link>
+                        Please use <link linkend="replot">replot</link>
                         after <function>isoview</function> instead.
                     </warning>
+                    <para/>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -89,7 +97,7 @@
                 </listitem>
                 <listitem>
                     If <varname>idGraphics(i)</varname> is the handle of a
-                    sub-axes component(such as a polyline, a compound, etc),
+                    sub-axes component (such as a polyline, a compound, etc),
                     its hosting axes is considered.
                 </listitem>
             </itemizedlist>
@@ -110,6 +118,38 @@
             <function>isoview</function> afterwards, the <literal>plot2d(...,frameflag=4)</literal>
             option may be used at call time.
         </note>
+        <refsect3>
+            <title>Rendering according to .isoview and .cube_scaling settings</title>
+            <para>
+            <table align="middle">
+                <tr>
+                    <th>isoview(..)</th><th>gca().isoview</th>
+                                       <th>gca().cube_scaling</th>
+                                       <td><emphasis role="bold">Rendering</emphasis></td>
+                </tr>
+                <tr>
+                    <th>on</th><td align="center">on</td>
+                               <td align="center">off</td>
+                               <td>X, Y and Z are isometric</td>
+                </tr>
+                <tr>
+                    <th>off</th><td align="center">off</td>
+                                <td align="center">on</td>
+                                <td>independent X, Y and Z scales. In 3D, improved aspect ratios when X/Y/Z ranges are very different.</td>
+                </tr>
+                <tr>
+                    <th></th><td align="center">off</td>
+                            <td align="center">off</td>
+                            <td>Independent X, Y, Z scales. In 3D, rendered X/Y/Z scales ratios are close to the data ones</td>
+                </tr>
+                <tr>
+                    <th></th><td align="center">on</td>
+                             <td align="center">on</td>
+                             <td>Scales are such that the axes looks square or cubic</td>
+                </tr>
+            </table>
+            </para>
+        </refsect3>
     </refsection>
     <refsection role="examples">
         <title>Examples</title>
@@ -145,10 +185,12 @@ r = 3; orig = [0 0 0];
 [xx,yy,zz] = eval3dp(sph,linspace(-%pi/2,%pi/2,40),linspace(0,%pi*2,40));
 subplot(2,nc,3)
 plot3d(xx, yy, zz, alpha=60, flag=[color("green") 8 4])
+zlabel("isoview off", "rotation", -90, "fontsize",4)
 xtitle("True sphere")
 a3 = gca();
 subplot(2,nc,nc+3)
 plot3d(xx, yy, zz, alpha=60, flag=[color("green") 8 4])
+zlabel("isoview on", "rotation", -90, "fontsize",4)
 isoview
 
 // Switching isoview status for all axes
@@ -194,10 +236,12 @@ isoview([a1 a2 a3], "on")
             [xx,yy,zz] = eval3dp(sph,linspace(-%pi/2,%pi/2,40),linspace(0,%pi*2,40));
             subplot(2,nc,3)
             plot3d(xx, yy, zz, alpha=60, flag=[color("green") 8 4])
+            zlabel("isoview off", "rotation", -90, "fontsize",4)
             xtitle("True sphere")
             a3 = gca();
             subplot(2,nc,nc+3)
             plot3d(xx, yy, zz, alpha=60, flag=[color("green") 8 4])
+            zlabel("isoview on", "rotation", -90, "fontsize",4)
             isoview
         </scilab:image>
         <programlisting role="example"><![CDATA[
@@ -242,7 +286,7 @@ xtitle("with frameflag=4")
         <title>History</title>
         <revhistory>
             <revision>
-                <revnumber>6.0</revnumber>
+                <revnumber>6.0.0</revnumber>
                 <revdescription>
                     <itemizedlist>
                         <listitem>input flags "on"|"off" added.</listitem>
@@ -251,6 +295,13 @@ xtitle("with frameflag=4")
                             <literal>isoview(xmin, xmax, ymin, ymax)</literal> marked as deprecated.
                         </listitem>
                     </itemizedlist>
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revdescription>
+                    "isoview on" now forces .cube_scaling="off", and
+                    "isoview off" forces .cube_scaling="on".
                 </revdescription>
             </revision>
         </revhistory>

@@ -43,8 +43,8 @@ import java.nio.DoubleBuffer;
  */
 public class ScilabDoubleReference extends ScilabDouble {
 
-    private DoubleBuffer realBuffer;
-    private DoubleBuffer imaginaryBuffer;
+    private final DoubleBuffer realBuffer;
+    private final DoubleBuffer imaginaryBuffer;
     private final int nbRows;
     private final int nbCols;
 
@@ -81,6 +81,7 @@ public class ScilabDoubleReference extends ScilabDouble {
      *
      * @return true, if the data are real only.
      */
+    @Override
     public boolean isReal() {
         return imaginaryBuffer == null || imaginaryBuffer.capacity() == 0;
     }
@@ -88,6 +89,7 @@ public class ScilabDoubleReference extends ScilabDouble {
     /**
      * {@inheritDoc}
      */
+    @Override
     public Object getRawRealPart() {
         return realBuffer;
     }
@@ -95,6 +97,7 @@ public class ScilabDoubleReference extends ScilabDouble {
     /**
      * {@inheritDoc}
      */
+    @Override
     public Object getRawImaginaryPart() {
         return imaginaryBuffer;
     }
@@ -120,6 +123,7 @@ public class ScilabDoubleReference extends ScilabDouble {
      *
      * @return the real part.
      */
+    @Override
     public double[][] getRealPart() {
         double[][] d = new double[nbRows][nbCols];
         ScilabTypeUtils.setBuffer(d, realBuffer);
@@ -132,6 +136,7 @@ public class ScilabDoubleReference extends ScilabDouble {
      * @param realPart
      *            the real part.
      */
+    @Override
     public void setRealPart(double[][] realPart) {
         ScilabTypeUtils.setPart(realBuffer, realPart);
     }
@@ -141,6 +146,7 @@ public class ScilabDoubleReference extends ScilabDouble {
      *
      * @return the imaginary part.
      */
+    @Override
     public double[][] getImaginaryPart() {
         double[][] d = new double[nbRows][nbCols];
         ScilabTypeUtils.setBuffer(d, imaginaryBuffer);
@@ -153,6 +159,7 @@ public class ScilabDoubleReference extends ScilabDouble {
      * @param imaginaryPart
      *            the imaginary part.
      */
+    @Override
     public void setImaginaryPart(double[][] imaginaryPart) {
         ScilabTypeUtils.setPart(imaginaryBuffer, imaginaryPart);
     }
@@ -160,6 +167,7 @@ public class ScilabDoubleReference extends ScilabDouble {
     /**
      * {@inheritDoc}
      */
+    @Override
     public double getRealElement(final int i, final int j) {
         return realBuffer.get(i + nbRows * j);
     }
@@ -167,6 +175,7 @@ public class ScilabDoubleReference extends ScilabDouble {
     /**
      * {@inheritDoc}
      */
+    @Override
     public double getImaginaryElement(final int i, final int j) {
         return imaginaryBuffer.get(i + nbRows * j);
     }
@@ -174,6 +183,7 @@ public class ScilabDoubleReference extends ScilabDouble {
     /**
      * {@inheritDoc}
      */
+    @Override
     public void setRealElement(final int i, final int j, final double x) {
         realBuffer.put(i + nbRows * j, x);
     }
@@ -181,6 +191,7 @@ public class ScilabDoubleReference extends ScilabDouble {
     /**
      * {@inheritDoc}
      */
+    @Override
     public void setImaginaryElement(final int i, final int j, final double x) {
         imaginaryBuffer.put(i + nbRows * j, x);
     }
@@ -188,6 +199,7 @@ public class ScilabDoubleReference extends ScilabDouble {
     /**
      * {@inheritDoc}
      */
+    @Override
     public void setElement(final int i, final int j, final double x, final double y) {
         realBuffer.put(i + nbRows * j, x);
         imaginaryBuffer.put(i + nbRows * j, x);

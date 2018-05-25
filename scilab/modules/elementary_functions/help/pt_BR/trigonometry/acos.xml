@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,14 +16,14 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="acos" xml:lang="pt">
     <refnamediv>
         <refname>acos</refname>
-        <refpurpose>arco-cosseno em relação aos elementos</refpurpose>
+        <refpurpose>arco-cosseno em relaÃ§Ã£o aos elementos</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>t=acos(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>x</term>
@@ -40,11 +40,11 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            Os componentes do vetor <literal>t</literal> são os arcos-cossenos
-            das entradas correspondentes do vetor <literal>x</literal>. O domínio de
-            definição é [-1, 1].
+            Os componentes do vetor <literal>t</literal> sÃ£o os arcos-cossenos
+            das entradas correspondentes do vetor <literal>x</literal>. O domÃ­nio de
+            definiÃ§Ã£o Ã© [-1, 1].
         </para>
         <para>
             <literal>acos</literal> toma valores em :
@@ -56,5 +56,19 @@
 x=[1,%i,-1,-%i]
 cos(acos(x))
  ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Ver TambÃ©m</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="acosd">acosd</link>
+            </member>
+            <member>
+                <link linkend="cos">cos</link>
+            </member>
+            <member>
+                <link linkend="cosd">cosd</link>
+            </member>
+        </simplelist>
     </refsection>
 </refentry>

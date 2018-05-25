@@ -13,30 +13,33 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="eventhandlerfunctions" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="eventhandlerfunctions" xml:lang="pt">
     <refnamediv>
         <refname>event handler functions</refname>
-        <refpurpose>ProtÛtipo de funÁıes que podem se utilizadas como
+        <refpurpose>Prot√≥tipo de fun√ß√µes que podem se utilizadas como
             gerenciadoras de eventos
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seq¸Íncia de Chamamento</title>
+        <title>Seq√º√™ncia de Chamamento</title>
         <synopsis>envent_handler_function(win,x,y,ibut)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Par‚metros</title>
+        <title>Par√¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>win</term>
                 <listitem>
-                    <para>n˙mero da janela onde o evento ocorreu</para>
+                    <para>n√∫mero da janela onde o evento ocorreu</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>coordenada X em pÌxeis do ponteiro do mouse no momento onde o
+                    <para>coordenada X em p√≠xeis do ponteiro do mouse no momento onde o
                         evento ocorreu
                     </para>
                 </listitem>
@@ -44,7 +47,7 @@
             <varlistentry>
                 <term>y</term>
                 <listitem>
-                    <para>coordenada Y em pÌxeis do ponteiro do mouse no momento onde o
+                    <para>coordenada Y em p√≠xeis do ponteiro do mouse no momento onde o
                         evento ocorreu
                     </para>
                 </listitem>
@@ -52,98 +55,98 @@
             <varlistentry>
                 <term>ibut</term>
                 <listitem>
-                    <para>n˙mero correspondente ao tipo de evento</para>
+                    <para>n√∫mero correspondente ao tipo de evento</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>DescriÁ„o</title>
-        <para>Quando o modo de gerenciador de eventos est· habilitado, o Scilab
-            chamar·o gerenciador de eventos especificado a cada vez que um evento
-            ocorre na janela gr·fica. A funÁ„o de gerenciamento de evento deve
-            concordar com o protÛtipo acima. A cada vez que um evento ocorre, a funÁ„o
-            È chamada e os quatro eventos s„o ajustados de acordo com o n˙mero da
-            janela, a posiÁ„o do mouse e o tipo do evento.
+        <title>Descri√ß√£o</title>
+        <para>Quando o modo de gerenciador de eventos est√° habilitado, o Scilab
+            chamar√°o gerenciador de eventos especificado a cada vez que um evento
+            ocorre na janela gr√°fica. A fun√ß√£o de gerenciamento de evento deve
+            concordar com o prot√≥tipo acima. A cada vez que um evento ocorre, a fun√ß√£o
+            √© chamada e os quatro eventos s√£o ajustados de acordo com o n√∫mero da
+            janela, a posi√ß√£o do mouse e o tipo do evento.
         </para>
         <para>
-            O par‚metro <literal>ibut</literal> toma um dos seguintes valores
+            O par√¢metro <literal>ibut</literal> toma um dos seguintes valores
             dependendo do tipo do evento ocorrido:
         </para>
         <variablelist>
             <varlistentry>
                 <term>ibut==0</term>
                 <listitem>
-                    <para>o bot„o esquerdo foi pressionado</para>
+                    <para>o bot√£o esquerdo foi pressionado</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>ibut==1</term>
                 <listitem>
-                    <para>o bot„o do meio foi pressionado</para>
+                    <para>o bot√£o do meio foi pressionado</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>ibut==2</term>
                 <listitem>
-                    <para>o bot„o direito foi pressionado</para>
+                    <para>o bot√£o direito foi pressionado</para>
                     <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>ibut==3</term>
                 <listitem>
-                    <para>o bot„o esquerdo do mouse foi clicado</para>
+                    <para>o bot√£o esquerdo do mouse foi clicado</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>ibut==4</term>
                 <listitem>
-                    <para>o bot„o do meio do mouse foi clicado</para>
+                    <para>o bot√£o do meio do mouse foi clicado</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>ibut==5</term>
                 <listitem>
-                    <para>o bot„o direito do mouse foi clicado</para>
+                    <para>o bot√£o direito do mouse foi clicado</para>
                     <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>ibut==10</term>
                 <listitem>
-                    <para>o bot„o esquerdo do mouse foi clicado duas vezes</para>
+                    <para>o bot√£o esquerdo do mouse foi clicado duas vezes</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>ibut==11</term>
                 <listitem>
-                    <para>o bot„o do meio do mouse foi clicado duas vezes</para>
+                    <para>o bot√£o do meio do mouse foi clicado duas vezes</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>ibut==12</term>
                 <listitem>
-                    <para>o bot„o direito do mouse foi clicado duas vezes</para>
+                    <para>o bot√£o direito do mouse foi clicado duas vezes</para>
                     <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>ibut==-5</term>
                 <listitem>
-                    <para>o bot„o esquerdo do mouse foi liberado</para>
+                    <para>o bot√£o esquerdo do mouse foi liberado</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>ibut==-4</term>
                 <listitem>
-                    <para>o bot„o do meio do mouse foi liberado</para>
+                    <para>o bot√£o do meio do mouse foi liberado</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>ibut==-3</term>
                 <listitem>
-                    <para>o bot„o direito do mouse foi liberado</para>
+                    <para>o bot√£o direito do mouse foi liberado</para>
                     <para/>
                 </listitem>
             </varlistentry>
@@ -157,20 +160,20 @@
             <varlistentry>
                 <term>ibut &gt; =32</term>
                 <listitem>
-                    <para>uma tecla com cÛdigo ascii(ibut) foi pressionada</para>
+                    <para>uma tecla com c√≥digo ascii(ibut) foi pressionada</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>ibut &lt; =-32</term>
                 <listitem>
-                    <para>uma tecla com cÛdigo ascii(-ibut) foi liberadav</para>
+                    <para>uma tecla com c√≥digo ascii(-ibut) foi liberadav</para>
                     <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>ibut &gt; =1000+32</term>
                 <listitem>
-                    <para>uma tecla com cÛdigo ascii(ibut-1000) foi pressionada enquanto
+                    <para>uma tecla com c√≥digo ascii(ibut-1000) foi pressionada enquanto
                         a tecla CTRL estava sendo pressionada.
                     </para>
                 </listitem>
@@ -178,19 +181,19 @@
             <varlistentry>
                 <term>ibut==-1000</term>
                 <listitem>
-                    <para>a janela de gr·ficos foi fechada</para>
+                    <para>a janela de gr√°ficos foi fechada</para>
                 </listitem>
             </varlistentry>
         </variablelist>
-        <para>Por exemplo, digamos que o nome da funÁ„o de gerenciamento de
-            eventos seja fooHandler para a janela de n˙mero 0. Um clique com o bot„o
-            esquerdo na janela na posiÁ„o [100,150] (em pÌxeis) ser· equivalente a
+        <para>Por exemplo, digamos que o nome da fun√ß√£o de gerenciamento de
+            eventos seja fooHandler para a janela de n√∫mero 0. Um clique com o bot√£o
+            esquerdo na janela na posi√ß√£o [100,150] (em p√≠xeis) ser√° equivalente a
             chamar fooHandler( 0, 100, 150, 3 ).
         </para>
         <para>
             Ver <link linkend="figure_properties">figure_properties</link> ou
             <link linkend="seteventhandler">seteventhandler</link> para mais
-            informaÁıes sobre como especificar o nome do gerenciador de
+            informa√ß√µes sobre como especificar o nome do gerenciador de
             eventos.
         </para>
     </refsection>
@@ -200,7 +203,7 @@
 function my_eventhandler(win,x,y,ibut)
   if ibut==-1000 then return,end
   [x,y]=xchange(x,y,'i2f')
-  xinfo(msprintf('Evento de cÛdigo %d na posiÁ„o do mouse È (%f,%f)',ibut,x,y))
+  gcf().info_message = msprintf('Evento de c√≥digo %d na posi√ß√£o do mouse √© (%f,%f)',ibut,x,y);
 endfunction
 
 plot2d()
@@ -208,17 +211,17 @@ fig = gcf() ;
 fig.event_handler = 'my_eventhandler' ;
 fig.event_handler_enable = "on" ;
 //agora:
-//   -  mova o mouse sobre a janela gr·fica
-//   -  pressione e libere as teclas com shift pressionado ou n„o e com Ctrl pressionado ou n„o
-//   -  pressione um bot„o, espere um pouco e libere
-//   -  pressione e libere um bot„o
-//   -  clique duas vezes em um bot„o
+//   -  mova o mouse sobre a janela gr√°fica
+//   -  pressione e libere as teclas com shift pressionado ou n√£o e com Ctrl pressionado ou n√£o
+//   -  pressione um bot√£o, espere um pouco e libere
+//   -  pressione e libere um bot√£o
+//   -  clique duas vezes em um bot√£o
 
 fig.event_handler_enable = "off" ; //suprimindo o gerenciador de eventos
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver TambÈm</title>
+        <title>Ver Tamb√©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="figure_properties">figure_properties</link>

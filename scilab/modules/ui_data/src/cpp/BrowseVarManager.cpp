@@ -20,6 +20,8 @@
 #include <iterator>
 #include <set>
 #include <cmath>
+#include "alltypes.hxx"
+#include "types_tools.hxx"
 
 #include "BrowseVar.hxx"
 #ifdef _MSC_VER
@@ -68,7 +70,7 @@ using std::string;
 static std::set<string> createScilabDefaultVariablesSet();
 static char * getListName(char * variableName);
 static std::string formatMatrix(int nbRows, int nbCols, double *pdblReal, double *pdblImg);
-static char * valueToDisplay(types::InternalType* pIT, int variableType, int nbRows, int nbCols);
+static char * valueToDisplay(types::InternalType* pIT);
 void OpenBrowseVar()
 {
     BrowseVar::openVariableBrowser(getScilabJavaVM());
@@ -159,7 +161,7 @@ void SetBrowseVarData()
         }
         else
         {
-            pstAllVariableSizes[i] = valueToDisplay(pIT, piAllVariableTypes[i], nbRows, nbCols);
+            pstAllVariableSizes[i] = valueToDisplay(pIT);
             piAllVariableNbRows[i] = nbRows;
             piAllVariableNbCols[i] = nbCols;
         }
@@ -369,11 +371,13 @@ static char * getListName(char * variableName)
     return tmpChar;
 }
 
-static char * valueToDisplay(types::InternalType* pIT, int variableType, int nbRows, int nbCols)
+static char *valueToDisplay(types::InternalType* pIT)
 {
-    // 4 is the dimension max to which display the content
-    if (nbRows * nbCols <= 4 && variableType == sci_matrix)
-    {
+    types::GenericType *pGT = pIT->getAs<types::GenericType>();
+    int *piDims = pGT->getDimsArray();
+
+    if (pIT->isDouble() && pGT->getDims() < 3 && pGT->getSize() <= 4) {
+        // 4 is the dimension max to which display the content
         types::Double* pD = pIT->getAs<types::Double>();
         // Small double value, display it
         double* pdblReal = nullptr;
@@ -385,16 +389,18 @@ static char * valueToDisplay(types::InternalType* pIT, int variableType, int nbR
             pdblImg = pD->getImg();
         }
 
-
-        return os_strdup(formatMatrix(nbRows, nbCols, pdblReal, pdblImg).c_str());
+        return os_strdup(formatMatrix(piDims[0], piDims[1], pdblReal, pdblImg).c_str());
     }
     else
     {
-        char *sizeStr = NULL;
-        // 11 =strlen("2147483647")+1 (1 for security)
-        sizeStr = (char *)MALLOC((11 + 11 + 1 + 1) * sizeof(char));
-        sprintf(sizeStr, "%dx%d", nbRows, nbCols);
-        return sizeStr;
+        std::string sizeStr = std::to_string(piDims[0]);
+        for (int i = 1; i < pGT->getDims(); i++)
+        {
+            sizeStr.append("x");
+            sizeStr.append(std::to_string(piDims[i]));
+        }
+
+        return os_strdup(sizeStr.data());
     }
 }
 

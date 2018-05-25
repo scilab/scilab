@@ -187,7 +187,7 @@ int sci_mucomp(char *fname, void* pvApiCtx)
 
     if (M1 * N1 != M2 * N2)
     {
-        Scierror(999, _("%s: Wrong size for input arguments #%d and #%d: Same size expected.\n"), fname, 2);
+        Scierror(999, _("%s: Wrong size for input arguments #%d and #%d: Same size expected.\n"), fname, 2, 3);
         return 1;
     }
 

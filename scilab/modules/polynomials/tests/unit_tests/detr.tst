@@ -7,7 +7,7 @@
 
 // <-- CLI SHELL MODE -->
 
-// unit tests for detr function 
+// unit tests for detr function
 // =============================================================================
 
 assert_checkfalse(execstr("detr()"   ,"errcatch") == 0);
@@ -35,7 +35,7 @@ assert_checkequal(d, det(A));
 A = [1 3 5;2 3 4;8 4 9];
 d = detr(A);
 assert_checkequal(d, -27);
-assert_checkequal(d, det(A));
+assert_checkalmostequal(d, det(A));
 
 A=  A-%i;
 d = detr(A);

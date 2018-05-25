@@ -55,10 +55,14 @@ public final class CommentAction extends DefaultAction {
         CommentManager com = sep.getCommentManager();
         ScilabDocument doc = (ScilabDocument) sep.getDocument();
 
+
         doc.mergeEditsBegin();
         if (start == end) {
             com.commentLines(start, start);
         } else {
+            try {
+              end   -= doc.getText(end-1,1).charAt(0)=='\n' ? 1 : 0;
+            } catch (Exception e) {} // 0<=start<end hence end>0 exception won't occur
             int[] ret = com.commentLines(start, end);
             if (ret != null) {
                 if (pos == start) {

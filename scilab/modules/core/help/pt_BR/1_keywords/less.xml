@@ -2,20 +2,20 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="less" xml:lang="pt">
     <refnamediv>
         <refname>less</refname>
-        <refpurpose>(&lt;) comparaÁ„o "menor do que"</refpurpose>
+        <refpurpose>(&lt;) compara√ß√£o "menor do que"</refpurpose>
     </refnamediv>
     <refnamediv xml:id="greater">
         <refname>greater</refname>
-        <refpurpose>(&gt;) comparaÁ„o "maior do que"</refpurpose>
+        <refpurpose>(&gt;) compara√ß√£o "maior do que"</refpurpose>
     </refnamediv>
     <refsection>
-        <title>DescriÁ„o</title>
-        <para>SÌmbolo de comparaÁ„o lÛgica </para>
+        <title>Descri√ß√£o</title>
+        <para>S√≠mbolo de compara√ß√£o l√≥gica </para>
         <variablelist>
             <varlistentry>
                 <term>&lt;&gt;</term>
                 <listitem>
-                    <para>significa "diferente" (È o mesmo que ~= ) </para>
+                    <para>significa "diferente" (√© o mesmo que ~= ) </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -45,7 +45,7 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title> Ver TambÈm </title>
+        <title> Ver Tamb√©m </title>
         <simplelist type="inline">
             <member>
                 <link linkend="if">if</link>
@@ -57,5 +57,21 @@
                 <link linkend="equal">equal</link>
             </member>
         </simplelist>
+    </refsection>
+
+    <refsection role="history">
+        <title>Hist√≥rico</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    <literal>~</literal> (not) priority is now higher than <literal>&lt;</literal>,
+                    <literal>&lt;=</literal>, <literal>></literal> and <literal>>=</literal>one.
+                    For instance, <literal>~3&lt;1</literal> is parsed as <literal>(~3)&lt;1</literal>
+                    instead of <literal>~(3&lt;1)</literal> and now yields an error instead of
+                    <literal>%T</literal>.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

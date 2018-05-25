@@ -97,4 +97,19 @@ sparse([1,2;4,5;3,10],[1,2,3]) == sparse([1,2;4,5;3,10],[1,2,3])
             </member>
         </simplelist>
     </refsection>
+
+    <refsection role="history">
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    <literal>~</literal> (отрицание) сейчас имеет приоритет выше, чем операции сравнения
+                    (<literal>==  ~=  &lt;=  >=</literal>). Например, <literal>~%t==1</literal>
+                    рассматривается как <literal>(~%t)==1</literal>, а не <literal>~(%t==1)</literal>
+                    и теперь выдаётся <literal>%F</literal> вместо <literal>%T</literal>.
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>

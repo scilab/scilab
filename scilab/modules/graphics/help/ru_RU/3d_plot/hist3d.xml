@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Serge Steer
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org"  xml:id="hist3d" xml:lang="ru">
+    <refnamediv>
+        <refname>hist3d</refname>
+        <refpurpose>трёхмерное представление гистограммы</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Синтаксис</title>
+        <synopsis>hist3d(mtx,[theta,alpha,leg,flag,ebox])
+            hist3d(mtx,&lt;opt_args&gt;)
+            hist3d(list(mtx,x,y),[theta,alpha,leg,flag,ebox])
+            hist3d(list(mtx,x,y),&lt;opt_args&gt;)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>mtx</term>
+                <listitem>
+                    <para>
+                        матрица размером <literal>(m,n)</literal>, определяющая гистограмму
+                        <literal>mtx(i,j)=F(x(i),y(j))</literal>, где <literal>x</literal>
+                        и <literal>y</literal> взяты в виде <literal>0:m</literal> и
+                        <literal>0:n</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>list(mtx,x,y)</term>
+                <listitem>
+                    <para>
+                        где <literal>mtx</literal> - это матрица размером <literal>(m,n)</literal>,
+                        определяющая гистограмму <literal>mtx(i,j)=F(x(i),y(j))</literal>, 
+                        где <literal>x</literal> и <literal>y</literal> - это векторы размерами <literal>(1,m+1)</literal> и <literal>(1,n+1)</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>&lt;opt_args&gt;</term>
+                <listitem>
+                    <para>
+                        это представляет последовательность деклараций <literal>key1=value1</literal>,
+                        <literal>key2=value2</literal>,... где <literal>key1</literal>,
+                        <literal>key2</literal>,... могут иметь одно из следующих значений:
+                        <literal>theta</literal>, <literal>alpha</literal>, <literal>leg</literal>, 
+                        <literal>flag</literal>, <literal>ebox</literal>. См. <link linkend="plot3d">plot3d</link>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>theta, alpha, leg, flag, ebox</term>
+                <listitem>
+                    <para>
+                        см. <link linkend="plot3d">plot3d</link>.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <literal>hist3d</literal> представляет двумерную гистограмму в виде трёхмерного графика.
+            Значения объединяются в полузакрытые интервалы <literal>[x(i) x(i+1)[ X [y(i) y(i+1)[</literal>.
+        </para>
+        <para>
+            Введите команду <literal>hist3d()</literal>, чтобы посмотреть демонстрацию.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+        hist3d();
+ ]]></programlisting>
+        <scilab:image localized="true">hist3d();</scilab:image>
+        <programlisting role="example"><![CDATA[
+hist3d(10*rand(10,10));
+ ]]></programlisting>
+        <scilab:image>hist3d(10*rand(10,10));</scilab:image>
+        <programlisting role="example"><![CDATA[
+Z = zeros(100,5);
+A = abs(rand(40,5));
+Z(1:40,:) = A;
+scf();
+hist3d(Z);
+isoview off
+ ]]></programlisting>
+        <scilab:image>
+            Z = zeros(100,5);
+            A = abs(rand(40,5));
+            Z(1:40,:) = A;
+            scf();
+            hist3d(Z);
+            isoview off
+        </scilab:image>
+        <programlisting role="example"><![CDATA[
+Z = zeros(100,5);
+A = abs(rand(40,5));
+Z(1:40,:) = A;
+Index = find(Z==0);
+Z(Index) = %nan;
+scf();
+hist3d(Z);
+isoview off
+ ]]></programlisting>
+        <scilab:image>
+            Z = zeros(100,5);
+            A = abs(rand(40,5));
+            Z(1:40,:) = A;
+            Index = find(Z==0);
+            Z(Index) = %nan;
+            scf();
+            hist3d(Z);
+            isoview off
+        </scilab:image>
+        <programlisting role="example"><![CDATA[
+Z = zeros(100,5);
+A = abs(rand(40,5));
+Z(1:40,:) = A;
+A = abs(rand(10,5));
+Z(91:100,:) = A;
+scf();
+hist3d(Z);
+isoview off
+ ]]></programlisting>
+        <scilab:image>
+            Z = zeros(100,5);
+            A = abs(rand(40,5));
+            Z(1:40,:) = A;
+            A = abs(rand(10,5));
+            Z(91:100,:) = A;
+            scf();
+            hist3d(Z);
+            isoview off
+            gca().rotation_angles = [30 50];
+        </scilab:image>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="histplot">histplot</link>
+            </member>
+            <member>
+                <link linkend="plot3d">plot3d</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

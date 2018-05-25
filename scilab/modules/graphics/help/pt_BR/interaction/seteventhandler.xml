@@ -13,26 +13,29 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="seteventhandler" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="seteventhandler" xml:lang="pt">
     <refnamediv>
         <refname>seteventhandler</refname>
         <refpurpose>Define um gerenciador de eventos para uma janela
-            gráfica
+            grÃ¡fica
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>seteventhandler(sfun_name)
             seteventhandler('')
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>sfun_name</term>
                 <listitem>
-                    <para>string. O nome da função do Scilab com a qual se pretende
+                    <para>string. O nome da funÃ§Ã£o do Scilab com a qual se pretende
                         gerenciar os eventos
                     </para>
                 </listitem>
@@ -40,13 +43,13 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
-        <para>A função permite que o usuário defina um gerenciador de eventos
-            particular para janela gráfica corrente. <literal>seteventhandler('')
+        <title>DescriÃ§Ã£o</title>
+        <para>A funÃ§Ã£o permite que o usuÃ¡rio defina um gerenciador de eventos
+            particular para janela grÃ¡fica corrente. <literal>seteventhandler('')
             </literal>
             remove o gerenciador.
         </para>
-        <para>Para mais informações sobre o gerenciador de eventos, veja a página
+        <para>Para mais informaÃ§Ãµes sobre o gerenciador de eventos, veja a pÃ¡gina
             <link linkend="eventhandlerfunctions">event handler
                 functions
             </link>
@@ -59,23 +62,23 @@
 function my_eventhandler(win,x,y,ibut)
   if ibut==-1000 then return,end
   [x,y]=xchange(x,y,'i2f')
-  xinfo(msprintf('Evento de código %d na posição do mouse é (%f,%f)',ibut,x,y))
+  gcf().info_message = msprintf('Evento de cÃ³digo %d na posiÃ§Ã£o do mouse Ã© (%f,%f)',ibut,x,y);
 endfunction
 
 plot2d()
 seteventhandler('my_eventhandler')
 //agora:
-//   -  mova o mouse sobre a janela gráfica
-//   -  pressione e libere as teclas com shift pressionado ou não e com Ctrl pressionado ou não
-//   -  pressione um botão, espere um pouco e libere
-//   -  pressione e libere um botão
-//   -  clique duas vezes em um botão
+//   -  mova o mouse sobre a janela grÃ¡fica
+//   -  pressione e libere as teclas com shift pressionado ou nÃ£o e com Ctrl pressionado ou nÃ£o
+//   -  pressione um botÃ£o, espere um pouco e libere
+//   -  pressione e libere um botÃ£o
+//   -  clique duas vezes em um botÃ£o
 
 seteventhandler('') //suprimindo o gerenciador de eventos
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="addmenu">addmenu</link>

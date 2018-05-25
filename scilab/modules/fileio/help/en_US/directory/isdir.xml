@@ -14,7 +14,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="isdir">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="isdir">
     <refnamediv>
         <refname>isdir</refname>
         <refpurpose>checks that a path points to an existing directory</refpurpose>
@@ -72,5 +75,17 @@ isdir SCI/etc/scilab.start
                 <link linkend="fileinfo">fileinfo</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revdescription>
+                  isdir("w:") and isdir("w:\") and isdir("w:/") now return %F when the drive W:
+                  does not exist.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

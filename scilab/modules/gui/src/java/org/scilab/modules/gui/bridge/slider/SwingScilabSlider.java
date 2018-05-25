@@ -22,7 +22,9 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE__;
 
 import java.awt.Color;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 
@@ -156,11 +158,11 @@ public class SwingScilabSlider extends JSlider implements SwingViewObject, Widge
         getInputMap().put(KeyStroke.getKeyStroke("UP"), "RightAction");
         getInputMap().put(KeyStroke.getKeyStroke("RIGHT"), "RightAction");
         getActionMap().put("RightAction", new RightAction());
-        getInputMap().put(KeyStroke.getKeyStroke("control UP"), "CtrlRightAction");
-        getInputMap().put(KeyStroke.getKeyStroke("control RIGHT"), "CtrlRightAction");
+        getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_UP, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()), "CtrlRightAction");
+        getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()), "CtrlRightAction");
         getActionMap().put("CtrlRightAction", new CtrlRightAction());
-        getInputMap().put(KeyStroke.getKeyStroke("control DOWN"), "CtrlLeftAction");
-        getInputMap().put(KeyStroke.getKeyStroke("control LEFT"), "CtrlLeftAction");
+        getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()), "CtrlLeftAction");
+        getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_LEFT, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()), "CtrlLeftAction");
         getActionMap().put("CtrlLeftAction", new CtrlLeftAction());
 
 

@@ -54,10 +54,13 @@ plot(x,acsc(x))
         <title>Ver Também</title>
         <simplelist type="inline">
             <member>
+                <link linkend="acscd">acscd</link>
+            </member>
+            <member>
                 <link linkend="csc">csc</link>
             </member>
             <member>
-                <link linkend="acscd">acscd</link>
+                <link linkend="cscd">cscd</link>
             </member>
             <member>
                 <link linkend="acsch">acsch</link>

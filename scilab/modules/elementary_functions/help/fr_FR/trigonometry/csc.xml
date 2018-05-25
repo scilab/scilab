@@ -61,10 +61,13 @@ cscd(90)
         <title>Voir aussi</title>
         <simplelist type="inline">
             <member>
-                <link linkend="csc">csc</link>
+                <link linkend="cscd">cscd</link>
             </member>
             <member>
-                <link linkend="sind">sind</link>
+                <link linkend="sec">sec</link>
+            </member>
+            <member>
+                <link linkend="secd">secd</link>
             </member>
         </simplelist>
     </refsection>

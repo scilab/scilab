@@ -6,6 +6,7 @@
 // =============================================================================
 //
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 //
 // <-- Non-regression test for bug 9250 -->
 //
@@ -20,6 +21,6 @@ try
   mkdir(["a", "b"])
 catch
   [str,n]=lasterror();
-  if n <> 999 then pause, end
+  if n <> 10000 then pause, end
   if str <> msprintf(_("%s: Wrong size for input argument #%d: string expected.\n"), "mkdir", 1) then pause, end
 end

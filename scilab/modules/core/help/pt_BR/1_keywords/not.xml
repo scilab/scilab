@@ -16,16 +16,16 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="not" xml:lang="pt">
     <refnamediv>
         <refname>not</refname>
-        <refpurpose>(~) não lógico</refpurpose>
+        <refpurpose>(~) nÃ£o lÃ³gico</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>~A</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            <literal>~A</literal> fornece a negação dos elementos da matriz de
+            <literal>~A</literal> fornece a negaÃ§Ã£o dos elementos da matriz de
             valores booleanos <literal>A</literal> elemento a elemento.
         </para>
     </refsection>
@@ -36,7 +36,7 @@
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="and">and</link>
@@ -48,5 +48,17 @@
                 <link linkend="find">find</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>HistÃ³rico</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    <literal>~</literal> priority is now higher than the comparisons one
+                    (<literal>==  ~=  &lt;  &lt;=  >=  ></literal>).
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyright 2013 Clement DAVID <clement.david@scilab-enterprises.com> -->
-<application>
-    <id type="desktop">scilab.desktop</id>
+<component type="desktop-application">
+    <id>org.scilab.www</id>
     <name>Scilab</name>
     <metadata_license>CC0-1.0</metadata_license>
     <project_license>CECILL-2.1 or GPL-2.0+</project_license>
@@ -23,12 +23,24 @@
         </p>
     </description>
     <screenshots>
-        <screenshot type="default" width="1200" height="675">http://cgit.scilab.org/cgit.cgi/scilab/plain/scilab/desktop/images/scilab-desktop.png</screenshot>
-        <screenshot width="1200" height="675">http://cgit.scilab.org/cgit.cgi/scilab/plain/scilab/desktop/images/scilab-plot.png</screenshot>
-        <screenshot width="1200" height="675">http://cgit.scilab.org/cgit.cgi/scilab/plain/scilab/desktop/images/scilab-xcos.png</screenshot>
-        <screenshot width="1200" height="675">http://cgit.scilab.org/cgit.cgi/scilab/plain/scilab/desktop/images/scilab-scinotes.png</screenshot>
+      <screenshot type="default">
+        <caption>Scilab main window</caption>
+        <image width="1200" height="675">http://cgit.scilab.org/cgit.cgi/scilab/plain/scilab/desktop/images/scilab-desktop.png</image>
+      </screenshot>
+      <screenshot>
+        <caption>Scilab plot</caption>
+        <image width="1200" height="675">http://cgit.scilab.org/cgit.cgi/scilab/plain/scilab/desktop/images/scilab-plot.png</image>
+      </screenshot>
+      <screenshot>
+        <caption>Scilab Xcos</caption>
+        <image width="1200" height="675">http://cgit.scilab.org/cgit.cgi/scilab/plain/scilab/desktop/images/scilab-xcos.png</image>
+      </screenshot>
+      <screenshot>
+        <caption>Scilab text editor</caption>
+        <image width="1200" height="675">http://cgit.scilab.org/cgit.cgi/scilab/plain/scilab/desktop/images/scilab-scinotes.png</image>
+      </screenshot>
     </screenshots>
     <url type="homepage">http://www.scilab.org</url>
-    <updatecontact>dev@lists.scilab.org</updatecontact>
-</application>
+    <update_contact>dev@lists.scilab.org</update_contact>
+</component>
 

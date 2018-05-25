@@ -143,7 +143,7 @@ static int sci_toprint_one_rhs(void* _pvCtx, const char *fname)
 
                 if (num_win < 0)
                 {
-                    Scierror(999, _("%s: Wrong value for input argument #%d: Positive integers expected.\n"), fname);
+                    Scierror(999, _("%s: Wrong value for input argument #%d: Positive integers expected.\n"), fname, 1);
                     return 1;
                 }
 
@@ -375,7 +375,7 @@ static int sci_toprint_two_rhs(void* _pvCtx, const char *fname)
 
                 if (num_win < 0)
                 {
-                    Scierror(999, _("%s: Wrong value for input argument #%d: Positive integers expected.\n"), fname);
+                    Scierror(999, _("%s: Wrong value for input argument #%d: Positive integers expected.\n"), fname, 1);
                     return 1;
                 }
             }

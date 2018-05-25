@@ -126,8 +126,8 @@ function cb_m2sci_gui
         // --- Cancel conversion ---
         //
     elseif get(gcbo, "tag")=="cancelbtn" | get(gcbo, "tag")=="close_menu" then
-        //delete(findobj("tag", "m2scifig"));
-        delete(gcf())
+        delete(findobj("tag", "m2sci_gui"));
+        //delete(gcf())
 
         //
         // --- Launch conversion ---

@@ -1,7 +1,7 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2015 - Scilab Enterprises - Calixte DENIZET
- *  Copyright (C) 2017 - Samuel GOUGEON
+ *  Copyright (C) 2017, 2018 - Samuel GOUGEON
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -107,6 +107,7 @@ std::unordered_map<std::wstring, std::wstring> DeprecatedChecker::initDep()
     map.emplace(L"numer", L".num");
     map.emplace(L"square", L"replot");
     map.emplace(L"xgetech", L"gca");
+    map.emplace(L"xinfo", L"gcf().info_message");
 
     // Scilab 5.5.2 => 6.0.0
     map.emplace(L"fort", L"call");

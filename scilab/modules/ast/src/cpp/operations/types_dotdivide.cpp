@@ -614,7 +614,7 @@ void fillDotDivFunction()
     scilab_fill_dotdiv(Bool, UInt32, M_M, Bool, UInt32, UInt32);
     scilab_fill_dotdiv(Bool, Int64, M_M, Bool, Int64, Int64);
     scilab_fill_dotdiv(Bool, UInt64, M_M, Bool, UInt64, UInt64);
-    scilab_fill_dotdiv(Bool, Bool, M_M, Bool, Bool, Bool);
+    scilab_fill_dotdiv(Bool, Bool, M_M, Bool, Bool, Double);
     scilab_fill_dotdiv(Bool, Empty, M_E, Bool, Double, Double);
 
     //Matrix ./ Scalar
@@ -627,7 +627,7 @@ void fillDotDivFunction()
     scilab_fill_dotdiv(Bool, ScalarUInt32, M_S, Bool, UInt32, UInt32);
     scilab_fill_dotdiv(Bool, ScalarInt64, M_S, Bool, Int64, Int64);
     scilab_fill_dotdiv(Bool, ScalarUInt64, M_S, Bool, UInt64, UInt64);
-    scilab_fill_dotdiv(Bool, ScalarBool, M_S, Bool, Bool, Bool);
+    scilab_fill_dotdiv(Bool, ScalarBool, M_S, Bool, Bool, Double);
 
     //Scalar ./ Matrix
     scilab_fill_dotdiv(ScalarBool, Double, S_M, Bool, Double, Double);
@@ -639,7 +639,7 @@ void fillDotDivFunction()
     scilab_fill_dotdiv(ScalarBool, UInt32, S_M, Bool, UInt32, UInt32);
     scilab_fill_dotdiv(ScalarBool, Int64, S_M, Bool, Int64, Int64);
     scilab_fill_dotdiv(ScalarBool, UInt64, S_M, Bool, UInt64, UInt64);
-    scilab_fill_dotdiv(ScalarBool, Bool, S_M, Bool, Bool, Bool);
+    scilab_fill_dotdiv(ScalarBool, Bool, S_M, Bool, Bool, Double);
     scilab_fill_dotdiv(ScalarBool, Empty, M_E, Bool, Double, Double);
 
     //Scalar ./ Scalar
@@ -652,7 +652,7 @@ void fillDotDivFunction()
     scilab_fill_dotdiv(ScalarBool, ScalarUInt32, S_S, Bool, UInt32, UInt32);
     scilab_fill_dotdiv(ScalarBool, ScalarInt64, S_S, Bool, Int64, Int64);
     scilab_fill_dotdiv(ScalarBool, ScalarUInt64, S_S, Bool, UInt64, UInt64);
-    scilab_fill_dotdiv(ScalarBool, ScalarBool, S_S, Bool, Bool, Bool);
+    scilab_fill_dotdiv(ScalarBool, ScalarBool, S_S, Bool, Bool, Double);
 
     //Identity
     scilab_fill_dotdiv(Identity, Double, I_M, Double, Double, Double);

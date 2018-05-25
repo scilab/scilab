@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -13,7 +14,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="int8">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:lang="ja" xml:id="int8">
     <refnamediv>
         <refname>int8</refname>
         <refpurpose>1バイト整数形式に変換する</refpurpose>
@@ -48,14 +52,15 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>y=int8(X)
-            y=int16(X)
-            y=int32(X)
-            y=int64(X)
-            y=uint8(X)
-            y=uint16(X)
-            y=uint32(X)
-            y=uint64(X)
+        <synopsis>
+            y = int8(X)
+            y = int16(X)
+            y = int32(X)
+            y = int64(X)
+            y = uint8(X)
+            y = uint16(X)
+            y = uint32(X)
+            y = uint64(X)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -64,13 +69,17 @@
             <varlistentry>
                 <term>X</term>
                 <listitem>
-                    <para>浮動小数点数または整数の行列</para>
+                    <para>
+                        matrix of booleans, of encoded integers, or of decimal real or complex numbers.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>y</term>
                 <listitem>
-                    <para>1, 2 または 4バイトにコード化された整数の行列.</para>
+                    <para>
+                        matrix of integers encoded on 1, 2, 4 or 8 bytes. Its sizes are X ones.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -78,82 +87,226 @@
     <refsection>
         <title>説明</title>
         <para>
-            1,2または4バイト整数に変換,保存します.
+            1,2,4または8バイト整数に変換,保存します.
             これらのデータ型は画像,長い信号,...など大きなオブジェクトを
             保存する際に特に有用です.
         </para>
-        <variablelist>
-            <varlistentry>
-                <term>y=int8(X)</term>
-                <listitem>
-                    <para>[-128,127]の範囲の数を返します</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>y=uint8(X)</term>
-                <listitem>
-                    <para>[0,255]の範囲の数を返します</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>y=int16(X)</term>
-                <listitem>
-                    <para>[-32768,32767]の範囲の数を返します</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>y=uint16(X)</term>
-                <listitem>
-                    <para>[0, 65535]の範囲の数を返します</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>y=int32(X)</term>
-                <listitem>
-                    <para>[-2147483648,2147483647]の範囲の数を返します</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>y=uint32(X)</term>
-                <listitem>
-                    <para>[0, 4294967295]の範囲の数を返します</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>y=int64(X)</term>
-                <listitem>
-                    <para>[-9223372036854775808, 9223372036854775807]の範囲の数を返します</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>y=uint64(X)</term>
-                <listitem>
-                    <para>[0, 18446744073709551616]の範囲の数を返します</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
+        <warning>
+            <para>
+                If some <varname>X</varname> decimal components have a fractional part, it is
+                always trimmed to 0.<table></table>
+                Example:
+                <literal>int8([-3.6, -2.5, -1.4, 1.3, 3.5, 6.7]) // = [-3, -2, -1, 1, 3, 6]</literal>.
+            </para>
+            <para>
+                Values of <varname>X</varname> components that are out of the targeted interval are
+                wrapped (not saturated). Examples:
+                <itemizedlist>
+                    <listitem>
+                        <literal>int8([127 128 129 130])  // = [127 -128 -127 -126]</literal>.
+                    </listitem>
+                    <listitem>
+                        <literal>uint8([254 255 256 257]) // = [254 255 0 1]</literal>.
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>-%inf is always converted into the lower bound of the interval (see below).</para>
+            <para>%inf is always converted into the upper bound of the interval (see below).</para>
+            <para>%nan is always converted into 0.</para>
+            <para>If <varname>X</varname> is complex encoded, imaginary parts are ignored.
+                Only the real parts are converted and returned.
+            </para>
+            <para>[%f %t] is always converted into [0 1].</para>
+            <para>
+            Converting big int64 or uint64 integers into decimal numbers may change them
+            and downgrade their relative accuracy. Indeed, int64|uint64 integers are encoded over
+            63|64 bits, while the mantissa of decimal numbers is encoded over 53 bits only.
+            For more details, please refer to the <link linkend="double">double()</link> page.
+            </para>
+        </warning>
+        <para>
+            <table>
+                <tr><th>Function</th><th>y in</th><th align="left">=</th></tr>
+                <tr><th>int8(X)</th>
+                    <td>[- 2<superscript>7</superscript>,  2<superscript>7</superscript>-1]</td>
+                    <td>[-128, 127]</td>
+                </tr>
+                <tr><th>int16(X)</th>
+                    <td>[- 2<superscript>15</superscript>,  2<superscript>15</superscript>-1]</td>
+                    <td>[-32768, 32767]</td>
+                </tr>
+                <tr><th>int32(X)</th>
+                    <td>[- 2<superscript>31</superscript>,  2<superscript>31</superscript>-1]</td>
+                    <td>[-2147483648, 2147483647]</td>
+                </tr>
+                <tr><th>int64(X)</th>
+                    <td>[- 2<superscript>63</superscript>,  2<superscript>63</superscript>-1]</td>
+                    <td>[-9223372036854775808, 9223372036854775807]</td>
+                </tr>
+                <tr><th>uint8(X)</th>
+                    <td>[0, 2<superscript>8</superscript>-1]</td>
+                    <td>[0, 255]</td>
+                </tr>
+                <tr><th>uint16(X)</th>
+                    <td>[0, 2<superscript>16</superscript>-1]</td>
+                    <td>[0, 65535]</td>
+                </tr>
+                <tr><th>uint32(X)</th>
+                    <td>[0, 2<superscript>32</superscript>-1]</td>
+                    <td>[0, 4294967295]</td>
+                </tr>
+                <tr><th>uint64(X)</th>
+                    <td>[0, 2<superscript>64</superscript>-1]</td>
+                    <td>[0, 18446744073709551615]</td>
+                </tr>
+            </table>
+        </para>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>例</title>
+        <para>
+            Rounding to 0 and wrapping, and special values:
+        </para>
         <programlisting role="example"><![CDATA[
-int8([1 -120 127 312])
-uint8([1 -120 127 312])
-x=int32(-200:100:400)
-int8(x)
+int8([-11.7 -8.5 -6.4  6.4 8.5 11.7])
+int8([-130 -129 -128 -127 126 127 128 129])
+a = -129 + 256*(-3:3)
+int8(a)
+int8([-%inf %inf %nan])
  ]]></programlisting>
+    <screen><![CDATA[
+--> int8([-11.7 -8.5 -6.4  6.4 8.5 11.7])
+ ans  =
+ -11 -8 -6  6  8  11
+
+--> int8([-130 -129 -128 -127 126 127 128 129])
+ ans  =
+  126  127 -128 -127  126  127 -128 -127
+
+--> a = -129 + 256*(-3:3)
+ a  =
+  -897.  -641.  -385.  -129.   127.   383.   639.
+
+--> int8(a)
+ ans  =
+  127  127  127  127  127  127  127
+
+--> int8([-%inf %inf %nan])
+ ans  =
+ -128  127  0
+]]></screen>
+    <para>
+        About wrapping and upper bounds of unsigned integers:
+    </para>
+    <programlisting role="example"><![CDATA[
+uint8([-1 %inf])
+uint16([-1 %inf])
+uint32([-1 %inf])
+uint64([-1 %inf])
+ ]]></programlisting>
+    <screen><![CDATA[
+--> uint8([-1 %inf])
+ ans  =
+  255  255
+
+--> uint16([-1 %inf])
+ ans  =
+  65535  65535
+
+--> uint32([-1 %inf])
+ ans  =
+  4294967295  4294967295
+
+--> uint64([-1 %inf])
+ ans  =
+  18446744073709551615  18446744073709551615
+]]></screen>
+    <para>
+        Converting 64-bits integers into decimal numbers downgrades their accuracy:
+    </para>
+        <programlisting role="example"><![CDATA[
+i = uint64(2)^63 - 600
+i - uint64(double(i))
+ ]]></programlisting>
+    <screen><![CDATA[
+--> i = uint64(2)^63 - 600
+ i  =
+  9223372036854775208
+
+--> i - uint64(double(i))
+ ans  =
+  424
+]]></screen>
+    <para>
+        Converting booleans and complex numbers:
+    </para>
+    <programlisting role="example"><![CDATA[
+int8([%f %t])
+
+int8(-10.2 + 3.4*%i)
+uint8(-10.2 + 3.4*%i)
+ ]]></programlisting>
+    <screen><![CDATA[
+--> int8([%f %t])
+ ans  =
+  0  1
+
+--> int8(-10.2 + 3.4*%i)
+ ans  =
+ -10
+
+--> uint8(-10.2 + 3.4*%i)
+ ans  =
+  246
+]]></screen>
     </refsection>
-    <refsection>
-        <title>参照o</title>
+    <refsection role="see also">
+        <title>参照</title>
         <simplelist type="inline">
             <member>
-                <link linkend="double">double</link>
+                <link linkend="iconvert">iconvert</link>
             </member>
             <member>
                 <link linkend="inttype">inttype</link>
             </member>
             <member>
-                <link linkend="iconvert">iconvert</link>
+                <link linkend="double">double</link>
+            </member>
+            <member>
+                <link linkend="dec2bin">dec2bin</link>
+            </member>
+            <member>
+                <link linkend="dec2base">dec2base</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>
+                            int64() and uint64() added to Scilab.
+                        </listitem>
+                        <listitem>
+                            Complex input numbers are now accepted.
+                        </listitem>
+                        <listitem>
+                            <table>
+                                <tr><th>This</th>           <th>is now</th>     <th>instead of</th></tr>
+                                <tr><td>int8([-%inf, %inf])</td><td>[-128, 127]</td><td>[0, 0]</td></tr>
+                                <tr><td>int16([-%inf, %inf])</td><td>[-32768, 32767]</td><td>[0, 0]</td></tr>
+                                <tr><td>int32(%inf)</td>    <td>2147483647</td> <td>-2147483648</td></tr>
+                                <tr><td>uint8(%inf)</td>    <td>255</td>        <td>0</td></tr>
+                                <tr><td>uint16(%inf)</td>   <td>65535</td>      <td>0</td></tr>
+                                <tr><td>uint32(%inf)</td>   <td>4294967295</td> <td>0</td></tr>
+                            </table>
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

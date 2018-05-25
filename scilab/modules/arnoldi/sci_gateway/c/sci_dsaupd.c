@@ -288,10 +288,10 @@ int sci_dsaupd(char *fname, void *pvApiCtx)
     LWORKL = mWORKL * nWORKL;
     LDV = Max(1, pN[0]);
 
-    /* Don't call dnaupd if ido == 99 */
+    /* Don't call dsaupd if ido == 99 */
     if (pIDO[0] == 99)
     {
-        Scierror(999, _("%s: Wrong size for input argument %s: An array of size %d expected.\n"), fname);
+        Scierror(999, _("%s: the computation is already terminated\n"), fname);
         return 1;
     }
 

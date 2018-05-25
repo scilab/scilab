@@ -16,14 +16,14 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="function" xml:lang="pt">
     <refnamediv>
         <refname>function</refname>
-        <refpurpose>abre definição de função</refpurpose>
+        <refpurpose>abre definiÃ§Ã£o de funÃ§Ã£o</refpurpose>
     </refnamediv>
     <refnamediv xml:id="endfunction">
         <refname>endfunction</refname>
-        <refpurpose>encerra definição de função</refpurpose>
+        <refpurpose>encerra definiÃ§Ã£o de funÃ§Ã£o</refpurpose>
     </refnamediv>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <programlisting  role='no-scilab-exec'><![CDATA[
 function <lhs_arguments>=<function_name><rhs_arguments>
 <statements>
@@ -34,24 +34,24 @@ endfunction
             <varlistentry>
                 <term>&lt;function_name&gt;</term>
                 <listitem>
-                    <para>é o nome da função</para>
+                    <para>Ã© o nome da funÃ§Ã£o</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>&lt;rhs_arguments&gt;</term>
                 <listitem>
-                    <para>é a lista de argumentos de entrada. Pode ser:</para>
+                    <para>Ã© a lista de argumentos de entrada. Pode ser:</para>
                     <itemizedlist>
                         <listitem>
-                            <para>uma seqüência separada por vírgula de nomes de variáveis
-                                encerrada por parênteses, como <literal>(x1,...,xm)</literal>. O
-                                último nome de variável pode ser a palavra-chave
+                            <para>uma seqÃ¼Ãªncia separada por vÃ­rgula de nomes de variÃ¡veis
+                                encerrada por parÃªnteses, como <literal>(x1,...,xm)</literal>. O
+                                Ãºltimo nome de variÃ¡vel pode ser a palavra-chave
                                 <literal>varargin</literal> (ver <link linkend="varargin">varargin</link>)
                             </para>
                         </listitem>
                         <listitem>
                             <para>
-                                a seqüência <literal>()</literal> ou nada, se a função não
+                                a seqÃ¼Ãªncia <literal>()</literal> ou nada, se a funÃ§Ã£o nÃ£o
                                 possui argumentos de entrada.
                             </para>
                         </listitem>
@@ -61,19 +61,19 @@ endfunction
             <varlistentry>
                 <term>&lt;lhs_arguments&gt;</term>
                 <listitem>
-                    <para>é a lista de argumentos de saída. Pode ser:</para>
+                    <para>Ã© a lista de argumentos de saÃ­da. Pode ser:</para>
                     <itemizedlist>
                         <listitem>
-                            <para>uma seqüência separada por vírgula de nomes de variáveis
+                            <para>uma seqÃ¼Ãªncia separada por vÃ­rgula de nomes de variÃ¡veis
                                 encerrada por colchetes, como <literal>[y1,...,yn]</literal>. O
-                                último nome de variável pode ser a palavra-chave
+                                Ãºltimo nome de variÃ¡vel pode ser a palavra-chave
                                 <literal>varargout</literal> (ver <link linkend="varargout">varargout</link>)
                             </para>
                         </listitem>
                         <listitem>
                             <para>
-                                a seqüência <literal>[]</literal>, se a função não possui
-                                argumentos de saída. neste caso, a sintaxe também, pode ser:
+                                a seqÃ¼Ãªncia <literal>[]</literal>, se a funÃ§Ã£o nÃ£o possui
+                                argumentos de saÃ­da. neste caso, a sintaxe tambÃ©m, pode ser:
                                 <literal>function
                                     &lt;function_name&gt;&lt;rhs_arguments&gt;
                                 </literal>
@@ -85,33 +85,33 @@ endfunction
             <varlistentry>
                 <term>&lt;statements&gt;</term>
                 <listitem>
-                    <para>conjunto de instruções Scilab (declarações). Esta sintaxe pode
-                        ser usada para definir funções (ver <link linkend="functions">functions</link>) inline ou em arquivo
-                        script (ver <link linkend="exec">exec</link>). Para compatibilidade com versões Scilab antigas,
-                        as funções podem ser definidas em um arquivo script contendo apenas
-                        definições de funções podem ser "carregadas" no Scilab através da
-                        função <function>exec</function>.
+                    <para>conjunto de instruÃ§Ãµes Scilab (declaraÃ§Ãµes). Esta sintaxe pode
+                        ser usada para definir funÃ§Ãµes (ver <link linkend="functions">functions</link>) inline ou em arquivo
+                        script (ver <link linkend="exec">exec</link>). Para compatibilidade com versÃµes Scilab antigas,
+                        as funÃ§Ãµes podem ser definidas em um arquivo script contendo apenas
+                        definiÃ§Ãµes de funÃ§Ãµes podem ser "carregadas" no Scilab atravÃ©s da
+                        funÃ§Ã£o <function>exec</function>.
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
         <para>
-            A seqüência <literal>function
+            A seqÃ¼Ãªncia <literal>function
                 &lt;lhs_arguments&gt;=&lt;function_name&gt;&lt;rhs_arguments&gt;
             </literal>
-            não pode ser separada em várias linhas. Esta seqüência pode ser seguida
-            por declarações na mesma linha, se uma vírgula ou ponto-e-vírgula for
+            nÃ£o pode ser separada em vÃ¡rias linhas. Esta seqÃ¼Ãªncia pode ser seguida
+            por declaraÃ§Ãµes na mesma linha, se uma vÃ­rgula ou ponto-e-vÃ­rgula for
             adicionado ao seu fim.
         </para>
         <note>
             Note that <literal>&lt;function_name&gt;</literal> must respect some syntax rules (see <link linkend="names">names</link>).
         </note>
-        <para>Definições de funções podem ser aninhadas.</para>
+        <para>DefiniÃ§Ãµes de funÃ§Ãµes podem ser aninhadas.</para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
-//definição inline
+//definiÃ§Ã£o inline
 function [x,y]=myfct(a,b)
 x=a+b
 y=a-b
@@ -119,12 +119,12 @@ endfunction
 
 [x,y]=myfct(3,2)
 
-//uma definição de função de uma linha
+//uma definiÃ§Ã£o de funÃ§Ã£o de uma linha
 function y=sq(x),y=x^2,endfunction
 
 sq(3)
 
-//definição de função aninhada
+//definiÃ§Ã£o de funÃ§Ã£o aninhada
 function y=foo(x)
 a=sin(x)
 function y=sq(x), y=x^2,endfunction
@@ -133,12 +133,12 @@ endfunction
 
 foo(%pi/3)
 
-// definição em um arquivo script (ver exec)
+// definiÃ§Ã£o em um arquivo script (ver exec)
 exec SCI/modules/elementary_functions/macros/asinh.sci;
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="functions">functions</link>
@@ -150,5 +150,18 @@ exec SCI/modules/elementary_functions/macros/asinh.sci;
                 <link linkend="names">names</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>HistÃ³rico</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revdescription>
+                  <literal>function</literal> and <literal>endfunction</literal> are now protected:
+                  Assignments like <literal>function=1</literal> or <literal>endfunction=2</literal>
+                  are no longer possible.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

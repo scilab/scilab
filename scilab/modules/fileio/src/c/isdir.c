@@ -67,29 +67,22 @@ BOOL isdirW(const wchar_t * wcpath)
     }
     bOK = isdir(path);
     FREE(path);
-#else
-    if (isDriveW(wcpath))
-    {
-        return TRUE;
-    }
-    else
-    {
-        DWORD attr = 0;
-        wchar_t *tmpPath = os_wcsdup(wcpath);
-
-        if ( (tmpPath[wcslen(tmpPath) - 1] == L'\\') || (tmpPath[wcslen(tmpPath) - 1] == L'/') )
-        {
-            tmpPath[wcslen(tmpPath) - 1] = L'\0';
-        }
-        attr = GetFileAttributesW(tmpPath);
-        FREE(tmpPath);
-        if (attr == INVALID_FILE_ATTRIBUTES)
-        {
-            return FALSE;
-        }
-        return ((attr & FILE_ATTRIBUTE_DIRECTORY) != 0) ? TRUE : FALSE;
-    }
-#endif
     return bOK;
+#else
+    DWORD attr = 0;
+    wchar_t *tmpPath = os_wcsdup(wcpath);
+
+    if ((tmpPath[wcslen(tmpPath) - 1] == L'\\') || (tmpPath[wcslen(tmpPath) - 1] == L'/'))
+    {
+        tmpPath[wcslen(tmpPath) - 1] = L'\0';
+    }
+    attr = GetFileAttributesW(tmpPath);
+    FREE(tmpPath);
+    if (attr == INVALID_FILE_ATTRIBUTES)
+    {
+        return FALSE;
+    }
+    return ((attr & FILE_ATTRIBUTE_DIRECTORY) != 0) ? TRUE : FALSE;
+#endif
 }
 /*--------------------------------------------------------------------------*/

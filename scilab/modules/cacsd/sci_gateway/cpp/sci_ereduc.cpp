@@ -36,7 +36,7 @@ types::Function::ReturnValue sci_ereduc(types::typed_list &in, int _iRetCount, t
 
     if (in.size() != 2)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "ereduc", 2);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "ereduc", 2);
         return types::Function::Error;
     }
 

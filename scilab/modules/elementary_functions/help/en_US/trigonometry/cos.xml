@@ -59,10 +59,16 @@ acos(cos(x))
         <title>See also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="cosm">cosm</link>
+                <link linkend="cosd">cosd</link>
             </member>
             <member>
                 <link linkend="acos">acos</link>
+            </member>
+            <member>
+                <link linkend="acosd">acosd</link>
+            </member>
+            <member>
+                <link linkend="cosm">cosm</link>
             </member>
         </simplelist>
     </refsection>

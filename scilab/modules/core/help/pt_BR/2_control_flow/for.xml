@@ -1,48 +1,68 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="for" xml:lang="pt">
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) - INRIA
+ * Copyright (C) 2018 - Samuel GOUGEON
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="for" xml:lang="pt">
     <refnamediv>
         <refname>for</refname>
-        <refpurpose>palavra-chave de linguagem para laços ("loops") (significa
+        <refpurpose>palavra-chave de linguagem para laÃ§os ("loops") (significa
             "para...")
         </refpurpose>
     </refnamediv>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            Usado para definir laços ("loops"). sua sintaxe é: <literal> for
-                variável=expressão ,instrução, ... ,instrução,end
+            Usado para definir laÃ§os ("loops"). sua sintaxe Ã©: <literal> for
+                variÃ¡vel=expressÃ£o ,instruÃ§Ã£o, ... ,instruÃ§Ã£o,end
             </literal>
         </para>
         <para>
-            <literal> for variável= expressão do instrução, ...
-                ,instrução,end
+            <literal> for variÃ¡vel= expressÃ£o do instruÃ§Ã£o, ...
+                ,instruÃ§Ã£o,end
             </literal>
         </para>
         <para>
-            Se <literal>expressão</literal> é uma matriz ou um vetor linha,
-            <literal>variável</literal> toma como valores os valores de cada coluna da
+            Se <literal>expressÃ£o</literal> Ã© uma matriz ou um vetor linha,
+            <literal>variÃ¡vel</literal> toma como valores os valores de cada coluna da
             matriz.
         </para>
         <para>
             Um caso particular utiliza o operador <link linkend="colon">colon</link> para criar vetores linhas regularmente
-            espaçados, e remonta a formas de laço "for" tradicionais : <literal>for
+            espaÃ§ados, e remonta a formas de laÃ§o "for" tradicionais : <literal>for
                 variable=n1:step:n2, ...,end
             </literal>
         </para>
         <para>
-            Se <literal>expressão </literal>é uma lista,
-            <literal>variável</literal> toma como valores as entradas sucessivas da
+            Se <literal>expressÃ£o </literal>Ã© uma lista,
+            <literal>variÃ¡vel</literal> toma como valores as entradas sucessivas da
             lista.
         </para>
-        <para>Aviso: o número de caracteres usados para definir o corpo de
-            qualquer instrução condicional (if, while, for ou select/case) deve ser
+        <para>Aviso: o nÃºmero de caracteres usados para definir o corpo de
+            qualquer instruÃ§Ã£o condicional (if, while, for ou select/case) deve ser
             limitado a 16k.
         </para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
+        <para>Lacetes iterativos comum :</para>
         <programlisting role="example"><![CDATA[
-// laços "for" tradicionais
+// laÃ§os "for" tradicionais
+>>>>>>> 58f750d5cbc... * Bug 12198 (+NRT): 'break case..while' & clear no longer overloadable as in end=1
 n=5;
 for i = 1:n
     for j = 1:n
@@ -53,22 +73,77 @@ for j = 2:n-1
     a(j,j) = j;
 end;
 a
+ ]]></programlisting>
+        <para>LaÃ§o "decrescente" :</para>
+        <programlisting role="example"><![CDATA[
+for j = 4:-1:1
+    j
+end
+ ]]></programlisting>
+        <para>LaÃ§o implÃ­cito sobre as colunas de uma linha ou de uma matriz :</para>
+        <programlisting role="example"><![CDATA[
+M = [1 2 ; 3 4 ; 5 6]'
+for  c = M, c, end
+ ]]></programlisting>
+    <screen><![CDATA[
+-> M = [1 2 ; 3 4 ; 5 6]'
+ M  =
+   1.   3.   5.
+   2.   4.   6.
+
+--> for  c = M, c, end
+ c  =
+   1.
+   2.
+
+ c  =
+   3.
+   4.
+=======
 for j= 4:-1:1
     disp(j);
-end // laço decrescente
+end // laÃ§o decrescente
 
-//laço em colunas de matrizes
+//laÃ§o em colunas de matrizes
 for  e=eye(3,3), e, end
 for v=a, write(6,v), end
 for j=1:n, v=a(:,j), write(6,v), end
 
-//laço em listas de entradas
+//laÃ§o em listas de entradas
 for l=list(1,2,'example'); l, end
+>>>>>>> 58f750d5cbc... * Bug 12198 (+NRT): 'break case..while' & clear no longer overloadable as in end=1
 
+ c  =
+   5.
+   6.
+]]></screen>
+        <programlisting role="example"><![CDATA[
+for v = a, write(%io(2),v), end
+for j = 1:n, v = a(:,j), write(%io(2),v), end
  ]]></programlisting>
+        <para>LaÃ§o em listas de entradas :</para>
+        <programlisting role="example"><![CDATA[
+for l = list([1 2;3 4], (1+%z)^3, 'example', [%F %T]); l, end
+ ]]></programlisting>
+    <screen><![CDATA[
+--> for l = list([1 2;3 4], (1+%z)^3, 'example', [%F %T]); l, end
+ l  =
+   1.   2.
+   3.   4.
+
+ l  =
+            2   3
+   1 +3z +3z  +z
+
+ l  =
+ example
+
+ l  =
+  F T
+]]></screen>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="while">while</link>
@@ -80,5 +155,18 @@ for l=list(1,2,'example'); l, end
                 <link linkend="do">do</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>HistÃ³rico</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revdescription>
+                    The for <literal>expression</literal> can now be a vector of graphic handles.
+                    <literal>for</literal> is now protected:
+                    Assignments like <literal>for=1</literal> are no longer possible.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

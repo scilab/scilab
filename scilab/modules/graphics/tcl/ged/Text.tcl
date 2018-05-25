@@ -260,7 +260,7 @@ frame $w.frame.fontssz  -borderwidth 0
 pack $w.frame.fontssz  -in $w.frame    -side top -fill x -pady 0
 
 label $w.frame.fontsizelabel -height 0 -text "Font size:" -width 0  -font $gedFont -anchor e -width $largeur
-scale $w.frame.fontsize -orient horizontal  -from 0 -to 5 \
+scale $w.frame.fontsize -orient horizontal  -from 0 -to [expr max(5,$curfontsize*1.5)] \
 	 -resolution 1.0 -command "setFontSize $w.frame.fontsize" -tickinterval 0 -font $gedFont
 pack $w.frame.fontsizelabel  -in $w.frame.fontssz -side left
 pack $w.frame.fontsize -in $w.frame.fontssz   -expand 1 -fill x -pady 0 -padx $smallPad

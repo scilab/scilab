@@ -290,7 +290,7 @@ int sci_findbd(char *fname, void* pvApiCtx)
 
         if (iN != iCols)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A matrix of size %dx%d expected.\n"), fname, iN, iN);
+            Scierror(999, _("%s: Wrong size for input argument #%d: A matrix of size %dx%d expected.\n"), fname, iIP, iN, iN);
             return 0;
         }
 
@@ -321,7 +321,7 @@ int sci_findbd(char *fname, void* pvApiCtx)
 
         if (iRows != iN)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A matrix of size %dx%d expected.\n"), fname, iN, iN);
+            Scierror(999, _("%s: Wrong size for input argument #%d: A matrix of size %dx%d expected.\n"), fname, iIP, iN, iN);
             return 0;
         }
 
@@ -352,7 +352,7 @@ int sci_findbd(char *fname, void* pvApiCtx)
 
         if (iCols != iN)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A matrix with %d columns expected.\n"), fname, iN);
+            Scierror(999, _("%s: Wrong size for input argument #%d: A matrix with %d columns expected.\n"), fname, iIP, iN);
             return 0;
         }
 
@@ -390,7 +390,7 @@ int sci_findbd(char *fname, void* pvApiCtx)
 
         if (iRows != iL || iCols != iM)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A matrix of size %dx%d expected.\n"), fname, iL, iM);
+            Scierror(999, _("%s: Wrong size for input argument #%d: A matrix of size %dx%d expected.\n"), fname, iIP, iL, iM);
             return 0;
         }
 
@@ -422,7 +422,7 @@ int sci_findbd(char *fname, void* pvApiCtx)
 
         if (iCols != iL)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A matrix with %d columns expected.\n"), fname, iL);
+            Scierror(999, _("%s: Wrong size for input argument #%d: A matrix with %d columns expected.\n"), fname, iIP, iL);
             return 0;
         }
 
@@ -454,7 +454,7 @@ int sci_findbd(char *fname, void* pvApiCtx)
 
         if (iCUSE == 2 && iCols != iM)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A matrix with %d columns expected.\n"), fname, iM);
+            Scierror(999, _("%s: Wrong size for input argument #%d: A matrix with %d columns expected.\n"), fname, iIP, iM);
             return 0;
         }
 

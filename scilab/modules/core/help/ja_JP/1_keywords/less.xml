@@ -71,4 +71,19 @@
             </member>
         </simplelist>
     </refsection>
+    <refsection role="history">
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    <literal>~</literal> (not) priority is now higher than <literal>&lt;</literal>,
+                    <literal>&lt;=</literal>, <literal>></literal> and <literal>>=</literal>one.
+                    For instance, <literal>~3&lt;1</literal> is parsed as <literal>(~3)&lt;1</literal>
+                    instead of <literal>~(3&lt;1)</literal> and now yields an error instead of
+                    <literal>%T</literal>.
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>

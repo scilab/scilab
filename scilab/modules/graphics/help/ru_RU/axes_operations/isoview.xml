@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Serge Steer
+ * Copyright (C) 2016, 2018 - Samuel GOUGEON
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ru" xml:id="isoview">
+    <refnamediv>
+        <refname>isoview</refname>
+        <refpurpose>
+          настраивает изометрическое представление графических осей
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Синтаксис</title>
+        <synopsis>isoview
+            isoview on
+            isoview off
+            isoview(idGraphics [,"on"|"off"])
+            isoview(xmin, xmax, ymin, ymax)    // НЕ РЕКОМЕНДУЕТСЯ, используйте replot()
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection role="arguments">
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>"on" | "off" | &lt;none&gt;</term>
+                <listitem>
+                    Включает или отключает или переключает изометрическое представление для всех
+                    рассматриваемых осей.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>idGraphics</term>
+                <listitem>
+                    Вектор графических указателей. Обрабатываются все связанные оси.
+                    По умолчанию обрабатываются текущие оси.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>xmin, xmax, ymin, ymax</term>
+                <listitem>
+                    Четыре десятичных числа: новые пределы осей.
+                    <warning>
+                        Эти параметры будут удалены из Scilab 6.1.
+                        Пожалуйста, вместо этого используйте <link linkend="replot">replot</link>
+                        после <function>isoview</function>.
+                    </warning>
+                    <para/>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection role="description">
+        <title>Описание</title>
+        <para>
+            Функция <function>isoview</function> используется для установки или
+            вернуть в исходное состояние масштабы изометрического представления
+            осей x, y (и z), без изменения размера графического окна.
+        </para>
+        <para>
+            <literal>isoview()</literal> или просто <literal>isoview</literal>
+            переключает статус изометрического представления текущих осей, и 
+            сохраняет их текущие пределы: изометрические масштабы устанавливаются
+            всегда, когда они свободны, или масштабы возвращаются в исходное
+            состояние всегда, когда они являются изометрическими.
+        </para>
+        <para>
+            <literal>isoview("on")</literal> или <literal>isoview on</literal>
+            устанавливаются изометрические масштабы для текущих осей.
+        </para>
+        <para>
+            <literal>isoview("off")</literal> или <literal>isoview off</literal>
+            возвращает в исходное состояние масштабы x, y (и z) для текущих осей.
+        </para>
+        <para>
+            <literal>isoview(idGraphics,..)</literal> запускается на осях, связанных
+            с каждым графическим объектом, содержащимся в векторе <varname>idGraphics</varname>:
+            <itemizedlist>
+                <listitem>
+                    Если <varname>idGraphics(i)</varname> - это указатель на графическое окно,
+                    то рассматриваются все её оси (Axes).
+                </listitem>
+                <listitem>
+                    Если <varname>idGraphics(i)</varname> - это оси Axes, то
+                    он рассматривается как есть.
+                </listitem>
+                <listitem>
+                    Если <varname>idGraphics(i)</varname> - это указатель на подосевой
+                    компонент (такой как polyline, compound, и т.д.), то рассматриваются
+                    оси, на которых он размещается.
+                </listitem>
+            </itemizedlist>
+        </para>
+        <para>
+            <literal>isoview(xmin, xmax, ymin, ymax)</literal> устанавливает текущие 
+            оси в изометрический режим,  а затем устанавливает их пределы на указанные значения.
+            <warning>
+                Это использование не рекомендуется и будет удалено из Scilab 6.1.
+                Пожалуйста, используйте вместо этого <link linkend="replot">replot</link> 
+                после <function>isoview</function>.
+            </warning>
+        </para>
+        <note>
+            Графический элемент текущих осей остаётся таким же после вызова <literal>isoview(..)</literal>.
+        </note>
+        <note>
+            Чтобы построить график каких-либо кривых напрямую в изометрическом режиме
+            без вызова <function>isoview</function> после того, как опция <literal>plot2d(...,frameflag=4)</literal>
+            может быть использована в момент вызова.
+        </note>
+        <refsect3>
+            <title>Построение в соответствии с установками .isoview и .cube_scaling</title>
+            <para>
+            <table align="middle">
+                <tr>
+                    <th>isoview(..)</th><th>gca().isoview</th>
+                                       <th>gca().cube_scaling</th>
+                                       <td><emphasis role="bold">Построение</emphasis></td>
+                </tr>
+                <tr>
+                    <th>on</th><td align="center">on</td>
+                               <td align="center">off</td>
+                               <td>X, Y и Z изометрические</td>
+                </tr>
+                <tr>
+                    <th>off</th><td align="center">off</td>
+                                <td align="center">on</td>
+                                <td>Независимые масштабы по X, Y и Z. В трёхмерном представлении, улучшенные
+                                  отношения высоты и ширины объекта, когда диапазоны X/Y/Z очень разные.</td>
+                </tr>
+                <tr>
+                    <th></th><td align="center">off</td>
+                            <td align="center">off</td>
+                            <td>Независимые масштабы по X, Y и Z. В трёхмерном представлении, улучшенные
+                                  отношения высоты и ширины объекта, когда диапазоны X/Y/Z близки к диапазонам данных</td>
+                </tr>
+                <tr>
+                    <th></th><td align="center">on</td>
+                             <td align="center">on</td>
+                             <td>Масштабы таковы, что оси выглядят квадратными или кубическими</td>
+                </tr>
+            </table>
+            </para>
+        </refsect3>
+    </refsection>
+    <refsection role="examples">
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+t = [0:0.1:2*%pi]';
+clf
+nc = 3;
+subplot(2,nc,1)
+plot2d(cos(t),sin(t))
+xtitle("Истинная окружность")
+a1 = gca();
+subplot(2,nc,nc+1)
+plot2d(cos(t),sin(t))
+isoview
+subplot(2,nc,2)
+plot2d(7*cos(t),2*sin(t))
+xtitle("Истинный эллипс")
+a2 = gca();
+subplot(2,nc,nc+2)
+plot2d(7*cos(t),2*sin(t))
+isoview
+// построение сферы, используя фасеты, вычисленные с помощью eval3dp
+deff("[x,y,z] = sph(alp,tet)",[
+    "x = r*cos(alp).*cos(tet)+orig(1)*ones(tet)"; ..
+    "y = r*cos(alp).*sin(tet)+orig(2)*ones(tet)"; ..
+    "z = r*sin(alp)+orig(3)*ones(tet)"]);
+r = 3; orig = [0 0 0];
+[xx,yy,zz] = eval3dp(sph,linspace(-%pi/2,%pi/2,40),linspace(0,%pi*2,40));
+subplot(2,nc,3)
+plot3d(xx, yy, zz, alpha=60, flag=[color("green") 8 4])
+zlabel("isoview off", "rotation", -90, "fontsize",4)
+xtitle("Истинная сфера")
+a3 = gca();
+subplot(2,nc,nc+3)
+plot3d(xx, yy, zz, alpha=60, flag=[color("green") 8 4])
+zlabel("isoview on", "rotation", -90, "fontsize",4)
+isoview
+// Переключение статуса isoview для всех осей
+isoview(gcf())
+// Установка isoview для всех осей текущего графического окна
+isoview(gcf(), "on")
+// Восстановление исходных значений isoview для текущих осей
+isoview off
+// Установка isoview для верхних осей
+isoview(gcf(),"off")
+isoview([a1 a2 a3], "on")
+             ]]></programlisting>
+        <scilab:image>
+            t = [0:0.1:2*%pi]';
+            clf
+            f = gcf();
+            f.axes_size = [850 400];
+            nc = 3;
+            subplot(2,nc,1)
+            plot2d(cos(t),sin(t))
+            xtitle("True circle")
+            a1 = gca();
+            subplot(2,nc,nc+1)
+            plot2d(cos(t),sin(t))
+            isoview
+            subplot(2,nc,2)
+            plot2d(7*cos(t),2*sin(t))
+            xtitle("True ellipse")
+            a2 = gca();
+            subplot(2,nc,nc+2)
+            plot2d(7*cos(t),2*sin(t))
+            isoview
+            // plot of a sphere using facets computed by eval3dp
+            deff("[x,y,z] = sph(alp,tet)",["x = r*cos(alp).*cos(tet)+orig(1)*ones(tet)"; ..
+            "y = r*cos(alp).*sin(tet)+orig(2)*ones(tet)"; ..
+            "z = r*sin(alp)+orig(3)*ones(tet)"]);
+            r = 3; orig = [0 0 0];
+            [xx,yy,zz] = eval3dp(sph,linspace(-%pi/2,%pi/2,40),linspace(0,%pi*2,40));
+            subplot(2,nc,3)
+            plot3d(xx, yy, zz, alpha=60, flag=[color("green") 8 4])
+            zlabel("isoview off", "rotation", -90, "fontsize",4)
+            xtitle("True sphere")
+            a3 = gca();
+            subplot(2,nc,nc+3)
+            plot3d(xx, yy, zz, alpha=60, flag=[color("green") 8 4])
+            zlabel("isoview on", "rotation", -90, "fontsize",4)
+            isoview
+        </scilab:image>
+        <programlisting role="example"><![CDATA[
+// Использование plot2d(..., frameflag=4) :
+r = linspace(1,10,200);
+t = r*3;
+scf();
+subplot(1,2,1)
+plot2d(r.*sin(t),r.*cos(t))
+xtitle("plot2d(..)")
+subplot(1,2,2)
+plot2d(r.*sin(t),r.*cos(t),frameflag=4)
+xtitle("при frameflag=4")
+             ]]></programlisting>
+        <scilab:image>
+            r = linspace(1,10,200);
+            t = r*3;
+            scf();
+            subplot(1,2,1)
+            plot2d(r.*sin(t),r.*cos(t))
+            xtitle("plot2d(..)")
+            subplot(1,2,2)
+            plot2d(r.*sin(t),r.*cos(t),frameflag=4)
+            xtitle("при frameflag=4")
+        </scilab:image>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="replot">replot</link>
+            </member>
+            <member>
+                <link linkend="axes_properties">свойства осей</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>добавлены входные флаги "on"|"off".</listitem>
+                        <listitem>добавлены входные параметры &lt;none&gt; или idGraphics.</listitem>
+                        <listitem>
+                            <literal>isoview(xmin, xmax, ymin, ymax)</literal> отмечена как нерекомендуемая.
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revdescription>
+                    "isoview on" теперь устанавливает .cube_scaling="off", а
+                    "isoview off" устанавливает .cube_scaling="on".
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

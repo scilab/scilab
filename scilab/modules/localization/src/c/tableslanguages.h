@@ -73,7 +73,7 @@ static LanguagesTableAlias LANGUAGE_LOCALE_ALIAS[NumberLanguagesAlias] =
     {L"nb", L"nb_NO"},
     {L"nl", L"nl_NL"},
     {L"pl", L"pl_PL"},
-    {L"pt", L"pt_PT"},
+    {L"pt", L"pt_BR"},
     {L"ro", L"ro_RO"},
     {L"ru", L"ru_RU"},
     {L"sk", L"sk_SK"},

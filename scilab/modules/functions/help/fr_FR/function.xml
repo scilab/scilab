@@ -135,4 +135,17 @@ exec SCI/modules/elementary_functions/macros/asinh.sci;
             </member>
         </simplelist>
     </refsection>
+    <refsection role="history">
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revdescription>
+                  <literal>function</literal> et <literal>endfunction</literal> sont désormais protégés.
+                  Les affectations telles que <literal>function=1</literal> ou
+                  <literal>endfunction=2</literal> ne sont plus possibles.
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>

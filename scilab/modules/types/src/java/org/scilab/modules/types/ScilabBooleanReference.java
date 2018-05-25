@@ -36,15 +36,18 @@ import java.nio.IntBuffer;
  */
 public class ScilabBooleanReference extends ScilabBoolean {
 
-    private IntBuffer intBuffer;
+    private final IntBuffer intBuffer;
     private final int nbRows;
     private final int nbCols;
 
     /**
      * Create an object from an array of array of boolean
      *
+     * @param varName the variable name
      * @param data
      *            the array of boolean
+     * @param nbRows the number of rows
+     * @param nbCols the number of columns
      */
     public ScilabBooleanReference(String varName, IntBuffer data, int nbRows, int nbCols) {
         this.varName = varName;
@@ -68,6 +71,7 @@ public class ScilabBooleanReference extends ScilabBoolean {
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean getElement(final int i, final int j) {
         return intBuffer.get(i + nbRows * j) != 0;
     }
@@ -75,6 +79,7 @@ public class ScilabBooleanReference extends ScilabBoolean {
     /**
      * {@inheritDoc}
      */
+    @Override
     public void setElement(final int i, final int j, final boolean x) {
         intBuffer.put(i + nbRows * j, x ? 1 : 0);
     }
@@ -85,6 +90,7 @@ public class ScilabBooleanReference extends ScilabBoolean {
      * @param data
      *            array of boolean
      */
+    @Override
     public void setData(boolean[][] data) {
         ScilabTypeUtils.setPart(intBuffer, data);
     }
@@ -94,6 +100,7 @@ public class ScilabBooleanReference extends ScilabBoolean {
      *
      * @return the array of array of boolean
      */
+    @Override
     public boolean[][] getData() {
         boolean[][] b = new boolean[nbRows][nbCols];
         ScilabTypeUtils.setBuffer(b, intBuffer);
@@ -104,6 +111,7 @@ public class ScilabBooleanReference extends ScilabBoolean {
     /**
      * {@inheritDoc}
      */
+    @Override
     public Object getRawData() {
         return intBuffer;
     }

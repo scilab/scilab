@@ -56,11 +56,11 @@ function ged_insert(k,win)
         drawnow();
         r=gce();r.foreground=-1;
         r.clip_state="off";
-        xinfo(mess2)
+        gcf().info_message = mess2;
         while rep(3)==-1 do
             rep=xgetmouse(0,[%t %t])
             r.data=[xc,yc;rep(1),rep(2)]
-            xinfo(mess2)
+            gcf().info_message = mess2;
         end
     case 2 then //Polyline (stroken line)
         axes = get_insertion_axes(job,f,default_axes,xc,yc)
@@ -72,13 +72,13 @@ function ged_insert(k,win)
         r=gce();r.foreground=-1;
         r.data(:,3)=0.;
         r.clip_state="off";
-        xinfo(mess1)
+        gcf().info_message = mess1;
         while %t
             rep(3)=-1;
             while rep(3)==-1 do
                 rep=xgetmouse(0)
                 r.data($,:)= [rep(1),rep(2),0]
-                xinfo(mess1)
+                gcf().info_message = mess1;
             end
             if or(rep(3)==[2 5 -100]) then break,end
             r.data=[r.data;r.data($,:)]
@@ -95,12 +95,12 @@ function ged_insert(k,win)
         r.polyline_style = 4;
         r.arrow_size_factor=10; // change the factor to have a nice arrow
         r.clip_state="off";
-        xinfo(mess2)
+        gcf().info_message = mess2;
         yc = [];
         while rep(3)==-1 do
             rep=xgetmouse(0,[%t %t])
             r.data($,:)= [rep(1),rep(2),0]
-            xinfo(mess2)
+            gcf().info_message = mess2;
         end
         //   case 4 // Double Arrow
         //      axes = get_insertion_axes(job,f,default_axes,xc,yc)
@@ -123,14 +123,14 @@ function ged_insert(k,win)
         //     r2.arrow_size_factor=5; // change the factor to have a nice arrow
         //     r2.clip_state='off';
         //
-        //     xinfo(mess2)
+        //     gcf().info_message = mess2;
         //     while rep(3)==-1 do
         //       rep=xgetmouse(0,[%t %t])
         //       drawlater();
         //       r1.data($,:)= [rep(1),rep(2),0]
         //       r2.data(1,:)= [rep(1),rep(2),0]
         //       drawnow();
-        //       xinfo(mess2)
+        //       gcf().info_message = mess2;
         //     end
 
     case 4 then //Text
@@ -151,11 +151,11 @@ function ged_insert(k,win)
         drawnow();
         r=gce();r.foreground=-1;
         r.clip_state="off";
-        xinfo(mess2)
+        gcf().info_message = mess2;
         while rep(3)==-1 do
             rep=xgetmouse(0,[%t %t])
             r.data=[min(xc,rep(1)),max(yc,rep(2)),abs(xc-rep(1)),abs(yc-rep(2))]
-            xinfo(mess2)
+            gcf().info_message = mess2;
         end
     case 6 then //Circle
         axes = get_insertion_axes(job,f,default_axes,xc,yc)
@@ -166,11 +166,11 @@ function ged_insert(k,win)
         drawnow();
         r=gce();r.foreground=-1;
         r.clip_state="off";
-        xinfo(mess2)
+        gcf().info_message = mess2;
         while rep(3)==-1 do
             rep=xgetmouse(0,[%t %t])
             r.data=[min(xc,rep(1)),max(yc,rep(2)),abs(xc-rep(1)),abs(yc-rep(2)),0,64*360]
-            xinfo(mess2)
+            gcf().info_message = mess2;
         end
     end
     ged_insert_end()

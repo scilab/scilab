@@ -28,14 +28,12 @@ import java.util.List;
  * This class is {@link java.io.Serializable} and any modification could impact
  * load and store of data (Xcos files, Javasci saved data, etc...).<br>
  * <br>
- * //TODO Sly : ajouter de la doc
  *
  * @see org.scilab.modules.javasci.Scilab
  */
 public class ScilabSparse implements ScilabType {
 
     private static final long serialVersionUID = 879625048944109684L;
-    private static final ScilabTypeEnum type = ScilabTypeEnum.sci_sparse;
 
     private static final int VERSION = 0;
 
@@ -107,6 +105,7 @@ public class ScilabSparse implements ScilabType {
      *            the non null data
      * @param check
      *            if true the parameters validity is checked
+     * @throws ScilabSparseException if the passed arguments are not a valid sparse representation
      */
     public ScilabSparse(int rows, int cols, int nbItem, int[] nbItemRow, int[] colPos, double[] data, boolean check) throws ScilabSparseException {
         this(rows, cols, nbItem, nbItemRow, colPos, data);
@@ -163,6 +162,7 @@ public class ScilabSparse implements ScilabType {
      *            the non null imaginary data
      * @param check
      *            if true the parameters validity is checked
+     * @throws ScilabSparseException if the passed arguments are not a valid sparse representation
      */
     public ScilabSparse(int rows, int cols, int nbItem, int[] nbItemRow, int[] colPos, double[] real, double[] imag, boolean check)
     throws ScilabSparseException {
@@ -362,6 +362,7 @@ public class ScilabSparse implements ScilabType {
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean isReference() {
         return false;
     }
@@ -374,7 +375,7 @@ public class ScilabSparse implements ScilabType {
      */
     @Override
     public ScilabTypeEnum getType() {
-        return type;
+        return ScilabTypeEnum.sci_sparse;
     }
 
     /**
@@ -732,6 +733,7 @@ public class ScilabSparse implements ScilabType {
     /**
      * {@inheritDoc}
      */
+    @Override
     public String getVarName() {
         return varName;
     }
@@ -739,6 +741,7 @@ public class ScilabSparse implements ScilabType {
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean isSwaped() {
         return false;
     }
@@ -923,6 +926,7 @@ public class ScilabSparse implements ScilabType {
     /**
      * {@inheritDoc}
      */
+    @Override
     public Object getSerializedObject() {
         if (isReal()) {
             return new Object[] { new int[] { getHeight(), getWidth() }, getNbItemRow(), getScilabColPos(), getRealPart() };

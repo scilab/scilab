@@ -2,7 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Serge Steer
- * Copyright (C) 2016 - Samuel GOUGEON
+ * Copyright (C) 2016, 2018 - Samuel GOUGEON
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -13,7 +14,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="fr" xml:id="isoview">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="fr" xml:id="isoview">
     <refnamediv>
         <refname>isoview</refname>
         <refpurpose>Règle la vue isométrique des repères graphiques
@@ -35,6 +39,7 @@
                 <term>"on" | "off" | &lt;none&gt;</term>
                 <listitem>Active, désactive ou commute la vue isométrique pour
                     les repères graphiques considérés.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -43,7 +48,8 @@
                     Vecteur d'identifiants graphiques. Tous les repères
                     graphiques afférents sont traités. Par défaut, le repère
                     actif est traité.
-                </listitem>
+                    <para/>
+               </listitem>
             </varlistentry>
             <varlistentry>
                 <term>xmin, xmax, ymin, ymax</term>
@@ -55,6 +61,7 @@
                         <link linkend="replot">replot</link>
                         à la suite de <function>isoview</function>.
                     </warning>
+                    <para/>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -115,6 +122,42 @@
             en utilisant l'option <literal>plot2d(...,frameflag=4)</literal> lors
             de l'appel, sans devoir utiliser <function>isoview</function> après coup.
         </note>
+        <refsect3>
+            <title>Affichage selon .isoview et .cube_scaling</title>
+            <para>
+            <table align="middle">
+                <tr>
+                    <th>isoview(..)</th><th>gca().isoview</th>
+                                       <th>gca().cube_scaling</th>
+                                       <td><emphasis role="bold">Rendu graphique</emphasis></td>
+                </tr>
+                <tr>
+                    <th>on</th><td align="center">on</td>
+                               <td align="center">off</td>
+                               <td>X, Y sont Z are isométriques</td>
+                </tr>
+                <tr>
+                    <th>off</th><td align="center">off</td>
+                                <td align="center">on</td>
+                                <td>Echelles en X, Y and Z indépendantes. En 3D, facteur de forme
+                                    amélioré lorsque les étendues en X/Y/Z sont très différentes.</td>
+                </tr>
+                <tr>
+                    <th></th><td align="center">off</td>
+                            <td align="center">off</td>
+                            <td>Echelles en X, Y, Z indépendantes. En 3D, les facteurs d'échelles
+                                X/Y/Z rendus en perspective sont similaires à ceux des données.</td>
+                </tr>
+                <tr>
+                    <th></th><td align="center">on</td>
+                             <td align="center">on</td>
+                             <td>Les échelles graphiques sont fixées de sorte que le repère
+                                 graphique apparaisse carré ou cubique.
+                             </td>
+                </tr>
+            </table>
+            </para>
+        </refsect3>
     </refsection>
     <refsection role="examples">
         <title>Exemples</title>
@@ -150,10 +193,12 @@ r = 3; orig = [0 0 0];
 [xx,yy,zz] = eval3dp(sph,linspace(-%pi/2,%pi/2,40),linspace(0,%pi*2,40));
 subplot(2,nc,3)
 plot3d(xx, yy, zz, alpha=60, flag=[color("green") 8 4])
+zlabel("isoview off", "rotation", -90, "fontsize",4)
 xtitle("Véritable sphère")
 a3 = gca();
 subplot(2,nc,nc+3)
 plot3d(xx, yy, zz, alpha=60, flag=[color("green") 8 4])
+zlabel("isoview on", "rotation", -90, "fontsize",4)
 isoview
 
 // Commutation en vue isométrique/normale pour tous les repères de la fenêtre
@@ -199,10 +244,12 @@ isoview([a1 a2 a3], "on")
             [xx,yy,zz] = eval3dp(sph,linspace(-%pi/2,%pi/2,40),linspace(0,%pi*2,40));
             subplot(2,nc,3)
             plot3d(xx, yy, zz, alpha=60, flag=[color("green") 8 4])
+            zlabel("isoview off", "rotation", -90, "fontsize",4)
             xtitle("True sphere")
             a3 = gca();
             subplot(2,nc,nc+3)
             plot3d(xx, yy, zz, alpha=60, flag=[color("green") 8 4])
+            zlabel("isoview on", "rotation", -90, "fontsize",4)
             isoview
         </scilab:image>
         <programlisting role="example"><![CDATA[
@@ -253,6 +300,13 @@ xtitle("with frameflag=4")
                         <listitem>Ajout des drapeaux "on", "off".</listitem>
                         <listitem>Ajout des paramètres d'entrée &lt;none&gt; et idGraphics.</listitem>
                     </itemizedlist>
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revdescription>
+                    "isoview on" désormais fixe .cube_scaling="off", et
+                    "isoview off" fixe .cube_scaling="on".
                 </revdescription>
             </revision>
         </revhistory>

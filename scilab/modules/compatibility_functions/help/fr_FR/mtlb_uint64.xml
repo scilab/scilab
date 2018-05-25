@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2004-2007 - INRIA - Vincent COUVERT
+ * Copyright (C) 2018 - Samuel GOUGEON
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:lang="en" xml:id="mtlb_uint64">
+    <refnamediv>
+        <refname>mtlb_uint64</refname>
+        <refpurpose>Fonction d'émulation de la fonction Matlab uint64()</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Les versions Matlab et Scilab de la fonction <literal>uint64()</literal> produisent des
+            résultats le plus souvent différents :
+            <itemizedlist>
+                <listitem>
+                    Hors des bornes de l'intervalle de travail principal, la version Scilab de
+                    <literal>uint64()</literal> travaille en congruence su rl'intervalle
+                    ("modulo"), alors que
+                    la version Matlab <literal>mtlb_uint64()</literal> sature et reste constante.
+                </listitem>
+                <listitem>
+                    Pour les valeurs non entières, la version Scilab <literal>uint64()</literal>
+                    tronque la partie fractionnaire, alors que la version Matlab
+                    <literal>mtlb_uint64()</literal> arrondit à l'entier le plus proche.
+                </listitem>
+            </itemizedlist>
+        </para>
+        <para>
+        Soit <literal>imax = 2^64 - 1 = 18 446 744 073 709 551 615</literal>.
+        </para>
+        <para>
+        <table border="1" align="center">
+            <tr><th>x</th><th>uint64(x)</th><th>mtlb_uint64(x)</th></tr>
+            <tr><td align="center">%nan</td><td align="center">0</td><td align="center">0</td></tr>
+            <tr><td align="center">-%inf</td><td align="center">0</td><td align="center">0</td></tr>
+            <tr><td align="center">-2</td><td align="center">imax-1</td><td align="center">0</td></tr>
+            <tr><td align="center">-1</td><td align="center">imax</td><td align="center">0</td></tr>
+            <tr><td align="center">0</td><td align="center">0</td><td align="center">0</td></tr>
+            <tr><td align="center">1</td><td align="center">1</td><td align="center">1</td></tr>
+            <tr><td align="center">10.2</td><td align="center">10</td><td align="center">10</td></tr>
+            <tr><td align="center">10.5</td><td align="center">10</td><td align="center">11</td></tr>
+            <tr><td align="center">10.51</td><td align="center">10</td><td align="center">11</td></tr>
+            <tr><td align="center">...</td><td align="center">...</td><td align="center">...</td></tr>
+            <tr><td align="center">imax</td><td align="center">imax</td><td align="center">imax</td></tr>
+            <tr><td align="center">imax+1</td><td align="center">0</td><td align="center">imax</td></tr>
+            <tr><td align="center">imax+1</td><td align="center">1</td><td align="center">imax</td></tr>
+            <tr><td align="center">%inf</td><td align="center">imax</td><td align="center">imax</td></tr>
+        </table>
+        </para>
+        <warning>
+            <para>
+                <literal>mtlb_uint64</literal> ne doit pas être utilisée pour une programmation manuelle.
+            </para>
+            <para>
+                La fonction <literal>mtlb_uint64(A)</literal> est utilisée par
+                <literal>mfile2sci</literal> pour remplacer <literal>uint64(A)</literal>
+                quand il n'est pas possible de savoir ce qu'est le paramètre d'entrée pendant
+                la conversion d'un code Matlab vers Scilab.
+                Cette fonction détermine alors la sémantique correcte pendant l'exécution.
+            </para>
+        </warning>
+    </refsection>
+</refentry>

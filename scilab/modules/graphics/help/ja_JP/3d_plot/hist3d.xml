@@ -24,7 +24,10 @@
 
  -->
 
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="hist3d" xml:lang="ja">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org"  xml:id="hist3d" xml:lang="ja">
 
     <refnamediv>
 
@@ -201,6 +204,7 @@ Z(1:40,:) = A;
 scf();
 
 hist3d(Z);
+isoview off
 
  ]]></programlisting>
 
@@ -215,7 +219,7 @@ hist3d(Z);
             scf();
 
             hist3d(Z);
-
+            isoview off
         </scilab:image>
 
         <programlisting role="example"><![CDATA[
@@ -233,6 +237,7 @@ Z(Index) = %nan;
 scf();
 
 hist3d(Z);
+isoview off
 
  ]]></programlisting>
 
@@ -251,6 +256,7 @@ hist3d(Z);
             scf();
 
             hist3d(Z);
+            isoview off
 
         </scilab:image>
 
@@ -269,7 +275,7 @@ Z(91:100,:) = A;
 scf();
 
 hist3d(Z);
-
+isoview off
  ]]></programlisting>
 
         <scilab:image>
@@ -287,7 +293,8 @@ hist3d(Z);
             scf();
 
             hist3d(Z);
-
+            isoview off
+            gca().rotation_angles = [30 50];
         </scilab:image>
 
     </refsection>

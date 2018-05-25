@@ -1,6 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
-// Copyright (C) 2017 - Samuel GOUGEON
+// Copyright (C) 2017 - 2018 - Samuel GOUGEON
 //
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
@@ -14,10 +14,26 @@
 function clf(varargin)
 
     nbArg = size(varargin);
+    protected = ["atomsFigure" "scilab_demo_fig" "m2sci_gui"];
 
     if nbArg==0 then
         h = gcf()
+        if or(h.tag==protected)
+            h = []
+            fid = winsid()
+            for id = fid($:-1:1)
+                f = scf(id);
+                if and(f.tag~=protected)
+                    h = f
+                    break
+                end
+            end
+            if h==[]
+                h = scf()
+            end
+        end
         job = "clear"
+
     elseif nbArg==1 then
         if type(varargin(1))==1 then     // win num given
             num = varargin(1)
@@ -71,6 +87,11 @@ function clf(varargin)
     // delete childrens
     for k = 1:nbHandles
         curFig = h(k)
+
+        if or(curFig.tag==protected) then
+            continue
+        end
+        //
         if curFig.type == "uicontrol" then
             haveAxes = %F;
             for kChild = 1:size(curFig.children, "*")
@@ -139,8 +160,8 @@ function clf(varargin)
         excluded0 = [excluded0 "layout" "layout_options"] // http://bugzilla.scilab.org/14955
         for k = 1: nbHandles
             curFig = h(k);
-            if curFig.type == "uicontrol" then
-                continue;
+            if curFig.type == "uicontrol" | or(curFig.tag == protected) then
+                continue
             end
 
             // Forces drawlater mode

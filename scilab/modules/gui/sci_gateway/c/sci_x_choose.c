@@ -63,7 +63,7 @@ int sci_x_choose(char *fname, void* pvApiCtx)
     }
     else
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: Vector of strings expected.\n"), fname);
+        Scierror(999, _("%s: Wrong type for input argument #%d: Vector of strings expected.\n"), fname, 1);
         return FALSE;
     }
 

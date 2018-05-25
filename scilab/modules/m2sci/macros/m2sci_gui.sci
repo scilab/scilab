@@ -27,7 +27,8 @@ function m2sci_gui()
     "dockable", "off",...
     "menubar", "none",...
     "default_axes", "off",...
-    "resize", "off");
+    "resize", "off", ..
+    "tag", "m2sci_gui");
 
     h = uimenu("parent", m2scifig, "label", gettext("File"));
     uimenu("parent", h, "label", gettext("Close"), "callback", "cb_m2sci_gui", "tag", "close_menu");

@@ -60,14 +60,14 @@ acot(x)/%pi
         <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
+                <link linkend="acotd">acotd</link>
+            </member>
+            <member>
                 <link linkend="cotg">cotg</link>
             </member>
             <member>
-                <link linkend="acotd">acotd</link>
+                <link linkend="cotd">cotd</link>
             </member>
-            <!--<member>
-        <link linkend="csgn">csgn</link>
-      </member>-->
         </simplelist>
     </refsection>
     <refsection>

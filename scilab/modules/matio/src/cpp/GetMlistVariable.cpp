@@ -35,7 +35,7 @@ matvar_t *GetMlistVariable(void *pvApiCtx, int iVar, const char *name, int matfi
 
     if (in[iVar - 1]->isMList() == false)
     {
-        Scierror(999, _("%s: Wrong type for argument %d: MList expected.\n"), "GetMlistVariable");
+        Scierror(999, _("%s: Wrong type for argument %d: MList expected.\n"), "GetMlistVariable", iVar);
         return NULL;
     }
 

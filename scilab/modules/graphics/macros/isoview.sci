@@ -88,8 +88,10 @@ function isoview(varargin)
     for i = 1:size(a,"*")
         tmp = a(i).isoview
         if action=="on" | (action=="" & tmp=="off")
+            a(i).cube_scaling = "off"
             a(i).isoview = "on"
         else
+            a(i).cube_scaling = "on"
             a(i).isoview = "off"
         end
         a(i).clip_state = "clipgrf"

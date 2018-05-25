@@ -618,14 +618,6 @@
                     <para>Add a title in the middle of a graphics window</para>
                 </listitem>
             </varlistentry>
-            <varlistentry>
-                <term>
-                    <link linkend="xinfo">xinfo</link>
-                </term>
-                <listitem>
-                    <para>Draw an info string in the message subwindow</para>
-                </listitem>
-            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>

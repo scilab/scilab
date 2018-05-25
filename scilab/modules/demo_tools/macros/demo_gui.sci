@@ -44,11 +44,35 @@ function demo_gui()
     end
 
 
-
     // Figure creation
     // =========================================================================
-    demo_fig = loadGui(SCI + "/modules/demo_tools/gui/demo_gui.xml");
+    // We get the user Preferences for the GUI: dockable / not dockable
+    File = SCIHOME + "/XConfiguration.xml";
+    r = getPreferencesValue("//general/demonstrations/body/demos","demoGUIisDockable", File);
+
+    // We tune accordingly the predefined demo GUI
+    File = SCI + "/modules/demo_tools/gui/demo_gui.xml";
+    File2 = TMPDIR + "/demo_gui_dockable.xml";
+    if r=="checked" then
+        if ~isfile(File2) then
+            r = copyfile(File, File2);
+            doc = xmlRead(File2);
+            setPreferencesValue("/scilabgui/figure", ..
+                                ["dockable" "on"
+                                 "infobar_visible" "on"
+                                 "menubar" "figure"
+                                 "menubar_visible" "on"]', doc);
+            xmlWrite(doc);
+            xmlDelete(doc);
+        end
+        File = File2;
+    end
+
+    // We load the preset GUI
+    demo_fig = loadGui(File);
     demo_fig.figure_name = _("Demonstrations");
+
+
     // Parameters
     // =========================================================================
     demo_fig.userdata = struct();
