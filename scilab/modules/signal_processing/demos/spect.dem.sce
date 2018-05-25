@@ -24,15 +24,15 @@ function demo_spectral()
     h = eqfir(nf, bedge, des, wate);
 
     //filter white data to obtain colored data
-    h1 = [h 0*ones(1:max(size(x))-1)];
-    x1 = [x 0*ones(1:max(size(h))-1)];
+    h1 = [h  zeros(1:max(size(x))-1)];
+    x1 = [x  zeros(1:max(size(h))-1)];
     hf = fft(h1, -1);
     xf = fft(x1, -1);
     yf = hf.*xf;
     y = real(fft(yf, 1));
 
     // plot magnitude of filter
-    h2 = [h 0*ones(1:167)];
+    h2 = [h  zeros(1:167)];
     hf2 = fft(h2, -1);
     hf2 = real(hf2.*conj(hf2));
     hsize = max(size(hf2));

@@ -76,7 +76,7 @@ function z=narsimul(x1,x2,x3,x4,x5,x6,x7,x8)
         // ep doit etre de taille (al,(adeg-1))
         //
         if rhs <=3 then
-            up=0*ones(mmu,(bdeg-1));
+            up= zeros(mmu,(bdeg-1));
         else
             up=x3
             if size(up,1)<>mmu then
@@ -89,7 +89,7 @@ function z=narsimul(x1,x2,x3,x4,x5,x6,x7,x8)
             end
         end
         if rhs <=4 then
-            yp=0*ones(al,(adeg-1));
+            yp= zeros(al,(adeg-1));
         else
             yp=x4
             if size(yp,1)<>al then
@@ -102,7 +102,7 @@ function z=narsimul(x1,x2,x3,x4,x5,x6,x7,x8)
             end
         end
         if rhs <=5,
-            ep=0*ones(al,(ddeg-1));
+            ep= zeros(al,(ddeg-1));
         else
             ep=x5
             if size(ep,1)<>al then
@@ -117,8 +117,8 @@ function z=narsimul(x1,x2,x3,x4,x5,x6,x7,x8)
         end;
         //
         degnum=max(degree(den));
-        yp=[0*ones(al,degnum+1-adeg),yp(:,(adeg-1):-1:1)];
-        up=[0*ones(mmu,degnum+1-bdeg),up(:,(bdeg-1):-1:1)];
+        yp=[ zeros(al,degnum+1-adeg),yp(:,(adeg-1):-1:1)];
+        up=[ zeros(mmu,degnum+1-bdeg),up(:,(bdeg-1):-1:1)];
         y=rtitr(num,den,u,up,yp);
         // truncate the solution to only keep y_1,..y_Nu
         // (if b0=0 rtitr computes y_{Nu+1})
@@ -129,10 +129,10 @@ function z=narsimul(x1,x2,x3,x4,x5,x6,x7,x8)
         num=matd*s**(adeg-1)
         den=mata*s**(ddeg-1);
         degnum=max(degree(den));
-        ep=[0*ones(al,degnum+1-ddeg),ep(:,(ddeg-1):-1:1)];
+        ep=[ zeros(al,degnum+1-ddeg),ep(:,(ddeg-1):-1:1)];
         // Normal noise
         br=sig*rand(al,Nu,"normal")
-        bru=rtitr(num,den,br,ep,0*ones(ep));
+        bru=rtitr(num,den,br,ep, zeros(ep));
         // z(k) = y(k) + bru(k)
         z=y+bru(:,1:Nu);
     else

@@ -49,7 +49,8 @@ function [ac,bc,u,ind]=canon(a,b)
         ac=j*ac*i,bc=j*bc;u=u*i;k0=k1;k1=k2;
     end;
     // controllability indices
-    ind=0*ones(1,ni);[xx,mi]=size(ro);
+    ind = zeros(1, ni);
+    [xx, mi] = size(ro);
     for k=1:ni,for kk=1:mi,
             if ro(kk)>=k then ind(k)=ind(k)+1;end;
     end;end

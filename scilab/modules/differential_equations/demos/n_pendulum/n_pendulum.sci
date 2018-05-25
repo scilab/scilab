@@ -38,8 +38,8 @@ function demo_pendulum()
         if argn(2)<3 then job=0,end
         n2=size(a,2);
         // build the links positions
-        x=[0*ones(1,n2);cumsum(2*diag(r)*cos(a),1)];
-        y=[0*ones(1,n2);cumsum(2*diag(r)*sin(a),1)];
+        x=[zeros(1,n2);cumsum(2*diag(r)*cos(a),1)];
+        y=[zeros(1,n2);cumsum(2*diag(r)*sin(a),1)];
         draw_chain_from_coor(x,y,job)
     endfunction
 
@@ -123,7 +123,7 @@ function demo_pendulum()
         m  = ones(1,n);
         j  = ones(1,n);
         g  = 9.81;
-        y0 = 0*ones(2*n,1);tt=0:0.05:10;
+        y0 = zeros(2*n,1);tt=0:0.05:10;
         yt = ode(y0,0,tt,"npend");
         draw_chain_from_angles(yt(1:$/2,:),r,1);
     end

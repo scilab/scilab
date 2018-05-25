@@ -42,7 +42,7 @@ clear u;
 
 
 //              Impulse response
-u=0*ones(instants);u(1)=1/dt;
+u= zeros(instants);u(1)=1/dt;
 yy=flts(u,sld);
 my_handle = scf(100001);clf(my_handle,"reset");
 plot(instants,yy);

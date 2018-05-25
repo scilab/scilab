@@ -18,7 +18,7 @@ function [sl]=imrep2ss(v,deg)
     n=nv/2;
     ns1=no-1;n2=n-1;
     l=1;
-    h=0*ones(n,n);
+    h= zeros(n,n);
     for k=1:n,h(l:l+ns1,:)=v(:,k:k+n2),l=l+no,end;
     //factorization
     if rhs==1 then [u,h1,v1,deg]=svd(h);else [u,h1,v1]=svd(h);end

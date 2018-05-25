@@ -100,7 +100,7 @@ function [sl]=syslin(domain,a,b,c,d,x0)
             error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same column dimensions expected.\n"),"syslin",2,4));
         end
         if rhs<6 then
-            x0=0*ones(na,1)
+            x0= zeros(na,1)
         else
             if type(x0)>1 then
                 error(msprintf(gettext("%s: Wrong type for input argument #%d: Array of floating point numbers expected.\n"),"syslin",6))
@@ -112,7 +112,7 @@ function [sl]=syslin(domain,a,b,c,d,x0)
             end
         end
         if rhs<5  then
-            d=0*ones(mc,nb)
+            d= zeros(mc,nb)
         else
             if type(d)>2 then
                 error(msprintf(gettext("%s: Wrong type for input argument #%d: Polynomial array expected.\n"),"syslin",5))

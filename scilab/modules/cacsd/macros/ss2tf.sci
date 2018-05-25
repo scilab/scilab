@@ -135,7 +135,7 @@ function [h,num,den]=ss2tf(sl,rmax)
                     num(l,k)=-(nlk-dlk)*ci;
                 end
             else
-                num(l,1:n)=0*ones(1,n);
+                num(l,1:n)= zeros(1,n);
                 den(l,1:n)=ones(1,n);
             end
         end

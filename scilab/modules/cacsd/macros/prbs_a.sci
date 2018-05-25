@@ -26,7 +26,7 @@ function [u]=prbs_a(n,nc,ids)
         [n1,n2]=size(ids);
         ids=[n,min(n*ones(ids),max(gsort(ids),1*ones(ids))),1];
     end
-    u=0*ones(1,n);
+    u= zeros(1,n);
     [n1,n2]=size(ids);
     val=1;
     for i=1:n2-1,

@@ -77,7 +77,7 @@ function demo_lqv()
     obs(nob,ny) = 0; // matrice d'observation
     obs         = ones(nob,ny);
 
-    don=0*ones(1,nex*ntob*nob);
+    don= zeros(1,nex*ntob*nob);
 
     nap   = 20;  // nombre d'appels du simulateur
     imp   = 2;   // niveau de debug pour optim

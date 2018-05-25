@@ -51,24 +51,24 @@ function res=determ(W,k)
     maj = n1*max(degree(W))+1;
 
     if argn(2)==1 then
-        k=1;
+        k = 1;
         while k < maj,
-            k=2*k;
+            k = 2*k;
         end
     end
 
     // Default Values
-    e=0*ones(k,1);
-    e(2)=1;
+    e= zeros(k,1);
+    e(2) = 1;
 
     // Paramètres de clean
     epsa=1.d-10;
     epsr=0;//no relative rounding
 
     if k==1 then
-        ksi=1;
+        ksi = 1;
     else
-        ksi=fft(e,-1);
+        ksi = fft(e,-1);
     end
 
     fi=[];

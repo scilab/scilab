@@ -22,10 +22,14 @@ function [sig,resid]=epred(r,s,q,coef,y,u,b0f)
     t0=max(max(r,s+1),1)+1;
     if r<>0;XTM1=y((t0-1):-1:(t0-r));else XTM1=[];end
     if s<>-1;UTM1=u(t0-b0f:-1:(t0-s));else UTM1=[];end
-    if q<>0;ETM1=0*ones(1,q);else ETM1=[];end
+    if q<>0
+        ETM1 = zeros(1,q)
+    else
+        ETM1 = [];
+    end
     npar=r+s+1-b0f+q
     ZTM1=[XTM1,UTM1,ETM1]';
-    resid=0*ones(1,n2);
+    resid= zeros(1,n2);
     for t=t0+1:n2,
         if r<>0;XT=[ y(t-1), XTM1(1:(r-1))];else XT=[];end
         if s<>-1;UT=[ u(t-b0f), UTM1(1:(s-b0f))];else UT=[];end

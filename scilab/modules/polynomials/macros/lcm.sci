@@ -69,5 +69,4 @@ function [q, fact] = lcm(p)
     end,
     fact = matrix(fact, m, n)
     q = p0;
-
 endfunction

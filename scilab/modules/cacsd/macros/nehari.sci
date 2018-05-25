@@ -54,9 +54,9 @@ function [x]=nehari(r,tol)
     xo=-obs_gram(r),xc=-ctr_gram(r),
     w=inv(eye()-xo*xc),
     [m,k,n]=size(r),m=m(1),
-    [a,b,c]=abcd(r),o=0*ones(a),
+    [a,b,c]=abcd(r),o= zeros(a),
     ax=[a,o,o;o,a,-w'*b*b';o,o,-a'-w*xo*b*b'],
-    bx=[b;w'*b;w*xo*b],cx=[c,-c,0*ones(m,n)],
+    bx=[b;w'*b;w*xo*b],cx=[c,-c, zeros(m,n)],
     x=syslin("c",ax,bx,cx*nn),
     [y,x]=dtsi(x);
 

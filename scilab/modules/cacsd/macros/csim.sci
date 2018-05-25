@@ -112,7 +112,7 @@ function [y,x]=csim(u,dt,sl,x0,tol)
     end
     if rhs==3 then x0=sl(6),end
     if imp==1|step==1 then x0=0*x0,end
-    nt=size(dt,"*");x=0*ones(ma,nt);
+    nt=size(dt,"*");x= zeros(ma,nt);
     [a,v]=balanc(a);
     v1=v;//save for backward transformation
 

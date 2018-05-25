@@ -31,10 +31,10 @@ function [X1,X2,zero]=ric_desc(H,E)
     //   (Ed)  A'*X*A-(A'*X*B*(R+B'*X*B)^-1)*(B'*X*A)+C-X = 0.
     //
     //  Defining G=B/R*B' and the hamiltonian pencil (E,H) by:
-    //      E=[eye(n,n),G;
-    //         0*ones(n,n),A']
+    //      E=[eye(n,n)  , G;
+    //         zeros(n,n), A']
     //
-    //      H=[A, 0*ones(n,n);
+    //      H=[A, zeros(n,n);
     //        -C, eye(n,n)];
     // with [X1,X2,err]=ric_desc(H,E),solution X is given by X=X1/X2.
     // zero=norm 1 of lhs of (Ed)

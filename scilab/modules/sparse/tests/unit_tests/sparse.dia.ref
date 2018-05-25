@@ -28,20 +28,20 @@ mbc=sparse([1 6;1 2;6 5],[1;1;1]+%i*[0;-0.3;1.2],[6 6]);
 //--------------------------------------------------------------
 //  -- for real matrix
 if or(full(sparse(0.3))<>0.3) then bugmes();quit;end
-v=0*ones(1,3);v(3)=5;v(1)=1;
+v= zeros(1,3);v(3)=5;v(1)=1;
 if or(full(sparse([1 1;1 3],[1 5]))<>v) then bugmes();quit;end
-v=0*ones(1,300);v(300)=5;v(1)=1;
+v= zeros(1,300);v(300)=5;v(1)=1;
 if or(full(sparse([1 1;1 300],[1 5]))<>v) then bugmes();quit;end
-v=0*ones(3,1);v(3)=5;v(1)=1;
+v= zeros(3,1);v(3)=5;v(1)=1;
 if or(full(sparse([1 1;3 1],[1 5]))<>v) then bugmes();quit;end
-v=0*ones(300,1);v(300)=5;v(1)=1;
+v= zeros(300,1);v(300)=5;v(1)=1;
 if or(full(sparse([1 1;300 1],[1 5]))<>v) then bugmes();quit;end
 sp=sparse([1 6;1 5;1 3;2 4;2 1;4 4;4 3;5 1;6 6],1:9,[6 6]);
 a=[0,0,3,0,2,1;;5,0,0,4,0,0;0,0,0,0,0,0;0,0,7,6,0,0;8,0,0,0,0,0;0,0,0,0,0,9];
 if or(full(sp)<>a) then bugmes();quit;end
 sp=sparse([1 6;1 5;1 3;2 4;2 1;4 4;4 3;5 1;6 6],1:9,[8 6]);a(8,6)=0;
 if or(full(sp)<>a) then bugmes();quit;end
-if or(full(sparse([],[],[4 10]))<>0*ones(4,10)) then bugmes();quit;end
+if or(full(sparse([],[],[4 10]))<> zeros(4,10)) then bugmes();quit;end
 v=sparse([2 1;3 1;4 1;6 1],[10;11;12;13],[6,1]);
 a=[0;10;11;12;0;13];
 if or(full(v)<>a) then bugmes();quit;end
@@ -98,7 +98,7 @@ if or(full(v-v)<>full(v)-full(v)) then bugmes();quit;end
 if or(full(vt+sparse([],[],[1,6]))<>full(vt)) then bugmes();quit;end
 if or(full(vt+vt)<>full(vt)+full(vt)) then bugmes();quit;end
 if or(full(vt-vt)<>full(vt)-full(vt)) then bugmes();quit;end
-if or(full(zer+zer)<>0*ones(6,6)) then bugmes();quit;end
+if or(full(zer+zer)<> zeros(6,6)) then bugmes();quit;end
 if or(full(a+a)<>full(a)+full(a)) then bugmes();quit;end
 if or(full(b+b)<>full(b)+full(b)) then bugmes();quit;end
 if or(full(a+zer)<>full(a)) then bugmes();quit;end

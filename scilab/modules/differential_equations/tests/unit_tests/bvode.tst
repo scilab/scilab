@@ -34,7 +34,7 @@ endfunction
 
  //define trusol for testing purposes
 function u=trusol(x)
-    u=0*ones(4,1)
+    u= zeros(4,1)
     u(1) =  0.25*(10*log(2)-3)*(1-x) + 0.5 *( 1/x   + (3+x)*log(x) - x)
     u(2) = -0.25*(10*log(2)-3)       + 0.5 *(-1/x^2 + (3+x)/x      + log(x) - 1)
     u(3) = 0.5*( 2/x^3 + 1/x   - 3/x^2)

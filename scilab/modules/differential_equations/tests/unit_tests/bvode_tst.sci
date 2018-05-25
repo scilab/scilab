@@ -5,7 +5,7 @@ function [z,z1]=col1()
     aleft=1
     aright=2
     zeta=[1,1,2,2]
-    ipar=0*ones(1,11)
+    ipar= zeros(1,11)
     ipar(3)=1
     ipar(4)=2
     ipar(5)=2000
@@ -45,7 +45,7 @@ function [z,mpar]=guess(x)
 endfunction
 
 function [u]=trusol(x)
-    u=0*ones(4,1)
+    u= zeros(4,1)
     u(1) = .25* (10.*log(2.)-3.) * (1.-x) +0.5* (1/x+ (3.+x)*log(x) - x)
     u(2) = -.25* (10.*log(2.) - 3.) + .5 * (-1/x/x + log(x) + (3.+x)/x - 1.)
     u(3) = .5 * (2/x**3 + 1/x -3/x/x)
@@ -53,7 +53,7 @@ function [u]=trusol(x)
 endfunction
 
 function [z,zf]=col2(flag)
-    ipar=0*ones(1,11)
+    ipar= zeros(1,11)
     //     define constants, print a heading.
     Gamma = 1.1d0
     eps = .01d0
@@ -70,7 +70,7 @@ function [z,zf]=col2(flag)
     aleft = 0.d0
     aright = 1.d0
     //   locations of side conditions
-    zeta=0*ones(1,4)
+    zeta= zeros(1,4)
     zeta(1) = 0.d0
     zeta(2) = 0.d0
     zeta(3) = 1.d0
@@ -156,7 +156,7 @@ function [f]=fsub1 (x,z)
 endfunction
 
 function [df]=dfsub1 (x, z)
-    df=0*ones(2,4)
+    df= zeros(2,4)
     df(1,1) = 1.d0/x/x +(1.d0 + z(3)/x) / eps4mu
     df(1,2) = -1.d0/x
     df(1,3) = -(1.d0-z(1)/x) / eps4mu
@@ -173,7 +173,7 @@ function [g]=gsub1(i, z)
 endfunction
 
 function [dg]=dgsub1 (i, z)
-    dg=0*ones(4,1)
+    dg= zeros(4,1)
     select i
     case 1 then dg(1)=1
     case 2 then dg(3)=1

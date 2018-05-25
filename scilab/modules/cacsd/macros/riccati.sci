@@ -47,7 +47,7 @@ function [x1,x2]=riccati(a,b,c,dom,typ)
             s=u(:,1:n),
         end,
     else
-        aa=[eye(n,n) b;0*ones(n,n) a'],bb=[a  0*ones(n,n);-c eye(n,n)],
+        aa=[eye(n,n), b; zeros(n,n), a'],bb=[a, zeros(n,n); -c, eye(n,n)],
         [bs,as,s,n1]=schur(bb,aa,"d");
         if n1<>n then
             error(msprintf(gettext("%s: Wrong dimension (%d) of stable subspace: %d expected.\n"),"riccati",n1, n))

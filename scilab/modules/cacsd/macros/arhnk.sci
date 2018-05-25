@@ -49,7 +49,7 @@ function [slm]=arhnk(a,ordre,tol)
     end;
     if ordre==n1 then
         a=a(1:n1,1:n1);b=b(1:n1,:);c=c(:,1:n1);
-        if lhs==1 then a=syslin("c",a,b,c,d,0*ones(n1,1)),end
+        if lhs==1 then a=syslin("c",a,b,c,d, zeros(n1,1)),end
         return,
     end;
     sigma=wc(ordre+1,ordre+1)
@@ -79,5 +79,5 @@ function [slm]=arhnk(a,ordre,tol)
         c=c(:,1:m)
     end;
     //
-    slm=syslin("c",a,b,c,d,0*ones(m,1));
+    slm=syslin("c",a,b,c,d, zeros(m,1));
 endfunction
