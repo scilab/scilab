@@ -47,6 +47,13 @@ Fac3DColorComputer::Fac3DColorComputer(double* colors, int numColors, int colorF
     this->dataMapping = dataMapping;
     this->numGons = numGons;
     this->numVerticesPerGon = numVerticesPerGon;
+    numColorsPerFacet = 0;
+    perVertex = 0;
+    minColorValue = 0.0;
+    maxColorValue = 0.0;
+    colorRange = 0.0;
+    usedMinColorValue = 0.0;
+    colorRangeValid = 0;
 
     if (numColors == numGons * numVerticesPerGon)
     {
