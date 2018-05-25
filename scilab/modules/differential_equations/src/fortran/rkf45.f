@@ -186,8 +186,8 @@ c
       external fydot
 c
       integer k1,k2,k3,k4,k5,k6,k1m
-      if(itask.eq.1) then iflag=1
-      if(itask.eq.2) then iflag=-1
+
+      if((itask.eq.2).and.(iflag.eq.1)) iflag=-1
 c
 c
 c     compute indices for the splitting of the work array

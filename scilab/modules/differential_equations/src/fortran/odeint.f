@@ -16,30 +16,31 @@ c .
 c .   The original version has been modified to replace statically
 c .   allocated arrays y, yscal and dxdy by parts of rwork argument
 c     array + blas use. Serge Steer INRIA- feb 2012
-
+c     change atol->rtol. Stéphane Mottelet UTC- Apr 2018
 c     ====================================
-      subroutine odeint(ystart,nvar,x1,x2,eps,h1,hmin,nok,nbad,derivs,
-     $     rkqc,rwork)
+      subroutine odeint(ystart,nvar,x1,x2,rtol,itask,hmin,nok,nbad,
+     $     derivs,rkqc,rwork)
 
       external derivs,rkqc
-      integer maxstp,kount,nvar,i,nok,nbad,nstp
+      integer maxstp,kount,nvar,i,nok,nbad,nstp,itask
       double precision two,zero,tiny,x,h
       parameter (maxstp=10000,two=2.0d0,zero=0.0d0,tiny=1.d-30)
-      double precision x1,x2,eps,h1,hmin,hdid,hnext
+      double precision x1,x2,rtol,hmin,hdid,hnext
       double precision ystart(nvar)
       double precision rwork(*)
       character*80 messag
-      integer ly,lyscal,ldydx,lwork
+      integer lh,ly,lyscal,ldydx,lwork
 c
       ly=1
-      lyscal=ly+nvar
+      lh=ly+nvar
+      lyscal=lh+1
       ldydx=lyscal+nvar
       lwork=ldydx+nvar
 
       ierror=0
       if ( abs(x2-x1).le.tiny) return
       x=x1
-      h=sign(h1,x2-x1)
+      h=sign(rwork(lh),x2-x1)
       nok=0
       nbad=0
       kount=0
@@ -53,15 +54,17 @@ c
  12      continue
 
          if((x+h-x2)*(x+h-x1).gt.zero) h=x2-x
-         call rkqc(rwork(ly),rwork(ldydx),nvar,x,h,eps,rwork(lyscal),
-     $        hdid,hnext,derivs,rwork(lwork))
+         call rkqc(rwork(ly),rwork(ldydx),nvar,x,h,rtol,
+     $        rwork(lyscal),hdid,hnext,derivs,rwork(lwork))
          if(ierror.gt.0) return
          if(hdid.eq.h)then
             nok=nok+1
          else
             nbad=nbad+1
          endif
-         if((x-x2)*(x2-x1).ge.zero)then
+         if (((x-x2)*(x2-x1).ge.zero).or.(itask.eq.2)) then
+            x1=x
+            rwork(lh)=hnext
             call dcopy(nvar,rwork(ly),1,ystart,1)
             return
          endif

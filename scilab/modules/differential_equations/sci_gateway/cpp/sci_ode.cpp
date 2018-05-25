@@ -870,7 +870,7 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
         }
         case 5: // lsrgk (rk)
         {
-            rworkSize = 9 * (*YSize);
+            rworkSize = 1+9 * (*YSize);
             iworkSize = 1;
             break;
         }
@@ -982,6 +982,16 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
                 iwork[5] = (int)pDblOdeOptions->get(6); // mxstep = 500
                 iwork[6] = 10;  // mxhnil = 10 maximum number of messages printed per problem
             }
+        }
+    }
+    else
+    {
+        if (meth == 5 || meth == 6)
+        {
+            int iLastT = pDblT->getSize() - 1;
+            double t = pDblT->get(iLastT);
+            double t0 = pDblT0->get(0);
+            rwork[(*YSize)]=(t-t0)/100; // h0
         }
     }
 

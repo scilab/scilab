@@ -4,8 +4,10 @@ C      implicit undefined (a-z)
 c ................................................................
 c .   Subroutine rkqc is a fifth-order Runge-Kutta step with
 c .   monitoring of local truncation error to ensure accuracy
-c .   and adjust stepsize.
-c .
+c .   and adjust stepsize by using Richardson extrapolation:
+c .   y <- y + (y-z)/(2^p-1) where y is obtained with two consecutive
+c.    rk4 half steps and z one full rk4 step h. Beware that the obtained
+c .   scheme has order 5 but the step control is based on an order 4 formula
 c .   Inputs:
 c .   y(1:n) = the dependent variable vector
 c .   dydx(1:n) = deriv of y wrt x at starting value of indep var x
@@ -26,6 +28,7 @@ c
 c     The original version has been modified to replace statically
 c     allocated arrays dysav, ytemp and ysav by rwork arguments parts
 c     array + blas use. Serge Steer INRIA- feb 2012
+c     Corrected error formula Stéphane Mottelet UTC- Apr 2018
       integer n,i
       double precision fcor,one,safety,errcon
       parameter (fcor=.0666666667,one=1.0,safety=0.9,errcon=6.e-4)
@@ -66,10 +69,13 @@ c     array + blas use. Serge Steer INRIA- feb 2012
      $     derivs,rwork(lwork))
       if (ierror.gt.0) return
       errmax=0.0d0
+c     compute (y-z) and error criterion w.r.t. relative tolerance
        do 12 i=0,n-1
         rwork(lytemp+i)=y(i+1)-rwork(lytemp+i)
         errmax=max(errmax,abs(rwork(lytemp+i)/(yscal(i+1)*eps)))
 12    continue
+c     Extrapolation error (y-z)/(2^4-1)
+      errmax=errmax*fcor
 
       if(errmax.gt.one) then
         h=safety*h*(errmax**pshrnk)
@@ -82,6 +88,7 @@ c     array + blas use. Serge Steer INRIA- feb 2012
           hnext=4.0d0*h
         endif
       endif
+c     Compute the extrapolated vector y <- y + (y-z)/(2^p-1)
       call daxpy(n,fcor,rwork(lytemp),1,y,1)
 
       return
