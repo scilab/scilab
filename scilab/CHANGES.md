@@ -488,6 +488,7 @@ Known issues
 * [#15553](http://bugzilla.scilab.org/show_bug.cgi?id=15553): TOWS_c block failed with 0 simulation time.
 * [#15563](http://bugzilla.scilab.org/show_bug.cgi?id=15563): poly(A,v) was broken when A is a matrix.
 * [#15566](http://bugzilla.scilab.org/show_bug.cgi?id=15566): matrix insertion checked overall size but not individual dimensions.
+* [#15589](http://bugzilla.scilab.org/show_bug.cgi?id=15589): `inv()` could fail on some matrices of polynomials with complex coefficients.
 * [#15593](http://bugzilla.scilab.org/show_bug.cgi?id=15593): The `grand` page was alone in a main chapter instead of being in the `rand` section.
 * [#15594](http://bugzilla.scilab.org/show_bug.cgi?id=15594): The `bool2s` page was alone in a main chapter instead of being with the `boolean` page.
 * [#15598](http://bugzilla.scilab.org/show_bug.cgi?id=15598): `string(handle)` returned "" instead of calling `%h_string()`

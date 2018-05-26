@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA
+// Copyright (C) 2018 - Samuel GOUGEON
 //
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
@@ -35,7 +36,7 @@ function [f, d] = invr(h, flag)
             return
         end
         ndeg = max(degree(h));
-        if ndeg==1 then   //MATRIX PENCIL
+        if ndeg==1 & isreal(h) then   //MATRIX PENCIL
             E = coeff(h,1);
             A = -coeff(h,0);
             if norm(E-eye(E),1) < 100*%eps then
