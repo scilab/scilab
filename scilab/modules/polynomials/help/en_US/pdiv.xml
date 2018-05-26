@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -23,29 +24,33 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>[R,Q]=pdiv(P1,P2)
-            [Q]=pdiv(P1,P2)
+        <synopsis>
+            [R, Q] = pdiv(P1,P2)
+            Q = pdiv(P1,P2)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>P1</term>
+                <term>P1, R, Q</term>
                 <listitem>
-                    <para>polynomial matrix</para>
+                    <para>
+                        arrays of polynomials with real or complex coefficients, of same sizes.
+                         <varname>Q</varname> are Quotients and <varname>R</varname> are Remainders.
+                    </para>
+                    <para>
+                      When all remainders <varname>R</varname> are constant (degree==0),
+                      <varname>R</varname> is of type 1 (numbers) instead of 2 (polynomials).
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>P2</term>
                 <listitem>
-                    <para>polynomial or polynomial matrix</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>R,Q</term>
-                <listitem>
-                    <para>two polynomial matrices</para>
+                    <para>
+                        single polynomial, or array of polynomials of size(P1).
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -53,22 +58,34 @@
     <refsection>
         <title>Description</title>
         <para>
-            Element-wise euclidan division of the polynomial matrix <literal>P1</literal>
-            by the polynomial <literal>P2</literal> or by the polynomial matrix <literal>P2</literal>.
-            <literal>Rij</literal> is the matrix of remainders, <literal>Qij</literal> is the matrix
-            of quotients and <literal>P1ij = Qij*P2 + Rij</literal> or <literal>P1ij = Qij*P2ij + Rij</literal>.
+            Element-wise euclidan division of the polynomial array <literal>P1</literal>
+            (scalar, vector, matrix or hypermatrix) by the polynomial <literal>P2</literal>
+            or by the polynomial array <literal>P2</literal>.
+            <literal>R</literal> is the array of remainders, <literal>Q</literal> is the array
+            of quotients, such that <literal>P1 = Q*P2 + R</literal> or
+            <literal>P1 = Q.*P2 + R</literal>.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-x=poly(0,'x');
-p1=(1+x^2)*(1-x);p2=1-x;
-[r,q]=pdiv(p1,p2)
+x = poly(0,'x');
+//
+p1 = (1+x^2)*(1-x);
+p2 = 1-x;
+[r,q] = pdiv(p1, p2)
 p2*q-p1
-p2=1+x;
-[r,q]=pdiv(p1,p2)
-p2*q+r-p1
+
+// With polynomials with complex coefficients
+p1 = (x-%i)*(x+2*%i);    printf("%s\n",string(p1))
+p2 = 1-x;
+[r, q] = pdiv(p1, p2);   printf("%s\n", string([r;q]))
+p = q*p2 + r;            printf("%s\n", string(p)); // p1 expected
+
+// Elementwise processing:
+p1 = [1+x-x^2 , x^3-x+1];
+p2 = [2-x , x^2-3];
+[r,q] = pdiv(p1, p2)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -88,7 +105,11 @@ p2*q+r-p1
     <revhistory>
         <revision>
             <revnumber>6.0.0</revnumber>
-            <revremark>pdiv return a matrix of type 'constant' when all ranks are 0.</revremark>
+            <revremark>pdiv now returns a matrix of type 'constant' when all degrees are 0.</revremark>
+        </revision>
+        <revision>
+            <revnumber>6.0.2</revnumber>
+            <revremark>Extension to hypermatrices.</revremark>
         </revision>
     </revhistory>
 </refentry>

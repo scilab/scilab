@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -23,58 +24,69 @@
     </refnamediv>
     <refsynopsisdiv>
         <title> Seqüência de Chamamento </title>
-        <synopsis>[R,Q]=pdiv(P1,P2)
-            [Q]=pdiv(P1,P2)
+        <synopsis>
+            [R,Q] = pdiv(P1, P2)
+            Q = pdiv(P1, P2)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parâmetros</title>
         <variablelist>
             <varlistentry>
-                <term>P1</term>
+                <term>P1, R, Q</term>
                 <listitem>
-                    <para>matriz de polinômios </para>
+                    <para>
+                        arrays de polinômios com coeficientes reais ou complexos, do mesmo tamanho.
+                        <varname>Q</varname> são Quocientes e <varname>R</varname> são Restos.
+                    </para>
+                    <para>
+                      When all remainders <varname>R</varname> are constant (degree==0),
+                      <varname>R</varname> is of type 1 (numbers) instead of 2 (polynomials).
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>P2</term>
                 <listitem>
-                    <para>polinômio ou matriz de polinômios</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>R,Q</term>
-                <listitem>
-                    <para>duas matrizes de polinômios</para>
+                    <para>single polinomial, ou array de polinômios de size(P1).</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
         <title>Descrição</title>
-        <para>Divisão euclidiana elemento a elemento da matriz de polinômios
-            <literal>P1</literal> pelo polinômio <literal>P2</literal> ou pela matriz
-            de polinômios <literal>P2</literal>. <literal>Rij</literal> é a matriz de
-            restos, <literal>Qij</literal> é a matriz de quocientes e <literal>P1ij =
-                Qij*P2 + Rij
-            </literal>
-            ou <literal>P1ij = Qij*P2ij + Rij</literal>.
+        <para>
+            Divisão euclidiana elemento a elemento da array de polinômios <varname>P1</varname>
+            (escalar, vetor, matriz ou hipermatriz) pelo polinômio <varname>P2</varname> ou pela
+            array de polinômios <varname>P2</varname>. <varname>R</varname> é a array de
+            restos, <varname>Q</varname> é a array de quocientes tal que
+            <literal>P1 = Q*P2 + Rij</literal> ou <literal>P1 = Q.*P2 + R</literal>.
         </para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
-x=poly(0,'x');
-p1=(1+x^2)*(1-x);p2=1-x;
-[r,q]=pdiv(p1,p2)
+x = poly(0,'x');
+//
+p1 = (1+x^2)*(1-x);
+p2 = 1-x;
+[r,q] = pdiv(p1, p2)
 p2*q-p1
-p2=1+x;
-[r,q]=pdiv(p1,p2)
-p2*q+r-p1
+
+// Com polinômios com coeficientes complexos
+p1 = (x-%i)*(x+2*%i);    printf("%s\n",string(p1))
+p2 = 1-x;
+[r, q] = pdiv(p1, p2);   printf("%s\n", string([r;q]))
+p = q*p2 + r;            printf("%s\n", string(p)); // p1 esperado
+
+// Processamento elemento por elemento
+p1 = [1+x-x^2 , x^3-x+1];
+p2 = [2-x , x^2-3];
+[r,q] = pdiv(p1, p2)
  ]]></programlisting>
     </refsection>
     <refsection>
-        <title> Ver Também </title>
+        <title>Ver Também</title>
         <simplelist type="inline">
             <member>
                 <link linkend="ldiv">ldiv</link>
@@ -87,4 +99,16 @@ p2*q+r-p1
             </member>
         </simplelist>
     </refsection>
+    <revhistory>
+        <revision>
+            <revnumber>6.0.0</revnumber>
+            <revremark>pdiv() now returns an array R of numbers (type 1) instead of constant
+              polynomials (type 2) when all remainders have a degree 0.
+            </revremark>
+        </revision>
+        <revision>
+            <revnumber>6.0.2</revnumber>
+            <revremark>Extensão para hypermatrices.</revremark>
+        </revision>
+    </revhistory>
 </refentry>

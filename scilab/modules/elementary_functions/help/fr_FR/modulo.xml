@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * Copyright (C) 2013 - Samuel GOUGEON
+ * Copyright (C) 2013, 2018 - Samuel GOUGEON
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -14,10 +14,13 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="modulo" xml:lang="fr">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="modulo" xml:lang="fr">
     <refnamediv>
         <refname>modulo</refname>
-        <refpurpose>reste symétrique modulo m ayant le signe du dividende</refpurpose>
+        <refpurpose>reste modulo m ayant le signe du dividende, ou de division polynomiale</refpurpose>
     </refnamediv>
     <refnamediv xml:id="pmodulo">
         <refname>pmodulo</refname>
@@ -35,8 +38,13 @@
             <varlistentry>
                 <term>m, n</term>
                 <listitem>
-                    <para>Scalaire, vecteur, matrice ou hypermatrice d'entiers encodés, de décimaux réels ou de polynômes (les hypermatrices de polynômes ne sont pas admises).
-                        <varname>m</varname> et <varname>n</varname> doivent être de même type. S'ils sont de types entiers, il peuvent être d'encodages distincts (par exemple int8 et int16) Si aucune des deux n'est scalaire, elles doivent avoir les mêmes dimensions.
+                    <para>
+                        Scalaire, vecteur, matrice ou hypermatrice d'entiers encodés, de décimaux
+                        réels ou de polynômes à coefficients réels.
+                        <varname>m</varname> et <varname>n</varname> doivent être du même type.
+                        Si elles sont de types entiers, elles peuvent être d'encodages distincts
+                        (par exemple int8 et int16). Si aucune des deux n'est scalaire, elles
+                        doivent avoir les mêmes tailles.
                     </para>
                 </listitem>
             </varlistentry>
@@ -44,8 +52,17 @@
                 <term>i</term>
                 <listitem>
                     <para>
-                        Scalaire, vecteur, matrice ou hypermatrice du type de <varname>n</varname> (voire de même inttype).
-                        <varname>i</varname> a les dimensions de la plus large de <varname>m</varname> ou<varname>n</varname>.
+                        Scalaire, vecteur, matrice ou hypermatrice du type de <varname>n</varname>
+                        (voire de même inttype).
+                        <varname>i</varname> a les tailles de la plus large de
+                        <varname>m</varname> ou <varname>n</varname>.
+                    </para>
+                    <para>
+                        <warning>
+                            Pour des polynômes en entrée, lorsque tous les restes dans <varname>i</varname>
+                            sont des polynômes constants (degré==0), <varname>i</varname> est de
+                            de type 1 (nombres) au lieu de 2 (polynômes constants).
+                        </warning>
                     </para>
                 </listitem>
             </varlistentry>
@@ -54,19 +71,37 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>modulo</literal> calcule <literal>i= n (modulo m)</literal>
+            <literal>modulo</literal> calcule <literal>i = n (modulo m)</literal>
             c'est à dire le reste de <literal>n</literal> divisé par
             <literal>m</literal>.
         </para>
-        <para>i = n - m .* int (n ./ m). Ici la réponse peut être négative si
-            <literal>n</literal> et/ou <literal>m</literal> sont négatifs.
+        <para>
+            Pour <varname>m</varname> et <varname>n</varname> numériques,
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <literal>modulo()</literal> calcule <literal>i = n - m .* int (n ./ m)</literal>.
+                        Le résultat est négatif (ou nul) lorsque <varname>n</varname> est négatif.
+                        Il est positif sinon.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <literal>pmodulo()</literal> calcule <literal>i = n - |m| .* floor (n ./ |m|)</literal>.
+                        Le résultat est toujours positif ou nul.
+                    </para>
+                </listitem>
+            </itemizedlist>
         </para>
         <para>
-            <literal>pmodulo</literal> calcule <literal>i = n - |m| .* floor (n ./|m|)</literal>,la réponse est positive ou nulle.
+            <warning>
+                Si <literal>m</literal> contient au moins une valeur nulle,
+                <literal>modulo(x,m)</literal> et <literal>pmodulo(x,m)</literal> effectueront une
+                division par zéro. Si <varname>m</varname> est de type réel, l'exception sera
+                traitée selon le mode <literal>ieee()</literal> actif. Si <literal>m</literal>
+                est de type entier, une erreur sera toujours émise.
+            </warning>
         </para>
-        <warning>
-            Si <literal>m</literal> contient au moins une valeur nulle, <code>modulo(x,m)</code> et <code>pmodulo(x,m)</code> effectueront une division par zéro. Si <varname>m</varname> est de type réel, l'exception sera traitée selon le mode <literal>ieee()</literal> actif. Si <literal>m</literal> est de type entier, une erreur sera toujours émise.
-        </warning>
     </refsection>
     <refsection>
         <title>Exemples</title>
@@ -106,7 +141,6 @@ pmodulo(m,n)
 // Polynômes
 modulo( %z^2+1, %z)
 pmodulo(%z^2+1, %z)
-
  ]]></programlisting>
     </refsection>
     <refsection role= "see also">
@@ -125,7 +159,13 @@ pmodulo(%z^2+1, %z)
         <revhistory>
             <revision>
                 <revnumber>5.5.0</revnumber>
-                <revremark>Extension aux entiers encodés et aux hypermatrices d'entiers ou de réels.</revremark>
+                <revremark>
+                    Extension aux entiers encodés et aux hypermatrices d'entiers ou de réels.
+                </revremark>
+            </revision>
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revremark>Extension aux hypermatrices de polynômes.</revremark>
             </revision>
         </revhistory>
     </refsection>

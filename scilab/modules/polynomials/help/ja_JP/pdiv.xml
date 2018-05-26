@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -23,29 +24,31 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>[R,Q]=pdiv(P1,P2)
-            [Q]=pdiv(P1,P2)
+        <synopsis>
+            [R,Q] = pdiv(P1, P2)
+            Q = pdiv(P1, P2)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>パラメータ</title>
         <variablelist>
             <varlistentry>
-                <term>P1</term>
+                <term>P1, R, Q</term>
                 <listitem>
-                    <para>多項式の行列</para>
+                    <para>
+                        同一サイズの実係数または複素係数を持つ多項式の配列。
+                        <varname>Q</varname>は商であり、<varname>R</varname>は剰余である。
+                    </para>
+                    <para>
+                      When all remainders <varname>R</varname> are constant (degree==0),
+                      <varname>R</varname> is of type 1 (numbers) instead of 2 (polynomials).
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>P2</term>
                 <listitem>
-                    <para>多項式または多項式行列 </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>R,Q</term>
-                <listitem>
-                    <para>多項式行列</para>
+                    <para>単一多項式、またはsize（P1）の多項式の配列です。</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -56,22 +59,32 @@
             多項式行列<literal>P1</literal>の多項式<literal>P2</literal>または
             多項式行列<literal>P2</literal>による
             要素毎のユークリッド除算.
-            <literal>Rij</literal>は余りの行列,
-            <literal>Qij</literal>は商の行列,そして,
-            <literal>P1ij = Qij*P2 + Rij</literal> または <literal>P1ij = Qij*P2ij + Rij</literal>
+            <varname>R</varname>は余りの行列,
+            <varname>Q</varname>は商の行列,そして,
+            <literal>P1 = Q*P2 + Rij</literal> または <literal>P1 = Q .* P2 + R</literal>
             です.
         </para>
     </refsection>
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[
-x=poly(0,'x');
-p1=(1+x^2)*(1-x);p2=1-x;
-[r,q]=pdiv(p1,p2)
+x = poly(0,'x');
+//
+p1 = (1+x^2)*(1-x);
+p2 = 1-x;
+[r,q] = pdiv(p1, p2)
 p2*q-p1
-p2=1+x;
-[r,q]=pdiv(p1,p2)
-p2*q+r-p1
+
+// 複素係数を持つ多項式
+p1 = (x-%i)*(x+2*%i);    printf("%s\n",string(p1))
+p2 = 1-x;
+[r, q] = pdiv(p1, p2);   printf("%s\n", string([r;q]))
+p = q*p2 + r;            printf("%s\n", string(p)); // p1は期待される
+
+// 要素単位処理
+p1 = [1+x-x^2 , x^3-x+1];
+p2 = [2-x , x^2-3];
+[r,q] = pdiv(p1, p2)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -88,4 +101,14 @@ p2*q+r-p1
             </member>
         </simplelist>
     </refsection>
+    <revhistory>
+        <revision>
+            <revnumber>6.0.0</revnumber>
+            <revremark>pdivはすべてのランクが0のときに 'constant'型の行列を返すようになりました。</revremark>
+        </revision>
+        <revision>
+            <revnumber>6.0.2</revnumber>
+            <revremark>ハイパーマトリックスへの拡張。</revremark>
+        </revision>
+    </revhistory>
 </refentry>

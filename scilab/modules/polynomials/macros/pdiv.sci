@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Samuel GOUGEON
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,36 +10,44 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-
-function [R,Q]=pdiv(P1,P2)
+function [R, Q] = pdiv(P1, P2)
     // Element wise euclidan division of a polynomial matrix
     // by a polynomial
     // This is just a loop for the primitive pppdiv
     //!
-    [lhs,rhs]=argn(0);
-    [n,m]=size(P1);
-    [n1,m1]=size(P2);
-    // Special case for constant matrices
-    if type(P1)==1&type(P2)==1 then
-        Q=P1./P2;R=0*P1;
-        if lhs==1 then R=Q; end
-        return;
-    end
-    R=[],Q=[]
-    if n1==1 & m1==1 then
-        for l=1:n,
-            for k=1:m,
-                [rlk,qlk]=pppdiv(P1(l,k),P2),R(l,k)=rlk;Q(l,k)=qlk;
-            end;
-        end
-        if lhs==1 then R=Q;end
 
-        return;
+    // Special case for constant matrices
+    if type(P1)==1 & type(P2)==1 then
+        Q = P1 ./ P2
+        R = zeros(P1)
+
+    else
+        scalarP2 = length(P2)==1
+        s = size(P1)
+        if size(s,2)>2
+            P1 = P1(:)
+            P2 = P2(:)
+        end
+        [n, m] = size(P1)
+        R = zeros(P1)
+        Q = zeros(P1)
+        for l = 1:n
+            for k = 1:m
+                if scalarP2
+                    [rlk, qlk] = pppdiv(P1(l,k), P2)
+                else
+                    [rlk, qlk] = pppdiv(P1(l,k), P2(l,k))
+                end
+                R(l,k) = rlk
+                Q(l,k) = qlk
+            end
+        end
+        if size(s,2)>2
+            Q = matrix(Q, s)
+            R = matrix(R, s)
+        end
     end
-    for l=1:n,
-        for k=1:m,
-            [rlk,qlk]=pppdiv(P1(l,k),P2(l,k)),R(l,k)=rlk;Q(l,k)=qlk;
-        end;
+    if argn(1)==1 then
+        R = Q
     end
-    if lhs==1 then R=Q; end
 endfunction
