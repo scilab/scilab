@@ -654,7 +654,11 @@ static types::InternalType* import_struct(int dataset)
         //import field
         for (int j = 0; j < refcount; ++j)
         {
-            int data = H5Rdereference(refs, H5R_OBJECT, &vrefs[j]);
+            int data = H5Rdereference(refs,
+#if H5_VERSION_GE(1,10,0)
+                                      H5P_DATASET_ACCESS_DEFAULT,
+#endif
+                                      H5R_OBJECT, &vrefs[j]);
             if (data < 0)
             {
                 freeStringMatrix(dfield, fields.data());

@@ -474,6 +474,7 @@ Known issues
 * [#14521](http://bugzilla.scilab.org/show_bug.cgi?id=14521): For the CONVERT Xcos block, types codes 2, 6, 7, and 8 were not documented.
 * [#14522](http://bugzilla.scilab.org/show_bug.cgi?id=14522): `or(%nan)` was %F.
 * [#14536](http://bugzilla.scilab.org/show_bug.cgi?id=14536): `xpoly` crashed Scilab when it is used in logarithmic mode for points with negative or null coordinates.
+* [#14539](http://bugzilla.scilab.org/show_bug.cgi?id=14539): It was not possible to build Scilab with hdf5 1.10.0.
 * [#14606](http://bugzilla.scilab.org/show_bug.cgi?id=14606): Memory used by variables returned by `[names,mem]=who()` was always zero.
 * [#14701](http://bugzilla.scilab.org/show_bug.cgi?id=14701): `poly(c,v,"coeff")` did not ignore null high order coefficients.
 * [#14704](http://bugzilla.scilab.org/show_bug.cgi?id=14704): In Scinotes, URL for the `https://`, `ftp://`, `ftps://`, and `file://` protocols were no longer hyperlinked.

@@ -2178,7 +2178,7 @@ int writeDoubleMatrix6(int parent, const char* name, int dims, int* pdims, doubl
     return dset;
 }
 
-hid_t writeDoubleComplexMatrix6(int parent, const char* name, int dims, int* pdims, double* real, double* img)
+HDF5_SCILAB_IMPEXP int writeDoubleComplexMatrix6(int parent, const char* name, int dims, int* pdims, double* real, double* img)
 {
     hid_t space = 0;
     hid_t dset = 0;
