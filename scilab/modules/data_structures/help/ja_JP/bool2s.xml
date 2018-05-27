@@ -13,47 +13,48 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="bool2s">
+<!--  module: boolean  -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="bool2s">
     <refnamediv>
         <refname>bool2s</refname>
-        <refpurpose>convert boolean matrix to a zero one matrix.  </refpurpose>
+        <refpurpose>論理値行列を0,1を値とする行列に変換する.  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Syntax</title>
+        <title>呼び出し手順</title>
         <synopsis>bool2s(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
+        <title>パラメータ</title>
         <variablelist>
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>a boolean vector or a boolean matrix or a constant matrix</para>
+                    <para>論理値ベクトルまたは論理値行列または定数行列 </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Description</title>
+        <title>説明</title>
         <para>
-            If <literal>x</literal> is a boolean matrix,
-            <literal>bool2s(x)</literal> returns the matrix where "true" values are replaced by 1
-            and "false" value by 0.
+            <literal>x</literal> が論理値行列の場合,
+            <literal>bool2s(x)</literal> は"true"値を1,	"false"値を0で置換した
+            行列を返します.
         </para>
         <para>
-            If <literal>x</literal> is a "standard" matrix,
-            <literal>bool2s(x)</literal> returns the matrix where non-zero values are replaced by 1.
+            <literal>x</literal> が "標準" 行列の場合,
+            <literal>bool2s(x)</literal> は非ゼロ値を 1 に置換した行列を返します.
         </para>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>例</title>
         <programlisting role="example"><![CDATA[
 bool2s([%t %t %f %t])
 bool2s([2.3 0 10 -1])
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See also</title>
+        <title>参照</title>
         <simplelist type="inline">
             <member>
                 <link linkend="boolean">boolean</link>
