@@ -270,6 +270,7 @@ Help pages:
   `bilt`, `convol`, `intdec`, and `sincd` moved.
   - Cells subsection created: `cell`, `cell2mat`, `cellstr`, `iscell`, `iscellstr`, `makecell`, `num2cell` gathered.
   - Colormaps and GUI/Menus subsections created
+  - `grand` moved to the `rand` section. Removal of its own main chapter.
 * translations added:
   - (fr): `format`, `typeof`, `isoview`, `ndgrid`, `bench_run`, `consolebox`, `harmean`, `sleep`, `strtod`, `permute`, `geomean`
   - (ru): homepage, `strtod`
@@ -482,6 +483,7 @@ Known issues
 * [#15553](http://bugzilla.scilab.org/show_bug.cgi?id=15553): TOWS_c block failed with 0 simulation time.
 * [#15563](http://bugzilla.scilab.org/show_bug.cgi?id=15563): poly(A,v) was broken when A is a matrix.
 * [#15566](http://bugzilla.scilab.org/show_bug.cgi?id=15566): matrix insertion checked overall size but not individual dimensions.
+* [#15593](http://bugzilla.scilab.org/show_bug.cgi?id=15593): The `grand` page was alone in a main chapter instead of being in the `rand` section.
 * [#15598](http://bugzilla.scilab.org/show_bug.cgi?id=15598): `string(handle)` returned "" instead of calling `%h_string()`
 * [#15599](http://bugzilla.scilab.org/show_bug.cgi?id=15599): degree of zero polynomial was 0 instead of -Inf.
 * [#15601](http://bugzilla.scilab.org/show_bug.cgi?id=15601): `tbx_generate_pofile` failed when the absolute toolbox path includes some spaces, or when the toolbox has no XML files.
