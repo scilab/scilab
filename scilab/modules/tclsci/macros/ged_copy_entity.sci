@@ -4,7 +4,7 @@ function ged_copy_entity()
     r=ged_getobject([xc,yc])
     if r==[] return,end
     twinkle(r,1);
-    save(TMPDIR+"/G_Clipboard",r)
+    save(TMPDIR+"/G_Clipboard", "r")
     //make the axes containning the clicked point the current one
     sca(ged_select_axes(xc,yc))
 endfunction
