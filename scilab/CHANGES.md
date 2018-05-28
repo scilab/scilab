@@ -271,6 +271,7 @@ Help pages:
   - Cells subsection created: `cell`, `cell2mat`, `cellstr`, `iscell`, `iscellstr`, `makecell`, `num2cell` gathered.
   - Colormaps and GUI/Menus subsections created
   - `grand` moved to the `rand` section. Removal of its own main chapter.
+  - `Data structures/types` subsection created: `boolean`, `bool2s`, `hypermat`, `hypermatrices`, `matrices`, `type`, `typename`, `typeof`
 * translations added:
   - (fr): `format`, `typeof`, `isoview`, `ndgrid`, `bench_run`, `consolebox`, `harmean`, `sleep`, `strtod`, `permute`, `geomean`
   - (ru): homepage, `strtod`
