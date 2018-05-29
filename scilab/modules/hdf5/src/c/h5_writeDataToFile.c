@@ -193,6 +193,12 @@ static herr_t addAttribute(int _iDatasetId, const char *_pstName, const char *_p
         return -1;
     }
 
+    status = H5Sclose(attributeSpace);
+    if (status < 0)
+    {
+        return -1;
+    }
+
     return 0;
 }
 
@@ -313,6 +319,12 @@ int writeStringMatrix(int _iFile, char *_pstDatasetName, int _iDims, int* _piDim
     }
 
     status = H5Tclose(typeId);
+    if (status < 0)
+    {
+        return -1;
+    }
+
+    status = H5Sclose(space);
     if (status < 0)
     {
         return -1;
