@@ -174,13 +174,14 @@ public :
 
     Int<T>* sign()
     {
-        Int<T> *pOut = new Int<T>(getDims(), getDimsArray());
+        Int<T> *pOut = new Int<T>(GenericType::getDims(), GenericType::getDimsArray());
         T* p = pOut->get();
-        int size = getSize();
+        int size = GenericType::getSize();
         for (int i = 0; i < size; ++i)
         {
-            p[i] = (m_pRealData[i] > T(0)) - (m_pRealData[i] < T(0));
+            p[i] = (this->m_pRealData[i] > T(0)) - (this->m_pRealData[i] < T(0));
         }
+
         return pOut;
     }
 
