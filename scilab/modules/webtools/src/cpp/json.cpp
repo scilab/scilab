@@ -438,7 +438,7 @@ struct JSONVar {
     std::vector<JSONVar*> a;
     std::unordered_map<std::string, std::vector<JSONVar*>> o;
 
-    JSONVar() : reduced(false)
+    JSONVar() : reduced(false), d1(0.0), b1(0), kind(JSON_UNDEFINED)
     {
         s1 = nullptr;
     }
