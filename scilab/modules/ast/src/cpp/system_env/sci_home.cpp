@@ -349,7 +349,10 @@ static bool createDirectoryRecursively(const std::string& path)
     {
         if (errno != EEXIST)
         {
-            *p = '/';
+            if (p != NULL)
+            { 
+                *p = '/';
+            }
             FREE(file_path);
             return false;
         }
