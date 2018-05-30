@@ -36,6 +36,7 @@ using namespace org_modules_xml;
 int sci_xmlXPath(char* fname, void* pvApiCtx)
 {
     int id;
+    int ret;
     SciErr err;
 
     org_modules_xml::XMLDocument * doc;
@@ -193,7 +194,13 @@ int sci_xmlXPath(char* fname, void* pvApiCtx)
         {
             const char *str = xpath->getStringValue();
 
-            createSingleString(pvApiCtx, Rhs + 1, str);
+            ret = createSingleString(pvApiCtx, Rhs + 1, str);
+            if (ret)
+            {
+                Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                delete xpath;
+                return 0;
+            }
             break;
         }
         default:
