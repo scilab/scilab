@@ -43,12 +43,18 @@ int sci_driver(char * fname, void *pvApiCtx)
     char * driver = NULL;
     char * previous_driver = NULL;
     bool ok = true;
+    int ret;
 
     CheckRhs(0, 1);
 
     // Get current driver
     previous_driver = org_scilab_modules_graphic_export::Driver::getDriver(getScilabJavaVM());
-    createSingleString(pvApiCtx, Rhs + 1, previous_driver);
+    ret = createSingleString(pvApiCtx, Rhs + 1, previous_driver);
+    if (ret)
+    {
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        return FALSE;
+    }
     delete[] previous_driver;
 
     if (Rhs == 1) // Change driver if applicable
