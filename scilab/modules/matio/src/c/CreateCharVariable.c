@@ -29,6 +29,7 @@ int CreateCharVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * pa
     char **charData = NULL;
     int K = 0, L = 0;
     SciErr sciErr;
+    int ret;
 
     if (matVariable->rank == 2) /* 2-D array */
     {
@@ -93,7 +94,12 @@ int CreateCharVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * pa
         {
             if (parent == NULL)
             {
-                createSingleString(pvApiCtx, iVar, "\0");
+                ret = createSingleString(pvApiCtx, iVar, "\0");
+                if (ret)
+                {
+                    Scierror(999, _("%s: Memory allocation error.\n"), "CreateCharVariable");
+                    return FALSE;
+                }
             }
             else
             {
