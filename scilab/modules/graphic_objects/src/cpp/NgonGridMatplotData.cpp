@@ -36,6 +36,9 @@ NgonGridMatplotData::NgonGridMatplotData(void)
     this->scilabData = NULL;
     this->type = 0;
     this->imagetype = MATPLOT_NONE;
+    this->datatype = MATPLOT_HM1_Char;
+    this->gltype = MATPLOT_GL_RGB;
+    this->dataorder = MATPLOT_FORTRAN;
 }
 
 NgonGridMatplotData::~NgonGridMatplotData(void)
