@@ -44,6 +44,7 @@ NgonPolylineData::NgonPolylineData(void)
     display_function_data_size = 0;
 
     colors = NULL;
+    numColors = 0;
 }
 
 NgonPolylineData::~NgonPolylineData(void)
