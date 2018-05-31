@@ -52,6 +52,7 @@ public :
 
     bool                    setZeros();
     int                     getRank();
+    double                  getDegree();
     bool                    setRank(int _iRank, bool bSave = false);
     bool                    setCoef(Double *_poPow);
     bool                    setCoef(const double *_pdblCoefR, const double *_pdblCoefI);

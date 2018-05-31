@@ -45,9 +45,24 @@ types::Function::ReturnValue sci_degree(types::typed_list &in, int _iRetCount, t
     if (in[0]->isDouble())
     {
         types::Double* pDblIn = in[0]->getAs<types::Double>();
+        double *pReal = pDblIn->get();
         pDblOut = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray());
         double* pdblOut = pDblOut->get();
-        memset(pdblOut, 0x00, pDblOut->getSize() * sizeof(double));
+        if (pDblIn->isComplex())
+        {
+            double *pImg = pDblIn->getImg();
+            for (int i = 0; i < pDblOut->getSize(); i++)
+            {
+                pdblOut[i] = pReal[i]==0 && pImg[i]==0 ? -INFINITY : 0;;
+            }
+        }
+        else
+        {
+            for (int i = 0; i < pDblOut->getSize(); i++)
+            {
+                pdblOut[i] = pReal[i]==0 ? -INFINITY : 0;
+            }
+        }
     }
     else if (in[0]->isPoly())
     {
@@ -57,7 +72,7 @@ types::Function::ReturnValue sci_degree(types::typed_list &in, int _iRetCount, t
 
         for (int i = 0; i < pDblOut->getSize(); i++)
         {
-            pdblOut[i] = (double)pPolyIn->get(i)->getRank();
+            pdblOut[i] = pPolyIn->get(i)->getDegree();
         }
     }
     else

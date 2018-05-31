@@ -20,7 +20,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>[D]=degree(M)</synopsis>
+        <synopsis>D = degree(M)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>パラメータ</title>
@@ -58,5 +58,16 @@
                 <link linkend="clean">clean</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revdescription>
+                    nullの多項式の場合、degree（）は0の代わりに - ％infを返すようになりました.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

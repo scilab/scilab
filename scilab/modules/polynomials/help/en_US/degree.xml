@@ -20,7 +20,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>[D]=degree(M)</synopsis>
+        <synopsis>D = degree(M)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -70,5 +70,16 @@ degree(p) // should return 42
                 <link linkend="clean">clean</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revdescription>
+                    For any null polynomial, degree() now returns -%inf instead of 0.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
