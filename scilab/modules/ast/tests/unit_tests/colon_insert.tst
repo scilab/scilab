@@ -11,7 +11,7 @@
 // along with this program.
 //
 //
-
+// <-- NO CHECK REF -->
 // <-- CLI SHELL MODE -->
 
 scalar = 5;
@@ -134,22 +134,22 @@ assert_checkequal(a, matrix([vect vect2], 1, 5, 2));
 a=vect; a(:,:,:,2) = vect2;
 assert_checkequal(a, matrix([vect vect2], 1, 5, 1, 2));
 
-a=mat; a(:,:,2) = 9:16;
+a=mat; a(:,:,2) = matrix(9:16,2,4);
 assert_checkequal(a, matrix([mat(:)', 9:16], 2, 4, 2));
 
-a=mat; a(:,:,:,2) = 9:16;
+a=mat; a(:,:,:,2) = matrix(9:16,2,4);
 assert_checkequal(a, matrix([mat(:)', 9:16], 2, 4, 1, 2));
 
 a=hm; a(:) = hm(:);
 assert_checkequal(a, hm);
 
-a=hm; a(:,:) = hm(:);
+a=hm; a(:,:) = hm(:,:);
 assert_checkequal(a, hm);
 
 a=hm; a(:,:,2) = hm(:,:,1);
 assert_checkequal(a, matrix([hm(:,:,1)(:);hm(:,:,1)(:)], 3, 4, 2));
 
-a=hm; a(:,:,:,2) = hm(:);
+a=hm; a(:,:,:,2) = hm(:,:,:);
 assert_checkequal(a, matrix([hm(:);hm(:)], 3,4,2,2));
 
 
@@ -175,13 +175,13 @@ assert_checkequal(a, matrix(mat, 2, 1, 4));
 a=mat; a(:) = mat(:);
 assert_checkequal(a, mat);
 
-a=mat; a(:,:) = mat(:);
+a=mat; a(:,:) = mat(:,:);
 assert_checkequal(a, mat);
 
-a=mat; a(:,:,2) = mat(:);
+a=mat; a(:,:,2) = mat(:,:);
 assert_checkequal(a, matrix([mat(:);mat(:)], 2, 4, 2));
 
-a=mat; a(:,:,:,2) = mat(:)
+a=mat; a(:,:,:,2) = mat(:,:)
 assert_checkequal(a, matrix([mat(:);mat(:)], 2, 4, 1, 2));
 
 //hypermatrix

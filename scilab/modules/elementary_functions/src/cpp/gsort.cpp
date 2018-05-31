@@ -93,6 +93,10 @@ bool descendent (std::pair<std::pair<int, int>, T> left, std::pair<std::pair<int
 {
     if (ISNAN((double)left.second))
     {
+        if (ISNAN((double)right.second))
+        {
+            return false;
+        }
         return true;
     }
 

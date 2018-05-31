@@ -1315,7 +1315,6 @@ smooth
 %i_q_s
 %i_r_s
 %i_s_s
-%i_sign
 %i_string
 %i_x_s
 %s_1_i

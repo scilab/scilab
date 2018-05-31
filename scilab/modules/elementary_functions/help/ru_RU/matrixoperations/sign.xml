@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
+ * Copyright (C) 2015, 2016, 2018 - Samuel GOUGEON
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -13,10 +14,13 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="sign" xml:lang="ru">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="sign" xml:lang="ru">
     <refnamediv>
         <refname>sign</refname>
-        <refpurpose>функция знака</refpurpose>
+        <refpurpose>сигнум-функция</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Синтаксис</title>
@@ -29,14 +33,17 @@
                 <term>А</term>
                 <listitem>
                     <para>
-                        вещественная или комплексная матрица. <varname>A</varname> may be sparse.
+                        матрица кодированных целых чисел, десятичных чисел или комплексных чисел.
+                        <varname>A</varname> может быть разрежённой.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>X</term>
                 <listitem>
-                    <para>вещественная или комплексная матрица</para>
+                    <para>
+                        матрица того же размера и типа данных, что и <varname>A</varname>.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -44,16 +51,72 @@
     <refsection role="description">
         <title>Описание</title>
         <para>
-            <literal>X = sign(A)</literal> возвращает матрицу, созданную из знаков
-            <literal>A(i,j)</literal>. Для комплексной  <literal>A</literal>
-            <literal>sign(A) = A./abs(A)</literal>.
+            Если <varname>X</varname> состоит из целых или вещественных чисел, то
+            <itemizedlist>
+                <listitem>
+                    <literal>X(i) = -1</literal> где <literal>A(i)&lt;0</literal>
+                </listitem>
+                <listitem>
+                    <literal>X(i) = 0</literal> где <literal>A(i)==0</literal>
+                </listitem>
+                <listitem>
+                    <literal>X(i) = 1</literal> где <literal>A(i)>0</literal>
+                </listitem>
+                <listitem>
+                    <literal>X(i)= %nan</literal> где <literal>A(i)</literal> равно NaN.
+                </listitem>
+            </itemizedlist>
+        </para>
+        <para>
+            Если <varname>X</varname> состоит из комплексных чисел: <literal>sign(A==0) = 0</literal>.
+            В противном случае <literal>sign(A) = A./abs(A)</literal>.
         </para>
     </refsection>
     <refsection role="examples">
         <title>Примеры</title>
+        <para>С десятичными числами:</para>
         <programlisting role="example"><![CDATA[
-sign(rand(2,3))
-sign(1+%i)
+m  = [ 1.25  -2.5  -%inf   2.75
+       0.     1.    0.75   %inf
+       %nan   0.   -1.5   -2.5 ]; m
+sign(m)
+ ]]></programlisting>
+    <screen><![CDATA[
+--> m  =
+   1.25  -2.5  -Inf    2.75
+   0.     1.    0.75   Inf
+   Nan    0.   -1.5   -2.5
+--> sign(m)
+ ans  =
+   1.   -1.  -1.   1.
+   0.    1.   1.   1.
+   Nan   0.  -1.  -1.
+]]></screen>
+    <para>С комплексными числами:</para>
+    <programlisting role="example"><![CDATA[
+i = %i;
+c = [-1, -i, -3+4*i
+      1,  i,  3+4*i
+      3,  0,  3-4*i
+     -4, 4*i,-4-3*i ];
+c
+sign(c)
+ ]]></programlisting>
+    <screen><![CDATA[
+--> c  =
+  -1.  -i     -3. + 4.i
+   1.   i      3. + 4.i
+   3.   0.     3. - 4.i
+  -4.   4.i   -4. - 3.i
+--> sign(c)
+ ans  =
+  -1.  -i     -0.6 + 0.8i
+   1.   i      0.6 + 0.8i
+   1.   0.     0.6 - 0.8i
+  -1.   i     -0.8 - 0.6i
+]]></screen>
+    <para>С разряжённой матрицей:</para>
+    <programlisting role="example"><![CDATA[
 sign(sprand(8,3,0.3,"normal"))
  ]]></programlisting>
     </refsection>
@@ -76,7 +139,8 @@ sign(sprand(8,3,0.3,"normal"))
         <revhistory>
             <revision>
                 <revnumber>6.0</revnumber>
-                <revdescription>Extension to sparse matrices
+                <revdescription>
+                  Расширение до разряжённых матриц.
                 </revdescription>
             </revision>
         </revhistory>

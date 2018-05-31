@@ -694,6 +694,26 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
             }
             pCurrentArg = pDbl;
         }
+        else if (pIT->isSparseBool())
+        {
+            types::SparseBool* pSb = pIT->getAs<types::SparseBool>();
+            int iItemCount = static_cast<int>(pSb->nbTrue());
+            int iRows = pSb->getRows();
+            int *pCoord = new int[iItemCount * 2];
+
+            //get (r,c) positions of True Elements
+            pSb->outputRowCol(pCoord);
+            int* pY = pCoord + iItemCount;
+            //allow new Double index variable
+            Double* pDbl = new Double(1, iItemCount);
+            double* pdbl = pDbl->getReal();
+            for (int i = 0; i < iItemCount; ++i)
+            {
+                pdbl[i] = pCoord[i] + (pY[i] - 1) * iRows;
+            }
+
+            pCurrentArg = pDbl;
+        }
         else if (pIT->isInt())
         {
             switch (pIT->getType())
