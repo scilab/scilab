@@ -29,6 +29,8 @@ function fac3d(x,y,z,T,A,leg,flags,ebox)
         y=[y1 y2];
         z=[z1 z2];
         plot3d(x,y,z);
+        gca().rotation_angles = [58 112];
+        isoview
         return
     end
 
