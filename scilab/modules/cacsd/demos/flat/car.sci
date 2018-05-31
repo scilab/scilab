@@ -137,7 +137,6 @@ endfunction
 
 function draw_car(C,pos)
     if is_handle_valid(C) then
-        drawlater()
         [x,y,theta,phi]=(pos(1),pos(2),pos(3),pos(4))
         bigL=1
         Rc=[cos(theta) sin(theta);-sin(theta) cos(theta)]
@@ -156,7 +155,6 @@ function draw_car(C,pos)
         xy=[(1-cos(phi)/8) (-1/6-sin(phi)/8)
         (1+cos(phi)/8) (-1/6+sin(phi)/8)]
         C(5).data=ones(xy)*diag([x;y])+bigL*xy*Rc
-        drawnow()
     end
 endfunction
 
