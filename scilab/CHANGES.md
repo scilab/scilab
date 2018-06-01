@@ -254,7 +254,9 @@ Help pages:
   `printf`, `sprintf`, `iconvert`, `stdev`, `xlabel`, `and_op`, `or_op`, `permute`, `tree2code`, `%helps`,
   `scilab`, `flipdim`, `Matplot_properties`, `text_properties`, `meshgrid`, `ismatrix`, `xget`, `xset`, `ieee`, `evstr`,
   `uigetfont`, `uigetdir`, `uigetfile`, `uiputfile`, `cat`, `makecell`, `xstring`, `norm`, `barhomogenize`,
-  `colordef`, `matrix`, `coffg`, `diag`, `speye`, `sparse`, `recursionlimit`, `for`, `fileinfo`, `end`, `iconvert`, `Globalproperty`, `unique`, `intdec`, `plus`, `minus`, `varn`, `savematfile`, `empty`, `modulo`, `pdiv`, `unix_g`, `unix_s`, `unix_w`, `unix_x`, `dos`, pages of the Xcos Sinks palette
+  `colordef`, `matrix`, `coffg`, `diag`, `speye`, `sparse`, `recursionlimit`, `for`, `fileinfo`, `end`,
+  `iconvert`, `cond`, `Globalproperty`, `unique`, `intdec`, `plus`, `minus`, `varn`, `savematfile`,
+  `empty`, `modulo`, `pdiv`, `unix_g`, `unix_s`, `unix_w`, `unix_x`, `dos`
 * rewritten: `consolebox`, `double`, `isoview`, `pixel_drawing_mode`, `householder`, `or`, `|,||`,
  `and`, `&,&&`, `format`, `type`, `typeof`, `brackets`, `setlanguage`, `sleep`, `isinf`, `unique`,
  `bitor`, `bitxor`, `bitand`, `macr2tree`, `geomean`, `clf`, `getPreferencesValue`, `gcd`, `lcm`, `isglobal`,
@@ -533,6 +535,7 @@ Known issues
 * [#15563](http://bugzilla.scilab.org/show_bug.cgi?id=15563): poly(A,v) was broken when A is a matrix.
 * [#15566](http://bugzilla.scilab.org/show_bug.cgi?id=15566): matrix insertion checked overall size but not individual dimensions.
 * [#15578](http://bugzilla.scilab.org/show_bug.cgi?id=15578): `mfile2sci` no longer processed correctly a comment appended to the function prototype, nor any m2scideclare() statement.
+* [#15579](http://bugzilla.scilab.org/show_bug.cgi?id=15579): `cond([])` returned 1 instead of 0 as `cond([],2)`.
 * [#15583](http://bugzilla.scilab.org/show_bug.cgi?id=15583): `color(["red" "blue"])` yielded a puzzling error message asking for String type instead of a scalar.
 * [#15586](http://bugzilla.scilab.org/show_bug.cgi?id=15586): `tree2code()` added some leading `,` in the argins and argout lists.
 * [#15589](http://bugzilla.scilab.org/show_bug.cgi?id=15589): `inv()` could fail on some matrices of polynomials with complex coefficients.

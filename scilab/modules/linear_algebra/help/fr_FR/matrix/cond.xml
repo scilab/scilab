@@ -3,6 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * Copyright (C) 2012 - Scilab Enterprises - Adeline CARNIS
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -14,7 +15,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="cond">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:lang="fr" xml:id="cond">
     <refnamediv>
         <refname>cond</refname>
         <refpurpose>conditionnement  </refpurpose>
@@ -27,26 +31,27 @@
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Paramètres</title>
+        <title>Arguments</title>
         <variablelist>
             <varlistentry>
                 <term>X  </term>
                 <listitem>
                     <para>
-                        matrice réelle ou complexe. Si c = cond(X, p), X doit être une matrice carrée réelle ou complexe.
+                        matrice réelle ou complexe. Pour la syntaxe <literal>c = cond(X, p)</literal>,
+                        <varname>X</varname> doit être carrée.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>p</term>
                 <listitem>
-                    <para>scalaire ou chaine de caractères (valeur par défaut p = 2).</para>
+                    <para>1 | 2 | %inf | "inf" | "fro": norme utilisée. p=2 par défaut.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>c</term>
                 <listitem>
-                    <para>scalaire réel.</para>
+                    <para>nombre décimal positif : le conditionnement</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -58,8 +63,9 @@
                 <term>c = cond(X)</term>
                 <listitem>
                     <para>
-                        retourne le conditionnement en norme 2.<literal>cond(X)</literal> est le quotient entre
-                        la plus grande et la plus petite valeur singulière de <literal>X</literal>.
+                        retourne le conditionnement en norme 2.<literal>cond(X)</literal> est le
+                        quotient entre la plus grande et la plus petite valeur singulière de
+                        <literal>X</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -68,39 +74,39 @@
                 <listitem>
                     <para>
                         retourne le conditionnement en norme p : <literal>norm(X, p) * norm(inv(X), p)</literal>.
-                        Si <literal>p</literal> est spécifié, <literal>p</literal> est égal soit à:
+                        Les valeurs possibles de <varname>p</varname> sont :
                     </para>
-                    <itemizedlist>
-                        <listitem>
-                            <para>
-                                p = 1. <literal>cond(X, p)</literal> retourne le conditionnement en norme 1.
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                p = 2. <literal>cond(X, p)</literal> retourne le conditionnement en norme 2.
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                p = %inf or 'inf'. <literal>cond(X, p)</literal> retourne le conditionnement en norme infinie.
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                p = 'fro'. <literal>cond(X, p)</literal> retourne le conditionnement en norme de Frobenius.
-                            </para>
-                        </listitem>
-                    </itemizedlist>
+                    <para>
+                        <table border="0">
+                            <tr valign="top">
+                                <td align="right"><emphasis role="bold">1 : </emphasis></td>
+                                <td>conditionnement en norme 1</td>
+                            </tr>
+                            <tr valign="top">
+                                <td align="right"><emphasis role="bold">2 : </emphasis></td>
+                                <td>conditionnement en norme 2</td>
+                            </tr>
+                            <tr valign="top">
+                                <td align="right"><emphasis role="bold">%inf | "inf" : </emphasis></td>
+                                <td>conditionnement en norme infinie</td>
+                            </tr>
+                            <tr valign="top">
+                                <td align="right"><emphasis role="bold">"fro" : </emphasis></td>
+                                <td>conditionnement en norme de Frobenius</td>
+                            </tr>
+                        </table>
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example">
-            <![CDATA[
-A=testmatrix('hilb',6);
+        <programlisting role="example"><![CDATA[
+// Conditionnement d'une matrice non carrée :
+cond([1 0 -1 ; 0 1 -1])
+
+A = testmatrix('hilb',6);
 // conditionnement en norme 2
 cond(A)
 cond(A, 2)
@@ -113,8 +119,7 @@ cond(A, %inf)
 
 // conditionnement en norme de Frobenius
 cond(A, 'fro')
- ]]>
-        </programlisting>
+ ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>
@@ -136,26 +141,20 @@ cond(A, 'fro')
             <revision>
                 <revnumber>5.4.0</revnumber>
                 <revdescription>
-                    <para>
-                        Appel de <literal>cond(X)</literal>, où <literal>X</literal> est une matrice non
-                        carrée, est maintenant gérée. Par exemple :
-                    </para>
-                    <programlisting role="">
-                        <![CDATA[
-X = [1 0; 1 -1; 0 1];
-cond(X)
- ]]>
-                    </programlisting>
-                    <para>
-                        Appel de <literal>cond(X, p)</literal> permet de calculer le contionnement
-                        en norme p. Par exemple :
-                    </para>
-                    <programlisting role="">
-                        <![CDATA[
-X = [1 -6 0; 1 0 -4;1 0 2];
-cond(X, 1) // conditionnement en norme 1 (p = 1)
- ]]>
-                    </programlisting>
+                    <itemizedlist>
+                        <listitem>
+                            cond(X) accepte désormais X non carrée.
+                        </listitem>
+                        <listitem>
+                            Nouvel argument d'entrée p introduit.
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revdescription>
+                    cond([]) produit désormais 0 (comme cond([],p)) au lieu de 1.
                 </revdescription>
             </revision>
         </revhistory>

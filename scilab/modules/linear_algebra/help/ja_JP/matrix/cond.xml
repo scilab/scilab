@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
+ * Copyright (C) 2012 - Scilab Enterprises - Adeline CARNIS
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -14,178 +15,98 @@
  * along with this program.
  *
  -->
-
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="cond">
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:lang="ja" xml:id="cond">
     <refnamediv>
-
         <refname>cond</refname>
-
         <refpurpose>条件数</refpurpose>
-
     </refnamediv>
-
     <refsynopsisdiv>
-
         <title>呼び出し手順</title>
-
         <synopsis>
-
             c = cond(X)
-
             c = cond(X, p)
-
         </synopsis>
-
     </refsynopsisdiv>
-
     <refsection>
-
         <title>引数</title>
-
         <variablelist>
-
             <varlistentry>
-
                 <term>X</term>
-
                 <listitem>
-
                     <para>
-
                         実数または複素数の行列. c = cond(X, p)の場合,  Xは実数または複素数の
-
                         正方行列とする必要があります.
-
                     </para>
-
                 </listitem>
-
             </varlistentry>
-
             <varlistentry>
-
+                <term>p</term>
+                <listitem>
+                    <para>1 | 2 | %inf | "inf" | "fro": 使用されたノルム. デフォルト値は2です.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>c</term>
-
                 <listitem>
-
                     <para>実数スカラー, 条件数.</para>
-
                 </listitem>
-
             </varlistentry>
-
         </variablelist>
-
     </refsection>
-
     <refsection>
-
         <title>説明</title>
-
         <variablelist>
-
             <varlistentry>
-
                 <term>c = cond(X)</term>
-
                 <listitem>
-
                     <para>
-
                         は,2-ノルムの条件数を返します.
-
                         <literal>cond(X)</literal>は<literal>X</literal>の
-
                         最大特異値と最小特異値の比です.
-
                     </para>
-
                 </listitem>
-
             </varlistentry>
-
             <varlistentry>
-
                 <term>c = cond(X, p)</term>
-
                 <listitem>
-
                     <para>
-
                         は,p-ノルムの条件数を返します :
-
                         <literal>norm(X, p) * norm(inv(X), p)</literal>.
-
-                        <literal>p</literal> が指定された場合,
-
-                        <literal>p</literal> は以下に等しくなります :
-
+                        <varname>p</varname> 可能な値は次のとおりです:
                     </para>
-
-                    <itemizedlist>
-
-                        <listitem>
-
-                            <para>
-
-                                p = 1. <literal>cond(X, p)</literal> は,1-ノルムの条件数を返します.
-
-                            </para>
-
-                        </listitem>
-
-                        <listitem>
-
-                            <para>
-
-                                p = 2. <literal>cond(X, p)</literal> は,1-ノルムの条件数を返します.
-
-                            </para>
-
-                        </listitem>
-
-                        <listitem>
-
-                            <para>
-
-                                p = %inf または 'inf'. <literal>cond(X, p)</literal>
-
-                                は,無限大ノルムの条件数を返します.
-
-                            </para>
-
-                        </listitem>
-
-                        <listitem>
-
-                            <para>
-
-                                p = 'fro'. <literal>cond(X, p)</literal>
-
-                                はフロベニウスノルムの条件数を返します.
-
-                            </para>
-
-                        </listitem>
-
-                    </itemizedlist>
-
+                    <para>
+                        <table border="0">
+                            <tr valign="top">
+                                <td align="right"><emphasis role="bold">1 : </emphasis></td>
+                                <td>は,1-ノルムの条件数を返します</td>
+                            </tr>
+                            <tr valign="top">
+                                <td align="right"><emphasis role="bold">2 : </emphasis></td>
+                                <td>は,2-ノルムの条件数を返します</td>
+                            </tr>
+                            <tr valign="top">
+                                <td align="right"><emphasis role="bold">%inf | "inf" : </emphasis></td>
+                                <td>は,無限大ノルムの条件数を返します</td>
+                            </tr>
+                            <tr valign="top">
+                                <td align="right"><emphasis role="bold">"fro" : </emphasis></td>
+                                <td>はフロベニウスノルムの条件数を返します</td>
+                            </tr>
+                        </table>
+                    </para>
                 </listitem>
-
             </varlistentry>
-
         </variablelist>
-
     </refsection>
-
     <refsection>
-
         <title>例</title>
+        <programlisting role="example"><![CDATA[
+// 非正方行列の条件番号
+cond([1 0 -1 ; 0 1 -1])
 
-        <programlisting role="example">
-
-            <![CDATA[
 A=testmatrix('hilb',6);
 // 2-ノルムの条件数
 cond(A)
@@ -199,97 +120,44 @@ cond(A, %inf)
 
 // フロベニウスノルムの条件数
 cond(A, 'fro')
- ]]>
-
-        </programlisting>
-
+ ]]></programlisting>
     </refsection>
-
     <refsection>
-
         <title>参考</title>
-
         <simplelist type="inline">
-
             <member>
-
                 <link linkend="rcond">rcond</link>
-
             </member>
-
             <member>
-
                 <link linkend="svd">svd</link>
-
             </member>
-
             <member>
-
                 <link linkend="norm">norm</link>
-
             </member>
-
         </simplelist>
-
     </refsection>
-
     <refsection>
-
         <title>履歴</title>
-
         <revhistory>
-
             <revision>
-
                 <revnumber>5.4.0</revnumber>
-
                 <revdescription>
-
-                    <para>
-
-                        非正方行列の<literal>X</literal>を指定して,
-
-                        <literal>cond(X)</literal>をコールしても管理されるようになりました.
-
-                        例えば:
-
-                    </para>
-
-                    <programlisting role="">
-
-                        <![CDATA[
-X = [1 0; 1 -1; 0 1];
-cond(X)
- ]]>
-
-                    </programlisting>
-
-                    <para>
-
-                        <literal>cond(X, p)</literal>をコールすることで、
-
-                        p-ノルム条件数を計算できるようになりました.
-
-                        例えば:
-
-                    </para>
-
-                    <programlisting role="">
-
-                        <![CDATA[
-X = [1 -6 0; 1 0 -4;1 0 2];
-cond(X, 1) // 1-ノルム(p = 1)の条件数
- ]]>
-
-                    </programlisting>
-
+                    <itemizedlist>
+                        <listitem>
+                            cond(X)は非正方行列を受け入れるようになりました.
+                        </listitem>
+                        <listitem>
+                            新しい入力引数pが導入されました.
+                        </listitem>
+                    </itemizedlist>
                 </revdescription>
-
             </revision>
-
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revdescription>
+                    cond([])は1の代わりに0を返します.
+                </revdescription>
+            </revision>
         </revhistory>
-
     </refsection>
-
 </refentry>
-
