@@ -484,6 +484,7 @@ Known issues
 * [#15566](http://bugzilla.scilab.org/show_bug.cgi?id=15566): matrix insertion checked overall size but not individual dimensions.
 * [#15598](http://bugzilla.scilab.org/show_bug.cgi?id=15598): `string(handle)` returned "" instead of calling `%h_string()`
 * [#15599](http://bugzilla.scilab.org/show_bug.cgi?id=15599): degree of zero polynomial was 0 instead of -Inf.
+* [#15601](http://bugzilla.scilab.org/show_bug.cgi?id=15601): `tbx_generate_pofile` failed when the absolute toolbox path includes some spaces, or when the toolbox has no XML files.
 * [#15609](http://bugzilla.scilab.org/show_bug.cgi?id=15609): (1:1):2 crashed Scilab.
 * [#15615](http://bugzilla.scilab.org/show_bug.cgi?id=15615): `datatipToggle()` was a duplicate of `datatipManagerMode()`.
 * [#15617](http://bugzilla.scilab.org/show_bug.cgi?id=15617): `evstr(list(..))` did not check the number and types of list components. When an input component can't be evaluated, the error messages were not clear enough.
