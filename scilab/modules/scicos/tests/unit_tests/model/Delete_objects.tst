@@ -81,8 +81,6 @@ scs_m.objs(3) = null();
 assert_checkequal(size(scs_m.objs), 4);
 
 // The remaining diagram is not expected to stay coherent, the user should fix it by hand
-scs_m.objs(4).from = [3 1 0];
-scs_m.objs(4).to = [3 1 1];
 assert_checkequal(scs_m.objs(3).graphics.pin, [4; 0]);
 assert_checkequal(scs_m.objs(3).graphics.pout, 4);
 

@@ -275,9 +275,29 @@ update_status_t Model::setObjectProperty(model::BaseObject* object, object_prope
             case LABEL:
                 return o->setLabel(v);
             case SOURCE_PORT:
-                return o->setSourcePort(v);
+#if SANITY_CHECK
+            {
+                ScicosID oppositePort = ScicosID();
+                getObjectProperty(o, DESTINATION_PORT, oppositePort);
+                if (v != ScicosID() && oppositePort == v)
+                {
+                    abort();
+                }
+            }
+#endif /* SANITY CHECK */
+            return o->setSourcePort(v);
             case DESTINATION_PORT:
-                return o->setDestinationPort(v);
+#if SANITY_CHECK
+            {
+                ScicosID oppositePort = ScicosID();
+                getObjectProperty(o, SOURCE_PORT, oppositePort);
+                if (v != ScicosID() && oppositePort == v)
+                {
+                    abort();
+                }
+            }
+#endif /* SANITY CHECK */
+            return o->setDestinationPort(v);
             default:
                 break;
         }
@@ -684,7 +704,7 @@ update_status_t Model::setObjectProperty(model::BaseObject* object, object_prope
 
                     ScicosID parent = ScicosID();
                     getObjectProperty(p, SOURCE_BLOCK, parent);
-                    if (parent != baseObject->id())
+                    if (parent != ScicosID() && parent != baseObject->id())
                     {
                         abort();
                     }
@@ -699,7 +719,7 @@ update_status_t Model::setObjectProperty(model::BaseObject* object, object_prope
 
                     ScicosID parent = ScicosID();
                     getObjectProperty(p, SOURCE_BLOCK, parent);
-                    if (parent != baseObject->id())
+                    if (parent != ScicosID() && parent != baseObject->id())
                     {
                         abort();
                     }
@@ -714,7 +734,7 @@ update_status_t Model::setObjectProperty(model::BaseObject* object, object_prope
 
                     ScicosID parent = ScicosID();
                     getObjectProperty(p, SOURCE_BLOCK, parent);
-                    if (parent != baseObject->id())
+                    if (parent != ScicosID() && parent != baseObject->id())
                     {
                         abort();
                     }
@@ -729,7 +749,7 @@ update_status_t Model::setObjectProperty(model::BaseObject* object, object_prope
 
                     ScicosID parent = ScicosID();
                     getObjectProperty(p, SOURCE_BLOCK, parent);
-                    if (parent != baseObject->id())
+                    if (parent != ScicosID() && parent != baseObject->id())
                     {
                         abort();
                     }
@@ -787,13 +807,13 @@ update_status_t Model::setObjectProperty(model::BaseObject* object, object_prope
 
                     ScicosID parent = ScicosID();
                     getObjectProperty(c, PARENT_BLOCK, parent);
-                    if (parent != ScicosID())
+                    if (parent != ScicosID() && parent != baseObject->id())
                     {
                         abort();
                     }
 
                     getObjectProperty(c, PARENT_DIAGRAM, parent);
-                    if (parent != baseObject->id())
+                    if (parent != ScicosID() && parent != baseObject->id())
                     {
                         abort();
                     }
@@ -819,6 +839,7 @@ update_status_t Model::setObjectProperty(model::BaseObject* object, object_prope
         {
             case CONNECTED_SIGNALS:
                 return o->setConnectedSignals(v);
+
             default:
                 break;
         }

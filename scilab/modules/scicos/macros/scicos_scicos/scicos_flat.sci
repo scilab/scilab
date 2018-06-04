@@ -218,45 +218,36 @@ function  [cor,corinv,links_table,cur_fictitious,sco_mat,ok, IN, OUT, EIN, EOUT]
                         if scs_m.objs(kc).to(1)==scs_m.objs(kc).from(1) then
                             //** regular input port
                             if port_type=="pin" then
-                                scs_m.objs(kc).to(1)=-(cur_fictitious+scs_m.objs(kc).to(2));
-                                scs_m.objs(kc).to(2)=1
+                                scs_m.objs(kc).to=[-(cur_fictitious+scs_m.objs(kc).to(2)), 1, 1];
 
                                 if scs_m.objs(kc).from(3)==0 then //** in connected to out
-                                    scs_m.objs(kc).from(1)=-(cur_fictitious+scs_m.objs(kc).from(2)+nb_pin);
-                                    scs_m.objs(kc).from(2)=1
+                                    scs_m.objs(kc).from=[-(cur_fictitious+scs_m.objs(kc).from(2)+nb_pin), 1, 0];
                                 else //** in connected to in
-                                    scs_m.objs(kc).from(1)=-(cur_fictitious+scs_m.objs(kc).from(2));
-                                    scs_m.objs(kc).from(2)=1
+                                    scs_m.objs(kc).from=[-(cur_fictitious+scs_m.objs(kc).from(2)), 1, 0];
                                 end
 
                                 //** regular output port
                             elseif port_type=="pout" then
-                                scs_m.objs(kc).from(1)=-(cur_fictitious+scs_m.objs(kc).from(2));
-                                scs_m.objs(kc).from(2)=1
+                                scs_m.objs(kc).from=[-(cur_fictitious+scs_m.objs(kc).from(2)), 1, 0];
 
                                 if scs_m.objs(kc).to(3)==0 then //** out connected to out
-                                    scs_m.objs(kc).to(1)=-(cur_fictitious+scs_m.objs(kc).to(2));
-                                    scs_m.objs(kc).to(2)=1
+                                    scs_m.objs(kc).to=[-(cur_fictitious+scs_m.objs(kc).to(2)), 1, 1]
                                 end
 
                                 //** event input port
                             elseif port_type=="pein" then
-                                scs_m.objs(kc).to(1)=-(cur_fictitious+scs_m.objs(kc).to(2));
-                                scs_m.objs(kc).to(2)=1
+                                scs_m.objs(kc).to=[-(cur_fictitious+scs_m.objs(kc).to(2)), 1, 1];
 
-                                scs_m.objs(kc).from(1)=-(cur_fictitious+scs_m.objs(kc).from(2)+nb_pein);
-                                scs_m.objs(kc).from(2)=1
+                                scs_m.objs(kc).from=[-(cur_fictitious+scs_m.objs(kc).from(2)+nb_pein), 1, 0];
 
                                 //** peout and pein are never connected to themselves
                             end
 
                         elseif scs_m.objs(kc).to(1)==k then  // a link going to the superblock
-                            scs_m.objs(kc).to(1)=-(cur_fictitious+scs_m.objs(kc).to(2));
-                            scs_m.objs(kc).to(2)=1
+                            scs_m.objs(kc).to=[-(cur_fictitious+scs_m.objs(kc).to(2)), 1, 1];
 
                         elseif scs_m.objs(kc).from(1)==k then  // a link coming from the superblock
-                            scs_m.objs(kc).from(1)=-(cur_fictitious+scs_m.objs(kc).from(2));
-                            scs_m.objs(kc).from(2)=1
+                            scs_m.objs(kc).from=[-(cur_fictitious+scs_m.objs(kc).from(2)), 1, 0];
                         end
                     end
                     cur_fictitious=cur_fictitious+size(ip,"*")

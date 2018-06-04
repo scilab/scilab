@@ -20,7 +20,7 @@
 #include <atomic>
 #include <string>
 #include <vector>
-#include <map>
+#include <unordered_map>
 
 #include "utilities.hxx"
 #include "Model.hxx"
@@ -108,7 +108,17 @@ public:
     {
         return static_cast<T*>(getBaseObject(uid));
     }
-    model::BaseObject* cloneBaseObject(std::unordered_map<model::BaseObject*, model::BaseObject*>& mapped, model::BaseObject* initial, bool cloneChildren, bool clonePorts);
+
+    struct cloned_pair_t
+    {
+        model::BaseObject* initial;
+        model::BaseObject* cloned;
+
+        cloned_pair_t(model::BaseObject* i, model::BaseObject* c) : initial(i), cloned(c) {};
+    };
+    typedef std::unordered_map<ScicosID, cloned_pair_t> cloned_t;
+
+    model::BaseObject* cloneBaseObject(cloned_t& mapped, model::BaseObject* initial, bool cloneChildren, bool clonePorts);
 #endif /* !defined SWIG */
 
     /*
@@ -228,9 +238,10 @@ private:
     template<typename T> void cloneProperties(model::BaseObject* initial, model::BaseObject* clone, T& temporary);
     template<typename T> bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, T& v) const;
     template<typename T> update_status_t setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, T v);
-    void deepClone(std::unordered_map<model::BaseObject*, model::BaseObject*>& mapped, model::BaseObject* initial, model::BaseObject* clone, object_properties_t p, bool cloneIfNotFound);
-    void deepCloneVector(std::unordered_map<model::BaseObject*, model::BaseObject*>& mapped, model::BaseObject* initial, model::BaseObject* clone, object_properties_t p, bool cloneIfNotFound);
-    void updateChildrenRelatedPropertiesAfterClone(std::unordered_map<model::BaseObject*, model::BaseObject*>& mapped);
+
+    void deepClone(cloned_t& mapped, model::BaseObject* initial, model::BaseObject* clone, object_properties_t p, bool cloneIfNotFound);
+    void deepCloneVector(cloned_t& mapped, model::BaseObject* initial, model::BaseObject* clone, object_properties_t p, bool cloneIfNotFound);
+    void updateChildrenRelatedPropertiesAfterClone(cloned_t& mapped);
     void unlinkVector(model::BaseObject* o, object_properties_t uid_prop, object_properties_t ref_prop);
     void unlink(model::BaseObject* o, object_properties_t uid_prop, object_properties_t ref_prop);
     void deleteVector(model::BaseObject* o, object_properties_t uid_prop);

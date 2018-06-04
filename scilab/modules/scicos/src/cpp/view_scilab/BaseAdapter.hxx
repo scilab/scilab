@@ -23,7 +23,6 @@
 #include <functional>
 #include <string>
 #include <vector>
-#include <unordered_map>
 #include <sstream>
 
 #include "bool.hxx"
@@ -174,7 +173,7 @@ public:
         {
             Controller controller;
 
-            std::unordered_map<BaseObject*, BaseObject*> mapped;
+            Controller::cloned_t mapped;
             BaseObject* clone = controller.cloneBaseObject(mapped, adapter.getAdaptee(), cloneChildren, true);
             m_adaptee = static_cast<Adaptee*>(clone);
         }
@@ -204,7 +203,8 @@ public:
         typename property<Adaptor>::props_t_it found = property<Adaptor>::find(_sKey);
         if (found != property<Adaptor>::fields.end())
         {
-            return found->get(*static_cast<Adaptor*>(this), controller);
+            Adaptor& adapter = *static_cast<Adaptor*>(this);
+            return found->get(adapter, controller);
         }
         return nullptr;
     }
@@ -214,7 +214,8 @@ public:
         typename property<Adaptor>::props_t_it found = property<Adaptor>::find(_sKey);
         if (found != property<Adaptor>::fields.end())
         {
-            return found->set(*static_cast<Adaptor*>(this), v, controller);
+            Adaptor& adapter = *static_cast<Adaptor*>(this);
+            return found->set(adapter, v, controller);
         }
         return false;
     }

@@ -34,6 +34,7 @@
 #include "ModelAdapter.hxx"
 #include "LinkAdapter.hxx"
 #include "DiagramAdapter.hxx"
+#include "GraphicsAdapter.hxx"
 
 #include "view_scilab/Adapters.hxx"
 #include "ports_management.hxx"

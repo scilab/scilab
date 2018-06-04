@@ -17,12 +17,14 @@
 #define GRAPHICSADAPTER_HXX_
 
 #include <string>
+#include <vector>
 
 #include "internal.hxx"
 
 #include "BaseAdapter.hxx"
 #include "adapters_utilities.hxx"
 #include "model/Block.hxx"
+#include "model/Link.hxx"
 
 namespace org_scilab_modules_scicos
 {
@@ -49,10 +51,13 @@ public:
 
     // move (if possible) the partial information to the model
     static void relink(Controller& controller, model::Block* adaptee, const std::vector<ScicosID>& children);
+    static void reverse_relink(Controller& controller, model::Link* adaptee, int index, const std::vector<ScicosID>& children);
     // manage partial information after a model clone
-    static void add_partial_links_information(Controller& controller, model::BaseObject* original, model::BaseObject* cloned);
-    // remove partial links information (on delete)
-    static void remove_partial_links_information(model::Block* o);
+    static void add_partial_links_information(Controller& controller, ScicosID original, ScicosID cloned);
+    // manage partial information before a model delete
+    static void store_partial_links_information(Controller& controller, model::BaseObject* added, int index, const std::vector<ScicosID>& children);
+    // remove all information related to the block
+    static void remove_partial_links_information(ScicosID uid);
 
 private:
     types::InternalType* gr_i_content;

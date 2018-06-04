@@ -18,6 +18,7 @@
 #include <string>
 #include <algorithm>
 
+#include "View.hxx"
 #include "BlockAdapter.hxx"
 #include "CprAdapter.hxx"
 #include "DiagramAdapter.hxx"
@@ -34,7 +35,45 @@ namespace org_scilab_modules_scicos
 namespace view_scilab
 {
 
-Adapters Adapters::m_instance = Adapters();
+struct AdapterView : public View
+{
+    void objectCreated(const ScicosID& uid, kind_t kind) override {};
+    void objectReferenced(const ScicosID& uid, kind_t kind, unsigned refCount) override {};
+    void objectUnreferenced(const ScicosID& uid, kind_t kind, unsigned refCount) override {};
+    void objectDeleted(const ScicosID& uid, kind_t kind) override
+    {
+        switch (kind)
+        {
+            case BLOCK:
+                GraphicsAdapter::remove_partial_links_information(uid);
+                break;
+            case LINK:
+                LinkAdapter::remove_partial_links_information(uid);
+                break;
+            default:
+                break;
+        }
+    };
+    void objectCloned(const ScicosID& uid, const ScicosID& cloned, kind_t kind) override
+    {
+        Controller controller;
+
+        switch (kind)
+        {
+            case BLOCK:
+                GraphicsAdapter::add_partial_links_information(controller, uid, cloned);
+                break;
+            case LINK:
+                LinkAdapter::add_partial_links_information(controller, uid, cloned);
+                break;
+            default:
+                break;
+        }
+    };
+    void propertyUpdated(const ScicosID& uid, kind_t kind, object_properties_t property, update_status_t status) override {};
+};
+
+Adapters Adapters::m_instance;
 
 Adapters& Adapters::instance()
 {
@@ -62,6 +101,9 @@ Adapters::Adapters()
     adapters.push_back(adapter_t(view_scilab::TextAdapter::getSharedTypeStr(), TEXT_ADAPTER));
 
     std::sort(adapters.begin(), adapters.end());
+
+    Controller controller;
+    controller.register_view("Adapters", new AdapterView());
 }
 
 Adapters::~Adapters()
@@ -136,14 +178,19 @@ types::InternalType* Adapters::allocate_view(ScicosID id, kind_t kind)
 {
     Controller controller;
 
-    switch (kind)
+    return allocate_view(controller, controller.getBaseObject(id));
+}
+
+types::InternalType* Adapters::allocate_view(Controller& controller, model::BaseObject* o)
+{
+    switch (o->kind())
     {
         case BLOCK:
-            return new view_scilab::BlockAdapter(controller, controller.getBaseObject<model::Block>(id));
+            return new view_scilab::BlockAdapter(controller, static_cast<model::Block*>(o));
         case LINK:
-            return new view_scilab::LinkAdapter(controller, controller.getBaseObject<model::Link>(id));
+            return new view_scilab::LinkAdapter(controller, static_cast<model::Link*>(o));
         case DIAGRAM:
-            return new view_scilab::DiagramAdapter(controller, controller.getBaseObject<model::Diagram>(id));
+            return new view_scilab::DiagramAdapter(controller, static_cast<model::Diagram*>(o));
         default:
             return nullptr;
     }
