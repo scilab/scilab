@@ -51,7 +51,7 @@ public class RedoAction extends DefaultAction {
     /**
      * Manage enable modification
      */
-    private final class RedoConstraint extends ActionConstraint {
+    private static final class RedoConstraint extends ActionConstraint {
         private final WeakReference<ScilabGraph> scilabGraph;
 
         /**
