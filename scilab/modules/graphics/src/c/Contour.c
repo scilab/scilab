@@ -697,11 +697,11 @@ static void GContStore2(int ival, double Cont, double xncont, double yncont)
                 Gycont = (double*)REALLOC(Gycont, currentContSize * sizeof(double));
             }
         }
-        if ((Gxcont == NULL) || n != 0)
+        if ((Gxcont == NULL) && n != 0)
         {
             return ;
         }
-        if ((Gycont == NULL) || n != 0)
+        if ((Gycont == NULL) && n != 0)
         {
             return;
         }
@@ -731,11 +731,11 @@ static void GContStore2(int ival, double Cont, double xncont, double yncont)
                 Gycont = (double*)REALLOC(Gycont, currentContSize * sizeof(double));
             }
         }
-        if ((Gxcont == NULL) || n != 0)
+        if ((Gxcont == NULL) && n != 0)
         {
             return ;
         }
-        if ((Gycont == NULL) || n != 0)
+        if ((Gycont == NULL) && n != 0)
         {
             return;
         }
