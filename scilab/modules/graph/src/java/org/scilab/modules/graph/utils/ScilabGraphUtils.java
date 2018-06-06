@@ -109,7 +109,7 @@ public final class ScilabGraphUtils extends mxUtils {
 
                 generatedSVGComponents.put(filename, node.getWeakReference());
                 generatedSVGSizes.put(filename, ctx.getDocumentSize());
-            } catch (IOException e) {
+            } catch (IOException | NullPointerException e) {
                 Logger.getLogger(ScilabGraphUtils.class.getName()).severe(e.toString());
             }
         }
