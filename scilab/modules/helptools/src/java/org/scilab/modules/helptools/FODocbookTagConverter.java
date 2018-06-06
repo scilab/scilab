@@ -124,7 +124,7 @@ public class FODocbookTagConverter implements Converter {
             sourceDocProcessed.delete();
             processedStyle.delete();
 
-        } catch (TransformerException e) {
+        } catch (TransformerException | NullPointerException e) {
             e.printStackTrace();
         }
 
@@ -142,7 +142,7 @@ public class FODocbookTagConverter implements Converter {
      * to the xsl file since docbook cannot replace env variables
      * @return the path to the preprocessed file
      */
-    private File generateExtendedStyle() {
+    private File generateExtendedStyle() throws IOException {
         File mainStyleDoc = new File(SCI + "/modules/helptools/schema/extendedStyle.xsl");
         try {
             String contentMainStyleDoc = Helpers.loadString(mainStyleDoc, "UTF-8");
@@ -156,7 +156,7 @@ public class FODocbookTagConverter implements Converter {
             return temporaryStyleFile;
         } catch (java.io.IOException e) {
             System.err.println("Could not convert " + mainStyleDoc);
-            return null;
+            throw e;
         }
     }
 
@@ -166,7 +166,7 @@ public class FODocbookTagConverter implements Converter {
      * @param styleSheet CSS to be used
      * @return the new master file
      */
-    private File preProcessMaster(String masterXML) {
+    private File preProcessMaster(String masterXML) throws IOException {
 
         String filename = new File(masterXML).getName();
         /* Create the output file which will be created by copyconvert.run into the working directory  */
@@ -187,16 +187,16 @@ public class FODocbookTagConverter implements Converter {
             System.err.println("Column: " + e.getColumnNumber());
             System.err.println("Public ID: " + e.getPublicId());
             System.err.println("System Id: " + e.getSystemId());
-            return null;
+            throw new IOException(e);
         } catch (SAXException e) {
             System.err.println(CANNOT_COPY_CONVERT + masterXML + TO_WITH_QUOTES
                                + masterXMLTransformed + COLON_WITH_QUOTES + Helpers.reason(e));
-            return null;
+            throw new IOException(e);
 
         } catch (IOException e) {
             System.err.println(CANNOT_COPY_CONVERT + masterXML + TO_WITH_QUOTES
                                + masterXMLTransformed + COLON_WITH_QUOTES + Helpers.reason(e));
-            return null;
+            throw e;
         }
 
         return masterXMLTransformed;
