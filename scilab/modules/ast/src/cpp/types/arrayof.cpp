@@ -313,19 +313,18 @@ ArrayOf<T>* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
             {
                 bNeedToResize = true;
                 iNewDims = 2;
-                piNewDims = new int[2];
+                piNewDims = new int[2]{1,1};
 
-                if (getCols() == 1 || getSize() == 0)
+                if (isScalar() || getSize() == 0)
                 {
-                    //column vector
-                    piNewDims[0] = piMaxDim[0];
-                    piNewDims[1] = 1;
+                    int *piSourceDims = pSource->getDimsArray();
+                    // if source is scalar then resize indexed array as a column vector
+                    // otherwise resize with shape of source
+                    piNewDims[(int)(piSourceDims[0] == 1 && pSource->getSize()>1)]=piMaxDim[0];
                 }
-                else if (getRows() == 1)
+                else // resize with same shape as indexed array
                 {
-                    //row vector
-                    piNewDims[0] = 1;
-                    piNewDims[1] = piMaxDim[0];
+                    piNewDims[(int)(getRows() == 1)]=piMaxDim[0];
                 }
             }
         }
