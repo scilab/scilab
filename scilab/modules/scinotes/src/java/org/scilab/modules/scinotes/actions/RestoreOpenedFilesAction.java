@@ -177,9 +177,15 @@ public class RestoreOpenedFilesAction extends DefaultCheckAction {
             public void actionPerformed(ActionEvent e) {
                 List<File> list = getOpenedFiles(tree, uuid);
                 ed.getTabPane().remove(0);
+                boolean select=ed.getTabPane().getTabCount()==1;
                 if (list != null && list.size() != 0) {
                     for (File f : list) {
                         ed.openFile(f.getPath(), 0, null);
+                    }
+                    // Bug #15115: if scinotes has been launched with one file to open,
+                    // select the file's tab after restoration of previous files
+                    if (select) {
+                        ed.getTabPane().setSelectedIndex(0);
                     }
                 } else if (ed.getTabPane().getTabCount() == 0) {
                     ed.addEmptyTab();
