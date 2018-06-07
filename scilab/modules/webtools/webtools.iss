@@ -30,12 +30,12 @@ Source: modules\{#WEBTOOLS}\sci_gateway\{#WEBTOOLS}_gateway.xml; DestDir: {app}\
 Source: modules\{#WEBTOOLS}\etc\{#WEBTOOLS}.quit; DestDir: {app}\modules\{#WEBTOOLS}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#WEBTOOLS}\etc\{#WEBTOOLS}.start; DestDir: {app}\modules\{#WEBTOOLS}\etc; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#WEBTOOLS}\macros\buildmacros.sce; DestDir: {app}\modules\{#WEBTOOLS}\macros; Components: {#COMPN_SCILAB}
-Source: modules\{#WEBTOOLS}\macros\buildmacros.bat; DestDir: {app}\modules\{#WEBTOOLS}\macros; Components: {#COMPN_SCILAB}
-Source: modules\{#WEBTOOLS}\macros\cleanmacros.bat; DestDir: {app}\modules\{#WEBTOOLS}\macros; Components: {#COMPN_SCILAB}
-Source: modules\{#WEBTOOLS}\macros\*.sci; DestDir: {app}\modules\{#WEBTOOLS}\macros; Components: {#COMPN_SCILAB}
-Source: modules\{#WEBTOOLS}\macros\*.bin; DestDir: {app}\modules\{#WEBTOOLS}\macros; Components: {#COMPN_SCILAB}
-Source: modules\{#WEBTOOLS}\macros\lib; DestDir: {app}\modules\{#WEBTOOLS}\macros; Components: {#COMPN_SCILAB}
+;Source: modules\{#WEBTOOLS}\macros\buildmacros.sce; DestDir: {app}\modules\{#WEBTOOLS}\macros; Components: {#COMPN_SCILAB}
+;Source: modules\{#WEBTOOLS}\macros\buildmacros.bat; DestDir: {app}\modules\{#WEBTOOLS}\macros; Components: {#COMPN_SCILAB}
+;Source: modules\{#WEBTOOLS}\macros\cleanmacros.bat; DestDir: {app}\modules\{#WEBTOOLS}\macros; Components: {#COMPN_SCILAB}
+;Source: modules\{#WEBTOOLS}\macros\*.sci; DestDir: {app}\modules\{#WEBTOOLS}\macros; Components: {#COMPN_SCILAB}
+;Source: modules\{#WEBTOOLS}\macros\*.bin; DestDir: {app}\modules\{#WEBTOOLS}\macros; Components: {#COMPN_SCILAB}
+;Source: modules\{#WEBTOOLS}\macros\lib; DestDir: {app}\modules\{#WEBTOOLS}\macros; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#WEBTOOLS}\demos\*.*; DestDir: {app}\modules\{#WEBTOOLS}\demos; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;

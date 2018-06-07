@@ -105,4 +105,5 @@
 #include BinariesSourcePath + "\modules\mpi\mpi.iss"
 #include BinariesSourcePath + "\modules\slint\slint.iss"
 #include BinariesSourcePath + "\modules\coverage\coverage.iss"
+#include BinariesSourcePath + "\modules\webtools\webtools.iss"
 ;-------------------------------------------------------------------------------
