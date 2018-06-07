@@ -167,7 +167,10 @@ public enum XcosFileType {
         @Override
         public void load(String file, XcosDiagram into) throws Exception {
             XcosDiagram diagram = XcosCellFactory.createDiagramFromCOSF(new JavaController(), file);
-            into.addCell(diagram.getDefaultParent(), into.getDefaultParent());
+            if (diagram != null)
+            {
+                into.addCell(diagram.getDefaultParent(), into.getDefaultParent());
+            }
         }
 
         @Override
