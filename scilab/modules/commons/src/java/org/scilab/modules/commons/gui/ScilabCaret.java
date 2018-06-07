@@ -147,7 +147,9 @@ public class ScilabCaret extends DefaultCaret {
             int pos = editor.getCaretPosition();
             try {
                 r = editor.modelToView(pos);
-            } catch (BadLocationException e) { }
+            } catch (BadLocationException e) {
+                System.err.println(e);
+            }
             if (r != null && (r.width != 0 || r.height != 0)) {
                 if ( (x != r.x) || (y != r.y) ) {
                     repaint();
