@@ -424,7 +424,9 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
                     sres = pos[i][0] + res;
                     try {
                         doc.replace(sres, pos[i][1] - pos[i][0], content, null);
-                    } catch (BadLocationException e) { }
+                    } catch (BadLocationException e) {
+                        System.err.println(e);
+                    }
                     res = sres + len - pos[i][1];
                     pos[i][0] = sres + len;
                     pos[i][1] = sres + len;
