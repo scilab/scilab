@@ -108,7 +108,9 @@ public class OpenSourceFileOnKeywordAction extends DefaultAction {
             String name = "";
             try {
                 name = doc.getText(kwe.getStart(), kwe.getLength());
-            } catch (BadLocationException e) { }
+            } catch (BadLocationException e) {
+                System.err.println(e);
+            }
             if (onMenu) {
                 openSourceBox(name);
             } else {
