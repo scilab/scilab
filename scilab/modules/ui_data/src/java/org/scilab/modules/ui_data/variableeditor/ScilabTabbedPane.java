@@ -73,7 +73,9 @@ public class ScilabTabbedPane extends JTabbedPane implements DragGestureListener
     static {
         try {
             DATAFLAVOR = new DataFlavor(DataFlavor.javaJVMLocalObjectMimeType + ";class=" + ScilabTabbedPane.class.getName());
-        } catch (ClassNotFoundException e) { }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     private SwingScilabVariableEditor editor;
