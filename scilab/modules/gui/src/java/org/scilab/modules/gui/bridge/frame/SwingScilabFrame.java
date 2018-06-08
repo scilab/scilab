@@ -744,7 +744,7 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, Widget 
                     Boolean visible = (Boolean) value;
                     SwingScilabLayer layer = (SwingScilabLayer) parent;
                     Boolean isActive = layer.isLayerActive(this);
-                    if (isActive != visible) {
+                    if (!isActive.equals(visible)) {
                         controller.setProperty(uid, __GO_VISIBLE__, isActive);
                     }
 
@@ -754,7 +754,7 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, Widget 
                     Boolean visible = (Boolean) value;
                     SwingScilabTabGroup layer = (SwingScilabTabGroup) parent;
                     Boolean isActive = layer.isTabActive(this);
-                    if (isActive != visible) {
+                    if (!isActive.equals(visible)) {
                         controller.setProperty(uid, __GO_VISIBLE__, isActive);
                     }
 
