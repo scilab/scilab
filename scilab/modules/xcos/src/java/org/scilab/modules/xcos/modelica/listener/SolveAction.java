@@ -97,7 +97,10 @@ public final class SolveAction extends AbstractAction {
                 jaco = 0;
             }
 
-            statusFile.delete();
+            if(!statusFile.delete())
+            { 
+               System.err.println("Cannot delete '" + statusFile + "'"); 
+            }
             cmd = String.format(COMPILE_STRING, modelName, paremb, jaco, statusFile.getAbsolutePath());
 
             Logger.getLogger(SolveAction.class.getName()).finest("Compiling");
@@ -107,7 +110,10 @@ public final class SolveAction extends AbstractAction {
                 publish(ActionToPerform.FINISH);
                 return null;
             } else {
-                statusFile.delete();
+                if(!statusFile.delete())
+                {
+                   System.err.println("Cannot delete '" + statusFile + "'");
+                }
             }
 
             /*
@@ -127,7 +133,10 @@ public final class SolveAction extends AbstractAction {
             // update state
             controller.setCompileNeeded(false);
 
-            statusFile.delete();
+            if(!statusFile.delete())
+            {
+               System.err.println("Cannot delete '" + statusFile + "'");
+            }
             final ModelStatistics stats = controller.getStatistics();
             long nUnknowns = stats.getUnknowns() - stats.getEquations();
             cmd = String.format(COMPUTE_STRING, controller.getComputeMethod(), nUnknowns, statusFile.getAbsolutePath());
@@ -140,7 +149,10 @@ public final class SolveAction extends AbstractAction {
                 publish(ActionToPerform.FINISH);
                 return null;
             } else {
-                statusFile.delete();
+                if(!statusFile.delete())
+                {
+                   System.err.println("Cannot delete '" + statusFile + "'");
+                }
             }
 
             /*
