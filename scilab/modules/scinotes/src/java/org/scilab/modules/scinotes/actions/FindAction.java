@@ -604,7 +604,9 @@ public final class FindAction extends DefaultAction implements WindowFocusListen
                     end = endSelectedLines;
                     try {
                         text = doc.getText(startSelectedLines, endSelectedLines - startSelectedLines);
-                    } catch (BadLocationException ex) { }
+                    } catch (BadLocationException ex) {
+                        ex.printStackTrace();
+                    }
                 } else if (radioFromCaret.isSelected()) {
                     if (radioForward.isSelected()) {
                         start = currentCaretPos;
