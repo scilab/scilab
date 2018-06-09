@@ -539,6 +539,7 @@ Known issues
 * [#15566](http://bugzilla.scilab.org/show_bug.cgi?id=15566): matrix insertion checked overall size but not individual dimensions.
 * [#15578](http://bugzilla.scilab.org/show_bug.cgi?id=15578): `mfile2sci` no longer processed correctly a comment appended to the function prototype, nor any m2scideclare() statement.
 * [#15579](http://bugzilla.scilab.org/show_bug.cgi?id=15579): `cond([])` returned 1 instead of 0 as `cond([],2)`.
+* [#15582](http://bugzilla.scilab.org/show_bug.cgi?id=15582): The default `mfile2sci`'s `only-double` option set to %T was misleading and too restrictive.
 * [#15583](http://bugzilla.scilab.org/show_bug.cgi?id=15583): `color(["red" "blue"])` yielded a puzzling error message asking for String type instead of a scalar.
 * [#15586](http://bugzilla.scilab.org/show_bug.cgi?id=15586): `tree2code()` added some leading `,` in the argins and argout lists.
 * [#15589](http://bugzilla.scilab.org/show_bug.cgi?id=15589): `inv()` could fail on some matrices of polynomials with complex coefficients.
@@ -548,6 +549,7 @@ Known issues
 * [#15598](http://bugzilla.scilab.org/show_bug.cgi?id=15598): `string(handle)` returned "" instead of calling `%h_string()`
 * [#15599](http://bugzilla.scilab.org/show_bug.cgi?id=15599): degree of zero polynomial was 0 instead of -Inf.
 * [#15601](http://bugzilla.scilab.org/show_bug.cgi?id=15601): `tbx_generate_pofile` failed when the absolute toolbox path includes some spaces, or when the toolbox has no XML files.
+* [#15605](http://bugzilla.scilab.org/show_bug.cgi?id=15605): CLR and DLR Xcos blocks did not accept expressions including "%" like "%i"
 * [#15609](http://bugzilla.scilab.org/show_bug.cgi?id=15609): (1:1):2 crashed Scilab.
 * [#15615](http://bugzilla.scilab.org/show_bug.cgi?id=15615): `datatipToggle()` was a duplicate of `datatipManagerMode()`.
 * [#15617](http://bugzilla.scilab.org/show_bug.cgi?id=15617): `evstr(list(..))` did not check the number and types of list components. When an input component can't be evaluated, the error messages were not clear enough.
@@ -580,8 +582,8 @@ Known issues
 * [#15753](http://bugzilla.scilab.org/show_bug.cgi?id=15753): `issparse()` returned 0 instead of 1 for sparse booleans.
 * [#15758](http://bugzilla.scilab.org/show_bug.cgi?id=15758): sparse([0 0],1) crashes scilab (regression)
 * [#15762](http://bugzilla.scilab.org/show_bug.cgi?id=15762): `error()` refused multiline error messages.
-* [#15582](http://bugzilla.scilab.org/show_bug.cgi?id=15582): The default `mfile2sci`'s `only-double` option set to %T was misleading and too restrictive.
 * [#15814](http://bugzilla.scilab.org/show_bug.cgi?id=15814): Selecting graphic children with booleans yielded an error.
+
 
 
 ### Bugs fixed in 6.0.1:
