@@ -150,7 +150,9 @@ public final class SciNotesCompletionAction extends CompletionAction {
                 int start = root.getElement(line).getStartOffset();
                 editor.getTextPane().getDocument().remove(start, pos - start);
                 editor.getTextPane().setCaretPosition(start);
-            } catch (BadLocationException e) { }
+            } catch (BadLocationException e) {
+                System.err.println(e);
+            }
         }
 
         /**
@@ -199,7 +201,9 @@ public final class SciNotesCompletionAction extends CompletionAction {
                 doc.mergeEditsBegin();
                 editor.getTextPane().getDocument().insertString(pos, content, null);
                 doc.mergeEditsEnd();
-            } catch (BadLocationException e) { }
+            } catch (BadLocationException e) {
+                System.err.println(e);
+            }
         }
 
         /**
@@ -272,7 +276,9 @@ public final class SciNotesCompletionAction extends CompletionAction {
                 int pos = editor.getTextPane().getCaretPosition();
                 editor.getTextPane().getDocument().remove(pos - 1, 1);
                 editor.getTextPane().setCaretPosition(pos - 1);
-            } catch (BadLocationException e) { }
+            } catch (BadLocationException e) {
+                System.err.println(e);
+            }
         }
     }
 
