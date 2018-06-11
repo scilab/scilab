@@ -449,6 +449,7 @@ Known issues
 * [#15531](http://bugzilla.scilab.org/show_bug.cgi?id=15531): `[x,k]=gsort(%nan+ones(1000,1))` crashed Scilab
 * [#15535](http://bugzilla.scilab.org/show_bug.cgi?id=15535): `sign(int8(0))` returned 1 instead of 0, as well with any other input encoded integer type.
 * [#15539](http://bugzilla.scilab.org/show_bug.cgi?id=15539): zero step in integer implicit list crashed Scilab.
+* [#15542](http://bugzilla.scilab.org/show_bug.cgi?id=15542): `whereis('my_user_defined_fun')` returned [] and expected a function handle
 * [#15548](http://bugzilla.scilab.org/show_bug.cgi?id=15548): [%t %t]./[%f %f] crashed Scilab.
 * [#15549](http://bugzilla.scilab.org/show_bug.cgi?id=15549): unary minus incorrectly acted as the negation operator on %t.
 * [#15551](http://bugzilla.scilab.org/show_bug.cgi?id=15551): arithmetic operators gave wrong results with booleans.
