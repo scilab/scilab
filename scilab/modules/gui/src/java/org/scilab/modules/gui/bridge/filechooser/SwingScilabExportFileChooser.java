@@ -162,7 +162,7 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
             /* Bug 3849 fix */
             ConfigManager.saveLastOpenedDirectory(new File(exportName).getParentFile().getPath());
 
-            String extensionCombo = new String();
+            String extensionCombo = "";
             try {
                 // The try catch is necessary here when the user input the full
                 // filename (foo.jpg) and press tab. It is going to update

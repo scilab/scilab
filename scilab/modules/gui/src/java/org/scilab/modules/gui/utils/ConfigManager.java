@@ -269,7 +269,7 @@ public final class ConfigManager {
     public static String getLastOpenedDirectory() {
         /*System.getProperty("user.dir") if no path*/
         readDocument();
-        String path = new String() ;
+        String path = "";
 
         if (document != null) {
             Object[] attr = new Object[] {VALUE, String.class};

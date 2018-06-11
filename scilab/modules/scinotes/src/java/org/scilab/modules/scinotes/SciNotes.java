@@ -1229,7 +1229,7 @@ public class SciNotes extends SwingScilabDockablePanel {
      * @return the file picked up by the user
      */
     public String chooseFileToSave(String title, String path) {
-        String extension = new String();
+        String extension = "";
 
         String initialDirectoryPath = path;
         if (initialDirectoryPath == null) {
