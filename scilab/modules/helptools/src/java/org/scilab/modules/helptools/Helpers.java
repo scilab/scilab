@@ -397,7 +397,7 @@ public final class Helpers {
     throws IOException {
         InputStreamReader in;
         if (charsetName == null) {
-            in = new InputStreamReader(stream);
+            in = new InputStreamReader(stream, "UTF-8");
         } else {
             in = new InputStreamReader(stream, charsetName);
         }
@@ -432,7 +432,7 @@ public final class Helpers {
     throws IOException {
         OutputStreamWriter out;
         if (charsetName == null) {
-            out = new OutputStreamWriter(stream);
+            out = new OutputStreamWriter(stream, "UTF-8");
         } else {
             out = new OutputStreamWriter(stream, charsetName);
         }

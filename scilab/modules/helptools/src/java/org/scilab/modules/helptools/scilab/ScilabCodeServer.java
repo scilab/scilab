@@ -207,7 +207,7 @@ public final class ScilabCodeServer {
             this.sock = sock;
             this.scs = scs;
             try {
-                in = new BufferedReader(new InputStreamReader(sock.getInputStream()));
+                in = new BufferedReader(new InputStreamReader(sock.getInputStream(), Charset.forName("UTF-8")));
                 out = new OutputStreamWriter(sock.getOutputStream(), Charset.forName("UTF-8"));
             } catch (IOException e) {
                 e.printStackTrace();

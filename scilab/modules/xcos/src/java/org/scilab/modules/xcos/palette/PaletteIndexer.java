@@ -166,7 +166,7 @@ public final class PaletteIndexer {
             doc.add(refname);
 
             // add the refpurpose
-            try (BufferedReader r = new BufferedReader(new InputStreamReader(url.openStream()))) {
+            try (BufferedReader r = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"))) {
                 Optional<String> found = r.lines().filter(l -> l.contains("refpurpose")).findFirst();
 
                 Field refpurpose;
@@ -181,7 +181,7 @@ public final class PaletteIndexer {
             }
 
             // add the html content
-            try (BufferedReader r = new BufferedReader(new InputStreamReader(url.openStream()))) {
+            try (BufferedReader r = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"))) {
                 doc.add(new TextField("content", r));
             }
 
