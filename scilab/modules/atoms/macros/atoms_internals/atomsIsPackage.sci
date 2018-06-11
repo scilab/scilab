@@ -79,12 +79,10 @@ function result = atomsIsPackage(packages)
                     package_versions_tab      = getfield(1,package_versions);
                     package_versions_tab(1:2) = [];
 
-                    for j=1:size(package_versions_tab,"*")
+                    for v = package_versions_tab(:)'
 
-                        // Split version and packaging version
-                        version_mat  = strsubst(strsplit(package_versions_tab(j),strindex(package_versions_tab(j),"-")) , "-" , "" );
-
-                        if version == version_mat(1) then
+                        // Gets version without packaging version
+                        if version == strtok(v,"-") then
                             result(i) = %T;
                             break;
                         end

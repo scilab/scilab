@@ -400,6 +400,7 @@ Known issues
 * [#7641](http://bugzilla.scilab.org/show_bug.cgi?id=7641): `uint8(1):uint16(4)` produced an error instead of being parsed as `uint8(1):1:uint16(4)`, that passes.
 * [#7675](http://bugzilla.scilab.org/show_bug.cgi?id=7675): sparse() got a wrong result, when creation with many values in same position.
 * [#8000](http://bugzilla.scilab.org/show_bug.cgi?id=8000): `get(gcf(), "%s %s %s..")` crashed Scilab.
+* [#8017](http://bugzilla.scilab.org/show_bug.cgi?id=8017): `atomsInstall` yielded an error when a version without packaging subversion is specified.
 * [#8127](http://bugzilla.scilab.org/show_bug.cgi?id=8127): When using `ode()`, some internal errors messages were in french.
 * [#8779](http://bugzilla.scilab.org/show_bug.cgi?id=8779): gsort(x,'lr') did not preserve order of equal items in index output.
 * [#8810](http://bugzilla.scilab.org/show_bug.cgi?id=8810): Insertions with an hypermatrix of indices failed.
