@@ -14,11 +14,11 @@
 function exeblackhole()
     //initial point
     g_r = 1.1;
-    g_t = 41;
+    g_t = 40;
 
     //initial speed
     g_V    = 1.65;
-    g_Vdir = 165;
+    g_Vdir = 160;
 
     // Figure parameters
     surface_frame_w = 600;     // surface frame width
@@ -161,12 +161,6 @@ endfunction
 // The gui controls builder
 // =============================================================================
 function blackhole_create_gui()
-    //initial values
-    g_t     = 0;
-    g_r     = 0;
-    g_speed = 0;
-    g_Vdir  = 0;
-
     my_figure_handle = get("main_figure");
 
     frame_x      = 25;
@@ -427,7 +421,7 @@ function change_speed(speed)
         speed=slider_speed.Value
         speed=speed*3/100
     end
-    value_speed.String=msprintf("%.0f", speed)
+    value_speed.String=msprintf("%.2f", speed)
     draw_initial_point(0.007+slider_r.Value*(2-0.08)/100, slider_theta.value*360/100, ..
     slider_speed.Value*3/100, slider_dir.value*360/100, %F);
 endfunction
