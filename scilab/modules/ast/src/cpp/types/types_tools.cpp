@@ -712,6 +712,7 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
                 pdbl[i] = pCoord[i] + (pY[i] - 1) * iRows;
             }
 
+            delete[] pCoord;
             pCurrentArg = pDbl;
         }
         else if (pIT->isInt())
