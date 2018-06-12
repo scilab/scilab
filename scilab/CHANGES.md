@@ -415,6 +415,7 @@ Known issues
 * [#14010](http://bugzilla.scilab.org/show_bug.cgi?id=14010): Browsevar was not displaying dimensions > 2 of hypermatrix
 * [#14218](http://bugzilla.scilab.org/show_bug.cgi?id=14218): Karmarkar post-process fails on some problems.
 * [#14460](http://bugzilla.scilab.org/show_bug.cgi?id=14460): sparse boolean indices were not supported.
+* [#14489](http://bugzilla.scilab.org/show_bug.cgi?id=14489): clicking the scinotes icon did not bring its window in the foreground.
 * [#14521](http://bugzilla.scilab.org/show_bug.cgi?id=14521): For the CONVERT Xcos block, types codes 2, 6, 7, and 8 were not documented.
 * [#14704](http://bugzilla.scilab.org/show_bug.cgi?id=14704): In Scinotes, URL for the `https://`, `ftp://`, `ftps://`, and `file://` protocols were no longer hyperlinked.
 * [#14897](http://bugzilla.scilab.org/show_bug.cgi?id=14897): `xinfo` is poor and useless. It is declared obsolete.
