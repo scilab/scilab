@@ -391,6 +391,7 @@ Known issues
 * [#7675](http://bugzilla.scilab.org/show_bug.cgi?id=7675): sparse() got a wrong result, when creation with many values in same position.
 * [#8000](http://bugzilla.scilab.org/show_bug.cgi?id=8000): fixed   - `get(gcf(), "%s %s %s..")` crashed Scilab.
 * [#8127](http://bugzilla.scilab.org/show_bug.cgi?id=8127): When using `ode()`, some internal errors messages were in french.
+* [#8779](http://bugzilla.scilab.org/show_bug.cgi?id=8779): gsort(x,'lr') did not preserve order of equal items in index output.
 * [#8810](http://bugzilla.scilab.org/show_bug.cgi?id=8810): Insertions with an hypermatrix of indices failed.
 * [#8995](http://bugzilla.scilab.org/show_bug.cgi?id=8995): Problem with row insertion in empty matrix.
 * [#9063](http://bugzilla.scilab.org/show_bug.cgi?id=9063): `pt` was the alias of `pt_PT` instead of `pt_BR`.
