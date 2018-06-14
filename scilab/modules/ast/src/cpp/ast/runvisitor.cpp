@@ -1466,23 +1466,30 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
         throw;
     }
 
-    types::GenericType* pITStart = static_cast<types::GenericType*>(getResult());
+    types::InternalType* pITStart = getResult();
+    types::GenericType* pStart = static_cast<types::GenericType*>(pITStart);
     if (pITStart == NULL ||
-            ((pITStart->getSize() != 1 || (pITStart->isDouble() && pITStart->getAs<types::Double>()->isComplex())) &&
-             pITStart->isList() == false)) // list case => call overload
+        ((pITStart->isGenericType() == false || pStart->getSize() != 1 || (pStart->isDouble() && pStart->getAs<types::Double>()->isComplex())) &&
+        pStart->isList() == false)) // list case => call overload
     {
+        setResult(NULL);
+        wchar_t szError[bsiz];
+        if (pITStart && pITStart->isImplicitList()) {
+            os_swprintf(szError, bsiz, _W("%ls: Too many %ls or wrong type for argument %d: Real scalar expected.\n").c_str(), L"':'", L"':'", 1);
+        }
+        else
+        {
+            os_swprintf(szError, bsiz, _W("%ls: Wrong type for argument %d: Real scalar expected.\n").c_str(), L"':'", 1);
+        }
+
         if (pITStart)
         {
             pITStart->killMe();
         }
 
-        setResult(NULL);
-        wchar_t szError[bsiz];
-        os_swprintf(szError, bsiz, _W("%ls: Wrong type for argument %d: Real scalar expected.\n").c_str(), L"':'", 1);
         CoverageInstance::stopChrono((void*)&e);
         throw InternalError(szError, 999, e.getLocation());
     }
-    types::InternalType * piStart = pITStart;
 
     try
     {
@@ -1493,11 +1500,13 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
         CoverageInstance::stopChrono((void*)&e);
         throw;
     }
-    types::GenericType* pITStep = static_cast<types::GenericType*>(getResult());
+
+    types::InternalType* pITStep = getResult();
+    types::GenericType* pStep = static_cast<types::GenericType*>(pITStep);
     setResult(NULL);
     if (pITStep == NULL ||
-            ((pITStep->getSize() != 1 || (pITStep->isDouble() && pITStep->getAs<types::Double>()->isComplex())) &&
-             pITStep->isList() == false)) // list case => call overload
+        ((pITStep->isGenericType() == false || pStep->getSize() != 1 || (pStep->isDouble() && pStep->getAs<types::Double>()->isComplex())) &&
+        pStep->isList() == false)) // list case => call overload
     {
         pITStart->killMe();
         if (pITStep)
@@ -1511,7 +1520,6 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
         CoverageInstance::stopChrono((void*)&e);
         throw InternalError(szError, 999, e.getLocation());
     }
-    types::InternalType* piStep = pITStep;
 
     try
     {
@@ -1523,11 +1531,12 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
         throw;
     }
 
-    types::GenericType* pITEnd = static_cast<types::GenericType*>(getResult());
+    types::InternalType* pITEnd = getResult();
+    types::GenericType* pEnd = static_cast<types::GenericType*>(pITEnd);
     setResult(NULL);
     if (pITEnd == NULL ||
-            ((pITEnd->getSize() != 1 || (pITEnd->isDouble() && pITEnd->getAs<types::Double>()->isComplex())) &&
-             pITEnd->isList() == false)) // list case => call overload
+        ((pITEnd->isGenericType() == false || pEnd->getSize() != 1 || (pEnd->isDouble() && pEnd->getAs<types::Double>()->isComplex())) &&
+        pEnd->isList() == false)) // list case => call overload
     {
         pITStart->killMe();
         pITStep->killMe();
@@ -1538,11 +1547,10 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
 
         setResult(NULL);
         wchar_t szError[bsiz];
-        os_swprintf(szError, bsiz, _W("%ls: Wrong type for argument %d: Real scalar expected.\n").c_str(), L"':'", 3);
+        os_swprintf(szError, bsiz, _W("%ls: Wrong type for argument %d: Real scalar expected.\n").c_str(), L"':'", 2 + e.hasExplicitStep());
         CoverageInstance::stopChrono((void*)&e);
         throw InternalError(szError, 999, e.getLocation());
     }
-    types::InternalType* piEnd = pITEnd;
 
     ////check if implicitlist is 1:$ to replace by ':'
     //if (piStart->isDouble() && piStep->isDouble() && piEnd->isPoly())
@@ -1560,28 +1568,28 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
 
     //check compatibility
     // double : double : double or poly : poly : poly and mix like double : double : poly
-    if ((piStart->isPoly() || piStart->isDouble()) &&
-            (piStep->isPoly() || piStep->isDouble()) &&
-            (piEnd->isPoly() || piEnd->isDouble()))
+    if ((pStart->isPoly() || pStart->isDouble()) &&
+            (pStep->isPoly() || pStep->isDouble()) &&
+            (pEnd->isPoly() || pEnd->isDouble()))
     {
         // No need to kill piStart, ... because Implicit list ctor will incref them
-        setResult(new types::ImplicitList(piStart, piStep, piEnd));
+        setResult(new types::ImplicitList(pStart, pStep, pEnd));
         CoverageInstance::stopChrono((void*)&e);
         return;
     }
 
     // int : double or int : int
-    if (piStart->isInt() &&
-            (piStep->isDouble() || piStep->isInt()) &&
-            piEnd->isInt())
+    if (pStart->isInt() &&
+            (pStep->isDouble() || pStep->isInt()) &&
+            pEnd->isInt())
     {
         // check for same int type int8, int 16 ...
-        if (piStart->getType() == piEnd->getType() &&
-                (piStart->getType() == piStep->getType() ||
-                 piStep->isDouble()))
+        if (pStart->getType() == pEnd->getType() &&
+                (pStart->getType() == pStep->getType() ||
+                 pStep->isDouble()))
         {
             // No need to kill piStart, ... because Implicit list ctor will incref them
-            setResult(new types::ImplicitList(piStart, piStep, piEnd));
+            setResult(new types::ImplicitList(pStart, pStep, pEnd));
             CoverageInstance::stopChrono((void*)&e);
             return;
         }
@@ -1592,8 +1600,8 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
     types::typed_list in;
     types::typed_list out;
 
-    piStart->IncreaseRef();
-    in.push_back(piStart);
+    pStart->IncreaseRef();
+    in.push_back(pStart);
 
     try
     {
@@ -1601,20 +1609,20 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
         {
             // 1:2:4
             //call overload %typeStart_b_typeStep
-            piStep->IncreaseRef();
-            in.push_back(piStep);
-            piEnd->IncreaseRef();
-            in.push_back(piEnd);
-            Ret = Overload::call(L"%" + piStart->getShortTypeStr() + L"_b_" + piStep->getShortTypeStr(), in, 1, out, true);
+            pStep->IncreaseRef();
+            in.push_back(pStep);
+            pEnd->IncreaseRef();
+            in.push_back(pEnd);
+            Ret = Overload::call(L"%" + pStart->getShortTypeStr() + L"_b_" + pStep->getShortTypeStr(), in, 1, out, true);
         }
         else
         {
             // 1:2
             //call overload %typeStart_b_typeEnd
-            piStep->killMe();
-            piEnd->IncreaseRef();
-            in.push_back(piEnd);
-            Ret = Overload::call(L"%" + piStart->getShortTypeStr() + L"_b_" + piEnd->getShortTypeStr(), in, 1, out, true);
+            pStep->killMe();
+            pEnd->IncreaseRef();
+            in.push_back(pEnd);
+            Ret = Overload::call(L"%" + pStart->getShortTypeStr() + L"_b_" + pEnd->getShortTypeStr(), in, 1, out, true);
         }
     }
     catch (const InternalError& error)

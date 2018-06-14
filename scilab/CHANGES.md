@@ -451,7 +451,7 @@ Known issues
 * [#15563](http://bugzilla.scilab.org/show_bug.cgi?id=15563): poly(A,v) was broken when A is a matrix.
 * [#15566](http://bugzilla.scilab.org/show_bug.cgi?id=15566): matrix insertion checked overall size but not individual dimensions.
 * [#15599](http://bugzilla.scilab.org/show_bug.cgi?id=15599): degree of zero polynomial was 0 instead of -Inf.
-
+* [#15609](http://bugzilla.scilab.org/show_bug.cgi?id=15609): (1:1):2 crashed Scilab.
 
 ### Bugs fixed in 6.0.1:
 * [#2441](http://bugzilla.scilab.org/show_bug.cgi?id=2441): `%onprompt()` could be defined only at the top execution level.
