@@ -1185,6 +1185,7 @@ matrixOrCellColumns matrixOrCellColumnsBreak variable       %prec HIGHLEVEL {$1-
 | matrixOrCellColumns variable                              %prec HIGHLEVEL {$1->push_back($2);$$ = $1;print_rules("matrixOrCellColumns", "matrixOrCellColumns variable");}
 | matrixOrCellColumns functionCall                          %prec HIGHLEVEL {$1->push_back($2);$$ = $1;print_rules("matrixOrCellColumns", "matrixOrCellColumns functionCall");}
 | matrixOrCellColumns COMMENT                               %prec HIGHLEVEL {$1->push_back(new ast::CommentExp(@2, $2));$$ = $1;print_rules("matrixOrCellColumns", "matrixOrCellColumns COMMENT");}
+| matrixOrCellColumns matrixOrCellColumnsBreak COMMENT      %prec HIGHLEVEL {$1->push_back(new ast::CommentExp(@3, $3));$$ = $1;print_rules("matrixOrCellColumns", "matrixOrCellColumns matrixOrCellColumnsBreak COMMENT");}
 | variable                                                  %prec HIGHLEVEL {$$ = new ast::exps_t;$$->push_back($1);print_rules("matrixOrCellColumns", "variable");}
 | functionCall                                              %prec HIGHLEVEL {$$ = new ast::exps_t;$$->push_back($1);print_rules("matrixOrCellColumns", "functionCall");}
 | COMMENT                                                                   {$$ = new ast::exps_t;$$->push_back(new ast::CommentExp(@$, $1));print_rules("matrixOrCellColumns", "COMMENT");}

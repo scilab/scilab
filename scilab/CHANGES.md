@@ -492,6 +492,7 @@ Known issues
 * [#15636](http://bugzilla.scilab.org/show_bug.cgi?id=15636): Clicking on its icon did not always give focus to Help browser
 * [#15648](http://bugzilla.scilab.org/show_bug.cgi?id=15648): `sparse([1 1],1,[-1 -1])` crashed scilab
 * [#15647](http://bugzilla.scilab.org/show_bug.cgi?id=15647): `spzeros(-1,-1)` yielded a corrupted result
+* [#15652](http://bugzilla.scilab.org/show_bug.cgi?id=15652): An appended comment // after a comma in an multiline literal array now generates an error (regression).
 * [#15653](http://bugzilla.scilab.org/show_bug.cgi?id=15653): sparse - complex substraction was corrupted
 * [#15659](http://bugzilla.scilab.org/show_bug.cgi?id=15659): `plot(x,fun)` could be very slow and crash Scilab.
 * [#15660](http://bugzilla.scilab.org/show_bug.cgi?id=15660): `atomsInstall` and `atomsRemove` displayed concatenated notifications instead of stacked ones.
