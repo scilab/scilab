@@ -78,7 +78,7 @@
         <title>See also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="datatipToggle">datatipToggle</link>
+                <link linkend="datatips">datatips</link>
             </member>
         </simplelist>
     </refsection>

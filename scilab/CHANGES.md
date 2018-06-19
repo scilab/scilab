@@ -336,7 +336,7 @@ Obsolete functions or features
 * `maxfiles` is now obsolete.
 * `isoview(xmin,xmax,ymin,ymax)` is deprecated. Please use `isoview("on"), replot(..)` instead.
 * `eval3d` will be removed from Scilab 6.1. Please use `ndgrid` instead.
-* `strcmpi` is deprecated. Please use `strcmp(..,"i")`instead.
+* `strcmpi` is deprecated. Please use `strcmp(..,"i")` instead.
 * `square` will be removed from Scilab 6.1. Please use `gcf().axes_size` and `replot` instead.
 * `nanmin` is obsolete and will be removed in Scilab 6.1. Please use `min` instead.
 * `nanmax` is obsolete and will be removed in Scilab 6.1. Please use `max` instead.
@@ -347,7 +347,11 @@ Obsolete functions or features
 * `dgettext` is obsolete and will be removed in Scilab 6.1. Please use `gettext(domain, text)` instead.
 * `denom` is obsolete and will be removed in Scilab 6.1. Please use the `.den` rational attribute instead.
 * `numer` is obsolete and will be removed in Scilab 6.1. Please use the `.num` rational attribute instead.
+<<<<<<< HEAD
 * `with_tk` is obsolete and will be removed in Scilab 6.1. Please use the `with_module` instead.
+=======
+* `datatipToggle` is obsolete and will be removed in Scilab 6.1. Please use the `datatipManagerMode` instead.
+>>>>>>> 08a3f51... * Bug 15615: datatipToggle() declared obsolete
 
 
 Removed Functions
@@ -480,6 +484,7 @@ Known issues
 * [#15598](http://bugzilla.scilab.org/show_bug.cgi?id=15598): `string(handle)` returned "" instead of calling `%h_string()`
 * [#15599](http://bugzilla.scilab.org/show_bug.cgi?id=15599): degree of zero polynomial was 0 instead of -Inf.
 * [#15609](http://bugzilla.scilab.org/show_bug.cgi?id=15609): (1:1):2 crashed Scilab.
+* [#15615](http://bugzilla.scilab.org/show_bug.cgi?id=15615): `datatipToggle()` was a duplicate of `datatipManagerMode()`.
 * [#15621](http://bugzilla.scilab.org/show_bug.cgi?id=15621): polynomial exponentiation silently truncated exponent (regression).
 * [#15625](http://bugzilla.scilab.org/show_bug.cgi?id=15625): `delip(1,1)=0` instead of `Inf`
 * [#15626](http://bugzilla.scilab.org/show_bug.cgi?id=15626): clicking on its icon did not give focus to a docked Scinotes.

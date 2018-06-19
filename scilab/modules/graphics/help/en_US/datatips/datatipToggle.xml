@@ -14,7 +14,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en_US" xml:id="datatipToggle">
     <refnamediv>
         <refname>datatipToggle</refname>
-        <refpurpose>toggles the data tips mode.</refpurpose>
+        <refpurpose>toggles the data tips mode (<emphasis role="bold">obsolete</emphasis>)</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
@@ -37,6 +37,10 @@
     </refsection>
     <refsection>
         <title>Description</title>
+        <warning>
+            This function is obsolete and must be replaced with <literal>datatipManagerMode()</literal>.
+            It will be removed from Scilab 6.1.0.
+        </warning>
         <para>
             When enabled, the data tips mode allow
             to add and edit tips at selected points of curve. The selection is
@@ -68,5 +72,17 @@
                 <link linkend="datatips">datatips</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revdescription>
+                    datatipToggle() is declared obsolete to be removed from Scilab 6.1.0.
+                    It is replaced with datatipManagerMode().
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

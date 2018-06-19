@@ -44,7 +44,7 @@
 
         <para>
 
-            datatipsモードは <link linkend="datatipToggle">datatipToggle()</link> または
+            datatipsモードは <link linkend="datatipManagerMode">datatipManagerMode()</link> または
 
             <literal>Edit/Start datatip manager</literal> または指定するグラフィックウインドウの
 
@@ -148,7 +148,7 @@
 
       pt = h.data;
 
-	  str = msprintf('sinc\n%s', sci2exp(round(pt*10)/10))
+      str = msprintf('sinc\n%s', sci2exp(round(pt*10)/10))
 
     endfunction
 
@@ -260,7 +260,7 @@
 
             <member>
 
-                <link linkend="datatipToggle">datatipToggle</link>
+                <link linkend="datatipToggle">datatipManagerMode</link>
 
             </member>
 

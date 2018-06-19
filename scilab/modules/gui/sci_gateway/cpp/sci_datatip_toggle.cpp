@@ -24,12 +24,16 @@ extern "C"
 #include "gw_gui.h"
 #include "HandleManagement.h"
 #include "CurrentFigure.h"
+#include "sciprint.h"
 }
 
 using namespace org_scilab_modules_gui_datatip;
 
 int sci_datatip_toggle(char *fname, void* pvApiCtx)
 {
+    sciprint(_("%s: %s is obsolete and will be removed from Scilab %s\n"), _("Warning"), fname, "6.1");
+    sciprint(_("%s: Please use %s instead.\n"), _("Warning"), "datatipManagerMode()");
+
     int iFigureUID      = 0;
 
     int iErr            = 0;

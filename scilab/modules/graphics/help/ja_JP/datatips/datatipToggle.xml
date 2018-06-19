@@ -18,13 +18,16 @@
 
 -->
 
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="datatipToggle">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:lang="ja" xml:id="datatipToggle">
 
     <refnamediv>
 
         <refname>datatipToggle</refname>
 
-        <refpurpose>data tipsモードをトグルする.</refpurpose>
+        <refpurpose>data tipsモードをトグルする (<emphasis role="bold">時代遅れ</emphasis>).</refpurpose>
 
     </refnamediv>
 
@@ -69,7 +72,10 @@
     <refsection>
 
         <title>説明</title>
-
+        <warning>
+            This function is obsolete and must be replaced with <literal>datatipManagerMode()</literal>.
+            It will be removed from Scilab 6.1.0.
+        </warning>
         <para>
 
             有効にした場合,
@@ -136,6 +142,18 @@
 
         </simplelist>
 
+    </refsection>
+    <refsection role="history">
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revdescription>
+                    datatipToggle() is declared obsolete for a removal from Scilab 6.1.0.
+                    It is replaced with datatipManagerMode().
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 
 </refentry>
