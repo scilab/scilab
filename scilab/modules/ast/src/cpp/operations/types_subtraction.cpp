@@ -1642,7 +1642,12 @@ template<> InternalType* sub_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
 
         delete[] pRankOut;
         delete[] pRank2;
-        pOut->updateRank();
+
+        if (pOut != NULL)
+        {
+            pOut->updateRank();
+        }
+
         return pOut;
     }
 
@@ -1730,7 +1735,12 @@ template<> InternalType* sub_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
 
         delete[] pRankOut;
         delete[] pRank1;
-        pOut->updateRank();
+
+        if (pOut != NULL)
+        {
+            pOut->updateRank();
+        }
+
         return pOut;
     }
 
@@ -1825,7 +1835,11 @@ template<> InternalType* sub_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
     delete[] pRank1;
     delete[] pRank2;
 
-    pOut->updateRank();
+    if (pOut != NULL)
+    {
+        pOut->updateRank();
+    }
+
     return pOut;
 }
 

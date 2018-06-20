@@ -1701,6 +1701,7 @@ InternalType* dotdiv_M_M<Polynom, Double, Polynom>(Polynom* _pL, Double* _pR)
             }
         }
 
+        pOut->updateRank();
         return pOut;
     }
 
@@ -1787,6 +1788,7 @@ InternalType* dotdiv_M_M<Polynom, Double, Polynom>(Polynom* _pL, Double* _pR)
             }
         }
 
+        pOut->updateRank();
         return pOut;
 
     }
@@ -1861,6 +1863,7 @@ InternalType* dotdiv_M_M<Polynom, Double, Polynom>(Polynom* _pL, Double* _pR)
         }
     }
 
+    pOut->updateRank();
     return pOut;
 }
 

@@ -1386,6 +1386,7 @@ InternalType* dotmul_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polynom* _pR)
             pSPOut[i] = *pSPL **pSPR[i];
         }
 
+        pOut->updateRank();
         return pOut;
     }
 
@@ -1402,6 +1403,7 @@ InternalType* dotmul_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polynom* _pR)
             pSPOut[i] = *pSPL[i] **pSPR;
         }
 
+        pOut->updateRank();
         return pOut;
     }
 
@@ -1430,6 +1432,7 @@ InternalType* dotmul_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polynom* _pR)
         pSPOut[i] = *pSPL[i] **pSPR[i];
     }
 
+    pOut->updateRank();
     return pOut;
 }
 
@@ -1494,6 +1497,7 @@ InternalType* dotmul_M_M<Double, Polynom, Polynom>(Double* _pL, Polynom* _pR)
             }
         }
 
+        pOut->updateRank();
         return pOut;
     }
 
@@ -1580,6 +1584,7 @@ InternalType* dotmul_M_M<Double, Polynom, Polynom>(Double* _pL, Polynom* _pR)
             }
         }
 
+        pOut->updateRank();
         return pOut;
 
     }
@@ -1654,5 +1659,6 @@ InternalType* dotmul_M_M<Double, Polynom, Polynom>(Double* _pL, Polynom* _pR)
         }
     }
 
+    pOut->updateRank();
     return pOut;
 }
