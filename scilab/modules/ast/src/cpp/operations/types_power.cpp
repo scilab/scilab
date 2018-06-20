@@ -15,6 +15,7 @@
 
 #include "types_power.hxx"
 #include "types_multiplication.hxx"
+#include "types_finite.hxx"
 
 extern "C"
 {
@@ -63,7 +64,7 @@ InternalType *GenericPower(InternalType *_pLeftOperand, InternalType *_pRightOpe
             case 1 :
                 throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
             case 2 :
-                throw ast::InternalError(_W("Invalid exponent: expected real exponents.\n"));
+                throw ast::InternalError(_W("Invalid exponent: expected finite integer exponents.\n"));
             default:
                 //OK
                 break;
@@ -134,7 +135,7 @@ InternalType *GenericDotPower(InternalType *_pLeftOperand, InternalType *_pRight
             case 1 :
                 throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
             case 2 :
-                throw ast::InternalError(_W("Invalid exponent: expected real exponents.\n"));
+                throw ast::InternalError(_W("Invalid exponent: expected finite integer exponents.\n"));
             default:
                 //OK
                 break;
@@ -344,6 +345,11 @@ int PowerPolyByDouble(Polynom* _pPoly, Double* _pDouble, InternalType** _pOut)
     double* bImg    = _pDouble->getImg();
     bool bNumericallyComplex1 = _pDouble->isNumericallyComplex();
 
+    if (!isDoubleFinite(_pDouble))
+    {
+        return 2;
+    }
+
     if (!bNumericallyComplex1)
     {
         return 2;
@@ -366,6 +372,12 @@ int PowerPolyByDouble(Polynom* _pPoly, Double* _pDouble, InternalType** _pOut)
         for (int i = 0 ; i < _pDouble->getSize() ; i++)
         {
             int iInputRank = (int)_pDouble->get(i);
+            if ((double)iInputRank != _pDouble->get(i))
+            {
+                _pOut = NULL;
+                delete[] piRank;
+                return 2;
+            }
             if (iInputRank < 0)
             {
                 //call overload
