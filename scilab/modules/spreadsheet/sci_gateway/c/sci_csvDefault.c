@@ -235,9 +235,12 @@ static int sci_csvDefault_one_rhs(char *fname, void* pvApiCtx)
         return 0;
     }
 
-    createSingleString(pvApiCtx, Rhs + 1, fieldvalue);
-
+    iErr = createSingleString(pvApiCtx, Rhs + 1, fieldvalue);
     freeVar(&fieldname, &fieldvalue);
+    if (iErr)
+    {
+        return 0;
+    }
 
     LhsVar(1) = Rhs + 1;
     PutLhsVar();
