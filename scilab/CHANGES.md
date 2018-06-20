@@ -88,6 +88,7 @@ Feature changes and additions
   - Several bits can now be retrieved from each component of an input array.
 * `edit` now accepts a line number as text (like "23").
 
+
 Help pages:
 -----------
 

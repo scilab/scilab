@@ -16,19 +16,19 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="degree" xml:lang="pt">
     <refnamediv>
         <refname>degree</refname>
-        <refpurpose>grau da matriz de polinÙmios</refpurpose>
+        <refpurpose>grau da matriz de polin√¥mios</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title> Seq¸Íncia de Chamamento </title>
-        <synopsis>[D]=degree(M)</synopsis>
+        <title> Seq√º√™ncia de Chamamento </title>
+        <synopsis>D = degree(M)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Par‚metros</title>
+        <title>Par√¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>M</term>
                 <listitem>
-                    <para>matriz de polinÙmios </para>
+                    <para>matriz de polin√¥mios </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -40,13 +40,13 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>DescriÁ„o</title>
+        <title>Descri√ß√£o</title>
         <para>Retorna a matriz de graus mais elevados de
             <literal>M</literal>.
         </para>
     </refsection>
     <refsection>
-        <title> Ver TambÈm </title>
+        <title> Ver Tamb√©m </title>
         <simplelist type="inline">
             <member>
                 <link linkend="poly">poly</link>
@@ -58,5 +58,16 @@
                 <link linkend="clean">clean</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>Hist√≥rico</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revdescription>
+                    Para qualquer polin√¥mio nulo, degree() agora retorna -%inf em vez de 0.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

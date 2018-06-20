@@ -437,8 +437,8 @@ function [xopt,fopt,yopt] = karmarkar_postprocess ( Aeq , beq , c , A , b , lb ,
     if ( ni == 0 & plb == 0 & pub == 0 ) then
         yopt.lower = c - Aeq'*yyopt
     elseif ( plb > 0 ) then
-        noninf = find(lb<>%inf)
-        kinf = find(lb==%inf)
+        noninf = find(abs(lb)<>%inf)
+        kinf = find(abs(lb)==%inf)
         kstop = kstart + plb - 1 - size(kinf,"*")
         yopt.lower(noninf) = -yyopt(kstart:kstop)
         kstart = kstop + 1
@@ -448,7 +448,6 @@ function [xopt,fopt,yopt] = karmarkar_postprocess ( Aeq , beq , c , A , b , lb ,
         kinf = find(ub==%inf)
         kstop = kstart + pub - 1 - size(kinf,"*")
         yopt.upper(noninf) = -yyopt(kstart:kstop)
-        kstart = kstop + 1
     end
 endfunction
 

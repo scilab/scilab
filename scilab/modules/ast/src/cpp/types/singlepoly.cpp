@@ -134,6 +134,11 @@ int SinglePoly::getRank()
     return m_iSize - 1;
 }
 
+double SinglePoly::getDegree()
+{
+    return m_iSize==1 && m_pRealData[0]==0 && (m_pImgData == NULL || m_pImgData[0]==0) ? -INFINITY : m_iSize - 1;
+}
+
 bool SinglePoly::setRank(int _iRank, bool bSave)
 {
     double *pR = NULL;

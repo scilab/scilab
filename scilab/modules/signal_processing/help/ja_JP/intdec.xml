@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="intdec">
+
+    <refnamediv>
+
+        <refname>intdec</refname>
+
+        <refpurpose>信号のサンプリングレートを変更</refpurpose>
+
+    </refnamediv>
+
+    <refsynopsisdiv>
+
+        <title>呼び出し手順</title>
+
+        <synopsis>[y]=intdec(x,lom)</synopsis>
+
+    </refsynopsisdiv>
+
+    <refsection>
+
+        <title>引数</title>
+
+        <variablelist>
+
+            <varlistentry>
+
+                <term>x</term>
+
+                <listitem>
+
+                    <para>入力標本信号</para>
+
+                </listitem>
+
+            </varlistentry>
+
+            <varlistentry>
+
+                <term>lom</term>
+
+                <listitem>
+
+                    <para>1次元信号の場合, 変更するレートを指定するスカラー値です.
+
+                        2次元信号の場合,
+
+                        変更する
+
+                        サンプリングレートのベクトル(要素数:2)
+
+                        <literal>lom</literal>=(列方向の変更レート,行方向の変更レート) です.
+
+                    </para>
+
+                </listitem>
+
+            </varlistentry>
+
+            <varlistentry>
+
+                <term>y</term>
+
+                <listitem>
+
+                    <para>出力標本信号</para>
+
+                </listitem>
+
+            </varlistentry>
+
+        </variablelist>
+
+    </refsection>
+
+    <refsection>
+
+        <title>説明</title>
+
+        <para>
+
+            1次元または2次元信号のサンプリングレートをlomで指定された
+
+            レートに変更します.
+
+        </para>
+
+    </refsection>
+
+    <refsection>
+
+        <title>例</title>
+
+        <programlisting role="example"><![CDATA[
+Fs1 = 10000;               // initial sampling frequency
+Fs2 = 14000;               // targeted resampling frequency
+t1 = (0:1/Fs1:5)';
+t2 = (0:1/Fs2:5)';
+F0 = 2;                    // Signal frequency
+u1 = sin(2*%pi*F0*t1);
+u2 = sin(2*%pi*F0*t2);     // Direct sampling at targeted frequency (as reference)
+u2b = intdec(u1, Fs2/Fs1); // Resampled signal
+clf
+plot(t2,u2,"b", t2,(u2b-u2)*1000, "r");
+legend("Direct highly sampled u2","(resampled_u1 - u2) x 1000","in_upper_left");
+ ]]></programlisting>
+        <scilab:image>
+          Fs1 = 10000;               // initial sampling frequency
+          Fs2 = 14000;               // targeted resampling frequency
+          t1 = (0:1/Fs1:5)';
+          t2 = (0:1/Fs2:5)';
+          F0 = 2;                    // Signal frequency
+          u1 = sin(2*%pi*F0*t1);
+          u2 = sin(2*%pi*F0*t2);     // Direct sampling at targeted frequency (as reference)
+          u2b = intdec(u1, Fs2/Fs1); // Resampled signal
+          clf
+          plot(t2,u2,"b", t2,(u2b-u2)*1000, "r");
+          legend("Direct highly sampled u2","(resampled_u1 - u2) x 1000","in_upper_left");
+        </scilab:image>
+
+    </refsection>
+
+</refentry>
+

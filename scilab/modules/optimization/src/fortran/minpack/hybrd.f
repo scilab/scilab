@@ -447,8 +447,9 @@ c
          go to 30
   300 continue
 c
-c     termination, either normal or user imposed.
+c     termination, either normal, user imposed or failure at initial point (Bug #9231)
 c
+      if (ncsuc.eq.0) info = 5
       if (iflag .lt. 0) info = iflag
       iflag = 0
       if (nprint .gt. 0) call fcn(n,x,fvec,iflag)

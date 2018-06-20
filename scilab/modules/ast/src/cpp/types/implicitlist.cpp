@@ -269,18 +269,14 @@ bool ImplicitList::compute()
                 long long llStart   = convert_input(m_poStart);
                 long long llStep    = convert_input(m_poStep);
                 long long llEnd     = convert_input(m_poEnd);
-
+                
                 // step null
                 if (llStep == 0) // return []
                 {
                     m_bComputed = true;
                     return true;
                 }
-#ifdef _MSC_VER
-                m_iSize = static_cast<int>(floor( static_cast<double>(_abs64(llEnd - llStart) / _abs64(llStep)) )) + 1;
-#else
-                m_iSize = static_cast<int>(floor( static_cast<double>(llabs(llEnd - llStart) / llabs(llStep)) )) + 1;
-#endif
+                m_iSize = std::max(0,static_cast<int>(floor( static_cast<double>((llEnd - llStart) /(llStep)) )) + 1);
             }
             else
             {
@@ -295,11 +291,7 @@ bool ImplicitList::compute()
                     m_bComputed = true;
                     return true;
                 }
-#ifdef _MSC_VER
-                m_iSize = static_cast<int>(floor(static_cast<double>(_abs64(ullEnd - ullStart) / _abs64(ullStep)) )) + 1;
-#else
-                m_iSize = static_cast<int>(floor(static_cast<double>(llabs(ullEnd - ullStart) / llabs(ullStep)) )) + 1;
-#endif
+                m_iSize = std::max(0,static_cast<int>(floor( static_cast<double>((ullEnd - ullStart) /(ullStep)) )) + 1);
             }
         }
         m_bComputed = true;

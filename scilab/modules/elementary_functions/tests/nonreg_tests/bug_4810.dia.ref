@@ -18,4 +18,4 @@ A = gsort(sp);
 if and(ref == A) <> %t then bugmes();quit;end
 sp = sparse([1,2;4,5;3,10]);
 ierr = execstr('A = gsort(sp);','errcatch');
-if ierr <> 999 then bugmes();quit;end
+if ierr <> 10000 then bugmes();quit;end

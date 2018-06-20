@@ -1064,7 +1064,6 @@ implicitplot_1.png=d2d7b1b26a127ab8775517c742824770
 implicitplot_2.png=e16dce51c9990d82807c47fe535c6d61
 implicitplot_3.png=5201f1980df1b1ba7afb7b3a92b68611
 implicitplot_4.png=74aeae6ec05b661c78c12c90d50b3aec
-intdec_1.png=9bf5d8f1a6aeddee68d7c5d831ef2d05
 interp1_1.png=e9a3f4319b2818ce4921b9bc3008d80
 interp2d_1.png=f4af61bc3faf493d778169ec7decc7ae
 interp2d_2.png=a62363849a3a9a3571dc1942fcebfbd3

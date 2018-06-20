@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="eigs" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="eigs" xml:lang="en">
     <refnamediv>
         <refname>eigs</refname>
         <refpurpose>calculates largest eigenvalues and eigenvectors of matrices</refpurpose>
@@ -21,11 +24,13 @@
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-            d = eigs(A [,B [,k [,sigma [,opts]]]])
-            [d, v] = eigs(A [,B [,k [,sigma [,opts]]]])
-
-            d = eigs(Af, n [,B [,k [,sigma [,opts]]]])
-            [d, v] = eigs(Af, n [,B [,k [,sigma [,opts]]]])
+            d = eigs(A)
+            d = eigs(Af, n)
+            d = eigs(.., B)
+            d = eigs(.., B, k)
+            d = eigs(.., B, k, sigma)
+            d = eigs(.., B, k, sigma, opts)
+            [d, v] = eigs(..)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -35,20 +40,6 @@
                 <term>A </term>
                 <listitem>
                     <para>a full or sparse, real or complex, symmetric or non-symmetric square matrix</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>Af </term>
-                <listitem>
-                    <para>a function</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>n </term>
-                <listitem>
-                    <para>
-                        a scalar, defined only if <literal>A</literal> is a function
-                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -63,7 +54,12 @@
             <varlistentry>
                 <term>k</term>
                 <listitem>
-                    <para>an integer, number of eigenvalues to be computed</para>
+                    <para>
+                      positive integer: number of eigenvalues to be computed. By default,
+                      <literal>k=min(n-1, 6)</literal> (<varname>A</varname> real symetric) or
+                      <literal>k=min(n-2, 6)</literal> (otherwise) eigen values are computed,
+                      with n=size(A,1).
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -76,6 +72,20 @@
                 <term>opts</term>
                 <listitem>
                     <para>a structure</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Af </term>
+                <listitem>
+                    <para>a function</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>n </term>
+                <listitem>
+                    <para>
+                        a scalar, defined only if <literal>A</literal> is a function
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -173,7 +183,6 @@ function y = A ( x )
                 <listitem>
                     <para>
                         returns in vector <literal>d</literal> the <literal>k</literal> eigenvalues.
-                        If <literal>k</literal> is not specified, <literal>k = min(n, 6)</literal>, where n is the row number of A.
                     </para>
                 </listitem>
             </varlistentry>

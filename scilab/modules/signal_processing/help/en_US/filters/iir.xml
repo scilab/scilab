@@ -98,13 +98,13 @@
             <varlistentry>
                 <term>p</term>
                 <listitem>
-                    <para>vector of transformed filter zeros.</para>
+                    <para>vector of transformed filter poles.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>z</term>
                 <listitem>
-                    <para>vector of transformed filter poles.</para>
+                    <para>vector of transformed filter zeros.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>

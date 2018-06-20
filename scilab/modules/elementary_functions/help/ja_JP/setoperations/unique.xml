@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * Copyright (C) 2017 - Samuel GOUGEON
+ * Copyright (C) 2017, 2018 - Samuel GOUGEON
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -25,8 +25,9 @@
     <refsynopsisdiv>
         <title>呼び出し手順</title>
         <synopsis>
-            [N ,k] = unique(M)
-            [N ,k] = unique(M, orient)
+            N = unique(M)
+            N = unique(M, orient)
+            [N, k] = unique(..)
         </synopsis>
     </refsynopsisdiv>
     <refsection role="parameters">
@@ -41,7 +42,9 @@
             <varlistentry>
                 <term>orient</term>
                 <listitem>
-                    <para>フラグで以下の値のどれかとなる : 1 または "r", 2 または "c"</para>
+                    <para>フラグで以下の値のどれかとなる : 1 または "r", 2 または "c".
+                        It can't be used if <varname>M</varname> is an hypermatrix.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -94,39 +97,107 @@
         </para>
         <note>
           Extracted components, rows or columns can be resorted in their initial order by sorting
-          <varname>k</varname>:
-          <programlisting role="no-example"><![CDATA[
-              [N, k] = unique(M);      k = gsort(k,"g",i); N = N(k)
-              [N, k] = unique(M, "c"); k = gsort(k,"g",i); N = N(:, k)
-              [N, k] = unique(M, "r"); k = gsort(k,"g",i); N = N(k, :)
-          ]]></programlisting>
+          <varname>k</varname>. See the first example.
         </note>
     </refsection>
     <refsection role="examples">
         <title>例</title>
+        <para>With some numbers:</para>
         <programlisting role="example"><![CDATA[
-M = round(2*rand(20,1));
-unique(M)
-[N,k] = unique(M)
-unique(string(M))
-[N,k] = unique(string(M))
+M = int8([2  0  2  2  1  1  1  2  1  1  0  1  1  0  1  1
+          0  1  2  0  1  2  2  0  1  1  2  0  1  0  0  0
+          ])
+[u, k] = unique(M)
+[uc, kc] = unique(M, "c")
 
-A = [0,0,1,1;
-     0,1,1,1;
-     2,0,1,1;
-     0,2,2,2;
-     2,0,1,1;
-     0,0,1,1];
-T = 'x'+string(A);
-
-//ユニークな行
-[m,k] = unique(A,'r')
-unique(T,'r')
-
-//ユニークな列
-[m,k] = unique(T,'c')
-unique(A,'c')
+// Get unduplicated columns in initial order:
+M(:, gsort(kc,"g","i"))
  ]]></programlisting>
+    <screen><![CDATA[
+--> M 
+ M = 
+  2  0  2  2  1  1  1  2  1  1  0  1  1  0  1  1
+  0  1  2  0  1  2  2  0  1  1  2  0  1  0  0  0
+
+--> [u, k] = unique(M)
+ u  =
+  0
+  1
+  2
+
+ k  =
+   2.
+   4.
+   1.
+
+--> [uc, kc] = unique(M, "c")
+ uc  =
+  0  0  0  1  1  1  2  2
+  0  1  2  0  1  2  0  2
+
+ kc  =
+   14.   2.   11.   12.   5.   6.   1.   3.
+
+--> // Get unduplicated columns in initial order:
+--> M(:, gsort(kc,"g","i"))
+ ans  =
+  2  0  2  1  1  0  1  0
+  0  1  2  1  2  2  0  0
+]]></screen>
+        <para>With complex numbers:</para>
+        <programlisting role="example"><![CDATA[
+i = %i;
+c = [1+i, 1-i, -i, i, -i, 1+i]
+[u, k] = unique(c)
+[uc, kc] = unique(c, "c")
+ ]]></programlisting>
+    <screen><![CDATA[
+--> c = [1+i, 1-i, -i, i, -i, 1+i]
+ c  =
+   1. + i     1. - i  -i    i   -i    1. + i
+
+--> [u, k] = unique(c)
+ u  =
+  -i    i    1. - i   1. + i
+
+ k  =
+   3.   4.   2.   1.
+]]></screen>
+
+    <para>With some texts:</para>
+        <programlisting role="example"><![CDATA[
+t = ["AB" "BA" "BA" "BA" "AB" "BA" "AB" "AB" "BB" "AA" "AB" "BA" "BA" "BA" "AA"
+     "AA" "AA" "AB" "AA" "BB" "BB" "BB" "BA" "AB" "AB" "BB" "BB" "AB" "AB" "AA"
+    ]
+[u, k] = unique(t)
+[uc, kc] = unique(t, "c")
+ ]]></programlisting>
+    <screen><![CDATA[
+ t  =
+!AB  BA  BA  BA  AB  BA  AB  AB  BB  AA  AB  BA  BA  BA  AA  !
+!AA  AA  AB  AA  BB  BB  BB  BA  AB  AB  BB  BB  AB  AB  AA  !
+
+--> [u, k] = unique(t);
+ u  =
+!AA  !
+!AB  !
+!BA  !
+!BB  !
+
+ k  =
+   2.
+   1.
+   3.
+   10.
+
+--> [uc, kc] = unique(t, "c")
+ uc  =
+!AA  AA  AB  AB  AB  BA  BA  BA  BB  !
+!AA  AB  AA  BA  BB  AA  AB  BB  AB  !
+
+ kc  =
+   15.   10.   1.   8.   5.   2.   3.   6.   9.
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>参照</title>
@@ -150,5 +221,16 @@ unique(A,'c')
                 <link linkend="intersect">intersect</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revdescription>
+                    unique() can now be used to unduplicate complex numbers.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

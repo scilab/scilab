@@ -1,31 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="plus">
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ???? - INRIA
+ * Copyright (C) 2018 - Samuel GOUGEON
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:lang="fr" xml:id="plus">
     <refnamediv>
         <refname>plus (+)</refname>
-        <refpurpose>opérateur d'addition  </refpurpose>
+        <refpurpose>Addition numérique. Concaténation (collage) de textes entre eux</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
         <synopsis>
-            X+Y
-            str1+str2
+            X + Y
+            str1 + str2
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Paramètres</title>
+        <title>Arguments</title>
         <variablelist>
             <varlistentry>
                 <term>X,Y  </term>
                 <listitem>
                     <para>
-                        matrice réelle, complexe, polynomiale, rationnelle ou liste de type <literal>syslin</literal>
+                        matrices booléennes, réelles, complexes, polynomiales, de fractions
+                        rationnelles, ou listes <literal>syslin</literal> représentant un système linéaire.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>str1,str2  </term>
                 <listitem>
-                    <para>chaîne de caractères ou matrice de chaînes de caractères
+                    <para>
+                        textes uniques, ou vecteurs ou matrices de textes.
                     </para>
                 </listitem>
             </varlistentry>
@@ -34,39 +54,112 @@
     <refsection>
         <title>Description</title>
         <para>
-            Addition.
+            Pour deux opérandes numériques, l'addition a sa signification et son résultat habituels.
         </para>
         <para>
-            Pour des opérandes numériques l'addition a la signification habituelle.
-            Si l'un des opérandes est une matrice et l'autre un scalaire, ce dernier est ajouté à tous les termes de la matrice. Si l'un des opérandes est une matrice vide, le résultat est égal à l'autre opérande (ce comportement par défaut peut être modifié avec <literal>mtlb_mode</literal>).
+            Ajouter des booléens entre eux ou à des nombres de type entier, décimal, ou complexe
+            effectue les conversions implicites <literal>%F => 0</literal> et
+            <literal>%T => 1</literal> avant les additions. Le résultat a le type des nombres
+            en entrée, ou est de type décimal pour des booléens ajoutés entre eux.
         </para>
         <para>
-            Pour les chaînes de caractères <literal>+</literal> désigne la concaténation.
+            <literal>+</literal> appliquée entre deux textes les concatène (colle) entre eux.
         </para>
         <para>
-            L'addition peut être redéfinie pour de nouveaux types d'objets en utilisant la surcharge d'opérateurs (voir <link linkend="overloading">overloading</link>).
+            Si un opérande est un tableau et l'autre est un élément unique (scalaire), le scalaire
+            est appliqué (ajouté ou collé) à chaque élément du tableau.
+        </para>
+        <para>
+            Si un opérande est la matrice vide <literal>[]</literal>, le résultat est <literal>[]</literal>.
+        </para>
+        <para>
+           L'opérateur "+" peut être étendu à d'autres types d'opérandes par surcharge
+           (voir <link linkend="overloading">overloading</link>).
         </para>
     </refsection>
     <refsection>
         <title>Exemples</title>
         <programlisting role="example"><![CDATA[
-[1,2]+1
-[]+2
-s=poly(0,"s");
-s+2
-1/s+2
-"conca"+"tener"
+[1, 2] + 1
+[] + 2
+%s + 2
+1/%s + %s
+"con" + ["catenate" "crete" "sole"]
  ]]></programlisting>
+    <screen><![CDATA[
+--> [1, 2] + 1
+ ans  =
+   2.   3.
+
+--> [] + 2
+ ans  =
+    []
+
+--> %s + 2
+ ans  =
+   2 +s
+
+--> 1/%s + %s
+ ans  =
+        2
+   1 + s
+   ------
+     s
+
+--> "con" + ["catenate" "crete" "sole"]
+ ans  =
+!concatenate  concrete  console  !
+]]></screen>
+    <para>Avec des booléeens :</para>
+        <programlisting role="example"><![CDATA[
+[%f %f %t %t] + [%f %t %f %t]
+%f + [-1 0 2 %i]
+%t + [-1 0 2 %i]
+ ]]></programlisting>
+    <screen><![CDATA[
+--> [%f %f %t %t] + [%f %t %f %t]
+ ans  =
+   0.   1.   1.   2.
+
+--> %f + [-1 0 2 %i]
+ ans  =
+  -1.   0.   2.   i
+
+--> %t + [-1 0 2 %i]
+ ans  =
+   0.   1.   3.   1. + i
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>
         <simplelist type="inline">
             <member>
-                <link linkend="mtlb_mode">mtlb_mode</link>
+                <link linkend="minus">minus</link>
+            </member>
+            <member>
+                <link linkend="symbols">operators</link>
             </member>
             <member>
                 <link linkend="overloading">overloading</link>
             </member>
+            <member>
+                <link linkend="oldEmptyBehaviour">oldEmptyBehaviour</link>
+            </member>
+            <member>
+                <link linkend="mtlb_a">mtlb_a</link>
+            </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revremark>
+                    <literal>A + []</literal> produit désormais <literal>[]</literal> au lieu de
+                    <literal>A</literal>
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

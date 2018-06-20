@@ -761,6 +761,13 @@ public class SciNotes extends SwingScilabDockablePanel {
         if (!editor.restored) {
             editor.restorePreviousSession();
         }
+
+        /* Bug #14489 */
+        SwingScilabWindow window = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, editor.getTabPane());
+        if (window != null) {
+            window.toFront();
+        }
+
     }
 
     /**

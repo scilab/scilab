@@ -299,7 +299,14 @@ types::Double* gsort(types::Double* pIn, types::Double* pDblInd, const std::wstr
                 V.push_back(std::pair<int, std::pair<double*, double*> >(i, std::pair<double*, double*>(pdblTemp + (i * iItem), pdblTemp + (i + 1) * iItem)));
             }
 
-            std::sort(V.begin(), V.end(), (*pFuncWayL));
+            if (pdblInd) 
+            {
+                std::stable_sort(V.begin(), V.end(), (*pFuncWayL));                    
+            }
+            else
+            {
+                std::sort(V.begin(), V.end(), (*pFuncWayL));
+            }
 
             int j = 0;
             for (it = V.begin(); it != V.end(); it++, j++)
@@ -348,7 +355,7 @@ types::Double* gsort(types::Double* pIn, types::Double* pDblInd, const std::wstr
                         V.push_back(std::pair<std::pair<int, int>, double>(std::pair<int, int>(iPos, j), pdblInR[iPos]));
                     }
 
-                    std::sort(V.begin(), V.end(), (*pFuncWay));
+                    std::sort(V.begin(), V.end(), (*pFuncWay));                    
 
                     int j = 0;
                     for (it = V.begin(); it != V.end(); it++, j++)
@@ -422,7 +429,14 @@ types::Double* gsort(types::Double* pIn, types::Double* pDblInd, const std::wstr
                 V.push_back(std::pair<int, std::pair<double*, double*> >(i, std::pair<double*, double*>(pdblInR + i * iItem, pdblInR + (i + 1) * iItem)));
             }
 
-            std::sort(V.begin(), V.end(), (*pFuncWayL));
+            if (pDblInd)
+            {
+                std::stable_sort(V.begin(), V.end(), (*pFuncWayL));
+            }
+            else
+            {
+                std::sort(V.begin(), V.end(), (*pFuncWayL));
+            }
 
             int j = 0;
             for (it = V.begin(); it != V.end(); it++, j++)
@@ -651,7 +665,14 @@ types::String* gsort(types::String* pIn, types::Double* pDblInd, const std::wstr
             V.push_back(std::pair<int, std::pair<wchar_t**, wchar_t**> >(i, std::pair<wchar_t**, wchar_t**>(pwstIn + (i * iItem), pwstIn + (i + 1) * iItem)));
         }
 
-        std::sort(V.begin(), V.end(), (*pFuncWayStrL));
+        if (pDblInd)
+        {
+            std::stable_sort(V.begin(), V.end(), (*pFuncWayStrL));
+        }
+        else
+        {
+            std::sort(V.begin(), V.end(), (*pFuncWayStrL));
+        }
 
         int j = 0;
         for (it = V.begin(); it != V.end(); it++, j++)
@@ -872,7 +893,14 @@ types::Int8* gsort(types::Int8* pIn, types::Double* pDblInd, const std::wstring&
             V.push_back(std::pair<int, std::pair<char*, char*> >(i, std::pair<char*, char*>(piIn + i * iItem, piIn + (i + 1) * iItem)));
         }
 
-        std::sort(V.begin(), V.end(), (*pFuncWayL));
+        if (pDblInd)
+        {
+            std::stable_sort(V.begin(), V.end(), (*pFuncWayL));
+        }
+        else
+        {
+            std::sort(V.begin(), V.end(), (*pFuncWayL));
+        }
 
         int j = 0;
         for (it = V.begin(); it != V.end(); it++, j++)
@@ -1093,8 +1121,15 @@ types::Int16* gsort(types::Int16* pIn, types::Double* pDblInd, const std::wstrin
             V.push_back(std::pair<int, std::pair<short*, short*> >(i, std::pair<short*, short*>(piIn + i * iItem, piIn + (i + 1) * iItem)));
         }
 
-        std::sort(V.begin(), V.end(), (*pFuncWayL));
-
+        if (pDblInd)
+        {
+            std::stable_sort(V.begin(), V.end(), (*pFuncWayL));
+        }
+        else
+        {
+            std::sort(V.begin(), V.end(), (*pFuncWayL));
+        }
+        
         int j = 0;
         for (it = V.begin(); it != V.end(); it++, j++)
         {
@@ -1314,8 +1349,15 @@ types::Int32* gsort(types::Int32* pIn, types::Double* pDblInd, const std::wstrin
             V.push_back(std::pair<int, std::pair<int*, int*> >(i, std::pair<int*, int*>(piIn + i * iItem, piIn + (i + 1) * iItem)));
         }
 
-        std::sort(V.begin(), V.end(), (*pFuncWayL));
-
+        if (pDblInd)
+        {
+            std::stable_sort(V.begin(), V.end(), (*pFuncWayL));
+        }
+        else
+        {
+            std::sort(V.begin(), V.end(), (*pFuncWayL));
+        }
+        
         int j = 0;
         for (it = V.begin(); it != V.end(); it++, j++)
         {
@@ -1535,8 +1577,15 @@ types::Int64* gsort(types::Int64* pIn, types::Double* pDblInd, const std::wstrin
             V.push_back(std::pair<int, std::pair<long long*, long long*> >(i, std::pair<long long*, long long*>(piIn + i * iItem, piIn + (i + 1) * iItem)));
         }
 
-        std::sort(V.begin(), V.end(), (*pFuncWayL));
-
+        if (pDblInd)
+        {
+            std::stable_sort(V.begin(), V.end(), (*pFuncWayL));
+        }
+        else
+        {
+            std::sort(V.begin(), V.end(), (*pFuncWayL));
+        }
+        
         int j = 0;
         for (it = V.begin(); it != V.end(); it++, j++)
         {
@@ -1756,8 +1805,15 @@ types::UInt8* gsort(types::UInt8* pIn, types::Double* pDblInd, const std::wstrin
             V.push_back(std::pair<int, std::pair<unsigned char*, unsigned char*> >(i, std::pair<unsigned char*, unsigned char*>(piIn + i * iItem, piIn + (i + 1) * iItem)));
         }
 
-        std::sort(V.begin(), V.end(), (*pFuncWayL));
-
+        if (pDblInd)
+        {
+            std::stable_sort(V.begin(), V.end(), (*pFuncWayL));
+        }
+        else
+        {
+            std::sort(V.begin(), V.end(), (*pFuncWayL));
+        }
+        
         int j = 0;
         for (it = V.begin(); it != V.end(); it++, j++)
         {
@@ -1977,8 +2033,15 @@ types::UInt16* gsort(types::UInt16* pIn, types::Double* pDblInd, const std::wstr
             V.push_back(std::pair<int, std::pair<unsigned short*, unsigned short*> >(i, std::pair<unsigned short*, unsigned short*>(piIn + i * iItem, piIn + (i + 1) * iItem)));
         }
 
-        std::sort(V.begin(), V.end(), (*pFuncWayL));
-
+        if (pDblInd)
+        {
+            std::stable_sort(V.begin(), V.end(), (*pFuncWayL));
+        }
+        else
+        {
+            std::sort(V.begin(), V.end(), (*pFuncWayL));
+        }
+        
         int j = 0;
         for (it = V.begin(); it != V.end(); it++, j++)
         {
@@ -2198,8 +2261,15 @@ types::UInt32* gsort(types::UInt32* pIn, types::Double* pDblInd, const std::wstr
             V.push_back(std::pair<int, std::pair<unsigned int*, unsigned int*> >(i, std::pair<unsigned int*, unsigned int*>(piIn + i * iItem, piIn + (i + 1) * iItem)));
         }
 
-        std::sort(V.begin(), V.end(), (*pFuncWayL));
-
+        if (pDblInd)
+        {
+            std::stable_sort(V.begin(), V.end(), (*pFuncWayL));
+        }
+        else
+        {
+            std::sort(V.begin(), V.end(), (*pFuncWayL));
+        }
+        
         int j = 0;
         for (it = V.begin(); it != V.end(); it++, j++)
         {
@@ -2419,8 +2489,15 @@ types::UInt64* gsort(types::UInt64* pIn, types::Double* pDblInd, const std::wstr
             V.push_back(std::pair<int, std::pair<unsigned long long*, unsigned long long*> >(i, std::pair<unsigned long long*, unsigned long long*>(piIn + i * iItem, piIn + (i + 1) * iItem)));
         }
 
-        std::sort(V.begin(), V.end(), (*pFuncWayL));
-
+        if (pDblInd)
+        {
+            std::stable_sort(V.begin(), V.end(), (*pFuncWayL));
+        }
+        else
+        {
+            std::sort(V.begin(), V.end(), (*pFuncWayL));
+        }
+        
         int j = 0;
         for (it = V.begin(); it != V.end(); it++, j++)
         {

@@ -458,3 +458,7 @@ msgstr "%s : Type erroné de l'argument d'entrée n°%d : un scalaire attendu.\n
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr "%s : Type erroné de l'argument d'entrée n°%d : un entier attendu.\n"
+
+#, c-format
+msgid "%ls: Too many %ls or wrong type for argument %d: Real scalar expected.\n"
+msgstr "%ls : Trop de %ls ou type erroné pour l'argument %d : scalaire réel attendu.\n"

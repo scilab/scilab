@@ -177,6 +177,30 @@
                 </listitem>
 
             </varlistentry>
+            <varlistentry>
+                <term>hz</term>
+                <listitem>
+                    <para>a single input single output discrete transfer function, the low pass filter</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>p</term>
+                <listitem>
+                    <para>vector of transformed filter poles.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>z</term>
+                <listitem>
+                    <para>vector of transformed filter zeros.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>g </term>
+                <listitem>
+                    <para>a scalar: transformed filter gain.</para>
+                </listitem>
+            </varlistentry>
 
         </variablelist>
 

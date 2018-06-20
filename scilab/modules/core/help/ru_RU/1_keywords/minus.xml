@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -13,7 +14,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="minus" xml:lang="ru">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="minus" xml:lang="ru">
     <refnamediv>
         <refname>минус</refname>
         <refpurpose>(-) оператор вычитания; меняет знак</refpurpose>
@@ -29,18 +33,11 @@
         <title>Аргументы</title>
         <variablelist>
             <varlistentry>
-                <term>X</term>
+                <term>X, Y</term>
                 <listitem>
                     <para>
-                        скаляр или матрица/вектор числовых, полиномиальных или рациональных значений. Это также может быть список <literal>syslin</literal>.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>Y</term>
-                <listitem>
-                    <para>
-                        скаляр или матрица/вектор числовых, полиномиальных или рациональных значений. Это также может быть список <literal>syslin</literal>.
+                        скаляр или матрица/вектор числовых, полиномиальных или рациональных значений.
+                        Это также может быть список <literal>syslin</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -51,9 +48,18 @@
         <para>Вычитание</para>
         <para>
             Для числовых операндов вычитание имеет своё обычное значение. Если один из операндов
-            является матрицей, а другой -- скаляр, то операция выполняется поэлементно.
-            Для <literal>X - Y</literal>, если <literal>Y==[]</literal>, то возвращается значение <literal>X</literal>;
-            если <literal>X==[]</literal>, то возвращается значение <literal>-Y</literal>.
+            является матрицей, а другой - скаляр, то операция выполняется поэлементно.
+        </para>
+        <para>
+            Поскольку логическое значение допускается использовать в вычитании из чисел (десятичных,
+            комплексных или кодированных целых чисел), то оно автоматически преобразуется в тип числа
+            (и тип целого числа) перед выполнение вычитания или смены знака, как
+            <literal>%F => 0</literal> и <literal>%T => 1</literal>.
+        </para>
+        <para>
+            Для <literal>X - Y</literal>, если <literal>Y==[]</literal>, то возвращается значение
+            <literal>X</literal>;  если <literal>X==[]</literal>, то возвращается значение
+            <literal>-Y</literal>.
         </para>
         <para>
             Вычитание может быть также определено для других типов данных через "запрограммированные"
@@ -63,25 +69,99 @@
     <refsection>
         <title>Примеры</title>
         <programlisting role="example"><![CDATA[
-[1,2]-1
-[]-2
+[] - 2
+1 - []
+[2, 5] - 1
+[2, 5] - [3 -2]
 
-%s-2
-1/%s-2
+%s - 2
+1/%s - 2
+]]></programlisting>
+    <screen><![CDATA[
+--> [] - 2
+ ans  =
+    []
+
+--> 1 - []
+ ans  =
+    []
+
+--> [2, 5] - 1
+ ans  =
+   1.   4.
+
+--> [2, 5] - [3 -2]
+ ans  =
+  -1.   7.
+
+--> %s - 2
+ ans  =
+  -2 +s
+
+--> 1/%s - 2
+ ans  =
+   1 - 2s
+   -------
+     s
+]]></screen>
+    <para>С булевыми:</para>
+        <programlisting role="example"><![CDATA[
+-[%f %t]
+[%f %f %t %t]  - [%f %t %f %t]
+%t - %i
+c = %t - int8(7), inttype(c)
  ]]></programlisting>
+    <screen><![CDATA[
+--> -[%f %t]
+ ans  =
+   0.  -1.
+
+--> [%f %f %t %t]  - [%f %t %f %t]
+ ans  =
+   0.  -1.   1.   0.
+
+--> %t - %i
+ ans  =
+   1. - i
+
+--> c = %t - int8(7), typeof(c)
+ c  =
+ -6
+
+ ans  =
+ int8
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
-                <link linkend="mtlb_mode">mtlb_mode</link>
+                <link linkend="plus">плюс</link>
             </member>
             <member>
-                <link linkend="plus">плюс</link>
+                <link linkend="symbols">операторы</link>
             </member>
             <member>
                 <link linkend="overloading">перегрузка</link>
             </member>
+            <member>
+                <link linkend="oldEmptyBehaviour">oldEmptyBehaviour</link>
+            </member>
+            <member>
+                <link linkend="mtlb_s">mtlb_s</link>
+            </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revremark>
+                    <literal>A - []</literal> и <literal>[] - A</literal> теперь возвращают
+                    <literal>[]</literal> вместо <literal>A</literal> или <literal>-A</literal>.
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

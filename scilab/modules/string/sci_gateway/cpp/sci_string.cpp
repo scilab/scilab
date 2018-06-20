@@ -481,6 +481,7 @@ types::Function::ReturnValue sci_string(types::typed_list &in, int _iRetCount, t
         case types::InternalType::ScilabTList :
         case types::InternalType::ScilabMList :
         case types::InternalType::ScilabPolynom :
+        case types::InternalType::ScilabHandle :
         {
             std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_string";
             return Overload::call(wstFuncName, in, _iRetCount, out);

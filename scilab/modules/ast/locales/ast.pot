@@ -818,3 +818,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr ""
+
+#, c-format
+msgid "%ls: Too many %ls or wrong type for argument %d: Real scalar expected.\n"
+msgstr ""
