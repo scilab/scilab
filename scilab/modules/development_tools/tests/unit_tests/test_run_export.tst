@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2011 - DIGITEO - Michael Baudin
+// Copyright (C) 2018 - ESI Group - Clement DAVID
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -43,3 +44,24 @@ listModule = xmlXPath(doc,"//testsuites/testsuite");
 assert_checkequal(listModule.size, 3);
 
 xmlDelete(doc);
+deletefile(targetXML);
+
+
+// check that the exported xml is escaped correctly
+
+targetXML=TMPDIR+"/plop.xml";
+tbx = TMPDIR+"/failing_tbx";
+createdir(tbx);
+createdir(tbx + "/tests");
+createdir(tbx + "/tests/unit_tests");
+mputl("// <-- " + "CLI SHELL MODE" + " -->"+ascii(10) ..
++ "// " + ascii(32:126) + ascii(10) ..
++ "assert_checktrue(%f),", tbx + "/tests/unit_tests/allasciichars.tst");
+mputl("// <-- " + "CLI SHELL MODE" + " -->"+ascii(10) ..
++ "// <? ?> < > & ]]> <![CDATA[ <!-- -->" + ascii(10) ..
++ "assert_checktrue(%f),", tbx + "/tests/unit_tests/xmlspecials.tst");
+test_run(tbx,[],["mode_nwni" "no_check_ref"],targetXML);
+
+xmlDelete(xmlRead(targetXML)); // will fail if invalid XML
+deletefile(targetXML);
+

@@ -1015,7 +1015,7 @@ function status = test_single(_module, _testPath, _testName)
     end
 
     // To get TMPDIR value
-    tmpdir1_line = grep(dia, "TMPDIR1");
+    tmpdir1_line = grep(dia, "/^TMPDIR1=/", "r");
     execstr(dia(tmpdir1_line));
 
     //Check for execution errors
@@ -1366,19 +1366,12 @@ function exportToXUnitFormat(exportToFile, testsuites)
                     testsuite.children(j).children(1) = xmlElement(doc,"failure");
                     testsuite.children(j).children(1).attributes.type = unitTest.failure.type;
                     content = unitTest.failure.content;
-                    for kL=1:size(content, "*")
-                        ampIdx = strindex(content(kL), "&");
-                        while ~isempty(ampIdx)
-                            cur = ampIdx(1);
-                            ampIdx(1) = [];
-                            if or(part(content(kL), (cur+1):(cur+3))==["gt;" "lt"]) then
-                                // Ignored
-                            else
-                                content(kL) = part(content(kL), 1:cur) + "amp;" + part(content(kL), (cur+1):$);
-                                ampIdx = strindex(part(content(kL), (cur+1):$), "&");
-                            end
-                        end
-                    end
+                    // escaping XML as described in https://www.w3.org/TR/REC-xml/#syntax
+                    // the extra spaces might not be needed but the spec is unclear on that point.
+                    content = strsubst(content, "&", "&amp;");
+                    content = strsubst(content, "<", "&lt;");
+                    content = strsubst(content, "]]>", "]]&gt;");
+
                     testsuite.children(j).children(1).content = content;
                 elseif unitTest.skipped then
                     testsuite.children(j).children(1) = xmlElement(doc,"skipped");
