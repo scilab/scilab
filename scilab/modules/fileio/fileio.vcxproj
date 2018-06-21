@@ -256,7 +256,6 @@ lib /DEF:"$(ProjectDir)preferences_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     <ClCompile Include="src\cpp\newest.cpp" />
     <ClCompile Include="src\c\os_wfopen.c" />
     <ClCompile Include="src\c\pathconvert.c" />
-    <ClCompile Include="src\c\readline.c" />
     <ClCompile Include="src\c\removedir.c" />
     <ClCompile Include="src\c\scanf_functions.c" />
     <ClCompile Include="src\c\scicurdir.c" />
@@ -328,7 +327,6 @@ lib /DEF:"$(ProjectDir)preferences_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     <ClInclude Include="includes\newest.h" />
     <ClInclude Include="includes\os_wfopen.h" />
     <ClInclude Include="includes\pathconvert.h" />
-    <ClInclude Include="includes\readline.h" />
     <ClInclude Include="includes\removedir.h" />
     <ClInclude Include="includes\scanf_functions.h" />
     <ClInclude Include="includes\scicurdir.h" />

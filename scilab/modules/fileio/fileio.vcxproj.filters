@@ -132,9 +132,6 @@
     <ClCompile Include="src\c\pathconvert.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\c\readline.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\c\removedir.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -275,9 +272,6 @@
     <ClInclude Include="includes\os_wfopen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="includes\readline.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="includes\removedir.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -336,9 +330,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\getshortpathname.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\readline.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\dlManager.h">
