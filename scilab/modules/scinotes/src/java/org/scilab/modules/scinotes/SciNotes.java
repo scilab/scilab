@@ -2140,12 +2140,12 @@ public class SciNotes extends SwingScilabDockablePanel {
             int n = ed.getTabPane().getTabCount();
             for (int i = 0; i < n; i++) {
                 ScilabEditorPane sep = ed.getTextPane(i);
-                ((ScilabEditorKit) sep.getEditorKit()).getStylePreferences().changeBaseFontSize(inc);
+                ((ScilabEditorKit) sep.getEditorKit()).getStylePreferences().changeBaseFontSize(-inc);
                 if (baseFont == null) {
                     baseFont = ((ScilabEditorKit) sep.getEditorKit()).getStylePreferences().getBaseFont();
                 }
                 if (sep.getOtherPaneInSplit() != null) {
-                    ((ScilabEditorKit) sep.getOtherPaneInSplit().getEditorKit()).getStylePreferences().changeBaseFontSize(n);
+                    ((ScilabEditorKit) sep.getOtherPaneInSplit().getEditorKit()).getStylePreferences().changeBaseFontSize(-inc);
                     sep.getOtherPaneInSplit().resetFont();
                 }
                 sep.resetFont();
