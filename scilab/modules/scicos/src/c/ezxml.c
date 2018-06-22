@@ -581,7 +581,7 @@ short ezxml_internal_dtd(ezxml_root_t root, char *s, size_t len)
                 }
             }
 
-            while (*(n = ++s + strspn(s, EZXML_WS)) && *n != '>')
+            while (*(n = (++s) + strspn(s, EZXML_WS)) && *n != '>')
             {
                 if (*(s = n + strcspn(n, EZXML_WS)))
                 {
