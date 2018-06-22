@@ -740,8 +740,15 @@ static void GContStore2(int ival, double Cont, double xncont, double yncont)
             return;
         }
     }
-    Gxcont[Gcont_size] = xncont;
-    Gycont[Gcont_size++] = yncont;
+
+    if (Gxcont)
+    {
+        Gxcont[Gcont_size] = xncont;
+    }
+    if (Gycont)
+    {
+        Gycont[Gcont_size++] = yncont;
+    }
     count++;
 }
 
