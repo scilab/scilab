@@ -68,6 +68,7 @@ import org.w3c.dom.Document;
 import org.flexdock.docking.event.DockingEvent;
 import org.scilab.modules.commons.CommonFileUtils;
 import org.scilab.modules.commons.gui.ScilabKeyStroke;
+import org.scilab.modules.commons.gui.ScilabGUIUtilities;
 import org.scilab.modules.commons.xml.ScilabXMLUtilities;
 import org.scilab.modules.commons.xml.XConfiguration;
 import static org.scilab.modules.commons.xml.XConfiguration.XConfAttribute;
@@ -762,11 +763,7 @@ public class SciNotes extends SwingScilabDockablePanel {
             editor.restorePreviousSession();
         }
 
-        /* Bug #14489 */
-        SwingScilabWindow window = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, editor.getTabPane());
-        if (window != null) {
-            window.toFront();
-        }
+        ScilabGUIUtilities.toFront(editor,SciNotesMessages.SCILAB_EDITOR);
 
     }
 

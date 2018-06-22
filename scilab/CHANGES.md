@@ -466,6 +466,7 @@ Known issues
 * [#15599](http://bugzilla.scilab.org/show_bug.cgi?id=15599): degree of zero polynomial was 0 instead of -Inf.
 * [#15609](http://bugzilla.scilab.org/show_bug.cgi?id=15609): (1:1):2 crashed Scilab.
 * [#15621](http://bugzilla.scilab.org/show_bug.cgi?id=15621): polynomial exponentiation silently truncated exponent (regression).
+* [#15626](http://bugzilla.scilab.org/show_bug.cgi?id=15626): clicking on its icon did not give focus to a docked Scinotes.
 * [#15627](http://bugzilla.scilab.org/show_bug.cgi?id=15627): changing font in SciNotes window with ctrl-mouse wheel in splitted view messed other view.
 * [#15630](http://bugzilla.scilab.org/show_bug.cgi?id=15630): `x(0:2)=1` did not raise an error and `x=1;x(0:1,1)` crashed Scilab.
 * [#15632](http://bugzilla.scilab.org/show_bug.cgi?id=15632): `x=[];x()=1` crashed Scilab.
