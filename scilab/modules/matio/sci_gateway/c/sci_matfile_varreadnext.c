@@ -119,7 +119,14 @@ int sci_matfile_varreadnext(char *fname, void* pvApiCtx)
     matvar->isComplex =  matvar->isComplex != 0;
 
     /* Return the variable name */
-    createSingleString(pvApiCtx, Rhs + 1, matvar->name);
+    ret = createSingleString(pvApiCtx, Rhs + 1, matvar->name);
+
+    if (ret)
+    {
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        return FALSE;
+    }
+
     LhsVar(1) = Rhs + 1;
 
     returnedClass = matvar->class_type;
