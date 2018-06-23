@@ -347,6 +347,7 @@ Obsolete functions or features
 * `dgettext` is obsolete and will be removed in Scilab 6.1. Please use `gettext(domain, text)` instead.
 * `denom` is obsolete and will be removed in Scilab 6.1. Please use the `.den` rational attribute instead.
 * `numer` is obsolete and will be removed in Scilab 6.1. Please use the `.num` rational attribute instead.
+* `with_tk` is obsolete and will be removed in Scilab 6.1. Please use the `with_module` instead.
 
 
 Removed Functions
@@ -483,6 +484,7 @@ Known issues
 * [#15625](http://bugzilla.scilab.org/show_bug.cgi?id=15625): `delip(1,1)=0` instead of `Inf`
 * [#15626](http://bugzilla.scilab.org/show_bug.cgi?id=15626): clicking on its icon did not give focus to a docked Scinotes.
 * [#15627](http://bugzilla.scilab.org/show_bug.cgi?id=15627): changing font in SciNotes window with ctrl-mouse wheel in splitted view messed other view.
+* [#15628](http://bugzilla.scilab.org/show_bug.cgi?id=15628): `with_tk` was useless and should be tagged obsolete to be removed.
 * [#15629](http://bugzilla.scilab.org/show_bug.cgi?id=15629): `int(1e20)` returned -9.223D+18  (regression)
 * [#15630](http://bugzilla.scilab.org/show_bug.cgi?id=15630): `x(0:2)=1` did not raise an error and `x=1;x(0:1,1)` crashed Scilab.
 * [#15632](http://bugzilla.scilab.org/show_bug.cgi?id=15632): `x=[];x()=1` crashed Scilab.
