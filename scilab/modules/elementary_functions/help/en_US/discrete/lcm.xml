@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -13,6 +14,7 @@
  * along with this program.
  *
  -->
+<!--  module: polynomials  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
@@ -35,21 +37,26 @@
                 <term>p</term>
                 <listitem>
                     <para>
-                        a polynomial row vector <literal>p = [p1, ..., pn]</literal> (type equal to 2) or
-                        an integer row vector (type equal to 1 or 8).
+                        matrix of polynomials (type 2), or of decimal or encoded integers (types 1 or 8).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>pp</term>
+                <listitem>
+                    <para>
+                        a polynomial or a decimal integer: Positive Least Common Multiple of
+                        <varname>p</varname> components.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>fact</term>
                 <listitem>
-                    <para>a polynomial vector or an integer vector.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>pp</term>
-                <listitem>
-                    <para>a polynomial or an integer.</para>
+                    <para>
+                        matrix of polynomials, or of decimal integers (type 1), with the size of
+                        <varname>p</varname>, such that <literal>fact(i)= pp./p(i)</literal>.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -57,43 +64,125 @@
     <refsection>
         <title>Description</title>
         <para>
-            <code>pp = lcm(p)</code> computes the lcm <varname>pp</varname> of polynomial vector <varname>p</varname>.
+            <literal>pp=lcm(p)</literal> computes the LCM <varname>pp</varname> of <varname>p</varname>
+            components.
         </para>
         <para>
-            <code>[pp, fact] = lcm(p)</code> computes in addition the vector <varname>fact</varname>
-            such that <literal>p.*fact = pp*ones(p)</literal>.
+          If <literal>p</literal> are polynomials, <literal>pp</literal> is a polynomial and
+          <varname>fact</varname> is also a matrix of polynomials.
         </para>
         <para>
-          If <literal>p</literal> is a set of integers with some negative ones, the returned value
-          <literal>pp</literal> of their LCM is always positive.
-        </para>
-        <para>
-            If <literal>p</literal> is an array of decimal integers, they are priorly converted
-            into <literal>int32</literal> before processing.
+          If <literal>p</literal> is a set of integers,
+            <itemizedlist>
+                <listitem>
+                    if they are encoded integers, they are then converted into decimal integers
+                    before processing.
+                </listitem>
+                <listitem>
+                    Any int64 or uint64 input |integers| > 2^53 will be truncated and lcm()
+                    will return a wrong result.
+                </listitem>
+                <listitem>
+                    If some of them are negative, the returned value <literal>pp</literal>
+                    of their LCM is always positive.
+                </listitem>
+            </itemizedlist>
         </para>
         <para>
             The least common multiple of an array <literal>p</literal> of real numbers can be
             obtained by converting it to a polynomial before calling <literal>lcm</literal>,
-            through <code>p = inv_coeff(p, 0)</code>.
+            through <literal>p = inv_coeff(p, 0)</literal>.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
+        <para>With polynomials:</para>
         <programlisting role="example"><![CDATA[
-// Polynomial case
 s = %s;
-p = [s s*(s+1)^2 s^2*(s+2)];
-[pp,fact] = lcm(p);
-p.*fact, pp
-
-// Integer case
-V = int32([2^2*3^5, 2^3*3^2,2^2*3^4*5]);
-lcm(V)
-
-// Double case
-V = [2^2*3^5, 2^3*3^2,2^2*3^4*5];
-lcm(V)
+p = [s , s*(s+1) , s^2-1]
+[pp, fact] = lcm(p)
+p .* fact == pp
  ]]></programlisting>
+    <screen><![CDATA[
+--> p = [s , s*(s+1) , s^2-1]
+ p  =
+           2       2
+   s   s +s   -1 +s
+
+--> [pp, fact] = lcm(p)
+ fact  =
+       2
+  -1 +s   -1 +s   s
+
+ pp  =
+       3
+  -s +s
+
+--> p .* fact == pp
+ ans  =
+  T T T
+]]></screen>
+    <para>With encoded integers:</para>
+    <programlisting role="example"><![CDATA[
+// Prime numbers: 2  3  5  7  11  13  17  19  23  29  31  37  41  43  47
+V = int16([2*3 3*7 ; 7*5  3*5])
+[pp, fact] = lcm(V)
+ ]]></programlisting>
+    <screen><![CDATA[
+--> V = int16([2*3 3*7 ; 7*5  3*5])
+ V  =
+   6  21
+  35  15
+
+--> [pp, fact] = lcm(V)
+ pp  =
+   210.
+
+ fact  =
+   35.   10.
+   6.    14.
+]]></screen>
+    <para>With decimal integers:</para>
+    <programlisting role="example"><![CDATA[
+V = [2*3 3*7 ; 7*5  3*5]
+[pp, fact] = lcm(V)
+ ]]></programlisting>
+    <para>With big integers:</para>
+    <programlisting role="example"><![CDATA[
+V = [3*2^51 , 3*5]
+[pp, fact] = lcm(V)    // OK
+ ]]></programlisting>
+    <screen><![CDATA[
+--> V = [3*2^51 , 3*5]
+ V  =
+   6.755D+15   15.
+
+--> [pp, fact] = lcm(V)
+ fact  =
+   5.   2.252D+15
+
+ pp  =
+   3.378D+16
+]]></screen>
+    <para>
+        When the numerical encoding is overflown, truncature occurs and results turn wrong:
+    </para>
+    <programlisting role="example"><![CDATA[
+V = [3*2^52 , 3*5]
+[pp, fact] = lcm(V)
+ ]]></programlisting>
+    <screen><![CDATA[
+--> V = [3*2^52 , 3*5]
+ V  =
+   1.351D+16   15.
+
+--> [pp, fact] = lcm(V)
+ fact  =
+   15.   1.351D+16
+
+ pp  =
+   2.027D+17
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
@@ -104,6 +193,9 @@ lcm(V)
             <member>
                 <link linkend="bezout">bezout</link>
             </member>
+            <member>
+                <link linkend="factor">factor</link>
+            </member>
         </simplelist>
     </refsection>
     <refsection role="history">
@@ -113,6 +205,26 @@ lcm(V)
                 <revnumber>6.0.1</revnumber>
                 <revdescription>
                    For input integers possibly negative, the returned LCM is now always positive.
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>
+                            int64 and uint64 input encoded integers are now supported.
+                        </listitem>
+                        <listitem>
+                            <varname>p</varname> can now be a matrix of any shape, not necessarily
+                            a row.
+                        </listitem>
+                        <listitem>
+                            When <varname>p</varname> is a matrix of encoded or decimal integers,
+                            computations are now performed in floating point instead of int32 format.
+                            <varname>pp</varname> and <varname>fact</varname> are now decimal
+                            integers (instead of int32 integers).
+                        </listitem>
+                    </itemizedlist>
                 </revdescription>
             </revision>
         </revhistory>

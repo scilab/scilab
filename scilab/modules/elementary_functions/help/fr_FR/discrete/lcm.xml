@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="lcm">
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ * Copyright (C) 2018 - Samuel GOUGEON
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<!--  module: polynomials  -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:lang="fr" xml:id="lcm">
     <refnamediv>
         <refname>lcm</refname>
         <refpurpose>Plus petit multiple commun (PPCM) de polynômes ou d'entiers
@@ -18,22 +37,26 @@
             <varlistentry>
                 <term>p</term>
                 <listitem>
-                    <para>vecteur de polynômes (type égal à 2) ou d'entiers décimaux ou encodés
-                      (type 1 ou 8).
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>fact</term>
-                <listitem>
-                    <para>vecteur de polynômes ou d'entiers
+                    <para>
+                        matrice de polynômes (type égal à 2) ou d'entiers décimaux ou encodés
+                        (types 1 ou 8).
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>pp</term>
                 <listitem>
-                    <para>polynôme ou entier
+                    <para>
+                        polynôme ou entier décimal: PPCM positif des éléments de p.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fact</term>
+                <listitem>
+                    <para>
+                        matrice de polynômes ou d'entiers décimaux, de tailles identiques à celle
+                        de <varname>p</varname>, telle que <literal>fact(i)= pp./p(i)</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -42,20 +65,30 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>pp = lcm(p)</literal> calcule le PPCM <literal>pp</literal>  du vecteur
-            <literal>p</literal> au sens des polynômes ou des entiers.
+            <literal>pp = lcm(p)</literal> calcule le PPCM <literal>pp</literal>  des éléments de
+            <literal>p</literal>, au sens des polynômes ou des entiers.
         </para>
         <para>
-            <literal>[pp, fact] = lcm(p)</literal> calcule de plus le vecteur <literal>fact</literal>
-            tel que <literal>p .* fact = pp * ones(p)</literal>
+            <literal>[pp, fact] = lcm(p)</literal> calcule et produit en outre la matrice
+            <literal>fact</literal> des facteurs tels que <literal>p(i) * fact(i) = pp</literal>
         </para>
         <para>
-          Si <literal>p</literal> est une matrice d'entiers dont certains sont négatifs,
-          le PPCM <literal>pp</literal> retourné est toujours positif.
-        </para>
-        <para>
-            Si <literal>p</literal> est une matrice d'entiers décimaux, elle est préalablement
-            convertie en entiers <literal>int32</literal> avant les calculs.
+          Si <literal>p</literal> sont des entiers,
+            <itemizedlist>
+                <listitem>
+                    s'il s'agit d'entiers encodés, ils sont préalablement convertis en entiers
+                    décimaux avant les calculs.
+                </listitem>
+                <listitem>
+                    S'il s'agit d'entiers encodés en int64 ou uint64, les |valeurs| d'entrée > 2^53
+                    seront tronquées par la conversion en décimaux et le résultat
+                    <literal>p</literal> sera erroné.
+                </listitem>
+                <listitem>
+                    si un ou plusieurs éléments de <literal>p</literal> sont négatifs, le
+                    résultat <literal>pp</literal> sera toujours positif.
+                </listitem>
+            </itemizedlist>
         </para>
         <para>
             Le plus petit commun multiple d'une matrice <literal>p</literal> de réels peut
@@ -65,21 +98,94 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
+        <para>Avec des polynômes :</para>
         <programlisting role="example"><![CDATA[
-// Cas des polynômes
 s = %s;
-p = [s s*(s+1)^2 s^2*(s+2)];
-[pp,fact] = lcm(p);
-p.*fact, pp
-
-// Cas des entiers
-V = int32([2^2*3^5, 2^3*3^2,2^2*3^4*5]);
-lcm(V)
-
-// Cas des doubles
-V = [2^2*3^5, 2^3*3^2,2^2*3^4*5];
-lcm(V)
+p = [s , s*(s+1) , s^2-1]
+[pp, fact] = lcm(p)
+p .* fact == pp
  ]]></programlisting>
+    <screen><![CDATA[
+--> p = [s , s*(s+1) , s^2-1]
+ p  =
+           2       2
+   s   s +s   -1 +s
+
+--> [pp, fact] = lcm(p)
+ fact  =
+       2
+  -1 +s   -1 +s   s
+
+ pp  =
+       3
+  -s +s
+
+--> p .* fact == pp
+ ans  =
+  T T T
+]]></screen>
+    <para>Avec des entiers encodés :</para>
+    <programlisting role="example"><![CDATA[
+// Nombres premiers : 2  3  5  7  11  13  17  19  23  29  31  37  41  43  47
+V = int16([2*3 3*7 ; 7*5  3*5])
+[pp, fact] = lcm(V)
+ ]]></programlisting>
+    <screen><![CDATA[
+--> V = int16([2*3 3*7 ; 7*5  3*5])
+ V  =
+   6  21
+  35  15
+
+--> [pp, fact] = lcm(V)
+ pp  =
+   210.
+
+ fact  =
+   35.   10.
+   6.    14.
+]]></screen>
+    <para>Avec des entiers décimaux :</para>
+    <programlisting role="example"><![CDATA[
+V = [2*3 3*7 ; 7*5  3*5]
+[pp, fact] = lcm(V)
+ ]]></programlisting>
+    <para>Avec des grands entiers </para>
+    <programlisting role="example"><![CDATA[
+V = [3*2^51 , 3*5]
+[pp, fact] = lcm(V)    // OK
+ ]]></programlisting>
+    <screen><![CDATA[
+--> V = [3*2^51 , 3*5]
+ V  =
+   6.755D+15   15.
+
+--> [pp, fact] = lcm(V)
+ fact  =
+   5.   2.252D+15
+
+ pp  =
+   3.378D+16
+]]></screen>
+    <para>
+        Lorsque les valeurs d'éntrée débordent leur encodage numérique, elles sont tronquées et
+        les résultats deviennent erronés :
+    </para>
+    <programlisting role="example"><![CDATA[
+V = [3*2^52 , 3*5]
+[pp, fact] = lcm(V)
+ ]]></programlisting>
+    <screen><![CDATA[
+--> V = [3*2^52 , 3*5]
+ V  =
+   1.351D+16   15.
+
+--> [pp, fact] = lcm(V)
+ fact  =
+   15.   1.351D+16
+
+ pp  =
+   2.027D+17
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>
@@ -89,6 +195,9 @@ lcm(V)
             </member>
             <member>
                 <link linkend="bezout">bezout</link>
+            </member>
+            <member>
+                <link linkend="factor">factor</link>
             </member>
         </simplelist>
     </refsection>
@@ -100,6 +209,26 @@ lcm(V)
                 <revdescription>
                    Pour un ensemble d'entiers dont certains sont négatifs, lcm() en retourne désormais
                    toujours la valeur absolue du PPCM.
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>
+                            <varname>p</varname> peut désormais être des entiers int64 ou uint64
+                            encodés sur 64 bits.
+                        </listitem>
+                        <listitem>
+                            <varname>p</varname> peut désormais être une matrice de format
+                            quelconque, non nécessairement un vecteur ligne.
+                        </listitem>
+                        <listitem>
+                            Lorsque <varname>p</varname> est une matrice d'entiers encodés ou
+                            décimaux, <varname>pp</varname> et <varname>fact</varname> sont
+                            désormais des entiers décimaux (au lieu d'entiers encodés int32).
+                        </listitem>
+                    </itemizedlist>
                 </revdescription>
             </revision>
         </revhistory>
