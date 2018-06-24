@@ -69,7 +69,7 @@
         </para>
         <para>
             O operador de subtração pode ser estendido para outros tipos de dados personalizados
-            através do mecanismo <link linked="overloading">overloading</link>.
+            através do mecanismo <link linkend="overloading">overloading</link>.
         </para>
     </refsection>
     <refsection>
