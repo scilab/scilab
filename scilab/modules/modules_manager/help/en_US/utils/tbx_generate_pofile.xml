@@ -73,10 +73,16 @@ edit(path+"/locales/en_US.po")
         <title>See also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="tbx_build_localization">tbx_build_localization</link>
+                <link linkend="gettext">gettext</link>
             </member>
             <member>
                 <link linkend="addlocalizationdomain">addlocalizationdomain</link>
+            </member>
+            <member>
+                <link linkend="tbx_make">tbx_make . localization</link>
+            </member>
+            <member>
+                <link linkend="tbx_build_localization">tbx_build_localization</link>
             </member>
         </simplelist>
     </refsection>
