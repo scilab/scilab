@@ -1,7 +1,7 @@
 /*
-*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-*  Copyright (C) 2010-2010 - DIGITEO - Antoine ELIAS
-*
+ *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ *  Copyright (C) 2010-2010 - DIGITEO - Antoine ELIAS
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -10,9 +10,9 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
-
+ *
+ */
+ 
 #include <string>
 #include <numeric>
 #include <iostream>
@@ -47,34 +47,34 @@ static types::InternalType* allocDest(types::InternalType* _poSource, int _iRows
     types::InternalType* poResult = NULL;
     switch (_poSource->getType())
     {
-        case types::InternalType::ScilabDouble :
+        case types::InternalType::ScilabDouble:
             poResult = new types::Double(_iRows, _iCols, false);
             break;
-        case types::InternalType::ScilabBool :
+        case types::InternalType::ScilabBool:
             poResult = new types::Bool(_iRows, _iCols);
             break;
-        case types::InternalType::ScilabInt8 :
+        case types::InternalType::ScilabInt8:
             poResult = new types::Int8(_iRows, _iCols);
             break;
-        case types::InternalType::ScilabUInt8 :
+        case types::InternalType::ScilabUInt8:
             poResult = new types::UInt8(_iRows, _iCols);
             break;
-        case types::InternalType::ScilabInt16 :
+        case types::InternalType::ScilabInt16:
             poResult = new types::Int16(_iRows, _iCols);
             break;
-        case types::InternalType::ScilabUInt16 :
+        case types::InternalType::ScilabUInt16:
             poResult = new types::UInt16(_iRows, _iCols);
             break;
-        case types::InternalType::ScilabInt32 :
+        case types::InternalType::ScilabInt32:
             poResult = new types::Int32(_iRows, _iCols);
             break;
-        case types::InternalType::ScilabUInt32 :
+        case types::InternalType::ScilabUInt32:
             poResult = new types::UInt32(_iRows, _iCols);
             break;
-        case types::InternalType::ScilabInt64 :
+        case types::InternalType::ScilabInt64:
             poResult = new types::Int64(_iRows, _iCols);
             break;
-        case types::InternalType::ScilabUInt64 :
+        case types::InternalType::ScilabUInt64:
             poResult = new types::UInt64(_iRows, _iCols);
             break;
         case types::InternalType::ScilabString:
@@ -94,7 +94,7 @@ static types::InternalType* allocDest(types::InternalType* _poSource, int _iRows
         case types::InternalType::ScilabImplicitList:
             poResult = new types::ImplicitList();
             break;
-        default :
+        default:
             // FIXME : What should we do here ??
             break;
     }
@@ -127,7 +127,7 @@ types::InternalType* AddElementToVariableFromCol(types::InternalType* _poDest, t
     {
         switch (TypeDest)
         {
-            case types::InternalType::ScilabDouble :
+            case types::InternalType::ScilabDouble:
                 if (poResult->getAs<types::Double>()->isComplex() == false && _poSource->getAs<types::Double>()->isComplex() == true)
                 {
                     poResult->getAs<types::Double>()->setComplex(true);
@@ -172,7 +172,7 @@ types::InternalType* AddElementToVariableFromRow(types::InternalType* _poDest, t
     {
         switch (TypeDest)
         {
-            case types::InternalType::ScilabDouble :
+            case types::InternalType::ScilabDouble:
                 if (poResult->getAs<types::Double>()->isComplex() == false && _poSource->getAs<types::Double>()->isComplex() == true)
                 {
                     poResult->getAs<types::Double>()->setComplex(true);
@@ -208,46 +208,46 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
     {
         switch (TypeSource)
         {
-            case types::InternalType::ScilabDouble :
+            case types::InternalType::ScilabDouble:
                 poResult = new types::Double(_iRows, _iCols);
                 break;
-            case types::InternalType::ScilabBool :
+            case types::InternalType::ScilabBool:
                 poResult = new types::Bool(_iRows, _iCols);
                 break;
-            case types::InternalType::ScilabInt8 :
+            case types::InternalType::ScilabInt8:
                 poResult = new types::Int8(_iRows, _iCols);
                 break;
-            case types::InternalType::ScilabUInt8 :
+            case types::InternalType::ScilabUInt8:
                 poResult = new types::UInt8(_iRows, _iCols);
                 break;
-            case types::InternalType::ScilabInt16 :
+            case types::InternalType::ScilabInt16:
                 poResult = new types::Int16(_iRows, _iCols);
                 break;
-            case types::InternalType::ScilabUInt16 :
+            case types::InternalType::ScilabUInt16:
                 poResult = new types::UInt16(_iRows, _iCols);
                 break;
-            case types::InternalType::ScilabInt32 :
+            case types::InternalType::ScilabInt32:
                 poResult = new types::Int32(_iRows, _iCols);
                 break;
-            case types::InternalType::ScilabUInt32 :
+            case types::InternalType::ScilabUInt32:
                 poResult = new types::UInt32(_iRows, _iCols);
                 break;
-            case types::InternalType::ScilabInt64 :
+            case types::InternalType::ScilabInt64:
                 poResult = new types::Int64(_iRows, _iCols);
                 break;
-            case types::InternalType::ScilabUInt64 :
+            case types::InternalType::ScilabUInt64:
                 poResult = new types::UInt64(_iRows, _iCols);
                 break;
-            case types::InternalType::ScilabString :
+            case types::InternalType::ScilabString:
                 poResult = new types::String(_iRows, _iCols);
                 break;
-            case types::InternalType::ScilabSparse :
+            case types::InternalType::ScilabSparse:
                 poResult = new types::Sparse(_iRows, _iCols);
                 break;
-            case types::InternalType::ScilabSparseBool :
+            case types::InternalType::ScilabSparseBool:
                 poResult = new types::SparseBool(_iRows, _iCols);
                 break;
-            case types::InternalType::ScilabPolynom :
+            case types::InternalType::ScilabPolynom:
             {
                 int* piRank = new int[_iRows * _iCols];
                 memset(piRank, 0x00, _iRows * _iCols * sizeof(int));
@@ -255,7 +255,7 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
                 delete[] piRank;
                 break;
             }
-            case types::InternalType::ScilabImplicitList :
+            case types::InternalType::ScilabImplicitList:
                 poResult = new types::ImplicitList();
                 break;
             case types::InternalType::ScilabHandle:
@@ -270,7 +270,7 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
         }
         iCurCol = 0;
         iCurRow = 0;
-        TypeDest =    TypeSource;
+        TypeDest = TypeSource;
     }
     else
     {
@@ -285,7 +285,7 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
         //check if source type is compatible with dest type
         switch (TypeDest)
         {
-            case types::InternalType::ScilabDouble :
+            case types::InternalType::ScilabDouble:
                 if (TypeSource == types::InternalType::ScilabPolynom)
                 {
                     types::Double *poDest = _poDest->getAs<types::Double>();
@@ -311,7 +311,7 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
                     if (poDest->isComplex())
                     {
                         double *pI = poDest->getImg();
-                        for (int i = 0 ; i < iSize; i++)
+                        for (int i = 0; i < iSize; i++)
                         {
                             pSP[i]->set(0, pR[i]);
                             pSP[i]->setImg(0, pI[i]);
@@ -319,15 +319,15 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
                     }
                     else
                     {
-                        for (int i = 0 ; i < iSize; i++)
+                        for (int i = 0; i < iSize; i++)
                         {
                             pSP[i]->set(0, pR[i]);
                         }
                     }
 
-                    for (int i = 0 ; i < pPSource->getRows() ; i++)
+                    for (int i = 0; i < pPSource->getRows(); i++)
                     {
-                        for (int j = 0 ; j < pPSource->getCols() ; j++)
+                        for (int j = 0; j < pPSource->getCols(); j++)
                         {
                             pPResult->set(iCurRow + i, iCurCol + j, pPSource->get(i, j));
                         }
@@ -336,7 +336,7 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
                     return poResult;
                 }
                 break;
-            case types::InternalType::ScilabPolynom :
+            case types::InternalType::ScilabPolynom:
                 if (TypeSource == types::InternalType::ScilabDouble)
                 {
                     //Add Source like coef of the new element
@@ -346,9 +346,9 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
                     if (pD->isComplex())
                     {
                         pPolyOut->setComplex(true);
-                        for (int i = 0 ; i < pD->getRows() ; i++)
+                        for (int i = 0; i < pD->getRows(); i++)
                         {
-                            for (int j = 0 ; j < pD->getCols() ; j++)
+                            for (int j = 0; j < pD->getCols(); j++)
                             {
                                 types::SinglePoly* pSPOut = pPolyOut->get(iCurRow + i, iCurCol + j);
 
@@ -361,9 +361,9 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
                     }
                     else
                     {
-                        for (int i = 0 ; i < pD->getRows() ; i++)
+                        for (int i = 0; i < pD->getRows(); i++)
                         {
-                            for (int j = 0 ; j < pD->getCols() ; j++)
+                            for (int j = 0; j < pD->getCols(); j++)
                             {
                                 types::SinglePoly* pSPOut = pPolyOut->get(iCurRow + i, iCurCol + j);
 
@@ -377,7 +377,7 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
                     return poResult;
                 }
                 break;
-            case types::InternalType::ScilabSparse :
+            case types::InternalType::ScilabSparse:
                 if (TypeSource == types::InternalType::ScilabDouble)
                 {
                     types::Double* poSource = _poSource->getAs<types::Double>();
@@ -443,7 +443,7 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
                     return poResult;
                 }
                 break;
-            case types::InternalType::ScilabSparseBool :
+            case types::InternalType::ScilabSparseBool:
                 if (TypeSource == types::InternalType::ScilabBool)
                 {
                     types::Bool* poSource = _poSource->getAs<types::Bool>();
@@ -469,7 +469,7 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
                 break;
         }
 
-        if(poResult && isNew)
+        if (poResult && isNew)
         {
             poResult->killMe();
         }
@@ -482,43 +482,43 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
         //Just add the new value in the current item
         switch (TypeDest)
         {
-            case types::InternalType::ScilabDouble :
+            case types::InternalType::ScilabDouble:
                 poResult->getAs<types::Double>()->append(iCurRow, iCurCol, _poSource);
                 break;
-            case types::InternalType::ScilabPolynom :
+            case types::InternalType::ScilabPolynom:
                 poResult->getAs<types::Polynom>()->append(iCurRow, iCurCol, _poSource);
                 break;
             case types::InternalType::ScilabBool:
                 poResult->getAs<types::Bool>()->append(iCurRow, iCurCol, _poSource);
                 break;
-            case types::InternalType::ScilabInt8 :
+            case types::InternalType::ScilabInt8:
                 poResult->getAs<types::Int8>()->append(iCurRow, iCurCol, _poSource);
                 break;
-            case types::InternalType::ScilabUInt8 :
+            case types::InternalType::ScilabUInt8:
                 poResult->getAs<types::UInt8>()->append(iCurRow, iCurCol, _poSource);
                 break;
-            case types::InternalType::ScilabInt16 :
+            case types::InternalType::ScilabInt16:
                 poResult->getAs<types::Int16>()->append(iCurRow, iCurCol, _poSource);
                 break;
-            case types::InternalType::ScilabUInt16 :
+            case types::InternalType::ScilabUInt16:
                 poResult->getAs<types::UInt16>()->append(iCurRow, iCurCol, _poSource);
                 break;
-            case types::InternalType::ScilabInt32 :
+            case types::InternalType::ScilabInt32:
                 poResult->getAs<types::Int32>()->append(iCurRow, iCurCol, _poSource);
                 break;
-            case types::InternalType::ScilabUInt32 :
+            case types::InternalType::ScilabUInt32:
                 poResult->getAs<types::UInt32>()->append(iCurRow, iCurCol, _poSource);
                 break;
-            case types::InternalType::ScilabInt64 :
+            case types::InternalType::ScilabInt64:
                 poResult->getAs<types::Int64>()->append(iCurRow, iCurCol, _poSource);
                 break;
-            case types::InternalType::ScilabUInt64 :
+            case types::InternalType::ScilabUInt64:
                 poResult->getAs<types::UInt64>()->append(iCurRow, iCurCol, _poSource);
                 break;
-            case types::InternalType::ScilabSparse :
+            case types::InternalType::ScilabSparse:
                 poResult->getAs<types::Sparse>()->append(iCurRow, iCurCol, _poSource->getAs<types::Sparse>());
                 break;
-            case types::InternalType::ScilabSparseBool :
+            case types::InternalType::ScilabSparseBool:
                 poResult->getAs<types::SparseBool>()->append(iCurRow, iCurCol, _poSource->getAs<types::SparseBool>());
                 break;
             case types::InternalType::ScilabString:
@@ -536,12 +536,12 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
                 pOL->setEnd(pIL->getEnd());
                 break;
             }
-            case types::InternalType::ScilabHandle :
+            case types::InternalType::ScilabHandle:
                 poResult->getAs<types::GraphicHandle>()->append(iCurRow, iCurCol, _poSource);
                 break;
             default:
             {
-                if(poResult && isNew)
+                if (poResult && isNew)
                 {
                     poResult->killMe();
                 }
@@ -556,9 +556,9 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
 
 const std::wstring* getStructNameFromExp(const ast::Exp* _pExp)
 {
-    const ast::FieldExp* pField =  dynamic_cast<const ast::FieldExp*>(_pExp);
-    const ast::SimpleVar* pVar =  dynamic_cast<const ast::SimpleVar*>(_pExp);
-    const ast::CallExp* pCall =  dynamic_cast<const ast::CallExp*>(_pExp);
+    const ast::FieldExp* pField = dynamic_cast<const ast::FieldExp*>(_pExp);
+    const ast::SimpleVar* pVar = dynamic_cast<const ast::SimpleVar*>(_pExp);
+    const ast::CallExp* pCall = dynamic_cast<const ast::CallExp*>(_pExp);
 
     if (pField)
     {
@@ -616,7 +616,7 @@ types::InternalType* callOverload(const ast::Exp& e, const std::wstring& _strTyp
 
     types::InternalType* pFunc = symbol::Context::getInstance()->get(symbol::Symbol(function_name));
     if (pFunc == NULL &&
-            (_source->getShortTypeStr().size() > 8 || _dest && _dest->getShortTypeStr().size() > 8))
+        (_source->getShortTypeStr().size() > 8 || _dest && _dest->getShortTypeStr().size() > 8))
     {
         if (_source->getShortTypeStr().size() > 8)
         {
@@ -707,10 +707,10 @@ types::InternalType* callOverload(const ast::Exp& e, const std::wstring& _strTyp
 
 bool getFieldsFromExp(ast::Exp* _pExp, std::list<ExpHistory*>& fields)
 {
-    ast::FieldExp* pField      = dynamic_cast<ast::FieldExp*>(_pExp);
-    ast::SimpleVar* pVar       = dynamic_cast<ast::SimpleVar*>(_pExp);
-    ast::CallExp* pCall        = dynamic_cast<ast::CallExp*>(_pExp);
-    ast::CellCallExp* pCell    = dynamic_cast<ast::CellCallExp*>(_pExp);
+    ast::FieldExp* pField = dynamic_cast<ast::FieldExp*>(_pExp);
+    ast::SimpleVar* pVar = dynamic_cast<ast::SimpleVar*>(_pExp);
+    ast::CallExp* pCall = dynamic_cast<ast::CallExp*>(_pExp);
+    ast::CellCallExp* pCell = dynamic_cast<ast::CellCallExp*>(_pExp);
 
     if (pField)
     {
@@ -756,9 +756,9 @@ bool getFieldsFromExp(ast::Exp* _pExp, std::list<ExpHistory*>& fields)
         // used to manage insertion with list in argument
         // a(list("field", 2)) = 2 as a.field(2)
         if (pCurrentArgs &&  pCurrentArgs->size() > 0 &&
-                (*pCurrentArgs)[0]->isList() &&
-                (*pCurrentArgs)[0]->isTList() == false &&
-                (*pCurrentArgs)[0]->isMList() == false)
+            (*pCurrentArgs)[0]->isList() &&
+            (*pCurrentArgs)[0]->isTList() == false &&
+            (*pCurrentArgs)[0]->isMList() == false)
         {
             bArgList = true;
             pList = (*pCurrentArgs)[0]->getAs<types::List>();
@@ -772,9 +772,9 @@ bool getFieldsFromExp(ast::Exp* _pExp, std::list<ExpHistory*>& fields)
         do
         {
             if (pCurrentArgs &&
-                    pCurrentArgs->size() == 1 &&
-                    (*pCurrentArgs)[0]->isString() &&
-                    (*pCurrentArgs)[0]->getAs<types::String>()->getSize() == 1)
+                pCurrentArgs->size() == 1 &&
+                (*pCurrentArgs)[0]->isString() &&
+                (*pCurrentArgs)[0]->getAs<types::String>()->getSize() == 1)
             {
                 // a("b") => a.b or a(x)("b") => a(x).b
                 ExpHistory * pEHParent = fields.back();
@@ -815,8 +815,7 @@ bool getFieldsFromExp(ast::Exp* _pExp, std::list<ExpHistory*>& fields)
                     pCurrentArgs->push_back(pList->get(iListIncr)->clone());
                 }
             }
-        }
-        while (iListIncr < iListSize);
+        } while (iListIncr < iListSize);
 
         if (bArgList)
         {
@@ -911,11 +910,11 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
         iterFields++;
 
         workFields.push_back(new ExpHistory(NULL,
-                                            pFirstField->getExp(),
-                                            pFirstField->getArgs(),
-                                            pFirstField->getLevel(),
-                                            pFirstField->isCellExp(),
-                                            pITMain));
+            pFirstField->getExp(),
+            pFirstField->getArgs(),
+            pFirstField->getLevel(),
+            pFirstField->isCellExp(),
+            pITMain));
 
         //*** evaluate fields ***//
         while (iterFields != fields.end())
@@ -1019,11 +1018,11 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                         }
 
                         ExpHistory* pEHChield = new ExpHistory(pEH,
-                                                               (*iterFields)->getExp(),
-                                                               (*iterFields)->getArgs(),
-                                                               (*iterFields)->getLevel(),
-                                                               (*iterFields)->isCellExp(),
-                                                               pIT);
+                            (*iterFields)->getExp(),
+                            (*iterFields)->getArgs(),
+                            (*iterFields)->getLevel(),
+                            (*iterFields)->isCellExp(),
+                            pIT);
 
                         pEHChield->setWhereReinsert(0);
                         workFields.push_back(pEHChield);
@@ -1849,7 +1848,7 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
         {
             pOut = _pVar->getAs<types::UserType>()->insert(_pArgs, _pInsert);
         }
-        else if (_pInsert->isGenericType() && (_pInsert->isTList() == false &&  _pInsert->isMList() == false))
+        else if (_pInsert->isGenericType() && (_pInsert->isTList() == false && _pInsert->isMList() == false))
         {
             pOut = _pVar->getAs<types::GenericType>()->remove(_pArgs);
         }
@@ -1859,7 +1858,7 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
             pOut = callOverload(e, L"i", _pArgs, _pInsert, _pVar);
         }
     }
-    else if (_pVar == NULL || (_pVar->isDouble() && _pVar->getAs<types::Double>()->getSize() == 0))
+    else if (_pArgs->size() > 0 && (_pVar == NULL || (_pVar->isDouble() && _pVar->getAs<types::Double>()->getSize() == 0)))
     {
         //insert in a new variable or []
         //call static insert function
@@ -1887,7 +1886,7 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
         }
         else
         {
-            if (_pInsert->isGenericType() && (_pInsert->isTList() == false &&  _pInsert->isMList() == false))
+            if (_pInsert->isGenericType() && (_pInsert->isTList() == false && _pInsert->isMList() == false))
             {
                 pOut = _pInsert->getAs<types::GenericType>()->insertNew(_pArgs);
             }
@@ -1943,7 +1942,7 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
 
             if (pP->isComplex())
             {
-                for (int idx = 0 ; idx < pP->getSize() ; idx++)
+                for (int idx = 0; idx < pP->getSize(); idx++)
                 {
                     double dblR = pDest->get(idx);
                     double dblI = pDest->getImg(idx);
@@ -1952,7 +1951,7 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
             }
             else
             {
-                for (int idx = 0 ; idx < pP->getSize() ; idx++)
+                for (int idx = 0; idx < pP->getSize(); idx++)
                 {
                     double dblR = pDest->get(idx);
                     pP->get(idx)->setCoef(&dblR, NULL);
@@ -1979,7 +1978,7 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
                 double* pR = pIns->get();
                 double* pI = pIns->getImg();
                 types::SinglePoly** pSP = pP->get();
-                for (int idx = 0 ; idx < pP->getSize() ; idx++)
+                for (int idx = 0; idx < pP->getSize(); idx++)
                 {
                     double dblR = pR[idx];
                     double dblI = pI[idx];
@@ -1991,7 +1990,7 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
             {
                 double* pdblR = pIns->get();
                 types::SinglePoly** pSP = pP->get();
-                for (int idx = 0 ; idx < pP->getSize() ; idx++)
+                for (int idx = 0; idx < pP->getSize(); idx++)
                 {
                     double dblR = pdblR[idx];
                     pSP[idx]->setCoef(&dblR, NULL);
