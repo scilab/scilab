@@ -19,11 +19,14 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
 
 import javax.swing.JFrame;
+import javax.swing.JTabbedPane;
 import javax.swing.SwingUtilities;
+
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 
 /**
  * GUI utilities
- * @author Calixte DENIZET
+ * @author Calixte DENIZET, Stéphane MOTTELET
  */
 public class ScilabGUIUtilities {
 
@@ -45,9 +48,9 @@ public class ScilabGUIUtilities {
             }
         };
         */
-        
+
         int state = window.getExtendedState();
-        if((state & JFrame.ICONIFIED) == JFrame.ICONIFIED) {
+        if ((state & JFrame.ICONIFIED) == JFrame.ICONIFIED) {
             window.setExtendedState(state - JFrame.ICONIFIED);
         }
 
@@ -60,4 +63,30 @@ public class ScilabGUIUtilities {
             }
         });
     }
+
+    public static void toFront(final SwingScilabDockablePanel panel, final String panelName) {
+
+        JTabbedPane pane = (JTabbedPane) SwingUtilities.getAncestorOfClass(JTabbedPane.class, panel);
+        if (pane != null) { /* Help browser is docked in a tab */
+            int tabCount = pane.getTabCount();
+            for (int i = 0; i < tabCount; i++) {
+                String tabTitle = pane.getTitleAt(i);
+                if (tabTitle.equals(panelName)) {
+                    pane.setSelectedIndex(i);
+                    break;
+                }
+            }
+        }
+
+        /* move the parent window to front */
+        JFrame window = (JFrame) SwingUtilities.getAncestorOfClass(JFrame.class, panel);
+        toFront(window);
+        /* give focus to the panel */
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                panel.requestFocus();
+            }
+        });
+    }
+
 }

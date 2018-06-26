@@ -468,6 +468,7 @@ Known issues
 * [#15627](http://bugzilla.scilab.org/show_bug.cgi?id=15627): changing font in SciNotes window with ctrl-mouse wheel in splitted view messed other view.
 * [#15630](http://bugzilla.scilab.org/show_bug.cgi?id=15630): `x(0:2)=1` did not raise an error and `x=1;x(0:1,1)` crashed Scilab.
 * [#15632](http://bugzilla.scilab.org/show_bug.cgi?id=15632): `x=[];x()=1` crashed Scilab.
+* [#15636](http://bugzilla.scilab.org/show_bug.cgi?id=15636): Clicking on its icon did not always give focus to Help browser
 
 
 ### Bugs fixed in 6.0.1:
