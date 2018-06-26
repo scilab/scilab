@@ -14,6 +14,7 @@ c!
       double precision resr(n),resi(n),x(n)
       double precision ck,r,xx,compk,compk1,yy,m,m1,ck1
       double precision xxxxx
+      double precision infinity
       m=ck*ck
       m1=1.0d+0-m
       ck1=sqrt(m1)
@@ -21,7 +22,10 @@ c!
       call compel(ck1,compk1)
       do 1 k=1,n
          xx=x(k)
-         if(xx.ge.0.0d+0.and.xx.le.1.0d+0) then
+         if(xx.eq.1.0d+0.and.m.eq.1.0d+0) then
+            resi(k)=0.0d+0
+            resr(k)=infinity(0.0d+0)
+         elseif(xx.ge.0.0d+0.and.xx.le.1.0d+0) then
             call deli2(1,r,xx,ck)
             resr(k)=r
             resi(k)=0.0d+0
