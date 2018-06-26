@@ -74,7 +74,7 @@ types::Function::ReturnValue sci_delip(types::typed_list &in, int _iRetCount, ty
     if (pdblCK < -1 || pdblCK > 1)
     {
         Scierror(999, _("%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"), "delip", 2, "-1", "1");
-        return types::Function::OK;
+        return types::Function::Error;
     }
 
     //alloc output parameter
