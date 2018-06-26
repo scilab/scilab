@@ -17,6 +17,7 @@ package org.scilab.modules.ui_data.filebrowser;
 
 import javax.swing.SwingUtilities;
 
+import org.scilab.modules.commons.gui.ScilabGUIUtilities;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
 import org.scilab.modules.gui.textbox.ScilabTextBox;
@@ -102,6 +103,7 @@ public final class ScilabFileBrowser {
                 }
             }
         }
+        ScilabGUIUtilities.toFront(instance,UiDataMessages.FILE_BROWSER);
 
         return instance;
     }

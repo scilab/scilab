@@ -16,6 +16,7 @@ package org.scilab.modules.ui_data.variablebrowser;
 
 import javax.swing.SwingUtilities;
 
+import org.scilab.modules.commons.gui.ScilabGUIUtilities;
 import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
@@ -95,7 +96,10 @@ public final class ScilabVariableBrowser implements VariableBrowser {
                 }
             }
         }
-        return instance;
+
+        ScilabGUIUtilities.toFront(browserTab,UiDataMessages.VARIABLE_BROWSER);
+
+      return instance;
     }
 
     /**
