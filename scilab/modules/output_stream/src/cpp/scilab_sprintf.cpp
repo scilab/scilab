@@ -374,7 +374,7 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
     pwstFirstOutput = nullptr;
 
     int iLoop = 1;
-    if (token.size() > 1)
+    if (token.size() > 1 && in.size() > first)
     {
         iLoop = in[first]->getAs<types::GenericType>()->getRows();
         for (int i = first+1; i < in.size(); ++i)
