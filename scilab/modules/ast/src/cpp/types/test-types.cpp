@@ -43,7 +43,7 @@ int main(void)
     ** types::String
     */
     types::String s42(L"42");
-    std::cout << "s42 = " << d42.get(0, 0) << std::endl;
+    std::cout << "s42 = " << s42.get(0, 0) << std::endl;
     assert(wcscmp(s42.get(0, 0), L"42") == 0);
     assert(s42.isInt() == false);
     assert(s42.isDouble() == false);
