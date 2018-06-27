@@ -200,9 +200,12 @@ class JenkinsTraubSolver {
                      VectorXd* real_roots,
                      VectorXd* complex_roots)
       : polynomial_(coeffs),
+        a_(0), b_(0), c_(0), d_(0),
         real_roots_(real_roots),
         complex_roots_(complex_roots),
-        num_solved_roots_(0) {}
+        num_solved_roots_(0),
+        attempted_linear_shift_(false),
+        attempted_quadratic_shift_(false) {}
 
   // Extracts the roots using the Jenkins Traub method.
   bool ExtractRoots();
