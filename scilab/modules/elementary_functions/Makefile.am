@@ -250,7 +250,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/wasin.f \
     src/fortran/wexpm1.f \
     src/fortran/ddpowe.f \
-    src/fortran/nearfloat.f \
     src/fortran/dmprod.f \
     src/fortran/wwpowe.f \
     src/fortran/wdotci.f \
@@ -280,7 +279,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
 GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_number_properties.c \
     sci_gateway/c/sci_testmatrix.c \
-    sci_gateway/c/sci_nearfloat.c \
     sci_gateway/c/sci_isequalbitwise.c \
     sci_gateway/c/sci_base2dec.c \
     sci_gateway/c/sci_dec2base.c \
@@ -338,7 +336,8 @@ GATEWAY_CXX_SOURCES =  \
     sci_gateway/cpp/sci_sign.cpp \
     sci_gateway/cpp/sci_sqrt.cpp \
     sci_gateway/cpp/sci_issquare.cpp \
-    sci_gateway/cpp/sci_isvector.cpp
+    sci_gateway/cpp/sci_isvector.cpp\
+    sci_gateway/cpp/sci_nearfloat.cpp
 
 EISPACK_SOURCES = src/fortran/eispack/balbak.f
 

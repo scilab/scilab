@@ -208,7 +208,6 @@ lib /DEF:"$(ProjectDir)elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACH
     <ClCompile Include="..\..\c\sci_dec2base.c" />
     <ClCompile Include="..\..\c\sci_isequalbitwise.c" />
     <ClCompile Include="..\..\c\sci_log10.c" />
-    <ClCompile Include="..\..\c\sci_nearfloat.c" />
     <ClCompile Include="..\..\c\sci_number_properties.c" />
     <ClCompile Include="..\..\c\sci_testmatrix.c" />
     <ClCompile Include="..\elem_func_gw.cpp" />
@@ -244,6 +243,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACH
     <ClCompile Include="..\sci_log1p.cpp" />
     <ClCompile Include="..\sci_matrix.cpp" />
     <ClCompile Include="..\sci_max.cpp" />
+    <ClCompile Include="..\sci_nearfloat.cpp" />
     <ClCompile Include="..\sci_ones.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MaxSpeed</Optimization>
     </ClCompile>

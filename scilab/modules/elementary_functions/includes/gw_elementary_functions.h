@@ -54,7 +54,7 @@ int sci_isequalbitwise(char *fname, unsigned long fname_len);
 //STACK_GATEWAY_PROTOTYPE(sci_scimatrix);
 //STACK_GATEWAY_PROTOTYPE(sci_maxi);
 //STACK_GATEWAY_PROTOTYPE(sci_mini);
-STACK_GATEWAY_PROTOTYPE(sci_nearfloat);
+//STACK_GATEWAY_PROTOTYPE(sci_nearfloat);
 STACK_GATEWAY_PROTOTYPE(sci_number_properties);
 //STACK_GATEWAY_PROTOTYPE(sci_prod);
 //STACK_GATEWAY_PROTOTYPE(sci_real);
