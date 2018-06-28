@@ -14,7 +14,7 @@
  */
 /*--------------------------------------------------------------------------*/
 #include "clean.hxx"
-
+#include <cmath>
 extern "C"
 {
 #include "basic_functions.h"
@@ -25,7 +25,16 @@ void clean(double* pdblReal, double* pdblImg, int iSize, double dEpsA, double dE
 {
     if (pdblImg)
     {
-        double dNorm = wasums(iSize, pdblReal, pdblImg);
+        double dNorm = 0;
+        for (int i = 0 ; i < iSize ; i++)
+        {
+            double d = dabss(pdblReal[i])+dabss(pdblImg[i]);
+            if (std::isfinite(d))
+            {
+               dNorm += d;
+            }
+        }
+
         double dEps = Max(dEpsA, dEpsR * dNorm);
         for (int i = 0 ; i < iSize ; i++)
         {
@@ -43,7 +52,15 @@ void clean(double* pdblReal, double* pdblImg, int iSize, double dEpsA, double dE
     else
     {
         int iOne = 1;
-        double dNorm = C2F(dasum)(&iSize, pdblReal, &iOne);
+        double dNorm = 0;
+        for (int i = 0 ; i < iSize ; i++)
+        {
+            double d = dabss(pdblReal[i]);
+            if (std::isfinite(d))
+            {
+               dNorm += d;
+            }
+        }
         double dEps = Max(dEpsA, dEpsR * dNorm);
         for (int i = 0 ; i < iSize ; i++)
         {
