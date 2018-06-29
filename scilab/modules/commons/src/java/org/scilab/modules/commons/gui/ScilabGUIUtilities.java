@@ -22,7 +22,7 @@ import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
 import javax.swing.SwingUtilities;
 
-import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
+import org.flexdock.view.View;
 
 /**
  * GUI utilities
@@ -64,7 +64,7 @@ public class ScilabGUIUtilities {
         });
     }
 
-    public static void toFront(final SwingScilabDockablePanel panel, final String panelName) {
+    public static void toFront(final View panel, final String panelName) {
 
         JTabbedPane pane = (JTabbedPane) SwingUtilities.getAncestorOfClass(JTabbedPane.class, panel);
         if (pane != null) { /* Help browser is docked in a tab */
