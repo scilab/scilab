@@ -20,12 +20,12 @@
 #include "string.hxx"
 #include "list.hxx"
 #include "optimizationfunctions.hxx"
+#include "configvariable.hxx"
 
 extern "C"
 {
 #include "localization.h"
 #include "Scierror.h"
-#include "sciprint.h"
 #include "scioptimfunctions.h"
 #include "sci_malloc.h"
 }
@@ -264,35 +264,14 @@ types::Function::ReturnValue sci_fsolve(types::typed_list &in, int _iRetCount, t
     // alloc output data
     pDblV = new types::Double(pDblX->getDims(), pDblX->getDimsArray());
 
-    char const * pstrFunc = "fct";
-    try
+    if (bJac)
     {
-        if (bJac)
-        {
-            pstrFunc = "jac";
-            pdblJac = new double[iSizeX * iSizeX];
-            C2F(hybrj1)(jac, &iSizeX, pDblX->get(), pDblV->get(), pdblJac, &iSizeX, &dTol, &iInfo, pdblWork, &iWorkSize);
-        }
-        else
-        {
-            C2F(hybrd1)(fct, &iSizeX, pDblX->get(), pDblV->get(), &dTol, &iInfo, pdblWork, &iWorkSize);
-        }
+        pdblJac = new double[iSizeX * iSizeX];
+        C2F(hybrj1)(jac, &iSizeX, pDblX->get(), pDblV->get(), pdblJac, &iSizeX, &dTol, &iInfo, pdblWork, &iWorkSize);
     }
-    catch (const ast::InternalError &e)
+    else
     {
-        char* pstrMsg = wide_string_to_UTF8(e.GetErrorMessage().c_str());
-        sciprint(_("%s: exception caught in '%s' subroutine.\n"), "fsolve", pstrFunc);
-        Scierror(999, pstrMsg);
-        FREE(pstrMsg);
-        delete[] pdblWork;
-        delete pDblX;
-        if (pdblJac)
-        {
-            delete[] pdblJac;
-        }
-
-        Optimization::removeOptimizationFunctions();
-        return types::Function::Error;
+        C2F(hybrd1)(fct, &iSizeX, pDblX->get(), pDblV->get(), &dTol, &iInfo, pdblWork, &iWorkSize);
     }
 
     Optimization::removeOptimizationFunctions();
@@ -301,6 +280,14 @@ types::Function::ReturnValue sci_fsolve(types::typed_list &in, int _iRetCount, t
     if (pdblJac)
     {
         delete[] pdblJac;
+    }
+
+    /* If error has been catched in fct or jac */
+    if (iInfo == -1)
+    {
+        char* pstrMsg = wide_string_to_UTF8(ConfigVariable::getLastErrorMessage().c_str());
+        Scierror(999, "fsolve: %s\n",pstrMsg);
+        return types::Function::Error;
     }
 
     /*** return output arguments ***/
@@ -323,6 +310,7 @@ types::Function::ReturnValue sci_fsolve(types::typed_list &in, int _iRetCount, t
     // info = 3   tol is too small. no further improvement in
     // the approximate solution x is possible.
     // info = 4   iteration is not making good progress.
+
     if (_iRetCount == 3)
     {
         out.push_back(new types::Double((double)iInfo));

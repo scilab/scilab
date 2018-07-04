@@ -45,7 +45,14 @@ void fct(int *n, double *x, double *v, int *iflag)
         throw ast::InternalError(_("An error occurred while getting OptimizationFunctions object.\n"));
     }
 
-    opFunction->execFsolveFct(n, x, v, iflag);
+    try
+    {
+        opFunction->execFsolveFct(n, x, v, iflag);
+    }
+    catch (const ast::InternalError)
+    {
+        *iflag=-1;
+    }
 }
 
 void jac(int *n, double *x, double *v, double *jac, int *ldjac, int *iflag)
@@ -58,14 +65,21 @@ void jac(int *n, double *x, double *v, double *jac, int *ldjac, int *iflag)
         throw ast::InternalError(_("An error occurred while getting OptimizationFunctions object.\n"));
     }
 
-    if (*iflag == 1)
+    try
     {
-        opFunction->execFsolveFct(n, x, v, iflag);
+        if (*iflag == 1)
+        {
+            opFunction->execFsolveFct(n, x, v, iflag);
+        }
+        else
+        {
+            opFunction->execFsolveJac(n, x, v, jac, ldjac, iflag);
+        }        
     }
-    else
+    catch (const ast::InternalError)
     {
-        opFunction->execFsolveJac(n, x, v, jac, ldjac, iflag);
-    }
+        *iflag=-1;
+    }        
 }
 
 // lsqrsolve
