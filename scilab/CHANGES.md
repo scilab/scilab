@@ -386,7 +386,7 @@ Known issues
 * [#4050](http://bugzilla.scilab.org/show_bug.cgi?id=4050): `ged()` did not support graphical texts with a font size > 5.
 * [#5430](http://bugzilla.scilab.org/show_bug.cgi?id=5430): `clf` could erase the ATOMS GUI or the m2sci one.
 * [#6548](http://bugzilla.scilab.org/show_bug.cgi?id=6548): `gamma` did not accept an hypermatrix and could not be overloaded for complex numbers.
-* [#6729](http://bugzilla.scilab.org/show_bug.cgi?id=6729): The compatibility functions `mtlb_int8`, `mtlb_int16`, `mtlb_int32`, `mtlb_uint8`, `mtlb_uint16` and `mtlb_uint32` were not actually Matlab-like. Their documentation was neither correct nor up-to-date. `mtlb_int64` and `mtlb_int64` were missing. 
+* [#6729](http://bugzilla.scilab.org/show_bug.cgi?id=6729): The compatibility functions `mtlb_int8`, `mtlb_int16`, `mtlb_int32`, `mtlb_uint8`, `mtlb_uint16` and `mtlb_uint32` were not actually Matlab-like. Their documentation was neither correct nor up-to-date. `mtlb_int64` and `mtlb_int64` were missing.
 * [#6939](http://bugzilla.scilab.org/show_bug.cgi?id=6939): `nearfloat("succ",rand(2,2,2))` returned a (2,2) matrix with no error.
 * [#7277](http://bugzilla.scilab.org/show_bug.cgi?id=7277): SciNotes `File>Open recent` menu was not updated after 5 items were added.
 * [#7675](http://bugzilla.scilab.org/show_bug.cgi?id=7675): sparse() got a wrong result, when creation with many values in same position.
@@ -475,6 +475,7 @@ Known issues
 * [#15630](http://bugzilla.scilab.org/show_bug.cgi?id=15630): `x(0:2)=1` did not raise an error and `x=1;x(0:1,1)` crashed Scilab.
 * [#15632](http://bugzilla.scilab.org/show_bug.cgi?id=15632): `x=[];x()=1` crashed Scilab.
 * [#15636](http://bugzilla.scilab.org/show_bug.cgi?id=15636): Clicking on its icon did not always give focus to Help browser
+* [#15648](http://bugzilla.scilab.org/show_bug.cgi?id=15648): `sparse([1 1],1,[-1 -1])` crashed scilab
 * [#15659](http://bugzilla.scilab.org/show_bug.cgi?id=15659): `plot(x,fun)` could be very slow and crash Scilab.
 * [#15670](http://bugzilla.scilab.org/show_bug.cgi?id=15670): `set(H, prop1,val1, prop2,val2, ..)`: Setting multiple properties for a vector of handles yielded an error.
 
