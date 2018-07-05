@@ -62,7 +62,7 @@ public class ColorTriplet {
             return UpdateStatus.Fail;
         }
 
-        if (ambient[0] != color[0] || ambient[1] != color[1] || ambient[2] != color[2]) {
+        if (!ambient[0].equals(color[0]) || !ambient[1].equals(color[1]) || !ambient[2].equals(color[2])) {
             ambient[0] = color[0];
             ambient[1] = color[1];
             ambient[2] = color[2];
@@ -83,7 +83,7 @@ public class ColorTriplet {
             return UpdateStatus.Fail;
         }
 
-        if (diffuse[0] != color[0] || diffuse[1] != color[1] || diffuse[2] != color[2]) {
+        if (!diffuse[0].equals(color[0]) || !diffuse[1].equals(color[1]) || !diffuse[2].equals(color[2])) {
             diffuse[0] = color[0];
             diffuse[1] = color[1];
             diffuse[2] = color[2];
@@ -104,7 +104,7 @@ public class ColorTriplet {
             return UpdateStatus.Fail;
         }
 
-        if (specular[0] != color[0] || specular[1] != color[1] || specular[2] != color[2]) {
+        if (!specular[0].equals(color[0]) || !specular[1].equals(color[1]) || !specular[2].equals(color[2])) {
             specular[0] = color[0];
             specular[1] = color[1];
             specular[2] = color[2];
