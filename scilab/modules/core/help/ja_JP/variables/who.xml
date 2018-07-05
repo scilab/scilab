@@ -26,11 +26,11 @@
         </para>
         <para>
             <code>who('local')</code> または <code>who('get')</code> は,
-            カレントの変数名と倍精度ワード単位の使用メモリを返します.
+            現在の変数の名前と使用されているメモリをバイト単位で返します.
         </para>
         <para>
-            <code>who('global')</code> は,グローバル変数の名前と
-            倍精度ワード単位の使用メモリを返します.
+            <code>who('global')</code> は,
+            グローバル変数の名前と使用されるメモリをバイト単位で返します.
         </para>
         <para>
             <code>who('sorted')</code> は,

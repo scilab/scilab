@@ -52,6 +52,14 @@ GenericType* ArrayOf<T>::createEmpty()
 }
 
 template <typename T>
+bool ArrayOf<T>::getMemory(int* _piSize, int* _piSizePlusType)
+{
+    *_piSize = getSize() * sizeof(T) * (isComplex() ? 2 : 1);
+    *_piSizePlusType = *_piSize + sizeof(*this);
+    return true;
+}
+
+template <typename T>
 void ArrayOf<T>::getIndexes(int _iIndex, int* _piIndexes)
 {
     getIndexesWithDims(_iIndex, _piIndexes, m_piDims, m_iDims);

@@ -155,8 +155,8 @@ struct Variables
     bool remove(const Symbol& _key, int _iLevel);
     int getMacrosName(std::list<std::wstring>& lst);
     int getVarsName(std::list<std::wstring>& lst);
-    bool getVarsNameForWho(std::list<std::wstring>& lstVarName, int* iVarLenMax, bool bSorted = false) const;
-    bool getGlobalNameForWho(std::list<std::wstring>& lstVarName, int* iVarLenMax, bool bSorted = false) const;
+    bool getVarsInfoForWho(std::list<std::pair<std::wstring,int>>& lst, int* iVarLenMax, bool bSorted = false) const;
+    bool getGlobalInfoForWho(std::list<std::pair<std::wstring,int>>& lst, int* iVarLenMax, bool bSorted = false) const;
     int getProtectedVarsName(std::list<std::wstring>& lstVarName) const;
     int getFunctionsName(std::list<std::wstring>& lst);
     int getFunctionList(std::list<Symbol>& lst, std::wstring _stModuleName, int _iLevel);

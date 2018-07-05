@@ -419,6 +419,7 @@ Known issues
 * [#14460](http://bugzilla.scilab.org/show_bug.cgi?id=14460): sparse boolean indices were not supported.
 * [#14489](http://bugzilla.scilab.org/show_bug.cgi?id=14489): clicking the scinotes icon did not bring its window in the foreground.
 * [#14521](http://bugzilla.scilab.org/show_bug.cgi?id=14521): For the CONVERT Xcos block, types codes 2, 6, 7, and 8 were not documented.
+* [#14606](http://bugzilla.scilab.org/show_bug.cgi?id=14606): Memory used by variables returned by `[names,mem]=who()` was always zero.
 * [#14701](http://bugzilla.scilab.org/show_bug.cgi?id=14701): `poly(c,v,"coeff")` did not ignore null high order coefficients.
 * [#14704](http://bugzilla.scilab.org/show_bug.cgi?id=14704): In Scinotes, URL for the `https://`, `ftp://`, `ftps://`, and `file://` protocols were no longer hyperlinked.
 * [#14708](http://bugzilla.scilab.org/show_bug.cgi?id=14708): polynomial operators + - / ./ * .* no longer simplified null high orders coefficients from result

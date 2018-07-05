@@ -133,6 +133,8 @@ public :
         return -1;
     }
 
+    bool                        getMemory(int* _piSize, int* _piSizePlusType);
+
 private :
     virtual SingleStruct*       getNullValue();
     virtual Struct*             createEmpty(int _iDims, int* _piDims, bool _bComplex = false);

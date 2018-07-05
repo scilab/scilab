@@ -18,6 +18,7 @@
 #include "configvariable.hxx"
 #include "macro.hxx"
 #include "macrofile.hxx"
+#include "types_tools.hxx"
 
 extern "C"
 {
@@ -301,45 +302,54 @@ int Variables::getVarsName(std::list<std::wstring>& lst)
     return static_cast<int>(lst.size());
 }
 
-bool Variables::getVarsNameForWho(std::list<std::wstring>& lstVarName, int* iVarLenMax, bool bSorted) const
+bool Variables::getVarsInfoForWho(std::list<std::pair<std::wstring, int>>& lstVar, int* iVarLenMax, bool bSorted) const
 {
     for (auto it : vars)
     {
-        std::wstring wstrVarName(it.first.getName().c_str());
         if (it.second->empty() == false)
         {
             types::InternalType* pIT = it.second->top()->m_pIT;
             if (pIT && pIT->isFunction() == false)
             {
-                lstVarName.push_back(wstrVarName);
+                std::wstring wstrVarName(it.first.getName().c_str());
                 *iVarLenMax = std::max(*iVarLenMax, (int)wstrVarName.size());
+                int iSize, iSizePlusType;
+                if (pIT->getMemory(&iSize, &iSizePlusType))
+                {
+                    lstVar.emplace_back(wstrVarName, iSizePlusType);
+                }
             }
         }
     }
 
     if (bSorted)
     {
-        lstVarName.sort();
+        lstVar.sort();
     }
 
     return true;
 }
 
-bool Variables::getGlobalNameForWho(std::list<std::wstring>& lstVarName, int* iVarLenMax, bool bSorted) const
+bool Variables::getGlobalInfoForWho(std::list<std::pair<std::wstring, int>>& lstVar, int* iVarLenMax, bool bSorted) const
 {
     for (auto it : vars)
     {
         if (it.second->isGlobal())
         {
             std::wstring wstrVarName(it.first.getName().c_str());
-            lstVarName.push_back(wstrVarName);
             *iVarLenMax = std::max(*iVarLenMax, (int)wstrVarName.size());
+            int iSize, iSizePlusType;
+            types::InternalType* pIT = it.second->empty() ? it.second->getGlobalValue() : it.second->top()->m_pIT;
+            if(pIT->getMemory(&iSize, &iSizePlusType))
+            {
+                lstVar.emplace_back(wstrVarName, iSizePlusType);
+            }
         }
     }
 
     if (bSorted)
     {
-        lstVarName.sort();
+        lstVar.sort();
     }
 
     return true;

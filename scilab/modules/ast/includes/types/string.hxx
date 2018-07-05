@@ -88,6 +88,8 @@ public :
         return false;
     }
 
+    bool getMemory(int* _piSize, int* _piSizePlusType);
+
     virtual bool neg(InternalType *& /*out*/)
     {
         return false;
