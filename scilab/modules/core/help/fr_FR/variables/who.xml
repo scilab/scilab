@@ -45,7 +45,7 @@
             <varlistentry>
                 <term>mem</term>
                 <listitem>
-                    <para>Matrice réelle avec l'occupation mémoire des variables en nombre de doubles.</para>
+                    <para>Matrice réelle avec l'occupation mémoire des variables en octets.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -85,7 +85,7 @@ foo(1,2);
             <revision>
                 <revnumber>6.0.1</revnumber>
                 <revdescription>
-                    Add scope/current option.
+                    Ajout de l'option scope/current.
                 </revdescription>
             </revision>
         </revhistory>

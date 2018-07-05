@@ -133,4 +133,16 @@ std::wstring Library::getPath()
 {
     return m_wstPath;
 }
+
+bool Library::getMemory(int* _piSize, int* _piSizePlusType)
+{
+    *_piSize = 0;
+    for (auto macro : m_macros)
+    {
+        *_piSize += macro.first.length()*sizeof(wchar_t) + sizeof(macro);
+    }
+
+    *_piSizePlusType = *_piSize + sizeof(Library);
+    return true;
+}
 }

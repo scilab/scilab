@@ -49,6 +49,8 @@ public :
         return false;
     }
 
+    bool                            getMemory(int* _piSize, int* _piSizePlusType);
+
     virtual bool invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_list & out, const ast::Exp & e) override;
 
 protected :

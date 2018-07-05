@@ -45,7 +45,7 @@
             <varlistentry>
                 <term>mem</term>
                 <listitem>
-                    <para>Double matrix with variable sizes in doubles.</para>
+                    <para>Double matrix with variable used memory in bytes.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -85,7 +85,7 @@ foo(1,2);
             <revision>
                 <revnumber>6.0.1</revnumber>
                 <revdescription>
-                    Ajout de l'option scope/current.
+                    Add "scope" or "current" mode.
                 </revdescription>
             </revision>
         </revhistory>

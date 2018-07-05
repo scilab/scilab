@@ -1799,12 +1799,12 @@ int mexPutVariable(const char *workspace, const char *varname, const mxArray *pm
 int mexIsGlobal(const mxArray *ptr)
 {
     symbol::Context *context = symbol::Context::getInstance();
-    std::list<std::wstring> lst;
-    int size = context->getGlobalNameForWho(lst, false);
+    std::list<std::pair<std::wstring,int>> lst;
+    int size = context->getGlobalInfoForWho(lst, false);
 
     for (auto it : lst)
     {
-        symbol::Symbol s = symbol::Symbol(it);
+        symbol::Symbol s = symbol::Symbol(it.first);
         types::InternalType* value = context->getGlobalValue(s);
         if ((int*)value == ptr->ptr)
         {

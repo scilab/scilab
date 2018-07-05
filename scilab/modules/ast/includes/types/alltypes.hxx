@@ -53,5 +53,6 @@
 #include "graphichandle.hxx"
 #include "void.hxx"
 #include "library.hxx"
+#include "user.hxx"
 
 #endif /* !ALL_TYPES_HXX */

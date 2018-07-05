@@ -26,15 +26,14 @@ extern "C"
 {
 #include "Scierror.h"
 #include "localization.h"
+#include "sciprint.h"
 }
 
 types::Function::ReturnValue sci_who(types::typed_list& in, int _iRetCount, types::typed_list& out)
 {
     std::wstring wcsWhat(L"");
     bool bSorted = false;
-    types::String* pStrOut = NULL;
-    types::Double* pDblOut = NULL;
-    std::list<std::wstring> lstVar;
+    std::list<std::pair<std::wstring, int>> lstVarWithSize;
     int size = 0;
 
     if (in.size() > 2)
@@ -106,15 +105,15 @@ types::Function::ReturnValue sci_who(types::typed_list& in, int _iRetCount, type
 
     if (wcsWhat == L"local" || wcsWhat == L"get")
     {
-        size = symbol::Context::getInstance()->getVarsNameForWho(lstVar, bSorted);
+        size = symbol::Context::getInstance()->getVarsInfoForWho(lstVarWithSize, bSorted);
     }
     else if (wcsWhat == L"scope" || wcsWhat == L"current")
     {
-        size = symbol::Context::getInstance()->getCurrentScope(lstVar, bSorted);
+        size = symbol::Context::getInstance()->getCurrentScope(lstVarWithSize, bSorted);
     }
     else if (wcsWhat == L"global")
     {
-        size = symbol::Context::getInstance()->getGlobalNameForWho(lstVar, bSorted);
+        size = symbol::Context::getInstance()->getGlobalInfoForWho(lstVarWithSize, bSorted);
     }
     else if (bSorted == false && wcsWhat == L"sorted")
     {
@@ -139,7 +138,7 @@ types::Function::ReturnValue sci_who(types::typed_list& in, int _iRetCount, type
         return types::Function::Error;
     }
 
-    if (lstVar.empty())
+    if (lstVarWithSize.empty())
     {
         out.push_back(types::Double::Empty());
         if (_iRetCount == 2)
@@ -150,19 +149,22 @@ types::Function::ReturnValue sci_who(types::typed_list& in, int _iRetCount, type
         return types::Function::OK;
     }
 
-    pStrOut = new types::String(size, 1);
+    types::String* pStrOut = new types::String(size, 1);
     int i = 0;
-    for (auto it : lstVar)
+    for (auto it : lstVarWithSize)
     {
-        pStrOut->set(i++, it.c_str());
+        pStrOut->set(i++, it.first.c_str());
     }
-
     out.push_back(pStrOut);
 
     if (_iRetCount == 2)
     {
-        pDblOut = new types::Double(pStrOut->getDims(), pStrOut->getDimsArray());
-        memset(pDblOut->get(), 0x00, pDblOut->getSize() * sizeof(double));
+        types::Double* pDblOut = new types::Double(size, 1);
+        i = 0;
+        for (auto it : lstVarWithSize)
+        {
+            pDblOut->set(i++, it.second);
+        }
         out.push_back(pDblOut);
     }
 

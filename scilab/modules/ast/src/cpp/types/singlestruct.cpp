@@ -20,6 +20,7 @@
 #include "double.hxx"
 #include "localization.hxx"
 #include "scilabWrite.hxx"
+#include "types_tools.hxx"
 
 namespace types
 {
@@ -59,6 +60,24 @@ SingleStruct::SingleStruct(SingleStruct *_oSingleStructCopyMe) : m_wstFields(_oS
 std::vector<InternalType *> & SingleStruct::getData()
 {
     return m_Data;
+}
+
+bool SingleStruct::getMemory(int* _piSize, int* _piSizePlusType)
+{
+    *_piSize = 0;
+    *_piSizePlusType = 0;
+    for (auto pData : m_Data)
+    {
+        int piS, piSPT;
+        if (pData->getMemory(&piS, &piSPT))
+        {
+            *_piSize += piS;
+            *_piSizePlusType += piSPT;
+        }
+    }
+
+    *_piSizePlusType += sizeof(SingleStruct);
+    return true;
 }
 
 std::unordered_map<std::wstring, int> & SingleStruct::getFields()
