@@ -1467,7 +1467,7 @@ public class Uicontrol extends GraphicObject {
         }
 
         for (int i = 0 ; i < value.length ; i++) {
-            if (gridbagPadding[i] != value[i]) {
+            if (!gridbagPadding[i].equals(value[i])) {
                 gridbagPadding[i] = value[i];
                 status = UpdateStatus.Success;
             }
@@ -1487,7 +1487,7 @@ public class Uicontrol extends GraphicObject {
         }
 
         for (int i = 0 ; i < value.length ; i++) {
-            if (gridbagPreferredSize[i] != value[i]) {
+            if (!gridbagPreferredSize[i].equals(value[i])) {
                 gridbagPreferredSize[i] = value[i];
                 status = UpdateStatus.Success;
             }
@@ -1507,7 +1507,7 @@ public class Uicontrol extends GraphicObject {
         }
 
         for (int i = 0 ; i < value.length ; i++) {
-            if (borderPreferredSize[i] != value[i]) {
+            if (!borderPreferredSize[i].equals(value[i])) {
                 borderPreferredSize[i] = value[i];
                 status = UpdateStatus.Success;
             }
@@ -1569,7 +1569,7 @@ public class Uicontrol extends GraphicObject {
         }
 
         for (int i = 0 ; i < value.length ; i++) {
-            if (gridbagWeight[i] != value[i]) {
+            if (!gridbagWeight[i].equals(value[i])) {
                 gridbagWeight[i] = value[i];
                 status = UpdateStatus.Success;
             }
@@ -1589,7 +1589,7 @@ public class Uicontrol extends GraphicObject {
         }
 
         for (int i = 0 ; i < value.length ; i++) {
-            if (gridbagGrid[i] != value[i]) {
+            if (!gridbagGrid[i].equals(value[i])) {
                 gridbagGrid[i] = value[i];
                 status = UpdateStatus.Success;
             }
@@ -1609,7 +1609,7 @@ public class Uicontrol extends GraphicObject {
         }
 
         for (int i = 0 ; i < value.length ; i++) {
-            if (borderOptPadding[i] != value[i]) {
+            if (!borderOptPadding[i].equals(value[i])) {
                 borderOptPadding[i] = value[i];
                 status = UpdateStatus.Success;
             }
@@ -1629,7 +1629,7 @@ public class Uicontrol extends GraphicObject {
         }
 
         for (int i = 0 ; i < value.length ; i++) {
-            if (gridOptPadding[i] != value[i]) {
+            if (!gridOptPadding[i].equals(value[i])) {
                 gridOptPadding[i] = value[i];
                 status = UpdateStatus.Success;
             }
@@ -1649,7 +1649,7 @@ public class Uicontrol extends GraphicObject {
         }
 
         for (int i = 0 ; i < value.length ; i++) {
-            if (gridOptGrid[i] != value[i]) {
+            if (!gridOptGrid[i].equals(value[i])) {
                 gridOptGrid[i] = value[i];
                 status = UpdateStatus.Success;
             }
@@ -1689,7 +1689,7 @@ public class Uicontrol extends GraphicObject {
     }
 
     public UpdateStatus setTitleScroll(Boolean value) {
-        if (titleScroll == value) {
+        if (titleScroll.equals(value)) {
             return UpdateStatus.NoChange;
         }
 
@@ -1720,7 +1720,7 @@ public class Uicontrol extends GraphicObject {
     }
 
     public UpdateStatus setScrollable(Boolean scrollable) {
-        if (this.scrollable == scrollable) {
+        if (this.scrollable.equals(scrollable)) {
             return UpdateStatus.NoChange;
         }
 
