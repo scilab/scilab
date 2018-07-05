@@ -236,7 +236,7 @@ public class TicksProperty {
             UpdateStatus status = UpdateStatus.NoChange;
             for (int i = 0; i < labels.size(); i++) {
                 Font f = labels.get(i).getFont();
-                if (f.getStyle() != fontStyle) {
+                if (!f.getStyle().equals(fontStyle)) {
                     f.setStyle(fontStyle);
                     status = UpdateStatus.Success;
                 }
@@ -266,7 +266,7 @@ public class TicksProperty {
             UpdateStatus status = UpdateStatus.NoChange;
             for (int i = 0; i < labels.size(); i++) {
                 Font f = labels.get(i).getFont();
-                if (f.getSize() != fontSize) {
+                if (!f.getSize().equals(fontSize)) {
                     f.setSize(fontSize);
                     status = UpdateStatus.Success;
                 }
@@ -326,7 +326,7 @@ public class TicksProperty {
             UpdateStatus status = UpdateStatus.NoChange;
             for (int i = 0; i < labels.size(); i++) {
                 Font f = labels.get(i).getFont();
-                if (f.getFractional() != fontFractional) {
+                if (!f.getFractional().equals(fontFractional)) {
                     f.setFractional(fontFractional);
                     status = UpdateStatus.Success;
                 }
@@ -575,7 +575,7 @@ public class TicksProperty {
      */
     public UpdateStatus setFontStyle(Integer fontStyle) {
         UpdateStatus status = UpdateStatus.NoChange;
-        if (fontStyle != defaultFont.getStyle()) {
+        if (!fontStyle.equals(defaultFont.getStyle())) {
             defaultFont.setStyle(fontStyle);
             status = UpdateStatus.Success;
         }
@@ -622,7 +622,7 @@ public class TicksProperty {
      */
     public UpdateStatus setFontSize(Double fontSize) {
         UpdateStatus status = UpdateStatus.NoChange;
-        if (fontSize != defaultFont.getSize()) {
+        if (!fontSize.equals(defaultFont.getSize())) {
             defaultFont.setSize(fontSize);
             status = UpdateStatus.Success;
         }
@@ -669,7 +669,7 @@ public class TicksProperty {
      */
     public UpdateStatus setFontColor(Integer fontColor) {
         UpdateStatus status = UpdateStatus.NoChange;
-        if (fontColor != defaultFont.getColor()) {
+        if (!fontColor.equals(defaultFont.getColor())) {
             defaultFont.setColor(fontColor);
             status = UpdateStatus.Success;
         }
@@ -716,7 +716,7 @@ public class TicksProperty {
      */
     public UpdateStatus setFontFractional(Boolean fontFractional) {
         UpdateStatus status = UpdateStatus.NoChange;
-        if (fontFractional != defaultFont.getFractional()) {
+        if (!fontFractional.equals(defaultFont.getFractional())) {
             defaultFont.setFractional(fontFractional);
             status = UpdateStatus.Success;
         }
