@@ -306,7 +306,7 @@ public class AxisProperty {
      * @param label the label to set
      */
     public UpdateStatus setLabel(Integer label) {
-        if (this.label != label) {
+        if (!this.label.equals(label)) {
             this.label = label == null ? 0 : label;
             return UpdateStatus.Success;
         }
