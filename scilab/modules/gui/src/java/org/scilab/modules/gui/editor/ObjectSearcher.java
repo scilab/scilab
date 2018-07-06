@@ -78,7 +78,7 @@ public class ObjectSearcher {
 
         if (uid != null) {
             Integer parent = (Integer)GraphicController.getController().getProperty( uid, GraphicObjectProperties.__GO_PARENT__);
-            if (type == (Integer)GraphicController.getController().getProperty(parent, GraphicObjectProperties.__GO_TYPE__)) {
+            if (type.equals((Integer)GraphicController.getController().getProperty(parent, GraphicObjectProperties.__GO_TYPE__))) {
                 return parent;
             } else {
                 return searchParent(parent, type);
