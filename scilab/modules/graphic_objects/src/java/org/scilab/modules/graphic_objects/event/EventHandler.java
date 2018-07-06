@@ -46,7 +46,7 @@ public class EventHandler {
     }
 
     public UpdateStatus setEventHandlerEnabled(Boolean eventHandlerEnabled) {
-        if (eventHandlerEnabled == this.eventHandlerEnabled) {
+        if (eventHandlerEnabled.equals(this.eventHandlerEnabled)) {
             return UpdateStatus.NoChange;
         }
         this.eventHandlerEnabled = eventHandlerEnabled;
