@@ -419,7 +419,7 @@ public class Export {
                     axesDrawer.update(id, property);
                     if (property == GraphicObjectProperties.__GO_AXES_SIZE__) {
                         Integer[] size = getFigure().getAxesSize();
-                        if (size[0] != dims[0] || size[1] != dims[1]) {
+                        if (!size[0].equals(dims[0]) || !size[1].equals(dims[1])) {
                             Graphics2D newg2d = exporter.getGraphics2D(size[0], size[1], null, params);
                             params.setParamsOnGraphics(newg2d);
                             canvas.setGraphics(newg2d, size[0], size[1]);
