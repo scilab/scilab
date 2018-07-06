@@ -366,15 +366,15 @@ public class XmlLoader extends DefaultHandler {
                     controller.setProperty(newGo, __GO_UI_FRAME_BORDER__, newChild);
                 } else { //__GO_UI_FRAME_BORDER__
                     Integer border = (Integer) controller.getProperty(root, __GO_UI_FRAME_BORDER_TITLE__);
-                    if (border == children[i]) {
+                    if (border.equals(children[i])) {
                         controller.setProperty(newGo, __GO_UI_FRAME_BORDER_TITLE__, newChild);
                     } else {
                         border = (Integer) controller.getProperty(root, __GO_UI_FRAME_BORDER_OUT_BORDER__);
-                        if (border == children[i]) {
+                        if (border.equals(children[i])) {
                             controller.setProperty(newGo, __GO_UI_FRAME_BORDER_OUT_BORDER__, newChild);
                         } else {
                             border = (Integer) controller.getProperty(root, __GO_UI_FRAME_BORDER_OUT_BORDER__);
-                            if (border == children[i]) {
+                            if (border.equals(children[i])) {
                                 controller.setProperty(newGo, __GO_UI_FRAME_BORDER_OUT_BORDER__, newChild);
                             }
                         }
