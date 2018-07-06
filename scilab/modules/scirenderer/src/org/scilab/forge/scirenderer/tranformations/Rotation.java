@@ -291,7 +291,12 @@ public class Rotation {
         return hashCode;
     }
 
-    public boolean equals(Rotation r2) {
+    @Override
+    public boolean equals(Object object) {
+        if(this == object) return true;
+        if(!(object instanceof Rotation)) return false;
+
+        Rotation r2 = (Rotation) object;
         return  (r2 != null) && (a == r2.a)  && (b == r2.b)  && (c == r2.c)  && (d == r2.d);
     }
 }
