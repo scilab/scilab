@@ -82,7 +82,7 @@ public class SciTreeModel implements TreeModel, GraphicView {
                 Object children =  GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_CHILDREN__);
                 if (children instanceof Integer[]) {
                     for (int i = 0 ; i < ((Integer[]) children).length ; i++) {
-                        if (((Integer[]) children)[i] == childId) {
+                        if (((Integer[]) children)[i].equals(childId)) {
                             return i;
                         }
                     }
