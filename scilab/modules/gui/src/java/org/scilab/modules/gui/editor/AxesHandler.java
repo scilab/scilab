@@ -128,7 +128,7 @@ public class AxesHandler {
      */
     public static void axesBound(Integer axesFrom, Integer axesTo) {
 
-        if (axesFrom == axesTo) {
+        if (axesFrom.equals(axesTo)) {
             return;
         }
 
