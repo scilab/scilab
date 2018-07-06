@@ -98,7 +98,7 @@ public class Light extends GraphicObject {
             return UpdateStatus.Fail;
         }
 
-        if (position[0] != pos[0] || position[1] != pos[1] || position[2] != pos[2]) {
+        if (!position[0].equals(pos[0]) || !position[1].equals(pos[1]) || !position[2].equals(pos[2])) {
             position[0] = pos[0];
             position[1] = pos[1];
             position[2] = pos[2];
@@ -119,7 +119,7 @@ public class Light extends GraphicObject {
             return UpdateStatus.Fail;
         }
 
-        if (direction[0] != dir[0] || direction[1] != dir[1] || direction[2] != dir[2]) {
+        if (!direction[0].equals(dir[0]) || !direction[1].equals(dir[1]) || !direction[2].equals(dir[2])) {
             direction[0] = dir[0];
             direction[1] = dir[1];
             direction[2] = dir[2];
