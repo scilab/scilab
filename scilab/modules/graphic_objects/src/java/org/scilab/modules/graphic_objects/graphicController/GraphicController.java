@@ -344,7 +344,7 @@ public class GraphicController {
         if (oldParent != null && oldParent instanceof Integer) {
             Integer oldParentId = (Integer) oldParent;
 
-            if (oldParentId == parentId) {
+            if (oldParentId.equals(parentId)) {
                 return;
             }
 
