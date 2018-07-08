@@ -86,7 +86,7 @@ public final class FindIconHelper {
          * always look for hicolor and then empty theme in case of invalid
          * theme.
          */
-        if (!theme.isEmpty() && theme != HICOLOR) {
+        if (!theme.isEmpty() && !theme.equals(HICOLOR)) {
             return findIconHelper(icon, size, HICOLOR);
         } else if (!theme.isEmpty()) {
             return findIconHelper(icon, size, "");
