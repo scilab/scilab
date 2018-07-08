@@ -106,7 +106,7 @@ public class Checkbox extends SwingScilabCheckBox implements XComponent, XChoose
      * @param text : the attribute value.
      */
     public final void text(final String text) {
-        if (text != XConfigManager.NAV) {
+        if (!text.equals(XConfigManager.NAV)) {
             setText(text);
         } else {
             setText(null);
