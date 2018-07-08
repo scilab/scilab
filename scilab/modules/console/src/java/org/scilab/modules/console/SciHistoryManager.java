@@ -72,7 +72,7 @@ public class SciHistoryManager implements HistoryManager {
      */
     public String getNextEntry(String beg) {
         /* Ask Scilab history manager for a matching entry */
-        if (HistoryManagement.getSearchedTokenInScilabHistory() != beg) {
+        if (!HistoryManagement.getSearchedTokenInScilabHistory().equals(beg)) {
             //HistoryManagement.resetSearchedTokenInScilabHistory();
             HistoryManagement.setSearchedTokenInScilabHistory(beg);
         }
@@ -87,7 +87,7 @@ public class SciHistoryManager implements HistoryManager {
      */
     public String getPreviousEntry(String beg) {
         /* Ask Scilab history manager for a matching entry */
-        if (HistoryManagement.getSearchedTokenInScilabHistory() != beg) {
+        if (!HistoryManagement.getSearchedTokenInScilabHistory().equals(beg)) {
             //HistoryManagement.resetSearchedTokenInScilabHistory();
             HistoryManagement.setSearchedTokenInScilabHistory(beg);
         }
