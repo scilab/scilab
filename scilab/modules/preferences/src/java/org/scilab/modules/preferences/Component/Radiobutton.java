@@ -103,7 +103,7 @@ public class Radiobutton extends SwingScilabRadioButton implements XComponent, X
      * @param text : the attribute value.
      */
     public final void text(final String text) {
-        if (text != XConfigManager.NAV) {
+        if (!text.equals(XConfigManager.NAV)) {
             setText(text);
         } else {
             setText(null);
