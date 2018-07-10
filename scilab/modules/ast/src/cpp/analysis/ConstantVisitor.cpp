@@ -218,12 +218,14 @@ void ConstantVisitor::visit(ast::CallExp & e)
                             ret = res.front().getConstant().getDblValue(val);
                             if (ret == 0)
                             {
+                                delete exps;
                                 return;
                             }
                             exps->push_back(new ast::DoubleExp(e.getLocation(), val));
                             ret = res.back().getConstant().getDblValue(val);
                             if (ret == 0)
                             {
+                                delete exps;
                                 return;
                             }
                             exps->push_back(new ast::DoubleExp(e.getLocation(), val));
