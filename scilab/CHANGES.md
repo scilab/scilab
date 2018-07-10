@@ -398,6 +398,7 @@ Known issues
 * [#9063](http://bugzilla.scilab.org/show_bug.cgi?id=9063): `pt` was the alias of `pt_PT` instead of `pt_BR`.
 * [#9231](http://bugzilla.scilab.org/show_bug.cgi?id=9231): `fsolve()` produced wrong info for certain initial values
 * [#9958](http://bugzilla.scilab.org/show_bug.cgi?id=9958): `mprintf("%d\r", 12345)` printed `" 345"`
+* [#10171](http://bugzilla.scilab.org/show_bug.cgi?id=10171): `loadmatfile()` did not load files containing a matlab cell structure.
 * [#10190](http://bugzilla.scilab.org/show_bug.cgi?id=10190): Xcos blocks and labels positioning were not aligned to the grid on creation.
 * [#10197](http://bugzilla.scilab.org/show_bug.cgi?id=10197): creating implicit vector of integers could fail.
 * [#10639](http://bugzilla.scilab.org/show_bug.cgi?id=10639): The page of `intersect` poorly described the arguments. Examples were not illustrated.
