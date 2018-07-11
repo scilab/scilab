@@ -229,21 +229,26 @@ public class FontManager {
     protected final Font loadFont(String fontFileName) {
         Font loadedFont;
         FileInputStream in;
+
         File f = new File(fontFileName);
         try {
             in = new FileInputStream(f);
         } catch (FileNotFoundException e) {
-            loadedFont = DEFAULT_FONT;
-            return loadedFont;
+            return DEFAULT_FONT;
         }
 
         try {
             loadedFont = Font.createFont(Font.TRUETYPE_FONT, in);
-            in.close();
         } catch (IOException e) {
             loadedFont = DEFAULT_FONT;
         } catch (FontFormatException ffe) {
             loadedFont = DEFAULT_FONT;
+        } finally {
+            try {
+                in.close();
+            } catch (IOException ex) {
+                loadedFont = DEFAULT_FONT;
+            }
         }
 
         return loadedFont;
