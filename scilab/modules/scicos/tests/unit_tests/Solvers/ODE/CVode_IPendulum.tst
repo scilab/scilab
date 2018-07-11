@@ -6,6 +6,7 @@
 // =============================================================================
 //
 // <-- XCOS TEST -->
+// <-- NO CHECK REF -->
 //
 
 assert_checktrue(importXcosDiagram("SCI/modules/xcos/tests/unit_tests/Solvers/ODE/IPendulum.zcos"));
