@@ -80,7 +80,7 @@ public class GraphicController {
      * Returns the controller
      * @return the controller
      */
-    public static GraphicController getController() {
+    public synchronized static GraphicController getController() {
         if (me == null) {
             me = new GraphicController();
         }
