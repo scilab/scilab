@@ -116,8 +116,8 @@ public class TransformationManagerImpl implements TransformationManager {
 
     @Override
     public Transformation getInverseWindowTransformation() {
-        double w = canvas.getWidth() / 2;
-        double h = canvas.getHeight() / 2;
+        double w = (double)canvas.getWidth() / 2;
+        double h = (double)canvas.getHeight() / 2;
         try {
             return TransformationFactory.getAffineTransformation(
                        new Vector3d(w, h, 1),
