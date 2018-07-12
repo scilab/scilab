@@ -188,13 +188,13 @@ function [packages,categories_flat,categories] = atomsDESCRIPTIONget(update)
                 // Extract It
                 // ----------------------------------------
                 if LINUX | MACOSX | SOLARIS | BSD then
-                    extract_cmd = "gunzip "+ file_out;
+                    extract_cmd = "gunzip -f "+ file_out;
                 else
                     gzip_path = getshortpathname(fullpath(pathconvert(SCI+"/tools/gzip/gzip.exe",%F)));
                     if ~isfile(gzip_path) then
                         error(msprintf(gettext("%s: gzip not found.\n"), "atomsDESCRIPTIONget"));
                     end
-                    extract_cmd = """" + gzip_path + """" + " -d """ + file_out + """";
+                    extract_cmd = """" + gzip_path + """" + " -f -d """ + file_out + """";
                 end
 
                 [rep, stat ,err] = unix_g(extract_cmd);
