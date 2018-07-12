@@ -304,7 +304,7 @@ public class MarkSpriteFactory {
 
         public TriangleSpriteDrawer(Appearance appearance, int size) {
             super(appearance, size);
-            double tmpr = (double)(size / 2);
+            double tmpr = (double)size / 2;
 
             r = (int) (tmpr);
 
