@@ -2445,12 +2445,12 @@ template<> InternalType* sub_M_M<Double, Sparse, Double>(Double* _pL, Sparse* _p
         if (bComplex2)
         {
             std::complex<double> dbl = _pR->getImg(0, 0);
-            pOut->set(0, dbl.real() - pOut->get(0));
+            pOut->set(0, pOut->get(0) - dbl.real());
             pOut->setImg(0, pOut->getImg(0) - dbl.imag());
         }
         else
         {
-            pOut->set(0, pOut->get(0) - _pL->get(0, 0));
+            pOut->set(0, pOut->get(0) - _pR->get(0, 0));
         }
 
         return pOut;
@@ -2604,8 +2604,13 @@ template<> InternalType* sub_M_M<Sparse, Double, Double>(Sparse* _pL, Double* _p
         if (bComplex1)
         {
             std::complex<double> dbl = _pL->getImg(0, 0);
-            pOut->set(0, pOut->get(0) - dbl.real());
+            pOut->set(0, dbl.real() - pOut->get(0));
             pOut->setImg(0, dbl.imag() - pOut->getImg(0));
+        }
+        else if (bComplex2)
+        {
+            pOut->set(0, _pL->get(0, 0) - pOut->get(0));
+            pOut->setImg(0, - pOut->getImg(0));
         }
         else
         {

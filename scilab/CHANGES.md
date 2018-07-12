@@ -477,6 +477,7 @@ Known issues
 * [#15632](http://bugzilla.scilab.org/show_bug.cgi?id=15632): `x=[];x()=1` crashed Scilab.
 * [#15636](http://bugzilla.scilab.org/show_bug.cgi?id=15636): Clicking on its icon did not always give focus to Help browser
 * [#15648](http://bugzilla.scilab.org/show_bug.cgi?id=15648): `sparse([1 1],1,[-1 -1])` crashed scilab
+* [#15653](http://bugzilla.scilab.org/show_bug.cgi?id=15653): sparse - complex substraction was corrupted
 * [#15659](http://bugzilla.scilab.org/show_bug.cgi?id=15659): `plot(x,fun)` could be very slow and crash Scilab.
 * [#15670](http://bugzilla.scilab.org/show_bug.cgi?id=15670): `set(H, prop1,val1, prop2,val2, ..)`: Setting multiple properties for a vector of handles yielded an error.
 
