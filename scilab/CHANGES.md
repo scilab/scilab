@@ -473,6 +473,7 @@ Known issues
 * [#15630](http://bugzilla.scilab.org/show_bug.cgi?id=15630): `x(0:2)=1` did not raise an error and `x=1;x(0:1,1)` crashed Scilab.
 * [#15632](http://bugzilla.scilab.org/show_bug.cgi?id=15632): `x=[];x()=1` crashed Scilab.
 * [#15636](http://bugzilla.scilab.org/show_bug.cgi?id=15636): Clicking on its icon did not always give focus to Help browser
+* [#15659](http://bugzilla.scilab.org/show_bug.cgi?id=15659): `plot(x,fun)` could be very slow and crash Scilab.
 
 
 ### Bugs fixed in 6.0.1:
