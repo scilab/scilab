@@ -475,6 +475,7 @@ lib /DEF:"$(ProjectDir)functions_manager_import.def" /SUBSYSTEM:WINDOWS /MACHINE
     <ClInclude Include="includes\types\cpp_gateway_prototype.hxx" />
     <ClInclude Include="includes\types\c_gateway_prototype.h" />
     <ClInclude Include="includes\types\double.hxx" />
+    <ClInclude Include="includes\types\dtoa.h" />
     <ClInclude Include="includes\types\file.hxx" />
     <ClInclude Include="includes\types\function.hxx" />
     <ClInclude Include="includes\types\gatewaystruct.hxx" />
@@ -752,6 +753,7 @@ lib /DEF:"$(ProjectDir)functions_manager_import.def" /SUBSYSTEM:WINDOWS /MACHINE
     <ClCompile Include="src\c\operations\matrix_power.c" />
     <ClCompile Include="src\c\operations\matrix_transpose.c" />
     <ClCompile Include="src\c\operations\operations_tools.c" />
+    <ClCompile Include="src\c\types\dtoa.c" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\localization\src\localization.vcxproj">
