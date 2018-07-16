@@ -16,7 +16,6 @@
 #ifndef __H5DATA_HXX__
 #define __H5DATA_HXX__
 
-#include "H5Data.hxx"
 #include "H5Object.hxx"
 
 namespace org_modules_hdf5
@@ -72,15 +71,18 @@ protected:
         }
     }
 
-    int * getHypermatrix(void * pvApiCtx, const int position, int * parentList = 0, const int listPosition = 0, const bool flip = true) const
+    int *getHypermatrix(void *pvApiCtx, const int position, int *parentList = 0,
+                        const int listPosition = 0,
+                        const bool flip = true) const
     {
-        static const char * hypermat[3] = {"hm", "dims", "entries"};
+        static const char *hypermat[3] = {"hm", "dims", "entries"};
 
-        int * list = 0;
+        int *list = 0;
         SciErr err;
         if (parentList)
         {
-            err = createMListInList(pvApiCtx, position, parentList, listPosition, 3, &list);
+            err = createMListInList(pvApiCtx, position, parentList, listPosition, 3,
+                                    &list);
         }
         else
         {
@@ -89,20 +91,25 @@ protected:
 
         if (err.iErr)
         {
-            throw H5Exception(__LINE__, __FILE__, _("Cannot create an hypermatrix on the stack"));
+            throw H5Exception(__LINE__, __FILE__,
+                              _("Cannot create an hypermatrix on the stack"));
         }
 
-        err = createMatrixOfStringInList(pvApiCtx, position, list, 1, 1, 3, hypermat);
+        err = createMatrixOfStringInList(pvApiCtx, position, list, 1, 1, 3,
+                                         hypermat);
         if (err.iErr)
         {
-            throw H5Exception(__LINE__, __FILE__, _("Cannot create an hypermatrix on the stack"));
+            throw H5Exception(__LINE__, __FILE__,
+                              _("Cannot create an hypermatrix on the stack"));
         }
 
-        int * _dims = 0;
-        err = allocMatrixOfInteger32InList(pvApiCtx, position, list, 2, 1, (int)ndims, &_dims);
+        int *_dims = 0;
+        err = allocMatrixOfInteger32InList(pvApiCtx, position, list, 2, 1,
+                                           (int)ndims, &_dims);
         if (err.iErr)
         {
-            throw H5Exception(__LINE__, __FILE__, _("Cannot create an hypermatrix on the stack"));
+            throw H5Exception(__LINE__, __FILE__,
+                              _("Cannot create an hypermatrix on the stack"));
         }
 
         if (flip)
