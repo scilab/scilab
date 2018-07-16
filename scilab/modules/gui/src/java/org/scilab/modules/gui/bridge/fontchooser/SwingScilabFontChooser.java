@@ -88,7 +88,7 @@ public class SwingScilabFontChooser extends JDialog implements SimpleFontChooser
     private JCheckBox scinotesCompatibleCheckbox;
 
     private final JLabel preview;
-    private final String previewText = "The Quick Brown Fox Jumps Over The Lazy Dog";
+    private static final String PREVIEW_TEXT = "The Quick Brown Fox Jumps Over The Lazy Dog";
 
     /* User choices */
     private Font selectedFont;
@@ -194,7 +194,7 @@ public class SwingScilabFontChooser extends JDialog implements SimpleFontChooser
         /* Preview panel */
         JPanel previewPanel = new JPanel(new BorderLayout());
         previewPanel.setBorder(new TitledBorder(new EtchedBorder(), Messages.gettext("Preview")));
-        preview = new JLabel(previewText, JLabel.CENTER);
+        preview = new JLabel(PREVIEW_TEXT, JLabel.CENTER);
         preview.setBackground(Color.white);
         preview.setForeground(Color.black);
         preview.setOpaque(true);
