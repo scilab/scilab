@@ -37,7 +37,7 @@ public abstract class GlobalMouseEventWatcher implements AWTEventListener {
     private MouseEvent lastMouse;
 
     // Match through Canonical name to have both GLCanvas and GLJPanel wrapper.
-    private final String ScilabOpenGLComponentCanonicalName = "org.scilab.modules.gui.bridge.canvas.SwingScilabCanvasImpl";
+    private static final String ScilabOpenGLComponentCanonicalName = "org.scilab.modules.gui.bridge.canvas.SwingScilabCanvasImpl";
 
     /**
      * Constructor.
