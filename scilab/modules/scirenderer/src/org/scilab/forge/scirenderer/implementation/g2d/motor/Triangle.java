@@ -400,7 +400,7 @@ public class Triangle extends ConvexObject {
 
         if (isNull(a - 1)) {
             // We are on P0
-            if (weight != -1) {
+            if (Double.compare(weight, -1) != 0) {
                 list.add(t);
                 return list;
             } else {
@@ -413,7 +413,7 @@ public class Triangle extends ConvexObject {
 
         if (isNull(b)) {
             // We are on P2
-            if (weight != -1) {
+            if (Double.compare(weight, -1) != 0) {
                 list.add(t);
                 return list;
             } else {
