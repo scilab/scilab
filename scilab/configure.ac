@@ -951,11 +951,9 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
                 AC_SUBST(SKINLF)
 
                 # JOGL 2
-                AC_JAVA_CHECK_JAR([jogl2],[javax.media.opengl.glu.GLUnurbs],[Scilab 3D rendering - Version 2.0])
+                AC_JAVA_CHECK_JAR([jogl2],[javax.media.opengl.glu.GLUnurbs],[Scilab 3D rendering - Version 2.0], [], [], [2.2])
                 JOGL2=$PACKAGE_JAR_FILE
                 AC_SUBST(JOGL2)
-
-                AC_JAVA_CHECK_VERSION_MANIFEST([jogl2],$JOGL2,[2.2],[Specification-Version])
 
                 if test "$MACOSX" = 1; then
                    echo "Check of the presence of libjogl.jnilib and libjogl_awt.jnilib disabled under Mac OS X"
@@ -1017,12 +1015,12 @@ interface for JOGL2 - or libGL (OpenGL library) are installed and if the version
                 AC_SUBST(LUCENE)
 
                 # Lucene Apache - analyzers-common
-                AC_JAVA_CHECK_JAR([lucene-analyzers-common],[org.apache.lucene.analysis.standard.StandardAnalyzer],[StandardAnalyzer])
+                AC_JAVA_CHECK_JAR([lucene-analyzers-common],[org.apache.lucene.analysis.standard.StandardAnalyzer],[Lucene StandardAnalyzer])
                 LUCENE_ANALYZER=$PACKAGE_JAR_FILE
                 AC_SUBST(LUCENE_ANALYZER)
 
                 # Lucene Apache - lucene-queryparser
-                AC_JAVA_CHECK_JAR([lucene-queryparser],[org.apache.lucene.queryparser.classic.QueryParser],[QueryParser])
+                AC_JAVA_CHECK_JAR([lucene-queryparser],[org.apache.lucene.queryparser.classic.QueryParser],[Lucene QueryParser])
                 LUCENE_PARSER=$PACKAGE_JAR_FILE
                 AC_SUBST(LUCENE_PARSER)
 

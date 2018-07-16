@@ -17,7 +17,7 @@ dnl
 # AC_JAVA_COMPILE_CHECKER_CLASS (internally used)
 #
 # Compile a shared conftestSharedChecker.java class that will be used by 
-# AC_JAVA_CHECK_PACKAGE later. Using only one shared class to check all 
+# AC_JAVA_CHECK_JAR later. Using only one shared class to check all 
 # java package slightly reduce the configure time.
 #
 # Arguments: None
@@ -86,26 +86,37 @@ public class conftestSharedChecker {
         String path = pathURL.substring(pathURL.indexOf(':') + 1);
         System.err.println("found: " + path);
         
-        if (argv.length > 3) {
-            checkVersion(klass, argv);
+        String version;
+        if (!"".equals(argv[[3]])) {
+            version = checkVersion(klass, argv);
+        } else {
+            version = klass.getPackage().getSpecificationVersion();
         }
         
-        System.out.println(path);
+        System.out.println(path + " " + version);
     }
 
-    private static void checkVersion(Class<?> klass, String[[]] argv) throws SecurityException, IllegalArgumentException {
+    private static String checkVersion(Class<?> klass, String[[]] argv) throws SecurityException, IllegalArgumentException {
         final String versionMethod = argv[[3]];
         final String expected = argv[[4]];
         final String atLeastOrEqual;
-        if (argv.length > 5)
+        if (!"".equals(argv[[5]])) {
             atLeastOrEqual = argv[[5]];
-        else
+        } else {
             atLeastOrEqual = "<=";
+        }
         
+        String value = "";
+        if (versionMethod.isEmpty()) {
+            value = klass.getPackage().getSpecificationVersion();
+            compareAndDisplay(atLeastOrEqual, expected, value);
+            return value;
+        }
+
         try {
             try {
                 Field field = klass.getField(versionMethod);
-                Object value = field.get(null);
+                value = String.valueOf(field.get(null));
                 compareAndDisplay(atLeastOrEqual, expected, value);
             } catch (NoSuchFieldException fe) {
                 Method method = null;
@@ -117,10 +128,10 @@ public class conftestSharedChecker {
                 }
                 
                 try {
-                    Object value = method.invoke(null);
+                    value = String.valueOf(method.invoke(null));
                     compareAndDisplay(atLeastOrEqual, expected, value);
                 } catch (NullPointerException ex) {
-                    Object value = method.invoke(klass.newInstance());
+                    value = String.valueOf(method.invoke(klass.newInstance()));
                     compareAndDisplay(atLeastOrEqual, expected, value);
                 }
             }
@@ -134,10 +145,11 @@ public class conftestSharedChecker {
             System.err.println(ex);
             System.exit(-2);
         }
+        return value;
     }
 
-    private static void compareAndDisplay(String atLeastOrEqual, String expected, Object value) {
-        int cmp = compare(expected, value.toString());
+    private static void compareAndDisplay(String atLeastOrEqual, String expected, String value) {
+        int cmp = compare(expected, value);
         
         switch(atLeastOrEqual) {
             case ">":
@@ -215,7 +227,7 @@ EOF
 #   2. name of the class to test
 #   3. used by (Comment)
 #   4. (optional) warn if "yes" else error on not found
-#   5. (optional, needed to check the version) version field or method
+#   5. (optional, needed to check the version) version field or method, SpecificationVersion by default
 #   6. (optional, needed to check the version) version value to check
 #   7. (optional) "=" or "<=" to compare version
 #------------------------------------------------------------------------
@@ -235,10 +247,13 @@ AC_DEFUN([AC_JAVA_CHECK_JAR], [
 
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
-    cmd="$JAVA conftestSharedChecker $1 $2 $jar_resolved $5 $6 $7"
+    echo "CLASSPATH="$CLASSPATH >&AS_MESSAGE_LOG_FD
+    cmd="$JAVA conftestSharedChecker \"$1\" \"$2\" \"$jar_resolved\" \"$5\" \"$6\" \"$7\""
     if (echo $cmd >&AS_MESSAGE_LOG_FD ; eval $cmd >conftestSharedChecker.java.output 2>&AS_MESSAGE_LOG_FD); then
-        PACKAGE_JAR_FILE=$(tail -n 1 conftestSharedChecker.java.output);
-        AC_MSG_RESULT([$PACKAGE_JAR_FILE])
+        read PACKAGE_JAR_FILE PACKAGE_JAR_VERSION << EOF
+$(tail -n 1 conftestSharedChecker.java.output)
+EOF
+        AC_MSG_RESULT([ $PACKAGE_JAR_FILE $PACKAGE_JAR_VERSION ])
         echo "yes" >&AS_MESSAGE_LOG_FD
         # append the found file to the classpath to manage jar dependency
         ac_java_classpath="$ac_java_classpath:$PACKAGE_JAR_FILE"
@@ -253,56 +268,5 @@ AC_DEFUN([AC_JAVA_CHECK_JAR], [
     if test -f conftestSharedChecker.java.output; then
         rm conftestSharedChecker.java.output
     fi
-])
-
-#------------------------------------------------------------------------
-# AC_JAVA_CHECK_VERSION_MANIFEST(NAME, JAR, MIN_VERSION, [PRE_PROCESSING], [GREATER_OR_EQUALS])
-#
-# Check if the minimal version of a software/package is available or not.
-# Note that since java does not provide an universal mechanism to detect
-# the version of a package, we assume that the "Specification-Version" of
-# the MANIFEST.MF is correct.
-#
-# Arguments:
-#    1. The name of the package (only used in the display of feedbacks)
-#    2. The name of the jar files used to build against
-#    3. What is the minimal version expected
-#    4. Manifest attribute name
-#    5. Specify if we want the exact version or greater. (equals or greater by
-#      default).
-#
-#------------------------------------------------------------------------
-
-AC_DEFUN([AC_JAVA_CHECK_VERSION_MANIFEST], [
-    AC_MSG_CHECKING([minimal version ($4 $3) of $1])
-    export JARFILE=$2;
-    if test "x$5" == "x"; then
-    AC_JAVA_TRY_COMPILE([import java.io.IOException;
-import java.util.jar.JarFile;], [String minVersion="$3";
-        try {
-            String version = new JarFile(System.getenv("JARFILE")).getManifest().getMainAttributes().getValue("$4");
-            System.out.println(version);
-            if (compare(minVersion, version) > 0) {
-                System.exit(-1);
-            }
-        } catch (IOException e) {
-            System.err.println(e.getMessage());
-            System.exit(1);
-        } ], "yes", echo "yes" , AC_MSG_ERROR([Wrong version of $1. Expected at least $3. Found $STDOUT]))
-    else
-    AC_JAVA_TRY_COMPILE([import java.io.IOException;
-import java.util.jar.JarFile;], [String minVersion="$3";
-        try {
-            String version = new JarFile(System.getenv("JARFILE")).getManifest().getMainAttributes().getValue("$4");
-            System.out.println("$4" + ": " + version);
-            if (compare(minVersion, version) != 0) {
-                System.exit(-1);
-            }
-        } catch (IOException e) {
-            System.err.println(e.getMessage());
-            System.exit(1);
-        } ], "yes", echo "yes" , AC_MSG_ERROR([Wrong version of $1. Expected exact version $4. Found $STDOUT]))
-    fi
-    unset JARFILE
 ])
 
