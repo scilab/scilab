@@ -127,12 +127,11 @@ public class XmlLoader extends DefaultHandler {
         }
 
         // clean model before leave.
-        Set<String> entries = models.keySet();
-        for (String key : entries) {
-            HashMap<String, Entry<Integer, Map<String, String>>> map = models.get(key);
-            Set<String> entries2 = map.keySet();
-            for (String key2 : entries2) {
-                deleteObject(map.get(key2).getKey());
+        Set<Entry<String, HashMap<String, Entry<Integer, Map<String, String>>>>> modelsEntries = models.entrySet();
+        for (Entry<String, HashMap<String, Entry<Integer, Map<String, String>>>> model : modelsEntries) {
+            Set<Entry<String, Entry<Integer, Map<String, String>>>> objectEntries = model.getValue().entrySet();
+            for (Map.Entry<String, Entry<Integer, Map<String, String>>> object : objectEntries) {
+                deleteObject(object.getValue().getKey());
             }
         }
 
