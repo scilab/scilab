@@ -227,8 +227,8 @@ public class ScilabXMLUtilities {
             parent.appendChild(elem);
         }
 
-        for (String name : map.keySet()) {
-            elem.setAttribute(name, map.get(name).toString());
+        for (Map.Entry<String, Object> name : map.entrySet()) {
+            elem.setAttribute(name.getKey(), name.getValue().toString());
         }
 
         return elem;
@@ -279,8 +279,8 @@ public class ScilabXMLUtilities {
      */
     public static Element createNode(Document doc, Element parent, String nodeName, Map<String, Object> map) {
         Element elem = doc.createElement(nodeName);
-        for (String name : map.keySet()) {
-            elem.setAttribute(name, map.get(name).toString());
+        for (Map.Entry<String, Object> name : map.entrySet()) {
+            elem.setAttribute(name.getKey(), name.getValue().toString());
         }
         parent.appendChild(elem);
 
