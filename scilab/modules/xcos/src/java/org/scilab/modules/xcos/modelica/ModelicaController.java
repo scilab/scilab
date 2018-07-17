@@ -478,11 +478,11 @@ public final class ModelicaController {
          */
 
         // iterate on derivatives only
-        for (String var : derivatives.keySet()) {
+        for (Map.Entry<String, Terminal> var : derivatives.entrySet()) {
             assert derivatives.containsKey(var);
             assert states.containsKey(var);
 
-            final Terminal derivative = derivatives.get(var);
+            final Terminal derivative = var.getValue();
             final Terminal state = states.get(var);
 
             TerminalAccessor.WEIGHT.setData(stateValue, state);
