@@ -198,9 +198,6 @@
     <ClCompile Include="mtran.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="nearfloat.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="orthes.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -528,9 +525,6 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="mtran.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="nearfloat.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="orthes.f">
