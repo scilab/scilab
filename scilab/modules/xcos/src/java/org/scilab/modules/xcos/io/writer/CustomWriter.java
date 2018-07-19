@@ -37,7 +37,6 @@ public class CustomWriter extends ScilabWriter {
 
     @Override
     public void write(long uid, Kind kind) throws XMLStreamException {
-        String[] str = new String[1];
         int[] integer = new int[1];
         VectorOfDouble vDouble = new VectorOfDouble();
         VectorOfScicosID children = new VectorOfScicosID();
