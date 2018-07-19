@@ -54,7 +54,7 @@ public final class DrawTools {
         double[] v0 = new double[] {t.vertices[0].getX(), t.vertices[0].getY()};
         double[] v1 = new double[] {t.vertices[1].getX(), t.vertices[1].getY()};
         double[] v2 = new double[] {t.vertices[2].getX(), t.vertices[2].getY()};
-        double[] pv0 = get2DProjection(v0[0], v0[1], v1[0], v1[1], v2[0], v2[1]);
+      //double[] pv0 = get2DProjection(v0[0], v0[1], v1[0], v1[1], v2[0], v2[1]);
         double[] pv1 = get2DProjection(v1[0], v1[1], v0[0], v0[1], v2[0], v2[1]);
         double[] pv2 = get2DProjection(v2[0], v2[1], v0[0], v0[1], v1[0], v1[1]);
 
