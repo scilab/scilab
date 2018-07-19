@@ -2220,7 +2220,6 @@ public class XcosDiagram extends ScilabGraph {
     private String getToolTipForCell(final BasicLink o) {
         JavaController controller = new JavaController();
         long[] longValue = {0l};
-        boolean[] boolValue = {false};
         String[] strValue = {""};
         VectorOfInt intVecValue = new VectorOfInt();
 
