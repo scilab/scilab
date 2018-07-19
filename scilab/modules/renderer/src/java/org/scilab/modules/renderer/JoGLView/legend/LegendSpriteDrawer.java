@@ -76,7 +76,6 @@ public class LegendSpriteDrawer extends TextObjectSpriteDrawer implements Textur
      */
     private String[][] computeTextData(final Legend legend) {
         String[] textString = legend.getTextStrings();
-        Integer[] dimensions = legend.getTextArrayDimensions();
 
         String[][] texts = new String[legend.getLinks().length][1];
 
