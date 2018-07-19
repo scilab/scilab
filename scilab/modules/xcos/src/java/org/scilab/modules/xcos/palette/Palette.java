@@ -558,8 +558,6 @@ public final class Palette {
         graphComponent.refresh();
 
         final mxRectangle bounds = graph.getPaintBounds(new Object[] {block});
-        final double width = bounds.getWidth();
-        final double height = bounds.getHeight();
 
         final BufferedImage image = mxCellRenderer.createBufferedImage(
                                         graph, null, 2 * XcosConstants.PALETTE_BLOCK_ICON_RATIO, graphComponent.getBackground(),
