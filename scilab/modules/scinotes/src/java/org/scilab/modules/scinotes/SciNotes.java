@@ -891,7 +891,7 @@ public class SciNotes extends SwingScilabDockablePanel {
     public String askForClosing() {
         int numberOfTab = getTabPane().getTabCount();
         boolean isContentModified = false;
-        for (int i = 0; i < getTabPane().getTabCount(); i++) {
+        for (int i = 0; i < numberOfTab; i++) {
             ScilabEditorPane textPaneAt = getTextPane(i);
             if (textPaneAt != null && ((ScilabDocument) textPaneAt.getDocument()).isContentModified()) {
                 isContentModified = true;
