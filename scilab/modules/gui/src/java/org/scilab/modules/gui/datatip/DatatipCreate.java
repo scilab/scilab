@@ -88,7 +88,6 @@ public class DatatipCreate {
      */
     public static int createDatatipProgramIndex(int polylineUid, int indexPoint) {
         double[] DataX = (double[]) PolylineData.getDataX(polylineUid);
-        double[] DataY = (double[]) PolylineData.getDataY(polylineUid);
 
         if (indexPoint > DataX.length) {
             indexPoint = DataX.length;
