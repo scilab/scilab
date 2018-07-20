@@ -16,4 +16,5 @@
 // <-- Short Description -->
 // sparse([1 1],1,[-1 -1])  crashes scilab
 
-assert_checkerror("sparse([1 1],1,[-1 -1])","sparse: Wrong values for input argument #3: Positive integers expected.");
+errMsg = _("%s: Wrong values for input argument #%d: Positive integers expected.\n")
+assert_checkerror("sparse([1 1],1,[-1 -1])",msprintf(errMsg, "sparse", 3));
