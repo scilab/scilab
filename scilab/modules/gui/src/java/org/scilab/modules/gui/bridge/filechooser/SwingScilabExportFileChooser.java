@@ -291,7 +291,6 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
      */
     public void vectorialExport(String userExtension) {
         SwingScilabDockablePanel tab = (SwingScilabDockablePanel) SwingView.getFromId(figureUID);
-        Component c = DrawerVisitor.getVisitor(figureUID).getComponent();
         ExportData exportData = new ExportData(figureUID, this.exportName, userExtension, null);
 
         String actualFilename = exportData.getExportName();
