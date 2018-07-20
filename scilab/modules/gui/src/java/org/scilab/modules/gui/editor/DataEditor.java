@@ -241,7 +241,7 @@ public class DataEditor {
 
                 //Current point
                 Vector3d planePoint = new Vector3d(datax[picked.point], datay[picked.point], dataz[picked.point]);
-                Vector3d planeNorm = new Vector3d(0.0, 0.0, 1.0);
+                //Vector3d planeNorm = new Vector3d(0.0, 0.0, 1.0);
                 //2d coords for current click
                 double[] pos = {newClick[0].doubleValue(), newClick[1].doubleValue(), 1.0};
                 double[] c2d = CallRenderer.get2dViewFromPixelCoordinates(axes, pos);
