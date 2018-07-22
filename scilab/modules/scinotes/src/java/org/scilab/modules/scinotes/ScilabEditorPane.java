@@ -1673,8 +1673,6 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         if (pattern != null) {
             removeHighlightedWords();
             int first = -1;
-            String text = ((ScilabDocument) getDocument()).getText();
-            Matcher matcher = pattern.matcher(text);
 
             Highlighter highlighter = getHighlighter();
             List<Integer[]> positions = SearchManager.findToken((ScilabDocument) getDocument(), tok, lexer, pattern);
