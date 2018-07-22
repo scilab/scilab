@@ -203,7 +203,6 @@ public class AxesDrawer {
                 Double[] margins = axes.getMargins();
                 // m is a copy of margins
                 Double[] mt = new Double[] { 0., 0., 0., 0. };
-                Double[] ml = new Double[] { 0., 0., 0., 0. };
                 Double[] ma = new Double[] { 0., 0., 0., 0. };
                 Double[] m = new Double[] { 0., 0., 0., 0. };
                 AxisProperty.AxisLocation xloc = axes.getXAxis().getAxisLocation();
