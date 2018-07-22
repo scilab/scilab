@@ -289,7 +289,6 @@ public class SpritedRectangle extends ConvexObject {
     @Override
     public void draw(Graphics2D g2d) {
         if (sprite != null) {
-            Path2D contour = getProjectedContour();
             AffineTransform oldTransf = g2d.getTransform();
             Stroke oldStroke = g2d.getStroke();
 
