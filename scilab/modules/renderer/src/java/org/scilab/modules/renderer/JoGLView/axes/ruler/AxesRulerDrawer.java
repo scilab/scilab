@@ -331,7 +331,6 @@ public class AxesRulerDrawer {
     public void drawRuler(Axes axes, AxesDrawer axesDrawer, ColorMap colorMap, DrawingTools drawingTools) throws SciRendererException {
         Appearance gridAppearance = new Appearance();
 
-        Double[] bounds = axes.getDisplayedBounds();
         double[] matrix = drawingTools.getTransformationManager().getModelViewStack().peek().getMatrix();
 
         RulerDrawer[] rulerDrawers = rulerDrawerManager.get(axes);
