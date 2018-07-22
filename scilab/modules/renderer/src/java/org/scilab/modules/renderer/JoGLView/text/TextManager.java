@@ -93,13 +93,6 @@ public class TextManager {
         Integer parentAxesId = text.getParentAxes();
         Axes parentAxes = (Axes) GraphicController.getController().getObjectFromId(parentAxesId);
         if (parentAxes != null) {
-            double[][] factors = parentAxes.getScaleTranslateFactors();
-            Double[] pos = text.getPosition();
-            pos[0] = pos[0] * factors[0][0] + factors[1][0];
-            pos[1] = pos[1] * factors[0][1] + factors[1][1];
-            pos[2] = pos[2] * factors[0][2] + factors[1][2];
-
-            Vector3d textPosition = new Vector3d(pos);
 
             /* Compute the text box vectors and the text box to texture dimension ratios */
             Vector3d[] textBoxVectors =  computeTextBoxVectors(projection, text, texture.getDataProvider().getTextureSize(), parentAxes);
