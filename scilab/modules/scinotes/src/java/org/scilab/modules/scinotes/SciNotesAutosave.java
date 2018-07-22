@@ -172,7 +172,6 @@ public class SciNotesAutosave implements ActionListener {
         SciNotesOptions.Autosave as = SciNotesOptions.getSciNotesAutosave();
         if (!isChecking() && as.autoSave && checkSaveDir()) {
             boolean saved = false;
-            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HHmmss");
             for (SciNotes ed : SciNotes.getSciNotesList()) {
                 int n = ed.getTabPane().getTabCount();
                 for (int i = 0; i < n; i++) {
