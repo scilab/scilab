@@ -17,5 +17,5 @@
 // <-- Short Description -->
 // delip(1,4) terminates with neither output nor error (regression)
 
-
-assert_checkerror('delip(1,4)','delip: Wrong value for input argument #2: Must be in the interval [-1, 1].');
+errMsg=sprintf(_('%s: Wrong value for input argument #%d: Must be in the interval [%d, %d].\n'), "delip", 2, -1, 1);
+assert_checkerror('delip(1,4)',errMsg);
