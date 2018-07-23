@@ -185,7 +185,6 @@ public class Axes extends ContentLayout {
         JLabel lAxesBounds = new JLabel();
         final JPanel pAxesBounds = new JPanel();
         final JToggleButton bAxesBounds = new JToggleButton();
-        final JComboBox cAutoScale = new JComboBox();
         JLabel lAxesBoundsX = new JLabel();
         JLabel lAxesBoundsY = new JLabel();
         JLabel lAxesBoundsHeight = new JLabel();
