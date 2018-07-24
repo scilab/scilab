@@ -347,11 +347,8 @@ Obsolete functions or features
 * `dgettext` is obsolete and will be removed in Scilab 6.1. Please use `gettext(domain, text)` instead.
 * `denom` is obsolete and will be removed in Scilab 6.1. Please use the `.den` rational attribute instead.
 * `numer` is obsolete and will be removed in Scilab 6.1. Please use the `.num` rational attribute instead.
-<<<<<<< HEAD
 * `with_tk` is obsolete and will be removed in Scilab 6.1. Please use the `with_module` instead.
-=======
 * `datatipToggle` is obsolete and will be removed in Scilab 6.1. Please use the `datatipManagerMode` instead.
->>>>>>> 08a3f51... * Bug 15615: datatipToggle() declared obsolete
 
 
 Removed Functions
