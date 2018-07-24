@@ -56,6 +56,6 @@ public class BaseProperties extends SimpleSection {
         int row = 0;
         final int leftmargin = 16; //to inner components
         int column = 0; //first column
-        graphicObject.visible(sectionPanel, row++, column, leftmargin, objectID);
+        graphicObject.visible(sectionPanel, row, column, leftmargin, objectID);
     }
 }
