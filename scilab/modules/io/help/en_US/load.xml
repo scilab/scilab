@@ -155,6 +155,17 @@
                 where "/path/to/lib" is replaced with the actual pathname of the lib file.
             </para>
         </refsect3>
+        <warning>
+            <para>
+                Scilab 6 can load data saved with Scilab>=5.4 in SOD format.
+            </para>
+            <para>
+                Data saved in the old Scilab&lt;5.4 format
+                <ulink url="http://bugzilla.scilab.org/14840">can't be directly loaded</ulink>:
+                Scilab 5.5.2 must be used as an intermediate to load them from the old format
+                and save them to the SOD format, which can be loaded in Scilab 6.
+            </para>
+        </warning>
     </refsection>
     <refsection>
         <title>Examples</title>
