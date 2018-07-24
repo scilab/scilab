@@ -57,7 +57,6 @@ public class BaseProperties extends SimpleSection {
     */
     @Override
     public final void initComponents(Integer objectID) {
-        String[] messageOffOn = new String[] {MessagesGED.off , MessagesGED.on};
         int row = 0;
         final int leftmargin = 16; //to inner components
         int column = 0; //first column
