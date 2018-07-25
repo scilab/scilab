@@ -45,7 +45,7 @@ public class Imageplot extends ContentLayout {
         final JComboBox cDataMapping = new JComboBox();
         this.addLabelComboBox(panel, lDataMapping, MessagesGED.data_mapping,
                               cDataMapping, new String[] {MessagesGED.scaled, MessagesGED.direct},
-                              LEFTMARGIN, COLUMN, ROW++);
+                              LEFTMARGIN, COLUMN, ROW);
         cDataMapping.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
