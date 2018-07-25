@@ -55,7 +55,7 @@ public class ClippableContouredObject extends ContentLayout {
         cClipState = new JComboBox();
         addLabelComboBox(panel, lClipState, MessagesGED.clip_state,
                          cClipState, new String[] {MessagesGED.off, MessagesGED.clipgrf, MessagesGED.on},
-                         LEFTMARGIN, COLUMN, ROW++);
+                         LEFTMARGIN, COLUMN, ROW);
         cClipState.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
