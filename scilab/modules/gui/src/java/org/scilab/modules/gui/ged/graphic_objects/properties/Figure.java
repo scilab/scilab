@@ -71,7 +71,7 @@ public class Figure extends ContentLayout {
 
         addLabelComboBox(panel, lAliasing, MessagesGED.anti_alising,
                          cAliasing, new String[] {MessagesGED.off , MessagesGED.on},
-                         LEFTMARGIN, COLUMN, ROW++);
+                         LEFTMARGIN, COLUMN, ROW);
         cAliasing.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -101,7 +101,7 @@ public class Figure extends ContentLayout {
 
         addLabelComboBox(panel, lResize, MessagesGED.auto_resize,
                          cResize, new String[] {MessagesGED.off , MessagesGED.on},
-                         LEFTMARGIN, COLUMN, ROW++);
+                         LEFTMARGIN, COLUMN, ROW);
         cResize.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -217,7 +217,7 @@ public class Figure extends ContentLayout {
         cCloseRequestFcn = new JTextField();
 
         addLabelTextField(panel, lCloseRequestFcn, MessagesGED.close_request_fcn,
-                          cCloseRequestFcn, true, LEFTMARGIN, COLUMN, ROW++);
+                          cCloseRequestFcn, true, LEFTMARGIN, COLUMN, ROW);
         cCloseRequestFcn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -260,7 +260,7 @@ public class Figure extends ContentLayout {
         JComboBox cEventHandler = new JComboBox();
         addLabelComboBox(panel, lEventHandler, MessagesGED.event_handler,
                          cEventHandler, new String[] {MessagesGED.off, MessagesGED.function},
-                         LEFTMARGIN, COLUMN, ROW++);
+                         LEFTMARGIN, COLUMN, ROW);
         cEventHandler.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -284,7 +284,7 @@ public class Figure extends ContentLayout {
         JLabel lFigureID = new JLabel();
         final JTextField cFigureID = new JTextField();
         addLabelTextField(panel, lFigureID, MessagesGED.figure_id,
-                          cFigureID, true, LEFTMARGIN, COLUMN, ROW++);
+                          cFigureID, true, LEFTMARGIN, COLUMN, ROW);
         cFigureID.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -321,7 +321,7 @@ public class Figure extends ContentLayout {
         JLabel lFigureName = new JLabel();
         final JTextField cFigureName = new JTextField();
         addLabelTextField(panel, lFigureName, MessagesGED.figure_name,
-                          cFigureName, true, LEFTMARGIN, COLUMN, ROW++);
+                          cFigureName, true, LEFTMARGIN, COLUMN, ROW);
         cFigureName.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -537,7 +537,7 @@ public class Figure extends ContentLayout {
         JLabel lInfoMessage = new JLabel();
         final JTextField cInfoMessage = new JTextField();
         addLabelTextField(panel, lInfoMessage, MessagesGED.info_message,
-                          cInfoMessage, true, LEFTMARGIN, COLUMN, ROW++);
+                          cInfoMessage, true, LEFTMARGIN, COLUMN, ROW);
         cInfoMessage.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -576,7 +576,7 @@ public class Figure extends ContentLayout {
 
         addLabelComboBox(panel, lImmediateDrawing, MessagesGED.immediate_drawing,
                          cImmediateDrawing, new String[] {MessagesGED.off , MessagesGED.on},
-                         LEFTMARGIN, COLUMN, ROW++);
+                         LEFTMARGIN, COLUMN, ROW);
         cImmediateDrawing.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -610,7 +610,7 @@ public class Figure extends ContentLayout {
                                         };
         addLabelComboBox(panel, lPixelDrawingMode, MessagesGED.pixel_drawing_mode,
                          cPixelDrawingMode, options,
-                         LEFTMARGIN, COLUMN, ROW++);
+                         LEFTMARGIN, COLUMN, ROW);
         cPixelDrawingMode.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -639,7 +639,7 @@ public class Figure extends ContentLayout {
         final JTextField cResizeFcn = new JTextField();
 
         addLabelTextField(panel, lResizeFcn, MessagesGED.resize_fcn,
-                          cResizeFcn, true, LEFTMARGIN, COLUMN, ROW++);
+                          cResizeFcn, true, LEFTMARGIN, COLUMN, ROW);
         cResizeFcn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -677,7 +677,7 @@ public class Figure extends ContentLayout {
 
         addLabelComboBox(panel, lRotationStyle, MessagesGED.rotation_style,
                          cRotationStyle, new String[] {MessagesGED.unary, MessagesGED.multiple},
-                         LEFTMARGIN, COLUMN, ROW++);
+                         LEFTMARGIN, COLUMN, ROW);
         cRotationStyle.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
