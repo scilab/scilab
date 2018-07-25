@@ -50,7 +50,7 @@ public class GraphicObject extends ContentLayout {
         JLabel lTag = new JLabel();
         final JTextField cTag = new JTextField();
         addLabelTextField(panel, lTag, MessagesGED.tag,
-                          cTag, true, LEFTMARGIN, COLUMN, ROW++);
+                          cTag, true, LEFTMARGIN, COLUMN, ROW);
         cTag.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -110,7 +110,7 @@ public class GraphicObject extends ContentLayout {
         final JComboBox cVisible = new JComboBox();
         String[] messageOffOn = new String[] {MessagesGED.off , MessagesGED.on};
         addLabelComboBox(panel, lVisible, MessagesGED.visible,
-                         cVisible, messageOffOn, LEFTMARGIN, COLUMN, ROW++);
+                         cVisible, messageOffOn, LEFTMARGIN, COLUMN, ROW);
         cVisible.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
