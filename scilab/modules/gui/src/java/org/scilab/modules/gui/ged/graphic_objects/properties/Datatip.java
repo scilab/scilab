@@ -116,7 +116,7 @@ public class Datatip extends ContentLayout {
         JLabel lBoxMode = new JLabel();
         final JComboBox cBoxMode = new JComboBox();
         addLabelComboBox(panel, lBoxMode, MessagesGED.box_mode,
-                         cBoxMode, messageOffOn, LEFTMARGIN, COLUMN, ROW++);
+                         cBoxMode, messageOffOn, LEFTMARGIN, COLUMN, ROW);
         cBoxMode.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -259,7 +259,7 @@ public class Datatip extends ContentLayout {
         JLabel lTipLabelMode = new JLabel();
         final JComboBox cTipLabelMode = new JComboBox();
         addLabelComboBox(panel, lTipLabelMode, MessagesGED.label_mode,
-                         cTipLabelMode, messageOffOn, LEFTMARGIN, COLUMN, ROW++);
+                         cTipLabelMode, messageOffOn, LEFTMARGIN, COLUMN, ROW);
         cTipLabelMode.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -289,7 +289,7 @@ public class Datatip extends ContentLayout {
                                          "bottom_left", "bottom_right"
                                         };
         addLabelComboBox(panel, lTipOrientation, MessagesGED.orientation,
-                         cTipOrientation, options, LEFTMARGIN, COLUMN, ROW++);
+                         cTipOrientation, options, LEFTMARGIN, COLUMN, ROW);
         cTipOrientation.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
