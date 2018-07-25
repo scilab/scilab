@@ -60,7 +60,7 @@ public class CameraProperties extends ContentLayout {
         final JComboBox cCubeScaling = new JComboBox();
         addLabelComboBox(panel, lCubeScaling, MessagesGED.cube_scaling,
                          cCubeScaling, new String[] {MessagesGED.off , MessagesGED.on},
-                         LEFTMARGIN, COLUMN, ROW++);
+                         LEFTMARGIN, COLUMN, ROW);
         cCubeScaling.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -89,7 +89,7 @@ public class CameraProperties extends ContentLayout {
 
         addLabelComboBox(panel, lIsoView, MessagesGED.isometric_view,
                          cIsoView, new String[] {MessagesGED.off , MessagesGED.on},
-                         LEFTMARGIN, COLUMN, ROW++);
+                         LEFTMARGIN, COLUMN, ROW);
         cIsoView.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -212,7 +212,7 @@ public class CameraProperties extends ContentLayout {
 
         addLabelComboBox(panel, lView, MessagesGED.view,
                          cView, new String[] {MessagesGED._2d , MessagesGED._3d},
-                         LEFTMARGIN, COLUMN, ROW++);
+                         LEFTMARGIN, COLUMN, ROW);
         cView.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
