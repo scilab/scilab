@@ -67,7 +67,7 @@ public class Legend extends ContentLayout {
                                          "by_coordinates"
                                         };
         addLabelComboBox(panel, lLocation, MessagesGED.location,
-                         cLocation, options, LEFTMARGIN, COLUMN, ROW++);
+                         cLocation, options, LEFTMARGIN, COLUMN, ROW);
         cLocation.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
