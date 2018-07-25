@@ -103,7 +103,7 @@ public class ContouredObject extends ContentLayout {
         final JComboBox cFillMode = new JComboBox();
         addLabelComboBox(panel, lFillMode, MessagesGED.fill_mode,
                          cFillMode, new String[] {MessagesGED.off , MessagesGED.on},
-                         LEFTMARGIN, COLUMN, ROW++);
+                         LEFTMARGIN, COLUMN, ROW);
         cFillMode.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -212,7 +212,7 @@ public class ContouredObject extends ContentLayout {
         final JComboBox cLineMode = new JComboBox();
         addLabelComboBox(panel, lLineMode, MessagesGED.line_mode,
                          cLineMode, new String[] {MessagesGED.off , MessagesGED.on},
-                         LEFTMARGIN, COLUMN, ROW++);
+                         LEFTMARGIN, COLUMN, ROW);
         cLineMode.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -243,7 +243,7 @@ public class ContouredObject extends ContentLayout {
                                         };
         addLabelComboBox(panel, lLine, MessagesGED.line_style,
                          cLine, options,
-                         LEFTMARGIN, COLUMN, ROW++);
+                         LEFTMARGIN, COLUMN, ROW);
         cLine.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -329,7 +329,6 @@ public class ContouredObject extends ContentLayout {
 
         // Get the current status of the property: Mark Foreground Color
         Integer scilabMarkForeground = -1;
-        String type[] = packClass.split("\\.");
         scilabMarkForeground = (Integer) GraphicController.getController().getProperty(UID, GraphicObjectProperties.__GO_MARK_FOREGROUND__);
         Double[] rgbMarkForeground = ColorMapHandler.getRGBcolor(parentFigure, scilabMarkForeground);
         Color markForegroundCOLOR = new Color(rgbMarkForeground[0].intValue(),
@@ -493,7 +492,7 @@ public class ContouredObject extends ContentLayout {
         JLabel lThickness = new JLabel();
         final JTextField cThickness = new JTextField();
         addLabelTextField(panel, lThickness, MessagesGED.thickness,
-                          cThickness, true, LEFTMARGIN, COLUMN, ROW++);
+                          cThickness, true, LEFTMARGIN, COLUMN, ROW);
         cThickness.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
