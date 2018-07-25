@@ -59,7 +59,7 @@ public class Label extends ContentLayout {
         final JComboBox cAutoPosition = new JComboBox();
         addLabelComboBox(panel, lAutoPosition, MessagesGED.auto_position,
                          cAutoPosition, new String[] {MessagesGED.off , MessagesGED.on},
-                         LEFTMARGIN, COLUMN, ROW++);
+                         LEFTMARGIN, COLUMN, ROW);
         cAutoPosition.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -88,7 +88,7 @@ public class Label extends ContentLayout {
         final JComboBox cAutoRotation = new JComboBox();
         addLabelComboBox(panel, lAutoRotation, MessagesGED.auto_rotation,
                          cAutoRotation, new String[] {MessagesGED.off , MessagesGED.on},
-                         LEFTMARGIN, COLUMN, ROW++);
+                         LEFTMARGIN, COLUMN, ROW);
         cAutoRotation.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -116,7 +116,7 @@ public class Label extends ContentLayout {
         JLabel lFontAngle = new JLabel();
         final JTextField cFontAngle = new JTextField();
         addLabelTextField(panel, lFontAngle, MessagesGED.font_angle,
-                          cFontAngle, true, LEFTMARGIN, COLUMN, ROW++);
+                          cFontAngle, true, LEFTMARGIN, COLUMN, ROW);
         cFontAngle.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -261,7 +261,7 @@ public class Label extends ContentLayout {
         JLabel lText = new JLabel();
         final JTextField cText = new JTextField();
         addLabelTextField(panel, lText, MessagesGED.text,
-                          cText, true, LEFTMARGIN, COLUMN, ROW++);
+                          cText, true, LEFTMARGIN, COLUMN, ROW);
         cText.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
