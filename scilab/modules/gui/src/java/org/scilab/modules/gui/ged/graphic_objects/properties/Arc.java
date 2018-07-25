@@ -61,7 +61,7 @@ public class Arc extends ContentLayout {
         final JComboBox cArcDrawingMethod = new JComboBox();
         addLabelComboBox(panel, lArcDrawingMethod, MessagesGED.arc_drawing_method,
                          cArcDrawingMethod, new String[] {MessagesGED.nurbs , MessagesGED.lines},
-                         LEFTMARGIN, COLUMN, ROW++);
+                         LEFTMARGIN, COLUMN, ROW);
         cArcDrawingMethod.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -202,7 +202,7 @@ public class Arc extends ContentLayout {
         final JTextField cWidth = new JTextField();
 
         addLabelTextField(panel, lWidth, MessagesGED.width,
-                          cWidth, true, LEFTMARGIN, COLUMN, ROW++);
+                          cWidth, true, LEFTMARGIN, COLUMN, ROW);
         cWidth.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -251,7 +251,7 @@ public class Arc extends ContentLayout {
         final JTextField cHeight = new JTextField();
 
         addLabelTextField(panel, lHeight, MessagesGED.height,
-                          cHeight, true, LEFTMARGIN, COLUMN, ROW++);
+                          cHeight, true, LEFTMARGIN, COLUMN, ROW);
         cHeight.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -300,7 +300,7 @@ public class Arc extends ContentLayout {
         final JTextField cStartAngle = new JTextField();
 
         addLabelTextField(panel, lStartAngle, MessagesGED.start_angle,
-                          cStartAngle, true, LEFTMARGIN, COLUMN, ROW++);
+                          cStartAngle, true, LEFTMARGIN, COLUMN, ROW);
         cStartAngle.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -349,7 +349,7 @@ public class Arc extends ContentLayout {
         final JTextField cEndAngle = new JTextField();
 
         addLabelTextField(panel, lEndAngle, MessagesGED.end_angle,
-                          cEndAngle, true, LEFTMARGIN, COLUMN, ROW++);
+                          cEndAngle, true, LEFTMARGIN, COLUMN, ROW);
         cEndAngle.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
