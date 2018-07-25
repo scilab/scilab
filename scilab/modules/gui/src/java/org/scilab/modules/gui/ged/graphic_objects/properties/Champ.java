@@ -46,7 +46,7 @@ public class Champ extends ContentLayout {
         final JComboBox cColored = new JComboBox();
         addLabelComboBox(panel, lColored, MessagesGED.colored,
                          cColored, new String[] {MessagesGED.off , MessagesGED.on},
-                         LEFTMARGIN, COLUMN, ROW++);
+                         LEFTMARGIN, COLUMN, ROW);
         cColored.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
