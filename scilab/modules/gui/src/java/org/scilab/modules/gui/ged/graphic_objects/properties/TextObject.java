@@ -67,7 +67,7 @@ public class TextObject extends ContentLayout {
 
         addLabelColorField(panel, lFontColor, MessagesGED.font_color,
                            dialog, cFontColor, pFontColor, bFontColor,
-                           LEFTMARGIN, COLUMN, ROW++);
+                           LEFTMARGIN, COLUMN, ROW);
 
         //Get the current status of the property: Font Color.
         Integer scilabColor = (Integer) GraphicController.getController()
@@ -99,7 +99,7 @@ public class TextObject extends ContentLayout {
         JLabel lFontSize = new JLabel();
         final JTextField cFontSize = new JTextField();
         addLabelTextField(panel, lFontSize, MessagesGED.font_size,
-                          cFontSize, true, LEFTMARGIN, COLUMN, ROW++);
+                          cFontSize, true, LEFTMARGIN, COLUMN, ROW);
         cFontSize.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -151,7 +151,7 @@ public class TextObject extends ContentLayout {
                                         };
         addLabelComboBox(panel, lFontStyle, MessagesGED.font_style,
                          cFontStyle, options,
-                         LEFTMARGIN, COLUMN, ROW++);
+                         LEFTMARGIN, COLUMN, ROW);
         cFontStyle.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -178,7 +178,7 @@ public class TextObject extends ContentLayout {
         final JComboBox cFractionalFont = new JComboBox();
         addLabelComboBox(panel, lFractionalFont, MessagesGED.fractional_font,
                          cFractionalFont, new String[] {MessagesGED.off , MessagesGED.on},
-                         LEFTMARGIN, COLUMN, ROW++);
+                         LEFTMARGIN, COLUMN, ROW);
         cFractionalFont.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -206,7 +206,7 @@ public class TextObject extends ContentLayout {
         JLabel lText = new JLabel();
         final JComboBox cText = new JComboBox();
         addLabelComboBox(panel, lText, MessagesGED.text,
-                         cText, null, LEFTMARGIN, COLUMN, ROW++);
+                         cText, null, LEFTMARGIN, COLUMN, ROW);
         cText.setEditable(true);
         cText.addActionListener(new ActionListener() {
             @Override
