@@ -58,7 +58,7 @@ public class Polyline extends ContentLayout {
         JLabel lArrowSize = new JLabel();
         final JTextField cArrowSize = new JTextField();
         addLabelTextField(panel, lArrowSize, MessagesGED.arrow_size_factor,
-                          cArrowSize, true, LEFTMARGIN, COLUMN, ROW++);
+                          cArrowSize, true, LEFTMARGIN, COLUMN, ROW);
         cArrowSize.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -105,7 +105,7 @@ public class Polyline extends ContentLayout {
         JLabel lBarWidth = new JLabel();
         final JTextField cBarWidth = new JTextField();
         addLabelTextField(panel, lBarWidth, MessagesGED.bar_width,
-                          cBarWidth, true, LEFTMARGIN, COLUMN, ROW++);
+                          cBarWidth, true, LEFTMARGIN, COLUMN, ROW);
         cBarWidth.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -152,7 +152,7 @@ public class Polyline extends ContentLayout {
         final JComboBox cClosed = new JComboBox();
         addLabelComboBox(panel, lClosed, MessagesGED.closed,
                          cClosed, new String[] {MessagesGED.off , MessagesGED.on},
-                         LEFTMARGIN, COLUMN, ROW++);
+                         LEFTMARGIN, COLUMN, ROW);
         cClosed.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -184,7 +184,7 @@ public class Polyline extends ContentLayout {
                                         };
         addLabelComboBox(panel, lPolyline, MessagesGED.polyline_style,
                          cPolyline, options,
-                         LEFTMARGIN, COLUMN, ROW++);
+                         LEFTMARGIN, COLUMN, ROW);
         cPolyline.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
