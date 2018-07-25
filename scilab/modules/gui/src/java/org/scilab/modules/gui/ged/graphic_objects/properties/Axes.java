@@ -78,7 +78,7 @@ public class Axes extends ContentLayout {
         final JComboBox cAutoClear = new JComboBox();
         addLabelComboBox(panel, lAutoClear, MessagesGED.auto_clear,
                          cAutoClear, new String[] {MessagesGED.off , MessagesGED.on},
-                         LEFTMARGIN, COLUMN, ROW++);
+                         LEFTMARGIN, COLUMN, ROW);
         cAutoClear.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -107,7 +107,7 @@ public class Axes extends ContentLayout {
 
         addLabelComboBox(panel, lAutoScale, MessagesGED.auto_scale,
                          cAutoScale, new String[] {MessagesGED.off , MessagesGED.on},
-                         LEFTMARGIN, COLUMN, ROW++);
+                         LEFTMARGIN, COLUMN, ROW);
         cAutoScale.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -137,7 +137,7 @@ public class Axes extends ContentLayout {
         final JCheckBox cAutoTicksY = new JCheckBox();
         final JCheckBox cAutoTicksZ = new JCheckBox();
         addLabel3CheckBox(panel, lAutoTicks, MessagesGED.auto_ticks,
-                          cAutoTicks, cAutoTicksX, cAutoTicksY, cAutoTicksZ, LEFTMARGIN, COLUMN, ROW++);
+                          cAutoTicks, cAutoTicksX, cAutoTicksY, cAutoTicksZ, LEFTMARGIN, COLUMN, ROW);
         cAutoTicksX.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -311,7 +311,7 @@ public class Axes extends ContentLayout {
         final JCheckBox cAxesVisibleY = new JCheckBox();
         final JCheckBox cAxesVisibleZ = new JCheckBox();
         addLabel3CheckBox(panel, lAxesVisible, MessagesGED.axes_visible,
-                          cAxesVisible, cAxesVisibleX, cAxesVisibleY, cAxesVisibleZ, LEFTMARGIN, COLUMN, ROW++);
+                          cAxesVisible, cAxesVisibleX, cAxesVisibleY, cAxesVisibleZ, LEFTMARGIN, COLUMN, ROW);
         cAxesVisibleX.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -361,7 +361,7 @@ public class Axes extends ContentLayout {
         final JCheckBox cAxesReverseZ = new JCheckBox();
 
         addLabel3CheckBox(panel, lAxesReverse, MessagesGED.axes_reverse,
-                          cAxesReverse, cAxesReverseX, cAxesReverseY, cAxesReverseZ, LEFTMARGIN, COLUMN, ROW++);
+                          cAxesReverse, cAxesReverseX, cAxesReverseY, cAxesReverseZ, LEFTMARGIN, COLUMN, ROW);
         cAxesReverseX.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -458,7 +458,7 @@ public class Axes extends ContentLayout {
                          cBox, new String[] {MessagesGED.off, MessagesGED.on,
                                              MessagesGED.hidden_axes, MessagesGED.back_half
                                             },
-                         LEFTMARGIN, COLUMN, ROW++);
+                         LEFTMARGIN, COLUMN, ROW);
         cBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -485,7 +485,7 @@ public class Axes extends ContentLayout {
         final JComboBox cFilled = new JComboBox();
         addLabelComboBox(panel, lFilled, MessagesGED.filled,
                          cFilled, new String[] {MessagesGED.off , MessagesGED.on},
-                         LEFTMARGIN, COLUMN, ROW++);
+                         LEFTMARGIN, COLUMN, ROW);
         cFilled.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -514,7 +514,7 @@ public class Axes extends ContentLayout {
 
         addLabelComboBox(panel, lGridPosition, MessagesGED.grid_position,
                          cGridPosition, new String[] {MessagesGED.background, MessagesGED.foreground},
-                         LEFTMARGIN, COLUMN, ROW++);
+                         LEFTMARGIN, COLUMN, ROW);
         cGridPosition.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -554,7 +554,7 @@ public class Axes extends ContentLayout {
 
         addLabelColorField(panel, lgridColor, MessagesGED.x_grid_color,
                            dialog, cgridColor, pgridColor, bgridColor,
-                           LEFTMARGIN, COLUMN, ROW++);
+                           LEFTMARGIN, COLUMN, ROW);
 
         // Get the current status of the property: X Axis Grid Color
         Integer scilabColor = (Integer) GraphicController.getController()
@@ -601,7 +601,7 @@ public class Axes extends ContentLayout {
 
         addLabelColorField(panel, lgridColor, MessagesGED.y_grid_color,
                            dialog, cgridColor, pgridColor, bgridColor,
-                           LEFTMARGIN, COLUMN, ROW++);
+                           LEFTMARGIN, COLUMN, ROW);
 
         // Get the current status of the property: Y Axis Grid Color
         Integer scilabColor = (Integer) GraphicController.getController()
@@ -648,7 +648,7 @@ public class Axes extends ContentLayout {
 
         addLabelColorField(panel, lHiddenAxisColor, MessagesGED.hidden_axis_color,
                            colorDialog, cHiddenAxisColor, pHiddenAxisColor, bHiddenAxisColor,
-                           LEFTMARGIN, COLUMN, ROW++);
+                           LEFTMARGIN, COLUMN, ROW);
 
         // Get the current status of the property: Hidden Axis Color
         Integer scilabColor = (Integer) GraphicController.getController()
@@ -701,7 +701,7 @@ public class Axes extends ContentLayout {
         final JCheckBox cLogFlagsY = new JCheckBox();
         final JCheckBox cLogFlagsZ = new JCheckBox();
         addLabel3CheckBox(panel, lLogFlags, MessagesGED.log_flags,
-                          cLogFlags, cLogFlagsX, cLogFlagsY, cLogFlagsZ, LEFTMARGIN, COLUMN, ROW++);
+                          cLogFlags, cLogFlagsX, cLogFlagsY, cLogFlagsZ, LEFTMARGIN, COLUMN, ROW);
         cLogFlagsX.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -1180,7 +1180,7 @@ public class Axes extends ContentLayout {
         final JTextField cTitle = new JTextField();
 
         addLabelTextField(panel, lTitle, MessagesGED.title,
-                          cTitle, true, LEFTMARGIN, COLUMN, ROW++);
+                          cTitle, true, LEFTMARGIN, COLUMN, ROW);
         cTitle.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
