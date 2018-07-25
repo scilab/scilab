@@ -55,7 +55,7 @@ public class Surface extends ContentLayout {
         JLabel lColorFlag = new JLabel();
         final JTextField cColorFlag = new JTextField();
         addLabelTextField(panel, lColorFlag, MessagesGED.color_flag,
-                          cColorFlag, true, LEFTMARGIN, COLUMN, ROW++);
+                          cColorFlag, true, LEFTMARGIN, COLUMN, ROW);
         cColorFlag.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -99,7 +99,7 @@ public class Surface extends ContentLayout {
         JLabel lColorMode = new JLabel();
         final JTextField cColorMode = new JTextField();
         addLabelTextField(panel, lColorMode, MessagesGED.color_mode,
-                          cColorMode, true, LEFTMARGIN, COLUMN, ROW++);
+                          cColorMode, true, LEFTMARGIN, COLUMN, ROW);
         cColorMode.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -155,7 +155,7 @@ public class Surface extends ContentLayout {
 
         addLabelColorField(panel, label, MessagesGED.hidden_color,
                            dialog, cHiddenColor, ipanel, bucketButton,
-                           LEFTMARGIN, COLUMN, ROW++);
+                           LEFTMARGIN, COLUMN, ROW);
 
         // Get the current status of the property: Background Color
         Integer scilabBackgroundColor = (Integer) GraphicController.getController()
@@ -189,7 +189,7 @@ public class Surface extends ContentLayout {
         JLabel lSurfaceMode = new JLabel();
         final JComboBox cSurfaceMode = new JComboBox();
         addLabelComboBox(panel, lSurfaceMode, MessagesGED.surface_mode,
-                         cSurfaceMode, messageOffOn, LEFTMARGIN, COLUMN, ROW++);
+                         cSurfaceMode, messageOffOn, LEFTMARGIN, COLUMN, ROW);
         cSurfaceMode.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
