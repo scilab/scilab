@@ -315,7 +315,7 @@ void addDoubleValue(std::wostringstream * _postr, double _dblVal, DoubleFormat *
         }
         else if (_pDF->bPrintPoint || decpt < str.length())
         {
-            str.append(fmax(0, decpt - str.length()), '0');
+            str.append(std::max(0, (int)(decpt - str.length())), '0');
             str.insert(decpt, ".");
         }
 
