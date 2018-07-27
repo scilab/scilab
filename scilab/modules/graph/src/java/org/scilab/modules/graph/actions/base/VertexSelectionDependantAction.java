@@ -33,7 +33,7 @@ public abstract class VertexSelectionDependantAction extends DefaultAction {
     /**
      * Enable the selection if there is at least a vertex in the selection.
      */
-    private final class VertexSelectionDependantConstraint extends ActionConstraint {
+    private static final class VertexSelectionDependantConstraint extends ActionConstraint {
 
         /**
          * Default constructor
