@@ -379,7 +379,7 @@ public final class JoGLCanvas implements Canvas, GLEventListener {
     /**
      * this class manage asynchronous scene drawing.
      */
-    private class CanvasAnimator implements Runnable {
+    private static class CanvasAnimator implements Runnable {
 
         private final Semaphore semaphore = new Semaphore(1);
         private final Thread thread;
