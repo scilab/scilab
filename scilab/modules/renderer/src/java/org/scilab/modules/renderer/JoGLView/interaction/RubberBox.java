@@ -58,7 +58,7 @@ import org.scilab.modules.localization.Messages;
  */
 public class RubberBox extends FigureInteraction implements PostRendered, MouseListener, MouseMotionListener, KeyListener {
 
-    protected class AxesZoom {
+    protected static class AxesZoom {
 
         public final Axes axes;
         public PointComputer pointAComputer;
