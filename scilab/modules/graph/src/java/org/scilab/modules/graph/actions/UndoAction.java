@@ -51,7 +51,7 @@ public class UndoAction extends DefaultAction {
     /**
      * Manage enable modification
      */
-    private final class UndoConstraint extends ActionConstraint {
+    private static final class UndoConstraint extends ActionConstraint {
         private final WeakReference<ScilabGraph> scilabGraph;
 
         /**
