@@ -84,7 +84,7 @@ public class G2DTextureManager implements TextureManager {
     /**
      * Inner class for {@link Texture} implementation.
      */
-    public class G2DTexture extends AbstractTexture implements Texture {
+    public static class G2DTexture extends AbstractTexture implements Texture {
 
         private ImageBuffer image;
         private TextureDrawer drawer;
