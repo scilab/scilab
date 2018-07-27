@@ -36,7 +36,7 @@ public class GLPickingManager {
     /**
      * This class make an unique color from an index.
      */
-    private class UniqueColor {
+    private static class UniqueColor {
         private final int redSize;
         private final int greenSize;
         private final int blueSize;
