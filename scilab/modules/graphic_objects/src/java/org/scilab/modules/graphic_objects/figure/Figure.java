@@ -198,7 +198,7 @@ public class Figure extends GraphicObject implements AxesContainer {
     /**
      * FigureDimensions class
      */
-    private class FigureDimensions {
+    private static class FigureDimensions {
         /** Position (x,y) of the upper-left corner in the top-level window */
         private Integer[] position;
 
@@ -236,7 +236,7 @@ public class Figure extends GraphicObject implements AxesContainer {
     /**
      * Canvas class
      */
-    private class Canvas {
+    private static class Canvas {
         /** Specifies whether automatic resizing is used */
         private boolean autoResize;
 
@@ -282,7 +282,7 @@ public class Figure extends GraphicObject implements AxesContainer {
     /**
      * FigureName class
      */
-    public class FigureName implements Cloneable {
+    public static class FigureName implements Cloneable {
         /** Name */
         private String name;
 
@@ -329,7 +329,7 @@ public class Figure extends GraphicObject implements AxesContainer {
     /**
      * RenderingMode class
      */
-    private class RenderingMode {
+    private static class RenderingMode {
 
         /** Specifies the pixel drawing mode used */
         private PixelDrawingMode pixelDrawingMode;
