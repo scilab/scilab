@@ -33,7 +33,7 @@ public abstract class EdgeSelectionDependantAction extends DefaultAction {
     /**
      * Enable the selection if there is at least a vertex in the selection.
      */
-    private final class EdgeSelectionDependantConstraint extends ActionConstraint {
+    private static final class EdgeSelectionDependantConstraint extends ActionConstraint {
 
         /**
          * Default constructor
