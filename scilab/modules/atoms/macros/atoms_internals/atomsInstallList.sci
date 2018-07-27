@@ -126,7 +126,7 @@ function [insList,depTree] = atomsInstallList(packages,section)
 
         if (type(tree) == 4) & (~ tree) then
             atomsError("error", ..
-            msprintf(gettext("%s: The dependency tree cannot be resolved.\n"),"atomsInstallList",1));
+            msprintf(gettext("%s: The dependency tree cannot be resolved.\n"),"atomsInstallList"));
         end
 
         // Update the  package_versions(i) with the version returned by
