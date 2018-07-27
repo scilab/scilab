@@ -231,7 +231,7 @@ public class SwingScilabCanvasImpl {
     * Empty class to allow xlick/xgetmouse
     * catch same cannonical name
     */
-    private final class SafeGLCanvas extends GLCanvas {
+    private static final class SafeGLCanvas extends GLCanvas {
         private static final long serialVersionUID = -3315164314205693678L;
     }
 
