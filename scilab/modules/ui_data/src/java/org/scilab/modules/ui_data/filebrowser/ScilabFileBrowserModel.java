@@ -225,7 +225,7 @@ public class ScilabFileBrowserModel extends AbstractScilabTreeTableModel impleme
     /**
      * Inner class to represent the parent node of a file node
      */
-    public class ParentNode extends FileNode {
+    public static class ParentNode extends FileNode {
 
         /**
          * {@inheritDoc}
