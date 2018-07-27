@@ -53,7 +53,7 @@ public class ScilabTypeCoder {
 
     private static final Logger LOG = Logger.getLogger("org.scilab.modules.xcos.io");
 
-    class JavaScilabType {
+    static class JavaScilabType {
 
         final ScilabTypeEnum type;
         final ScilabIntegerTypeEnum intType;
