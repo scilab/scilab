@@ -182,7 +182,7 @@ public class List extends Panel implements XComponent, XChooser, ListSelectionLi
     /**
      * Scans DOM nodes and translate it into list model.
      */
-    class Model extends AbstractListModel {
+    static class Model extends AbstractListModel {
 
         /**
          * Serialization ID.
