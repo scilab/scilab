@@ -104,7 +104,7 @@ public abstract class TreeView implements GraphicView, TreeSelectionListener {
     /*
      * Inner class to wrap GraphicObject in a Node.
      */
-    protected class GraphicObjectNode {
+    protected static class GraphicObjectNode {
         private GraphicObject graphicObject;
 
         public GraphicObjectNode(GraphicObject object) {
