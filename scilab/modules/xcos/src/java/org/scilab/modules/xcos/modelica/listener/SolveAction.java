@@ -47,7 +47,7 @@ public final class SolveAction extends AbstractAction {
     private static final String INCIDENCE = "i_incidence_matrix";
 
     private enum ActionToPerform {EXPORT, COMPILE, COMPUTE, FINISH};
-    private class Worker extends SwingWorker<Void, ActionToPerform> {
+    private static class Worker extends SwingWorker<Void, ActionToPerform> {
 
         private final ModelicaController controller;
         private final JProgressBar progress;
