@@ -111,7 +111,7 @@ public class SwingScilabTree extends DefaultMutableTreeNode implements SimpleTre
      *  This is a private class to embed the JTree inside its Mouse Listener
      *  in order we can figure out on which leaff the user clicked on.
      */
-    private class ClickListener extends MouseAdapter {
+    private static class ClickListener extends MouseAdapter {
         private JTree myJtree;
 
         /**
