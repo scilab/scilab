@@ -98,9 +98,5 @@ libsciio_la_etc_DATA = \
     etc/io.quit \
     etc/io.start
 
-####io : gateway declaration ####
-libsciio_la_sci_gatewaydir = $(mydatadir)/sci_gateway
-libsciio_la_sci_gateway_DATA = sci_gateway/io_gateway.xml
-
 include $(top_srcdir)/Makefile.incl.am
 

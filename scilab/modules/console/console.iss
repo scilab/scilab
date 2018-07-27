@@ -31,12 +31,9 @@ Source: bin\no{#CONSOLE}.lib; DestDir: {app}\bin; DestName: sci{#CONSOLE}.lib; C
 Source: modules\{#CONSOLE}\jar\org.scilab.modules.{#CONSOLE}.jar;DestDir: {app}\modules\{#CONSOLE}\jar; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 Source: thirdparty\jrosetta-engine.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 Source: thirdparty\jrosetta-API.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
-Source: modules\{#CONSOLE}\etc\configuration.xml; DestDir: {app}\modules\{#CONSOLE}\etc; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
 
 Source: modules\{#CONSOLE}\license.txt; DestDir: {app}\modules\{#CONSOLE}; Components: {#COMPN_SCILAB}
-;
-Source: modules\{#CONSOLE}\sci_gateway\{#CONSOLE}_gateway.xml; DestDir: {app}\modules\{#CONSOLE}\sci_gateway; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#CONSOLE}\includes\*.h; DestDir: {app}\modules\{#CONSOLE}\includes; Components: {#COMPN_SCILAB}
 ;

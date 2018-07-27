@@ -58,7 +58,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\data_structures.iss" />
-    <None Include="..\..\sci_gateway\data_structures_gateway.xml" />
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\locales\data_structures.pot">
       <Filter>localization</Filter>

@@ -287,7 +287,6 @@ cd ..
     <f2c_rule Include="xerbla.f" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\sci_gateway\core_gateway.xml" />
     <None Include="..\..\Makefile.am" />
     <None Include="console_Import.def" />
     <None Include="elementary_functions_f_Import.def" />

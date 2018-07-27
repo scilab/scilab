@@ -143,7 +143,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\core.iss" />
-    <None Include="..\..\sci_gateway\core_gateway.xml" />
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\locales\core.pot">
       <Filter>localization</Filter>
@@ -387,7 +386,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\core.iss" />
-    <None Include="..\..\sci_gateway\core_gateway.xml" />
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\locales\core.pot">
       <Filter>localization</Filter>

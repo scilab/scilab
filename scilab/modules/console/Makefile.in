@@ -767,10 +767,6 @@ libsciconsole_la_SOURCES = $(CONSOLE_C_JNI_SOURCES) $(CONSOLE_C_SOURCES) $(CONSO
 CHECK_SRC = $(CONSOLE_C_JNI_SOURCES) $(CONSOLE_C_SOURCES)
 INCLUDE_FLAGS = $(libsciconsole_la_CPPFLAGS)
 
-#### console : gateway declaration ####
-libsciconsole_la_sci_gatewaydir = $(mydatadir)/sci_gateway
-libsciconsole_la_sci_gateway_DATA = sci_gateway/console_gateway.xml
-
 #### SWIG Declaration ####
 SWIG_WRAPPERS = src/jni/GuiManagement.i \
 	src/jni/DropFiles.i

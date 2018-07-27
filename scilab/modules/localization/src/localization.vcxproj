@@ -232,7 +232,6 @@ lib /DEF:"$(ProjectDir)ast_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /
     <None Include="core_import.def" />
     <None Include="localization_export.def" />
     <None Include="..\localization.iss" />
-    <None Include="..\sci_gateway\localization_gateway.xml" />
     <None Include="..\Makefile.am" />
   </ItemGroup>
   <ItemGroup>

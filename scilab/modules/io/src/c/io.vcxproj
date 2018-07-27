@@ -217,7 +217,6 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <None Include="core_import.def" />
     <None Include="Scilab_Windows_Import.def" />
     <None Include="..\..\io.iss" />
-    <None Include="..\..\sci_gateway\io_gateway.xml" />
     <None Include="..\..\Makefile.am" />
   </ItemGroup>
   <ItemGroup>

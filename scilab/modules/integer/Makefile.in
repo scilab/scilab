@@ -683,10 +683,6 @@ libsciinteger_la_etc_DATA = \
     etc/integer.start
 
 
-#### integer : gateway declaration ####
-libsciinteger_la_sci_gatewaydir = $(mydatadir)/sci_gateway
-libsciinteger_la_sci_gateway_DATA = sci_gateway/integer_gateway.xml
-
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
 

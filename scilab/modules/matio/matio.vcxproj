@@ -236,7 +236,6 @@ lib /DEF:"$(ProjectDir)Sparse_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <None Include="locales\matio.pot" />
     <None Include="Makefile.am" />
     <None Include="matio.iss" />
-    <None Include="sci_gateway\matio_gateway.xml" />
     <None Include="sparse_f_Import.def" />
   </ItemGroup>
   <ItemGroup>

@@ -499,7 +499,6 @@ cd ..
     <None Include="elementary_functions_Import.def" />
     <None Include="core_import.def" />
     <None Include="linpack_f_Import.def" />
-    <None Include="..\..\sci_gateway\elementary_functions_gateway.xml" />
     <None Include="..\..\Makefile.am" />
     <None Include="polynomials_f_Import.def" />
     <None Include="slatec_f_Import.def" />

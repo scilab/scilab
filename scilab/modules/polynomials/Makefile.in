@@ -735,10 +735,6 @@ libscipolynomials_la_root_DATA = license.txt
 libscipolynomials_la_etcdir = $(mydatadir)/etc
 libscipolynomials_la_etc_DATA = etc/polynomials.quit etc/polynomials.start
 
-#### polynomials : gateway declaration ####
-libscipolynomials_la_sci_gatewaydir = $(mydatadir)/sci_gateway
-libscipolynomials_la_sci_gateway_DATA = sci_gateway/polynomials_gateway.xml
-
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
 

@@ -832,9 +832,6 @@ SWIG_WRAPPERS = \
 
 libscigraphic_objects_la_LIBADD = $(X_LIBS) $(X_EXTRA_LIBS)
 
-#### graphic_objects : gateway declaration ####
-libscigraphic_objects_la_sci_gatewaydir = $(mydatadir)/sci_gateway
-libscigraphic_objects_la_sci_gateway_DATA = sci_gateway/graphic_objects_gateway.xml
 @GUI_TRUE@USEANT = 1
 all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am

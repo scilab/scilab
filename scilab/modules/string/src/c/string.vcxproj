@@ -283,7 +283,6 @@
     <None Include="core_import.def" />
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\string.iss" />
-    <None Include="..\..\sci_gateway\string_gateway.xml" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="string.rc" />

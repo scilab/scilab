@@ -82,7 +82,6 @@
     </f2c_rule>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\sci_gateway\core_gateway.xml" />
     <None Include="..\..\Makefile.am" />
     <None Include="console_Import.def">
       <Filter>Libraries Dependencies</Filter>

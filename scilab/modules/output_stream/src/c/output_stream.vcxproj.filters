@@ -90,7 +90,6 @@
     </None>
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\output_stream.iss" />
-    <None Include="..\..\sci_gateway\output_stream_gateway.xml" />
     <None Include="..\..\locales\output_stream.pot">
       <Filter>localization</Filter>
     </None>
@@ -195,7 +194,6 @@
     </None>
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\output_stream.iss" />
-    <None Include="..\..\sci_gateway\output_stream_gateway.xml" />
     <None Include="..\..\locales\output_stream.pot">
       <Filter>localization</Filter>
     </None>

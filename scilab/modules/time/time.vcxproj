@@ -259,7 +259,6 @@
     <None Include="time_export.def" />
     <None Include="Makefile.am" />
     <None Include="time.iss" />
-    <None Include="sci_gateway\time_gateway.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\tools\Dumpexts\Dumpexts.vcxproj">

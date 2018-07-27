@@ -216,7 +216,6 @@ lib /DEF:"$(ProjectDir)history_browser_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$
     <None Include="History_browser_Import.def" />
     <None Include="core_import.def" />
     <None Include="..\..\history_manager.iss" />
-    <None Include="..\..\sci_gateway\history_manager_gateway.xml" />
     <None Include="..\..\Makefile.am" />
   </ItemGroup>
   <ItemGroup>

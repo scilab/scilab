@@ -82,7 +82,6 @@
       <Filter>Libraries Dependencies</Filter>
     </None>
     <None Include="..\..\dynamic_link.iss" />
-    <None Include="..\..\sci_gateway\dynamic_link_gateway.xml" />
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\locales\dynamic_link.pot">
       <Filter>localization</Filter>

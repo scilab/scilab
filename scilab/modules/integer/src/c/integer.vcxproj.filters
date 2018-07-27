@@ -298,7 +298,6 @@
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="..\..\integer.iss" />
-    <None Include="..\..\sci_gateway\integer_gateway.xml" />
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\locales\integer.pot">
       <Filter>localization</Filter>

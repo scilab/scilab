@@ -596,10 +596,6 @@ libsciparallel_la_etc_DATA = \
     etc/parallel.start
 
 
-#### parallel : gateway declaration ####
-libsciparallel_la_sci_gatewaydir = $(mydatadir)/sci_gateway
-libsciparallel_la_sci_gateway_DATA = sci_gateway/parallel_gateway.xml
-
 #### parallel : include files ####
 libsciparallel_la_includedir = $(pkgincludedir)
 libsciparallel_la_include_HEADERS = 

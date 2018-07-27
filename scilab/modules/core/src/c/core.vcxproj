@@ -287,7 +287,6 @@ cd ..
   <ItemGroup>
     <None Include="..\..\locales\core.pot" />
     <None Include="..\..\core.iss" />
-    <None Include="..\..\sci_gateway\core_gateway.xml" />
     <CustomBuildStep Include="..\..\includes\machine.h.vc">
       <FileType>Document</FileType>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>

@@ -163,6 +163,5 @@
 		<File RelativePath=".\wwpow1.f"/>
 		<File RelativePath=".\wwpowe.f"/>
 		<File RelativePath=".\wwrdiv.f"/></Filter>
-		<File RelativePath="..\..\sci_gateway\elementary_functions_gateway.xml"/>
 		<File RelativePath="..\..\Makefile.am"/></Files>
 	<Globals/></VisualStudioProject>

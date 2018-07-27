@@ -273,7 +273,6 @@ lib /DEF:"$(ProjectDir)preferences_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     <None Include="Localization_Import.def" />
     <None Include="preferences_Import.def" />
     <None Include="fileio.iss" />
-    <None Include="sci_gateway\fileio_gateway.xml" />
     <None Include="Makefile.am" />
   </ItemGroup>
   <ItemGroup>

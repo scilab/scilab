@@ -660,10 +660,6 @@ libscidynamic_link_la_etc_DATA = \
 #### dynamic_link : internal functions ####
 MACROSDIRSEXT = macros/utils
 
-#### dynamic_link : gateway declaration ####
-libscidynamic_link_la_sci_gatewaydir = $(mydatadir)/sci_gateway
-libscidynamic_link_la_sci_gateway_DATA = sci_gateway/dynamic_link_gateway.xml
-
 #### dynamic_link : compilation scripts ####
 libscidynamic_link_la_scriptdir = $(mydatadir)/src/scripts/
 libscidynamic_link_la_script_DATA = src/scripts/Makefile.in \

@@ -307,7 +307,6 @@
       <Filter>Swig Files</Filter>
     </None>
     <None Include="..\..\graphic_objects.iss" />
-    <None Include="..\..\sci_gateway\graphic_objects_gateway.xml" />
     <None Include="..\..\Makefile.am" />
     <None Include="..\jni\ScilabNativeView.i">
       <Filter>Swig Files</Filter>

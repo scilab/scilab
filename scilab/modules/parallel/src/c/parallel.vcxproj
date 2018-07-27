@@ -233,7 +233,6 @@
     <None Include="core_import.def" />
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\parallel.iss" />
-    <None Include="..\..\sci_gateway\parallel_gateway.xml" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="parallel.rc" />

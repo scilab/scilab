@@ -126,7 +126,6 @@
     </None>
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\string.iss" />
-    <None Include="..\..\sci_gateway\string_gateway.xml" />
     <None Include="..\..\locales\string.pot">
       <Filter>localization</Filter>
     </None>

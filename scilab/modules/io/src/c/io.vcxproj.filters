@@ -79,7 +79,6 @@
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="..\..\io.iss" />
-    <None Include="..\..\sci_gateway\io_gateway.xml" />
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\locales\io.pot">
       <Filter>localization</Filter>

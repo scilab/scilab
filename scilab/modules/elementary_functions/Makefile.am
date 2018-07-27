@@ -433,9 +433,5 @@ libscielementary_functions_la_etc_DATA = \
     etc/elementary_functions.quit \
     etc/elementary_functions.start
 
-#### elementary_functions : gateway declaration ####
-libscielementary_functions_la_sci_gatewaydir = $(mydatadir)/sci_gateway
-libscielementary_functions_la_sci_gateway_DATA = sci_gateway/elementary_functions_gateway.xml
-
 
 include $(top_srcdir)/Makefile.incl.am

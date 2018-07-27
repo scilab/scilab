@@ -101,9 +101,5 @@ libscilinear_algebra_la_root_DATA =  license.txt
 #### linear_algebra : init scripts ####
 libscilinear_algebra_la_etcdir = $(mydatadir)/etc
 libscilinear_algebra_la_etc_DATA = etc/linear_algebra.quit etc/linear_algebra.start
-#### linear_algebra : gateway declaration ####
-libscilinear_algebra_la_sci_gatewaydir = $(mydatadir)/sci_gateway
-libscilinear_algebra_la_sci_gateway_DATA = sci_gateway/linear_algebra_gateway.xml
-
 
 include $(top_srcdir)/Makefile.incl.am

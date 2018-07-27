@@ -102,8 +102,4 @@ libsciinteger_la_etc_DATA = \
     etc/integer.quit \
     etc/integer.start
 
-#### integer : gateway declaration ####
-libsciinteger_la_sci_gatewaydir = $(mydatadir)/sci_gateway
-libsciinteger_la_sci_gateway_DATA = sci_gateway/integer_gateway.xml
-
 include $(top_srcdir)/Makefile.incl.am

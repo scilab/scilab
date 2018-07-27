@@ -27,8 +27,6 @@ Source: bin\{#LINEAR_ALGEBRA}_f.dll; DestDir: {app}\bin; Components: {#COMPN_SCI
 ;
 Source: modules\{#LINEAR_ALGEBRA}\license.txt; DestDir: {app}\modules\{#LINEAR_ALGEBRA}; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#LINEAR_ALGEBRA}\sci_gateway\{#LINEAR_ALGEBRA}_gateway.xml; DestDir: {app}\modules\{#LINEAR_ALGEBRA}\sci_gateway; Components: {#COMPN_SCILAB}
-;
 Source: modules\{#LINEAR_ALGEBRA}\etc\{#LINEAR_ALGEBRA}.quit; DestDir: {app}\modules\{#LINEAR_ALGEBRA}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#LINEAR_ALGEBRA}\etc\{#LINEAR_ALGEBRA}.start; DestDir: {app}\modules\{#LINEAR_ALGEBRA}\etc; Components: {#COMPN_SCILAB}
 ;

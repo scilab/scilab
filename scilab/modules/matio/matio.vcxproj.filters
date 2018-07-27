@@ -125,7 +125,6 @@
     </None>
     <None Include="Makefile.am" />
     <None Include="matio.iss" />
-    <None Include="sci_gateway\matio_gateway.xml" />
     <None Include="locales\matio.pot">
       <Filter>localization</Filter>
     </None>

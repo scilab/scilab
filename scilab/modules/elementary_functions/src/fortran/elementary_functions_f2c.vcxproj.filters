@@ -685,7 +685,6 @@
     <None Include="core_import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
-    <None Include="..\..\sci_gateway\elementary_functions_gateway.xml" />
     <None Include="..\..\Makefile.am" />
     <None Include="linpack_f_Import.def">
       <Filter>Libraries Dependencies</Filter>
