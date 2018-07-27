@@ -99,7 +99,7 @@ public class AutoPositionSplitBlockAction extends VertexSelectionDependantAction
     /**
      * Enable the selection if there is at least a SplitBlock in the selection.
      */
-    private final class SplitBlockSelectionDependantConstraint extends ActionConstraint {
+    private static final class SplitBlockSelectionDependantConstraint extends ActionConstraint {
 
         /**
          * Default constructor
