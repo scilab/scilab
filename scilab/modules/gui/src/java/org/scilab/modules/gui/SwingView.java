@@ -226,7 +226,7 @@ public final class SwingView implements GraphicView {
         Console, CheckBox, Edit, Spinner, Frame, Figure, Axes, Image, ListBox, PopupMenu, Progressbar, PushButton, RadioButton, Slider, Table, Text, Uimenu, UiParentMenu, UiChildMenu, UiCheckedMenu, UiContextMenu, Waitbar, Tab, Layer
     }
 
-    private class TypedObject {
+    private static class TypedObject {
         private UielementType _type;
         private SwingViewObject _value;
         private Set<Integer> _children;
