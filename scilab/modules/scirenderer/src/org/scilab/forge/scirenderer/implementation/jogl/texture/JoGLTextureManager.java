@@ -212,7 +212,7 @@ public class JoGLTextureManager implements TextureManager {
     /**
      * Inner class for {@link Texture} implementation.
      */
-    public class JoGLTexture extends AbstractTexture implements Texture {
+    public static class JoGLTexture extends AbstractTexture implements Texture {
         private com.jogamp.opengl.util.texture.Texture[] textures;
         private JoGLTextureData[] textureData;
         private int wCuts;
