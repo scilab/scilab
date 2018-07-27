@@ -391,7 +391,7 @@ public class EntityPicker {
         return -1;
     }
 
-    public class PickedPoint {
+    public static class PickedPoint {
         public int point;
         public boolean isSegment;
         PickedPoint(int p, boolean segment) {
@@ -457,7 +457,7 @@ public class EntityPicker {
     }
 
 
-    public class LegendInfo {
+    public static class LegendInfo {
         public Integer legend = null;
         public Integer polyline = null;
         LegendInfo(Integer legend, Integer polyline) {
