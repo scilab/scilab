@@ -125,7 +125,7 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
      */
     // CSOFF: ClassDataAbstractionCoupling
     @SuppressWarnings(value = { "serial" })
-    private class CustomizeFrame extends JFrame {
+    private static class CustomizeFrame extends JFrame {
 
         private final CustomizeFrameControler controler;
 
