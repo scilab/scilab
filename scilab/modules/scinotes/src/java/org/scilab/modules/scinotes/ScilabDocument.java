@@ -1120,7 +1120,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
     /**
      * Inner class to get infos on anchor
      */
-    public class Anchor {
+    public static class Anchor {
 
         private int line;
         private String name;
