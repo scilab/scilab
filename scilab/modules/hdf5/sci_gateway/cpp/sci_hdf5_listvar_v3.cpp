@@ -314,6 +314,7 @@ static bool read_short_data(int dataset, VarInfo6& info)
         return false;
     }
 
+    closeDataSet(dataset);
     return true;
 }
 
