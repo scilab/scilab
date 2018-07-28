@@ -626,16 +626,28 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
             // Delete all temporary files ---
             latexFile.delete();
             if (auxFile.isFile()) {
-                auxFile.delete();
+                if (!auxFile.delete())
+                {
+                    System.err.println("Cannot delete '" + auxFile + "'");
+                }
             }
             if (logFile.isFile()) {
-                logFile.delete();
+                if (!logFile.delete())
+                {
+                    System.err.println("Cannot delete '" + logFile + "'"); 
+                }
             }
             if (dviFile.isFile()) {
-                dviFile.delete();
+                if (!dviFile.delete())
+                {
+                    System.err.println("Cannot delete '" + dviFile + "'");
+                }
             }
             if (epsFile.isFile()) {
-                epsFile.delete();
+                if (!epsFile.delete())
+                {
+                    System.err.println("Cannot delete '" + epsFile + "'");
+                }
             }
         }
     }
